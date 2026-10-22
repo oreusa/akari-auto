@@ -47,6 +47,7 @@ ok("/low-ya/vg-groony/" in lib._plain_url({"itemUrl": u}), "商品ページURL�
 book.page_check = lambda u: ("ended", "ページに「このイベントは終了しました」") if "ended" in u else ("ok", "")
 ok(lib.missing_specs(["140×80cm・3.2L"], "サイズ 140×80 cm", "タンク3.2L") == [], "同じ数字を×にした")
 ok(lib.missing_specs(["188×130cm"], "サイズ 140×80cm") == ["130cm"], "大きさの違いを見逃した")
+ok(lib.about_item(["◇ A社 X1：80W\n◇ JBK551G：55W\n◇ どちらも約188×130cm"], "JBK551G") == ["◇ JBK551G：55W", "◇ どちらも約188×130cm"], "選んだ商品の行の取り出し")
 # 日付の古い出どころ
 from check import asof_problems  # noqa: E402
 from datetime import date  # noqa: E402
@@ -69,7 +70,7 @@ ok(book.choose(PR, "2026-10-24", None)[3] == "代わり", "商品名違いで代
 book.rakuten_item = lambda *a, **k: {"ok": True, "name": "LOWYA グルーニー 着る毛布", "reviewCount": 46917,
                                   "reviewAverage": 4.5, "link": "https://hb.afl.rakuten.co.jp/hgc/abc/?pc=x"}
 xs, ths, topic, kind, why = book.choose(PR, "2026-10-24", None)
-big = dict(PR, x=["【着る毛布】188×130cm\n楽天市場より（10/23時点）\n#暮らし #PR", "{{LINK}}\n#PR"])
+big = dict(PR, x=["【着る毛布】グルーニーは188×130cm\n楽天市場より（10/23時点）\n#暮らし #PR", "{{LINK}}\n#PR"])
 book.rakuten_item = lambda *a, **k: {"ok": True, "name": "LOWYA グルーニー 着る毛布 140×80cm", "caption": "",
                                   "link": "https://hb.afl.rakuten.co.jp/hgc/abc/?pc=x"}
 ok(book.choose(big, "2026-10-24", None)[3] == "代わり", "大きさの書き違いで代わりにならない")

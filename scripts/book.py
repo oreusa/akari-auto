@@ -16,7 +16,7 @@ from datetime import datetime, timedelta, timezone
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check import LINK, post_problems  # noqa: E402
 from lib import (JST, URL_RE, BufferError, a8_link, append_log, buffer_create, buffer_posts,  # noqa: E402
-                 item_code_from_url, load_json, missing_specs, now_jst, page_check, path,
+                 about_item, item_code_from_url, load_json, missing_specs, now_jst, page_check, path,
                  rakuten_item, rakuten_travel_link, save_json)
 
 LEAD_MIN = int(os.environ.get("LEAD_MIN", "150"))   # 何分先までを予約するか
@@ -36,7 +36,7 @@ def resolve_link(link, texts=()):
         if r.get("ok") and exp and exp not in r.get("name", ""):
             r = {"ok": False, "why": f"商品名に「{exp}」がない（別の商品の可能性）: {r.get('name', '')[:40]}"}
         if r.get("ok"):
-            miss = missing_specs(texts, r.get("name", ""), r.get("caption", ""))
+            miss = missing_specs(about_item(texts, exp), r.get("name", ""), r.get("caption", ""))
             if miss:
                 r = {"ok": False, "why": "文の数字が商品ページにない（書き違いの可能性）: " + "・".join(miss[:4])}
         return r

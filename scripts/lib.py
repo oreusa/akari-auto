@@ -280,7 +280,7 @@ def rakuten_travel_link(hotel_no):
 
 # ---------------------------------------------------------------- 数字・ページの確かめ
 
-SPEC_RE = re.compile(r"(\d[\d,.]*)\s*(cm|mm|kg|g|W|L|mAh|ml|mL|畳|時間|分|段階|個|枚|口)(?![a-zA-Z])")
+SPEC_RE = re.compile(r"(\d[\d,.]*)\s*(cm|mm|kg|g|W|L|mAh|ml|mL|畳)(?![a-zA-Z])")
 
 
 def _norm(t):
@@ -295,6 +295,21 @@ def spec_numbers(texts):
             tok = (m.group(1).replace(",", "") + m.group(2)).lower()
             if tok not in out:
                 out.append(tok)
+    return out
+
+
+ALL_RE = re.compile(r"どちらも|いずれも|すべて|全部|[2-9２-９]つとも|[2-9２-９]台とも|[2-9２-９]枚とも")
+
+
+def about_item(texts, expect):
+    """比べる投稿では、選んだ商品（expect が入る行）と「どちらも」などの行だけを、その商品の数字として見る。"""
+    if not expect:
+        return list(texts)
+    out = []
+    for t in texts:
+        for line in t.splitlines():
+            if expect in line or ALL_RE.search(line):
+                out.append(line)
     return out
 
 
