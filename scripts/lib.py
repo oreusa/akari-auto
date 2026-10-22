@@ -202,7 +202,7 @@ def rakuten_item(item_code):
         "affiliateId": env["RAKUTEN_AFFILIATE_ID"],
         "itemCode": item_code, "hits": 1,
     }
-    origin = os.environ.get("RAKUTEN_ORIGIN", "https://github.com")
+    origin = os.environ.get("RAKUTEN_ORIGIN") or "https://github.com"  # 空のときも github.com
     url = RAKUTEN_ITEM_URL + "?" + urllib.parse.urlencode(params)
     status, txt, _ = http("GET", url, headers={"Origin": origin, "Referer": origin + "/"})
     if status != 200:
