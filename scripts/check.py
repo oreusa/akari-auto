@@ -30,6 +30,8 @@ def _texts_problems(texts, where, allow_link):
         for rx, why in BANNED:
             if rx.search(t):
                 out.append(f"{where} {i}つ目：{why}")
+        if i == 1 and len(texts) > 1 and (LINK in t or re.search(r"https?://", t)):
+            out.append(f"{where} 1つ目：URLは入れない（リンクは2つ目だけ。同じリンクが2回出るのを防ぐ）")
         if LINK in t and not allow_link:
             out.append(f"{where} {i}つ目：{{{{LINK}}}} があるのに link の指定がない（代わりの投稿には使えない）")
         probe = t.replace(LINK, "https://hb.afl.rakuten.co.jp/x")
