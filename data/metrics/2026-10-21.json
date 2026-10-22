@@ -1,0 +1,354 @@
+{
+  "day": "2026-10-21",
+  "fetchedAt": "2026-10-22T18:04+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "手動",
+      "first": "10/25と10/30、楽天カード払いで1万円なら400ポイントの目安",
+      "url": "https://www.threads.com/@ai_usagichan1/post/Deu4fWfESCz",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 5.41,
+        "views": 37,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "手動",
+      "first": "10/25と10/30、楽天カード払いで1万円なら400ポイントの目安",
+      "url": "https://x.com/1753799832798629888/status/2112668987783864661",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.56,
+        "reposts": 0,
+        "impressions": 39,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "08:00",
+      "kind": "手動",
+      "first": "昨日わかったこと：「電源タップ」で調べる人は少ないので、PRのタグを「家電」に替",
+      "url": "https://www.threads.com/@ai_usagichan1/post/Deu9p5olIXH",
+      "metrics": {
+        "reactions": 1,
+        "comments": 0,
+        "engagementRate": 50,
+        "views": 2,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "08:00",
+      "kind": "手動",
+      "first": "昨日わかったこと：「電源タップ」で調べる人は少ないので、PRのタグを「家電」に替",
+      "url": "https://x.com/1753799832798629888/status/2112680304057995323",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 12,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "08:01",
+      "kind": "手動",
+      "first": "昨日わかったこと：「電源タップ」で調べる人は少ないので、PRのタグを「家電」に替",
+      "url": "https://www.instagram.com/reel/Deu9sUAAurZ/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 53,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 2.01,
+        "averageTimeWatched": 2.41,
+        "reach": 50
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "手動",
+      "first": "入場無料で、11/6から上野公園にクリスマスマーケット",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DevGOmHl5mB",
+      "metrics": {
+        "reactions": 2,
+        "comments": 1,
+        "engagementRate": 0.69,
+        "views": 432,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "手動",
+      "first": "11月からの東京の光のイベント5選",
+      "url": "https://x.com/1753799832798629888/status/2112699158985425108",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.32,
+        "reposts": 0,
+        "impressions": 76,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "手動",
+      "first": "USB-Cが4つとUSB-Aが1つ、合計45Wの充電器",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DevazhPF8Ec",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 9.09,
+        "views": 22,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "手動",
+      "first": "USB-Cが4つとUSB-Aが1つ、合計45Wの充電器",
+      "url": "https://x.com/1753799832798629888/status/2112744444051001393",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 20,
+        "reposts": 0,
+        "impressions": 5,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "手動",
+      "first": "加湿器3台、各メーカーの仕様表を並べて比べました",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DevlGjOkR3d",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.27,
+        "views": 79,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "手動",
+      "first": "加湿器3台、公式の仕様表で比べました",
+      "url": "https://x.com/1753799832798629888/status/2112767088645312599",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.86,
+        "reposts": 0,
+        "impressions": 70,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "手動",
+      "first": "11/3の文化の日、国立西洋美術館の常設展は無料",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DevvakSlTis",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 0.5,
+        "views": 398,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "手動",
+      "first": "11/3の文化の日、国立西洋美術館の常設展は無料",
+      "url": "https://x.com/1753799832798629888/status/2112789742085365767",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.78,
+        "reposts": 0,
+        "impressions": 36,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "17:15",
+      "kind": "手動",
+      "first": "洋室15畳まで。13:45で比べた加湿器3台で、いちばん広い部屋向け",
+      "url": "https://www.threads.com/@ai_usagichan1/post/Dev9IxgFTIL",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.73,
+        "views": 137,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "17:15",
+      "kind": "手動",
+      "first": "洋室15畳まで。13:45で比べた加湿器3台で、いちばん広い部屋向け",
+      "url": "https://x.com/1753799832798629888/status/2112819942659682599",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.88,
+        "reposts": 0,
+        "impressions": 17,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "手動",
+      "first": "朝7時台に開く駅前のコーヒー店、今週オープンの2つ",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DewEAUYFSPM",
+      "metrics": {
+        "reactions": 2,
+        "comments": 1,
+        "engagementRate": 0.91,
+        "views": 331,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "手動",
+      "first": "朝7時台に開く駅前のコーヒー店、今週オープンの2つ",
+      "url": "https://x.com/1753799832798629888/status/2112835043940815279",
+      "metrics": {
+        "reactions": 2,
+        "comments": 1,
+        "engagementRate": 4.08,
+        "reposts": 0,
+        "impressions": 196,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "手動",
+      "first": "【新宿から箱根湯本まで最速75分】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DewRxXAFasw",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.57,
+        "views": 174,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "手動",
+      "first": "【新宿から箱根湯本まで最速75分】",
+      "url": "https://x.com/1753799832798629888/status/2112865286328103329",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.55,
+        "reposts": 0,
+        "impressions": 183,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "手動",
+      "first": "【冬の電気、いちばん減らせるのは照明4.5%】",
+      "url": "https://x.com/1753799832798629888/status/2112876786249814261",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 12.5,
+        "reposts": 0,
+        "impressions": 8,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:01",
+      "kind": "手動",
+      "first": "【冬の電気、いちばん減らせるのは照明4.5%】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DewXA8nnKXj",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.13,
+        "views": 47,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "手動",
+      "first": "eco運転で20時間、タンク3.2Lのハイブリッド式加湿器",
+      "url": "https://www.threads.com/@ai_usagichan1/post/Dewfg6kIK_A",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 25,
+        "views": 4,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "手動",
+      "first": "eco運転で20時間、タンク3.2Lのハイブリッド式加湿器",
+      "url": "https://x.com/1753799832798629888/status/2112895504170340364",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 7.41,
+        "reposts": 0,
+        "impressions": 27,
+        "clicks": 0
+      }
+    }
+  ]
+}
