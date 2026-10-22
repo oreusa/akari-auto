@@ -221,7 +221,11 @@ def rakuten_item(item_code, keyword=None):
         if items is None:
             return {"ok": False, "why": err2}
         want = f"/{shop}/{slug}/"
+        found = items
         items = [it for it in items if want in (it.get("itemUrl") or "") + "/"]
+        if not items:
+            seen = "; ".join(f"{it.get('itemCode')} {(it.get('itemUrl') or '')[:60]}" for it in found[:5])
+            return {"ok": False, "why": f"お店の中で同じ商品ページが見つからない（{len(found)}件中）: {seen}"}
     elif items is None:
         return {"ok": False, "why": err}
     if not items:
