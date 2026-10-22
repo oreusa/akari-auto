@@ -42,6 +42,19 @@ def _texts_problems(texts, where, allow_link):
     return out
 
 
+def _head(texts):
+    if isinstance(texts, list) and texts and isinstance(texts[0], str) and texts[0].strip():
+        return texts[0].strip().splitlines()[0].strip()
+    return None
+
+
+def _same_head(p, where=""):
+    hx, ht = _head(p.get("x")), _head(p.get("threads"))
+    if hx is not None and ht is not None and hx != ht:
+        return [f"{where}XとThreadsで1行目の見出しが違う（見出しと題材は同じにし、長さだけ変える）"]
+    return []
+
+
 def post_problems(p):
     out = []
     slot = p.get("slot", "")
@@ -71,6 +84,7 @@ def post_problems(p):
             for i, t in enumerate(texts, 1):
                 if LINK in t and "#PR" not in t:
                     out.append(f"{ch} {i}つ目：リンクがある投稿に #PR がない")
+    out += _same_head(p)
     if not p.get("topic"):
         out.append("topic（Threadsのトピック）がない")
     if link or p.get("until"):
@@ -80,6 +94,7 @@ def post_problems(p):
         else:
             out += ["fallback " + s for s in _texts_problems(fb.get("x"), "x", False)]
             out += ["fallback " + s for s in _texts_problems(fb.get("threads"), "threads", False)]
+            out += _same_head(fb, "fallback ")
     return out
 
 
