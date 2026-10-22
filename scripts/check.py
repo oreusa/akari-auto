@@ -50,9 +50,14 @@ def _head(texts):
 
 def _same_head(p, where=""):
     hx, ht = _head(p.get("x")), _head(p.get("threads"))
+    out = []
+    for h in (hx, ht):
+        if h is not None and not h.startswith("【AIが比べた"):
+            out.append(f"{where}1行目が「【AIが比べた」で始まっていない（見出しは全部この形。10/22 オーナー）")
+            break
     if hx is not None and ht is not None and hx != ht:
-        return [f"{where}XとThreadsで1行目の見出しが違う（見出しと題材は同じにし、長さだけ変える）"]
-    return []
+        out.append(f"{where}XとThreadsで1行目の見出しが違う（見出しと題材は同じにし、長さだけ変える）")
+    return out
 
 
 def post_problems(p):
@@ -113,6 +118,11 @@ def check_file(fp):
         d = date.fromisoformat(data.get("date", ""))
     except ValueError:
         return probs + [f"{fp}: date が YYYY-MM-DD でない"]
+    room_urls = {str(r.get("url", "")).split("?")[0].rstrip("/") for r in (data.get("room") or []) if isinstance(r, dict)}
+    for p in data["posts"]:
+        lk = p.get("link") or {}
+        if lk.get("type") == "ichiba" and str(lk.get("url", "")).split("?")[0].rstrip("/") not in room_urls:
+            probs.append(f"{fp} {p.get('slot')}: PRで選んだ楽天市場の商品が room にない（PRの商品は必ずROOMにも載せる。10/22 オーナー）")
     for p in data["posts"]:
         for pr in post_problems(p) + asof_problems(p, d):
             probs.append(f"{fp} {p.get('slot', '?')}: {pr}")
