@@ -1,0 +1,81 @@
+# 燈2.0 の引き継ぎ（2026-10-22 月 → 燈）
+
+月（うさぎちゃん不動産）が 10/22 に燈の仕組みを作り直しました。月のスレッドは消えるので、燈に必要なことは全部ここに書きます。
+迷ったらこのファイルを読んでください。ここに無いことはオーナーに聞きます（月には聞かない）。
+
+## 1. 1日の流れ（日本時間）
+
+| 時刻 | だれ | すること | 置き場所 |
+| --- | --- | --- | --- |
+| 毎時07分 | 予約係（GitHub Actions `book.yml`） | 2時間半以内に出す投稿を燈のBufferに予約。PRは直前に楽天/A8を確かめ、だめなら fallback。出たかの確認と1回の出し直しもする | `log/日付.md`・`state/booked.json` |
+| 6:40 | 数字係（`metrics.yml`） | 前日・前々日の数字 | `data/metrics/日付.json` |
+| 7:10 | 雫（ChatGPT） | 4コマを作り 8:00 に出す | 台本はドライブ「燈からの指示（最新）」 |
+| 7:15・9:15・12:15・18:15(PR)・20:15 | 予約係 | 燈が書いた5本が出る | `schedule/日付.json` |
+| 7:30 | 汐（ChatGPT） | 楽天・A8 のクリックと売上を「分析メモ」へ。A8のリンクを「リンク帳」へ | ドライブ 連絡ノート |
+| 8:45ごろ | 予約係 | 4コマが出たか確かめ、log に書く | `log/日付.md` |
+| 20:20 | 凪（ChatGPT） | その日のROOMがまだなら楽天ROOMに3件（「ROOM台本」どおり）＋コメント返信 | ドライブ「ROOM台本」 |
+| 22:11 | 燈 夜の回（Claude） | 翌日の予定表と4コマ・ROOM台本を書く。指示は `docs/nightly-prompt.md` | `schedule/翌日.json`・ArtifactData akari2/翌日 |
+| 予定表を置いたとき | check（`check.yml`） | 決まりと楽天（販売中・商品名・数字・レビュー4.0以上）と出どころを確かめる。×は赤 | GitHub Actions |
+| 23:41 | 受け渡し役（Claude） | 4コマ台本とROOM台本をドライブへ、売上とA8の行を akari2/report へ写す | ドライブ・ArtifactData |
+| 9:13（10/23〜10/29） | 朝の確認（Claude） | 最初の1週間だけ、全部が回っているか確かめて直す | このプロジェクトの「燈2.0 朝の確認」 |
+
+## 2. 予約タスク（Claude）
+- 夜の回：`trig_01QzGRiC67ufRP7LBD5tKcu7`「燈2.0 夜の回（翌日の予定表を書く）」毎日22:11。中身は `docs/nightly-prompt.md` を読むだけなので、決まりの変更はこのファイルを直す。
+- 受け渡し：`trig_018LroXsHYAtXPeERQYaY3Zt`「燈 台本と数字の受け渡し（燈2.0）」毎日23:41。ドライブ・Docs・Buffer の接続つき（Bufferは使わない決まり）。
+- 朝の確認：「燈2.0 朝の確認（10/23〜10/29）」毎日9:13。10/29 の回で自分を止める。
+- 止めたもの：司令 `trig_01G8h6UJHm7SS5qbbZRDJSoJ`（無効）。古い監・検・更・朝の報告も無効のまま。動かさない。
+
+## 3. GitHub（oreusa/akari-auto、非公開）
+- `scripts/book.py` 予約係／`scripts/check.py` 決まりの確認／`scripts/metrics.py` 数字／`scripts/lib.py` 共通（楽天・A8・Buffer・ページの確認）／`scripts/selftest.py` 自己テスト。
+- ワークフロー：`book.yml`（毎時07分）、`metrics.yml`（6:40）、`check.yml`（push のたび。自己テスト→`check.py --online`）、`online.yml`（Bufferの送信・予約・下書きの一覧 `--sent-test`）、`a8.yml`（A8リンクの確認。入力「url|ドメイン」をスペース区切り）、`probe.yml`（ページが開けるかの調べ）、`setup.yml`・`test.yml`（最初の設定用）。
+- Secrets：`BUFFER_API_KEY`（期限 2027-10-22）、`RAKUTEN_APP_ID`・`RAKUTEN_ACCESS_KEY`・`RAKUTEN_AFFILIATE_ID`（楽天アプリ「akariauto」、期限 2027-10-22。楽天の画面の「有効期限延長」で延ばす）。キーはチャットやファイルに書かない。
+- Buffer のチャンネル：X は ai_usagichan、Threads とインスタは ai_usagichan1。
+- 書き方の決まり：`docs/how-to-write.md`。形の見本：`docs/example-schedule.json`。学びの記録：`notes/learning.md`（毎晩1行）。
+
+## 4. ドライブ（フォルダ「連絡ノート」 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）
+- 「燈からの指示（最新）」1Sqtzmd1ltNqemj4_un46kWPQz2URSQcdcP_CZCzHMnU：雫だけが読む短いファイル（■明日の4コマ台本）。作り直すとIDが変わるので、題名で探す。
+- 「指示_雫」18PXzPW3ze2aShusLYuDM-hqDBWorpc-iCttzat7zwgw／「指示_汐」1bDOqjEdFt9HGeEmTGtpbQ9HeHZAc2gRBfBKVqGZyhfk（売上の数字とA8のリンクだけ）／「指示_凪」1VmDhm1UprxY3mYk4Ldx9GQfItHtGwsg2bXRltQ4noSA（どの回でも、その日のROOMがまだなら載せる→返信。凪の予約は20:20の1回）。
+- 「ROOM台本」16J7c8utH51AnR7k143iqrMFrWx_RHplpXiNrNRdBS2k（「（ここから下に台本）」より下だけ入れ替える）。
+- 「リンク帳」1_H6XW71xeWpVUg19P84B9SyBw6ZoVYFxLXKOebFusrM（A8は「A8｜名前｜https://px.a8.net/svt/ejp?a8mat=…｜ドメイン」の形）。
+- 「分析メモ」12BQ-UufhKrlk-Inqbc5OU1TGw9542OnGPwCtS6w7WrU（汐が【楽天】【A8】の行を書く）。
+- 「燈の経営方針」1bPgyCYKaGvU_-IE3Uq06nYNgaIGHXKCIh8QJZhyAwrU：ジャンルの方針は今も有効。投稿本数・時刻・PRの出し方はこのファイル（燈2.0）が優先。
+- 古い「月から燈へ：自分で決めて動くための指示書」「ルールブック」などは GPT リレー時代の物。食い違うときは燈2.0（このファイル）が優先。
+
+## 5. ArtifactData（相談室 https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H）
+- collection `akari2`、doc `YYYY-MM-DD`：{koma4, room, writtenAt}（夜の回が書き、受け渡し役が読む）。
+- doc `report`：{sales, a8, copiedAt}（受け渡し役が書き、夜の回が読む）。
+
+## 6. ChatGPT のタスク（10/22 時点）
+- 動かす：雫 4コマ（毎日7:10）、汐 分析（毎日7:30）、凪 運用v2（毎日20:20）。
+- 止めたまま：渚・澪・泉・夜（10/29 ごろ、問題がなければオーナーに「消してよい」と伝える）。
+
+## 7. 決まり（機械が守らせているもの）
+- Amazon は使わない（機械から商品ページを開けず確かめられない。Creators API は30日で10件の売上が要る）。楽天の短縮リンク a.r10.to、リンクの直書き（hb.afl・px.a8.net を本文に）も×。
+- A8 はリンク帳の行だけ。予約の直前に、広告主のドメインに着くか確かめる（着かなければ fallback）。10/22 に5件（wargo 着物レンタル・カシカシ・日本旅行・KKday・HitoHana）を `a8.yml` で確かめて全部OK。終わったプログラムでも広告主のページに着くことがあるので、A8 から「提携終了」のメールが来たらオーナーから伝えてもらい、リンク帳の行を消す。
+- PR の文の「数字＋単位」は楽天の商品名か商品説明にある物だけ。比べた他の商品の数字は見ない（選んだ商品の行と「どちらも」の行だけを照らす）。
+- 出どころ「（M/D時点）」は x と threads に必ず。7日より古いと×。出どころのページが無い・「終了しました」なら fallback か中止。
+- 予約後、出たかを確かめ、エラーか60分出ていなければ1回だけ出し直す（3時間以内）。
+- 4コマ（雫）が 8:45 までに出ていなければ log に書き、夜の回が台本の頭に注意を書く。
+- 月（うさぎちゃん不動産、usagi-fudosan-media、fudosan_ai_si）のアカウント・ファイルには触れない。
+
+## 8. 方針と目標
+- 軸：「AIが代わりに調べる買い物係」（比較PR 1日1本 18:15）＋季節のおでかけ・週末旅と温泉・冬支度と節約・今だけのお得・無料の場所とイベント・話題の新店（カフェ週3くらい）。推し活・オタク路線はしない。キャラ物は流行ると判断したときだけ週2まで。4コマは運用日記として毎日。
+- 11/20 までは見てもらう数を増やす。売る山は楽天ブラックフライデー（11月下旬）とスーパーSALE（12/4ごろ〜11）。月10万円の目標は外した。
+- 燈は指示を待たない。毎晩1つ新しいことを試し、日曜に週の目標を自分で決める。
+
+## 9. オーナーとの話し方
+- 標準語。「IG」ではなく「インスタ」と書く。報告の最後は「オーナーの今やること：」（無ければ「なし」）。
+- オーナーが入力・貼り付けする文は、必ずコピーできるコードブロックで。手順は1つずつ。
+- キーやパスワードはチャットに書かせない（GitHub の Secrets に入れてもらう）。
+- オーナーが話している・聞いているときは、先に答えて確かめてから動く。
+
+## 10. 残っていること（日付順）
+- 10/23 7:15：燈2.0 の本番の初日。朝の確認（9:13）が、出たか・4コマ・ROOM台本・夜の check を見る。
+- 10/22 夜：古い仕組みの 22:15 の通常の投稿（X・Threads）が1本予約されている。そのまま出してよい。
+- 燈の Buffer に古い GPT の下書きが約56件ある。予約や数字の邪魔にはならない。消すときはオーナーに一度確かめてから。
+- 10/29：朝の確認の最後の回。渚・澪・泉・夜を消してよいかオーナーに伝える。
+- 2027-10-08 ごろ：Buffer のキーと楽天アプリの期限（2027-10-22）の延長をオーナーに頼む。
+
+## 11. オーナー向けの説明
+- 「燈2.0 何がどう変わるか」https://claude.ai/artifact/ReGy8US3LGz7LE8WkShJLQ
+- 「燈の立て直し計画（10/22 月）」https://claude.ai/artifact/ARmvHiGCgy4ujZXj343Tm5
