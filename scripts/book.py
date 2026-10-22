@@ -260,6 +260,12 @@ def sent_test():
     for st in ("sent", "error"):
         ps = buffer_posts(cfg, [st], now - timedelta(days=1), now)
         print(st, len(ps), [(p["channelService"], p["dueAt"][11:16]) for p in ps[:5]])
+    for st in ("scheduled", "draft"):  # これから出る予約・下書き（手で足された物がないか）
+        try:
+            ps = buffer_posts(cfg, [st], now - timedelta(days=2), now + timedelta(days=3))
+            print(st, len(ps), [(p["channelService"], p["dueAt"], (p["text"] or "")[:30]) for p in ps[:20]])
+        except BufferError as e:
+            print(st, "×", str(e)[:150])
     return 0
 
 
