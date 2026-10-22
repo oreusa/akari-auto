@@ -206,6 +206,14 @@ def _rakuten_search(params):
     return [it.get("Item", it) for it in items], ""
 
 
+def _plain_url(it):
+    """アフィリエイトIDつきで聞くと itemUrl もリンクの形で返るので、中の商品ページURLを取り出す。"""
+    u = (it.get("itemUrl") or "") + "/"
+    for _ in range(2):
+        u = urllib.parse.unquote(u)
+    return u
+
+
 def rakuten_item(item_code, keyword=None):
     """楽天市場の商品を1つ確かめる。返すもの：販売中か・商品名・レビュー・正式なアフィリエイトリンク。
 
@@ -222,7 +230,7 @@ def rakuten_item(item_code, keyword=None):
             return {"ok": False, "why": err2}
         want = f"/{shop}/{slug}/"
         found = items
-        items = [it for it in items if want in (it.get("itemUrl") or "") + "/"]
+        items = [it for it in items if want in _plain_url(it)]
         if not items:
             seen = "; ".join(f"{it.get('itemCode')} {(it.get('itemUrl') or '')[:60]}" for it in found[:5])
             return {"ok": False, "why": f"お店の中で同じ商品ページが見つからない（{len(found)}件中）: {seen}"}
@@ -239,14 +247,15 @@ def rakuten_item(item_code, keyword=None):
         "price": it.get("itemPrice"),
         "reviewCount": it.get("reviewCount"),
         "reviewAverage": it.get("reviewAverage"),
-        "itemUrl": it.get("itemUrl", ""),
+        "itemUrl": _plain_url(it).rstrip("/") + "/",
         "link": aff,
     }
     if it.get("availability") != 1:
         res["why"] = "売り切れ・販売停止"
-    elif env["RAKUTEN_AFFILIATE_ID"].split(".")[0] not in aff:
+    elif not aff.startswith("https://hb.afl.rakuten.co.jp/"):
+        # 楽天は affiliateId を渡したときだけ affiliateUrl を返す（IDは g00… の形に変えて入る）
         res["ok"] = False
-        res["why"] = "リンクにうちのアフィリエイトIDが入っていない"
+        res["why"] = "楽天のアフィリエイトリンクの形ではない"
     return res
 
 

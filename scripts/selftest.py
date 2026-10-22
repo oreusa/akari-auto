@@ -39,6 +39,10 @@ ok(any("短縮" in p for p in post_problems(dict(PR, threads=["a\n#PR", "https:/
 ok(any("fallback" in p for p in post_problems({k: v for k, v in PR.items() if k != "fallback"})), "fallbackなしを見逃した")
 ok(any("文字数" in p for p in post_problems(dict(PR, x=["あ" * 141 + "\n#PR", "{{LINK}} #PR"]))), "X文字数超えを見逃した")
 
+# アフィリエイトの形のURLから商品ページを取り出せる
+u = "https://hb.afl.rakuten.co.jp/hgc/g00pxdho.m2lhf999.g00pxdho.m2lhfa00/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flow-ya%2Fvg-groony%2F&m=x"
+ok("/low-ya/vg-groony/" in lib._plain_url({"itemUrl": u}), "商品ページURLの取り出し")
+
 # 楽天が「売り切れ」→ 代わりになる
 book.rakuten_item = lambda *a, **k: {"ok": False, "why": "売り切れ・販売停止"}
 xs, ths, topic, kind, why = book.choose(PR, "2026-10-24", None)
