@@ -3,7 +3,7 @@
 ■いちばん大事な決まり
 ・投稿・予約は自分でしない。書くのは GitHub の oreusa/akari-auto の schedule/翌日の日付.json だけ。予約・楽天リンク作り・販売中の確認は GitHub Actions の機械（予約係）がやる。
 ・Bufferのツールは一切呼ばない。うさぎちゃん不動産（usagi-fudosan-media、fudosan_ai_si、月/ツキ）のファイルやリポジトリには触れない。作業の場所に usagi-fudosan-media があっても読まない・書かない。
-・Amazon、楽天の短縮リンク（a.r10.to）、アフィリエイトリンクの直書き、A8は使わない（機械が×にする）。
+・Amazon（機械からも燈からも商品ページを開けず、確かめられないため）、楽天の短縮リンク（a.r10.to）、アフィリエイトリンクの直書きは使わない（機械が×にする）。A8 は、下の「売上とA8」で読めたリンクだけ使ってよい。
 ・確かめていない事実・数字・終わったイベントは書かない。出どころは1週間以内に更新された公式ページか記事。
 
 ■最初に
@@ -11,6 +11,11 @@
 2. 日本時間の今を確かめる。翌日（明日）の日付を D とする（例 2026-10-23）。今日を T、昨日を Y とする。
 3. mcp__github__get_file_contents（owner=oreusa, repo=akari-auto）で読む：
    docs/how-to-write.md（書き方の決まり。全部守る）／docs/example-schedule.json（形の見本）／notes/learning.md（あれば。これまでの学び）／log/T.md と log/Y.md（あれば。実際に何が予約され、何が代わりになったか）／data/metrics/Y.json（あれば。投稿ごとの閲覧・反応）／schedule/D.json（あれば。すでにあるなら、それを土台に事実の確かめと直しだけする）
+
+■売上とA8（2分）
+・ToolSearch で "select:mcp__Google_Drive__search_files,mcp__Google_Drive__read_file_content" を試す。使えるなら、連絡ノートのフォルダ（parentId 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）の「分析メモ」（汐が毎朝書く、楽天・A8のクリックと売上）と「リンク帳」の「A8」の行を読む。使えないときは ArtifactData で artifact https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H の collection "akari2"、doc_id "report" を get する（受け渡し役が毎晩写している）。
+・クリックと売上は「学ぶ」で使う（PRのクリックがどの型で多いか）。数字が「未確認」の日は推測しない。
+・A8：リンク帳に「A8｜プログラム名｜https://px.a8.net/svt/ejp?a8mat=…｜広告主のドメイン」の行があるときだけ、その中から選んでよい。link は {"type":"a8","url":そのURL,"expect_host":広告主のドメイン}。予約係が直前に開いて、広告主のページに着くか確かめる。
 
 ■学ぶ（5分）
 ・metrics の views（無ければ impressions）と反応（likes・replies・reposts・clicks など入っている物）で、どの時刻・型が伸びたかを見る。log の「代わり」「中止」「予約×」は、なぜそうなったかを1つ書き出す（例：商品名に expect が入っていなかった）。
@@ -21,8 +26,10 @@
 ・地域は首都圏と関西が中心（全国ネタも可）。
 ・WebSearch と WebFetch で調べる（合わせて30回まで）。日付・料金・場所・期間は公式ページの数字のまま書く。WebFetch で開けたページだけを出どころにする。
 ・18:15 の比較PR：同じ種類の物を2〜4個、公式の仕様や楽天の商品ページの数字（価格・レビュー件数・評価・サイズ・重さ・消費電力など）で比べ、条件に合うものを1つ選ぶ。選んだ物の楽天市場の商品ページ（https://item.rakuten.co.jp/お店/商品/）を WebSearch で見つけ、WebFetch で開いて「販売中・商品名」を確かめる。link は {"type":"ichiba","url":その商品ページ,"expect":商品名に必ず入っている短い言葉（ブランド名や型番）}。WebFetch で開けないときは、検索結果で商品ページのURLと商品名が分かれば使ってよい（予約係が予約の直前に楽天に「販売中か・商品名に expect が入るか」を聞き、だめなら fallback を出すので、ここで止めない）。
+・PRの文に書く大きさ・重さ・容量・W数などの「数字＋単位」は、楽天の商品名か商品説明にそのまま書いてある物だけ（予約係が楽天の商品説明と照らし、無い数字があれば fallback にする。前の夜の check でも×になる）。商品名・説明に無いメーカー公式の数字は書かない。
 ・楽天トラベルのPR：施設ページ https://travel.rakuten.co.jp/HOTEL/番号/ の番号が分かった施設だけ（予約係が開けるか確かめる）。link は {"type":"travel","hotelNo":番号}。
 ・PRの投稿には必ず fallback（PRが出せないときの通常の投稿。{{LINK}} を使わない）を付ける。期限がある話には until を付ける。
+・出どころの「（M/D時点）」は、どの投稿も x と threads に必ず入れる。D から7日より古い日付は×（9/25の記事などは使わない）。出どころのURLは、予約係が直前に開き、ページが無い・「終了しました」と出ているときは fallback（無ければ中止）にする。
 ・文の決まりは docs/how-to-write.md のとおり（です・ます、「！」・絵文字・「〜ね」「〜よ」なし、1行目は【結果の数字の見出し】、◇の行、※1行、出どころ「〇〇より（M/D時点）」、締めは意味がはっきりした一言）。Xの1つ目は最後の行にタグ（#ジャンル名。PRは「#ジャンル名 #PR」）。Threadsは通常の1つ目にタグを付けない（PRの1つ目は最後の行「#ジャンル名 #PR」）。2つ目は「何のページか一言」と次の行にURL（PRは {{LINK}} と最後の行 #PR）。
 ・文字数：Xは1つあたり280（全角2・半角1・URL23）、Threadsは500まで。
 ・topic は Threads のトピック（おでかけ・節約・暮らし・温泉・旅行・お得情報・カフェ・イルミネーション など大きい言葉1つ）。
@@ -30,13 +37,15 @@
 ■保存する
 1. JSON を作り、python で次を確かめる：json として読める／date が D／posts の slot が 07:15・09:15・12:15・18:15・20:15／各投稿に topic・x・threads／PRに link・fallback／文字数。scripts/check.py の中身を get_file_contents で読み、同じ決まり（禁止のURL、#PR、{{LINK}}、文字数）を python で再現して確かめるとよい。
 2. mcp__github__create_or_update_file で owner=oreusa repo=akari-auto branch=main path=schedule/D.json に保存（commit message「燈：D の予定表」）。すでにあるときは get_file_contents で sha を取って上書き。
-3. 2〜3分待ってから mcp__github__actions_list（list_workflow_runs、resource_id=check.yml、perPage 1）で最新の check が success か確かめる。failure なら get_job_logs（failed_only）で×の行を読み、直して保存し直す（3回まで）。
+3. 2〜3分待ってから mcp__github__actions_list（list_workflow_runs、resource_id=check.yml、perPage 1）で最新の check が success か確かめる。check は決まりに加えて、楽天に「PRとROOMの商品が販売中か・商品名に expect があるか・文の数字が商品説明にあるか・レビュー4.0以上か」を聞き、出どころのページが終わっていないかも見る。failure なら get_job_logs（failed_only）で×の行を読み、商品や数字を直して保存し直す（3回まで）。3回でも直らないPRは、link を外して通常の投稿にする（予定表が×のまま朝を迎えない）。
 4. notes/learning.md の最後に1行足す（無ければ作る）：「T 夜：学び〜／明日試すこと〜」。前の行は消さない。
 
 ■雫（4コマ）と凪（楽天ROOM）への台本
-・ArtifactData で、artifact https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H の collection "akari2"、doc_id "D" に set する。data は {"koma4": 4コマの台本, "room": ROOMの台本, "writtenAt": 今の日本時間}。
+・ROOMの3件は、予定表 schedule/D.json の "room" にも入れる：[{"url":商品ページ,"expect":商品名に必ず入る言葉,"comment":コメント全文}, …]。check が楽天で確かめる（×なら差し替える）。
+・ArtifactData で、artifact https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H の collection "akari2"、doc_id "D" に set する。data は {"koma4": 4コマの台本, "room": ROOMの台本（check が通った3件。凪が貼る形：「1｜コレクション：〜／商品：〜／探し方：URL／コメント：〜／ハッシュタグ：〜」）, "writtenAt": 今の日本時間}。
 ・4コマ：運用日記。1行目「昨日わかったこと：〜」（数字は metrics と log の実際の数字だけ）、次の行「うさぎちゃん運用日記 第N話「題」」（N は notes/learning.md の行数などから続き番号）、その下にコマ1〜4（表情と吹き出し12字以内。1話で表情3種類以上）。投稿文は1つだけ（URLなし）。
-・ROOM：翌日の18:15で選んだ商品を含む3件。各件「商品名／商品ページURL／コメント3〜5行（です・ます、ここが他と違う1点＋誰がいつ使うか）」。
+・ROOM：翌日の18:15で選んだ商品を含む3件。各件「商品名／商品ページURL／コメント3〜5行（です・ます、ここが他と違う1点＋誰がいつ使うか。数字は商品ページにある物だけ）」。レビュー平均4.0以上の物だけ。
+・4コマ：前の日の log に「4コマ（雫）が8:45までに出ていない」とあれば、台本の頭に「※昨日の4コマは出ていません。今日は必ず8:00に出してください」と1行書く。
 ・ArtifactData が使えないときは、その旨を最後の1行に書く（予定表は止めない）。
 
-■最後のメッセージ：1行だけ（例「燈 10/23：5本保存・check OK・PR 18:15 着る毛布（expect グルーニー）・学び：〜」）。
+■最後のメッセージ：1行だけ。log に「出なかった」「中止」「予約×」があれば、その数も入れる（例「燈 10/23：5本保存・check OK・PR 18:15 着る毛布（expect グルーニー）・学び：〜」）。

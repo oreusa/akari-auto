@@ -53,7 +53,7 @@ def post_problems(p):
         elif t == "travel" and not str(link.get("hotelNo", "")).isdigit():
             out.append("link.hotelNo は楽天トラベルの施設番号（数字）")
         elif t == "a8" and not str(link.get("url", "")).startswith("https://px.a8.net/svt/ejp?a8mat="):
-            out.append("link.url はA8のリンク（https://px.a8.net/svt/ejp?a8mat=…。docs/a8-links.json にある物だけ）")
+            out.append("link.url はA8のリンク（https://px.a8.net/svt/ejp?a8mat=…。リンク帳にある物だけ）")
         elif t not in ("ichiba", "travel", "a8"):
             out.append("link.type は ichiba・travel・a8 のどれか")
     for ch in ("x", "threads"):
