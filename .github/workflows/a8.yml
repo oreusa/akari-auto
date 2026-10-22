@@ -1,0 +1,15 @@
+name: a8
+on:
+  workflow_dispatch:
+    inputs:
+      links:
+        description: "url|domain をスペース区切り"
+        required: true
+jobs:
+  a8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cd scripts && python3 a8check.py $LINKS
+        env:
+          LINKS: ${{ inputs.links }}

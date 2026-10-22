@@ -94,7 +94,7 @@ def http(method, url, headers=None, body=None, timeout=30, retries=3):
                 time.sleep(2 ** (i + 1))
                 last = (e.code, txt, url)
                 continue
-            return e.code, txt, url
+            return e.code, txt, (e.geturl() if hasattr(e, "geturl") else None) or url
         except Exception as e:  # 通信の一時的な失敗
             last = (0, str(e), url)
             if i < retries - 1:
@@ -361,17 +361,43 @@ def buffer_posts(cfg, statuses, start, end, channel_ids=None):
 
 # ---------------------------------------------------------------- A8
 
+BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
+JP2 = ("co.jp", "ne.jp", "or.jp", "ac.jp", "go.jp", "ed.jp", "lg.jp", "gr.jp")
+
+
+def base_domain(host):
+    """www.nta.co.jp → nta.co.jp、shop.example.com → example.com"""
+    h = (host or "").lower().split(":")[0].strip(".")
+    parts = h.split(".")
+    n = 3 if any(h.endswith("." + x) for x in JP2) else 2
+    return ".".join(parts[-n:])
+
+
 def a8_link(url, expect_host):
-    """A8のリンク（https://px.a8.net/svt/ejp?a8mat=…）を開き、広告主のページに着くかを確かめる。"""
+    """A8のリンク（https://px.a8.net/svt/ejp?a8mat=…）を開き、広告主のページに着くかを確かめる。
+    広告主の側でロボット確認（202・403）が出ても、広告主のドメインに着いていれば着いたとみなす。
+    A8が一時的に403を返すことがあるので、ブラウザの名乗りで間をあけてもう1回試す。"""
     if not re.match(r"^https://px\.a8\.net/svt/ejp\?a8mat=[0-9A-Za-z+]+$", url or ""):
         return {"ok": False, "why": "A8のリンクの形ではない（https://px.a8.net/svt/ejp?a8mat=…）"}
-    status, txt, final = http("GET", url, headers={"Accept-Language": "ja-JP,ja;q=0.9"}, timeout=25, retries=2)
-    host = urllib.parse.urlparse(final or "").netloc
-    if status != 200:
-        return {"ok": False, "why": f"A8のリンク先が開けない（{status}）"}
-    if "a8.net" in host:
-        return {"ok": False, "why": "A8のリンクが広告主のページに着かない（提携切れ・終了の可能性）"}
-    if expect_host and expect_host not in host:
-        return {"ok": False, "why": f"A8のリンク先が {host}（{expect_host} ではない）"}
-    title = re.search(r"<title[^>]*>(.*?)</title>", txt, re.S)
+    why = "A8のリンク先が開けない"
+    for i, ua in enumerate((None, BROWSER_UA, BROWSER_UA)):
+        if i:
+            time.sleep(4 * i)
+        h = {"Accept-Language": "ja-JP,ja;q=0.9", "Accept": "text/html"}
+        if ua:
+            h["User-Agent"] = ua
+        status, txt, final = http("GET", url, headers=h, timeout=25, retries=2)
+        host = urllib.parse.urlparse(final or "").netloc
+        if not status or "a8.net" in host or not host:
+            why = f"A8のリンクが広告主のページに着かない（{status}。提携切れ・終了か、A8の一時的な拒否）"
+            continue
+        if expect_host and base_domain(expect_host) != base_domain(host):
+            return {"ok": False, "why": f"A8のリンク先が {host}（{expect_host} ではない）"}
+        if status >= 500 or status in (404, 410):
+            why = f"広告主のページが開けない（{status}）"
+            continue
+        break
+    else:
+        return {"ok": False, "why": why}
+    title = re.search(r"<title[^>]*>(.*?)</title>", txt or "", re.S)
     return {"ok": True, "name": title.group(1).strip()[:60] if title else host, "itemUrl": final, "link": url}
