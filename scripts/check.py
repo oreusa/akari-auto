@@ -81,6 +81,8 @@ def post_problems(p):
             first_last = texts[0].strip().splitlines()[-1] if texts and texts[0].strip() else ""
             if "#PR" not in first_last:
                 out.append(f"{ch}：PRなのに1つ目の最後の行に #PR がない")
+            if texts and isinstance(texts[0], str) and "選んだ理由：" not in texts[0]:
+                out.append(f"{ch}：PRの1つ目に「選んだ理由：」の1行がない（何をいくつ比べ、どの数字で選んだか）")
             for i, t in enumerate(texts, 1):
                 if LINK in t and "#PR" not in t:
                     out.append(f"{ch} {i}つ目：リンクがある投稿に #PR がない")

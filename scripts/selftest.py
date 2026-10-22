@@ -26,8 +26,8 @@ ok(lib.x_weight("見て https://example.com/aaaa") == 4 + 1 + 23, "x_weight URL"
 FB = {"x": ["代わりの文\n公式より（10/23時点）\n#節約"], "threads": ["代わりの文\n公式より（10/23時点）"], "topic": "節約"}
 PR = {
     "slot": "18:15", "topic": "暮らし",
-    "x": ["【着る毛布】比べました\n楽天市場より（10/23時点）\n#暮らし #PR", "商品ページはこちらです\n{{LINK}}\n#PR"],
-    "threads": ["【着る毛布】比べました\n楽天市場より（10/23時点）\n#暮らし #PR", "商品ページはこちらです\n{{LINK}}\n#PR"],
+    "x": ["【着る毛布】比べました\n選んだ理由：5枚を比べ、レビュー件数がいちばん多かったためです\n楽天市場より（10/23時点）\n#暮らし #PR", "商品ページはこちらです\n{{LINK}}\n#PR"],
+    "threads": ["【着る毛布】比べました\n選んだ理由：5枚を比べ、レビュー件数がいちばん多かったためです\n楽天市場より（10/23時点）\n#暮らし #PR", "商品ページはこちらです\n{{LINK}}\n#PR"],
     "link": {"type": "ichiba", "url": "https://item.rakuten.co.jp/low-ya/vg-groony/", "expect": "グルーニー"},
     "fallback": FB,
 }
@@ -37,6 +37,7 @@ ok(any("#PR" in p for p in post_problems(bad)), "#PRなしを見逃した")
 ok(any("Amazon" in p for p in post_problems(dict(PR, x=["a\n#PR", "https://amazon.co.jp/dp/x #PR {{LINK}}"]))), "Amazonを見逃した")
 ok(any("短縮" in p for p in post_problems(dict(PR, threads=["a\n#PR", "https://a.r10.to/abc #PR {{LINK}}"]))), "短縮リンクを見逃した")
 ok(any("fallback" in p for p in post_problems({k: v for k, v in PR.items() if k != "fallback"})), "fallbackなしを見逃した")
+ok(any("選んだ理由" in p for p in post_problems(dict(PR, x=["【着る毛布】比べました\n#暮らし #PR", "{{LINK}} #PR"]))), "選んだ理由なしのPRを見逃した")
 ok(any("見出し" in p for p in post_problems(dict(PR, threads=["【別の見出し】\n#PR", "{{LINK}} #PR"]))), "XとThreadsの見出し違いを見逃した")
 ok(any("URLは入れない" in p for p in post_problems(dict(PR, threads=["【着る毛布】比べました\n{{LINK}}\n#PR", "{{LINK}} #PR"]))), "1つ目のURLを見逃した")
 ok(any("文字数" in p for p in post_problems(dict(PR, x=["あ" * 141 + "\n#PR", "{{LINK}} #PR"]))), "X文字数超えを見逃した")
@@ -72,7 +73,7 @@ ok(book.choose(PR, "2026-10-24", None)[3] == "代わり", "商品名違いで代
 book.rakuten_item = lambda *a, **k: {"ok": True, "name": "LOWYA グルーニー 着る毛布", "reviewCount": 46917,
                                   "reviewAverage": 4.5, "link": "https://hb.afl.rakuten.co.jp/hgc/abc/?pc=x"}
 xs, ths, topic, kind, why = book.choose(PR, "2026-10-24", None)
-big = dict(PR, x=["【着る毛布】グルーニーは188×130cm\n楽天市場より（10/23時点）\n#暮らし #PR", "{{LINK}}\n#PR"])
+big = dict(PR, x=["【着る毛布】グルーニーは188×130cm\n選んだ理由：5枚を比べ、レビュー件数がいちばん多かったためです\n楽天市場より（10/23時点）\n#暮らし #PR", "{{LINK}}\n#PR"])
 book.rakuten_item = lambda *a, **k: {"ok": True, "name": "LOWYA グルーニー 着る毛布 140×80cm", "caption": "",
                                   "link": "https://hb.afl.rakuten.co.jp/hgc/abc/?pc=x"}
 ok(book.choose(big, "2026-10-24", None)[3] == "代わり", "大きさの書き違いで代わりにならない")
