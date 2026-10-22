@@ -177,7 +177,7 @@ def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False)
 
 # ---------------------------------------------------------------- 楽天
 
-RAKUTEN_ITEM_URL = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20220601"
+RAKUTEN_ITEM_URL = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
 
 
 def rakuten_env():
