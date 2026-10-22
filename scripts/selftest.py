@@ -40,14 +40,14 @@ ok(any("fallback" in p for p in post_problems({k: v for k, v in PR.items() if k 
 ok(any("文字数" in p for p in post_problems(dict(PR, x=["あ" * 141 + "\n#PR", "{{LINK}} #PR"]))), "X文字数超えを見逃した")
 
 # 楽天が「売り切れ」→ 代わりになる
-book.rakuten_item = lambda code: {"ok": False, "why": "売り切れ・販売停止"}
+book.rakuten_item = lambda *a, **k: {"ok": False, "why": "売り切れ・販売停止"}
 xs, ths, topic, kind, why = book.choose(PR, "2026-10-24", None)
 ok(kind == "代わり" and xs == FB["x"], "売り切れで代わりにならない")
 # 別の商品 → 代わり
-book.rakuten_item = lambda code: {"ok": True, "name": "別の毛布", "link": "https://hb.afl.rakuten.co.jp/hgc/abc/?pc=x"}
+book.rakuten_item = lambda *a, **k: {"ok": True, "name": "別の毛布", "link": "https://hb.afl.rakuten.co.jp/hgc/abc/?pc=x"}
 ok(book.choose(PR, "2026-10-24", None)[3] == "代わり", "商品名違いで代わりにならない")
 # 合格 → リンクが入る
-book.rakuten_item = lambda code: {"ok": True, "name": "LOWYA グルーニー 着る毛布", "reviewCount": 46917,
+book.rakuten_item = lambda *a, **k: {"ok": True, "name": "LOWYA グルーニー 着る毛布", "reviewCount": 46917,
                                   "reviewAverage": 4.5, "link": "https://hb.afl.rakuten.co.jp/hgc/abc/?pc=x"}
 xs, ths, topic, kind, why = book.choose(PR, "2026-10-24", None)
 ok(kind == "PR" and "hb.afl.rakuten" in xs[1] and "{{LINK}}" not in "".join(xs + ths), "合格なのにリンクが入らない")

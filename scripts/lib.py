@@ -188,35 +188,50 @@ def rakuten_env():
     return {k: os.environ[k] for k in need}
 
 
-def rakuten_item(item_code):
-    """楽天市場の商品を1つ確かめる。返すもの：販売中か・商品名・レビュー・正式なアフィリエイトリンク。
-
-    item_code は「お店のID:商品のID」（例 low-ya:vg-groony）。
-    商品ページのURL https://item.rakuten.co.jp/お店/商品/ からも作れる。
-    """
+def _rakuten_search(params):
     env = rakuten_env()
-    params = {
+    base = {
         "format": "json", "formatVersion": 2,
         "applicationId": env["RAKUTEN_APP_ID"],
         "accessKey": env["RAKUTEN_ACCESS_KEY"],
         "affiliateId": env["RAKUTEN_AFFILIATE_ID"],
-        "itemCode": item_code, "hits": 1,
     }
+    base.update(params)
     origin = os.environ.get("RAKUTEN_ORIGIN") or "https://github.com"  # 空のときも github.com
-    url = RAKUTEN_ITEM_URL + "?" + urllib.parse.urlencode(params)
+    url = RAKUTEN_ITEM_URL + "?" + urllib.parse.urlencode(base)
     status, txt, _ = http("GET", url, headers={"Origin": origin, "Referer": origin + "/"})
     if status != 200:
-        return {"ok": False, "why": f"楽天API {status}: {txt[:150]}"}
-    data = json.loads(txt)
-    items = data.get("Items") or []
+        return None, f"楽天API {status}: {txt[:150]}"
+    items = json.loads(txt).get("Items") or []
+    return [it.get("Item", it) for it in items], ""
+
+
+def rakuten_item(item_code, keyword=None):
+    """楽天市場の商品を1つ確かめる。返すもの：販売中か・商品名・レビュー・正式なアフィリエイトリンク。
+
+    item_code は「お店のID:商品のID」（例 low-ya:vg-groony）。
+    商品ページのURL https://item.rakuten.co.jp/お店/商品/ からも作れる。
+    楽天が item_code を受け付けないときは、お店の中を keyword で探し、商品ページのURLが同じ物を選ぶ。
+    """
+    env = rakuten_env()
+    items, err = _rakuten_search({"itemCode": item_code, "hits": 1})
+    if items is None and "itemCode" in err:
+        shop, _, slug = item_code.partition(":")
+        items, err2 = _rakuten_search({"shopCode": shop, "keyword": keyword or slug, "hits": 30})
+        if items is None:
+            return {"ok": False, "why": err2}
+        want = f"/{shop}/{slug}/"
+        items = [it for it in items if want in (it.get("itemUrl") or "") + "/"]
+    elif items is None:
+        return {"ok": False, "why": err}
     if not items:
         return {"ok": False, "why": "商品が見つからない（販売終了かも）"}
     it = items[0]
-    it = it.get("Item", it)
     aff = it.get("affiliateUrl") or ""
     res = {
         "ok": bool(it.get("availability") == 1 and aff),
         "name": it.get("itemName", ""),
+        "code": it.get("itemCode"),
         "price": it.get("itemPrice"),
         "reviewCount": it.get("reviewCount"),
         "reviewAverage": it.get("reviewAverage"),

@@ -6,6 +6,10 @@ on:
         description: "楽天市場の商品ページのURL"
         required: true
         default: "https://item.rakuten.co.jp/low-ya/vg-groony/"
+      item_keyword:
+        description: "商品名に入る言葉（お店の中を探すとき用）"
+        required: false
+        default: "グルーニー"
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -21,4 +25,5 @@ jobs:
       - name: 楽天に確かめて、下書きを作る
         env:
           ITEM_URL: ${{ inputs.item_url }}
+          ITEM_KEYWORD: ${{ inputs.item_keyword }}
         run: python3 scripts/book.py --test "$ITEM_URL"

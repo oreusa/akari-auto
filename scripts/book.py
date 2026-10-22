@@ -29,7 +29,7 @@ def resolve_link(link, day, slot):
         code = item_code_from_url(link["url"])
         if not code:
             return {"ok": False, "why": "商品ページのURLから商品番号が取れない"}
-        r = rakuten_item(code)
+        r = rakuten_item(code, link.get("expect"))
         exp = link.get("expect")
         if r.get("ok") and exp and exp not in r.get("name", ""):
             r = {"ok": False, "why": f"商品名に「{exp}」がない（別の商品の可能性）: {r.get('name', '')[:40]}"}
@@ -132,7 +132,7 @@ def run(now=None):
 def test(item_url):
     cfg = load_json(path("config.json"))
     code = item_code_from_url(item_url)
-    r = rakuten_item(code) if code else {"ok": False, "why": "URLが楽天市場の商品ページではない"}
+    r = rakuten_item(code, os.environ.get("ITEM_KEYWORD")) if code else {"ok": False, "why": "URLが楽天市場の商品ページではない"}
     print("楽天の結果:", {k: v for k, v in r.items() if k != "link"})
     if not r.get("ok"):
         return 1
