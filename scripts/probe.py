@@ -10,5 +10,7 @@ for url in sys.argv[1:]:
                 t = re.search(r"<title[^>]*>(.*?)</title>", body, re.S)
                 flags = [w for w in ("captcha", "ロボット", "在庫あり", "現在お取り扱いできません", "有効なページではありません", "カートに入れる", "終了") if w in body]
                 print(f"{name} {r.status} {r.geturl()[:80]} | {(t.group(1).strip() if t else '')[:60]} | {flags} | {len(body)}")
+                txt = re.sub(r"\s+", " ", re.sub(r"<script.*?</script>|<style.*?</style>|<[^>]+>", " ", body, flags=re.S))
+                print("   text:", txt[:400])
         except Exception as e:
             print(f"{name} ERR {url[:80]} {str(e)[:100]}")
