@@ -37,6 +37,8 @@ ok(any("#PR" in p for p in post_problems(bad)), "#PRなしを見逃した")
 ok(any("Amazon" in p for p in post_problems(dict(PR, x=["a\n#PR", "https://amazon.co.jp/dp/x #PR {{LINK}}"]))), "Amazonを見逃した")
 ok(any("短縮" in p for p in post_problems(dict(PR, threads=["a\n#PR", "https://a.r10.to/abc #PR {{LINK}}"]))), "短縮リンクを見逃した")
 ok(any("fallback" in p for p in post_problems({k: v for k, v in PR.items() if k != "fallback"})), "fallbackなしを見逃した")
+ok(any("見出し" in p for p in post_problems(dict(PR, threads=["【別の見出し】\n#PR", "{{LINK}} #PR"]))), "XとThreadsの見出し違いを見逃した")
+ok(any("URLは入れない" in p for p in post_problems(dict(PR, threads=["【着る毛布】比べました\n{{LINK}}\n#PR", "{{LINK}} #PR"]))), "1つ目のURLを見逃した")
 ok(any("文字数" in p for p in post_problems(dict(PR, x=["あ" * 141 + "\n#PR", "{{LINK}} #PR"]))), "X文字数超えを見逃した")
 
 # アフィリエイトの形のURLから商品ページを取り出せる
@@ -92,7 +94,7 @@ with tempfile.TemporaryDirectory() as d:
     book.append_log = lambda day, line: print("  log:", line)
     lib.save_json(os.path.join(d, "config.json"), {"channels": {"twitter": "T", "threads": "H"}})
     lib.save_json(os.path.join(d, "schedule", "2026-10-24.json"), {"date": "2026-10-24", "posts": [
-        PR, {"slot": "23:00", "topic": "旅行", "x": ["a\n公式より（10/23時点）\n#旅行"], "threads": ["a（10/23時点）"]}]})
+        PR, {"slot": "23:00", "topic": "旅行", "x": ["a\n公式より（10/23時点）\n#旅行"], "threads": ["a\n公式より（10/23時点）"]}]})
     ok(check_file(os.path.join(d, "schedule", "2026-10-24.json")) == [], "予定表の見本が不合格")
     now = datetime(2026, 10, 24, 16, 30, tzinfo=lib.JST)
     book.run(now)
