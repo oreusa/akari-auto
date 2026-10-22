@@ -1,0 +1,32 @@
+name: setup（最初の設定・キーの確認）
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: akari-state
+  cancel-in-progress: false
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+      RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+      RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+      RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+      RAKUTEN_ORIGIN: ${{ vars.RAKUTEN_ORIGIN }}
+      COMMIT_MSG: "最初の設定"
+    steps:
+      - uses: actions/checkout@v4
+      - name: 燈のBufferの中を調べる
+        run: python3 scripts/setup.py
+      - name: 記録を保存
+        run: |
+          git config user.name "akari-auto"
+          git config user.email "akari-auto@users.noreply.github.com"
+          for p in state log data config.json; do [ -e "$p" ] && git add -A "$p"; done || true
+          if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
+          git commit -m "$COMMIT_MSG"
+          for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done
+          exit 1

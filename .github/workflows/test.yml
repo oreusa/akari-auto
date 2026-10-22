@@ -1,0 +1,24 @@
+name: test（楽天リンクのテスト・下書きだけ作る）
+on:
+  workflow_dispatch:
+    inputs:
+      item_url:
+        description: "楽天市場の商品ページのURL"
+        required: true
+        default: "https://item.rakuten.co.jp/low-ya/vg-groony/"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+      RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+      RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+      RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+      RAKUTEN_ORIGIN: ${{ vars.RAKUTEN_ORIGIN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: 楽天に確かめて、下書きを作る
+        env:
+          ITEM_URL: ${{ inputs.item_url }}
+        run: python3 scripts/book.py --test "$ITEM_URL"
