@@ -1,0 +1,12 @@
+name: online（Bufferに「出たか」を聞けるかの確認・投稿しない）
+on:
+  workflow_dispatch:
+jobs:
+  sent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/book.py --sent-test

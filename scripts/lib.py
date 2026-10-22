@@ -248,6 +248,7 @@ def rakuten_item(item_code, keyword=None):
         "reviewCount": it.get("reviewCount"),
         "reviewAverage": it.get("reviewAverage"),
         "itemUrl": _plain_url(it).rstrip("/") + "/",
+        "caption": it.get("itemCaption") or "",
         "link": aff,
     }
     if it.get("availability") != 1:
@@ -275,3 +276,87 @@ def rakuten_travel_link(hotel_no):
     link = f"https://hb.afl.rakuten.co.jp/hgc/{env['RAKUTEN_AFFILIATE_ID']}/?pc={enc}&m={enc}"
     title = re.search(r"<title>(.*?)</title>", txt, re.S)
     return {"ok": True, "name": (title.group(1).strip() if title else ""), "itemUrl": page, "link": link}
+
+
+# ---------------------------------------------------------------- 数字・ページの確かめ
+
+SPEC_RE = re.compile(r"(\d[\d,.]*)\s*(cm|mm|kg|g|W|L|mAh|ml|mL|畳|時間|分|段階|個|枚|口)(?![a-zA-Z])")
+
+
+def _norm(t):
+    return unicodedata.normalize("NFKC", t or "").replace(",", "").replace(" ", "").lower()
+
+
+def spec_numbers(texts):
+    """PRの文に出てくる「数字＋単位」（例 140cm・3.2L・45W）を取り出す。値段と日付は入れない。"""
+    out = []
+    for t in texts:
+        for m in SPEC_RE.finditer(unicodedata.normalize("NFKC", t)):
+            tok = (m.group(1).replace(",", "") + m.group(2)).lower()
+            if tok not in out:
+                out.append(tok)
+    return out
+
+
+def missing_specs(texts, *sources):
+    """文の「数字＋単位」のうち、商品名・商品説明のどこにも無いものを返す（大きさの書き違いを止める）。"""
+    src = "".join(_norm(s) for s in sources)
+    return [tok for tok in spec_numbers(texts) if tok not in src]
+
+
+END_WORDS = ["このイベントは終了しました", "イベントは終了しました", "開催は終了しました", "受付は終了しました",
+             "受付を終了しました", "販売を終了しました", "販売は終了しました", "キャンペーンは終了しました",
+             "本キャンペーンは終了", "公開を終了しました", "掲載は終了しました", "お探しのページは見つかりません",
+             "ページが見つかりません", "404 Not Found"]
+
+
+def page_check(url):
+    """出どころのページが開けるか、「終了」「ページがない」と出ていないかを確かめる。
+
+    返すもの：("ok"|"dead"|"ended"|"unknown", 説明)。unknown は開けなかった（時間切れなど）。止めはしない。
+    """
+    status, txt, final = http("GET", url, headers={"Accept-Language": "ja-JP,ja;q=0.9", "Accept": "text/html"},
+                              timeout=20, retries=2)
+    if status in (404, 410):
+        return "dead", f"ページがない（{status}）"
+    if status != 200:
+        return "unknown", f"開けない（{status}）"
+    body = re.sub(r"<script.*?</script>|<style.*?</style>", " ", txt, flags=re.S)
+    for w in END_WORDS:
+        if w in body:
+            return "ended", f"ページに「{w}」"
+    return "ok", ""
+
+
+# ---------------------------------------------------------------- Buffer：出たかどうか
+
+SENT_Q = """query($o: OrganizationId!, $ch: [ChannelId!], $s: DateTime, $e: DateTime) {
+  posts(first: 50, input: {organizationId: $o,
+        filter: {channelIds: $ch, status: [STATUSES], dueAt: {start: $s, end: $e}}}) {
+    edges { node { id channelService dueAt status text } } } }"""
+
+
+def buffer_posts(cfg, statuses, start, end, channel_ids=None):
+    q = SENT_Q.replace("STATUSES", ", ".join(statuses))
+    d = buffer_gql(q, {"o": cfg["organizationId"], "ch": channel_ids or list(cfg["channels"].values()),
+                            "s": start.astimezone(timezone.utc).isoformat().replace("+00:00", "Z"),
+                            "e": end.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")})
+    return [e["node"] for e in (d["posts"]["edges"] or [])]
+
+
+# ---------------------------------------------------------------- A8
+
+def a8_link(url, expect_host):
+    """A8のリンク（https://px.a8.net/svt/ejp?a8mat=…）を開き、広告主のページに着くかを確かめる。"""
+    if not re.match(r"^https://px\.a8\.net/svt/ejp\?a8mat=[0-9A-Za-z+]+$", url or ""):
+        return {"ok": False, "why": "A8のリンクの形ではない（https://px.a8.net/svt/ejp?a8mat=…）"}
+    status, txt, final = http("GET", url, headers={"Accept-Language": "ja-JP,ja;q=0.9"}, timeout=25, retries=2)
+    host = urllib.parse.urlparse(final or "").netloc
+    if status != 200:
+        return {"ok": False, "why": f"A8のリンク先が開けない（{status}）"}
+    if "a8.net" in host:
+        return {"ok": False, "why": "A8のリンクが広告主のページに着かない（提携切れ・終了の可能性）"}
+    if expect_host and expect_host not in host:
+        return {"ok": False, "why": f"A8のリンク先が {host}（{expect_host} ではない）"}
+    title = re.search(r"<title[^>]*>(.*?)</title>", txt, re.S)
+    return {"ok": True, "name": title.group(1).strip()[:60] if title else host, "itemUrl": final, "link": url}

@@ -7,16 +7,18 @@ import glob
 import os
 import re
 import sys
+from datetime import date, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lib import load_json, path, threads_len, x_weight  # noqa: E402
+from lib import load_json, now_jst, path, threads_len, x_weight  # noqa: E402
 
 LINK = "{{LINK}}"
 BANNED = [
     (re.compile(r"amazon\.co\.jp|amzn\.(to|asia)", re.I), "AmazonのURLは使わない（確かめる道具がないため止めている）"),
     (re.compile(r"a\.r10\.to", re.I), "楽天の短縮リンクは使わない（リンクは予約係が楽天から受け取る）"),
-    (re.compile(r"hb\.afl\.rakuten", re.I), "アフィリエイトリンクを直接書かない（{{LINK}} と書く）"),
+    (re.compile(r"hb\.afl\.rakuten|px\.a8\.net", re.I), "アフィリエイトリンクを直接書かない（{{LINK}} と書き、link に入れる）"),
 ]
+ASOF_RE = re.compile(r"(\d{1,2})/(\d{1,2})時点")
 SLOT_RE = re.compile(r"^([01]\d|2[0-3]):[0-5]\d$")
 
 
@@ -50,8 +52,10 @@ def post_problems(p):
             out.append("link.url は楽天市場の商品ページ（https://item.rakuten.co.jp/…）")
         elif t == "travel" and not str(link.get("hotelNo", "")).isdigit():
             out.append("link.hotelNo は楽天トラベルの施設番号（数字）")
-        elif t not in ("ichiba", "travel"):
-            out.append("link.type は ichiba か travel")
+        elif t == "a8" and not str(link.get("url", "")).startswith("https://px.a8.net/svt/ejp?a8mat="):
+            out.append("link.url はA8のリンク（https://px.a8.net/svt/ejp?a8mat=…。docs/a8-links.json にある物だけ）")
+        elif t not in ("ichiba", "travel", "a8"):
+            out.append("link.type は ichiba・travel・a8 のどれか")
     for ch in ("x", "threads"):
         out += _texts_problems(p.get(ch), ch, bool(link))
         texts = p.get(ch) or []
@@ -86,17 +90,94 @@ def check_file(fp):
     for s in set(slots):
         if slots.count(s) > 1:
             probs.append(f"{fp}: 同じ時刻 {s} が2つある")
+    try:
+        d = date.fromisoformat(data.get("date", ""))
+    except ValueError:
+        return probs + [f"{fp}: date が YYYY-MM-DD でない"]
     for p in data["posts"]:
-        for pr in post_problems(p):
+        for pr in post_problems(p) + asof_problems(p, d):
             probs.append(f"{fp} {p.get('slot', '?')}: {pr}")
+    for i, it in enumerate(data.get("room") or [], 1):
+        if not str(it.get("url", "")).startswith("https://item.rakuten.co.jp/") or not it.get("expect") or not it.get("comment"):
+            probs.append(f"{fp} ROOM {i}件目: url（楽天市場の商品ページ）・expect・comment が要る")
     return probs
 
 
+def asof_problems(p, d):
+    """出どころの「（M/D時点）」が投稿の日から7日より古くないか。1つ目の文には必ず要る。"""
+    out = []
+    for name, texts in (("x", p.get("x")), ("threads", p.get("threads"))):
+        if not isinstance(texts, list) or not texts:
+            continue
+        found = [m for t in texts for m in ASOF_RE.finditer(t)]
+        if not found:
+            out.append(f"{name}：出どころの「（M/D時点）」がない")
+        for m in found:
+            mo, da = int(m.group(1)), int(m.group(2))
+            try:
+                when = date(d.year if mo <= d.month else d.year - 1, mo, da)
+            except ValueError:
+                out.append(f"{name}：「{m.group(0)}」の日付がおかしい")
+                continue
+            if when > d or d - when > timedelta(days=7):
+                out.append(f"{name}：出どころが{m.group(0)}で古い（投稿の日から7日以内）")
+    return out
+
+
+def online_problems(fp):
+    """楽天に聞いて、PRとROOMの商品を前の夜のうちに確かめる（キーがあるときだけ）。"""
+    import book
+    from lib import item_code_from_url, missing_specs, rakuten_item
+    data = load_json(fp) or {}
+    try:
+        if date.fromisoformat(data.get("date", "")) < now_jst().date():
+            return []
+    except ValueError:
+        return []
+    out = []
+    for p in data.get("posts", []):
+        link = p.get("link")
+        if link:
+            r = book.resolve_link(link, list(p.get("x", [])) + list(p.get("threads", [])))
+            if not r.get("ok"):
+                out.append(f"{fp} {p.get('slot')}: PRの商品が×：{r.get('why', '')}")
+            else:
+                print(f"  {p.get('slot')} PR OK：{r.get('name', '')[:40]}")
+        for texts in (p.get("x", []), p.get("threads", [])):
+            prob = book.source_problem(texts)
+            if prob:
+                out.append(f"{fp} {p.get('slot')}: {prob}")
+                break
+    for i, it in enumerate(data.get("room") or [], 1):
+        code = item_code_from_url(it.get("url", ""))
+        r = rakuten_item(code, it.get("expect")) if code else {"ok": False, "why": "商品ページのURLではない"}
+        if r.get("ok") and it.get("expect") not in r.get("name", ""):
+            r = {"ok": False, "why": f"商品名に「{it.get('expect')}」がない"}
+        if r.get("ok"):
+            miss = missing_specs([it.get("comment", "")], r.get("name", ""), r.get("caption", ""))
+            if miss:
+                r = {"ok": False, "why": "コメントの数字が商品ページにない: " + "・".join(miss[:4])}
+        if r.get("ok") and (r.get("reviewAverage") or 0) < 4.0:
+            r = {"ok": False, "why": f"レビュー平均 {r.get('reviewAverage')}（4.0未満）"}
+        if not r.get("ok"):
+            out.append(f"{fp} ROOM {i}件目：{r.get('why', '')}")
+        else:
+            print(f"  ROOM {i} OK：{r.get('name', '')[:40]}")
+    return out
+
+
 def main(argv):
+    online = "--online" in argv
+    argv = [a for a in argv if a != "--online"]
     files = argv[1:] or sorted(glob.glob(path("schedule", "*.json")))
+    if not argv[1:]:
+        today = now_jst().date().isoformat()
+        files = [f for f in files if os.path.basename(f)[:10] >= today]  # 過ぎた日は見ない
     allp = []
     for fp in files:
         allp += check_file(fp)
+        if online and os.environ.get("RAKUTEN_APP_ID"):
+            allp += online_problems(fp)
     for p in allp:
         print("×", p)
     if not allp:
