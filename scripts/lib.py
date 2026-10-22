@@ -115,6 +115,10 @@ def buffer_gql(query, variables=None):
     key = os.environ.get("BUFFER_API_KEY")
     if not key:
         raise BufferError("BUFFER_API_KEY がありません（GitHub の Secrets に入れてください）")
+    key = key.strip()
+    if not key.isascii() or " " in key:
+        raise BufferError(f"BUFFER_API_KEY の中身がキーではありません（日本語や空白が入っています。{len(key)}文字）。"
+                          "Bufferでキーを作り直して、Secretを入れ直してください")
     status, txt, _ = http("POST", BUFFER_URL,
                           headers={"Authorization": f"Bearer {key}",
                                    "Content-Type": "application/json"},
