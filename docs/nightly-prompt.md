@@ -10,7 +10,7 @@
 1. ToolSearch で "select:mcp__github__get_file_contents,mcp__github__create_or_update_file,mcp__github__actions_list,mcp__github__get_job_logs,WebSearch,WebFetch,ArtifactData" を読み込む。
 2. 日本時間の今を確かめる。翌日（明日）の日付を D とする（例 2026-10-23）。今日を T、昨日を Y とする。
 3. mcp__github__get_file_contents（owner=oreusa, repo=akari-auto）で読む：
-   docs/handoff.md（燈2.0の全体の地図。ID・時刻・残っていること）／docs/how-to-write.md（書き方の決まり。全部守る）／docs/example-schedule.json（形の見本）／notes/learning.md（あれば。これまでの学び）／log/T.md と log/Y.md（あれば。実際に何が予約され、何が代わりになったか）／data/metrics/Y.json（あれば。投稿ごとの閲覧・反応）／schedule/D.json（あれば。すでにあるなら、それを土台に事実の確かめと直しをし、下の9枠のうち無い枠だけを書き足す）
+   docs/policy.md（経営方針。いちばん最初に読み、題材とPRはこれに従う）／docs/handoff.md（燈2.0の全体の地図。ID・時刻・残っていること）／docs/how-to-write.md（書き方の決まり。全部守る）／docs/example-schedule.json（形の見本）／notes/learning.md（あれば。これまでの学び）／log/T.md と log/Y.md（あれば。実際に何が予約され、何が代わりになったか）／data/metrics/Y.json（あれば。投稿ごとの閲覧・反応）／schedule/D.json（あれば。すでにあるなら、それを土台に事実の確かめと直しをし、下の9枠のうち無い枠だけを書き足す）
 
 ■売上とA8（2分）
 ・ToolSearch で "select:mcp__Google_Drive__search_files,mcp__Google_Drive__read_file_content" を試す。使えるなら、連絡ノートのフォルダ（parentId 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）の「分析メモ」（汐が毎朝書く、楽天・A8のクリックと売上）と「リンク帳」の「A8」の行を読む。使えないときは ArtifactData で artifact https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H の collection "akari2"、doc_id "report" を get する（受け渡し役が毎晩写している）。

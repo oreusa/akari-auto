@@ -39,7 +39,7 @@
 - 「ROOM台本」16J7c8utH51AnR7k143iqrMFrWx_RHplpXiNrNRdBS2k（「（ここから下に台本）」より下だけ入れ替える）。
 - 「リンク帳」1_H6XW71xeWpVUg19P84B9SyBw6ZoVYFxLXKOebFusrM（A8は「A8｜名前｜https://px.a8.net/svt/ejp?a8mat=…｜ドメイン」の形）。
 - 「分析メモ」12BQ-UufhKrlk-Inqbc5OU1TGw9542OnGPwCtS6w7WrU（汐が【楽天】【A8】の行を書く）。
-- 「燈の経営方針」1bPgyCYKaGvU_-IE3Uq06nYNgaIGHXKCIh8QJZhyAwrU：ジャンルの方針は今も有効。投稿本数・時刻・PRの出し方はこのファイル（燈2.0）が優先。
+- 「燈の経営方針」1bPgyCYKaGvU_-IE3Uq06nYNgaIGHXKCIh8QJZhyAwrU：要点を GitHub の docs/policy.md に写し、夜の回が毎晩読む。ジャンルの方針は今も有効。投稿本数・時刻・PRの出し方はこのファイル（燈2.0）が優先。
 - 古い「月から燈へ：自分で決めて動くための指示書」「ルールブック」などは GPT リレー時代の物。食い違うときは燈2.0（このファイル）が優先。
 
 ## 5. ArtifactData（相談室 https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H）
