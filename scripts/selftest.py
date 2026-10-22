@@ -23,11 +23,11 @@ ok(lib.x_weight("abc") == 3, "x_weight 半角")
 ok(lib.x_weight("あいう") == 6, "x_weight 全角")
 ok(lib.x_weight("見て https://example.com/aaaa") == 4 + 1 + 23, "x_weight URL")
 
-FB = {"x": ["代わりの文\n公式より（10/23時点）\n#節約"], "threads": ["代わりの文\n公式より（10/23時点）"], "topic": "節約"}
+FB = {"x": ["【AIが比べた代わり】代わりの文\n公式より（10/23時点）\n#節約"], "threads": ["【AIが比べた代わり】代わりの文\n公式より（10/23時点）"], "topic": "節約"}
 PR = {
     "slot": "18:15", "topic": "暮らし",
-    "x": ["【着る毛布】比べました\n選んだ理由：5枚を比べ、レビュー件数がいちばん多かったためです\n楽天市場より（10/23時点）\n#暮らし #PR", "商品ページはこちらです\n{{LINK}}\n#PR"],
-    "threads": ["【着る毛布】比べました\n選んだ理由：5枚を比べ、レビュー件数がいちばん多かったためです\n楽天市場より（10/23時点）\n#暮らし #PR", "商品ページはこちらです\n{{LINK}}\n#PR"],
+    "x": ["【AIが比べた着る毛布】比べました\n選んだ理由：5枚を比べ、レビュー件数がいちばん多かったためです\n楽天市場より（10/23時点）\n#暮らし #PR", "商品ページはこちらです\n{{LINK}}\n#PR"],
+    "threads": ["【AIが比べた着る毛布】比べました\n選んだ理由：5枚を比べ、レビュー件数がいちばん多かったためです\n楽天市場より（10/23時点）\n#暮らし #PR", "商品ページはこちらです\n{{LINK}}\n#PR"],
     "link": {"type": "ichiba", "url": "https://item.rakuten.co.jp/low-ya/vg-groony/", "expect": "グルーニー"},
     "fallback": FB,
 }
@@ -37,9 +37,10 @@ ok(any("#PR" in p for p in post_problems(bad)), "#PRなしを見逃した")
 ok(any("Amazon" in p for p in post_problems(dict(PR, x=["a\n#PR", "https://amazon.co.jp/dp/x #PR {{LINK}}"]))), "Amazonを見逃した")
 ok(any("短縮" in p for p in post_problems(dict(PR, threads=["a\n#PR", "https://a.r10.to/abc #PR {{LINK}}"]))), "短縮リンクを見逃した")
 ok(any("fallback" in p for p in post_problems({k: v for k, v in PR.items() if k != "fallback"})), "fallbackなしを見逃した")
-ok(any("選んだ理由" in p for p in post_problems(dict(PR, x=["【着る毛布】比べました\n#暮らし #PR", "{{LINK}} #PR"]))), "選んだ理由なしのPRを見逃した")
+ok(any("選んだ理由" in p for p in post_problems(dict(PR, x=["【AIが比べた着る毛布】比べました\n#暮らし #PR", "{{LINK}} #PR"]))), "選んだ理由なしのPRを見逃した")
+ok(any("【AIが比べた" in p for p in post_problems(dict(PR, x=["【着る毛布】比べました\n選んだ理由：a\n#暮らし #PR", "{{LINK}} #PR"]))), "AIが比べたでない見出しを見逃した")
 ok(any("見出し" in p for p in post_problems(dict(PR, threads=["【別の見出し】\n#PR", "{{LINK}} #PR"]))), "XとThreadsの見出し違いを見逃した")
-ok(any("URLは入れない" in p for p in post_problems(dict(PR, threads=["【着る毛布】比べました\n{{LINK}}\n#PR", "{{LINK}} #PR"]))), "1つ目のURLを見逃した")
+ok(any("URLは入れない" in p for p in post_problems(dict(PR, threads=["【AIが比べた着る毛布】比べました\n{{LINK}}\n#PR", "{{LINK}} #PR"]))), "1つ目のURLを見逃した")
 ok(any("文字数" in p for p in post_problems(dict(PR, x=["あ" * 141 + "\n#PR", "{{LINK}} #PR"]))), "X文字数超えを見逃した")
 
 # アフィリエイトの形のURLから商品ページを取り出せる
@@ -73,7 +74,7 @@ ok(book.choose(PR, "2026-10-24", None)[3] == "代わり", "商品名違いで代
 book.rakuten_item = lambda *a, **k: {"ok": True, "name": "LOWYA グルーニー 着る毛布", "reviewCount": 46917,
                                   "reviewAverage": 4.5, "link": "https://hb.afl.rakuten.co.jp/hgc/abc/?pc=x"}
 xs, ths, topic, kind, why = book.choose(PR, "2026-10-24", None)
-big = dict(PR, x=["【着る毛布】グルーニーは188×130cm\n選んだ理由：5枚を比べ、レビュー件数がいちばん多かったためです\n楽天市場より（10/23時点）\n#暮らし #PR", "{{LINK}}\n#PR"])
+big = dict(PR, x=["【AIが比べた着る毛布】グルーニーは188×130cm\n選んだ理由：5枚を比べ、レビュー件数がいちばん多かったためです\n楽天市場より（10/23時点）\n#暮らし #PR", "{{LINK}}\n#PR"])
 book.rakuten_item = lambda *a, **k: {"ok": True, "name": "LOWYA グルーニー 着る毛布 140×80cm", "caption": "",
                                   "link": "https://hb.afl.rakuten.co.jp/hgc/abc/?pc=x"}
 ok(book.choose(big, "2026-10-24", None)[3] == "代わり", "大きさの書き違いで代わりにならない")
@@ -94,8 +95,8 @@ with tempfile.TemporaryDirectory() as d:
     book.load_json = lib.load_json
     book.append_log = lambda day, line: print("  log:", line)
     lib.save_json(os.path.join(d, "config.json"), {"channels": {"twitter": "T", "threads": "H"}})
-    lib.save_json(os.path.join(d, "schedule", "2026-10-24.json"), {"date": "2026-10-24", "posts": [
-        PR, {"slot": "23:00", "topic": "旅行", "x": ["a\n公式より（10/23時点）\n#旅行"], "threads": ["a\n公式より（10/23時点）"]}]})
+    lib.save_json(os.path.join(d, "schedule", "2026-10-24.json"), {"date": "2026-10-24", "room": [{"url": PR["link"]["url"], "expect": "グルーニー", "comment": "a"}], "posts": [
+        PR, {"slot": "23:00", "topic": "旅行", "x": ["【AIが比べたa】\n公式より（10/23時点）\n#旅行"], "threads": ["【AIが比べたa】\n公式より（10/23時点）"]}]})
     ok(check_file(os.path.join(d, "schedule", "2026-10-24.json")) == [], "予定表の見本が不合格")
     now = datetime(2026, 10, 24, 16, 30, tzinfo=lib.JST)
     book.run(now)
