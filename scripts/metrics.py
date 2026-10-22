@@ -55,6 +55,9 @@ def fetch_day(cfg, state, day):
 
 def main():
     cfg = load_json(path("config.json"))
+    if not cfg or not cfg.get("channels"):
+        print("config.json がありません。まだ何もしません。")
+        return 0
     state = load_json(path("state", "booked.json"), {})
     today = now_jst().date()
     for back in (1, 2):

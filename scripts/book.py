@@ -76,7 +76,7 @@ def run(now=None):
     cfg = load_json(path("config.json"))
     if not cfg or not cfg.get("channels"):
         print("config.json がありません。先に「最初の設定（setup）」を動かしてください。")
-        return 1
+        return 0  # キーを入れる前は何もしない（毎時間の失敗メールを出さない）
     state = load_json(path("state", "booked.json"), {})
     changed = False
     for d in (now.date(), now.date() + timedelta(days=1)):
