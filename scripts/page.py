@@ -27,8 +27,7 @@ SECTIONS = [
     ("odekake", "今週のおでかけ", "公式ページで日時と料金を確かめた物だけを載せています"),
     ("shop", "できたばかりのお店", "開いたばかりのお店と、はじめて出るお店"),
     ("deal", "今だけのお得", "期間のあるお得。終わる日を先に書いています"),
-    ("pr", "AIが比べた", "3つ以上を数字で比べて、1つだけ選んだ物"),
-    ("pick", "AIが選んだ物", "比べて選んだ物を、楽天ROOMにも置いています。新しい順です"),
+    ("pr", "AIが選んだ物", "3つ以上を数字で比べて、1つだけ選んだ物です"),
 ]
 
 
@@ -122,10 +121,9 @@ def collect(now):
                 items["pr"].append(entry)
                 continue
             topic = p.get("topic", "")
-            key = "odekake" if topic in ODEKAKE else "shop" if topic in SHOP else "deal" if topic in DEAL else "pr"
-            if key == "pr":
-                entry["noad"] = True
-            items[key].append(entry)
+            key = "odekake" if topic in ODEKAKE else "shop" if topic in SHOP else "deal" if topic in DEAL else ""
+            if key:  # リンクのない比べ（電気代など）はページに載せない
+                items[key].append(entry)
     items["pick"] = _room_picks(now, since, skip=pr_urls)
     return items, ended
 
@@ -182,7 +180,7 @@ PREF_COLOR = {"東京": "#5D7FA3", "神奈川": "#4E8B86", "埼玉": "#9A8657", 
               "京都": "#8E7BA6", "兵庫": "#4F6A8A", "奈良": "#6F8F5F", "和歌山": "#B5788A", "滋賀": "#5F9A9A"}
 DATE_HEAD = re.compile(r"^((?:今日|明日|あす)?\s*\d{1,2}/\d{1,2}[^、,]{0,14}?(?:から|まで)?)[、,]\s*")
 BLOCKS = {  # 章の英語名
-    "odekake": "GO OUT", "shop": "NEW OPEN", "deal": "LIMITED", "pr": "AI COMPARED", "pick": "AI PICK", "ended": "ARCHIVE",
+    "odekake": "GO OUT", "shop": "NEW OPEN", "deal": "LIMITED", "pr": "AI PICK", "ended": "ARCHIVE",
 }
 
 
@@ -257,43 +255,37 @@ def spot(e):
     free = _free(e)
     tag = f'<span class="tg">・{esc(free)}</span>' if free else ""
     pl = f'<span class="pl">{esc(pref)}</span>' if pref else ""
-    lis = "".join(f"<li>{esc(b)}</li>" for b in e["bullets"][:3])
     href = esc(e.get("url") or "#")
     return (f'<a class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" style="--pc:{color}" href="{href}" '
             f'target="_blank" rel="noopener"><div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
-            f'<div class="t">{esc(name)}</div><ul class="m">{lis}</ul>'
+            f'<div class="t">{esc(name)}</div>'
             f'<div class="mp">公式ページ{OUT}</div>{ARROW}</a>')
 
 
 def compare(e):
-    rows = _rows(e)
-    is_pr = not e.get("noad")
+    """AIが比べたPR：選んだ1つと理由と「詳しく」だけを見せ、比べた表はたたんでおく。"""
+    rows = _rows(e) or []
     title = e["title"].replace("AIが比べた", "", 1).strip("、 ")
+    chosen = next((r for r in rows if r.get("pick")), None)
+    if chosen:
+        head = (f'<div class="cho"><span class="lb">選んだのは</span><b>{esc(chosen["name"])}</b>'
+                f'<span class="sc">★ {esc(chosen["avg"])}<i>｜</i>レビュー {chosen["count"]:,}件</span></div>')
+    else:
+        head = ""
     if rows:
         top = max(r["count"] for r in rows) or 1
-        trs = []
-        for r in rows:
-            w = max(3, round(r["count"] / top * 100))
-            pick = '<span class="pk">選んだ</span>' if r.get("pick") else ""
-            note = f'<span class="nt">{esc(r["note"])}</span>' if r["note"] else ""
-            trs.append(f'<div class="row{" on" if r.get("pick") else ""}"><div class="nm">{pick}{esc(r["name"])}{note}</div>'
-                       f'<div class="nu"><span class="av">★ {esc(r["avg"])}</span><span class="ct">{r["count"]:,}件</span></div>'
-                       f'<div class="br"><i style="width:{w}%"></i></div></div>')
-        body = f'<div class="tbl">{"".join(trs)}</div><p class="cap">線の長さは、楽天のレビューの件数です</p>'
+        trs = "".join(
+            f'<div class="row{" on" if r.get("pick") else ""}"><div class="nm">{esc(r["name"])}</div>'
+            f'<div class="nu"><span class="av">★ {esc(r["avg"])}</span><span class="ct">{r["count"]:,}件</span></div>'
+            f'<div class="br"><i style="width:{max(3, round(r["count"] / top * 100))}%"></i></div></div>' for r in rows)
+        table = f'<details class="fold"><summary>比べた{len(rows)}つを見る</summary><div class="tbl">{trs}</div></details>'
     else:
-        body = '<ul class="m">' + "".join(f"<li>{esc(b)}</li>" for b in e["bullets"]) + "</ul>"
-    reason = (f'<div class="why"><span>選んだ理由</span><p>{esc(e["reason"])}</p></div>' if e.get("reason") else "")
-    if e.get("url") and is_pr:
-        btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
-    elif e.get("url"):
-        btn = f'<a class="mp" href="{esc(e["url"])}" target="_blank" rel="noopener">公式ページ{OUT}</a>'
-    else:
-        btn = ""
+        table = ""
+    reason = f'<p class="why">{esc(e["reason"])}</p>' if e.get("reason") else ""
+    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
-    pr = '<span class="prm">PR</span>' if is_pr else ""
-    src = f'<p class="src">{esc(e["source"])}</p>' if e.get("source") else ""
-    return (f'<article class="card cmp"><div class="d">{pr}<span class="when">{esc(e["day"])}の比べ</span></div>'
-            f'<div class="t">{esc(title)}</div>{body}{reason}<div class="ft2">{src}{btn}</div>{sample}</article>')
+    return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}　AIが比べた</span></div>'
+            f'<div class="t">{esc(title)}</div>{head}{reason}{table}<div class="ft2">{btn}</div>{sample}</article>')
 
 
 def pick(e):
@@ -304,11 +296,11 @@ def pick(e):
         meta.append(f'<span class="ct">レビュー {int(e["count"]):,}件</span>')
     if e.get("price"):
         meta.append(f'<span class="yen">税込 {int(e["price"]):,}円</span>')
-    lis = "".join(f"<li>{esc(x)}</li>" for x in e["lines"])
+    lis = f'<p class="why">{esc(e["lines"][0])}</p>' if e["lines"] else ""
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
-    return (f'<article class="card cmp pk2"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}に選んだ物</span></div>'
-            f'<div class="t">{esc(e["name"])}</div><div class="meta">{"".join(meta)}</div><ul class="m">{lis}</ul>'
-            f'<div class="ft2"><p class="src">楽天市場の商品ページより</p>'
+    return (f'<article class="card cmp pk2"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}　AIが選んだ</span></div>'
+            f'<div class="t">{esc(e["name"])}</div><div class="meta">{"".join(meta)}</div>{lis}'
+            f'<div class="ft2">'
             f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a></div>{sample}</article>')
 
 
@@ -348,12 +340,10 @@ def render(items, ended, now, cfg):
         f'<button data-p="{esc(x)}" style="--pc:{PREF_COLOR[x]}">{esc(x)}</button>' for x in prefs)
     blocks = []
     for key, name, lead in SECTIONS:
-        if not items[key]:
+        if not items[key] and not (key == "pr" and items.get("pick")):
             continue
         if key == "pr":
-            cards = "".join(compare(e) for e in items[key])
-        elif key == "pick":
-            cards = "".join(pick(e) for e in items[key])
+            cards = "".join(compare(e) for e in items["pr"]) + "".join(pick(e) for e in items.get("pick", []))
         else:
             cards = "".join(spot(e) for e in items[key])
         note = '<p class="none">この地域は、これから増やしていきます</p>' if key not in ("pr", "pick") else ""
@@ -494,6 +484,16 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .buy{{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;font:500 13px/1 var(--go);letter-spacing:.2em;padding:13px 18px 13px 22px}}
 .buy .arw{{position:static;transform:none;color:#fff;width:20px}}
 .buy:hover .arw{{transform:translateX(3px)}}
+.cho{{margin:10px 0 0;padding:10px 12px;background:#FAF6F1;display:grid;gap:2px}}
+.cho .lb{{font:400 10px/1.4 var(--en);letter-spacing:.2em;color:var(--brown)}}
+.cho b{{font-size:14.5px;line-height:1.5}}
+.cho .sc{{font:400 12px/1.4 var(--en);color:var(--sub)}} .cho .sc i{{font-style:normal;color:var(--line2);margin:0 6px}}
+.cmp .why,.pk2 .why{{margin:10px 0 0;padding:0;border:0;font-size:12.5px;line-height:1.8;color:var(--sub)}}
+.fold{{margin:10px 0 0}}
+.fold summary{{cursor:pointer;list-style:none;font-size:11.5px;letter-spacing:.12em;color:#5B514A;display:inline-block;border-bottom:1px solid #CFC5BA}}
+.fold summary::-webkit-details-marker{{display:none}}
+.fold summary:after{{content:" ＋";color:var(--brown)}} .fold[open] summary:after{{content:" −"}}
+.ft2{{justify-content:flex-end}}
 .meta{{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin:4px 0 0}}
 .meta .ct{{min-width:0;text-align:left}}
 .yen{{font:400 12.5px/1 var(--en);color:var(--ink);letter-spacing:.02em}}
@@ -530,7 +530,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 </header>
 <div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>
 <nav class="flt" aria-label="地域">{tabs}</nav>
-<div class="cnt"><span>行ける場所<b>{n_go}</b>件</span><span>無料あり<b>{n_free}</b>件</span><span>比べた物<b>{n_pr}</b>件</span></div>
+<div class="cnt"><span>行ける場所<b>{n_go}</b>件</span><span>無料あり<b>{n_free}</b>件</span><span>選んだ物<b>{n_pr}</b>件</span></div>
 <p class="pr-note">このページには楽天アフィリエイトの広告（PR）があります</p>
 {blocks}
 <p class="tip">出かける前・買う前に、必ず公式ページで<br>最新の情報を確かめてください。</p>
