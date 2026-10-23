@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+import urllib.parse
 from datetime import datetime, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -28,6 +29,18 @@ SECTIONS = [
     ("shop", "できたばかりのお店", "開いたばかりのお店と、はじめて出るお店"),
     ("deal", "今だけのお得", "期間のあるお得。終わる日を先に書いています"),
     ("pr", "AIが選んだ物", "3つ以上を数字で比べて、1つだけ選んだ物です"),
+]
+# 紹介商品の分け方（ページの並び順。言葉で当てるのは冬じたくと食べ物だけ、当たらない物は「暮らしの物」）
+SHOW_GO = 3  # おでかけは最初の3件だけ見せ、残りはたたむ（商品とのバランス）
+CATS = [
+    ("stay", "STAY", "週末の宿", "口コミ1,000件以上・評価4.5以上の宿だけ", ()),
+    ("winter", "WINTER", "冬じたく", "寒い日にすぐ使う物を、レビューの数と評価で比べました",
+     ("毛布", "ブランケット", "暖房", "ヒーター", "加湿", "カイロ", "湯たんぽ", "こたつ", "靴下", "手袋", "ルームシューズ",
+      "スリッパ", "ダウン", "足ポケット", "あったか", "電気敷", "ネックウォーマー", "マフラー")),
+    ("food", "FOOD", "食べ物・飲み物", "毎日の食卓とお取り寄せ",
+     ("食", "スイーツ", "コーヒー", "お茶", "紅茶", "米", "菓子", "チョコ", "鍋", "肉", "カニ", "鮭", "ラーメン")),
+    ("life", "DAILY", "暮らしの物", "すぐ使う小物と消耗品", ()),
+    ("sale", "SALE", "楽天のお得", "楽天のセールとポイントアップ。終わる日を先に書いています", ()),
 ]
 
 
@@ -118,9 +131,15 @@ def collect(now):
                 entry["expect"] = link.get("expect", "")
                 entry["url"] = r["link"]
                 entry["sample"] = r.get("sample", False)
+                entry["cat"] = "stay" if link.get("type") == "travel" else _cat(_text(entry) + " " + entry["expect"])
                 items["pr"].append(entry)
                 continue
             topic = p.get("topic", "")
+            if topic in DEAL and _rakuten_page(entry["url"]):  # 楽天のセールは楽天アフィリエイトのリンクにする
+                entry["url"] = _rakuten_afl(entry["url"])
+                entry["cat"] = "sale"
+                items["pr"].append(entry)
+                continue
             key = "odekake" if topic in ODEKAKE else "shop" if topic in SHOP else "deal" if topic in DEAL else ""
             if key:  # リンクのない比べ（電気代など）はページに載せない
                 items[key].append(entry)
@@ -128,13 +147,33 @@ def collect(now):
     return items, ended
 
 
+def _rakuten_page(url):
+    host = urllib.parse.urlparse(url or "").hostname or ""
+    return host == "rakuten.co.jp" or host.endswith(".rakuten.co.jp")
+
+
+def _rakuten_afl(url):
+    aid = os.environ.get("RAKUTEN_AFFILIATE_ID")
+    if not aid:
+        return url  # 見本（キーのない手元）はそのまま
+    enc = urllib.parse.quote(url, safe="")
+    return f"https://hb.afl.rakuten.co.jp/hgc/{aid}/?pc={enc}&m={enc}"
+
+
+def _cat(text):
+    for key, _, _, _, words in CATS:  # 宿とセールは言葉を持たないので当たらない
+        if any(w in text for w in words):
+            return key
+    return "life"
+
+
 def _short(name, n=34):
     name = re.sub(r"【[^】]*】|［[^］]*］|\[[^\]]*\]", "", name or "").strip()
     return name if len(name) <= n else name[:n].rstrip() + "…"
 
 
-def _room_picks(now, since, skip=(), limit=9):
-    """ROOM台本の商品（毎晩、燈が比べて選んだ3品）を、新しい順に最大9品。楽天で販売中を確かめた物だけ。"""
+def _room_picks(now, since, skip=(), limit=24):
+    """ROOM台本の商品（毎晩、燈が比べて選んだ3品）を、新しい順に最大24品。楽天で販売中を確かめた物だけ。"""
     out, seen = [], set()
     for f in sorted(glob.glob(path("schedule", "*.json")), reverse=True):
         day = os.path.basename(f)[:-5]
@@ -156,6 +195,7 @@ def _room_picks(now, since, skip=(), limit=9):
                         "expect": it.get("expect", ""), "price": r.get("price"), "count": r.get("reviewCount"),
                         "avg": r.get("reviewAverage"), "lines": lines[:3], "url": r["link"],
                         "sample": r.get("sample", False)})
+            out[-1]["cat"] = _cat(" ".join([out[-1]["name"], out[-1]["expect"]] + lines[:1]))
             if len(out) >= limit:
                 return out
     return out
@@ -304,6 +344,14 @@ def pick(e):
             f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a></div>{sample}</article>')
 
 
+def sale(e):
+    when, name = _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))
+    when = when or f"{e['day']}の調べ"
+    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
+    return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">{esc(when)}</span></div>'
+            f'<div class="t">{esc(name)}</div><div class="ft2">{btn}</div></article>')
+
+
 def _season(now):
     m = now.month
     i = 0 if m in (3, 4, 5) else 1 if m in (6, 7, 8) else 2 if m in (9, 10, 11) else 3
@@ -338,26 +386,34 @@ def render(items, ended, now, cfg):
     prefs = [x for x in PREF_ORDER if any(_pref(e) == x for e in spots)]
     tabs = '<button class="on" data-p="">すべて</button>' + "".join(
         f'<button data-p="{esc(x)}" style="--pc:{PREF_COLOR[x]}">{esc(x)}</button>' for x in prefs)
-    blocks = []
-    for key, name, lead in SECTIONS:
-        if not items[key] and not (key == "pr" and items.get("pick")):
+    goods = {k: [] for k, *_ in CATS}
+    for e in items["pr"]:
+        goods[e.get("cat", "life")].append(sale(e) if e.get("cat") == "sale" else compare(e))
+    for e in items.get("pick", []):
+        goods[e.get("cat", "life")].append(pick(e))
+    blocks, nav = [], []
+    if spots:  # いちばん上はおでかけ。数を絞って、残りはたたむ
+        cards = [spot(e) for e in spots]
+        more = ""
+        if len(cards) > SHOW_GO:
+            more = (f'<details class="fold more"><summary>ほかのおでかけ{len(cards) - SHOW_GO}件を見る</summary>'
+                    f'{"".join(cards[SHOW_GO:])}</details>')
+        nav.append(f'<a class="g" href="#odekake">おでかけ<b>{len(spots)}</b></a>')
+        blocks.append(f'<section class="blk go" id="odekake"><div class="wk"><span class="en2">GO OUT</span>'
+                      f'<span class="jp2">今週のおでかけ</span></div><p class="lead">公式ページで日時と料金を確かめた物だけ</p>'
+                      f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>'
+                      f'<nav class="flt" aria-label="地域">{tabs}</nav>'
+                      f'{"".join(cards[:SHOW_GO])}{more}<p class="none">この地域は、これから増やしていきます</p></section>')
+    for key, en, name, lead, _ in CATS:
+        if not goods[key]:
             continue
-        if key == "pr":
-            cards = "".join(compare(e) for e in items["pr"]) + "".join(pick(e) for e in items.get("pick", []))
-        else:
-            cards = "".join(spot(e) for e in items[key])
-        note = '<p class="none">この地域は、これから増やしていきます</p>' if key not in ("pr", "pick") else ""
-        blocks.append(f'<section class="blk" id="{key}"><div class="wk"><span class="en2">{BLOCKS[key]}</span>'
-                      f'<span class="jp2">{esc(name)}</span></div><p class="lead">{esc(lead)}</p>{cards}{note}</section>')
-    if ended:
-        li = "".join(f"<li>{esc(e['day'])}　{esc(e['title'])}</li>" for e in ended)
-        blocks.append(f'<section class="blk" id="ended"><div class="wk"><span class="en2">ARCHIVE</span>'
-                      f'<span class="jp2">終わったおでかけ</span></div><ul class="past">{li}</ul></section>')
-    nfree = sum(1 for e in spots if _free(e))
+        nav.append(f'<a href="#{key}">{esc(name)}<b>{len(goods[key])}</b></a>')
+        blocks.append(f'<section class="blk" id="{key}"><div class="wk"><span class="en2">{en}</span>'
+                      f'<span class="jp2">{esc(name)}</span></div><p class="lead">{esc(lead)}</p>{"".join(goods[key])}</section>')
     cur, sea_en, sea_jp = _season(now)
     return TEMPLATE.format(
-        tabs=tabs, blocks="".join(blocks), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp,
-        n_go=len(spots), n_free=nfree, n_pr=len(items["pr"]) + len(items["pick"]),
+        nav="".join(nav), blocks="".join(blocks), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp,
+        n_pr=sum(len(v) for v in goods.values()),
         updated=f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M}")
 
 
@@ -367,7 +423,7 @@ TEMPLATE = """<!doctype html>
 <title>うさぎ│LIFE NOTES</title>
 <meta name="description" content="首都圏・関西で、今日から・新しく・無料で行ける場所と、AIが数字で比べた物を毎日。">
 <meta property="og:title" content="うさぎ│LIFE NOTES">
-<meta property="og:description" content="今週行ける場所と、AIが比べた物を毎日更新。">
+<meta property="og:description" content="おでかけ先と宿と、AIが比べて選んだ物を毎日更新。">
 <meta property="og:image" content="https://usagi-life-notes.pages.dev/logo.png">
 <meta property="og:url" content="https://usagi-life-notes.pages.dev/">
 <meta name="twitter:card" content="summary">
@@ -427,7 +483,13 @@ h1{{font:600 26px/1.4 var(--min);letter-spacing:.16em;margin:16px 0 12px;padding
 .cnt span{{font-size:12px;color:var(--sub);padding:0 12px;letter-spacing:.06em}}
 .cnt span+span{{border-left:1px solid var(--line2)}}
 .cnt b{{font:600 17px/1 var(--min);color:var(--ink);margin:0 3px}}
-.pr-note{{font-size:11px;line-height:1.8;color:var(--mute);text-align:center;margin:-14px 0 22px}}
+.pr-note{{font-size:11px;line-height:1.8;color:var(--mute);text-align:center;margin:0 0 20px}}
+.cats{{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:24px 0 10px}}
+.cats a{{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--brown);padding:12px 14px;font:700 13.5px/1.3 var(--go);letter-spacing:.06em}}
+.cats a b{{font:500 15px/1 var(--en);color:var(--brown)}}
+.cats a.g{{border-left-color:#5D7FA3}}
+.go .seg{{margin:4px 0 0}}
+.more{{margin:4px 0 12px}} .more summary{{display:block;width:max-content;margin:0 auto 12px}}
 
 /* 章 */
 .blk{{background:var(--paper);border:1px solid #ECE5DC;border-top:3px solid var(--brown);padding:22px 14px 12px;margin-bottom:18px;scroll-margin-top:12px}}
@@ -524,16 +586,14 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <img src="logo.png" alt="うさぎ│LIFE NOTES" width="72" height="72">
 <p class="en">USAGI LIFE NOTES</p>
 <h1>あしたから行ける</h1>
-<p class="sub">首都圏と関西の「今日から・新しく・無料で」を、<br>AIが毎日しらべて、ここに書き足しています</p>
+<p class="sub">おでかけ先と、泊まる宿と、あると助かる物。<br>AIが毎日しらべて、数字で比べて選んでいます</p>
 <div class="sea"><span>{sea_en}</span><b>{sea_jp}</b></div>
 {ring}
 </header>
-<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>
-<nav class="flt" aria-label="地域">{tabs}</nav>
-<div class="cnt"><span>行ける場所<b>{n_go}</b>件</span><span>無料あり<b>{n_free}</b>件</span><span>選んだ物<b>{n_pr}</b>件</span></div>
+<nav class="cats" aria-label="項目">{nav}</nav>
 <p class="pr-note">このページには楽天アフィリエイトの広告（PR）があります</p>
 {blocks}
-<p class="tip">出かける前・買う前に、必ず公式ページで<br>最新の情報を確かめてください。</p>
+<p class="tip">出かける前・買う前に、公式ページと楽天のページで<br>最新の情報を確かめてください。</p>
 <div class="sns"><h2>FOLLOW</h2>{follow}</div>
 <p class="ft">うさぎ│LIFE NOTES ｜ 毎日更新（最終 {updated}）<br>7日より前の投稿は、外しています</p>
 </div>
@@ -548,7 +608,6 @@ function apply(){{
     cs.forEach(function(c){{var ok=(!pref||c.dataset.pref===pref)&&(!free||c.dataset.free==="1");c.hidden=!ok;if(ok)k++;}});
     b.classList.toggle("empty",!k);
   }});
-  ["pr","pick"].forEach(function(id){{var x=document.getElementById(id);if(x)x.classList.toggle("hid",free);}});
 }}
 document.querySelectorAll(".flt button").forEach(function(x){{x.addEventListener("click",function(){{
   document.querySelectorAll(".flt button").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
