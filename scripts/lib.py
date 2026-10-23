@@ -111,6 +111,16 @@ class BufferError(Exception):
     pass
 
 
+def http_raw(url, timeout=60):
+    """中身を文字にせずに受け取る（絵・動画のURLの確かめ用）。戻り値：(状態, 中身の頭, 最後のURL)"""
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return r.status, r.read(4096), r.geturl()
+    except urllib.error.HTTPError as e:
+        return e.code, b"", url
+
+
 def buffer_gql(query, variables=None):
     key = os.environ.get("BUFFER_API_KEY")
     if not key:
@@ -143,8 +153,11 @@ mutation($input: CreatePostInput!) {
 """
 
 
-def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False):
-    """thread = [文1, 文2, ...]。1つ目がそのまま投稿、2つ目以降は続き（スレッド）。"""
+def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False, image=None, video=None, alt=""):
+    """thread = [文1, 文2, ...]。1つ目がそのまま投稿、2つ目以降は続き（スレッド）。
+
+    image / video は誰でも開けるURL（Bufferが取りに行く）。付けたときは「AIで作った」の表示もONにする。
+    Instagram は video があればリール、なければ画像の投稿。"""
     items = [{"text": t} for t in thread]
     meta = {}
     if service == "twitter":
@@ -156,6 +169,10 @@ def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False)
         if topic:
             m["topic"] = topic
         meta["threads"] = m
+    elif service == "instagram":
+        meta["instagram"] = {"type": "reel" if video else "post", "shouldShareToFeed": True, "isAiGenerated": True}
+    if (image or video) and service == "twitter":
+        meta["twitter"]["isAiGenerated"] = True
     inp = {
         "channelId": channel_id,
         "text": thread[0],
@@ -165,6 +182,10 @@ def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False)
         "metadata": {k: v for k, v in meta.items() if v} or None,
         "source": "akari-auto",
     }
+    if video and service == "instagram":
+        inp["assets"] = [{"video": {"url": video}}]
+    elif image:
+        inp["assets"] = [{"image": {"url": image, "metadata": {"altText": alt or "4コマ漫画"}}}]
     if draft:
         inp["saveToDraft"] = True
     if inp["metadata"] is None:

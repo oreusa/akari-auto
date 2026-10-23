@@ -1,6 +1,11 @@
 name: online（Bufferに「出たか」を聞けるかの確認・投稿しない）
 on:
   workflow_dispatch:
+    inputs:
+      image:
+        description: "4コマの絵のURL（入れると、その絵でBufferの下書きを作れるか試し、すぐ消す）"
+        required: false
+        default: ""
 jobs:
   sent:
     runs-on: ubuntu-latest
@@ -10,3 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 scripts/book.py --sent-test
+      - if: ${{ inputs.image != '' }}
+        env:
+          IMAGE: ${{ inputs.image }}
+        run: python3 scripts/book.py --koma4-test "$IMAGE"
