@@ -30,16 +30,17 @@ SECTIONS = [
     ("deal", "今だけのお得", "期間のあるお得。終わる日を先に書いています"),
     ("pr", "AIが選んだ物", "3つ以上を数字で比べて、1つだけ選んだ物です"),
 ]
-# 紹介商品の分け方（上から順に当てはめる。どれにも当たらない物は「暮らしの物」）
+# 紹介商品の分け方（ページの並び順。言葉で当てるのは冬じたくと食べ物だけ、当たらない物は「暮らしの物」）
+SHOW_GO = 3  # おでかけは最初の3件だけ見せ、残りはたたむ（商品とのバランス）
 CATS = [
-    ("sale", "SALE", "楽天の今だけのお得", "楽天のセールとポイントアップ。終わる日を先に書いています", ()),
+    ("stay", "STAY", "週末の宿", "口コミ1,000件以上・評価4.5以上の宿だけ", ()),
     ("winter", "WINTER", "冬じたく", "寒い日にすぐ使う物を、レビューの数と評価で比べました",
      ("毛布", "ブランケット", "暖房", "ヒーター", "加湿", "カイロ", "湯たんぽ", "こたつ", "靴下", "手袋", "ルームシューズ",
-      "スリッパ", "ダウン", "足ポケット", "あったか", "電気敷", "ホット", "ネックウォーマー", "マフラー")),
+      "スリッパ", "ダウン", "足ポケット", "あったか", "電気敷", "ネックウォーマー", "マフラー")),
     ("food", "FOOD", "食べ物・飲み物", "毎日の食卓とお取り寄せ",
-     ("食", "スイーツ", "コーヒー", "お茶", "紅茶", "米", "水", "菓子", "チョコ", "鍋", "肉", "カニ", "鮭", "ラーメン")),
-    ("stay", "STAY", "週末の宿", "口コミ1,000件以上・評価4.5以上の宿だけ", ()),
+     ("食", "スイーツ", "コーヒー", "お茶", "紅茶", "米", "菓子", "チョコ", "鍋", "肉", "カニ", "鮭", "ラーメン")),
     ("life", "DAILY", "暮らしの物", "すぐ使う小物と消耗品", ()),
+    ("sale", "SALE", "楽天のお得", "楽天のセールとポイントアップ。終わる日を先に書いています", ()),
 ]
 
 
@@ -160,7 +161,7 @@ def _rakuten_afl(url):
 
 
 def _cat(text):
-    for key, _, _, _, words in CATS:
+    for key, _, _, _, words in CATS:  # 宿とセールは言葉を持たないので当たらない
         if any(w in text for w in words):
             return key
     return "life"
@@ -355,7 +356,7 @@ def _season(now):
     m = now.month
     i = 0 if m in (3, 4, 5) else 1 if m in (6, 7, 8) else 2 if m in (9, 10, 11) else 3
     year = now.year - (1 if m <= 2 else 0)
-    return i, f'{["SPRING", "SUMMER", "AUTUMN", "WINTER"][i]} {year}', f'{"春夏秋冬"[i]}の暮らし'
+    return i, f'{["SPRING", "SUMMER", "AUTUMN", "WINTER"][i]} {year}', f'{"春夏秋冬"[i]}のおでかけ'
 
 
 def _year_ring(cur):
@@ -381,12 +382,28 @@ def render(items, ended, now, cfg):
     if p.get("room_url"):
         follow += (f'<a class="co" href="{esc(p["room_url"])}" target="_blank" rel="noopener">楽天ROOM'
                    f'<span>AIが比べて選んだ物を、まとめて置いています</span></a>')
+    spots = items["odekake"] + items["shop"] + items["deal"]
+    prefs = [x for x in PREF_ORDER if any(_pref(e) == x for e in spots)]
+    tabs = '<button class="on" data-p="">すべて</button>' + "".join(
+        f'<button data-p="{esc(x)}" style="--pc:{PREF_COLOR[x]}">{esc(x)}</button>' for x in prefs)
     goods = {k: [] for k, *_ in CATS}
     for e in items["pr"]:
         goods[e.get("cat", "life")].append(sale(e) if e.get("cat") == "sale" else compare(e))
     for e in items.get("pick", []):
         goods[e.get("cat", "life")].append(pick(e))
     blocks, nav = [], []
+    if spots:  # いちばん上はおでかけ。数を絞って、残りはたたむ
+        cards = [spot(e) for e in spots]
+        more = ""
+        if len(cards) > SHOW_GO:
+            more = (f'<details class="fold more"><summary>ほかのおでかけ{len(cards) - SHOW_GO}件を見る</summary>'
+                    f'{"".join(cards[SHOW_GO:])}</details>')
+        nav.append(f'<a class="g" href="#odekake">おでかけ<b>{len(spots)}</b></a>')
+        blocks.append(f'<section class="blk go" id="odekake"><div class="wk"><span class="en2">GO OUT</span>'
+                      f'<span class="jp2">今週のおでかけ</span></div><p class="lead">公式ページで日時と料金を確かめた物だけ</p>'
+                      f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>'
+                      f'<nav class="flt" aria-label="地域">{tabs}</nav>'
+                      f'{"".join(cards[:SHOW_GO])}{more}<p class="none">この地域は、これから増やしていきます</p></section>')
     for key, en, name, lead, _ in CATS:
         if not goods[key]:
             continue
@@ -406,7 +423,7 @@ TEMPLATE = """<!doctype html>
 <title>うさぎ│LIFE NOTES</title>
 <meta name="description" content="首都圏・関西で、今日から・新しく・無料で行ける場所と、AIが数字で比べた物を毎日。">
 <meta property="og:title" content="うさぎ│LIFE NOTES">
-<meta property="og:description" content="AIがレビューの数と評価で比べて選んだ物を、毎日更新。">
+<meta property="og:description" content="おでかけ先と宿と、AIが比べて選んだ物を毎日更新。">
 <meta property="og:image" content="https://usagi-life-notes.pages.dev/logo.png">
 <meta property="og:url" content="https://usagi-life-notes.pages.dev/">
 <meta name="twitter:card" content="summary">
@@ -470,7 +487,7 @@ h1{{font:600 26px/1.4 var(--min);letter-spacing:.16em;margin:16px 0 12px;padding
 .cats{{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:24px 0 10px}}
 .cats a{{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--brown);padding:12px 14px;font:700 13.5px/1.3 var(--go);letter-spacing:.06em}}
 .cats a b{{font:500 15px/1 var(--en);color:var(--brown)}}
-.cats a[href="#odekake"]{{border-left-color:#C9BFB4;color:var(--sub);font-weight:500}}
+.cats a.g{{border-left-color:#5D7FA3}}
 .go .seg{{margin:4px 0 0}}
 .more{{margin:4px 0 12px}} .more summary{{display:block;width:max-content;margin:0 auto 12px}}
 
@@ -568,15 +585,15 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
 <img src="logo.png" alt="うさぎ│LIFE NOTES" width="72" height="72">
 <p class="en">USAGI LIFE NOTES</p>
-<h1>AIが比べて選んだ物</h1>
-<p class="sub">レビューの数と評価を3つ以上で比べて、<br>1つだけ選んだ物を、毎日ここに書き足しています</p>
+<h1>あしたから行ける</h1>
+<p class="sub">おでかけ先と、泊まる宿と、あると助かる物。<br>AIが毎日しらべて、数字で比べて選んでいます</p>
 <div class="sea"><span>{sea_en}</span><b>{sea_jp}</b></div>
 {ring}
 </header>
 <nav class="cats" aria-label="項目">{nav}</nav>
 <p class="pr-note">このページには楽天アフィリエイトの広告（PR）があります</p>
 {blocks}
-<p class="tip">値段と在庫は変わります。買う前に、<br>楽天のページで最新の情報を確かめてください。</p>
+<p class="tip">出かける前・買う前に、公式ページと楽天のページで<br>最新の情報を確かめてください。</p>
 <div class="sns"><h2>FOLLOW</h2>{follow}</div>
 <p class="ft">うさぎ│LIFE NOTES ｜ 毎日更新（最終 {updated}）<br>7日より前の投稿は、外しています</p>
 </div>
