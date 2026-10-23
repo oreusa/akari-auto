@@ -1,0 +1,6 @@
+# 燈のプロフィール用ページ（うさぎ│LIFE NOTES）。月のWorkerとは別の名前。
+name = "usagi-life-notes"
+compatibility_date = "2026-10-01"
+
+[assets]
+directory = "./site"

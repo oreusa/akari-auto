@@ -9,5 +9,8 @@
     "threads": "ai_usagichan1",
     "instagram": "ai_usagichan1",
     "twitter": "ai_usagichan"
+  },
+  "page": {
+    "room_url": ""
   }
 }

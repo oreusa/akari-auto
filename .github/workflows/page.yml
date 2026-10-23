@@ -1,0 +1,32 @@
+name: page（プロフィール用ページを作って公開・1日4回）
+on:
+  schedule:
+    - cron: "30 22 * * *"   # 7:30
+    - cron: "30 3 * * *"    # 12:30
+    - cron: "30 9 * * *"    # 18:30
+    - cron: "30 13 * * *"   # 22:30
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: akari-page
+  cancel-in-progress: true
+jobs:
+  page:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+      RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+      RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+      RAKUTEN_ORIGIN: ${{ vars.RAKUTEN_ORIGIN }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: ページを作る
+        run: python3 scripts/page.py
+      - name: 公開する（Cloudflareの鍵があるときだけ）
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then echo "Cloudflareの鍵がまだないので公開しない"; exit 0; fi
+          npx -y wrangler@3.80.0 deploy
