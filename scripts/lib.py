@@ -314,6 +314,15 @@ def _plain_url(it):
     return u
 
 
+def _item_image(it):
+    """商品の写真のURL（楽天の画像サーバー）。大きめ（300px）で返す。無ければ空。"""
+    imgs = it.get("mediumImageUrls") or it.get("smallImageUrls") or []
+    u = imgs[0] if imgs else ""
+    if isinstance(u, dict):
+        u = u.get("imageUrl", "")
+    return re.sub(r"\?_ex=\d+x\d+$", "", u) + "?_ex=300x300" if u else ""
+
+
 def rakuten_item(item_code, keyword=None):
     """楽天市場の商品を1つ確かめる。返すもの：販売中か・商品名・レビュー・正式なアフィリエイトリンク。
 
@@ -350,6 +359,7 @@ def rakuten_item(item_code, keyword=None):
         "itemUrl": _plain_url(it).rstrip("/") + "/",
         "caption": it.get("itemCaption") or "",
         "link": aff,
+        "image": _item_image(it),
     }
     if it.get("availability") != 1:
         res["why"] = "売り切れ・販売停止"
@@ -421,6 +431,7 @@ def rakuten_travel_link(hotel_no):
     enc = urllib.parse.quote(page, safe="")
     link = f"https://hb.afl.rakuten.co.jp/hgc/{env['RAKUTEN_AFFILIATE_ID']}/?pc={enc}&m={enc}"
     res = {"ok": True, "name": info.get("hotelName", ""), "itemUrl": page, "link": link,
+           "image": info.get("hotelImageUrl") or info.get("hotelThumbnailUrl") or "",
            "reviewCount": info.get("reviewCount"), "reviewAverage": info.get("reviewAverage")}
     return res
 
