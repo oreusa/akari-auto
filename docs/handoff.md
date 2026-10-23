@@ -38,7 +38,7 @@
 
 ## 4. ドライブ（フォルダ「連絡ノート」 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）
 - 「燈からの指示（最新）」1Sqtzmd1ltNqemj4_un46kWPQz2URSQcdcP_CZCzHMnU：雫だけが読む短いファイル（■明日の4コマ台本）。作り直すとIDが変わるので、題名で探す。
-- 「指示_雫」18PXzPW3ze2aShusLYuDM-hqDBWorpc-iCttzat7zwgw／「指示_汐」1bDOqjEdFt9HGeEmTGtpbQ9HeHZAc2gRBfBKVqGZyhfk（売上の数字とA8のリンクだけ）／「指示_凪」1VmDhm1UprxY3mYk4Ldx9GQfItHtGwsg2bXRltQ4noSA（どの回でも、その日のROOMがまだなら載せる→返信。凪の予約は20:20の1回）。
+- 「指示_雫」18PXzPW3ze2aShusLYuDM-hqDBWorpc-iCttzat7zwgw／「指示_汐」1pxdTvBhWo69Ir5rzkJiLSBaL1m1gakxiTLphYtxB_y0（売上の数字とA8のリンク、10/24からページ用A8も。旧版 1bDOqj… は「10/22版・使わない」に改名）／「指示_凪」1VmDhm1UprxY3mYk4Ldx9GQfItHtGwsg2bXRltQ4noSA（どの回でも、その日のROOMがまだなら載せる→返信。凪の予約は20:20の1回）。
 - 「ROOM台本」16J7c8utH51AnR7k143iqrMFrWx_RHplpXiNrNRdBS2k（「（ここから下に台本）」より下だけ入れ替える）。
 - 「リンク帳」1_H6XW71xeWpVUg19P84B9SyBw6ZoVYFxLXKOebFusrM（A8は「A8｜名前｜https://px.a8.net/svt/ejp?a8mat=…｜ドメイン」の形）。
 - 「分析メモ」12BQ-UufhKrlk-Inqbc5OU1TGw9542OnGPwCtS6w7WrU（汐が【楽天】【A8】の行を書く）。

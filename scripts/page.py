@@ -564,7 +564,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .s-winter .head:after{{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.55;
   background-image:radial-gradient(circle,#B9C8DA 1.1px,transparent 1.6px),radial-gradient(circle,#CBD6E4 .9px,transparent 1.4px);
   background-size:46px 52px,31px 37px;background-position:8px 12px,22px 30px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}}
-.head img{{width:72px;height:72px;display:block;margin:0 auto;border-radius:50%;background:#fff}}
+.head img{{width:88px;height:88px;display:block;margin:0 auto;border-radius:50%;background:#fff}}
 .en{{font:300 10px/1 var(--en);letter-spacing:.5em;color:var(--brown);margin:16px 0 0;padding-left:.5em}}
 h1{{font:600 26px/1.4 var(--min);letter-spacing:.16em;margin:16px 0 12px;padding-left:.16em}}
 .sub{{font-size:12.5px;line-height:1.95;color:var(--sub);margin:0}}
@@ -699,7 +699,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
 <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
-<img src="logo.png" alt="うさぎ│LIFE NOTES" width="72" height="72">
+<img src="logo.png" alt="うさぎ│LIFE NOTES" width="88" height="88">
 <p class="en">USAGI LIFE NOTES</p>
 <h1>あしたから行ける</h1>
 <p class="sub">おでかけ先と、泊まる宿と、あると助かる物。<br>AIが毎日しらべて、数字で比べて選んでいます</p>
