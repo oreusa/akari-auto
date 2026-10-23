@@ -30,6 +30,7 @@
 
 ■売上とA8（2分）
 ・ToolSearch で "select:mcp__Google_Drive__search_files,mcp__Google_Drive__read_file_content" を試す。使えるなら、連絡ノートのフォルダ（parentId 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）の「分析メモ」（汐が毎朝書く、楽天・A8のクリックと売上）と「リンク帳」の「A8」の行を読む。使えないときは ArtifactData で artifact https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H の collection "akari2"、doc_id "report" を get する（受け渡し役が毎晩写している）。
+・【A8のページ用リンク（10/24から）】リンク帳の「A8ページ｜プログラム名｜URL｜広告主のドメイン」の行（汐が、プロフィール用ページのサイトで取ったリンク）を、全部 data/a8-page.json に {"items": [{"name": プログラム名, "url": URL, "host": 広告主のドメイン}], "updatedAt": 今} の形で写し、mcp__github__create_or_update_file で main に保存する（行が無ければ何もしない）。この行のリンクはXとThreadsには使わない（サイトごとのリンクなので混ぜない）。
 ・クリックと売上は「学ぶ」で使う（PRのクリックがどの型で多いか）。数字が「未確認」の日は推測しない。
 ・A8：リンク帳に「A8｜プログラム名｜https://px.a8.net/svt/ejp?a8mat=…｜広告主のドメイン」の行があるときだけ、その中から選んでよい。link は {"type":"a8","url":そのURL,"expect_host":広告主のドメイン}。予約係が直前に開いて、広告主のページに着くか確かめる。
 
