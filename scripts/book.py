@@ -406,16 +406,16 @@ def koma4_test(image_url):
         return 1
     print("コマの位置:", ig["how"], ig["boxes"])
     bad = 0
-    for u, want in [(u, (1080, None)) for u in ig["slides"]] + [(u, (1080, 1920)) for u in ig["stories"]]:
+    for u, want in [(u, tuple(ig["boxes"][0][2:])) for u in ig["slides"]] + [(u, (1080, 1920)) for u in ig["stories"]]:
         try:
             im = fetch_image(u)
-            good = im.size[0] == want[0] and (want[1] is None or im.size[1] == want[1])
+            good = im.size == want
             print("切った絵", im.size, "OK" if good else "× 大きさが違う", u[:120])
             bad += not good
         except Exception as e:
             print("切った絵 × 開けない", str(e)[:150], u[:120])
             bad += 1
-    for t, imgs in (("post", ig["slides"]), ("story", ig["stories"][:1])):
+    for t, imgs in (("story", ig["stories"][:1]), ("post", ig["slides"])):
         try:
             p = buffer_create(cfg["channels"]["instagram"], "instagram", ["4コマのテスト（下書き・すぐ消す）"], due,
                               draft=True, images=imgs, ig_type=t, alt="テスト")

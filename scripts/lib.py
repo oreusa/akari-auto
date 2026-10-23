@@ -173,9 +173,7 @@ def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False,
         meta["threads"] = m
     elif service == "instagram":
         t = ig_type or ("reel" if video else "post")
-        meta["instagram"] = {"type": t, "isAiGenerated": True}
-        if t != "story":
-            meta["instagram"]["shouldShareToFeed"] = True
+        meta["instagram"] = {"type": t, "shouldShareToFeed": t != "story", "isAiGenerated": True}
     if (image or video or images) and service == "twitter":
         meta["twitter"]["isAiGenerated"] = True
     inp = {
@@ -252,8 +250,6 @@ def wsrv_url(src, box, size=None):
     q = {"url": src, "cx": x, "cy": y, "cw": bw, "ch": bh, "output": "jpg", "q": 92}
     if size:
         q.update({"w": size[0], "h": size[1], "fit": "contain", "cbg": "white"})
-    else:
-        q.update({"w": 1080})
     return "https://wsrv.nl/?" + urllib.parse.urlencode(q)
 
 
