@@ -226,7 +226,7 @@ def compare(e):
               if e.get("reason") else "")
     if e.get("url"):
         if is_pr:
-            btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">楽天で見る<span aria-hidden="true">→</span></a>'
+            btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく<span aria-hidden="true">→</span></a>'
         else:
             btn = f'<a class="go" href="{esc(e["url"])}" target="_blank" rel="noopener">公式ページ<span aria-hidden="true">↗</span></a>'
     else:
