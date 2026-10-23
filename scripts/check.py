@@ -42,6 +42,15 @@ def _texts_problems(texts, where, allow_link):
     return out
 
 
+def _official_problems(texts, where):
+    """PRでない投稿は、2つ目に公式ページのURLを置く（10/23 オーナー「公式ページどこ？」）。"""
+    if not isinstance(texts, list) or not texts:
+        return []
+    if len(texts) < 2 or not any(re.search(r"https?://", t or "") for t in texts[1:]):
+        return [f"{where}：2つ目に公式ページのURLがない（「公式で確かめて」と書くならリンクを置く。10/23 オーナー）"]
+    return []
+
+
 def _head(texts):
     if isinstance(texts, list) and texts and isinstance(texts[0], str) and texts[0].strip():
         return texts[0].strip().splitlines()[0].strip()
@@ -98,6 +107,8 @@ def post_problems(p):
                 if LINK in t and "#PR" not in t:
                     out.append(f"{ch} {i}つ目：リンクがある投稿に #PR がない")
     out += _same_head(p)
+    if not link:
+        out += _official_problems(p.get("x"), "x") + _official_problems(p.get("threads"), "threads")
     if not p.get("topic"):
         out.append("topic（Threadsのトピック）がない")
     if link or p.get("until"):

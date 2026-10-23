@@ -97,8 +97,9 @@ with tempfile.TemporaryDirectory() as d:
     book.append_log = lambda day, line: print("  log:", line)
     lib.save_json(os.path.join(d, "config.json"), {"channels": {"twitter": "T", "threads": "H"}})
     lib.save_json(os.path.join(d, "schedule", "2026-10-24.json"), {"date": "2026-10-24", "room": [{"url": PR["link"]["url"], "expect": "グルーニー", "comment": "a"}], "posts": [
-        PR, {"slot": "23:00", "topic": "旅行", "x": ["【AIが比べたa】\n公式より（10/23時点）\n#旅行"], "threads": ["【AIが比べたa】\n公式より（10/23時点）"]}]})
+        PR, {"slot": "23:00", "topic": "旅行", "x": ["a 10/24から\n公式より（10/23時点）\n#旅行", "公式ページ\nhttps://example.com/a"], "threads": ["a 10/24から\n公式より（10/23時点）", "公式ページ\nhttps://example.com/a"]}]})
     ok(check_file(os.path.join(d, "schedule", "2026-10-24.json")) == [], "予定表の見本が不合格")
+    ok(any("公式ページのURL" in s for s in post_problems({"slot": "21:00", "topic": "a", "x": ["a 10/29から\n公式より（10/22時点）"], "threads": ["a 10/29から\n公式より（10/22時点）"]})), "公式ページのURLが無い投稿が通る")
     now = datetime(2026, 10, 24, 16, 30, tzinfo=lib.JST)
     book.run(now)
     ok(len(calls) == 2 and calls[0][1] == "2026-10-24T09:15:00.000Z", f"18:15の予約がおかしい: {calls}")
