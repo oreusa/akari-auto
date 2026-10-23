@@ -11,6 +11,7 @@
     "twitter": "ai_usagichan"
   },
   "page": {
-    "room_url": ""
+    "room_url": "",
+    "amazon": true
   }
 }

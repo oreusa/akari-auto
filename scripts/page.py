@@ -87,8 +87,11 @@ def _resolve(link, texts):
         if link.get("type") == "travel":
             return {"ok": True, "link": f"https://travel.rakuten.co.jp/HOTEL/{int(link['hotelNo'])}/", "sample": True}
         return {"ok": False}
-    if link.get("type") not in ("ichiba", "travel"):
-        return {"ok": False, "why": "楽天以外はページのURL登録が済むまで載せない"}
+    allowed = ["ichiba", "travel"]
+    if ((load_json(path("config.json"), {}) or {}).get("page") or {}).get("amazon"):
+        allowed.append("amazon")  # Amazonアソシエイトにこのページのアドレスを登録した後だけ（config.json の page.amazon）
+    if link.get("type") not in allowed:
+        return {"ok": False, "why": "このページのアドレスを登録した広告だけ載せる（A8は未登録）"}
     from book import resolve_link  # 予約係と同じ確かめ方
     try:
         return resolve_link(link, texts)
@@ -139,6 +142,7 @@ def collect(now):
                 entry["url"] = r["link"]
                 entry["sample"] = r.get("sample", False)
                 entry["image"] = r.get("image", "")
+                entry["amazon"] = link.get("type") == "amazon"
                 entry["cat"] = "stay" if link.get("type") == "travel" else _cat(_text(entry) + " " + entry["expect"], cs)
                 items["pr"].append(entry)
                 continue
@@ -370,7 +374,7 @@ def compare(e):
     reason = f'<p class="why">{esc(e["reason"])}</p>' if e.get("reason") else ""
     btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
-    return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}　AIが比べた</span></div>'
+    return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}　AIが比べた{"・Amazon" if e.get("amazon") else ""}</span></div>'
             f'<div class="t">{phr(title)}</div>{head}{reason}{table}<div class="ft2">{btn}</div>{sample}</article>')
 
 
@@ -464,6 +468,9 @@ def render(items, ended, now, cfg):
     return TEMPLATE.format(
         nav="".join(nav), blocks="".join(blocks), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp, sea=sea,
         n_pr=sum(len(v) for v in goods.values()),
+        pr_note=("このページには楽天アフィリエイトとAmazonアソシエイトの広告（PR）があります。<br>"
+                 "Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。"
+                 if any(e.get("amazon") for e in items["pr"]) else "このページには楽天アフィリエイトの広告（PR）があります"),
         updated=f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M}")
 
 
@@ -657,7 +664,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 {ring}
 </header>
 <nav class="cats" aria-label="項目">{nav}</nav>
-<p class="pr-note">このページには楽天アフィリエイトの広告（PR）があります</p>
+<p class="pr-note">{pr_note}</p>
 {blocks}
 <p class="tip">出かける前・買う前に、公式ページと楽天のページで<br>最新の情報を確かめてください。</p>
 <div class="sns"><h2>FOLLOW</h2>{follow}</div>
