@@ -58,6 +58,6 @@
 
 ■管制室への写し（10/23から。オーナーのClaudeにはGitHubの接続がないため、管制室は写しを読む）
 ToolSearch で "select:ArtifactData" を読み込み、artifact https://claude.ai/artifact/1qLboYHRT4iH1uVrpeUZv6 の collection "files" に、次のファイルの本文を写す。doc_id はパスの「/」を「__」にしたもの（例 schedule/2026-10-24.json → schedule__2026-10-24.json）。data は {"text": ファイルの本文そのまま, "at": "M/D HH:MM"}。同じ doc_id がもうあるときは、先に get して version を if_version に入れる。batch で1回にまとめる。
-写すファイル：schedule/明日.json、schedule/今日.json、log/今日.md、data/metrics/昨日.json（あれば）、notes/learning.md。使えないときは最後の1行に書く。
+写すファイル：schedule/明日.json、schedule/今日.json、log/今日.md、data/metrics/昨日.json（あれば）、notes/learning.md。もう1つ、doc_id "tasks.json" に、予約タスク4つ（trig_01QzGRiC67ufRP7LBD5tKcu7・trig_01DyqqXXZ37C2F6EnhvgzenY・trig_018LroXsHYAtXPeERQYaY3Zt・trig_01GR5piwSb3uuY749KRrtX31）を mcp__claude-code-remote__get_trigger で読み、{"ID": {"enabled", "next_run_at", "last_run": {"status", "fired_at"}}} の形のJSON文字列を text にして写す（get_trigger が使えなければ飛ばす）。使えないときは最後の1行に書く。
 
 ■最後のメッセージ：1行だけ。log に「出なかった」「中止」「予約×」があれば、その数も入れる（例「燈 10/23：9本保存・check OK・PR 18:15 着る毛布（expect グルーニー）・学び：〜」）。
