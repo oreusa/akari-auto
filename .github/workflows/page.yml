@@ -31,13 +31,11 @@ jobs:
           W="npx -y wrangler@3.80.0"
           $W pages project create usagi-life-notes --production-branch=main || true
           # 数える場所（KV）。なければ作る。作れないときは数えずに公開だけする
-          ns=$($W kv namespace list 2>/dev/null | python3 -c "import sys,json;t=sys.stdin.read();d=json.loads(t[t.find('['):]) if '[' in t else [];print(next((n['id'] for n in d if n.get('title')=='usagi-life-notes-clicks'),''))" || true)
-          if [ -z "$ns" ]; then $W kv namespace create usagi-life-notes-clicks || true
-            ns=$($W kv namespace list 2>/dev/null | python3 -c "import sys,json;t=sys.stdin.read();d=json.loads(t[t.find('['):]) if '[' in t else [];print(next((n['id'] for n in d if n.get('title')=='usagi-life-notes-clicks'),''))" || true); fi
+          ns=$(python3 scripts/pagestats.py ns | tail -1 || true)
           if [ -n "$ns" ]; then
             printf 'name = "usagi-life-notes"\npages_build_output_dir = "site"\ncompatibility_date = "2024-09-23"\n\n[[kv_namespaces]]\nbinding = "CLICKS"\nid = "%s"\n' "$ns" > wrangler.toml
             echo "数える場所あり"
-          else echo "数える場所を作れない（鍵の権限に Workers KV Storage の編集が要る）。公開だけする"; fi
+          else echo "数える場所が見つからない。公開だけする"; fi
           $W pages deploy site --project-name=usagi-life-notes --branch=main --commit-dirty=true
           echo "NS=$ns" >> "$GITHUB_ENV"
       - name: 数えた数を読む（開いた数・押された数 → data/page-stats.json）
