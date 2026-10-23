@@ -12,6 +12,6 @@
   },
   "page": {
     "room_url": "",
-    "amazon": false
+    "amazon": true
   }
 }
