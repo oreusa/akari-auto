@@ -24,10 +24,10 @@ ODEKAKE = {"おでかけ", "イルミネーション", "温泉", "紅葉", "無�
 SHOP = {"グルメ", "カフェ", "新店"}
 DEAL = {"お得情報", "お得"}
 SECTIONS = [
-    ("odekake", "あしたから行ける", "今週の無料・新しいおでかけ。公式ページで確かめた物だけです。"),
-    ("shop", "新しいお店", "開いたばかりのお店。"),
-    ("deal", "今だけのお得", "期間のあるお得。終わる日を先に書いています。"),
-    ("pr", "AIが比べた", "3つ以上を数字で比べて、1つを選んだ理由つきで載せています。"),
+    ("odekake", "今週のおでかけ", "公式ページで日時と料金を確かめた物だけを載せています"),
+    ("shop", "できたばかりのお店", "開いたばかりのお店と、はじめて出るお店"),
+    ("deal", "今だけのお得", "期間のあるお得。終わる日を先に書いています"),
+    ("pr", "AIが比べた", "3つ以上を数字で比べて、1つだけ選んだ物"),
 ]
 
 
@@ -130,31 +130,54 @@ def esc(s):
     return html.escape(s or "", quote=True)
 
 
-AREAS = ["東京", "横浜", "神奈川", "埼玉", "千葉", "大阪", "京都", "神戸", "兵庫", "奈良", "和歌山", "滋賀",
-         "有馬", "城崎", "高円寺", "池袋", "銀座", "渋谷", "新宿", "上野", "梅田", "なんば", "二子玉川", "芝公園"]
 WEEK = "月火水木金土日"
 ROW_RE = re.compile(r"^(?P<name>[^：:]+)[：:](?P<rest>.*)$")
+# 地名 → 都府県（左の色の線とタブに使う）
+PLACE = [("東京", "東京"), ("高円寺", "東京"), ("池袋", "東京"), ("銀座", "東京"), ("渋谷", "東京"), ("新宿", "東京"),
+         ("上野", "東京"), ("二子玉川", "東京"), ("芝公園", "東京"), ("お台場", "東京"), ("豊洲", "東京"), ("浅草", "東京"),
+         ("横浜", "神奈川"), ("神奈川", "神奈川"), ("川崎", "神奈川"), ("鎌倉", "神奈川"), ("箱根", "神奈川"),
+         ("埼玉", "埼玉"), ("千葉", "千葉"), ("舞浜", "千葉"),
+         ("大阪", "大阪"), ("梅田", "大阪"), ("なんば", "大阪"), ("難波", "大阪"), ("天王寺", "大阪"), ("福島", "大阪"),
+         ("京都", "京都"), ("嵐山", "京都"), ("神戸", "兵庫"), ("兵庫", "兵庫"), ("有馬", "兵庫"), ("城崎", "兵庫"),
+         ("姫路", "兵庫"), ("奈良", "奈良"), ("和歌山", "和歌山"), ("高野山", "和歌山"), ("滋賀", "滋賀"), ("琵琶湖", "滋賀")]
+PREF_ORDER = ["東京", "神奈川", "埼玉", "千葉", "大阪", "京都", "兵庫", "奈良", "和歌山", "滋賀"]
+PREF_COLOR = {"東京": "#5D7FA3", "神奈川": "#4E8B86", "埼玉": "#9A8657", "千葉": "#C2964A", "大阪": "#C27A63",
+              "京都": "#8E7BA6", "兵庫": "#4F6A8A", "奈良": "#6F8F5F", "和歌山": "#B5788A", "滋賀": "#5F9A9A"}
+DATE_HEAD = re.compile(r"^((?:今日|明日|あす)?\s*\d{1,2}/\d{1,2}[^、,]{0,14}?(?:から|まで)?)[、,]\s*")
+BLOCKS = {  # 章の英語名
+    "odekake": "GO OUT", "shop": "NEW OPEN", "deal": "LIMITED", "pr": "AI COMPARED", "ended": "ARCHIVE",
+}
 
 
-def _area(e):
-    text = e["title"] + " ".join(e["bullets"])
-    for a in AREAS:
-        if a in text:
-            return a
-    return ""
+def _text(e):
+    return e["title"] + " " + " ".join(e["bullets"])
 
 
-def _flags(e):
-    text = e["title"] + " ".join(e["bullets"])
-    out = []
-    if "無料" in text:
-        out.append(("free", "入場無料" if "入場無料" in text else "無料あり"))
-    if re.search(r"開店|オープン|新店|初出店|1号店|2号店", text):
-        out.append(("new", "NEW OPEN"))
-    m = re.search(r"(\d{1,2}/\d{1,2})まで", text)
+def _pref(e):
+    t = _text(e)
+    best = None
+    for word, pref in PLACE:
+        i = t.find(word)
+        if i >= 0 and (best is None or i < best[0]):
+            best = (i, pref)
+    return best[1] if best else ""
+
+
+def _split_title(title):
+    """「10/24・25、高円寺フェスなど…」→（日付の部分, 残り）。"""
+    m = DATE_HEAD.match(title)
     if m:
-        out.append(("until", f"{m.group(1)}まで"))
-    return out
+        return m.group(1).strip(), title[m.end():].strip()
+    return "", title
+
+
+def _free(e):
+    t = _text(e)
+    if "入場無料" in t:
+        return "入場無料"
+    if "参加費は無料" in t or "無料" in t:
+        return "無料"
+    return ""
 
 
 def _rows(e):
@@ -176,111 +199,118 @@ def _rows(e):
     if len(rows) < 2:
         return None
     exp = e.get("expect") or ""
-    pick = None
     for r in rows:
         if (exp and exp in r["name"]) or r["name"].split(" ")[-1] in e["title"]:
-            pick = r
+            r["pick"] = True
             break
-    if pick:
-        pick["pick"] = True
     return rows
 
 
-def _flag_html(e):
-    return "".join(f'<span class="flag {k}">{esc(v)}</span>' for k, v in _flags(e))
+ARROW = ('<svg class="arw" viewBox="0 0 24 12" aria-hidden="true"><path d="M1 6H22M17.5 1.8 22 6l-4.5 4.2" fill="none" '
+         'stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+OUT = ('<svg class="out" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4.2 3H9v4.8" fill="none" '
+       'stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 
 
-def spot(e, i):
-    lis = "".join(f"<li>{esc(b)}</li>" for b in e["bullets"])
-    area = _area(e)
-    area_html = f'<span class="area">{esc(area)}</span>' if area else ""
-    btn = (f'<a class="go" href="{esc(e["url"])}" target="_blank" rel="noopener">公式ページ<span aria-hidden="true">↗</span></a>'
-           if e.get("url") else "")
-    src = f'<p class="src">{esc(e["source"])}</p>' if e.get("source") else ""
-    return (f'<article class="spot"><div class="stub"><span class="no">{i:02d}</span>'
-            f'<span class="posted">{esc(e["day"])}</span></div>'
-            f'<div class="body"><div class="tags">{area_html}{_flag_html(e)}</div>'
-            f'<h3>{esc(e["title"])}</h3><ul>{lis}</ul>'
-            f'<div class="foot">{src}{btn}</div></div></article>')
+def spot(e):
+    pref = _pref(e)
+    color = PREF_COLOR.get(pref, "#A07E66")
+    when, name = _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))
+    when = when or f"{e['day']}の調べ"
+    free = _free(e)
+    tag = f'<span class="tg">・{esc(free)}</span>' if free else ""
+    pl = f'<span class="pl">{esc(pref)}</span>' if pref else ""
+    lis = "".join(f"<li>{esc(b)}</li>" for b in e["bullets"][:3])
+    href = esc(e.get("url") or "#")
+    return (f'<a class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" style="--pc:{color}" href="{href}" '
+            f'target="_blank" rel="noopener"><div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
+            f'<div class="t">{esc(name)}</div><ul class="m">{lis}</ul>'
+            f'<div class="mp">公式ページ{OUT}</div>{ARROW}</a>')
 
 
 def compare(e):
     rows = _rows(e)
     is_pr = not e.get("noad")
+    title = e["title"].replace("AIが比べた", "", 1).strip("、 ")
     if rows:
         top = max(r["count"] for r in rows) or 1
         trs = []
         for r in rows:
-            w = max(4, round(r["count"] / top * 100))
-            pick = '<span class="pick">選んだ</span>' if r.get("pick") else ""
-            note = f'<span class="note">{esc(r["note"])}</span>' if r["note"] else ""
-            trs.append(f'<div class="row{" is-pick" if r.get("pick") else ""}"><div class="nm">{pick}{esc(r["name"])}{note}</div>'
-                       f'<div class="num"><span class="avg">★{esc(r["avg"])}</span><span class="cnt">{r["count"]:,}件</span></div>'
-                       f'<div class="bar"><i style="width:{w}%"></i></div></div>')
-        table = f'<div class="table" role="table" aria-label="比べた結果">{"".join(trs)}</div>'
-        cap = '<p class="cap">棒の長さはレビューの件数です</p>'
+            w = max(3, round(r["count"] / top * 100))
+            pick = '<span class="pk">選んだ</span>' if r.get("pick") else ""
+            note = f'<span class="nt">{esc(r["note"])}</span>' if r["note"] else ""
+            trs.append(f'<div class="row{" on" if r.get("pick") else ""}"><div class="nm">{pick}{esc(r["name"])}{note}</div>'
+                       f'<div class="nu"><span class="av">★ {esc(r["avg"])}</span><span class="ct">{r["count"]:,}件</span></div>'
+                       f'<div class="br"><i style="width:{w}%"></i></div></div>')
+        body = f'<div class="tbl">{"".join(trs)}</div><p class="cap">線の長さは、楽天のレビューの件数です</p>'
     else:
-        table = "<ul>" + "".join(f"<li>{esc(b)}</li>" for b in e["bullets"]) + "</ul>"
-        cap = ""
-    reason = (f'<div class="reason"><span class="lbl">選んだ理由</span><p>{esc(e["reason"])}</p></div>'
-              if e.get("reason") else "")
-    if e.get("url"):
-        if is_pr:
-            btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく<span aria-hidden="true">→</span></a>'
-        else:
-            btn = f'<a class="go" href="{esc(e["url"])}" target="_blank" rel="noopener">公式ページ<span aria-hidden="true">↗</span></a>'
+        body = '<ul class="m">' + "".join(f"<li>{esc(b)}</li>" for b in e["bullets"]) + "</ul>"
+    reason = (f'<div class="why"><span>選んだ理由</span><p>{esc(e["reason"])}</p></div>' if e.get("reason") else "")
+    if e.get("url") and is_pr:
+        btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
+    elif e.get("url"):
+        btn = f'<a class="mp" href="{esc(e["url"])}" target="_blank" rel="noopener">公式ページ{OUT}</a>'
     else:
         btn = ""
-    sample = '<p class="sample">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
-    pr = '<span class="prmark">PR</span>' if is_pr else ""
+    sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
+    pr = '<span class="prm">PR</span>' if is_pr else ""
     src = f'<p class="src">{esc(e["source"])}</p>' if e.get("source") else ""
-    title = e["title"].replace("AIが比べた", "", 1).strip("、 ")
-    return (f'<article class="cmp"><div class="cmp-head"><span class="eyebrow">AIが比べた</span>{pr}'
-            f'<span class="posted">{esc(e["day"])}</span></div><h3>{esc(title)}</h3>{table}{cap}{reason}'
-            f'<div class="foot">{src}{btn}</div>{sample}</article>')
+    return (f'<article class="card cmp"><div class="d">{pr}<span class="when">{esc(e["day"])}の比べ</span></div>'
+            f'<div class="t">{esc(title)}</div>{body}{reason}<div class="ft2">{src}{btn}</div>{sample}</article>')
 
 
 def _season(now):
     m = now.month
-    name = "WINTER" if m in (12, 1, 2) else "SPRING" if m in (3, 4, 5) else "SUMMER" if m in (6, 7, 8) else "AUTUMN"
-    jp = {"WINTER": "冬", "SPRING": "春", "SUMMER": "夏", "AUTUMN": "秋"}[name]
-    return f"{name} {now.year}", f"{jp}のおでかけ"
+    i = 0 if m in (3, 4, 5) else 1 if m in (6, 7, 8) else 2 if m in (9, 10, 11) else 3
+    year = now.year - (1 if m <= 2 else 0)
+    return i, f'{["SPRING", "SUMMER", "AUTUMN", "WINTER"][i]} {year}', f'{"春夏秋冬"[i]}のおでかけ'
+
+
+def _year_ring(cur):
+    gs = []
+    for i, (x, ch) in enumerate(zip((81, 107, 133, 159), "春夏秋冬")):
+        cls = "yp" if i < cur else "yn" if i == cur else "yx"
+        ring = f'<path class="ring" d="M{x} 3l11 11-11 11-11-11z"/>' if i == cur else ""
+        gs.append(f'<g class="{cls}">{ring}<path class="dm" d="M{x} 8.5l5.5 5.5-5.5 5.5-5.5-5.5z"/>'
+                  f'<text x="{x}" y="39">{ch}</text></g>')
+    return ('<svg class="yr" viewBox="0 0 240 44" aria-hidden="true"><g class="ln"><path d="M46 14h18M176 14h18"/></g>'
+            '<g class="dt"><circle cx="38" cy="14" r="1.3"/><circle cx="202" cy="14" r="1.3"/>'
+            '<circle cx="29" cy="14" r="1" opacity=".7"/><circle cx="211" cy="14" r="1" opacity=".7"/>'
+            '<circle cx="21" cy="14" r=".8" opacity=".45"/><circle cx="219" cy="14" r=".8" opacity=".45"/></g>'
+            + "".join(gs) + "</svg>")
 
 
 def render(items, ended, now, cfg):
     p = cfg.get("page", {})
-    links = [("楽天ROOM", "ROOM", p.get("room_url")), ("Threads", "@ai_usagichan1", "https://www.threads.com/@ai_usagichan1"),
-             ("X", "@ai_usagichan", "https://x.com/ai_usagichan"),
-             ("Instagram", "@ai_usagichan1", "https://www.instagram.com/ai_usagichan1/")]
-    follow = "".join(f'<a{' class="room"' if n == "楽天ROOM" else ""} href="{esc(u)}" target="_blank" rel="noopener"><span class="sn">{esc(n)}</span>'
-                     f'<span class="sh">{esc(h)}</span><span aria-hidden="true" class="ar">↗</span></a>'
-                     for n, h, u in links if u)
-    en = {"odekake": "GO OUT", "shop": "NEW SHOPS", "deal": "LIMITED", "pr": "COMPARED"}
-    secs = []
+    sns = [("Instagram", "@ai_usagichan1", "https://www.instagram.com/ai_usagichan1/"),
+           ("Threads", "@ai_usagichan1", "https://www.threads.com/@ai_usagichan1"),
+           ("X", "@ai_usagichan", "https://x.com/ai_usagichan")]
+    follow = "".join(f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(n)}<span>{esc(h)}</span></a>' for n, h, u in sns)
+    if p.get("room_url"):
+        follow += (f'<a class="co" href="{esc(p["room_url"])}" target="_blank" rel="noopener">楽天ROOM'
+                   f'<span>AIが比べて選んだ物を、まとめて置いています</span></a>')
+    spots = items["odekake"] + items["shop"] + items["deal"]
+    prefs = [x for x in PREF_ORDER if any(_pref(e) == x for e in spots)]
+    tabs = '<button class="on" data-p="">すべて</button>' + "".join(
+        f'<button data-p="{esc(x)}" style="--pc:{PREF_COLOR[x]}">{esc(x)}</button>' for x in prefs)
+    blocks = []
     for key, name, lead in SECTIONS:
         if not items[key]:
             continue
-        if key == "pr":
-            cards = "".join(compare(e) for e in items[key])
-        else:
-            cards = "".join(spot(e, i + 1) for i, e in enumerate(items[key]))
-        secs.append(f'<section class="sec s-{key}" id="{key}"><header class="sec-head"><span class="en">{en[key]}</span>'
-                    f'<h2>{esc(name)}</h2><span class="count">{len(items[key])}件</span></header>'
-                    f'<p class="lead">{esc(lead)}</p><div class="list">{cards}</div></section>')
+        cards = "".join(compare(e) for e in items[key]) if key == "pr" else "".join(spot(e) for e in items[key])
+        note = '<p class="none">この地域は、これから増やしていきます</p>' if key != "pr" else ""
+        blocks.append(f'<section class="blk" id="{key}"><div class="wk"><span class="en2">{BLOCKS[key]}</span>'
+                      f'<span class="jp2">{esc(name)}</span></div><p class="lead">{esc(lead)}</p>{cards}{note}</section>')
     if ended:
-        li = "".join(f"<li><span>{esc(e['day'])}</span>{esc(e['title'])}</li>" for e in ended)
-        secs.append(f'<section class="sec" id="ended"><header class="sec-head"><span class="en">ENDED</span>'
-                    f'<h2>終わったおでかけ</h2></header><ul class="ended">{li}</ul></section>')
-    nav = "".join(f'<a href="#{k}">{esc(n)}<span>{len(items[k])}</span></a>' for k, n, _ in SECTIONS if items[k])
-    tiles = "".join(f'<a class="tile t-{k}" href="#{k}"><span class="te">{en[k]}</span><b>{esc(n)}</b>'
-                    f'<span class="tn">{len(items[k])}<small>件</small></span></a>' for k, n, _ in SECTIONS if items[k])
-    free = sum(1 for k in ("odekake", "shop", "deal") for e in items[k] if any(f[0] == "free" for f in _flags(e)))
-    stats = (f'<div class="stat"><b>{len(items["odekake"])}</b><span>行ける場所</span></div>'
-             f'<div class="stat"><b>{free}</b><span>無料あり</span></div>'
-             f'<div class="stat"><b>{len(items["pr"])}</b><span>比べた物</span></div>')
-    return TEMPLATE.format(tiles=tiles, season=_season(now), nav=nav, sections="".join(secs), follow=follow, stats=stats,
-                           md=f"{now.month}.{now.day:02d}", wd=WEEK[now.weekday()],
-                           updated=f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M}")
+        li = "".join(f"<li>{esc(e['day'])}　{esc(e['title'])}</li>" for e in ended)
+        blocks.append(f'<section class="blk" id="ended"><div class="wk"><span class="en2">ARCHIVE</span>'
+                      f'<span class="jp2">終わったおでかけ</span></div><ul class="past">{li}</ul></section>')
+    nfree = sum(1 for e in spots if _free(e))
+    cur, sea_en, sea_jp = _season(now)
+    return TEMPLATE.format(
+        tabs=tabs, blocks="".join(blocks), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp,
+        n_go=len(spots), n_free=nfree, n_pr=len(items["pr"]),
+        updated=f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M}")
 
 
 TEMPLATE = """<!doctype html>
@@ -293,161 +323,183 @@ TEMPLATE = """<!doctype html>
 <meta property="og:image" content="https://usagi-life-notes.pages.dev/logo.png">
 <meta property="og:url" content="https://usagi-life-notes.pages.dev/">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#fff6ef">
-<link rel="icon" href="logo.png">
+<meta name="theme-color" content="#FAF8F5">
+<link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Josefin+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap">
 <style>
-/* 明るい昼の色だけで作る（夜の色は作らない）。ロゴのベージュとピーチを土台に、章ごとに淡い色を1つずつ */
+/* 紙の手帳のような生成りの地に、白い紙を重ねる。色はロゴの茶と、地域ごとの淡い色だけ */
 :root{{
   color-scheme:light;
-  --bg:#fffaf5; --card:#ffffff; --ink:#3a2f2a; --sub:#8a7b72; --line:#f1e6dc;
-  --peach:#f08a62; --peach-bg:#ffeee5; --mint:#3fb69a; --mint-bg:#e3f6f0;
-  --lemon:#e2a21b; --lemon-bg:#fff4d6; --lav:#8b78e6; --lav-bg:#efebff; --pr:#e0563b;
-  --shadow:0 1px 2px rgba(120,80,50,.06),0 6px 18px rgba(120,80,50,.07);
-  --f-head:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
-  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
-  --f-en:"Josefin Sans","Avenir Next","Helvetica Neue",sans-serif;
+  --bg:#FAF8F5; --paper:#FFFFFF; --ink:#2B2622; --sub:#6B6058; --mute:#8C7B6E; --line:#E6DED4; --line2:#D6CCC1;
+  --brown:#A07E66; --brown2:#8C6A55; --free:#5E8A4A; --pr:#B5643F;
+  --min:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --go:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  --en:"Jost","Futura","Avenir Next",sans-serif;
 }}
 *{{box-sizing:border-box}}
-html{{scroll-behavior:smooth;-webkit-text-size-adjust:100%}}
+html{{-webkit-text-size-adjust:100%;scroll-behavior:smooth}}
 @media (prefers-reduced-motion:reduce){{html{{scroll-behavior:auto}}}}
-body{{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.8 var(--f-body);letter-spacing:.02em;font-feature-settings:"palt" 1}}
-a{{color:inherit}}
-a:focus-visible{{outline:2px solid var(--peach);outline-offset:3px;border-radius:10px}}
-.wrap{{max-width:640px;margin:0 auto;padding-block:0 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
+body{{margin:0;background:var(--bg);color:var(--ink);font:500 14px/1.7 var(--go);font-feature-settings:"palt"}}
+a{{color:inherit;text-decoration:none}}
+a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-offset:3px}}
+.wrap{{max-width:460px;margin:0 auto;padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
 
-/* 表紙：朝の空のような淡いグラデーション */
-.hero{{position:relative;text-align:center;padding:36px 8px 26px;margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)));
-  background:radial-gradient(120% 90% at 50% 0%,#ffe3d3 0%,#fff1e6 45%,var(--bg) 100%)}}
-.hero::after{{content:"";position:absolute;right:max(26px,calc(50% - 280px));top:28px;width:22px;height:22px;border-radius:50%;box-shadow:-6px 3px 0 0 #f3c26b;transform:rotate(-12deg)}}
-.logo{{width:112px;height:112px;border-radius:50%;background:#fff;box-shadow:var(--shadow);display:block;margin:0 auto}}
-.brand{{font:600 12px/1 var(--f-en);letter-spacing:.34em;color:var(--peach);margin:18px 0 0}}
-.hero h1{{font:900 28px/1.35 var(--f-head);letter-spacing:.06em;margin:8px 0 0}}
-.hero h1 small{{display:block;font:700 15px/1.6 var(--f-head);letter-spacing:.08em;color:var(--sub);margin-top:6px}}
-.intro{{font-size:13.5px;color:var(--sub);margin:12px auto 0;max-width:26em;text-wrap:balance}}
-.season{{display:inline-flex;align-items:center;gap:10px;margin-top:16px;background:#fff;border-radius:999px;padding:6px 16px 6px 6px;box-shadow:var(--shadow);font-size:13px;font-weight:700}}
-.season b{{font:600 11px/1 var(--f-en);letter-spacing:.14em;color:#fff;background:var(--peach);border-radius:999px;padding:7px 10px 5px}}
+/* 表紙 */
+.head{{position:relative;isolation:isolate;overflow:hidden;text-align:center;margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:40px 16px 26px}}
+.head .blob{{position:absolute;border-radius:50%;filter:blur(2px);z-index:-1}}
+.b1{{width:170px;height:170px;left:-48px;top:24px;background:rgba(242,214,194,.6)}}
+.b2{{width:120px;height:120px;right:-22px;top:18px;background:rgba(205,224,236,.65)}}
+.b3{{width:104px;height:104px;right:34px;bottom:-30px;background:rgba(214,228,205,.65)}}
+.b4{{width:64px;height:64px;left:-12px;bottom:6px;background:rgba(240,214,218,.65)}}
+.head img{{width:72px;height:72px;display:block;margin:0 auto;border-radius:50%;background:#fff}}
+.en{{font:300 10px/1 var(--en);letter-spacing:.5em;color:var(--brown);margin:16px 0 0;padding-left:.5em}}
+h1{{font:600 26px/1.4 var(--min);letter-spacing:.16em;margin:16px 0 12px;padding-left:.16em}}
+.sub{{font-size:12.5px;line-height:1.95;color:var(--sub);margin:0}}
+.sea{{display:flex;align-items:center;justify-content:center;gap:10px;margin:20px 0 0;font:400 11px/1 var(--en);letter-spacing:.32em;color:var(--brown)}}
+.sea:before,.sea:after{{content:"";flex:0 0 34px;height:1px;background:var(--brown)}}
+.sea b{{font:600 13px/1 var(--min);letter-spacing:.12em;color:var(--brown2)}}
+.yr{{display:block;width:240px;height:44px;margin:18px auto 0}}
+.yr .ln path{{fill:none;stroke:var(--brown);stroke-width:1;stroke-linecap:round}}
+.yr .dt circle{{fill:var(--brown)}}
+.yr text{{font:9.5px var(--min);letter-spacing:.1em;fill:var(--brown);text-anchor:middle}}
+.yr .dm{{fill:none;stroke:var(--brown);stroke-width:1}}
+.yr .yp .dm{{fill:var(--brown);fill-opacity:.4;stroke-opacity:.5}} .yr .yp text{{fill-opacity:.55}}
+.yr .yn .dm{{fill:var(--brown)}} .yr .yn text{{font-weight:700}}
+.yr .ring{{fill:none;stroke:var(--brown);stroke-width:.8}}
 
-/* 入口のタイル（ストーリーのリンクから #odekake・#pr などで直接来られる） */
-.tiles{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px}}
-.tile{{display:grid;gap:2px;text-decoration:none;border-radius:18px;padding:14px 16px 12px;position:relative;transition:transform .15s}}
-.tile:hover{{transform:translateY(-2px)}}
-.tile .te{{font:600 10.5px/1 var(--f-en);letter-spacing:.18em;opacity:.85}}
-.tile b{{font:700 16px/1.4 var(--f-head);color:var(--ink)}}
-.tile .tn{{font:600 26px/1 var(--f-en);margin-top:4px}}
-.tile .tn small{{font:700 11px/1 var(--f-body);margin-left:3px;color:var(--sub)}}
-.t-odekake{{background:var(--peach-bg);color:var(--peach)}}
-.t-shop{{background:var(--mint-bg);color:var(--mint)}}
-.t-deal{{background:var(--lemon-bg);color:var(--lemon)}}
-.t-pr{{background:var(--lav-bg);color:var(--lav)}}
-@media (prefers-reduced-motion:reduce){{.tile{{transition:none}}.tile:hover{{transform:none}}}}
-.notice{{font-size:11.5px;line-height:1.7;color:var(--sub);margin:16px 2px 0}}
-.notice b{{color:#fff;background:var(--pr);border-radius:4px;padding:1px 6px;margin-right:6px;font-size:10.5px}}
-
-/* 上に残る目次 */
-.toc{{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:20px calc(-1 * max(16px,env(safe-area-inset-left,0px))) 0;background:rgba(255,250,245,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}}
-.toc-in{{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px max(16px,env(safe-area-inset-left,0px))}}
-.toc-in::-webkit-scrollbar{{display:none}}
-.toc a{{flex:none;text-decoration:none;font:700 13px/1 var(--f-head);padding:9px 14px;border-radius:999px;background:#fff;box-shadow:var(--shadow);display:flex;gap:6px;align-items:center}}
-.toc a span{{font:600 12px/1 var(--f-en);color:var(--peach)}}
+/* 切り替え */
+.seg{{display:flex;justify-content:center;margin:22px 0 0}}
+.seg button{{font:700 12.5px/1 var(--go);letter-spacing:.12em;color:var(--mute);background:#fff;border:1px solid #D9CFC4;padding:9px 18px;cursor:pointer;margin-left:-1px}}
+.seg button.on{{background:var(--ink);border-color:var(--ink);color:#fff}}
+.flt{{display:flex;flex-wrap:wrap;justify-content:center;gap:0 20px;border-top:1px solid #DDD3C8;border-bottom:1px solid #DDD3C8;padding:10px 0;margin:12px 0 14px}}
+.flt button{{font:700 13px/1 var(--go);letter-spacing:.06em;color:var(--pc,var(--mute));background:none;border:0;border-bottom:1px solid transparent;padding:6px 0;cursor:pointer}}
+.flt button.on{{color:var(--pc,var(--ink));border-bottom-color:var(--pc,var(--ink))}}
+.cnt{{display:flex;justify-content:center;margin:0 0 26px}}
+.cnt span{{font-size:12px;color:var(--sub);padding:0 12px;letter-spacing:.06em}}
+.cnt span+span{{border-left:1px solid var(--line2)}}
+.cnt b{{font:600 17px/1 var(--min);color:var(--ink);margin:0 3px}}
+.pr-note{{font-size:11px;line-height:1.8;color:var(--mute);text-align:center;margin:-14px 0 22px}}
 
 /* 章 */
-.sec{{margin-top:40px;scroll-margin-top:60px;--c:var(--peach);--cb:var(--peach-bg)}}
-.s-shop{{--c:var(--mint);--cb:var(--mint-bg)}} .s-deal{{--c:var(--lemon);--cb:var(--lemon-bg)}} .s-pr{{--c:var(--lav);--cb:var(--lav-bg)}}
-.sec-head{{display:flex;align-items:center;gap:10px;flex-wrap:wrap}}
-.sec-head .en{{font:600 11px/1 var(--f-en);letter-spacing:.18em;color:#fff;background:var(--c);border-radius:999px;padding:7px 11px 5px}}
-.sec-head h2{{font:900 22px/1.4 var(--f-head);letter-spacing:.06em;margin:0}}
-.sec-head .count{{font:600 13px/1 var(--f-en);color:var(--c);margin-left:auto}}
-.lead{{font-size:13px;color:var(--sub);margin:8px 0 14px}}
-.list{{display:grid;gap:12px}}
+.blk{{background:var(--paper);border:1px solid #ECE5DC;border-top:3px solid var(--brown);padding:22px 14px 12px;margin-bottom:18px;scroll-margin-top:12px}}
+.blk.hid{{display:none}}
+.wk{{display:flex;flex-direction:column;gap:6px;margin:0 0 6px}}
+.en2{{font:400 10px/1 var(--en);letter-spacing:.36em;color:var(--brown)}}
+.jp2{{font:600 18px/1.4 var(--min);letter-spacing:.08em}}
+.lead{{font-size:11.5px;color:var(--mute);margin:0 0 14px}}
+.none{{display:none;font-size:12px;color:var(--mute);text-align:center;margin:4px 0 12px}}
+.blk.empty .none{{display:block}}
 
-/* 行ける場所のカード */
-.spot{{display:grid;grid-template-columns:52px minmax(0,1fr);gap:0 12px;background:var(--card);border-radius:20px;padding:16px 16px 14px 14px;box-shadow:var(--shadow)}}
-.stub{{display:flex;flex-direction:column;align-items:center;gap:2px;align-self:start;background:var(--cb);border-radius:14px;padding:9px 0 7px}}
-.stub .no{{font:600 20px/1 var(--f-en);color:var(--c)}}
-.posted{{font:400 10.5px/1.4 var(--f-en);color:var(--sub);letter-spacing:.04em}}
-.body{{min-width:0}}
-.tags{{display:flex;flex-wrap:wrap;gap:5px}}
-.tags:empty{{display:none}}
-.area,.flag{{font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:999px;line-height:1.5}}
-.area{{background:#f7f1ec;color:var(--ink)}}
-.flag.free{{background:var(--peach-bg);color:var(--pr)}}
-.flag.new{{background:var(--mint-bg);color:var(--mint);font:600 10.5px/1.5 var(--f-en);letter-spacing:.12em;padding-top:4px}}
-.flag.until{{background:var(--lemon-bg);color:#a86f00}}
-.spot h3,.cmp h3{{font:700 17px/1.55 var(--f-head);letter-spacing:.03em;margin:8px 0 6px;text-wrap:balance;word-break:auto-phrase}}
-.spot ul,.cmp ul{{margin:0;padding:0;list-style:none;display:grid;gap:3px}}
-.spot li,.cmp ul li{{font-size:13.5px;line-height:1.7;padding-left:14px;position:relative}}
-.spot li::before,.cmp ul li::before{{content:"";position:absolute;left:1px;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--c)}}
-.foot{{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin-top:12px}}
-.src{{font-size:11px;color:var(--sub);margin:0;flex:1 1 12em}}
-.go{{font:700 13px/1 var(--f-head);text-decoration:none;color:var(--ink);background:var(--cb);border-radius:999px;padding:9px 14px;display:inline-flex;gap:4px;align-items:center;white-space:nowrap}}
+/* おでかけのカード */
+.card{{display:block;position:relative;background:#fff;border:1px solid var(--line);margin-bottom:12px;padding:12px 40px 40px 16px;box-shadow:inset 3px 0 0 var(--pc,var(--brown));transition:background .2s}}
+a.card:hover{{background:color-mix(in srgb,var(--pc,var(--brown)) 4%,#fff)}}
+.card[hidden]{{display:none}}
+.d{{display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;font-size:12px;color:#8A6E5C}}
+.pl{{font-weight:700;letter-spacing:.12em;color:var(--pc);margin-right:8px}}
+.pl:before{{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pc);margin-right:5px;vertical-align:1px}}
+.pl:after{{content:"";display:inline-block;width:1px;height:9px;background:var(--line2);margin-left:8px;vertical-align:-1px}}
+.tg{{font-size:11px;letter-spacing:.12em;color:var(--free);margin-left:8px}}
+.t{{font:700 15.5px/1.45 var(--go);margin:4px 0 4px;word-break:auto-phrase;text-wrap:pretty}}
+.m{{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:2px}}
+.m li{{font-size:12px;line-height:1.7;color:var(--sub);padding-left:11px;position:relative}}
+.m li:before{{content:"";position:absolute;left:0;top:.8em;width:4px;height:1px;background:var(--line2)}}
+.mp{{position:absolute;left:16px;bottom:12px;display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:500;letter-spacing:.14em;color:#5B514A;border-bottom:1px solid #CFC5BA;padding-bottom:1px}}
+.out{{width:9px;height:9px}}
+.arw{{position:absolute;right:14px;top:50%;width:22px;height:11px;transform:translateY(-50%);color:#A99C90;transition:transform .2s}}
+a.card:hover .arw{{transform:translate(3px,-50%)}}
 
 /* AIが比べた */
-.cmp{{background:var(--card);border-radius:20px;padding:18px 16px 16px;box-shadow:var(--shadow)}}
-.cmp-head{{display:flex;align-items:center;gap:8px}}
-.eyebrow{{font:700 11px/1 var(--f-head);letter-spacing:.12em;color:var(--lav);background:var(--lav-bg);border-radius:999px;padding:5px 10px}}
-.prmark{{font-size:10px;font-weight:700;color:#fff;background:var(--pr);border-radius:4px;padding:1px 6px;line-height:1.6}}
-.cmp-head .posted{{margin-left:auto}}
-.table{{display:grid;gap:6px;margin-top:8px}}
-.row{{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 12px;border-radius:14px;background:#fbf8f5}}
-.row.is-pick{{background:var(--lav-bg);box-shadow:inset 0 0 0 1.5px var(--lav)}}
-.nm{{font-size:13.5px;font-weight:500;min-width:0}}
-.nm .note{{display:block;font-size:11.5px;font-weight:400;color:var(--sub)}}
-.num{{display:flex;gap:10px;align-items:baseline;font-variant-numeric:tabular-nums;white-space:nowrap}}
-.avg{{font:600 15px/1 var(--f-en);color:var(--lemon)}}
-.cnt{{font:400 12.5px/1 var(--f-en);color:var(--sub);min-width:4.6em;text-align:right}}
-.bar{{grid-column:1/-1;height:6px;border-radius:3px;background:#fff}}
-.bar i{{display:block;height:100%;border-radius:3px;background:#e8ddd3}}
-.row.is-pick .bar i{{background:linear-gradient(90deg,var(--lav),#b9a9ff)}}
-.row.is-pick .nm{{font-weight:700}}
-.row.is-pick .cnt{{color:var(--ink);font-weight:600}}
-.pick{{display:inline-block;font-size:10px;font-weight:700;color:#fff;background:var(--lav);border-radius:999px;padding:1px 8px;margin-right:6px;vertical-align:2px}}
-.cap{{font-size:11px;color:var(--sub);margin:6px 2px 0}}
-.reason{{margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--lemon-bg)}}
-.reason .lbl{{font:700 11px/1 var(--f-head);letter-spacing:.12em;color:#a86f00}}
-.reason p{{margin:4px 0 0;font-size:13.5px}}
-.cmp .foot{{margin-top:14px}}
-.buy{{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:700 15px/1 var(--f-head);color:#fff;background:linear-gradient(135deg,#f07a5a,var(--pr));border-radius:999px;padding:13px 22px;white-space:nowrap;box-shadow:0 6px 14px rgba(224,86,59,.25);transition:transform .15s}}
-.buy:hover{{transform:translateY(-1px)}}
-@media (prefers-reduced-motion:reduce){{.buy{{transition:none}}.buy:hover{{transform:none}}}}
-.sample{{font-size:10.5px;color:var(--sub);margin:8px 0 0;text-align:right}}
+.cmp{{padding:14px 16px 16px;box-shadow:none}}
+.prm{{font:500 9.5px/1 var(--en);letter-spacing:.14em;color:var(--pr);border:1px solid var(--pr);padding:3px 6px 2px;margin-right:8px}}
+.cmp .t{{font-size:15.5px;margin-top:8px}}
+.tbl{{margin:10px 0 0;border-top:1px solid var(--line)}}
+.row{{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 0 9px;border-bottom:1px solid var(--line)}}
+.nm{{font-size:13px;font-weight:500;min-width:0}}
+.nt{{display:block;font-size:11px;font-weight:400;color:var(--mute)}}
+.nu{{display:flex;gap:12px;align-items:baseline;white-space:nowrap}}
+.av{{font:400 13px/1 var(--en);letter-spacing:.02em;color:var(--brown2)}}
+.ct{{font:300 12px/1 var(--en);color:var(--mute);min-width:4.4em;text-align:right;font-variant-numeric:tabular-nums}}
+.br{{grid-column:1/-1;height:2px;background:#F2EDE7}}
+.br i{{display:block;height:100%;background:#D9CDC1}}
+.row.on .nm{{font-weight:700}} .row.on .ct{{color:var(--ink);font-weight:400}}
+.row.on .br i{{background:var(--brown)}}
+.pk{{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.12em;color:#fff;background:var(--brown);padding:1px 6px;margin-right:6px;vertical-align:1px}}
+.cap{{font-size:10.5px;color:var(--mute);margin:6px 0 0;letter-spacing:.04em}}
+.why{{margin:14px 0 0;padding:12px 0 0;border-top:1px solid var(--line)}}
+.why span{{font:400 10px/1 var(--en);letter-spacing:.3em;color:var(--brown)}}
+.why span:before{{content:"WHY  ·  ";}}
+.why p{{margin:6px 0 0;font-size:13px;line-height:1.85}}
+.ft2{{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 12px;margin-top:14px}}
+.src{{flex:1 1 11em;font-size:10.5px;color:var(--mute);margin:0;letter-spacing:.02em}}
+.cmp .mp{{position:static}}
+.buy{{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;font:500 13px/1 var(--go);letter-spacing:.2em;padding:13px 18px 13px 22px}}
+.buy .arw{{position:static;transform:none;color:#fff;width:20px}}
+.buy:hover .arw{{transform:translateX(3px)}}
+.smp{{font-size:10px;color:var(--mute);text-align:right;margin:8px 0 0}}
 
-.ended{{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}}
-.ended li{{font-size:13px;color:var(--sub)}}
-.ended span{{display:inline-block;min-width:3.4em;font-family:var(--f-en)}}
+.past{{list-style:none;margin:6px 0 4px;padding:0;font-size:12px;line-height:2;color:#5B514A}}
+.tip{{border-top:1px solid var(--line);margin:10px 0 0;padding:12px 2px 2px;font-size:11.5px;line-height:1.8;color:var(--sub);text-align:center}}
 
-/* 終わり */
-.end{{margin-top:52px;text-align:center;background:var(--card);border-radius:24px;padding:26px 16px 22px;box-shadow:var(--shadow)}}
-.end .en{{font:600 11px/1 var(--f-en);letter-spacing:.3em;color:var(--peach)}}
-.end h2{{font:900 20px/1.5 var(--f-head);letter-spacing:.06em;margin:8px 0 16px}}
-.follow{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;text-align:left}}
-.follow a{{display:grid;grid-template-columns:1fr auto;gap:0 8px;text-decoration:none;background:var(--bg);border-radius:14px;padding:12px 14px}}
-.follow a.room{{grid-column:1/-1;background:var(--peach-bg)}}
-.sn{{font:700 14px/1.5 var(--f-head)}}
-.sh{{grid-row:2;font:400 11.5px/1.5 var(--f-en);color:var(--sub)}}
-.ar{{grid-row:1/3;grid-column:2;align-self:center;color:var(--peach)}}
-.colophon{{font-size:11px;color:var(--sub);margin:20px 0 0;line-height:1.9}}
+/* FOLLOW */
+.sns{{margin-top:36px;text-align:center}}
+.sns h2{{display:flex;align-items:center;justify-content:center;gap:14px;font:400 10.5px/1 var(--en);letter-spacing:.42em;color:var(--mute);margin:0 0 16px}}
+.sns h2:before,.sns h2:after{{content:"";width:40px;height:1px;background:var(--line2)}}
+.sns a{{display:block;border:1px solid var(--ink);padding:14px;margin:0 0 10px;font:500 13px/1.5 var(--go);letter-spacing:.1em}}
+.sns a span{{font:400 12px var(--en);color:var(--mute);margin-left:8px;letter-spacing:.06em}}
+.sns a.co{{background:#5B5450;border-color:#5B5450;color:#fff}}
+.sns a.co span{{display:block;margin:4px 0 0;color:#E9E1D8;font-family:var(--go)}}
+.ft{{text-align:center;font-size:10.5px;letter-spacing:.06em;color:var(--mute);margin-top:28px;line-height:1.9}}
+#totop{{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.94);border:1px solid #CFC4B8;box-shadow:0 2px 8px rgba(60,45,35,.12);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;cursor:pointer;padding:0}}
+#totop.on{{opacity:1;pointer-events:auto}}
+.fade{{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}}
+.js .fade:not(.in){{opacity:0;transform:translateY(10px)}}
+@media (prefers-reduced-motion:reduce){{.js .fade:not(.in){{opacity:1;transform:none}}.card,.arw,#totop{{transition:none}}}}
 </style></head>
 <body><div class="wrap">
-<header class="hero">
-<img class="logo" src="logo.png" alt="うさぎ│LIFE NOTES" width="112" height="112">
-<p class="brand">USAGI LIFE NOTES</p>
-<h1>うさぎ│LIFE NOTES<small>あしたから行ける・AIが比べた</small></h1>
-<p class="intro">首都圏と関西で「今日から・新しく・無料で」行ける場所を、AIが毎日調べています。買う物は3つ以上を数字で比べて、1つだけ。</p>
-<span class="season"><b>{season[0]}</b>{season[1]}</span>
+<header class="head">
+<span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
+<img src="logo.png" alt="うさぎ│LIFE NOTES" width="72" height="72">
+<p class="en">USAGI LIFE NOTES</p>
+<h1>あしたから行ける</h1>
+<p class="sub">首都圏と関西の「今日から・新しく・無料で」を、<br>AIが毎日しらべて、ここに書き足しています</p>
+<div class="sea"><span>{sea_en}</span><b>{sea_jp}</b></div>
+{ring}
 </header>
-<nav class="tiles" aria-label="入口">{tiles}</nav>
-<p class="notice"><b>PR</b>このページは楽天アフィリエイトの広告を含みます。日時や値段は変わることがあるので、出かける前・買う前に公式ページで確かめてください。</p>
-<nav class="toc" aria-label="目次"><div class="toc-in">{nav}</div></nav>
-{sections}
-<footer class="end">
-<span class="en">FOLLOW</span>
-<h2>毎日の続きは、こちらで</h2>
-<div class="follow">{follow}</div>
-<p class="colophon">最終更新 {updated}<br>7日より前の投稿は外しています</p>
-</footer>
-</div></body></html>
+<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>
+<nav class="flt" aria-label="地域">{tabs}</nav>
+<div class="cnt"><span>行ける場所<b>{n_go}</b>件</span><span>無料あり<b>{n_free}</b>件</span><span>比べた物<b>{n_pr}</b>件</span></div>
+<p class="pr-note">このページには楽天アフィリエイトの広告（PR）があります</p>
+{blocks}
+<p class="tip">出かける前・買う前に、必ず公式ページで<br>最新の情報を確かめてください。</p>
+<div class="sns"><h2>FOLLOW</h2>{follow}</div>
+<p class="ft">うさぎ│LIFE NOTES ｜ 毎日更新（最終 {updated}）<br>7日より前の投稿は、外しています</p>
+</div>
+<button id="totop" aria-label="上にもどる"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4A403A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
+<script>
+(function(){{
+var d=document.documentElement;d.classList.add("js");
+var pref="",free=false;
+function apply(){{
+  document.querySelectorAll(".blk").forEach(function(b){{
+    var cs=b.querySelectorAll(".card.it");if(!cs.length)return;var k=0;
+    cs.forEach(function(c){{var ok=(!pref||c.dataset.pref===pref)&&(!free||c.dataset.free==="1");c.hidden=!ok;if(ok)k++;}});
+    b.classList.toggle("empty",!k);
+  }});
+  var pr=document.getElementById("pr");if(pr)pr.classList.toggle("hid",free);
+}}
+document.querySelectorAll(".flt button").forEach(function(x){{x.addEventListener("click",function(){{
+  document.querySelectorAll(".flt button").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
+document.querySelectorAll(".seg button").forEach(function(x){{x.addEventListener("click",function(){{
+  document.querySelectorAll(".seg button").forEach(function(y){{y.classList.toggle("on",y===x);}});free=x.dataset.f==="1";apply();}});}});
+var t=document.getElementById("totop");
+addEventListener("scroll",function(){{t.classList.toggle("on",scrollY>600);}},{{passive:true}});
+t.addEventListener("click",function(){{scrollTo({{top:0,behavior:"smooth"}});}});
+if("IntersectionObserver" in window){{var io=new IntersectionObserver(function(es){{es.forEach(function(e){{if(e.isIntersecting){{e.target.classList.add("in");io.unobserve(e.target);}}}});}},{{rootMargin:"0px 0px -8% 0px"}});
+  document.querySelectorAll(".blk").forEach(function(b,i){{b.classList.add("fade");if(i<1)b.classList.add("in");io.observe(b);}});}}
+}})();
+</script>
+</body></html>
 """
 
 
