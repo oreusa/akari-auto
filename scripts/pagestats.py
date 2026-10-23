@@ -2,7 +2,7 @@
 
 functions/_middleware.js が数えた物。キーは「日付|v|来た元」（開いた）と「日付|c|来た元|項目|名前」（押した）。
 来た元は投稿の印：x0715 = Xの7:15の投稿、t0715 = Threadsの7:15、direct = 印なし（プロフィールのリンクなど）。
-使い方（page.yml の中）：python3 scripts/pagestats.py <KVのID>  … wrangler で読む。IDがなければ何もしない。
+使い方（page.yml の中）：python3 scripts/pagestats.py ns → KVのID（なければ作る）／ python3 scripts/pagestats.py <KVのID>  … wrangler で読む。IDがなければ何もしない。
 """
 import json
 import os
@@ -38,16 +38,52 @@ def parse(keys):
     return out
 
 
+NS_TITLE = "usagi-life-notes-clicks"  # wrangler は頭に「worker-」を付けて作る
+
+
+def _json_list(text):
+    """wrangler の出力（前に「[WARNING]」などの文が付く）から JSON の配列を取り出す。"""
+    dec = json.JSONDecoder()
+    i = text.find("[")
+    while i >= 0:
+        try:
+            v, _ = dec.raw_decode(text[i:])
+            if isinstance(v, list):
+                return v
+        except ValueError:
+            pass
+        i = text.find("[", i + 1)
+    return None
+
+
+def _wr(args):
+    return subprocess.run(WRANGLER + args, capture_output=True, text=True, timeout=180)
+
+
+def find_ns(create=True):
+    """数える場所（KV）のIDを返す。なければ作る。作れないときは ""。"""
+    for i in range(2):
+        got = _json_list(_wr(["kv", "namespace", "list"]).stdout) or []
+        for n in got:
+            if isinstance(n, dict) and str(n.get("title", "")).endswith(NS_TITLE):
+                return n.get("id", "")
+        if i == 0 and create:
+            _wr(["kv", "namespace", "create", NS_TITLE])
+    return ""
+
+
 def list_keys(ns, prefix):
-    r = subprocess.run(WRANGLER + ["kv", "key", "list", f"--namespace-id={ns}", f"--prefix={prefix}"],
-                       capture_output=True, text=True, timeout=180)
-    if r.returncode != 0 or "[" not in r.stdout:
+    r = _wr(["kv", "key", "list", f"--namespace-id={ns}", f"--prefix={prefix}"])
+    got = _json_list(r.stdout) if r.returncode == 0 else None
+    if got is None:
         print("KVを読めない：", (r.stderr or r.stdout)[-300:])
-        return None
-    return json.loads(r.stdout[r.stdout.find("["):])
+    return got
 
 
 def main():
+    if sys.argv[1:] == ["ns"]:  # page.yml が公開の前に使う：IDだけを出す
+        print(find_ns())
+        return 0
     ns = sys.argv[1] if len(sys.argv) > 1 else ""
     if not ns:
         print("KVのIDがないので数えない")
@@ -69,8 +105,7 @@ def main():
                    "at": now.strftime("%m/%d %H:%M"), "days": days})
     t = days.get(now.date().isoformat(), {})
     if t.get("views", 0) + t.get("clicks", 0) >= STOP_AT:
-        subprocess.run(WRANGLER + ["kv", "key", "put", f"--namespace-id={ns}", f"{now.date().isoformat()}|stop", "1",
-                                   "--ttl=172800"], capture_output=True, text=True, timeout=180)
+        _wr(["kv", "key", "put", f"--namespace-id={ns}", f"{now.date().isoformat()}|stop", "1", "--ttl=172800"])
         print(f"今日は {STOP_AT} を超えたので、数えるのを止めた（ページはそのまま）")
     print(f"今日 開いた {t.get('views', 0)}・押した {t.get('clicks', 0)}")
     return 0
