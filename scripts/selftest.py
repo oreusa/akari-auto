@@ -39,6 +39,7 @@ ok(any("短縮" in p for p in post_problems(dict(PR, threads=["a\n#PR", "https:/
 ok(any("fallback" in p for p in post_problems({k: v for k, v in PR.items() if k != "fallback"})), "fallbackなしを見逃した")
 ok(any("選んだ理由" in p for p in post_problems(dict(PR, x=["【AIが比べた着る毛布】比べました\n#暮らし #PR", "{{LINK}} #PR"]))), "選んだ理由なしのPRを見逃した")
 ok(any("【AIが比べた" in p for p in post_problems(dict(PR, x=["【着る毛布】比べました\n選んだ理由：a\n#暮らし #PR", "{{LINK}} #PR"]))), "AIが比べたでない見出しを見逃した")
+ok(not any("【AIが比べた" in p for p in post_problems({"slot": "13:45", "topic": "おでかけ", "x": ["今日10/24から、京都駅でPOP UP\n公式より（10/23時点）\n#おでかけ"], "threads": ["今日10/24から、京都駅でPOP UP\n公式より（10/23時点）"]})), "PR以外の見出しを×にした")
 ok(any("見出し" in p for p in post_problems(dict(PR, threads=["【別の見出し】\n#PR", "{{LINK}} #PR"]))), "XとThreadsの見出し違いを見逃した")
 ok(any("URLは入れない" in p for p in post_problems(dict(PR, threads=["【AIが比べた着る毛布】比べました\n{{LINK}}\n#PR", "{{LINK}} #PR"]))), "1つ目のURLを見逃した")
 ok(any("文字数" in p for p in post_problems(dict(PR, x=["あ" * 141 + "\n#PR", "{{LINK}} #PR"]))), "X文字数超えを見逃した")

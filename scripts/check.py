@@ -52,8 +52,8 @@ def _same_head(p, where=""):
     hx, ht = _head(p.get("x")), _head(p.get("threads"))
     out = []
     for h in (hx, ht):
-        if h is not None and not h.startswith("【AIが比べた"):
-            out.append(f"{where}1行目が「【AIが比べた」で始まっていない（見出しは全部この形。10/22 オーナー）")
+        if p.get("link") and h is not None and not h.startswith("【AIが比べた"):
+            out.append(f"{where}PRの1行目が「【AIが比べた」で始まっていない（PRの見出しはこの形。10/23 オーナー）")
             break
     if hx is not None and ht is not None and hx != ht:
         out.append(f"{where}XとThreadsで1行目の見出しが違う（見出しと題材は同じにし、長さだけ変える）")
