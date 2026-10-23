@@ -28,6 +28,7 @@ SECTIONS = [
     ("shop", "できたばかりのお店", "開いたばかりのお店と、はじめて出るお店"),
     ("deal", "今だけのお得", "期間のあるお得。終わる日を先に書いています"),
     ("pr", "AIが比べた", "3つ以上を数字で比べて、1つだけ選んだ物"),
+    ("pick", "AIが選んだ物", "比べて選んだ物を、楽天ROOMにも置いています。新しい順です"),
 ]
 
 
@@ -82,6 +83,7 @@ def collect(now):
     items = {k: [] for k, _, _ in SECTIONS}
     ended = []
     seen = set()
+    pr_urls = set()
     for f in sorted(glob.glob(path("schedule", "*.json")), reverse=True):
         day = os.path.basename(f)[:-5]
         if not re.match(r"\d{4}-\d{2}-\d{2}$", day):
@@ -92,8 +94,8 @@ def collect(now):
         data = load_json(f, {}) or {}
         for p in sorted(data.get("posts", []), key=lambda p: p.get("slot", ""), reverse=True):
             due = datetime.fromisoformat(f"{day}T{p['slot']}").replace(tzinfo=JST)
-            if due > now:
-                continue
+            if due > now and not (p.get("link") and d == now.date()):
+                continue  # PRは当日分を朝から載せる（リンクはこの場で楽天に確かめる）
             text = p["threads"][0]
             if "付け忘れ" in text:
                 continue
@@ -113,6 +115,7 @@ def collect(now):
                 r = _resolve(link, list(p["x"]) + list(p["threads"]))
                 if not r.get("ok"):
                     continue
+                pr_urls.add(link.get("url", ""))
                 entry["expect"] = link.get("expect", "")
                 entry["url"] = r["link"]
                 entry["sample"] = r.get("sample", False)
@@ -123,7 +126,41 @@ def collect(now):
             if key == "pr":
                 entry["noad"] = True
             items[key].append(entry)
+    items["pick"] = _room_picks(now, since, skip=pr_urls)
     return items, ended
+
+
+def _short(name, n=34):
+    name = re.sub(r"【[^】]*】|［[^］]*］|\[[^\]]*\]", "", name or "").strip()
+    return name if len(name) <= n else name[:n].rstrip() + "…"
+
+
+def _room_picks(now, since, skip=(), limit=9):
+    """ROOM台本の商品（毎晩、燈が比べて選んだ3品）を、新しい順に最大9品。楽天で販売中を確かめた物だけ。"""
+    out, seen = [], set()
+    for f in sorted(glob.glob(path("schedule", "*.json")), reverse=True):
+        day = os.path.basename(f)[:-5]
+        if not re.match(r"\d{4}-\d{2}-\d{2}$", day):
+            continue
+        d = datetime.fromisoformat(day).date()
+        if d < since or d > now.date():
+            continue
+        for it in (load_json(f, {}) or {}).get("room", []):
+            url = it.get("url", "")
+            if not url or url in seen or url in skip:  # 上の「AIが比べた」と同じ物は出さない
+                continue
+            seen.add(url)
+            r = _resolve({"type": "ichiba", "url": url, "expect": it.get("expect", "")}, [it.get("comment", "")])
+            if not r.get("ok"):
+                continue
+            lines = [ln.strip() for ln in (it.get("comment") or "").split("\n") if ln.strip() and not ln.startswith("#")]
+            out.append({"day": f"{d.month}/{d.day}", "name": _short(r.get("name")) or it.get("expect", ""),
+                        "expect": it.get("expect", ""), "price": r.get("price"), "count": r.get("reviewCount"),
+                        "avg": r.get("reviewAverage"), "lines": lines[:3], "url": r["link"],
+                        "sample": r.get("sample", False)})
+            if len(out) >= limit:
+                return out
+    return out
 
 
 def esc(s):
@@ -145,7 +182,7 @@ PREF_COLOR = {"東京": "#5D7FA3", "神奈川": "#4E8B86", "埼玉": "#9A8657", 
               "京都": "#8E7BA6", "兵庫": "#4F6A8A", "奈良": "#6F8F5F", "和歌山": "#B5788A", "滋賀": "#5F9A9A"}
 DATE_HEAD = re.compile(r"^((?:今日|明日|あす)?\s*\d{1,2}/\d{1,2}[^、,]{0,14}?(?:から|まで)?)[、,]\s*")
 BLOCKS = {  # 章の英語名
-    "odekake": "GO OUT", "shop": "NEW OPEN", "deal": "LIMITED", "pr": "AI COMPARED", "ended": "ARCHIVE",
+    "odekake": "GO OUT", "shop": "NEW OPEN", "deal": "LIMITED", "pr": "AI COMPARED", "pick": "AI PICK", "ended": "ARCHIVE",
 }
 
 
@@ -259,6 +296,22 @@ def compare(e):
             f'<div class="t">{esc(title)}</div>{body}{reason}<div class="ft2">{src}{btn}</div>{sample}</article>')
 
 
+def pick(e):
+    meta = []
+    if e.get("avg"):
+        meta.append(f'<span class="av">★ {esc(str(e["avg"]))}</span>')
+    if e.get("count"):
+        meta.append(f'<span class="ct">レビュー {int(e["count"]):,}件</span>')
+    if e.get("price"):
+        meta.append(f'<span class="yen">税込 {int(e["price"]):,}円</span>')
+    lis = "".join(f"<li>{esc(x)}</li>" for x in e["lines"])
+    sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
+    return (f'<article class="card cmp pk2"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}に選んだ物</span></div>'
+            f'<div class="t">{esc(e["name"])}</div><div class="meta">{"".join(meta)}</div><ul class="m">{lis}</ul>'
+            f'<div class="ft2"><p class="src">楽天市場の商品ページより</p>'
+            f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a></div>{sample}</article>')
+
+
 def _season(now):
     m = now.month
     i = 0 if m in (3, 4, 5) else 1 if m in (6, 7, 8) else 2 if m in (9, 10, 11) else 3
@@ -297,8 +350,13 @@ def render(items, ended, now, cfg):
     for key, name, lead in SECTIONS:
         if not items[key]:
             continue
-        cards = "".join(compare(e) for e in items[key]) if key == "pr" else "".join(spot(e) for e in items[key])
-        note = '<p class="none">この地域は、これから増やしていきます</p>' if key != "pr" else ""
+        if key == "pr":
+            cards = "".join(compare(e) for e in items[key])
+        elif key == "pick":
+            cards = "".join(pick(e) for e in items[key])
+        else:
+            cards = "".join(spot(e) for e in items[key])
+        note = '<p class="none">この地域は、これから増やしていきます</p>' if key not in ("pr", "pick") else ""
         blocks.append(f'<section class="blk" id="{key}"><div class="wk"><span class="en2">{BLOCKS[key]}</span>'
                       f'<span class="jp2">{esc(name)}</span></div><p class="lead">{esc(lead)}</p>{cards}{note}</section>')
     if ended:
@@ -309,7 +367,7 @@ def render(items, ended, now, cfg):
     cur, sea_en, sea_jp = _season(now)
     return TEMPLATE.format(
         tabs=tabs, blocks="".join(blocks), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp,
-        n_go=len(spots), n_free=nfree, n_pr=len(items["pr"]),
+        n_go=len(spots), n_free=nfree, n_pr=len(items["pr"]) + len(items["pick"]),
         updated=f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M}")
 
 
@@ -436,6 +494,10 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .buy{{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;font:500 13px/1 var(--go);letter-spacing:.2em;padding:13px 18px 13px 22px}}
 .buy .arw{{position:static;transform:none;color:#fff;width:20px}}
 .buy:hover .arw{{transform:translateX(3px)}}
+.meta{{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin:4px 0 0}}
+.meta .ct{{min-width:0;text-align:left}}
+.yen{{font:400 12.5px/1 var(--en);color:var(--ink);letter-spacing:.02em}}
+.pk2 .m{{margin-top:10px}}
 .smp{{font-size:10px;color:var(--mute);text-align:right;margin:8px 0 0}}
 
 .past{{list-style:none;margin:6px 0 4px;padding:0;font-size:12px;line-height:2;color:#5B514A}}
@@ -486,7 +548,7 @@ function apply(){{
     cs.forEach(function(c){{var ok=(!pref||c.dataset.pref===pref)&&(!free||c.dataset.free==="1");c.hidden=!ok;if(ok)k++;}});
     b.classList.toggle("empty",!k);
   }});
-  var pr=document.getElementById("pr");if(pr)pr.classList.toggle("hid",free);
+  ["pr","pick"].forEach(function(id){{var x=document.getElementById(id);if(x)x.classList.toggle("hid",free);}});
 }}
 document.querySelectorAll(".flt button").forEach(function(x){{x.addEventListener("click",function(){{
   document.querySelectorAll(".flt button").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
