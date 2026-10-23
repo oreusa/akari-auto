@@ -219,5 +219,37 @@
       ],
       "topic": "暮らし"
     }
+  },
+  "2026-10-23 4コマ": {
+    "twitter": {
+      "tries": 1,
+      "id": "6adac2e8535235087b7827d3",
+      "kind": "4コマ",
+      "at": "11:30",
+      "texts": [
+        "昨日わかったこと：Threadsで無料のおでかけ2本は閲覧432と398、商品の紹介は4〜137でした。今日の12:15は入場無料のなんば雲海です。\n\nうさぎちゃん運用日記 第16話「無料は強い」🌙"
+      ],
+      "topic": "漫画",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=1Tfvnx1aGnW9f1QHarJCQeXOXw0bAVF46",
+        "video": null,
+        "alt": "4コマ漫画 第16話"
+      }
+    },
+    "threads": {
+      "tries": 1,
+      "id": "6adac2e9d447d56a6470e08d",
+      "kind": "4コマ",
+      "at": "11:30",
+      "texts": [
+        "昨日わかったこと：Threadsで無料のおでかけ2本は閲覧432と398、商品の紹介は4〜137でした。今日の12:15は入場無料のなんば雲海です。\n\nうさぎちゃん運用日記 第16話「無料は強い」🌙"
+      ],
+      "topic": "漫画",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=1Tfvnx1aGnW9f1QHarJCQeXOXw0bAVF46",
+        "video": null,
+        "alt": "4コマ漫画 第16話"
+      }
+    }
   }
 }
