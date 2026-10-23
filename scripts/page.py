@@ -566,8 +566,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
   background-size:46px 52px,31px 37px;background-position:8px 12px,22px 30px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}}
 .head img{{width:88px;height:88px;display:block;margin:0 auto;border-radius:50%;background:#fff}}
 .en{{font:300 10px/1 var(--en);letter-spacing:.5em;color:var(--brown);margin:16px 0 0;padding-left:.5em}}
-h1{{font:600 26px/1.4 var(--min);letter-spacing:.16em;margin:16px 0 12px;padding-left:.16em}}
-.sub{{font-size:12.5px;line-height:1.95;color:var(--sub);margin:0}}
+.sub{{font-size:12.5px;line-height:1.95;color:var(--sub);margin:14px 0 0}}
 .sea{{display:flex;align-items:center;justify-content:center;gap:10px;margin:20px 0 0;font:400 11px/1 var(--en);letter-spacing:.32em;color:var(--brown)}}
 .sea:before,.sea:after{{content:"";flex:0 0 34px;height:1px;background:var(--brown)}}
 .sea b{{font:600 13px/1 var(--min);letter-spacing:.12em;color:var(--brown2)}}
@@ -700,8 +699,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <header class="head">
 <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
 <img src="logo.png" alt="うさぎ│LIFE NOTES" width="88" height="88">
-<p class="en">USAGI LIFE NOTES</p>
-<h1>あしたから行ける</h1>
+<h1 class="en">USAGI LIFE NOTES</h1>
 <p class="sub">おでかけ先と、泊まる宿と、あると助かる物。<br>AIが毎日しらべて、数字で比べて選んでいます</p>
 <div class="sea"><span>{sea_en}</span><b>{sea_jp}</b></div>
 {ring}
@@ -729,6 +727,14 @@ document.querySelectorAll(".flt button").forEach(function(x){{x.addEventListener
   document.querySelectorAll(".flt button").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
 document.querySelectorAll(".seg button").forEach(function(x){{x.addEventListener("click",function(){{
   document.querySelectorAll(".seg button").forEach(function(y){{y.classList.toggle("on",y===x);}});free=x.dataset.f==="1";apply();}});}});
+var F="";try{{F=new URLSearchParams(location.search).get("f")||"";if(F)sessionStorage.setItem("f",F);else F=sessionStorage.getItem("f")||"";}}catch(e){{}}
+document.addEventListener("click",function(ev){{
+  var a=ev.target.closest&&ev.target.closest("a.buy,a.card.it");if(!a||!navigator.sendBeacon)return;
+  var c=a.closest(".card")||a,t=c.querySelector(".t,.cho b"),sec=a.closest("section[id]");
+  var k=(t?t.textContent:a.textContent).replace(/\s+/g,"").slice(0,30);
+  var sk=(a.classList.contains("buy")?"buy":"go")+(sec?"-"+sec.id:"");
+  try{{navigator.sendBeacon("/c?f="+encodeURIComponent(F||"direct")+"&s="+encodeURIComponent(sk.slice(0,16))+"&k="+encodeURIComponent(k));}}catch(e){{}}
+}});
 var t=document.getElementById("totop");
 addEventListener("scroll",function(){{t.classList.toggle("on",scrollY>600);}},{{passive:true}});
 t.addEventListener("click",function(){{scrollTo({{top:0,behavior:"smooth"}});}});

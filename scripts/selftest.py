@@ -190,8 +190,17 @@ ok(wx[1].startswith("AIが比べた") and wx[1].endswith("https://example.com/a"
 wt = book.with_page(two, "threads", pcfg)
 ok(wt[1].startswith("公式で") and wt[1].endswith("pages.dev/"), "Threadsでページの行が最後に入らない")
 ok(book.with_page(["見出し", "あ" * 130], "twitter", pcfg)[1] == "あ" * 130, "Xの280を超えるのにページの行を足した")
+ok("pages.dev/?f=x1345" in book.with_page(two, "twitter", pcfg, "13:45")[1], "Xの投稿の印（?f=x1345）が付かない")
+ok("pages.dev/?f=t0715" in book.with_page(two, "threads", pcfg, "07:15")[1], "Threadsの投稿の印（?f=t0715）が付かない")
 ok(book.with_page(["1つだけ"], "twitter", pcfg) == ["1つだけ"], "1つだけの投稿に足した")
 ok(book.with_page(two, "twitter", {"page": {"url": "https://usagi-life-notes.pages.dev/", "promote": False}}) == two, "promote false でも足した")
+
+# ページの数（KVのキー → 日ごとの数）
+import pagestats  # noqa: E402
+ps = pagestats.parse([{"name": "2026-10-24|v|x0715", "metadata": {"n": 3}}, {"name": "2026-10-24|v|direct", "metadata": {"n": 2}},
+                      {"name": "2026-10-24|c|x0715|buy-winter|着る毛布", "metadata": {"n": 1}}, {"name": "2026-10-24|stop"}])
+ok(ps.get("2026-10-24", {}).get("views") == 5 and ps["2026-10-24"]["clicks"] == 1, f"ページの数の読み方が違う: {ps}")
+ok(ps["2026-10-24"]["click"]["x0715"] == {"buy-winter|着る毛布": 1}, "押された物が投稿ごとに分かれない")
 
 print("自己テスト：", "OK" if not fails else f"×{len(fails)}")
 sys.exit(1 if fails else 0)
