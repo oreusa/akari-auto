@@ -265,17 +265,64 @@ def item_code_from_url(url):
     return f"{m.group(1)}:{m.group(2)}" if m else None
 
 
-def rakuten_travel_link(hotel_no):
-    """楽天トラベルの施設ページへのアフィリエイトリンクを作り、施設ページが開けるか確かめる。"""
+RAKUTEN_HOTEL_URL = "https://openapi.rakuten.co.jp/engine/api/Travel/HotelDetailSearch/20170426"
+
+
+def _hotel_info(data):
+    """楽天トラベルAPIの返事から hotelBasicInfo を1つ取り出す（入れ子の形が版で違うので探して取る）。"""
+    if isinstance(data, dict):
+        if "hotelBasicInfo" in data:
+            return data["hotelBasicInfo"]
+        if "hotelNo" in data and "hotelName" in data:
+            return data
+        vals = data.values()
+    elif isinstance(data, list):
+        vals = data
+    else:
+        return None
+    for v in vals:
+        r = _hotel_info(v)
+        if r:
+            return r
+    return None
+
+
+def rakuten_travel_api(hotel_no):
+    """楽天トラベルの施設を楽天API（HotelDetailSearch）で確かめる。
+
+    楽天トラベルのページは GitHub の機械からは全部 503 になる（10/23 probe で確認）ので、APIで確かめる。
+    """
     env = rakuten_env()
+    params = {
+        "format": "json", "formatVersion": 2, "hotelNo": int(hotel_no),
+        "applicationId": env["RAKUTEN_APP_ID"], "accessKey": env["RAKUTEN_ACCESS_KEY"],
+        "affiliateId": env["RAKUTEN_AFFILIATE_ID"],
+    }
+    origin = os.environ.get("RAKUTEN_ORIGIN") or "https://github.com"
+    status, txt, _ = http("GET", RAKUTEN_HOTEL_URL + "?" + urllib.parse.urlencode(params),
+                          headers={"Origin": origin, "Referer": origin + "/"})
+    if status == 404 and "not_found" in (txt or ""):
+        return {"ok": False, "why": "楽天トラベルに施設がない（掲載終了かも）"}
+    if status != 200:
+        return {"ok": False, "why": f"楽天トラベルAPI {status}: {(txt or '')[:120]}"}
+    info = _hotel_info(json.loads(txt))
+    if not info or str(info.get("hotelNo")) != str(int(hotel_no)):
+        return {"ok": False, "why": "楽天トラベルAPIの返事に施設がない"}
+    return info
+
+
+def rakuten_travel_link(hotel_no):
+    """楽天トラベルの施設へのアフィリエイトリンクを作り、施設が載っているか楽天APIで確かめる。"""
+    env = rakuten_env()
+    info = rakuten_travel_api(hotel_no)
+    if info.get("ok") is False:
+        return info
     page = f"https://travel.rakuten.co.jp/HOTEL/{int(hotel_no)}/"
-    status, txt, final = http("GET", page)
-    if status != 200 or "お探しのページは見つかりません" in txt:
-        return {"ok": False, "why": f"施設ページが開けない（{status}）"}
     enc = urllib.parse.quote(page, safe="")
     link = f"https://hb.afl.rakuten.co.jp/hgc/{env['RAKUTEN_AFFILIATE_ID']}/?pc={enc}&m={enc}"
-    title = re.search(r"<title>(.*?)</title>", txt, re.S)
-    return {"ok": True, "name": (title.group(1).strip() if title else ""), "itemUrl": page, "link": link}
+    res = {"ok": True, "name": info.get("hotelName", ""), "itemUrl": page, "link": link,
+           "reviewCount": info.get("reviewCount"), "reviewAverage": info.get("reviewAverage")}
+    return res
 
 
 # ---------------------------------------------------------------- 数字・ページの確かめ
