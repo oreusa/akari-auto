@@ -3,7 +3,7 @@
 ■いちばん大事な決まり
 ・投稿・予約は自分でしない。書くのは GitHub の oreusa/akari-auto の schedule/翌日の日付.json だけ。予約・楽天リンク作り・販売中の確認は GitHub Actions の機械（予約係）がやる。
 ・Bufferのツールは一切呼ばない。うさぎちゃん不動産（usagi-fudosan-media、fudosan_ai_si、月/ツキ）のファイルやリポジトリには触れない。作業の場所に usagi-fudosan-media があっても読まない・書かない。
-・Amazon（機械からも燈からも商品ページを開けず、確かめられないため）、楽天の短縮リンク（a.r10.to）、アフィリエイトリンクの直書きは使わない（機械が×にする）。A8 は、下の「売上とA8」で読めたリンクだけ使ってよい。
+・Amazon は、凪がその晩ブラウザで開いて「Amazon確認帳」に書いた物だけ使う（10/23 オーナー「Amazonは稼げるだろ使おうよ」。機械は商品ページを開けないため）。楽天の短縮リンク（a.r10.to）、アフィリエイトリンクの直書き（amazon.co.jp・hb.afl・px.a8 を本文に書く）は使わない（機械が×にする）。A8 は、下の「売上とA8」で読めたリンクだけ使ってよい。
 ・確かめていない事実・数字・終わったイベントは書かない。出どころは1週間以内に更新された公式ページか記事。
 
 ■最初に
@@ -30,8 +30,9 @@
 ・WebSearch と WebFetch で調べる（合わせて45回まで）。日付・料金・場所・期間は公式ページの数字のまま書く。WebFetch で開けたページだけを出どころにする。
 ・18:15 の比較PR：同じ種類の物を2〜4個、公式の仕様や楽天の商品ページの数字（価格・レビュー件数・評価・サイズ・重さ・消費電力など）で比べ、条件に合うものを1つ選ぶ。選んだ物の楽天市場の商品ページ（https://item.rakuten.co.jp/お店/商品/）を WebSearch で見つけ、WebFetch で開いて「販売中・商品名」を確かめる。link は {"type":"ichiba","url":その商品ページ,"expect":商品名に必ず入っている短い言葉（ブランド名や型番）}。WebFetch で開けないときは、検索結果で商品ページのURLと商品名が分かれば使ってよい（予約係が予約の直前に楽天に「販売中か・商品名に expect が入るか」を聞き、だめなら fallback を出すので、ここで止めない）。
 ・PRの文に書く大きさ・重さ・容量・W数などの「数字＋単位」は、楽天の商品名か商品説明にそのまま書いてある物だけ（予約係が楽天の商品説明と照らし、無い数字があれば fallback にする。前の夜の check でも×になる）。商品名・説明に無いメーカー公式の数字は書かない。
+・Amazon のPR（10/23から）：ドライブ連絡ノート（parentId 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）の「Amazon確認帳」を読む（凪が毎晩20:20に書く）。「（ここから下に確認）」より下の、今日 T の日付の行だけが候補。形は「T HH:MM｜ASIN｜商品名｜税込価格｜レビュー件数｜★｜大きさ・重さなど｜○か×」。○の行を data/amazon-checked.json に {"items": {ASIN: {"name", "price", "reviews", "stars", "specs", "checkedAt": "T HH:MM を ISO（+09:00）に"}}, "updatedAt": 今} の形で写し、mcp__github__create_or_update_file で main に保存する（予定表より先に。check がこのファイルを見る）。PRでは同じ種類の楽天の商品とも並べて比べ、数字で勝った方を選ぶ（Amazonだから選ぶ、はしない）。link は {"type":"amazon","asin":ASIN,"expect":商品名に必ず入っている短い言葉}。文の数字は確認帳にある物だけ。ROOM は楽天だけなので、Amazon のPRは room に入れなくてよい。確認帳が読めない・今日の行が無い夜は、Amazon を使わない。
 ・楽天トラベルのPR：施設ページ https://travel.rakuten.co.jp/HOTEL/番号/ の番号が分かった施設だけ（予約係が開けるか確かめる）。link は {"type":"travel","hotelNo":番号}。
-・【PRの厳選（いつも。10/22 オーナー「なんの利益にもならないPRはやめろ。本気で厳選しろ。理由も書け」）】PRにしてよいのは次を全部満たす物だけ。①その日の投稿の場面で本当に使う物（題材とつながらない物は出さない）②同じ種類を3つ以上比べ、数字で「これを選ぶ理由」が言える（1時間の電気代、1回あたりの値段、レビュー件数×評価など）③レビュー1,000件以上・評価4.0以上（宿は評価4.5以上）④燈が商品ページを開いて販売中と数字を確かめた。1つでも欠けたら、その枠はPRにしない。
+・【PRの厳選（いつも。10/22 オーナー「なんの利益にもならないPRはやめろ。本気で厳選しろ。理由も書け」）】PRにしてよいのは次を全部満たす物だけ。①その日の投稿の場面で本当に使う物（題材とつながらない物は出さない）②同じ種類を3つ以上比べ、数字で「これを選ぶ理由」が言える（1時間の電気代、1回あたりの値段、レビュー件数×評価など）③レビュー1,000件以上・評価4.0以上（宿は評価4.5以上）④燈が商品ページを開いて販売中と数字を確かめた（Amazonは凪がその晩に開いて確認帳に書いた物）。1つでも欠けたら、その枠はPRにしない。
 ・PRの1つ目には「選んだ理由：」で始まる1行を必ず入れる。何をいくつ比べ、どの数字で選んだかを具体的に書く（例「選んだ理由：12枚を比べ、1時間の電気代がいちばん安く、レビューも1,000件を超えていたためです」）。感想や「おすすめ」だけの理由は不可。機械が「選んだ理由：」の無いPRを×にする。
 ・PRの投稿には必ず fallback（PRが出せないときの通常の投稿。{{LINK}} を使わない）を付ける。期限がある話には until を付ける。
 ・出どころの「（M/D時点）」は、どの投稿も x と threads に必ず入れる。D から7日より古い日付は×（9/25の記事などは使わない）。出どころのURLは、予約係が直前に開き、ページが無い・「終了しました」と出ているときは fallback（無ければ中止）にする。
@@ -61,6 +62,6 @@
 ■管制室への写し（10/23から。オーナーのClaudeにはGitHubの接続がないため、管制室は写しを読む）
 ToolSearch で "select:ArtifactData" を読み込み、artifact https://claude.ai/artifact/1qLboYHRT4iH1uVrpeUZv6 の collection "files" に、次のファイルの本文を写す。doc_id はパスの「/」を「__」にしたもの（例 schedule/2026-10-24.json → schedule__2026-10-24.json）。data は {"text": ファイルの本文そのまま, "at": "M/D HH:MM"}。同じ doc_id がもうあるときは、先に get して version を if_version に入れる。batch で1回にまとめる。
 写すファイル：schedule/明日.json、schedule/今日.json、log/今日.md、data/metrics/昨日.json（あれば）、notes/learning.md。もう1つ、doc_id "tasks.json" に、予約タスク5つ（trig_01QzGRiC67ufRP7LBD5tKcu7・trig_01F2Hr1L6G178JjwjA23bGcp・trig_014UbLzWq1DuwiJZJag3KoQu・trig_018LroXsHYAtXPeERQYaY3Zt・trig_01GR5piwSb3uuY749KRrtX31）を mcp__claude-code-remote__get_trigger で読み、{"ID": {"enabled", "next_run_at", "last_run": {"status", "fired_at"}}} の形のJSON文字列を text にして写す（get_trigger が使えなければ飛ばす）。
-さらに、同じ artifact の collection "ledger"（毎日の記録。お金のことなので毎晩必ず）に、doc_id を昨日の日付 Y（YYYY-MM-DD）で1件書く（あれば get して if_version を付けて update）。中身：{"th": data/metrics/Y.json の Threads views の合計, "x": X impressions の合計, "rk_click", "rk_cnt", "rk_yen"（分析メモか akari2/report の【楽天】Y の行のクリック・成果件数・未確定円）, "a8_cnt", "a8_yen"（【A8】Y の行）}。行が「未確認」なら rk_click などは書かず "rk_un": true にする。数字を作らない（無い物は書かない）。前の日以前で「未確認」だった日の数字が分析メモに出てきたら、その日の doc も update する。Amazon は今は使っていないので書かない（使い始めたら "amazon": 円）。使えないときは最後の1行に書く。
+さらに、同じ artifact の collection "ledger"（毎日の記録。お金のことなので毎晩必ず）に、doc_id を昨日の日付 Y（YYYY-MM-DD）で1件書く（あれば get して if_version を付けて update）。中身：{"th": data/metrics/Y.json の Threads views の合計, "x": X impressions の合計, "rk_click", "rk_cnt", "rk_yen"（分析メモか akari2/report の【楽天】Y の行のクリック・成果件数・未確定円）, "a8_cnt", "a8_yen"（【A8】Y の行）}。行が「未確認」なら rk_click などは書かず "rk_un": true にする。数字を作らない（無い物は書かない）。前の日以前で「未確認」だった日の数字が分析メモに出てきたら、その日の doc も update する。Amazon は、分析メモに【Amazon】Y の行があれば "amazon": 円、"amazon_click": クリック（未確認なら書かない）。使えないときは最後の1行に書く。
 
 ■最後のメッセージ：1行だけ。log に「出なかった」「中止」「予約×」があれば、その数も入れる（例「燈 10/23：9本保存・check OK・PR 18:15 着る毛布（expect グルーニー）・学び：〜」）。

@@ -141,5 +141,19 @@ with tempfile.TemporaryDirectory() as d:
     ig = [c for c in kc if c[0] == "instagram"]
     ok(len(kc) == 3 and len(ig) == 1 and ig[0][4]["video"] == "https://v/y", f"Instagramのリールがおかしい／二重予約: {kc}")
 
+# Amazon：凪が確かめた物だけ、うちのタグで
+lib.http = lambda *a, **k: (200, "ショッピングを続ける", "")
+now = datetime(2026, 10, 24, 13, 0, tzinfo=lib.JST)
+items = {"B0TESTTEST": {"name": "アイリスオーヤマ 電気毛布 140×80cm", "reviews": 5200, "stars": 4.2, "checkedAt": "2026-10-23T20:30:00+09:00", "specs": "140×80cm"}}
+r = lib.amazon_link("B0TESTTEST", "電気毛布", now, items)
+ok(r.get("ok") and r["link"] == "https://www.amazon.co.jp/dp/B0TESTTEST?tag=aiusagichan-22", f"Amazonの合格がおかしい: {r}")
+ok(not lib.amazon_link("B0NOTCHECK", "", now, items).get("ok"), "確認帳にないAmazonを通した")
+ok(not lib.amazon_link("B0TESTTEST", "", datetime(2026, 10, 25, 13, 0, tzinfo=lib.JST), items).get("ok"), "古い確認のAmazonを通した")
+ok(not lib.amazon_link("B0TESTTEST", "加湿器", now, items).get("ok"), "商品名の違うAmazonを通した")
+low = {"B0TESTTEST": dict(items["B0TESTTEST"], reviews=300)}
+ok(not lib.amazon_link("B0TESTTEST", "", now, low).get("ok"), "レビューの少ないAmazonを通した")
+lib.http = lambda *a, **k: (200, "有効なページではありません", "")
+ok(not lib.amazon_link("B0TESTTEST", "", now, items).get("ok"), "ページ切れのAmazonを通した")
+
 print("自己テスト：", "OK" if not fails else f"×{len(fails)}")
 sys.exit(1 if fails else 0)

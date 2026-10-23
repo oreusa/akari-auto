@@ -10,11 +10,11 @@ import sys
 from datetime import date, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lib import load_json, now_jst, path, threads_len, x_weight  # noqa: E402
+from lib import amazon_checked, load_json, now_jst, path, threads_len, x_weight  # noqa: E402
 
 LINK = "{{LINK}}"
 BANNED = [
-    (re.compile(r"amazon\.co\.jp|amzn\.(to|asia)", re.I), "AmazonのURLは使わない（確かめる道具がないため止めている）"),
+    (re.compile(r"amazon\.co\.jp|amzn\.(to|asia)", re.I), "AmazonのURLを直接書かない（{{LINK}} と書き、link に type amazon と asin を入れる）"),
     (re.compile(r"a\.r10\.to", re.I), "楽天の短縮リンクは使わない（リンクは予約係が楽天から受け取る）"),
     (re.compile(r"hb\.afl\.rakuten|px\.a8\.net", re.I), "アフィリエイトリンクを直接書かない（{{LINK}} と書き、link に入れる）"),
 ]
@@ -74,8 +74,14 @@ def post_problems(p):
             out.append("link.hotelNo は楽天トラベルの施設番号（数字）")
         elif t == "a8" and not str(link.get("url", "")).startswith("https://px.a8.net/svt/ejp?a8mat="):
             out.append("link.url はA8のリンク（https://px.a8.net/svt/ejp?a8mat=…。リンク帳にある物だけ）")
-        elif t not in ("ichiba", "travel", "a8"):
-            out.append("link.type は ichiba・travel・a8 のどれか")
+        elif t == "amazon":
+            asin = str(link.get("asin", "")).upper()
+            if not re.match(r"^[A-Z0-9]{10}$", asin):
+                out.append("link.asin はAmazonのASIN（英数字10けた）")
+            elif asin not in amazon_checked():
+                out.append(f"Amazonの {asin} は data/amazon-checked.json にない（凪がブラウザで確かめた物だけ使う）")
+        elif t not in ("ichiba", "travel", "a8", "amazon"):
+            out.append("link.type は ichiba・travel・a8・amazon のどれか")
     for ch in ("x", "threads"):
         out += _texts_problems(p.get(ch), ch, bool(link))
         texts = p.get(ch) or []
