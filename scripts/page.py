@@ -729,10 +729,10 @@ document.querySelectorAll(".seg button").forEach(function(x){{x.addEventListener
   document.querySelectorAll(".seg button").forEach(function(y){{y.classList.toggle("on",y===x);}});free=x.dataset.f==="1";apply();}});}});
 var F="";try{{F=new URLSearchParams(location.search).get("f")||"";if(F)sessionStorage.setItem("f",F);else F=sessionStorage.getItem("f")||"";}}catch(e){{}}
 document.addEventListener("click",function(ev){{
-  var a=ev.target.closest&&ev.target.closest("a.buy,a.card.it");if(!a||!navigator.sendBeacon)return;
+  var a=ev.target.closest&&ev.target.closest("a.buy");if(!a||!navigator.sendBeacon)return;
   var c=a.closest(".card")||a,t=c.querySelector(".t,.cho b"),sec=a.closest("section[id]");
-  var k=(t?t.textContent:a.textContent).replace(/\s+/g,"").slice(0,30);
-  var sk=(a.classList.contains("buy")?"buy":"go")+(sec?"-"+sec.id:"");
+  var k=(t?t.textContent:a.textContent).replace(/\\s+/g,"").slice(0,30);
+  var sk="buy"+(sec?"-"+sec.id:"");
   try{{navigator.sendBeacon("/c?f="+encodeURIComponent(F||"direct")+"&s="+encodeURIComponent(sk.slice(0,16))+"&k="+encodeURIComponent(k));}}catch(e){{}}
 }});
 var t=document.getElementById("totop");

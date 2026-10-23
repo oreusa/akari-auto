@@ -14,8 +14,8 @@ import sys
 from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from check import LINK, post_problems  # noqa: E402
-from lib import (JST, URL_RE, BufferError, a8_link, amazon_link, append_log, buffer_create, buffer_posts,  # noqa: E402
+from check import LINK, SLOT_RE, post_problems  # noqa: E402
+from lib import (JST, URL_RE, BufferError, a8_link, buffer_gql, amazon_link, append_log, buffer_create, buffer_posts,  # noqa: E402
                  about_item, item_code_from_url, load_json, missing_specs, now_jst, page_check, path,
                  rakuten_item, rakuten_travel_link, save_json, http_raw, fetch_image, koma4_instagram_media)
 
@@ -78,6 +78,76 @@ def with_page(texts, service, cfg, slot=""):
         new = last.rstrip() + "\n\n" + line
         fits = threads_len(new) <= 500
     return list(texts[:-1]) + [new] if fits else list(texts)
+
+
+DELETE_POST = 'mutation($i:DeletePostInput!){deletePost(input:$i){__typename}}'
+
+
+def delete_post(pid):
+    r = (buffer_gql(DELETE_POST, {"i": {"id": pid}}) or {}).get("deletePost") or {}
+    if "Error" in str(r.get("__typename", "")):
+        raise BufferError(f"消せない: {r.get('__typename')}")
+
+
+def refresh_page(cfg, state, now):
+    """ページのURLを足す仕組みより前に予約した投稿を、URLを足した文で予約し直す（10/24 オーナー「新しい取り組みは即時」）。
+    新しい予約が作れてから古い方を消す。出る25分前を切った物・もう出た物には触らない。"""
+    url = (cfg.get("page") or {}).get("url")
+    if not url or not (cfg.get("page") or {}).get("promote", True):
+        return False
+    days = {now.date().isoformat(), (now.date() + timedelta(days=1)).isoformat()}
+    todo = []
+    for key, rec in state.items():
+        day, _, slot = key.partition(" ")
+        if day not in days or not SLOT_RE.match(slot):
+            continue
+        for s in SERVICES:
+            r = rec.get(s)
+            if not isinstance(r, dict) or not r.get("id") or r.get("seen") or r.get("page") or len(r.get("texts") or []) < 2:
+                continue
+            if any(url in t for t in r["texts"]):
+                continue
+            try:
+                due = datetime.fromisoformat(f"{day}T{r.get('at') or slot}").replace(tzinfo=JST)
+            except ValueError:
+                continue
+            if due - now >= timedelta(minutes=25):
+                todo.append((day, slot, s, r, due))
+    if not todo:
+        return False
+    waiting = {p["id"] for p in buffer_posts(cfg, ["scheduled"], now, now + timedelta(hours=40))}
+    changed = False
+    for day, slot, s, r, due in todo:
+        if r["id"] not in waiting:  # Bufferで予約中でない物（出た・消された）は触らない
+            continue
+        new = with_page(r["texts"], s, cfg, slot)
+        if new == r["texts"]:
+            r["page"] = "字数が足りない"
+            changed = True
+            continue
+        due_iso = due.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+        try:
+            p = buffer_create(cfg["channels"][s], s, new, due_iso, topic=r.get("topic") if s == "threads" else None)
+        except BufferError as e:
+            append_log(day, f"{slot} {s} ページのURLを足した予約し直し×（元の予約のまま）：{str(e)[:120]}")
+            r["page"] = "作れない"
+            changed = True
+            continue
+        try:
+            delete_post(r["id"])
+        except BufferError as e:
+            try:  # 古い方を消せないなら、2回出ないよう新しい方を消して元のままにする
+                delete_post(p["id"])
+                append_log(day, f"{slot} {s} ページのURLを足せない（古い予約を消せない。元の予約のまま）：{str(e)[:100]}")
+            except BufferError:
+                append_log(day, f"{slot} {s} ×2本予約のおそれ（{r['id']} と {p['id']}）。燈が朝の確認で片方を消す")
+            r["page"] = "消せない"
+            changed = True
+            continue
+        r.update({"id": p["id"], "texts": new, "page": "足した"})
+        append_log(day, f"{slot} {s} 予約し直しOK（ページのURLを足した）")
+        changed = True
+    return changed
 
 
 def source_problem(texts):
@@ -197,6 +267,10 @@ def run(now=None):
                     r["error"] = str(e)[:200]
                     append_log(day, f"{slot} {s} 予約×（{r['tries']}回目）：{str(e)[:150]}")
             changed = True
+    try:
+        changed |= refresh_page(cfg, state, now)
+    except BufferError as e:
+        append_log(now.date().isoformat(), f"ページのURLの予約し直し×：{str(e)[:150]}")
     try:
         changed |= book_koma4(cfg, state, now)
     except BufferError as e:

@@ -1,7 +1,7 @@
 // プロフィール用ページの数え係（Cloudflare Pages Functions）。
-// ・ページを開いた数：どの投稿から来たか（?f=x0715 など）ごとに1日ずつ数える
-// ・ページの中で押されたリンク：/c?f=…&s=…&k=… を受けて数える（リンク先はそのまま。寄り道させない）
-// 呼ばれるのは / と /c だけ（site/_routes.json）。画像などでは動かない。
+// 数えるのは、ページの中でアフィリエイトのリンク（PR）が押された回数だけ（10/24 オーナー「あくまでアフィリエイトだけ」）。
+// /c?f=…&s=…&k=… を受けて、どの投稿から来た人が（f）、どの項目の（s）、どの物を（k）押したかを数える。リンク先はそのまま。
+// 開いた数は数えない（保存の回数を減らすため）。呼ばれるのは /c だけ（site/_routes.json）。
 // 数は KV（CLICKS）のキーのメタデータ n に入れる。scripts/pagestats.py が読んで data/page-stats.json にする。
 const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|whatsapp|discord|slack|telegram|curl|wget|python|headless/i;
 
@@ -35,10 +35,5 @@ export async function onRequest(ctx) {
     }
     return new Response(null, { status: 204 });
   }
-  const res = await ctx.next();
-  if (request.method === "GET" && (url.pathname === "/" || url.pathname === "/index.html") && !BOT.test(ua)) {
-    const f = clean(url.searchParams.get("f"), 24) || "direct";
-    ctx.waitUntil(bump(env, `${day()}|v|${f}`).catch(() => {}));
-  }
-  return res;
+  return ctx.next();
 }
