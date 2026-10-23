@@ -117,7 +117,8 @@ def run(now=None):
         return 0  # キーを入れる前は何もしない（毎時間の失敗メールを出さない）
     state = load_json(path("state", "booked.json"), {})
     changed = False
-    for d in (now.date(), now.date() + timedelta(days=1)):
+    # 翌日の分は0時を過ぎてから予約する（夜の回や朝の確認が予定表を直した後の内容で出すため）
+    for d in (now.date(),):
         day = d.isoformat()
         sched = load_json(path("schedule", f"{day}.json"))
         if not sched:

@@ -1,7 +1,8 @@
 name: book（予約係・1時間おき）
 on:
   schedule:
-    - cron: "7 * * * *"
+    # GitHub の時刻起動は混むと何時間も飛ぶ（10/23 朝は4時間あいた）。1時間に2回起こし、12時間先まで予約して取りこぼさない
+    - cron: "7,37 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
@@ -19,6 +20,7 @@ jobs:
       RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
       RAKUTEN_ORIGIN: ${{ vars.RAKUTEN_ORIGIN }}
       COMMIT_MSG: "予約係の記録"
+      LEAD_MIN: "720"
     steps:
       - uses: actions/checkout@v4
       - name: 予約
