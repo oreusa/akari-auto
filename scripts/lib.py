@@ -153,11 +153,13 @@ mutation($input: CreatePostInput!) {
 """
 
 
-def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False, image=None, video=None, alt=""):
+def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False, image=None, video=None, alt="",
+                  images=None, ig_type=None):
     """thread = [文1, 文2, ...]。1つ目がそのまま投稿、2つ目以降は続き（スレッド）。
 
     image / video は誰でも開けるURL（Bufferが取りに行く）。付けたときは「AIで作った」の表示もONにする。
-    Instagram は video があればリール、なければ画像の投稿。"""
+    images は絵のURLの並び（Instagramのスライド＝カルーセル）。
+    Instagram は ig_type（post / story / reel）。なければ video があればリール、なければ画像の投稿。"""
     items = [{"text": t} for t in thread]
     meta = {}
     if service == "twitter":
@@ -170,8 +172,9 @@ def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False,
             m["topic"] = topic
         meta["threads"] = m
     elif service == "instagram":
-        meta["instagram"] = {"type": "reel" if video else "post", "shouldShareToFeed": True, "isAiGenerated": True}
-    if (image or video) and service == "twitter":
+        t = ig_type or ("reel" if video else "post")
+        meta["instagram"] = {"type": t, "shouldShareToFeed": t != "story", "isAiGenerated": True}
+    if (image or video or images) and service == "twitter":
         meta["twitter"]["isAiGenerated"] = True
     inp = {
         "channelId": channel_id,
@@ -184,6 +187,8 @@ def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False,
     }
     if video and service == "instagram":
         inp["assets"] = [{"video": {"url": video}}]
+    elif images:
+        inp["assets"] = [{"image": {"url": u, "metadata": {"altText": alt or "4コマ漫画"}}} for u in images]
     elif image:
         inp["assets"] = [{"image": {"url": image, "metadata": {"altText": alt or "4コマ漫画"}}}]
     if draft:
@@ -194,6 +199,80 @@ def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False,
     if res["__typename"] != "PostActionSuccess":
         raise BufferError(f"{res['__typename']}: {res.get('message', '')}")
     return res["post"]
+
+
+# ---------------------------------------------------------------- 4コマを切る（Instagram用）
+
+KOMA4_SPEC = (724, 2172)  # 全体の大きさ（オーナー確定）。各コマ 709x512、間隔10
+KOMA4_PANEL = (709, 512)
+
+
+def koma4_boxes(img):
+    """4コマの絵（Pillowの画像）から、4つのコマの位置 (左, 上, 幅, 高さ) を探す。
+    白い行で区切られた、高さ350〜700の塊がちょうど4つならそれを使う。違えば決まりの大きさから出す。"""
+    w, h = img.size
+    g = img.convert("L")
+    xs = range(min(100, w // 4), max(w - 100, w * 3 // 4), 4)
+    white = [sum(g.getpixel((x, y)) for x in xs) / len(xs) > 245 for y in range(h)]
+    runs, y = [], 0
+    while y < h:
+        if white[y]:
+            y += 1
+            continue
+        y0 = y
+        while y < h and not white[y]:
+            y += 1
+        if 350 <= y - y0 <= 700:
+            runs.append((y0, y))
+    if len(runs) == 4:
+        boxes = []
+        for y0, y1 in runs:
+            ym = (y0 + y1) // 2
+            cols = [x for x in range(w) if g.getpixel((x, ym)) < 245]
+            x0, x1 = (cols[0], cols[-1] + 1) if cols else ((w - KOMA4_PANEL[0]) // 2, (w + KOMA4_PANEL[0]) // 2)
+            boxes.append((x0, y0, x1 - x0, y1 - y0))
+        ph = round(KOMA4_PANEL[1] * h / KOMA4_SPEC[1])
+        if all(abs(bh - ph) <= 12 for _, _, _, bh in boxes):  # コマの下の白い縁で数pxずれるので、決まりの高さにそろえる
+            boxes = [(x, y, bw, ph) for x, y, bw, _ in boxes]
+        return boxes, "見つけた"
+    pw, ph = KOMA4_PANEL
+    sx, sy = w / KOMA4_SPEC[0], h / KOMA4_SPEC[1]
+    x0 = round((w - pw * sx) / 2)
+    bottom = h - 13 * sy  # 第16話の絵で下の余白は13px
+    boxes = [(x0, round(bottom - ((ph + 10) * (3 - i) + ph) * sy), round(pw * sx), round(ph * sy)) for i in range(4)]
+    return boxes, "決まりの位置"
+
+
+def wsrv_url(src, box, size=None):
+    """絵の一部を切り出したURL（wsrv.nl が切って返す。Bufferはこれを取りに行く）。
+    size=(幅, 高さ) なら、その大きさの白い台紙の真ん中に置く（ストーリー用 1080x1920）。"""
+    x, y, bw, bh = box
+    q = {"url": src, "cx": x, "cy": y, "cw": bw, "ch": bh, "output": "jpg", "q": 92}
+    if size:
+        q.update({"w": size[0], "h": size[1], "fit": "contain", "cbg": "white"})
+    return "https://wsrv.nl/?" + urllib.parse.urlencode(q)
+
+
+def koma4_instagram_media(src, img):
+    """Instagram用：スライド4枚（1コマずつ）と、ストーリー2枚（2コマずつ・9:16）。"""
+    boxes, how = koma4_boxes(img)
+    slides = [wsrv_url(src, b) for b in boxes]
+    stories = []
+    for a, b in ((0, 1), (2, 3)):
+        x0, y0 = min(boxes[a][0], boxes[b][0]), boxes[a][1]
+        x1 = max(boxes[a][0] + boxes[a][2], boxes[b][0] + boxes[b][2])
+        y1 = boxes[b][1] + boxes[b][3]
+        stories.append(wsrv_url(src, (x0, y0, x1 - x0, y1 - y0), (1080, 1920)))
+    return {"slides": slides, "stories": stories, "how": how, "boxes": boxes}
+
+
+def fetch_image(url, timeout=60):
+    """絵をまるごと受け取って Pillow の画像にする。"""
+    from io import BytesIO
+    from PIL import Image
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return Image.open(BytesIO(r.read()))
 
 
 # ---------------------------------------------------------------- 楽天

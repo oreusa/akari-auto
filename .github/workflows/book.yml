@@ -23,6 +23,8 @@ jobs:
       LEAD_MIN: "720"
     steps:
       - uses: actions/checkout@v4
+      - name: 絵を切る道具（Pillow）
+        run: python3 -m pip install -q pillow
       - name: 予約
         run: python3 scripts/book.py
       - name: 記録を保存

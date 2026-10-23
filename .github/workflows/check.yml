@@ -14,6 +14,8 @@ jobs:
       RAKUTEN_ORIGIN: ${{ vars.RAKUTEN_ORIGIN }}
     steps:
       - uses: actions/checkout@v4
+      - name: 絵を切る道具（Pillow）
+        run: python3 -m pip install -q pillow
       - name: 自己テスト
         run: python3 scripts/selftest.py
       - name: 予定表の決まりと、楽天の商品・出どころのページ（前の夜のうちに確かめる）
