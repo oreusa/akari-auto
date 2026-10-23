@@ -223,7 +223,7 @@ def book_koma4(cfg, state, now):
         rec["media_error"] = bad
         return True
     rec.pop("media_error", None)
-    when = due if mins >= 15 else now + timedelta(minutes=15)
+    when = due if mins >= 3 else now + timedelta(minutes=3)  # 7:50の直しでも8:00に間に合わせる
     due_iso = when.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
     alt = f"4コマ漫画 第{k.get('episode', '')}話"
     for s in todo:
