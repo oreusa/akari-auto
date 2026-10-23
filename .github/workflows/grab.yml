@@ -1,0 +1,41 @@
+name: grab（見本ページの見た目を写し取る・投稿しない）
+on:
+  push:
+    branches: [ref-grab]
+    paths: [.github/workflows/grab.yml]
+permissions:
+  contents: write
+jobs:
+  grab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: HTMLと画面を取る
+        run: |
+          mkdir -p ref/moon && cd ref/moon
+          U=https://usagi-odekake.usagi-fudosan.workers.dev/
+          curl -sSL "$U" -o index.html
+          grep -oE '(href|src)="[^"]+\.(css|js|png|jpg|webp|svg)[^"]*"' index.html | sed -E 's/^(href|src)="//;s/"$//' | sort -u > assets.txt || true
+          while read -r a; do case "$a" in http*) u="$a";; /*) u="${U%/}$a";; *) u="$U$a";; esac; f=$(echo "$a" | sed 's#[/:?=&]#_#g'); curl -sSL "$u" -o "asset_$f" || true; done < assets.txt
+          npm i -s playwright@1.47.0 >/dev/null 2>&1 && npx playwright install chromium >/dev/null 2>&1
+          cat > shot.js <<'JS'
+          const { chromium } = require('playwright');
+          (async()=>{const b=await chromium.launch();
+          for (const [w,h,n] of [[390,844,'phone'],[1280,900,'pc']]) {
+            const p=await b.newPage({viewport:{width:w,height:h},deviceScaleFactor:1});
+            await p.goto(process.argv[2],{waitUntil:'networkidle'});await p.waitForTimeout(1500);
+            await p.screenshot({path:`${n}_full.png`,fullPage:true});
+            const css=await p.evaluate(()=>{const out=[];for(const s of document.styleSheets){try{for(const r of s.cssRules)out.push(r.cssText)}catch(e){out.push('/* blocked '+s.href+' */')}}return out.join('\n')});
+            require('fs').writeFileSync('computed.css',css);
+            require('fs').writeFileSync('rendered.html',await p.content());
+          }
+          await b.close();})();
+          JS
+          node shot.js "$U"
+          rm -rf node_modules package*.json shot.js
+          ls -la
+      - name: 保存
+        run: |
+          git config user.name "akari-auto"; git config user.email "akari-auto@users.noreply.github.com"
+          git add ref && git commit -m "見本ページの写し" && git push origin HEAD:ref-grab
