@@ -190,6 +190,8 @@ ok(wx[1].startswith("AIが比べた") and wx[1].endswith("https://example.com/a"
 wt = book.with_page(two, "threads", pcfg)
 ok(wt[1].startswith("公式で") and wt[1].endswith("pages.dev/"), "Threadsでページの行が最後に入らない")
 ok(book.with_page(["見出し", "あ" * 130], "twitter", pcfg)[1] == "あ" * 130, "Xの280を超えるのにページの行を足した")
+ok("pages.dev/?f=x1345" in book.with_page(two, "twitter", pcfg, "13:45")[1], "Xの投稿の印（?f=x1345）が付かない")
+ok("pages.dev/?f=t0715" in book.with_page(two, "threads", pcfg, "07:15")[1], "Threadsの投稿の印（?f=t0715）が付かない")
 ok(book.with_page(["1つだけ"], "twitter", pcfg) == ["1つだけ"], "1つだけの投稿に足した")
 ok(book.with_page(two, "twitter", {"page": {"url": "https://usagi-life-notes.pages.dev/", "promote": False}}) == two, "promote false でも足した")
 

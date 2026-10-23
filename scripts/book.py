@@ -58,7 +58,7 @@ def resolve_link(link, texts=()):
 PAGE_LINE = "AIが比べたおでかけ・宿・お得の一覧：{url}"
 
 
-def with_page(texts, service, cfg):
+def with_page(texts, service, cfg, slot=""):
     """2つ目（最後）の文に、プロフィール用ページのURLを1行足す（10/24 オーナー「HPの宣伝、投稿のURLに一緒に付けとけ。一石二鳥」）。
     Xは最後のURLがカードになるので、ページの行は2つ目の頭に入れる（公式・商品のカードと、その前の一言を守る）。
     Threadsは最初のURLが見出しになるので、最後に足す。文字数を超えるなら足さない。"""
@@ -67,6 +67,8 @@ def with_page(texts, service, cfg):
     url = pg.get("url")
     if not url or not pg.get("promote", True) or len(texts) < 2 or any(url in t for t in texts):
         return list(texts)
+    if slot:  # どの投稿から来たか分かる印（x0715 = Xの7:15の投稿、t0715 = Threadsの7:15）
+        url = f"{url}?f={'x' if service == 'twitter' else 't'}{slot.replace(':', '')}"
     line = PAGE_LINE.format(url=url)
     last = texts[-1]
     if service == "twitter":
@@ -180,7 +182,7 @@ def run(now=None):
             due_utc = when.astimezone(timezone.utc)
             due_iso = due_utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
             for s in todo:
-                texts = with_page(xs if s == "twitter" else ths, s, cfg)
+                texts = with_page(xs if s == "twitter" else ths, s, cfg, slot)
                 r = rec.setdefault(s, {"tries": 0})
                 r["tries"] = r.get("tries", 0) + 1
                 try:
