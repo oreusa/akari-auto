@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check import LINK, post_problems  # noqa: E402
 from lib import (JST, URL_RE, BufferError, a8_link, amazon_link, append_log, buffer_create, buffer_posts,  # noqa: E402
                  about_item, item_code_from_url, load_json, missing_specs, now_jst, page_check, path,
-                 rakuten_item, rakuten_travel_link, save_json, http_raw)
+                 rakuten_item, rakuten_travel_link, save_json, http_raw, fetch_image, koma4_instagram_media)
 
 LEAD_MIN = int(os.environ.get("LEAD_MIN", "150"))   # 何分先までを予約するか
 LATE_MIN = 90                                       # 時刻を過ぎていても、この分までなら15分後に出す
@@ -186,6 +186,8 @@ def run(now=None):
 
 
 KOMA4_SERVICES = ("twitter", "threads", "instagram")
+# Instagram の毎日の4コマ（10/23 オーナー「OK」）：スライド4枚（8:00）とストーリー2枚（8:00・8:01）。動画の日はリールも
+IG_EXTRA = (("ig_slides", "post", 0), ("ig_story1", "story", 0), ("ig_story2", "story", 1))
 
 
 def media_problem(url, kind):
@@ -206,7 +208,8 @@ def book_koma4(cfg, state, now):
 
     koma4/日付.json：{"slot": "08:00", "episode": 16, "text": "投稿文", "image_url": "…", "video_url": "…"}
     text は燈の夜の回が書く。image_url・video_url は朝の4コマ係（燈）が、雫が保存した絵から入れる。
-    X・Threads は画像、Instagram はリール（動画がない日は出さない。縦長1:3の画像はInstagramに載らないため）。
+    X・Threads は画像。Instagram は、縦長1:3の絵がそのまま載らないので、1コマずつ切ったスライド4枚と、
+    2コマずつのストーリー2枚を毎日出す（切るのは wsrv.nl。Bufferはその切ったURLを取りに行く）。動画がある日はリールも出す。
     """
     day = now.date().isoformat()
     k = load_json(path("koma4", f"{day}.json"))
@@ -219,10 +222,12 @@ def book_koma4(cfg, state, now):
         return False
     key = f"{day} 4コマ"
     rec = state.setdefault(key, {})
-    todo = [s for s in KOMA4_SERVICES if s in cfg["channels"]
-            and not rec.get(s, {}).get("id") and rec.get(s, {}).get("tries", 0) < MAX_TRIES
+    def open_(s):
+        return not rec.get(s, {}).get("id") and rec.get(s, {}).get("tries", 0) < MAX_TRIES
+    todo = [s for s in KOMA4_SERVICES if s in cfg["channels"] and open_(s)
             and (s != "instagram" or k.get("video_url"))]
-    if not todo:
+    ig_todo = [e for e in IG_EXTRA if "instagram" in cfg["channels"] and open_(e[0])]
+    if not todo and not ig_todo:
         return False
     bad = media_problem(k["image_url"], "image") or (k.get("video_url") and media_problem(k["video_url"], "video"))
     if bad:
@@ -232,17 +237,38 @@ def book_koma4(cfg, state, now):
         return True
     rec.pop("media_error", None)
     when = due if mins >= 3 else now + timedelta(minutes=3)  # 7:50の直しでも8:00に間に合わせる
-    due_iso = when.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
     alt = f"4コマ漫画 第{k.get('episode', '')}話"
+    jobs = []
     for s in todo:
+        jobs.append((s, s, {"image": k["image_url"], "video": k.get("video_url") if s == "instagram" else None, "alt": alt}, when))
+    if ig_todo:
+        ig = rec.get("ig_media")
+        if not ig or ig.get("src") != k["image_url"]:  # 7:50の直しで絵が変わったら切り直す
+            try:
+                ig = koma4_instagram_media(k["image_url"], fetch_image(k["image_url"]))
+                ig["src"] = k["image_url"]
+                bad = media_problem(ig["slides"][0], "Instagram用に切った絵")
+            except Exception as e:
+                ig, bad = None, f"Instagram用に絵を切れない（{str(e)[:80]}）"
+            if bad:
+                if rec.get("ig_error") != bad:
+                    append_log(day, f"4コマ 第{k.get('episode', '?')}話 Instagram 予約できない：{bad}")
+                rec["ig_error"] = bad
+                ig = None
+            else:
+                rec.pop("ig_error", None)
+                rec["ig_media"] = ig
+        for key, t, plus in (ig_todo if ig else []):
+            imgs = ig["slides"] if key == "ig_slides" else [ig["stories"][0 if key == "ig_story1" else 1]]
+            jobs.append((key, "instagram", {"images": imgs, "ig_type": t, "alt": alt}, when + timedelta(minutes=plus)))
+    for s, svc, media, at in jobs:
         r = rec.setdefault(s, {"tries": 0})
         r["tries"] = r.get("tries", 0) + 1
-        media = {"image": k["image_url"], "video": k.get("video_url") if s == "instagram" else None, "alt": alt}
         try:
-            p = buffer_create(cfg["channels"][s], s, [k["text"]], due_iso,
-                              topic=(k.get("topic") or "漫画") if s == "threads" else None, **media)
-            r.update({"id": p["id"], "kind": "4コマ", "at": when.strftime("%H:%M"), "texts": [k["text"]],
-                      "topic": k.get("topic") or "漫画", "media": media})
+            p = buffer_create(cfg["channels"][svc], svc, [k["text"]], at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                              topic=(k.get("topic") or "漫画") if svc == "threads" else None, **media)
+            r.update({"id": p["id"], "kind": "4コマ", "at": at.strftime("%H:%M"), "texts": [k["text"]],
+                      "topic": k.get("topic") or "漫画", "media": media, "svc": svc})
             r.pop("error", None)
             late = "" if when == due else f"（遅れたので {when.strftime('%H:%M')} に）"
             append_log(day, f"4コマ 第{k.get('episode', '?')}話 {s} 予約OK{late}")
@@ -290,8 +316,9 @@ def after_check(cfg, state, now):
                     try:
                         texts = list(r["texts"])
                         texts[0] = texts[0].rstrip() + "\n"  # Bufferの「同じ投稿」はねを避ける
-                        p = buffer_create(cfg["channels"][s], s, texts, when.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-                                          topic=r.get("topic") if s == "threads" else None, **(r.get("media") or {}))
+                        svc = r.get("svc", s)
+                        p = buffer_create(cfg["channels"][svc], svc, texts, when.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                                          topic=r.get("topic") if svc == "threads" else None, **(r.get("media") or {}))
                         append_log(day, f"{slot} {s} 出なかった（{why}）→ 15分後に出し直しを予約 {p['id']}")
                         r["id"], r["seen"], r["at"] = p["id"], None, (now + timedelta(minutes=15)).strftime("%H:%M")
                     except BufferError as e:
@@ -369,7 +396,39 @@ def koma4_test(image_url):
                 print(s, "消せない（Bufferの下書きから手で消す）", str(e)[:200])
         except Exception as e:
             print(s, "×", str(e)[:300])
-    return 0
+    if "instagram" not in cfg["channels"]:
+        return 0
+    # Instagram：切った絵が本当に絵として返るか（大きさも）を見て、スライドとストーリーの下書きを作って消す
+    try:
+        ig = koma4_instagram_media(image_url, fetch_image(image_url))
+    except Exception as e:
+        print("Instagram用に切れない ×", str(e)[:300])
+        return 1
+    print("コマの位置:", ig["how"], ig["boxes"])
+    bad = 0
+    for u, want in [(u, (1080, None)) for u in ig["slides"]] + [(u, (1080, 1920)) for u in ig["stories"]]:
+        try:
+            im = fetch_image(u)
+            good = im.size[0] == want[0] and (want[1] is None or im.size[1] == want[1])
+            print("切った絵", im.size, "OK" if good else "× 大きさが違う", u[:120])
+            bad += not good
+        except Exception as e:
+            print("切った絵 × 開けない", str(e)[:150], u[:120])
+            bad += 1
+    for t, imgs in (("post", ig["slides"]), ("story", ig["stories"][:1])):
+        try:
+            p = buffer_create(cfg["channels"]["instagram"], "instagram", ["4コマのテスト（下書き・すぐ消す）"], due,
+                              draft=True, images=imgs, ig_type=t, alt="テスト")
+            print("instagram", t, "下書きOK", p)
+            try:
+                r = buffer_gql('mutation($i:DeletePostInput!){deletePost(input:$i){__typename}}', {"i": {"id": p["id"]}})
+                print("instagram", t, "消した", r)
+            except Exception as e:
+                print("instagram", t, "消せない（Bufferの下書きから手で消す）", str(e)[:200])
+        except Exception as e:
+            print("instagram", t, "×", str(e)[:300])
+            bad += 1
+    return 1 if bad else 0
 
 
 if __name__ == "__main__":

@@ -135,14 +135,28 @@ with tempfile.TemporaryDirectory() as d:
     book.run(datetime(2026, 10, 25, 7, 40, tzinfo=lib.JST))
     ok(not kc, f"絵がないのに4コマを予約した: {kc}")
     lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 18, "text": "t", "image_url": "https://i/x"})
+    from PIL import Image
+    book.fetch_image = lambda u: Image.new("RGB", (724, 2172), "white")
     book.run(datetime(2026, 10, 25, 7, 40, tzinfo=lib.JST))
-    ok(sorted(c[0] for c in kc) == ["threads", "twitter"] and all(c[4]["image"] == "https://i/x" for c in kc)
-       and kc[0][1] == "2026-10-24T23:00:00.000Z" and [c[3] for c in kc if c[0] == "threads"] == ["漫画"],
+    xt = [c for c in kc if c[0] != "instagram"]
+    ok(sorted(c[0] for c in xt) == ["threads", "twitter"] and all(c[4]["image"] == "https://i/x" for c in xt)
+       and xt[0][1] == "2026-10-24T23:00:00.000Z" and [c[3] for c in xt if c[0] == "threads"] == ["漫画"],
        f"4コマの予約がおかしい: {kc}")
+    ig = [c for c in kc if c[0] == "instagram"]
+    ok([c[4].get("ig_type") for c in ig] == ["post", "story", "story"] and len(ig[0][4]["images"]) == 4
+       and all(len(c[4]["images"]) == 1 for c in ig[1:]) and [c[1] for c in ig] == ["2026-10-24T23:00:00.000Z"] * 2 + ["2026-10-24T23:01:00.000Z"]
+       and all(u.startswith("https://wsrv.nl/?url=https%3A%2F%2Fi%2Fx&cx=") for c in ig for u in c[4]["images"])
+       and "h=1920" in ig[1][4]["images"][0], f"Instagramのスライド・ストーリーがおかしい: {ig}")
     lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 18, "text": "t", "image_url": "https://i/x", "video_url": "https://v/y"})
     book.run(datetime(2026, 10, 25, 7, 50, tzinfo=lib.JST))
-    ig = [c for c in kc if c[0] == "instagram"]
-    ok(len(kc) == 3 and len(ig) == 1 and ig[0][4]["video"] == "https://v/y", f"Instagramのリールがおかしい／二重予約: {kc}")
+    reel = [c for c in kc if c[0] == "instagram" and c[4].get("video")]
+    ok(len(kc) == 6 and len(reel) == 1 and reel[0][4]["video"] == "https://v/y", f"Instagramのリールがおかしい／二重予約: {kc}")
+    # 4コマの位置：第16話と同じ並びの絵から、4つのコマを見つける
+    im = Image.new("RGB", (724, 2172), "white")
+    for y in (81, 603, 1125, 1647):
+        im.paste((40, 30, 60), (8, y, 717, y + 512))
+    bx, how = lib.koma4_boxes(im)
+    ok(how == "見つけた" and bx == [(8, y, 709, 512) for y in (81, 603, 1125, 1647)], f"4コマの位置がおかしい: {bx} {how}")
 
 # Amazon：凪が確かめた物だけ、うちのタグで
 lib.http = lambda *a, **k: (200, "ショッピングを続ける", "")
