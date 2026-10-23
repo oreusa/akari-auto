@@ -99,7 +99,9 @@ with tempfile.TemporaryDirectory() as d:
     lib.save_json(os.path.join(d, "schedule", "2026-10-24.json"), {"date": "2026-10-24", "room": [{"url": PR["link"]["url"], "expect": "グルーニー", "comment": "a"}], "posts": [
         PR, {"slot": "23:00", "topic": "旅行", "x": ["a 10/24から\n公式より（10/23時点）\n#旅行", "公式ページ\nhttps://example.com/a"], "threads": ["a 10/24から\n公式より（10/23時点）", "公式ページ\nhttps://example.com/a"]}]})
     ok(check_file(os.path.join(d, "schedule", "2026-10-24.json")) == [], "予定表の見本が不合格")
-    ok(any("公式ページのURL" in s for s in post_problems({"slot": "21:00", "topic": "a", "x": ["a 10/29から\n公式より（10/22時点）"], "threads": ["a 10/29から\n公式より（10/22時点）"]})), "公式ページのURLが無い投稿が通る")
+    bad = {"date": "2026-10-24", "posts": [{"slot": "21:00", "topic": "a", "x": ["a 10/29から\n公式より（10/23時点）"], "threads": ["a 10/29から\n公式より（10/23時点）"]}]}
+    lib.save_json(os.path.join(d, "schedule", "bad.json"), bad)
+    ok(any("公式ページのURL" in s for s in check_file(os.path.join(d, "schedule", "bad.json"))), "公式ページのURLが無い投稿が通る")
     now = datetime(2026, 10, 24, 16, 30, tzinfo=lib.JST)
     book.run(now)
     ok(len(calls) == 2 and calls[0][1] == "2026-10-24T09:15:00.000Z", f"18:15の予約がおかしい: {calls}")

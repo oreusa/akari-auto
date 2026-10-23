@@ -42,6 +42,9 @@ def _texts_problems(texts, where, allow_link):
     return out
 
 
+OFFICIAL_FROM = date(2026, 10, 24)  # この日の予定表から「2つ目に公式ページ」を見る
+
+
 def _official_problems(texts, where):
     """PRでない投稿は、2つ目に公式ページのURLを置く（10/23 オーナー「公式ページどこ？」）。"""
     if not isinstance(texts, list) or not texts:
@@ -107,8 +110,6 @@ def post_problems(p):
                 if LINK in t and "#PR" not in t:
                     out.append(f"{ch} {i}つ目：リンクがある投稿に #PR がない")
     out += _same_head(p)
-    if not link:
-        out += _official_problems(p.get("x"), "x") + _official_problems(p.get("threads"), "threads")
     if not p.get("topic"):
         out.append("topic（Threadsのトピック）がない")
     if link or p.get("until"):
@@ -141,7 +142,10 @@ def check_file(fp):
         if lk.get("type") == "ichiba" and str(lk.get("url", "")).split("?")[0].rstrip("/") not in room_urls:
             probs.append(f"{fp} {p.get('slot')}: PRで選んだ楽天市場の商品が room にない（PRの商品は必ずROOMにも載せる。10/22 オーナー）")
     for p in data["posts"]:
-        for pr in post_problems(p) + asof_problems(p, d):
+        extra = []
+        if not p.get("link") and d >= OFFICIAL_FROM:
+            extra = _official_problems(p.get("x"), "x") + _official_problems(p.get("threads"), "threads")
+        for pr in post_problems(p) + asof_problems(p, d) + extra:
             probs.append(f"{fp} {p.get('slot', '?')}: {pr}")
     for i, it in enumerate(data.get("room") or [], 1):
         if not str(it.get("url", "")).startswith("https://item.rakuten.co.jp/") or not it.get("expect") or not it.get("comment"):
