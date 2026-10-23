@@ -240,6 +240,13 @@ def compare(e):
             f'<div class="foot">{src}{btn}</div>{sample}</article>')
 
 
+def _season(now):
+    m = now.month
+    name = "WINTER" if m in (12, 1, 2) else "SPRING" if m in (3, 4, 5) else "SUMMER" if m in (6, 7, 8) else "AUTUMN"
+    jp = {"WINTER": "冬", "SPRING": "春", "SUMMER": "夏", "AUTUMN": "秋"}[name]
+    return f"{name} {now.year}", f"{jp}のおでかけ"
+
+
 def render(items, ended, now, cfg):
     p = cfg.get("page", {})
     links = [("楽天ROOM", "ROOM", p.get("room_url")), ("Threads", "@ai_usagichan1", "https://www.threads.com/@ai_usagichan1"),
@@ -257,7 +264,7 @@ def render(items, ended, now, cfg):
             cards = "".join(compare(e) for e in items[key])
         else:
             cards = "".join(spot(e, i + 1) for i, e in enumerate(items[key]))
-        secs.append(f'<section class="sec" id="{key}"><header class="sec-head"><span class="en">{en[key]}</span>'
+        secs.append(f'<section class="sec s-{key}" id="{key}"><header class="sec-head"><span class="en">{en[key]}</span>'
                     f'<h2>{esc(name)}</h2><span class="count">{len(items[key])}件</span></header>'
                     f'<p class="lead">{esc(lead)}</p><div class="list">{cards}</div></section>')
     if ended:
@@ -265,11 +272,13 @@ def render(items, ended, now, cfg):
         secs.append(f'<section class="sec" id="ended"><header class="sec-head"><span class="en">ENDED</span>'
                     f'<h2>終わったおでかけ</h2></header><ul class="ended">{li}</ul></section>')
     nav = "".join(f'<a href="#{k}">{esc(n)}<span>{len(items[k])}</span></a>' for k, n, _ in SECTIONS if items[k])
+    tiles = "".join(f'<a class="tile t-{k}" href="#{k}"><span class="te">{en[k]}</span><b>{esc(n)}</b>'
+                    f'<span class="tn">{len(items[k])}<small>件</small></span></a>' for k, n, _ in SECTIONS if items[k])
     free = sum(1 for k in ("odekake", "shop", "deal") for e in items[k] if any(f[0] == "free" for f in _flags(e)))
     stats = (f'<div class="stat"><b>{len(items["odekake"])}</b><span>行ける場所</span></div>'
              f'<div class="stat"><b>{free}</b><span>無料あり</span></div>'
              f'<div class="stat"><b>{len(items["pr"])}</b><span>比べた物</span></div>')
-    return TEMPLATE.format(nav=nav, sections="".join(secs), follow=follow, stats=stats,
+    return TEMPLATE.format(tiles=tiles, season=_season(now), nav=nav, sections="".join(secs), follow=follow, stats=stats,
                            md=f"{now.month}.{now.day:02d}", wd=WEEK[now.weekday()],
                            updated=f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M}")
 
@@ -283,143 +292,151 @@ TEMPLATE = """<!doctype html>
 <meta property="og:description" content="今週行ける場所と、AIが比べた物を毎日更新。">
 <meta property="og:image" content="logo.png">
 <meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#fff6ef">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Josefin+Sans:wght@400;600&display=swap">
 <style>
-/* 夕方から夜に変わる空の色（ラベンダー）と、ロゴのピーチ。紙の手帳のように、余白と細い線で区切る */
+/* 明るい昼の色だけで作る（夜の色は作らない）。ロゴのベージュとピーチを土台に、章ごとに淡い色を1つずつ */
 :root{{
-  --paper:#f7f5f9; --sheet:#fffefe; --ink:#2d2733; --sub:#71687a; --hair:#e4dee9;
-  --lav:#8f80c4; --lav-soft:#ece8f6; --peach:#e3946b; --peach-soft:#fbeadf; --pr:#c4553f;
-  --f-disp:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  color-scheme:light;
+  --bg:#fffaf5; --card:#ffffff; --ink:#3a2f2a; --sub:#8a7b72; --line:#f1e6dc;
+  --peach:#f08a62; --peach-bg:#ffeee5; --mint:#3fb69a; --mint-bg:#e3f6f0;
+  --lemon:#e2a21b; --lemon-bg:#fff4d6; --lav:#8b78e6; --lav-bg:#efebff; --pr:#e0563b;
+  --shadow:0 1px 2px rgba(120,80,50,.06),0 6px 18px rgba(120,80,50,.07);
+  --f-head:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
   --f-body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
-  --f-latin:"Cormorant Garamond","Times New Roman",serif;
+  --f-en:"Josefin Sans","Avenir Next","Helvetica Neue",sans-serif;
 }}
-@media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{
-  --paper:#15131b; --sheet:#1e1b26; --ink:#efeaf4; --sub:#a59db0; --hair:#2f2a3a;
-  --lav:#b7aaf0; --lav-soft:#2a2540; --peach:#f0aa82; --peach-soft:#3a2a24; --pr:#f08a74; color-scheme:dark}}}}
-:root[data-theme="dark"]{{
-  --paper:#15131b; --sheet:#1e1b26; --ink:#efeaf4; --sub:#a59db0; --hair:#2f2a3a;
-  --lav:#b7aaf0; --lav-soft:#2a2540; --peach:#f0aa82; --peach-soft:#3a2a24; --pr:#f08a74; color-scheme:dark}}
 *{{box-sizing:border-box}}
 html{{scroll-behavior:smooth;-webkit-text-size-adjust:100%}}
 @media (prefers-reduced-motion:reduce){{html{{scroll-behavior:auto}}}}
-body{{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.8 var(--f-body);letter-spacing:.02em;font-feature-settings:"palt" 1}}
+body{{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.8 var(--f-body);letter-spacing:.02em;font-feature-settings:"palt" 1}}
 a{{color:inherit}}
-a:focus-visible{{outline:2px solid var(--lav);outline-offset:3px;border-radius:6px}}
-.wrap{{max-width:680px;margin:0 auto;padding-block:28px 56px;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}}
+a:focus-visible{{outline:2px solid var(--peach);outline-offset:3px;border-radius:10px}}
+.wrap{{max-width:640px;margin:0 auto;padding-block:0 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
 
-/* 表紙 */
-.cover{{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding-bottom:22px;border-bottom:1px solid var(--hair)}}
-.cover img{{width:88px;height:88px;border-radius:50%;background:var(--sheet);border:1px solid var(--hair);display:block}}
-.brand{{font:500 13px/1 var(--f-latin);letter-spacing:.32em;color:var(--sub);margin:0 0 6px}}
-.brand i{{color:var(--lav);font-style:italic}}
-.issue{{display:flex;align-items:baseline;gap:10px;margin:0}}
-.issue b{{font:500 44px/1 var(--f-latin);letter-spacing:.02em;font-variant-numeric:lining-nums}}
-.issue span{{font:500 13px/1 var(--f-body);color:var(--sub);border:1px solid var(--hair);border-radius:999px;padding:4px 9px}}
-.headline{{font:700 clamp(26px,7vw,34px)/1.45 var(--f-disp);letter-spacing:.06em;margin:24px 0 10px;text-wrap:balance}}
-.headline span{{display:inline-block}}
-.headline em{{font-style:normal;background:linear-gradient(transparent 62%,var(--peach-soft) 62%)}}
-.intro{{color:var(--sub);margin:0;max-width:34em}}
-.stats{{display:grid;grid-template-columns:repeat(3,1fr);margin:22px 0 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}}
-.stat{{padding:12px 0 10px;text-align:center}}
-.stat+.stat{{border-left:1px solid var(--hair)}}
-.stat b{{display:block;font:500 30px/1.1 var(--f-latin);font-variant-numeric:tabular-nums lining-nums}}
-.stat span{{font-size:11px;color:var(--sub);letter-spacing:.12em}}
-.notice{{font-size:11.5px;line-height:1.7;color:var(--sub);margin:14px 0 0}}
-.notice b{{color:var(--pr);font-weight:700;margin-right:6px}}
+/* 表紙：朝の空のような淡いグラデーション */
+.hero{{position:relative;text-align:center;padding:36px 8px 26px;margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)));
+  background:radial-gradient(120% 90% at 50% 0%,#ffe3d3 0%,#fff1e6 45%,var(--bg) 100%)}}
+.hero::after{{content:"";position:absolute;right:max(26px,calc(50% - 280px));top:28px;width:22px;height:22px;border-radius:50%;box-shadow:-6px 3px 0 0 #f3c26b;transform:rotate(-12deg)}}
+.logo{{width:112px;height:112px;border-radius:50%;background:#fff;box-shadow:var(--shadow);display:block;margin:0 auto}}
+.brand{{font:600 12px/1 var(--f-en);letter-spacing:.34em;color:var(--peach);margin:18px 0 0}}
+.hero h1{{font:900 28px/1.35 var(--f-head);letter-spacing:.06em;margin:8px 0 0}}
+.hero h1 small{{display:block;font:700 15px/1.6 var(--f-head);letter-spacing:.08em;color:var(--sub);margin-top:6px}}
+.intro{{font-size:13.5px;color:var(--sub);margin:12px auto 0;max-width:26em;text-wrap:balance}}
+.season{{display:inline-flex;align-items:center;gap:10px;margin-top:16px;background:#fff;border-radius:999px;padding:6px 16px 6px 6px;box-shadow:var(--shadow);font-size:13px;font-weight:700}}
+.season b{{font:600 11px/1 var(--f-en);letter-spacing:.14em;color:#fff;background:var(--peach);border-radius:999px;padding:7px 10px 5px}}
 
-/* 目次（ストーリーのリンクから #odekake などで飛べる） */
-.toc{{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:22px calc(-1 * max(18px,env(safe-area-inset-left,0px))) 0;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--hair)}}
-.toc-in{{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px max(18px,env(safe-area-inset-left,0px))}}
+/* 入口のタイル（ストーリーのリンクから #odekake・#pr などで直接来られる） */
+.tiles{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px}}
+.tile{{display:grid;gap:2px;text-decoration:none;border-radius:18px;padding:14px 16px 12px;position:relative;transition:transform .15s}}
+.tile:hover{{transform:translateY(-2px)}}
+.tile .te{{font:600 10.5px/1 var(--f-en);letter-spacing:.18em;opacity:.85}}
+.tile b{{font:700 16px/1.4 var(--f-head);color:var(--ink)}}
+.tile .tn{{font:600 26px/1 var(--f-en);margin-top:4px}}
+.tile .tn small{{font:700 11px/1 var(--f-body);margin-left:3px;color:var(--sub)}}
+.t-odekake{{background:var(--peach-bg);color:var(--peach)}}
+.t-shop{{background:var(--mint-bg);color:var(--mint)}}
+.t-deal{{background:var(--lemon-bg);color:var(--lemon)}}
+.t-pr{{background:var(--lav-bg);color:var(--lav)}}
+@media (prefers-reduced-motion:reduce){{.tile{{transition:none}}.tile:hover{{transform:none}}}}
+.notice{{font-size:11.5px;line-height:1.7;color:var(--sub);margin:16px 2px 0}}
+.notice b{{color:#fff;background:var(--pr);border-radius:4px;padding:1px 6px;margin-right:6px;font-size:10.5px}}
+
+/* 上に残る目次 */
+.toc{{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:20px calc(-1 * max(16px,env(safe-area-inset-left,0px))) 0;background:rgba(255,250,245,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}}
+.toc-in{{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px max(16px,env(safe-area-inset-left,0px))}}
 .toc-in::-webkit-scrollbar{{display:none}}
-.toc a{{flex:none;text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:999px;border:1px solid var(--hair);background:var(--sheet);display:flex;gap:6px;align-items:center}}
-.toc a span{{font:500 13px/1 var(--f-latin);color:var(--lav)}}
+.toc a{{flex:none;text-decoration:none;font:700 13px/1 var(--f-head);padding:9px 14px;border-radius:999px;background:#fff;box-shadow:var(--shadow);display:flex;gap:6px;align-items:center}}
+.toc a span{{font:600 12px/1 var(--f-en);color:var(--peach)}}
 
 /* 章 */
-.sec{{margin-top:44px;scroll-margin-top:64px}}
-.sec-head{{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2px 12px}}
-.sec-head .en{{grid-column:1/-1;font:italic 500 15px/1 var(--f-latin);letter-spacing:.24em;color:var(--lav)}}
-.sec-head h2{{font:700 24px/1.4 var(--f-disp);letter-spacing:.08em;margin:0;text-wrap:balance}}
-.sec-head .count{{font-size:12px;color:var(--sub);padding-bottom:6px}}
-.lead{{font-size:13px;color:var(--sub);margin:6px 0 16px;padding-bottom:14px;border-bottom:1px solid var(--hair)}}
-.list{{display:grid;gap:14px}}
+.sec{{margin-top:40px;scroll-margin-top:60px;--c:var(--peach);--cb:var(--peach-bg)}}
+.s-shop{{--c:var(--mint);--cb:var(--mint-bg)}} .s-deal{{--c:var(--lemon);--cb:var(--lemon-bg)}} .s-pr{{--c:var(--lav);--cb:var(--lav-bg)}}
+.sec-head{{display:flex;align-items:center;gap:10px;flex-wrap:wrap}}
+.sec-head .en{{font:600 11px/1 var(--f-en);letter-spacing:.18em;color:#fff;background:var(--c);border-radius:999px;padding:7px 11px 5px}}
+.sec-head h2{{font:900 22px/1.4 var(--f-head);letter-spacing:.06em;margin:0}}
+.sec-head .count{{font:600 13px/1 var(--f-en);color:var(--c);margin-left:auto}}
+.lead{{font-size:13px;color:var(--sub);margin:8px 0 14px}}
+.list{{display:grid;gap:12px}}
 
-/* 行ける場所：切符の半券の形 */
-.spot{{display:grid;grid-template-columns:58px minmax(0,1fr);background:var(--sheet);border:1px solid var(--hair);border-radius:14px;overflow:hidden}}
-.stub{{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;padding:16px 0;border-right:1px dashed var(--hair);background:var(--lav-soft)}}
-.stub .no{{font:500 24px/1 var(--f-latin);color:var(--lav);font-variant-numeric:lining-nums}}
-.posted{{font-size:10.5px;color:var(--sub);letter-spacing:.06em}}
-.body{{padding:14px 16px 14px;min-width:0}}
-.tags{{display:flex;flex-wrap:wrap;gap:6px;min-height:0}}
+/* 行ける場所のカード */
+.spot{{display:grid;grid-template-columns:52px minmax(0,1fr);gap:0 12px;background:var(--card);border-radius:20px;padding:16px 16px 14px 14px;box-shadow:var(--shadow)}}
+.stub{{display:flex;flex-direction:column;align-items:center;gap:2px;align-self:start;background:var(--cb);border-radius:14px;padding:9px 0 7px}}
+.stub .no{{font:600 20px/1 var(--f-en);color:var(--c)}}
+.posted{{font:400 10.5px/1.4 var(--f-en);color:var(--sub);letter-spacing:.04em}}
+.body{{min-width:0}}
+.tags{{display:flex;flex-wrap:wrap;gap:5px}}
 .tags:empty{{display:none}}
-.area,.flag{{font-size:11px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:4px}}
-.area{{background:var(--paper);color:var(--ink);border:1px solid var(--hair)}}
-.flag.free{{background:var(--peach-soft);color:var(--pr)}}
-.flag.new{{background:var(--lav-soft);color:var(--lav);font-family:var(--f-latin);letter-spacing:.14em}}
-.flag.until{{border:1px solid var(--hair);color:var(--sub)}}
-.spot h3,.cmp h3{{font:700 17px/1.55 var(--f-disp);letter-spacing:.04em;margin:8px 0 6px;text-wrap:balance}}
+.area,.flag{{font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:999px;line-height:1.5}}
+.area{{background:#f7f1ec;color:var(--ink)}}
+.flag.free{{background:var(--peach-bg);color:var(--pr)}}
+.flag.new{{background:var(--mint-bg);color:var(--mint);font:600 10.5px/1.5 var(--f-en);letter-spacing:.12em;padding-top:4px}}
+.flag.until{{background:var(--lemon-bg);color:#a86f00}}
+.spot h3,.cmp h3{{font:700 17px/1.55 var(--f-head);letter-spacing:.03em;margin:8px 0 6px;text-wrap:balance;word-break:auto-phrase}}
 .spot ul,.cmp ul{{margin:0;padding:0;list-style:none;display:grid;gap:3px}}
 .spot li,.cmp ul li{{font-size:13.5px;line-height:1.7;padding-left:14px;position:relative}}
-.spot li::before,.cmp ul li::before{{content:"";position:absolute;left:2px;top:.75em;width:5px;height:5px;border-radius:50%;background:var(--peach)}}
-.foot{{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin-top:12px;padding-top:10px;border-top:1px solid var(--hair)}}
+.spot li::before,.cmp ul li::before{{content:"";position:absolute;left:1px;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--c)}}
+.foot{{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin-top:12px}}
 .src{{font-size:11px;color:var(--sub);margin:0;flex:1 1 12em}}
-.go{{font-size:13px;font-weight:700;text-decoration:none;color:var(--lav);display:inline-flex;gap:4px;align-items:center;white-space:nowrap}}
-.go:hover{{text-decoration:underline;text-underline-offset:3px}}
+.go{{font:700 13px/1 var(--f-head);text-decoration:none;color:var(--ink);background:var(--cb);border-radius:999px;padding:9px 14px;display:inline-flex;gap:4px;align-items:center;white-space:nowrap}}
 
-/* AIが比べた：表のように並べる */
-.cmp{{background:var(--sheet);border:1px solid var(--hair);border-radius:14px;padding:16px 16px 14px}}
+/* AIが比べた */
+.cmp{{background:var(--card);border-radius:20px;padding:18px 16px 16px;box-shadow:var(--shadow)}}
 .cmp-head{{display:flex;align-items:center;gap:8px}}
-.eyebrow{{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--lav)}}
-.prmark{{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--pr);border:1px solid var(--pr);border-radius:3px;padding:0 5px;line-height:1.6}}
+.eyebrow{{font:700 11px/1 var(--f-head);letter-spacing:.12em;color:var(--lav);background:var(--lav-bg);border-radius:999px;padding:5px 10px}}
+.prmark{{font-size:10px;font-weight:700;color:#fff;background:var(--pr);border-radius:4px;padding:1px 6px;line-height:1.6}}
 .cmp-head .posted{{margin-left:auto}}
-.table{{display:grid;gap:0;margin-top:6px;border-top:1px solid var(--hair)}}
-.row{{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:9px 0 10px;border-bottom:1px solid var(--hair)}}
+.table{{display:grid;gap:6px;margin-top:8px}}
+.row{{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 12px;border-radius:14px;background:#fbf8f5}}
+.row.is-pick{{background:var(--lav-bg);box-shadow:inset 0 0 0 1.5px var(--lav)}}
 .nm{{font-size:13.5px;font-weight:500;min-width:0}}
 .nm .note{{display:block;font-size:11.5px;font-weight:400;color:var(--sub)}}
 .num{{display:flex;gap:10px;align-items:baseline;font-variant-numeric:tabular-nums;white-space:nowrap}}
-.avg{{font:500 15px/1 var(--f-latin)}}
-.cnt{{font-size:12px;color:var(--sub);min-width:5.2em;text-align:right}}
-.bar{{grid-column:1/-1;height:4px;border-radius:2px;background:var(--paper)}}
-.bar i{{display:block;height:100%;border-radius:2px;background:var(--hair)}}
-.row.is-pick .bar i{{background:var(--peach)}}
+.avg{{font:600 15px/1 var(--f-en);color:var(--lemon)}}
+.cnt{{font:400 12.5px/1 var(--f-en);color:var(--sub);min-width:4.6em;text-align:right}}
+.bar{{grid-column:1/-1;height:6px;border-radius:3px;background:#fff}}
+.bar i{{display:block;height:100%;border-radius:3px;background:#e8ddd3}}
+.row.is-pick .bar i{{background:linear-gradient(90deg,var(--lav),#b9a9ff)}}
 .row.is-pick .nm{{font-weight:700}}
-.row.is-pick .cnt{{color:var(--ink);font-weight:700}}
-.pick{{display:inline-block;font-size:10px;font-weight:700;color:#fff;background:var(--peach);border-radius:3px;padding:0 6px;margin-right:6px;vertical-align:2px;letter-spacing:.08em}}
-.cap{{font-size:11px;color:var(--sub);margin:6px 0 0}}
-.reason{{margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--lav-soft)}}
-.reason .lbl{{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--lav)}}
-.reason p{{margin:2px 0 0;font-size:13.5px}}
-.buy{{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;font-weight:700;color:#fff;background:var(--pr);border-radius:999px;padding:9px 18px;white-space:nowrap;transition:transform .15s}}
+.row.is-pick .cnt{{color:var(--ink);font-weight:600}}
+.pick{{display:inline-block;font-size:10px;font-weight:700;color:#fff;background:var(--lav);border-radius:999px;padding:1px 8px;margin-right:6px;vertical-align:2px}}
+.cap{{font-size:11px;color:var(--sub);margin:6px 2px 0}}
+.reason{{margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--lemon-bg)}}
+.reason .lbl{{font:700 11px/1 var(--f-head);letter-spacing:.12em;color:#a86f00}}
+.reason p{{margin:4px 0 0;font-size:13.5px}}
+.cmp .foot{{margin-top:14px}}
+.buy{{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:700 15px/1 var(--f-head);color:#fff;background:linear-gradient(135deg,#f07a5a,var(--pr));border-radius:999px;padding:13px 22px;white-space:nowrap;box-shadow:0 6px 14px rgba(224,86,59,.25);transition:transform .15s}}
 .buy:hover{{transform:translateY(-1px)}}
 @media (prefers-reduced-motion:reduce){{.buy{{transition:none}}.buy:hover{{transform:none}}}}
 .sample{{font-size:10.5px;color:var(--sub);margin:8px 0 0;text-align:right}}
 
-.ended{{list-style:none;margin:0;padding:0;display:grid;gap:6px}}
-.ended li{{font-size:13px;color:var(--sub);text-decoration:line-through;text-decoration-color:var(--hair)}}
-.ended span{{display:inline-block;min-width:3.4em;text-decoration:none}}
+.ended{{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}}
+.ended li{{font-size:13px;color:var(--sub)}}
+.ended span{{display:inline-block;min-width:3.4em;font-family:var(--f-en)}}
 
 /* 終わり */
-.end{{margin-top:56px;padding-top:28px;border-top:1px solid var(--hair);text-align:center}}
-.end .en{{font:italic 500 15px/1 var(--f-latin);letter-spacing:.24em;color:var(--lav)}}
-.end h2{{font:700 20px/1.5 var(--f-disp);letter-spacing:.08em;margin:6px 0 16px}}
+.end{{margin-top:52px;text-align:center;background:var(--card);border-radius:24px;padding:26px 16px 22px;box-shadow:var(--shadow)}}
+.end .en{{font:600 11px/1 var(--f-en);letter-spacing:.3em;color:var(--peach)}}
+.end h2{{font:900 20px/1.5 var(--f-head);letter-spacing:.06em;margin:8px 0 16px}}
 .follow{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;text-align:left}}
-.follow a{{display:grid;grid-template-columns:1fr auto;gap:0 8px;text-decoration:none;background:var(--sheet);border:1px solid var(--hair);border-radius:12px;padding:12px 14px}}
-.follow a.room{{grid-column:1/-1;background:var(--peach-soft);border-color:transparent}}
-.sn{{font-weight:700;font-size:14px}}
-.sh{{grid-row:2;font-size:11.5px;color:var(--sub)}}
-.ar{{grid-row:1/3;grid-column:2;align-self:center;color:var(--lav)}}
-.colophon{{font-size:11px;color:var(--sub);margin:22px 0 0;line-height:1.9}}
-.colophon .moon{{display:inline-block;width:10px;height:10px;border-radius:50%;box-shadow:-3px 1px 0 0 var(--peach);transform:translate(3px,1px);margin-right:4px}}
+.follow a{{display:grid;grid-template-columns:1fr auto;gap:0 8px;text-decoration:none;background:var(--bg);border-radius:14px;padding:12px 14px}}
+.follow a.room{{grid-column:1/-1;background:var(--peach-bg)}}
+.sn{{font:700 14px/1.5 var(--f-head)}}
+.sh{{grid-row:2;font:400 11.5px/1.5 var(--f-en);color:var(--sub)}}
+.ar{{grid-row:1/3;grid-column:2;align-self:center;color:var(--peach)}}
+.colophon{{font-size:11px;color:var(--sub);margin:20px 0 0;line-height:1.9}}
 </style></head>
 <body><div class="wrap">
-<header class="cover">
-<img src="logo.png" alt="うさぎ│LIFE NOTES" width="88" height="88">
-<div><p class="brand">USAGI <i>Life</i> NOTES</p><p class="issue"><b>{md}</b><span>{wd}曜日号</span></p></div>
+<header class="hero">
+<img class="logo" src="logo.png" alt="うさぎ│LIFE NOTES" width="112" height="112">
+<p class="brand">USAGI LIFE NOTES</p>
+<h1>うさぎ│LIFE NOTES<small>あしたから行ける・AIが比べた</small></h1>
+<p class="intro">首都圏と関西で「今日から・新しく・無料で」行ける場所を、AIが毎日調べています。買う物は3つ以上を数字で比べて、1つだけ。</p>
+<span class="season"><b>{season[0]}</b>{season[1]}</span>
 </header>
-<h1 class="headline"><span>今週の<em>行き先</em>が、</span><span>いちばん早く分かる。</span></h1>
-<p class="intro">首都圏と関西で「今日から・新しく・無料で」行ける場所を、AIが毎日調べて書き足しています。買う物は、3つ以上を数字で比べてから1つだけ。</p>
-<div class="stats">{stats}</div>
+<nav class="tiles" aria-label="入口">{tiles}</nav>
 <p class="notice"><b>PR</b>このページは楽天アフィリエイトの広告を含みます。日時や値段は変わることがあるので、出かける前・買う前に公式ページで確かめてください。</p>
 <nav class="toc" aria-label="目次"><div class="toc-in">{nav}</div></nav>
 {sections}
@@ -427,7 +444,7 @@ a:focus-visible{{outline:2px solid var(--lav);outline-offset:3px;border-radius:6
 <span class="en">FOLLOW</span>
 <h2>毎日の続きは、こちらで</h2>
 <div class="follow">{follow}</div>
-<p class="colophon"><span class="moon" aria-hidden="true"></span>最終更新 {updated}<br>7日より前の投稿は外しています</p>
+<p class="colophon">最終更新 {updated}<br>7日より前の投稿は外しています</p>
 </footer>
 </div></body></html>
 """

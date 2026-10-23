@@ -21,13 +21,12 @@ jobs:
       RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
       RAKUTEN_ORIGIN: ${{ vars.RAKUTEN_ORIGIN }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
       - uses: actions/checkout@v4
       - name: ページを作る
         run: python3 scripts/page.py
       - name: 公開する（Cloudflare Pages。鍵があるときだけ。アドレス usagi-life-notes.pages.dev）
         run: |
-          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then echo "Cloudflareの鍵がまだないので公開しない"; exit 0; fi
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then echo "Cloudflareの鍵がまだないので公開しない"; exit 0; fi
           npx -y wrangler@3.80.0 pages project create usagi-life-notes --production-branch=main || true
           npx -y wrangler@3.80.0 pages deploy site --project-name=usagi-life-notes --branch=main --commit-dirty=true
