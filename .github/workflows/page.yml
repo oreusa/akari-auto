@@ -7,7 +7,7 @@ on:
     - cron: "30 13 * * *"   # 22:30
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write   # 数えた数（data/page-stats.json）を保存する
 concurrency:
   group: akari-page
   cancel-in-progress: true
@@ -28,5 +28,27 @@ jobs:
       - name: 公開する（Cloudflare Pages。鍵があるときだけ。アドレス usagi-life-notes.pages.dev）
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then echo "Cloudflareの鍵がまだないので公開しない"; exit 0; fi
-          npx -y wrangler@3.80.0 pages project create usagi-life-notes --production-branch=main || true
-          npx -y wrangler@3.80.0 pages deploy site --project-name=usagi-life-notes --branch=main --commit-dirty=true
+          W="npx -y wrangler@3.80.0"
+          $W pages project create usagi-life-notes --production-branch=main || true
+          # 数える場所（KV）。なければ作る。作れないときは数えずに公開だけする
+          ns=$($W kv namespace list 2>/dev/null | python3 -c "import sys,json;t=sys.stdin.read();d=json.loads(t[t.find('['):]) if '[' in t else [];print(next((n['id'] for n in d if n.get('title')=='usagi-life-notes-clicks'),''))" || true)
+          if [ -z "$ns" ]; then $W kv namespace create usagi-life-notes-clicks || true
+            ns=$($W kv namespace list 2>/dev/null | python3 -c "import sys,json;t=sys.stdin.read();d=json.loads(t[t.find('['):]) if '[' in t else [];print(next((n['id'] for n in d if n.get('title')=='usagi-life-notes-clicks'),''))" || true); fi
+          if [ -n "$ns" ]; then
+            printf 'name = "usagi-life-notes"\npages_build_output_dir = "site"\ncompatibility_date = "2024-09-23"\n\n[[kv_namespaces]]\nbinding = "CLICKS"\nid = "%s"\n' "$ns" > wrangler.toml
+            echo "数える場所あり"
+          else echo "数える場所を作れない（鍵の権限に Workers KV Storage の編集が要る）。公開だけする"; fi
+          $W pages deploy site --project-name=usagi-life-notes --branch=main --commit-dirty=true
+          echo "NS=$ns" >> "$GITHUB_ENV"
+      - name: 数えた数を読む（開いた数・押された数 → data/page-stats.json）
+        if: env.NS != ''
+        run: |
+          rm -f wrangler.toml
+          python3 scripts/pagestats.py "$NS" || true
+          git config user.name "akari-auto"
+          git config user.email "akari-auto@users.noreply.github.com"
+          git add data/page-stats.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
+          git commit -m "ページの数を記録"
+          for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done
+          exit 1

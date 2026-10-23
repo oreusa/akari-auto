@@ -195,5 +195,12 @@ ok("pages.dev/?f=t0715" in book.with_page(two, "threads", pcfg, "07:15")[1], "Th
 ok(book.with_page(["1つだけ"], "twitter", pcfg) == ["1つだけ"], "1つだけの投稿に足した")
 ok(book.with_page(two, "twitter", {"page": {"url": "https://usagi-life-notes.pages.dev/", "promote": False}}) == two, "promote false でも足した")
 
+# ページの数（KVのキー → 日ごとの数）
+import pagestats  # noqa: E402
+ps = pagestats.parse([{"name": "2026-10-24|v|x0715", "metadata": {"n": 3}}, {"name": "2026-10-24|v|direct", "metadata": {"n": 2}},
+                      {"name": "2026-10-24|c|x0715|buy-winter|着る毛布", "metadata": {"n": 1}}, {"name": "2026-10-24|stop"}])
+ok(ps.get("2026-10-24", {}).get("views") == 5 and ps["2026-10-24"]["clicks"] == 1, f"ページの数の読み方が違う: {ps}")
+ok(ps["2026-10-24"]["click"]["x0715"] == {"buy-winter|着る毛布": 1}, "押された物が投稿ごとに分かれない")
+
 print("自己テスト：", "OK" if not fails else f"×{len(fails)}")
 sys.exit(1 if fails else 0)
