@@ -195,6 +195,21 @@ ok("pages.dev/?f=t0715" in book.with_page(two, "threads", pcfg, "07:15")[1], "Th
 ok(book.with_page(["1つだけ"], "twitter", pcfg) == ["1つだけ"], "1つだけの投稿に足した")
 ok(book.with_page(two, "twitter", {"page": {"url": "https://usagi-life-notes.pages.dev/", "promote": False}}) == two, "promote false でも足した")
 
+# 予約し直し：ページのURLがない予約を、足した文で作り直し、古い方を消す（出る25分前を切った物は触らない）
+rc, rd = [], []
+book.buffer_posts = lambda cfg, st, a, b, channel_ids=None: [{"id": "OLD1"}, {"id": "OLD2"}] if st == ["scheduled"] else []
+book.buffer_create = lambda ch, s, texts, due, topic=None, **kw: rc.append((s, due, texts)) or {"id": f"N{len(rc)}"}
+book.buffer_gql = lambda q, v=None: rd.append(v["i"]["id"]) or {"deletePost": {"__typename": "DeletePostSuccess"}}
+book.append_log = lambda day, line: None
+now0 = datetime(2026, 10, 24, 7, 0, tzinfo=lib.JST)
+st0 = {"2026-10-24 09:15": {"twitter": {"id": "OLD1", "at": "09:15", "texts": ["見出し", "公式です\nhttps://example.com/a"], "topic": "おでかけ"}},
+       "2026-10-24 07:15": {"twitter": {"id": "OLD2", "at": "07:15", "texts": ["見出し", "公式です\nhttps://example.com/b"]}}}
+pc = {"channels": {"twitter": "c1", "threads": "c2"}, "page": {"url": "https://usagi-life-notes.pages.dev/"}}
+ok(book.refresh_page(pc, st0, now0) and rc and rd == ["OLD1"], f"予約し直しが違う（作った {len(rc)}・消した {rd}）")
+ok(st0["2026-10-24 09:15"]["twitter"]["id"] == "N1" and "?f=x0915" in st0["2026-10-24 09:15"]["twitter"]["texts"][1], "新しい予約が記録に入らない")
+ok(st0["2026-10-24 07:15"]["twitter"]["id"] == "OLD2", "出る25分前を切った予約を作り直した")
+ok(not book.refresh_page(pc, st0, now0), "2回目も作り直した")
+
 # ページの数（KVのキー → 日ごとの数）
 import pagestats  # noqa: E402
 ps = pagestats.parse([{"name": "2026-10-24|v|x0715", "metadata": {"n": 3}}, {"name": "2026-10-24|v|direct", "metadata": {"n": 2}},
