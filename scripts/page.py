@@ -115,7 +115,7 @@ def collect(now):
             if title in seen:
                 continue
             seen.add(title)
-            entry = {"day": f"{d.month}/{d.day}", "title": title, "bullets": _bullets(text),
+            entry = {"day": f"{d.month}/{d.day}", "year": d.year, "title": title, "bullets": _bullets(text),
                      "reason": _line_with(text, "選んだ理由").replace("選んだ理由：", ""),
                      "source": _line_with(text, "より（"), "url": _official(p)}
             until = p.get("until")
@@ -238,6 +238,36 @@ def _pref(e):
     return best[1] if best else ""
 
 
+def _cut(x, marks, n=13):
+    """長い言葉を、助詞（marks）のすぐあとで2つに分ける。前後とも3文字以上残る所だけ。"""
+    if len(x) <= n:
+        return [x]
+    for i in range(len(x) - 3, 2, -1):
+        if x[i - 1] in marks:
+            return _cut(x[:i], marks, n) + _cut(x[i:], marks, n)
+    return _cut(x, "でのと", n) if marks == "はが" else [x]
+
+
+def phr(text):
+    """見出しを言葉の切れ目（、・空白、長い所は「は」「が」のあと）で区切り、
+    言葉の途中で改行しないようにする（月のページと同じ作り）。"""
+    parts = []
+    for x in re.findall(r"[^、，・ 　]+[、，・]?[ 　]?", text or ""):
+        parts += _cut(x, "はが")
+    return "".join(f'<span class="nwp">{esc(x)}</span>' for x in parts if x.strip()) or esc(text)
+
+
+def _wd(text, year):
+    """「10/29」のような日付に曜日を足す（10/29（木））。すでに曜日があれば足さない。"""
+    def add(m):
+        try:
+            d = datetime(year, int(m.group(1)), int(m.group(2)))
+        except ValueError:
+            return m.group(0)
+        return f"{m.group(0)}（{WEEK[d.weekday()]}）"
+    return re.sub(r"(?<![\d/])(\d{1,2})/(\d{1,2})(?![\d/（(])", add, text)
+
+
 def _split_title(title):
     """「10/24・25、高円寺フェスなど…」→（日付の部分, 残り）。"""
     m = DATE_HEAD.match(title)
@@ -291,14 +321,14 @@ def spot(e):
     pref = _pref(e)
     color = PREF_COLOR.get(pref, "#A07E66")
     when, name = _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))
-    when = when or f"{e['day']}の調べ"
+    when = _wd(when, e["year"]) if when else _wd(e["day"], e["year"]) + "調べ"
     free = _free(e)
     tag = f'<span class="tg">・{esc(free)}</span>' if free else ""
     pl = f'<span class="pl">{esc(pref)}</span>' if pref else ""
     href = esc(e.get("url") or "#")
     return (f'<a class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" style="--pc:{color}" href="{href}" '
             f'target="_blank" rel="noopener"><div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
-            f'<div class="t">{esc(name)}</div>'
+            f'<div class="t">{phr(name)}</div>'
             f'<div class="mp">公式ページ{OUT}</div>{ARROW}</a>')
 
 
@@ -325,7 +355,7 @@ def compare(e):
     btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
     return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}　AIが比べた</span></div>'
-            f'<div class="t">{esc(title)}</div>{head}{reason}{table}<div class="ft2">{btn}</div>{sample}</article>')
+            f'<div class="t">{phr(title)}</div>{head}{reason}{table}<div class="ft2">{btn}</div>{sample}</article>')
 
 
 def pick(e):
@@ -339,17 +369,17 @@ def pick(e):
     lis = f'<p class="why">{esc(e["lines"][0])}</p>' if e["lines"] else ""
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
     return (f'<article class="card cmp pk2"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}　AIが選んだ</span></div>'
-            f'<div class="t">{esc(e["name"])}</div><div class="meta">{"".join(meta)}</div>{lis}'
+            f'<div class="t">{phr(e["name"])}</div><div class="meta">{"".join(meta)}</div>{lis}'
             f'<div class="ft2">'
             f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a></div>{sample}</article>')
 
 
 def sale(e):
     when, name = _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))
-    when = when or f"{e['day']}の調べ"
+    when = _wd(when, e["year"]) if when else _wd(e["day"], e["year"]) + "調べ"
     btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
     return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">{esc(when)}</span></div>'
-            f'<div class="t">{esc(name)}</div><div class="ft2">{btn}</div></article>')
+            f'<div class="t">{phr(name)}</div><div class="ft2">{btn}</div></article>')
 
 
 def _season(now):
@@ -444,7 +474,7 @@ TEMPLATE = """<!doctype html>
 *{{box-sizing:border-box}}
 html{{-webkit-text-size-adjust:100%;scroll-behavior:smooth}}
 @media (prefers-reduced-motion:reduce){{html{{scroll-behavior:auto}}}}
-body{{margin:0;background:var(--bg);color:var(--ink);font:500 14px/1.7 var(--go);font-feature-settings:"palt"}}
+body{{margin:0;background:var(--bg);color:var(--ink);font:400 14px/1.7 var(--go)}}
 a{{color:inherit;text-decoration:none}}
 a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-offset:3px}}
 .wrap{{max-width:460px;margin:0 auto;padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
@@ -502,19 +532,20 @@ h1{{font:600 26px/1.4 var(--min);letter-spacing:.16em;margin:16px 0 12px;padding
 .blk.empty .none{{display:block}}
 
 /* おでかけのカード */
-.card{{display:block;position:relative;background:#fff;border:1px solid var(--line);margin-bottom:12px;padding:12px 40px 40px 16px;box-shadow:inset 3px 0 0 var(--pc,var(--brown));transition:background .2s}}
+.card{{display:block;position:relative;background:#fff;border:1px solid var(--line);margin-bottom:12px;padding:12px 42px 38px 14px;box-shadow:inset 3px 0 0 var(--pc,var(--brown));transition:background .2s}}
 a.card:hover{{background:color-mix(in srgb,var(--pc,var(--brown)) 4%,#fff)}}
 .card[hidden]{{display:none}}
-.d{{display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;font-size:12px;color:#8A6E5C}}
+.d{{display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;font-size:12px;line-height:1.5;letter-spacing:.02em;color:#8A6E5C}}
 .pl{{font-weight:700;letter-spacing:.12em;color:var(--pc);margin-right:8px}}
 .pl:before{{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pc);margin-right:5px;vertical-align:1px}}
 .pl:after{{content:"";display:inline-block;width:1px;height:9px;background:var(--line2);margin-left:8px;vertical-align:-1px}}
 .tg{{font-size:11px;letter-spacing:.12em;color:var(--free);margin-left:8px}}
-.t{{font:700 15.5px/1.45 var(--go);margin:4px 0 4px;word-break:auto-phrase;text-wrap:pretty}}
+.t{{font:700 15px/1.4 var(--go);letter-spacing:0;margin:3px 0 2px}}
+.nwp{{display:inline-block}}
 .m{{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:2px}}
 .m li{{font-size:12px;line-height:1.7;color:var(--sub);padding-left:11px;position:relative}}
 .m li:before{{content:"";position:absolute;left:0;top:.8em;width:4px;height:1px;background:var(--line2)}}
-.mp{{position:absolute;left:16px;bottom:12px;display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:500;letter-spacing:.14em;color:#5B514A;border-bottom:1px solid #CFC5BA;padding-bottom:1px}}
+.mp{{position:absolute;left:14px;bottom:12px;display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:500;letter-spacing:.14em;color:#5B514A;border-bottom:1px solid #CFC5BA;padding-bottom:1px}}
 .out{{width:9px;height:9px}}
 .arw{{position:absolute;right:14px;top:50%;width:22px;height:11px;transform:translateY(-50%);color:#A99C90;transition:transform .2s}}
 a.card:hover .arw{{transform:translate(3px,-50%)}}
@@ -522,7 +553,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 /* AIが比べた */
 .cmp{{padding:14px 16px 16px;box-shadow:none}}
 .prm{{font:500 9.5px/1 var(--en);letter-spacing:.14em;color:var(--pr);border:1px solid var(--pr);padding:3px 6px 2px;margin-right:8px}}
-.cmp .t{{font-size:15.5px;margin-top:8px}}
+.cmp .t{{margin-top:8px}}
 .tbl{{margin:10px 0 0;border-top:1px solid var(--line)}}
 .row{{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 0 9px;border-bottom:1px solid var(--line)}}
 .nm{{font-size:13px;font-weight:500;min-width:0}}
@@ -562,6 +593,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .pk2 .m{{margin-top:10px}}
 .smp{{font-size:10px;color:var(--mute);text-align:right;margin:8px 0 0}}
 
+.tip,.ft,.lead{{text-wrap:balance}}
 .past{{list-style:none;margin:6px 0 4px;padding:0;font-size:12px;line-height:2;color:#5B514A}}
 .tip{{border-top:1px solid var(--line);margin:10px 0 0;padding:12px 2px 2px;font-size:11.5px;line-height:1.8;color:var(--sub);text-align:center}}
 
