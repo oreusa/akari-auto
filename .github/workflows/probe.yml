@@ -5,6 +5,10 @@ on:
       urls:
         description: "空白で区切ったURL"
         required: true
+      hotel:
+        description: "楽天トラベルの施設番号（空なら調べない）"
+        required: false
+        default: ""
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -14,3 +18,16 @@ jobs:
       - env:
           URLS: ${{ inputs.urls }}
         run: python3 scripts/probe.py $URLS
+      - if: ${{ inputs.hotel != '' }}
+        env:
+          HOTEL: ${{ inputs.hotel }}
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+          RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+          RAKUTEN_ORIGIN: ${{ vars.RAKUTEN_ORIGIN }}
+        run: |
+          cd scripts && python3 -c "
+          import os, lib
+          r = lib.rakuten_travel_link(os.environ['HOTEL'])
+          print({k: r.get(k) for k in ('ok', 'why', 'name', 'reviewCount', 'reviewAverage', 'itemUrl')})
+          "
