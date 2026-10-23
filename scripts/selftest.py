@@ -120,5 +120,25 @@ with tempfile.TemporaryDirectory() as d:
     book.run(datetime(2026, 10, 24, 19, 50, tzinfo=lib.JST))
     ok(len(redo()) == 1, "出し直しを2回以上した")
 
+    # 4コマ：絵のURLがあれば X・Threads は画像、Instagram は動画があるときだけリール
+    kc = []
+    book.media_problem = lambda u, k: ""
+    book.buffer_create = lambda ch, s, texts, due, topic=None, draft=False, **kw: kc.append((s, due, texts, topic, kw)) or {"id": f"k{len(kc)}"}
+    book.buffer_posts = lambda cfg, st, a, b, channel_ids=None: []
+    lib.save_json(os.path.join(d, "config.json"), {"channels": {"twitter": "T", "threads": "H", "instagram": "I"}})
+    lib.save_json(os.path.join(d, "state", "booked.json"), {})
+    lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 18, "text": "t"})
+    book.run(datetime(2026, 10, 25, 7, 40, tzinfo=lib.JST))
+    ok(not kc, f"絵がないのに4コマを予約した: {kc}")
+    lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 18, "text": "t", "image_url": "https://i/x"})
+    book.run(datetime(2026, 10, 25, 7, 40, tzinfo=lib.JST))
+    ok(sorted(c[0] for c in kc) == ["threads", "twitter"] and all(c[4]["image"] == "https://i/x" for c in kc)
+       and kc[0][1] == "2026-10-24T23:00:00.000Z" and [c[3] for c in kc if c[0] == "threads"] == ["漫画"],
+       f"4コマの予約がおかしい: {kc}")
+    lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 18, "text": "t", "image_url": "https://i/x", "video_url": "https://v/y"})
+    book.run(datetime(2026, 10, 25, 7, 50, tzinfo=lib.JST))
+    ig = [c for c in kc if c[0] == "instagram"]
+    ok(len(kc) == 3 and len(ig) == 1 and ig[0][4]["video"] == "https://v/y", f"Instagramのリールがおかしい／二重予約: {kc}")
+
 print("自己テスト：", "OK" if not fails else f"×{len(fails)}")
 sys.exit(1 if fails else 0)

@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check import LINK, post_problems  # noqa: E402
 from lib import (JST, URL_RE, BufferError, a8_link, append_log, buffer_create, buffer_posts,  # noqa: E402
                  about_item, item_code_from_url, load_json, missing_specs, now_jst, page_check, path,
-                 rakuten_item, rakuten_travel_link, save_json)
+                 rakuten_item, rakuten_travel_link, save_json, http_raw)
 
 LEAD_MIN = int(os.environ.get("LEAD_MIN", "150"))   # 何分先までを予約するか
 LATE_MIN = 90                                       # 時刻を過ぎていても、この分までなら15分後に出す
@@ -165,12 +165,83 @@ def run(now=None):
                     append_log(day, f"{slot} {s} 予約×（{r['tries']}回目）：{str(e)[:150]}")
             changed = True
     try:
+        changed |= book_koma4(cfg, state, now)
+    except BufferError as e:
+        append_log(now.date().isoformat(), f"4コマ 予約×：{str(e)[:150]}")
+    try:
         changed |= after_check(cfg, state, now)
     except BufferError as e:
         append_log(now.date().isoformat(), f"出たかの確認ができない：{str(e)[:120]}")
     if changed:
         save_json(path("state", "booked.json"), state)
     return 0
+
+
+KOMA4_SERVICES = ("twitter", "threads", "instagram")
+
+
+def media_problem(url, kind):
+    """Bufferが取りに行く絵・動画のURLが、ログインなしで開けるかを見る。だめなら理由を返す。"""
+    try:
+        st, body, final = http_raw(url)
+    except Exception as e:  # 通信の失敗
+        return f"{kind}のURLが開けない（{str(e)[:60]}）"
+    if st != 200:
+        return f"{kind}のURLが開けない（{st}）"
+    if "accounts.google.com" in (final or "") or body[:15].lstrip().lower().startswith(b"<!doctype html"):
+        return f"{kind}のURLがログイン画面になる（ドライブのフォルダが「リンクを知っている全員」になっていない）"
+    return ""
+
+
+def book_koma4(cfg, state, now):
+    """雫が描いた4コマを予約する（10/23から。雫はBufferを使わない）。
+
+    koma4/日付.json：{"slot": "08:00", "episode": 16, "text": "投稿文", "image_url": "…", "video_url": "…"}
+    text は燈の夜の回が書く。image_url・video_url は朝の4コマ係（燈）が、雫が保存した絵から入れる。
+    X・Threads は画像、Instagram はリール（動画がない日は出さない。縦長1:3の画像はInstagramに載らないため）。
+    """
+    day = now.date().isoformat()
+    k = load_json(path("koma4", f"{day}.json"))
+    if not k or not k.get("text") or not k.get("image_url"):
+        return False
+    slot = k.get("slot") or "08:00"
+    due = datetime.fromisoformat(f"{day}T{slot}").replace(tzinfo=JST)
+    mins = (due - now).total_seconds() / 60
+    if mins > LEAD_MIN or mins < -6 * 60:  # 4コマは遅れても、その日の昼までは出す
+        return False
+    key = f"{day} 4コマ"
+    rec = state.setdefault(key, {})
+    todo = [s for s in KOMA4_SERVICES if s in cfg["channels"]
+            and not rec.get(s, {}).get("id") and rec.get(s, {}).get("tries", 0) < MAX_TRIES
+            and (s != "instagram" or k.get("video_url"))]
+    if not todo:
+        return False
+    bad = media_problem(k["image_url"], "image") or (k.get("video_url") and media_problem(k["video_url"], "video"))
+    if bad:
+        if not rec.get("media_error"):
+            append_log(day, f"4コマ 第{k.get('episode', '?')}話 予約できない：{bad}")
+        rec["media_error"] = bad
+        return True
+    rec.pop("media_error", None)
+    when = due if mins >= 15 else now + timedelta(minutes=15)
+    due_iso = when.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    alt = f"4コマ漫画 第{k.get('episode', '')}話"
+    for s in todo:
+        r = rec.setdefault(s, {"tries": 0})
+        r["tries"] = r.get("tries", 0) + 1
+        media = {"image": k["image_url"], "video": k.get("video_url") if s == "instagram" else None, "alt": alt}
+        try:
+            p = buffer_create(cfg["channels"][s], s, [k["text"]], due_iso,
+                              topic=(k.get("topic") or "漫画") if s == "threads" else None, **media)
+            r.update({"id": p["id"], "kind": "4コマ", "at": when.strftime("%H:%M"), "texts": [k["text"]],
+                      "topic": k.get("topic") or "漫画", "media": media})
+            r.pop("error", None)
+            late = "" if when == due else f"（遅れたので {when.strftime('%H:%M')} に）"
+            append_log(day, f"4コマ 第{k.get('episode', '?')}話 {s} 予約OK{late}")
+        except BufferError as e:
+            r["error"] = str(e)[:200]
+            append_log(day, f"4コマ 第{k.get('episode', '?')}話 {s} 予約×（{r['tries']}回目）：{str(e)[:150]}")
+    return True
 
 
 def after_check(cfg, state, now):
@@ -212,7 +283,7 @@ def after_check(cfg, state, now):
                         texts = list(r["texts"])
                         texts[0] = texts[0].rstrip() + "\n"  # Bufferの「同じ投稿」はねを避ける
                         p = buffer_create(cfg["channels"][s], s, texts, when.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-                                          topic=r.get("topic") if s == "threads" else None)
+                                          topic=r.get("topic") if s == "threads" else None, **(r.get("media") or {}))
                         append_log(day, f"{slot} {s} 出なかった（{why}）→ 15分後に出し直しを予約 {p['id']}")
                         r["id"], r["seen"], r["at"] = p["id"], None, (now + timedelta(minutes=15)).strftime("%H:%M")
                     except BufferError as e:
@@ -223,7 +294,7 @@ def after_check(cfg, state, now):
     day = now.date().isoformat()
     k = f"koma4 {day}".replace(" ", ":")
     if now.hour >= 8 and now.minute >= 30 or now.hour >= 9:
-        if not state.get(k) and now.hour < 12:
+        if not state.get(k) and not state.get(f"{day} 4コマ") and now.hour < 12:
             ours = {r.get("id") for key, rec in state.items() if " " in key for r in rec.values() if isinstance(r, dict)}
             t0 = now.replace(hour=7, minute=30, second=0, microsecond=0)
             t1 = now.replace(hour=8, minute=45, second=0, microsecond=0)
@@ -272,7 +343,30 @@ def sent_test():
     return 0
 
 
+def koma4_test(image_url):
+    """絵のURLでBufferに「下書き」を作れるかを試し、すぐ消す（公開はしない）。"""
+    from lib import buffer_gql
+    cfg = load_json(path("config.json"))
+    print("URLの確認:", media_problem(image_url, "image") or "OK")
+    due = (now_jst() + timedelta(days=2)).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    for s in ("twitter", "threads"):
+        try:
+            p = buffer_create(cfg["channels"][s], s, ["4コマの絵のテスト（下書き・すぐ消す）"], due,
+                              topic="漫画" if s == "threads" else None, draft=True, image=image_url, alt="テスト")
+            print(s, "下書きOK", p)
+            try:
+                r = buffer_gql('mutation($i:DeletePostInput!){deletePost(input:$i){__typename}}', {"i": {"id": p["id"]}})
+                print(s, "消した", r)
+            except Exception as e:
+                print(s, "消せない（Bufferの下書きから手で消す）", str(e)[:200])
+        except Exception as e:
+            print(s, "×", str(e)[:300])
+    return 0
+
+
 if __name__ == "__main__":
+    if len(sys.argv) > 2 and sys.argv[1] == "--koma4-test":
+        sys.exit(koma4_test(sys.argv[2]))
     if len(sys.argv) > 1 and sys.argv[1] == "--sent-test":
         sys.exit(sent_test())
     if len(sys.argv) > 2 and sys.argv[1] == "--test":
