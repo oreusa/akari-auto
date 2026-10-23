@@ -1,6 +1,6 @@
 {
   "day": "2026-10-21",
-  "fetchedAt": "2026-10-22T18:04+09:00",
+  "fetchedAt": "2026-10-23T09:09+09:00",
   "posts": [
     {
       "service": "threads",
@@ -87,10 +87,10 @@
       "first": "入場無料で、11/6から上野公園にクリスマスマーケット",
       "url": "https://www.threads.com/@ai_usagichan1/post/DevGOmHl5mB",
       "metrics": {
-        "reactions": 2,
+        "reactions": 3,
         "comments": 1,
-        "engagementRate": 0.69,
-        "views": 432,
+        "engagementRate": 0.89,
+        "views": 450,
         "quotes": 0,
         "reposts": 0
       }
@@ -119,8 +119,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 9.09,
-        "views": 22,
+        "engagementRate": 8.7,
+        "views": 23,
         "quotes": 0,
         "reposts": 0
       }
@@ -149,8 +149,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.27,
-        "views": 79,
+        "engagementRate": 1.23,
+        "views": 81,
         "quotes": 0,
         "reposts": 0
       }
@@ -180,7 +180,7 @@
         "reactions": 1,
         "comments": 1,
         "engagementRate": 0.5,
-        "views": 398,
+        "views": 401,
         "quotes": 0,
         "reposts": 0
       }
@@ -209,8 +209,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.73,
-        "views": 137,
+        "engagementRate": 0.72,
+        "views": 139,
         "quotes": 0,
         "reposts": 0
       }
@@ -239,8 +239,8 @@
       "metrics": {
         "reactions": 2,
         "comments": 1,
-        "engagementRate": 0.91,
-        "views": 331,
+        "engagementRate": 0.84,
+        "views": 356,
         "quotes": 0,
         "reposts": 0
       }
@@ -269,8 +269,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.57,
-        "views": 174,
+        "engagementRate": 0.55,
+        "views": 183,
         "quotes": 0,
         "reposts": 0
       }
@@ -314,8 +314,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.13,
-        "views": 47,
+        "engagementRate": 2,
+        "views": 50,
         "quotes": 0,
         "reposts": 0
       }
@@ -329,8 +329,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 25,
-        "views": 4,
+        "engagementRate": 11.11,
+        "views": 9,
         "quotes": 0,
         "reposts": 0
       }
