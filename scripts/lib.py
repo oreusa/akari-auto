@@ -469,3 +469,56 @@ def a8_link(url, expect_host):
         return {"ok": False, "why": why}
     title = re.search(r"<title[^>]*>(.*?)</title>", txt or "", re.S)
     return {"ok": True, "name": title.group(1).strip()[:60] if title else host, "itemUrl": final, "link": url}
+
+
+# ---- Amazon（10/23 オーナー「Amazonも使おう」）----
+# 機械からはAmazonの商品ページが開けない（「ショッピングを続ける」の画面で止まる）。
+# そこで、凪（ChatGPT）が前の晩にブラウザで開いて確かめた物（ドライブ「Amazon確認帳」→ 燈が data/amazon-checked.json に写す）だけを使う。
+AMAZON_TAG = os.environ.get("AMAZON_TAG", "aiusagichan-22")
+AMAZON_CHECKED = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "amazon-checked.json")
+AMAZON_MAX_AGE_H = 36
+
+
+def amazon_checked(path=None):
+    try:
+        with open(path or AMAZON_CHECKED, encoding="utf-8") as f:
+            return (json.load(f) or {}).get("items", {})
+    except (OSError, ValueError):
+        return {}
+
+
+def amazon_link(asin, expect="", now=None, items=None):
+    """凪が確かめた Amazon の商品だけ合格にして、うちのタグ付きリンクを返す。"""
+    asin = str(asin or "").strip().upper()
+    if not re.match(r"^[A-Z0-9]{10}$", asin):
+        return {"ok": False, "why": "ASIN の形ではない（英数字10けた）"}
+    it = (items if items is not None else amazon_checked()).get(asin)
+    if not it:
+        return {"ok": False, "why": "Amazon確認帳にない（凪がブラウザで確かめていない）"}
+    now = now or datetime.now(JST)
+    try:
+        at = datetime.fromisoformat(str(it.get("checkedAt")))
+        if at.tzinfo is None:
+            at = at.replace(tzinfo=JST)
+    except ValueError:
+        return {"ok": False, "why": "Amazon確認帳の確認時刻が読めない"}
+    if now - at > timedelta(hours=AMAZON_MAX_AGE_H):
+        return {"ok": False, "why": f"Amazon確認帳の確認が古い（{AMAZON_MAX_AGE_H}時間より前）"}
+    if it.get("ok") is False:
+        return {"ok": False, "why": "凪の確認で×（ページ切れ・在庫なしなど）"}
+    name = str(it.get("name", ""))
+    if expect and expect not in name:
+        return {"ok": False, "why": f"商品名に「{expect}」がない（別の商品の可能性）: {name[:40]}"}
+    try:
+        rv, st = int(it.get("reviews") or 0), float(it.get("stars") or 0)
+    except (TypeError, ValueError):
+        rv, st = 0, 0.0
+    if rv < 1000 or st < 4.0:
+        return {"ok": False, "why": f"厳選の条件に届かない（レビュー{rv}件・★{st}。1,000件以上・4.0以上）"}
+    page = f"https://www.amazon.co.jp/dp/{asin}"
+    # 開けたときだけ、ページ切れの文字を見る（止められる画面なら凪の確認を信じる）
+    status, txt, _ = http("GET", page, headers={"User-Agent": BROWSER_UA, "Accept-Language": "ja-JP,ja;q=0.9"}, timeout=20, retries=1)
+    if status in (404, 410) or (txt and "有効なページではありません" in txt):
+        return {"ok": False, "why": f"Amazonの商品ページがない（{status}）"}
+    return {"ok": True, "name": name, "reviewCount": rv, "reviewAverage": st, "price": it.get("price"),
+            "itemUrl": page, "link": f"{page}?tag={AMAZON_TAG}", "caption": str(it.get("specs", ""))}

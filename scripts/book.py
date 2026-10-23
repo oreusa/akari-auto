@@ -15,7 +15,7 @@ from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check import LINK, post_problems  # noqa: E402
-from lib import (JST, URL_RE, BufferError, a8_link, append_log, buffer_create, buffer_posts,  # noqa: E402
+from lib import (JST, URL_RE, BufferError, a8_link, amazon_link, append_log, buffer_create, buffer_posts,  # noqa: E402
                  about_item, item_code_from_url, load_json, missing_specs, now_jst, page_check, path,
                  rakuten_item, rakuten_travel_link, save_json, http_raw)
 
@@ -44,6 +44,14 @@ def resolve_link(link, texts=()):
         return rakuten_travel_link(link["hotelNo"])
     if link["type"] == "a8":
         return a8_link(link["url"], link.get("expect_host", ""))
+    if link["type"] == "amazon":
+        exp = link.get("expect")
+        r = amazon_link(link.get("asin"), exp)
+        if r.get("ok"):
+            miss = missing_specs(about_item(texts, exp), r.get("name", ""), r.get("caption", ""))
+            if miss:
+                r = {"ok": False, "why": "文の数字がAmazon確認帳にない（書き違いの可能性）: " + "・".join(miss[:4])}
+        return r
     return {"ok": False, "why": "link.type が分からない"}
 
 
@@ -223,7 +231,7 @@ def book_koma4(cfg, state, now):
         rec["media_error"] = bad
         return True
     rec.pop("media_error", None)
-    when = due if mins >= 15 else now + timedelta(minutes=15)
+    when = due if mins >= 3 else now + timedelta(minutes=3)  # 7:50の直しでも8:00に間に合わせる
     due_iso = when.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
     alt = f"4コマ漫画 第{k.get('episode', '')}話"
     for s in todo:
