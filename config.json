@@ -12,6 +12,8 @@
   },
   "page": {
     "room_url": "",
+    "url": "https://usagi-life-notes.pages.dev/",
+    "promote": true,
     "amazon": true
   }
 }

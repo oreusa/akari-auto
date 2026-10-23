@@ -182,5 +182,16 @@ for md, want in [((1, 3), "お正月"), ((1, 20), "冬の暮らし"), ((10, 24),
 ok(page._cat("NERUS ふわとろ毛布", page.cats(datetime(2026, 10, 24, tzinfo=lib.JST))) == "winter", "毛布が冬じたくに入らない")
 ok(page._cat("NERUS ふわとろ毛布", page.cats(datetime(2026, 7, 1, tzinfo=lib.JST))) == "life", "夏に毛布が季節の項目に入った")
 
+# ページの宣伝：2つ目にページのURLを1行足す（Xは頭、Threadsは最後。超えるなら足さない）
+pcfg = {"page": {"url": "https://usagi-life-notes.pages.dev/"}}
+two = ["【AIが比べた】見出し\n本文", "公式で確かめてください\nhttps://example.com/a"]
+wx = book.with_page(two, "twitter", pcfg)
+ok(wx[1].startswith("AIが比べた") and wx[1].endswith("https://example.com/a"), "Xでページの行が頭に入らない（公式のカードが消える）")
+wt = book.with_page(two, "threads", pcfg)
+ok(wt[1].startswith("公式で") and wt[1].endswith("pages.dev/"), "Threadsでページの行が最後に入らない")
+ok(book.with_page(["見出し", "あ" * 130], "twitter", pcfg)[1] == "あ" * 130, "Xの280を超えるのにページの行を足した")
+ok(book.with_page(["1つだけ"], "twitter", pcfg) == ["1つだけ"], "1つだけの投稿に足した")
+ok(book.with_page(two, "twitter", {"page": {"url": "https://usagi-life-notes.pages.dev/", "promote": False}}) == two, "promote false でも足した")
+
 print("自己テスト：", "OK" if not fails else f"×{len(fails)}")
 sys.exit(1 if fails else 0)
