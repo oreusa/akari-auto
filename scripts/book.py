@@ -260,7 +260,9 @@ def sent_test():
     now = now_jst()
     for st in ("sent", "error"):
         ps = buffer_posts(cfg, [st], now - timedelta(days=1), now)
-        print(st, len(ps), [(p["channelService"], p["dueAt"][11:16]) for p in ps[:5]])
+        print(st, len(ps))
+        for p in sorted(ps, key=lambda p: p["dueAt"] or ""):  # 4コマなど、手で出た物も見分けられるよう全部出す
+            print("  ", p["channelService"], p["dueAt"], (p["text"] or "")[:30].replace("\n", " "))
     for st in ("scheduled", "draft"):  # これから出る予約・下書き（手で足された物がないか）
         try:
             ps = buffer_posts(cfg, [st], now - timedelta(days=2), now + timedelta(days=3))
