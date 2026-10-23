@@ -30,18 +30,24 @@ SECTIONS = [
     ("deal", "今だけのお得", "期間のあるお得。終わる日を先に書いています"),
     ("pr", "AIが選んだ物", "3つ以上を数字で比べて、1つだけ選んだ物です"),
 ]
-# 紹介商品の分け方（ページの並び順。言葉で当てるのは冬じたくと食べ物だけ、当たらない物は「暮らしの物」）
 SHOW_GO = 3  # おでかけは最初の3件だけ見せ、残りはたたむ（商品とのバランス）
-CATS = [
-    ("stay", "STAY", "週末の宿", "口コミ1,000件以上・評価4.5以上の宿だけ", ()),
-    ("winter", "WINTER", "冬じたく", "寒い日にすぐ使う物を、レビューの数と評価で比べました",
-     ("毛布", "ブランケット", "暖房", "ヒーター", "加湿", "カイロ", "湯たんぽ", "こたつ", "靴下", "手袋", "ルームシューズ",
-      "スリッパ", "ダウン", "足ポケット", "あったか", "電気敷", "ネックウォーマー", "マフラー")),
-    ("food", "FOOD", "食べ物・飲み物", "毎日の食卓とお取り寄せ",
-     ("食", "スイーツ", "コーヒー", "お茶", "紅茶", "米", "菓子", "チョコ", "鍋", "肉", "カニ", "鮭", "ラーメン")),
-    ("life", "DAILY", "暮らしの物", "すぐ使う小物と消耗品", ()),
-    ("sale", "SALE", "楽天のお得", "楽天のセールとポイントアップ。終わる日を先に書いています", ()),
-]
+SEASON_I = {"spring": 0, "summer": 1, "autumn": 2, "winter": 3}
+
+
+def period(now):
+    """seasons.json から今日の時期を選ぶ（from が今日以前でいちばん新しい物。年の初めは前の年の最後の時期）。"""
+    ps = sorted((load_json(path("seasons.json"), {}) or {}).get("periods", []), key=lambda x: x["from"])
+    today = f"{now.month:02d}-{now.day:02d}"
+    past = [x for x in ps if x["from"] <= today]
+    return (past or ps)[-1] if ps else {"name": "", "season": "autumn", "cats": []}
+
+
+def cats(now):
+    """紹介商品の項目（ページの並び順）：宿 → 時期の項目 → 暮らしの物 → 楽天のお得。時期が変わると自動で入れ替わる。"""
+    mid = [(c["key"], c["en"], c["name"], c["lead"], tuple(c.get("words", ()))) for c in period(now).get("cats", [])]
+    return ([("stay", "STAY", "週末の宿", "口コミ1,000件以上・評価4.5以上の宿だけ", ())] + mid
+            + [("life", "DAILY", "暮らしの物", "すぐ使う小物と消耗品", ()),
+               ("sale", "SALE", "楽天のお得", "楽天のセールとポイントアップ。終わる日を先に書いています", ())])
 
 
 def _lines(text):
@@ -96,6 +102,7 @@ def collect(now):
     ended = []
     seen = set()
     pr_urls = set()
+    cs = cats(now)
     for f in sorted(glob.glob(path("schedule", "*.json")), reverse=True):
         day = os.path.basename(f)[:-5]
         if not re.match(r"\d{4}-\d{2}-\d{2}$", day):
@@ -131,7 +138,8 @@ def collect(now):
                 entry["expect"] = link.get("expect", "")
                 entry["url"] = r["link"]
                 entry["sample"] = r.get("sample", False)
-                entry["cat"] = "stay" if link.get("type") == "travel" else _cat(_text(entry) + " " + entry["expect"])
+                entry["image"] = r.get("image", "")
+                entry["cat"] = "stay" if link.get("type") == "travel" else _cat(_text(entry) + " " + entry["expect"], cs)
                 items["pr"].append(entry)
                 continue
             topic = p.get("topic", "")
@@ -160,8 +168,8 @@ def _rakuten_afl(url):
     return f"https://hb.afl.rakuten.co.jp/hgc/{aid}/?pc={enc}&m={enc}"
 
 
-def _cat(text):
-    for key, _, _, _, words in CATS:  # 宿とセールは言葉を持たないので当たらない
+def _cat(text, cs):
+    for key, _, _, _, words in cs:  # 宿とセールは言葉を持たないので当たらない
         if any(w in text for w in words):
             return key
     return "life"
@@ -194,8 +202,8 @@ def _room_picks(now, since, skip=(), limit=24):
             out.append({"day": f"{d.month}/{d.day}", "name": _short(r.get("name")) or it.get("expect", ""),
                         "expect": it.get("expect", ""), "price": r.get("price"), "count": r.get("reviewCount"),
                         "avg": r.get("reviewAverage"), "lines": lines[:3], "url": r["link"],
-                        "sample": r.get("sample", False)})
-            out[-1]["cat"] = _cat(" ".join([out[-1]["name"], out[-1]["expect"]] + lines[:1]))
+                        "sample": r.get("sample", False), "image": r.get("image", "")})
+            out[-1]["cat"] = _cat(" ".join([out[-1]["name"], out[-1]["expect"]] + lines[:1]), cats(now))
             if len(out) >= limit:
                 return out
     return out
@@ -254,7 +262,8 @@ def phr(text):
     parts = []
     for x in re.findall(r"[^、，・ 　]+[、，・]?[ 　]?", text or ""):
         parts += _cut(x, "はが")
-    return "".join(f'<span class="nwp">{esc(x)}</span>' for x in parts if x.strip()) or esc(text)
+    return "".join(f'<span class="nwp{" sp" if x[-1] in " 　" else ""}">{esc(x.strip())}</span>'
+                   for x in parts if x.strip()) or esc(text)
 
 
 def _wd(text, year):
@@ -332,14 +341,21 @@ def spot(e):
             f'<div class="mp">公式ページ{OUT}</div>{ARROW}</a>')
 
 
+def _img(e):
+    u = e.get("image") or ""
+    if not u.startswith("https://"):
+        return ""
+    return f'<img class="ph" src="{esc(u)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
+
+
 def compare(e):
     """AIが比べたPR：選んだ1つと理由と「詳しく」だけを見せ、比べた表はたたんでおく。"""
     rows = _rows(e) or []
     title = e["title"].replace("AIが比べた", "", 1).strip("、 ")
     chosen = next((r for r in rows if r.get("pick")), None)
     if chosen:
-        head = (f'<div class="cho"><span class="lb">選んだのは</span><b>{esc(chosen["name"])}</b>'
-                f'<span class="sc">★ {esc(chosen["avg"])}<i>｜</i>レビュー {chosen["count"]:,}件</span></div>')
+        head = (f'<div class="cho">{_img(e)}<div class="tx"><span class="lb">選んだのは</span><b>{phr(chosen["name"])}</b>'
+                f'<span class="sc">★ {esc(chosen["avg"])}<i>｜</i>レビュー {chosen["count"]:,}件</span></div></div>')
     else:
         head = ""
     if rows:
@@ -369,7 +385,8 @@ def pick(e):
     lis = f'<p class="why">{esc(e["lines"][0])}</p>' if e["lines"] else ""
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
     return (f'<article class="card cmp pk2"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}　AIが選んだ</span></div>'
-            f'<div class="t">{phr(e["name"])}</div><div class="meta">{"".join(meta)}</div>{lis}'
+            f'<div class="cho">{_img(e)}<div class="tx"><span class="lb">選んだのは</span><b>{phr(e["name"])}</b>'
+            f'<div class="meta">{"".join(meta)}</div></div></div>{lis}'
             f'<div class="ft2">'
             f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a></div>{sample}</article>')
 
@@ -383,10 +400,12 @@ def sale(e):
 
 
 def _season(now):
-    m = now.month
-    i = 0 if m in (3, 4, 5) else 1 if m in (6, 7, 8) else 2 if m in (9, 10, 11) else 3
-    year = now.year - (1 if m <= 2 else 0)
-    return i, f'{["SPRING", "SUMMER", "AUTUMN", "WINTER"][i]} {year}', f'{"春夏秋冬"[i]}のおでかけ'
+    """表紙の季節：時期（seasons.json）の季節で、色・春夏秋冬の印・見出しを切り替える。"""
+    pe = period(now)
+    sea = pe.get("season", "autumn")
+    i = SEASON_I.get(sea, 2)
+    year = now.year - (1 if now.month <= 2 and sea == "winter" else 0)
+    return i, sea, f"{sea.upper()} {year}", pe.get("name") or f'{"春夏秋冬"[i]}のおでかけ'
 
 
 def _year_ring(cur):
@@ -416,11 +435,12 @@ def render(items, ended, now, cfg):
     prefs = [x for x in PREF_ORDER if any(_pref(e) == x for e in spots)]
     tabs = '<button class="on" data-p="">すべて</button>' + "".join(
         f'<button data-p="{esc(x)}" style="--pc:{PREF_COLOR[x]}">{esc(x)}</button>' for x in prefs)
-    goods = {k: [] for k, *_ in CATS}
+    cs = cats(now)
+    goods = {k: [] for k, *_ in cs}
     for e in items["pr"]:
-        goods[e.get("cat", "life")].append(sale(e) if e.get("cat") == "sale" else compare(e))
+        goods.get(e.get("cat"), goods["life"]).append(sale(e) if e.get("cat") == "sale" else compare(e))
     for e in items.get("pick", []):
-        goods[e.get("cat", "life")].append(pick(e))
+        goods.get(e.get("cat"), goods["life"]).append(pick(e))
     blocks, nav = [], []
     if spots:  # いちばん上はおでかけ。数を絞って、残りはたたむ
         cards = [spot(e) for e in spots]
@@ -428,21 +448,21 @@ def render(items, ended, now, cfg):
         if len(cards) > SHOW_GO:
             more = (f'<details class="fold more"><summary>ほかのおでかけ{len(cards) - SHOW_GO}件を見る</summary>'
                     f'{"".join(cards[SHOW_GO:])}</details>')
-        nav.append(f'<a class="g" href="#odekake">おでかけ<b>{len(spots)}</b></a>')
+        nav.append(f'<a class="g" href="#odekake"><span><i>GO OUT</i>おでかけ</span><b>{len(spots)}</b></a>')
         blocks.append(f'<section class="blk go" id="odekake"><div class="wk"><span class="en2">GO OUT</span>'
                       f'<span class="jp2">今週のおでかけ</span></div><p class="lead">公式ページで日時と料金を確かめた物だけ</p>'
                       f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>'
                       f'<nav class="flt" aria-label="地域">{tabs}</nav>'
                       f'{"".join(cards[:SHOW_GO])}{more}<p class="none">この地域は、これから増やしていきます</p></section>')
-    for key, en, name, lead, _ in CATS:
+    for key, en, name, lead, _ in cs:
         if not goods[key]:
             continue
-        nav.append(f'<a href="#{key}">{esc(name)}<b>{len(goods[key])}</b></a>')
+        nav.append(f'<a href="#{key}"><span><i>{en}</i>{esc(name)}</span><b>{len(goods[key])}</b></a>')
         blocks.append(f'<section class="blk" id="{key}"><div class="wk"><span class="en2">{en}</span>'
                       f'<span class="jp2">{esc(name)}</span></div><p class="lead">{esc(lead)}</p>{"".join(goods[key])}</section>')
-    cur, sea_en, sea_jp = _season(now)
+    cur, sea, sea_en, sea_jp = _season(now)
     return TEMPLATE.format(
-        nav="".join(nav), blocks="".join(blocks), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp,
+        nav="".join(nav), blocks="".join(blocks), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp, sea=sea,
         n_pr=sum(len(v) for v in goods.values()),
         updated=f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M}")
 
@@ -466,11 +486,16 @@ TEMPLATE = """<!doctype html>
 :root{{
   color-scheme:light;
   --bg:#FAF8F5; --paper:#FFFFFF; --ink:#2B2622; --sub:#6B6058; --mute:#8C7B6E; --line:#E6DED4; --line2:#D6CCC1;
-  --brown:#A07E66; --brown2:#8C6A55; --free:#5E8A4A; --pr:#B5643F;
+  --brown:#A07E66; --brown2:#8C6A55; --free:#5E8A4A; --pr:#B5643F; --acc:#A07E66;
+  --c1:rgba(242,214,194,.6); --c2:rgba(205,224,236,.65); --c3:rgba(214,228,205,.65); --c4:rgba(240,214,218,.65);
   --min:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
   --go:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
   --en:"Jost","Futura","Avenir Next",sans-serif;
 }}
+/* 季節の色（seasons.json の時期で body の class が変わる） */
+.s-winter{{--acc:#71849B;--c1:rgba(208,222,238,.75);--c2:rgba(228,222,242,.7);--c3:rgba(222,232,242,.85);--c4:rgba(242,224,230,.6)}}
+.s-spring{{--acc:#BF8792;--c1:rgba(246,214,222,.65);--c2:rgba(250,236,200,.65);--c3:rgba(214,232,206,.65);--c4:rgba(214,226,240,.6)}}
+.s-summer{{--acc:#4F8C99;--c1:rgba(200,232,236,.7);--c2:rgba(210,226,246,.7);--c3:rgba(250,240,196,.6);--c4:rgba(214,238,222,.6)}}
 *{{box-sizing:border-box}}
 html{{-webkit-text-size-adjust:100%;scroll-behavior:smooth}}
 @media (prefers-reduced-motion:reduce){{html{{scroll-behavior:auto}}}}
@@ -482,10 +507,13 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 /* 表紙 */
 .head{{position:relative;isolation:isolate;overflow:hidden;text-align:center;margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:40px 16px 26px}}
 .head .blob{{position:absolute;border-radius:50%;filter:blur(2px);z-index:-1}}
-.b1{{width:170px;height:170px;left:-48px;top:24px;background:rgba(242,214,194,.6)}}
-.b2{{width:120px;height:120px;right:-22px;top:18px;background:rgba(205,224,236,.65)}}
-.b3{{width:104px;height:104px;right:34px;bottom:-30px;background:rgba(214,228,205,.65)}}
-.b4{{width:64px;height:64px;left:-12px;bottom:6px;background:rgba(240,214,218,.65)}}
+.b1{{width:170px;height:170px;left:-48px;top:24px;background:var(--c1)}}
+.b2{{width:120px;height:120px;right:-22px;top:18px;background:var(--c2)}}
+.b3{{width:104px;height:104px;right:34px;bottom:-30px;background:var(--c3)}}
+.b4{{width:64px;height:64px;left:-12px;bottom:6px;background:var(--c4)}}
+.s-winter .head:after{{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.55;
+  background-image:radial-gradient(circle,#B9C8DA 1.1px,transparent 1.6px),radial-gradient(circle,#CBD6E4 .9px,transparent 1.4px);
+  background-size:46px 52px,31px 37px;background-position:8px 12px,22px 30px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}}
 .head img{{width:72px;height:72px;display:block;margin:0 auto;border-radius:50%;background:#fff}}
 .en{{font:300 10px/1 var(--en);letter-spacing:.5em;color:var(--brown);margin:16px 0 0;padding-left:.5em}}
 h1{{font:600 26px/1.4 var(--min);letter-spacing:.16em;margin:16px 0 12px;padding-left:.16em}}
@@ -515,17 +543,20 @@ h1{{font:600 26px/1.4 var(--min);letter-spacing:.16em;margin:16px 0 12px;padding
 .cnt b{{font:600 17px/1 var(--min);color:var(--ink);margin:0 3px}}
 .pr-note{{font-size:11px;line-height:1.8;color:var(--mute);text-align:center;margin:0 0 20px}}
 .cats{{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:24px 0 10px}}
-.cats a{{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--brown);padding:12px 14px;font:700 13.5px/1.3 var(--go);letter-spacing:.06em}}
-.cats a b{{font:500 15px/1 var(--en);color:var(--brown)}}
-.cats a.g{{border-left-color:#5D7FA3}}
+.cats a{{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--acc);padding:11px 14px 12px;font:700 13.5px/1.3 var(--go);letter-spacing:.06em;transition:background .2s}}
+.cats a:hover{{background:color-mix(in srgb,var(--acc) 5%,#fff)}}
+.cats a span{{display:flex;flex-direction:column;gap:5px}}
+.cats a i{{font:400 9px/1 var(--en);font-style:normal;letter-spacing:.28em;color:var(--acc)}}
+.cats a b{{font:400 18px/1 var(--en);color:var(--acc)}}
+.cats a.g{{border-left-color:#5D7FA3}} .cats a.g i,.cats a.g b{{color:#5D7FA3}}
 .go .seg{{margin:4px 0 0}}
 .more{{margin:4px 0 12px}} .more summary{{display:block;width:max-content;margin:0 auto 12px}}
 
 /* 章 */
-.blk{{background:var(--paper);border:1px solid #ECE5DC;border-top:3px solid var(--brown);padding:22px 14px 12px;margin-bottom:18px;scroll-margin-top:12px}}
+.blk{{background:var(--paper);border:1px solid #ECE5DC;border-top:3px solid var(--acc);padding:22px 14px 12px;margin-bottom:18px;scroll-margin-top:12px}}
 .blk.hid{{display:none}}
 .wk{{display:flex;flex-direction:column;gap:6px;margin:0 0 6px}}
-.en2{{font:400 10px/1 var(--en);letter-spacing:.36em;color:var(--brown)}}
+.en2{{font:400 10px/1 var(--en);letter-spacing:.36em;color:var(--acc)}}
 .jp2{{font:600 18px/1.4 var(--min);letter-spacing:.08em}}
 .lead{{font-size:11.5px;color:var(--mute);margin:0 0 14px}}
 .none{{display:none;font-size:12px;color:var(--mute);text-align:center;margin:4px 0 12px}}
@@ -541,7 +572,7 @@ a.card:hover{{background:color-mix(in srgb,var(--pc,var(--brown)) 4%,#fff)}}
 .pl:after{{content:"";display:inline-block;width:1px;height:9px;background:var(--line2);margin-left:8px;vertical-align:-1px}}
 .tg{{font-size:11px;letter-spacing:.12em;color:var(--free);margin-left:8px}}
 .t{{font:700 15px/1.4 var(--go);letter-spacing:0;margin:3px 0 2px}}
-.nwp{{display:inline-block}}
+.nwp{{display:inline-block}} .nwp.sp{{margin-right:.3em}}
 .m{{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:2px}}
 .m li{{font-size:12px;line-height:1.7;color:var(--sub);padding-left:11px;position:relative}}
 .m li:before{{content:"";position:absolute;left:0;top:.8em;width:4px;height:1px;background:var(--line2)}}
@@ -577,7 +608,10 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .buy{{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;font:500 13px/1 var(--go);letter-spacing:.2em;padding:13px 18px 13px 22px}}
 .buy .arw{{position:static;transform:none;color:#fff;width:20px}}
 .buy:hover .arw{{transform:translateX(3px)}}
-.cho{{margin:10px 0 0;padding:10px 12px;background:#FAF6F1;display:grid;gap:2px}}
+.cho{{margin:10px 0 0;padding:10px 12px;background:#FAF6F1;display:flex;align-items:center;gap:12px}}
+.cho .tx{{display:grid;gap:2px;min-width:0}}
+.cho .ph{{flex:0 0 76px;width:76px;height:76px;object-fit:contain;background:#fff;border:1px solid var(--line)}}
+.cho .meta{{margin:2px 0 0}}
 .cho .lb{{font:400 10px/1.4 var(--en);letter-spacing:.2em;color:var(--brown)}}
 .cho b{{font-size:14.5px;line-height:1.5}}
 .cho .sc{{font:400 12px/1.4 var(--en);color:var(--sub)}} .cho .sc i{{font-style:normal;color:var(--line2);margin:0 6px}}
@@ -612,7 +646,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .js .fade:not(.in){{opacity:0;transform:translateY(10px)}}
 @media (prefers-reduced-motion:reduce){{.js .fade:not(.in){{opacity:1;transform:none}}.card,.arw,#totop{{transition:none}}}}
 </style></head>
-<body><div class="wrap">
+<body class="s-{sea}"><div class="wrap">
 <header class="head">
 <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
 <img src="logo.png" alt="うさぎ│LIFE NOTES" width="72" height="72">

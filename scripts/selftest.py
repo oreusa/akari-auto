@@ -172,5 +172,15 @@ ok(not lib.amazon_link("B0TESTTEST", "", now, low).get("ok"), "レビューの�
 lib.http = lambda *a, **k: (200, "有効なページではありません", "")
 ok(not lib.amazon_link("B0TESTTEST", "", now, items).get("ok"), "ページ切れのAmazonを通した")
 
+# 季節の切り替え（seasons.json）：日付で時期と項目が変わる
+import page  # noqa: E402
+lib.ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # 上の試しで仮の場所にしたので戻す
+for md, want in [((1, 3), "お正月"), ((1, 20), "冬の暮らし"), ((10, 24), "冬じたく"), ((11, 20), "ブラックフライデー"),
+                 ((12, 10), "クリスマスと年末"), ((12, 30), "お正月"), ((7, 15), "暑さ対策")]:
+    got = page.period(datetime(2026, md[0], md[1], 9, 0, tzinfo=lib.JST)).get("name")
+    ok(got == want, f"{md[0]}/{md[1]} の時期が「{got}」（{want} のはず）")
+ok(page._cat("NERUS ふわとろ毛布", page.cats(datetime(2026, 10, 24, tzinfo=lib.JST))) == "winter", "毛布が冬じたくに入らない")
+ok(page._cat("NERUS ふわとろ毛布", page.cats(datetime(2026, 7, 1, tzinfo=lib.JST))) == "life", "夏に毛布が季節の項目に入った")
+
 print("自己テスト：", "OK" if not fails else f"×{len(fails)}")
 sys.exit(1 if fails else 0)
