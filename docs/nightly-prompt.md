@@ -53,14 +53,14 @@
 ・4コマ：運用日記。1行目「昨日わかったこと：〜」（数字は metrics と log の実際の数字だけ）、次の行「うさぎちゃん運用日記 第N話「題」」（N は続き番号。10/22が第15話なので、D が 2026-10-23 なら16、そこから1日1つずつ増やす：N = 16 +（D − 2026-10-23 の日数））、その下にコマ1〜4（表情と吹き出し12字以内。1話で表情3種類以上）。投稿文は1つだけ（URLなし）。
 ・ROOM（毎日必ず。10/22 オーナー「ROOMは楽天の中の買い物客に届くので、10月の成果はここが一番近い」）：翌日の楽天市場のPRで選んだ商品を全部含む3件以上（PRが4本の日は4件）。機械がPRの商品が room に無い予定表を×にする。各件「商品名／商品ページURL／コメント3〜5行（です・ます、ここが他と違う1点＋誰がいつ使うか。数字は商品ページにある物だけ）」。レビュー平均4.0以上の物だけ。
 ・4コマの投稿文（10/23から。雫はBufferを使わず、絵を描いて置くだけ。予約は機械）：koma4/D.json を mcp__github__create_or_update_file で main に保存する（commit message「燈：D の4コマの文」）。形：{"date": "D", "slot": "08:00", "episode": N, "title": "題", "text": "昨日わかったこと：〜\n\nうさぎちゃん運用日記 第N話「題」🌙"}。image_url と video_url は書かない（朝の4コマ係が、雫の絵を見つけて入れる）。text は X の280（全角140字）以内。
-・4コマ：前の日の log に「4コマ」の「予約できない」「予約×」「出なかった」があれば、台本の頭に「※昨日の4コマは出ていません。吹き出しの文字が枠の内側にあるか確かめて、7:40までに保存してください」と1行書く。
+・4コマ：前の日の log に「4コマ」の「予約できない」「予約×」「出なかった」があれば、台本の頭に「※昨日の4コマは出ていません。吹き出しの文字が枠の内側にあるか確かめて、7:10までに保存してください」と1行書く。
 ・4コマの学び（毎晩。漫画も成長させる。10/23 オーナー）：data/metrics の 08:00 の閲覧（X・Threads・インスタ）と notes/koma4-learning.md を読み、notes/koma4-learning.md に「- D-1 第N話『題』：閲覧 Th〇・X〇・インスタ〇／伸びた・伸びなかった理由（題材・1コマ目・オチ・表情）／直し〇回」を1行足す。
 ・台本の頭に、次の2つを必ず書く（雫が読む）：「■前に間違えた所（最近5件）」＝ koma4-learning.md の「直し」「出さなかった」の行を新しい順に5つまで、「■よく見られた回の型」＝閲覧がいちばん多かった回の題と、1コマ目・オチの形を1行。次の話はその型を1つ取り入れる。
 ・ArtifactData が使えないときは、その旨を最後の1行に書く（予定表は止めない）。
 
 ■管制室への写し（10/23から。オーナーのClaudeにはGitHubの接続がないため、管制室は写しを読む）
 ToolSearch で "select:ArtifactData" を読み込み、artifact https://claude.ai/artifact/1qLboYHRT4iH1uVrpeUZv6 の collection "files" に、次のファイルの本文を写す。doc_id はパスの「/」を「__」にしたもの（例 schedule/2026-10-24.json → schedule__2026-10-24.json）。data は {"text": ファイルの本文そのまま, "at": "M/D HH:MM"}。同じ doc_id がもうあるときは、先に get して version を if_version に入れる。batch で1回にまとめる。
-写すファイル：schedule/明日.json、schedule/今日.json、log/今日.md、data/metrics/昨日.json（あれば）、notes/learning.md。もう1つ、doc_id "tasks.json" に、予約タスク4つ（trig_01QzGRiC67ufRP7LBD5tKcu7・trig_01DyqqXXZ37C2F6EnhvgzenY・trig_018LroXsHYAtXPeERQYaY3Zt・trig_01GR5piwSb3uuY749KRrtX31）を mcp__claude-code-remote__get_trigger で読み、{"ID": {"enabled", "next_run_at", "last_run": {"status", "fired_at"}}} の形のJSON文字列を text にして写す（get_trigger が使えなければ飛ばす）。
+写すファイル：schedule/明日.json、schedule/今日.json、log/今日.md、data/metrics/昨日.json（あれば）、notes/learning.md。もう1つ、doc_id "tasks.json" に、予約タスク5つ（trig_01QzGRiC67ufRP7LBD5tKcu7・trig_01F2Hr1L6G178JjwjA23bGcp・trig_014UbLzWq1DuwiJZJag3KoQu・trig_018LroXsHYAtXPeERQYaY3Zt・trig_01GR5piwSb3uuY749KRrtX31）を mcp__claude-code-remote__get_trigger で読み、{"ID": {"enabled", "next_run_at", "last_run": {"status", "fired_at"}}} の形のJSON文字列を text にして写す（get_trigger が使えなければ飛ばす）。
 さらに、同じ artifact の collection "ledger"（毎日の記録。お金のことなので毎晩必ず）に、doc_id を昨日の日付 Y（YYYY-MM-DD）で1件書く（あれば get して if_version を付けて update）。中身：{"th": data/metrics/Y.json の Threads views の合計, "x": X impressions の合計, "rk_click", "rk_cnt", "rk_yen"（分析メモか akari2/report の【楽天】Y の行のクリック・成果件数・未確定円）, "a8_cnt", "a8_yen"（【A8】Y の行）}。行が「未確認」なら rk_click などは書かず "rk_un": true にする。数字を作らない（無い物は書かない）。前の日以前で「未確認」だった日の数字が分析メモに出てきたら、その日の doc も update する。Amazon は今は使っていないので書かない（使い始めたら "amazon": 円）。使えないときは最後の1行に書く。
 
 ■最後のメッセージ：1行だけ。log に「出なかった」「中止」「予約×」があれば、その数も入れる（例「燈 10/23：9本保存・check OK・PR 18:15 着る毛布（expect グルーニー）・学び：〜」）。
