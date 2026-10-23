@@ -45,7 +45,8 @@ def period(now):
 def cats(now):
     """紹介商品の項目（ページの並び順）：宿 → 時期の項目 → 暮らしの物 → 楽天のお得。時期が変わると自動で入れ替わる。"""
     mid = [(c["key"], c["en"], c["name"], c["lead"], tuple(c.get("words", ()))) for c in period(now).get("cats", [])]
-    return ([("stay", "STAY", "週末の宿", "口コミ1,000件以上・評価4.5以上の宿だけ", ())] + mid
+    return ([("stay", "STAY", "週末の宿", "口コミ1,000件以上・評価4.5以上の宿だけ", ()),
+             ("book", "BOOKING", "旅と贈り物の予約", "宿とツアー、体験、お花の定期便", ())] + mid
             + [("life", "DAILY", "暮らしの物", "すぐ使う小物と消耗品", ()),
                ("sale", "SALE", "楽天のお得", "楽天のセールとポイントアップ。終わる日を先に書いています", ())])
 
@@ -156,6 +157,7 @@ def collect(now):
             if key:  # リンクのない比べ（電気代など）はページに載せない
                 items[key].append(entry)
     items["pick"] = _room_picks(now, since, skip=pr_urls)
+    items["a8"] = _a8_items()
     return items, ended
 
 
@@ -177,6 +179,37 @@ def _cat(text, cs):
         if any(w in text for w in words):
             return key
     return "life"
+
+
+A8_NOTE = {  # 広告主ごとの一言（A8の案内に書いてある事だけ）
+    "nta.co.jp": "JR＋宿泊のセットや国内ツアーを、まとめて予約できます",
+    "kkday.com": "国内と海外の体験・チケットを予約できます",
+    "hitohana.tokyo": "色が選べるお花の定期便",
+}
+
+
+def _a8_items():
+    """汐がリンク帳に書いた「A8ページ」のリンク（このページのサイトで取った物）。夜の回が data/a8-page.json に写す。
+    開いて広告主のページに着いた物だけ載せる。"""
+    out = []
+    for it in (load_json(path("data", "a8-page.json"), {}) or {}).get("items", []):
+        url, host = it.get("url", ""), it.get("host", "")
+        if not url:
+            continue
+        if os.environ.get("RAKUTEN_APP_ID"):  # 機械の上だけで確かめる（手元の見本はそのまま）
+            from lib import a8_link
+            try:
+                if not a8_link(url, host).get("ok"):
+                    continue
+            except Exception:
+                continue
+        raw = it.get("name", "")
+        m = re.search(r"【([^】]+)】", raw)
+        rest = re.sub(r"【[^】]*】", " ", raw).replace("！", "、").strip(" 、")
+        name = m.group(1) if m else raw
+        note = next((v for k, v in A8_NOTE.items() if host.endswith(k)), "") or (rest if m else "")
+        out.append({"name": name, "url": url, "note": note})
+    return out
 
 
 def _short(name, n=34):
@@ -403,6 +436,13 @@ def sale(e):
             f'<div class="t">{phr(name)}</div><div class="ft2">{btn}</div></article>')
 
 
+def a8card(e):
+    note = f'<p class="why">{esc(e["note"])}</p>' if e.get("note") else ""
+    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
+    return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">予約・申し込み</span></div>'
+            f'<div class="t">{phr(e["name"])}</div>{note}<div class="ft2">{btn}</div></article>')
+
+
 def _season(now):
     """表紙の季節：時期（seasons.json）の季節で、色・春夏秋冬の印・見出しを切り替える。"""
     pe = period(now)
@@ -445,6 +485,7 @@ def render(items, ended, now, cfg):
         goods.get(e.get("cat"), goods["life"]).append(sale(e) if e.get("cat") == "sale" else compare(e))
     for e in items.get("pick", []):
         goods.get(e.get("cat"), goods["life"]).append(pick(e))
+    goods["book"] += [a8card(e) for e in items.get("a8", [])]
     blocks, nav = [], []
     if spots:  # いちばん上はおでかけ。数を絞って、残りはたたむ
         cards = [spot(e) for e in spots]
@@ -470,7 +511,9 @@ def render(items, ended, now, cfg):
         n_pr=sum(len(v) for v in goods.values()),
         pr_note=("このページには楽天アフィリエイトとAmazonアソシエイトの広告（PR）があります。<br>"
                  "Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。"
-                 if any(e.get("amazon") for e in items["pr"]) else "このページには楽天アフィリエイトの広告（PR）があります"),
+                 if any(e.get("amazon") for e in items["pr"]) else
+                 "このページにはアフィリエイト広告（PR）があります" if items.get("a8") else
+                 "このページには楽天アフィリエイトの広告（PR）があります"),
         updated=f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M}")
 
 
