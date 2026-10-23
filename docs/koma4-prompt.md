@@ -16,4 +16,8 @@
    "video_url": "https://drive.google.com/uc?export=download&id=動画のid"（動画があるときだけ）
 5. mcp__github__actions_run_trigger（run_workflow、workflow_id=book.yml、ref=main）で予約係を動かす。2分待って log/D.md を読み、「4コマ 第N話 … 予約OK」の行を確かめる。「予約できない」「予約×」があれば、その行を最後のメッセージに写す。
 
+6. 管制室への写し（10/23から。オーナーのClaudeにはGitHubの接続がないため、管制室は写しを読む）
+ToolSearch で "select:ArtifactData" を読み込み、artifact https://claude.ai/artifact/1qLboYHRT4iH1uVrpeUZv6 の collection "files" に、次のファイルの本文を写す。doc_id はパスの「/」を「__」にしたもの（例 schedule/2026-10-24.json → schedule__2026-10-24.json）。data は {"text": ファイルの本文そのまま, "at": "M/D HH:MM"}。同じ doc_id がもうあるときは、先に get して version を if_version に入れる。batch で1回にまとめる。
+写すファイル：log/D.md、schedule/D.json。使えないときは最後のメッセージに書く。
+
 最後のメッセージ：1行だけ（例「4コマ係 10/24：第17話 X・Threads・Instagram 予約OK（8:00）」）。

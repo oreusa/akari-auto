@@ -56,4 +56,8 @@
 ・4コマ：前の日の log に「4コマ」の「予約できない」「予約×」「出なかった」があれば、台本の頭に「※昨日の4コマは出ていません。吹き出しの文字が枠の内側にあるか確かめて、7:40までに保存してください」と1行書く。
 ・ArtifactData が使えないときは、その旨を最後の1行に書く（予定表は止めない）。
 
+■管制室への写し（10/23から。オーナーのClaudeにはGitHubの接続がないため、管制室は写しを読む）
+ToolSearch で "select:ArtifactData" を読み込み、artifact https://claude.ai/artifact/1qLboYHRT4iH1uVrpeUZv6 の collection "files" に、次のファイルの本文を写す。doc_id はパスの「/」を「__」にしたもの（例 schedule/2026-10-24.json → schedule__2026-10-24.json）。data は {"text": ファイルの本文そのまま, "at": "M/D HH:MM"}。同じ doc_id がもうあるときは、先に get して version を if_version に入れる。batch で1回にまとめる。
+写すファイル：schedule/明日.json、schedule/今日.json、log/今日.md、data/metrics/昨日.json（あれば）、notes/learning.md。使えないときは最後の1行に書く。
+
 ■最後のメッセージ：1行だけ。log に「出なかった」「中止」「予約×」があれば、その数も入れる（例「燈 10/23：9本保存・check OK・PR 18:15 着る毛布（expect グルーニー）・学び：〜」）。
