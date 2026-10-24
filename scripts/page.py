@@ -482,9 +482,7 @@ def spot(e):
     st, en = _dt(e.get("start")), _dt(e.get("ends"))
     now = now_jst()
     badge = ""
-    if e.get("kind") != "deal" and en and en >= now and (en.date() - now.date()).days <= 2:
-        badge = '<span class="bd hurry">まもなく終了</span>'
-    elif st and st <= now and (now.date() - st.date()).days <= 3:
+    if st and st <= now and (now.date() - st.date()).days <= 3:
         badge = '<span class="bd new">NEW</span>'
     dd = (f' data-st="{st.date().isoformat()}"' if st else "") + (f' data-en="{en.date().isoformat()}"' if en else "")
     return (f'<div class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}"{dd} style="--pc:{color}">'
@@ -685,7 +683,6 @@ def render(items, ended, now, cfg):
         blocks.append(f'<section class="blk go" id="odekake">{head("NOW ON", "開催中のおでかけ", "公式ページで確かめた物だけ。<br>矢印で公式ページ、「地図」で場所が開きます")}'
                       f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button><button data-f="w">今週末</button></div>'
                       f'<nav class="flt" aria-label="地域">{tabs}</nav>'
-                      f'<button class="omk" type="button"><span>迷ったら</span>AIにおまかせ</button>'
                       f'{cardlist(now_on, "開催中")}<p class="none">この地域は、これから増やしていきます</p></section>')
         if coming:
             blocks.append(f'<section class="blk go" id="coming">{head("COMING UP", "これからのおでかけ", "")}'
@@ -924,19 +921,12 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 #totop.on{{opacity:1;pointer-events:auto}}
 /* さわって楽しい仕掛け：印・行きたい・おまかせ */
 .bd{{font:700 10px/1 var(--go);letter-spacing:.1em;border-radius:99px;padding:4px 8px 3px;margin-left:8px}}
-.bd.hurry{{color:#fff;background:#C0674A}} .bd.new{{color:#fff;background:#5D7FA3;font-family:var(--en);letter-spacing:.18em}}
+.bd.new{{color:#fff;background:#5D7FA3;font-family:var(--en);letter-spacing:.18em}}
 .card.it{{transition:background .2s,transform .15s,box-shadow .3s}} .card.it:active{{transform:scale(.985)}}
-@keyframes pop{{40%{{transform:scale(1.35)}}100%{{transform:scale(1)}}}}
-.omk{{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin:0 0 14px;padding:13px;font:700 13.5px/1 var(--go);letter-spacing:.14em;color:#fff;background:linear-gradient(100deg,#5D7FA3,#8E7BA8 55%,#C08A8F);border:0;cursor:pointer;box-shadow:0 3px 10px rgba(93,127,163,.25)}}
-.omk span{{font:400 10.5px/1 var(--go);letter-spacing:.1em;opacity:.85}}
-.omk:active{{transform:scale(.985)}}
-.card.it.flash{{background:#F3F0F8}}
-.card.it.picked{{box-shadow:inset 3px 0 0 var(--pc),0 0 0 2px #8E7BA8,0 6px 18px rgba(142,123,168,.25);animation:pop2 .5s ease}}
-@keyframes pop2{{40%{{transform:scale(1.02)}}100%{{transform:scale(1)}}}}
 .shr{{display:block;width:100%;margin:10px 0 0;padding:13px;font:500 13px/1 var(--go);letter-spacing:.12em;color:var(--ink);background:#fff;border:1px dashed var(--line2);cursor:pointer}}
 .fade{{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}}
 .js .fade:not(.in){{opacity:0;transform:translateY(10px)}}
-@media (prefers-reduced-motion:reduce){{.js .fade:not(.in){{opacity:1;transform:none}}.card,.arw,#totop{{transition:none}}.card.it.picked{{animation:none}}}}
+@media (prefers-reduced-motion:reduce){{.js .fade:not(.in){{opacity:1;transform:none}}.card,.arw,#totop{{transition:none}}}}
 </style></head>
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
@@ -983,26 +973,11 @@ document.querySelectorAll(".flt button").forEach(function(x){{x.addEventListener
   document.querySelectorAll(".flt button").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
 document.querySelectorAll(".seg button").forEach(function(x){{x.addEventListener("click",function(){{
   document.querySelectorAll(".seg button").forEach(function(y){{y.classList.toggle("on",y===x);}});free=x.dataset.f;apply();}});}});
-var om=document.querySelector(".omk"),busy=false;
-if(om)om.addEventListener("click",function(){{
-  if(busy)return;var sec=document.getElementById("odekake");
-  var cs=[].slice.call(sec.querySelectorAll(".card.it")).filter(function(c){{return !c.hidden;}});
-  if(!cs.length)return;busy=true;
-  sec.querySelectorAll("details.more").forEach(function(d){{d.open=true;}});
-  sec.querySelectorAll(".picked").forEach(function(c){{c.classList.remove("picked");}});
-  var pick=cs[Math.floor(Math.random()*cs.length)],n=0,last=null,steps=Math.min(10,cs.length*2);
-  var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
-  (function tick(){{
-    if(last)last.classList.remove("flash");
-    if(rm||n>=steps){{pick.classList.add("picked");pick.scrollIntoView({{behavior:rm?"auto":"smooth",block:"center"}});busy=false;return;}}
-    last=cs[Math.floor(Math.random()*cs.length)];last.classList.add("flash");n++;setTimeout(tick,60+n*14);
-  }})();
-}});
 var sh=document.getElementById("shr");
 if(sh)sh.addEventListener("click",function(){{
   var u="https://usagi-life-notes.pages.dev/?f=share";
   if(navigator.share){{navigator.share({{title:document.title,text:"関東・関西のおでかけと、AIが比べた物",url:u}}).catch(function(){{}});return;}}
-  try{{navigator.clipboard.writeText(u).then(function(){{sh.textContent="リンクをコピーしました";}});}}catch(e){{}}
+  try{{navigator.clipboard.writeText(u).then(function(){{sh.textContent="リンクをコピーしました";}}).catch(function(){{}});}}catch(e){{}}
 }});
 document.querySelectorAll(".stab button").forEach(function(x){{x.addEventListener("click",function(){{
   var sh=document.getElementById("shop"),c=x.dataset.c;
