@@ -59,9 +59,8 @@ PAGE_LINE = "AIが比べたおでかけ・宿・お得の一覧：{url}"
 
 
 def with_page(texts, service, cfg, slot=""):
-    """2つ目（最後）の文に、プロフィール用ページのURLを1行足す（10/24 オーナー「HPの宣伝、投稿のURLに一緒に付けとけ。一石二鳥」）。
-    Xは最後のURLがカードになるので、ページの行は2つ目の頭に入れる（公式・商品のカードと、その前の一言を守る）。
-    Threadsは最初のURLが見出しになるので、最後に足す。文字数を超えるなら足さない。"""
+    """2つ目（最後）の文の最後に、プロフィール用ページのURLを1行足す（10/24 オーナー「HPの宣伝、投稿のURLに一緒に付けとけ。一石二鳥」）。
+    X・Threadsとも最後に足す（10/24 オーナー「せめて最後に入れろ」。PRや公式のリンクを先に見せる）。文字数を超えるなら足さない。"""
     from lib import threads_len, x_weight
     pg = (cfg.get("page") or {})
     url = pg.get("url")
@@ -70,14 +69,21 @@ def with_page(texts, service, cfg, slot=""):
     if slot:  # どの投稿から来たか分かる印（x0715 = Xの7:15の投稿、t0715 = Threadsの7:15）
         url = f"{url}?f={'x' if service == 'twitter' else 't'}{slot.replace(':', '')}"
     line = PAGE_LINE.format(url=url)
-    last = texts[-1]
-    if service == "twitter":
-        new = line + "\n\n" + last.lstrip()
-        fits = x_weight(new) <= 280
-    else:
-        new = last.rstrip() + "\n\n" + line
-        fits = threads_len(new) <= 500
+    new = texts[-1].rstrip() + "\n\n" + line
+    fits = (x_weight(new) <= 280) if service == "twitter" else (threads_len(new) <= 500)
     return list(texts[:-1]) + [new] if fits else list(texts)
+
+
+PAGE_HEAD = PAGE_LINE.split("{")[0]
+
+
+def page_at_head(texts):
+    """前の作り（Xはページの行を2つ目の頭に入れていた）で予約した物か。"""
+    return len(texts) >= 2 and texts[-1].startswith(PAGE_HEAD)
+
+
+def strip_page_head(texts):
+    return list(texts[:-1]) + [texts[-1].split("\n\n", 1)[1] if "\n\n" in texts[-1] else texts[-1]]
 
 
 DELETE_POST = 'mutation($i:DeletePostInput!){deletePost(input:$i){__typename}}'
@@ -103,9 +109,10 @@ def refresh_page(cfg, state, now):
             continue
         for s in SERVICES:
             r = rec.get(s)
-            if not isinstance(r, dict) or not r.get("id") or r.get("seen") or r.get("page") or len(r.get("texts") or []) < 2:
+            if not isinstance(r, dict) or not r.get("id") or r.get("seen") or len(r.get("texts") or []) < 2:
                 continue
-            if any(url in t for t in r["texts"]):
+            head = page_at_head(r["texts"])  # 頭に入れた物は、最後に入れ直す（10/24 オーナー「せめて最後に入れろ」）
+            if (r.get("page") and not head) or (any(url in t for t in r["texts"]) and not head):
                 continue
             try:
                 due = datetime.fromisoformat(f"{day}T{r.get('at') or slot}").replace(tzinfo=JST)
@@ -120,8 +127,9 @@ def refresh_page(cfg, state, now):
     for day, slot, s, r, due in todo:
         if r["id"] not in waiting:  # Bufferで予約中でない物（出た・消された）は触らない
             continue
-        new = with_page(r["texts"], s, cfg, slot)
-        if new == r["texts"]:
+        base = strip_page_head(r["texts"]) if page_at_head(r["texts"]) else r["texts"]
+        new = with_page(base, s, cfg, slot)
+        if new == r["texts"] or new == base:
             r["page"] = "字数が足りない"
             changed = True
             continue
