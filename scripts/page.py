@@ -263,6 +263,14 @@ PLACE = [("東京", "東京"), ("高円寺", "東京"), ("池袋", "東京"), ("
          ("大阪", "大阪"), ("梅田", "大阪"), ("なんば", "大阪"), ("難波", "大阪"), ("天王寺", "大阪"), ("福島", "大阪"),
          ("京都", "京都"), ("嵐山", "京都"), ("神戸", "兵庫"), ("兵庫", "兵庫"), ("有馬", "兵庫"), ("城崎", "兵庫"),
          ("姫路", "兵庫"), ("奈良", "奈良"), ("和歌山", "和歌山"), ("高野山", "和歌山"), ("滋賀", "滋賀"), ("琵琶湖", "滋賀")]
+KANTO = {"東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬"}
+REGION_COLOR = {"関東": "#5D7FA3", "関西": "#C27A63"}  # しぼりこみは「関東・関西」の2つ（10/24 オーナー「東京、大阪、兵庫は変だ」）
+
+
+def region(pref):
+    return "関東" if pref in KANTO else "関西" if pref else ""
+
+
 PREF_ORDER = ["東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬", "大阪", "京都", "兵庫", "奈良", "和歌山", "滋賀"]
 PREF_COLOR = {"東京": "#5D7FA3", "神奈川": "#4E8B86", "埼玉": "#9A8657", "千葉": "#C2964A", "茨城": "#7E8F6A",
               "栃木": "#A0705F", "群馬": "#6C7FA0", "大阪": "#C27A63",
@@ -408,7 +416,7 @@ def spot(e):
     deal = e.get("kind") == "deal"
     href = esc(e.get("url") or "#") if deal else esc(map_url(e))
     label = f"公式ページ{OUT}" if deal else f"地図で見る{MAP_PIN}"
-    return (f'<a class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" style="--pc:{color}" href="{href}" '
+    return (f'<a class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}" style="--pc:{color}" href="{href}" '
             f'target="_blank" rel="noopener"><div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
             f'<div class="t">{phr(name)}</div>'
             f'<div class="mp">{label}</div>{ARROW}</a>')
@@ -512,9 +520,9 @@ def render(items, ended, now, cfg):
         follow += (f'<a class="co" href="{esc(p["room_url"])}" target="_blank" rel="noopener">楽天ROOM'
                    f'<span>AIが比べて選んだ物を、まとめて置いています</span></a>')
     spots = items["odekake"] + items["shop"] + items["deal"]
-    prefs = [x for x in PREF_ORDER if any(_pref(e) == x for e in spots)]
+    regs = [x for x in REGION_COLOR if any(region(_pref(e)) == x for e in spots)]
     tabs = '<button class="on" data-p="">すべて</button>' + "".join(
-        f'<button data-p="{esc(x)}" style="--pc:{PREF_COLOR[x]}">{esc(x)}</button>' for x in prefs)
+        f'<button data-p="{esc(x)}" style="--pc:{REGION_COLOR[x]}">{esc(x)}</button>' for x in regs)
     cs = cats(now)
     goods = {k: [] for k, *_ in cs}
     for e in items["pr"]:
@@ -755,7 +763,7 @@ var pref="",free=false;
 function apply(){{
   document.querySelectorAll(".blk").forEach(function(b){{
     var cs=b.querySelectorAll(".card.it");if(!cs.length)return;var k=0;
-    cs.forEach(function(c){{var ok=(!pref||c.dataset.pref===pref)&&(!free||c.dataset.free==="1");c.hidden=!ok;if(ok)k++;}});
+    cs.forEach(function(c){{var ok=(!pref||!c.dataset.pref||c.dataset.pref===pref)&&(!free||c.dataset.free==="1");c.hidden=!ok;if(ok)k++;}});
     b.classList.toggle("empty",!k);
   }});
 }}
