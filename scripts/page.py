@@ -186,6 +186,7 @@ A8_NOTE = {  # 広告主ごとの一言（A8の案内に書いてある事だけ
     "nta.co.jp": "JR＋宿泊のセットや国内ツアーを、まとめて予約できます",
     "kkday.com": "国内と海外の体験・チケットを予約できます",
     "hitohana.tokyo": "色が選べるお花の定期便",
+    "andplants.jp": "観葉植物のお店のお花の定期便",
 }
 
 
@@ -208,6 +209,8 @@ def _a8_items():
         m = re.search(r"【([^】]+)】", raw)
         rest = re.sub(r"【[^】]*】", " ", raw).replace("！", "、").strip(" 、")
         name = m.group(1) if m else raw
+        if m and rest and re.search(r"オフ|OFF|プレゼント|無料|％|%|円", m.group(1)):  # 【】が宣伝文のときは残りを名前にする
+            name = rest
         note = next((v for k, v in A8_NOTE.items() if host.endswith(k)), "") or (rest if m else "")
         out.append({"name": name, "url": url, "note": note})
     return out
