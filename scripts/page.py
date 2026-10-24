@@ -8,6 +8,7 @@
 
 使い方：python scripts/page.py [--now 2026-10-24T09:00]
 """
+import hashlib
 import glob
 import html
 import json
@@ -489,7 +490,8 @@ def spot(e):
     dd = (f' data-st="{st.date().isoformat()}"' if st else "") + (f' data-en="{en.date().isoformat()}"' if en else "")
     fav = (f'<button class="fv" type="button" aria-label="行きたいに入れる" aria-pressed="false">'
            f'<svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.4C1.5 7.8 3.6 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.5 3.3 4.3 6.6-1.8 4.8-9.3 9.4-9.3 9.4z"/></svg></button>')
-    return (f'<div class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}"{dd} style="--pc:{color}">'
+    cid = hashlib.md5(e["url"].encode()).hexdigest()[:6]
+    return (f'<div class="card it" data-id="{cid}" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}"{dd} style="--pc:{color}">'
             f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}{badge}</div>'
             f'<div class="t"><a class="go" href="{href}" target="_blank" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
             f'{nt}{mp}{fav}{ARROW}</div>')
@@ -949,6 +951,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 #favs li small{{grid-column:1;font-size:11px;color:var(--mute)}} #favs li a{{grid-column:1;font-weight:700;font-size:13.5px;line-height:1.5}}
 #favs li button{{grid-row:1/3;grid-column:2;border:0;background:none;color:var(--mute);font-size:12px;cursor:pointer;padding:8px}}
 #favs .fe{{padding:0 16px 18px;font-size:12px;color:var(--mute)}}
+#favs .keep{{display:block;width:calc(100% - 32px);margin:0 16px 10px;padding:13px;font:700 13px/1 var(--go);letter-spacing:.1em;color:#fff;background:#B4546A;border:0;cursor:pointer}}
 .shr{{display:block;width:100%;margin:10px 0 0;padding:13px;font:500 13px/1 var(--go);letter-spacing:.12em;color:var(--ink);background:#fff;border:1px dashed var(--line2);cursor:pointer}}
 .fade{{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}}
 .js .fade:not(.in){{opacity:0;transform:translateY(10px)}}
@@ -972,7 +975,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 </div>
 <button id="totop" aria-label="上にもどる"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4A403A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
 <button id="favb" type="button" aria-label="行きたいリストを開く">♡ 行きたい <b>0</b></button>
-<dialog id="favs" aria-label="行きたいリスト"><div class="fh">行きたいリスト<button type="button" aria-label="閉じる" data-x>×</button></div><ul></ul><p class="fe">カードの♡を押すと、ここに入ります。この端末にだけ残ります</p></dialog>
+<dialog id="favs" aria-label="行きたいリスト"><div class="fh">行きたいリスト<button type="button" aria-label="閉じる" data-x>×</button></div><ul></ul><button class="keep" type="button" id="keep">リストを残す（LINEやメモに送る）</button><p class="fe">カードの♡を押すと、ここに入ります。Xやインスタの中で開いたときは、閉じると消えることがあります。上のボタンで送っておくと、そのリンクからいつでも戻せます</p></dialog>
 <script>
 (function(){{
 var d=document.documentElement;d.classList.add("js");
@@ -1003,7 +1006,7 @@ document.querySelectorAll(".seg button").forEach(function(x){{x.addEventListener
   document.querySelectorAll(".seg button").forEach(function(y){{y.classList.toggle("on",y===x);}});free=x.dataset.f;apply();}});}});
 var FK="lnfav",fav={{}};try{{fav=JSON.parse(localStorage.getItem(FK)||"{{}}")||{{}};}}catch(e){{fav={{}};}}
 var fb=document.getElementById("favb"),dl=document.getElementById("favs");
-function cinfo(c){{var a=c.querySelector("a.go");return {{u:a.href,t:a.textContent.replace(/\\s+/g,""),w:(c.querySelector(".pl")?c.querySelector(".pl").textContent+"　":"")+c.querySelector(".when").textContent}};}}
+function cinfo(c){{var a=c.querySelector("a.go");return {{i:c.dataset.id,u:a.href,t:a.textContent.replace(/\\s+/g,""),w:(c.querySelector(".pl")?c.querySelector(".pl").textContent+"　":"")+c.querySelector(".when").textContent}};}}
 function draw(){{
   var ks=Object.keys(fav);fb.querySelector("b").textContent=ks.length;fb.classList.toggle("on",ks.length>0);
   document.querySelectorAll(".card.it").forEach(function(c){{var b=c.querySelector(".fv");if(b)b.setAttribute("aria-pressed",fav[cinfo(c).u]?"true":"false");}});
@@ -1018,7 +1021,18 @@ document.querySelectorAll(".card.it .fv").forEach(function(b){{b.addEventListene
   if(fav[i.u])delete fav[i.u];else{{fav[i.u]=i;fb.classList.remove("bump");void fb.offsetWidth;fb.classList.add("bump");}}save();draw();}});}});
 fb.addEventListener("click",function(){{if(dl.showModal)dl.showModal();else dl.setAttribute("open","");}});
 dl.addEventListener("click",function(ev){{if(ev.target===dl||ev.target.hasAttribute("data-x"))dl.close?dl.close():dl.removeAttribute("open");}});
+(function(){{var on={{}},byId={{}};document.querySelectorAll(".card.it").forEach(function(c){{var i=cinfo(c);on[i.u]=1;byId[i.i]=i;}});
+  Object.keys(fav).forEach(function(u){{if(!on[u])delete fav[u];}});
+  var l="";try{{l=new URLSearchParams(location.search).get("l")||"";}}catch(e){{}}
+  l.split(".").forEach(function(id){{if(byId[id])fav[byId[id].u]=byId[id];}});save();}})();
 draw();
+var kp=document.getElementById("keep");
+kp.addEventListener("click",function(){{
+  var ids=Object.keys(fav).map(function(u){{return fav[u].i;}}).filter(Boolean);if(!ids.length)return;
+  var u="https://usagi-life-notes.pages.dev/?f=list&l="+ids.join(".");
+  if(navigator.share){{navigator.share({{title:"行きたいリスト",text:"うさぎ│LIFE NOTES の行きたいリスト",url:u}}).catch(function(){{}});return;}}
+  try{{navigator.clipboard.writeText(u).then(function(){{kp.textContent="リンクをコピーしました";}});}}catch(e){{}}
+}});
 var om=document.querySelector(".omk"),busy=false;
 if(om)om.addEventListener("click",function(){{
   if(busy)return;var sec=document.getElementById("odekake");
