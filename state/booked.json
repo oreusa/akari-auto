@@ -503,7 +503,8 @@
         "video": null,
         "alt": "4コマ漫画 第17話"
       },
-      "svc": "twitter"
+      "svc": "twitter",
+      "seen": "出た"
     },
     "threads": {
       "tries": 1,
@@ -519,7 +520,8 @@
         "video": null,
         "alt": "4コマ漫画 第17話"
       },
-      "svc": "threads"
+      "svc": "threads",
+      "seen": "出た"
     },
     "ig_slides": {
       "tries": 1,
@@ -540,7 +542,8 @@
         "ig_type": "post",
         "alt": "4コマ漫画 第17話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
     },
     "ig_story1": {
       "tries": 1,
@@ -558,7 +561,8 @@
         "ig_type": "story",
         "alt": "4コマ漫画 第17話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
     },
     "ig_story2": {
       "tries": 1,
@@ -576,7 +580,56 @@
         "ig_type": "story",
         "alt": "4コマ漫画 第17話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
+    }
+  },
+  "2026-10-24 20:15": {
+    "twitter": {
+      "tries": 1,
+      "id": "6adbf668e4be8a4d8630454b",
+      "kind": "PR",
+      "at": "20:15",
+      "texts": [
+        "【AIが比べた城崎の宿4軒、口コミ1,000件超えは西村屋ホテル招月庭】\n\n◇ 小林屋：4.92・145件\n◇ 季ト時：4.86・504件\n◇ あさぎり荘：4.74・705件\n◇ 西村屋ホテル招月庭：4.71・1,191件\n\n選んだ理由：4軒で4.5以上・1,000件超えはここだけ\n楽天トラベルより（10/23時点）\n#温泉 #PR",
+        "AIが比べたおでかけ・宿・お得の一覧：https://usagi-life-notes.pages.dev/?f=x2015\n\n比べて選んだ西村屋ホテル招月庭の施設ページです\nhttps://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F14007%2F&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F14007%2F\n#PR"
+      ],
+      "topic": "温泉"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "6adbf669bd33ce99c3f7fea0",
+      "kind": "PR",
+      "at": "20:15",
+      "texts": [
+        "【AIが比べた城崎の宿4軒、口コミ1,000件超えは西村屋ホテル招月庭】\n\n◇ 小林屋：4.92・145件\n◇ 炭平別邸 季ト時：4.86・504件\n◇ あさぎり荘：4.74・705件\n◇ 西村屋ホテル招月庭：4.71・1,191件\n\n4軒とも評価は4.7以上で、差がつくのは口コミの数でした。件数が多いほど、いろいろな人の泊まった感想がそろっています。\n\n選んだ理由：4軒を比べ、評価4.5以上で口コミ1,000件を超えたのはここだけでした\n※料金と空室は日によって変わります\n楽天トラベルより（10/23時点）\n#温泉 #PR",
+        "比べて選んだ西村屋ホテル招月庭の施設ページです\nhttps://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F14007%2F&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F14007%2F\n#PR\n\nAIが比べたおでかけ・宿・お得の一覧：https://usagi-life-notes.pages.dev/?f=t2015"
+      ],
+      "topic": "温泉"
+    }
+  },
+  "2026-10-24 21:00": {
+    "twitter": {
+      "tries": 1,
+      "id": "6adbf66a6887a2efc18d6d3b",
+      "kind": "通常",
+      "at": "21:00",
+      "texts": [
+        "10/23から、神戸イルミナージュ2026が2/14まで\n\n◇ こうべアグリパーク\n◇ 点灯17:30〜21:30\n◇ 大人2,000円・子ども1,000円\n\n期間は115日間です\n※12/31は別チケット\n主催ハッピーエールの公式ページより（10/23時点）\n#イルミネーション",
+        "AIが比べたおでかけ・宿・お得の一覧：https://usagi-life-notes.pages.dev/?f=x2100\n\n神戸イルミナージュ2026の公式ページです\nhttps://happyell.co.jp/event/kobe-illuminage-2026"
+      ],
+      "topic": "イルミネーション"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "6adbf66b3d5b27036b5a417b",
+      "kind": "通常",
+      "at": "21:00",
+      "texts": [
+        "10/23から、神戸イルミナージュ2026が2/14まで\n\n◇ 会場はこうべアグリパーク（道の駅 神戸フルーツ・フラワーパーク大沢）\n◇ 点灯は17:30〜21:30、最終入場は21:15\n◇ 通常の入場は大人2,000円・子ども（1歳〜小学生）1,000円\n◇ 光る動物は約20体\n\n調べて分かった数字：期間は2/14までの115日間で、点灯は1日4時間です。21:15を過ぎると入れないので、仕事帰りなら20時台の到着が目安です。\n\n※12/31は別のチケットが要ります\n主催ハッピーエールの公式ページより（10/23時点）",
+        "神戸イルミナージュ2026の公式ページです\nhttps://happyell.co.jp/event/kobe-illuminage-2026\n\nAIが比べたおでかけ・宿・お得の一覧：https://usagi-life-notes.pages.dev/?f=t2100"
+      ],
+      "topic": "イルミネーション"
     }
   }
 }
