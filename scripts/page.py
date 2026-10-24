@@ -479,14 +479,8 @@ def spot(e):
     # 矢印（カード全体）＝公式ページ、「地図」＝地図アプリ（10/24 オーナー「矢印おしたら公式ページ、地図おしたらマップ」）
     mp = (f'<a class="mp" href="https://www.google.com/maps/search/?api=1&amp;query={esc(urllib.parse.quote(q))}" '
           f'target="_blank" rel="noopener">地図{OUT}</a>') if q else ""
-    st, en = _dt(e.get("start")), _dt(e.get("ends"))
-    now = now_jst()
-    badge = ""
-    if st and st <= now and (now.date() - st.date()).days <= 3:
-        badge = '<span class="bd new">NEW</span>'
-    dd = (f' data-st="{st.date().isoformat()}"' if st else "") + (f' data-en="{en.date().isoformat()}"' if en else "")
-    return (f'<div class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}"{dd} style="--pc:{color}">'
-            f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}{badge}</div>'
+    return (f'<div class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}" style="--pc:{color}">'
+            f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
             f'<div class="t"><a class="go" href="{href}" target="_blank" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
             f'{nt}{mp}{ARROW}</div>')
 
@@ -681,7 +675,7 @@ def render(items, ended, now, cfg):
 
         nav.append(f'<a class="g" href="#odekake"><span><i>GO OUT</i>おでかけ</span><b>{len(spots)}</b></a>')
         blocks.append(f'<section class="blk go" id="odekake">{head("NOW ON", "開催中のおでかけ", "公式ページで確かめた物だけ。<br>矢印で公式ページ、「地図」で場所が開きます")}'
-                      f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button><button data-f="w">今週末</button></div>'
+                      f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>'
                       f'<nav class="flt" aria-label="地域">{tabs}</nav>'
                       f'{cardlist(now_on, "開催中")}<p class="none">この地域は、これから増やしていきます</p></section>')
         if coming:
@@ -919,11 +913,6 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .ft{{text-align:center;font-size:10.5px;letter-spacing:.06em;color:var(--mute);margin-top:28px;line-height:1.9}}
 #totop{{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.94);border:1px solid #CFC4B8;box-shadow:0 2px 8px rgba(60,45,35,.12);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;cursor:pointer;padding:0}}
 #totop.on{{opacity:1;pointer-events:auto}}
-/* さわって楽しい仕掛け：印・行きたい・おまかせ */
-.bd{{font:700 10px/1 var(--go);letter-spacing:.1em;border-radius:99px;padding:4px 8px 3px;margin-left:8px}}
-.bd.new{{color:#fff;background:#5D7FA3;font-family:var(--en);letter-spacing:.18em}}
-.card.it{{transition:background .2s,transform .15s,box-shadow .3s}} .card.it:active{{transform:scale(.985)}}
-.shr{{display:block;width:100%;margin:10px 0 0;padding:13px;font:500 13px/1 var(--go);letter-spacing:.12em;color:var(--ink);background:#fff;border:1px dashed var(--line2);cursor:pointer}}
 .fade{{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}}
 .js .fade:not(.in){{opacity:0;transform:translateY(10px)}}
 @media (prefers-reduced-motion:reduce){{.js .fade:not(.in){{opacity:1;transform:none}}.card,.arw,#totop{{transition:none}}}}
@@ -941,7 +930,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 {blocks}
 <p class="pr-note">{pr_note}</p>
 <p class="tip">出かける前・買う前に、公式ページと楽天のページで<br>最新の情報を確かめてください。</p>
-<div class="sns"><h2>FOLLOW</h2>{follow}<button class="shr" type="button" id="shr">このページを友だちに送る</button></div>
+<div class="sns"><h2>FOLLOW</h2>{follow}</div>
 <p class="ft">うさぎ│LIFE NOTES ｜ 毎日更新（最終 {updated}）<br>7日より前の投稿は、外しています</p>
 </div>
 <button id="totop" aria-label="上にもどる"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4A403A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
@@ -949,17 +938,12 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 (function(){{
 var d=document.documentElement;d.classList.add("js");
 var pref="",free="0";
-function ymd(x){{return x.getFullYear()+"-"+("0"+(x.getMonth()+1)).slice(-2)+"-"+("0"+x.getDate()).slice(-2);}}
-var td=new Date(),sat=new Date(td),wd=td.getDay();sat.setDate(td.getDate()+(wd===0?-1:6-wd));var sun=new Date(sat);sun.setDate(sat.getDate()+1);
-var SAT=ymd(sat),SUN=ymd(sun),TODAY=ymd(td);
 function okc(c){{
   if(pref&&c.dataset.pref&&c.dataset.pref!==pref)return false;
   if(free==="1"&&c.dataset.free!=="1")return false;
-  if(free==="w"){{var st=c.dataset.st||"",en=c.dataset.en||"";var a=SAT<TODAY?TODAY:SAT;if(st&&st>SUN)return false;if(en&&en<a)return false;}}
   return true;
 }}
 function apply(){{
-  var on=!!pref||free!=="0";
   document.querySelectorAll(".blk.go").forEach(function(b){{
     var k=0;b.querySelectorAll(".card.it").forEach(function(c){{var ok=okc(c);c.hidden=!ok;if(ok)k++;}});
     b.classList.toggle("empty",!k);
@@ -973,12 +957,6 @@ document.querySelectorAll(".flt button").forEach(function(x){{x.addEventListener
   document.querySelectorAll(".flt button").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
 document.querySelectorAll(".seg button").forEach(function(x){{x.addEventListener("click",function(){{
   document.querySelectorAll(".seg button").forEach(function(y){{y.classList.toggle("on",y===x);}});free=x.dataset.f;apply();}});}});
-var sh=document.getElementById("shr");
-if(sh)sh.addEventListener("click",function(){{
-  var u="https://usagi-life-notes.pages.dev/?f=share";
-  if(navigator.share){{navigator.share({{title:document.title,text:"関東・関西のおでかけと、AIが比べた物",url:u}}).catch(function(){{}});return;}}
-  try{{navigator.clipboard.writeText(u).then(function(){{sh.textContent="リンクをコピーしました";}}).catch(function(){{}});}}catch(e){{}}
-}});
 document.querySelectorAll(".stab button").forEach(function(x){{x.addEventListener("click",function(){{
   var sh=document.getElementById("shop"),c=x.dataset.c;
   document.querySelectorAll(".stab button").forEach(function(y){{y.classList.toggle("on",y===x);}});
