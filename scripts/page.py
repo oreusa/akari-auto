@@ -479,10 +479,20 @@ def spot(e):
     # 矢印（カード全体）＝公式ページ、「地図」＝地図アプリ（10/24 オーナー「矢印おしたら公式ページ、地図おしたらマップ」）
     mp = (f'<a class="mp" href="https://www.google.com/maps/search/?api=1&amp;query={esc(urllib.parse.quote(q))}" '
           f'target="_blank" rel="noopener">地図{OUT}</a>') if q else ""
-    return (f'<div class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}" style="--pc:{color}">'
-            f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
+    st, en = _dt(e.get("start")), _dt(e.get("ends"))
+    now = now_jst()
+    badge = ""
+    if e.get("kind") != "deal" and en and en >= now and (en.date() - now.date()).days <= 2:
+        badge = '<span class="bd hurry">まもなく終了</span>'
+    elif st and st <= now and (now.date() - st.date()).days <= 3:
+        badge = '<span class="bd new">NEW</span>'
+    dd = (f' data-st="{st.date().isoformat()}"' if st else "") + (f' data-en="{en.date().isoformat()}"' if en else "")
+    fav = (f'<button class="fv" type="button" aria-label="行きたいに入れる" aria-pressed="false">'
+           f'<svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.4C1.5 7.8 3.6 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.5 3.3 4.3 6.6-1.8 4.8-9.3 9.4-9.3 9.4z"/></svg></button>')
+    return (f'<div class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}"{dd} style="--pc:{color}">'
+            f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}{badge}</div>'
             f'<div class="t"><a class="go" href="{href}" target="_blank" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
-            f'{nt}{mp}{ARROW}</div>')
+            f'{nt}{mp}{fav}{ARROW}</div>')
 
 
 _PLACE = re.compile(r"(?:場所は|会場は)[「『]?(.+?)(?:[」』]|です|（|。|、|$)")
@@ -669,14 +679,15 @@ def render(items, ended, now, cfg):
 
         def cardlist(es, label):
             cs_ = [spot(e) for e in es]
-            more = (f'<details class="fold more"><summary>ほかの{label}{len(cs_) - SHOW_GO}件を見る</summary>{"".join(cs_[SHOW_GO:])}</details>'
+            more = (f'<details class="fold more"><summary data-l="ほかの{label}">ほかの{label}{len(cs_) - SHOW_GO}件を見る</summary>{"".join(cs_[SHOW_GO:])}</details>'
                     if len(cs_) > SHOW_GO else "")
             return "".join(cs_[:SHOW_GO]) + more
 
         nav.append(f'<a class="g" href="#odekake"><span><i>GO OUT</i>おでかけ</span><b>{len(spots)}</b></a>')
         blocks.append(f'<section class="blk go" id="odekake">{head("NOW ON", "開催中のおでかけ", "公式ページで確かめた物だけ。<br>矢印で公式ページ、「地図」で場所が開きます")}'
-                      f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>'
+                      f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button><button data-f="w">今週末</button></div>'
                       f'<nav class="flt" aria-label="地域">{tabs}</nav>'
+                      f'<button class="omk" type="button"><span>迷ったら</span>AIにおまかせ</button>'
                       f'{cardlist(now_on, "開催中")}<p class="none">この地域は、これから増やしていきます</p></section>')
         if coming:
             blocks.append(f'<section class="blk go" id="coming">{head("COMING UP", "これからのおでかけ", "")}'
@@ -790,7 +801,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .seg button{{font:700 12.5px/1 var(--go);letter-spacing:.12em;color:var(--mute);background:#fff;border:1px solid #D9CFC4;padding:9px 18px;cursor:pointer;margin-left:-1px}}
 .seg button.on{{background:var(--ink);border-color:var(--ink);color:#fff}}
 .flt{{display:flex;flex-wrap:wrap;justify-content:center;gap:0 20px;border-top:1px solid #DDD3C8;border-bottom:1px solid #DDD3C8;padding:10px 0;margin:12px 0 14px}}
-.flt button{{font:700 13px/1 var(--go);letter-spacing:.06em;color:var(--pc,var(--mute));background:none;border:0;border-bottom:1px solid transparent;padding:6px 0;cursor:pointer}}
+.flt button{{font:700 13px/1 var(--go);letter-spacing:.06em;color:var(--pc,var(--mute));background:none;border:0;border-bottom:1px solid transparent;padding:11px 4px 9px;cursor:pointer}}
 .flt button.on{{color:var(--pc,var(--ink));border-bottom-color:var(--pc,var(--ink))}}
 .cnt{{display:flex;justify-content:center;margin:0 0 26px}}
 .cnt span{{font-size:12px;color:var(--sub);padding:0 12px;letter-spacing:.06em}}
@@ -813,7 +824,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .cats a b{{font:400 18px/1 var(--en);color:var(--acc)}}
 .cats a.g{{border-left-color:#5D7FA3}} .cats a.g i,.cats a.g b{{color:#5D7FA3}}
 .go .seg{{margin:4px 0 0}}
-.more{{margin:4px 0 12px}} .more summary{{display:block;width:max-content;margin:0 auto 12px}}
+.more{{margin:4px 0 12px}} .more summary{{display:block;width:max-content;margin:0 auto 12px;padding:10px 4px 2px}} .more[hidden]{{display:none}}
 
 /* 章 */
 .blk{{background:var(--paper);border:1px solid #ECE5DC;border-top:3px solid var(--acc);padding:22px 14px 12px;margin-bottom:18px;scroll-margin-top:12px}}
@@ -913,9 +924,35 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .ft{{text-align:center;font-size:10.5px;letter-spacing:.06em;color:var(--mute);margin-top:28px;line-height:1.9}}
 #totop{{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.94);border:1px solid #CFC4B8;box-shadow:0 2px 8px rgba(60,45,35,.12);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;cursor:pointer;padding:0}}
 #totop.on{{opacity:1;pointer-events:auto}}
+/* さわって楽しい仕掛け：印・行きたい・おまかせ */
+.bd{{font:700 10px/1 var(--go);letter-spacing:.1em;border-radius:99px;padding:4px 8px 3px;margin-left:8px}}
+.bd.hurry{{color:#fff;background:#C0674A}} .bd.new{{color:#fff;background:#5D7FA3;font-family:var(--en);letter-spacing:.18em}}
+.card.it{{transition:background .2s,transform .15s,box-shadow .3s}} .card.it:active{{transform:scale(.985)}}
+.fv{{position:absolute;right:8px;bottom:6px;z-index:2;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:none;border:0;padding:0;cursor:pointer;color:#B9AEA4}}
+.fv svg{{fill:none;stroke:currentColor;stroke-width:1.6;transition:transform .25s}}
+.fv[aria-pressed=true]{{color:#D2667A}} .fv[aria-pressed=true] svg{{fill:currentColor;animation:pop .35s ease}}
+@keyframes pop{{40%{{transform:scale(1.35)}}100%{{transform:scale(1)}}}}
+.omk{{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin:0 0 14px;padding:13px;font:700 13.5px/1 var(--go);letter-spacing:.14em;color:#fff;background:linear-gradient(100deg,#5D7FA3,#8E7BA8 55%,#C08A8F);border:0;cursor:pointer;box-shadow:0 3px 10px rgba(93,127,163,.25)}}
+.omk span{{font:400 10.5px/1 var(--go);letter-spacing:.1em;opacity:.85}}
+.omk:active{{transform:scale(.985)}}
+.card.it.flash{{background:#F3F0F8}}
+.card.it.picked{{box-shadow:inset 3px 0 0 var(--pc),0 0 0 2px #8E7BA8,0 6px 18px rgba(142,123,168,.25);animation:pop2 .5s ease}}
+@keyframes pop2{{40%{{transform:scale(1.02)}}100%{{transform:scale(1)}}}}
+#favb{{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));height:44px;border-radius:99px;background:#fff;border:1px solid #E3B7C0;color:#B4546A;font:700 12.5px/1 var(--go);letter-spacing:.08em;padding:0 16px;display:none;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(60,45,35,.12);cursor:pointer}}
+#favb.on{{display:flex}} #favb b{{font:500 14px/1 var(--en)}} #favb.bump{{animation:pop .35s ease}}
+#favs{{border:0;padding:0;width:min(440px,calc(100% - 24px));max-height:78vh;background:var(--bg);box-shadow:0 10px 40px rgba(40,30,25,.25)}}
+#favs::backdrop{{background:rgba(43,38,34,.35)}}
+#favs .fh{{display:flex;justify-content:space-between;align-items:center;padding:16px 16px 10px;font:600 16px/1 var(--min);letter-spacing:.08em}}
+#favs .fh button{{width:36px;height:36px;border:0;background:none;font-size:20px;color:var(--mute);cursor:pointer}}
+#favs ul{{list-style:none;margin:0;padding:0 16px 16px;display:grid;gap:8px}}
+#favs li{{background:#fff;border:1px solid var(--line);padding:10px 12px;display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}}
+#favs li small{{grid-column:1;font-size:11px;color:var(--mute)}} #favs li a{{grid-column:1;font-weight:700;font-size:13.5px;line-height:1.5}}
+#favs li button{{grid-row:1/3;grid-column:2;border:0;background:none;color:var(--mute);font-size:12px;cursor:pointer;padding:8px}}
+#favs .fe{{padding:0 16px 18px;font-size:12px;color:var(--mute)}}
+.shr{{display:block;width:100%;margin:10px 0 0;padding:13px;font:500 13px/1 var(--go);letter-spacing:.12em;color:var(--ink);background:#fff;border:1px dashed var(--line2);cursor:pointer}}
 .fade{{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}}
 .js .fade:not(.in){{opacity:0;transform:translateY(10px)}}
-@media (prefers-reduced-motion:reduce){{.js .fade:not(.in){{opacity:1;transform:none}}.card,.arw,#totop{{transition:none}}}}
+@media (prefers-reduced-motion:reduce){{.js .fade:not(.in){{opacity:1;transform:none}}.card,.arw,#totop{{transition:none}}.card.it.picked,.fv svg,#favb.bump{{animation:none}}}}
 </style></head>
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
@@ -930,25 +967,79 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 {blocks}
 <p class="pr-note">{pr_note}</p>
 <p class="tip">出かける前・買う前に、公式ページと楽天のページで<br>最新の情報を確かめてください。</p>
-<div class="sns"><h2>FOLLOW</h2>{follow}</div>
+<div class="sns"><h2>FOLLOW</h2>{follow}<button class="shr" type="button" id="shr">このページを友だちに送る</button></div>
 <p class="ft">うさぎ│LIFE NOTES ｜ 毎日更新（最終 {updated}）<br>7日より前の投稿は、外しています</p>
 </div>
 <button id="totop" aria-label="上にもどる"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4A403A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
+<button id="favb" type="button" aria-label="行きたいリストを開く">♡ 行きたい <b>0</b></button>
+<dialog id="favs" aria-label="行きたいリスト"><div class="fh">行きたいリスト<button type="button" aria-label="閉じる" data-x>×</button></div><ul></ul><p class="fe">カードの♡を押すと、ここに入ります。この端末にだけ残ります</p></dialog>
 <script>
 (function(){{
 var d=document.documentElement;d.classList.add("js");
-var pref="",free=false;
+var pref="",free="0";
+function ymd(x){{return x.getFullYear()+"-"+("0"+(x.getMonth()+1)).slice(-2)+"-"+("0"+x.getDate()).slice(-2);}}
+var td=new Date(),sat=new Date(td),wd=td.getDay();sat.setDate(td.getDate()+(wd===0?-1:6-wd));var sun=new Date(sat);sun.setDate(sat.getDate()+1);
+var SAT=ymd(sat),SUN=ymd(sun),TODAY=ymd(td);
+function okc(c){{
+  if(pref&&c.dataset.pref&&c.dataset.pref!==pref)return false;
+  if(free==="1"&&c.dataset.free!=="1")return false;
+  if(free==="w"){{var st=c.dataset.st||"",en=c.dataset.en||"";var a=SAT<TODAY?TODAY:SAT;if(st&&st>SUN)return false;if(en&&en<a)return false;}}
+  return true;
+}}
 function apply(){{
-  document.querySelectorAll(".blk").forEach(function(b){{
-    var cs=b.querySelectorAll(".card.it");if(!cs.length)return;var k=0;
-    cs.forEach(function(c){{var ok=(!pref||!c.dataset.pref||c.dataset.pref===pref)&&(!free||c.dataset.free==="1");c.hidden=!ok;if(ok)k++;}});
+  var on=!!pref||free!=="0";
+  document.querySelectorAll(".blk.go").forEach(function(b){{
+    var k=0;b.querySelectorAll(".card.it").forEach(function(c){{var ok=okc(c);c.hidden=!ok;if(ok)k++;}});
     b.classList.toggle("empty",!k);
+    b.querySelectorAll("details.more").forEach(function(d){{
+      var n=0;d.querySelectorAll(".card.it").forEach(function(c){{if(!c.hidden)n++;}});
+      var s=d.querySelector("summary");s.textContent=s.dataset.l+n+"件を見る";d.hidden=!n;
+    }});
   }});
 }}
 document.querySelectorAll(".flt button").forEach(function(x){{x.addEventListener("click",function(){{
   document.querySelectorAll(".flt button").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
 document.querySelectorAll(".seg button").forEach(function(x){{x.addEventListener("click",function(){{
-  document.querySelectorAll(".seg button").forEach(function(y){{y.classList.toggle("on",y===x);}});free=x.dataset.f==="1";apply();}});}});
+  document.querySelectorAll(".seg button").forEach(function(y){{y.classList.toggle("on",y===x);}});free=x.dataset.f;apply();}});}});
+var FK="lnfav",fav={{}};try{{fav=JSON.parse(localStorage.getItem(FK)||"{{}}")||{{}};}}catch(e){{fav={{}};}}
+var fb=document.getElementById("favb"),dl=document.getElementById("favs");
+function cinfo(c){{var a=c.querySelector("a.go");return {{u:a.href,t:a.textContent.replace(/\\s+/g,""),w:(c.querySelector(".pl")?c.querySelector(".pl").textContent+"　":"")+c.querySelector(".when").textContent}};}}
+function draw(){{
+  var ks=Object.keys(fav);fb.querySelector("b").textContent=ks.length;fb.classList.toggle("on",ks.length>0);
+  document.querySelectorAll(".card.it").forEach(function(c){{var b=c.querySelector(".fv");if(b)b.setAttribute("aria-pressed",fav[cinfo(c).u]?"true":"false");}});
+  var ul=dl.querySelector("ul");ul.innerHTML="";
+  ks.forEach(function(u){{var f=fav[u],li=document.createElement("li"),s=document.createElement("small"),a=document.createElement("a"),x=document.createElement("button");
+    s.textContent=f.w;a.href=u;a.target="_blank";a.rel="noopener";a.textContent=f.t;x.type="button";x.textContent="外す";
+    x.addEventListener("click",function(){{delete fav[u];save();draw();}});li.appendChild(s);li.appendChild(a);li.appendChild(x);ul.appendChild(li);}});
+}}
+function save(){{try{{localStorage.setItem(FK,JSON.stringify(fav));}}catch(e){{}}}}
+document.querySelectorAll(".card.it .fv").forEach(function(b){{b.addEventListener("click",function(ev){{
+  ev.preventDefault();ev.stopPropagation();var i=cinfo(b.closest(".card"));
+  if(fav[i.u])delete fav[i.u];else{{fav[i.u]=i;fb.classList.remove("bump");void fb.offsetWidth;fb.classList.add("bump");}}save();draw();}});}});
+fb.addEventListener("click",function(){{if(dl.showModal)dl.showModal();else dl.setAttribute("open","");}});
+dl.addEventListener("click",function(ev){{if(ev.target===dl||ev.target.hasAttribute("data-x"))dl.close?dl.close():dl.removeAttribute("open");}});
+draw();
+var om=document.querySelector(".omk"),busy=false;
+if(om)om.addEventListener("click",function(){{
+  if(busy)return;var sec=document.getElementById("odekake");
+  var cs=[].slice.call(sec.querySelectorAll(".card.it")).filter(function(c){{return !c.hidden;}});
+  if(!cs.length)return;busy=true;
+  sec.querySelectorAll("details.more").forEach(function(d){{d.open=true;}});
+  sec.querySelectorAll(".picked").forEach(function(c){{c.classList.remove("picked");}});
+  var pick=cs[Math.floor(Math.random()*cs.length)],n=0,last=null,steps=Math.min(10,cs.length*2);
+  var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  (function tick(){{
+    if(last)last.classList.remove("flash");
+    if(rm||n>=steps){{pick.classList.add("picked");pick.scrollIntoView({{behavior:rm?"auto":"smooth",block:"center"}});busy=false;return;}}
+    last=cs[Math.floor(Math.random()*cs.length)];last.classList.add("flash");n++;setTimeout(tick,60+n*14);
+  }})();
+}});
+var sh=document.getElementById("shr");
+if(sh)sh.addEventListener("click",function(){{
+  var u="https://usagi-life-notes.pages.dev/?f=share";
+  if(navigator.share){{navigator.share({{title:document.title,text:"関東・関西のおでかけと、AIが比べた物",url:u}}).catch(function(){{}});return;}}
+  try{{navigator.clipboard.writeText(u).then(function(){{sh.textContent="リンクをコピーしました";}});}}catch(e){{}}
+}});
 document.querySelectorAll(".stab button").forEach(function(x){{x.addEventListener("click",function(){{
   var sh=document.getElementById("shop"),c=x.dataset.c;
   document.querySelectorAll(".stab button").forEach(function(y){{y.classList.toggle("on",y===x);}});
