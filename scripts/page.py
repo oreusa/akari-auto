@@ -128,7 +128,7 @@ def collect(now):
             seen.add(title)
             entry = {"day": f"{d.month}/{d.day}", "year": d.year, "title": title, "bullets": _bullets(text),
                      "reason": _line_with(text, "選んだ理由").replace("選んだ理由：", ""),
-                     "source": _line_with(text, "より（"), "url": _official(p)}
+                     "source": _line_with(text, "より（"), "url": _official(p), "place": p.get("place", "")}
             until = p.get("until")
             if until and datetime.fromisoformat(until).replace(tzinfo=JST) < now:
                 ended.append(entry)
@@ -155,6 +155,7 @@ def collect(now):
                 continue
             key = "odekake" if topic in ODEKAKE else "shop" if topic in SHOP else "deal" if topic in DEAL else ""
             if key:  # リンクのない比べ（電気代など）はページに載せない
+                entry["kind"] = key
                 items[key].append(entry)
     items["pick"] = _room_picks(now, since, skip=pr_urls)
     items["a8"] = _a8_items()
@@ -363,6 +364,34 @@ OUT = ('<svg class="out" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 
        'stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 
 
+MAP_PIN = ('<svg class="out" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 11s3.6-3.4 3.6-6.2A3.6 3.6 0 0 0 2.4 4.8C2.4 7.6 6 11 6 11Z'
+           'M6 6.3a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>')
+
+
+def _place(e):
+    """地図で探す場所の名前。予定表の place（夜の回が書く）を使い、なければ本文から1つ選ぶ。"""
+    if e.get("place"):
+        return e["place"]
+    for b in e["bullets"]:
+        m = re.match(r"(?:場所|会場)は(.+?)(?:です|（|$)", b)
+        if m:
+            return m.group(1).strip()
+    for b in e["bullets"][:1]:
+        b = re.sub(r"^[0-9/〜~・（）()月火水木金土日 ]+", "", b)
+        name = re.split(r"[（(：:、。]", b)[0].strip()
+        if len(name) >= 2:
+            return name
+    return _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))[1]
+
+
+def map_url(e):
+    q = _place(e)
+    pref = _pref(e)
+    if pref and pref not in q:
+        q = f"{q} {pref}"
+    return "https://www.google.com/maps/search/?" + urllib.parse.urlencode({"api": "1", "query": q})
+
+
 def spot(e):
     pref = _pref(e)
     color = PREF_COLOR.get(pref, "#A07E66")
@@ -371,11 +400,15 @@ def spot(e):
     free = _free(e)
     tag = f'<span class="tg">・{esc(free)}</span>' if free else ""
     pl = f'<span class="pl">{esc(pref)}</span>' if pref else ""
-    href = esc(e.get("url") or "#")
+    # おでかけとお店は、押すと地図（Googleマップ）が開く（10/24 オーナー「公式ページではなく、押したらマップに飛ぶ」）
+    # 期間のお得（無印良品週間など）は行く場所がないので、公式ページのまま
+    deal = e.get("kind") == "deal"
+    href = esc(e.get("url") or "#") if deal else esc(map_url(e))
+    label = f"公式ページ{OUT}" if deal else f"地図で見る{MAP_PIN}"
     return (f'<a class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" style="--pc:{color}" href="{href}" '
             f'target="_blank" rel="noopener"><div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
             f'<div class="t">{phr(name)}</div>'
-            f'<div class="mp">公式ページ{OUT}</div>{ARROW}</a>')
+            f'<div class="mp">{label}</div>{ARROW}</a>')
 
 
 def _img(e):
