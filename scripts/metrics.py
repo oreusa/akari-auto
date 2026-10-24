@@ -42,7 +42,7 @@ def fetch_day(cfg, state, day):
                 "service": n["channelService"],
                 "slot": slot or (datetime.fromisoformat(sent.replace("Z", "+00:00")).astimezone(JST).strftime("%H:%M") if sent else ""),
                 "kind": kind or "手動",
-                "first": (n["text"] or "").splitlines()[0][:40],
+                "first": ((n["text"] or "").splitlines() or [""])[0][:40],
                 "url": n.get("externalLink"),
                 "metrics": {m["type"]: m["value"] for m in (n.get("metrics") or [])},
             })
