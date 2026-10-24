@@ -117,7 +117,7 @@ def put(img, name):
         deploy(d)
     url = f"https://{PROJECT}.pages.dev/{name}.mp4"
     st, body, _ = http_raw(url)
-    if st != 200 or len(body) < 100_000:
+    if st != 200 or body[4:8] != b"ftyp":  # mp4 の頭の印（http_raw は頭の4KBだけ読む）
         raise RuntimeError(f"置いた動画が開けない（{st}）")
     return url
 
