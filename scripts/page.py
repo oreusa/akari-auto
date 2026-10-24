@@ -588,7 +588,7 @@ def _season(now):
     sea = pe.get("season", "autumn")
     i = SEASON_I.get(sea, 2)
     year = now.year - (1 if now.month <= 2 and sea == "winter" else 0)
-    return i, sea, f"{sea.upper()} {year}", pe.get("name") or f'{"春夏秋冬"[i]}のおでかけ'
+    return i, sea, f"{sea.upper()} {year}", f'{"春夏秋冬"[i]}のおでかけ'  # 表紙は季節の名前だけ（時期の名前「冬じたく」は商品の欄だけで使う。10/24 オーナー）
 
 
 def _year_ring(cur):
