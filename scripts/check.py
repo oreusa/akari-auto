@@ -136,11 +136,7 @@ def check_file(fp):
         d = date.fromisoformat(data.get("date", ""))
     except ValueError:
         return probs + [f"{fp}: date が YYYY-MM-DD でない"]
-    room_urls = {str(r.get("url", "")).split("?")[0].rstrip("/") for r in (data.get("room") or []) if isinstance(r, dict)}
-    for p in data["posts"]:
-        lk = p.get("link") or {}
-        if lk.get("type") == "ichiba" and str(lk.get("url", "")).split("?")[0].rstrip("/") not in room_urls:
-            probs.append(f"{fp} {p.get('slot')}: PRで選んだ楽天市場の商品が room にない（PRの商品は必ずROOMにも載せる。10/22 オーナー）")
+    # ROOM は 10/24 にやめた（オーナー「凪をやめて全部自動にする」）。room は無くてよい
     for p in data["posts"]:
         extra = []
         if not p.get("link") and d >= OFFICIAL_FROM:

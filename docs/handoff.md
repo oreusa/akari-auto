@@ -16,10 +16,9 @@
 | 7:15〜 | 予約係 | 4コマを8:00に予約（X・Threadsは画像。インスタは毎日、1コマずつのスライド4枚＋2コマずつのストーリー2枚〔8:00・8:01〕、動画があればリールも。10/23 オーナー「OK」）。出たかも確かめる | `log/日付.md` |
 | 7:15・9:15・12:15・13:45・15:15・18:15(PR)・20:15・21:00・22:15(PR) | 予約係 | 燈が書いた9本が出る（4コマと合わせて各媒体10本。10/22 オーナー決定） | `schedule/日付.json` |
 | 7:30 | 汐（ChatGPT） | 楽天・A8 のクリックと売上を「分析メモ」へ。A8のリンクを「リンク帳」へ | ドライブ 連絡ノート |
-| 20:20 | 凪（ChatGPT） | その日のROOMがまだなら楽天ROOMに3件（「ROOM台本」どおり）＋コメント返信。Amazonの商品を5件ブラウザで開いて「Amazon確認帳」へ | ドライブ「ROOM台本」 |
-| 22:11 | 燈 夜の回（Claude） | 翌日の予定表と4コマ・ROOM台本を書く。指示は `docs/nightly-prompt.md` | `schedule/翌日.json`・ArtifactData akari2/翌日 |
+| 22:11 | 燈 夜の回（Claude） | 翌日の予定表と4コマ台本を書く。指示は `docs/nightly-prompt.md` | `schedule/翌日.json`・ArtifactData akari2/翌日 |
 | 予定表を置いたとき | check（`check.yml`） | 決まりと楽天（販売中・商品名・数字・レビュー4.0以上）と出どころを確かめる。×は赤 | GitHub Actions |
-| 23:41 | 受け渡し役（Claude） | 4コマ台本とROOM台本をドライブへ、売上とA8の行を akari2/report へ写す | ドライブ・ArtifactData |
+| 23:41 | 受け渡し役（Claude） | 4コマ台本をドライブへ、売上とA8の行を akari2/report へ写す | ドライブ・ArtifactData |
 | 9:13（毎日） | 朝の見回り（Claude） | 最初の1週間だけ、全部が回っているか確かめて直す。最初に book.yml を1回手で動かしてから log を読む。インスタの4コマは「出た」だけで合格にせず、state/booked.json の「日付 4コマ」→ ig_media.story_ok が全部 true かも見る（10/24 ずれたストーリーを「問題なし」と報告した）。燈の側で直せることはオーナーに回さない | 予約タスク「燈 朝の見回り」trig_012WxgKuNoSRnku3NEurFW1j（毎日同じスレッドで続く） |
 
 ## 2. 予約タスク（Claude）
@@ -39,22 +38,22 @@
 ## 4. ドライブ（フォルダ「連絡ノート」 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）
 - 「燈からの指示（最新）」1Sqtzmd1ltNqemj4_un46kWPQz2URSQcdcP_CZCzHMnU：雫だけが読む短いファイル（■明日の4コマ台本）。作り直すとIDが変わるので、題名で探す。
 - 「指示_雫」1zVPr7vXP2lVHUy7Um8pVibreC_gz4FRNvrLV4KfvspY（10/24作り直し。4コマ設計書は 1Yw4d5xF1xLyRh89kgPdwnjZLjn1FCB7UIJAuczc94mc）／「指示_汐」1pxdTvBhWo69Ir5rzkJiLSBaL1m1gakxiTLphYtxB_y0（売上の数字とA8のリンク、10/24からページ用A8も。旧版 1bDOqj… は「10/22版・使わない」に改名）／「指示_凪」1HWtLyUQOH7iUJzYlmcnEQ8wxJ-_OtkI_N57or0-kUxg（10/24作り直し。20:20の1回で Amazon確認帳5件→ROOM→返信、毎回報告1行）。
-- 「ROOM台本」16J7c8utH51AnR7k143iqrMFrWx_RHplpXiNrNRdBS2k（「（ここから下に台本）」より下だけ入れ替える）。
+- 「ROOM台本」：10/24 にROOMをやめたので使わない。
 - 「リンク帳」1_H6XW71xeWpVUg19P84B9SyBw6ZoVYFxLXKOebFusrM（A8は「A8｜名前｜https://px.a8.net/svt/ejp?a8mat=…｜ドメイン」の形）。
 - 「分析メモ」12BQ-UufhKrlk-Inqbc5OU1TGw9542OnGPwCtS6w7WrU（汐が【楽天】【A8】の行を書く）。
 - 「燈の経営方針」1bPgyCYKaGvU_-IE3Uq06nYNgaIGHXKCIh8QJZhyAwrU：要点を GitHub の docs/policy.md に写し、夜の回が毎晩読む。ジャンルの方針は今も有効。投稿本数・時刻・PRの出し方はこのファイル（燈2.0）が優先。
 - 古い「月から燈へ：自分で決めて動くための指示書」「ルールブック」などは GPT リレー時代の物。食い違うときは燈2.0（このファイル）が優先。
 
 ## 5. ArtifactData（相談室 https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H）
-- collection `akari2`、doc `YYYY-MM-DD`：{koma4, room, writtenAt}（夜の回が書き、受け渡し役が読む）。
+- collection `akari2`、doc `YYYY-MM-DD`：{koma4, writtenAt}（room は10/24から書かない）（夜の回が書き、受け渡し役が読む）。
 - doc `report`：{sales, a8, copiedAt}（受け渡し役が書き、夜の回が読む）。
 
 ## 6. ChatGPT のタスク（10/22 時点）
-- 動かす：雫 4コマ（毎日7:10）、汐 分析（毎日7:30）、凪 運用v2（毎日20:20）。
+- 動かす：雫 4コマ（毎日7:10）、汐 分析（毎日7:30）。凪は10/24にやめた（10/24 オーナー決定：凪をやめて全部自動に。ROOMとAmazonはやめた）。
 - 止めたまま：渚・澪・泉・夜（10/29 ごろ、問題がなければオーナーに「消してよい」と伝える）。
 
 ## 7. 決まり（機械が守らせているもの）
-- Amazon は10/23から使う（オーナー「Amazonは稼げるだろ使おうよ」）。機械は商品ページを開けないので、凪が毎晩20:20にブラウザで開いてドライブ「Amazon確認帳」に書いた物だけ。燈が data/amazon-checked.json に写し、機械は36時間以内に確かめた物だけ出す。タグ aiusagichan-22。楽天の短縮リンク a.r10.to、リンクの直書き（hb.afl・px.a8.net を本文に）も×。
+- Amazon と楽天ROOMは使わない（10/24 オーナー決定：凪をやめて全部自動に。ROOMとAmazonはやめた）。PRは楽天市場・楽天トラベル・A8だけ。楽天の短縮リンク a.r10.to、リンクの直書き（hb.afl・px.a8.net を本文に）も×。
 - A8 はリンク帳の行だけ。予約の直前に、広告主のドメインに着くか確かめる（着かなければ fallback）。10/22 に5件（wargo 着物レンタル・カシカシ・日本旅行・KKday・HitoHana）を `a8.yml` で確かめて全部OK。終わったプログラムでも広告主のページに着くことがあるので、A8 から「提携終了」のメールが来たらオーナーから伝えてもらい、リンク帳の行を消す。
 - PR の文の「数字＋単位」は楽天の商品名か商品説明にある物だけ。比べた他の商品の数字は見ない（選んだ商品の行と「どちらも」の行だけを照らす）。
 - 出どころ「（M/D時点）」は x と threads に必ず。7日より古いと×。出どころのページが無い・「終了しました」なら fallback か中止。
