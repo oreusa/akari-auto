@@ -582,11 +582,6 @@ def render(items, ended, now, cfg):
         goods.get(e.get("cat"), goods["life"]).append(pick(e))
     goods["book"] += [a8card(e) for e in items.get("a8", [])]
     blocks, nav = [], []
-    if hot:  # いちばん上に、今日AIがいちばんに選んだ1つ
-        hot["hot"] = True
-        blocks.append('<section class="blk hotb" id="hot"><div class="wk"><span class="en2">TODAY\'S PICK</span>'
-                      '<span class="jp2">今日のAIのいち押し</span></div><p class="lead">比べた中で、レビューの数と評価がいちばん上だった物</p>'
-                      + compare(hot) + '</section>')
     if spots:  # いちばん上はおでかけ。数を絞って、残りはたたむ
         cards = [spot(e) for e in spots]
         more = ""
@@ -599,6 +594,11 @@ def render(items, ended, now, cfg):
                       f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>'
                       f'<nav class="flt" aria-label="地域">{tabs}</nav>'
                       f'{"".join(cards[:SHOW_GO])}{more}<p class="none">この地域は、これから増やしていきます</p></section>')
+    if hot:  # おでかけの下に、今日AIがいちばんに選んだ1つ（10/24 オーナー「おでかけの後でいい」）
+        hot["hot"] = True
+        blocks.append('<section class="blk hotb" id="hot"><div class="wk"><span class="en2">TODAY\'S PICK</span>'
+                      '<span class="jp2">今日のAIのいち押し</span></div><p class="lead">比べた中で、レビューの数と評価がいちばん上だった物</p>'
+                      + compare(hot) + '</section>')
     if deals:  # 期間のあるお得（無印良品週間など）は、おでかけの下に別の欄で
         nav.append(f'<a href="#deal"><span><i>DEAL</i>今だけのお得</span><b>{len(deals)}</b></a>')
         blocks.append('<section class="blk" id="deal"><div class="wk"><span class="en2">DEAL</span>'
