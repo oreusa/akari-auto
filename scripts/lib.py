@@ -248,8 +248,8 @@ def wsrv_url(src, box, size=None):
     size=(幅, 高さ) なら、その大きさの白い台紙の真ん中に置く（ストーリー用 1080x1920）。"""
     x, y, bw, bh = box
     q = {"url": src, "cx": x, "cy": y, "cw": bw, "ch": bh, "output": "jpg", "q": 92}
-    if size:
-        q.update({"w": size[0], "h": size[1], "fit": "contain", "cbg": "white"})
+    if size:  # precrop：先に切ってから大きさを変える（無いと、縮めた後の絵を切るので位置がずれる。10/24 ストーリーがずれた）
+        q.update({"precrop": "1", "w": size[0], "h": size[1], "fit": "contain", "cbg": "white"})
     return "https://wsrv.nl/?" + urllib.parse.urlencode(q)
 
 
@@ -257,13 +257,39 @@ def koma4_instagram_media(src, img):
     """Instagram用：スライド4枚（1コマずつ）と、ストーリー2枚（2コマずつ・9:16）。"""
     boxes, how = koma4_boxes(img)
     slides = [wsrv_url(src, b) for b in boxes]
-    stories = []
+    stories = [wsrv_url(src, b, (1080, 1920)) for b in story_boxes(boxes)]
+    return {"slides": slides, "stories": stories, "how": how, "boxes": boxes}
+
+
+def story_local(img, box, size=(1080, 1920)):
+    """ストーリーの見本を手元で作る（切る→白い台紙の真ん中に置く）。wsrv.nl が返した絵と比べるため。"""
+    from PIL import Image
+    x, y, bw, bh = box
+    cr = img.convert("RGB").crop((x, y, x + bw, y + bh))
+    s = min(size[0] / cr.width, size[1] / cr.height)
+    cr = cr.resize((round(cr.width * s), round(cr.height * s)))
+    bg = Image.new("RGB", size, "white")
+    bg.paste(cr, ((size[0] - cr.width) // 2, (size[1] - cr.height) // 2))
+    return bg
+
+
+def image_diff(a, b):
+    """2枚の絵の違い（0=同じ、255=真逆）。小さく縮めた白黒で比べる。"""
+    a, b = a.convert("L").resize((54, 96)), b.convert("L").resize((54, 96))
+    pa, pb = list(a.getdata()), list(b.getdata())
+    return sum(abs(i - j) for i, j in zip(pa, pb)) / len(pa)
+
+
+STORY_DIFF_MAX = 12  # これより違うストーリーは出さない
+
+
+def story_boxes(boxes):
+    out = []
     for a, b in ((0, 1), (2, 3)):
         x0, y0 = min(boxes[a][0], boxes[b][0]), boxes[a][1]
         x1 = max(boxes[a][0] + boxes[a][2], boxes[b][0] + boxes[b][2])
-        y1 = boxes[b][1] + boxes[b][3]
-        stories.append(wsrv_url(src, (x0, y0, x1 - x0, y1 - y0), (1080, 1920)))
-    return {"slides": slides, "stories": stories, "how": how, "boxes": boxes}
+        out.append((x0, y0, x1 - x0, boxes[b][1] + boxes[b][3] - y0))
+    return out
 
 
 def fetch_image(url, timeout=60):

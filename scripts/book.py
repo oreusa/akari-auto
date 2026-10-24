@@ -17,7 +17,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check import LINK, SLOT_RE, post_problems  # noqa: E402
 from lib import (JST, URL_RE, BufferError, a8_link, buffer_gql, amazon_link, append_log, buffer_create, buffer_posts,  # noqa: E402
                  about_item, item_code_from_url, load_json, missing_specs, now_jst, page_check, path,
-                 rakuten_item, rakuten_travel_link, save_json, http_raw, fetch_image, koma4_instagram_media)
+                 rakuten_item, rakuten_travel_link, save_json, http_raw, fetch_image, koma4_instagram_media,
+                 story_local, image_diff, story_boxes, STORY_DIFF_MAX)
 
 LEAD_MIN = int(os.environ.get("LEAD_MIN", "150"))   # 何分先までを予約するか
 LATE_MIN = 90                                       # 時刻を過ぎていても、この分までなら15分後に出す
@@ -297,6 +298,23 @@ KOMA4_SERVICES = ("twitter", "threads", "instagram")
 IG_EXTRA = (("ig_slides", "post", 0), ("ig_story1", "story", 0), ("ig_story2", "story", 1))
 
 
+IG_V = 2  # 切り方を変えたら上げる（前の切り方のURLを使わない）
+
+
+def stories_ok(ig, full):
+    """wsrv.nl が返したストーリーが、手元で切った見本と同じかを見る（10/24 ずれたまま出た）。"""
+    ok = []
+    for u, b in zip(ig["stories"], story_boxes(ig["boxes"])):
+        try:
+            im = fetch_image(u)
+            d = image_diff(im, story_local(full, b))
+            ok.append(im.size == (1080, 1920) and d <= STORY_DIFF_MAX)
+            ig.setdefault("story_diff", []).append(round(d, 1))
+        except Exception:
+            ok.append(False)
+    return ok
+
+
 def media_problem(url, kind):
     """Bufferが取りに行く絵・動画のURLが、ログインなしで開けるかを見る。だめなら理由を返す。"""
     try:
@@ -350,11 +368,13 @@ def book_koma4(cfg, state, now):
         jobs.append((s, s, {"image": k["image_url"], "video": k.get("video_url") if s == "instagram" else None, "alt": alt}, when))
     if ig_todo:
         ig = rec.get("ig_media")
-        if not ig or ig.get("src") != k["image_url"]:  # 7:50の直しで絵が変わったら切り直す
+        if not ig or ig.get("src") != k["image_url"] or ig.get("v") != IG_V:  # 7:50の直しで絵が変わったら切り直す
             try:
-                ig = koma4_instagram_media(k["image_url"], fetch_image(k["image_url"]))
-                ig["src"] = k["image_url"]
+                full = fetch_image(k["image_url"])
+                ig = koma4_instagram_media(k["image_url"], full)
+                ig["src"], ig["v"] = k["image_url"], IG_V
                 bad = media_problem(ig["slides"][0], "Instagram用に切った絵")
+                ig["story_ok"] = stories_ok(ig, full)
             except Exception as e:
                 ig, bad = None, f"Instagram用に絵を切れない（{str(e)[:80]}）"
             if bad:
@@ -366,6 +386,13 @@ def book_koma4(cfg, state, now):
                 rec.pop("ig_error", None)
                 rec["ig_media"] = ig
         for key, t, plus in (ig_todo if ig else []):
+            if t == "story" and not ig.get("story_ok", [False, False])[0 if key == "ig_story1" else 1]:
+                r = rec.setdefault(key, {"tries": 0})
+                if not r.get("error"):
+                    r["error"] = "切ったストーリーが見本と違う"
+                    r["tries"] = MAX_TRIES  # 違う絵は出さない
+                    append_log(day, f"4コマ 第{k.get('episode', '?')}話 {key} 出さない：切った絵が見本と違う（wsrv.nl の切り方を確かめる）")
+                continue
             imgs = ig["slides"] if key == "ig_slides" else [ig["stories"][0 if key == "ig_story1" else 1]]
             jobs.append((key, "instagram", {"images": imgs, "ig_type": t, "alt": alt}, when + timedelta(minutes=plus)))
     for s, svc, media, at in jobs:
@@ -512,6 +539,9 @@ def koma4_test(image_url):
         print("Instagram用に切れない ×", str(e)[:300])
         return 1
     print("コマの位置:", ig["how"], ig["boxes"])
+    full = fetch_image(image_url)
+    sok = stories_ok(ig, full)
+    print("ストーリーが見本と同じか:", sok, "違い", ig.get("story_diff"), f"（{STORY_DIFF_MAX}以下で合格）")
     bad = 0
     for u, want in [(u, tuple(ig["boxes"][0][2:])) for u in ig["slides"]] + [(u, (1080, 1920)) for u in ig["stories"]]:
         try:
@@ -535,6 +565,7 @@ def koma4_test(image_url):
         except Exception as e:
             print("instagram", t, "×", str(e)[:300])
             bad += 1
+    bad += sok.count(False)
     return 1 if bad else 0
 
 
