@@ -454,46 +454,6 @@
     }
   },
   "2026-10-24 4コマ": {
-    "ig_media": {
-      "slides": [
-        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1LRt0NtxCBu9_Ln3Hk4KmedgYRNo_rlgv&cx=8&cy=81&cw=709&ch=512&output=jpg&q=92",
-        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1LRt0NtxCBu9_Ln3Hk4KmedgYRNo_rlgv&cx=8&cy=603&cw=709&ch=512&output=jpg&q=92",
-        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1LRt0NtxCBu9_Ln3Hk4KmedgYRNo_rlgv&cx=8&cy=1125&cw=709&ch=512&output=jpg&q=92",
-        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1LRt0NtxCBu9_Ln3Hk4KmedgYRNo_rlgv&cx=8&cy=1647&cw=709&ch=512&output=jpg&q=92"
-      ],
-      "stories": [
-        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1LRt0NtxCBu9_Ln3Hk4KmedgYRNo_rlgv&cx=8&cy=81&cw=709&ch=1034&output=jpg&q=92&w=1080&h=1920&fit=contain&cbg=white",
-        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1LRt0NtxCBu9_Ln3Hk4KmedgYRNo_rlgv&cx=8&cy=1125&cw=709&ch=1034&output=jpg&q=92&w=1080&h=1920&fit=contain&cbg=white"
-      ],
-      "how": "見つけた",
-      "boxes": [
-        [
-          8,
-          81,
-          709,
-          512
-        ],
-        [
-          8,
-          603,
-          709,
-          512
-        ],
-        [
-          8,
-          1125,
-          709,
-          512
-        ],
-        [
-          8,
-          1647,
-          709,
-          512
-        ]
-      ],
-      "src": "https://drive.google.com/uc?export=download&id=1LRt0NtxCBu9_Ln3Hk4KmedgYRNo_rlgv"
-    },
     "twitter": {
       "tries": 1,
       "id": "6adbdd468b3d437ddc8b130d",
@@ -588,7 +548,7 @@
       "svc": "instagram",
       "seen": "出た"
     },
-    "ig_story1": {
+    "ig_story1_13時の分": {
       "tries": 1,
       "id": "6adc2f07bd33ce99c30582af",
       "kind": "4コマ",
@@ -606,7 +566,7 @@
       },
       "svc": "instagram"
     },
-    "ig_story2": {
+    "ig_story2_13時の分": {
       "tries": 1,
       "id": "6adc2f080b5343d070651e34",
       "kind": "4コマ",
