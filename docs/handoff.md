@@ -38,12 +38,14 @@
 
 ## 4. ドライブ（フォルダ「連絡ノート」 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）
 - 「燈からの指示（最新）」1Sqtzmd1ltNqemj4_un46kWPQz2URSQcdcP_CZCzHMnU：雫だけが読む短いファイル（■明日の4コマ台本）。作り直すとIDが変わるので、題名で探す。
-- 「指示_雫」1zVPr7vXP2lVHUy7Um8pVibreC_gz4FRNvrLV4KfvspY（10/24作り直し。4コマ設計書は 1Yw4d5xF1xLyRh89kgPdwnjZLjn1FCB7UIJAuczc94mc）／「指示_汐」1pxdTvBhWo69Ir5rzkJiLSBaL1m1gakxiTLphYtxB_y0（売上の数字とA8のリンク、10/24からページ用A8も。旧版 1bDOqj… は「10/22版・使わない」に改名）／「指示_凪」1HWtLyUQOH7iUJzYlmcnEQ8wxJ-_OtkI_N57or0-kUxg（10/24作り直し。20:20の1回で Amazon確認帳5件→ROOM→返信、毎回報告1行）。
+- 「指示_雫」1zVPr7vXP2lVHUy7Um8pVibreC_gz4FRNvrLV4KfvspY（10/24作り直し。4コマ設計書は 1Yw4d5xF1xLyRh89kgPdwnjZLjn1FCB7UIJAuczc94mc）／「指示_汐」1pxdTvBhWo69Ir5rzkJiLSBaL1m1gakxiTLphYtxB_y0（売上の数字とA8のリンク、10/24からページ用A8も。旧版 1bDOqj… は「10/22版・使わない」に改名）／「指示_凪」1ZCeLf19lw3tE3qxoBPakkGhHRkwHPBrhRo5i-BWxamI（10/24 16:45 月が作り直し：Amazonは検索を使わず商品ページを直接・ROOMは新しいコレクションを作らない・返信はBufferのCommunity。凪のChatGPTタスクの文にオーナーの許可を直接書いた）（10/24作り直し。20:20の1回で Amazon確認帳5件→ROOM→返信、毎回報告1行）。
 - 「ROOM台本」16J7c8utH51AnR7k143iqrMFrWx_RHplpXiNrNRdBS2k（「（ここから下に台本）」より下だけ入れ替える）。
 - 「リンク帳」1_H6XW71xeWpVUg19P84B9SyBw6ZoVYFxLXKOebFusrM（A8は「A8｜名前｜https://px.a8.net/svt/ejp?a8mat=…｜ドメイン」の形）。
 - 「分析メモ」12BQ-UufhKrlk-Inqbc5OU1TGw9542OnGPwCtS6w7WrU（汐が【楽天】【A8】の行を書く）。
 - 「燈の経営方針」1bPgyCYKaGvU_-IE3Uq06nYNgaIGHXKCIh8QJZhyAwrU：要点を GitHub の docs/policy.md に写し、夜の回が毎晩読む。ジャンルの方針は今も有効。投稿本数・時刻・PRの出し方はこのファイル（燈2.0）が優先。
 - 古い「月から燈へ：自分で決めて動くための指示書」「ルールブック」などは GPT リレー時代の物。食い違うときは燈2.0（このファイル）が優先。
+
+- ChatGPTの担当が「実行時確認が必要」で止まるのは、許可がドライブのファイルにしか無いとき（ChatGPTはファイルの文を本人の許可と見なさない）。許可は各タスクの文そのものに書く（10/24 凪で直した）。
 
 ## 5. ArtifactData（相談室 https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H）
 - collection `akari2`、doc `YYYY-MM-DD`：{koma4, room, writtenAt}（夜の回が書き、受け渡し役が読む）。
