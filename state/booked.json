@@ -359,7 +359,8 @@
         "イケフェス大阪2026の公式ページです\nhttps://ikenchiku.jp/ikefes2026/\n\nAIが比べたおでかけ・宿・お得の一覧：https://usagi-life-notes.pages.dev/?f=x1215"
       ],
       "topic": "おでかけ",
-      "page": "足した"
+      "page": "足した",
+      "seen": "出た"
     },
     "threads": {
       "tries": 1,
@@ -371,7 +372,8 @@
         "イケフェス大阪2026の公式ページです\nhttps://ikenchiku.jp/ikefes2026/\n\nAIが比べたおでかけ・宿・お得の一覧：https://usagi-life-notes.pages.dev/?f=t1215"
       ],
       "topic": "おでかけ",
-      "page": "足した"
+      "page": "足した",
+      "seen": "出た"
     }
   },
   "2026-10-24 13:45": {
@@ -585,6 +587,42 @@
       },
       "svc": "instagram",
       "seen": "出た"
+    },
+    "ig_story1": {
+      "tries": 1,
+      "id": "6adc2f07bd33ce99c30582af",
+      "kind": "4コマ",
+      "at": "13:10",
+      "texts": [
+        "昨日わかったこと：Threadsで日付が近い3つの話は閲覧289、着る毛布の話は11でした。今日は朝から「今日から」「今日だけ」の話を並べます。\n\nうさぎちゃん運用日記 第17話「近い日付」🌙"
+      ],
+      "topic": "漫画",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1LRt0NtxCBu9_Ln3Hk4KmedgYRNo_rlgv&cx=8&cy=81&cw=709&ch=1034&output=jpg&q=92&w=1080&h=1920&fit=contain&cbg=white"
+        ],
+        "ig_type": "story",
+        "alt": "4コマ漫画 第17話"
+      },
+      "svc": "instagram"
+    },
+    "ig_story2": {
+      "tries": 1,
+      "id": "6adc2f080b5343d070651e34",
+      "kind": "4コマ",
+      "at": "13:11",
+      "texts": [
+        "昨日わかったこと：Threadsで日付が近い3つの話は閲覧289、着る毛布の話は11でした。今日は朝から「今日から」「今日だけ」の話を並べます。\n\nうさぎちゃん運用日記 第17話「近い日付」🌙"
+      ],
+      "topic": "漫画",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1LRt0NtxCBu9_Ln3Hk4KmedgYRNo_rlgv&cx=8&cy=1125&cw=709&ch=1034&output=jpg&q=92&w=1080&h=1920&fit=contain&cbg=white"
+        ],
+        "ig_type": "story",
+        "alt": "4コマ漫画 第17話"
+      },
+      "svc": "instagram"
     }
   },
   "2026-10-24 20:15": {
