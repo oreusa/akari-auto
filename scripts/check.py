@@ -125,6 +125,12 @@ def post_problems(p):
     return out
 
 
+# オーナーに外すよう言われた言葉（ミス帳 notes/mistakes.md）
+BANNED_WORDS = {
+    "あしたから行ける": "10/24 オーナー「意味わからない」で削除したシリーズ名",
+}
+
+
 def check_file(fp):
     data = load_json(fp)
     probs = []
@@ -149,6 +155,9 @@ def check_file(fp):
             extra = _official_problems(p.get("x"), "x") + _official_problems(p.get("threads"), "threads")
         if not p.get("link") and d >= PLACE_FROM and p.get("topic") in PLACE_TOPICS and not str(p.get("place", "")).strip():
             extra.append("place がない（HPの「地図」で探す施設名。例 \"なんばパークス\"。1か所に決まらない催しは \"-\"。10/24 オーナー「地図おしたらマップ」）")
+        for w in BANNED_WORDS:
+            if any(w in t for t in (p.get("x") or []) + (p.get("threads") or [])):
+                extra.append(f"「{w}」は使わない（{BANNED_WORDS[w]}）")
         for pr in post_problems(p) + asof_problems(p, d) + extra:
             probs.append(f"{fp} {p.get('slot', '?')}: {pr}")
     for i, it in enumerate(data.get("room") or [], 1):
