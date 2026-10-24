@@ -1,0 +1,350 @@
+{
+  "day": "2026-10-23",
+  "fetchedAt": "2026-10-24T18:44+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【AIが比べた無印良品週間、ネットストアは11/4の10時まで・店舗は11/3ま",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De0K1z6CY2c",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.46,
+        "views": 216,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【AIが比べた無印良品週間、ネットストアは11/4の10時まで・店舗は11/3ま",
+      "url": "https://x.com/1753799832798629888/status/2113413025373753666",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.85,
+        "reposts": 0,
+        "impressions": 271,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "【AIが比べた関西の紅葉5か所、10月中に見頃が始まる順】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De0Py9eDPx-",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.61,
+        "views": 163,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "【AIが比べた関西の紅葉5か所、10月中に見頃が始まる順】",
+      "url": "https://x.com/1753799832798629888/status/2113423919914869166",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.87,
+        "reposts": 0,
+        "impressions": 115,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【AIが比べた雲海の時間、なんばパークス屋上は毎時00分と30分・入場無料で11",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De0kZf-ltoA",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.22,
+        "views": 45,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【AIが比べた雲海の時間、なんばパークス屋上は毎時00分と30分・入場無料で11",
+      "url": "https://x.com/1753799832798629888/status/2113469228170805494",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.13,
+        "reposts": 0,
+        "impressions": 32,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【AIが比べた電気毛布4枚、1時間の電気代は強で約0.83円〜約1.9円】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De0usPejucC",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.86,
+        "views": 35,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【AIが比べた電気毛布4枚、1時間の電気代は強で約0.83円〜約1.9円】",
+      "url": "https://x.com/1753799832798629888/status/2113491861549486119",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.17,
+        "reposts": 0,
+        "impressions": 171,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【AIが比べた大阪の10月の新店3軒、いちばん新しいのは10/17の福島】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De04_qLEdjd",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.55,
+        "views": 182,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【AIが比べた大阪の10月の新店3軒、いちばん新しいのは10/17の福島】",
+      "url": "https://x.com/1753799832798629888/status/2113514518777102456",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.78,
+        "reposts": 0,
+        "impressions": 36,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた着る毛布3つ、レビューはグルーニーが46,917件】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De1Nn3tlr6u",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 12.5,
+        "views": 8,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた着る毛布3つ、レビューはグルーニーが46,917件】",
+      "url": "https://x.com/1753799832798629888/status/2113559849975890337",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.56,
+        "reposts": 0,
+        "impressions": 39,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "代わり",
+      "first": "【AIが比べた有馬温泉の宿2軒、駅から5分以内で評価4.74の中の坊 瑞苑】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De1bXLTFQjk",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.67,
+        "views": 60,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "代わり",
+      "first": "【AIが比べた有馬温泉の宿2軒、駅から5分以内で評価4.74の中の坊 瑞苑】",
+      "url": "https://x.com/1753799832798629888/status/2113590064873689279",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.75,
+        "reposts": 0,
+        "impressions": 80,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【AIが比べた東京のイルミネーション5つ、いちばん早い点灯は10/29】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De1grqbEWVE",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 1.92,
+        "views": 104,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【AIが比べた東京のイルミネーション5つ、いちばん早い点灯は10/29】",
+      "url": "https://x.com/1753799832798629888/status/2113601627227578658",
+      "metrics": {
+        "reactions": 1,
+        "comments": 0,
+        "engagementRate": 1.03,
+        "reposts": 0,
+        "impressions": 97,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:55",
+      "kind": "通常",
+      "first": "東京のイルミネーション5つ、公式ページをまとめました",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De1mxaPkSEc",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.33,
+        "views": 75,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:55",
+      "kind": "通常",
+      "first": "東京のイルミネーション5つ、公式ページをまとめました",
+      "url": "https://x.com/1753799832798629888/status/2113615185902551277",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.12,
+        "reposts": 0,
+        "impressions": 89,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【AIが比べた使い捨てカイロ3種、長持ちは低温タイプの16時間】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De1pG-plIkw",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 6.25,
+        "views": 16,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【AIが比べた使い捨てカイロ3種、長持ちは低温タイプの16時間】",
+      "url": "https://x.com/1753799832798629888/status/2113620322792419801",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.44,
+        "reposts": 0,
+        "impressions": 41,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "23:16",
+      "kind": "手動",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4014326206711503114",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "昨日わかったこと：Threadsで無料のおでかけ2本は閲覧432と398、商品の",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De0fRzwjoFJ",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 14,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "昨日わかったこと：Threadsで無料のおでかけ2本は閲覧432と398、商品の",
+      "url": "https://x.com/1753799832798629888/status/2113457965487292594",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 22.22,
+        "reposts": 0,
+        "impressions": 18,
+        "clicks": 0
+      }
+    }
+  ]
+}
