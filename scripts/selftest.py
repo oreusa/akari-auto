@@ -148,6 +148,9 @@ with tempfile.TemporaryDirectory() as d:
        and all(u.startswith("https://wsrv.nl/?url=https%3A%2F%2Fi%2Fx&cx=") for c in ig for u in c[4]["images"])
        and "h=1920" in ig[1][4]["images"][0] and "precrop=1" in ig[1][4]["images"][0], f"Instagramのスライド・ストーリーがおかしい: {ig}")
     lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 18, "text": "t", "image_url": "https://i/x", "video_url": "https://v/y"})
+    book.run(datetime(2026, 10, 25, 7, 45, tzinfo=lib.JST))
+    ok(not [c for c in kc if c[4].get("video")], "確かめていない動画でリールを予約した")
+    lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 18, "text": "t", "image_url": "https://i/x", "video_url": "https://v/y", "video_ok": "07:30"})
     book.run(datetime(2026, 10, 25, 7, 50, tzinfo=lib.JST))
     reel = [c for c in kc if c[0] == "instagram" and c[4].get("video")]
     ok(len(kc) == 6 and len(reel) == 1 and reel[0][4]["video"] == "https://v/y", f"Instagramのリールがおかしい／二重予約: {kc}")

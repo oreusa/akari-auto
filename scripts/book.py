@@ -351,11 +351,11 @@ def book_koma4(cfg, state, now):
     def open_(s):
         return not rec.get(s, {}).get("id") and rec.get(s, {}).get("tries", 0) < MAX_TRIES
     todo = [s for s in KOMA4_SERVICES if s in cfg["channels"] and open_(s)
-            and (s != "instagram" or k.get("video_url"))]
+            and (s != "instagram" or (k.get("video_url") and k.get("video_ok")))]  # リールは機械の確認（videocheck.py）に通った動画だけ
     ig_todo = [e for e in IG_EXTRA if "instagram" in cfg["channels"] and open_(e[0])]
     if not todo and not ig_todo:
         return False
-    bad = media_problem(k["image_url"], "image") or (k.get("video_url") and media_problem(k["video_url"], "video"))
+    bad = media_problem(k["image_url"], "image") or (k.get("video_ok") and media_problem(k["video_url"], "video"))
     if bad:
         if not rec.get("media_error"):
             append_log(day, f"4コマ 第{k.get('episode', '?')}話 予約できない：{bad}")
