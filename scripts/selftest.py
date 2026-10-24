@@ -161,6 +161,19 @@ with tempfile.TemporaryDirectory() as d:
     book.run(datetime(2026, 10, 25, 7, 40, tzinfo=lib.JST))
     ok(not any(c[4].get("ig_type") == "story" for c in kc[n0:]) and any(c[4].get("ig_type") == "post" for c in kc[n0:]),
        f"見本と違うストーリーを出した: {kc[n0:]}")
+    # おでかけ4コマ（10/24〜）：X・Threads は2つ目に公式ページとHPの1行、インスタは1つだけ
+    lib.save_json(os.path.join(d, "state", "booked.json"), {})
+    lib.save_json(os.path.join(d, "config.json"), {"channels": {"twitter": "T", "threads": "H", "instagram": "I"},
+                                                   "page": {"url": "https://usagi-life-notes.pages.dev/", "promote": True}})
+    lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 19, "text": "今日10/25から、上野でマーケット",
+                                                                "text2": "https://example.jp/event", "image_url": "https://i/x"})
+    book.fetch_image = lambda u: Image.new("RGB", (1080, 1920) if "h=1920" in u else (724, 2172), "white")
+    n0 = len(kc)
+    book.run(datetime(2026, 10, 25, 7, 40, tzinfo=lib.JST))
+    xt = {c[0]: c[2] for c in kc[n0:] if c[0] != "instagram"}
+    ok(set(xt) == {"twitter", "threads"} and all(len(t) == 2 and t[1].startswith("https://example.jp/event")
+                                                 and "usagi-life-notes.pages.dev/?f=" in t[1] for t in xt.values())
+       and all(len(c[2]) == 1 for c in kc[n0:] if c[0] == "instagram"), f"おでかけ4コマの2つ目がおかしい: {kc[n0:]}")
     # 4コマの位置：第16話と同じ並びの絵から、4つのコマを見つける
     im = Image.new("RGB", (724, 2172), "white")
     for y in (81, 603, 1125, 1647):
