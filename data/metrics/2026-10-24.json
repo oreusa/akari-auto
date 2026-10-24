@@ -1,0 +1,395 @@
+{
+  "day": "2026-10-24",
+  "fetchedAt": "2026-10-25T08:21+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "今日10/24の20時から、楽天お買い物マラソン",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De2m3VZFPIj",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 6.25,
+        "views": 16,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "今日10/24の20時から、楽天お買い物マラソン",
+      "url": "https://x.com/1753799832798629888/status/2113756126692946009",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.33,
+        "reposts": 0,
+        "impressions": 30,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "10/24・25、高円寺フェスなど東京の週末イベント5つ",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De20mEsgI2_",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 0.57,
+        "views": 351,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "10/24・25、高円寺フェスなど東京の週末イベント5つ",
+      "url": "https://x.com/1753799832798629888/status/2113786318224253357",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 0.73,
+        "reposts": 0,
+        "impressions": 545,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "10/24・25、イケフェス大阪2026で224件の建築が参加",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De3JMK9gI1U",
+      "metrics": {
+        "reactions": 2,
+        "comments": 1,
+        "engagementRate": 0.8,
+        "views": 376,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "10/24・25、イケフェス大阪2026で224件の建築が参加",
+      "url": "https://x.com/1753799832798629888/status/2113831601175978472",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.43,
+        "reposts": 0,
+        "impressions": 70,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "今日10/24の17:30から、東京湾大華火祭が11年ぶり",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De3TfLOgFx8",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.51,
+        "views": 198,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "今日10/24の17:30から、東京湾大華火祭が11年ぶり",
+      "url": "https://x.com/1753799832798629888/status/2113854249788404070",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.14,
+        "reposts": 0,
+        "impressions": 704,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "10/23開店、廻転鮨 銀座おのでら ハレザ池袋店",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De3dyY6jl7Z",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.47,
+        "views": 214,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "10/23開店、廻転鮨 銀座おのでら ハレザ池袋店",
+      "url": "https://x.com/1753799832798629888/status/2113876902217666884",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 9.09,
+        "reposts": 0,
+        "impressions": 22,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べたモバイルバッテリー4つ、レビュー1,000件超えは1つだけ】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De3yaKiFgoQ",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.45,
+        "views": 69,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べたモバイルバッテリー4つ、レビュー1,000件超えは1つだけ】",
+      "url": "https://x.com/1753799832798629888/status/2113922214395301997",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "PR",
+      "first": "【AIが比べた城崎の宿4軒、口コミ1,000件超えは西村屋ホテル招月庭】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De4AINBlSq4",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.88,
+        "views": 17,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "PR",
+      "first": "【AIが比べた城崎の宿4軒、口コミ1,000件超えは西村屋ホテル招月庭】",
+      "url": "https://x.com/1753799832798629888/status/2113952418907951333",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "10/23から、神戸イルミナージュ2026が2/14まで",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De4FSJtlOtt",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.85,
+        "views": 118,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "10/23から、神戸イルミナージュ2026が2/14まで",
+      "url": "https://x.com/1753799832798629888/status/2113963741637128703",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "PR",
+      "first": "【AIが比べた毛布3枚、レビューも評価もいちばん上はふわとろ毛布】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De4N4n6lBkQ",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 11.11,
+        "views": 9,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "PR",
+      "first": "【AIが比べた毛布3枚、レビューも評価もいちばん上はふわとろ毛布】",
+      "url": "https://x.com/1753799832798629888/status/2113982669662937317",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4014785322969620150",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4014784808789924886",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "昨日わかったこと：Threadsで日付が近い3つの話は閲覧289、着る毛布の話は",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4014746552132107690",
+      "metrics": {}
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "昨日わかったこと：Threadsで日付が近い3つの話は閲覧289、着る毛布の話は",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4014746049168399451",
+      "metrics": {}
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4014591386977256291",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4014589779300440159",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "昨日わかったこと：Threadsで日付が近い3つの話は閲覧289、着る毛布の話は",
+      "url": "https://www.instagram.com/p/De2sFrZlPoQ/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "follows": 0,
+        "reach": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "昨日わかったこと：Threadsで日付が近い3つの話は閲覧289、着る毛布の話は",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De2sDrEESwW",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 9,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "昨日わかったこと：Threadsで日付が近い3つの話は閲覧289、着る毛布の話は",
+      "url": "https://x.com/1753799832798629888/status/2113767499653136531",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 20,
+        "reposts": 0,
+        "impressions": 5,
+        "clicks": 0
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "day": "2026-10-23",
-  "fetchedAt": "2026-10-24T18:44+09:00",
+  "fetchedAt": "2026-10-25T08:21+09:00",
   "posts": [
     {
       "service": "threads",
@@ -11,8 +11,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.46,
-        "views": 216,
+        "engagementRate": 0.43,
+        "views": 235,
         "quotes": 0,
         "reposts": 0
       }
@@ -41,8 +41,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.61,
-        "views": 163,
+        "engagementRate": 0.59,
+        "views": 169,
         "quotes": 0,
         "reposts": 0
       }
@@ -71,8 +71,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.22,
-        "views": 45,
+        "engagementRate": 2.13,
+        "views": 47,
         "quotes": 0,
         "reposts": 0
       }
@@ -101,8 +101,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.86,
-        "views": 35,
+        "engagementRate": 2.7,
+        "views": 37,
         "quotes": 0,
         "reposts": 0
       }
@@ -131,8 +131,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.55,
-        "views": 182,
+        "engagementRate": 0.43,
+        "views": 230,
         "quotes": 0,
         "reposts": 0
       }
@@ -161,8 +161,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 12.5,
-        "views": 8,
+        "engagementRate": 10,
+        "views": 10,
         "quotes": 0,
         "reposts": 0
       }
@@ -191,8 +191,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.67,
-        "views": 60,
+        "engagementRate": 1.54,
+        "views": 65,
         "quotes": 0,
         "reposts": 0
       }
@@ -221,8 +221,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 1.92,
-        "views": 104,
+        "engagementRate": 1.71,
+        "views": 117,
         "quotes": 0,
         "reposts": 0
       }
@@ -251,8 +251,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.33,
-        "views": 75,
+        "engagementRate": 1.23,
+        "views": 81,
         "quotes": 0,
         "reposts": 0
       }
@@ -281,8 +281,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 6.25,
-        "views": 16,
+        "engagementRate": 4.76,
+        "views": 21,
         "quotes": 0,
         "reposts": 0
       }
