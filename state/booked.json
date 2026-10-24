@@ -415,7 +415,8 @@
         "開店を伝える記事です\nhttps://japan.storm.mg/articles/1174053\n\nAIが比べたおでかけ・宿・お得の一覧：https://usagi-life-notes.pages.dev/?f=x1515"
       ],
       "topic": "グルメ",
-      "page": "足した"
+      "page": "足した",
+      "seen": "出た"
     },
     "threads": {
       "tries": 1,
@@ -427,7 +428,8 @@
         "開店を伝える記事です\nhttps://japan.storm.mg/articles/1174053\n\nAIが比べたおでかけ・宿・お得の一覧：https://usagi-life-notes.pages.dev/?f=t1515"
       ],
       "topic": "グルメ",
-      "page": "足した"
+      "page": "足した",
+      "seen": "出た"
     }
   },
   "2026-10-24 18:15": {
@@ -653,7 +655,8 @@
         "ig_type": "story",
         "alt": "4コマ漫画 第17話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
     },
     "ig_story2": {
       "tries": 1,
@@ -671,7 +674,8 @@
         "ig_type": "story",
         "alt": "4コマ漫画 第17話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
     }
   },
   "2026-10-24 20:15": {
