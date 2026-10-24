@@ -1,0 +1,14 @@
+name: cftest（一時：Cloudflareの分析が読めるか）
+on:
+  push:
+    branches: [claude/project-thread-dkknlg]
+    paths: [".github/workflows/cftest.yml", "scripts/cfviews.py"]
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/cfviews.py test
