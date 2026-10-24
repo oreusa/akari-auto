@@ -388,7 +388,7 @@ OUT = ('<svg class="out" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 
        'stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 
 
-MEDIA = ("walkerplus.com", "iko-yo.net", "pretty-online.jp", "voyvoi.com", "storm.mg", "prtimes.jp", "jorudan.co.jp",
+MEDIA = ("walkerplus.com", "happyell.co.jp", "iko-yo.net", "pretty-online.jp", "voyvoi.com", "storm.mg", "prtimes.jp", "jorudan.co.jp",
          "jalan.net", "tabelog.com", "timeout.jp", "fashion-press.net", "yahoo.co.jp", "note.com", "enjoytokyo.jp")
 
 
