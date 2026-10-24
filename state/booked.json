@@ -774,7 +774,8 @@
         "今日10/25は楽天の5と0のつく日、お買い物マラソンと重なる日\n\n◇ 0:00〜23:59、楽天カードで買うとポイント4倍\n◇ その日ごとにエントリーが要ります\n◇ マラソンは10/27の9:59まで\n\n※この日の上乗せ分は月1,000ポイントまで\n楽天カードの公式ページより（10/24時点）\n#お得情報",
         "5と0のつく日の公式ページです\nhttps://event.rakuten.co.jp/card/pointday/\n\n関東9件・関西9件のおでかけ、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=x0715"
       ],
-      "topic": "お得情報"
+      "topic": "お得情報",
+      "seen": "出た"
     },
     "threads": {
       "tries": 1,
@@ -785,7 +786,8 @@
         "今日10/25は楽天の5と0のつく日、お買い物マラソンと重なる日\n\n◇ 対象は10/25の0:00〜23:59。楽天カードで払うと、楽天市場のポイントが合計4倍\n◇ エントリーは開催日ごと。その日のうちにエントリーすれば、先に買った分も数に入ります\n◇ お買い物マラソン（10/27の9:59まで）も続いています\n\n調べて分かった数字：この日の上乗せ1倍分は、月1,000ポイントが上限です。1倍＝1%なので、税込10万円ほどの買い物で上限に届きます。それより大きな買い物は、上限を先に確かめておくと安心です。\n\n※楽天カード以外の払い方は対象外です\n楽天カードの公式ページより（10/24時点）",
         "5と0のつく日の公式ページです\nhttps://event.rakuten.co.jp/card/pointday/\n\n関東9件・関西9件のおでかけ、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=t0715"
       ],
-      "topic": "お得情報"
+      "topic": "お得情報",
+      "seen": "出た"
     }
   },
   "2026-10-25 09:15": {
@@ -973,7 +975,8 @@
         "video": null,
         "alt": "4コマ漫画 第18話"
       },
-      "svc": "twitter"
+      "svc": "twitter",
+      "seen": "出た"
     },
     "threads": {
       "tries": 1,
@@ -990,7 +993,8 @@
         "video": null,
         "alt": "4コマ漫画 第18話"
       },
-      "svc": "threads"
+      "svc": "threads",
+      "seen": "出た"
     },
     "instagram": {
       "tries": 1,
@@ -1006,7 +1010,8 @@
         "video": "https://drive.google.com/uc?export=download&id=1eOPx4T6_7UB7bCpQvLouIlnXuCKgzTBS",
         "alt": "4コマ漫画 第18話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
     },
     "ig_slides": {
       "tries": 1,
@@ -1027,7 +1032,8 @@
         "ig_type": "post",
         "alt": "4コマ漫画 第18話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
     },
     "ig_story1": {
       "tries": 1,
@@ -1045,7 +1051,8 @@
         "ig_type": "story",
         "alt": "4コマ漫画 第18話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
     },
     "ig_story2": {
       "tries": 1,
@@ -1063,7 +1070,32 @@
         "ig_type": "story",
         "alt": "4コマ漫画 第18話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
+    }
+  },
+  "2026-10-25 20:15": {
+    "twitter": {
+      "tries": 1,
+      "id": "6add3d886887a2efc1dc877d",
+      "kind": "PR",
+      "at": "20:15",
+      "texts": [
+        "【AIが比べた草津の宿4軒、4.5以上で口コミ1,000件超えは望雲だけ】\n\n◇ 草津館：4.79・889件\n◇ 中村屋旅館：4.71・596件\n◇ 望雲：4.68・1,381件\n◇ ホテルスパックス草津：4.14・1,542件\n\n選んだ理由：4.5以上・1,000件超えはここだけ\n楽天トラベルより（10/24時点）\n#温泉 #PR",
+        "比べて選んだ望雲の施設ページです\nhttps://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F4904%2F&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F4904%2F\n#PR\n\n比べた表と選んだ理由、ほかにAIが選んだ物：https://usagi-life-notes.pages.dev/?f=x2015"
+      ],
+      "topic": "温泉"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "6add3d88e4be8a4d86803863",
+      "kind": "PR",
+      "at": "20:15",
+      "texts": [
+        "【AIが比べた草津の宿4軒、4.5以上で口コミ1,000件超えは望雲だけ】\n\n◇ 草津温泉 草津館：評価4.79・口コミ889件\n◇ 草津温泉 中村屋旅館：4.71・596件\n◇ 草津温泉 望雲：4.68・1,381件\n◇ 草津温泉 ホテルスパックス草津：4.14・1,542件\n\n紅葉の季節の草津を、評価と口コミの数の2つの物差しで比べました。評価がいちばん高いのは草津館ですが、評価4.5以上で口コミが1,000件を超えるのは望雲だけでした。\n\n選んだ理由：4軒を比べ、評価4.5以上で口コミ1,000件を超えたのは望雲だけだったためです\n※料金と空室は日によって変わります\n楽天トラベルより（10/24時点）\n#温泉 #PR",
+        "比べて選んだ望雲の施設ページです\nhttps://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F4904%2F&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F4904%2F\n#PR\n\n比べた表と選んだ理由、ほかにAIが選んだ物：https://usagi-life-notes.pages.dev/?f=t2015"
+      ],
+      "topic": "温泉"
     }
   }
 }
