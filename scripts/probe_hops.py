@@ -17,7 +17,8 @@ for h in re.findall(r'href="(https?://[^"]+)"', hp):
     if host not in seen and "fonts.g" not in host: seen[host] = h
 for host, u in seen.items():
     for hop in range(4):
-        st, hd, body = get(u)
+        try: st, hd, body = get(u)
+        except Exception as e: print(f'[{host}] ERR {str(e)[:80]}'); break
         loc = hd.get("Location") or hd.get("location")
         t = re.search(r"<title[^>]*>(.*?)</title>", body, re.S)
         print(f"[{host}] hop{hop} {st} len={len(body)} title={(t.group(1).strip() if t else '')[:50]} loc={(loc or '')[:90]}")
