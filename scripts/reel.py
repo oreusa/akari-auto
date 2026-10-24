@@ -15,6 +15,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import append_log, fetch_image, http_raw, koma4_boxes, load_json, now_jst, path, save_json  # noqa: E402
@@ -116,9 +117,13 @@ def put(img, name):
             raise RuntimeError(bad)
         deploy(d)
     url = f"https://{PROJECT}.pages.dev/{name}.mp4"
-    st, body, _ = http_raw(url)
-    if st != 200 or body[4:8] != b"ftyp":  # mp4 の頭の印（http_raw は頭の4KBだけ読む）
-        raise RuntimeError(f"置いた動画が開けない（{st}）")
+    for i in range(8):  # 置いた直後は 500 や古い中身が返ることがあるので、少し待って何度か見る
+        time.sleep(10)
+        st, body, _ = http_raw(url)
+        if st == 200 and body[4:8] == b"ftyp":  # mp4 の頭の印（http_raw は頭の4KBだけ読む）
+            break
+    else:
+        raise RuntimeError(f"置いた動画が開けない（{st}・{body[:20]!r}）")
     return url
 
 
