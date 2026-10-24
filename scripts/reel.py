@@ -125,7 +125,17 @@ def put(img, name):
 def main():
     now = now_jst()
     if len(sys.argv) > 2 and sys.argv[1] == "--test":  # online.yml：絵のURLで作って置けるかを試す（投稿しない）
-        print("リールのテスト OK", put(fetch_image(sys.argv[2]), "test"))
+        url = put(fetch_image(sys.argv[2]), "test")
+        print("リールを置けた", url)
+        cfg = load_json(path("config.json")) or {}
+        if os.environ.get("BUFFER_API_KEY") and "instagram" in cfg.get("channels", {}):  # Bufferが受け取れるか：下書きを作ってすぐ消す
+            from datetime import timedelta, timezone
+            from lib import buffer_create, buffer_gql
+            due = (now + timedelta(days=2)).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+            p = buffer_create(cfg["channels"]["instagram"], "instagram", ["リールのテスト（下書き・すぐ消す）"], due,
+                              draft=True, image=sys.argv[2], video=url, alt="テスト")
+            print("Bufferにリールの下書きOK", p)
+            print("消した", buffer_gql('mutation($i:DeletePostInput!){deletePost(input:$i){__typename}}', {"i": {"id": p["id"]}}))
         return 0
     if sys.argv[1:] == ["--need"]:
         print("yes" if need(now) else "no")
