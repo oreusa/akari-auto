@@ -42,7 +42,9 @@ def _texts_problems(texts, where, allow_link):
     return out
 
 
-OFFICIAL_FROM = date(2026, 10, 24)  # この日の予定表から「2つ目に公式ページ」を見る
+OFFICIAL_FROM = date(2026, 10, 24)
+PLACE_FROM = date(2026, 10, 25)  # この日から、おでかけ・お店の投稿に place（HPの「地図」で探す名前）を要る
+PLACE_TOPICS = {"おでかけ", "イルミネーション", "温泉", "紅葉", "無料", "イベント", "週末旅", "旅行", "グルメ", "カフェ", "新店"}  # この日の予定表から「2つ目に公式ページ」を見る
 
 
 def _official_problems(texts, where):
@@ -145,6 +147,8 @@ def check_file(fp):
         extra = []
         if not p.get("link") and d >= OFFICIAL_FROM:
             extra = _official_problems(p.get("x"), "x") + _official_problems(p.get("threads"), "threads")
+        if not p.get("link") and d >= PLACE_FROM and p.get("topic") in PLACE_TOPICS and not str(p.get("place", "")).strip():
+            extra.append("place がない（HPの「地図」で探す施設名。例 \"なんばパークス\"。1か所に決まらない催しは \"-\"。10/24 オーナー「地図おしたらマップ」）")
         for pr in post_problems(p) + asof_problems(p, d) + extra:
             probs.append(f"{fp} {p.get('slot', '?')}: {pr}")
     for i, it in enumerate(data.get("room") or [], 1):

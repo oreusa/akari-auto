@@ -135,7 +135,7 @@ def collect(now):
             seen.add(title)
             entry = {"day": f"{d.month}/{d.day}", "year": d.year, "title": title, "bullets": _bullets(text),
                      "reason": _line_with(text, "選んだ理由").replace("選んだ理由：", ""),
-                     "source": _line_with(text, "より（"), "url": _official(p)}
+                     "source": _line_with(text, "より（"), "url": _official(p), "place": p.get("place", "")}
             until = p.get("ends") or p.get("until")  # ends＝催し・お得が終わる時刻（夜の回が書く）。過ぎたらページから外す
             if until and datetime.fromisoformat(until).replace(tzinfo=JST) < now:
                 ended.append(entry)
@@ -409,11 +409,33 @@ def spot(e):
     if not e.get("url"):  # リンクのないカードは載せない（押しても何も開かないため）
         return ""
     href = esc(e["url"])
-    label = f"{link_label(e['url'])}{OUT}"
-    return (f'<a class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}" style="--pc:{color}" href="{href}" '
-            f'target="_blank" rel="noopener"><div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
-            f'<div class="t">{phr(name)}</div>'
-            f'<div class="mp">{label}</div>{ARROW}</a>')
+    q = map_query(e, pref)
+    # 矢印（カード全体）＝公式ページ、「地図」＝地図アプリ（10/24 オーナー「矢印おしたら公式ページ、地図おしたらマップ」）
+    mp = (f'<a class="mp" href="https://www.google.com/maps/search/?api=1&amp;query={esc(urllib.parse.quote(q))}" '
+          f'target="_blank" rel="noopener">地図{OUT}</a>') if q else ""
+    return (f'<div class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}" style="--pc:{color}">'
+            f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
+            f'<div class="t"><a class="go" href="{href}" target="_blank" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
+            f'{mp}{ARROW}</div>')
+
+
+_PLACE = re.compile(r"(?:場所は|会場は)[「『]?(.+?)(?:[」』]|です|（|。|、|$)")
+
+
+def map_query(e, pref):
+    """地図で探す言葉。夜の回が書いた place（"-"は地図なし）を使い、無ければ本文の「場所は・会場は」。当て推量はしない。"""
+    q = (e.get("place") or "").strip()
+    if q == "-" or e.get("kind") == "deal":
+        return ""
+    if not q:
+        for line in [e["title"]] + e.get("bullets", []):
+            m = _PLACE.search(line)
+            if m:
+                q = m.group(1)
+                break
+    if not q:
+        return ""
+    return q if (not pref or pref in q) else f"{q} {pref}"
 
 
 def _img(e):
@@ -421,6 +443,18 @@ def _img(e):
     if not u.startswith("https://"):
         return ""
     return f'<img class="ph" src="{esc(u)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
+
+
+SHOW_GOODS = 2  # 商品の欄は新しい2件だけ見せ、残りはたたむ（10/24 オーナー「HP改善したい」：長すぎて下まで見られない）
+
+
+def go_label(e):
+    """ボタンの言葉。押した先が分かるように、行き先を書く（「詳しく」だと押す前に何が開くか分からない）。"""
+    if e.get("amazon"):
+        return "Amazonで見る"
+    if e.get("cat") == "stay":
+        return "楽天トラベルで見る"
+    return "楽天で見る"
 
 
 def compare(e):
@@ -443,9 +477,9 @@ def compare(e):
     else:
         table = ""
     reason = f'<p class="why">{esc(e["reason"])}</p>' if e.get("reason") else ""
-    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
+    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">{go_label(e)}{ARROW}</a>'
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
-    return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}　AIが比べた{"・Amazon" if e.get("amazon") else ""}</span></div>'
+    return (f'<article class="card cmp{" hot" if e.get("hot") else ""}"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}　AIが比べた{"・Amazon" if e.get("amazon") else ""}</span></div>'
             f'<div class="t">{phr(title)}</div>{head}{reason}{table}<div class="ft2">{btn}</div>{sample}</article>')
 
 
@@ -463,20 +497,20 @@ def pick(e):
             f'<div class="cho">{_img(e)}<div class="tx"><span class="lb">選んだのは</span><b>{phr(e["name"])}</b>'
             f'<div class="meta">{"".join(meta)}</div></div></div>{lis}'
             f'<div class="ft2">'
-            f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a></div>{sample}</article>')
+            f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">楽天で見る{ARROW}</a></div>{sample}</article>')
 
 
 def sale(e):
     when, name = _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))
     when = _wd(when, e["year"]) if when else _wd(e["day"], e["year"]) + "調べ"
-    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
+    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">楽天で見る{ARROW}</a>'
     return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">{esc(when)}</span></div>'
             f'<div class="t">{phr(name)}</div><div class="ft2">{btn}</div></article>')
 
 
 def a8card(e):
     note = f'<p class="why">{esc(e["note"])}</p>' if e.get("note") else ""
-    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
+    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">申し込みページへ{ARROW}</a>'
     return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">予約・申し込み</span></div>'
             f'<div class="t">{phr(e["name"])}</div>{note}<div class="ft2">{btn}</div></article>')
 
@@ -504,6 +538,23 @@ def _year_ring(cur):
             + "".join(gs) + "</svg>")
 
 
+def _hot(prs):
+    """今日のいち押し：いちばん新しい日の「AIが比べた」PRのうち、選んだ物のレビュー件数がいちばん多い1つ。"""
+    best, key = None, None
+    for e in prs:
+        if e.get("cat") == "sale":
+            continue
+        rows = _rows(e) or []
+        ch = next((r for r in rows if r.get("pick")), None)
+        if not ch:
+            continue
+        m, d = (int(x) for x in e["day"].split("/"))
+        k = (e.get("year", 0), m, d, ch["count"])
+        if key is None or k > key:
+            best, key = e, k
+    return best
+
+
 def render(items, ended, now, cfg):
     p = cfg.get("page", {})
     sns = [("Instagram", "@ai_usagichan1", "https://www.instagram.com/ai_usagichan1/"),
@@ -520,12 +571,22 @@ def render(items, ended, now, cfg):
         f'<button data-p="{esc(x)}" style="--pc:{REGION_COLOR[x]}">{esc(x)}</button>' for x in regs)
     cs = cats(now)
     goods = {k: [] for k, *_ in cs}
+    hot = _hot(items["pr"])
     for e in items["pr"]:
+        if e is hot:
+            continue
         goods.get(e.get("cat"), goods["life"]).append(sale(e) if e.get("cat") == "sale" else compare(e))
     for e in items.get("pick", []):
+        if (e.get("count") or 0) < 1000 or float(e.get("avg") or 0) < 4.0:  # PRの決まり（レビュー1,000件以上・★4.0以上）
+            continue
         goods.get(e.get("cat"), goods["life"]).append(pick(e))
     goods["book"] += [a8card(e) for e in items.get("a8", [])]
     blocks, nav = [], []
+    if hot:  # いちばん上に、今日AIがいちばんに選んだ1つ
+        hot["hot"] = True
+        blocks.append('<section class="blk hotb" id="hot"><div class="wk"><span class="en2">TODAY\'S PICK</span>'
+                      '<span class="jp2">今日のAIのいち押し</span></div><p class="lead">比べた中で、レビューの数と評価がいちばん上だった物</p>'
+                      + compare(hot) + '</section>')
     if spots:  # いちばん上はおでかけ。数を絞って、残りはたたむ
         cards = [spot(e) for e in spots]
         more = ""
@@ -534,7 +595,7 @@ def render(items, ended, now, cfg):
                     f'{"".join(cards[SHOW_GO:])}</details>')
         nav.append(f'<a class="g" href="#odekake"><span><i>GO OUT</i>おでかけ</span><b>{len(spots)}</b></a>')
         blocks.append(f'<section class="blk go" id="odekake"><div class="wk"><span class="en2">GO OUT</span>'
-                      f'<span class="jp2">今週のおでかけ</span></div><p class="lead">公式ページで日時と料金を確かめた物だけ</p>'
+                      f'<span class="jp2">今週のおでかけ</span></div><p class="lead">公式ページで確かめた物だけ。<br>矢印で公式ページ、「地図」で場所が開きます</p>'
                       f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>'
                       f'<nav class="flt" aria-label="地域">{tabs}</nav>'
                       f'{"".join(cards[:SHOW_GO])}{more}<p class="none">この地域は、これから増やしていきます</p></section>')
@@ -547,8 +608,11 @@ def render(items, ended, now, cfg):
         if not goods[key]:
             continue
         nav.append(f'<a href="#{key}"><span><i>{en}</i>{esc(name)}</span><b>{len(goods[key])}</b></a>')
+        g = goods[key]
+        more = (f'<details class="fold more"><summary>ほかの{esc(name)}{len(g) - SHOW_GOODS}件を見る</summary>{"".join(g[SHOW_GOODS:])}</details>'
+                if len(g) > SHOW_GOODS else "")
         blocks.append(f'<section class="blk" id="{key}"><div class="wk"><span class="en2">{en}</span>'
-                      f'<span class="jp2">{esc(name)}</span></div><p class="lead">{esc(lead)}</p>{"".join(goods[key])}</section>')
+                      f'<span class="jp2">{esc(name)}</span></div><p class="lead">{esc(lead)}</p>{"".join(g[:SHOW_GOODS])}{more}</section>')
     cur, sea, sea_en, sea_jp = _season(now)
     return TEMPLATE.format(
         nav="".join(nav), blocks="".join(blocks), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp, sea=sea,
@@ -669,6 +733,9 @@ a.card:hover{{background:color-mix(in srgb,var(--pc,var(--brown)) 4%,#fff)}}
 .m{{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:2px}}
 .m li{{font-size:12px;line-height:1.7;color:var(--sub);padding-left:11px;position:relative}}
 .m li:before{{content:"";position:absolute;left:0;top:.8em;width:4px;height:1px;background:var(--line2)}}
+.card .go{{color:inherit;text-decoration:none}} .card .go:after{{content:"";position:absolute;inset:0;z-index:1}}
+.card.it:hover{{background:color-mix(in srgb,var(--pc,var(--brown)) 4%,#fff)}} .card.it:hover .arw{{transform:translate(3px,-50%)}}
+a.mp{{z-index:2;text-decoration:none;padding-top:10px}}
 .mp{{position:absolute;left:14px;bottom:12px;display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:500;letter-spacing:.14em;color:#5B514A;border-bottom:1px solid #CFC5BA;padding-bottom:1px}}
 .out{{width:9px;height:9px}}
 .arw{{position:absolute;right:14px;top:50%;width:22px;height:11px;transform:translateY(-50%);color:#A99C90;transition:transform .2s}}
@@ -709,6 +776,11 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .cho b{{font-size:14.5px;line-height:1.5}}
 .cho .sc{{font:400 12px/1.4 var(--en);color:var(--sub)}} .cho .sc i{{font-style:normal;color:var(--line2);margin:0 6px}}
 .cmp .why,.pk2 .why{{margin:10px 0 0;padding:0;border:0;font-size:12.5px;line-height:1.8;color:var(--sub)}}
+.hotb{{border-top-color:var(--pr)}}
+.hot{{border:1.5px solid var(--pr);background:linear-gradient(180deg,#FFF8F3,#fff 60%)}}
+.hot .t{{font-size:17px}}
+.hot .cho{{background:#FFF1E8}}
+.hot .buy{{background:var(--pr)}}
 .fold{{margin:10px 0 0}}
 .fold summary{{cursor:pointer;list-style:none;font-size:11.5px;letter-spacing:.12em;color:#5B514A;display:inline-block;border-bottom:1px solid #CFC5BA}}
 .fold summary::-webkit-details-marker{{display:none}}
