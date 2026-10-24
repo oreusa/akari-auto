@@ -136,7 +136,7 @@ with tempfile.TemporaryDirectory() as d:
     ok(not kc, f"絵がないのに4コマを予約した: {kc}")
     lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 18, "text": "t", "image_url": "https://i/x"})
     from PIL import Image
-    book.fetch_image = lambda u: Image.new("RGB", (724, 2172), "white")
+    book.fetch_image = lambda u: Image.new("RGB", (1080, 1920) if "h=1920" in u else (724, 2172), "white")
     book.run(datetime(2026, 10, 25, 7, 40, tzinfo=lib.JST))
     xt = [c for c in kc if c[0] != "instagram"]
     ok(sorted(c[0] for c in xt) == ["threads", "twitter"] and all(c[4]["image"] == "https://i/x" for c in xt)
@@ -146,11 +146,18 @@ with tempfile.TemporaryDirectory() as d:
     ok([c[4].get("ig_type") for c in ig] == ["post", "story", "story"] and len(ig[0][4]["images"]) == 4
        and all(len(c[4]["images"]) == 1 for c in ig[1:]) and [c[1] for c in ig] == ["2026-10-24T23:00:00.000Z"] * 2 + ["2026-10-24T23:01:00.000Z"]
        and all(u.startswith("https://wsrv.nl/?url=https%3A%2F%2Fi%2Fx&cx=") for c in ig for u in c[4]["images"])
-       and "h=1920" in ig[1][4]["images"][0], f"Instagramのスライド・ストーリーがおかしい: {ig}")
+       and "h=1920" in ig[1][4]["images"][0] and "precrop=1" in ig[1][4]["images"][0], f"Instagramのスライド・ストーリーがおかしい: {ig}")
     lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 18, "text": "t", "image_url": "https://i/x", "video_url": "https://v/y"})
     book.run(datetime(2026, 10, 25, 7, 50, tzinfo=lib.JST))
     reel = [c for c in kc if c[0] == "instagram" and c[4].get("video")]
     ok(len(kc) == 6 and len(reel) == 1 and reel[0][4]["video"] == "https://v/y", f"Instagramのリールがおかしい／二重予約: {kc}")
+    # ストーリー：wsrv.nl が見本と違う絵を返したら出さない（10/24 ずれたまま出た）
+    lib.save_json(os.path.join(d, "state", "booked.json"), {})
+    n0 = len(kc)
+    book.fetch_image = lambda u: Image.new("RGB", (1080, 1920), "black") if "h=1920" in u else Image.new("RGB", (724, 2172), "white")
+    book.run(datetime(2026, 10, 25, 7, 40, tzinfo=lib.JST))
+    ok(not any(c[4].get("ig_type") == "story" for c in kc[n0:]) and any(c[4].get("ig_type") == "post" for c in kc[n0:]),
+       f"見本と違うストーリーを出した: {kc[n0:]}")
     # 4コマの位置：第16話と同じ並びの絵から、4つのコマを見つける
     im = Image.new("RGB", (724, 2172), "white")
     for y in (81, 603, 1125, 1647):
