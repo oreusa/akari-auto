@@ -72,7 +72,7 @@ def _page_spots(now):
         if not str(it.get("url", "")).startswith("https://") or not it.get("title"):
             continue
         y = int((it.get("start") or now.isoformat())[:4])
-        out.append({"title": f'{it.get("when", "")}、{it["title"]}' if it.get("when") else it["title"],
+        out.append({"title": it["title"], "name": it["title"], "start": it.get("start", ""), "ends": it.get("ends", ""),
                     "day": f"{now.month}/{now.day}", "year": y, "bullets": [it.get("note", "")],
                     "url": it["url"], "place": it.get("place", ""), "pref_fixed": it.get("pref", ""),
                     "free_fixed": bool(it.get("free")), "note": it.get("note", ""), "kind": "odekake", "page": True})
@@ -163,7 +163,8 @@ def collect(now):
             seen.add(title)
             entry = {"day": f"{d.month}/{d.day}", "year": d.year, "title": title, "bullets": _bullets(text),
                      "reason": _line_with(text, "選んだ理由").replace("選んだ理由：", ""),
-                     "source": _line_with(text, "より（"), "url": _official(p), "place": p.get("place", "")}
+                     "source": _line_with(text, "より（"), "url": _official(p), "place": p.get("place", ""),
+                     "name": p.get("name", ""), "start": p.get("start", ""), "ends": p.get("ends") or p.get("until") or ""}
             until = p.get("ends") or p.get("until")  # ends＝催し・お得が終わる時刻（夜の回が書く）。過ぎたらページから外す
             if until and datetime.fromisoformat(until).replace(tzinfo=JST) < now:
                 ended.append(entry)
@@ -431,11 +432,42 @@ def link_label(url):
     return "紹介記事" if any(host == m or host.endswith("." + m) for m in MEDIA) else "公式ページ"
 
 
+def _dt(x):
+    try:
+        return datetime.fromisoformat(x).replace(tzinfo=JST) if x else None
+    except ValueError:
+        return None
+
+
+def _md(d):
+    return f"{d.month}/{d.day}（{WEEK[d.weekday()]}）"
+
+
+def _span(e, now=None):
+    """月のページと同じ日付の書き方：開催中は「11/8（日）まで」、これからは「10/31（土）」「10/31（土）〜11/1（日）」。"""
+    now = now or now_jst()
+    st, en = _dt(e.get("start")), _dt(e.get("ends"))
+    if st and st > now:
+        if not en or en.date() == st.date():
+            return _md(st)
+        if (en.date() - st.date()).days <= 7:
+            return f"{_md(st)}〜{_md(en)}"
+        return f"{_md(st)}から"
+    if en:
+        return "今日まで" if en.date() == now.date() else f"{_md(en)}まで"
+    return ""
+
+
 def spot(e):
     pref = _pref(e)
     color = PREF_COLOR.get(pref, "#A07E66")
     when, name = _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))
     when = _wd(when, e["year"]) if when else _wd(e["day"], e["year"]) + "調べ"
+    if e.get("name"):
+        name = e["name"]
+    span = _span(e)
+    if span and e.get("kind") != "deal":
+        when = span
     free = _free(e)
     tag = f'<span class="tg">・{esc(free)}</span>' if free else ""
     pl = f'<span class="pl">{esc(pref)}</span>' if pref else ""
@@ -443,7 +475,7 @@ def spot(e):
         return ""
     href = esc(e["url"])
     q = map_query(e, pref)
-    nt = f'<p class="nt">{esc(e["note"])}</p>' if e.get("note") else ""
+    nt = ""  # 月のページと同じく、カードは「どこ・いつ・名前・地図」だけ（説明は公式ページで）
     # 矢印（カード全体）＝公式ページ、「地図」＝地図アプリ（10/24 オーナー「矢印おしたら公式ページ、地図おしたらマップ」）
     mp = (f'<a class="mp" href="https://www.google.com/maps/search/?api=1&amp;query={esc(urllib.parse.quote(q))}" '
           f'target="_blank" rel="noopener">地図{OUT}</a>') if q else ""
@@ -629,17 +661,26 @@ def render(items, ended, now, cfg):
         return (f'<div class="wk"><span class="en2">{en}</span><span class="jp2">{jp}</span></div>'
                 + (f'<p class="lead">{lead}</p>' if lead else ""))
 
-    if spots:  # 1. おでかけ（関東・関西のしぼりこみ、無料だけ）
-        cards = [spot(e) for e in spots]
-        more = ""
-        if len(cards) > SHOW_GO:
-            more = (f'<details class="fold more"><summary>ほかのおでかけ{len(cards) - SHOW_GO}件を見る</summary>'
-                    f'{"".join(cards[SHOW_GO:])}</details>')
+    if spots:  # 1. おでかけ：月のページと同じく「開催中」と「これから」に分ける（10/24 オーナー「これ真似したら？」）
+        far = datetime(2100, 1, 1, tzinfo=JST)
+        now_on = sorted([e for e in spots if not (_dt(e.get("start")) and _dt(e["start"]) > now)],
+                        key=lambda e: _dt(e.get("ends")) or far)
+        coming = sorted([e for e in spots if _dt(e.get("start")) and _dt(e["start"]) > now], key=lambda e: _dt(e["start"]))
+
+        def cardlist(es, label):
+            cs_ = [spot(e) for e in es]
+            more = (f'<details class="fold more"><summary>ほかの{label}{len(cs_) - SHOW_GO}件を見る</summary>{"".join(cs_[SHOW_GO:])}</details>'
+                    if len(cs_) > SHOW_GO else "")
+            return "".join(cs_[:SHOW_GO]) + more
+
         nav.append(f'<a class="g" href="#odekake"><span><i>GO OUT</i>おでかけ</span><b>{len(spots)}</b></a>')
-        blocks.append(f'<section class="blk go" id="odekake">{head("GO OUT", "今週のおでかけ", "公式ページで確かめた物だけ。<br>矢印で公式ページ、「地図」で場所が開きます")}'
+        blocks.append(f'<section class="blk go" id="odekake">{head("NOW ON", "開催中のおでかけ", "公式ページで確かめた物だけ。<br>矢印で公式ページ、「地図」で場所が開きます")}'
                       f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>'
                       f'<nav class="flt" aria-label="地域">{tabs}</nav>'
-                      f'{"".join(cards[:SHOW_GO])}{more}<p class="none">この地域は、これから増やしていきます</p></section>')
+                      f'{cardlist(now_on, "開催中")}<p class="none">この地域は、これから増やしていきます</p></section>')
+        if coming:
+            blocks.append(f'<section class="blk go" id="coming">{head("COMING UP", "これからのおでかけ", "")}'
+                          f'{cardlist(coming, "これから")}<p class="none">この地域は、これから増やしていきます</p></section>')
     if hot:  # 2. 今日のいち押し（おでかけの下。10/24 オーナー「おでかけの後でいい」）
         hot["hot"] = True
         blocks.append(f'<section class="blk hotb" id="hot">{head("TODAY&#39;S PICK", "今日のAIのいち押し", "比べた中で、レビューの数と評価がいちばん上だった物。リンクは広告です")}'
