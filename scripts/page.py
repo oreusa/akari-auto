@@ -73,6 +73,8 @@ def _line_with(text, key):
 
 
 def _official(post):
+    if post.get("_url"):
+        return post["_url"]
     for t in post["threads"][1:]:
         for u in URL_RE.findall(t):
             if "{{" not in u:
@@ -115,6 +117,11 @@ def collect(now):
         if d < since:
             continue
         data = load_json(f, {}) or {}
+        # 公式ページを「付け忘れ」の別の投稿で出した日は、そのURLを元の投稿のカードに付ける
+        for fu in [q for q in data.get("posts", []) if "付け忘れ" in q["threads"][0]]:
+            for q in data.get("posts", []):
+                if q is not fu and q.get("topic") == fu.get("topic") and not q.get("link") and not _official(q):
+                    q["_url"] = _official(fu)
         for p in sorted(data.get("posts", []), key=lambda p: p.get("slot", ""), reverse=True):
             due = datetime.fromisoformat(f"{day}T{p['slot']}").replace(tzinfo=JST)
             if due > now and not (p.get("link") and d == now.date()):
@@ -128,8 +135,8 @@ def collect(now):
             seen.add(title)
             entry = {"day": f"{d.month}/{d.day}", "year": d.year, "title": title, "bullets": _bullets(text),
                      "reason": _line_with(text, "選んだ理由").replace("選んだ理由：", ""),
-                     "source": _line_with(text, "より（"), "url": _official(p), "place": p.get("place", "")}
-            until = p.get("until")
+                     "source": _line_with(text, "より（"), "url": _official(p)}
+            until = p.get("ends") or p.get("until")  # ends＝催し・お得が終わる時刻（夜の回が書く）。過ぎたらページから外す
             if until and datetime.fromisoformat(until).replace(tzinfo=JST) < now:
                 ended.append(entry)
                 continue
@@ -338,10 +345,13 @@ def _split_title(title):
 
 
 def _free(e):
+    """「無料」の印。行くこと自体が無料と書いてある物だけ（「未就学児は無料」「登録は無料」「無料送迎」では付けない）。"""
+    if e.get("kind") == "deal":
+        return ""
     t = _text(e)
     if "入場無料" in t:
         return "入場無料"
-    if "参加費は無料" in t or "無料" in t:
+    if re.search(r"参加費は無料|観覧無料|見学無料|入園無料|入館無料|無料で(見|入|参加|楽し)", t) or "無料" in e["title"]:
         return "無料"
     return ""
 
@@ -378,32 +388,14 @@ OUT = ('<svg class="out" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 
        'stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 
 
-MAP_PIN = ('<svg class="out" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 11s3.6-3.4 3.6-6.2A3.6 3.6 0 0 0 2.4 4.8C2.4 7.6 6 11 6 11Z'
-           'M6 6.3a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>')
+MEDIA = ("walkerplus.com", "happyell.co.jp", "iko-yo.net", "pretty-online.jp", "voyvoi.com", "storm.mg", "prtimes.jp", "jorudan.co.jp",
+         "jalan.net", "tabelog.com", "timeout.jp", "fashion-press.net", "yahoo.co.jp", "note.com", "enjoytokyo.jp")
 
 
-def _place(e):
-    """地図で探す場所の名前。予定表の place（夜の回が書く）を使い、なければ本文から1つ選ぶ。"""
-    if e.get("place"):
-        return e["place"]
-    for b in e["bullets"]:
-        m = re.match(r"(?:場所|会場)は(.+?)(?:です|（|$)", b)
-        if m:
-            return m.group(1).strip()
-    for b in e["bullets"][:1]:
-        b = re.sub(r"^[0-9/〜~・（）()月火水木金土日 ]+", "", b)
-        name = re.split(r"[（(：:、。]", b)[0].strip()
-        if len(name) >= 2:
-            return name
-    return _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))[1]
-
-
-def map_url(e):
-    q = _place(e)
-    pref = _pref(e)
-    if pref and pref not in q:
-        q = f"{q} {pref}"
-    return "https://www.google.com/maps/search/?" + urllib.parse.urlencode({"api": "1", "query": q})
+def link_label(url):
+    """カードの下の言葉。施設・主催・役所のページは「公式ページ」、ニュースや情報サイトは「紹介記事」（10/24 オーナー「もっと正確に」）。"""
+    host = (urllib.parse.urlparse(url or "").hostname or "").lower()
+    return "紹介記事" if any(host == m or host.endswith("." + m) for m in MEDIA) else "公式ページ"
 
 
 def spot(e):
@@ -414,11 +406,10 @@ def spot(e):
     free = _free(e)
     tag = f'<span class="tg">・{esc(free)}</span>' if free else ""
     pl = f'<span class="pl">{esc(pref)}</span>' if pref else ""
-    # おでかけとお店は、押すと地図（Googleマップ）が開く（10/24 オーナー「公式ページではなく、押したらマップに飛ぶ」）
-    # 期間のお得（無印良品週間など）は行く場所がないので、公式ページのまま
-    deal = e.get("kind") == "deal"
-    href = esc(e.get("url") or "#") if deal else esc(map_url(e))
-    label = f"公式ページ{OUT}" if deal else f"地図で見る{MAP_PIN}"
+    if not e.get("url"):  # リンクのないカードは載せない（押しても何も開かないため）
+        return ""
+    href = esc(e["url"])
+    label = f"{link_label(e['url'])}{OUT}"
     return (f'<a class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}" style="--pc:{color}" href="{href}" '
             f'target="_blank" rel="noopener"><div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
             f'<div class="t">{phr(name)}</div>'
@@ -522,7 +513,8 @@ def render(items, ended, now, cfg):
     if p.get("room_url"):
         follow += (f'<a class="co" href="{esc(p["room_url"])}" target="_blank" rel="noopener">楽天ROOM'
                    f'<span>AIが比べて選んだ物を、まとめて置いています</span></a>')
-    spots = items["odekake"] + items["shop"] + items["deal"]
+    spots = [e for e in items["odekake"] + items["shop"] if e.get("url")]  # おでかけはおでかけとお店だけ。お得は別の欄
+    deals = [e for e in items["deal"] if e.get("url")]
     regs = [x for x in REGION_COLOR if any(region(_pref(e)) == x for e in spots)]
     tabs = '<button class="on" data-p="">すべて</button>' + "".join(
         f'<button data-p="{esc(x)}" style="--pc:{REGION_COLOR[x]}">{esc(x)}</button>' for x in regs)
@@ -546,6 +538,11 @@ def render(items, ended, now, cfg):
                       f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>'
                       f'<nav class="flt" aria-label="地域">{tabs}</nav>'
                       f'{"".join(cards[:SHOW_GO])}{more}<p class="none">この地域は、これから増やしていきます</p></section>')
+    if deals:  # 期間のあるお得（無印良品週間など）は、おでかけの下に別の欄で
+        nav.append(f'<a href="#deal"><span><i>DEAL</i>今だけのお得</span><b>{len(deals)}</b></a>')
+        blocks.append('<section class="blk" id="deal"><div class="wk"><span class="en2">DEAL</span>'
+                      '<span class="jp2">今だけのお得</span></div><p class="lead">期間のあるお得。終わる日を先に書いています</p>'
+                      + "".join(spot(e) for e in deals) + '</section>')
     for key, en, name, lead, _ in cs:
         if not goods[key]:
             continue
