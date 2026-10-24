@@ -130,7 +130,7 @@ def _resolve(link, texts):
         return {"ok": False, "why": str(e)[:80]}
 
 
-def collect(now):
+def collect(now, light=False):
     since = (now - timedelta(days=DAYS)).date()
     items = {k: [] for k, _, _ in SECTIONS}
     ended = []
@@ -170,6 +170,8 @@ def collect(now):
                 ended.append(entry)
                 continue
             link = p.get("link")
+            if link and light:
+                continue
             if link:
                 r = _resolve(link, list(p["x"]) + list(p["threads"]))
                 if not r.get("ok"):
@@ -193,6 +195,8 @@ def collect(now):
             if key:  # リンクのない比べ（電気代など）はページに載せない
                 entry["kind"] = key
                 items[key].append(entry)
+    if light:
+        return items, ended
     items["pick"] = _room_picks(now, since, skip=pr_urls)
     items["a8"] = _a8_items()
     return items, ended
@@ -622,6 +626,34 @@ def _hot(prs):
     return best
 
 
+def all_spots(items, now):
+    """HPのおでかけの欄に出す物。並び：きのう・きょう投稿した物 → HPだけのおすすめ → それより前に投稿した物"""
+    posted = [e for e in items["odekake"] + items["shop"] if e.get("url")]
+    seen_t = {re.sub(r"\W", "", e["title"])[:12] for e in posted}
+    extra = [e for e in _page_spots(now) if not any(k and k in re.sub(r"\W", "", e["title"]) for k in seen_t)]
+
+    def _age(e):
+        m, d = (int(x) for x in e["day"].split("/"))
+        return (now.date() - datetime(e.get("year", now.year), m, d).date()).days
+    return [e for e in posted if _age(e) <= 1] + extra + [e for e in posted if _age(e) > 1]
+
+
+def spot_counts(now):
+    """その時刻にHPのおでかけの欄に並ぶ数（関東・関西）。予約係が投稿の最後の1行に使う（楽天には確かめない）。"""
+    items, _ = collect(now, light=True)
+    out = {"関東": 0, "関西": 0}
+    for e in all_spots(items, now):
+        r = region(_pref(e))
+        if r in out:
+            out[r] += 1
+    return out
+
+
+def post_region(texts):
+    """投稿の文から、関東の話か関西の話か（分からなければ空）。"""
+    return region(_pref({"title": " ".join(texts), "bullets": []}))
+
+
 def render(items, ended, now, cfg):
     p = cfg.get("page", {})
     sns = [("Instagram", "@ai_usagichan1", "https://www.instagram.com/ai_usagichan1/"),
@@ -631,14 +663,7 @@ def render(items, ended, now, cfg):
     if p.get("room_url"):
         follow += (f'<a class="co" href="{esc(p["room_url"])}" target="_blank" rel="noopener">楽天ROOM'
                    f'<span>AIが比べて選んだ物を、まとめて置いています</span></a>')
-    posted = [e for e in items["odekake"] + items["shop"] if e.get("url")]
-    seen_t = {re.sub(r"\W", "", e["title"])[:12] for e in posted}
-    extra = [e for e in _page_spots(now) if not any(k and k in re.sub(r"\W", "", e["title"]) for k in seen_t)]
-    def _age(e):
-        m, d = (int(x) for x in e["day"].split("/"))
-        return (now.date() - datetime(e.get("year", now.year), m, d).date()).days
-    # 並び：きのう・きょう投稿した物 → HPだけのおすすめ → それより前に投稿した物
-    spots = [e for e in posted if _age(e) <= 1] + extra + [e for e in posted if _age(e) > 1]
+    spots = all_spots(items, now)
     deals = [e for e in items["deal"] if e.get("url")]
     regs = [x for x in REGION_COLOR if any(region(_pref(e)) == x for e in spots)]
     tabs = '<button class="on" data-p="">すべて</button>' + "".join(

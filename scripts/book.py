@@ -56,12 +56,31 @@ def resolve_link(link, texts=()):
     return {"ok": False, "why": "link.type が分からない"}
 
 
-PAGE_LINE = "AIが比べたおでかけ・宿・お得の一覧：{url}"
+PAGE_LINE = "AIが比べたおでかけ・宿・お得の一覧：{url}"  # 前の作りの1行（予約済みの物を見分けるのに使う）
 
 
-def with_page(texts, service, cfg, slot=""):
+def page_line(texts, url, due):
+    """投稿の中身に合わせた、HPへ来る理由の1行（10/24 オーナー「HPまで来させたらPRよく見られる。一石二鳥」）。
+    おでかけ＝その地域の一覧の数、PR＝比べた表と選んだ理由。数はその時刻にHPに並ぶおでかけの数。"""
+    joined = " ".join(texts)
+    if "#PR" in joined:
+        return f"比べた表と選んだ理由、ほかにAIが選んだ物：{url}"
+    try:
+        import page
+        n = page.spot_counts(due) if due else {}
+        reg = page.post_region(texts)
+    except Exception:  # 数えられない日は前の1行
+        return PAGE_LINE.format(url=url)
+    if reg and n.get(reg, 0) >= 3:
+        return f"{reg}のおでかけ{n[reg]}件、公式ページつきの一覧：{url}"
+    if n.get("関東", 0) >= 3 and n.get("関西", 0) >= 3:
+        return f"関東{n['関東']}件・関西{n['関西']}件のおでかけ、公式ページつきの一覧：{url}"
+    return PAGE_LINE.format(url=url)
+
+
+def with_page(texts, service, cfg, slot="", due=None):
     """2つ目（最後）の文の最後に、プロフィール用ページのURLを1行足す（10/24 オーナー「HPの宣伝、投稿のURLに一緒に付けとけ。一石二鳥」）。
-    X・Threadsとも最後に足す（10/24 オーナー「せめて最後に入れろ」。PRや公式のリンクを先に見せる）。文字数を超えるなら足さない。"""
+    X・Threadsとも最後に足す（10/24 オーナー「せめて最後に入れろ」。PRや公式のリンクを先に見せる）。文字数を超えるなら前の短い1行、それも超えるなら足さない。"""
     from lib import threads_len, x_weight
     pg = (cfg.get("page") or {})
     url = pg.get("url")
@@ -69,10 +88,12 @@ def with_page(texts, service, cfg, slot=""):
         return list(texts)
     if slot:  # どの投稿から来たか分かる印（x0715 = Xの7:15の投稿、t0715 = Threadsの7:15）
         url = f"{url}?f={'x' if service == 'twitter' else 't'}{slot.replace(':', '')}"
-    line = PAGE_LINE.format(url=url)
-    new = texts[-1].rstrip() + "\n\n" + line
-    fits = (x_weight(new) <= 280) if service == "twitter" else (threads_len(new) <= 500)
-    return list(texts[:-1]) + [new] if fits else list(texts)
+    for line in dict.fromkeys([page_line(texts, url, due), PAGE_LINE.format(url=url)]):
+        new = texts[-1].rstrip() + "\n\n" + line
+        fits = (x_weight(new) <= 280) if service == "twitter" else (threads_len(new) <= 500)
+        if fits:
+            return list(texts[:-1]) + [new]
+    return list(texts)
 
 
 PAGE_HEAD = PAGE_LINE.split("{")[0]
@@ -85,6 +106,15 @@ def page_at_head(texts):
 
 def strip_page_head(texts):
     return list(texts[:-1]) + [texts[-1].split("\n\n", 1)[1] if "\n\n" in texts[-1] else texts[-1]]
+
+
+def page_at_tail(texts):
+    """前の作り（最後に「AIが比べたおでかけ・宿・お得の一覧」の1行）で予約した物か。"""
+    return len(texts) >= 2 and texts[-1].rsplit("\n\n", 1)[-1].startswith(PAGE_HEAD) and "\n\n" in texts[-1]
+
+
+def strip_page_tail(texts):
+    return list(texts[:-1]) + [texts[-1].rsplit("\n\n", 1)[0]]
 
 
 DELETE_POST = 'mutation($i:DeletePostInput!){deletePost(input:$i){__typename}}'
@@ -113,7 +143,10 @@ def refresh_page(cfg, state, now):
             if not isinstance(r, dict) or not r.get("id") or r.get("seen") or len(r.get("texts") or []) < 2:
                 continue
             head = page_at_head(r["texts"])  # 頭に入れた物は、最後に入れ直す（10/24 オーナー「せめて最後に入れろ」）
-            if (r.get("page") and not head) or (any(url in t for t in r["texts"]) and not head):
+            old = page_at_tail(r["texts"])  # 前の1行（中身に合わせない一覧の1行）の物も入れ直す
+            if not head and not old and (r.get("page") or any(url in t for t in r["texts"])):
+                continue
+            if r.get("page") in ("字数が足りない", "作れない", "消せない"):  # 1回だめだった物は繰り返さない
                 continue
             try:
                 due = datetime.fromisoformat(f"{day}T{r.get('at') or slot}").replace(tzinfo=JST)
@@ -128,8 +161,9 @@ def refresh_page(cfg, state, now):
     for day, slot, s, r, due in todo:
         if r["id"] not in waiting:  # Bufferで予約中でない物（出た・消された）は触らない
             continue
-        base = strip_page_head(r["texts"]) if page_at_head(r["texts"]) else r["texts"]
-        new = with_page(base, s, cfg, slot)
+        base = (strip_page_head(r["texts"]) if page_at_head(r["texts"])
+                else strip_page_tail(r["texts"]) if page_at_tail(r["texts"]) else r["texts"])
+        new = with_page(base, s, cfg, slot, due)
         if new == r["texts"] or new == base:
             r["page"] = "字数が足りない"
             changed = True
@@ -261,7 +295,7 @@ def run(now=None):
             due_utc = when.astimezone(timezone.utc)
             due_iso = due_utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
             for s in todo:
-                texts = with_page(xs if s == "twitter" else ths, s, cfg, slot)
+                texts = with_page(xs if s == "twitter" else ths, s, cfg, slot, due)
                 r = rec.setdefault(s, {"tries": 0})
                 r["tries"] = r.get("tries", 0) + 1
                 try:
