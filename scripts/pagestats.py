@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import load_json, now_jst, path, save_json  # noqa: E402
 
 KEEP_DAYS = 30
-STOP_AT = 300  # 1日にこの数を数えたら、その日は数えるのをやめる（KVの書き込みは無料で1日1,000回。月と同じアカウントなので4割は残す）
+STOP_AT = 300  # 押された数が1日にこの数を超えたら、その日は数えるのをやめる（KVの書き込みは無料で1日1,000回。開いた数は _middleware.js が1日500で止める）
 WRANGLER = ["npx", "-y", "wrangler@3.80.0"]
 
 

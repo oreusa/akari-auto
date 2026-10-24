@@ -1,7 +1,8 @@
 // プロフィール用ページの数え係（Cloudflare Pages Functions）。
 // 数えるのは、ページの中でアフィリエイトのリンク（PR）が押された回数だけ（10/24 オーナー「あくまでアフィリエイトだけ」）。
 // /c?f=…&s=…&k=… を受けて、どの投稿から来た人が（f）、どの項目の（s）、どの物を（k）押したかを数える。リンク先はそのまま。
-// 開いた数は数えない（保存の回数を減らすため）。呼ばれるのは /c だけ（site/_routes.json）。
+// 開いた数（10/24 オーナー「HPも見られてるか足す」）は、1日の合計1つだけを数え、1日500で止める（押した数300と合わせてもKVの書き込み1日1,000回の無料枠に収まる）。
+// 呼ばれるのは / と /c だけ（site/_routes.json）。
 // 数は KV（CLICKS）のキーのメタデータ n に入れる。scripts/pagestats.py が読んで data/page-stats.json にする。
 const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|whatsapp|discord|slack|telegram|curl|wget|python|headless/i;
 
@@ -22,10 +23,24 @@ async function bump(env, key) {
   await env.CLICKS.put(key, "", { metadata: { n }, expirationTtl: 60 * 60 * 24 * 180 });
 }
 
+const VIEW_MAX = 500;
+
+async function view(env) {
+  if (!env.CLICKS) return;
+  const key = `${day()}|v|all`;
+  const got = await env.CLICKS.getWithMetadata(key);
+  const n = (got && got.metadata && got.metadata.n) || 0;
+  if (n >= VIEW_MAX) return;
+  await env.CLICKS.put(key, "", { metadata: { n: n + 1 }, expirationTtl: 60 * 60 * 24 * 180 });
+}
+
 export async function onRequest(ctx) {
   const { request, env } = ctx;
   const url = new URL(request.url);
   const ua = request.headers.get("user-agent") || "";
+  if (url.pathname === "/" && request.method === "GET" && !BOT.test(ua) && !request.headers.get("purpose") && !request.headers.get("sec-purpose")) {
+    ctx.waitUntil(view(env).catch(() => {}));
+  }
   if (url.pathname === "/c") {
     if (request.method === "POST" && !BOT.test(ua)) {
       const f = clean(url.searchParams.get("f"), 24) || "direct";
