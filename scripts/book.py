@@ -433,10 +433,14 @@ def book_koma4(cfg, state, now):
     for s, svc, media, at in jobs:
         r = rec.setdefault(s, {"tries": 0})
         r["tries"] = r.get("tries", 0) + 1
+        texts = [k["text"]]
+        # おでかけ4コマ（10/24〜）：X・Threads は2つ目に公式ページのURL（text2）とHPの1行を付ける。インスタは1つだけ
+        if svc in ("twitter", "threads") and URL_RE.search(k.get("text2") or ""):
+            texts = with_page([k["text"], k["text2"].strip()], svc, cfg, slot, due)
         try:
-            p = buffer_create(cfg["channels"][svc], svc, [k["text"]], at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+            p = buffer_create(cfg["channels"][svc], svc, texts, at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
                               topic=(k.get("topic") or "漫画") if svc == "threads" else None, **media)
-            r.update({"id": p["id"], "kind": "4コマ", "at": at.strftime("%H:%M"), "texts": [k["text"]],
+            r.update({"id": p["id"], "kind": "4コマ", "at": at.strftime("%H:%M"), "texts": texts,
                       "topic": k.get("topic") or "漫画", "media": media, "svc": svc})
             r.pop("error", None)
             late = "" if when == due else f"（遅れたので {when.strftime('%H:%M')} に）"
