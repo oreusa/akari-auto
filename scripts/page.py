@@ -454,7 +454,7 @@ def compare(e):
     reason = f'<p class="why">{esc(e["reason"])}</p>' if e.get("reason") else ""
     btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
-    return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}　AIが比べた{"・Amazon" if e.get("amazon") else ""}</span></div>'
+    return (f'<article class="card cmp"><div class="d"><span class="when">{esc(e["day"])}　AIが比べた{"・Amazon" if e.get("amazon") else ""}</span></div>'
             f'<div class="t">{phr(title)}</div>{head}{reason}{table}<div class="ft2">{btn}</div>{sample}</article>')
 
 
@@ -468,7 +468,7 @@ def pick(e):
         meta.append(f'<span class="yen">税込 {int(e["price"]):,}円</span>')
     lis = f'<p class="why">{esc(e["lines"][0])}</p>' if e["lines"] else ""
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
-    return (f'<article class="card cmp pk2"><div class="d"><span class="prm">PR</span><span class="when">{esc(e["day"])}　AIが選んだ</span></div>'
+    return (f'<article class="card cmp pk2"><div class="d"><span class="when">{esc(e["day"])}　AIが選んだ</span></div>'
             f'<div class="cho">{_img(e)}<div class="tx"><span class="lb">選んだのは</span><b>{phr(e["name"])}</b>'
             f'<div class="meta">{"".join(meta)}</div></div></div>{lis}'
             f'<div class="ft2">'
@@ -479,14 +479,14 @@ def sale(e):
     when, name = _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))
     when = _wd(when, e["year"]) if when else _wd(e["day"], e["year"]) + "調べ"
     btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
-    return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">{esc(when)}</span></div>'
+    return (f'<article class="card cmp"><div class="d"><span class="when">{esc(when)}</span></div>'
             f'<div class="t">{phr(name)}</div><div class="ft2">{btn}</div></article>')
 
 
 def a8card(e):
     note = f'<p class="why">{esc(e["note"])}</p>' if e.get("note") else ""
     btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">詳しく{ARROW}</a>'
-    return (f'<article class="card cmp"><div class="d"><span class="prm">PR</span><span class="when">予約・申し込み</span></div>'
+    return (f'<article class="card cmp"><div class="d"><span class="when">予約・申し込み</span></div>'
             f'<div class="t">{phr(e["name"])}</div>{note}<div class="ft2">{btn}</div></article>')
 
 
