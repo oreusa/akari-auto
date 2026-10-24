@@ -6,17 +6,12 @@ on:
         description: "4コマの絵のURL（入れると、その絵でBufferの下書きを作れるか試し、すぐ消す）"
         required: false
         default: ""
-      reel:
-        description: "yes にすると、その絵でリールを作って置けるかも試す（投稿しない）"
-        required: false
-        default: ""
 jobs:
   sent:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 3
     env:
       BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: 絵を切る道具（Pillow）
@@ -26,9 +21,3 @@ jobs:
         env:
           IMAGE: ${{ inputs.image }}
         run: python3 scripts/book.py --koma4-test "$IMAGE"
-      - if: ${{ inputs.image != '' && inputs.reel == 'yes' }}
-        env:
-          IMAGE: ${{ inputs.image }}
-        run: |
-          command -v ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
-          python3 scripts/reel.py --test "$IMAGE"
