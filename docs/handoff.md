@@ -38,7 +38,7 @@
 
 ## 4. ドライブ（フォルダ「連絡ノート」 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）
 - 「燈からの指示（最新）」1Sqtzmd1ltNqemj4_un46kWPQz2URSQcdcP_CZCzHMnU：雫だけが読む短いファイル（■明日の4コマ台本）。作り直すとIDが変わるので、題名で探す。
-- 「指示_雫」1zVPr7vXP2lVHUy7Um8pVibreC_gz4FRNvrLV4KfvspY（10/24作り直し。4コマ設計書は 1Yw4d5xF1xLyRh89kgPdwnjZLjn1FCB7UIJAuczc94mc）／「指示_汐」1pxdTvBhWo69Ir5rzkJiLSBaL1m1gakxiTLphYtxB_y0（売上の数字とA8のリンク、10/24からページ用A8も。旧版 1bDOqj… は「10/22版・使わない」に改名）／「指示_凪」1SBg6U0uNOwPdd6qkpFiCe3pbUTFwUYyKPO4TyVtncpQ（10/24 17:15 燈が作り直し。ROOMアイコン替えを1回足した）（10/24 16:45 月が作り直し：Amazonは検索を使わず商品ページを直接・ROOMは新しいコレクションを作らない・返信はBufferのCommunity。凪のChatGPTタスクの文にオーナーの許可を直接書いた）（10/24作り直し。20:20の1回で Amazon確認帳5件→ROOM→返信、毎回報告1行）。
+- 「指示_雫」1zVPr7vXP2lVHUy7Um8pVibreC_gz4FRNvrLV4KfvspY（10/24作り直し。4コマ設計書は 1Yw4d5xF1xLyRh89kgPdwnjZLjn1FCB7UIJAuczc94mc）／「指示_汐」1pxdTvBhWo69Ir5rzkJiLSBaL1m1gakxiTLphYtxB_y0（売上の数字とA8のリンク、10/24からページ用A8も。旧版 1bDOqj… は「10/22版・使わない」に改名）／「指示_凪」10NItso59KJZOCSZE8MrxIVNtuRTSXcZUFWUq4oLSI-k（10/24 19:30 燈が作り直し：Amazonは自分で探さず、Amazon確認帳の■今夜見る5件のURLを開いて写すだけ。旧 1SBg6U… は「使わない」に改名）（10/24 17:15 燈が作り直し。ROOMアイコン替えを1回足した）（10/24 16:45 月が作り直し：Amazonは検索を使わず商品ページを直接・ROOMは新しいコレクションを作らない・返信はBufferのCommunity。凪のChatGPTタスクの文にオーナーの許可を直接書いた）（10/24作り直し。20:20の1回で Amazon確認帳5件→ROOM→返信、毎回報告1行）。
 - 「ROOM台本」16J7c8utH51AnR7k143iqrMFrWx_RHplpXiNrNRdBS2k（「（ここから下に台本）」より下だけ入れ替える）。
 - 「リンク帳」1_H6XW71xeWpVUg19P84B9SyBw6ZoVYFxLXKOebFusrM（A8は「A8｜名前｜https://px.a8.net/svt/ejp?a8mat=…｜ドメイン」の形）。
 - 「分析メモ」12BQ-UufhKrlk-Inqbc5OU1TGw9542OnGPwCtS6w7WrU（汐が【楽天】【A8】の行を書く）。
