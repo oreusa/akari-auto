@@ -343,7 +343,8 @@ def book_koma4(cfg, state, now):
     slot = k.get("slot") or "08:00"
     due = datetime.fromisoformat(f"{day}T{slot}").replace(tzinfo=JST)
     mins = (due - now).total_seconds() / 60
-    if mins > LEAD_MIN or mins < -6 * 60:  # 4コマは遅れても、その日の昼までは出す
+    late_ok = k.get("late_until") and now.strftime("%H:%M") < k["late_until"]  # 手で出し直すとき（燈が入れる）
+    if mins > LEAD_MIN or (mins < -6 * 60 and not late_ok):  # 4コマは遅れても、その日の昼までは出す
         return False
     key = f"{day} 4コマ"
     rec = state.setdefault(key, {})
