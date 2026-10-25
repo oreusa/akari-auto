@@ -507,7 +507,8 @@ def book_extra(cfg, state, now):
                 p = buffer_create(cfg["channels"][svc], svc, texts, when.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
                                   topic=e.get("topic") if svc == "threads" else None,
                                   images=pics, ig_type="post" if svc == "instagram" else None, alt=e.get("alt", ""))
-                r.update({"id": p["id"], "kind": "1回", "at": when.strftime("%H:%M"), "texts": texts, "svc": svc})
+                r.update({"id": p["id"], "kind": "1回", "at": when.strftime("%H:%M"), "texts": texts, "svc": svc,
+                          "media": {"images": pics, "alt": e.get("alt", ""), "ig_type": "post" if svc == "instagram" else None}})
                 r.pop("error", None)
                 append_log(day, f"{slot} {svc} 予約OK［1回：{e.get('key', '')}］")
             except BufferError as err:
@@ -540,7 +541,7 @@ def after_check(cfg, state, now):
         sent = {p["id"] for p in buffer_posts(cfg, ["sent"], start - timedelta(hours=1), end)}
         errs = {p["id"] for p in buffer_posts(cfg, ["error"], start - timedelta(hours=1), end)}
         for key, s, r, due in waiting:
-            day, slot = key.split(" ")
+            day, slot = key.split(" ", 1)  # 1回だけの投稿は「日付 1回 名前」で空白が多い
             if r["id"] in sent:
                 r["seen"] = "出た"
                 append_log(day, f"{slot} {s} 出た")
