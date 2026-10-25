@@ -77,6 +77,9 @@ def threads_len(text):
 
 # ---------------------------------------------------------------- HTTP
 
+LAST_HEADERS = {}
+
+
 def http(method, url, headers=None, body=None, timeout=30, retries=3):
     data = None
     if body is not None:
@@ -87,6 +90,8 @@ def http(method, url, headers=None, body=None, timeout=30, retries=3):
                                      headers={"User-Agent": UA, **(headers or {})})
         try:
             with urllib.request.urlopen(req, timeout=timeout) as r:
+                LAST_HEADERS.clear()
+                LAST_HEADERS.update({k.lower(): v for k, v in r.headers.items() if "limit" in k.lower() or "retry" in k.lower()})
                 return r.status, r.read().decode("utf-8", "replace"), r.geturl()
         except urllib.error.HTTPError as e:
             txt = e.read().decode("utf-8", "replace")
@@ -121,6 +126,25 @@ def http_raw(url, timeout=60):
         return e.code, b"", url
 
 
+def _note_buffer_limit(ext):
+    """Buffer の回数の上限と残りを state/buffer_limit.json に残す（燈が上限を見張るため）"""
+    try:
+        info = {"at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "headers": dict(LAST_HEADERS)}
+        if isinstance(ext, dict):
+            info["extensions"] = {k: v for k, v in ext.items() if "limit" in k.lower() or "cost" in k.lower()}
+        os.makedirs("state", exist_ok=True)
+        path = "state/buffer_limit.json"
+        old = json.load(open(path)) if os.path.exists(path) else {}
+        day = info["at"][:10]
+        calls = old.get("calls", {})
+        calls[day] = calls.get(day, 0) + 1
+        info["calls"] = dict(sorted(calls.items())[-35:])
+        json.dump(info, open(path, "w"), ensure_ascii=False, indent=1)
+    except Exception:
+        pass
+
+
 def buffer_gql(query, variables=None):
     key = os.environ.get("BUFFER_API_KEY")
     if not key:
@@ -137,6 +161,7 @@ def buffer_gql(query, variables=None):
         data = json.loads(txt)
     except Exception:
         raise BufferError(f"Buffer の返事が読めません（{status}）: {txt[:200]}")
+    _note_buffer_limit(data.get("extensions"))
     if data.get("errors"):
         raise BufferError("Buffer: " + "; ".join(e.get("message", "") for e in data["errors"])[:300])
     return data["data"]
