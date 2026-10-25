@@ -1,0 +1,520 @@
+{
+  "day": "2026-10-25",
+  "fetchedAt": "2026-10-26T07:18+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "今日10/25は楽天の5と0のつく日、お買い物マラソンと重なる日",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De5Lp3WFHWO",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.17,
+        "views": 24,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "今日10/25は楽天の5と0のつく日、お買い物マラソンと重なる日",
+      "url": "https://x.com/1753799832798629888/status/2114118503997321609",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.63,
+        "reposts": 0,
+        "impressions": 38,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "10/30から東京と大阪でやきいもフェス、今週始まる5つ",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De5ZYuNjhQw",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.09,
+        "views": 92,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "10/30から東京と大阪でやきいもフェス、今週始まる5つ",
+      "url": "https://x.com/1753799832798629888/status/2114148697617342940",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.37,
+        "reposts": 0,
+        "impressions": 538,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "今日10/25、神戸港で入場無料のイベントが3つ",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De5t-9PoA9P",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.34,
+        "views": 290,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "今日10/25、神戸港で入場無料のイベントが3つ",
+      "url": "https://x.com/1753799832798629888/status/2114193992724132227",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.93,
+        "reposts": 0,
+        "impressions": 107,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "11/5のスカイツリーから、関東・関西のクリスマスマーケット",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De54SDNFRiw",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.66,
+        "views": 152,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "11/5のスカイツリーから、関東・関西のクリスマスマーケット",
+      "url": "https://x.com/1753799832798629888/status/2114216638023172487",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.64,
+        "reposts": 0,
+        "impressions": 61,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "10/24開店、Sticks Coffee 京都東山店",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De6ClRAFeRo",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 0.98,
+        "views": 204,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "10/24開店、Sticks Coffee 京都東山店",
+      "url": "https://x.com/1753799832798629888/status/2114239289139585145",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた冬の朝の冷たい床に、ルームシューズ3足。件数も評価も上はムートン】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De6XLwtlbDW",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 9.09,
+        "views": 11,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた冬の朝の冷たい床に、ルームシューズ3足。件数も評価も上はムートン】",
+      "url": "https://x.com/1753799832798629888/status/2114284590483329363",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "1回",
+      "kind": "1回",
+      "first": "うさぎ│LIFE NOTESのサイトができました🌙",
+      "url": "https://www.instagram.com/p/De6p34nlVd7/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "follows": 0,
+        "reach": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "1回",
+      "kind": "1回",
+      "first": "うさぎ│LIFE NOTESのサイトができました🌙",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De6p1WclIkU",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "1回",
+      "kind": "1回",
+      "first": "うさぎ│LIFE NOTESのサイトができました🌙",
+      "url": "https://x.com/1753799832798629888/status/2114325603818012890",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "PR",
+      "first": "【AIが比べた草津の宿4軒、4.5以上で口コミ1,000件超えは望雲だけ】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De6k6vIlQU7",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.17,
+        "views": 46,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "PR",
+      "first": "【AIが比べた草津の宿4軒、4.5以上で口コミ1,000件超えは望雲だけ】",
+      "url": "https://x.com/1753799832798629888/status/2114314796170412103",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "10/23から、夜の二条城でNAKED meets 二条城（12/5まで）",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De6qPjcEbpn",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.5,
+        "views": 199,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "10/23から、夜の二条城でNAKED meets 二条城（12/5まで）",
+      "url": "https://x.com/1753799832798629888/status/2114326228056395966",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:22",
+      "kind": "手動",
+      "first": "うさぎ│LIFE NOTESのサイトができました🌙",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De6sn_PkdLW",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 10,
+        "views": 10,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:22",
+      "kind": "手動",
+      "first": "うさぎ│LIFE NOTESのサイトができました🌙",
+      "url": "https://x.com/1753799832798629888/status/2114331649194197114",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "PR",
+      "first": "【AIが比べたトイレットペーパー3つ、評価4.67でいちばん上はイトマンの芯なし",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De6ypn1lHdg",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 14.29,
+        "views": 7,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "PR",
+      "first": "【AIが比べたトイレットペーパー3つ、評価4.67でいちばん上はイトマンの芯なし",
+      "url": "https://x.com/1753799832798629888/status/2114344995461169198",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4015430689721559354",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4015430203644108824",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）",
+      "url": "https://www.instagram.com/p/De5rKSJEdIT/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 2,
+        "shares": 0,
+        "saves": 0,
+        "follows": 0,
+        "reach": 1
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）",
+      "url": "https://www.instagram.com/reel/De5rIVkqNhk/",
+      "metrics": {
+        "reactions": 1,
+        "comments": 0,
+        "engagementRate": 1.25,
+        "views": 83,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 2.6,
+        "averageTimeWatched": 1.83,
+        "reach": 80
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De5rHttDDeb",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.72,
+        "views": 58,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）",
+      "url": "https://x.com/1753799832798629888/status/2114187696176308416",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 20,
+        "reposts": 0,
+        "impressions": 5,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ（8:00",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4015315700512204339",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ（8:00",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4015314469895458250",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ（8:00",
+      "kind": "4コマ",
+      "first": "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）",
+      "url": "https://www.instagram.com/p/De5Q1ybGpSx/",
+      "metrics": {}
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ（8:00",
+      "kind": "4コマ",
+      "first": "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）",
+      "url": "https://www.instagram.com/reel/De5Q7kUBLFl/",
+      "metrics": {}
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ（8:00",
+      "kind": "4コマ",
+      "first": "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De5Qzr-FFm2",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.81,
+        "views": 124,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ（8:00",
+      "kind": "4コマ",
+      "first": "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）",
+      "url": "https://x.com/1753799832798629888/status/2114129833189928980",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 11.11,
+        "reposts": 0,
+        "impressions": 9,
+        "clicks": 0
+      }
+    }
+  ]
+}
