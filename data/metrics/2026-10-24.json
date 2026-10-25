@@ -1,6 +1,6 @@
 {
   "day": "2026-10-24",
-  "fetchedAt": "2026-10-25T08:42+09:00",
+  "fetchedAt": "2026-10-25T22:43+09:00",
   "posts": [
     {
       "service": "threads",
@@ -26,9 +26,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 3.33,
+        "engagementRate": 2.7,
         "reposts": 0,
-        "impressions": 30,
+        "impressions": 37,
         "clicks": 0
       }
     },
@@ -56,9 +56,9 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 0.73,
+        "engagementRate": 0.42,
         "reposts": 0,
-        "impressions": 545,
+        "impressions": 945,
         "clicks": 0
       }
     },
@@ -86,9 +86,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.43,
+        "engagementRate": 0.66,
         "reposts": 0,
-        "impressions": 70,
+        "impressions": 303,
         "clicks": 0
       }
     },
@@ -116,9 +116,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.14,
+        "engagementRate": 0.13,
         "reposts": 0,
-        "impressions": 704,
+        "impressions": 743,
         "clicks": 0
       }
     },
@@ -144,11 +144,11 @@
       "first": "10/23開店、廻転鮨 銀座おのでら ハレザ池袋店",
       "url": "https://x.com/1753799832798629888/status/2113876902217666884",
       "metrics": {
-        "reactions": 1,
+        "reactions": 2,
         "comments": 1,
-        "engagementRate": 9.09,
+        "engagementRate": 2.71,
         "reposts": 0,
-        "impressions": 22,
+        "impressions": 258,
         "clicks": 0
       }
     },
@@ -175,10 +175,10 @@
       "url": "https://x.com/1753799832798629888/status/2113922214395301997",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 3.03,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 33,
         "clicks": 0
       }
     },
@@ -205,10 +205,10 @@
       "url": "https://x.com/1753799832798629888/status/2113952418907951333",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 3.39,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 59,
         "clicks": 0
       }
     },
@@ -235,10 +235,10 @@
       "url": "https://x.com/1753799832798629888/status/2113963741637128703",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 4.17,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 24,
         "clicks": 0
       }
     },
@@ -265,10 +265,10 @@
       "url": "https://x.com/1753799832798629888/status/2113982669662937317",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 2.22,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 45,
         "clicks": 0
       }
     },
@@ -279,7 +279,7 @@
       "first": "",
       "url": "https://www.instagram.com/stories/ai_usagichan1/4014785322969620150",
       "metrics": {
-        "views": 0,
+        "views": 2,
         "reach": 0,
         "comments": 0,
         "engagementRate": 0,
@@ -293,7 +293,7 @@
       "first": "",
       "url": "https://www.instagram.com/stories/ai_usagichan1/4014784808789924886",
       "metrics": {
-        "views": 0,
+        "views": 2,
         "reach": 0,
         "comments": 0,
         "engagementRate": 0,
@@ -354,11 +354,11 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 0,
+        "views": 2,
         "shares": 0,
         "saves": 0,
         "follows": 0,
-        "reach": 0
+        "reach": 1
       }
     },
     {
@@ -385,9 +385,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 0,
-        "engagementRate": 20,
+        "engagementRate": 11.11,
         "reposts": 0,
-        "impressions": 5,
+        "impressions": 9,
         "clicks": 0
       }
     }
