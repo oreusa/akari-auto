@@ -163,6 +163,7 @@ def collect(now, light=False):
             seen.add(title)
             entry = {"day": f"{d.month}/{d.day}", "year": d.year, "title": title, "bullets": _bullets(text),
                      "reason": _line_with(text, "選んだ理由").replace("選んだ理由：", ""),
+                     "but": next((ln for ln in _lines(text) if ln.startswith("ただし")), ""),
                      "source": _line_with(text, "より（"), "url": _official(p), "place": p.get("place", ""),
                      "name": p.get("name", ""), "start": p.get("start", ""), "ends": p.get("ends") or p.get("until") or ""}
             until = p.get("ends") or p.get("until")  # ends＝催し・お得が終わる時刻（夜の回が書く）。過ぎたらページから外す
@@ -543,11 +544,14 @@ def compare(e):
         trs = "".join(
             f'<div class="row{" on" if r.get("pick") else ""}"><div class="nm">{esc(r["name"])}</div>'
             f'<div class="nu"><span class="av">★ {esc(r["avg"])}</span><span class="ct">{r["count"]:,}件</span></div>'
+            + (f'<div class="nt">{esc(r["note"])}</div>' if r.get("note") else "") +
             f'<div class="br"><i style="width:{max(3, round(r["count"] / top * 100))}%"></i></div></div>' for r in rows)
         table = f'<details class="fold"><summary>比べた{len(rows)}つを見る</summary><div class="tbl">{trs}</div></details>'
     else:
         table = ""
     reason = f'<p class="why">{esc(e["reason"])}</p>' if e.get("reason") else ""
+    if e.get("but"):  # 10/25 オーナー「内容ペラペラ」：負けた所も見せる
+        reason += f'<p class="why but">{esc(e["but"])}</p>'
     btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">{go_label(e)}{ARROW}</a>'
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
     return (f'<article class="card cmp{" hot" if e.get("hot") else ""}"><div class="d"><span class="when">{esc(e["day"])}　AIが比べた{"・Amazon" if e.get("amazon") else ""}</span></div>'
@@ -562,7 +566,7 @@ def pick(e):
         meta.append(f'<span class="ct">レビュー {int(e["count"]):,}件</span>')
     if e.get("price"):
         meta.append(f'<span class="yen">税込 {int(e["price"]):,}円</span>')
-    lis = f'<p class="why">{esc(e["lines"][0])}</p>' if e["lines"] else ""
+    lis = "".join(f'<p class="why{" but" if i else ""}">{esc(ln)}</p>' for i, ln in enumerate(e["lines"][:3]))
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
     return (f'<article class="card cmp pk2"><div class="d"><span class="when">{esc(e["day"])}　AIが選んだ</span></div>'
             f'<div class="cho">{_img(e)}<div class="tx"><span class="lb">選んだのは</span><b>{phr(e["name"])}</b>'
@@ -708,7 +712,7 @@ def render(items, ended, now, cfg):
                           f'{cardlist(coming, "これから")}<p class="none">この地域は、これから増やしていきます</p></section>')
     if hot:  # 2. 今日のいち押し（おでかけの下。10/24 オーナー「おでかけの後でいい」）
         hot["hot"] = True
-        blocks.append(f'<section class="blk hotb" id="hot">{head("TODAY&#39;S PICK", "今日のAIのいち押し", "比べた中で、レビューの数と評価がいちばん上だった物。リンクは広告です")}'
+        blocks.append(f'<section class="blk hotb" id="hot">{head("TODAY&#39;S PICK", "今日のAIのいち押し", "その日にAIが比べて選んだ物のうち、使っている人がいちばん多い1つ。リンクは広告です")}'
                       + compare(hot) + '</section>')
     deal_cards = [spot(e) for e in deals] + goods.pop("sale")
     if deal_cards:  # 3. 今だけのお得（期間のあるお得と楽天のセールを1つに）
@@ -906,6 +910,8 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .cho .lb{{font:400 10px/1.4 var(--en);letter-spacing:.2em;color:var(--brown)}}
 .cho b{{font-size:14.5px;line-height:1.5}}
 .cho .sc{{font:400 12px/1.4 var(--en);color:var(--sub)}} .cho .sc i{{font-style:normal;color:var(--line2);margin:0 6px}}
+.nt{{grid-column:1/-1;font-size:11.5px;color:var(--sub)}}
+.cmp .why.but,.pk2 .why.but{{margin-top:4px}}
 .cmp .why,.pk2 .why{{margin:10px 0 0;padding:0;border:0;font-size:12.5px;line-height:1.8;color:var(--sub)}}
 .hotb{{border-top-color:var(--pr)}}
 .hot{{border:1.5px solid var(--pr);background:linear-gradient(180deg,#FFF8F3,#fff 60%)}}
