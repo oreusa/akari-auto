@@ -19,7 +19,8 @@
     "https://usagi-life-notes.pages.dev/promo/hp-intro-4.jpg"
    ],
    "topic": "おでかけ",
-   "alt": "うさぎちゃんが新しいサイトの使い方を紹介する4枚の絵"
+   "alt": "うさぎちゃんが新しいサイトの使い方を紹介する4枚の絵",
+   "cancel": true
   }
  ]
 }
