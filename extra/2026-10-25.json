@@ -42,6 +42,26 @@
    ],
    "topic": "おでかけ",
    "alt": "うさぎちゃんが新しいサイトの使い方を紹介する4枚の絵"
+  },
+  {
+   "key": "HP紹介（画像つき出し直し）",
+   "slot": "21:22",
+   "x": [
+    "うさぎ│LIFE NOTESのサイトができました🌙\n◇開催中のおでかけは、終わる日が近い順\n◇「地図」でGoogleマップがすぐ開きます\n◇宿と買い物は、3つ以上を数字で比べた物だけ\n関東と関西のおでかけ先を、毎日しらべて足しています",
+    "サイトはこちらです\nhttps://usagi-life-notes.pages.dev/?v=1025"
+   ],
+   "threads": [
+    "うさぎ│LIFE NOTESのサイトができました🌙\n◇開催中のおでかけは、終わる日が近い順\n◇「地図」でGoogleマップがすぐ開きます\n◇宿と買い物は、3つ以上を数字で比べた物だけ\n関東と関西のおでかけ先を、毎日しらべて足しています",
+    "サイトはこちらです\nhttps://usagi-life-notes.pages.dev/?v=1025"
+   ],
+   "images": [
+    "https://usagi-life-notes.pages.dev/promo/hp-intro-v3-1.jpg",
+    "https://usagi-life-notes.pages.dev/promo/hp-intro-v3-2.jpg",
+    "https://usagi-life-notes.pages.dev/promo/hp-intro-v3-3.jpg",
+    "https://usagi-life-notes.pages.dev/promo/hp-intro-v3-4.jpg"
+   ],
+   "topic": "おでかけ",
+   "alt": "うさぎちゃんが新しいサイトの使い方を紹介する4枚の絵"
   }
  ]
 }

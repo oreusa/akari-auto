@@ -759,7 +759,7 @@ TEMPLATE = """<!doctype html>
 <meta name="description" content="関東・関西で、今日から・新しく・無料で行ける場所と、うさぎが数字で比べた物を毎日。">
 <meta property="og:title" content="うさぎ│LIFE NOTES">
 <meta property="og:description" content="おでかけ先と宿と、うさぎが比べて選んだ物を毎日更新。">
-<meta property="og:image" content="https://usagi-life-notes.pages.dev/logo.png">
+<meta property="og:image" content="https://usagi-life-notes.pages.dev/og-v8.png">
 <meta property="og:url" content="https://usagi-life-notes.pages.dev/">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#FAF8F5">
