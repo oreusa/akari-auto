@@ -970,7 +970,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
 <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
-<img src="logo.png" alt="うさぎ│LIFE NOTES" width="88" height="88">
+<img id="logo" src="logo.png" alt="うさぎ│LIFE NOTES" width="88" height="88">
 <h1 class="en">USAGI LIFE NOTES</h1>
 <p class="sub">おでかけ先と、泊まる宿と、あると助かる物。<br>うさぎが毎日しらべて、数字で比べて選んでいます</p>
 <div class="sea"><span>{sea_en}</span><b>{sea_jp}</b></div>
@@ -987,6 +987,8 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <script>
 (function(){{
 var d=document.documentElement;d.classList.add("js");
+// ロゴを4秒以内に5回押すと、この端末（アプリの中のブラウザも別々）をオーナーの印にして数えない（10/26 オーナー「インスタやThreadsから見ても計算されないの？」）
+(function(){{var n=0,t=0,l=document.getElementById("logo");if(!l)return;l.addEventListener("click",function(){{var now=Date.now();if(now-t>4000)n=0;t=now;if(++n>=5)location.href="/?me=on";}});}})();
 var pref="",free="0";
 function okc(c){{
   if(pref&&c.dataset.pref&&c.dataset.pref!==pref)return false;
