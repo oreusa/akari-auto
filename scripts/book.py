@@ -64,7 +64,7 @@ def page_line(texts, url, due):
     おでかけ＝その地域の一覧の数、PR＝比べた表と選んだ理由。数はその時刻にHPに並ぶおでかけの数。"""
     joined = " ".join(texts)
     if "#PR" in joined:
-        return f"比べた表と選んだ理由、ほかにAIが選んだ物：{url}"
+        return f"比べた表と選んだ理由、ほかにうさぎが選んだ物：{url}"
     try:
         import page
         n = page.spot_counts(due) if due else {}
