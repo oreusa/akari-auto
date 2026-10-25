@@ -37,8 +37,8 @@
 - 書き方の決まり：`docs/how-to-write.md`。形の見本：`docs/example-schedule.json`。学びの記録：`notes/learning.md`（毎晩1行）。
 
 ## 4. ドライブ（フォルダ「連絡ノート」 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）
-- 「燈からの指示（最新）」1Sqtzmd1ltNqemj4_un46kWPQz2URSQcdcP_CZCzHMnU：雫だけが読む短いファイル（■明日の4コマ台本）。作り直すとIDが変わるので、題名で探す。
-- 「指示_雫」1zVPr7vXP2lVHUy7Um8pVibreC_gz4FRNvrLV4KfvspY（10/24作り直し。4コマ設計書は 1Yw4d5xF1xLyRh89kgPdwnjZLjn1FCB7UIJAuczc94mc）／「指示_汐」1pxdTvBhWo69Ir5rzkJiLSBaL1m1gakxiTLphYtxB_y0（売上の数字とA8のリンク、10/24からページ用A8も。旧版 1bDOqj… は「10/22版・使わない」に改名）／「指示_凪」10ZeAAEtaEVx9WAQzKhrvt5G5x4SmYcafuuPvRINYNeU（10/24 19:40 燈が作り直し：ROOMの名前を「うさぎ│LIFE NOTES」に・Amazonは自分で探さず、Amazon確認帳の■今夜見る5件のURLを開いて写すだけ。旧 1SBg6U… は「使わない」に改名）（10/24 17:15 燈が作り直し。ROOMアイコン替えを1回足した）（10/24 16:45 月が作り直し：Amazonは検索を使わず商品ページを直接・ROOMは新しいコレクションを作らない・返信はBufferのCommunity。凪のChatGPTタスクの文にオーナーの許可を直接書いた）（10/24作り直し。20:20の1回で Amazon確認帳5件→ROOM→返信、毎回報告1行）。
+- 「燈からの指示（最新）」1LOG5Uwju9o2tr91YITERCkrkaCFLREHTvJUWyYzGKlA（10/25 新しいキャラに合わせて燈が作り直し。見た目は指示_雫とキャラ設定書が正）：雫だけが読む短いファイル（■明日の4コマ台本）。作り直すとIDが変わるので、題名で探す。
+- 「指示_雫」1ga1Llu4vdYbXO9EWRHp-wVUuuuFVOMOefiRTJlpr9GA（10/25 燈が作り直し：新しいキャラ・本物を見て描く・そろえる・保存前に自分で見る。4コマ設計書は古いキャラなので10/25にゴミ箱へ）／「うさぎちゃんキャラ設定書」121NqYbT4c5_2dj2PilhD31KXFlO2tEMGOHOq0nVeClU（オーナーが10/25に新しいキャラで更新。画像はフォルダ 1xdbR3aSyNRS4JBUY3wVQV_0eg3Ve1Rwt）／「指示_汐」1pxdTvBhWo69Ir5rzkJiLSBaL1m1gakxiTLphYtxB_y0（売上の数字とA8のリンク、10/24からページ用A8も。旧版は10/25にゴミ箱へ）／「指示_凪」10ZeAAEtaEVx9WAQzKhrvt5G5x4SmYcafuuPvRINYNeU（10/24 19:40 燈が作り直し：ROOMの名前を「うさぎ│LIFE NOTES」に・Amazonは自分で探さず、Amazon確認帳の■今夜見る5件のURLを開いて写すだけ。旧版は10/25にゴミ箱へ）（10/24 17:15 燈が作り直し。ROOMアイコン替えを1回足した）（10/24 16:45 月が作り直し：Amazonは検索を使わず商品ページを直接・ROOMは新しいコレクションを作らない・返信はBufferのCommunity。凪のChatGPTタスクの文にオーナーの許可を直接書いた）（10/24作り直し。20:20の1回で Amazon確認帳5件→ROOM→返信、毎回報告1行）。
 - 「ROOM台本」16J7c8utH51AnR7k143iqrMFrWx_RHplpXiNrNRdBS2k（「（ここから下に台本）」より下だけ入れ替える）。
 - 「リンク帳」1_H6XW71xeWpVUg19P84B9SyBw6ZoVYFxLXKOebFusrM（A8は「A8｜名前｜https://px.a8.net/svt/ejp?a8mat=…｜ドメイン」の形）。
 - 「分析メモ」12BQ-UufhKrlk-Inqbc5OU1TGw9542OnGPwCtS6w7WrU（汐が【楽天】【A8】の行を書く）。
@@ -85,3 +85,8 @@
 ## 11. オーナー向けの説明
 - 「燈2.0 何がどう変わるか」https://claude.ai/artifact/ReGy8US3LGz7LE8WkShJLQ
 - 「燈の立て直し計画（10/22 月）」https://claude.ai/artifact/ARmvHiGCgy4ujZXj343Tm5
+
+## ドライブの片づけ（10/25 オーナー「混乱せえへんように消せ」「古い漫画も消していい、今日からやり直す」）
+- ゴミ箱へ入れた物：会議録フォルダ（10/8〜10/14）、古い仕組みの文書（自己修復・稼働記録・障害記録・投稿ストックなど）、引退した担当の指示書（泉・夜・澪・渚）、「使わない」版、過去の報告、第1〜18話の4コマ画像と動画。30日はゴミ箱から戻せる。
+- 残した物：燈からの指示（最新）・指示_雫/汐/凪・キャラ設定書と画像フォルダ・4コマ直し・4コマ一覧・燈への報告・止まり台帳・分析メモ・リンク帳・Amazon確認帳・ROOM台本・BGM・4コマの固定原本（724x2172）・数字や台帳の記録・月のキット（月の物は触らない）。
+- 雫への一回きりの頼みは、連絡ノートの中にフォルダで置き、雫が終えたら燈がゴミ箱へ（例：雫へ_HP紹介_直し）。
