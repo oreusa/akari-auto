@@ -34,6 +34,13 @@ jobs:
           python3 scripts/videocheck.py
       - name: 予約
         run: python3 scripts/book.py
+      - name: 数字係の代わり（6:40の数字係が7:15までに動いていない朝だけ。GitHub の時刻起動は2〜3時間遅れることがある。10/25）
+        run: |
+          y=$(TZ=Asia/Tokyo date -d yesterday +%F); t=$(TZ=Asia/Tokyo date +%F); h=$(TZ=Asia/Tokyo date +%H%M)
+          if [ "$h" -lt 0715 ] || [ "$h" -gt 1200 ]; then exit 0; fi
+          if grep -q "\"fetchedAt\": \"$t" "data/metrics/$y.json" 2>/dev/null; then echo "今朝の数字はもうある"; exit 0; fi
+          python3 scripts/metrics.py && (python3 scripts/scoreboard.py || true)
+          [ -e notes/scoreboard.md ] && git add notes/scoreboard.md || true
       - name: 記録を保存
         run: |
           git config user.name "akari-auto"
