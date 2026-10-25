@@ -6,6 +6,11 @@ on:
     - cron: "30 9 * * *"    # 18:30
     - cron: "30 13 * * *"   # 22:30
   workflow_dispatch:
+    inputs:
+      reset:
+        description: "今日のHPの数を消して0から数え直す"
+        type: boolean
+        default: false
 permissions:
   contents: write   # 数えた数（data/page-stats.json）を保存する
 concurrency:
@@ -42,7 +47,7 @@ jobs:
         if: env.NS != ''
         run: |
           rm -f wrangler.toml
-          python3 scripts/pagestats.py "$NS" || true
+          if [ "${{ inputs.reset }}" = "true" ]; then python3 scripts/pagestats.py reset "$NS" || true; else python3 scripts/pagestats.py "$NS" || true; fi
           git config user.name "akari-auto"
           git config user.email "akari-auto@users.noreply.github.com"
           git add data/page-stats.json 2>/dev/null || true

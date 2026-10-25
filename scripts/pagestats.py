@@ -80,10 +80,38 @@ def list_keys(ns, prefix):
     return got
 
 
+OWNER_CUT = "2026-10-26"  # この日の reset より前の数には、オーナーの端末の分が入っている（10/26 オーナー「オーナーと燈がカウント入ってたらやり直して」）
+KEEP_FLAGS = ("since", "owner_in")
+
+
+def reset_today(ns):
+    """今日の数を消して0から数え直す（オーナーの端末に印を付け終えた後の、人だけの数にする）。"""
+    now = now_jst()
+    day = now.date().isoformat()
+    keys = list_keys(ns, day + "|") or []
+    for k in keys:
+        if k.get("name", "").endswith("|stop"):
+            continue
+        _wr(["kv", "key", "delete", f"--namespace-id={ns}", k["name"]])
+    fp = path("data", "page-stats.json")
+    data = load_json(fp, {}) or {}
+    days = data.get("days", {})
+    for d, v in days.items():
+        if d < day:
+            v["owner_in"] = True
+    days[day] = {"views": 0, "clicks": 0, "view": {}, "click": {}, "since": now.strftime("%H:%M")}
+    data["days"] = days
+    save_json(fp, data)
+    print(f"{day} の数を消した（{len(keys)}件）。{now.strftime('%H:%M')} から数え直す")
+
+
 def main():
     if sys.argv[1:] == ["ns"]:  # page.yml が公開の前に使う：IDだけを出す
         print(find_ns())
         return 0
+    if len(sys.argv) == 3 and sys.argv[1] == "reset":
+        reset_today(sys.argv[2])
+        sys.argv = sys.argv[:1] + sys.argv[2:]
     ns = sys.argv[1] if len(sys.argv) > 1 else ""
     if not ns:
         print("KVのIDがないので数えない")
@@ -97,7 +125,12 @@ def main():
         keys += got
     fp = path("data", "page-stats.json")
     days = (load_json(fp, {}) or {}).get("days", {})
-    days.update(parse(keys))
+    for d, v in parse(keys).items():
+        old = days.get(d, {})
+        for f in KEEP_FLAGS:
+            if f in old:
+                v[f] = old[f]
+        days[d] = v
     cut = (now.date() - timedelta(days=KEEP_DAYS)).isoformat()
     days = {d: v for d, v in sorted(days.items()) if d >= cut}
     save_json(fp, {"about": "プロフィール用ページで押されたアフィリエイトのリンク(click)。"
