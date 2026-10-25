@@ -30,7 +30,7 @@ SECTIONS = [
     ("deal", "今だけのお得", "期間のあるお得。終わる日を先に書いています"),
     ("pr", "うさぎが選んだ物", "3つ以上を数字で比べて、1つだけ選んだ物です"),
 ]
-SHOW_GO = 5  # おでかけは最初の3件だけ見せ、残りはたたむ（商品とのバランス）
+SHOW_GO = 5  # おでかけは地域ごとに最初の5件だけ見せ、残りは「ほかの〜件を見る」（商品とのバランス）
 SEASON_I = {"spring": 0, "summer": 1, "autumn": 2, "winter": 3}
 
 
@@ -333,7 +333,8 @@ def _text(e):
 def _pref(e):
     if e.get("pref_fixed"):
         return e["pref_fixed"]
-    t = _text(e)
+    # 名前と場所に地名があればそれを先に使う（10/25 横浜赤レンガ倉庫が、文の最初の「神戸」で関西になっていた）
+    t = " ".join(x for x in (e.get("name"), e.get("place")) if x) + " " + _text(e)
     best = None
     for word, pref in PLACE:
         i = t.find(word)
@@ -715,10 +716,11 @@ def render(items, ended, now, cfg):
         coming = sorted([e for e in spots if _dt(e.get("start")) and _dt(e["start"]) > now], key=lambda e: _dt(e["start"]))
 
         def cardlist(es, label):
+            # 見せる5件は「選んだ地域の中で」数える（10/25 オーナー「枠数おかしくない？」：全体の5件で切っていたので関東が1件しか出なかった）
             cs_ = [spot(e) for e in es]
-            more = (f'<details class="fold more"><summary data-l="ほかの{label}">ほかの{label}{len(cs_) - SHOW_GO}件を見る</summary>{"".join(cs_[SHOW_GO:])}</details>'
+            more = (f'<button class="gm" type="button" data-l="ほかの{label}">ほかの{label}{len(cs_) - SHOW_GO}件を見る</button>'
                     if len(cs_) > SHOW_GO else "")
-            return "".join(cs_[:SHOW_GO]) + more
+            return "".join(cs_) + more
 
         nav.append(f'<a class="g" href="#odekake"><span><i>GO OUT</i>おでかけ</span><b>{len(spots)}</b></a>')
         blocks.append(f'<section class="blk go" id="odekake">{head("NOW ON", "開催中のおでかけ", "公式ページで確かめた物だけ。<br>矢印で公式ページ、「地図」で場所が開きます")}'
@@ -759,7 +761,7 @@ def render(items, ended, now, cfg):
                       f'<nav class="stab" aria-label="項目">{stabs}</nav>{"".join(cards)}{moreb}</section>')
     cur, sea, sea_en, sea_jp = _season(now)
     return TEMPLATE.format(
-        nav="".join(nav), blocks="".join(blocks), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp, sea=sea,
+        nav="".join(nav), blocks="".join(blocks), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp, sea=sea, show_go=SHOW_GO,
         n_pr=sum(len(v) for v in goods.values()),
         pr_note=("このページには楽天アフィリエイトとAmazonアソシエイトの広告（PR）があります。<br>"
                  "Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。"
@@ -872,6 +874,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .lead{{font-size:11.5px;color:var(--mute);margin:0 0 14px}}
 .none{{display:none;font-size:12px;color:var(--mute);text-align:center;margin:4px 0 12px}}
 .blk.empty .none{{display:block}}
+.gm{{display:none}} .js .gm{{display:block;width:max-content;margin:0 auto 12px;padding:10px 4px 2px;background:none;border:0;border-bottom:1px solid #CFC5BA;font-size:11.5px;letter-spacing:.12em;color:#5B514A;cursor:pointer}} .js .gm[hidden]{{display:none}}
 
 /* おでかけのカード */
 .card{{display:block;position:relative;background:#fff;border:1px solid var(--line);margin-bottom:12px;padding:12px 42px 38px 14px;box-shadow:inset 3px 0 0 var(--pc,var(--brown));transition:background .2s}}
@@ -995,14 +998,14 @@ function okc(c){{
 }}
 function apply(){{
   document.querySelectorAll(".blk.go").forEach(function(b){{
-    var k=0;b.querySelectorAll(".card.it").forEach(function(c){{var ok=okc(c);c.hidden=!ok;if(ok)k++;}});
+    var k=0,op=b.classList.contains("open");
+    b.querySelectorAll(".card.it").forEach(function(c){{var ok=okc(c);if(ok)k++;c.hidden=!ok||(!op&&k>{show_go});}});
     b.classList.toggle("empty",!k);
-    b.querySelectorAll("details.more").forEach(function(d){{
-      var n=0;d.querySelectorAll(".card.it").forEach(function(c){{if(!c.hidden)n++;}});
-      var s=d.querySelector("summary");s.textContent=s.dataset.l+n+"件を見る";d.hidden=!n;
-    }});
+    var m=b.querySelector(".gm");if(m){{m.textContent=m.dataset.l+(k-{show_go})+"件を見る";m.hidden=op||k<={show_go};}}
   }});
 }}
+document.querySelectorAll(".blk.go .gm").forEach(function(x){{x.addEventListener("click",function(){{x.closest(".blk").classList.add("open");apply();}});}});
+apply();
 document.querySelectorAll(".flt button[data-p]").forEach(function(x){{x.addEventListener("click",function(){{
   document.querySelectorAll(".flt button[data-p]").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
 document.querySelectorAll(".flt button.fr").forEach(function(x){{x.addEventListener("click",function(){{
