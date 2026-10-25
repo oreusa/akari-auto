@@ -470,9 +470,20 @@ def book_extra(cfg, state, now):
             continue
         due = datetime.fromisoformat(f"{day}T{slot}").replace(tzinfo=JST)
         mins = (due - now).total_seconds() / 60
-        if mins > LEAD_MIN or mins < -LATE_MIN:
+        if (mins > LEAD_MIN or mins < -LATE_MIN) and not e.get("cancel"):
             continue
         rec = state.setdefault(f"{day} 1回 {e.get('key', slot)}", {})
+        if e.get("cancel"):  # オーナーが取り消した：予約済みの物を消し、もう予約しない
+            for svc, r in rec.items():
+                if isinstance(r, dict) and r.get("id") and not r.get("cancelled"):
+                    try:
+                        delete_post(r["id"])
+                        r["cancelled"] = True
+                        append_log(day, f"{slot} {svc} 取り消した［1回：{e.get('key', '')}］")
+                    except BufferError as err:
+                        append_log(day, f"{slot} {svc} 取り消せない［1回：{e.get('key', '')}］：{str(err)[:150]}")
+                    changed = True
+            continue
         todo = [(svc, e.get(k)) for svc, k in (("twitter", "x"), ("threads", "threads"), ("instagram", "instagram"))
                 if svc in cfg["channels"] and e.get(k)
                 and not rec.get(svc, {}).get("id") and rec.get(svc, {}).get("tries", 0) < MAX_TRIES]
