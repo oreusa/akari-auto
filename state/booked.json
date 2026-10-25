@@ -1147,5 +1147,163 @@
       "svc": "instagram",
       "seen": "出た"
     }
+  },
+  "2026-10-25 4コマ": {
+    "ig_media": {
+      "slides": [
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=81&cw=709&ch=512&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=603&cw=709&ch=512&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=1125&cw=709&ch=512&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=1647&cw=709&ch=512&output=jpg&q=92"
+      ],
+      "stories": [
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=81&cw=709&ch=1034&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=1125&cw=709&ch=1034&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+      ],
+      "how": "見つけた",
+      "boxes": [
+        [
+          8,
+          81,
+          709,
+          512
+        ],
+        [
+          8,
+          603,
+          709,
+          512
+        ],
+        [
+          8,
+          1125,
+          709,
+          512
+        ],
+        [
+          8,
+          1647,
+          709,
+          512
+        ]
+      ],
+      "src": "https://drive.google.com/uc?export=download&id=1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl&v=2",
+      "v": 2,
+      "story_diff": [
+        1.2,
+        1.2
+      ],
+      "story_ok": [
+        true,
+        true
+      ]
+    },
+    "twitter": {
+      "tries": 1,
+      "id": "6add68ab0b5343d070b03103",
+      "kind": "4コマ",
+      "at": "11:50",
+      "texts": [
+        "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）\n\n◇ ワテラス広場と淡路公園\n◇ 入場無料\n\nうさぎちゃんのおでかけ4コマ 第18話「ひかりの広場」（描き直し版）🌙",
+        "ワテラスの公式ページです\nhttps://www.waterras.com/\n\n関東10件・関西9件のおでかけ、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=x1150"
+      ],
+      "topic": "おでかけ",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl&v=2",
+        "video": null,
+        "alt": "4コマ漫画 第18話"
+      },
+      "svc": "twitter"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "6add68acbd33ce99c34fe835",
+      "kind": "4コマ",
+      "at": "11:50",
+      "texts": [
+        "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）\n\n◇ ワテラス広場と淡路公園\n◇ 入場無料\n\nうさぎちゃんのおでかけ4コマ 第18話「ひかりの広場」（描き直し版）🌙",
+        "ワテラスの公式ページです\nhttps://www.waterras.com/\n\n関東10件・関西9件のおでかけ、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=t1150"
+      ],
+      "topic": "おでかけ",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl&v=2",
+        "video": null,
+        "alt": "4コマ漫画 第18話"
+      },
+      "svc": "threads"
+    },
+    "instagram": {
+      "tries": 1,
+      "id": "6add68af0b5343d070b0314a",
+      "kind": "4コマ",
+      "at": "11:50",
+      "texts": [
+        "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）\n\n◇ ワテラス広場と淡路公園\n◇ 入場無料\n\nうさぎちゃんのおでかけ4コマ 第18話「ひかりの広場」（描き直し版）🌙"
+      ],
+      "topic": "おでかけ",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl&v=2",
+        "video": "https://drive.google.com/uc?export=download&id=1eOPx4T6_7UB7bCpQvLouIlnXuCKgzTBS&v=2",
+        "alt": "4コマ漫画 第18話"
+      },
+      "svc": "instagram"
+    },
+    "ig_slides": {
+      "tries": 1,
+      "id": "6add68b13d5b27036bb1428b",
+      "kind": "4コマ",
+      "at": "11:50",
+      "texts": [
+        "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）\n\n◇ ワテラス広場と淡路公園\n◇ 入場無料\n\nうさぎちゃんのおでかけ4コマ 第18話「ひかりの広場」（描き直し版）🌙"
+      ],
+      "topic": "おでかけ",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=81&cw=709&ch=512&output=jpg&q=92",
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=603&cw=709&ch=512&output=jpg&q=92",
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=1125&cw=709&ch=512&output=jpg&q=92",
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=1647&cw=709&ch=512&output=jpg&q=92"
+        ],
+        "ig_type": "post",
+        "alt": "4コマ漫画 第18話"
+      },
+      "svc": "instagram"
+    },
+    "ig_story1": {
+      "tries": 1,
+      "id": "6add68b26887a2efc1e4f499",
+      "kind": "4コマ",
+      "at": "11:50",
+      "texts": [
+        "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）\n\n◇ ワテラス広場と淡路公園\n◇ 入場無料\n\nうさぎちゃんのおでかけ4コマ 第18話「ひかりの広場」（描き直し版）🌙"
+      ],
+      "topic": "おでかけ",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=81&cw=709&ch=1034&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+        ],
+        "ig_type": "story",
+        "alt": "4コマ漫画 第18話"
+      },
+      "svc": "instagram"
+    },
+    "ig_story2": {
+      "tries": 1,
+      "id": "6add68b4bd33ce99c34fe9bf",
+      "kind": "4コマ",
+      "at": "11:51",
+      "texts": [
+        "今日10/25も、神田淡路町のワテラスでイルミネーション（2/28まで）\n\n◇ ワテラス広場と淡路公園\n◇ 入場無料\n\nうさぎちゃんのおでかけ4コマ 第18話「ひかりの広場」（描き直し版）🌙"
+      ],
+      "topic": "おでかけ",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1b9A-HT94LZ0EgFl81UiqCKUMjtRfEgIl%26v%3D2&cx=8&cy=1125&cw=709&ch=1034&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+        ],
+        "ig_type": "story",
+        "alt": "4コマ漫画 第18話"
+      },
+      "svc": "instagram"
+    }
   }
 }
