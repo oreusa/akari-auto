@@ -28,7 +28,7 @@ SECTIONS = [
     ("odekake", "今週のおでかけ", "公式ページで日時と料金を確かめた物だけを載せています"),
     ("shop", "できたばかりのお店", "開いたばかりのお店と、はじめて出るお店"),
     ("deal", "今だけのお得", "期間のあるお得。終わる日を先に書いています"),
-    ("pr", "AIが選んだ物", "3つ以上を数字で比べて、1つだけ選んだ物です"),
+    ("pr", "うさぎが選んだ物", "3つ以上を数字で比べて、1つだけ選んだ物です"),
 ]
 SHOW_GO = 5  # おでかけは最初の3件だけ見せ、残りはたたむ（商品とのバランス）
 SEASON_I = {"spring": 0, "summer": 1, "autumn": 2, "winter": 3}
@@ -322,7 +322,7 @@ PREF_COLOR = {"東京": "#5D7FA3", "神奈川": "#4E8B86", "埼玉": "#9A8657", 
               "京都": "#8E7BA6", "兵庫": "#4F6A8A", "奈良": "#6F8F5F", "和歌山": "#B5788A", "滋賀": "#5F9A9A"}
 DATE_HEAD = re.compile(r"^((?:今日|明日|あす)?\s*\d{1,2}/\d{1,2}[^、,]{0,14}?(?:から|まで)?)[、,]\s*")
 BLOCKS = {  # 章の英語名
-    "odekake": "GO OUT", "shop": "NEW OPEN", "deal": "LIMITED", "pr": "AI PICK", "ended": "ARCHIVE",
+    "odekake": "GO OUT", "shop": "NEW OPEN", "deal": "LIMITED", "pr": "USAGI PICK", "ended": "ARCHIVE",
 }
 
 
@@ -554,7 +554,7 @@ def compare(e):
         reason += f'<p class="why but">{esc(e["but"])}</p>'
     btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">{go_label(e)}{ARROW}</a>'
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
-    return (f'<article class="card cmp{" hot" if e.get("hot") else ""}"><div class="d"><span class="when">{esc(e["day"])}　AIが比べた{"・Amazon" if e.get("amazon") else ""}</span></div>'
+    return (f'<article class="card cmp{" hot" if e.get("hot") else ""}"><div class="d"><span class="when">{esc(e["day"])}　うさぎが比べた{"・Amazon" if e.get("amazon") else ""}</span></div>'
             f'<div class="t">{phr(title)}</div>{head}{reason}{table}<div class="ft2">{btn}</div>{sample}</article>')
 
 
@@ -568,7 +568,7 @@ def pick(e):
         meta.append(f'<span class="yen">税込 {int(e["price"]):,}円</span>')
     lis = "".join(f'<p class="why{" but" if i else ""}">{esc(ln)}</p>' for i, ln in enumerate(e["lines"][:3]))
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
-    return (f'<article class="card cmp pk2"><div class="d"><span class="when">{esc(e["day"])}　AIが選んだ</span></div>'
+    return (f'<article class="card cmp pk2"><div class="d"><span class="when">{esc(e["day"])}　うさぎが選んだ</span></div>'
             f'<div class="cho">{_img(e)}<div class="tx"><span class="lb">選んだのは</span><b>{phr(e["name"])}</b>'
             f'<div class="meta">{"".join(meta)}</div></div></div>{lis}'
             f'<div class="ft2">'
@@ -666,7 +666,7 @@ def render(items, ended, now, cfg):
     follow = "".join(f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(n)}<span>{esc(h)}</span></a>' for n, h, u in sns)
     if p.get("room_url"):
         follow += (f'<a class="co" href="{esc(p["room_url"])}" target="_blank" rel="noopener">楽天ROOM'
-                   f'<span>AIが比べて選んだ物を、まとめて置いています</span></a>')
+                   f'<span>うさぎが比べて選んだ物を、まとめて置いています</span></a>')
     spots = all_spots(items, now)
     deals = [e for e in items["deal"] if e.get("url")]
     regs = [x for x in REGION_COLOR if any(region(_pref(e)) == x for e in spots)]
@@ -712,7 +712,7 @@ def render(items, ended, now, cfg):
                           f'{cardlist(coming, "これから")}<p class="none">この地域は、これから増やしていきます</p></section>')
     if hot:  # 2. 今日のいち押し（おでかけの下。10/24 オーナー「おでかけの後でいい」）
         hot["hot"] = True
-        blocks.append(f'<section class="blk hotb" id="hot">{head("TODAY&#39;S PICK", "今日のAIのいち押し", "その日にAIが比べて選んだ物のうち、使っている人がいちばん多い1つ。リンクは広告です")}'
+        blocks.append(f'<section class="blk hotb" id="hot">{head("TODAY&#39;S PICK", "今日のうさぎのいち押し", "その日にうさぎが比べて選んだ物のうち、使っている人がいちばん多い1つ。リンクは広告です")}'
                       + compare(hot) + '</section>')
     deal_cards = [spot(e) for e in deals] + goods.pop("sale")
     if deal_cards:  # 3. 今だけのお得（期間のあるお得と楽天のセールを1つに）
@@ -738,7 +738,7 @@ def render(items, ended, now, cfg):
                 cards.append(c.replace('<article class="card', f'<article data-c="{k}" class="card sh{" ex" if i >= SHOW_SHOP else ""}', 1))
                 i += 1
         moreb = f'<button class="mo" type="button">もっと見る（{n_all - SHOW_SHOP}件）</button>' if n_all > SHOW_SHOP else ""
-        blocks.append(f'<section class="blk" id="shop">{head("SHOP", "AIが比べた買い物", "3つ以上を数字で比べて選んだ物。<br>レビュー1,000件以上・評価4.0以上だけ。リンクは広告です")}'
+        blocks.append(f'<section class="blk" id="shop">{head("SHOP", "うさぎが比べた買い物", "3つ以上を数字で比べて選んだ物。<br>レビュー1,000件以上・評価4.0以上だけ。リンクは広告です")}'
                       f'<nav class="stab" aria-label="項目">{stabs}</nav>{"".join(cards)}{moreb}</section>')
     cur, sea, sea_en, sea_jp = _season(now)
     return TEMPLATE.format(
@@ -756,9 +756,9 @@ TEMPLATE = """<!doctype html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>うさぎ│LIFE NOTES</title>
-<meta name="description" content="関東・関西で、今日から・新しく・無料で行ける場所と、AIが数字で比べた物を毎日。">
+<meta name="description" content="関東・関西で、今日から・新しく・無料で行ける場所と、うさぎが数字で比べた物を毎日。">
 <meta property="og:title" content="うさぎ│LIFE NOTES">
-<meta property="og:description" content="おでかけ先と宿と、AIが比べて選んだ物を毎日更新。">
+<meta property="og:description" content="おでかけ先と宿と、うさぎが比べて選んだ物を毎日更新。">
 <meta property="og:image" content="https://usagi-life-notes.pages.dev/logo.png">
 <meta property="og:url" content="https://usagi-life-notes.pages.dev/">
 <meta name="twitter:card" content="summary">
@@ -953,7 +953,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
 <img src="logo.png" alt="うさぎ│LIFE NOTES" width="88" height="88">
 <h1 class="en">USAGI LIFE NOTES</h1>
-<p class="sub">おでかけ先と、泊まる宿と、あると助かる物。<br>AIが毎日しらべて、数字で比べて選んでいます</p>
+<p class="sub">おでかけ先と、泊まる宿と、あると助かる物。<br>うさぎが毎日しらべて、数字で比べて選んでいます</p>
 <div class="sea"><span>{sea_en}</span><b>{sea_jp}</b></div>
 {ring}
 </header>
