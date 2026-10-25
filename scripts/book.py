@@ -625,7 +625,7 @@ def koma4_test(image_url):
     due = (now_jst() + timedelta(days=2)).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
     for s in ("twitter", "threads"):
         try:
-            p = buffer_create(cfg["channels"][s], s, ["4コマの絵のテスト（下書き・すぐ消す）"], due,
+            p = buffer_create(cfg["channels"][s], s, ["4コマの絵のテスト（下書き・すぐ消す）", "続きのテスト https://usagi-life-notes.pages.dev/"], due,
                               topic="漫画" if s == "threads" else None, draft=True, image=image_url, alt="テスト")
             print(s, "下書きOK", p)
             try:

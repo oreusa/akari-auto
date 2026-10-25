@@ -191,6 +191,9 @@ def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False,
         inp["assets"] = [{"image": {"url": u, "metadata": {"altText": alt or "4コマ漫画"}}} for u in images]
     elif image:
         inp["assets"] = [{"image": {"url": image, "metadata": {"altText": alt or "4コマ漫画"}}}]
+    # 続き投稿（thread）があるときは、画像を1つ目にも付ける（10/25 付けないとXとThreadsで画像が落ちた）
+    if inp.get("assets") and service in ("twitter", "threads") and len(items) > 1:
+        items[0]["assets"] = inp["assets"]
     if draft:
         inp["saveToDraft"] = True
     if inp["metadata"] is None:
