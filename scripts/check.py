@@ -43,6 +43,7 @@ def _texts_problems(texts, where, allow_link):
 
 
 OFFICIAL_FROM = date(2026, 10, 24)
+REASON_FROM = date(2026, 10, 26)  # この日から、選んだ理由に「件数・評価以外の決め手の数字」を要る（10/25 オーナー「クチコミ数と評価だけで内容ペラペラ」）
 PLACE_FROM = date(2026, 10, 25)  # この日から、おでかけ・お店の投稿に place（HPの「地図」で探す名前）を要る
 PLACE_TOPICS = {"おでかけ", "イルミネーション", "温泉", "紅葉", "無料", "イベント", "週末旅", "旅行", "グルメ", "カフェ", "新店"}  # この日の予定表から「2つ目に公式ページ」を見る
 
@@ -54,6 +55,46 @@ def _official_problems(texts, where):
     if len(texts) < 2 or not any(re.search(r"https?://", t or "") for t in texts[1:]):
         return [f"{where}：2つ目に公式ページのURLがない（「公式で確かめて」と書くならリンクを置く。10/23 オーナー）"]
     return []
+
+
+REVIEW_NUM_RE = re.compile(
+    r"[\d,，]+\s*件|[\d,，]+\s*(つ|枚|足|軒|個|本|品|台|種類?|社|店|ブランド)(の中|を|で|と|から|比べ)|"
+    r"(評価|★|星)\s*[\d.]+|[0-5][.．]\d{1,2}|[\d.]+\s*以上")
+
+
+def thin_reason(line):
+    """選んだ理由が、レビュー件数・評価・比べた数だけで、決め手の数字（1mあたりの値段・重さ・電気代など）が無いか。"""
+    rest = REVIEW_NUM_RE.sub("", line.replace("選んだ理由：", ""))
+    return not re.search(r"[0-9０-９]", rest)
+
+
+def reason_line(text):
+    for ln in (text or "").splitlines():
+        if "選んだ理由：" in ln:
+            return ln.strip()
+    return ""
+
+
+def reason_problems(text, where):
+    """10/26から：選んだ理由は件数・評価の足切りではなく、使う場面で効く数字で書く。"""
+    ln = reason_line(text)
+    if ln and thin_reason(ln):
+        return [f"{where}：選んだ理由がレビュー件数・評価だけ。件数・評価は足切りの条件なので、使う場面で効く数字（1mあたりの値段・重さ・1時間の電気代・洗えるか など）で選んだ理由を書く（10/25 オーナー「内容ペラペラ」）"]
+    return []
+
+
+def goods_problems(comment, where):
+    """HPだけの商品（page_goods）の comment は3行：選んだ理由（決め手の数字）／ただし（負けた所）／向いている人。"""
+    lines = [ln.strip() for ln in (comment or "").splitlines() if ln.strip()]
+    out = []
+    if not lines or not lines[0].startswith("選んだ理由："):
+        return [f"{where}：comment の1行目は「選んだ理由：」"]
+    out += reason_problems(lines[0], where)
+    if len(lines) < 3 or not lines[1].startswith("ただし"):
+        out.append(f"{where}：2行目は「ただし、」で始めて、比べた他の物の方が良かった所を1つ書く")
+    if len(lines) < 3 or "向いて" not in lines[2]:
+        out.append(f"{where}：3行目は「〜に向いています」の形で、どんな家・人に合うかを書く")
+    return out
 
 
 def _head(texts):
@@ -158,11 +199,19 @@ def check_file(fp):
         for w in BANNED_WORDS:
             if any(w in t for t in (p.get("x") or []) + (p.get("threads") or [])):
                 extra.append(f"「{w}」は使わない（{BANNED_WORDS[w]}）")
+        if p.get("link") and d >= REASON_FROM:
+            for ch in ("x", "threads"):
+                t = (p.get(ch) or [""])[0]
+                extra += reason_problems(t if isinstance(t, str) else "", ch)
         for pr in post_problems(p) + asof_problems(p, d) + extra:
             probs.append(f"{fp} {p.get('slot', '?')}: {pr}")
     for i, it in enumerate(data.get("room") or [], 1):
         if not str(it.get("url", "")).startswith("https://item.rakuten.co.jp/") or not it.get("expect") or not it.get("comment"):
             probs.append(f"{fp} ROOM {i}件目: url（楽天市場の商品ページ）・expect・comment が要る")
+    if d >= REASON_FROM:
+        for i, it in enumerate(data.get("page_goods") or [], 1):
+            if isinstance(it, dict):
+                probs += [f"{fp} {pr}" for pr in goods_problems(it.get("comment"), f"HPだけの商品 {i}件目")]
     return probs
 
 
