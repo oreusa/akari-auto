@@ -669,15 +669,21 @@ def spot_counts(now):
     return out
 
 
-def spot_region(text, now):
-    """文に名前が出てくるHPのおでかけから地域を決める（「二条城」のように地名の入らない名前の時）。"""
+def spot_match(text, now):
+    """文に名前が出てくるHPのおでかけ（無ければ None）。"""
     items, _ = collect(now, light=True)
     t = re.sub(r"\W", "", text).lower()
     for e in all_spots(items, now):
         nm = re.sub(r"\W", "", re.sub(r"（.*?）|\s(19|20)\d\d.*$", "", e.get("name") or "")).lower()  # 名前の後ろの年と（10/24開店）は文に無いことが多い
         if len(nm) >= 4 and nm in t:
-            return region(_pref(e))
-    return ""
+            return e
+    return None
+
+
+def spot_region(text, now):
+    """文に名前が出てくるHPのおでかけから地域を決める（「二条城」のように地名の入らない名前の時）。"""
+    e = spot_match(text, now)
+    return region(_pref(e)) if e else ""
 
 
 def post_region(texts):
