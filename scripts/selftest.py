@@ -117,7 +117,7 @@ with tempfile.TemporaryDirectory() as d:
     calls.clear()
     st = {"2026-10-24 18:15": {"twitter": {"id": "E1", "at": "18:15", "texts": ["a", "b"], "kind": "通常"}}}
     lib.save_json(os.path.join(d, "state", "booked.json"), st)
-    book.buffer_posts = lambda cfg, sts, a, b, channel_ids=None: [{"id": "E1", "channelService": "twitter"}] if "error" in sts else []
+    book.buffer_posts = lambda cfg, sts, a, b, channel_ids=None: [{"id": "E1", "channelService": "twitter", "status": "error"}] if "error" in sts else []
     book.run(datetime(2026, 10, 24, 18, 50, tzinfo=lib.JST))
     redo = lambda: [c for c in calls if c[2] == ["a\n", "b"]]  # noqa: E731
     ok(len(redo()) == 1 and redo()[0][0] == "twitter", f"出なかった投稿を出し直さない: {calls}")

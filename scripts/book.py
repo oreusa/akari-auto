@@ -588,8 +588,10 @@ def after_check(cfg, state, now):
             if start <= due <= end:
                 waiting.append((key, s, r, due))
     if waiting:
-        sent = {p["id"] for p in buffer_posts(cfg, ["sent"], start - timedelta(hours=1), end)}
-        errs = {p["id"] for p in buffer_posts(cfg, ["error"], start - timedelta(hours=1), end)}
+        # 「出た」と「エラー」を1回でまとめて聞く（Bufferは30日で3,000回まで。10/25 回数を半分に）
+        got = buffer_posts(cfg, ["sent", "error"], start - timedelta(hours=1), end)
+        sent = {p["id"] for p in got if (p.get("status") or "sent").lower() == "sent"}
+        errs = {p["id"] for p in got if (p.get("status") or "").lower() == "error"}
         for key, s, r, due in waiting:
             day, slot = key.split(" ", 1)  # 1回だけの投稿は「日付 1回 名前」で空白が多い
             if r["id"] in sent:
