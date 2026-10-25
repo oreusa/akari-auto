@@ -174,6 +174,30 @@ with tempfile.TemporaryDirectory() as d:
     ok(set(xt) == {"twitter", "threads"} and all(len(t) == 2 and t[1].startswith("https://example.jp/event")
                                                  and "usagi-life-notes.pages.dev/?f=" in t[1] for t in xt.values())
        and all(len(c[2]) == 1 for c in kc[n0:] if c[0] == "instagram"), f"おでかけ4コマの2つ目がおかしい: {kc[n0:]}")
+    # 旅先4コマ（10/29〜 水・土の15:15）：2本目の漫画。予約できたら同じ時刻の文の投稿を消し、まだなら文の投稿を予約しない
+    lib.save_json(os.path.join(d, "state", "booked.json"), {"2026-10-25 15:15": {"twitter": {"id": "TXT1", "at": "15:15"}}})
+    lib.save_json(os.path.join(d, "koma4", "2026-10-25-tabi.json"), {"slot": "15:15", "episode": 1, "replace": "15:15",
+                                                                     "text": "今日10/25、草津温泉の湯畑へ", "text2": "https://example.jp/kusatsu", "image_url": "https://i/t"})
+    lib.save_json(os.path.join(d, "schedule", "2026-10-25.json"), {"date": "2026-10-25", "posts": [
+        {"slot": "15:15", "topic": "おでかけ", "x": ["文の投稿\n公式より（10/24時点）\n#おでかけ", "https://example.jp/a"],
+         "threads": ["文の投稿\n公式より（10/24時点）", "https://example.jp/a"]}]})
+    deleted, real_delete = [], book.delete_post
+    book.delete_post = lambda pid: deleted.append(pid)
+    n0 = len(kc)
+    book.run(datetime(2026, 10, 25, 13, 30, tzinfo=lib.JST))
+    tabi = [c for c in kc[n0:] if c[4].get("alt", "").startswith("旅4コマ")]
+    txt = [c for c in kc[n0:] if c[2] and c[2][0].startswith("文の投稿")]
+    st = lib.load_json(os.path.join(d, "state", "booked.json"))
+    ok({c[0] for c in tabi} >= {"twitter", "threads"} and all(c[1] == "2026-10-25T06:15:00.000Z" for c in tabi if c[0] != "instagram"),
+       f"旅先4コマを15:15に予約しない: {kc[n0:]}")
+    tid = {c[0]: f"k{kc.index(c) + 1}" for c in txt}
+    ok(sorted(deleted) == sorted(["TXT1"] + list(tid.values())) and all(st["2026-10-25 15:15"][s].get("replaced") for s in ("twitter", "threads")),
+       f"旅先4コマの時刻の文の投稿を消さない: deleted={deleted} txt={txt}")
+    n1 = len(kc)
+    book.run(datetime(2026, 10, 25, 14, 30, tzinfo=lib.JST))
+    ok(not [c for c in kc[n1:] if c[2] and c[2][0].startswith("文の投稿")], f"旅先4コマに替えた文の投稿をまた予約した: {kc[n1:]}")
+    book.delete_post = real_delete
+    os.remove(os.path.join(d, "koma4", "2026-10-25-tabi.json"))
     # 4コマの位置：第16話と同じ並びの絵から、4つのコマを見つける
     im = Image.new("RGB", (724, 2172), "white")
     for y in (81, 603, 1125, 1647):
