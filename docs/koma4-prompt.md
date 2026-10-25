@@ -34,6 +34,8 @@
    "video_url": "https://drive.google.com/uc?export=download&id=動画のid"（動画があるときだけ）
 5. mcp__github__actions_run_trigger（run_workflow、workflow_id=book.yml、ref=main）で予約係を動かす。2分待って log/D.md を読み、「4コマ 第N話 … 予約OK」の行を確かめる。「予約できない」「予約×」があれば、その行を最後のメッセージに写す。
 
+5-2. 旅先4コマ（10/29から、水曜と土曜。koma4/D-tabi.json があるときだけ）：1〜5 と同じことを、もう1本やる。違う所は、読むファイルが koma4/D-tabi.json、探す題名が「旅4コマ画像 第N話」「旅4コマ動画 第N話」（N は koma4/D-tabi.json の episode）、台本は koma4 の「■2本目：旅先4コマ」より下、直しの1行の頭が「D 旅先 第N話：」、学びの行が「- D 旅先 第N話 OK／直し／出さなかった」、絵の確かめ⑥は「コマ1で旅先の名前が読める・宿や他社のロゴがない」、保存する commit が「燈 4コマ係：D 旅先 第N話の絵」。予約係を動かしたあと、log/D.md の「旅4コマ 第N話 … 予約OK」と「15:15 … 文の投稿を消した」を確かめる。旅先の絵がまだない・×のときは何もしない（15:15 は文の投稿がそのまま出る）。
+
 6. 管制室への写し（10/23から。オーナーのClaudeにはGitHubの接続がないため、管制室は写しを読む）
 ToolSearch で "select:ArtifactData" を読み込み、artifact https://claude.ai/artifact/1qLboYHRT4iH1uVrpeUZv6 の collection "files" に、次のファイルの本文を写す。doc_id はパスの「/」を「__」にしたもの（例 schedule/2026-10-24.json → schedule__2026-10-24.json）。data は {"text": ファイルの本文そのまま, "at": "M/D HH:MM"}。同じ doc_id がもうあるときは、先に get して version を if_version に入れる。batch で1回にまとめる。
 写すファイル：log/D.md、schedule/D.json、data/page-stats.json（あれば）。使えないときは最後のメッセージに書く。

@@ -281,7 +281,8 @@ def run(now=None):
             key = f"{day} {slot}"
             rec = state.setdefault(key, {})
             todo = [s for s in SERVICES if s in cfg["channels"]
-                    and not rec.get(s, {}).get("id") and rec.get(s, {}).get("tries", 0) < MAX_TRIES]
+                    and not rec.get(s, {}).get("id") and rec.get(s, {}).get("tries", 0) < MAX_TRIES
+                    and not tabi_replaced(state, day, slot, s)]
             if not todo:
                 continue
             xs, ths, topic, kind, why = choose(post, day, now)
@@ -366,7 +367,54 @@ def media_problem(url, kind):
     return ""
 
 
+# 雫の漫画は1日2本まで（10/25 オーナー「雫をよく使い漫画投稿、お出かけ漫画投稿増やしていい」）。
+# 毎日の 8:00 おでかけ4コマ（koma4/D.json）と、水・土の旅先4コマ（koma4/D-tabi.json、15:15）。
+KOMA_FILES = (("", "4コマ"), ("-tabi", "旅4コマ"))
+
+
 def book_koma4(cfg, state, now):
+    changed = False
+    for suffix, label in KOMA_FILES:
+        changed |= _book_koma(cfg, state, now, suffix, label)
+    return changed
+
+
+def tabi_replaced(state, day, slot, svc):
+    """旅先4コマがこの時刻の文の投稿の代わりに出るなら True（文の投稿は出さない）。"""
+    k = load_json(path("koma4", f"{day}-tabi.json")) or {}
+    if k.get("replace") != slot:
+        return False
+    return bool(state.get(f"{day} 旅4コマ", {}).get(svc, {}).get("id"))
+
+
+def _replace_text_post(state, day, k):
+    """旅先4コマを予約できたら、同じ時刻の文の投稿（予定表の replace の枠）を消す。消せなければ文の投稿は残す（旅4コマを消す）。"""
+    slot = k.get("replace")
+    if not slot:
+        return False
+    changed = False
+    trec = state.setdefault(f"{day} 旅4コマ", {})
+    rec = state.get(f"{day} {slot}", {})
+    for svc in SERVICES:
+        r, t = rec.get(svc) or {}, trec.get(svc) or {}
+        if not t.get("id") or not r.get("id") or r.get("seen") or r.get("replaced"):
+            continue
+        try:
+            delete_post(r["id"])
+            r["replaced"], r["seen"] = True, "旅4コマに替えた"
+            append_log(day, f"{slot} {svc} 文の投稿を消した（旅4コマ 第{k.get('episode', '?')}話に替えた）")
+        except BufferError as e:
+            try:  # 2本出ないよう、旅4コマの方を消して文の投稿を残す
+                delete_post(t["id"])
+                t["id"], t["tries"], t["error"] = None, MAX_TRIES, "文の投稿を消せない"
+                append_log(day, f"{slot} {svc} 文の投稿を消せないので、旅4コマを消して文の投稿のまま：{str(e)[:80]}")
+            except BufferError:
+                append_log(day, f"{slot} {svc} ×2本出るおそれ（文 {r['id']} と旅4コマ {t['id']}）")
+        changed = True
+    return changed
+
+
+def _book_koma(cfg, state, now, suffix="", label="4コマ"):
     """雫が描いた4コマを予約する（10/23から。雫はBufferを使わない）。
 
     koma4/日付.json：{"slot": "08:00", "episode": 16, "text": "投稿文", "image_url": "…", "video_url": "…"}
@@ -375,7 +423,7 @@ def book_koma4(cfg, state, now):
     2コマずつのストーリー2枚を毎日出す（切るのは wsrv.nl。Bufferはその切ったURLを取りに行く）。動画がある日はリールも出す。
     """
     day = now.date().isoformat()
-    k = load_json(path("koma4", f"{day}.json"))
+    k = load_json(path("koma4", f"{day}{suffix}.json"))
     if not k or not k.get("text") or not k.get("image_url"):
         return False
     slot = k.get("slot") or "08:00"
@@ -384,7 +432,7 @@ def book_koma4(cfg, state, now):
     late_ok = k.get("late_until") and now.strftime("%H:%M") < k["late_until"]  # 手で出し直すとき（燈が入れる）
     if mins > LEAD_MIN or (mins < -6 * 60 and not late_ok):  # 4コマは遅れても、その日の昼までは出す
         return False
-    key = f"{day} 4コマ"
+    key = f"{day} {label}"
     rec = state.setdefault(key, {})
     def open_(s):
         return not rec.get(s, {}).get("id") and rec.get(s, {}).get("tries", 0) < MAX_TRIES
@@ -392,16 +440,16 @@ def book_koma4(cfg, state, now):
             and (s != "instagram" or (k.get("video_url") and k.get("video_ok")))]  # リールは機械の確認（videocheck.py）に通った動画だけ
     ig_todo = [e for e in IG_EXTRA if "instagram" in cfg["channels"] and open_(e[0])]
     if not todo and not ig_todo:
-        return False
+        return _replace_text_post(state, day, k) if suffix == "-tabi" else False
     bad = media_problem(k["image_url"], "image") or (k.get("video_ok") and media_problem(k["video_url"], "video"))
     if bad:
         if not rec.get("media_error"):
-            append_log(day, f"4コマ 第{k.get('episode', '?')}話 予約できない：{bad}")
+            append_log(day, f"{label} 第{k.get('episode', '?')}話 予約できない：{bad}")
         rec["media_error"] = bad
         return True
     rec.pop("media_error", None)
     when = due if mins >= 3 else now + timedelta(minutes=3)  # 7:50の直しでも8:00に間に合わせる
-    alt = f"4コマ漫画 第{k.get('episode', '')}話"
+    alt = f"{label}漫画 第{k.get('episode', '')}話"
     jobs = []
     for s in todo:
         jobs.append((s, s, {"image": k["image_url"], "video": k.get("video_url") if s == "instagram" else None, "alt": alt}, when))
@@ -418,7 +466,7 @@ def book_koma4(cfg, state, now):
                 ig, bad = None, f"Instagram用に絵を切れない（{str(e)[:80]}）"
             if bad:
                 if rec.get("ig_error") != bad:
-                    append_log(day, f"4コマ 第{k.get('episode', '?')}話 Instagram 予約できない：{bad}")
+                    append_log(day, f"{label} 第{k.get('episode', '?')}話 Instagram 予約できない：{bad}")
                 rec["ig_error"] = bad
                 ig = None
             else:
@@ -430,7 +478,7 @@ def book_koma4(cfg, state, now):
                 if not r.get("error"):
                     r["error"] = "切ったストーリーが見本と違う"
                     r["tries"] = MAX_TRIES  # 違う絵は出さない
-                    append_log(day, f"4コマ 第{k.get('episode', '?')}話 {key} 出さない：切った絵が見本と違う（wsrv.nl の切り方を確かめる）")
+                    append_log(day, f"{label} 第{k.get('episode', '?')}話 {key} 出さない：切った絵が見本と違う（wsrv.nl の切り方を確かめる）")
                 continue
             imgs = ig["slides"] if key == "ig_slides" else [ig["stories"][0 if key == "ig_story1" else 1]]
             jobs.append((key, "instagram", {"images": imgs, "ig_type": t, "alt": alt}, when + timedelta(minutes=plus)))
@@ -448,10 +496,12 @@ def book_koma4(cfg, state, now):
                       "topic": k.get("topic") or "漫画", "media": media, "svc": svc})
             r.pop("error", None)
             late = "" if when == due else f"（遅れたので {when.strftime('%H:%M')} に）"
-            append_log(day, f"4コマ 第{k.get('episode', '?')}話 {s} 予約OK{late}")
+            append_log(day, f"{label} 第{k.get('episode', '?')}話 {s} 予約OK{late}")
         except BufferError as e:
             r["error"] = str(e)[:200]
-            append_log(day, f"4コマ 第{k.get('episode', '?')}話 {s} 予約×（{r['tries']}回目）：{str(e)[:150]}")
+            append_log(day, f"{label} 第{k.get('episode', '?')}話 {s} 予約×（{r['tries']}回目）：{str(e)[:150]}")
+    if suffix == "-tabi":
+        _replace_text_post(state, day, k)
     return True
 
 
