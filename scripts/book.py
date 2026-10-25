@@ -337,6 +337,35 @@ IG_PROFILE = "くわしい場所と公式ページは、プロフィールのリ
 IG_HEAD = "プロフィールのリンク"  # 予約済みの文に付いているかを見分ける
 
 
+IG_TAG_WORDS = [("イルミ", "イルミネーション"), ("ライトアップ", "ライトアップ"), ("紅葉", "紅葉"), ("温泉", "温泉"),
+                ("クリスマスマーケット", "クリスマスマーケット"), ("カフェ", "カフェ"), ("無料", "無料イベント")]
+
+
+def ig_tags(k, due):
+    """インスタのタグ（10/26 オーナー「インスタもタグ効果あるならとか考えて工夫して」）。
+    インスタは探す人がタグから来るので、場所（都道府県＋おでかけ）・地域・中身の言葉・シリーズで5つまで。
+    夜の回が koma4 の ig_tags に場所のタグ（例 "#二条城"）を書いた時は、それを先に入れる。"""
+    tags = [t if t.startswith("#") else "#" + t for t in (k.get("ig_tags") or [])][:2]
+    text = k.get("text", "")
+    try:
+        import page
+        e = page.spot_match(text, due)
+        pref = page._pref(e) if e else page._pref({"title": text, "bullets": []})
+        reg = page.region(pref)
+    except Exception:
+        pref = reg = ""
+    if pref:
+        tags.append(f"#{pref}おでかけ")
+    if reg:
+        tags.append(f"#{reg}おでかけ")
+    for w, tag in IG_TAG_WORDS:
+        if w in text:
+            tags.append("#" + tag)
+            break
+    tags.append("#旅先4コマ" if "旅先4コマ" in text else "#おでかけ4コマ")
+    return " ".join(dict.fromkeys(tags[:5]))
+
+
 def ig_profile(texts, due):
     """インスタの文の最後の定型文（10/26 オーナー「ちゃんと考えて定型文つくろ」「みてもどこで詳しく書いてるか分かるわけない」）。
     インスタは文のリンクを押せないので、見た人が次にどこを押せばいいかを書く。
@@ -508,7 +537,7 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
         if svc in ("twitter", "threads") and URL_RE.search(k.get("text2") or ""):
             texts = with_page([k["text"], k["text2"].strip()], svc, cfg, slot, due)
         elif svc == "instagram" and media.get("ig_type") != "story" and IG_HEAD not in k["text"]:
-            texts = [k["text"].rstrip() + "\n\n" + ig_profile([k["text"]], due)]  # インスタの文はリンクを押せないので、HPへの道を1行（10/26 オーナー「プロフィールリンクに詳細あるよね？」）
+            texts = [k["text"].rstrip() + "\n\n" + ig_profile([k["text"]], due) + "\n\n" + ig_tags(k, due)]  # インスタの文はリンクを押せないので、HPへの道を1行（10/26 オーナー「プロフィールリンクに詳細あるよね？」）
         try:
             p = buffer_create(cfg["channels"][svc], svc, texts, at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
                               topic=(k.get("topic") or "漫画") if svc == "threads" else None, **media)
