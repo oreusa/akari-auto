@@ -19,7 +19,7 @@
 | 20:20 | 凪（ChatGPT） | その日のROOMがまだなら楽天ROOMに3件（「ROOM台本」どおり）＋コメント返信。Amazonの商品を5件ブラウザで開いて「Amazon確認帳」へ | ドライブ「ROOM台本」 |
 | 22:11 | 燈 夜の回（Claude） | 翌日の予定表と4コマ・ROOM台本を書く。指示は `docs/nightly-prompt.md` | `schedule/翌日.json`・ArtifactData akari2/翌日 |
 | 予定表を置いたとき | check（`check.yml`） | 決まりと楽天（販売中・商品名・数字・レビュー4.0以上）と出どころを確かめる。×は赤 | GitHub Actions |
-| 23:41 | 受け渡し役（Claude） | 4コマ台本とROOM台本をドライブへ、売上とA8の行を akari2/report へ写す | ドライブ・ArtifactData |
+| 23:41 | 受け渡し役（Claude） | 4コマ台本とROOM台本・汐と凪の目標（「今日の目標」1FVhaChTwa4UnAftvfYLFGK-kc69CulyHJhZEMbJLhjY）をドライブへ、売上とA8の行を akari2/report へ写す | ドライブ・ArtifactData |
 | 9:13（毎日） | 朝の見回り（Claude） | 最初の1週間だけ、全部が回っているか確かめて直す。最初に book.yml を1回手で動かしてから log を読む。インスタの4コマは「出た」だけで合格にせず、state/booked.json の「日付 4コマ」→ ig_media.story_ok が全部 true かも見る（10/24 ずれたストーリーを「問題なし」と報告した）。燈の側で直せることはオーナーに回さない | 予約タスク「燈 朝の見回り」trig_012WxgKuNoSRnku3NEurFW1j（毎日同じスレッドで続く） |
 
 ## 2. 予約タスク（Claude）
@@ -38,7 +38,7 @@
 
 ## 4. ドライブ（フォルダ「連絡ノート」 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）
 - 「燈からの指示（最新）」1LOG5Uwju9o2tr91YITERCkrkaCFLREHTvJUWyYzGKlA（10/25 新しいキャラに合わせて燈が作り直し。見た目は指示_雫とキャラ設定書が正）：雫だけが読む短いファイル（■明日の4コマ台本）。作り直すとIDが変わるので、題名で探す。
-- 「指示_雫」1ga1Llu4vdYbXO9EWRHp-wVUuuuFVOMOefiRTJlpr9GA（10/25 燈が作り直し：新しいキャラ・本物を見て描く・そろえる・保存前に自分で見る。4コマ設計書は古いキャラなので10/25にゴミ箱へ）／「うさぎちゃんキャラ設定書」121NqYbT4c5_2dj2PilhD31KXFlO2tEMGOHOq0nVeClU（オーナーが10/25に新しいキャラで更新。画像はフォルダ 1xdbR3aSyNRS4JBUY3wVQV_0eg3Ve1Rwt）／「指示_汐」1pxdTvBhWo69Ir5rzkJiLSBaL1m1gakxiTLphYtxB_y0（売上の数字とA8のリンク、10/24からページ用A8も。旧版は10/25にゴミ箱へ）／「指示_凪」10ZeAAEtaEVx9WAQzKhrvt5G5x4SmYcafuuPvRINYNeU（10/24 19:40 燈が作り直し：ROOMの名前を「うさぎ│LIFE NOTES」に・Amazonは自分で探さず、Amazon確認帳の■今夜見る5件のURLを開いて写すだけ。旧版は10/25にゴミ箱へ）（10/24 17:15 燈が作り直し。ROOMアイコン替えを1回足した）（10/24 16:45 月が作り直し：Amazonは検索を使わず商品ページを直接・ROOMは新しいコレクションを作らない・返信はBufferのCommunity。凪のChatGPTタスクの文にオーナーの許可を直接書いた）（10/24作り直し。20:20の1回で Amazon確認帳5件→ROOM→返信、毎回報告1行）。
+- 「指示_雫」1ga1Llu4vdYbXO9EWRHp-wVUuuuFVOMOefiRTJlpr9GA（10/25 燈が作り直し：新しいキャラ・本物を見て描く・そろえる・保存前に自分で見る。4コマ設計書は古いキャラなので10/25にゴミ箱へ）／「うさぎちゃんキャラ設定書」121NqYbT4c5_2dj2PilhD31KXFlO2tEMGOHOq0nVeClU（オーナーが10/25に新しいキャラで更新。画像はフォルダ 1xdbR3aSyNRS4JBUY3wVQV_0eg3Ve1Rwt）／「指示_汐」10It_8LzMAB0ZrzU2f9j7Q-ukh-A7aVJvzHEqlLl7vCY（10/26 燈が作り直し：■今日の目標を足した）（売上の数字とA8のリンク、10/24からページ用A8も。旧版は10/25にゴミ箱へ）／「指示_凪」1t_wRrPmj96vscuQaBZcjsNoiV4wP_8s3Fp0Gdzfz8k8（10/26 燈が作り直し：■今日の目標を足し、済んだROOMアイコンの節を外した）（10/24 19:40 燈が作り直し：ROOMの名前を「うさぎ│LIFE NOTES」に・Amazonは自分で探さず、Amazon確認帳の■今夜見る5件のURLを開いて写すだけ。旧版は10/25にゴミ箱へ）（10/24 17:15 燈が作り直し。ROOMアイコン替えを1回足した）（10/24 16:45 月が作り直し：Amazonは検索を使わず商品ページを直接・ROOMは新しいコレクションを作らない・返信はBufferのCommunity。凪のChatGPTタスクの文にオーナーの許可を直接書いた）（10/24作り直し。20:20の1回で Amazon確認帳5件→ROOM→返信、毎回報告1行）。
 - 「ROOM台本」16J7c8utH51AnR7k143iqrMFrWx_RHplpXiNrNRdBS2k（「（ここから下に台本）」より下だけ入れ替える）。
 - 「リンク帳」1_H6XW71xeWpVUg19P84B9SyBw6ZoVYFxLXKOebFusrM（A8は「A8｜名前｜https://px.a8.net/svt/ejp?a8mat=…｜ドメイン」の形）。
 - 「分析メモ」12BQ-UufhKrlk-Inqbc5OU1TGw9542OnGPwCtS6w7WrU（汐が【楽天】【A8】の行を書く）。
