@@ -319,6 +319,10 @@ def run(now=None):
     except BufferError as e:
         append_log(now.date().isoformat(), f"4コマ 予約×：{str(e)[:150]}")
     try:
+        changed |= book_extra(cfg, state, now)
+    except BufferError as e:
+        append_log(now.date().isoformat(), f"1回だけの投稿 予約×：{str(e)[:150]}")
+    try:
         changed |= after_check(cfg, state, now)
     except BufferError as e:
         append_log(now.date().isoformat(), f"出たかの確認ができない：{str(e)[:120]}")
@@ -449,6 +453,57 @@ def book_koma4(cfg, state, now):
             r["error"] = str(e)[:200]
             append_log(day, f"4コマ 第{k.get('episode', '?')}話 {s} 予約×（{r['tries']}回目）：{str(e)[:150]}")
     return True
+
+
+def book_extra(cfg, state, now):
+    """1回だけの画像投稿（10/25 オーナー「新しいHPの紹介をうさぎにさせたい。3媒体に投稿したい」）。
+
+    extra/日付.json：{"posts": [{"key": "HP紹介", "slot": "21:30", "x": [文1, 文2], "threads": [文1, 文2],
+      "instagram": "インスタの文", "images": [誰でも開ける画像URL, ...], "topic": "おでかけ"}]}
+    燈がオーナーのOKをもらってから置く。X・Threads・Instagram（スライド）に画像付きで出す。"""
+    day = now.date().isoformat()
+    ex = load_json(path("extra", f"{day}.json"))
+    changed = False
+    for e in (ex or {}).get("posts", []):
+        slot, imgs = e.get("slot"), e.get("images") or []
+        if not slot or not imgs:
+            continue
+        due = datetime.fromisoformat(f"{day}T{slot}").replace(tzinfo=JST)
+        mins = (due - now).total_seconds() / 60
+        if mins > LEAD_MIN or mins < -LATE_MIN:
+            continue
+        rec = state.setdefault(f"{day} 1回 {e.get('key', slot)}", {})
+        todo = [(svc, e.get(k)) for svc, k in (("twitter", "x"), ("threads", "threads"), ("instagram", "instagram"))
+                if svc in cfg["channels"] and e.get(k)
+                and not rec.get(svc, {}).get("id") and rec.get(svc, {}).get("tries", 0) < MAX_TRIES]
+        if not todo:
+            continue
+        bad = media_problem(imgs[0], "image")
+        if bad:
+            if rec.get("media_error") != bad:
+                append_log(day, f"{slot} {e.get('key', '')} 予約できない：{bad}")
+            rec["media_error"] = bad
+            changed = True
+            continue
+        rec.pop("media_error", None)
+        when = due if mins >= 3 else now + timedelta(minutes=3)
+        for svc, texts in todo:
+            texts = [texts] if isinstance(texts, str) else list(texts)
+            r = rec.setdefault(svc, {"tries": 0})
+            r["tries"] = r.get("tries", 0) + 1
+            pics = imgs[:4] if svc == "twitter" else imgs[:10]
+            try:
+                p = buffer_create(cfg["channels"][svc], svc, texts, when.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                                  topic=e.get("topic") if svc == "threads" else None,
+                                  images=pics, ig_type="post" if svc == "instagram" else None, alt=e.get("alt", ""))
+                r.update({"id": p["id"], "kind": "1回", "at": when.strftime("%H:%M"), "texts": texts, "svc": svc})
+                r.pop("error", None)
+                append_log(day, f"{slot} {svc} 予約OK［1回：{e.get('key', '')}］")
+            except BufferError as err:
+                r["error"] = str(err)[:200]
+                append_log(day, f"{slot} {svc} 予約×［1回：{e.get('key', '')}］（{r['tries']}回目）：{str(err)[:150]}")
+        changed = True
+    return changed
 
 
 def after_check(cfg, state, now):
