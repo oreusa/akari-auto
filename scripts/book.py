@@ -333,7 +333,27 @@ def run(now=None):
 
 
 KOMA4_SERVICES = ("twitter", "threads", "instagram")
-IG_PROFILE = "公式ページと、ほかのおでかけ先は、プロフィールのリンクにまとめています"
+IG_PROFILE = "関東と関西のおでかけを、公式ページと地図つきでプロフィールのリンクにまとめています"
+IG_HEAD = "プロフィールのリンク"  # 予約済みの文に付いているかを見分ける
+
+
+def ig_profile(texts, due):
+    """インスタの文の最後の定型文（10/26 オーナー「ちゃんと考えて定型文つくろ」「みてもどこで詳しく書いてるか分かるわけない」）。
+    インスタは文のリンクを押せないので、見た人が次にどこを押せばいいかを書く。
+    その催しがHPに載っている時：1行目＝この催しの地図と公式ページの場所、2行目＝同じページにほかに何があるか（同じ地域の数）。
+    載っていない時（旅先4コマなど）：HPに何があるかだけ（載っていない物を「載っている」と書かない）。"""
+    try:
+        import page
+        reg = page.spot_region(" ".join(texts), due)
+        n = page.spot_counts(due)
+    except Exception:
+        return IG_PROFILE
+    if reg and n.get(reg, 0) >= 2:
+        return (f"この催しの地図と公式ページは、プロフィールのリンクから開けます\n"
+                f"ほかの{reg}のおでかけ{n[reg] - 1}件も、同じページにまとめています")
+    if n.get("関東", 0) >= 3 and n.get("関西", 0) >= 3:
+        return f"関東{n['関東']}件・関西{n['関西']}件のおでかけを、公式ページと地図つきでプロフィールのリンクにまとめています"
+    return IG_PROFILE
 # Instagram の毎日の4コマ（10/23 オーナー「OK」）：スライド4枚（8:00）とストーリー2枚（8:00・8:01）。動画の日はリールも
 IG_EXTRA = (("ig_slides", "post", 0), ("ig_story1", "story", 0), ("ig_story2", "story", 1))
 
@@ -490,8 +510,8 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
         # おでかけ4コマ（10/24〜）：X・Threads は2つ目に公式ページのURL（text2）とHPの1行を付ける。インスタは1つだけ
         if svc in ("twitter", "threads") and URL_RE.search(k.get("text2") or ""):
             texts = with_page([k["text"], k["text2"].strip()], svc, cfg, slot, due)
-        elif svc == "instagram" and media.get("ig_type") != "story" and IG_PROFILE not in k["text"]:
-            texts = [k["text"].rstrip() + "\n\n" + IG_PROFILE]  # インスタの文はリンクを押せないので、HPへの道を1行（10/26 オーナー「プロフィールリンクに詳細あるよね？」）
+        elif svc == "instagram" and media.get("ig_type") != "story" and IG_HEAD not in k["text"]:
+            texts = [k["text"].rstrip() + "\n\n" + ig_profile([k["text"]], due)]  # インスタの文はリンクを押せないので、HPへの道を1行（10/26 オーナー「プロフィールリンクに詳細あるよね？」）
         try:
             p = buffer_create(cfg["channels"][svc], svc, texts, at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
                               topic=(k.get("topic") or "漫画") if svc == "threads" else None, **media)
