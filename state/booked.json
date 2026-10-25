@@ -1717,7 +1717,7 @@
       "svc": "instagram",
       "seen": "出し直した（文にプロフィールの1行がなかった。10/26 オーナー）"
     },
-    "instagram": {
+    "instagram_old2": {
       "tries": 1,
       "id": "6ade8f598b3d437ddc3222a6",
       "kind": "4コマ",
@@ -1731,7 +1731,11 @@
         "video": "https://drive.google.com/uc?export=download&id=1OrS99k9UPcJ5LqNOFUFGyucybZQ5OCTn",
         "alt": "4コマ漫画 第19話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出し直した（定型文を案10に。10/26 オーナー）"
+    },
+    "instagram": {
+      "tries": 0
     }
   },
   "2026-10-26 20:15": {
