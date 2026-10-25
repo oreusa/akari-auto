@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  actions: read
 concurrency:
   group: akari-state
   cancel-in-progress: false
@@ -25,11 +26,15 @@ jobs:
         run: python3 scripts/metrics.py
       - name: 当たり帳を作る（notes/scoreboard.md）
         run: python3 scripts/scoreboard.py || true
+      - name: GitHubの分数を数える（notes/actions-minutes.md）
+        run: python3 scripts/minutes.py || true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - name: 記録を保存
         run: |
           git config user.name "akari-auto"
           git config user.email "akari-auto@users.noreply.github.com"
-          for p in state log data notes/scoreboard.md config.json; do [ -e "$p" ] && git add -A "$p"; done || true
+          for p in state log data notes/scoreboard.md notes/actions-minutes.md config.json; do [ -e "$p" ] && git add -A "$p"; done || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "$COMMIT_MSG"
           for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done
