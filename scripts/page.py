@@ -669,6 +669,17 @@ def spot_counts(now):
     return out
 
 
+def spot_region(text, now):
+    """文に名前が出てくるHPのおでかけから地域を決める（「二条城」のように地名の入らない名前の時）。"""
+    items, _ = collect(now, light=True)
+    t = re.sub(r"\W", "", text).lower()
+    for e in all_spots(items, now):
+        nm = re.sub(r"\W", "", re.sub(r"（.*?）|\s(19|20)\d\d.*$", "", e.get("name") or "")).lower()  # 名前の後ろの年と（10/24開店）は文に無いことが多い
+        if len(nm) >= 4 and nm in t:
+            return region(_pref(e))
+    return ""
+
+
 def post_region(texts):
     """投稿の文から、関東の話か関西の話か（分からなければ空）。"""
     return region(_pref({"title": " ".join(texts), "bullets": []}))
