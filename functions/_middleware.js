@@ -4,7 +4,7 @@
 // 開いた数（10/24 オーナー「HPも見られてるか足す」）は、1日の合計1つだけを数え、1日500で止める（押した数300と合わせてもKVの書き込み1日1,000回の無料枠に収まる）。
 // 呼ばれるのは / と /c だけ（site/_routes.json）。
 // 数は KV（CLICKS）のキーのメタデータ n に入れる。scripts/pagestats.py が読んで data/page-stats.json にする。
-const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|whatsapp|discord|slack|telegram|curl|wget|python|headless/i;
+const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|externalagent|buffer|embedly|whatsapp|discord|slack|telegram|curl|wget|python|headless/i;
 
 function day() {
   return new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10); // 日本時間の日付
