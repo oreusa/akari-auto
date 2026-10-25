@@ -546,7 +546,8 @@ def compare(e):
             f'<div class="nu"><span class="av">★ {esc(r["avg"])}</span><span class="ct">{r["count"]:,}件</span></div>'
             + (f'<div class="nt">{esc(r["note"])}</div>' if r.get("note") else "") +
             f'<div class="br"><i style="width:{max(3, round(r["count"] / top * 100))}%"></i></div></div>' for r in rows)
-        table = f'<details class="fold"><summary>比べた{len(rows)}つを見る</summary><div class="tbl">{trs}</div></details>'
+        table = f'<details class="fold"><summary>比べた{len(rows)}つを見る</summary>{head}<div class="tbl">{trs}</div></details>'
+        head = ""  # 選んだ物はたたんだ中に（10/25 オーナー「ごちゃごちゃ」。見出しに選んだ物の名前がある）
     else:
         table = ""
     reason = f'<p class="why">{esc(e["reason"])}</p>' if e.get("reason") else ""
@@ -554,7 +555,7 @@ def compare(e):
         reason += f'<p class="why but">{esc(e["but"])}</p>'
     btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">{go_label(e)}{ARROW}</a>'
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
-    return (f'<article class="card cmp{" hot" if e.get("hot") else ""}"><div class="d"><span class="when">{esc(e["day"])}　うさぎが比べた{"・Amazon" if e.get("amazon") else ""}</span></div>'
+    return (f'<article class="card cmp{" hot" if e.get("hot") else ""}">'
             f'<div class="t">{phr(title)}</div>{head}{reason}{table}<div class="ft2">{btn}</div>{sample}</article>')
 
 
@@ -639,7 +640,21 @@ def all_spots(items, now):
     def _age(e):
         m, d = (int(x) for x in e["day"].split("/"))
         return (now.date() - datetime(e.get("year", now.year), m, d).date()).days
-    return [e for e in posted if _age(e) <= 1] + extra + [e for e in posted if _age(e) > 1]
+    out, seen = [], set()
+    # 同じ催しを2回出さない（10/25 オーナー「ごちゃごちゃして分かりにくい」：NAKED meets 二条城 が2枚、やきいもフェスが3枚）
+    for e in [e for e in posted if _age(e) <= 1] + extra + [e for e in posted if _age(e) > 1]:
+        reg = region(_pref(e))
+        nm = e.get("name") or _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))[1]
+        n0 = re.sub(r"\W", "", nm or "").lower()
+        u0 = re.sub(r"[?#].*$", "", str(e.get("url") or "")).rstrip("/")
+        # 同じ名前、または同じ公式ページで名前の頭が同じ物（やきいもフェス TOKYO と TOKYO・OSAKA）。観光サイトの別の催しは名前の頭が違うので残る
+        keys = {k for k in ((n0, reg), (u0, n0[:6], reg)) if k[0]}
+        keys = {k for k in keys if k[0]}
+        if keys & seen:
+            continue
+        seen |= keys
+        out.append(e)
+    return out
 
 
 def spot_counts(now):
@@ -678,6 +693,9 @@ def render(items, ended, now, cfg):
     for e in items["pr"]:
         if e is hot:
             continue
+        m = re.match(r"(?:AIが比べた)?\s*今日\s*(\d{1,2})/(\d{1,2})", e.get("title") or "")
+        if e.get("cat") == "sale" and m and (int(m[1]), int(m[2])) < (now.month, now.day):
+            continue  # 「今日10/24の20時から」のような、過ぎたセールは出さない
         goods.get(e.get("cat"), goods["life"]).append(sale(e) if e.get("cat") == "sale" else compare(e))
     for e in items.get("pick", []):
         if (e.get("count") or 0) < 1000 or float(e.get("avg") or 0) < 4.0:  # PRの決まり（レビュー1,000件以上・★4.0以上）
@@ -704,8 +722,7 @@ def render(items, ended, now, cfg):
 
         nav.append(f'<a class="g" href="#odekake"><span><i>GO OUT</i>おでかけ</span><b>{len(spots)}</b></a>')
         blocks.append(f'<section class="blk go" id="odekake">{head("NOW ON", "開催中のおでかけ", "公式ページで確かめた物だけ。<br>矢印で公式ページ、「地図」で場所が開きます")}'
-                      f'<div class="seg" role="group" aria-label="しぼりこみ"><button class="on" data-f="0">すべて</button><button data-f="1">無料だけ</button></div>'
-                      f'<nav class="flt" aria-label="地域">{tabs}</nav>'
+                      f'<nav class="flt" aria-label="しぼりこみ">{tabs}<button class="fr" type="button" aria-pressed="false">無料だけ</button></nav>'
                       f'{cardlist(now_on, "開催中")}<p class="none">この地域は、これから増やしていきます</p></section>')
         if coming:
             blocks.append(f'<section class="blk go" id="coming">{head("COMING UP", "これからのおでかけ", "")}'
@@ -821,6 +838,8 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .flt{{display:flex;flex-wrap:wrap;justify-content:center;gap:0 20px;border-top:1px solid #DDD3C8;border-bottom:1px solid #DDD3C8;padding:10px 0;margin:12px 0 14px}}
 .flt button{{font:700 13px/1 var(--go);letter-spacing:.06em;color:var(--pc,var(--mute));background:none;border:0;border-bottom:1px solid transparent;padding:11px 4px 9px;cursor:pointer}}
 .flt button.on{{color:var(--pc,var(--ink));border-bottom-color:var(--pc,var(--ink))}}
+.flt button.fr{{color:#5E8C5A;border:1px solid #CFE0CC;border-radius:99px;padding:8px 12px;margin:3px 0 0}}
+.flt button.fr.on{{background:#5E8C5A;color:#fff;border-color:#5E8C5A}}
 .cnt{{display:flex;justify-content:center;margin:0 0 26px}}
 .cnt span{{font-size:12px;color:var(--sub);padding:0 12px;letter-spacing:.06em}}
 .cnt span+span{{border-left:1px solid var(--line2)}}
@@ -984,10 +1003,10 @@ function apply(){{
     }});
   }});
 }}
-document.querySelectorAll(".flt button").forEach(function(x){{x.addEventListener("click",function(){{
-  document.querySelectorAll(".flt button").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
-document.querySelectorAll(".seg button").forEach(function(x){{x.addEventListener("click",function(){{
-  document.querySelectorAll(".seg button").forEach(function(y){{y.classList.toggle("on",y===x);}});free=x.dataset.f;apply();}});}});
+document.querySelectorAll(".flt button[data-p]").forEach(function(x){{x.addEventListener("click",function(){{
+  document.querySelectorAll(".flt button[data-p]").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
+document.querySelectorAll(".flt button.fr").forEach(function(x){{x.addEventListener("click",function(){{
+  var on=!x.classList.contains("on");x.classList.toggle("on",on);x.setAttribute("aria-pressed",on);free=on?"1":"0";apply();}});}});
 document.querySelectorAll(".stab button").forEach(function(x){{x.addEventListener("click",function(){{
   var sh=document.getElementById("shop"),c=x.dataset.c;
   document.querySelectorAll(".stab button").forEach(function(y){{y.classList.toggle("on",y===x);}});
