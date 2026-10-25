@@ -1,13 +1,13 @@
 {
- "at": "2026-10-25T23:23:06+00:00",
+ "at": "2026-10-25T23:32:23+00:00",
  "headers": {
-  "ratelimit": "\"3000-in-30days\"; r=2649; t=2279773",
+  "ratelimit": "\"3000-in-30days\"; r=2647; t=2279216",
   "ratelimit-policy": "\"3000-in-30days\"; q=3000; w=2592000; pk=:YTZlODA2NDQ5YjZj:",
   "x-ratelimit-limit": "3000",
-  "x-ratelimit-remaining": "2649",
+  "x-ratelimit-remaining": "2647",
   "x-ratelimit-reset": "1795250359"
  },
  "calls": {
-  "2026-10-25": 26
+  "2026-10-25": 28
  }
 }
