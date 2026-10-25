@@ -1330,7 +1330,8 @@
         "うさぎ│LIFE NOTESのサイトができました🌙\n◇開催中のおでかけは、終わる日が近い順\n◇「地図」でGoogleマップがすぐ開きます\n◇宿と買い物は、3つ以上を数字で比べた物だけ\n関東と関西のおでかけ先を、毎日しらべて足しています",
         "サイトはこちらです\nhttps://usagi-life-notes.pages.dev/"
       ],
-      "svc": "twitter"
+      "svc": "twitter",
+      "cancelled": true
     },
     "threads": {
       "tries": 1,
@@ -1341,7 +1342,8 @@
         "うさぎ│LIFE NOTESのサイトができました🌙\n◇開催中のおでかけは、終わる日が近い順\n◇「地図」でGoogleマップがすぐ開きます\n◇宿と買い物は、3つ以上を数字で比べた物だけ\n関東と関西のおでかけ先を、毎日しらべて足しています",
         "サイトはこちらです\nhttps://usagi-life-notes.pages.dev/"
       ],
-      "svc": "threads"
+      "svc": "threads",
+      "cancelled": true
     },
     "instagram": {
       "tries": 1,
@@ -1351,7 +1353,8 @@
       "texts": [
         "うさぎ│LIFE NOTESのサイトができました🌙\n◇開催中のおでかけは、終わる日が近い順\n◇「地図」でGoogleマップがすぐ開きます\n◇宿と買い物は、3つ以上を数字で比べた物だけ\n関東と関西のおでかけ先を、毎日しらべて足しています\nサイトのアドレスはプロフィールにあります"
       ],
-      "svc": "instagram"
+      "svc": "instagram",
+      "cancelled": true
     }
   }
 }
