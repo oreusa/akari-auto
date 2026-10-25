@@ -333,6 +333,7 @@ def run(now=None):
 
 
 KOMA4_SERVICES = ("twitter", "threads", "instagram")
+IG_PROFILE = "公式ページと、ほかのおでかけ先は、プロフィールのリンクにまとめています"
 # Instagram の毎日の4コマ（10/23 オーナー「OK」）：スライド4枚（8:00）とストーリー2枚（8:00・8:01）。動画の日はリールも
 IG_EXTRA = (("ig_slides", "post", 0), ("ig_story1", "story", 0), ("ig_story2", "story", 1))
 
@@ -489,6 +490,8 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
         # おでかけ4コマ（10/24〜）：X・Threads は2つ目に公式ページのURL（text2）とHPの1行を付ける。インスタは1つだけ
         if svc in ("twitter", "threads") and URL_RE.search(k.get("text2") or ""):
             texts = with_page([k["text"], k["text2"].strip()], svc, cfg, slot, due)
+        elif svc == "instagram" and media.get("ig_type") != "story" and IG_PROFILE not in k["text"]:
+            texts = [k["text"].rstrip() + "\n\n" + IG_PROFILE]  # インスタの文はリンクを押せないので、HPへの道を1行（10/26 オーナー「プロフィールリンクに詳細あるよね？」）
         try:
             p = buffer_create(cfg["channels"][svc], svc, texts, at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
                               topic=(k.get("topic") or "漫画") if svc == "threads" else None, **media)
