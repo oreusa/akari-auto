@@ -38,6 +38,18 @@ export async function onRequest(ctx) {
   const { request, env } = ctx;
   const url = new URL(request.url);
   const ua = request.headers.get("user-agent") || "";
+  // オーナーの分は数えない（10/25 オーナー「ホームページと楽天クリックは俺らじゃないのか？」）。
+  // /?me=on を1回開くと、その端末に印（クッキー me=1、1年）が付き、以後その端末の開いた数・押した数は数えない。/?me=off で外す。
+  const me = url.searchParams.get("me");
+  if (url.pathname === "/" && (me === "on" || me === "off")) {
+    const cookie = me === "on" ? "me=1; Max-Age=31536000; Path=/; Secure; SameSite=Lax" : "me=; Max-Age=0; Path=/; Secure; SameSite=Lax";
+    const body = me === "on" ? "この端末はオーナーの印を付けました。これからはHPの数に入りません。" : "この端末の印を外しました。";
+    return new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><p style="font:16px sans-serif;padding:24px">${body}</p><p style="font:16px sans-serif;padding:0 24px"><a href="/">HPを開く</a></p>`,
+      { headers: { "content-type": "text/html; charset=utf-8", "set-cookie": cookie, "cache-control": "no-store" } });
+  }
+  if (/(?:^|;\s*)me=1(?:;|$)/.test(request.headers.get("cookie") || "")) {
+    return url.pathname === "/c" ? new Response(null, { status: 204 }) : ctx.next();
+  }
   if (url.pathname === "/" && request.method === "GET" && !BOT.test(ua) && !request.headers.get("purpose") && !request.headers.get("sec-purpose")) {
     ctx.waitUntil(view(env).catch(() => {}));
   }
