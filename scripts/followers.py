@@ -39,11 +39,31 @@ def find_paths():
     return out
 
 
+def schema_hits():
+    """型の一覧の全部から、フォロワーらしい名前の欄・型を探す（Channel 以外の入口も見るため）。"""
+    d = buffer_gql("{ __schema { queryType { fields { name } } types { name kind fields { name } } } }")
+    sc = d.get("__schema") or {}
+    hits = []
+    for t in sc.get("types") or []:
+        if (t.get("name") or "").startswith("__"):
+            continue
+        if any(w in (t.get("name") or "").lower() for w in WORDS):
+            hits.append(t["name"])
+        for f in t.get("fields") or []:
+            if any(w in f["name"].lower() for w in WORDS):
+                hits.append(f"{t['name']}.{f['name']}")
+    roots = [f["name"] for f in (sc.get("queryType") or {}).get("fields") or []]
+    return hits, roots, len(sc.get("types") or [])
+
+
 def main():
     cfg = load_json(path("config.json"))
     if not cfg or not cfg.get("channels"):
         return 0
     fields = find_paths()
+    hits, roots, ntypes = schema_hits()
+    print("型の数:", ntypes, "／入口:", roots)
+    print("フォロワーらしい名前（全部の型）:", hits or "なし")
     print("フォロワーらしい欄:", fields or "なし")
     fp = path("data", "followers.json")
     data = load_json(fp, {}) or {}
@@ -70,6 +90,7 @@ def main():
                 row[c.get("service")] = vals
     data.setdefault("days", {})[day] = row or {"note": "Bufferからは取れない（欄なし）"}
     data["fields"] = fields
+    data["schema"] = {"types": ntypes, "roots": roots, "hits": hits}
     save_json(fp, data)
     print(day, row or "取れない")
     return 0
