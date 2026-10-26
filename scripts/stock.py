@@ -2,7 +2,7 @@
 
 10/26 オーナー「中途半端ならダメ」「漏らさず」：数が足りない欄、終わった物、開けないリンクを機械が数えて×を出す。
 集め係（docs/collector-prompt.md）は最初にこれを読み、×の欄から埋める。
-終わった催し（ends を1日過ぎた物）と開店から31日たったお店は、data/page-spots.json から自動で消す。
+終わって31日たった催し（それまではHPの「終わったおでかけ」に1行で残る）と開店から31日たったお店は、data/page-spots.json から自動で消す。
 """
 import json
 import os
@@ -35,7 +35,7 @@ def prune(now, fp=None):
     for it in data.get("items", []):
         end = page._dt(it.get("ends"))
         od = page._dt(it.get("open")) if it.get("kind") == "shop" else None
-        if (end and end < now - timedelta(days=1)) or (od and od < now - timedelta(days=31)):
+        if (end and end < now - timedelta(days=31)) or (od and od < now - timedelta(days=31)):
             gone.append(it.get("title", ""))
             continue
         keep.append(it)
