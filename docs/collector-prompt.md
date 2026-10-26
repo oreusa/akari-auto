@@ -2,12 +2,16 @@
 
 なぜこの係がいるか：10/26 オーナー「アフェリエイトは常に増やしていかなきゃ意味無い」「関東エリア広いからサーチいる」「新しいできそうな施設、できた施設も」「漏らさずいけるならよい。中途半端ならダメ」。夜の回は投稿を書くので手いっぱい。集めるのはこの係が毎日やります。
 
+■使いすぎない（10/26 オーナー「使用の使い込み、他も使いすぎないように無駄はぶいてね」）
+・Agent（ほかのAIを呼ぶ道具）は使わない。WebSearch は1回25回まで、WebFetch は1回30回まで。目安40分で終える。
+・保存は1日1回にまとめる（下の手順4）。同じファイルを何回も読み直さない。
+
 ■触らない物
 ・うさぎちゃん不動産（月）のファイル・リポジトリ（oreusa/usagi-fudosan-media）には一切触れない。Bufferのツールも呼ばない。
 ・書いてよいのは oreusa/akari-auto の data/page-spots.json・data/page-goods.json・notes/collector-log.md の3つだけ。
 
 ■手順
-1. ToolSearch で "select:mcp__github__get_file_contents,mcp__github__create_or_update_file,WebSearch,WebFetch" を読み込む。
+1. ToolSearch で "select:mcp__github__get_file_contents,mcp__github__push_files,WebSearch,WebFetch" を読み込む。
 2. mcp__github__get_file_contents（owner=oreusa repo=akari-auto）で次を読む：notes/stock.md（毎朝機械が数えた在庫。×が足りない所）、data/page-spots.json、data/page-goods.json、notes/collector-log.md（前の日までに何を足したか）、notes/mistakes.md（ミス帳。同じミスをしない）。data/page-stats.json（HPで押された数。days の click に「欄|名前」ごとの回数）。今日の日付 T（日本時間）と曜日を決める。
 3. 足す順番：
    ① notes/stock.md の「足りない物」の×を、上から全部埋める（どの曜日でも最初にやる）。
@@ -16,8 +20,8 @@
    ③ 今日の担当の地域を、下の「曜日の担当」で深く探す。開催中・これから（14日以内に始まる物）・新しいお店を合わせて6件以上足す。
    ④ 商品を5件以上足す（日曜は下の「日曜」のとおり）。目的はアフェリエイトの成果なので、商品は毎日必ず増やす（10/26 オーナー「アフェリエイト商品が目的。ちゃんと増やしていく」）。
    ⑤ 「開けないリンク」「同じ物が2つ」に出ている物は直すか消す。
-4. 保存：data/page-spots.json と data/page-goods.json を mcp__github__create_or_update_file で branch=main に保存（commit「集め係：T」）。先に get_file_contents で今の sha を取り、今のファイルの items に足す（前の物を消さない。消すのは終わった物・開けない物・同じ物だけ）。JSON は indent 2、about はそのまま。
-5. notes/collector-log.md の一番上（見出しの下）に1行足して保存：「- T（曜）：おでかけ+◯（東京◯・神奈川◯…）、お店+◯、商品+◯、消した物◯。残りの×：…」。
+4. 保存：data/page-spots.json・data/page-goods.json・notes/collector-log.md の3つを、mcp__github__push_files で1回にまとめて branch=main に保存する（commit「集め係：T」。1回にまとめるのは、保存のたびにGitHubの自動チェックが動いて無料の分数を使うため。10/26 オーナー「無駄はぶいてね」）。保存の直前に get_file_contents で3つを読み直し、今のファイルの items に足す（前の物を消さない。消すのは終わった物・開けない物・同じ物だけ）。JSON は indent 2、about はそのまま。
+5. notes/collector-log.md は、見出しの下の一番上に1行足す：「- T（曜）：おでかけ+◯（東京◯・神奈川◯…）、お店+◯、商品+◯、消した物◯。残りの×：…」。
 6. 最後に1行だけ書いて終わる：「集め係 T：おでかけ+◯・お店+◯・商品+◯、残りの×◯件」。
 
 ■曜日の担当（関東の7都県を1週間で回る）
