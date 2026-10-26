@@ -49,6 +49,7 @@ def load(today):
             first = r.get("first", "")
             rows.append({"day": day, "svc": r.get("service", ""), "slot": r.get("slot", ""), "kind": kind,
                          "first": first, "v": views(r.get("metrics") or {}),
+                         "cm": int((r.get("metrics") or {}).get("comments") or 0),
                          "style": head_style(first), "pref": pref_of(" ".join([first] + list(sp.get("threads") or [])[:1])),
                          "wd": "月火水木金土日"[datetime.fromisoformat(day).weekday()]})
     return rows
@@ -108,6 +109,17 @@ def main():
         L += table(rows, "pref", s)
         L += ["", f"## {SVC[s]}：曜日ごと", "| 曜日 | 本数 | 中央値 | 最高 |", "|---|---|---|---|"]
         L += table(rows, "wd", s)
+    # 返信（10/26 オーナー「あかりはコメントを返せる。月はできない」）：コメントが付いた投稿と付かない投稿の閲覧を比べる
+    L += ["", "## コメントと閲覧（凪が中身を見て返す。煽り・誹謗中傷は無視）", "| 場所 | コメントあり 本数 | その中央値 | コメントなし 中央値 |", "|---|---|---|---|"]
+    for s_, name in SVC.items():
+        a = [r["v"] for r in rows if r["svc"] == s_ and r["cm"] > 0]
+        b = [r["v"] for r in rows if r["svc"] == s_ and r["cm"] == 0]
+        if a or b:
+            L.append(f"| {name} | {len(a)} | {med(a) if a else '—'} | {med(b) if b else '—'} |")
+    cms = sorted([r for r in rows if r["cm"] > 0], key=lambda r: (r["day"], -r["cm"]), reverse=True)[:10]
+    if cms:
+        L += ["", "### コメントが付いた投稿（新しい順に10本）", "| 日 | 場所 | 枠 | コメント | 閲覧 | 1行目 |", "|---|---|---|---|---|---|"]
+        L += [f"| {r['day'][5:]} | {SVC[r['svc']]} | {r['slot']} | {r['cm']} | {r['v']} | {r['first'][:30]} |" for r in cms]
     st = (load_json(path("data", "page-stats.json"), {}) or {}).get("days", {})
     if st:
         L += ["", "## HP（見られた数・PRが押された数）", "| 日 | 見られた | PRが押された | 押された元 |", "|---|---|---|---|"]
