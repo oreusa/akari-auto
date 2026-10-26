@@ -36,7 +36,7 @@ jobs:
           python3 scripts/videocheck.py
       - name: 予約
         run: python3 scripts/book.py
-      - name: 数字係の代わり（6:40の数字係が7:15までに動いていない朝だけ。GitHub の時刻起動は2〜3時間遅れることがある。10/25）
+      - name: 数字係の代わり（夜0:45の数字係が朝7:15までに動いていない朝だけ。GitHub の時刻起動は2〜3時間遅れることがある。10/25）
         run: |
           y=$(TZ=Asia/Tokyo date -d yesterday +%F); t=$(TZ=Asia/Tokyo date +%F); h=$(TZ=Asia/Tokyo date +%H%M)
           if [ "$h" -lt 0715 ] || [ "$h" -gt 1200 ]; then exit 0; fi

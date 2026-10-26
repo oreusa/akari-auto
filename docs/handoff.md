@@ -8,8 +8,8 @@
 | 時刻 | だれ | すること | 置き場所 |
 | --- | --- | --- | --- |
 | 2時間おき（朝6〜8時は30分おき） | 予約係（GitHub Actions `book.yml`） | 12時間以内に出す投稿を燈のBufferに予約。PRは直前に楽天/A8を確かめ、だめなら fallback。出たかの確認と1回の出し直しもする | `log/日付.md`・`state/booked.json` |
-| 6:40 | 数字係（`metrics.yml`） | 前日・前々日の数字 | `data/metrics/日付.json` |
-| 6:40 | 在庫係（`metrics.yml` の中の `scripts/stock.py`） | HP「関東おでかけリスト」の都県ごとの数・商品の数を数えて×を付け、終わって31日たった催しを消し（それまでHPの「終わったおでかけ」に残る）、公式ページが開けるか見る | `notes/stock.md` |
+| 0:45 | 数字係（`metrics.yml`。10/26 月とそろえた） | 前日・前々日の数字 | `data/metrics/日付.json` |
+| 0:45 | 在庫係（`metrics.yml` の中の `scripts/stock.py`） | HP「関東おでかけリスト」の都県ごとの数・商品の数を数えて×を付け、終わって31日たった催しを消し（それまでHPの「終わったおでかけ」に残る）、公式ページが開けるか見る | `notes/stock.md` |
 | 14:13 | 燈 集め係（Claude、予約タスク trig_01MH4oeLnJkQ4293RGPL4DGP、毎回新しいセッション） | notes/stock.md の×を埋め、曜日の担当地域（月=東京の東・火=東京の西と多摩・水=神奈川・木=埼玉と千葉・金=北関東・土=新しいお店・日=商品の見直し）でおでかけ・お店・商品を足す。指示は `docs/collector-prompt.md`（10/26 オーナー「漏らさず」「関東おでかけリスト」） | `data/page-spots.json`・`data/page-goods.json`・`notes/collector-log.md` |
 | 6:40 | 雫（ChatGPT） | 4コマを描き、7:10までにドライブ「4コマ公開用（投稿する絵だけ）」へ保存するだけ（10/23から。Bufferは使わない） | 台本はドライブ「燈からの指示（最新）」 |
 | 7:15 | 燈 4コマ係（Claude、予約タスク trig_01F2Hr1L6G178JjwjA23bGcp） | 雫の絵を見つけて5つを確かめ、おかしければ「4コマ直し」に書く。よければ `koma4/日付.json` に絵のURLを入れ、予約係を動かす。指示は `docs/koma4-prompt.md` | `koma4/日付.json` |
@@ -33,7 +33,7 @@
 
 ## 3. GitHub（oreusa/akari-auto、非公開）
 - `scripts/book.py` 予約係／`scripts/check.py` 決まりの確認／`scripts/metrics.py` 数字／`scripts/lib.py` 共通（楽天・A8・Buffer・ページの確認）／`scripts/selftest.py` 自己テスト。
-- ワークフロー：`book.yml`（2時間おき・朝6〜8時は30分おき。10/25 GitHubの分数の節約）、`metrics.yml`（6:40）、`check.yml`（push のたび。自己テスト→`check.py --online`）、`online.yml`（Bufferの送信・予約・下書きの一覧 `--sent-test`）、`a8.yml`（A8リンクの確認。入力「url|ドメイン」をスペース区切り）、`probe.yml`（ページが開けるかの調べ）、`setup.yml`・`test.yml`（最初の設定用）。
+- ワークフロー：`book.yml`（2時間おき・朝6〜8時は30分おき。10/25 GitHubの分数の節約）、`metrics.yml`（夜0:45）、`check.yml`（push のたび。自己テスト→`check.py --online`）、`online.yml`（Bufferの送信・予約・下書きの一覧 `--sent-test`）、`a8.yml`（A8リンクの確認。入力「url|ドメイン」をスペース区切り）、`probe.yml`（ページが開けるかの調べ）、`setup.yml`・`test.yml`（最初の設定用）。
 - Secrets：`BUFFER_API_KEY`（期限 2027-10-22）、`RAKUTEN_APP_ID`・`RAKUTEN_ACCESS_KEY`・`RAKUTEN_AFFILIATE_ID`（楽天アプリ「akariauto」、期限 2027-10-22。楽天の画面の「有効期限延長」で延ばす）。キーはチャットやファイルに書かない。
 - Buffer のチャンネル：X は ai_usagichan、Threads とインスタは ai_usagichan1。
 - 書き方の決まり：`docs/how-to-write.md`。形の見本：`docs/example-schedule.json`。学びの記録：`notes/learning.md`（毎晩1行）。
