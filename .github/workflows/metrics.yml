@@ -1,7 +1,7 @@
-name: metrics（数字係・毎朝6:40）
+name: metrics（数字係・毎晩0:45）
 on:
   schedule:
-    - cron: "40 21 * * *"
+    - cron: "45 15 * * *"  # 夜0:45（10/26 オーナー「月とそろえたい」。前の日と2日前を取る）
   workflow_dispatch:
 permissions:
   contents: write
