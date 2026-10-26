@@ -8,7 +8,7 @@ import os
 import re
 import statistics
 import sys
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import load_json, now_jst, path  # noqa: E402
@@ -46,10 +46,21 @@ def load(today):
         for r in (load_json(f, {}) or {}).get("posts", []):
             sp = sched.get(r.get("slot")) or {}
             kind = "PR" if sp.get("link") else (sp.get("topic") or ("4コマ" if r.get("slot") == "4コマ" else "そのほか"))
+            first = r.get("first", "")
             rows.append({"day": day, "svc": r.get("service", ""), "slot": r.get("slot", ""), "kind": kind,
-                         "first": r.get("first", ""), "v": views(r.get("metrics") or {}),
-                         "style": head_style(r.get("first", ""))})
+                         "first": first, "v": views(r.get("metrics") or {}),
+                         "style": head_style(first), "pref": pref_of(" ".join([first] + list(sp.get("threads") or [])[:1])),
+                         "wd": "月火水木金土日"[datetime.fromisoformat(day).weekday()]})
     return rows
+
+
+def pref_of(text):
+    """投稿の文から都県（関東おでかけリストと同じ分け方。分からなければ「そのほか」）。"""
+    try:
+        import page
+        return page._pref({"title": text, "bullets": []}) or "そのほか"
+    except Exception:
+        return "そのほか"
 
 
 def med(xs):
@@ -92,6 +103,11 @@ def main():
         L += table(rows, "style", s)
         L += ["", f"## {SVC[s]}：枠ごと", "| 枠 | 本数 | 中央値 | 最高 |", "|---|---|---|---|"]
         L += sorted(table(rows, "slot", s))
+        # 全方向から学ぶ（10/26 オーナー「学習エンジンは全方向からね」）：都県・曜日でも分ける
+        L += ["", f"## {SVC[s]}：都県ごと（関東おでかけリストの分け方）", "| 都県 | 本数 | 中央値 | 最高 |", "|---|---|---|---|"]
+        L += table(rows, "pref", s)
+        L += ["", f"## {SVC[s]}：曜日ごと", "| 曜日 | 本数 | 中央値 | 最高 |", "|---|---|---|---|"]
+        L += table(rows, "wd", s)
     st = (load_json(path("data", "page-stats.json"), {}) or {}).get("days", {})
     if st:
         L += ["", "## HP（見られた数・PRが押された数）", "| 日 | 見られた | PRが押された | 押された元 |", "|---|---|---|---|"]
@@ -102,6 +118,20 @@ def main():
                 src[f] = src.get(f, 0) + sum(items.values())
             L.append(f"| {d[5:]} | {v.get('views', 0)} | {v.get('clicks', 0)} | "
                      + "、".join(f"{k} {n}" for k, n in sorted(src.items(), key=lambda kv: -kv[1])) + " |")
+    if st:  # HPで押されたカード（直近7日の合計、多い順）。押された種類を次の日の投稿と集め係に使う
+        tot = {}
+        for d in sorted(st)[-DAYS:]:
+            for items in (st[d].get("click") or {}).values():
+                for k, n in items.items():
+                    tot[k] = tot.get(k, 0) + n
+        if tot:
+            L += ["", "## HPで押されたカード（7日の合計、多い順に15）", "| 欄｜名前 | 回数 |", "|---|---|"]
+            L += [f"| {k[:50]} | {n} |" for k, n in sorted(tot.items(), key=lambda kv: -kv[1])[:15]]
+            sec = {}
+            for k, n in tot.items():
+                sec[k.split("|")[0]] = sec.get(k.split("|")[0], 0) + n
+            L += ["", "## HPで押された欄（7日の合計）", "| 欄 | 回数 |", "|---|---|"]
+            L += [f"| {k} | {n} |" for k, n in sorted(sec.items(), key=lambda kv: -kv[1])]
     out = path("notes", "scoreboard.md")
     with open(out, "w", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
