@@ -627,8 +627,8 @@ def after_check(cfg, state, now):
         if " " not in key:
             continue
         for s, r in rec.items():
-            if not isinstance(r, dict) or not r.get("id") or r.get("seen"):
-                continue
+            if not isinstance(r, dict) or not r.get("id") or r.get("seen") or r.get("cancelled"):
+                continue  # 取り消した投稿は「出たか」を見ない（10/25 取り消し済みを出し直そうとした）
             at = r.get("at") or key.split(" ")[1]
             try:
                 due = datetime.fromisoformat(f"{key.split(' ')[0]}T{at}").replace(tzinfo=JST)
