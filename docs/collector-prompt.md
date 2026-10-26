@@ -12,7 +12,7 @@
 
 ■手順
 1. ToolSearch で "select:mcp__github__get_file_contents,mcp__github__push_files,WebSearch,WebFetch" を読み込む。
-2. mcp__github__get_file_contents（owner=oreusa repo=akari-auto）で次を読む：notes/stock.md（毎朝機械が数えた在庫。×が足りない所）、data/page-spots.json、data/page-goods.json、notes/collector-log.md（前の日までに何を足したか）、notes/mistakes.md（ミス帳。同じミスをしない）。data/page-stats.json（HPで押された数。days の click に「欄|名前」ごとの回数）。今日の日付 T（日本時間）と曜日を決める。
+2. mcp__github__get_file_contents（owner=oreusa repo=akari-auto）で次を読む：notes/stock.md（毎朝機械が数えた在庫。×が足りない所）、data/page-spots.json、data/page-goods.json、notes/collector-log.md（前の日までに何を足したか）、notes/mistakes.md（ミス帳。同じミスをしない）。notes/linkcheck.md（毎日13:30に機械がHPのリンクをスマホのブラウザで全部開いた結果。「直す所」に出た物は、公式の別のページに替えるか消す。重い（5秒以上）公式ページは、同じ催しのもっと軽い公式ページ（主催・施設のお知らせのページなど）があれば替える）。data/page-stats.json（HPで押された数。days の click に「欄|名前」ごとの回数）。今日の日付 T（日本時間）と曜日を決める。
 3. 足す順番：
    ① notes/stock.md の「足りない物」の×を、上から全部埋める（どの曜日でも最初にやる）。
    ② 「3日以内に終わる」に出ている物の代わりを、同じ都県で1件ずつ探す。
