@@ -559,11 +559,11 @@ def spot(e):
     nt = ""  # 月のページと同じく、カードは「どこ・いつ・名前・地図」だけ（説明は公式ページで）
     # 矢印（カード全体）＝公式ページ、「地図」＝地図アプリ（10/24 オーナー「矢印おしたら公式ページ、地図おしたらマップ」）
     mp = (f'<a class="mp" href="https://www.google.com/maps/search/?api=1&amp;query={esc(urllib.parse.quote(q))}" '
-          f'target="_blank" rel="noopener">地図{OUT}</a>') if q else ""
+          f'rel="noopener">地図{OUT}</a>') if q else ""
     mpr = f'<div class="mpr">{mp}</div>' if mp else ""  # 地図だけの行（この行は押しても公式ページが開かない）
     return (f'<div class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" data-wk="{1 if wk else 0}" style="--pc:{color}">'
             f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
-            f'<div class="t"><a class="go" href="{href}" target="_blank" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
+            f'<div class="t"><a class="go" href="{href}" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
             f'{nt}{mpr}{ARROW}</div>')
 
 
@@ -630,7 +630,7 @@ def compare(e):
     reason = f'<p class="why">{esc(e["reason"])}</p>' if e.get("reason") else ""
     if e.get("but"):  # 10/25 オーナー「内容ペラペラ」：負けた所も見せる
         reason += f'<p class="why but">{esc(e["but"])}</p>'
-    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">{go_label(e)}{ARROW}</a>'
+    btn = f'<a class="buy" href="{esc(e["url"])}" rel="sponsored noopener">{go_label(e)}{ARROW}</a>'
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
     img = _img(e)  # 写真は見出しの横に出す（10/26 オーナー「商品や宿とかの画像消えてるね。もったいない」：たたんだ中に入れて見えなくなっていた）
     top = f'<div class="tw">{img}<div class="t">{phr(title)}</div></div>' if img else f'<div class="t">{phr(title)}</div>'
@@ -652,20 +652,20 @@ def pick(e):
             f'<div class="cho">{_img(e)}<div class="tx"><span class="lb">選んだのは</span><b>{phr(e["name"])}</b>'
             f'<div class="meta">{"".join(meta)}</div></div></div>{lis}'
             f'<div class="ft2">'
-            f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">楽天で見る{ARROW}</a></div>{sample}</article>')
+            f'<a class="buy" href="{esc(e["url"])}" rel="sponsored noopener">楽天で見る{ARROW}</a></div>{sample}</article>')
 
 
 def sale(e):
     when, name = _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))
     when = _wd(when, e["year"]) if when else _wd(e["day"], e["year"]) + "調べ"
-    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">楽天で見る{ARROW}</a>'
+    btn = f'<a class="buy" href="{esc(e["url"])}" rel="sponsored noopener">楽天で見る{ARROW}</a>'
     return (f'<article class="card cmp"><div class="d"><span class="when">{esc(when)}</span></div>'
             f'<div class="t">{phr(name)}</div><div class="ft2">{btn}</div></article>')
 
 
 def a8card(e):
     note = f'<p class="why">{esc(e["note"])}</p>' if e.get("note") else ""
-    btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">申し込みページへ{ARROW}</a>'
+    btn = f'<a class="buy" href="{esc(e["url"])}" rel="sponsored noopener">申し込みページへ{ARROW}</a>'
     return (f'<article class="card cmp"><div class="d"><span class="when">予約・申し込み</span></div>'
             f'<div class="t">{phr(e["name"])}</div>{note}<div class="ft2">{btn}</div></article>')
 
@@ -800,12 +800,12 @@ def render(items, ended, now, cfg):
     sns = [("Instagram", "@ai_usagichan1", "https://www.instagram.com/ai_usagichan1/"),
            ("Threads", "@ai_usagichan1", "https://www.threads.com/@ai_usagichan1"),
            ("X", "@ai_usagichan", "https://x.com/ai_usagichan")]
-    follow = "".join(f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(n)}<span>{esc(h)}</span></a>' for n, h, u in sns)
+    follow = "".join(f'<a href="{esc(u)}" rel="noopener">{esc(n)}<span>{esc(h)}</span></a>' for n, h, u in sns)
     if p.get("room_url"):
-        follow += (f'<a class="co" data-en="RAKUTEN ROOM" href="{esc(p["room_url"])}" target="_blank" rel="noopener">楽天ROOM'
+        follow += (f'<a class="co" data-en="RAKUTEN ROOM" href="{esc(p["room_url"])}" rel="noopener">楽天ROOM'
                    f'<span>うさぎが比べて選んだ物を、まとめて置いています</span></a>')
     # おでかけ掲載のご相談（10/26 オーナー「月のhpにはおでかけ先の依頼とかやってる、まねしよ」：月と同じくインスタのDMへ）
-    follow += ('<a class="co" data-en="LISTING" href="https://ig.me/m/ai_usagichan1" target="_blank" rel="noopener">おでかけ掲載'
+    follow += ('<a class="co" data-en="LISTING" href="https://ig.me/m/ai_usagichan1" rel="noopener">おでかけ掲載'
                '<span>新しいお店や、毎年のイベント。<br>うさぎがご紹介します。ご相談はこちら</span></a>')
     spots = all_spots(items, now)
     deals = [e for e in items["deal"] if e.get("url")]
