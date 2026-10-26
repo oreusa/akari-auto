@@ -28,6 +28,8 @@ jobs:
         run: python3 scripts/stock.py || true
       - name: 当たり帳を作る（notes/scoreboard.md）
         run: python3 scripts/scoreboard.py || true
+      - name: フォロワー数を記録（data/followers.json）
+        run: python3 scripts/followers.py || true
       - name: GitHubの分数を数える（notes/actions-minutes.md）
         run: python3 scripts/minutes.py || true
         env:
