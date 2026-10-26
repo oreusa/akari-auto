@@ -1,0 +1,395 @@
+{
+  "day": "2026-10-26",
+  "fetchedAt": "2026-10-27T05:45+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "11/3まで、無印良品週間はあと9日",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De7yeTMFZH5",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.39,
+        "views": 255,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "11/3まで、無印良品週間はあと9日",
+      "url": "https://x.com/1753799832798629888/status/2114485341881020532",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.2,
+        "reposts": 0,
+        "impressions": 167,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "10/30から駒沢で東京ラーメンフェスタ、今週始まる5つ",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De7-LjRDgY8",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.7,
+        "views": 37,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "10/30から駒沢で東京ラーメンフェスタ、今週始まる5つ",
+      "url": "https://x.com/1753799832798629888/status/2114511083977277539",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.33,
+        "reposts": 0,
+        "impressions": 60,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "今日10/26も、神保町で神田古本まつり（11/1まで）",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De8Sx40joEf",
+      "metrics": {
+        "reactions": 2,
+        "comments": 1,
+        "engagementRate": 4.92,
+        "views": 61,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "今日10/26も、神保町で神田古本まつり（11/1まで）",
+      "url": "https://x.com/1753799832798629888/status/2114556382712074680",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.78,
+        "reposts": 0,
+        "impressions": 72,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "11/3の文化の日、上野の3館で常設展が無料",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De8dE3Cjmyq",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.36,
+        "views": 274,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "11/3の文化の日、上野の3館で常設展が無料",
+      "url": "https://x.com/1753799832798629888/status/2114579026211664315",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 50,
+        "reposts": 0,
+        "impressions": 2,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "今日10/26、大阪で開店予定の3軒",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De8nYdClkdl",
+      "metrics": {
+        "reactions": 4,
+        "comments": 1,
+        "engagementRate": 0.3,
+        "views": 1652,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "今日10/26、大阪で開店予定の3軒",
+      "url": "https://x.com/1753799832798629888/status/2114601688157782265",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた夜のおでかけ靴下3つ、1足最安は333円〜】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De87-xMlrLP",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 14.29,
+        "views": 7,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた夜のおでかけ靴下3つ、1足最安は333円〜】",
+      "url": "https://x.com/1753799832798629888/status/2114646984883568702",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "PR",
+      "first": "【AIが比べた鬼怒川の宿4軒、4.5以上はあさやだけ】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De9JwVIIHF_",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.26,
+        "views": 19,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "PR",
+      "first": "【AIが比べた鬼怒川の宿4軒、4.5以上はあさやだけ】",
+      "url": "https://x.com/1753799832798629888/status/2114677241204338851",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "10/17から、あしかがフラワーパークで光の花の庭（2/14まで）",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De9PAqvFQ2R",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.47,
+        "views": 68,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "10/17から、あしかがフラワーパークで光の花の庭（2/14まで）",
+      "url": "https://x.com/1753799832798629888/status/2114688786202284241",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "あす10/27の9:59まで、楽天お買い物マラソン",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De9XeGtFQhq",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 20,
+        "views": 5,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "あす10/27の9:59まで、楽天お買い物マラソン",
+      "url": "https://x.com/1753799832798629888/status/2114707414448550114",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "10/23から、夜の二条城でNAKED meets 二条城（12/5まで）",
+      "url": "https://www.instagram.com/reel/De77fw6Oi2J/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 30,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 1.45,
+        "averageTimeWatched": 2.89,
+        "reach": 27
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "10/23から、夜の二条城でNAKED meets 二条城（12/5まで）",
+      "url": "https://www.instagram.com/p/De759_iEUI9/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "follows": 0,
+        "reach": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "10/23から、夜の二条城でNAKED meets 二条城（12/5まで）",
+      "url": "https://www.instagram.com/reel/De74lDhPzWh/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 46,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 1.17,
+        "averageTimeWatched": 1.5,
+        "reach": 46
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4016040674239344884",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4016039265481767540",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "10/23から、夜の二条城でNAKED meets 二条城（12/5まで）",
+      "url": "https://www.instagram.com/reel/De71nYIONua/",
+      "metrics": {}
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "10/23から、夜の二条城でNAKED meets 二条城（12/5まで）",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De71nYhFY2R",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.55,
+        "views": 22,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "10/23から、夜の二条城でNAKED meets 二条城（12/5まで）",
+      "url": "https://x.com/1753799832798629888/status/2114492241523757193",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.44,
+        "reposts": 0,
+        "impressions": 554,
+        "clicks": 0
+      }
+    }
+  ]
+}

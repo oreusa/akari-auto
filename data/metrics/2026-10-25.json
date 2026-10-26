@@ -1,6 +1,6 @@
 {
   "day": "2026-10-25",
-  "fetchedAt": "2026-10-26T20:15+09:00",
+  "fetchedAt": "2026-10-27T05:45+09:00",
   "posts": [
     {
       "service": "threads",
@@ -41,8 +41,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.09,
-        "views": 92,
+        "engagementRate": 1,
+        "views": 100,
         "quotes": 0,
         "reposts": 0
       }
@@ -69,10 +69,10 @@
       "first": "今日10/25、神戸港で入場無料のイベントが3つ",
       "url": "https://www.threads.com/@ai_usagichan1/post/De5t-9PoA9P",
       "metrics": {
-        "reactions": 0,
+        "reactions": 1,
         "comments": 1,
-        "engagementRate": 0.34,
-        "views": 290,
+        "engagementRate": 0.66,
+        "views": 302,
         "quotes": 0,
         "reposts": 0
       }
@@ -101,8 +101,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.66,
-        "views": 152,
+        "engagementRate": 0.64,
+        "views": 156,
         "quotes": 0,
         "reposts": 0
       }
@@ -131,8 +131,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 0.98,
-        "views": 204,
+        "engagementRate": 0.88,
+        "views": 228,
         "quotes": 0,
         "reposts": 0
       }
@@ -161,8 +161,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 9.09,
-        "views": 11,
+        "engagementRate": 8.33,
+        "views": 12,
         "quotes": 0,
         "reposts": 0
       }
@@ -238,8 +238,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.17,
-        "views": 46,
+        "engagementRate": 2,
+        "views": 50,
         "quotes": 0,
         "reposts": 0
       }
@@ -268,8 +268,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.5,
-        "views": 199,
+        "engagementRate": 0.43,
+        "views": 233,
         "quotes": 0,
         "reposts": 0
       }
@@ -298,8 +298,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 10,
-        "views": 10,
+        "engagementRate": 7.69,
+        "views": 13,
         "quotes": 0,
         "reposts": 0
       }
@@ -328,8 +328,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 14.29,
-        "views": 7,
+        "engagementRate": 10,
+        "views": 10,
         "quotes": 0,
         "reposts": 0
       }
@@ -421,8 +421,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.72,
-        "views": 58,
+        "engagementRate": 1.69,
+        "views": 59,
         "quotes": 0,
         "reposts": 0
       }
@@ -495,8 +495,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.81,
-        "views": 124,
+        "engagementRate": 0.8,
+        "views": 125,
         "quotes": 0,
         "reposts": 0
       }
