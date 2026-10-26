@@ -557,10 +557,11 @@ def spot(e):
     # 矢印（カード全体）＝公式ページ、「地図」＝地図アプリ（10/24 オーナー「矢印おしたら公式ページ、地図おしたらマップ」）
     mp = (f'<a class="mp" href="https://www.google.com/maps/search/?api=1&amp;query={esc(urllib.parse.quote(q))}" '
           f'target="_blank" rel="noopener">地図{OUT}</a>') if q else ""
+    mpr = f'<div class="mpr">{mp}</div>' if mp else ""  # 地図だけの行（この行は押しても公式ページが開かない）
     return (f'<div class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" data-wk="{1 if wk else 0}" style="--pc:{color}">'
             f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
             f'<div class="t"><a class="go" href="{href}" target="_blank" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
-            f'{nt}{mp}{ARROW}</div>')
+            f'{nt}{mpr}{ARROW}</div>')
 
 
 _PLACE = re.compile(r"(?:場所は|会場は)[「『]?(.+?)(?:[」』]|です|（|。|、|$)")
@@ -1145,8 +1146,11 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .otab button{{font-size:14px;letter-spacing:.04em;min-width:0}} .otab button i{{letter-spacing:.16em;font-size:8.5px}}
 .pane[hidden]{{display:none}} .pane.empty .none{{display:block}}
 .card.it{{padding:13px 70px 14px 14px}}
-.card.it .arw{{top:20px;transform:none}} .card.it:hover .arw{{transform:translateX(3px)}}
-.card.it .mp{{left:auto;right:14px;bottom:12px}}
+.card.it .arw{{top:50%;transform:translateY(-50%)}} .card.it:hover .arw{{transform:translate(3px,-50%)}}
+/* 地図と公式ページの押し間違いをなくす（10/26 オーナー「地図とリンクを押し間違える、クレームが来る前に」、月の直しと同じ）：
+   地図は名前の下の左に1行で置き、その行は押しても公式ページが開かない。矢印は右の真ん中 */
+.card.it .mpr{{position:relative;z-index:2;margin:12px -70px -14px -14px;padding:0 70px 14px 14px;background:transparent}}
+.card.it .mp{{position:static;padding:8px 10px 6px 0;border-bottom:0;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#CFC5BA}}
 .chips{{display:flex;justify-content:center;gap:8px;margin:12px 0 0}}
 .chips .fr{{font:700 12.5px/1 var(--go);letter-spacing:.04em;color:var(--sub);background:#fff;border:1px solid #D9CFC4;border-radius:99px;padding:9px 14px;cursor:pointer}}
 .chips .fr[data-k=free]{{color:#5E8C5A;border-color:#CFE0CC}}
