@@ -464,6 +464,16 @@ def _span(e, now=None):
     return ""
 
 
+_NOW = []  # render が今の時刻を入れる（今週末・あと何日の判定に使う）
+
+
+def _weekend(now):
+    """今週末（土・日）。土日に開いたときは、その週末。"""
+    d = now.date()
+    sat = d + timedelta(days=(5 - d.weekday()) % 7) if d.weekday() != 6 else d - timedelta(days=1)
+    return sat, sat + timedelta(days=1)
+
+
 def spot(e):
     pref = _pref(e)
     color = PREF_COLOR.get(pref, "#A07E66")
@@ -476,6 +486,13 @@ def spot(e):
         when = span
     free = _free(e)
     tag = f'<span class="tg">・{esc(free)}</span>' if free else ""
+    now = _NOW[0] if _NOW else now_jst()
+    st, en = _dt(e.get("start")), _dt(e.get("ends"))
+    sat, sun = _weekend(now)
+    wk = e.get("kind") != "deal" and (not st or st.date() <= sun) and (not en or en.date() >= max(sat, now.date()))
+    left = (en.date() - now.date()).days if en and not (st and st > now) else None
+    if left is not None and 1 <= left <= 6:  # 終わりが近い物は「あと◯日」（10/26 月より使いやすく：急ぐ物が一目で分かる）
+        tag = f'<span class="lf">あと{left}日</span>' + tag
     pl = f'<span class="pl">{esc(pref)}</span>' if pref else ""
     if not e.get("url"):  # リンクのないカードは載せない（押しても何も開かないため）
         return ""
@@ -485,7 +502,7 @@ def spot(e):
     # 矢印（カード全体）＝公式ページ、「地図」＝地図アプリ（10/24 オーナー「矢印おしたら公式ページ、地図おしたらマップ」）
     mp = (f'<a class="mp" href="https://www.google.com/maps/search/?api=1&amp;query={esc(urllib.parse.quote(q))}" '
           f'target="_blank" rel="noopener">地図{OUT}</a>') if q else ""
-    return (f'<div class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}" style="--pc:{color}">'
+    return (f'<div class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}" data-wk="{1 if wk else 0}" style="--pc:{color}">'
             f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
             f'<div class="t"><a class="go" href="{href}" target="_blank" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
             f'{nt}{mp}{ARROW}</div>')
@@ -692,6 +709,7 @@ def post_region(texts):
 
 
 def render(items, ended, now, cfg):
+    _NOW[:] = [now]
     p = cfg.get("page", {})
     sns = [("Instagram", "@ai_usagichan1", "https://www.instagram.com/ai_usagichan1/"),
            ("Threads", "@ai_usagichan1", "https://www.threads.com/@ai_usagichan1"),
@@ -740,14 +758,19 @@ def render(items, ended, now, cfg):
             return "".join(cs_) + more
 
         n_free = sum(1 for e in now_on if _free(e))
+        sat, sun = _weekend(now)
+        n_wk = sum(1 for e in spots if 'data-wk="1"' in spot(e))
+        wk_label = "この週末" if now.weekday() >= 5 else f"今週末 {sat.month}/{sat.day}・{sun.day}"
         nav.append('<a href="#odekake">おでかけ</a>')
         tabs2 = ('<nav class="otab" aria-label="おでかけ">'
                  f'<button class="on" type="button" data-t="now"><i>NOW ON</i>開催中<small>{len(now_on)}件</small></button>'
                  + (f'<button type="button" data-t="up"><i>COMING UP</i>これから<small>{len(coming)}件</small></button>' if coming else "")
                  + '</nav>')
         # 10/26 オーナー「月のhp配色、綺麗な配置なってるから真似して」：月と同じく、地域の切り替え→件数→1つの箱にタブ
-        blocks.append(f'<nav class="flt" aria-label="しぼりこみ">{tabs}<button class="fr" type="button" aria-pressed="false">無料だけ</button></nav>'
-                      f'<p class="cnt"><span>開催中<b>{len(now_on)}</b>件</span><span>無料で楽しめる<b>{n_free}</b>件</span></p>'
+        blocks.append(f'<nav class="flt" aria-label="しぼりこみ">{tabs}</nav>'
+                      f'<div class="chips"><button class="fr" type="button" data-k="wk" aria-pressed="false">{wk_label}</button>'
+                      f'<button class="fr" type="button" data-k="free" aria-pressed="false">無料だけ</button></div>'
+                      f'<p class="cnt"><span>開催中<b>{len(now_on)}</b>件</span><span>週末に行ける<b>{n_wk}</b>件</span><span>無料<b>{n_free}</b>件</span></p>'
                       f'<section class="blk" id="odekake">{tabs2}'
                       f'<div class="pane" data-t="now">{cardlist(now_on, "開催中")}<p class="none">この地域は、これから増やしていきます</p></div>'
                       + (f'<div class="pane" data-t="up" hidden>{cardlist(coming, "これから")}<p class="none">この地域は、これから増やしていきます</p></div>' if coming else "")
@@ -866,7 +889,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .flt button.fr{{color:#5E8C5A;border:1px solid #CFE0CC;border-radius:99px;padding:8px 12px;margin:3px 0 0}}
 .flt button.fr.on{{background:#5E8C5A;color:#fff;border-color:#5E8C5A}}
 .cnt{{display:flex;justify-content:center;margin:0 0 26px}}
-.cnt span{{font-size:12px;color:var(--sub);padding:0 12px;letter-spacing:.06em}}
+.cnt span{{font-size:12px;color:var(--sub);padding:0 10px;letter-spacing:.04em}}
 .cnt span+span{{border-left:1px solid var(--line2)}}
 .cnt b{{font:600 17px/1 var(--min);color:var(--ink);margin:0 3px}}
 .nt{{font-size:12px;line-height:1.6;color:var(--sub);margin:2px 0 0}}
@@ -1005,6 +1028,14 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .card.it{{padding:13px 70px 14px 14px}}
 .card.it .arw{{top:20px;transform:none}} .card.it:hover .arw{{transform:translateX(3px)}}
 .card.it .mp{{left:auto;right:14px;bottom:12px}}
+.chips{{display:flex;justify-content:center;gap:8px;margin:12px 0 0}}
+.chips .fr{{font:700 12.5px/1 var(--go);letter-spacing:.04em;color:var(--sub);background:#fff;border:1px solid #D9CFC4;border-radius:99px;padding:9px 14px;cursor:pointer}}
+.chips .fr[data-k=free]{{color:#5E8C5A;border-color:#CFE0CC}}
+.chips .fr.on{{background:var(--ink);border-color:var(--ink);color:#fff}} .chips .fr[data-k=free].on{{background:#5E8C5A;border-color:#5E8C5A}}
+.lf{{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--pr);margin-left:8px}}
+.cats{{position:sticky;top:0;z-index:20;background:var(--bg);margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}}
+.blk{{scroll-margin-top:62px}}
+.buy{{padding:11px 16px 11px 18px;font-size:12.5px}}
 .js .gm{{font-size:13px;color:var(--ink);border-bottom-color:var(--ink);letter-spacing:.06em}}
 #odekake .tip{{margin-top:6px}}
 /* 黒い四角のボタンは重く見える（月で10/26 オーナー「重圧感」）→ 白に細い線 */
@@ -1038,10 +1069,11 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <script>
 (function(){{
 var d=document.documentElement;d.classList.add("js");
-var pref="",free="0";
+var pref="",free="0",wk="0";try{{pref=localStorage.getItem("pref")||"";}}catch(e){{}}
 function okc(c){{
   if(pref&&c.dataset.pref&&c.dataset.pref!==pref)return false;
   if(free==="1"&&c.dataset.free!=="1")return false;
+  if(wk==="1"&&c.dataset.wk!=="1")return false;
   return true;
 }}
 function apply(){{
@@ -1057,10 +1089,13 @@ document.querySelectorAll(".otab button").forEach(function(x){{x.addEventListene
   document.querySelectorAll(".otab button").forEach(function(y){{y.classList.toggle("on",y===x);}});
   document.querySelectorAll("#odekake .pane").forEach(function(g){{g.hidden=g.dataset.t!==x.dataset.t;}});}});}});
 apply();
-document.querySelectorAll(".flt button[data-p]").forEach(function(x){{x.addEventListener("click",function(){{
-  document.querySelectorAll(".flt button[data-p]").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
-document.querySelectorAll(".flt button.fr").forEach(function(x){{x.addEventListener("click",function(){{
-  var on=!x.classList.contains("on");x.classList.toggle("on",on);x.setAttribute("aria-pressed",on);free=on?"1":"0";apply();}});}});
+function setp(v){{pref=v;document.querySelectorAll(".flt button[data-p]").forEach(function(y){{y.classList.toggle("on",y.dataset.p===v);}});
+  try{{localStorage.setItem("pref",v);}}catch(e){{}}apply();}}
+document.querySelectorAll(".flt button[data-p]").forEach(function(x){{x.addEventListener("click",function(){{setp(x.dataset.p);}});}});
+if(pref&&document.querySelector('.flt button[data-p="'+pref+'"]'))setp(pref);else pref="";
+document.querySelectorAll(".chips button").forEach(function(x){{x.addEventListener("click",function(){{
+  var on=!x.classList.contains("on");x.classList.toggle("on",on);x.setAttribute("aria-pressed",on);
+  if(x.dataset.k==="wk")wk=on?"1":"0";else free=on?"1":"0";apply();}});}});
 document.querySelectorAll(".stab button").forEach(function(x){{x.addEventListener("click",function(){{
   var sh=document.getElementById("shop"),c=x.dataset.c;
   document.querySelectorAll(".stab button").forEach(function(y){{y.classList.toggle("on",y===x);}});
