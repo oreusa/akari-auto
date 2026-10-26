@@ -71,11 +71,20 @@ def _page_spots(now):
             continue
         if not str(it.get("url", "")).startswith("https://") or not it.get("title"):
             continue
+        shop = it.get("kind") == "shop"  # 新しいお店：open（開店日）が先なら「もうすぐ」、過ぎたら「できた」。開店から30日で外す
+        if shop:
+            try:
+                od = datetime.fromisoformat(it.get("open", "")).replace(tzinfo=JST)
+            except ValueError:
+                continue
+            if od < now - timedelta(days=30) or od > now + timedelta(days=60):
+                continue
         y = int((it.get("start") or now.isoformat())[:4])
         out.append({"title": it["title"], "name": it["title"], "start": it.get("start", ""), "ends": it.get("ends", ""),
                     "day": f"{now.month}/{now.day}", "year": y, "bullets": [it.get("note", "")],
                     "url": it["url"], "place": it.get("place", ""), "pref_fixed": it.get("pref", ""),
-                    "free_fixed": bool(it.get("free")), "note": it.get("note", ""), "kind": "odekake", "page": True})
+                    "free_fixed": bool(it.get("free")), "note": it.get("note", ""), "kind": "shop" if shop else "odekake",
+                    "open": it.get("open", ""), "page": True})
     return out
 
 
@@ -553,7 +562,7 @@ def compare(e):
     title = e["title"].replace("AIが比べた", "", 1).strip("、 ")
     chosen = next((r for r in rows if r.get("pick")), None)
     if chosen:
-        head = (f'<div class="cho">{_img(e)}<div class="tx"><span class="lb">選んだのは</span><b>{phr(chosen["name"])}</b>'
+        head = (f'<div class="cho"><div class="tx"><span class="lb">選んだのは</span><b>{phr(chosen["name"])}</b>'
                 f'<span class="sc">★ {esc(chosen["avg"])}<i>｜</i>レビュー {chosen["count"]:,}件</span></div></div>')
     else:
         head = ""
@@ -573,8 +582,10 @@ def compare(e):
         reason += f'<p class="why but">{esc(e["but"])}</p>'
     btn = f'<a class="buy" href="{esc(e["url"])}" target="_blank" rel="sponsored noopener">{go_label(e)}{ARROW}</a>'
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
+    img = _img(e)  # 写真は見出しの横に出す（10/26 オーナー「商品や宿とかの画像消えてるね。もったいない」：たたんだ中に入れて見えなくなっていた）
+    top = f'<div class="tw">{img}<div class="t">{phr(title)}</div></div>' if img else f'<div class="t">{phr(title)}</div>'
     return (f'<article class="card cmp{" hot" if e.get("hot") else ""}">'
-            f'<div class="t">{phr(title)}</div>{head}{reason}{table}<div class="ft2">{btn}</div>{sample}</article>')
+            f'{top}{head}{reason}{table}<div class="ft2">{btn}</div>{sample}</article>')
 
 
 def pick(e):
@@ -678,11 +689,14 @@ def all_spots(items, now):
 def spot_counts(now):
     """その時刻にHPのおでかけの欄に並ぶ数（関東・関西）。予約係が投稿の最後の1行に使う（楽天には確かめない）。"""
     items, _ = collect(now, light=True)
-    out = {"関東": 0, "関西": 0}
+    out = {"関東": 0, "関西": 0, "週末関東": 0, "週末関西": 0}
+    _NOW[:] = [now]
     for e in all_spots(items, now):
         r = region(_pref(e))
-        if r in out:
+        if r in ("関東", "関西"):
             out[r] += 1
+            if 'data-wk="1"' in spot(e):
+                out["週末" + r] += 1
     return out
 
 
@@ -751,6 +765,11 @@ def render(items, ended, now, cfg):
         spots_ev = [e for e in spots if e.get("kind") != "shop"]
 
         def _open_day(e):
+            if e.get("open"):
+                try:
+                    return datetime.fromisoformat(e["open"]).date()
+                except ValueError:
+                    pass
             m = re.search(r"(\d{1,2})/(\d{1,2})(?:（.）)?\s*(?:に)?開店", (e.get("name") or "") + e.get("title", ""))
             if not m:
                 return None
@@ -1059,6 +1078,8 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .buy{{padding:11px 16px 11px 18px;font-size:12.5px}}
 .js .gm{{font-size:13px;color:var(--ink);border-bottom-color:var(--ink);letter-spacing:.06em}}
 #odekake .tip{{margin-top:6px}}
+.tw{{display:flex;align-items:center;gap:12px}} .tw .t{{margin:0}}
+.tw .ph{{flex:0 0 76px;width:76px;height:76px;object-fit:contain;background:#fff;border:1px solid var(--line)}}
 /* 黒い四角のボタンは重く見える（月で10/26 オーナー「重圧感」）→ 白に細い線 */
 .buy{{background:#fff;color:var(--ink);border:1px solid var(--ink)}} .buy .arw{{color:var(--ink)}}
 .hot{{border:1px solid #E6CDBE;background:#fff}} .hot .cho{{background:#FAF6F1}}
