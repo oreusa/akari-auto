@@ -11,13 +11,13 @@ concurrency:
 jobs:
   linkcheck:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
-      - name: ブラウザを入れる
-        run: pip install -q playwright && python3 -m playwright install --with-deps chromium >/dev/null
+      - name: ブラウザの道具を入れる（ブラウザ本体は入っているChromeを使う。落とすと10分かかるため）
+        run: pip install -q playwright
       - name: 全部のリンクを開く（notes/linkcheck.md）
-        run: python3 scripts/linkcheck.py
+        run: CHROMIUM=$(command -v google-chrome || command -v chromium) python3 scripts/linkcheck.py
       - name: 保存
         run: |
           git config user.name "akari-auto"
