@@ -8,10 +8,11 @@
 
 ■手順
 1. ToolSearch で "select:mcp__github__get_file_contents,mcp__github__create_or_update_file,WebSearch,WebFetch" を読み込む。
-2. mcp__github__get_file_contents（owner=oreusa repo=akari-auto）で次を読む：notes/stock.md（毎朝機械が数えた在庫。×が足りない所）、data/page-spots.json、data/page-goods.json、notes/collector-log.md（前の日までに何を足したか）、notes/mistakes.md（ミス帳。同じミスをしない）。今日の日付 T（日本時間）と曜日を決める。
+2. mcp__github__get_file_contents（owner=oreusa repo=akari-auto）で次を読む：notes/stock.md（毎朝機械が数えた在庫。×が足りない所）、data/page-spots.json、data/page-goods.json、notes/collector-log.md（前の日までに何を足したか）、notes/mistakes.md（ミス帳。同じミスをしない）。data/page-stats.json（HPで押された数。days の click に「欄|名前」ごとの回数）。今日の日付 T（日本時間）と曜日を決める。
 3. 足す順番：
    ① notes/stock.md の「足りない物」の×を、上から全部埋める（どの曜日でも最初にやる）。
    ② 「3日以内に終わる」に出ている物の代わりを、同じ都県で1件ずつ探す。
+   ②' data/page-stats.json の直近7日で押されたカード（おでかけ・地図・お店）を見て、同じ種類（イルミネーション・紅葉・無料の日・新しいお店など）を今日の担当の地域で先に探す（10/26 月のやり方「どの行き先が押されたかを見て、似た種類を増やす」）。押された物が無い日は飛ばす。
    ③ 今日の担当の地域を、下の「曜日の担当」で深く探す。開催中・これから（14日以内に始まる物）・新しいお店を合わせて6件以上足す。
    ④ 商品を3件以上足す（日曜は下の「日曜」のとおり）。
    ⑤ 「開けないリンク」「同じ物が2つ」に出ている物は直すか消す。
