@@ -172,6 +172,39 @@ BANNED_WORDS = {
 }
 
 
+REPEAT_FROM = date(2026, 10, 28)  # 10/27 オーナー「同じ投稿してる？」（マラソンを夜22:15と朝7:15で続けて出した）
+REPEAT_DAYS = 3
+
+
+def _post_urls(p):
+    """投稿の2つ目以降（公式ページなど）に書いたURL。fallback は数えない。"""
+    out = set()
+    for ch in ("x", "threads"):
+        for t in (p.get(ch) or [])[1:]:
+            for u in re.findall(r"https?://[^\s）)」]+", t if isinstance(t, str) else ""):
+                out.add(u.split("?")[0].rstrip("/"))
+    return out
+
+
+def repeat_problems(fp, data, d):
+    """同じ公式ページを、前の3日の予定表でもう使っていたら×（同じ話の続けての投稿を防ぐ）。"""
+    if d < REPEAT_FROM:
+        return []
+    used = {}
+    for k in range(1, REPEAT_DAYS + 1):
+        prev = d - timedelta(days=k)
+        pd = load_json(os.path.join(os.path.dirname(fp) or ".", f"{prev.isoformat()}.json"), {}) or {}
+        for p in pd.get("posts", []):
+            for u in _post_urls(p):
+                used.setdefault(u, f"{prev.month}/{prev.day} {p.get('slot')}")
+    out = []
+    for p in data["posts"]:
+        for u in sorted(_post_urls(p)):
+            if u in used:
+                out.append(f"{fp} {p.get('slot')}: 同じページを {used[u]} にも使った（3日のうちに同じ話を2回出さない。10/27 オーナー「同じ投稿してる？」）: {u}")
+    return out
+
+
 def check_file(fp):
     data = load_json(fp)
     probs = []
@@ -186,6 +219,7 @@ def check_file(fp):
     except ValueError:
         return probs + [f"{fp}: date が YYYY-MM-DD でない"]
     room_urls = {str(r.get("url", "")).split("?")[0].rstrip("/") for r in (data.get("room") or []) if isinstance(r, dict)}
+    probs += repeat_problems(fp, data, d)
     for p in data["posts"]:
         lk = p.get("link") or {}
         if lk.get("type") == "ichiba" and str(lk.get("url", "")).split("?")[0].rstrip("/") not in room_urls:
