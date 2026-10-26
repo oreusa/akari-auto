@@ -68,6 +68,13 @@ def page_spots_ended(now):
     return out
 
 
+def _fix_url(url):
+    """投稿のあとで開かなくなった公式ページを差し替える（data/link-fix.json。notes/linkcheck.md を見て集め係・夜の回が書く）。
+    ""に差し替えた物はカードを出さない。"""
+    fix = (load_json(path("data", "link-fix.json"), {}) or {}).get("fix", {})
+    return fix.get(url, url) if url else url
+
+
 def _page_spots(now, ended=None):
     """HPだけに載せるおでかけ（投稿しない物も、来た人が使えるように。10/24 オーナー「投稿前に入れといてもいい」）。
     夜の回が公式ページで日時・料金を確かめて data/page-spots.json に書く。終わった物・始まる14日より前の物は出さない。"""
@@ -95,7 +102,7 @@ def _page_spots(now, ended=None):
             continue
         out.append({"title": it["title"], "name": it["title"], "start": it.get("start", ""), "ends": it.get("ends", ""),
                     "day": f"{now.month}/{now.day}", "year": y, "bullets": [it.get("note", "")],
-                    "url": it["url"], "place": it.get("place", ""), "pref_fixed": it.get("pref", ""),
+                    "url": _fix_url(it["url"]), "place": it.get("place", ""), "pref_fixed": it.get("pref", ""),
                     "free_fixed": bool(it.get("free")), "note": it.get("note", ""), "kind": "shop" if shop else "odekake",
                     "open": it.get("open", ""), "page": True})
     return out
@@ -189,6 +196,7 @@ def collect(now, light=False):
                      "but": next((ln for ln in _lines(text) if ln.startswith("ただし")), ""),
                      "source": _line_with(text, "より（"), "url": _official(p), "place": p.get("place", ""),
                      "name": p.get("name", ""), "start": p.get("start", ""), "ends": p.get("ends") or p.get("until") or ""}
+            entry["url"] = _fix_url(entry["url"])
             until = p.get("ends") or p.get("until")  # ends＝催し・お得が終わる時刻（夜の回が書く）。過ぎたらページから外す
             if until and datetime.fromisoformat(until).replace(tzinfo=JST) < now:
                 if p.get("topic", "") in ODEKAKE and not p.get("link"):
@@ -1175,6 +1183,13 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .sns a.co:before{{content:attr(data-en);display:block;font:500 9.5px/1 var(--en);letter-spacing:.32em;color:#9C8775;margin-bottom:8px}}
 .sns a.co:after{{content:"→";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--en);color:#9C8775;font-size:16px}}
 .sns a.co span{{color:var(--mute);font:400 11.5px/1.6 var(--go);letter-spacing:.04em;margin-top:6px}}
+/* 押しやすさ（10/27 オーナー「使いにくさとか、月は初めから気を使ってる」）：押す所は縦44px以上、地図の字は13px */
+.seg button,.stab button,.flt button,.chips .fr,.buy{{min-height:44px}}
+.flt button.fr{{margin-top:0}}
+.card.it .mp{{display:inline-flex;align-items:center;min-height:44px;padding:0 14px 0 0;font-size:13px}}
+.card.it .mpr{{margin-top:4px;padding-bottom:4px}}
+.js .gm{{display:flex;align-items:center;min-height:44px;padding:0 8px}}
+.sns a:not(.co){{display:inline-flex;align-items:center;min-height:44px;padding:0 6px}}
 </style></head>
 <body class="s-{sea}"><div class="wrap">
 <header class="head">

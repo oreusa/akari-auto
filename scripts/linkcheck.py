@@ -19,7 +19,11 @@ OUT = os.path.join(os.path.dirname(__file__), "..", "notes", "linkcheck.md")
 SLOW = 5.0
 LIMIT = 15000
 JST = timezone(timedelta(hours=9))
-SKIP = ("google.com/maps", "fonts.googleapis", "fonts.gstatic")
+SKIP = ("google.com/maps", "fonts.googleapis", "fonts.gstatic",
+        # SNS・ROOMはロボットを断るだけで、人のスマホでは開く（確かめても意味がない）
+        "instagram.com", "ig.me/", "x.com/", "threads.net", "threads.com", "room.rakuten.co.jp")
+BOT = ("Just a moment", "しばらくお待ちください", "Attention Required")  # ロボット避けの画面（人は開ける）
+SHOP = ("hb.afl.rakuten", "px.a8.net", "amazon.", "amzn.")  # 売り場：重さは相手のページの重さ（燈が直せない）
 IPHONE = dict(
     user_agent=("Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 "
                 "(KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1"),
@@ -27,10 +31,15 @@ IPHONE = dict(
 )
 
 
-def words(name):
-    """カードの名前から、題名に出てきそうな言葉（2文字以上）を取り出す。"""
-    name = re.sub(r"[0-9０-９/／・、。「」『』（）()【】\s~〜－-]+", " ", name or "")
-    return [w for w in name.split() if len(w) >= 2][:6]
+def _norm(t):
+    return re.sub(r"[\W_0-9０-９]+", "", (t or "").lower())
+
+
+def same(name, title):
+    """カードの名前と行き先の題名が合っているか（名前の2文字ずつが題名に3割以上ある）。"""
+    n, t = _norm(name), _norm(title)
+    grams = {n[i:i + 2] for i in range(len(n) - 1)}
+    return not grams or sum(g in t for g in grams) / len(grams) >= 0.3
 
 
 async def hp_links(ctx):
@@ -53,6 +62,7 @@ async def hp_links(ctx):
             const r = e.getBoundingClientRect();
             if (!r.width || !r.height) continue;
             const fs = parseFloat(getComputedStyle(e).fontSize);
+            if (e.classList.contains('go') && e.closest('.card')) continue;  // カード全体が押せる（:after）
             if (r.height < 44 || fs < 12) out.push({t: (e.textContent || '').trim().slice(0, 20), h: Math.round(r.height), w: Math.round(r.width), fs});
         }
         return out;
@@ -81,24 +91,27 @@ async def open_one(ctx, sem, link):
 
 def problems(r):
     out = []
+    shop = any(k in r["href"] for k in SHOP)
+    bot = any(k in r["title"] for k in BOT)
     if r["err"]:
         out.append("開かない（" + ("15秒たっても開かない" if "Timeout" in r["err"] else r["err"]) + "）")
-    elif r["status"] >= 400:
+    elif r["status"] >= 400 and not bot:
         out.append(f"ページがない・断られる（{r['status']}）")
-    if r["sec"] and r["sec"] >= SLOW and not r["err"]:
+    if r["sec"] and r["sec"] >= SLOW and not r["err"] and not shop:
         out.append(f"重い（{r['sec']}秒）")
+    a = urllib.parse.urlparse(r["href"])
     if r["final"]:
-        a, b = urllib.parse.urlparse(r["href"]), urllib.parse.urlparse(r["final"])
+        b = urllib.parse.urlparse(r["final"])
         if a.path not in ("", "/") and b.path in ("", "/") and "rakuten" not in a.netloc:
             out.append("トップページに飛ばされる（行き先が消えた可能性）")
+    if r["part"] == "odekake" and a.path in ("", "/") and not a.query:
+        out.append("公式のトップページ（催しのページに替える）")
     if r["href"].startswith("http://"):
         out.append("http（安全でない）")
     if r["blank"]:
         out.append("新しい画面で開く（アプリ内ブラウザで止まりやすい）")
-    if r["title"] and r["name"] and r["sec"] is not None and not r["err"]:
-        ws = words(r["name"])
-        if ws and not any(w in r["title"] for w in ws) and r["sec"] < LIMIT / 1000:
-            out.append("題名がカードの名前と合わない（中身を見て確かめる）")
+    if r["title"] and r["name"] and not r["err"] and not shop and not bot and not same(r["name"], r["title"]):
+        out.append("題名がカードの名前と合わない（中身を見て確かめる）")
     return out
 
 
@@ -120,12 +133,16 @@ async def main():
     now = datetime.now(JST)
     bad = [(r, problems(r)) for r in res]
     bad = [(r, ps) for r, ps in bad if ps]
+    shop_secs = sorted(r["sec"] for r in res if r["sec"] and not r["err"] and any(k in r["href"] for k in SHOP))
+    bots = [r for r in res if any(k in r["title"] for k in BOT)]
     secs = sorted(r["sec"] for r in res if r["sec"] is not None and not r["err"])
     med = secs[len(secs) // 2] if secs else 0
     lines = [
         "# HPのリンクの確かめ（scripts/linkcheck.py。スマホのブラウザで全部開く）", "",
         f"確かめた時刻：{now:%Y-%m-%d %H:%M}｜HP {hp_sec:.1f}秒｜リンク {len(res)}本｜開くまでの中央値 {med}秒｜直す所 {len(bad)}本", "",
-        "## 直す所（集め係・夜の回は、ここに出た物を直すか消す）", "",
+        f"売り場（楽天・A8）{len(shop_secs)}本の中央値 {shop_secs[len(shop_secs) // 2] if shop_secs else 0}秒（相手のページの重さ。燈は直せない）"
+        f"｜ロボット避けの画面 {len(bots)}本（人のスマホでは開く）", "",
+        "## 直す所（集め係・夜の回は、ここに出た物を直すか消す。投稿済みの物は data/link-fix.json で差し替え）", "",
     ]
     if not bad:
         lines.append("- なし")
