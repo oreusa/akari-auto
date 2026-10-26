@@ -698,7 +698,7 @@ def render(items, ended, now, cfg):
            ("X", "@ai_usagichan", "https://x.com/ai_usagichan")]
     follow = "".join(f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(n)}<span>{esc(h)}</span></a>' for n, h, u in sns)
     if p.get("room_url"):
-        follow += (f'<a class="co" href="{esc(p["room_url"])}" target="_blank" rel="noopener">楽天ROOM'
+        follow += (f'<a class="co" data-en="RAKUTEN ROOM" href="{esc(p["room_url"])}" target="_blank" rel="noopener">楽天ROOM'
                    f'<span>うさぎが比べて選んだ物を、まとめて置いています</span></a>')
     spots = all_spots(items, now)
     deals = [e for e in items["deal"] if e.get("url")]
@@ -735,29 +735,35 @@ def render(items, ended, now, cfg):
         def cardlist(es, label):
             # 見せる5件は「選んだ地域の中で」数える（10/25 オーナー「枠数おかしくない？」：全体の5件で切っていたので関東が1件しか出なかった）
             cs_ = [spot(e) for e in es]
-            more = (f'<button class="gm" type="button" data-l="ほかの{label}">ほかの{label}{len(cs_) - SHOW_GO}件を見る</button>'
+            more = (f'<button class="gm" type="button" data-l="もっと見る（あと">もっと見る（あと{len(cs_) - SHOW_GO}件）</button>'
                     if len(cs_) > SHOW_GO else "")
             return "".join(cs_) + more
 
-        nav.append(f'<a class="g" href="#odekake"><span><i>GO OUT</i>おでかけ</span><b>{len(spots)}</b></a>')
-        blocks.append(f'<section class="blk go" id="odekake">{head("NOW ON", "開催中のおでかけ", "公式ページで確かめた物だけ。<br>矢印で公式ページ、「地図」で場所が開きます")}'
-                      f'<nav class="flt" aria-label="しぼりこみ">{tabs}<button class="fr" type="button" aria-pressed="false">無料だけ</button></nav>'
-                      f'{cardlist(now_on, "開催中")}<p class="none">この地域は、これから増やしていきます</p></section>')
-        if coming:
-            blocks.append(f'<section class="blk go" id="coming">{head("COMING UP", "これからのおでかけ", "")}'
-                          f'{cardlist(coming, "これから")}<p class="none">この地域は、これから増やしていきます</p></section>')
+        n_free = sum(1 for e in now_on if _free(e))
+        nav.append('<a href="#odekake">おでかけ</a>')
+        tabs2 = ('<nav class="otab" aria-label="おでかけ">'
+                 f'<button class="on" type="button" data-t="now"><i>NOW ON</i>開催中<small>{len(now_on)}件</small></button>'
+                 + (f'<button type="button" data-t="up"><i>COMING UP</i>これから<small>{len(coming)}件</small></button>' if coming else "")
+                 + '</nav>')
+        # 10/26 オーナー「月のhp配色、綺麗な配置なってるから真似して」：月と同じく、地域の切り替え→件数→1つの箱にタブ
+        blocks.append(f'<nav class="flt" aria-label="しぼりこみ">{tabs}<button class="fr" type="button" aria-pressed="false">無料だけ</button></nav>'
+                      f'<p class="cnt"><span>開催中<b>{len(now_on)}</b>件</span><span>無料で楽しめる<b>{n_free}</b>件</span></p>'
+                      f'<section class="blk" id="odekake">{tabs2}'
+                      f'<div class="pane" data-t="now">{cardlist(now_on, "開催中")}<p class="none">この地域は、これから増やしていきます</p></div>'
+                      + (f'<div class="pane" data-t="up" hidden>{cardlist(coming, "これから")}<p class="none">この地域は、これから増やしていきます</p></div>' if coming else "")
+                      + '<p class="tip">矢印で公式ページ、「地図」で場所が開きます。<br>出かける前に、公式ページで<br>最新の情報を確かめてください。</p></section>')
     if hot:  # 2. 今日のいち押し（おでかけの下。10/24 オーナー「おでかけの後でいい」）
         hot["hot"] = True
         blocks.append(f'<section class="blk hotb" id="hot">{head("TODAY&#39;S PICK", "今日のうさぎのいち押し", "その日にうさぎが比べて選んだ物のうち、使っている人がいちばん多い1つ。リンクは広告です")}'
                       + compare(hot) + '</section>')
     deal_cards = [spot(e) for e in deals] + goods.pop("sale")
     if deal_cards:  # 3. 今だけのお得（期間のあるお得と楽天のセールを1つに）
-        nav.append(f'<a href="#deal"><span><i>DEAL</i>今だけのお得</span><b>{len(deal_cards)}</b></a>')
+        nav.append('<a href="#deal">お得</a>')
         blocks.append(f'<section class="blk" id="deal">{head("DEAL", "今だけのお得", "期間のあるお得とセール。終わる日を先に書いています。楽天のリンクは広告です")}'
                       + "".join(deal_cards) + '</section>')
     trip = goods.pop("stay") + goods.pop("book")
     if trip:  # 4. 宿と予約
-        nav.append(f'<a href="#trip"><span><i>STAY</i>宿と予約</span><b>{len(trip)}</b></a>')
+        nav.append('<a href="#trip">宿</a>')
         blocks.append(f'<section class="blk" id="trip">{head("STAY", "宿と予約", "宿は口コミ1,000件以上・評価4.5以上だけ。リンクは広告です")}'
                       + "".join(trip[:SHOW_GOODS])
                       + (f'<details class="fold more"><summary>ほかに{len(trip) - SHOW_GOODS}件を見る</summary>{"".join(trip[SHOW_GOODS:])}</details>'
@@ -765,7 +771,7 @@ def render(items, ended, now, cfg):
     shop = [(k, n, goods[k]) for k, _, n, _, _ in cs if k in goods and goods[k]]
     if shop:  # 5. 買い物（タブで項目を切り替え。項目が増えても欄は1つ）
         n_all = sum(len(g) for _, _, g in shop)
-        nav.append(f'<a href="#shop"><span><i>SHOP</i>買い物</span><b>{n_all}</b></a>')
+        nav.append('<a href="#shop">買い物</a>')
         stabs = '<button class="on" data-c="">すべて</button>' + "".join(
             f'<button data-c="{k}">{esc(n)}<i>{len(g)}</i></button>' for k, n, g in shop)
         cards, i = [], 0
@@ -983,9 +989,35 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .ft{{text-align:center;font-size:10.5px;letter-spacing:.06em;color:var(--mute);margin-top:28px;line-height:1.9}}
 #totop{{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.94);border:1px solid #CFC4B8;box-shadow:0 2px 8px rgba(60,45,35,.12);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;cursor:pointer;padding:0}}
 #totop.on{{opacity:1;pointer-events:auto}}
-.fade{{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}}
-.js .fade:not(.in){{opacity:0;transform:translateY(10px)}}
-@media (prefers-reduced-motion:reduce){{.js .fade:not(.in){{opacity:1;transform:none}}.card,.arw,#totop{{transition:none}}}}
+/* 10/26 オーナー「月のhp配色、綺麗な配置なってるから真似して」：月の並べ方と色に合わせる */
+.cats{{display:flex;justify-content:center;gap:0 22px;margin:22px 0 0;padding:12px 0;border-top:1px solid #DDD3C8;border-bottom:1px solid #DDD3C8}}
+.cats a{{all:unset;cursor:pointer;font:500 13px/1 var(--go);letter-spacing:.08em;color:var(--ink);padding:9px 2px;border-bottom:1px solid transparent}}
+.cats a:hover{{border-bottom-color:var(--ink)}}
+.flt{{margin:18px 0 0;border:0;padding:0}}
+.cnt{{margin:14px 0 22px}}
+.blk,.hotb{{border:1px solid #ECE5DC;border-top:2px solid var(--ink)}}
+.otab{{display:flex;border-bottom:1px solid var(--line);margin:-6px -2px 16px}}
+.otab button{{flex:1;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:6px 0 12px;cursor:pointer;color:var(--mute);font:600 15px/1.3 var(--min);letter-spacing:.1em}}
+.otab button i{{display:block;font:400 9.5px/1 var(--en);font-style:normal;letter-spacing:.3em;margin-bottom:7px}}
+.otab button small{{display:block;font:400 11px/1 var(--go);letter-spacing:.04em;margin-top:7px}}
+.otab button.on{{color:var(--ink);border-bottom-color:var(--brown2)}}
+.pane[hidden]{{display:none}} .pane.empty .none{{display:block}}
+.card.it{{padding:13px 70px 14px 14px}}
+.card.it .arw{{top:20px;transform:none}} .card.it:hover .arw{{transform:translateX(3px)}}
+.card.it .mp{{left:auto;right:14px;bottom:12px}}
+.js .gm{{font-size:13px;color:var(--ink);border-bottom-color:var(--ink);letter-spacing:.06em}}
+#odekake .tip{{margin-top:6px}}
+/* 黒い四角のボタンは重く見える（月で10/26 オーナー「重圧感」）→ 白に細い線 */
+.buy{{background:#fff;color:var(--ink);border:1px solid var(--ink)}} .buy .arw{{color:var(--ink)}}
+.hot{{border:1px solid #E6CDBE;background:#fff}} .hot .cho{{background:#FAF6F1}}
+.hot .buy{{background:#fff;color:var(--pr);border-color:var(--pr)}} .hot .buy .arw{{color:var(--pr)}}
+.sns{{margin-top:40px}}
+.sns a:not(.co){{display:inline-block;border:0;border-bottom:1px solid var(--ink);padding:4px 0;margin:0 12px 26px;font-size:13px;letter-spacing:.1em}}
+.sns a:not(.co) span{{display:none}}
+.sns a.co{{display:block;position:relative;background:none;border:0;border-top:1px solid #DDD3C8;border-bottom:1px solid #DDD3C8;color:var(--ink);text-align:left;padding:18px 40px 18px 4px;font:600 16px/1.5 var(--min);letter-spacing:.08em}}
+.sns a.co:before{{content:attr(data-en);display:block;font:500 9.5px/1 var(--en);letter-spacing:.32em;color:#9C8775;margin-bottom:8px}}
+.sns a.co:after{{content:"→";position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--en);color:#9C8775;font-size:16px}}
+.sns a.co span{{color:var(--mute);font:400 11.5px/1.6 var(--go);letter-spacing:.04em;margin-top:6px}}
 </style></head>
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
@@ -998,8 +1030,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 </header>
 <nav class="cats" aria-label="項目">{nav}</nav>
 {blocks}
-<p class="pr-note">{pr_note}</p>
-<p class="tip">出かける前・買う前に、公式ページと楽天のページで<br>最新の情報を確かめてください。</p>
+<p class="pr-note">{pr_note}<br>買う前に、楽天のページで最新の情報を確かめてください。</p>
 <div class="sns"><h2>FOLLOW</h2>{follow}</div>
 <p class="ft">うさぎ│LIFE NOTES ｜ 毎日更新（最終 {updated}）<br>7日より前の投稿は、外しています</p>
 </div>
@@ -1014,14 +1045,17 @@ function okc(c){{
   return true;
 }}
 function apply(){{
-  document.querySelectorAll(".blk.go").forEach(function(b){{
+  document.querySelectorAll("#odekake .pane").forEach(function(b){{
     var k=0,op=b.classList.contains("open");
     b.querySelectorAll(".card.it").forEach(function(c){{var ok=okc(c);if(ok)k++;c.hidden=!ok||(!op&&k>{show_go});}});
     b.classList.toggle("empty",!k);
-    var m=b.querySelector(".gm");if(m){{m.textContent=m.dataset.l+(k-{show_go})+"件を見る";m.hidden=op||k<={show_go};}}
+    var m=b.querySelector(".gm");if(m){{m.textContent=m.dataset.l+(k-{show_go})+"件）";m.hidden=op||k<={show_go};}}
   }});
 }}
-document.querySelectorAll(".blk.go .gm").forEach(function(x){{x.addEventListener("click",function(){{x.closest(".blk").classList.add("open");apply();}});}});
+document.querySelectorAll("#odekake .gm").forEach(function(x){{x.addEventListener("click",function(){{x.closest(".pane").classList.add("open");apply();}});}});
+document.querySelectorAll(".otab button").forEach(function(x){{x.addEventListener("click",function(){{
+  document.querySelectorAll(".otab button").forEach(function(y){{y.classList.toggle("on",y===x);}});
+  document.querySelectorAll("#odekake .pane").forEach(function(g){{g.hidden=g.dataset.t!==x.dataset.t;}});}});}});
 apply();
 document.querySelectorAll(".flt button[data-p]").forEach(function(x){{x.addEventListener("click",function(){{
   document.querySelectorAll(".flt button[data-p]").forEach(function(y){{y.classList.toggle("on",y===x);}});pref=x.dataset.p;apply();}});}});
@@ -1044,8 +1078,6 @@ document.addEventListener("click",function(ev){{
 var t=document.getElementById("totop");
 addEventListener("scroll",function(){{t.classList.toggle("on",scrollY>600);}},{{passive:true}});
 t.addEventListener("click",function(){{scrollTo({{top:0,behavior:"smooth"}});}});
-if("IntersectionObserver" in window){{var io=new IntersectionObserver(function(es){{es.forEach(function(e){{if(e.isIntersecting){{e.target.classList.add("in");io.unobserve(e.target);}}}});}},{{rootMargin:"0px 0px -8% 0px"}});
-  document.querySelectorAll(".blk").forEach(function(b,i){{b.classList.add("fade");if(i<1)b.classList.add("in");io.observe(b);}});}}
 }})();
 </script>
 </body></html>
