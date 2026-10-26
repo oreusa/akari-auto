@@ -15,18 +15,21 @@ body{margin:0;background:#FAF8F5;font-family:G;color:#2B2622}
 h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:26px;letter-spacing:.18em;color:#231E1B;margin:16px 0 12px;font-feature-settings:"palt"}
 .sub{font-size:12.5px;line-height:1.9;color:#6B6058;margin:0;text-wrap:balance}
 .bar{width:36px;height:2px;background:#A07E66;margin:22px auto 0}
-.sns{margin-top:26px;text-align:center}
-.sns a{display:block;text-decoration:none;color:#2B2622;background:transparent;border:1px solid #2B2622;padding:14px;margin:0 0 10px;font-weight:500;font-size:13px;letter-spacing:.1em;line-height:1.5}
-.sns a span{display:block;margin-top:4px;font-weight:400;color:#8C7B6E;font-size:12px;letter-spacing:.06em}
-.sns a.co{background:#8C7462;border-color:#8C7462;color:#fff}.sns a.co span{color:#EFE6DE}
+.sns{margin-top:30px}
+/* 10/26 リストと統一：箱なし、細い線で区切る */
+.sns a.co{display:block;position:relative;text-decoration:none;color:#2B2622;background:#fff;border:1px solid #E2D8CD;margin:0 0 10px;padding:18px 44px 18px 18px;font-family:"Shippori Mincho",serif;font-size:16px;font-weight:600;letter-spacing:.08em;line-height:1.5}
+.sns a.co::before{content:attr(data-en);display:block;font-family:J;font-size:9.5px;letter-spacing:.32em;color:#9C8775;font-weight:500;margin-bottom:6px}
+.sns a.co::after{content:"→";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:J;color:#9C8775;font-size:16px}
+.sns a.co span{display:block;margin-top:6px;font-family:G;font-weight:500;color:#8C7B6E;font-size:11.5px;letter-spacing:.04em}
+.back{display:block;width:max-content;margin:28px auto 0;color:#2B2622;text-decoration:none;font-size:13px;letter-spacing:.1em;border-bottom:1px solid #2B2622;padding-bottom:2px}
 .ft{text-align:center;font-size:10px;letter-spacing:.04em;color:#8C7B6E;margin-top:30px}
 </style></head><body><div class="wrap">
 <div class="head"><img src="assets/logo.png" alt="ロゴ"><div class="en">FOR REAL ESTATE PROFESSIONALS</div>
 <h1>業者さま向け</h1><p class="sub">関西エリアの物件のご紹介・ご相談を承っております。<br>お気軽にお問い合わせください。</p><div class="bar"></div></div>
 <div class="sns">
-<a class="co" id="ml" href="#">物件のご紹介・ご相談はこちら<span>メールが開きます（資料・写真を添付できます）</span></a>
-<a href="https://e-infi.com/">会社のホームページ<span>株式会社インフィニティ</span></a>
-<a href="./">関西おでかけリストへ戻る</a>
+<a class="co" data-en="CONTACT" id="ml" href="#">物件のご紹介・ご相談はこちら<span>メールが開きます（資料・写真を添付できます）</span></a>
+<a class="co" data-en="COMPANY" href="https://e-infi.com/">会社のホームページ<span>株式会社インフィニティ</span></a>
 </div>
+<a class="back" href="./">関西おでかけリストへ戻る</a>
 <div class="ft">株式会社インフィニティ</div>
 <script>(function(){var u="infinity.yamane",d="gmail.com",a=document.getElementById("ml"),b="\n\n\n\n※お手元に物件資料・写真がございましたら、添付のうえご送信ください。\n";a.href="mailto:"+u+"@"+d+"?subject="+encodeURIComponent("物件のご紹介・ご相談")+"&body="+encodeURIComponent(b);})();</script><script>(function(){var O=(function(){try{var q=new URLSearchParams(location.search).get("owner");if(q==="1")localStorage.setItem("usagi_owner","1");if(q==="0")localStorage.removeItem("usagi_owner");if(q!==null)history.replaceState(null,"",location.pathname+location.hash);return localStorage.getItem("usagi_owner")==="1";}catch(e){return false;}})();function s(k){if(O)return;try{if(localStorage.getItem("usagi_owner")==="1")return;}catch(e){}try{var b=JSON.stringify({k:k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true});}catch(e){}}s("表示：業者さまへ");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(!a)return;var t=a.querySelector(".t"),n=t?t.textContent:(a.childNodes[0]&&a.childNodes[0].textContent)||a.textContent;s("クリック：業者さまへ｜"+n);},true);})();</script></body></html>
