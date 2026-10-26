@@ -1190,7 +1190,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 {blocks}
 <p class="pr-note">{pr_note}<br>買う前に、楽天のページで最新の情報を確かめてください。</p>
 <div class="sns"><h2>FOLLOW</h2>{follow}</div>
-<p class="ft">うさぎ│LIFE NOTES<br>終わったおでかけも、このページに残しています<br>毎日更新（最終 {updated}）</p>
+<p class="ft">うさぎ│LIFE NOTES<br>終わったおでかけも、このページに残しています</p>
 </div>
 <button id="totop" aria-label="上にもどる"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4A403A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
 <script>
