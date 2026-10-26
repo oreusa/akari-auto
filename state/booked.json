@@ -1659,7 +1659,7 @@
         "alt": "4コマ漫画 第19話"
       },
       "svc": "instagram",
-      "seen": null,
+      "seen": "出た",
       "retried": true
     },
     "ig_story1": {
@@ -1748,7 +1748,8 @@
         "video": "https://drive.google.com/uc?export=download&id=1OrS99k9UPcJ5LqNOFUFGyucybZQ5OCTn",
         "alt": "4コマ漫画 第19話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
     }
   },
   "2026-10-26 20:15": {
@@ -1773,6 +1774,30 @@
         "比べて選んだあさやの施設ページです\nhttps://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F8643%2F&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F8643%2F\n#PR\n\n比べた表と選んだ理由、ほかにうさぎが選んだ物：https://usagi-life-notes.pages.dev/?f=t2015"
       ],
       "topic": "温泉"
+    }
+  },
+  "2026-10-26 21:00": {
+    "twitter": {
+      "tries": 1,
+      "id": "6ade9b5b8b3d437ddc36620e",
+      "kind": "通常",
+      "at": "21:00",
+      "texts": [
+        "10/17から、あしかがフラワーパークで光の花の庭（2/14まで）\n\n◇ 夜の部 15:30〜20:30（土日祝は21時まで）\n◇ 点灯は17時ごろから\n◇ 大人1,500円・子供900円\n\n500万球を超える光\nあしかがフラワーパーク公式より（10/25時点）\n#イルミネーション",
+        "光の花の庭の公式ページです\nhttps://www.ashikaga.co.jp/flowerfantasy_special2026/jp/\n\n関東のおでかけ15件、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=x2100"
+      ],
+      "topic": "イルミネーション"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "6ade9b5be4be8a4d86d46dd6",
+      "kind": "通常",
+      "at": "21:00",
+      "texts": [
+        "10/17から、あしかがフラワーパークで光の花の庭（2/14まで）\n\n◇ 光の花の庭 Flower Fantasy 2026-2027：10/17〜2/14、休みは12/31だけ\n◇ 夜の部は15:30〜20:30、土日祝は21時まで\n◇ 点灯は17時ごろから。11/7〜1/3は16:30ごろからで、平日21時・土日祝21:30まで\n◇ 大人1,500円、子供900円\n◇ JR両毛線「あしかがフラワーパーク」駅が最寄りです\n\n調べて分かった数字：今年で25回目、光は500万球を超えます。今の時期は17時ごろの点灯なので、着くのは17時より少し前が合います。\n\n※駅はとても混むと案内されています。交通系ICカードは先に入金を\nあしかがフラワーパーク公式より（10/25時点）",
+        "光の花の庭の公式ページです\nhttps://www.ashikaga.co.jp/flowerfantasy_special2026/jp/\n\n関東のおでかけ15件、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=t2100"
+      ],
+      "topic": "イルミネーション"
     }
   }
 }
