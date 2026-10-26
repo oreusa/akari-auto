@@ -7,7 +7,7 @@ import glob
 import os
 import re
 import sys
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import amazon_checked, load_json, now_jst, path, threads_len, x_weight  # noqa: E402
@@ -186,22 +186,42 @@ def _post_urls(p):
     return out
 
 
+def _at(day, slot):
+    try:
+        h, m = (int(x) for x in str(slot).split(":"))
+    except ValueError:
+        h, m = 0, 0
+    return datetime(day.year, day.month, day.day, h, m)
+
+
+def _first(p):
+    t = (p.get("x") or [""])[0]
+    return re.sub(r"\s", "", t if isinstance(t, str) else "")[:20]
+
+
 def repeat_problems(fp, data, d):
-    """同じ公式ページを、前の3日の予定表でもう使っていたら×（同じ話の続けての投稿を防ぐ）。"""
+    """同じ公式ページの話を続けて出さない（10/27 オーナー「せめて文章変えるとか、違う投稿の後とかにしたい」）。
+    ×：前の投稿から24時間たたないうちに同じページを使う／1行目の書き出しが前の回と同じ。"""
     if d < REPEAT_FROM:
         return []
     used = {}
-    for k in range(1, REPEAT_DAYS + 1):
+    for k in range(REPEAT_DAYS, 0, -1):
         prev = d - timedelta(days=k)
         pd = load_json(os.path.join(os.path.dirname(fp) or ".", f"{prev.isoformat()}.json"), {}) or {}
         for p in pd.get("posts", []):
             for u in _post_urls(p):
-                used.setdefault(u, f"{prev.month}/{prev.day} {p.get('slot')}")
+                used[u] = (_at(prev, p.get("slot")), _first(p), f"{prev.month}/{prev.day} {p.get('slot')}")
     out = []
-    for p in data["posts"]:
+    for p in sorted(data["posts"], key=lambda p: str(p.get("slot"))):
+        at, first = _at(d, p.get("slot")), _first(p)
         for u in sorted(_post_urls(p)):
             if u in used:
-                out.append(f"{fp} {p.get('slot')}: 同じページを {used[u]} にも使った（3日のうちに同じ話を2回出さない。10/27 オーナー「同じ投稿してる？」）: {u}")
+                pat, pfirst, where = used[u]
+                if at - pat < timedelta(hours=24):
+                    out.append(f"{fp} {p.get('slot')}: 同じページを {where} にも使った。24時間あけて、ほかの投稿をはさむ（10/27 オーナー）: {u}")
+                elif first == pfirst:
+                    out.append(f"{fp} {p.get('slot')}: {where} と同じページで、1行目の書き出しも同じ。文を変える（10/27 オーナー「せめて文章変える」）: {u}")
+            used[u] = (at, first, f"{d.month}/{d.day} {p.get('slot')}")
     return out
 
 
