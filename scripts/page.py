@@ -866,8 +866,6 @@ def render(items, ended, now, cfg):
 
         n_free = sum(1 for e in now_on if _free(e))
         sat, sun = _weekend(now)
-        n_wk = sum(1 for e in spots if 'data-wk="1"' in spot(e))
-        wk_label = "この週末" if now.weekday() >= 5 else f"今週末 {sat.month}/{sat.day}・{sun.day}"
         nav.append(f'<button type="button" class="on" data-v="odekake">おでかけ<small>{len(spots)}</small></button>')
         panes = [("now", "NOW ON", "開催中", now_on), ("up", "COMING UP", "これから", coming),
                  ("soon", "SOON", "もうすぐ", soon), ("new", "NEW OPEN", "できた", opened)]
@@ -877,9 +875,9 @@ def render(items, ended, now, cfg):
             f'<button type="button" data-t="{k}"{" class=on" if k == first else ""}{"" if es else " disabled"}><i>{en}</i>{jp}<small>{len(es)}件</small></button>'
             for k, en, jp, es in panes) + '</nav>'
         blocks.append(f'<nav class="flt" data-v="odekake" aria-label="しぼりこみ">{tabs}</nav>'
-                      f'<div class="chips" data-v="odekake"><button class="fr" type="button" data-k="wk" aria-pressed="false">{wk_label}</button>'
-                      f'<button class="fr" type="button" data-k="free" aria-pressed="false">無料だけ</button></div>'
-                      f'<p class="cnt" data-v="odekake"><span>開催中<b id="n-now">{len(now_on)}</b>件</span><span>週末に行ける<b id="n-wk">{n_wk}</b>件</span><span>無料<b id="n-free">{n_free}</b>件</span></p>'
+                      # 「今週末」は外した（10/26 オーナー「今週末いらない。休みが平日の人もいる」）。件数は月と同じ「開催中｜無料で楽しめる」
+                      f'<div class="chips" data-v="odekake"><button class="fr" type="button" data-k="free" aria-pressed="false">無料だけ</button></div>'
+                      f'<p class="cnt" data-v="odekake"><span>開催中<b id="n-now">{len(now_on)}</b>件</span><span>無料で楽しめる<b id="n-free">{n_free}</b>件</span></p>'
                       f'<section class="blk" id="odekake" data-v="odekake">{tabs2}'
                       + "".join(f'<div class="pane" data-t="{k}"{"" if k == first else " hidden"}>{cardlist(es, jp)}<p class="none">この都県のおでかけは、これから増やしていきます</p></div>'
                                 for k, en, jp, es in panes)
