@@ -61,6 +61,16 @@ def fetch(genre):
     return [], "", " / ".join(errs + [err])
 
 
+def plain(it):
+    """アフィリエイトの形（hb.afl…?pc=商品ページ）から、楽天の商品ページURLだけを取り出す。"""
+    u = it.get("itemUrl") or ""
+    q = urllib.parse.parse_qs(urllib.parse.urlparse(u).query)
+    if q.get("pc"):
+        u = q["pc"][0]
+    u = u.split("?")[0]
+    return u if u.endswith("/") else u + "/"
+
+
 def mark(it):
     rc, ra, p = int(it.get("reviewCount") or 0), float(it.get("reviewAverage") or 0), int(it.get("itemPrice") or 0)
     ok = rc >= 1000 and ra >= 4.0
@@ -84,8 +94,9 @@ def main():
         out.append("")
         if items:
             out.append("順位｜印｜商品名｜税込｜レビュー｜★｜URL")
+        items = sorted(items, key=lambda it: int(it.get("rank") or 999))
         for n, it in enumerate(items[:TOP], 1):
-            url = lib._plain_url(it).rstrip("/") + "/"
+            url = plain(it)
             code = it.get("itemCode", url)
             dup = "（上と同じ）" if code in seen else ""
             seen.add(code)
