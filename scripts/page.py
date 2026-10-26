@@ -306,7 +306,7 @@ def _added(it, now):
         return now.date()
 
 
-def _room_picks(now, since, skip=(), limit=60):
+def _room_picks(now, since, skip=(), limit=90):
     """ROOM台本の商品（毎晩、燈が比べて選んだ3品）と商品の置き場を、新しい順に最大60品。楽天で販売中を確かめた物だけ。"""
     out, seen = [], set()
     days = []
