@@ -1,7 +1,7 @@
 name: check（予定表の機械チェック）
 on:
   push:
-    paths: ["schedule/**", "scripts/**"]
+    paths: ["schedule/**", "scripts/**", "data/page-goods.json", "data/page-spots.json"]
   workflow_dispatch:
 jobs:
   check:

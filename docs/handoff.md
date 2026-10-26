@@ -9,6 +9,8 @@
 | --- | --- | --- | --- |
 | 2時間おき（朝6〜8時は30分おき） | 予約係（GitHub Actions `book.yml`） | 12時間以内に出す投稿を燈のBufferに予約。PRは直前に楽天/A8を確かめ、だめなら fallback。出たかの確認と1回の出し直しもする | `log/日付.md`・`state/booked.json` |
 | 6:40 | 数字係（`metrics.yml`） | 前日・前々日の数字 | `data/metrics/日付.json` |
+| 6:40 | 在庫係（`metrics.yml` の中の `scripts/stock.py`） | HP「関東おでかけリスト」の都県ごとの数・商品の数を数えて×を付け、終わって1日たった催しを消し、公式ページが開けるか見る | `notes/stock.md` |
+| 14:13 | 燈 集め係（Claude、予約タスク trig_01MH4oeLnJkQ4293RGPL4DGP、毎回新しいセッション） | notes/stock.md の×を埋め、曜日の担当地域（月=東京の東・火=東京の西と多摩・水=神奈川・木=埼玉と千葉・金=北関東・土=新しいお店・日=商品の見直し）でおでかけ・お店・商品を足す。指示は `docs/collector-prompt.md`（10/26 オーナー「漏らさず」「関東おでかけリスト」） | `data/page-spots.json`・`data/page-goods.json`・`notes/collector-log.md` |
 | 6:40 | 雫（ChatGPT） | 4コマを描き、7:10までにドライブ「4コマ公開用（投稿する絵だけ）」へ保存するだけ（10/23から。Bufferは使わない） | 台本はドライブ「燈からの指示（最新）」 |
 | 7:15 | 燈 4コマ係（Claude、予約タスク trig_01F2Hr1L6G178JjwjA23bGcp） | 雫の絵を見つけて5つを確かめ、おかしければ「4コマ直し」に書く。よければ `koma4/日付.json` に絵のURLを入れ、予約係を動かす。指示は `docs/koma4-prompt.md` | `koma4/日付.json` |
 | 7:25 | 雫（ChatGPT） | ドライブ「4コマ直し」に今日の行があれば、その所だけ直して「4コマ画像 第N話 直し」で保存（7:45まで） | ドライブ 連絡ノート「4コマ直し」 |

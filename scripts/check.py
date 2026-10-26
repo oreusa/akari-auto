@@ -278,6 +278,37 @@ def online_problems(fp):
     return out
 
 
+def store_problems():
+    """集め係が足す data/page-goods.json と data/page-spots.json の形（10/27から足した物）。"""
+    out = []
+    g = load_json(path("data", "page-goods.json"), {}) or {}
+    urls = set()
+    for i, it in enumerate(g.get("items", []), 1):
+        where = f"data/page-goods.json {i}件目（{it.get('expect', '')}）"
+        if it.get("url") in urls:
+            out.append(f"{where}：同じ商品が2つ")
+        urls.add(it.get("url"))
+        if (it.get("added") or "") < "2026-10-27":
+            continue
+        if not str(it.get("url", "")).startswith("https://item.rakuten.co.jp/") or not it.get("expect"):
+            out.append(f"{where}：url（楽天市場の商品ページ）と expect が要る")
+        out += goods_problems(it.get("comment"), where)
+    sp = load_json(path("data", "page-spots.json"), {}) or {}
+    for i, it in enumerate(sp.get("items", []), 1):
+        if (it.get("checked") or "") < "2026-10-27":
+            continue
+        where = f"data/page-spots.json {i}件目（{it.get('title', '')}）"
+        need = ["title", "pref", "place", "url", "checked"] + (["open"] if it.get("kind") == "shop" else ["start", "ends", "when"])
+        miss = [k for k in need if not it.get(k)]
+        if miss:
+            out.append(f"{where}：{'・'.join(miss)} が無い")
+        if it.get("pref") and it["pref"] not in ("東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬"):
+            out.append(f"{where}：HPは関東だけ（pref は東京・神奈川・埼玉・千葉・茨城・栃木・群馬）")
+        if not str(it.get("url", "")).startswith("https://"):
+            out.append(f"{where}：url は https の公式ページ")
+    return out
+
+
 def main(argv):
     online = "--online" in argv
     argv = [a for a in argv if a != "--online"]
@@ -290,6 +321,8 @@ def main(argv):
         allp += check_file(fp)
         if online and os.environ.get("RAKUTEN_APP_ID"):
             allp += online_problems(fp)
+    if not argv[1:] or any("page-" in f for f in argv[1:]):
+        allp += store_problems()
     for p in allp:
         print("×", p)
     if not allp:

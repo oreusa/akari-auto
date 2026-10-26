@@ -271,9 +271,31 @@ def _short(name, n=34):
     return name if len(name) <= n else name[:n].rstrip() + "…"
 
 
-def _room_picks(now, since, skip=(), limit=24):
-    """ROOM台本の商品（毎晩、燈が比べて選んだ3品）を、新しい順に最大24品。楽天で販売中を確かめた物だけ。"""
+def goods_store(now):
+    """HPの商品の置き場 data/page-goods.json（10/26 オーナー「アフェリエイトは常に増やしていかなきゃ意味無い」）。
+    予定表の page_goods は7日で消えるので、集め係と夜の回がここに足す。until（その日まで出す。季節物）を過ぎた物は出さない。
+    売り切れ・値段は作るたびに楽天で確かめ直すので、売っていない物は自動で消える。"""
+    out = []
+    for it in (load_json(path("data", "page-goods.json"), {}) or {}).get("items", []):
+        if not str(it.get("url", "")).startswith("https://"):
+            continue
+        if it.get("until") and it["until"] < now.date().isoformat():
+            continue
+        out.append(it)
+    return out
+
+
+def _added(it, now):
+    try:
+        return datetime.fromisoformat(it.get("added", "")).date()
+    except ValueError:
+        return now.date()
+
+
+def _room_picks(now, since, skip=(), limit=60):
+    """ROOM台本の商品（毎晩、燈が比べて選んだ3品）と商品の置き場を、新しい順に最大60品。楽天で販売中を確かめた物だけ。"""
     out, seen = [], set()
+    days = []
     for f in sorted(glob.glob(path("schedule", "*.json")), reverse=True):
         day = os.path.basename(f)[:-5]
         if not re.match(r"\d{4}-\d{2}-\d{2}$", day):
@@ -282,7 +304,13 @@ def _room_picks(now, since, skip=(), limit=24):
         if d < since or d > now.date():
             continue
         data = load_json(f, {}) or {}
-        for it in data.get("room", []) + data.get("page_goods", []):  # page_goods＝投稿しないがHPに置く物（夜の回が選ぶ）
+        days.append((d, data.get("room", []) + data.get("page_goods", [])))  # page_goods＝投稿しないがHPに置く物（夜の回が選ぶ）
+    store = sorted(goods_store(now), key=lambda it: it.get("added", ""), reverse=True)
+    days.append((now.date(), store))
+    for d, its in days:
+        if its is store:
+            d = None
+        for it in its:
             url = it.get("url", "")
             if not url or url in seen or url in skip:  # 上の「AIが比べた」と同じ物は出さない
                 continue
@@ -291,11 +319,14 @@ def _room_picks(now, since, skip=(), limit=24):
             if not r.get("ok"):
                 continue
             lines = [ln.strip() for ln in (it.get("comment") or "").split("\n") if ln.strip() and not ln.startswith("#")]
-            out.append({"day": f"{d.month}/{d.day}", "name": _short(r.get("name")) or it.get("expect", ""),
+            dd = d or _added(it, now)
+            out.append({"day": f"{dd.month}/{dd.day}", "name": _short(r.get("name")) or it.get("expect", ""),
                         "expect": it.get("expect", ""), "price": r.get("price"), "count": r.get("reviewCount"),
                         "avg": r.get("reviewAverage"), "lines": lines[:3], "url": r["link"],
                         "sample": r.get("sample", False), "image": r.get("image", "")})
-            out[-1]["cat"] = _cat(" ".join([out[-1]["name"], out[-1]["expect"]] + lines[:1]), cats(now))
+            cs = cats(now)
+            out[-1]["cat"] = (it["cat"] if it.get("cat") in {k for k, *_ in cs}
+                              else _cat(" ".join([out[-1]["name"], out[-1]["expect"]] + lines[:1]), cs))
             if len(out) >= limit:
                 return out
     return out
@@ -318,6 +349,7 @@ PLACE = [("東京", "東京"), ("高円寺", "東京"), ("池袋", "東京"), ("
          ("京都", "京都"), ("嵐山", "京都"), ("神戸", "兵庫"), ("兵庫", "兵庫"), ("有馬", "兵庫"), ("城崎", "兵庫"),
          ("姫路", "兵庫"), ("奈良", "奈良"), ("和歌山", "和歌山"), ("高野山", "和歌山"), ("滋賀", "滋賀"), ("琵琶湖", "滋賀")]
 KANTO = {"東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬"}
+KANTO_ORDER = ["東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬"]  # HPのしぼりこみの並び
 REGION_COLOR = {"関東": "#5D7FA3", "関西": "#C27A63"}  # しぼりこみは「関東・関西」の2つ（10/24 オーナー「東京、大阪、兵庫は変だ」）
 
 
@@ -511,7 +543,7 @@ def spot(e):
     # 矢印（カード全体）＝公式ページ、「地図」＝地図アプリ（10/24 オーナー「矢印おしたら公式ページ、地図おしたらマップ」）
     mp = (f'<a class="mp" href="https://www.google.com/maps/search/?api=1&amp;query={esc(urllib.parse.quote(q))}" '
           f'target="_blank" rel="noopener">地図{OUT}</a>') if q else ""
-    return (f'<div class="card it" data-pref="{esc(region(pref))}" data-free="{1 if free else 0}" data-wk="{1 if wk else 0}" style="--pc:{color}">'
+    return (f'<div class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" data-wk="{1 if wk else 0}" style="--pc:{color}">'
             f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
             f'<div class="t"><a class="go" href="{href}" target="_blank" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
             f'{nt}{mp}{ARROW}</div>')
@@ -670,9 +702,12 @@ def all_spots(items, now):
         m, d = (int(x) for x in e["day"].split("/"))
         return (now.date() - datetime(e.get("year", now.year), m, d).date()).days
     out, seen = [], set()
+    # 関東だけ（10/26 オーナー「関東と関西は広すぎ。関東おでかけリスト」）
     # 同じ催しを2回出さない（10/25 オーナー「ごちゃごちゃして分かりにくい」：NAKED meets 二条城 が2枚、やきいもフェスが3枚）
     for e in [e for e in posted if _age(e) <= 1] + extra + [e for e in posted if _age(e) > 1]:
         reg = region(_pref(e))
+        if reg != "関東":
+            continue
         nm = e.get("name") or _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))[1]
         n0 = re.sub(r"\W", "", nm or "").lower()
         u0 = re.sub(r"[?#].*$", "", str(e.get("url") or "")).rstrip("/")
@@ -734,9 +769,9 @@ def render(items, ended, now, cfg):
                    f'<span>うさぎが比べて選んだ物を、まとめて置いています</span></a>')
     spots = all_spots(items, now)
     deals = [e for e in items["deal"] if e.get("url")]
-    regs = [x for x in REGION_COLOR if any(region(_pref(e)) == x for e in spots)]
+    # しぼりこみは都県ごと（10/26 オーナー「関東と関西は広すぎ。月の見て、綺麗に分けてる」：月は府県ごと）
     tabs = '<button class="on" data-p="">すべて</button>' + "".join(
-        f'<button data-p="{esc(x)}" style="--pc:{REGION_COLOR[x]}">{esc(x)}</button>' for x in regs)
+        f'<button data-p="{esc(x)}" style="--pc:{PREF_COLOR[x]}">{esc(x)}</button>' for x in KANTO_ORDER)
     cs = cats(now)
     goods = {k: [] for k, *_ in cs}
     hot = _hot(items["pr"])
@@ -808,7 +843,7 @@ def render(items, ended, now, cfg):
                       f'<button class="fr" type="button" data-k="free" aria-pressed="false">無料だけ</button></div>'
                       f'<p class="cnt" data-v="odekake"><span>開催中<b id="n-now">{len(now_on)}</b>件</span><span>週末に行ける<b id="n-wk">{n_wk}</b>件</span><span>無料<b id="n-free">{n_free}</b>件</span></p>'
                       f'<section class="blk" id="odekake" data-v="odekake">{tabs2}'
-                      + "".join(f'<div class="pane" data-t="{k}"{"" if k == first else " hidden"}>{cardlist(es, jp)}<p class="none">この地域は、これから増やしていきます</p></div>'
+                      + "".join(f'<div class="pane" data-t="{k}"{"" if k == first else " hidden"}>{cardlist(es, jp)}<p class="none">この都県のおでかけは、これから増やしていきます</p></div>'
                                 for k, en, jp, es in panes)
                       + '<p class="tip">矢印で公式ページ、「地図」で場所が開きます。<br>出かける前に、公式ページで<br>最新の情報を確かめてください。</p></section>')
     if hot:  # 2. 今日のいち押し（おでかけの下。10/24 オーナー「おでかけの後でいい」）
@@ -856,9 +891,9 @@ def render(items, ended, now, cfg):
 TEMPLATE = """<!doctype html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>うさぎ│LIFE NOTES</title>
-<meta name="description" content="関東・関西で、今日から・新しく・無料で行ける場所と、うさぎが数字で比べた物を毎日。">
-<meta property="og:title" content="うさぎ│LIFE NOTES">
+<title>関東おでかけリスト｜うさぎ│LIFE NOTES</title>
+<meta name="description" content="関東で、今日から・新しく・無料で行ける場所の公式ページまとめと、うさぎが数字で比べた物を毎日。">
+<meta property="og:title" content="関東おでかけリスト｜うさぎ│LIFE NOTES">
 <meta property="og:description" content="おでかけ先と宿と、うさぎが比べて選んだ物を毎日更新。">
 <meta property="og:image" content="https://usagi-life-notes.pages.dev/og-v8.png">
 <meta property="og:url" content="https://usagi-life-notes.pages.dev/">
@@ -902,6 +937,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
   background-size:46px 52px,31px 37px;background-position:8px 12px,22px 30px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}}
 .head img{{width:88px;height:88px;display:block;margin:0 auto;border-radius:50%;background:#fff}}
 .en{{font:300 10px/1 var(--en);letter-spacing:.5em;color:var(--brown);margin:16px 0 0;padding-left:.5em}}
+.ttl{{font:600 26px/1.3 var(--min);letter-spacing:.18em;font-feature-settings:"palt";color:#231E1B;margin:16px 0 10px;padding-left:.18em}}
 .sub{{font-size:12.5px;line-height:1.95;color:var(--sub);margin:14px 0 0}}
 .sea{{display:flex;align-items:center;justify-content:center;gap:10px;margin:20px 0 0;font:400 11px/1 var(--en);letter-spacing:.32em;color:var(--brown)}}
 .sea:before,.sea:after{{content:"";flex:0 0 34px;height:1px;background:var(--brown)}}
@@ -919,8 +955,8 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .seg{{display:flex;justify-content:center;margin:22px 0 0}}
 .seg button{{font:700 12.5px/1 var(--go);letter-spacing:.12em;color:var(--mute);background:#fff;border:1px solid #D9CFC4;padding:9px 18px;cursor:pointer;margin-left:-1px}}
 .seg button.on{{background:var(--ink);border-color:var(--ink);color:#fff}}
-.flt{{display:flex;flex-wrap:wrap;justify-content:center;gap:0 20px;border-top:1px solid #DDD3C8;border-bottom:1px solid #DDD3C8;padding:10px 0;margin:12px 0 14px}}
-.flt button{{font:700 13px/1 var(--go);letter-spacing:.06em;color:var(--pc,var(--mute));background:none;border:0;border-bottom:1px solid transparent;padding:11px 4px 9px;cursor:pointer}}
+.flt{{display:flex;flex-wrap:wrap;justify-content:center;gap:0 11px;border-top:1px solid #DDD3C8;border-bottom:1px solid #DDD3C8;padding:10px 0;margin:12px 0 14px}}
+.flt button{{font:700 13px/1 var(--go);letter-spacing:.02em;color:var(--pc,var(--mute));background:none;border:0;border-bottom:1px solid transparent;padding:11px 2px 9px;cursor:pointer}}
 .flt button.on{{color:var(--pc,var(--ink));border-bottom-color:var(--pc,var(--ink))}}
 .flt button.fr{{color:#5E8C5A;border:1px solid #CFE0CC;border-radius:99px;padding:8px 12px;margin:3px 0 0}}
 .flt button.fr.on{{background:#5E8C5A;color:#fff;border-color:#5E8C5A}}
@@ -1096,8 +1132,9 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <header class="head">
 <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
 <img src="logo.png" alt="うさぎ│LIFE NOTES" width="88" height="88">
-<h1 class="en">USAGI LIFE NOTES</h1>
-<p class="sub">おでかけ先と、泊まる宿と、あると助かる物。<br>うさぎが毎日しらべて、数字で比べて選んでいます</p>
+<div class="en">USAGI LIFE NOTES</div>
+<h1 class="ttl">関東おでかけリスト</h1>
+<p class="sub">関東の今日から・新しく・無料で行ける場所と、<br>うさぎが数字で比べて選んだ物を、毎日のせています</p>
 <div class="sea"><span>{sea_en}</span><b>{sea_jp}</b></div>
 {ring}
 </header>

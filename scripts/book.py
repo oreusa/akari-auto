@@ -76,8 +76,8 @@ def page_line(texts, url, due):
         return f"今週末に行ける{reg}のおでかけ{n['週末' + reg]}件、公式ページつきの一覧：{url}"
     if reg and n.get(reg, 0) >= 3:
         return f"{reg}のおでかけ{n[reg]}件、公式ページつきの一覧：{url}"
-    if n.get("関東", 0) >= 3 and n.get("関西", 0) >= 3:
-        return f"関東{n['関東']}件・関西{n['関西']}件のおでかけ、公式ページつきの一覧：{url}"
+    if n.get("関東", 0) >= 3:  # 10/26 HPは関東だけ（オーナー「関東おでかけリスト」）
+        return f"関東のおでかけ{n['関東']}件、公式ページつきの一覧：{url}"
     return PAGE_LINE.format(url=url)
 
 
@@ -336,7 +336,7 @@ def run(now=None):
 
 
 KOMA4_SERVICES = ("twitter", "threads", "instagram")
-IG_PROFILE = "くわしい場所と公式ページは、プロフィールのリンクからどうぞ。関東と関西のおでかけを、まとめています。"
+IG_PROFILE = "くわしい場所と公式ページは、プロフィールのリンクからどうぞ。関東のおでかけを、まとめています。"  # 10/26 HPは関東だけ
 IG_HEAD = "プロフィールのリンク"  # 予約済みの文に付いているかを見分ける
 
 
