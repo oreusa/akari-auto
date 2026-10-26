@@ -22,8 +22,8 @@ NEED_PREF = {"東京": {"now": 8, "up": 2}, "神奈川": {"now": 4, "up": 2}, "�
              "茨城": {"now": 3, "up": 2}, "栃木": {"now": 3, "up": 2}, "群馬": {"now": 3, "up": 2}}
 NEED_SHOP = 4  # 新しいお店（もうすぐ＋できた）は関東全体で
 TAB = {"now": "開催中", "up": "これから", "soon": "もうすぐ（開店前のお店）", "new": "できた（開いたお店）"}
-NEED_GOODS_TOTAL = 30
-NEED_GOODS_CAT = 5
+NEED_GOODS_TOTAL = 60  # 10/26 オーナー「アフェリエイト商品が目的。ちゃんと増やしていく」
+NEED_GOODS_CAT = 10
 PREFS = tuple(NEED_PREF)
 
 

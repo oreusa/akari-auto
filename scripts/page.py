@@ -306,7 +306,7 @@ def _added(it, now):
         return now.date()
 
 
-def _room_picks(now, since, skip=(), limit=60):
+def _room_picks(now, since, skip=(), limit=90):
     """ROOM台本の商品（毎晩、燈が比べて選んだ3品）と商品の置き場を、新しい順に最大60品。楽天で販売中を確かめた物だけ。"""
     out, seen = [], set()
     days = []
@@ -800,6 +800,9 @@ def render(items, ended, now, cfg):
     if p.get("room_url"):
         follow += (f'<a class="co" data-en="RAKUTEN ROOM" href="{esc(p["room_url"])}" target="_blank" rel="noopener">楽天ROOM'
                    f'<span>うさぎが比べて選んだ物を、まとめて置いています</span></a>')
+    # おでかけ掲載のご相談（10/26 オーナー「月のhpにはおでかけ先の依頼とかやってる、まねしよ」：月と同じくインスタのDMへ）
+    follow += ('<a class="co" data-en="LISTING" href="https://ig.me/m/ai_usagichan1" target="_blank" rel="noopener">おでかけ掲載'
+               '<span>新しいお店や、毎年のイベント。<br>うさぎがご紹介します。ご相談はこちら</span></a>')
     spots = all_spots(items, now)
     deals = [e for e in items["deal"] if e.get("url")]
     # しぼりこみは都県ごと（10/26 オーナー「関東と関西は広すぎ。月の見て、綺麗に分けてる」：月は府県ごと）
