@@ -4,5 +4,35 @@
       "note": "Bufferからは取れない（欄なし）"
     }
   },
-  "fields": []
+  "fields": [],
+  "schema": {
+    "types": 378,
+    "roots": [
+      "account",
+      "dailyPostingLimits",
+      "channel",
+      "channels",
+      "aggregatedPostMetrics",
+      "snippets",
+      "post",
+      "posts",
+      "contentItem",
+      "contentItems",
+      "tag",
+      "tagsV2",
+      "instagramAudio",
+      "searchInstagramAudio",
+      "trendingInstagramAudio",
+      "instagramAudioCatalog",
+      "searchInstagramAudioCatalog",
+      "configuration",
+      "postTemplate",
+      "postTemplates",
+      "ideaGroups",
+      "ideas"
+    ],
+    "hits": [
+      "YoutubePostMetadata.notifySubscribers"
+    ]
+  }
 }
