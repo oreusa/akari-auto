@@ -1,6 +1,6 @@
 {
   "day": "2026-10-25",
-  "fetchedAt": "2026-10-26T08:32+09:00",
+  "fetchedAt": "2026-10-26T19:20+09:00",
   "posts": [
     {
       "service": "threads",
@@ -26,9 +26,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.63,
+        "engagementRate": 2.44,
         "reposts": 0,
-        "impressions": 38,
+        "impressions": 41,
         "clicks": 0
       }
     },
@@ -56,9 +56,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.37,
+        "engagementRate": 0.45,
         "reposts": 0,
-        "impressions": 538,
+        "impressions": 897,
         "clicks": 0
       }
     },
@@ -86,9 +86,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.93,
+        "engagementRate": 1.33,
         "reposts": 0,
-        "impressions": 107,
+        "impressions": 226,
         "clicks": 0
       }
     },
@@ -116,9 +116,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.64,
+        "engagementRate": 0.49,
         "reposts": 0,
-        "impressions": 61,
+        "impressions": 206,
         "clicks": 0
       }
     },
@@ -145,10 +145,10 @@
       "url": "https://x.com/1753799832798629888/status/2114239289139585145",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 2.17,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 46,
         "clicks": 0
       }
     },
@@ -175,10 +175,10 @@
       "url": "https://x.com/1753799832798629888/status/2114284590483329363",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 2.86,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 35,
         "clicks": 0
       }
     },
@@ -252,10 +252,10 @@
       "url": "https://x.com/1753799832798629888/status/2114314796170412103",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 2,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 100,
         "clicks": 0
       }
     },
@@ -282,10 +282,10 @@
       "url": "https://x.com/1753799832798629888/status/2114326228056395966",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 2.17,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 46,
         "clicks": 0
       }
     },
@@ -312,10 +312,10 @@
       "url": "https://x.com/1753799832798629888/status/2114331649194197114",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 10.53,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 19,
         "clicks": 0
       }
     },
@@ -342,10 +342,10 @@
       "url": "https://x.com/1753799832798629888/status/2114344995461169198",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 1.35,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 74,
         "clicks": 0
       }
     },
@@ -403,13 +403,13 @@
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 1.25,
-        "views": 83,
+        "engagementRate": 1.19,
+        "views": 86,
         "shares": 0,
         "saves": 0,
-        "totalTimeWatched": 2.6,
+        "totalTimeWatched": 2.72,
         "averageTimeWatched": 1.83,
-        "reach": 80
+        "reach": 84
       }
     },
     {
@@ -436,9 +436,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 20,
+        "engagementRate": 6.25,
         "reposts": 0,
-        "impressions": 5,
+        "impressions": 16,
         "clicks": 0
       }
     },
@@ -510,9 +510,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 11.11,
+        "engagementRate": 5,
         "reposts": 0,
-        "impressions": 9,
+        "impressions": 20,
         "clicks": 0
       }
     }

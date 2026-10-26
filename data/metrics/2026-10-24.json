@@ -1,6 +1,6 @@
 {
   "day": "2026-10-24",
-  "fetchedAt": "2026-10-26T08:32+09:00",
+  "fetchedAt": "2026-10-26T19:20+09:00",
   "posts": [
     {
       "service": "threads",
@@ -26,9 +26,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.7,
+        "engagementRate": 2.56,
         "reposts": 0,
-        "impressions": 37,
+        "impressions": 39,
         "clicks": 0
       }
     },
@@ -56,9 +56,9 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 0.42,
+        "engagementRate": 0.39,
         "reposts": 0,
-        "impressions": 945,
+        "impressions": 1025,
         "clicks": 0
       }
     },
@@ -86,9 +86,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.66,
+        "engagementRate": 0.6,
         "reposts": 0,
-        "impressions": 303,
+        "impressions": 332,
         "clicks": 0
       }
     },
@@ -146,9 +146,9 @@
       "metrics": {
         "reactions": 2,
         "comments": 1,
-        "engagementRate": 2.71,
+        "engagementRate": 2.03,
         "reposts": 0,
-        "impressions": 258,
+        "impressions": 344,
         "clicks": 0
       }
     },
@@ -176,9 +176,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 3.03,
+        "engagementRate": 2.78,
         "reposts": 0,
-        "impressions": 33,
+        "impressions": 36,
         "clicks": 0
       }
     },
@@ -206,9 +206,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 3.39,
+        "engagementRate": 2.63,
         "reposts": 0,
-        "impressions": 59,
+        "impressions": 76,
         "clicks": 0
       }
     },
@@ -236,9 +236,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.17,
+        "engagementRate": 2.5,
         "reposts": 0,
-        "impressions": 24,
+        "impressions": 40,
         "clicks": 0
       }
     },
@@ -266,9 +266,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.22,
+        "engagementRate": 1.49,
         "reposts": 0,
-        "impressions": 45,
+        "impressions": 67,
         "clicks": 0
       }
     },
@@ -385,9 +385,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 0,
-        "engagementRate": 11.11,
+        "engagementRate": 10,
         "reposts": 0,
-        "impressions": 9,
+        "impressions": 10,
         "clicks": 0
       }
     }
