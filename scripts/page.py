@@ -1045,9 +1045,9 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .sns{{margin-top:40px}}
 .sns a:not(.co){{display:inline-block;border:0;border-bottom:1px solid var(--ink);padding:4px 0;margin:0 12px 26px;font-size:13px;letter-spacing:.1em}}
 .sns a:not(.co) span{{display:none}}
-.sns a.co{{display:block;position:relative;background:none;border:0;border-top:1px solid #DDD3C8;border-bottom:1px solid #DDD3C8;color:var(--ink);text-align:left;padding:18px 40px 18px 4px;font:600 16px/1.5 var(--min);letter-spacing:.08em}}
+.sns a.co{{display:block;position:relative;background:#fff;border:1px solid #E2D8CD;margin:0 0 10px;color:var(--ink);text-align:left;padding:18px 44px 18px 18px;font:600 16px/1.5 var(--min);letter-spacing:.08em}}
 .sns a.co:before{{content:attr(data-en);display:block;font:500 9.5px/1 var(--en);letter-spacing:.32em;color:#9C8775;margin-bottom:8px}}
-.sns a.co:after{{content:"→";position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--en);color:#9C8775;font-size:16px}}
+.sns a.co:after{{content:"→";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--en);color:#9C8775;font-size:16px}}
 .sns a.co span{{color:var(--mute);font:400 11.5px/1.6 var(--go);letter-spacing:.04em;margin-top:6px}}
 </style></head>
 <body class="s-{sea}"><div class="wrap">
