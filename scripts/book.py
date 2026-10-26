@@ -336,7 +336,7 @@ def run(now=None):
 
 
 KOMA4_SERVICES = ("twitter", "threads", "instagram")
-IG_PROFILE = "くわしい場所と公式ページは、プロフィールのリンクからどうぞ。関東のおでかけを、まとめています。"  # 10/26 HPは関東だけ
+IG_PROFILE = "くわしい場所と公式ページは、プロフィールのリンク「関東おでかけリスト」からどうぞ。"  # 10/26 HPは関東だけ
 IG_HEAD = "プロフィールのリンク"  # 予約済みの文に付いているかを見分ける
 
 
@@ -381,7 +381,7 @@ def ig_profile(texts, due):
     except Exception:
         return IG_PROFILE
     if reg and n.get(reg, 0) >= 2:  # 件数は書かない（10/26 オーナー「件数まではいいんじゃない？」）
-        return f"くわしい場所と公式ページは、プロフィールのリンクからどうぞ。{reg}のおでかけを、ほかにもまとめています。"  # 10/26 オーナーが案10に決定
+        return f"くわしい場所と公式ページは、プロフィールのリンク「関東おでかけリスト」からどうぞ。{reg}のおでかけを、ほかにもまとめています。"  # 10/26 オーナーが案10に決定。HPの名前を入れた（月のやり方）
     return IG_PROFILE
 # Instagram の毎日の4コマ（10/23 オーナー「OK」）：スライド4枚（8:00）とストーリー2枚（8:00・8:01）。動画の日はリールも
 IG_EXTRA = (("ig_slides", "post", 0), ("ig_story1", "story", 0), ("ig_story2", "story", 1))

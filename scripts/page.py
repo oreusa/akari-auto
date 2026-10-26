@@ -57,7 +57,18 @@ def cats(now):
 SPOT_AHEAD = 14  # HPだけのおでかけは、始まる14日前から載せる
 
 
-def _page_spots(now):
+def page_spots_ended(now):
+    """HPだけのおでかけで、終わって30日以内の物（「終わったおでかけ」に1行で残す。10/26 月のやり方「終わったものは自動で消さず残す」）。"""
+    out = []
+    for it in (load_json(path("data", "page-spots.json"), {}) or {}).get("items", []):
+        e = _dt(it.get("ends"))
+        if it.get("kind") != "shop" and e and now - timedelta(days=30) <= e < now:
+            out.append({"title": it.get("title", ""), "name": it.get("title", ""), "ends": it["ends"], "place": it.get("place", ""),
+                        "pref_fixed": it.get("pref", ""), "bullets": [], "day": f"{now.month}/{now.day}", "year": e.year})
+    return out
+
+
+def _page_spots(now, ended=None):
     """HPだけに載せるおでかけ（投稿しない物も、来た人が使えるように。10/24 オーナー「投稿前に入れといてもいい」）。
     夜の回が公式ページで日時・料金を確かめて data/page-spots.json に書く。終わった物・始まる14日より前の物は出さない。"""
     out = []
@@ -80,6 +91,8 @@ def _page_spots(now):
             if od < now - timedelta(days=30) or od > now + timedelta(days=60):
                 continue
         y = int((it.get("start") or now.isoformat())[:4])
+        if ended is not None:
+            continue
         out.append({"title": it["title"], "name": it["title"], "start": it.get("start", ""), "ends": it.get("ends", ""),
                     "day": f"{now.month}/{now.day}", "year": y, "bullets": [it.get("note", "")],
                     "url": it["url"], "place": it.get("place", ""), "pref_fixed": it.get("pref", ""),
@@ -177,7 +190,8 @@ def collect(now, light=False):
                      "name": p.get("name", ""), "start": p.get("start", ""), "ends": p.get("ends") or p.get("until") or ""}
             until = p.get("ends") or p.get("until")  # ends＝催し・お得が終わる時刻（夜の回が書く）。過ぎたらページから外す
             if until and datetime.fromisoformat(until).replace(tzinfo=JST) < now:
-                ended.append(entry)
+                if p.get("topic", "") in ODEKAKE and not p.get("link"):
+                    ended.append(entry)
                 continue
             link = p.get("link")
             if link and light:
@@ -757,6 +771,25 @@ def post_region(texts):
     return region(_pref({"title": " ".join(texts), "bullets": []}))
 
 
+def past_list(ended, now, n=5):
+    """終わったおでかけ（関東・終わって30日以内）を新しい順に1行ずつ：日付｜名前｜場所。月の「終わったおでかけ」と同じ。"""
+    rows, seen = [], set()
+    for e in sorted(ended + page_spots_ended(now), key=lambda e: _dt(e.get("ends")) or now, reverse=True):
+        d = _dt(e.get("ends"))
+        if not d or d < now - timedelta(days=30) or region(_pref(e)) != "関東":
+            continue
+        nm = e.get("name") or _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))[1]
+        k = re.sub(r"\W", "", nm or "")[:10]
+        if not k or k in seen:
+            continue
+        seen.add(k)
+        place = e.get("place") if e.get("place") not in ("", "-") else _pref(e)
+        rows.append(f'<li><span>{_md(d)}</span>{esc(nm)}｜{esc(place)}</li>')
+    if not rows:
+        return ""
+    return '<div class="past"><p class="ph">終わったおでかけ</p><ul>' + "".join(rows[:n]) + '</ul></div>'
+
+
 def render(items, ended, now, cfg):
     _NOW[:] = [now]
     p = cfg.get("page", {})
@@ -771,7 +804,8 @@ def render(items, ended, now, cfg):
     deals = [e for e in items["deal"] if e.get("url")]
     # しぼりこみは都県ごと（10/26 オーナー「関東と関西は広すぎ。月の見て、綺麗に分けてる」：月は府県ごと）
     tabs = '<button class="on" data-p="">すべて</button>' + "".join(
-        f'<button data-p="{esc(x)}" style="--pc:{PREF_COLOR[x]}">{esc(x)}</button>' for x in KANTO_ORDER)
+        f'<button data-p="{esc(x)}" style="--pc:{PREF_COLOR[x]}">{esc(x)}</button>' for x in KANTO_ORDER
+        if any(_pref(e) == x for e in spots))  # 0件の都県はタブを出さない（月と同じ）
     cs = cats(now)
     goods = {k: [] for k, *_ in cs}
     hot = _hot(items["pr"])
@@ -845,6 +879,7 @@ def render(items, ended, now, cfg):
                       f'<section class="blk" id="odekake" data-v="odekake">{tabs2}'
                       + "".join(f'<div class="pane" data-t="{k}"{"" if k == first else " hidden"}>{cardlist(es, jp)}<p class="none">この都県のおでかけは、これから増やしていきます</p></div>'
                                 for k, en, jp, es in panes)
+                      + past_list(ended, now)
                       + '<p class="tip">矢印で公式ページ、「地図」で場所が開きます。<br>出かける前に、公式ページで<br>最新の情報を確かめてください。</p></section>')
     if hot:  # 2. 今日のいち押し（おでかけの下。10/24 オーナー「おでかけの後でいい」）
         hot["hot"] = True
@@ -1071,6 +1106,11 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 
 .tip,.ft,.lead{{text-wrap:balance}}
 .past{{list-style:none;margin:6px 0 4px;padding:0;font-size:12px;line-height:2;color:#5B514A}}
+.past{{border-top:1px solid var(--line);margin:12px 0 0;padding:12px 2px 0}}
+.past .ph{{font:600 13px/1 var(--min);letter-spacing:.12em;color:var(--sub);margin:0 0 8px;text-align:center}}
+.past ul{{list-style:none;margin:0;padding:0}}
+.past li{{font-size:11.5px;line-height:1.7;color:var(--mute);padding:3px 0;border-bottom:1px dotted var(--line)}}
+.past li span{{margin-right:6px}}
 .tip{{border-top:1px solid var(--line);margin:10px 0 0;padding:12px 2px 2px;font-size:11.5px;line-height:1.8;color:var(--sub);text-align:center}}
 
 /* FOLLOW */
