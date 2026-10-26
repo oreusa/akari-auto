@@ -7,7 +7,7 @@ import glob
 import os
 import re
 import sys
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import amazon_checked, load_json, now_jst, path, threads_len, x_weight  # noqa: E402
@@ -172,6 +172,59 @@ BANNED_WORDS = {
 }
 
 
+REPEAT_FROM = date(2026, 10, 28)  # 10/27 オーナー「同じ投稿してる？」（マラソンを夜22:15と朝7:15で続けて出した）
+REPEAT_DAYS = 3
+
+
+def _post_urls(p):
+    """投稿の2つ目以降（公式ページなど）に書いたURL。fallback は数えない。"""
+    out = set()
+    for ch in ("x", "threads"):
+        for t in (p.get(ch) or [])[1:]:
+            for u in re.findall(r"https?://[^\s）)」]+", t if isinstance(t, str) else ""):
+                out.add(u.split("?")[0].rstrip("/"))
+    return out
+
+
+def _at(day, slot):
+    try:
+        h, m = (int(x) for x in str(slot).split(":"))
+    except ValueError:
+        h, m = 0, 0
+    return datetime(day.year, day.month, day.day, h, m)
+
+
+def _first(p):
+    t = (p.get("x") or [""])[0]
+    return re.sub(r"\s", "", t if isinstance(t, str) else "")[:20]
+
+
+def repeat_problems(fp, data, d):
+    """同じ公式ページの話を続けて出さない（10/27 オーナー「せめて文章変えるとか、違う投稿の後とかにしたい」）。
+    ×：前の投稿から24時間たたないうちに同じページを使う／1行目の書き出しが前の回と同じ。"""
+    if d < REPEAT_FROM:
+        return []
+    used = {}
+    for k in range(REPEAT_DAYS, 0, -1):
+        prev = d - timedelta(days=k)
+        pd = load_json(os.path.join(os.path.dirname(fp) or ".", f"{prev.isoformat()}.json"), {}) or {}
+        for p in pd.get("posts", []):
+            for u in _post_urls(p):
+                used[u] = (_at(prev, p.get("slot")), _first(p), f"{prev.month}/{prev.day} {p.get('slot')}")
+    out = []
+    for p in sorted(data["posts"], key=lambda p: str(p.get("slot"))):
+        at, first = _at(d, p.get("slot")), _first(p)
+        for u in sorted(_post_urls(p)):
+            if u in used:
+                pat, pfirst, where = used[u]
+                if at - pat < timedelta(hours=24):
+                    out.append(f"{fp} {p.get('slot')}: 同じページを {where} にも使った。24時間あけて、ほかの投稿をはさむ（10/27 オーナー）: {u}")
+                elif first == pfirst:
+                    out.append(f"{fp} {p.get('slot')}: {where} と同じページで、1行目の書き出しも同じ。文を変える（10/27 オーナー「せめて文章変える」）: {u}")
+            used[u] = (at, first, f"{d.month}/{d.day} {p.get('slot')}")
+    return out
+
+
 def check_file(fp):
     data = load_json(fp)
     probs = []
@@ -186,6 +239,7 @@ def check_file(fp):
     except ValueError:
         return probs + [f"{fp}: date が YYYY-MM-DD でない"]
     room_urls = {str(r.get("url", "")).split("?")[0].rstrip("/") for r in (data.get("room") or []) if isinstance(r, dict)}
+    probs += repeat_problems(fp, data, d)
     for p in data["posts"]:
         lk = p.get("link") or {}
         if lk.get("type") == "ichiba" and str(lk.get("url", "")).split("?")[0].rstrip("/") not in room_urls:
