@@ -164,7 +164,8 @@ def collect(now, light=False):
         if not re.match(r"\d{4}-\d{2}-\d{2}$", day):
             continue
         d = datetime.fromisoformat(day).date()
-        if d < since:
+        old = d < since  # 7日より前の日は「終わったおでかけ」を拾うためだけに読む（月と同じく30日残す）
+        if d < (now - timedelta(days=30)).date():
             continue
         data = load_json(f, {}) or {}
         # 公式ページを「付け忘れ」の別の投稿で出した日は、そのURLを元の投稿のカードに付ける
@@ -192,6 +193,8 @@ def collect(now, light=False):
             if until and datetime.fromisoformat(until).replace(tzinfo=JST) < now:
                 if p.get("topic", "") in ODEKAKE and not p.get("link"):
                     ended.append(entry)
+                continue
+            if old:
                 continue
             link = p.get("link")
             if link and light:
@@ -882,7 +885,7 @@ def render(items, ended, now, cfg):
                       + "".join(f'<div class="pane" data-t="{k}"{"" if k == first else " hidden"}>{cardlist(es, jp)}<p class="none">この都県のおでかけは、これから増やしていきます</p></div>'
                                 for k, en, jp, es in panes)
                       + past_list(ended, now)
-                      + '<p class="tip">矢印で公式ページ、「地図」で場所が開きます。<br>出かける前に、公式ページで<br>最新の情報を確かめてください。</p></section>')
+                      + '<p class="tip">矢印で公式ページ、「地図」で場所が開きます。<br>出かける前に、必ず公式ページで<br>最新の情報を確かめてください。</p></section>')
     if hot:  # 2. 今日のいち押し（おでかけの下。10/24 オーナー「おでかけの後でいい」）
         hot["hot"] = True
         blocks.append(f'<section class="blk hotb" id="hot" data-v="odekake">{head("TODAY&#39;S PICK", "今日のうさぎのいち押し", "その日にうさぎが比べて選んだ物のうち、使っている人がいちばん多い1つ。リンクは広告です")}'
@@ -1187,7 +1190,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 {blocks}
 <p class="pr-note">{pr_note}<br>買う前に、楽天のページで最新の情報を確かめてください。</p>
 <div class="sns"><h2>FOLLOW</h2>{follow}</div>
-<p class="ft">うさぎ│LIFE NOTES ｜ 毎日更新（最終 {updated}）<br>7日より前の投稿は、外しています</p>
+<p class="ft">うさぎ│LIFE NOTES<br>終わったおでかけも、このページに残しています<br>毎日更新（最終 {updated}）</p>
 </div>
 <button id="totop" aria-label="上にもどる"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4A403A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
 <script>
