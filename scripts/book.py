@@ -71,6 +71,9 @@ def page_line(texts, url, due):
         reg = page.post_region(texts)
     except Exception:  # 数えられない日は前の1行
         return PAGE_LINE.format(url=url)
+    # 木・金・土は「今週末に行ける」の数で誘う（10/26 オーナー「サイトに誘導が大事」）
+    if due and due.weekday() in (3, 4, 5) and reg and n.get("週末" + reg, 0) >= 3:
+        return f"今週末に行ける{reg}のおでかけ{n['週末' + reg]}件、公式ページつきの一覧：{url}"
     if reg and n.get(reg, 0) >= 3:
         return f"{reg}のおでかけ{n[reg]}件、公式ページつきの一覧：{url}"
     if n.get("関東", 0) >= 3 and n.get("関西", 0) >= 3:
