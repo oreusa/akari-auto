@@ -1031,7 +1031,7 @@ TEMPLATE = """<!doctype html>
 /* 紙の手帳のような生成りの地に、白い紙を重ねる。色はロゴの茶と、地域ごとの淡い色だけ */
 :root{{
   color-scheme:light;
-  --bg:#FAF8F5; --paper:#FFFFFF; --ink:#2B2622; --sub:#6B6058; --mute:#8C7B6E; --line:#E6DED4; --line2:#D6CCC1;
+  --bg:#FDFCFA; --paper:#FFFFFF; --ink:#2B2622; --sub:#6B6058; --mute:#8C7B6E; --line:#E6DED4; --line2:#D6CCC1;
   --brown:#A07E66; --brown2:#8C6A55; --free:#5E8A4A; --pr:#B5643F; --acc:#A07E66;
   --c1:rgba(242,214,194,.6); --c2:rgba(205,224,236,.65); --c3:rgba(214,228,205,.65); --c4:rgba(240,214,218,.65);
   --min:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
@@ -1060,7 +1060,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .s-winter .head:after{{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.55;
   background-image:radial-gradient(circle,#B9C8DA 1.1px,transparent 1.6px),radial-gradient(circle,#CBD6E4 .9px,transparent 1.4px);
   background-size:46px 52px,31px 37px;background-position:8px 12px,22px 30px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}}
-.head img{{width:88px;height:88px;display:block;margin:0 auto;border-radius:50%;background:#fff}}
+.head img{{width:64px;height:64px;display:block;margin:0 auto;border-radius:50%;background:#fff}}
 .en{{font:300 10px/1 var(--en);letter-spacing:.5em;color:var(--brown);margin:16px 0 0;padding-left:.5em}}
 .ttl{{font:600 26px/1.3 var(--min);letter-spacing:.18em;font-feature-settings:"palt";color:#231E1B;margin:16px 0 10px;padding-left:.18em}}
 .sub{{font-size:12.5px;line-height:1.95;color:var(--sub);margin:14px 0 0}}
@@ -1227,7 +1227,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .otab button{{flex:1;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:6px 0 12px;cursor:pointer;color:var(--mute);font:600 15px/1.3 var(--min);letter-spacing:.1em}}
 .otab button i{{display:block;font:400 9.5px/1 var(--en);font-style:normal;letter-spacing:.3em;margin-bottom:7px}}
 .otab button small{{display:block;font:400 11px/1 var(--go);letter-spacing:.04em;margin-top:7px}}
-.otab button.on{{color:var(--ink);border-bottom-color:var(--brown2)}}
+.otab button.on{{color:var(--ink);border-bottom-color:var(--ink)}}
 .otab button[disabled]{{opacity:.35;cursor:default}}
 .otab button{{font-size:14px;letter-spacing:.04em;min-width:0}} .otab button i{{letter-spacing:.16em;font-size:8.5px}}
 .pane[hidden]{{display:none}} .pane.empty .none{{display:block}}
@@ -1264,7 +1264,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
 <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
-<img src="logo-s.png" alt="うさぎ│LIFE NOTES" width="88" height="88">
+<img src="logo-s.png" alt="うさぎ│LIFE NOTES" width="64" height="64">
 <div class="en">USAGI LIFE NOTES</div>
 <h1 class="ttl">関東おでかけリスト</h1>
 <p class="sub">関東の今日から・新しく・無料で行ける場所と、<br>うさぎが数字で比べて選んだ物を、毎日のせています</p>
