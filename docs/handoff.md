@@ -30,13 +30,14 @@
 | 22:11 | 燈 夜の回（Claude） | 翌日の予定表と4コマ・ROOM台本を書く。指示は `docs/nightly-prompt.md` | `schedule/翌日.json`・ArtifactData akari2/翌日 |
 | 予定表を置いたとき | check（`check.yml`） | 決まりと楽天（販売中・商品名・数字・レビュー4.0以上）と出どころを確かめる。×は赤 | GitHub Actions |
 | 23:41 | 受け渡し役（Claude） | 4コマ台本とROOM台本・汐と凪の目標（「今日の目標」1FVhaChTwa4UnAftvfYLFGK-kc69CulyHJhZEMbJLhjY）をドライブへ、売上とA8の行を akari2/report へ写す | ドライブ・ArtifactData |
-| 9:13（毎日） | 朝の見回り（Claude） | 最初の1週間だけ、全部が回っているか確かめて直す。最初に book.yml を1回手で動かしてから log を読む。インスタの4コマは「出た」だけで合格にせず、state/booked.json の「日付 4コマ」→ ig_media.story_ok が全部 true かも見る（10/24 ずれたストーリーを「問題なし」と報告した）。燈の側で直せることはオーナーに回さない | 予約タスク「燈 朝の見回り」trig_012WxgKuNoSRnku3NEurFW1j（毎日同じスレッドで続く） |
+| 9:13（毎日） | 朝の見回り（Claude） | 最初の1週間だけ、全部が回っているか確かめて直す。最初に book.yml を1回手で動かしてから log を読む。インスタの4コマは「出た」だけで合格にせず、state/booked.json の「日付 4コマ」→ ig_media.story_ok が全部 true かも見る（10/24 ずれたストーリーを「問題なし」と報告した）。燈の側で直せることはオーナーに回さない | 予約タスク「燈 朝の見回り（基本スレッド10/27〜）」trig_01X7SyoZduWNm5qzwaZSmo8x（毎日同じ基本スレッドで続く） |
 
 ## 2. 予約タスク（Claude）
 - 夜の回と朝の確認はこのプロジェクトの予約タスク、受け渡しは単独の予約タスク。どれも毎回新しいセッションで動くので、月のスレッドが消えても止まらない。
 - 夜の回：`trig_01QzGRiC67ufRP7LBD5tKcu7`「燈2.0 夜の回（翌日の予定表を書く）」毎日22:11。中身は `docs/nightly-prompt.md` を読むだけなので、決まりの変更はこのファイルを直す。
 - 受け渡し：`trig_018LroXsHYAtXPeERQYaY3Zt`「燈 台本と数字の受け渡し（燈2.0）」毎日23:41。ドライブ・Docs・Buffer の接続つき（Bufferは使わない決まり）。
-- 朝の見回り：`trig_012WxgKuNoSRnku3NEurFW1j`「燈 朝の見回り」毎日9:13。10/24 オーナー「月みたいに自動運用させてくれ」で期限なしにした。同じスレッドで続き、新しいスレッドは立てない。古い「燈2.0 朝の確認（10/23〜10/29）」trig_01GR5piwSb3uuY749KRrtX31 は10/24に止めた。
+- 基本スレッド：10/27昼から「燈からの提案(10/27昼〜)」（前のスレは長すぎてオーナー指示で移った）。朝の見回り `trig_01X7SyoZduWNm5qzwaZSmo8x` 毎日9:13・夜の見回り `trig_012642m7jw1jHEwBxd9bat7o` 毎晩23:23 がこのスレッドで報告する。旧 trig_01Hofa3… ・trig_01Dicukv… は止めた。
+- 朝の見回り（旧）：`trig_012WxgKuNoSRnku3NEurFW1j`「燈 朝の見回り」毎日9:13（10/27停止）。10/24 オーナー「月みたいに自動運用させてくれ」で期限なしにした。同じスレッドで続き、新しいスレッドは立てない。古い「燈2.0 朝の確認（10/23〜10/29）」trig_01GR5piwSb3uuY749KRrtX31 は10/24に止めた。
 - 止めたもの：司令 `trig_01G8h6UJHm7SS5qbbZRDJSoJ`（無効）。古い監・検・更・朝の報告も無効のまま。動かさない。
 
 ## 3. GitHub（oreusa/akari-auto、非公開）
