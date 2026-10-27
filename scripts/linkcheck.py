@@ -104,7 +104,8 @@ def problems(r):
         b = urllib.parse.urlparse(r["final"])
         if a.path not in ("", "/") and b.path in ("", "/") and "rakuten" not in a.netloc:
             out.append("トップページに飛ばされる（行き先が消えた可能性）")
-    if r["part"] == "odekake" and a.path in ("", "/") and not a.query:
+    # 催しだけのサイト（やきいもフェス等）は題名が合うのでよい。施設のトップ（科博・六本木ヒルズ等）だけ出す
+    if r["part"] == "odekake" and a.path in ("", "/") and not a.query and not (r["title"] and same(r["name"], r["title"])):
         out.append("公式のトップページ（催しのページに替える）")
     if r["href"].startswith("http://"):
         out.append("http（安全でない）")

@@ -68,6 +68,56 @@ def page_spots_ended(now):
     return out
 
 
+_HOLD = set()  # 載せる前の確かめで通らなかったURL（このページには出さない）
+UA_PHONE = ("Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 "
+            "(KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1")
+
+
+def _open_ok(url):
+    """スマホと同じ形で開けるか（ページがない・15秒で開かないだけ×。重いだけの物は載せる）。"""
+    import time
+    import urllib.error
+    import urllib.request
+    t0 = time.time()
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": UA_PHONE, "Accept-Language": "ja"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            r.read(200000)
+            code = r.status
+    except urllib.error.HTTPError as e:
+        code = e.code
+    except Exception as e:
+        return {"ok": False, "why": str(e)[:60], "sec": round(time.time() - t0, 1)}
+    sec = round(time.time() - t0, 1)
+    # 403・429はロボットを断るだけのことが多く、人のスマホでは開く（関内フード等）ので載せる
+    return {"ok": code < 400 or code in (401, 403, 429), "why": "" if code < 400 else f"{code}", "sec": sec}
+
+
+def gate(urls, now):
+    """HPに載せる前に、まだ確かめていないリンクを開いて確かめる（10/27 オーナー「HPに載せる時もまず確認」）。
+    通った物は3日覚えておく（data/link-ok.json）。通らない物は毎回確かめ直し、通るまで載せない。"""
+    from concurrent.futures import ThreadPoolExecutor
+    fp = path("data", "link-ok.json")
+    book = load_json(fp, {}) or {}
+    today = now.date().isoformat()
+    old = (now - timedelta(days=3)).date().isoformat()
+    todo = [u for u in set(urls) if not (book.get(u, {}).get("ok") and book[u].get("at", "") >= old)]
+    with ThreadPoolExecutor(8) as ex:
+        for u, r in zip(todo, ex.map(_open_ok, todo)):
+            book[u] = r | {"at": today}
+    book = {u: v for u, v in book.items() if v.get("at", "") >= (now - timedelta(days=14)).date().isoformat()}
+    with open(fp, "w", encoding="utf-8") as fh:
+        json.dump(book, fh, ensure_ascii=False, indent=1, sort_keys=True)
+    _HOLD.clear()
+    bad = {u for u in set(urls) if not book.get(u, {}).get("ok")}
+    if len(bad) > len(set(urls)) / 2:  # 半分より多く×は、確かめる側（ネット）の不調。HPを空にしない
+        print("確かめで×が多すぎるので、今回は止めずに載せる:", len(bad))
+        return
+    _HOLD.update(bad)
+    for u in sorted(_HOLD):
+        print("載せない（確かめで×）:", u, book[u].get("why"), book[u].get("sec"))
+
+
 def _fix_url(url):
     """投稿のあとで開かなくなった公式ページを差し替える（data/link-fix.json。notes/linkcheck.md を見て集め係・夜の回が書く）。
     ""に差し替えた物はカードを出さない。"""
@@ -731,6 +781,8 @@ def all_spots(items, now):
     # 関東だけ（10/26 オーナー「関東と関西は広すぎ。関東おでかけリスト」）
     # 同じ催しを2回出さない（10/25 オーナー「ごちゃごちゃして分かりにくい」：NAKED meets 二条城 が2枚、やきいもフェスが3枚）
     for e in [e for e in posted if _age(e) <= 1] + extra + [e for e in posted if _age(e) > 1]:
+        if e.get("url") in _HOLD:
+            continue
         reg = region(_pref(e))
         if reg != "関東":
             continue
@@ -816,7 +868,7 @@ def render(items, ended, now, cfg):
     follow += ('<a class="co" data-en="LISTING" href="https://ig.me/m/ai_usagichan1" rel="noopener">おでかけ掲載'
                '<span>新しいお店や、毎年のイベント。<br>うさぎがご紹介します。ご相談はこちら</span></a>')
     spots = all_spots(items, now)
-    deals = [e for e in items["deal"] if e.get("url")]
+    deals = [e for e in items["deal"] if e.get("url") and e["url"] not in _HOLD]
     # しぼりこみは都県ごと（10/26 オーナー「関東と関西は広すぎ。月の見て、綺麗に分けてる」：月は府県ごと）
     tabs = '<button class="on" data-p="">すべて</button>' + "".join(
         f'<button data-p="{esc(x)}" style="--pc:{PREF_COLOR[x]}">{esc(x)}</button>' for x in KANTO_ORDER
@@ -1184,12 +1236,17 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .sns a.co:after{{content:"→";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--en);color:#9C8775;font-size:16px}}
 .sns a.co span{{color:var(--mute);font:400 11.5px/1.6 var(--go);letter-spacing:.04em;margin-top:6px}}
 /* 押しやすさ（10/27 オーナー「使いにくさとか、月は初めから気を使ってる」）：押す所は縦44px以上、地図の字は13px */
-.seg button,.stab button,.flt button,.chips .fr,.buy{{min-height:44px}}
+.seg button,.stab button,.flt button,.chips .fr,.buy,.cats button{{min-height:44px}}
 .flt button.fr{{margin-top:0}}
 .card.it .mp{{display:inline-flex;align-items:center;min-height:44px;padding:0 14px 0 0;font-size:13px}}
 .card.it .mpr{{margin-top:4px;padding-bottom:4px}}
 .js .gm{{display:flex;align-items:center;min-height:44px;padding:0 8px}}
 .sns a:not(.co){{display:inline-flex;align-items:center;min-height:44px;padding:0 6px}}
+/* 見やすさ（10/27 オーナー「なるべく見やすく」）：名前を月と同じ大きさに、カードのすき間を詰めて1画面に多く */
+.card.it{{padding:14px 42px 0 16px}}
+.card.it .t{{font-size:16.5px;line-height:1.45;margin:4px 0 0}}
+.card.it .d{{font-size:12.5px}}
+.card.it .mpr{{margin:2px -70px 0 -16px;padding:0 70px 2px 16px}}
 </style></head>
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
@@ -1283,6 +1340,10 @@ def main():
         now = datetime.fromisoformat(sys.argv[sys.argv.index("--now") + 1]).replace(tzinfo=JST)
     cfg = load_json(path("config.json"), {}) or {}
     items, ended = collect(now)
+    if os.environ.get("LINK_GATE"):  # 公開するとき（page.yml）だけ、載せる前にリンクを開いて確かめる
+        _NOW[:] = [now]
+        gate([e["url"] for e in all_spots(items, now)] + [e["url"] for e in items["deal"] if e.get("url")
+                                                            and "hb.afl.rakuten" not in e["url"]], now)
     out = path("site", "index.html")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w", encoding="utf-8") as fh:
