@@ -108,7 +108,8 @@ def _same_head(p, where=""):
     hx, ht = _head(p.get("x")), _head(p.get("threads"))
     out = []
     for h in (hx, ht):
-        if p.get("link") and h is not None and not h.startswith("【AIが比べた"):
+        # 9:15のおでかけに付ける持ち物（link.mochimono）は、おでかけの見出しのまま（10/27 オーナー「1個目おでかけ、2こめURL+PR」）
+        if p.get("link") and not p["link"].get("mochimono") and h is not None and not h.startswith("【AIが比べた"):
             out.append(f"{where}PRの1行目が「【AIが比べた」で始まっていない（PRの見出しはこの形。10/23 オーナー）")
             break
     if hx is not None and ht is not None and hx != ht:
@@ -173,9 +174,16 @@ def post_problems(p):
             if LINK not in joined:
                 out.append(f"{ch}：link があるのに文に {{{{LINK}}}} がない")
             first_last = texts[0].strip().splitlines()[-1] if texts and texts[0].strip() else ""
-            if "#PR" not in first_last:
+            if link.get("mochimono"):
+                if p.get("slot") != "09:15":
+                    out.append(f"{ch}：持ち物（mochimono）は 09:15 のおでかけだけ")
+                if LINK in texts[0] or "#PR" in texts[0]:
+                    out.append(f"{ch}：持ち物は2つ目に入れる（1つ目はPRなしのおでかけのまま）")
+                if len(texts) < 2 or LINK not in texts[1] or "選んだ理由：" not in texts[1] or "行くときの持ち物：" not in texts[1]:
+                    out.append(f"{ch}：2つ目に「行くときの持ち物：」「選んだ理由：」{{{{LINK}}}} を入れる")
+            elif "#PR" not in first_last:
                 out.append(f"{ch}：PRなのに1つ目の最後の行に #PR がない")
-            if texts and isinstance(texts[0], str) and "選んだ理由：" not in texts[0]:
+            if not link.get("mochimono") and texts and isinstance(texts[0], str) and "選んだ理由：" not in texts[0]:
                 out.append(f"{ch}：PRの1つ目に「選んだ理由：」の1行がない（何をいくつ比べ、どの数字で選んだか）")
             for i, t in enumerate(texts, 1):
                 if LINK in t and "#PR" not in t:
