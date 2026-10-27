@@ -167,7 +167,10 @@ def _lines(text):
 
 
 def _title(text):
-    t = _lines(text)[0]
+    ls = _lines(text)
+    t = ls[0]
+    if t == "【関東おでかけ情報】" and len(ls) > 1:  # 9:15は毎日同じ見出しなので、2行目（いつ・どこで・何が）を名前にする
+        return ls[1]
     t = t.strip("【】")
     return t
 
@@ -259,6 +262,8 @@ def collect(now, light=False):
             if old:
                 continue
             link = p.get("link")
+            if link and link.get("mochimono"):  # おでかけに付けた持ち物は、HPではおでかけのカードとして出す
+                link = None
             if link and light:
                 continue
             if link:
