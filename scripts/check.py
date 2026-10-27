@@ -327,7 +327,7 @@ def check_file(fp):
 
 
 def asof_problems(p, d):
-    """出どころの「（M/D時点）」が投稿の日から7日より古くないか。1つ目の文には必ず要る。"""
+    """出どころの「（M/D時点）」が投稿の日から7日より古くないか。x・threads のどこか（ふつうは2つ目のURLの行）に必ず要る。"""
     out = []
     for name, texts in (("x", p.get("x")), ("threads", p.get("threads"))):
         if not isinstance(texts, list) or not texts:
