@@ -1,15 +1,15 @@
 {
- "at": "2026-10-27T00:56:02+00:00",
+ "at": "2026-10-27T03:18:39+00:00",
  "headers": {
-  "ratelimit": "\"3000-in-30days\"; r=2603; t=2187797",
+  "ratelimit": "\"3000-in-30days\"; r=2600; t=2179240",
   "ratelimit-policy": "\"3000-in-30days\"; q=3000; w=2592000; pk=:YTZlODA2NDQ5YjZj:",
   "x-ratelimit-limit": "3000",
-  "x-ratelimit-remaining": "2603",
+  "x-ratelimit-remaining": "2600",
   "x-ratelimit-reset": "1795250359"
  },
  "calls": {
   "2026-10-25": 29,
   "2026-10-26": 39,
-  "2026-10-27": 15
+  "2026-10-27": 18
  }
 }

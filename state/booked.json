@@ -2100,7 +2100,8 @@
         "video": null,
         "alt": "4コマ漫画 第20話"
       },
-      "svc": "twitter"
+      "svc": "twitter",
+      "seen": "出た"
     },
     "threads": {
       "tries": 1,
@@ -2117,7 +2118,8 @@
         "video": null,
         "alt": "4コマ漫画 第20話"
       },
-      "svc": "threads"
+      "svc": "threads",
+      "seen": "出た"
     },
     "instagram": {
       "tries": 1,
@@ -2133,7 +2135,8 @@
         "video": "https://drive.google.com/uc?export=download&id=1N9Lm1iayr0kj7zIihgHQa5PiwwqIgGoe",
         "alt": "4コマ漫画 第20話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
     },
     "ig_slides": {
       "tries": 2,
@@ -2154,7 +2157,8 @@
         "ig_type": "post",
         "alt": "4コマ漫画 第20話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
     },
     "ig_story1": {
       "tries": 1,
@@ -2172,7 +2176,8 @@
         "ig_type": "story",
         "alt": "4コマ漫画 第20話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
     },
     "ig_story2": {
       "tries": 1,
@@ -2190,7 +2195,32 @@
         "ig_type": "story",
         "alt": "4コマ漫画 第20話"
       },
-      "svc": "instagram"
+      "svc": "instagram",
+      "seen": "出た"
+    }
+  },
+  "2026-10-27 22:15": {
+    "twitter": {
+      "tries": 1,
+      "id": "6ae0180ee322dad8011f7e22",
+      "kind": "通常",
+      "at": "22:15",
+      "texts": [
+        "11/1から、横浜中華街で美食節。上海蟹フェアは1か月\n\n◇ 上海蟹フェア 11/1〜11/30\n◇ 秋の味巡り・キーワードラリーも同じ期間\n◇ 11/12は華正樓本店で8品の会\n\n今年で19回目\n横浜中華街の公式ページより（10/26時点）\n#グルメ",
+        "美食節の公式ページです\nhttps://www.chinatown.or.jp/event/event/2026_food_festival/\n\n関東のおでかけ42件、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=x2215"
+      ],
+      "topic": "グルメ"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "6ae0180e05551cc3591cdbc1",
+      "kind": "通常",
+      "at": "22:15",
+      "texts": [
+        "11/1から、横浜中華街で美食節。上海蟹フェアは1か月\n\n◇ 横濱中華街 美食節2026（第19回）\n◇ 上海蟹フェア：11/1〜11/30\n◇ 横浜中華街〜秋の味巡り〜：11/1〜11/30\n◇ 探して発見！秋の横浜中華街、食のキーワードラリー：11/1〜11/30\n◇ 中華一周ガストロノミー会：11/12、華正樓 本店で中華料理の代表的な8品\n\n調べて分かった数字：上海蟹のフェアは11月の30日間ずっと続きます。キーワードラリーは、街を歩きながら食の言葉を探す形です。\n\n※参加するお店と値段は、公式ページで確かめてください\n横浜中華街の公式ページより（10/26時点）",
+        "美食節の公式ページです\nhttps://www.chinatown.or.jp/event/event/2026_food_festival/\n\n関東のおでかけ42件、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=t2215"
+      ],
+      "topic": "グルメ"
     }
   }
 }
