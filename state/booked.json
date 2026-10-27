@@ -2274,8 +2274,7 @@
       "topic": "茨城"
     },
     "threads": {
-      "tries": 3,
-      "error": "InvalidInputError: Invalid post: Thread item 2 exceeds the 500 character limit."
+      "tries": 0
     }
   },
   "2026-10-28 12:15": {
