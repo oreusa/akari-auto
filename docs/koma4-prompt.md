@@ -41,3 +41,5 @@ ToolSearch で "select:ArtifactData" を読み込み、artifact https://claude.a
 写すファイル：log/D.md、schedule/D.json、data/page-stats.json（あれば）。使えないときは最後のメッセージに書く。
 
 最後のメッセージ：1行だけ（例「4コマ係 10/24：第17話 X・Threads・Instagram 予約OK（8:00）」）。
+
+■8:00に出せない時は、すぐ基本スレッドに知らせる（10/27 オーナー「なんでその報告ないわけ？」。この係のスレッドはオーナーが見ない）：2回目（7:50）で出さないと決めた時、絵・文が無い時、予約OKにならなかった時は、mcp__hearthbot__message_thread（thread_id "cmsg_01Cb1bws8cre3tNtasLshGkC8T1Ypvrk1s2pqJuVoJB198"、text「4コマ係 D：第N話を8:00に出せない。理由：〜。次の手：〜」）を1回送る。そのツールが無ければ、最後のメッセージの頭に【要対応】を付ける。1回目（7:15）で直しを頼んだだけの時は送らない。
