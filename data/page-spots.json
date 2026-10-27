@@ -69,9 +69,9 @@
       "start": "2026-11-05",
       "ends": "2026-12-25T23:00",
       "free": true,
-      "note": "六本木ヒルズのけやき坂。見るのは無料",
-      "url": "https://www.roppongihills.com/",
-      "checked": "2026-10-24"
+      "note": "港区｜けやき坂イルミネーション“SNOW＆BLUE”。17:00〜22:00、見るのは無料",
+      "url": "https://www.christmas.hills-site.com/",
+      "checked": "2026-10-27"
     },
     {
       "title": "あしかがフラワーパーク 光の花の庭",
@@ -166,8 +166,8 @@
       "ends": "2027-02-21T17:00",
       "free": false,
       "note": "台東区｜上野の科学博物館の特別展。9:00〜17:00",
-      "url": "https://www.kahaku.go.jp/",
-      "checked": "2026-10-26"
+      "url": "https://www.ikimono-sei.jp/",
+      "checked": "2026-10-27"
     },
     {
       "title": "THE MOVEUM YOKOHAMA モネと浮世絵",
@@ -344,10 +344,10 @@
       "when": "11/6〜11/8",
       "start": "2026-11-06",
       "ends": "2026-11-08T20:00",
-      "free": true,
-      "note": "日光市｜世界遺産の社寺を夜に照らします。17:00〜21:00（8日は20:00まで）",
+      "free": false,
+      "note": "日光市｜世界遺産の社寺を夜に照らします。17:00〜21:00（8日は20:00まで）、一部有料",
       "url": "https://lightup-nikko.jp/",
-      "checked": "2026-10-26"
+      "checked": "2026-10-27"
     },
     {
       "title": "宇都宮餃子祭り2026",
@@ -407,6 +407,114 @@
       "note": "長瀞町｜16:00〜21:00、大人500円・小学生以下無料、上長瀞駅から歩いて5分",
       "url": "https://www.nagatoro.gr.jp/2026/09/%e9%95%b7%e7%80%9e%e7%b4%85%e8%91%89%e3%81%be%e3%81%a4%e3%82%8a2026%e6%97%a5%e7%a8%8b%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/",
       "checked": "2026-10-26"
+    },
+    {
+      "title": "よみうりランド ジュエルミネーション 2026",
+      "pref": "東京",
+      "place": "よみうりランド",
+      "when": "10/29〜4/4",
+      "start": "2026-10-29",
+      "ends": "2027-04-04T20:30",
+      "free": false,
+      "note": "稲城市｜宝石色のイルミネーション。16:00〜20:30（時期で変わります）",
+      "url": "https://www.yomiuriland.com/jewellumination/",
+      "checked": "2026-10-27"
+    },
+    {
+      "title": "新宿御苑 菊花壇展",
+      "pref": "東京",
+      "place": "新宿御苑",
+      "when": "11/1〜11/15",
+      "start": "2026-11-01",
+      "ends": "2026-11-15T16:30",
+      "free": false,
+      "note": "新宿区｜9:00〜16:30。一般500円、中学生以下は無料",
+      "url": "https://policies.env.go.jp/national-garden/shinjukugyoen/highlights/kiku/",
+      "checked": "2026-10-27"
+    },
+    {
+      "title": "八王子いちょう祭り",
+      "pref": "東京",
+      "place": "陵南公園",
+      "when": "11/21〜11/22",
+      "start": "2026-11-21",
+      "ends": "2026-11-22T16:00",
+      "free": true,
+      "note": "八王子市｜甲州街道のいちょう並木。入場無料（通行手形は700円）",
+      "url": "https://www.ichou-festa.org/",
+      "checked": "2026-10-27"
+    },
+    {
+      "title": "秩父ミューズパーク イチョウ並木",
+      "pref": "埼玉",
+      "place": "秩父ミューズパーク",
+      "when": "10/21〜11/9",
+      "start": "2026-10-21",
+      "ends": "2026-11-09T17:00",
+      "free": true,
+      "note": "秩父市｜スカイロードの黄色いイチョウ並木。見頃の時期",
+      "url": "https://www.chichibuji.gr.jp/event/icyou/",
+      "checked": "2026-10-27"
+    },
+    {
+      "title": "棚田のあかり 大山千枚田",
+      "pref": "千葉",
+      "place": "大山千枚田",
+      "when": "10/24〜1/11",
+      "start": "2026-10-24",
+      "ends": "2027-01-11T20:00",
+      "free": true,
+      "note": "鴨川市｜棚田に灯りがともります。17:00〜20:00ごろ、見学は自由",
+      "url": "https://maruchiba.jp/event/detail_10895.html",
+      "checked": "2026-10-27"
+    },
+    {
+      "title": "成田山公園 紅葉まつり",
+      "pref": "千葉",
+      "place": "成田山公園",
+      "when": "11/14〜11/29",
+      "start": "2026-11-14",
+      "ends": "2026-11-29T16:00",
+      "free": true,
+      "note": "成田市｜第27回。土日祝は10:00〜15:00に催しがあります",
+      "url": "https://maruchiba.jp/event/detail_10812.html",
+      "checked": "2026-10-27"
+    },
+    {
+      "title": "いばらきフラワーパーク バラ農家の収穫祭",
+      "pref": "茨城",
+      "place": "いばらきフラワーパーク",
+      "when": "10/10〜11/23",
+      "start": "2026-10-10",
+      "ends": "2026-11-23T20:30",
+      "free": false,
+      "note": "石岡市｜秋バラの園。9:00〜20:30、大人1,500円・小中学生500円",
+      "url": "https://www.flowerpark.or.jp/news-column/autumn2026/",
+      "checked": "2026-10-27"
+    },
+    {
+      "title": "草津 道の駅紅葉ライトアップ 2026",
+      "pref": "群馬",
+      "place": "道の駅 草津運動茶屋公園",
+      "when": "10/16〜11/15",
+      "start": "2026-10-16",
+      "ends": "2026-11-15T21:00",
+      "free": true,
+      "note": "草津町｜道の駅の紅葉を17:00〜21:00に照らします",
+      "url": "https://www.kusatsu-onsen.ne.jp/event/1685.php",
+      "checked": "2026-10-27"
+    },
+    {
+      "title": "湯畑ツリー＆イルミネーション2026",
+      "pref": "群馬",
+      "place": "草津温泉 湯畑",
+      "when": "11/21〜2/23",
+      "start": "2026-11-21",
+      "ends": "2027-02-24T00:00",
+      "free": true,
+      "note": "草津町｜湯畑の広場に大きなツリー。17:00〜24:00",
+      "url": "https://www.kusatsu-onsen.ne.jp/event/2029.php",
+      "checked": "2026-10-27"
     }
   ]
 }
