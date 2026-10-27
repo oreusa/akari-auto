@@ -515,6 +515,28 @@
       "note": "草津町｜湯畑の広場に大きなツリー。17:00〜24:00",
       "url": "https://www.kusatsu-onsen.ne.jp/event/2029.php",
       "checked": "2026-10-27"
+    },
+    {
+      "title": "ARIAKE GARDEN Winter Illuminations",
+      "pref": "東京",
+      "place": "有明ガーデン",
+      "when": "10/31（土）〜2/28（日）",
+      "start": "2026-10-31T17:00",
+      "ends": "2027-02-28T23:00",
+      "free": true,
+      "note": "10/31 17:50点灯式（無料）。11月は17:00〜23:00、12〜1月は16:00〜23:00",
+      "url": "https://koto.goguynet.jp/2026/10/27/ariakegarden_illumination2026/",
+      "checked": "2026-10-27"
+    },
+    {
+      "title": "UNI COFFEE ROASTERY シタディーンノース新宿東京",
+      "pref": "東京",
+      "place": "シタディーンノース新宿東京",
+      "kind": "shop",
+      "open": "2026-10-29",
+      "note": "10/29開店。カフェ10:00〜20:00、ジンジャーブレッドラテ720円",
+      "url": "https://prtimes.jp/main/html/rd/p/000000126.000084389.html",
+      "checked": "2026-10-27"
     }
   ]
 }
