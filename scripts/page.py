@@ -176,7 +176,17 @@ def _title(text):
 
 
 def _bullets(text):
-    return [ln[1:].strip() for ln in _lines(text) if ln.startswith("◇")][:6]
+    """◇ の行。下に1字下げた行が続くときは1つにまとめる（10/28から ◇ は名前だけ＋下げた行。HPの比べ表は「名前：件数・評価、決め手」で読む）。"""
+    out = []
+    for raw in text.split("\n"):
+        ln = raw.strip()
+        if not ln:
+            continue
+        if ln.startswith("◇"):
+            out.append(ln[1:].strip())
+        elif raw.startswith("　") and out and not ln.startswith(("※", "#")):
+            out[-1] += ("、" if "：" in out[-1] else "：") + ln
+    return out[:6]
 
 
 def _line_with(text, key):

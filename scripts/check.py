@@ -45,6 +45,22 @@ def _texts_problems(texts, where, allow_link):
 
 OFFICIAL_FROM = date(2026, 10, 24)
 REASON_FROM = date(2026, 10, 26)  # この日から、選んだ理由に「件数・評価以外の決め手の数字」を要る（10/25 オーナー「クチコミ数と評価だけで内容ペラペラ」）
+SHORT_FROM = date(2026, 10, 28)  # この日から ◇ の行と下げた行を短く（10/27 オーナー「月と同じ決まり。1行に1つ、◇ は25字くらい」）
+SHORT_MAX = 30
+
+
+def short_line_problems(texts, where):
+    """◇ の行・全角スペースで下げた行が長すぎないか（25字くらいが目安、30字をこえたら×）。"""
+    out = []
+    for i, t in enumerate(texts or [], 1):
+        if not isinstance(t, str):
+            continue
+        for ln in t.splitlines():
+            if (ln.startswith("◇") or ln.startswith("　")) and len(ln.strip()) > SHORT_MAX:
+                out.append(f"{where} {i}つ目：◇・下げた行が{len(ln.strip())}字（25字くらいまで。カッコに詰めず、名前の下に1字下げた短い行を2〜3行。入らない分は2つ目へ）「{ln.strip()[:20]}…」")
+    return out
+
+
 PLACE_FROM = date(2026, 10, 25)  # この日から、おでかけ・お店の投稿に place（HPの「地図」で探す名前）を要る
 PLACE_TOPICS = {"おでかけ", "イルミネーション", "温泉", "紅葉", "無料", "イベント", "週末旅", "旅行", "グルメ", "カフェ", "新店"}  # この日の予定表から「2つ目に公式ページ」を見る
 
@@ -290,6 +306,10 @@ def check_file(fp):
         for w in BANNED_WORDS:
             if any(w in t for t in (p.get("x") or []) + (p.get("threads") or [])):
                 extra.append(f"「{w}」は使わない（{BANNED_WORDS[w]}）")
+        if d >= SHORT_FROM:
+            fb = p.get("fallback") or {}
+            for ch in ("x", "threads"):
+                extra += short_line_problems(p.get(ch), ch) + short_line_problems(fb.get(ch), "fallback " + ch)
         if p.get("link") and d >= REASON_FROM:
             for ch in ("x", "threads"):
                 t = (p.get(ch) or [""])[0]
