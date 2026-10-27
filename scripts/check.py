@@ -6,6 +6,7 @@
 import glob
 import os
 import re
+import urllib.parse
 import sys
 from datetime import date, datetime, timedelta
 
@@ -115,6 +116,33 @@ def _same_head(p, where=""):
     return out
 
 
+AFL = "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc="
+
+
+def comment_problems(p):
+    """伸びたら貼る「行くときの持ち物」（10/27 オーナー「伸びてからじゃなくて最初から貼るのね？」→伸びてから）。
+    9:15のおでかけに "comment" を付けると、20:20に凪が、Threadsで150以上見られていたときだけコメントに貼る。"""
+    c = p.get("comment")
+    if not c:
+        return []
+    out = []
+    if p.get("slot") != "09:15" or p.get("link"):
+        out.append("comment（持ち物）は 09:15 のPRでないおでかけだけ")
+    t = str(c.get("text", ""))
+    url = str(c.get("item", ""))
+    if not url.startswith("https://item.rakuten.co.jp/"):
+        out.append("comment.item は楽天市場の商品ページ（https://item.rakuten.co.jp/…）")
+    for need in ("行くときの持ち物：", "選んだ理由：", "#PR"):
+        if need not in t:
+            out.append(f"comment.text に「{need}」がない")
+    links = re.findall(r"https://\S+", t)
+    if len(links) != 1 or not links[0].startswith(AFL) or urllib.parse.unquote(links[0][len(AFL):].split("&")[0]) != url:
+        out.append("comment.text のURLは1つだけ、comment.item を楽天アフィリエイトの形（" + AFL + "＋商品ページをURLエンコード）にした物")
+    if "！" in t or "!" in t:
+        out.append("comment.text に「！」がある")
+    return out
+
+
 def post_problems(p):
     out = []
     slot = p.get("slot", "")
@@ -153,6 +181,7 @@ def post_problems(p):
                 if LINK in t and "#PR" not in t:
                     out.append(f"{ch} {i}つ目：リンクがある投稿に #PR がない")
     out += _same_head(p)
+    out += comment_problems(p)
     if not p.get("topic"):
         out.append("topic（Threadsのトピック）がない")
     if link or p.get("until"):
