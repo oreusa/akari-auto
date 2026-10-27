@@ -101,9 +101,13 @@ def gate(urls, now):
     book = load_json(fp, {}) or {}
     today = now.date().isoformat()
     old = (now - timedelta(days=3)).date().isoformat()
-    todo = [u for u in set(urls) if not (book.get(u, {}).get("ok") and book[u].get("at", "") >= old)]
+    # 通った物は3日、ブラウザ（毎日13:30の linkcheck）で開けた物はその日のうち確かめ直さない
+    todo = [u for u in set(urls) if not (book.get(u, {}).get("ok") and book[u].get("at", "") >= old)
+            and not (book.get(u, {}).get("by") == "browser" and book[u].get("at") == today)]
     with ThreadPoolExecutor(8) as ex:
         for u, r in zip(todo, ex.map(_open_ok, todo)):
+            if not r["ok"] and book.get(u, {}).get("ok") and book[u].get("by") == "browser" and book[u].get("at", "") >= old:
+                continue  # 機械の簡単な開き方では断られても、ブラウザで開けたページは載せる（無印良品など）
             book[u] = r | {"at": today}
     book = {u: v for u, v in book.items() if v.get("at", "") >= (now - timedelta(days=14)).date().isoformat()}
     with open(fp, "w", encoding="utf-8") as fh:

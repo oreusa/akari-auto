@@ -164,6 +164,19 @@ async def main():
     lines += ["", "## 全部のリンク（遅い順）", "", "秒｜状態｜欄｜名前｜行き先"]
     for r in sorted(res, key=lambda x: -(x["sec"] or 0)):
         lines.append(f"{r['sec']}｜{r['status'] or 'ERR'}｜{r['part']}｜{r['name'] or r['label']}｜{r['href']}")
+    # ブラウザで開けた結果を、HPの「載せる前の確かめ」（page.py の gate）にも渡す。ロボットを断るだけのページもこちらで通る
+    import json
+    okp = os.path.join(os.path.dirname(__file__), "..", "data", "link-ok.json")
+    try:
+        book = json.load(open(okp, encoding="utf-8"))
+    except (OSError, ValueError):
+        book = {}
+    for r in res:
+        good = not r["err"] and (r["status"] < 400 or r["status"] in (401, 403, 429))
+        book[r["href"]] = {"ok": good, "why": r["err"][:60] or ("" if r["status"] < 400 else str(r["status"])),
+                           "sec": r["sec"], "at": now.date().isoformat(), "by": "browser"}
+    with open(okp, "w", encoding="utf-8") as f:
+        json.dump(book, f, ensure_ascii=False, indent=1, sort_keys=True)
     with open(OUT, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
     print("\n".join(lines[:60]))
