@@ -28,8 +28,8 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - name: ページを作る
-        run: python3 scripts/page.py
+      - name: ページを作る（載せる前に、おでかけ・お得のリンクを開いて確かめる）
+        run: LINK_GATE=1 python3 scripts/page.py
       - name: 公開する（Cloudflare Pages。鍵があるときだけ。アドレス usagi-life-notes.pages.dev）
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then echo "Cloudflareの鍵がまだないので公開しない"; exit 0; fi
@@ -50,8 +50,8 @@ jobs:
           if [ "${{ inputs.reset }}" = "true" ]; then python3 scripts/pagestats.py reset "$NS" || true; else python3 scripts/pagestats.py "$NS" || true; fi
           git config user.name "akari-auto"
           git config user.email "akari-auto@users.noreply.github.com"
-          git add data/page-stats.json 2>/dev/null || true
+          git add data/page-stats.json data/link-ok.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
-          git commit -m "ページの数を記録"
+          git commit -m "ページの数とリンクの確かめを記録"
           for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done
           exit 1
