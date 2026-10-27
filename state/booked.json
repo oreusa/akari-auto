@@ -2274,7 +2274,7 @@
       "topic": "茨城"
     },
     "threads": {
-      "tries": 2,
+      "tries": 3,
       "error": "InvalidInputError: Invalid post: Thread item 2 exceeds the 500 character limit."
     }
   },
@@ -2372,6 +2372,164 @@
         "比べて選んだ椙山紡織 NA-055Hの商品ページです（10/27時点）\nhttps://www.amazon.co.jp/dp/B00F4S7IK8?tag=aiusagichan-22\n#PR\n\n比べた表と選んだ理由、ほかにうさぎが選んだ物：https://usagi-life-notes.pages.dev/?f=t1815"
       ],
       "topic": "暮らし"
+    }
+  },
+  "2026-10-28 4コマ": {
+    "ig_media": {
+      "slides": [
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=84&cw=709&ch=493&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=596&cw=709&ch=512&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=1118&cw=709&ch=512&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=1640&cw=709&ch=512&output=jpg&q=92"
+      ],
+      "stories": [
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=84&cw=709&ch=1024&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=1118&cw=709&ch=1034&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+      ],
+      "how": "見つけた",
+      "boxes": [
+        [
+          7,
+          84,
+          709,
+          493
+        ],
+        [
+          7,
+          596,
+          709,
+          512
+        ],
+        [
+          7,
+          1118,
+          709,
+          512
+        ],
+        [
+          7,
+          1640,
+          709,
+          512
+        ]
+      ],
+      "src": "https://drive.google.com/uc?export=download&id=1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX",
+      "v": 2,
+      "story_diff": [
+        0.8,
+        0.9
+      ],
+      "story_ok": [
+        true,
+        true
+      ]
+    },
+    "twitter": {
+      "tries": 1,
+      "id": "6ae1231fbebdf8261a7f96a0",
+      "kind": "4コマ",
+      "at": "08:00",
+      "texts": [
+        "【11/1〜11/15　新宿御苑｜菊花壇展は1878年から続く秋の花壇🌼】\n\n◇ 大菊の花壇は39品種311株\n◇ 花壇の種類は7つ\n\nうさぎちゃんのおでかけ4コマ 第21話「菊のひな壇」🌙",
+        "新宿御苑の菊花壇展の公式ページです\nhttps://policies.env.go.jp/national-garden/shinjukugyoen/highlights/kiku/\n\n関東のおでかけ49件、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=x0800"
+      ],
+      "topic": "東京",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX",
+        "video": null,
+        "alt": "4コマ漫画 第21話"
+      },
+      "svc": "twitter"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "6ae1231fc039c7bc1c8b1743",
+      "kind": "4コマ",
+      "at": "08:00",
+      "texts": [
+        "【11/1〜11/15　新宿御苑｜菊花壇展は1878年から続く秋の花壇🌼】\n\n◇ 大菊の花壇は39品種311株\n◇ 花壇の種類は7つ\n\nうさぎちゃんのおでかけ4コマ 第21話「菊のひな壇」🌙",
+        "新宿御苑の菊花壇展の公式ページです\nhttps://policies.env.go.jp/national-garden/shinjukugyoen/highlights/kiku/\n\n関東のおでかけ49件、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=t0800"
+      ],
+      "topic": "東京",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX",
+        "video": null,
+        "alt": "4コマ漫画 第21話"
+      },
+      "svc": "threads"
+    },
+    "instagram": {
+      "tries": 1,
+      "id": "6ae12322c039c7bc1c8b17e0",
+      "kind": "4コマ",
+      "at": "08:00",
+      "texts": [
+        "【11/1〜11/15　新宿御苑｜菊花壇展は1878年から続く秋の花壇🌼】\n\n◇ 大菊の花壇は39品種311株\n◇ 花壇の種類は7つ\n\nうさぎちゃんのおでかけ4コマ 第21話「菊のひな壇」🌙\n\nくわしい場所と公式ページは、プロフィールのリンク「関東おでかけリスト」からどうぞ。関東のおでかけを、ほかにもまとめています。\n\n#新宿御苑 #菊花壇展 #東京おでかけ #関東おでかけ #おでかけ4コマ"
+      ],
+      "topic": "東京",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX",
+        "video": "https://drive.google.com/uc?export=download&id=1ahnU-6DOxI8l7m-HjMjSNOcYNhAJRvmj",
+        "alt": "4コマ漫画 第21話"
+      },
+      "svc": "instagram"
+    },
+    "ig_slides": {
+      "tries": 1,
+      "id": "6ae12323452be6aaba44a43d",
+      "kind": "4コマ",
+      "at": "08:00",
+      "texts": [
+        "【11/1〜11/15　新宿御苑｜菊花壇展は1878年から続く秋の花壇🌼】\n\n◇ 大菊の花壇は39品種311株\n◇ 花壇の種類は7つ\n\nうさぎちゃんのおでかけ4コマ 第21話「菊のひな壇」🌙\n\nくわしい場所と公式ページは、プロフィールのリンク「関東おでかけリスト」からどうぞ。関東のおでかけを、ほかにもまとめています。\n\n#新宿御苑 #菊花壇展 #東京おでかけ #関東おでかけ #おでかけ4コマ"
+      ],
+      "topic": "東京",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=84&cw=709&ch=493&output=jpg&q=92",
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=596&cw=709&ch=512&output=jpg&q=92",
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=1118&cw=709&ch=512&output=jpg&q=92",
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=1640&cw=709&ch=512&output=jpg&q=92"
+        ],
+        "ig_type": "post",
+        "alt": "4コマ漫画 第21話"
+      },
+      "svc": "instagram"
+    },
+    "ig_story1": {
+      "tries": 1,
+      "id": "6ae12325c039c7bc1c8b18a3",
+      "kind": "4コマ",
+      "at": "08:00",
+      "texts": [
+        "【11/1〜11/15　新宿御苑｜菊花壇展は1878年から続く秋の花壇🌼】\n\n◇ 大菊の花壇は39品種311株\n◇ 花壇の種類は7つ\n\nうさぎちゃんのおでかけ4コマ 第21話「菊のひな壇」🌙"
+      ],
+      "topic": "東京",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=84&cw=709&ch=1024&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+        ],
+        "ig_type": "story",
+        "alt": "4コマ漫画 第21話"
+      },
+      "svc": "instagram"
+    },
+    "ig_story2": {
+      "tries": 1,
+      "id": "6ae12326c039c7bc1c8b18cc",
+      "kind": "4コマ",
+      "at": "08:01",
+      "texts": [
+        "【11/1〜11/15　新宿御苑｜菊花壇展は1878年から続く秋の花壇🌼】\n\n◇ 大菊の花壇は39品種311株\n◇ 花壇の種類は7つ\n\nうさぎちゃんのおでかけ4コマ 第21話「菊のひな壇」🌙"
+      ],
+      "topic": "東京",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Sn9MT5A8cOq2xUtHx_Ydn8ybdHK5mZuX&cx=7&cy=1118&cw=709&ch=1034&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+        ],
+        "ig_type": "story",
+        "alt": "4コマ漫画 第21話"
+      },
+      "svc": "instagram"
     }
   }
 }
