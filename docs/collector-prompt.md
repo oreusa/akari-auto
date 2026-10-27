@@ -14,6 +14,7 @@
 1. ToolSearch で "select:mcp__github__get_file_contents,mcp__github__push_files,WebSearch,WebFetch" を読み込む。
 2. mcp__github__get_file_contents（owner=oreusa repo=akari-auto）で次を読む：notes/stock.md（毎朝機械が数えた在庫。×が足りない所）、data/page-spots.json、data/page-goods.json、notes/collector-log.md（前の日までに何を足したか）、notes/mistakes.md（ミス帳。同じミスをしない）。notes/linkcheck.md（毎日13:30に機械がHPのリンクをスマホのブラウザで全部開いた結果。「直す所」に出た物は、公式の別のページに替えるか消す。重い（5秒以上）公式ページは、同じ催しのもっと軽い公式ページ（主催・施設のお知らせのページなど）があれば替える。「公式のトップページ」と出た物は、その催しのページに替える。data/page-spots.json にある物はそのURLを直し、無い物（投稿から載った物）は data/link-fix.json の fix に「元のURL": "新しいURL"（替えが無ければ ""）を足して同じ保存で一緒に保存する。楽天・A8の重さとロボット避けの画面は直さなくてよい。data/link-ok.json で ok が false の物はHPに出ていないので、先に替える）。data/page-stats.json（HPで押された数。days の click に「欄|名前」ごとの回数）。今日の日付 T（日本時間）と曜日を決める。
 3. 足す順番：
+   ⓪ ドライブ「おでかけ候補帳」（mcp__Google_Drive__read_file_content fileId=1KOFJXw86V_O3XR8v1sEnOPlNQoFBvtf1Z45OGaU-Olc）を読む。GPTの汐が催しの一覧ページから写した候補で、検索しなくても見つかる分（10/27 オーナー「おでかけリストも全部入れていこう」。関東で約130件が目標、Claudeの使用は増やさない）。data/page-spots.json に無い物・終わっていない物を、stock.md の×の都県から順に、公式ページ（候補の公式URL、無ければ WebSearch 1回で公式を探す）を WebFetch で1回開いて日付・場所・料金を確かめてから足す。公式で確かめられない物は足さない。候補帳は書き換えない（燈はドライブを直せない）。足した物は page-spots にあるので、次の日は自然に飛ばされる。
    ① notes/stock.md の「足りない物」の×を、上から全部埋める（どの曜日でも最初にやる）。
    ② 「3日以内に終わる」に出ている物の代わりを、同じ都県で1件ずつ探す。
    ②' data/page-stats.json の直近7日で押されたカード（おでかけ・地図・お店）を見て、同じ種類（イルミネーション・紅葉・無料の日・新しいお店など）を今日の担当の地域で先に探す（10/26 月のやり方「どの行き先が押されたかを見て、似た種類を増やす」）。押された物が無い日は飛ばす。
