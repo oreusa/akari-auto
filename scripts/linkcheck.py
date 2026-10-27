@@ -128,6 +128,16 @@ async def main():
                 continue
             seen.add(l["href"])
             todo.append(l)
+        # 載せる前の確かめで止まっている物も、ブラウザで開いてみる（簡単な開き方だけ断るページを戻すため）
+        import json
+        try:
+            held = json.load(open(os.path.join(os.path.dirname(__file__), "..", "data", "link-ok.json"), encoding="utf-8"))
+        except (OSError, ValueError):
+            held = {}
+        for u, v in held.items():
+            if not v.get("ok") and u not in seen:
+                seen.add(u)
+                todo.append({"href": u, "label": "載せる前に止めた物", "name": "", "part": "hold", "blank": False})
         sem = asyncio.Semaphore(6)
         res = await asyncio.gather(*(open_one(ctx, sem, l) for l in todo))
         await br.close()
