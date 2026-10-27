@@ -128,6 +128,16 @@ async def main():
                 continue
             seen.add(l["href"])
             todo.append(l)
+        # 載せる前の確かめで止まっている物も、ブラウザで開いてみる（簡単な開き方だけ断るページを戻すため）
+        import json
+        try:
+            held = json.load(open(os.path.join(os.path.dirname(__file__), "..", "data", "link-ok.json"), encoding="utf-8"))
+        except (OSError, ValueError):
+            held = {}
+        for u, v in held.items():
+            if not v.get("ok") and u not in seen:
+                seen.add(u)
+                todo.append({"href": u, "label": "載せる前に止めた物", "name": "", "part": "hold", "blank": False})
         sem = asyncio.Semaphore(6)
         res = await asyncio.gather(*(open_one(ctx, sem, l) for l in todo))
         await br.close()
@@ -151,7 +161,7 @@ async def main():
         lines.append(f"- {r['name'] or r['label']}（{r['part']}・{r['sec']}秒・{r['status'] or 'ERR'}）｜{'・'.join(ps)}｜{r['href']}"
                      + (f" → {r['final']}" if r["final"] and r["final"].rstrip('/') != r["href"].rstrip('/') else "")
                      + (f"｜題名：{r['title']}" if r["title"] else ""))
-    lines += ["", "## 押しにくい所（縦44px未満・字12px未満。見えている物だけ）", ""]
+    lines += ["", "## 押しにくい所（参考。月と同じ大きさなら直さない。10/27 オーナー「月と同じなら不備なし」）", ""]
     if not small:
         lines.append("- なし")
     seen_s = set()

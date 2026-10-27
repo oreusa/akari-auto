@@ -1239,18 +1239,6 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .sns a.co:before{{content:attr(data-en);display:block;font:500 9.5px/1 var(--en);letter-spacing:.32em;color:#9C8775;margin-bottom:8px}}
 .sns a.co:after{{content:"→";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--en);color:#9C8775;font-size:16px}}
 .sns a.co span{{color:var(--mute);font:400 11.5px/1.6 var(--go);letter-spacing:.04em;margin-top:6px}}
-/* 押しやすさ（10/27 オーナー「使いにくさとか、月は初めから気を使ってる」）：押す所は縦44px以上、地図の字は13px */
-.seg button,.stab button,.flt button,.chips .fr,.buy,.cats button{{min-height:44px}}
-.flt button.fr{{margin-top:0}}
-.card.it .mp{{display:inline-flex;align-items:center;min-height:44px;padding:0 14px 0 0;font-size:13px}}
-.card.it .mpr{{margin-top:4px;padding-bottom:4px}}
-.js .gm{{display:flex;align-items:center;min-height:44px;padding:0 8px}}
-.sns a:not(.co){{display:inline-flex;align-items:center;min-height:44px;padding:0 6px}}
-/* 見やすさ（10/27 オーナー「なるべく見やすく」）：名前を月と同じ大きさに、カードのすき間を詰めて1画面に多く */
-.card.it{{padding:14px 42px 0 16px}}
-.card.it .t{{font-size:16.5px;line-height:1.45;margin:4px 0 0}}
-.card.it .d{{font-size:12.5px}}
-.card.it .mpr{{margin:2px -70px 0 -16px;padding:0 70px 2px 16px}}
 </style></head>
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
