@@ -1,10 +1,9 @@
-name: page（プロフィール用ページを作って公開・1日4回）
+name: page（プロフィール用ページを作って公開・1日2回）
 on:
   schedule:
+    # 10/27 GitHubの分数が11月に2,000分を超えそうなので1日4回→2回（notes/actions-minutes.md の×）。14:13の集め係の分は18:30で出る
     - cron: "30 22 * * *"   # 7:30
-    - cron: "30 3 * * *"    # 12:30
     - cron: "30 9 * * *"    # 18:30
-    - cron: "30 13 * * *"   # 22:30
   workflow_dispatch:
     inputs:
       reset:
