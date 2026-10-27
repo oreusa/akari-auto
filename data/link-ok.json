@@ -160,6 +160,12 @@
   "sec": 0.7,
   "why": "403"
  },
+ "https://koto.goguynet.jp/2026/10/27/ariakegarden_illumination2026/": {
+  "at": "2026-10-28",
+  "ok": true,
+  "sec": 2.0,
+  "why": ""
+ },
  "https://lightup-nikko.jp/": {
   "at": "2026-10-27",
   "by": "browser",
@@ -242,6 +248,12 @@
   "by": "browser",
   "ok": true,
   "sec": 5.2,
+  "why": ""
+ },
+ "https://t-doitsumura.co.jp/illumination/": {
+  "at": "2026-10-28",
+  "ok": true,
+  "sec": 1.9,
   "why": ""
  },
  "https://www.ashikaga.co.jp/flowerfantasy_special2026/jp/": {
@@ -399,11 +411,10 @@
   "why": ""
  },
  "https://www.showakinen-koen.jp/autumn-night-walk/": {
-  "at": "2026-10-27",
-  "by": "browser",
+  "at": "2026-10-28",
   "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "sec": 15.1,
+  "why": "The read operation timed out"
  },
  "https://www.tnm.jp/modules/r_free_page/index.php?id=113": {
   "at": "2026-10-27",
