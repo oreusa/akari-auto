@@ -195,6 +195,66 @@ def refresh_page(cfg, state, now):
     return changed
 
 
+def rebook_requests(cfg, state, now):
+    """state/rebook.json に書いた予約の直し（1行目・Threadsのトピック）を、予約し直しで入れる（10/27 月の書き方を今日の分から）。
+    形：[{"day": "YYYY-MM-DD", "slot": "HH:MM", "svc": "threads"|"twitter", "first_line": "新しい1行目", "topic": "東京"}]
+    新しい予約が作れてから古い方を消す。出る25分前を切った物・もう出た物・字数をこえる物には触らない。終わった行は消す。"""
+    from lib import threads_len, x_weight
+    reqs = load_json(path("state", "rebook.json"), [])
+    if not reqs:
+        return False
+    waiting = {p["id"] for p in buffer_posts(cfg, ["scheduled"], now, now + timedelta(hours=40))}
+    left = []
+    for q in reqs:
+        day, slot, s = q.get("day", ""), q.get("slot", ""), q.get("svc", "")
+        r = (state.get(f"{day} {slot}") or {}).get(s)
+        tag = f"{slot} {s} 直しの予約し直し"
+        if not isinstance(r, dict) or not r.get("id") or r["id"] not in waiting:
+            append_log(day, f"{tag}：予約中の物がない（やめた）")
+            continue
+        try:
+            due = datetime.fromisoformat(f"{day}T{r.get('at') or slot}").replace(tzinfo=JST)
+        except ValueError:
+            continue
+        if due - now < timedelta(minutes=25):
+            append_log(day, f"{tag}：出る25分前を切った（元のまま）")
+            continue
+        texts = list(r.get("texts") or [])
+        if not texts:
+            continue
+        if q.get("first_line"):
+            rest = texts[0].split("\n", 1)
+            texts[0] = q["first_line"] + ("\n" + rest[1] if len(rest) > 1 else "")
+        topic = q.get("topic") or r.get("topic")
+        if s == "twitter" and any(x_weight(t) > 280 for t in texts):
+            append_log(day, f"{tag}：Xの字数をこえる（元のまま）")
+            continue
+        if s == "threads" and any(threads_len(t) > 500 for t in texts):
+            append_log(day, f"{tag}：Threadsの字数をこえる（元のまま）")
+            continue
+        if texts == r["texts"] and topic == r.get("topic"):
+            continue
+        due_iso = due.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+        try:
+            p = buffer_create(cfg["channels"][s], s, texts, due_iso, topic=topic if s == "threads" else None)
+        except BufferError as e:
+            append_log(day, f"{tag}×（元の予約のまま）：{str(e)[:120]}")
+            continue
+        try:
+            delete_post(r["id"])
+        except BufferError as e:
+            try:
+                delete_post(p["id"])
+                append_log(day, f"{tag}：古い予約を消せない（元のまま）：{str(e)[:100]}")
+            except BufferError:
+                append_log(day, f"{tag}：×2本予約のおそれ（{r['id']} と {p['id']}）。燈が片方を消す")
+            continue
+        r.update({"id": p["id"], "texts": texts, "topic": topic})
+        append_log(day, f"{tag}OK" + (f"（1行目：{q['first_line'][:40]}）" if q.get("first_line") else "") + (f"（トピック：{topic}）" if q.get("topic") else ""))
+    save_json(path("state", "rebook.json"), left)
+    return True
+
+
 def source_problem(texts):
     """文の中の出どころURLを開き、ページがない・「終了」と出ているなら理由を返す。開けないだけなら止めない。"""
     seen = set()
@@ -319,6 +379,10 @@ def run(now=None):
         changed |= refresh_page(cfg, state, now)
     except BufferError as e:
         append_log(now.date().isoformat(), f"ページのURLの予約し直し×：{str(e)[:150]}")
+    try:
+        changed |= rebook_requests(cfg, state, now)
+    except BufferError as e:
+        append_log(now.date().isoformat(), f"直しの予約し直し×：{str(e)[:150]}")
     try:
         changed |= book_koma4(cfg, state, now)
     except BufferError as e:
