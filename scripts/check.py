@@ -179,8 +179,8 @@ def post_problems(p):
                     out.append(f"{ch}：持ち物（mochimono）は 09:15 のおでかけだけ")
                 if LINK in texts[0] or "#PR" in texts[0]:
                     out.append(f"{ch}：持ち物は2つ目に入れる（1つ目はPRなしのおでかけのまま）")
-                if len(texts) < 2 or LINK not in texts[1] or "選んだ理由：" not in texts[1] or "行くときの持ち物：" not in texts[1]:
-                    out.append(f"{ch}：2つ目に「行くときの持ち物：」「選んだ理由：」{{{{LINK}}}} を入れる")
+                if len(texts) < 2 or LINK not in texts[1] or "選んだ理由：" not in texts[1] or not any(k in texts[1] for k in ("行くときの持ち物：", "今日の楽天売れ筋：")):
+                    out.append(f"{ch}：2つ目に「行くときの持ち物：」か「今日の楽天売れ筋：」と「選んだ理由：」{{{{LINK}}}} を入れる")
             elif "#PR" not in first_last:
                 out.append(f"{ch}：PRなのに1つ目の最後の行に #PR がない")
             if not link.get("mochimono") and texts and isinstance(texts[0], str) and "選んだ理由：" not in texts[0]:
