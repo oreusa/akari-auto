@@ -9,7 +9,9 @@
 テスト：python scripts/book.py --test <楽天の商品ページURL>
   → その商品のリンクを楽天から受け取り、X・Threads に「下書き」を1本ずつ作る（公開はしない）。
 """
+import json
 import os
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 
@@ -23,6 +25,15 @@ from lib import (JST, URL_RE, BufferError, a8_link, buffer_gql, amazon_link, app
 LEAD_MIN = int(os.environ.get("LEAD_MIN", "150"))   # 何分先までを予約するか
 LATE_MIN = 90                                       # 時刻を過ぎていても、この分までなら15分後に出す
 MAX_TRIES = 3
+LONG_RE = re.compile(r"character limit|too long|exceeds|文字数", re.I)
+
+
+def post_sig(post):
+    """予定表の文の指紋（直されたかを見分ける）。"""
+    import hashlib
+    body = json.dumps([post.get("x"), post.get("threads"), post.get("fallback"), post.get("link")],
+                      ensure_ascii=False, sort_keys=True)
+    return hashlib.sha1(body.encode()).hexdigest()[:12]
 SERVICES = ("twitter", "threads")
 
 
@@ -342,6 +353,13 @@ def run(now=None):
                 continue
             key = f"{day} {slot}"
             rec = state.setdefault(key, {})
+            # 予定表の文が直されたら、×で止まっていた回数を戻してすぐ予約し直す（10/28 9:15 Threads が3回×のまま止まった）
+            sig = post_sig(post)
+            for s in SERVICES:
+                r0 = rec.get(s)
+                if r0 and not r0.get("id") and r0.get("tries", 0) and r0.get("sig") and r0.get("sig") != sig:
+                    append_log(day, f"{slot} {s} 文が直されたので予約し直す（前は{r0['tries']}回×）")
+                    rec[s] = {"tries": 0}
             todo = [s for s in SERVICES if s in cfg["channels"]
                     and not rec.get(s, {}).get("id") and rec.get(s, {}).get("tries", 0) < MAX_TRIES
                     and not tabi_replaced(state, day, slot, s)]
@@ -373,7 +391,22 @@ def run(now=None):
                     append_log(day, f"{slot} {s} 予約OK［{kind}］{late} {why}".rstrip())
                 except BufferError as e:
                     r["error"] = str(e)[:200]
+                    r["sig"] = sig
                     append_log(day, f"{slot} {s} 予約×（{r['tries']}回目）：{str(e)[:150]}")
+                    # 長すぎる×は、同じ文で何度やっても通らない。代わりの文（fallback）でその場で予約する
+                    fb = post.get("fallback")
+                    if fb and kind != "代わり" and LONG_RE.search(str(e)):
+                        fb_texts = with_page(fb["x"] if s == "twitter" else fb["threads"], s, cfg, slot, due)
+                        try:
+                            p = buffer_create(cfg["channels"][s], s, fb_texts, due_iso,
+                                              topic=threads_topic(fb.get("topic") or topic, (fb["threads"] or [""])[0], due)
+                                              if s == "threads" else None)
+                            r.update({"id": p["id"], "kind": "代わり", "at": when.strftime("%H:%M"),
+                                      "texts": fb_texts, "topic": topic})
+                            r.pop("error", None)
+                            append_log(day, f"{slot} {s} 予約OK［代わり］（文が長すぎたので代わりの文で）")
+                        except BufferError as e2:
+                            append_log(day, f"{slot} {s} 代わりの文も予約×：{str(e2)[:150]}")
             changed = True
     try:
         changed |= refresh_page(cfg, state, now)

@@ -124,6 +124,29 @@ with tempfile.TemporaryDirectory() as d:
     book.run(datetime(2026, 10, 24, 19, 50, tzinfo=lib.JST))
     ok(len(redo()) == 1, "出し直しを2回以上した")
 
+    # 長すぎる×：Threadsは同じ文で通らない → その場で代わりの文で予約する
+    calls.clear()
+    lib.save_json(os.path.join(d, "state", "booked.json"), {})
+    book.buffer_posts = lambda cfg, st, a, b, channel_ids=None: []
+    def long_err(ch, s, texts, due, topic=None, draft=False, **kw):
+        if s == "threads" and "{{LINK}}" not in "".join(texts) and "hb.afl" in "".join(texts):
+            raise lib.BufferError("Invalid post: Thread item 2 exceeds the 500 character limit.")
+        calls.append((s, due, texts))
+        return {"id": f"L{len(calls)}"}
+    book.buffer_create = long_err
+    book.run(now)
+    st = lib.load_json(os.path.join(d, "state", "booked.json"))
+    ok(st["2026-10-24 18:15"]["threads"].get("kind") == "代わり" and st["2026-10-24 18:15"]["threads"].get("id"),
+       f"長すぎる×で代わりの文にならない: {st.get('2026-10-24 18:15')}")
+    # 予定表の文を直したら、×で止まっていた回数を戻す
+    st["2026-10-24 18:15"]["threads"] = {"tries": 3, "error": "x", "sig": "old"}
+    lib.save_json(os.path.join(d, "state", "booked.json"), st)
+    book.buffer_create = lambda ch, s, texts, due, topic=None, draft=False, **kw: calls.append((s, due, texts)) or {"id": f"R{len(calls)}"}
+    book.run(now)
+    st = lib.load_json(os.path.join(d, "state", "booked.json"))
+    ok(st["2026-10-24 18:15"]["threads"].get("id", "").startswith("R"), f"文を直しても予約し直さない: {st.get('2026-10-24 18:15')}")
+    book.buffer_create = lambda ch, s, texts, due, topic=None, draft=False: calls.append((s, due, texts)) or {"id": f"p{len(calls)}", "status": "scheduled"}
+
     # 4コマ：絵のURLがあれば X・Threads は画像、Instagram は動画があるときだけリール
     kc = []
     book.media_problem = lambda u, k: ""
