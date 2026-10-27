@@ -161,7 +161,7 @@ async def main():
         lines.append(f"- {r['name'] or r['label']}（{r['part']}・{r['sec']}秒・{r['status'] or 'ERR'}）｜{'・'.join(ps)}｜{r['href']}"
                      + (f" → {r['final']}" if r["final"] and r["final"].rstrip('/') != r["href"].rstrip('/') else "")
                      + (f"｜題名：{r['title']}" if r["title"] else ""))
-    lines += ["", "## 押しにくい所（縦44px未満・字12px未満。見えている物だけ）", ""]
+    lines += ["", "## 押しにくい所（参考。月と同じ大きさなら直さない。10/27 オーナー「月と同じなら不備なし」）", ""]
     if not small:
         lines.append("- なし")
     seen_s = set()
