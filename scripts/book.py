@@ -623,7 +623,7 @@ def after_check(cfg, state, now):
     """予約した投稿が本当に出たかを Buffer に聞く。出ていなければ記録し、1回だけ出し直す。
     朝8:30すぎには、雫の4コマが出たかも見る。"""
     changed = False
-    start, end = now - timedelta(hours=6), now - timedelta(minutes=20)
+    start, end = now - timedelta(hours=12), now - timedelta(minutes=20)  # 10/26 定時起動が8時間あき、13:45・15:15の「出た」を見落とした
     waiting = []
     for key, rec in state.items():
         if " " not in key:
