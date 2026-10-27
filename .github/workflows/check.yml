@@ -3,6 +3,9 @@ on:
   push:
     paths: ["schedule/**", "scripts/**", "data/page-goods.json", "data/page-spots.json"]
   workflow_dispatch:
+concurrency:  # 同じブランチに続けて保存したら、古い方のチェックは止めて新しい方だけ見る（分数の節約）
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   check:
     runs-on: ubuntu-latest
