@@ -6,6 +6,7 @@
 import glob
 import os
 import re
+import urllib.parse
 import sys
 from datetime import date, datetime, timedelta
 
@@ -107,12 +108,38 @@ def _same_head(p, where=""):
     hx, ht = _head(p.get("x")), _head(p.get("threads"))
     out = []
     for h in (hx, ht):
-        # 9:15のおでかけに付ける「行くときの持ち物」（link.mochimono）は、おでかけの見出しのまま（10/27 オーナー決定）
-        if p.get("link") and not p["link"].get("mochimono") and h is not None and not h.startswith("【AIが比べた"):
+        if p.get("link") and h is not None and not h.startswith("【AIが比べた"):
             out.append(f"{where}PRの1行目が「【AIが比べた」で始まっていない（PRの見出しはこの形。10/23 オーナー）")
             break
     if hx is not None and ht is not None and hx != ht:
         out.append(f"{where}XとThreadsで1行目の見出しが違う（見出しと題材は同じにし、長さだけ変える）")
+    return out
+
+
+AFL = "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc="
+
+
+def comment_problems(p):
+    """伸びたら貼る「行くときの持ち物」（10/27 オーナー「伸びてからじゃなくて最初から貼るのね？」→伸びてから）。
+    9:15のおでかけに "comment" を付けると、20:20に凪が、Threadsで150以上見られていたときだけコメントに貼る。"""
+    c = p.get("comment")
+    if not c:
+        return []
+    out = []
+    if p.get("slot") != "09:15" or p.get("link"):
+        out.append("comment（持ち物）は 09:15 のPRでないおでかけだけ")
+    t = str(c.get("text", ""))
+    url = str(c.get("item", ""))
+    if not url.startswith("https://item.rakuten.co.jp/"):
+        out.append("comment.item は楽天市場の商品ページ（https://item.rakuten.co.jp/…）")
+    for need in ("行くときの持ち物：", "選んだ理由：", "#PR"):
+        if need not in t:
+            out.append(f"comment.text に「{need}」がない")
+    links = re.findall(r"https://\S+", t)
+    if len(links) != 1 or not links[0].startswith(AFL) or urllib.parse.unquote(links[0][len(AFL):].split("&")[0]) != url:
+        out.append("comment.text のURLは1つだけ、comment.item を楽天アフィリエイトの形（" + AFL + "＋商品ページをURLエンコード）にした物")
+    if "！" in t or "!" in t:
+        out.append("comment.text に「！」がある")
     return out
 
 
@@ -148,17 +175,13 @@ def post_problems(p):
             first_last = texts[0].strip().splitlines()[-1] if texts and texts[0].strip() else ""
             if "#PR" not in first_last:
                 out.append(f"{ch}：PRなのに1つ目の最後の行に #PR がない")
-            if link.get("mochimono"):
-                if "選んだ理由：" not in joined:
-                    out.append(f"{ch}：持ち物の商品に「選んだ理由：」の1行がない")
-                if p.get("slot") != "09:15":
-                    out.append(f"{ch}：持ち物の商品（mochimono）は 09:15 のおでかけだけ")
-            elif texts and isinstance(texts[0], str) and "選んだ理由：" not in texts[0]:
+            if texts and isinstance(texts[0], str) and "選んだ理由：" not in texts[0]:
                 out.append(f"{ch}：PRの1つ目に「選んだ理由：」の1行がない（何をいくつ比べ、どの数字で選んだか）")
             for i, t in enumerate(texts, 1):
                 if LINK in t and "#PR" not in t:
                     out.append(f"{ch} {i}つ目：リンクがある投稿に #PR がない")
     out += _same_head(p)
+    out += comment_problems(p)
     if not p.get("topic"):
         out.append("topic（Threadsのトピック）がない")
     if link or p.get("until"):

@@ -262,8 +262,6 @@ def collect(now, light=False):
             if old:
                 continue
             link = p.get("link")
-            if link and link.get("mochimono"):  # おでかけに付けた持ち物は、HPではおでかけのカードとして出す
-                link = None
             if link and light:
                 continue
             if link:
