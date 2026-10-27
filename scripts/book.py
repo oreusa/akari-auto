@@ -288,6 +288,8 @@ def run(now=None):
             if not todo:
                 continue
             xs, ths, topic, kind, why = choose(post, day, now)
+            if xs is not None:
+                topic = threads_topic(topic, (ths or [""])[0], due)
             if xs is None:
                 append_log(day, f"{slot} 中止：{why}")
                 for s in todo:
@@ -332,6 +334,28 @@ def run(now=None):
     if changed:
         save_json(path("state", "booked.json"), state)
     return 0
+
+
+GENERAL_TOPICS = {"", "おでかけ", "漫画", "関東", "関東おでかけ"}
+
+
+def threads_topic(topic, text, due):
+    """Threadsのトピック（10/27 オーナー「月と同じにしてくれ」）。
+    「おでかけ」のような大きい言葉は全国の人の欄に混ざり、行ける関東の人に届きにくい。
+    月はおでかけを府県名で出しているので、燈も文から都県が分かれば都県名（東京・群馬など）にする。
+    節約・温泉・旅行など、場所でない話題のトピックはそのまま。"""
+    t = (topic or "").strip()
+    if t not in GENERAL_TOPICS:
+        return topic
+    try:
+        import page
+        e = page.spot_match(text, due)
+        pref = page._pref(e) if e else page._pref({"title": text, "bullets": []})
+    except Exception:
+        pref = ""
+    if pref in ("東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬"):
+        return pref
+    return topic or "おでかけ"
 
 
 KOMA4_SERVICES = ("twitter", "threads", "instagram")
@@ -542,9 +566,9 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
             texts = [k["text"].rstrip() + "\n\n" + ig_profile([k["text"]], due) + "\n\n" + ig_tags(k, due)]  # インスタの文はリンクを押せないので、HPへの道を1行（10/26 オーナー「プロフィールリンクに詳細あるよね？」）
         try:
             p = buffer_create(cfg["channels"][svc], svc, texts, at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-                              topic=(k.get("topic") or "漫画") if svc == "threads" else None, **media)
+                              topic=threads_topic(k.get("topic") or "漫画", k.get("text", ""), due) if svc == "threads" else None, **media)
             r.update({"id": p["id"], "kind": "4コマ", "at": at.strftime("%H:%M"), "texts": texts,
-                      "topic": k.get("topic") or "漫画", "media": media, "svc": svc})
+                      "topic": threads_topic(k.get("topic") or "漫画", k.get("text", ""), due), "media": media, "svc": svc})
             r.pop("error", None)
             late = "" if when == due else f"（遅れたので {when.strftime('%H:%M')} に）"
             append_log(day, f"{label} 第{k.get('episode', '?')}話 {s} 予約OK{late}")
