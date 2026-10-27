@@ -1264,7 +1264,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
 <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
-<img src="logo.png" alt="うさぎ│LIFE NOTES" width="88" height="88">
+<img src="logo-s.png" alt="うさぎ│LIFE NOTES" width="88" height="88">
 <div class="en">USAGI LIFE NOTES</div>
 <h1 class="ttl">関東おでかけリスト</h1>
 <p class="sub">関東の今日から・新しく・無料で行ける場所と、<br>うさぎが数字で比べて選んだ物を、毎日のせています</p>
