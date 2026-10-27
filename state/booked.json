@@ -2136,8 +2136,25 @@
       "svc": "instagram"
     },
     "ig_slides": {
-      "tries": 1,
-      "error": "InvalidInputError: Invalid post: Image could not be read from its URL."
+      "tries": 2,
+      "id": "6adff6a24a3f2ecb1bb0228e",
+      "kind": "4コマ",
+      "at": "10:30",
+      "texts": [
+        "今日10/27も、八千代の京成バラ園で白うさぎのロイヤル インビテーション（11/23まで）\n\n◇ 1,600品種・10,000株のバラ園\n◇ 秋バラは10/23から見頃\n\nうさぎちゃんのおでかけ4コマ 第20話「白うさぎのお庭」🌙\n\nくわしい場所と公式ページは、プロフィールのリンク「関東おでかけリスト」からどうぞ。\n\n#京成バラ園 #秋バラ #おでかけ4コマ"
+      ],
+      "topic": "おでかけ",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Fr-MhlrI5BvkhjEzWk5gaRdwSJnIQoUa&cx=7&cy=74&cw=709&ch=512&output=jpg&q=92",
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Fr-MhlrI5BvkhjEzWk5gaRdwSJnIQoUa&cx=7&cy=596&cw=709&ch=512&output=jpg&q=92",
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Fr-MhlrI5BvkhjEzWk5gaRdwSJnIQoUa&cx=7&cy=1118&cw=709&ch=512&output=jpg&q=92",
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1Fr-MhlrI5BvkhjEzWk5gaRdwSJnIQoUa&cx=7&cy=1640&cw=709&ch=512&output=jpg&q=92"
+        ],
+        "ig_type": "post",
+        "alt": "4コマ漫画 第20話"
+      },
+      "svc": "instagram"
     },
     "ig_story1": {
       "tries": 1,
