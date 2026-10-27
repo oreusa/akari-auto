@@ -33,6 +33,7 @@
    "image_url": "https://drive.google.com/uc?export=download&id=画像のid"
    "video_url": "https://drive.google.com/uc?export=download&id=動画のid"（動画があるときだけ）
 5. mcp__github__actions_run_trigger（run_workflow、workflow_id=book.yml、ref=main）で予約係を動かす。2分待って log/D.md を読み、「4コマ 第N話 … 予約OK」の行を確かめる。「予約できない」「予約×」があれば、その行を最後のメッセージに写す。
+5-1. 4コマ以外も見る（10/28 9:15 Threads が×のまま止まった）：log/D.md の今日の行に「予約×」「中止」があり、そのあと同じ時刻・同じ先（twitter・threads）の「予約OK」が無ければ、docs/handoff.md「予約×の直し方」のとおり自分で直す（schedule/D.json の文を縮める・リンクを直して main に保存。止まった回数は機械が戻す）→ book.yml を動かす → 2分後に log で「予約OK」を見る。直せない時だけ下の■で基本スレッドに知らせる。
 
 5-2. 旅先4コマ（10/29から、水曜と土曜。koma4/D-tabi.json があるときだけ）：1〜5 と同じことを、もう1本やる。違う所は、読むファイルが koma4/D-tabi.json、探す題名が「旅4コマ画像 第N話」「旅4コマ動画 第N話」（N は koma4/D-tabi.json の episode）、台本は koma4 の「■2本目：旅先4コマ」より下、直しの1行の頭が「D 旅先 第N話：」、学びの行が「- D 旅先 第N話 OK／直し／出さなかった」、絵の確かめ⑥は「コマ1で旅先の名前が読める・宿や他社のロゴがない」、保存する commit が「燈 4コマ係：D 旅先 第N話の絵」。予約係を動かしたあと、log/D.md の「旅4コマ 第N話 … 予約OK」と「12:15 … 文の投稿を消した」を確かめる。旅先の絵がまだない・×のときは何もしない（12:15 は文の投稿がそのまま出る）。
 
