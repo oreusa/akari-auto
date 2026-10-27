@@ -921,7 +921,7 @@ def render(items, ended, now, cfg):
 
     if spots:  # 1. おでかけ：月のページと同じく「開催中」と「これから」に分ける（10/24 オーナー「これ真似したら？」）
         far = datetime(2100, 1, 1, tzinfo=JST)
-        # 4つの欄（月と同じ）：開催中／これから／もうすぐ（これから開くお店）／できた（開いたばかりのお店）
+        # 4つの欄（月と同じ）：開催中／これから／もうすぐ（これから開く施設）／できた（開いたばかりの施設）
         shops = [e for e in spots if e.get("kind") == "shop"]
         spots_ev = [e for e in spots if e.get("kind") != "shop"]
 

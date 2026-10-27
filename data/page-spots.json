@@ -374,17 +374,6 @@
       "checked": "2026-10-26"
     },
     {
-      "title": "WONDER JR東京駅店（チーズケーキ）",
-      "pref": "東京",
-      "place": "東京駅",
-      "kind": "shop",
-      "open": "2026-10-28",
-      "free": false,
-      "note": "東京駅 八重洲中央口改札内｜7:00〜22:00、ワンダーケーキ4個入1,458円〜",
-      "url": "https://www.enjoytokyo.jp/news/205213/",
-      "checked": "2026-10-26"
-    },
-    {
       "title": "寳登山神社 ライトアップ×雲海",
       "pref": "埼玉",
       "place": "寳登山神社",
@@ -526,16 +515,6 @@
       "free": true,
       "note": "10/31 17:50点灯式（無料）。11月は17:00〜23:00、12〜1月は16:00〜23:00",
       "url": "https://koto.goguynet.jp/2026/10/27/ariakegarden_illumination2026/",
-      "checked": "2026-10-27"
-    },
-    {
-      "title": "UNI COFFEE ROASTERY シタディーンノース新宿東京",
-      "pref": "東京",
-      "place": "シタディーンノース新宿東京",
-      "kind": "shop",
-      "open": "2026-10-29",
-      "note": "10/29開店。カフェ10:00〜20:00、ジンジャーブレッドラテ720円",
-      "url": "https://prtimes.jp/main/html/rd/p/000000126.000084389.html",
       "checked": "2026-10-27"
     }
   ]

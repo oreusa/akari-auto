@@ -21,7 +21,7 @@ NEED = {"now": 8, "up": 4, "soon": 2, "new": 2}  # 欄の名前の並びに使�
 # 10/27 オーナー「おでかけリストも全部入れていこう」：関東で約130件を目ざす（集め係の回数は増やさず、GPTの写しで埋める）
 NEED_PREF = {"東京": {"now": 25, "up": 10}, "神奈川": {"now": 12, "up": 5}, "埼玉": {"now": 12, "up": 5}, "千葉": {"now": 12, "up": 5},
              "茨城": {"now": 6, "up": 3}, "栃木": {"now": 6, "up": 3}, "群馬": {"now": 6, "up": 3}}
-NEED_SHOP = 20  # 新しいお店（もうすぐ＋できた）は関東全体で
+NEED_SHOP = 20  # 新しい施設（もうすぐ＋できた）は関東全体で
 TAB = {"now": "開催中", "up": "これから", "soon": "もうすぐ（開店前のお店）", "new": "できた（開いたお店）"}
 NEED_GOODS_TOTAL = 60  # 10/26 オーナー「アフェリエイト商品が目的。ちゃんと増やしていく」
 NEED_GOODS_CAT = 10
@@ -144,9 +144,9 @@ def report(now, check_links=True):
                 short.append(f"{r}の{TAB[k]}があと{need[k] - n}件")
         lines.append(f"| {r} | {row[0]} | {row[1]} | 開催中{need['now']}・これから{need['up']} |")
     ns, nn = sum(len(t[r]["soon"]) for r in PREFS), sum(len(t[r]["new"]) for r in PREFS)
-    lines.append(f"| 新しいお店（関東全体） | もうすぐ{ns}・できた{nn} | {'○' if ns + nn >= NEED_SHOP else '×'} | 合わせて{NEED_SHOP} |")
+    lines.append(f"| 新しい施設（関東全体） | もうすぐ{ns}・できた{nn} | {'○' if ns + nn >= NEED_SHOP else '×'} | 合わせて{NEED_SHOP} |")
     if ns + nn < NEED_SHOP:
-        short.append(f"新しいお店（もうすぐ・できた）が関東であと{NEED_SHOP - ns - nn}件")
+        short.append(f"新しい施設（もうすぐ・できた）が関東であと{NEED_SHOP - ns - nn}件")
     total = sum(gc.values())
     lines += ["", "## 商品の置き場（data/page-goods.json）", "", "| 項目 | 数 | 目標 |", "|---|---|---|"]
     for k, name in keys:
