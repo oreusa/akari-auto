@@ -1,6 +1,6 @@
 {
   "day": "2026-10-26",
-  "fetchedAt": "2026-10-27T05:45+09:00",
+  "fetchedAt": "2026-10-28T05:15+09:00",
   "posts": [
     {
       "service": "threads",
@@ -11,8 +11,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.39,
-        "views": 255,
+        "engagementRate": 0.36,
+        "views": 274,
         "quotes": 0,
         "reposts": 0
       }
@@ -26,9 +26,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.2,
+        "engagementRate": 1.28,
         "reposts": 0,
-        "impressions": 167,
+        "impressions": 235,
         "clicks": 0
       }
     },
@@ -41,8 +41,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.7,
-        "views": 37,
+        "engagementRate": 2.56,
+        "views": 39,
         "quotes": 0,
         "reposts": 0
       }
@@ -56,9 +56,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 3.33,
+        "engagementRate": 1.94,
         "reposts": 0,
-        "impressions": 60,
+        "impressions": 155,
         "clicks": 0
       }
     },
@@ -71,8 +71,8 @@
       "metrics": {
         "reactions": 2,
         "comments": 1,
-        "engagementRate": 4.92,
-        "views": 61,
+        "engagementRate": 4.29,
+        "views": 70,
         "quotes": 0,
         "reposts": 0
       }
@@ -86,9 +86,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.78,
+        "engagementRate": 1.27,
         "reposts": 0,
-        "impressions": 72,
+        "impressions": 157,
         "clicks": 0
       }
     },
@@ -101,8 +101,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.36,
-        "views": 274,
+        "engagementRate": 0.31,
+        "views": 321,
         "quotes": 0,
         "reposts": 0
       }
@@ -116,9 +116,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 50,
+        "engagementRate": 2.38,
         "reposts": 0,
-        "impressions": 2,
+        "impressions": 42,
         "clicks": 0
       }
     },
@@ -129,10 +129,10 @@
       "first": "今日10/26、大阪で開店予定の3軒",
       "url": "https://www.threads.com/@ai_usagichan1/post/De8nYdClkdl",
       "metrics": {
-        "reactions": 4,
+        "reactions": 14,
         "comments": 1,
-        "engagementRate": 0.3,
-        "views": 1652,
+        "engagementRate": 0.41,
+        "views": 3656,
         "quotes": 0,
         "reposts": 0
       }
@@ -144,11 +144,11 @@
       "first": "今日10/26、大阪で開店予定の3軒",
       "url": "https://x.com/1753799832798629888/status/2114601688157782265",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 2.56,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 117,
         "clicks": 0
       }
     },
@@ -161,8 +161,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 14.29,
-        "views": 7,
+        "engagementRate": 9.09,
+        "views": 11,
         "quotes": 0,
         "reposts": 0
       }
@@ -175,10 +175,10 @@
       "url": "https://x.com/1753799832798629888/status/2114646984883568702",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 3.57,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 28,
         "clicks": 0
       }
     },
@@ -191,8 +191,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 5.26,
-        "views": 19,
+        "engagementRate": 3.45,
+        "views": 29,
         "quotes": 0,
         "reposts": 0
       }
@@ -205,10 +205,10 @@
       "url": "https://x.com/1753799832798629888/status/2114677241204338851",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 0.86,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 116,
         "clicks": 0
       }
     },
@@ -221,8 +221,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.47,
-        "views": 68,
+        "engagementRate": 1.11,
+        "views": 90,
         "quotes": 0,
         "reposts": 0
       }
@@ -235,10 +235,10 @@
       "url": "https://x.com/1753799832798629888/status/2114688786202284241",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 3.13,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 32,
         "clicks": 0
       }
     },
@@ -251,8 +251,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 20,
-        "views": 5,
+        "engagementRate": 3.13,
+        "views": 32,
         "quotes": 0,
         "reposts": 0
       }
@@ -265,10 +265,10 @@
       "url": "https://x.com/1753799832798629888/status/2114707414448550114",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 1.12,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 89,
         "clicks": 0
       }
     },
@@ -282,12 +282,12 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 30,
+        "views": 36,
         "shares": 0,
         "saves": 0,
-        "totalTimeWatched": 1.45,
-        "averageTimeWatched": 2.89,
-        "reach": 27
+        "totalTimeWatched": 1.63,
+        "averageTimeWatched": 2.65,
+        "reach": 33
       }
     },
     {
@@ -317,12 +317,12 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 46,
+        "views": 47,
         "shares": 0,
         "saves": 0,
-        "totalTimeWatched": 1.17,
-        "averageTimeWatched": 1.5,
-        "reach": 46
+        "totalTimeWatched": 1.24,
+        "averageTimeWatched": 1.55,
+        "reach": 48
       }
     },
     {
@@ -385,9 +385,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.44,
+        "engagementRate": 1.54,
         "reposts": 0,
-        "impressions": 554,
+        "impressions": 583,
         "clicks": 0
       }
     }

@@ -1,0 +1,369 @@
+{
+  "day": "2026-10-27",
+  "fetchedAt": "2026-10-28T05:15+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "今朝10/27の9:59まで、楽天お買い物マラソン",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De-VQuYHxN2",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 18.18,
+        "views": 11,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "今朝10/27の9:59まで、楽天お買い物マラソン",
+      "url": "https://x.com/1753799832798629888/status/2114843316009259119",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.04,
+        "reposts": 0,
+        "impressions": 49,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "【関東おでかけ情報】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De-i-cvGHfY",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.15,
+        "views": 87,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "【関東おでかけ情報】",
+      "url": "https://x.com/1753799832798629888/status/2114873473457602625",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.7,
+        "reposts": 0,
+        "impressions": 27,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "10/30から、中野四季の森公園でやきいもフェス TOKYO（入場無料）",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De-3k_EHA3g",
+      "metrics": {
+        "reactions": 10,
+        "comments": 1,
+        "engagementRate": 0.58,
+        "views": 1888,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "10/30から、中野四季の森公園でやきいもフェス TOKYO（入場無料）",
+      "url": "https://x.com/1753799832798629888/status/2114918777955447163",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 9.09,
+        "reposts": 0,
+        "impressions": 11,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "11/1から高尾山と長瀞で、紅葉ライトアップ3か所の時間くらべ",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De_B31YDl_Z",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.75,
+        "views": 133,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "11/1から高尾山と長瀞で、紅葉ライトアップ3か所の時間くらべ",
+      "url": "https://x.com/1753799832798629888/status/2114941414203121954",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【10/28　東京駅の改札内｜ギネス記録のチーズケーキ「ワンダー」初の常設店🍰】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De_MLPSFe-K",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.49,
+        "views": 204,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【10/28　東京駅の改札内｜ギネス記録のチーズケーキ「ワンダー」初の常設店🍰】",
+      "url": "https://x.com/1753799832798629888/status/2114964072282087886",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた予備のモバイルバッテリー3つ、いちばん軽いのは203g】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De_gyD4ICY_",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 11.11,
+        "views": 9,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた予備のモバイルバッテリー3つ、いちばん軽いのは203g】",
+      "url": "https://x.com/1753799832798629888/status/2115009386892460436",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "PR",
+      "first": "【AIが比べた伊香保の宿4軒、4.5以上で安いのは松本楼の14,000円】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De_uhWrFbnI",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 9.09,
+        "views": 11,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "PR",
+      "first": "【AIが比べた伊香保の宿4軒、4.5以上で安いのは松本楼の14,000円】",
+      "url": "https://x.com/1753799832798629888/status/2115039573814268371",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【10/31〜4/4　東京ドイツ村｜アメリカがテーマの4エリアのイルミネーション",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De_z5hQkQKH",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.76,
+        "views": 21,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【10/31〜4/4　東京ドイツ村｜アメリカがテーマの4エリアのイルミネーション",
+      "url": "https://x.com/1753799832798629888/status/2115051203251847328",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【11/1〜11/30　横浜中華街｜美食節の上海蟹フェアが1か月🦀】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De_8Q-DkSnW",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【11/1〜11/30　横浜中華街｜美食節の上海蟹フェアが1か月🦀】",
+      "url": "https://x.com/1753799832798629888/status/2115069782571508161",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "今日10/27も、八千代の京成バラ園で白うさぎのロイヤル インビテーション（11",
+      "url": "https://www.instagram.com/p/De-rpaUkY2D/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "follows": 0,
+        "reach": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4016839520909436527",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4016839984262242555",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "今日10/27も、八千代の京成バラ園で白うさぎのロイヤル インビテーション（11",
+      "url": "https://www.instagram.com/reel/De-rkkJz1ML/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 6,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.33,
+        "averageTimeWatched": 2.85,
+        "reach": 6
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "今日10/27も、八千代の京成バラ園で白うさぎのロイヤル インビテーション（11",
+      "url": "https://www.threads.com/@ai_usagichan1/post/De-rkedlteO",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4,
+        "views": 25,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "今日10/27も、八千代の京成バラ園で白うさぎのロイヤル インビテーション（11",
+      "url": "https://x.com/1753799832798629888/status/2114892370432897208",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 11.54,
+        "reposts": 0,
+        "impressions": 26,
+        "clicks": 0
+      }
+    }
+  ]
+}
