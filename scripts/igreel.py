@@ -133,15 +133,20 @@ def host_silent(video_url, name):
     base = m[-1] if m else f"https://{REELS_PROJECT}.pages.dev"  # 置いた回ごとの URL（名前が取られていても確実）
     url = f"{base}/{name}.mp4"
     print("無音の動画：", url)
+    last = ""
     for _ in range(36):  # 置いた直後は見えないことがある（最初の1回は数分かかる）
         try:
-            req = urllib.request.Request(url, method="HEAD")
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0", "Range": "bytes=0-0"})
             with urllib.request.urlopen(req, timeout=20) as r2:
-                if r2.status == 200:
+                if r2.status in (200, 206):
                     return url, None
-        except Exception:
-            pass
+                last = str(r2.status)
+        except urllib.error.HTTPError as e:
+            last = str(e.code)
+        except Exception as e:
+            last = str(e)[:80]
         time.sleep(5)
+    print("置いた動画を開いた結果：", last)
     return None, "置いた動画が開けない"
 
 
