@@ -1,7 +1,7 @@
 {
-  "day": "2026-10-28",
-  "episode": 21,
+  "day": "2026-10-29",
+  "episode": 22,
   "audio_id": "1638443601035185",
-  "at": "2026-10-28 14:14",
-  "dry": "入れ物まで作れた（公開はしない）"
+  "at": "2026-10-29 07:27",
+  "error": "入れ物を作れない：{\"message\": \"Any of the pages_read_engagement, pages_manage_metadata,\\n        pages_read_user_content, pages_manage_ads, pages_show_list or\\n        pages_messaging permission(s) must be granted befo"
 }
