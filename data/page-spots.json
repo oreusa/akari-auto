@@ -218,18 +218,6 @@
       "checked": "2026-10-26"
     },
     {
-      "title": "関内フード＆ハイカラフェスタ",
-      "pref": "神奈川",
-      "place": "関内駅",
-      "when": "11/3",
-      "start": "2026-11-03",
-      "ends": "2026-11-03T16:00",
-      "free": true,
-      "note": "横浜市中区｜弁天通りの食のお祭り。11:00〜16:00、入場無料",
-      "url": "https://kannai-machi.com/",
-      "checked": "2026-10-26"
-    },
-    {
       "title": "さがみ湖イルミリオン",
       "pref": "神奈川",
       "place": "さがみ湖リゾート プレジャーフォレスト",
@@ -516,6 +504,174 @@
       "note": "10/31 17:50点灯式（無料）。11月は17:00〜23:00、12〜1月は16:00〜23:00",
       "url": "https://koto.goguynet.jp/2026/10/27/ariakegarden_illumination2026/",
       "checked": "2026-10-27"
+    },
+    {
+      "title": "闇の魔術のハロウィーン",
+      "pref": "東京",
+      "place": "ワーナー ブラザース スタジオツアー東京",
+      "when": "9/10〜11/8",
+      "start": "2026-09-10",
+      "ends": "2026-11-08T18:00",
+      "note": "練馬区｜ハリー・ポッターのスタジオツアー。チケットが要る",
+      "url": "https://www.wbstudiotour.jp/dark-arts/",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "永遠なるガウディ VRで辿るサグラダ・ファミリア",
+      "pref": "東京",
+      "place": "Storydive Theater WAHHHP 新宿",
+      "when": "8/5〜12/31",
+      "start": "2026-08-05",
+      "ends": "2026-12-31T18:00",
+      "note": "新宿区｜一般2,500円（平日）",
+      "url": "https://wahhhp.com/gaudi",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "レジェンドリサーチ in 日本橋＆八重洲",
+      "pref": "東京",
+      "place": "日本橋三井タワー",
+      "when": "9/9〜11/29",
+      "start": "2026-09-09",
+      "ends": "2026-11-29T18:00",
+      "note": "中央区｜街のポケモンの立像は無料、謎解きキット3,300円",
+      "url": "https://mitsui-shopping-park.com/urban/legend-research/",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "サンリオキャラクターズ エキシビション",
+      "pref": "東京",
+      "place": "東急歌舞伎町タワー",
+      "when": "7/15〜5/31",
+      "start": "2026-07-15",
+      "ends": "2027-05-31T20:00",
+      "note": "新宿区｜4階。平日の一般2,400円",
+      "url": "https://floria-tokyo.jp/",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "ラー1グランプリ2026",
+      "pref": "東京",
+      "place": "大久保公園",
+      "when": "10/10〜11/15",
+      "start": "2026-10-10",
+      "ends": "2026-11-15T21:00",
+      "note": "新宿区｜1杯800円から。11:00〜21:00",
+      "url": "https://dai-tsukemen-haku.com/",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "マリメッコ展 模様のちから",
+      "pref": "東京",
+      "place": "東京都庭園美術館",
+      "when": "10/3〜12/20",
+      "start": "2026-10-03",
+      "ends": "2026-12-20T18:00",
+      "note": "港区｜一般1,400円。月曜休館",
+      "url": "https://www.teien-art-museum.ne.jp/exhibition/20261003-1220_marimekko/",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "東京雲海×TOKYO MOON",
+      "pref": "東京",
+      "place": "ホテル椿山荘東京",
+      "when": "9/15〜11/9",
+      "start": "2026-09-15",
+      "ends": "2026-11-09T22:00",
+      "note": "文京区｜庭の演出は18:40・20:40・21:40",
+      "url": "https://hotel-chinzanso-tokyo.jp/7s/autumn/",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "ルーヴル美術館展 ルネサンス",
+      "pref": "東京",
+      "place": "国立新美術館",
+      "when": "9/9〜12/13",
+      "start": "2026-09-09",
+      "ends": "2026-12-13T18:00",
+      "note": "港区｜当日一般2,400円。火曜休館",
+      "url": "https://www.nact.jp/artcommons/user/detail/80797",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "ウルトラマルチバース 地球防衛大作戦 in 横浜赤レンガ倉庫",
+      "pref": "神奈川",
+      "place": "横浜赤レンガ倉庫",
+      "when": "6/5〜11/30",
+      "start": "2026-06-05",
+      "ends": "2026-11-30T17:00",
+      "note": "横浜市中区｜体験キット付き2,800円",
+      "url": "https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw13073",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "2026 秋の人気番組展",
+      "pref": "神奈川",
+      "place": "放送ライブラリー",
+      "when": "10/17〜11/29",
+      "start": "2026-10-17",
+      "ends": "2026-11-29T17:00",
+      "free": true,
+      "note": "横浜市中区｜入場無料。10:00〜17:00",
+      "url": "https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw13428",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "2027 春節燈花",
+      "pref": "神奈川",
+      "place": "横浜中華街",
+      "when": "11/1〜2/20",
+      "start": "2026-11-01",
+      "ends": "2027-02-20T23:00",
+      "free": true,
+      "note": "横浜市中区｜観覧無料。16:00〜23:00に点灯",
+      "url": "https://www.chinatown.or.jp/event/event/shunsetsutouka2027/",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "横浜アンパンマンこどもミュージアム クリスマス",
+      "pref": "神奈川",
+      "place": "横浜アンパンマンこどもミュージアム",
+      "when": "11/1〜12/25",
+      "start": "2026-11-01",
+      "ends": "2026-12-25T17:00",
+      "note": "横浜市西区｜1歳以上2,200円から。日時指定",
+      "url": "https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw12729",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "東武動物公園 ウインターイルミネーション",
+      "pref": "埼玉",
+      "place": "東武動物公園",
+      "when": "10/24〜2/28",
+      "start": "2026-10-24",
+      "ends": "2027-02-28T20:00",
+      "note": "宮代町｜17:00〜20:00。15時からの入園は大人1,700円",
+      "url": "https://digitalpr.jp/r/144828",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "Night Bloom 2026",
+      "pref": "群馬",
+      "place": "ぐんまフラワーパークプラス",
+      "when": "10/10〜11/23",
+      "start": "2026-10-10",
+      "ends": "2026-11-23T20:30",
+      "note": "前橋市｜17:00〜20:30。大人1,200円",
+      "url": "https://www.flower-park.jp/night-bloom/",
+      "checked": "2026-10-28"
+    },
+    {
+      "title": "こども＋おとな＋秋の美術館",
+      "pref": "群馬",
+      "place": "群馬県立近代美術館",
+      "when": "土曜〜11/7",
+      "start": "2026-09-19",
+      "ends": "2026-11-07T16:00",
+      "free": true,
+      "note": "高崎市｜土曜10:00〜16:00に無料の造形あそび",
+      "url": "https://mmag.pref.gunma.jp/event/event-7263",
+      "checked": "2026-10-28"
     }
   ]
 }
