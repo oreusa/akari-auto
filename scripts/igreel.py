@@ -25,7 +25,8 @@ from lib import JST, append_log, load_json, now_jst, path, save_json  # noqa: E4
 GV = "v23.0"
 BEFORE_MIN = 90   # 出す時刻の何分前から入れ物を作るか
 WAIT_MAX = 12     # 出す時刻まで、この分数以内なら待って時刻ちょうどに出す
-GIVE_UP_MIN = 90  # 出す時刻からこの分数すぎても出せなければ Buffer に任せる
+GIVE_UP_MIN = 90
+REELS_PROJECT = "akari-reels"  # もとの曲を消したリール動画の置き場（Cloudflare Pages）  # 出す時刻からこの分数すぎても出せなければ Buffer に任せる
 
 
 def direct_ready(cfg):
@@ -106,28 +107,68 @@ def silence(video):
         return open(dst, "rb").read(), None
 
 
+def host_silent(video_url, name):
+    """もとの曲を消した動画を Cloudflare Pages（akari-reels）に置く。戻り値：(URL, エラー)"""
+    import subprocess
+    import tempfile
+    if not os.environ.get("CLOUDFLARE_API_TOKEN"):
+        return None, "Cloudflare の鍵がない"
+    try:
+        video = download(video_url)
+    except Exception as e:
+        return None, f"動画をドライブから受け取れない：{str(e)[:120]}"
+    video, err = silence(video)
+    if err:
+        return None, err
+    with tempfile.TemporaryDirectory() as d:
+        open(os.path.join(d, f"{name}.mp4"), "wb").write(video)
+        w = ["npx", "-y", "wrangler@3.80.0", "pages"]
+        subprocess.run(w + ["project", "create", REELS_PROJECT, "--production-branch=main"], capture_output=True)
+        r = subprocess.run(w + ["deploy", d, f"--project-name={REELS_PROJECT}", "--branch=main", "--commit-dirty=true"],
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            return None, f"Cloudflare に置けない：{(r.stderr or r.stdout)[-150:]}"
+    url = f"https://{REELS_PROJECT}.pages.dev/{name}.mp4"
+    for _ in range(12):  # 置いた直後は見えないことがある
+        try:
+            req = urllib.request.Request(url, method="HEAD")
+            with urllib.request.urlopen(req, timeout=20) as r2:
+                if r2.status == 200:
+                    return url, None
+        except Exception:
+            pass
+        time.sleep(5)
+    return None, "置いた動画が開けない"
+
+
 def make_container(cfg, token, ig, k, due):
     """動画を直接送って、リールの入れ物を作る。戻り値：(container_id, エラー)"""
     q = {"media_type": "REELS", "caption": caption(k, due), "share_to_feed": "true"}
     ac = audio_config(cfg)
     if ac:
         q["audio_configuration"] = ac
-    # 10/28 の試し：再開可能アップロードだと曲が付かない（1・3回目）、URL だと付く（2回目）。
-    # → URL で渡し、雫の動画のもとの曲は video_volume=0 で消す
-    mute = cfg.get("ig_mute_video", False) and ac
-    if not mute and cfg.get("ig_upload", "url") == "url":
-        c = call("POST", f"{ig}/media", token, dict(q, video_url=k["video_url"]))
+    # 10/28 の試し：再開可能アップロードだと曲が付かない、URL だと付く。video_volume=0 は受け付けない。
+    # → 雫の動画のもとの曲を消した動画を Cloudflare（akari-reels.pages.dev）に置き、その URL を渡す（オーナー「元の曲は必要がない」）
+    if cfg.get("ig_upload", "url") == "url":
+        url, err = host_silent(k["video_url"], f"{k.get('episode', 'x')}-{now_jst().strftime('%Y%m%d%H%M%S')}")
+        if url:
+            q2 = dict(q, video_url=url)
+        else:
+            # 置けない時は、ドライブの URL でもとの曲を1にする（10/28 5回目でオーナーOKの形）
+            print("無音の動画を置けない：", err)
+            ac2 = json.loads(ac) if ac else None
+            if ac2:
+                ac2["video_volume"] = 1
+                q2 = dict(q, video_url=k["video_url"], audio_configuration=json.dumps(ac2))
+            else:
+                q2 = dict(q, video_url=k["video_url"])
+        c = call("POST", f"{ig}/media", token, q2)
         if c.get("id"):
             return c["id"], None
     try:
         video = download(k["video_url"])
     except Exception as e:
         return None, f"動画をドライブから受け取れない：{str(e)[:120]}"
-    if mute:
-        # 雫の動画にはもとの曲が入っている → 消して無音の音を1本入れる（月と同じ）。曲はインスタが付ける
-        video, err = silence(video)
-        if err:
-            return None, err
     q["upload_type"] = "resumable"
     c = call("POST", f"{ig}/media", token, q)
     if not c.get("id") or not c.get("uri"):

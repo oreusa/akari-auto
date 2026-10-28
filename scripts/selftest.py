@@ -329,6 +329,7 @@ with tempfile.TemporaryDirectory() as d:
     igreel.call = fake_call
     igreel.download = lambda url: b"video"
     igreel.silence = lambda v: (v + b"-muted", None)
+    igreel.host_silent = lambda u, n: ("https://akari-reels.pages.dev/" + n + ".mp4", None)
     os.environ["IG_PAGE_TOKEN"] = "T"
     t = [datetime(2026, 10, 30, 7, 10, tzinfo=lib.JST)]
     igreel.now_jst = lambda: t[0]

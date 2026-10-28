@@ -39,6 +39,7 @@ jobs:
       - name: インスタのリールを直接（曲つき）出す（10/28〜。config の ig_direct と ig/page_token.enc がある時だけ）
         env:
           APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           if [ ! -f ig/page_token.enc ] || [ -z "${APP_SECRET:-}" ]; then echo "直接投稿は未設定"; exit 0; fi
           IG_PAGE_TOKEN=$(openssl enc -d -aes-256-cbc -pbkdf2 -a -pass env:APP_SECRET -in ig/page_token.enc)
