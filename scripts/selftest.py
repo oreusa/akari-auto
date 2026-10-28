@@ -344,6 +344,15 @@ with tempfile.TemporaryDirectory() as d:
     ok(dd.get("state") == "published" and dd.get("permalink"), f"リールを公開しない: {dd}")
     cfg = lib.load_json(os.path.join(d, "config.json"))
     ok(igreel.direct_ready(cfg), "直接の準備ができているのに ready にならない")
+    # 入れ物が作れない時は2回で failed（10/29 回数が毎回消えて「1回目」が続いた）
+    lib.save_json(os.path.join(d, "koma4", "2026-10-31.json"), {"slot": "08:00", "episode": 10, "text": "4コマ\nプロフィールのリンク",
+                  "image_url": "https://x/i", "video_url": "https://x/v2", "video_ok": "07:10"})
+    igreel.call = lambda *a, **k: {"error": {"message": "permission"}}
+    for hh, mm in ((7, 10), (7, 20)):
+        t[0] = datetime(2026, 10, 31, hh, mm, tzinfo=lib.JST)
+        igreel.run(t[0])
+    dd = lib.load_json(os.path.join(d, "state", "booked.json"))["2026-10-31 4コマ"]["ig_direct"]
+    ok(dd.get("state") == "failed" and dd.get("tries") == 2, f"入れ物の失敗が2回で Buffer に切り替わらない: {dd}")
     del os.environ["IG_PAGE_TOKEN"]
 
 print("自己テスト：", "OK" if not fails else f"×{len(fails)}")
