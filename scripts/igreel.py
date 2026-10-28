@@ -87,25 +87,49 @@ def audio_config(cfg):
     return json.dumps(ac)
 
 
+def silence(video):
+    """動画の音を無音に替える（10/28 オーナー「元々の音楽ついてるから2重になってる」）。戻り値：(動画, エラー)"""
+    import shutil
+    import subprocess
+    import tempfile
+    if not shutil.which("ffmpeg"):
+        subprocess.run("sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg", shell=True)
+    with tempfile.TemporaryDirectory() as d:
+        src, dst = os.path.join(d, "in.mp4"), os.path.join(d, "out.mp4")
+        open(src, "wb").write(video)
+        r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", src,
+                            "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
+                            "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-shortest", dst],
+                           capture_output=True, text=True)
+        if r.returncode != 0 or not os.path.exists(dst):
+            return None, f"動画の音を消せない：{r.stderr[-150:]}"
+        return open(dst, "rb").read(), None
+
+
 def make_container(cfg, token, ig, k, due):
     """動画を直接送って、リールの入れ物を作る。戻り値：(container_id, エラー)"""
     q = {"media_type": "REELS", "caption": caption(k, due), "share_to_feed": "true"}
     ac = audio_config(cfg)
     if ac:
         q["audio_configuration"] = ac
-    if cfg.get("ig_upload", "url") == "url":
-        # 月と同じ：動画の URL を渡す（ドライブの公開リンク）。曲はこの形で付くのを月で確かめ済み
+    mute = cfg.get("ig_mute_video", True) and ac
+    if not mute and cfg.get("ig_upload") == "url":
         c = call("POST", f"{ig}/media", token, dict(q, video_url=k["video_url"]))
         if c.get("id"):
             return c["id"], None
-    q["upload_type"] = "resumable"
-    c = call("POST", f"{ig}/media", token, q)
-    if not c.get("id") or not c.get("uri"):
-        return None, f"入れ物を作れない：{json.dumps(c.get('error') or c, ensure_ascii=False)[:200]}"
     try:
         video = download(k["video_url"])
     except Exception as e:
         return None, f"動画をドライブから受け取れない：{str(e)[:120]}"
+    if mute:
+        # 雫の動画にはもとの曲が入っている → 消して無音の音を1本入れる（月と同じ）。曲はインスタが付ける
+        video, err = silence(video)
+        if err:
+            return None, err
+    q["upload_type"] = "resumable"
+    c = call("POST", f"{ig}/media", token, q)
+    if not c.get("id") or not c.get("uri"):
+        return None, f"入れ物を作れない：{json.dumps(c.get('error') or c, ensure_ascii=False)[:200]}"
     up = call("POST", c["uri"], None, data=video, headers={
         "Authorization": f"OAuth {token}", "offset": "0", "file_size": str(len(video))}, timeout=300)
     if up.get("error") or up.get("success") is False:

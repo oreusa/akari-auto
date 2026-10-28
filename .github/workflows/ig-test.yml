@@ -18,6 +18,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - name: 動画の音を消す道具
+        run: command -v ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
       - name: リールを直接出す（試し）
         env:
           APP_SECRET: ${{ secrets.META_APP_SECRET }}
