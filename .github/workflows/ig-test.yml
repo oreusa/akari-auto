@@ -1,0 +1,38 @@
+name: ig-test（リール直接の試し・手で動かす）
+on:
+  workflow_dispatch:
+    inputs:
+      day:
+        description: "どの日の4コマ動画を出すか（YYYY-MM-DD、空なら今日）"
+        required: false
+        default: ""
+      audio_id:
+        description: "曲（空なら config の ig_audio_id）"
+        required: false
+        default: ""
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: リールを直接出す（試し）
+        env:
+          APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          DAY: ${{ inputs.day }}
+          AUDIO_ID: ${{ inputs.audio_id }}
+        run: |
+          IG_PAGE_TOKEN=$(openssl enc -d -aes-256-cbc -pbkdf2 -a -pass env:APP_SECRET -in ig/page_token.enc)
+          echo "::add-mask::$IG_PAGE_TOKEN"
+          IG_PAGE_TOKEN="$IG_PAGE_TOKEN" python3 scripts/igtest.py
+      - name: 記録を保存
+        if: always()
+        run: |
+          git config user.name akari-auto
+          git config user.email akari-auto@users.noreply.github.com
+          git add state/ig_test.json log || true
+          git diff --cached --quiet && exit 0
+          git commit -m "ig: リール直接の試し"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
