@@ -14,6 +14,23 @@ import igreel  # noqa: E402
 from lib import JST, append_log, load_json, now_jst, path, save_json  # noqa: E402
 
 
+def diag(token, ig):
+    """鍵が今どうなっているか（10/29 権限が足りないと言われた時の調べ）。鍵そのものは書かない。"""
+    d = {}
+    sec = os.environ.get("APP_SECRET", "")
+    if sec:
+        r = igreel.call("GET", "debug_token", f"{APP_ID}|{sec}", {"input_token": token})
+        x = r.get("data") or r
+        d["debug"] = {k: x.get(k) for k in ("is_valid", "type", "profile_id", "expires_at", "data_access_expires_at",
+                                             "scopes", "granular_scopes", "error")}
+    d["me"] = igreel.call("GET", "me", token, {"fields": "id,name"})
+    d["ig"] = igreel.call("GET", ig, token, {"fields": "id,username"})
+    return d
+
+
+APP_ID = "1400829015365892"
+
+
 def main():
     token = os.environ.get("IG_PAGE_TOKEN", "").strip()
     if not token:
@@ -35,6 +52,7 @@ def main():
     cid, err = igreel.make_container(cfg, token, ig, k, due)
     if err:
         out["error"] = err
+        out["diag"] = diag(token, ig)
         append_log(today, f"リール直接の試し ×：{err}")
     else:
         st = {}
