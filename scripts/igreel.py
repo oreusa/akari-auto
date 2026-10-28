@@ -78,7 +78,10 @@ def audio_config(cfg):
     aid = cfg.get("ig_audio_id")
     if not aid:
         return None
-    ac = {"audio_id": str(aid), "video_volume": int(cfg.get("ig_video_volume", 0))}
+    # 月と同じ形：audio_id だけ。音量は指定がある時だけ（10/28 video_volume=0 を送った試しで曲が付かなかった）
+    ac = {"audio_id": str(aid)}
+    if cfg.get("ig_video_volume"):
+        ac["video_volume"] = int(cfg["ig_video_volume"])
     if cfg.get("ig_audio_volume"):
         ac["audio_volume"] = int(cfg["ig_audio_volume"])
     return json.dumps(ac)
@@ -86,10 +89,16 @@ def audio_config(cfg):
 
 def make_container(cfg, token, ig, k, due):
     """動画を直接送って、リールの入れ物を作る。戻り値：(container_id, エラー)"""
-    q = {"media_type": "REELS", "upload_type": "resumable", "caption": caption(k, due), "share_to_feed": "true"}
+    q = {"media_type": "REELS", "caption": caption(k, due), "share_to_feed": "true"}
     ac = audio_config(cfg)
     if ac:
         q["audio_configuration"] = ac
+    if cfg.get("ig_upload", "url") == "url":
+        # 月と同じ：動画の URL を渡す（ドライブの公開リンク）。曲はこの形で付くのを月で確かめ済み
+        c = call("POST", f"{ig}/media", token, dict(q, video_url=k["video_url"]))
+        if c.get("id"):
+            return c["id"], None
+    q["upload_type"] = "resumable"
     c = call("POST", f"{ig}/media", token, q)
     if not c.get("id") or not c.get("uri"):
         return None, f"入れ物を作れない：{json.dumps(c.get('error') or c, ensure_ascii=False)[:200]}"
