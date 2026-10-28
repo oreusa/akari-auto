@@ -1,0 +1,107 @@
+name: ig-setup
+# インスタ直接投稿の準備（1回だけ手動で動かす）。月の ig-setup.yml を写した（10/28 docs/reference/tsuki-ig-direct-reels.md）。
+# 1. エクスプローラで作った短い鍵（IG_USER_TOKEN）を60日の鍵に替える
+# 2. その鍵から、期限のないFacebookページの鍵を取る
+# 3. ページの鍵を META_APP_SECRET で暗号化して ig/page_token.enc に保存（平文はどこにも出さない）
+# 4. インスタのアカウント番号と、BGMの曲（音源ID）が使えるかを ig/setup.json に保存
+on:
+  workflow_dispatch:
+    inputs:
+      audio_id:
+        description: "確かめる音源ID"
+        default: "1638443601035185"
+      ig_username:
+        description: "燈のインスタのアカウント名（このアカウントがつながったページを選ぶ）"
+        default: "ai_usagichan1"
+permissions:
+  contents: write
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    env:
+      APP_ID: "1400829015365892"
+      GV: "v23.0"
+    steps:
+      - uses: actions/checkout@v4
+      - name: exchange and save
+        env:
+          USER_TOKEN: ${{ secrets.IG_USER_TOKEN }}
+          APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          AUDIO_ID: ${{ github.event.inputs.audio_id }}
+          IG_NAME: ${{ github.event.inputs.ig_username }}
+        run: |
+          set -eu
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.parse, subprocess
+          GV = os.environ["GV"]; APP_ID = os.environ["APP_ID"]; SEC = os.environ["APP_SECRET"]
+          def get(path, **q):
+              url = f"https://graph.facebook.com/{GV}/{path}?" + urllib.parse.urlencode(q)
+              try:
+                  with urllib.request.urlopen(url, timeout=30) as r:
+                      return json.load(r)
+              except urllib.error.HTTPError as e:
+                  return {"error": json.loads(e.read().decode() or "{}").get("error", {"code": e.code})}
+          os.makedirs("ig", exist_ok=True); out = {}
+          ll = get("oauth/access_token", grant_type="fb_exchange_token", client_id=APP_ID,
+                   client_secret=SEC, fb_exchange_token=os.environ["USER_TOKEN"])
+          if "access_token" not in ll:
+              out["step"] = "exchange_failed"; out["error"] = ll.get("error")
+              json.dump(out, open("ig/setup.json", "w"), ensure_ascii=False, indent=1); raise SystemExit(0)
+          ut = ll["access_token"]; out["user_token_days"] = round(ll.get("expires_in", 0) / 86400, 1)
+          acc = get("me/accounts", fields="id,name,access_token,instagram_business_account{id,username}", access_token=ut)
+          pages = acc.get("data", [])
+          out["pages"] = [{"id": p["id"], "name": p["name"],
+                           "ig": p.get("instagram_business_account")} for p in pages]
+          if "error" in acc: out["accounts_error"] = acc["error"]
+          want = (os.environ.get("IG_NAME") or "ai_usagichan1").lower()
+          def mine(p):  # 月のページ（うさぎ TOWN NOTES）を選ばない。燈のインスタがつながったページだけ
+              return bool(p.get("instagram_business_account")) and (p["instagram_business_account"].get("username") or "").lower() == want
+          page = next((p for p in pages if mine(p)), None)
+          if not page:
+              # ビジネス所有のページは me/accounts に出ないことがある → 許可を出したページIDから直接取る
+              dbg = get("debug_token", input_token=ut, access_token=f"{APP_ID}|{SEC}").get("data", {})
+              out["granted"] = [{"scope": g.get("scope"), "targets": g.get("target_ids")} for g in dbg.get("granular_scopes", [])]
+              ids = {t for g in dbg.get("granular_scopes", []) if g.get("scope", "").startswith("pages_") for t in (g.get("target_ids") or [])}
+              for pid in ids:
+                  p = get(pid, fields="id,name,access_token,instagram_business_account{id,username}", access_token=ut)
+                  out["pages"].append({"id": p.get("id"), "name": p.get("name"), "ig": p.get("instagram_business_account"), "err": p.get("error")})
+                  if mine(p) and p.get("access_token"):
+                      page = p; break
+          if not page:
+              # ビジネスの持ち物のページ（business_management が必要）
+              biz = get("me/businesses", fields="id,name", access_token=ut)
+              out["businesses"] = [{"id": b["id"], "name": b.get("name")} for b in biz.get("data", [])]
+              if "error" in biz: out["businesses_error"] = biz["error"]
+              for b in biz.get("data", []):
+                  for kind in ("owned_pages", "client_pages"):
+                      r = get(f'{b["id"]}/{kind}', fields="id,name,access_token,instagram_business_account{id,username}", access_token=ut)
+                      for p in r.get("data", []):
+                          out["pages"].append({"id": p["id"], "name": p.get("name"), "ig": p.get("instagram_business_account"), "via": kind})
+                          if not page and mine(p) and p.get("access_token"):
+                              page = p
+                      if "error" in r: out[f"{kind}_error"] = r["error"]
+          if not page:
+              out["step"] = "no_ig_page"
+              json.dump(out, open("ig/setup.json", "w"), ensure_ascii=False, indent=1); raise SystemExit(0)
+          ig = page["instagram_business_account"]["id"]; pt = page["access_token"]
+          out.update(step="ok", page_id=page["id"], ig_user_id=ig,
+                     ig_username=page["instagram_business_account"].get("username"))
+          # 暗号化して保存（復号: openssl enc -d -aes-256-cbc -pbkdf2 -a -pass env:APP_SECRET）
+          enc = subprocess.run(["openssl", "enc", "-aes-256-cbc", "-pbkdf2", "-a", "-salt", "-pass", "env:APP_SECRET"],
+                               input=pt.encode(), capture_output=True, check=True).stdout.decode()
+          open("ig/page_token.enc", "w").write(enc)
+          aid = os.environ.get("AUDIO_ID") or "1638443601035185"
+          out["audio_check"] = {"audio_id": aid,
+                                "by_id": get(aid, user_id=ig, access_token=pt),
+                                "trending_sample": get("ig_audio", user_id=ig, audio_type="music", access_token=pt)}
+          # プレビューURLは期限つきなので消す
+          s = json.dumps(out, ensure_ascii=False)
+          json.dump(json.loads(s), open("ig/setup.json", "w"), ensure_ascii=False, indent=1)
+          print(out["step"], out.get("ig_username"))
+          PY
+      - name: commit
+        run: |
+          git config user.name "akari-auto"
+          git config user.email "akari-auto@users.noreply.github.com"
+          git add ig/
+          git diff --cached --quiet || (git commit -m "ig: 直接投稿の準備結果" && git pull --rebase -q origin main && git push)

@@ -606,8 +606,11 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
     rec = state.setdefault(key, {})
     def open_(s):
         return not rec.get(s, {}).get("id") and rec.get(s, {}).get("tries", 0) < MAX_TRIES
+    # リールをインスタへ直接（曲つき）出す設定の時は、Buffer でリールを出さない（2本出さない）。直接が失敗した時だけ Buffer で出す
+    import igreel
+    direct = igreel.direct_ready(cfg) and rec.get("ig_direct", {}).get("state") != "failed"
     todo = [s for s in KOMA4_SERVICES if s in cfg["channels"] and open_(s)
-            and (s != "instagram" or (k.get("video_url") and k.get("video_ok")))]  # リールは機械の確認（videocheck.py）に通った動画だけ
+            and (s != "instagram" or (k.get("video_url") and k.get("video_ok") and not direct))]  # リールは機械の確認（videocheck.py）に通った動画だけ
     ig_todo = [e for e in IG_EXTRA if "instagram" in cfg["channels"] and open_(e[0])]
     if not todo and not ig_todo:
         return _replace_text_post(state, day, k) if suffix == "-tabi" else False

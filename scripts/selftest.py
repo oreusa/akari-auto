@@ -298,5 +298,51 @@ ok(not thin_reason("選んだ理由：3つを比べ、重さ180gで充電は約4
 ok(goods_problems("選んだ理由：3つを比べ、1mあたり0.6円でいちばん安かったためです\nただし、やわらかさは2番目の方が上でした\n置き場所が少ない家に向いています", "g") == [], "3行のHP商品が×になる")
 ok(len(goods_problems("選んだ理由：3枚を比べ、レビュー3,834件・評価4.73でいちばん上でした\n寒い夜に。", "g")) >= 2, "ペラペラのHP商品が通る")
 
+# インスタのリールを直接（曲つき）：動画を送る→時刻で公開。Buffer のリールは出さない
+import igreel  # noqa: E402
+with tempfile.TemporaryDirectory() as d:
+    for m in (lib, book, igreel):
+        m.path = lambda *a: os.path.join(d, *a)
+    igreel.load_json = book.load_json = lib.load_json
+    igreel.save_json = lib.save_json
+    igreel.append_log = book.append_log = lambda day, line: print("  log:", line)
+    lib.save_json(os.path.join(d, "config.json"), {"channels": {"instagram": "I"}, "ig_direct": True, "ig_audio_id": "123"})
+    os.makedirs(os.path.join(d, "ig"))
+    open(os.path.join(d, "ig", "page_token.enc"), "w").write("x")
+    lib.save_json(os.path.join(d, "ig", "setup.json"), {"ig_user_id": "999"})
+    lib.save_json(os.path.join(d, "koma4", "2026-10-30.json"), {"slot": "08:00", "episode": 9, "text": "4コマ\nプロフィールのリンク",
+                  "image_url": "https://x/i", "video_url": "https://x/v", "video_ok": "07:10"})
+    calls_ig = []
+    def fake_call(method, url, token, params=None, data=None, headers=None, timeout=120):
+        calls_ig.append((method, url, params))
+        if url == "999/media":
+            return {"id": "C1", "uri": "https://rupload.facebook.com/x"}
+        if url.startswith("https://rupload"):
+            return {"success": True}
+        if url == "C1":
+            return {"status_code": "FINISHED"}
+        if url == "999/media_publish":
+            return {"id": "M1"}
+        if url == "M1":
+            return {"permalink": "https://instagram.com/reel/abc"}
+        return {}
+    igreel.call = fake_call
+    igreel.download = lambda url: b"video"
+    os.environ["IG_PAGE_TOKEN"] = "T"
+    t = [datetime(2026, 10, 30, 7, 10, tzinfo=lib.JST)]
+    igreel.now_jst = lambda: t[0]
+    igreel.run(t[0])
+    st = lib.load_json(os.path.join(d, "state", "booked.json"))
+    dd = st["2026-10-30 4コマ"]["ig_direct"]
+    ok(dd.get("state") == "uploaded" and dd.get("container") == "C1", f"リールの動画を送らない: {dd}")
+    ok(any(c[1] == "999/media" and "audio_id" in (c[2] or {}).get("audio_configuration", "") for c in calls_ig), "曲が付かない")
+    t[0] = datetime(2026, 10, 30, 8, 7, tzinfo=lib.JST)
+    igreel.run(t[0])
+    dd = lib.load_json(os.path.join(d, "state", "booked.json"))["2026-10-30 4コマ"]["ig_direct"]
+    ok(dd.get("state") == "published" and dd.get("permalink"), f"リールを公開しない: {dd}")
+    cfg = lib.load_json(os.path.join(d, "config.json"))
+    ok(igreel.direct_ready(cfg), "直接の準備ができているのに ready にならない")
+    del os.environ["IG_PAGE_TOKEN"]
+
 print("自己テスト：", "OK" if not fails else f"×{len(fails)}")
 sys.exit(1 if fails else 0)

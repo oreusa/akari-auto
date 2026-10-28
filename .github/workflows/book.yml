@@ -36,6 +36,14 @@ jobs:
           python3 scripts/videocheck.py
       - name: 予約
         run: python3 scripts/book.py
+      - name: インスタのリールを直接（曲つき）出す（10/28〜。config の ig_direct と ig/page_token.enc がある時だけ）
+        env:
+          APP_SECRET: ${{ secrets.META_APP_SECRET }}
+        run: |
+          if [ ! -f ig/page_token.enc ] || [ -z "${APP_SECRET:-}" ]; then echo "直接投稿は未設定"; exit 0; fi
+          IG_PAGE_TOKEN=$(openssl enc -d -aes-256-cbc -pbkdf2 -a -pass env:APP_SECRET -in ig/page_token.enc)
+          echo "::add-mask::$IG_PAGE_TOKEN"
+          IG_PAGE_TOKEN="$IG_PAGE_TOKEN" python3 scripts/igreel.py
       - name: 数字係の代わり（夜0:45の数字係が朝7:15までに動いていない朝だけ。GitHub の時刻起動は2〜3時間遅れることがある。10/25）
         run: |
           y=$(TZ=Asia/Tokyo date -d yesterday +%F); t=$(TZ=Asia/Tokyo date +%F); h=$(TZ=Asia/Tokyo date +%H%M)
@@ -47,7 +55,7 @@ jobs:
         run: |
           git config user.name "akari-auto"
           git config user.email "akari-auto@users.noreply.github.com"
-          for p in state log data config.json koma4; do [ -e "$p" ] && git add -A "$p"; done || true
+          for p in state log data config.json koma4 ig; do [ -e "$p" ] && git add -A "$p"; done || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "$COMMIT_MSG"
           for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done
