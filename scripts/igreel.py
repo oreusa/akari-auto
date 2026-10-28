@@ -80,7 +80,7 @@ def audio_config(cfg):
         return None
     # 月と同じ形：audio_id だけ。音量は指定がある時だけ（10/28 video_volume=0 を送った試しで曲が付かなかった）
     ac = {"audio_id": str(aid)}
-    if cfg.get("ig_video_volume"):
+    if cfg.get("ig_video_volume") is not None:
         ac["video_volume"] = int(cfg["ig_video_volume"])
     if cfg.get("ig_audio_volume"):
         ac["audio_volume"] = int(cfg["ig_audio_volume"])
@@ -112,8 +112,10 @@ def make_container(cfg, token, ig, k, due):
     ac = audio_config(cfg)
     if ac:
         q["audio_configuration"] = ac
-    mute = cfg.get("ig_mute_video", True) and ac
-    if not mute and cfg.get("ig_upload") == "url":
+    # 10/28 の試し：再開可能アップロードだと曲が付かない（1・3回目）、URL だと付く（2回目）。
+    # → URL で渡し、雫の動画のもとの曲は video_volume=0 で消す
+    mute = cfg.get("ig_mute_video", False) and ac
+    if not mute and cfg.get("ig_upload", "url") == "url":
         c = call("POST", f"{ig}/media", token, dict(q, video_url=k["video_url"]))
         if c.get("id"):
             return c["id"], None
