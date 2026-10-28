@@ -1,0 +1,57 @@
+name: ig-audio-search
+# インスタ公式の曲（外部から付けられるもの）を言葉で探して ig/audio_search.json に保存する（月の ig-audio-search.yml を写した）
+on:
+  workflow_dispatch:
+    inputs:
+      queries:
+        description: "探す言葉（カンマ区切り。空なら人気の曲）"
+        default: ""
+permissions:
+  contents: write
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    env:
+      GV: "v23.0"
+    steps:
+      - uses: actions/checkout@v4
+      - name: search
+        env:
+          APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          QS: ${{ github.event.inputs.queries }}
+        run: |
+          set -eu
+          PT=$(openssl enc -d -aes-256-cbc -pbkdf2 -a -pass env:APP_SECRET -in ig/page_token.enc)
+          export PT
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.parse
+          GV = os.environ["GV"]; PT = os.environ["PT"]
+          ig = json.load(open("ig/setup.json"))["ig_user_id"]
+          def get(url):
+              try:
+                  with urllib.request.urlopen(url, timeout=30) as r: return json.load(r)
+              except urllib.error.HTTPError as e:
+                  return {"error": json.loads(e.read().decode() or "{}").get("error", {"code": e.code})}
+          out = {}
+          qs = [q.strip() for q in os.environ.get("QS", "").split(",") if q.strip()] or [""]
+          for q in qs:
+              p = dict(user_id=ig, audio_type="music", access_token=PT, limit=50)
+              if q: p["search_query"] = q
+              url = f"https://graph.facebook.com/{GV}/ig_audio?" + urllib.parse.urlencode(p)
+              rows = []
+              for _ in range(3):
+                  d = get(url)
+                  if "error" in d: rows.append({"error": d["error"]}); break
+                  for a in d.get("audio", []):
+                      rows.append({k: a.get(k) for k in ("audio_id", "title", "display_artist", "duration_in_ms", "is_ads_eligible")})
+                  url = d.get("paging", {}).get("next")
+                  if not url: break
+              out[q or "(人気)"] = rows
+          json.dump(out, open("ig/audio_search.json", "w"), ensure_ascii=False, indent=1)
+          PY
+      - name: commit
+        run: |
+          git config user.name "akari-auto"
+          git config user.email "akari-auto@users.noreply.github.com"
+          git add ig/audio_search.json
+          git diff --cached --quiet || (git commit -m "ig: 曲さがしの結果" && git pull --rebase -q origin main && git push)

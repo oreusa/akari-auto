@@ -28,6 +28,12 @@
 - 見つけた係が直す：4コマ係（7:15・7:50）・朝の見回り（9:13）・集め係（14:13）・夜の見回り（23:23）は log の今日の行を読み、「予約×」「中止」のあと同じ時刻・同じ先の「予約OK」が無ければ、自分で直す（文を縮める・リンクを直す）→ book.yml を動かす → 2分後に log で「予約OK」を見るまで終わらない。直せない時だけ基本スレッドへ message_thread で1回（「予約× D HH:MM 先：理由。直した／直せない：〜」）。基本スレの燈も、知らせを受けたら予約OKまで見届ける。
 - 出す時刻の25分前を切ったら、代わりの文でもよいので出す方を先にする。
 
+## インスタのリールを直接（曲つき）出す（10/28〜準備中。月のやり方 docs/reference/tsuki-ig-direct-reels.md）
+- 仕組み：book.yml の予約のあとに scripts/igreel.py。4コマの動画（video_ok）を出す時刻の90分前からドライブで受け取り、インスタへ直接送る（再開可能アップロード。akari-auto は非公開なのでURLでは渡せない）→ 出す時刻を過ぎた最初の回に公開（12分以内なら待つ）。曲は config.json の ig_audio_id、雫の動画の音は ig_video_volume（既定0）。
+- 動くのは config.json の "ig_direct": true と ig/page_token.enc・ig/setup.json がそろった時だけ。その間、book.py は Buffer でリールを出さない（2本出さない）。直接が2回失敗・時刻から90分過ぎたら state の ig_direct が failed になり、Buffer で今までどおり出す。スライド・ストーリーは Buffer のまま（曲はリールだけ）。
+- 準備：オーナーが ①燈用の Facebook ページを作って燈のインスタとつなぐ ②月と同じアプリ tsuki-reel（1400829015365892）で鍵を作る ③akari-auto の Secrets に IG_USER_TOKEN と META_APP_SECRET。→ 燈が ig-setup.yml を動かす（ig_username=ai_usagichan1 のページだけ選ぶ）→ ig/setup.json の audio_check で曲が使えるか見る（だめなら ig-audio-search.yml で探す）→ config に ig_audio_id と ig_direct: true。
+- API では消せない。消すのはオーナーがアプリで。
+
 ## 1. 1日の流れ（日本時間）
 
 | 時刻 | だれ | すること | 置き場所 |
