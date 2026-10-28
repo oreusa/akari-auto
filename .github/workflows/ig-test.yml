@@ -23,6 +23,7 @@ jobs:
       - name: リールを直接出す（試し）
         env:
           APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           DAY: ${{ inputs.day }}
           AUDIO_ID: ${{ inputs.audio_id }}
         run: |
