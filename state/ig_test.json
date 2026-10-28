@@ -2,7 +2,6 @@
   "day": "2026-10-28",
   "episode": 21,
   "audio_id": "1638443601035185",
-  "at": "2026-10-28 13:49",
-  "media_id": "18075407438725564",
-  "permalink": "https://www.instagram.com/reel/DfBnLE6AACe/"
+  "at": "2026-10-28 13:52",
+  "error": "{\"message\": \"Fatal\", \"type\": \"OAuthException\", \"code\": -1, \"error_subcode\": 2207085, \"is_transient\": false, \"error_user_title\": \"一般的な内部エラー\", \"error_user_msg\": \"内部サーバーエラーが発生しました。後ほどもう一度実行してください。\", \"fbtrace_id\": \"ATtiwcSx5vm8hXA55SvTX0T\"}"
 }
