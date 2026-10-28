@@ -1,4 +1,22 @@
 {
+ "https://dai-tsukemen-haku.com/": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
+ },
+ "https://digitalpr.jp/r/144828": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 0.9,
+  "why": ""
+ },
+ "https://floria-tokyo.jp/": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 2.5,
+  "why": ""
+ },
  "https://global.toyota/info/themoveum/": {
   "at": "2026-10-28",
   "by": "browser",
@@ -209,6 +227,12 @@
   "sec": 2.7,
   "why": ""
  },
+ "https://hotel-chinzanso-tokyo.jp/7s/autumn/": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.4,
+  "why": ""
+ },
  "https://japan.storm.mg/articles/1174053": {
   "at": "2026-10-28",
   "by": "browser",
@@ -263,6 +287,18 @@
   "by": "browser",
   "ok": true,
   "sec": 2.6,
+  "why": ""
+ },
+ "https://mitsui-shopping-park.com/urban/legend-research/": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 0.3,
+  "why": ""
+ },
+ "https://mmag.pref.gunma.jp/event/event-7263": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://policies.env.go.jp/national-garden/shinjukugyoen/highlights/kiku/": {
@@ -328,6 +364,12 @@
   "sec": 6.5,
   "why": ""
  },
+ "https://wahhhp.com/gaudi": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 4.0,
+  "why": ""
+ },
  "https://www.amazon.co.jp/dp/B00F4S7IK8?tag=aiusagichan-22": {
   "at": "2026-10-28",
   "by": "browser",
@@ -356,6 +398,12 @@
   "sec": 3.0,
   "why": ""
  },
+ "https://www.chinatown.or.jp/event/event/shunsetsutouka2027/": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 0.8,
+  "why": ""
+ },
  "https://www.christmas.hills-site.com/": {
   "at": "2026-10-28",
   "by": "browser",
@@ -382,6 +430,12 @@
   "by": "browser",
   "ok": true,
   "sec": 7.1,
+  "why": ""
+ },
+ "https://www.flower-park.jp/night-bloom/": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 2.7,
   "why": ""
  },
  "https://www.flowerpark.or.jp/news-column/autumn2026/": {
@@ -461,6 +515,12 @@
   "sec": 5.8,
   "why": ""
  },
+ "https://www.nact.jp/artcommons/user/detail/80797": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 0.9,
+  "why": ""
+ },
  "https://www.nagatoro.gr.jp/2026/09/%e9%95%b7%e7%80%9e%e7%b4%85%e8%91%89%e3%81%be%e3%81%a4%e3%82%8a2026%e6%97%a5%e7%a8%8b%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/": {
   "at": "2026-10-28",
   "by": "browser",
@@ -490,11 +550,16 @@
   "why": ""
  },
  "https://www.showakinen-koen.jp/autumn-night-walk/": {
-  "at": "2026-10-28",
-  "by": "browser",
+  "at": "2026-10-29",
   "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "sec": 15.2,
+  "why": "The read operation timed out"
+ },
+ "https://www.teien-art-museum.ne.jp/exhibition/20261003-1220_marimekko/": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
  },
  "https://www.tnm.jp/modules/r_free_page/index.php?id=113": {
   "at": "2026-10-28",
@@ -543,6 +608,30 @@
   "by": "browser",
   "ok": true,
   "sec": 4.8,
+  "why": ""
+ },
+ "https://www.wbstudiotour.jp/dark-arts/": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 0.8,
+  "why": ""
+ },
+ "https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw12729": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 0.1,
+  "why": ""
+ },
+ "https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw13073": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 0.3,
+  "why": ""
+ },
+ "https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw13428": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 0.2,
   "why": ""
  },
  "https://www.yokohama-akarenga.jp/christmas/": {
