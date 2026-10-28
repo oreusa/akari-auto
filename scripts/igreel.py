@@ -225,6 +225,7 @@ def run(now=None):
             continue
         if d.get("video") != k["video_url"]:  # 7:50の直しで動画が変わったら作り直す
             d.clear()
+        d["video"] = k["video_url"]  # 失敗の回数が次の回で消えないように先に書く（10/29 2回目も「1回目」になった）
         if not d.get("container"):
             cid, err = make_container(cfg, token, ig, k, due)
             d["tries"] = d.get("tries", 0) + 1

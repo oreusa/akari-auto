@@ -2,6 +2,39 @@
   "day": "2026-10-29",
   "episode": 22,
   "audio_id": "1638443601035185",
-  "at": "2026-10-29 07:27",
-  "error": "入れ物を作れない：{\"message\": \"Any of the pages_read_engagement, pages_manage_metadata,\\n        pages_read_user_content, pages_manage_ads, pages_show_list or\\n        pages_messaging permission(s) must be granted befo"
+  "at": "2026-10-29 07:28",
+  "error": "入れ物を作れない：{\"message\": \"Any of the pages_read_engagement, pages_manage_metadata,\\n        pages_read_user_content, pages_manage_ads, pages_show_list or\\n        pages_messaging permission(s) must be granted befo",
+  "diag": {
+    "debug": {
+      "is_valid": null,
+      "type": null,
+      "profile_id": null,
+      "expires_at": null,
+      "data_access_expires_at": null,
+      "scopes": null,
+      "granular_scopes": null,
+      "error": {
+        "message": "API access blocked.",
+        "type": "OAuthException",
+        "code": 200,
+        "fbtrace_id": "AUmVd8LJEIPnJtSDkpc7LOw"
+      }
+    },
+    "me": {
+      "error": {
+        "message": "Any of the pages_read_engagement, pages_manage_metadata,\n        pages_read_user_content, pages_manage_ads, pages_show_list or\n        pages_messaging permission(s) must be granted before impersonating a\n        user's page.",
+        "type": "OAuthException",
+        "code": 190,
+        "fbtrace_id": "AD8YGVy63knJEpGfuM5sL2E"
+      }
+    },
+    "ig": {
+      "error": {
+        "message": "Any of the pages_read_engagement, pages_manage_metadata,\n        pages_read_user_content, pages_manage_ads, pages_show_list or\n        pages_messaging permission(s) must be granted before impersonating a\n        user's page.",
+        "type": "OAuthException",
+        "code": 190,
+        "fbtrace_id": "Absq4MEtUnxFceg41E3jvuU"
+      }
+    }
+  }
 }
