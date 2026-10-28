@@ -243,6 +243,12 @@
   "sec": 1.5,
   "why": ""
  },
+ "https://setusoku.com/sale/142006/": {
+  "at": "2026-10-28",
+  "ok": true,
+  "sec": 1.3,
+  "why": ""
+ },
  "https://t-doitsumura.co.jp/": {
   "at": "2026-10-27",
   "by": "browser",
@@ -413,7 +419,7 @@
  "https://www.showakinen-koen.jp/autumn-night-walk/": {
   "at": "2026-10-28",
   "ok": false,
-  "sec": 15.1,
+  "sec": 15.2,
   "why": "The read operation timed out"
  },
  "https://www.tnm.jp/modules/r_free_page/index.php?id=113": {
