@@ -1,6 +1,6 @@
 {
   "day": "2026-10-27",
-  "fetchedAt": "2026-10-28T05:15+09:00",
+  "fetchedAt": "2026-10-29T05:34+09:00",
   "posts": [
     {
       "service": "threads",
@@ -11,8 +11,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 18.18,
-        "views": 11,
+        "engagementRate": 16.67,
+        "views": 12,
         "quotes": 0,
         "reposts": 0
       }
@@ -26,9 +26,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.04,
+        "engagementRate": 1.75,
         "reposts": 0,
-        "impressions": 49,
+        "impressions": 57,
         "clicks": 0
       }
     },
@@ -56,9 +56,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 3.7,
+        "engagementRate": 0.99,
         "reposts": 0,
-        "impressions": 27,
+        "impressions": 101,
         "clicks": 0
       }
     },
@@ -69,10 +69,10 @@
       "first": "10/30から、中野四季の森公園でやきいもフェス TOKYO（入場無料）",
       "url": "https://www.threads.com/@ai_usagichan1/post/De-3k_EHA3g",
       "metrics": {
-        "reactions": 10,
+        "reactions": 21,
         "comments": 1,
-        "engagementRate": 0.58,
-        "views": 1888,
+        "engagementRate": 0.73,
+        "views": 3024,
         "quotes": 0,
         "reposts": 0
       }
@@ -84,11 +84,11 @@
       "first": "10/30から、中野四季の森公園でやきいもフェス TOKYO（入場無料）",
       "url": "https://x.com/1753799832798629888/status/2114918777955447163",
       "metrics": {
-        "reactions": 0,
+        "reactions": 1,
         "comments": 1,
-        "engagementRate": 9.09,
+        "engagementRate": 1.32,
         "reposts": 0,
-        "impressions": 11,
+        "impressions": 151,
         "clicks": 0
       }
     },
@@ -101,8 +101,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.75,
-        "views": 133,
+        "engagementRate": 0.64,
+        "views": 157,
         "quotes": 0,
         "reposts": 0
       }
@@ -115,10 +115,10 @@
       "url": "https://x.com/1753799832798629888/status/2114941414203121954",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 0.71,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 283,
         "clicks": 0
       }
     },
@@ -131,8 +131,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.49,
-        "views": 204,
+        "engagementRate": 0.42,
+        "views": 237,
         "quotes": 0,
         "reposts": 0
       }
@@ -144,11 +144,11 @@
       "first": "【10/28　東京駅の改札内｜ギネス記録のチーズケーキ「ワンダー」初の常設店🍰】",
       "url": "https://x.com/1753799832798629888/status/2114964072282087886",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 0.76,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 263,
         "clicks": 0
       }
     },
@@ -161,8 +161,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 11.11,
-        "views": 9,
+        "engagementRate": 8.33,
+        "views": 12,
         "quotes": 0,
         "reposts": 0
       }
@@ -175,10 +175,10 @@
       "url": "https://x.com/1753799832798629888/status/2115009386892460436",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 1.52,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 66,
         "clicks": 0
       }
     },
@@ -191,8 +191,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 9.09,
-        "views": 11,
+        "engagementRate": 7.14,
+        "views": 14,
         "quotes": 0,
         "reposts": 0
       }
@@ -205,10 +205,10 @@
       "url": "https://x.com/1753799832798629888/status/2115039573814268371",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 3.61,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 83,
         "clicks": 0
       }
     },
@@ -221,8 +221,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.76,
-        "views": 21,
+        "engagementRate": 1.79,
+        "views": 56,
         "quotes": 0,
         "reposts": 0
       }
@@ -235,10 +235,10 @@
       "url": "https://x.com/1753799832798629888/status/2115051203251847328",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 2.5,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 40,
         "clicks": 0
       }
     },
@@ -249,10 +249,10 @@
       "first": "【11/1〜11/30　横浜中華街｜美食節の上海蟹フェアが1か月🦀】",
       "url": "https://www.threads.com/@ai_usagichan1/post/De_8Q-DkSnW",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 1.63,
+        "views": 123,
         "quotes": 0,
         "reposts": 0
       }
@@ -264,11 +264,11 @@
       "first": "【11/1〜11/30　横浜中華街｜美食節の上海蟹フェアが1か月🦀】",
       "url": "https://x.com/1753799832798629888/status/2115069782571508161",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 4.17,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 48,
         "clicks": 0
       }
     },
@@ -330,8 +330,8 @@
         "views": 6,
         "shares": 0,
         "saves": 0,
-        "totalTimeWatched": 0.33,
-        "averageTimeWatched": 2.85,
+        "totalTimeWatched": 0.4,
+        "averageTimeWatched": 2.4,
         "reach": 6
       }
     },
@@ -344,8 +344,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4,
-        "views": 25,
+        "engagementRate": 3.85,
+        "views": 26,
         "quotes": 0,
         "reposts": 0
       }
@@ -359,9 +359,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 11.54,
+        "engagementRate": 3.3,
         "reposts": 0,
-        "impressions": 26,
+        "impressions": 91,
         "clicks": 0
       }
     }

@@ -1,0 +1,377 @@
+{
+  "day": "2026-10-28",
+  "fetchedAt": "2026-10-29T05:34+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【10/28まで　セブン-イレブン｜1つ買うと1つ無料が4つ今日まで🎁】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfA6DcmGAN5",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.61,
+        "views": 62,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【10/28まで　セブン-イレブン｜1つ買うと1つ無料が4つ今日まで🎁】",
+      "url": "https://x.com/1753799832798629888/status/2115205698573287578",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5,
+        "reposts": 0,
+        "impressions": 20,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "【10/10〜11/23　いばらきフラワーパーク｜秋バラ約800品種が見頃🌹】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfBHxRPjOu3",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.03,
+        "views": 97,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "【10/10〜11/23　いばらきフラワーパーク｜秋バラ約800品種が見頃🌹】",
+      "url": "https://x.com/1753799832798629888/status/2115235860245324089",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 7.14,
+        "reposts": 0,
+        "impressions": 14,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【10/31　有明ガーデン｜冬のイルミネーションの点灯式は無料✨】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfBcXmwkQsm",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.19,
+        "views": 84,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【10/31　有明ガーデン｜冬のイルミネーションの点灯式は無料✨】",
+      "url": "https://x.com/1753799832798629888/status/2115281158434853218",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【11/15まで　群馬と長瀞｜紅葉ライトアップ3か所、何時まで🍁】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfBmqufjqni",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.59,
+        "views": 169,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【11/15まで　群馬と長瀞｜紅葉ライトアップ3か所、何時まで🍁】",
+      "url": "https://x.com/1753799832798629888/status/2115303803129852373",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "14:05",
+      "kind": "手動",
+      "first": "【11/1〜11/15　新宿御苑｜菊花壇展は1878年から続く秋の花壇🌼】",
+      "url": "https://www.instagram.com/reel/DfBo6_wDZvh/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 2,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.24,
+        "averageTimeWatched": 4.74,
+        "reach": 2
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【10/29　新宿・百人町｜UNI COFFEE ROASTERYの新しい店☕】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfBw962FYmI",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 1.05,
+        "views": 190,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【10/29　新宿・百人町｜UNI COFFEE ROASTERYの新しい店☕】",
+      "url": "https://x.com/1753799832798629888/status/2115326454036656385",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた洗える電気ひざ掛け4つ、選んだのは140×82cmで0.85kg】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfCFlWilYrn",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 20,
+        "views": 5,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた洗える電気ひざ掛け4つ、選んだのは140×82cmで0.85kg】",
+      "url": "https://x.com/1753799832798629888/status/2115371789941428675",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【1/11まで　鴨川・大山千枚田｜棚田のあかりは見学無料🌾】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfCTUmsEeZi",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.26,
+        "views": 19,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【1/11まで　鴨川・大山千枚田｜棚田のあかりは見学無料🌾】",
+      "url": "https://x.com/1753799832798629888/status/2115401983980978358",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/1〜12/6　高尾山｜ケーブルカー沿線が夜に光る🚡】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfCYpwmFC0y",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/1〜12/6　高尾山｜ケーブルカー沿線が夜に光る🚡】",
+      "url": "https://x.com/1753799832798629888/status/2115413661153956110",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【10/31〜11/1　鶴見・入船公園｜沖縄の食と芸能の2日間🌺】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfChEl-FH2Y",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【10/31〜11/1　鶴見・入船公園｜沖縄の食と芸能の2日間🌺】",
+      "url": "https://x.com/1753799832798629888/status/2115432224774381773",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4017490726392765839",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4017489055398317241",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/1〜11/15　新宿御苑｜菊花壇展は1878年から続く秋の花壇🌼】",
+      "url": "https://www.instagram.com/p/DfA_TB_nOhw/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "follows": 0,
+        "reach": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/1〜11/15　新宿御苑｜菊花壇展は1878年から続く秋の花壇🌼】",
+      "url": "https://www.instagram.com/reel/DfA_U9DK5CH/",
+      "metrics": {}
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/1〜11/15　新宿御苑｜菊花壇展は1878年から続く秋の花壇🌼】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfA_QvRCU-T",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 14.29,
+        "views": 7,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/1〜11/15　新宿御苑｜菊花壇展は1878年から続く秋の花壇🌼】",
+      "url": "https://x.com/1753799832798629888/status/2115217102621626630",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 6.25,
+        "reposts": 0,
+        "impressions": 16,
+        "clicks": 0
+      }
+    }
+  ]
+}
