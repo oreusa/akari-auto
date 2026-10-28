@@ -1,0 +1,287 @@
+{
+ "user_token_days": 0.0,
+ "pages": [
+  {
+   "id": "1409872485549243",
+   "name": "うさぎ LIFE NOTES ",
+   "ig": {
+    "id": "17841472180661094",
+    "username": "ai_usagichan1"
+   }
+  },
+  {
+   "id": "1474830065705085",
+   "name": "うさぎ TOWN NOTES ",
+   "ig": {
+    "id": "17841423671216937",
+    "username": "fudousan_ai_si"
+   }
+  }
+ ],
+ "step": "ok",
+ "page_id": "1409872485549243",
+ "ig_user_id": "17841472180661094",
+ "ig_username": "ai_usagichan1",
+ "audio_check": {
+  "audio_id": "1638443601035185",
+  "by_id": {
+   "audio_id": "1638443601035185",
+   "duration_in_ms": 98613,
+   "audio_type": "music",
+   "title": "Kinmokusei & Orange Sky",
+   "cover_artwork_thumbnail_uri": null,
+   "display_artist": "haru hina",
+   "download_url": null,
+   "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1638443601035185/"
+  },
+  "trending_sample": {
+   "audio": [
+    {
+     "audio_id": "1638443601035185",
+     "duration_in_ms": 98613,
+     "title": "金木犀とオレンジの空",
+     "display_artist": "haru hina",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1638443601035185/",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1652701969927319",
+     "duration_in_ms": 155000,
+     "title": "Bubble Dreams",
+     "display_artist": "gamza",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1652701969927319/",
+     "ig_username": "gamzamusic",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "2273966826751089",
+     "duration_in_ms": 202160,
+     "title": "雨ニモマケズ(踊れる沖縄レゲエ)",
+     "display_artist": "Raga Ninja",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/2273966826751089/",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "290228778769749",
+     "duration_in_ms": 222407,
+     "title": "ペーパー・リングス",
+     "display_artist": "テイラー・スウィフト",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/290228778769749/",
+     "ig_username": "taylorswift",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1076906461717653",
+     "duration_in_ms": 275040,
+     "title": "シンデレラ",
+     "display_artist": "Mrs. GREEN APPLE",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1076906461717653/",
+     "ig_username": "mgaband",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1061377441616479",
+     "duration_in_ms": 288200,
+     "title": "ライラック",
+     "display_artist": "Mrs. GREEN APPLE",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1061377441616479/",
+     "ig_username": "mgaband",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1059730586982494",
+     "duration_in_ms": 140539,
+     "title": "I Like This Weather",
+     "display_artist": "soovela",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1059730586982494/",
+     "ig_username": "soovela_official",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "2660253987826373",
+     "duration_in_ms": 176594,
+     "title": "いいんじゃない",
+     "display_artist": "muque",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/2660253987826373/",
+     "ig_username": "muque.official",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1850626032615805",
+     "duration_in_ms": 181790,
+     "title": "Drip",
+     "display_artist": "ATEEZ",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1850626032615805/",
+     "ig_username": "ateez_official_",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "3661927097298204",
+     "duration_in_ms": 150648,
+     "title": "Today Has a Little Swing",
+     "display_artist": "EMMA JAZZ",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/3661927097298204/",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1822659912092977",
+     "duration_in_ms": 115636,
+     "title": "ワッサー (feat. PAIN)",
+     "display_artist": "ARI",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1822659912092977/",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1101568929297016",
+     "duration_in_ms": 200413,
+     "title": "Last Kiss",
+     "display_artist": "NOA",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1101568929297016/",
+     "ig_username": "n_o_a_3_",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1327119789379216",
+     "duration_in_ms": 189880,
+     "title": "そっと支えられるように",
+     "display_artist": "TAGOMA Chill Music",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1327119789379216/",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "2015689192472073",
+     "duration_in_ms": 195559,
+     "title": "Looks Can Kill",
+     "display_artist": "IVE",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/2015689192472073/",
+     "ig_username": "ivestarship",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1105587992172866",
+     "duration_in_ms": 255433,
+     "title": "Moonlit",
+     "display_artist": "なにわ男子",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1105587992172866/",
+     "ig_username": "naniwadanshi728official",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "26955522214032655",
+     "duration_in_ms": 126500,
+     "title": "Lazy",
+     "display_artist": "dotori sounds",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/26955522214032655/",
+     "ig_username": "dotorisounds",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "2556665054706295",
+     "duration_in_ms": 116440,
+     "title": "Fresh",
+     "cover_artwork_thumbnail_uri": "https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-1/469664734_1119322796867067_2405028789482486743_n.jpg?stp=c159.159.682.682a_dst-jpg_s130x130_tt6&_nc_cat=1&ccb=1-7&_nc_sid=68a4df&_nc_ohc=DXwnlljam8YQ7kNvwHUl_fR&_nc_oc=Adr7ulA7X0PSnnocETrLTZHK1GROxRuD8wQ9W8ho77bGjNkrZkIPpjb0qNp3MH8BRWs&_nc_zt=24&_nc_ht=scontent-ord5-2.xx&edm=AOP_XFkEAAAA&_nc_gid=hRQNKMZj-nilwZxFCnzRhA&oh=00_AQQIclVTyXQzdvWkKhJKB5UWIg7ly2Heuc40pCC8oJD6sA&oe=6AE74DFD",
+     "display_artist": "Giulio Cercato",
+     "audio_type": "music",
+     "download_url": "https://video-ord5-2.xx.fbcdn.net/o1/v/t2/f2/m69/AQMf11d5pfBuIjmYJTF1oxTm7zZFWcR2XpqJrQRsjCq4irpv0LBKrnNoim-ooN1gkr-an426yVWeg8GSuQi1n-BL.mp4?strext=1&_nc_cat=1&_nc_sid=b66105&_nc_ht=video-ord5-2.xx.fbcdn.net&_nc_ohc=4RqUPKFZv9QQ7kNvwHAodVW&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5WSV9VU0VDQVNFX1BST0RVQ1RfVFlQRS4uQzMuMC5kYXNoX2xuX2hlYWFjX3ZicjNfbXB4X2F1ZGlvIiwieHB2X2Fzc2V0X2lkIjoyNTc1OTUyNDE3MzYzODE1MCwiYXNzZXRfYWdlX2RheXMiOjM3NywidmlfdXNlY2FzZV9pZCI6MTA1NjgsImR1cmF0aW9uX3MiOjExNiwidXJsZ2VuX3NvdXJjZSI6Ind3dyJ9&ccb=17-1&vs=1120804758ab42e7&_nc_vs=HBkcFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HR3E4aENIQ2stNW1oUnNFQUpkSm1IYlUxTnNUYm1FeUFBQUYVAgLIARIAKAAYABsCiAd1c2Vfb2lsATEScHJvZ3Jlc3NpdmVfcmVjaXBlATEVAAAmjKif_9KJwlsVAigCQzMsF0BdHCj1wo9cGBxkYXNoX2xuX2hlYWFjX3ZicjNfbXB4X2F1ZGlvEQB1AGWQpQEA&edm=AOP_XFkEAAAA&_nc_zt=28&oh=00_AQSXcqm8Xm2GseLg86IVoHrt-MPqlo90Yu5hpXoyTcwxSA&oe=6AE766ED",
+     "ig_username": "giuliocercato"
+    },
+    {
+     "audio_id": "1701624340510988",
+     "duration_in_ms": 184959,
+     "title": "Halloween (Special Version Cute Spooky )",
+     "display_artist": "numberbee",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1701624340510988/",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1810953346705990",
+     "duration_in_ms": 219560,
+     "title": "ラブリーズン",
+     "display_artist": "原因は自分にある。",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1810953346705990/",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "5636550476425815",
+     "duration_in_ms": 22413,
+     "title": "アダムス・ファミリーのテーマ",
+     "display_artist": "キング・オーケストラ",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/5636550476425815/",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1274154937968785",
+     "duration_in_ms": 108910,
+     "title": "cute kitty",
+     "display_artist": "dotori sounds",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1274154937968785/",
+     "ig_username": "dotorisounds",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "2002280893246630",
+     "duration_in_ms": 220426,
+     "title": "雨にぬれても",
+     "display_artist": "羊毛とおはな",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/2002280893246630/",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "1497009515370492",
+     "duration_in_ms": 205040,
+     "title": "Enjoying My Life",
+     "display_artist": "NEZZARA",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/1497009515370492/",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "201168427720048",
+     "duration_in_ms": 324000,
+     "title": "Family Song",
+     "display_artist": "星野 源",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/201168427720048/",
+     "ig_username": "iamgenhoshino",
+     "is_ads_eligible": false
+    },
+    {
+     "audio_id": "992122370580004",
+     "duration_in_ms": 222530,
+     "title": "セロトニン",
+     "display_artist": "@onefive",
+     "audio_type": "music",
+     "on_platform_audio_preview_link": "https://www.instagram.com/reels/audio/992122370580004/",
+     "ig_username": "15_onefive_official",
+     "is_ads_eligible": false
+    }
+   ],
+   "paging": {
+    "cursors": {
+     "after": "bG06MjUZD"
+    }
+   }
+  }
+ }
+}
