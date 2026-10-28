@@ -43,7 +43,10 @@ def main():
             if st.get("status_code") in ("FINISHED", "ERROR", "EXPIRED") or st.get("error"):
                 break
             time.sleep(10)
-        if st.get("status_code") != "FINISHED":
+        if st.get("status_code") == "FINISHED" and os.environ.get("DRY") == "true":
+            out["dry"] = "入れ物まで作れた（公開はしない）"
+            append_log(today, "リール直接の試し（公開しない）：入れ物まで作れた")
+        elif st.get("status_code") != "FINISHED":
             out["error"] = json.dumps(st, ensure_ascii=False)[:300]
             append_log(today, f"リール直接の試し ×：インスタが動画を受け付けない（{out['error'][:150]}）")
         else:

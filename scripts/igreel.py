@@ -128,8 +128,12 @@ def host_silent(video_url, name):
                            capture_output=True, text=True)
         if r.returncode != 0:
             return None, f"Cloudflare に置けない：{(r.stderr or r.stdout)[-150:]}"
-    url = f"https://{REELS_PROJECT}.pages.dev/{name}.mp4"
-    for _ in range(12):  # 置いた直後は見えないことがある
+    import re
+    m = re.findall(r"https://[\w.-]+\.pages\.dev", r.stdout or "")
+    base = m[-1] if m else f"https://{REELS_PROJECT}.pages.dev"  # 置いた回ごとの URL（名前が取られていても確実）
+    url = f"{base}/{name}.mp4"
+    print("無音の動画：", url)
+    for _ in range(36):  # 置いた直後は見えないことがある（最初の1回は数分かかる）
         try:
             req = urllib.request.Request(url, method="HEAD")
             with urllib.request.urlopen(req, timeout=20) as r2:

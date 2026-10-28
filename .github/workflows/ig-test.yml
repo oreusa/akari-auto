@@ -6,6 +6,10 @@ on:
         description: "どの日の4コマ動画を出すか（YYYY-MM-DD、空なら今日）"
         required: false
         default: ""
+      dry:
+        description: "true なら公開せず、入れ物を作るところまで"
+        required: false
+        default: "false"
       audio_id:
         description: "曲（空なら config の ig_audio_id）"
         required: false
@@ -26,6 +30,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           DAY: ${{ inputs.day }}
           AUDIO_ID: ${{ inputs.audio_id }}
+          DRY: ${{ inputs.dry }}
         run: |
           IG_PAGE_TOKEN=$(openssl enc -d -aes-256-cbc -pbkdf2 -a -pass env:APP_SECRET -in ig/page_token.enc)
           echo "::add-mask::$IG_PAGE_TOKEN"
