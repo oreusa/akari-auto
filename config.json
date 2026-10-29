@@ -16,6 +16,6 @@
     "promote": true,
     "amazon": true
   },
-  "ig_direct": true,
+  "ig_direct": false,
   "ig_audio_id": "1638443601035185"
 }
