@@ -148,8 +148,6 @@ def put_bgm(video):
 
 def host_silent(video_url, name, bgm=False):
     """もとの曲を消した動画（bgm=True ならオーナーの曲に替えた動画）を Cloudflare Pages（akari-reels）に置く。戻り値：(URL, エラー)"""
-    import subprocess
-    import tempfile
     if not os.environ.get("CLOUDFLARE_API_TOKEN"):
         return None, "Cloudflare の鍵がない"
     try:
@@ -159,6 +157,15 @@ def host_silent(video_url, name, bgm=False):
     video, err = put_bgm(video) if bgm else silence(video)
     if err:
         return None, err
+    return host_bytes(video, name)
+
+
+def host_bytes(video, name):
+    """動画（バイト列）を Cloudflare Pages（akari-reels）に置く。戻り値：(URL, エラー)。おでかけリール（10/29〜）も使う。"""
+    import subprocess
+    import tempfile
+    if not os.environ.get("CLOUDFLARE_API_TOKEN"):
+        return None, "Cloudflare の鍵がない"
     with tempfile.TemporaryDirectory() as d:
         open(os.path.join(d, f"{name}.mp4"), "wb").write(video)
         w = ["npx", "-y", "wrangler@3.80.0", "pages"]

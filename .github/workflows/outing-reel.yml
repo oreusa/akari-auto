@@ -1,0 +1,83 @@
+name: outing-reel（関東のおでかけリールを作って置く）
+# 10/29 オーナー「燈のインスタにも月と同じおでかけ動画」「リールは毎日2本。関東のおでかけリールの後に、同じおでかけ先で4コマリール」
+# 燈の夜の回が reel/D.json を保存すると動く。tools/outing_reel/make.py で約29秒の動画（オーナーのフリー音源つき）を作り、
+# Cloudflare Pages（akari-reels）に置いて、URL を reel/out/D.json に書く。予約は book.py（07:30 にインスタのリール）。
+# 1回 約3分（非公開リポジトリの無料枠を使う。1日1回＝月約90分）。
+on:
+  push:
+    branches: [main]
+    paths: ["reel/*.json"]
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "作り直す日（YYYY-MM-DD。空なら明日と今日の、まだ作っていない分）"
+        required: false
+permissions:
+  contents: write
+concurrency:
+  group: akari-reel
+  cancel-in-progress: false
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+      RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+      RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+      ONLY: ${{ github.event.inputs.date }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: 作る日を決める
+        id: days
+        run: |
+          set -eu
+          T=$(TZ=Asia/Tokyo date +%F); N=$(TZ=Asia/Tokyo date -d tomorrow +%F)
+          todo=""
+          for d in ${ONLY:-$T $N}; do
+            [ -f "reel/$d.json" ] || continue
+            sha=$(sha1sum "reel/$d.json" | cut -c1-12)
+            if [ -z "${ONLY:-}" ] && [ -f "reel/out/$d.json" ] && grep -q "$sha" "reel/out/$d.json"; then continue; fi
+            todo="$todo $d"
+          done
+          echo "todo=$todo" >> "$GITHUB_OUTPUT"; echo "作る日：$todo"
+      - name: 道具（ffmpeg・Chromium）
+        if: steps.days.outputs.todo != ''
+        run: |
+          command -v ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+          mkdir -p /tmp/pw && cd /tmp/pw && npm init -y -q >/dev/null && npm i -q playwright@1.47.2 && npx playwright install chromium
+      - name: リストの画面を作る・動画を作る・置く
+        if: steps.days.outputs.todo != ''
+        env:
+          NODE_PATH: /tmp/pw/node_modules
+          TODO: ${{ steps.days.outputs.todo }}
+        run: |
+          set -eu
+          python3 scripts/page.py >/dev/null || echo "ページを作れない（前の site のまま）"
+          mkdir -p reel/out
+          for d in $TODO; do
+            sha=$(sha1sum "reel/$d.json" | cut -c1-12)
+            if ! python3 tools/outing_reel/make.py "reel/$d.json" "/tmp/$d.mp4"; then
+              python3 -c "import json,sys;json.dump({'date':sys.argv[1],'error':'動画を作れない','spec_sha':sys.argv[2]},open(f'reel/out/{sys.argv[1]}.json','w'),ensure_ascii=False)" "$d" "$sha"; continue
+            fi
+            python3 - "$d" "$sha" <<'PY'
+          import json, sys, time
+          sys.path.insert(0, "scripts")
+          import igreel
+          d, sha = sys.argv[1], sys.argv[2]
+          url, err = igreel.host_bytes(open(f"/tmp/{d}.mp4", "rb").read(), f"{d}-odekake-{time.strftime('%H%M%S')}")
+          out = {"date": d, "spec_sha": sha, "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+          out.update({"url": url} if url else {"error": err})
+          json.dump(out, open(f"reel/out/{d}.json", "w"), ensure_ascii=False, indent=1)
+          print(out)
+          PY
+          done
+      - name: 保存
+        if: steps.days.outputs.todo != ''
+        run: |
+          git config user.name "akari-auto"; git config user.email "akari-auto@users.noreply.github.com"
+          git add reel/out
+          git diff --cached --quiet && exit 0
+          git commit -q -m "おでかけリールの動画を置いた"
+          for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done

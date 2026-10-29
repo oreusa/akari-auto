@@ -421,6 +421,10 @@ def run(now=None):
     except BufferError as e:
         append_log(now.date().isoformat(), f"4コマ 予約×：{str(e)[:150]}")
     try:
+        changed |= book_outing_reel(cfg, state, now)
+    except BufferError as e:
+        append_log(now.date().isoformat(), f"おでかけリール 予約×：{str(e)[:150]}")
+    try:
         changed |= book_extra(cfg, state, now)
     except BufferError as e:
         append_log(now.date().isoformat(), f"1回だけの投稿 予約×：{str(e)[:150]}")
@@ -688,6 +692,67 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
             append_log(day, f"{label} 第{k.get('episode', '?')}話 {s} 予約×（{r['tries']}回目）：{str(e)[:150]}")
     if suffix == "-tabi":
         _replace_text_post(state, day, k)
+    return True
+
+
+# 関東のおでかけリール（10/30〜。10/29 オーナー「燈のインスタにも月と同じおでかけ動画」「リールは毎日2本。
+# 関西版の関東の版の後に、同じおでかけ先で4コマリール」）。燈の夜の回が reel/D.json を置くと、outing-reel.yml が
+# 曲つきの動画を作って Cloudflare に置き、URL を reel/out/D.json に書く。ここではインスタのリールに予約するだけ。
+OUTING_KICKER = "AIのうさぎが、代わりに調べた関東おでかけリスト"
+
+
+def book_outing_reel(cfg, state, now):
+    day = now.date().isoformat()
+    spec = load_json(path("reel", f"{day}.json"))
+    if not spec or "instagram" not in cfg["channels"]:
+        return False
+    slot = spec.get("time") or "07:30"
+    due = datetime.fromisoformat(f"{day}T{slot}").replace(tzinfo=JST)
+    mins = (due - now).total_seconds() / 60
+    if mins > LEAD_MIN or mins < -4 * 60:
+        return False
+    top = state.setdefault(f"{day} おでかけリール", {})
+    rec = top.setdefault("instagram", {"tries": 0})  # ほかの投稿と同じ形（state[日 枠][媒体]）にして、出たかの確認・数字にも乗せる
+    if rec.get("id") or rec.get("tries", 0) >= MAX_TRIES:
+        return False
+    made = load_json(path("reel", "out", f"{day}.json")) or {}  # outing-reel.yml が動画を作って置いた URL
+    if made.get("url") and not top.get("url"):
+        top["url"] = made["url"]
+    mp4 = path("reel", f"{day}.mp4")
+    if not top.get("url") and not os.path.exists(mp4):
+        if not rec.get("error"):
+            rec["error"] = made.get("error") or "動画がない"
+            append_log(day, f"おでかけリール 予約できない：{rec['error']}（reel/out/{day}.json。outing-reel.yml を見る）")
+            return True
+        return False
+    import igreel
+    if not top.get("url"):
+        url, err = igreel.host_bytes(open(mp4, "rb").read(), f"{day}-odekake-{now.strftime('%H%M%S')}")
+        if not url:
+            rec["tries"] = rec.get("tries", 0) + 1
+            rec["error"] = err
+            append_log(day, f"おでかけリール 動画を置けない（{rec['tries']}回目）：{err}")
+            return True
+        top["url"] = url
+    cap = (spec.get("caption") or "").strip()
+    if not cap.startswith(OUTING_KICKER):
+        cap = OUTING_KICKER + "\n" + cap
+    if IG_HEAD not in cap:
+        cap = cap.rstrip() + "\n\nくわしくはプロフィールのリンクの「関東おでかけリスト」から"
+    tags = " ".join(spec.get("ig_tags") or [])
+    if tags and tags not in cap:
+        cap += "\n\n" + tags
+    when = due if mins >= 3 else now + timedelta(minutes=3)
+    rec["tries"] = rec.get("tries", 0) + 1
+    try:
+        p = buffer_create(cfg["channels"]["instagram"], "instagram", [cap], when.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                          video=top["url"], ig_type="reel", alt=f"関東おでかけリール {spec.get('text', {}).get('place', '')}")
+        rec.update({"id": p["id"], "kind": "おでかけリール", "at": when.strftime("%H:%M"), "texts": [cap], "svc": "instagram"})
+        rec.pop("error", None)
+        append_log(day, f"おでかけリール instagram 予約OK（{when.strftime('%H:%M')}）")
+    except BufferError as e:
+        rec["error"] = str(e)[:200]
+        append_log(day, f"おでかけリール instagram 予約×（{rec['tries']}回目）：{str(e)[:150]}")
     return True
 
 
