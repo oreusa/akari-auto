@@ -95,6 +95,14 @@ var css=`
 .tn .lb.hide{visibility:hidden}
 .tn .hit{fill:transparent;cursor:pointer}
 .tn .sel-r{fill:none;opacity:.5}
+.tn .qb{position:absolute;left:0;top:0;z-index:4;max-width:min(240px,70%);padding:7px 11px 8px;background:#fff;border:1px solid #E2D6CB;border-top:3px solid var(--c);border-radius:4px;box-shadow:0 4px 14px rgba(60,45,35,.16);pointer-events:none;opacity:0;transition:opacity .18s}
+.tn .qb.on{opacity:1}
+.tn .qb:after{content:"";position:absolute;left:var(--ax);bottom:-6px;width:10px;height:10px;margin-left:-5px;background:#fff;border-right:1px solid #E2D6CB;border-bottom:1px solid #E2D6CB;transform:rotate(45deg)}
+.tn .qb.dn:after{bottom:auto;top:-6px;transform:rotate(225deg);background:var(--c);border:0}
+.tn .qb .qm{display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;font-size:10.5px;line-height:1.4;color:#7A6F66}
+.tn .qb .qp{color:var(--c);font-weight:700}
+.tn .qb .qf{padding:0 5px;border:1px solid currentColor;border-radius:2px;color:#4E8A5A;font-size:10px}
+.tn .qb .qt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:2px;font-size:13px;line-height:1.35;font-weight:700;color:#2B2622}
 .tn .pinx{transition:opacity .25s}
 .tn .pinx.dim{opacity:.35}
 .tn .glo{fill:none;stroke-width:2;transform-box:fill-box;transform-origin:center;animation:tnglo 1.3s cubic-bezier(.2,.7,.3,1) 3;opacity:0}
@@ -311,7 +319,20 @@ function apply(full){if(full===undefined)full=true;svg.setAttribute("viewBox",vb
  if(full&&lv===3){var DR=$$(".pinx",G.pin).filter(function(g){return g.dataset.n}).map(function(g){return g.querySelector(".dot").getBoundingClientRect()});
   LB.forEach(function(l){if(l.e.classList.contains("hide"))return;var b=l.e.getBoundingClientRect();if(DR.some(function(o){return b.left<o.right&&b.right>o.left&&b.top<o.bottom&&b.bottom>o.top}))l.e.classList.add("hide")})}
  if(full)moreCities(lv);
+ placeBub();
 }
+// 選んだピンの上に小さな吹き出し（名前・日付・無料）。物件サイトの地図のように、下のカードを見なくても分かる。押せない（押し間違いを作らない）
+var BUB=document.createElement("div");BUB.className="qb";FR.appendChild(BUB);var bubIt=null;
+// 関西・関東の全体の画面では出さない（府県の名前をかくさないため）。府県・市に寄ったときだけ
+function placeBub(){if(!FS||!sel||sel.lat==null||level()<2){BUB.classList.remove("on");bubIt=null;return}
+ var g=$$(".pinx",G.pin).filter(function(x){return x.querySelector(".sel-r")})[0];if(!g){BUB.classList.remove("on");return}
+ if(bubIt!==sel){bubIt=sel;var fr=(sel.tags||[]).some(function(t){return t.indexOf("無料")>=0});
+  BUB.style.setProperty("--c",PC[sel.pref]||"#2B2622");
+  BUB.innerHTML='<div class="qm"><span class="qp">'+esc(sel.pref)+'</span>'+(sel.d?'<span class="qd">'+esc(sel.d)+'</span>':'')+(fr?'<span class="qf">無料</span>':'')+'</div><div class="qt">'+esc(sel.t)+'</div>'}
+ var R=FR.getBoundingClientRect(),d=g.querySelector(".dot").getBoundingClientRect(),cx=d.left+d.width/2-R.left,top=d.top-R.top,bot=d.bottom-R.top;
+ if(cx<0||cx>R.width||top<0||bot>R.height){BUB.classList.remove("on");return}
+ BUB.classList.add("on");var w=BUB.offsetWidth,h=BUB.offsetHeight,x=Math.max(8,Math.min(R.width-w-8,cx-w/2)),below=top-h-12<44,y=below?bot+10:top-h-10;
+ BUB.classList.toggle("dn",below);BUB.style.transform="translate("+x.toFixed(1)+"px,"+y.toFixed(1)+"px)";BUB.style.setProperty("--ax",(cx-x).toFixed(1)+"px")}
 // 重なって名前が消えた市は、地図の下にボタンで並べる（全画面のとき）
 function moreCities(lv){var mo=$(".mo",box),hn=$(".hint",box);if(!mo){mo=document.createElement("div");mo.className="mo";var fr=$(".fr",box);fr.parentNode.insertBefore(mo,fr.nextSibling)}
  var hid=FS&&lv===2?LB.filter(function(l){return l.g&&l.e.classList.contains("hide")}):[];
