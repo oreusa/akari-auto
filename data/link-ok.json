@@ -356,11 +356,41 @@
   "sec": 2.3,
   "why": ""
  },
+ "https://maruchiba.jp/event/detail_13095.html": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
+ },
  "https://maruchiba.jp/event/detail_13248.html": {
   "at": "2026-10-29",
   "by": "browser",
   "ok": true,
   "sec": 3.4,
+  "why": ""
+ },
+ "https://maruchiba.jp/event/detail_13335.html": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
+ },
+ "https://maruchiba.jp/event/detail_13412.html": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
+ },
+ "https://maruchiba.jp/event/detail_16027.html": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
+ },
+ "https://maruchiba.jp/event/detail_16063.html": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.1,
   "why": ""
  },
  "https://media.jreast.co.jp/articles/6831": {
@@ -482,6 +512,12 @@
   "sec": 9.1,
   "why": ""
  },
+ "https://www.chichibu-railway.co.jp/blog/news/sl2026/": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 2.3,
+  "why": ""
+ },
  "https://www.chichibuji.gr.jp/event/icyou/": {
   "at": "2026-10-29",
   "by": "browser",
@@ -508,6 +544,24 @@
   "by": "browser",
   "ok": true,
   "sec": 4.0,
+  "why": ""
+ },
+ "https://www.city.hanno.lg.jp/soshikikarasagasu/kankyokeizaibu/kanko/10480.html": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.3,
+  "why": ""
+ },
+ "https://www.city.kawaguchi.lg.jp/material/files/group/184/0803Release.pdf": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.8,
+  "why": ""
+ },
+ "https://www.city.saitama.lg.jp/006/014/008/003/015/005/p132422.html": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.1,
   "why": ""
  },
  "https://www.deutschlandfest.com/": {
@@ -608,6 +662,18 @@
   "sec": 2.8,
   "why": ""
  },
+ "https://www.motherfarm.co.jp/information/news/detail.php?CN=432299": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.2,
+  "why": ""
+ },
+ "https://www.motherfarm.co.jp/information/news/detail.php?CN=434766": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 1.4,
+  "why": ""
+ },
  "https://www.muji.com/jp/ja/special-feature/ryohinweek": {
   "at": "2026-10-29",
   "by": "browser",
@@ -643,11 +709,23 @@
   "sec": 7.3,
   "why": ""
  },
+ "https://www.railway-museum.jp/event/exhibition.html": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
  "https://www.roppongihills.com/": {
   "at": "2026-10-27",
   "by": "browser",
   "ok": true,
   "sec": 4.2,
+  "why": ""
+ },
+ "https://www.seibu-leisure.co.jp/matsuri/info/chichibudewinefair/index.html": {
+  "at": "2026-10-29",
+  "ok": true,
+  "sec": 2.5,
   "why": ""
  },
  "https://www.showakinen-koen.jp/autumn-night-walk/": {
