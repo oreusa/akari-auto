@@ -464,7 +464,7 @@ var OPEN=false;
 var MINI=R.mini;
 mb.innerHTML='<span class="mm"><svg>'+Object.keys(MINI).map(function(k){return '<path d="'+MINI[k]+'" fill="'+DEEP[k]+'" stroke="#fff" stroke-width="1" vector-effect="non-scaling-stroke"/>'}).join("")+'</svg></span><span class="tx"><b class="t1">地図で見る</b><small class="t2"></small></span><i class="ar">›</i>';
 // ボタンの小さい文字：地図に出る件数（今のタブ・府県・無料だけに合い、場所が分かるカード。例：開催中の76か所を、関西の地図で）
-function mbUpd(){var n=items().filter(function(i){return i.lat!=null}).length,t=curTab();$(".t2",mb).textContent=n?t+"の"+n+"か所を、"+R.name+"の地図で":R.name+"の地図で探す"}
+function mbUpd(){var n=items().filter(function(i){return i.lat!=null}).length,t=curTab();var x=n?t+"の"+n+"か所を、"+R.name+"の地図で":R.name+"の地図で探す",e=$(".t2",mb);if(e.textContent!==x)e.textContent=x}
 // 開くと画面いっぱいの地図になる。閉じるとリストのいつもの場所にもどる
 function setOpen(v,fromPop){if(v===OPEN&&v)return;OPEN=v;FS=v;
  if(v){document.body.appendChild(box);box.classList.remove("shut");box.classList.add("fs");document.documentElement.style.overflow="hidden";
@@ -478,9 +478,13 @@ function sync(){mount();if(!ready||!OPEN)return;var pf=curPref(),sig=pf+"|"+curT
  list=items();OTH=others();var tb=curTab();$(".lg",box).innerHTML='<span'+(tb==="もうすぐ"?' class="s"':'')+'>'+esc(tb)+'</span><span class="o">ほかのタブ</span>';$(".lg",box).style.display="flex";sel=null;pop.classList.remove("on");
  if(!pfChanged&&state.muni&&!list.some(function(i){var mm=i.lat!=null&&i.pref===state.pref&&muniOf(i);return mm&&mm.grp===state.muni})){goPref();return}
  if(pfChanged){state.pref=pf;state.muni=null;if(first){var hb=pf&&hotBox(pf);vb=pf?(hb?fit(hb,.18):fit(PF[pf].bb,.03)):fit(HOME,.02);render()}else goPref()}else render();}
-document.addEventListener("click",function(e){if(e.target.closest(ZONE))setTimeout(function(){sync();mbUpd()},90)});
+document.addEventListener("click",function(e){if(e.target.closest(ZONE)){if(!FS){mount();mbUpd()}setTimeout(function(){sync();mbUpd()},90)}});
 addEventListener("resize",function(){if(ready)apply()});
 mount();
+// ページがタブや府県ボタンを動かした瞬間に、見出し・府県ボタン・地図ボタンを元の場所へ戻す（画面に出る前に直すので、一瞬消えたり位置がずれたりしない）
+try{new MutationObserver(function(){if(!FS){mount();mbUpd()}}).observe(document.body,{childList:true,subtree:true})}catch(e){}
+// タブ・府県ボタンを押したときの灰色の四角（スマホの押した印）を出さない
+st.textContent+=ZONE.split(",").map(function(z){return z+" button"}).join(",")+"{-webkit-tap-highlight-color:transparent;touch-action:manipulation}";
 // 地図のデータは、はじめて開いたときだけ読む（開かない人は軽いまま）
 // 場所の一覧（小さい）は最初に読む：ボタンの「Nか所」を地図に出るピンの数と合わせるため
 var geoP=fetch(TNB+"geo.json",{cache:"no-store"}).then(function(r){return r.json()}).catch(function(){return{}}).then(function(g){Object.keys(g).forEach(function(k){if(g[k][0]!=null)GEO[key(k)]=g[k]});mbUpd()});
