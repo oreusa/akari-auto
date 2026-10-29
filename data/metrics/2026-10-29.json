@@ -1,0 +1,369 @@
+{
+  "day": "2026-10-29",
+  "fetchedAt": "2026-10-30T05:37+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【10/31まで　ステーキガスト｜肉の日フェアで3品が29％OFF🥩】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfDe2NvCVCm",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 10,
+        "views": 10,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【10/31まで　ステーキガスト｜肉の日フェアで3品が29％OFF🥩】",
+      "url": "https://x.com/1753799832798629888/status/2115568082521346116",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 7.69,
+        "reposts": 0,
+        "impressions": 13,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "【10月下旬〜11月上旬　秩父ミューズパーク｜イチョウ並木 約3km・500本🍂",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfDskKtFpEl",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.7,
+        "views": 37,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "【10月下旬〜11月上旬　秩父ミューズパーク｜イチョウ並木 約3km・500本🍂",
+      "url": "https://x.com/1753799832798629888/status/2115598246961639782",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 7.69,
+        "reposts": 0,
+        "impressions": 13,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "09:29",
+      "kind": "手動",
+      "first": "【11/23まで　ぐんまフラワーパーク｜夜の花 約10万輪🌹】",
+      "url": "https://www.instagram.com/p/DfDuQS7luym/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "follows": 0,
+        "reach": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【10/30〜11/3　駒沢公園｜東京ラーメンフェスタは入場無料🍜】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfEBLCAEWlH",
+      "metrics": {
+        "reactions": 3,
+        "comments": 1,
+        "engagementRate": 1.33,
+        "views": 301,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【10/30〜11/3　駒沢公園｜東京ラーメンフェスタは入場無料🍜】",
+      "url": "https://x.com/1753799832798629888/status/2115643562050130315",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【10/29から　茨城・栃木・埼玉｜夜の花と光3か所の料金くらべ✨】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfELdrblSTc",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.94,
+        "views": 106,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【10/29から　茨城・栃木・埼玉｜夜の花と光3か所の料金くらべ✨】",
+      "url": "https://x.com/1753799832798629888/status/2115666196347408725",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【10/30　有楽町マルイ8階｜洒落CAFE théâtreが開店☕】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfEVwzfFpgl",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.15,
+        "views": 87,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【10/30　有楽町マルイ8階｜洒落CAFE théâtreが開店☕】",
+      "url": "https://x.com/1753799832798629888/status/2115688845219930408",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "【10/29　東京ソラマチ2階｜ゴンチャの新しいティースタンド🧋】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfEqY53FtPM",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.32,
+        "views": 309,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "【10/29　東京ソラマチ2階｜ゴンチャの新しいティースタンド🧋】",
+      "url": "https://x.com/1753799832798629888/status/2115734168835367320",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/15まで　成田山新勝寺｜143回目の菊花大会🌼】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfE4IIJEUdi",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/15まで　成田山新勝寺｜143回目の菊花大会🌼】",
+      "url": "https://x.com/1753799832798629888/status/2115764364812616049",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/1〜2/20　横浜中華街｜春節燈花のイルミネーション🏮】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfE9agfFMXc",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/1〜2/20　横浜中華街｜春節燈花のイルミネーション🏮】",
+      "url": "https://x.com/1753799832798629888/status/2115775964575662202",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【10/31・11/7　群馬県立近代美術館｜土曜の無料ワークショップ🎨】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfFF2Q-kV-S",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【10/31・11/7　群馬県立近代美術館｜土曜の無料ワークショップ🎨】",
+      "url": "https://x.com/1753799832798629888/status/2115794554997608796",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/23まで　ぐんまフラワーパーク｜夜の花 約10万輪🌹】",
+      "url": "https://www.instagram.com/reel/DfDkCVmBwvy/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.13,
+        "averageTimeWatched": 7.75,
+        "reach": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4018216159656416669",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4018213794891124948",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/23まで　ぐんまフラワーパーク｜夜の花 約10万輪🌹】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfDkDf7lvyC",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 20,
+        "views": 5,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/23まで　ぐんまフラワーパーク｜夜の花 約10万輪🌹】",
+      "url": "https://x.com/1753799832798629888/status/2115579490051006649",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 14.29,
+        "reposts": 0,
+        "impressions": 7,
+        "clicks": 0
+      }
+    }
+  ]
+}
