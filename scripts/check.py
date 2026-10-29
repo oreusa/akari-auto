@@ -50,6 +50,7 @@ OFFICIAL_FROM = date(2026, 10, 24)
 REASON_FROM = date(2026, 10, 26)  # この日から、選んだ理由に「件数・評価以外の決め手の数字」を要る（10/25 オーナー「クチコミ数と評価だけで内容ペラペラ」）
 SHORT_FROM = date(2026, 10, 28)  # この日から ◇ の行と下げた行を短く（10/27 オーナー「月と同じ決まり。1行に1つ、◇ は25字くらい」）
 SHORT_MAX = 30
+SYMBOL_FROM = date(2026, 10, 30)  # この日から行頭の記号は ✦・◎・⊹・✧（10/29 オーナー「燈もそれにさせて！」。◇・※ は使わない）
 
 
 def short_line_problems(texts, where):
@@ -59,8 +60,21 @@ def short_line_problems(texts, where):
         if not isinstance(t, str):
             continue
         for ln in t.splitlines():
-            if (ln.startswith("◇") or ln.startswith("　")) and len(ln.strip()) > SHORT_MAX:
+            if (ln.startswith(("◇", "✦", "◎")) or ln.startswith("　")) and len(ln.strip()) > SHORT_MAX:
                 out.append(f"{where} {i}つ目：◇・下げた行が{len(ln.strip())}字（25字くらいまで。カッコに詰めず、名前の下に1字下げた短い行を2〜3行。入らない分は2つ目へ）「{ln.strip()[:20]}…」")
+    return out
+
+
+def symbol_problems(texts, where):
+    """行頭に古い記号（◇・※）が残っていないか（10/30〜 ✦・◎・⊹・✧）。"""
+    out = []
+    for i, t in enumerate(texts or [], 1):
+        if not isinstance(t, str):
+            continue
+        for ln in t.splitlines():
+            h = ln.strip()[:1]
+            if h in ("◇", "※"):
+                out.append(f"{where} {i}つ目：行頭の「{h}」は使わない（中身は ✦、注意は ✧。10/29 オーナー「※嫌だな」）「{ln.strip()[:20]}…」")
     return out
 
 
@@ -313,6 +327,10 @@ def check_file(fp):
             fb = p.get("fallback") or {}
             for ch in ("x", "threads"):
                 extra += short_line_problems(p.get(ch), ch) + short_line_problems(fb.get(ch), "fallback " + ch)
+        if d >= SYMBOL_FROM:
+            fb = p.get("fallback") or {}
+            for ch in ("x", "threads"):
+                extra += symbol_problems(p.get(ch), ch) + symbol_problems(fb.get(ch), "fallback " + ch)
         if p.get("link") and d >= REASON_FROM:
             for ch in ("x", "threads"):
                 t = (p.get(ch) or [""])[0]
