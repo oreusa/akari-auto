@@ -49,7 +49,8 @@ def load(today):
             first = r.get("first", "")
             rows.append({"day": day, "svc": r.get("service", ""), "slot": r.get("slot", ""), "kind": kind,
                          "first": first, "v": views(r.get("metrics") or {}),
-                         "cm": int((r.get("metrics") or {}).get("comments") or 0),
+                         # X・Threads は2つ目（URLの返信）が自分のコメントとして1つ数えられるので引く（10/29 全部の投稿が1だった）
+                         "cm": max(0, int((r.get("metrics") or {}).get("comments") or 0) - (1 if r.get("service") in ("threads", "twitter") else 0)),
                          "style": head_style(first), "pref": pref_of(" ".join([first] + list(sp.get("threads") or [])[:1])),
                          "wd": "月火水木金土日"[datetime.fromisoformat(day).weekday()]})
     return rows
