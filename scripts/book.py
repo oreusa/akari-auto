@@ -656,6 +656,17 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
             imgs = ig["slides"] if key == "ig_slides" else [ig["stories"][0 if key == "ig_story1" else 1]]
             jobs.append((key, "instagram", {"images": imgs, "ig_type": t, "alt": alt}, when + timedelta(minutes=plus)))
     for s, svc, media, at in jobs:
+        if s == "instagram" and media.get("video") and os.path.exists(igreel.BGM):
+            # Buffer で出すリールは、雫の曲をオーナーのフリー音源に替えた動画にする（10/29）。替えられない時は雫の動画のまま
+            bg = rec.get("bgm_video") or {}
+            if bg.get("src") != media["video"]:
+                url, err = igreel.host_silent(media["video"], f"{day}-bgm-{k.get('episode', 'x')}", bgm=True)
+                bg = {"src": media["video"], "url": url, "error": err}
+                rec["bgm_video"] = bg
+                append_log(day, f"{label} 第{k.get('episode', '?')}話 リールの曲をオーナーの曲に替えた" if url
+                           else f"{label} 第{k.get('episode', '?')}話 リールの曲を替えられない（雫の曲のまま）：{err}")
+            if bg.get("url"):
+                media = dict(media, video=bg["url"])
         r = rec.setdefault(s, {"tries": 0})
         r["tries"] = r.get("tries", 0) + 1
         texts = [k["text"]]

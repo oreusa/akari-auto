@@ -107,8 +107,47 @@ def silence(video):
         return open(dst, "rb").read(), None
 
 
-def host_silent(video_url, name):
-    """もとの曲を消した動画を Cloudflare Pages（akari-reels）に置く。戻り値：(URL, エラー)"""
+BGM = path("bgm", "reel_bgm.m4a")  # オーナーが送ったフリー音源（10/29「俺が送ったの使ったら？」）。Buffer で出すリールの曲
+
+
+def put_bgm(video):
+    """動画の音を bgm/reel_bgm.m4a に替える（頭から、動画の長さで切り、最後の1秒を小さくする）。戻り値：(動画, エラー)"""
+    import shutil
+    import subprocess
+    import tempfile
+    if not shutil.which("ffmpeg"):
+        subprocess.run("sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg", shell=True)
+    with tempfile.TemporaryDirectory() as d:
+        src, dst = os.path.join(d, "in.mp4"), os.path.join(d, "out.mp4")
+        open(src, "wb").write(video)
+        pr = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", src],
+                            capture_output=True, text=True)
+        try:
+            dur = float(pr.stdout.strip())
+        except ValueError:
+            return None, "動画の長さが分からない"
+        r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-i", BGM,
+                            "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k",
+                            "-af", f"afade=t=out:st={max(dur - 1, 0):.2f}:d=1", "-t", f"{dur:.2f}", dst],
+                           capture_output=True, text=True)
+        if r.returncode != 0 or not os.path.exists(dst):
+            return None, f"曲を付けられない：{r.stderr[-150:]}"
+        # 音量の確かめ（10/29 オーナー「音量気をつけてね」）：雫の動画と同じ決まり 平均-45〜-28dB・最大-1dB以下
+        v = subprocess.run(["ffmpeg", "-i", dst, "-af", "volumedetect", "-f", "null", "-"], capture_output=True, text=True).stderr
+        import re
+        mean = re.search(r"mean_volume: (-?[\d.]+) dB", v)
+        peak = re.search(r"max_volume: (-?[\d.]+) dB", v)
+        if not mean or not peak:
+            return None, "曲の音量が測れない"
+        mean, peak = float(mean.group(1)), float(peak.group(1))
+        if not (-45 <= mean <= -28 and peak <= -1):
+            return None, f"曲の音量が決まりの外（平均{mean}dB・最大{peak}dB）"
+        print(f"曲の音量：平均{mean}dB・最大{peak}dB")
+        return open(dst, "rb").read(), None
+
+
+def host_silent(video_url, name, bgm=False):
+    """もとの曲を消した動画（bgm=True ならオーナーの曲に替えた動画）を Cloudflare Pages（akari-reels）に置く。戻り値：(URL, エラー)"""
     import subprocess
     import tempfile
     if not os.environ.get("CLOUDFLARE_API_TOKEN"):
@@ -117,7 +156,7 @@ def host_silent(video_url, name):
         video = download(video_url)
     except Exception as e:
         return None, f"動画をドライブから受け取れない：{str(e)[:120]}"
-    video, err = silence(video)
+    video, err = put_bgm(video) if bgm else silence(video)
     if err:
         return None, err
     with tempfile.TemporaryDirectory() as d:
