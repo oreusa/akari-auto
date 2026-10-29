@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import amazon_checked, load_json, now_jst, path, threads_len, x_weight  # noqa: E402
 
 LINK = "{{LINK}}"
-AFL_LONG = "https://hb.afl.rakuten.co.jp/" + "x" * 200  # 楽天のアフィリエイトリンクは約220字
+AFL_LONG = "https://hb.afl.rakuten.co.jp/" + "x" * 252  # 楽天のアフィリエイトリンクは rafcid 付きで約270字（10/30 9:15 は268字で500字を超えた）
 BANNED = [
     (re.compile(r"amazon\.co\.jp|amzn\.(to|asia)", re.I), "AmazonのURLを直接書かない（{{LINK}} と書き、link に type amazon と asin を入れる）"),
     (re.compile(r"a\.r10\.to", re.I), "楽天の短縮リンクは使わない（リンクは予約係が楽天から受け取る）"),
@@ -42,7 +42,7 @@ def _texts_problems(texts, where, allow_link):
         if where.startswith("x") and x_weight(probe) > 280:
             out.append(f"{where} {i}つ目：Xの文字数 {x_weight(probe)}/280")
         if where.startswith("threads") and threads_len(tprobe) > 500:
-            out.append(f"{where} {i}つ目：Threadsの文字数 {threads_len(tprobe)}/500（リンクは長いまま230字で数える）")
+            out.append(f"{where} {i}つ目：Threadsの文字数 {threads_len(tprobe)}/500（リンクは長いまま280字で数える）")
     return out
 
 

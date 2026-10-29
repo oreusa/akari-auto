@@ -208,7 +208,7 @@ def refresh_page(cfg, state, now):
 
 def rebook_requests(cfg, state, now):
     """state/rebook.json に書いた予約の直し（1行目・Threadsのトピック）を、予約し直しで入れる（10/27 月の書き方を今日の分から）。
-    形：[{"day": "YYYY-MM-DD", "slot": "HH:MM", "svc": "threads"|"twitter", "first_line": "新しい1行目", "topic": "東京"}]
+    形：[{"day": "YYYY-MM-DD", "slot": "HH:MM", "svc": "threads"|"twitter", "first_line": "新しい1行目", "topic": "東京", "texts": ["全部入れ替える時の文", "…"]}]
     新しい予約が作れてから古い方を消す。出る25分前を切った物・もう出た物・字数をこえる物には触らない。終わった行は消す。"""
     from lib import threads_len, x_weight
     reqs = load_json(path("state", "rebook.json"), [])
@@ -233,6 +233,8 @@ def rebook_requests(cfg, state, now):
         texts = list(r.get("texts") or [])
         if not texts:
             continue
+        if q.get("texts"):  # 文を全部入れ替える（10/30 長すぎて代わりの文で出そうになったPRを、縮めた文で入れ直す）
+            texts = list(q["texts"])
         if q.get("first_line"):
             rest = texts[0].split("\n", 1)
             texts[0] = q["first_line"] + ("\n" + rest[1] if len(rest) > 1 else "")
