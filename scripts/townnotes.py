@@ -33,6 +33,17 @@ def nomi(q):
     return [(float(x['lat']), float(x['lon'])) for x in r]
 
 
+def photon(q):
+    """名前でさがす（店・施設の名前に強い）"""
+    time.sleep(0.5)
+    try:
+        r = get('https://photon.komoot.io/api/?limit=3&q=' + urllib.parse.quote(q))
+    except Exception as e:
+        print('photon err', q, e)
+        return []
+    return [(f['geometry']['coordinates'][1], f['geometry']['coordinates'][0]) for f in r.get('features', [])]
+
+
 def gsi(q):
     try:
         r = get('https://msearch.gsi.go.jp/address-search/AddressSearch?q=' + urllib.parse.quote(q))
@@ -73,11 +84,14 @@ def main():
         if k in out:
             continue
         ck = pref + '｜' + (place or name)
+        today = time.strftime('%Y-%m-%d')
+        if ck in cache and cache[ck][0] is None and (cache[ck] + [''])[3] != today:
+            del cache[ck]  # 取れなかった場所は1日1回だけ調べなおす
         if ck not in cache:
             got = None
             base = place.replace(' ' + pref, '').strip() if place else ''
-            tries = [('place', nomi, place), ('place', gsi, base), ('name', nomi, (name + ' ' + FULL.get(pref, '')).strip()),
-                     ('place', nomi, (base + ' ' + FULL.get(pref, '')).strip() if base else '')]
+            tries = [('place', nomi, place), ('place', gsi, base), ('place', photon, base), ('name', nomi, (name + ' ' + FULL.get(pref, '')).strip()),
+                     ('place', nomi, (base + ' ' + FULL.get(pref, '')).strip() if base else ''), ('place', photon, base.split(' ')[0] if base else '')]
             for kind, fn, q in tries:
                 if not q:
                     continue
@@ -85,10 +99,10 @@ def main():
                 if ll:
                     got = [round(ll[0], 5), round(ll[1], 5), kind]
                     break
-            cache[ck] = got or [None, None, 'none']
+            cache[ck] = got or [None, None, 'none', today]
             new += 1
             print(ck, cache[ck])
-        out[k] = cache[ck]
+        out[k] = cache[ck][:3]
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     json.dump(cache, open(CACHE, 'w', encoding='utf-8'), ensure_ascii=False, indent=0, sort_keys=True)
