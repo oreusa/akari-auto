@@ -463,8 +463,8 @@ var mb=document.createElement("button");mb.type="button";mb.className="tnbtn";
 var OPEN=false;
 var MINI=R.mini;
 mb.innerHTML='<span class="mm"><svg>'+Object.keys(MINI).map(function(k){return '<path d="'+MINI[k]+'" fill="'+DEEP[k]+'" stroke="#fff" stroke-width="1" vector-effect="non-scaling-stroke"/>'}).join("")+'</svg></span><span class="tx"><b class="t1">地図で見る</b><small class="t2"></small></span><i class="ar">›</i>';
-// ボタンの小さい文字：今のタブの件数（例：開催中の76か所を、関西の地図で）
-function mbUpd(){var n=tabCount(),t=curTab();$(".t2",mb).textContent=n?t+"の"+n+"か所を、"+R.name+"の地図で":R.name+"の地図で探す"}
+// ボタンの小さい文字：地図に出る件数（今のタブ・府県・無料だけに合い、場所が分かるカード。例：開催中の76か所を、関西の地図で）
+function mbUpd(){var n=items().filter(function(i){return i.lat!=null}).length,t=curTab();$(".t2",mb).textContent=n?t+"の"+n+"か所を、"+R.name+"の地図で":R.name+"の地図で探す"}
 // 開くと画面いっぱいの地図になる。閉じるとリストのいつもの場所にもどる
 function setOpen(v,fromPop){if(v===OPEN&&v)return;OPEN=v;FS=v;
  if(v){document.body.appendChild(box);box.classList.remove("shut");box.classList.add("fs");document.documentElement.style.overflow="hidden";
@@ -482,9 +482,11 @@ document.addEventListener("click",function(e){if(e.target.closest(ZONE))setTimeo
 addEventListener("resize",function(){if(ready)apply()});
 mount();
 // 地図のデータは、はじめて開いたときだけ読む（開かない人は軽いまま）
+// 場所の一覧（小さい）は最初に読む：ボタンの「Nか所」を地図に出るピンの数と合わせるため
+var geoP=fetch(TNB+"geo.json",{cache:"no-store"}).then(function(r){return r.json()}).catch(function(){return{}}).then(function(g){Object.keys(g).forEach(function(k){if(g[k][0]!=null)GEO[key(k)]=g[k]});mbUpd()});
 var loading=false;function load(){loading=true;
-Promise.all([fetch(TNB+"geo.json",{cache:"no-store"}).then(function(r){return r.json()}).catch(function(){return{}}),fetch(TNB+R.shapes).then(function(r){return r.json()})]).then(function(a){
- Object.keys(a[0]).forEach(function(k){if(a[0][k][0]!=null)GEO[key(k)]=a[0][k]});setup(a[1]);drawIcons();ready=true;lastSig="";sync();window.__tnReady=true;
+Promise.all([geoP,fetch(TNB+R.shapes).then(function(r){return r.json()})]).then(function(a){
+ setup(a[1]);drawIcons();ready=true;lastSig="";sync();mbUpd();window.__tnReady=true;
 }).catch(function(e){console.error(e);$(".fr",box).style.display="none"});}
 setOpen(OPEN);mbUpd();
 // 小さい関西の絵の大きさを合わせる
