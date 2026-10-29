@@ -1,5 +1,5 @@
 """関東おでかけリストの地図（site/townnotes/map.js。作り方は月の usagi-fudosan-media tools/townnotes/build_akari.py）。
-1) カードの場所を緯度・経度にする  2) 地図つきの試作ページ site/townnotes/index.html を作る（本番の / は変えない）
+1) カードの場所を緯度・経度にする  2) 地図つきの試作ページ site/townnotes/index.html を作る  3) 本番の / にも地図を入れる（live()）
 page.py のあとに動かす（GitHub Actions。作業環境からは地図の検索サービスにつなげないため）。
 - 読む: site/index.html のカード（「地図」ボタンの探す言葉）
 - 覚え: data/townnotes-geo.json {探す言葉: [lat, lon, どれで取れたか]}（一度調べた場所は二度と調べない）
@@ -124,10 +124,23 @@ def preview():
     open('site/townnotes/index.html', 'w', encoding='utf-8').write(h)
 
 
+def live():
+    """本番のページ（/）に地図を入れる（10/29 オーナー「本番にして燈にバトンタッチ」）。
+    外すときはここを呼ばないだけ。map.js が変わるたびに ?v= が変わるので、スマホに古い地図が残らない"""
+    h = open(SRC, encoding='utf-8').read()
+    if '/townnotes/map.js' in h:
+        return
+    v = __import__('hashlib').sha1(open('site/townnotes/map.js', 'rb').read()).hexdigest()[:8]
+    h = h.replace('</body>', '<script src="/townnotes/map.js?v=' + v + '" defer></script></body>', 1)
+    assert '/townnotes/map.js?v=' in h
+    open(SRC, 'w', encoding='utf-8').write(h)
+
+
 if __name__ == '__main__':
     try:
         main()
         preview()
+        live()
     except Exception as e:  # 地図の場所が取れなくても、ページの公開は止めない
         print('townnotes_geo: しっぱい（ページはそのまま公開）', e)
         sys.exit(0)
