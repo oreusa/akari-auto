@@ -353,7 +353,12 @@ def _rakuten_search(params):
     base.update(params)
     origin = os.environ.get("RAKUTEN_ORIGIN") or "https://github.com"  # 空のときも github.com
     url = RAKUTEN_ITEM_URL + "?" + urllib.parse.urlencode(base)
-    status, txt, _ = http("GET", url, headers={"Origin": origin, "Referer": origin + "/"})
+    # 429（1秒に1回の上限）は待って3回まで（10/29 check が 429 だけで×になったため）
+    for wait in (2, 4, 0):
+        status, txt, _ = http("GET", url, headers={"Origin": origin, "Referer": origin + "/"})
+        if status != 429 or not wait:
+            break
+        time.sleep(wait)
     if status != 200:
         return None, f"楽天API {status}: {txt[:150]}"
     items = json.loads(txt).get("Items") or []
