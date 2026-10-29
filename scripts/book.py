@@ -777,7 +777,11 @@ def after_check(cfg, state, now):
                 why = "Bufferでエラー" if r["id"] in errs else "時刻を60分過ぎても出ていない"
                 r["seen"] = "出ない：" + why
                 changed = True
-                if r.get("texts") and not r.get("retried") and now - due < timedelta(hours=3):
+                ig = r.get("svc", s).startswith("ig") or r.get("svc", s) == "instagram"
+                if ig and r["id"] in errs:
+                    # 10/29 インスタはBufferが「エラー」でも出ていて、出し直しで2つ並んだ（オーナーが1つ消した）→出し直さない
+                    append_log(day, f"{slot} {s} Bufferでエラー（インスタは出ていることがあるので出し直さない）")
+                elif r.get("texts") and not r.get("retried") and now - due < timedelta(hours=3):
                     r["retried"] = True
                     when = (now + timedelta(minutes=15)).astimezone(timezone.utc)
                     try:
