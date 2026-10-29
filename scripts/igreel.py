@@ -132,6 +132,17 @@ def put_bgm(video):
                            capture_output=True, text=True)
         if r.returncode != 0 or not os.path.exists(dst):
             return None, f"曲を付けられない：{r.stderr[-150:]}"
+        # 音量の確かめ（10/29 オーナー「音量気をつけてね」）：雫の動画と同じ決まり 平均-45〜-28dB・最大-1dB以下
+        v = subprocess.run(["ffmpeg", "-i", dst, "-af", "volumedetect", "-f", "null", "-"], capture_output=True, text=True).stderr
+        import re
+        mean = re.search(r"mean_volume: (-?[\d.]+) dB", v)
+        peak = re.search(r"max_volume: (-?[\d.]+) dB", v)
+        if not mean or not peak:
+            return None, "曲の音量が測れない"
+        mean, peak = float(mean.group(1)), float(peak.group(1))
+        if not (-45 <= mean <= -28 and peak <= -1):
+            return None, f"曲の音量が決まりの外（平均{mean}dB・最大{peak}dB）"
+        print(f"曲の音量：平均{mean}dB・最大{peak}dB")
         return open(dst, "rb").read(), None
 
 
