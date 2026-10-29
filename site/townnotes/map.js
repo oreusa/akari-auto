@@ -85,6 +85,7 @@ var css=`
 .tn .lb{position:absolute;left:0;top:0;will-change:transform;white-space:nowrap;text-shadow:0 0 2px #FDFCFA,0 0 3px #FDFCFA,0 0 6px rgba(253,252,250,.9)}
 .tn .lb.p{text-align:center;font-family:"Shippori Mincho",serif;font-weight:600;font-size:16px;letter-spacing:.16em;line-height:1.2}
 .tn .lb.p small{display:block;font-family:Jost,sans-serif;font-weight:400;font-size:8.5px;letter-spacing:.32em;margin-top:3px}
+.tn .lb.p.sm{font-size:14px;letter-spacing:.1em}.tn .lb.p.sm small{letter-spacing:.14em;margin-top:1px}
 .tn .lb.m{pointer-events:auto;cursor:pointer;display:flex;align-items:center;gap:6px;padding:4px 5px 4px 10px;background:#fff;border-radius:99px;box-shadow:0 1px 2px rgba(60,40,20,.10),0 3px 10px rgba(60,40,20,.10);text-shadow:none;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.06em;color:#3A2F28}
 .tn .lb.m b{font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;line-height:18px;min-width:18px;text-align:center;color:#fff;background:var(--c);border-radius:9px;padding:0 4px}
 .tn .lb.w{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:500;font-size:10px;letter-spacing:.06em;color:#A89C91}
@@ -289,11 +290,16 @@ function apply(full){if(full===undefined)full=true;svg.setAttribute("viewBox",vb
  if(ICG){ICG.style.opacity=lv===1?1:0;$$(".ic",ICG).forEach(function(g){var k=34/40*u;g.setAttribute("transform","translate("+(g.__q[0]-20*k)+" "+(g.__q[1]-20*k)+") scale("+k+")")})}G.sh.setAttribute("transform","translate("+(1.4*u)+" "+(2.2*u)+")");
  // 文字は HTML で重ねる（小さくてもきれいに出る）。重なる文字は、大事な方だけ出す
  var r=svg.getBoundingClientRect(),placed=[];
- function pos(l){var x=((l.flip?l.x2:l.x)-vb[0])/vb[2]*r.width,y=(l.y-vb[1])/vb[3]*r.height;l.e.style.transform="translate("+x.toFixed(1)+"px,"+y.toFixed(1)+"px) "+(l.side?(l.flip?"translate(calc(-100% - 8px),-50%)":"translate(8px,-50%)"):"translate(-50%,-50%)")}
- LB.forEach(function(l){if(full){l.flip=false;l.e.classList.remove("hide")}pos(l)});
+ function pos(l){var x=((l.flip?l.x2:l.x)-vb[0])/vb[2]*r.width+(l.ox||0),y=(l.y-vb[1])/vb[3]*r.height+(l.oy||0);l.e.style.transform="translate("+x.toFixed(1)+"px,"+y.toFixed(1)+"px) "+(l.side?(l.flip?"translate(calc(-100% - 8px),-50%)":"translate(8px,-50%)"):"translate(-50%,-50%)")}
+ LB.forEach(function(l){if(full){l.flip=false;l.ox=l.oy=0;l.e.classList.remove("hide","sm")}pos(l)});
  if(full)LB.forEach(function(l){if(!l.side)return;var b=l.e.getBoundingClientRect();if(b.right>r.right-(FS?56:12)){l.flip=true;pos(l)}});
  if(full)LB.slice().sort(function(a,b){return b.pri-a.pri}).forEach(function(l){l.e.classList.remove("fl");var b=l.e.getBoundingClientRect();if(l.e.classList.contains("t")&&b.right>r.right-16){l.e.classList.add("fl");b=l.e.getBoundingClientRect()}if(b.right<r.left||b.left>r.right||b.bottom<r.top+40||b.top>r.bottom-30){l.e.classList.add("hide");return}
-  if(placed.some(function(o){return b.left<o.right+2&&b.right>o.left-2&&b.top<o.bottom+1&&b.bottom>o.top-1})){l.e.classList.add("hide");return}placed.push(b)});
+  function hit(b){return placed.some(function(o){return b.left<o.right+2&&b.right>o.left-2&&b.top<o.bottom+1&&b.bottom>o.top-1})}
+  // 府県の名前は消さない（どの府県も同じように出す）。重なるときは少しずらし、それでも重なれば件数の行を小さくまとめる
+  if(hit(b)&&l.e.classList.contains("p")){var OF=[[0,10],[0,-10],[14,0],[-14,0],[0,20],[0,-20],[22,10],[-22,10],[22,-10],[-22,-10],[0,30],[0,-30]];
+   for(var t=0;t<2&&hit(b);t++){if(t)l.e.classList.add("sm");for(var i=0;i<OF.length;i++){l.ox=OF[i][0];l.oy=OF[i][1];pos(l);b=l.e.getBoundingClientRect();if(!hit(b))break}}
+   if(hit(b)){l.ox=l.oy=0;pos(l);b=l.e.getBoundingClientRect()}placed.push(b);return}
+  if(hit(b)){l.e.classList.add("hide");return}placed.push(b)});
  if(full&&lv===3){var gs=$$(".pinx",G.pin).filter(function(g){return g.dataset.n}),D=23;
   // 近すぎるピンは、おたがいに少しずつ押しのけて、どれも指で押せる間をあける（画面で23px）
   var P2=gs.map(function(g){return [g.__q[0]/u,g.__q[1]/u]}),O=P2.map(function(q){return q.slice()});
