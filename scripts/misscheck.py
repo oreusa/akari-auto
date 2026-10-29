@@ -3,7 +3,7 @@
 朝の見回り・夜の見回り・集め係・夜の回は、最初に notes/miss.md を読み、×の行を全部直してから自分の仕事をする。
 見る物：①今日・明日の予定表と4コマ・おでかけリール ②記録の×で、あとから予約OK・出たが無い物
 ③HPの在庫の× ④地図のピンが出ないカード ⑤開かないリンク（重いだけは除く）⑥動かなかった機械（GitHub Actions）
-⑦売上0とHPクリック0の続いた日数。
+⑦売上0とHPクリック0の続いた日数 ⑧使える量（Actions の分数・Buffer の残り・HPの数えの上限）。
 読むだけで何も直さない（直すのは見回りの燈）。しっぱいしても予約は止めない。"""
 import datetime as dt, glob, json, os, re, sys, urllib.request
 
@@ -138,10 +138,29 @@ def money(now):
     return out
 
 
+def capacity():
+    """使える量（10/29 オーナー「全容量確認」）：GitHub Actions の分数・Buffer の残り・HPの数えの上限"""
+    out = []
+    if os.path.exists('notes/actions-minutes.md'):
+        t = open('notes/actions-minutes.md', encoding='utf-8').read()
+        for m in re.finditer(r'^- (判定|来月[^：]*)：(.*)$', t, re.M):
+            if '×' in m.group(2):
+                out.append(f'Actions の分数 {m.group(1)}：{m.group(2)[:80]}')
+    b = load('state/buffer_limit.json', {}) or {}
+    rem = (b.get('headers') or {}).get('x-ratelimit-remaining')
+    if rem and int(rem) < 500:
+        out.append(f'Buffer の残りが{rem}回（30日で3,000回）')
+    st = load('data/page-stats.json', {}) or {}
+    for d, v in sorted((st.get('days') or {}).items())[-1:]:
+        if (v.get('views') or 0) >= 450 or (v.get('clicks') or 0) >= 270:
+            out.append(f'HPの数えが上限に近い（{d} 見られた{v.get("views")}/500・押された{v.get("clicks")}/300）')
+    return out
+
+
 def main():
     now = dt.datetime.now(JST)
     parts = [('予定表・4コマ・リール', files(now)), ('出ていない投稿', logs(now)), ('HPの在庫', stock()), ('地図', geo(now)),
-             ('リンク', links()), ('機械', actions(now)), ('売上', money(now))]
+             ('リンク', links()), ('機械', actions(now)), ('売上', money(now)), ('使える量', capacity())]
     n = sum(len(v) for _, v in parts)
     lines = [f'# 漏れの見張り（{now:%m/%d %H:%M} 機械が調べた）', '',
              f'判定：{"×" if n else "○"} {n}件' + ('' if n else '（漏れなし）'), '',

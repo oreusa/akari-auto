@@ -25,6 +25,7 @@ def main():
     now = datetime.now(timezone.utc)
     start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
     total, n, page, last7 = 0, 0, 1, 0
+    by = {}  # 直近7日の機械ごとの分数
     while page <= 30:
         d = get(f"https://api.github.com/repos/{repo}/actions/runs?per_page=100&page={page}"
                 f"&created=%3E%3D{start.strftime('%Y-%m-%d')}")
@@ -38,6 +39,8 @@ def main():
             total += m
             if now - s <= timedelta(days=7):
                 last7 += m
+                k = r.get("name", "?").split("（")[0]
+                by[k] = by.get(k, 0) + m
             n += 1
         if len(runs) < 100:
             break
@@ -48,9 +51,14 @@ def main():
     per_day = last7 / min(7, max(1, (now - start).days + 1))
     est = round(total + per_day * left)
     warn = "×1,600分を超えそう。HPの公開を1日2回に減らす" if est + TSUKI > 1600 else "○余裕あり"
+    days7 = min(7, max(1, (now - start).days + 1))
+    nov = round(per_day * 30) + TSUKI
+    rows = "".join(f"| {k} | {v} | {v / days7:.0f} |\n" for k, v in sorted(by.items(), key=lambda x: -x[1]))
     text = (f"# GitHub Actions の分数（{now.astimezone(JST):%Y-%m-%d %H:%M} に数えた）\n\n"
             f"- 今月の燈：{total}分（{n}回）／直近の1日あたり {per_day:.0f}分\n- 月末の見込み：燈 {est}分＋月 約{TSUKI}分＝{est + TSUKI}分／{LIMIT}分\n"
-            f"- 判定：{warn}\n")
+            f"- 判定：{warn}\n"
+            f"- 来月（30日）の見込み：燈 {round(per_day * 30)}分＋月 約{TSUKI}分＝{nov}分／{LIMIT}分 {'×' if nov > LIMIT else '○'}\n\n"
+            f"## 機械ごと（直近{days7}日）\n| 機械 | 分 | 1日あたり |\n|---|---|---|\n{rows}")
     os.makedirs("notes", exist_ok=True)
     open("notes/actions-minutes.md", "w").write(text)
     print(text)
