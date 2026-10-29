@@ -1,7 +1,10 @@
 name: check（予定表の機械チェック）
 on:
   push:
-    paths: ["schedule/**", "scripts/**", "data/page-goods.json", "data/page-spots.json"]
+    # 10/29 直近7日で check が1日89分（全体の6割）。作業ブランチと、check に関係ない scripts の変更でも動いていたため、
+    # main だけ・予定表と商品とおでかけ・check が使う scripts だけにした
+    branches: [main]
+    paths: ["schedule/**", "data/page-goods.json", "data/page-spots.json", "scripts/check.py", "scripts/lib.py", "scripts/selftest.py"]
   workflow_dispatch:
 concurrency:  # 同じブランチに続けて保存したら、古い方のチェックは止めて新しい方だけ見る（分数の節約）
   group: check-${{ github.ref }}
