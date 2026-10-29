@@ -698,7 +698,7 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
 # 関東のおでかけリール（10/30〜。10/29 オーナー「燈のインスタにも月と同じおでかけ動画」「リールは毎日2本。
 # 関西版の関東の版の後に、同じおでかけ先で4コマリール」）。燈の夜の回が reel/D.json を置くと、outing-reel.yml が
 # 曲つきの動画を作って Cloudflare に置き、URL を reel/out/D.json に書く。ここではインスタのリールに予約するだけ。
-OUTING_KICKER = "AIのうさぎが、代わりに調べた関東おでかけリスト"
+OUTING_KICKER = "街の調査で見つけた、関東おでかけリスト"  # 10/29 オーナー決定（「代わりに調べた」は変なのでやめた）
 
 
 def book_outing_reel(cfg, state, now):
