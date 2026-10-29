@@ -58,7 +58,7 @@ jobs:
       - name: 漏れの見張り（10/29〜。notes/miss.md に、いま直っていない物を全部書く）
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 scripts/misscheck.py > /dev/null; git add notes/miss.md || true
+        run: (python3 scripts/minutes.py > /dev/null || true); python3 scripts/misscheck.py > /dev/null; git add notes/miss.md notes/actions-minutes.md || true
       - name: 記録を保存
         run: |
           git config user.name "akari-auto"
