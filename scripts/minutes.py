@@ -8,7 +8,8 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 
 JST = timezone(timedelta(hours=9))
-LIMIT, TSUKI = 2000, 450
+# 10/30 オーナー「月は非公開じゃない」：公開リポジトリの分数は無料で2,000分に入らないので、月の分は0で見込む
+LIMIT, TSUKI = 2000, 0
 
 
 def get(url):
