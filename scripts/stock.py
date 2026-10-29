@@ -16,11 +16,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import JST, load_json, now_jst, path  # noqa: E402
 import page  # noqa: E402
 
-# 欄ごとの最低の数（都県ごと）。投稿した物と合わせて数える（10/26 オーナー「関東おでかけリスト」「月の見て、綺麗に分けてる」）
+# 欄ごとの最低の数（都県ごと。上限ではない＝多い分には何件でもよい、10/30 オーナー）。投稿した物と合わせて数える（10/26 オーナー「関東おでかけリスト」「月の見て、綺麗に分けてる」）
 NEED = {"now": 8, "up": 4, "soon": 2, "new": 2}  # 欄の名前の並びに使う
 # 10/27 オーナー「おでかけリストも全部入れていこう」：関東で約130件を目ざす（集め係の回数は増やさず、GPTの写しで埋める）
 NEED_PREF = {"東京": {"now": 25, "up": 10}, "神奈川": {"now": 12, "up": 5}, "埼玉": {"now": 12, "up": 5}, "千葉": {"now": 12, "up": 5},
-             "茨城": {"now": 7, "up": 3}, "栃木": {"now": 7, "up": 3}, "群馬": {"now": 7, "up": 3}}  # 10/30 月の基準「各都県とも開催中とこれからで10件以上」
+             "茨城": {"now": 10, "up": 5}, "栃木": {"now": 10, "up": 5}, "群馬": {"now": 10, "up": 5}}  # 最低限（上限なし）。10/30 オーナー「北関東は最低限の数を上げて」
 NEED_SHOP = 20  # 新しい施設（もうすぐ＋できた）は関東全体で
 TAB = {"now": "開催中", "up": "これから", "soon": "もうすぐ（開店前のお店）", "new": "できた（開いたお店）"}
 NEED_GOODS_TOTAL = 60  # 10/26 オーナー「アフェリエイト商品が目的。ちゃんと増やしていく」
@@ -134,7 +134,7 @@ def report(now, check_links=True):
     short = []
     lines = [f"# HPの在庫（{now:%m/%d %H:%M} 機械が数えた）", "",
              "集め係・夜の回は、×の欄から埋める。数は投稿した物とHPだけの物を合わせた、今HPに並んでいる数。", "",
-             "## おでかけ（都県ごと）", "", "| 都県 | 開催中 | これから | 目標 |", "|---|---|---|---|"]
+             "## おでかけ（都県ごと）", "", "| 都県 | 開催中 | これから | 最低限（上限なし） |", "|---|---|---|---|"]
     for r, need in NEED_PREF.items():
         row = []
         for k in ("now", "up"):
@@ -142,7 +142,7 @@ def report(now, check_links=True):
             row.append(f"{n} {'○' if n >= need[k] else '×'}")
             if n < need[k]:
                 short.append(f"{r}の{TAB[k]}があと{need[k] - n}件")
-        lines.append(f"| {r} | {row[0]} | {row[1]} | 開催中{need['now']}・これから{need['up']} |")
+        lines.append(f"| {r} | {row[0]} | {row[1]} | 開催中{need['now']}以上・これから{need['up']}以上 |")
     ns, nn = sum(len(t[r]["soon"]) for r in PREFS), sum(len(t[r]["new"]) for r in PREFS)
     lines.append(f"| 新しい施設（関東全体） | もうすぐ{ns}・できた{nn} | {'○' if ns + nn >= NEED_SHOP else '×'} | 合わせて{NEED_SHOP} |")
     if ns + nn < NEED_SHOP:
