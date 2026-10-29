@@ -16,7 +16,7 @@ import tempfile
 D = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(D, '..', '..'))
 # 表紙の上の2行（全部のリールで同じ。キャプションの1行目にも使う）
-KICKER = ('AIのうさぎが', '代わりに調べた、関東おでかけリスト')
+KICKER = ('街の調査で見つけた', '関東おでかけリスト')  # 10/29 オーナー「1ありだな」
 PREFS = {"東京": "tokyo", "神奈川": "kanagawa", "埼玉": "saitama", "千葉": "chiba", "茨城": "ibaraki", "栃木": "tochigi", "群馬": "gunma"}
 SECONDS = 28.8
 
