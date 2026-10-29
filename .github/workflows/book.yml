@@ -10,6 +10,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  actions: read   # 漏れの見張りが、しっぱいした機械を数える（10/29）
 concurrency:
   group: akari-state
   cancel-in-progress: false
@@ -54,6 +55,10 @@ jobs:
           if grep -q "\"fetchedAt\": \"$t" "data/metrics/$y.json" 2>/dev/null; then echo "今朝の数字はもうある"; exit 0; fi
           python3 scripts/metrics.py && (python3 scripts/scoreboard.py || true)
           [ -e notes/scoreboard.md ] && git add notes/scoreboard.md || true
+      - name: 漏れの見張り（10/29〜。notes/miss.md に、いま直っていない物を全部書く）
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/misscheck.py > /dev/null; git add notes/miss.md || true
       - name: 記録を保存
         run: |
           git config user.name "akari-auto"
