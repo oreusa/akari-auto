@@ -84,6 +84,16 @@ def geo(now):
     return [f'地図のピンが出ないカード{len(none)}件：' + '、'.join(k.split('｜')[-1] for k in none[:8])] if none else []
 
 
+def popular():
+    """人気のおでかけの漏れ（notes/popular.md、毎日13:30に機械が書く）"""
+    p = 'notes/popular.md'
+    if not os.path.exists(p):
+        return []
+    t = open(p, encoding='utf-8').read()
+    rows = re.findall(r'^- × (.*?)(?:｜|$)', t, re.M)
+    return [f'HPに無い人気のおでかけ{len(rows)}件：' + '、'.join(r[:30] for r in rows[:8])] if rows else []
+
+
 def links():
     p = 'notes/linkcheck.md'
     if not os.path.exists(p):
@@ -159,7 +169,7 @@ def capacity():
 
 def main():
     now = dt.datetime.now(JST)
-    parts = [('予定表・4コマ・リール', files(now)), ('出ていない投稿', logs(now)), ('HPの在庫', stock()), ('地図', geo(now)),
+    parts = [('予定表・4コマ・リール', files(now)), ('出ていない投稿', logs(now)), ('HPの在庫', stock()), ('人気のおでかけ', popular()), ('地図', geo(now)),
              ('リンク', links()), ('機械', actions(now)), ('売上', money(now)), ('使える量', capacity())]
     n = sum(len(v) for _, v in parts)
     lines = [f'# 漏れの見張り（{now:%m/%d %H:%M} 機械が調べた）', '',

@@ -11,18 +11,20 @@ concurrency:
 jobs:
   linkcheck:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - name: ブラウザの道具を入れる（ブラウザ本体は入っているChromeを使う。落とすと10分かかるため）
         run: pip install -q playwright
       - name: 全部のリンクを開く（notes/linkcheck.md）
         run: CHROMIUM=$(command -v google-chrome || command -v chromium) python3 scripts/linkcheck.py
+      - name: 人気のおでかけの漏れ（ウォーカープラスの都県ランキング上位20とHPを照らす。notes/popular.md、10/30〜）
+        run: python3 scripts/popular.py > /dev/null || true
       - name: 保存
         run: |
           git config user.name "akari-auto"
           git config user.email "akari-auto@users.noreply.github.com"
-          git add notes/linkcheck.md data/link-ok.json
+          git add notes/linkcheck.md data/link-ok.json notes/popular.md
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "HPのリンクの確かめ"
           for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done
