@@ -501,7 +501,7 @@ def phr(text):
     """見出しを言葉の切れ目（、・空白、長い所は「は」「が」のあと）で区切り、
     言葉の途中で改行しないようにする（月のページと同じ作り）。"""
     parts = []
-    for x in re.findall(r"[^、，・ 　]+[、，・]?[ 　]?", text or ""):
+    for x in re.findall(r"[^、，。・ 　]+[、，。・]?[ 　]?", text or ""):
         parts += _cut(x, "はが")
     return "".join(f'<span class="nwp{" sp" if x[-1] in " 　" else ""}">{esc(x.strip())}</span>'
                    for x in parts if x.strip()) or esc(text)
