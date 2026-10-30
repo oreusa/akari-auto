@@ -463,6 +463,18 @@
   "sec": 1.2,
   "why": ""
  },
+ "https://maruchiba.jp/event/detail_10812.html": {
+  "at": "2026-10-31",
+  "ok": true,
+  "sec": 1.2,
+  "why": ""
+ },
+ "https://maruchiba.jp/event/detail_10893.html": {
+  "at": "2026-10-31",
+  "ok": true,
+  "sec": 1.2,
+  "why": ""
+ },
  "https://maruchiba.jp/event/detail_10895.html": {
   "at": "2026-10-30",
   "by": "browser",
@@ -505,11 +517,23 @@
   "sec": 2.5,
   "why": ""
  },
+ "https://maruchiba.jp/event/detail_14113.html": {
+  "at": "2026-10-31",
+  "ok": true,
+  "sec": 1.2,
+  "why": ""
+ },
  "https://maruchiba.jp/event/detail_16027.html": {
   "at": "2026-10-30",
   "by": "browser",
   "ok": true,
   "sec": 2.1,
+  "why": ""
+ },
+ "https://maruchiba.jp/event/detail_16028.html": {
+  "at": "2026-10-31",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://maruchiba.jp/event/detail_16063.html": {
@@ -928,6 +952,12 @@
   "sec": 4.2,
   "why": ""
  },
+ "https://www.sagamiko-resort.jp/illumillion/": {
+  "at": "2026-10-31",
+  "ok": true,
+  "sec": 1.0,
+  "why": ""
+ },
  "https://www.seibu-leisure.co.jp/matsuri/info/chichibudewinefair/index.html": {
   "at": "2026-10-30",
   "by": "browser",
@@ -961,6 +991,12 @@
   "by": "browser",
   "ok": true,
   "sec": 6.2,
+  "why": ""
+ },
+ "https://www.tobikan.jp/exhibition/2026_orsay.html": {
+  "at": "2026-10-31",
+  "ok": true,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.tokyomegaillumi.jp/": {
