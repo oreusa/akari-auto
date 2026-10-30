@@ -1,6 +1,6 @@
 {
   "day": "2026-10-29",
-  "fetchedAt": "2026-10-30T05:37+09:00",
+  "fetchedAt": "2026-10-31T05:09+09:00",
   "posts": [
     {
       "service": "threads",
@@ -11,8 +11,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 10,
-        "views": 10,
+        "engagementRate": 9.09,
+        "views": 11,
         "quotes": 0,
         "reposts": 0
       }
@@ -26,9 +26,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 7.69,
+        "engagementRate": 1.72,
         "reposts": 0,
-        "impressions": 13,
+        "impressions": 58,
         "clicks": 0
       }
     },
@@ -41,8 +41,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.7,
-        "views": 37,
+        "engagementRate": 2.33,
+        "views": 43,
         "quotes": 0,
         "reposts": 0
       }
@@ -56,9 +56,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 7.69,
+        "engagementRate": 1.59,
         "reposts": 0,
-        "impressions": 13,
+        "impressions": 63,
         "clicks": 0
       }
     },
@@ -88,8 +88,8 @@
       "metrics": {
         "reactions": 3,
         "comments": 1,
-        "engagementRate": 1.33,
-        "views": 301,
+        "engagementRate": 0.65,
+        "views": 616,
         "quotes": 0,
         "reposts": 0
       }
@@ -102,10 +102,10 @@
       "url": "https://x.com/1753799832798629888/status/2115643562050130315",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 1.32,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 76,
         "clicks": 0
       }
     },
@@ -116,10 +116,10 @@
       "first": "【10/29から　茨城・栃木・埼玉｜夜の花と光3か所の料金くらべ✨】",
       "url": "https://www.threads.com/@ai_usagichan1/post/DfELdrblSTc",
       "metrics": {
-        "reactions": 0,
+        "reactions": 3,
         "comments": 1,
-        "engagementRate": 0.94,
-        "views": 106,
+        "engagementRate": 3.01,
+        "views": 133,
         "quotes": 0,
         "reposts": 0
       }
@@ -132,10 +132,10 @@
       "url": "https://x.com/1753799832798629888/status/2115666196347408725",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 2.04,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 98,
         "clicks": 0
       }
     },
@@ -148,8 +148,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.15,
-        "views": 87,
+        "engagementRate": 0.96,
+        "views": 104,
         "quotes": 0,
         "reposts": 0
       }
@@ -162,10 +162,10 @@
       "url": "https://x.com/1753799832798629888/status/2115688845219930408",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 1.79,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 56,
         "clicks": 0
       }
     },
@@ -176,10 +176,10 @@
       "first": "【10/29　東京ソラマチ2階｜ゴンチャの新しいティースタンド🧋】",
       "url": "https://www.threads.com/@ai_usagichan1/post/DfEqY53FtPM",
       "metrics": {
-        "reactions": 0,
+        "reactions": 2,
         "comments": 1,
-        "engagementRate": 0.32,
-        "views": 309,
+        "engagementRate": 0.19,
+        "views": 1609,
         "quotes": 0,
         "reposts": 0
       }
@@ -191,11 +191,11 @@
       "first": "【10/29　東京ソラマチ2階｜ゴンチャの新しいティースタンド🧋】",
       "url": "https://x.com/1753799832798629888/status/2115734168835367320",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 0.89,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 336,
         "clicks": 0
       }
     },
@@ -207,9 +207,9 @@
       "url": "https://www.threads.com/@ai_usagichan1/post/DfE4IIJEUdi",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 0.95,
+        "views": 105,
         "quotes": 0,
         "reposts": 0
       }
@@ -222,10 +222,10 @@
       "url": "https://x.com/1753799832798629888/status/2115764364812616049",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 6.67,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 15,
         "clicks": 0
       }
     },
@@ -238,8 +238,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0,
-        "views": 0,
+        "engagementRate": 1.89,
+        "views": 53,
         "quotes": 0,
         "reposts": 0
       }
@@ -252,10 +252,10 @@
       "url": "https://x.com/1753799832798629888/status/2115775964575662202",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 1.56,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 64,
         "clicks": 0
       }
     },
@@ -267,9 +267,9 @@
       "url": "https://www.threads.com/@ai_usagichan1/post/DfFF2Q-kV-S",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 2.33,
+        "views": 43,
         "quotes": 0,
         "reposts": 0
       }
@@ -282,10 +282,10 @@
       "url": "https://x.com/1753799832798629888/status/2115794554997608796",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 6.25,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 16,
         "clicks": 0
       }
     },
@@ -302,8 +302,8 @@
         "views": 0,
         "shares": 0,
         "saves": 0,
-        "totalTimeWatched": 0.13,
-        "averageTimeWatched": 7.75,
+        "totalTimeWatched": 0.36,
+        "averageTimeWatched": 10.88,
         "reach": 0
       }
     },
@@ -359,9 +359,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 14.29,
+        "engagementRate": 9.52,
         "reposts": 0,
-        "impressions": 7,
+        "impressions": 21,
         "clicks": 0
       }
     }

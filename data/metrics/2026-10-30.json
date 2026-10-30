@@ -1,0 +1,294 @@
+{
+  "day": "2026-10-30",
+  "fetchedAt": "2026-10-31T05:09+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【今日10/30　楽天市場｜5と0のつく日はポイント4倍🛒】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfGDpM5FYvN",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.76,
+        "views": 21,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【今日10/30　楽天市場｜5と0のつく日はポイント4倍🛒】",
+      "url": "https://x.com/1753799832798629888/status/2115930449478345095",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.17,
+        "reposts": 0,
+        "impressions": 24,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "代わり",
+      "first": "【10/31から　マザー牧場｜キウイフルーツ狩りが始まります🥝】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfGRXEwEVlc",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.44,
+        "views": 41,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "【10/31から　マザー牧場｜キウイフルーツ狩りが始まります🥝】",
+      "url": "https://x.com/1753799832798629888/status/2115960634864984206",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 12.5,
+        "reposts": 0,
+        "impressions": 8,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【10/31〜11/3　青山公園｜ドイツフェスティバルは入場無料🍺】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfGl-lsFRxC",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.48,
+        "views": 207,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【10/31〜11/3　青山公園｜ドイツフェスティバルは入場無料🍺】",
+      "url": "https://x.com/1753799832798629888/status/2116005947365539867",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【10/31点灯　メガイルミ・ドイツ村・有明｜何時まで見られるか✨】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfGwQvHDSjb",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.55,
+        "views": 22,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【10/31点灯　メガイルミ・ドイツ村・有明｜何時まで見られるか✨】",
+      "url": "https://x.com/1753799832798629888/status/2116028586951954938",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【10/31開業　横浜ベイサイド｜書店と遊びのMuchu Planet📚】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfG6jrPETLG",
+      "metrics": {
+        "reactions": 2,
+        "comments": 1,
+        "engagementRate": 0.89,
+        "views": 338,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【10/31開業　横浜ベイサイド｜書店と遊びのMuchu Planet📚】",
+      "url": "https://x.com/1753799832798629888/status/2116051231160389989",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた貼るカイロ30個入り3つ、選んだのは14時間の桐灰】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfHPKKAlT6o",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 25,
+        "views": 4,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた貼るカイロ30個入り3つ、選んだのは14時間の桐灰】",
+      "url": "https://x.com/1753799832798629888/status/2116096533519044712",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/1から　長瀞・寳登山神社｜ライトアップと雲海の夜🍁】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfHc6atEYyR",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/1から　長瀞・寳登山神社｜ライトアップと雲海の夜🍁】",
+      "url": "https://x.com/1753799832798629888/status/2116126739604582685",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/15まで　草津温泉｜道の駅の紅葉ライトアップ🍁】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfHiO2WlhO6",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/15まで　草津温泉｜道の駅の紅葉ライトアップ🍁】",
+      "url": "https://x.com/1753799832798629888/status/2116138368991961481",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "PR",
+      "first": "【AIが比べた炭酸水500ml 3つ、48本入りが1本53.1円】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfHqqjDFFq0",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "PR",
+      "first": "【AIが比べた炭酸水500ml 3つ、48本入りが1本53.1円】",
+      "url": "https://x.com/1753799832798629888/status/2116156954649186378",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DfGFc6kvbzH/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 12,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 1.06,
+        "averageTimeWatched": 4.55,
+        "reach": 12
+      }
+    }
+  ]
+}
