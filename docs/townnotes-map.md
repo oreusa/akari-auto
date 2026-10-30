@@ -5,7 +5,7 @@
 
 ## 何が起きているか
 - 本番のページ（/）の「おでかけ」に「地図で見る」ボタンが出る。押すと全画面の地図：関東 → 都県 → 市区町村の順に寄る。下のカードを横にめくると地図のピンが光る。
-- 地図に出るのは、今のタブ（開催中・これから・もうすぐ・できた）と都県・「無料だけ」に合うカード。「もっと見る」でかくれているカードも出る。
+- 地図に出るのは、今のタブ（開催中・これから・もうすぐ・できた）と都県に合うカード。「もっと見る」でかくれているカードも出る。
 - 試作ページ /townnotes/ も同じ物（数えない・検索に出さない）。直しを試すときに使う。
 
 ## 毎回自動でやっていること（page.yml の「地図」の段）
@@ -26,7 +26,7 @@
 - 関東の設定（色・名物の絵の場所・都県名の位置）: `region-kanto.js`
 - 燈のページとのつなぎ（タブ・都県ボタン・カードの読み方）: `site-akari.js`
 - 書き出し: `python3 tools/townnotes/build_akari.py <akari-autoの場所>` → `site/townnotes/map.js` と `kanto.json`
-燈のページの作り（.otab / .pane / .flt button[data-p] / .chips .fr / .card.it / .t / a.go / .when / .tg / a.mp）を変えたら、`site-akari.js` も合わせて直すこと（変えないと地図が空になる）。
+燈のページの作り（.otab / .pane / .flt button[data-p] / .card.it / .t / a.go / .when / .tg / a.mp）を変えたら、`site-akari.js` も合わせて直すこと（変えないと地図が空になる）。
 
 ## 外すとき
 `scripts/townnotes.py` の最後の `live()` を消すだけ（試作 /townnotes/ は残る）。
