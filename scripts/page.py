@@ -285,6 +285,7 @@ def collect(now, light=False):
                 entry["url"] = r["link"]
                 entry["sample"] = r.get("sample", False)
                 entry["image"] = r.get("image", "")
+                entry["price"] = r.get("price") if isinstance(r.get("price"), (int, float)) else None
                 entry["amazon"] = link.get("type") == "amazon"
                 entry["cat"] = "stay" if link.get("type") == "travel" else _cat(_text(entry) + " " + entry["expect"], cs)
                 items["pr"].append(entry)
@@ -493,7 +494,7 @@ def _cut(x, marks, n=13):
     for i in range(len(x) - 3, 2, -1):
         if x[i - 1] in marks:
             return _cut(x[:i], marks, n) + _cut(x[i:], marks, n)
-    return _cut(x, "でのと", n) if marks == "はが" else [x]
+    return _cut(x, "でのとも", n) if marks == "はが" else [x]
 
 
 def phr(text):
@@ -675,7 +676,8 @@ def _img(e):
     u = e.get("image") or ""
     if not u.startswith("https://"):
         return ""
-    return f'<img class="ph" src="{esc(u)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
+    return (f'<img class="ph" src="{esc(u)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" '
+            f'onerror="this.remove()">')  # 10/30 宿の写真が2枚壊れて空の枠になっていた
 
 
 SHOW_SHOP = 6  # 買い物の「すべて」は6件まで見せ、残りは「もっと見る」
@@ -718,7 +720,9 @@ def compare(e):
     btn = f'<a class="buy" href="{esc(e["url"])}" rel="sponsored noopener">{go_label(e)}{ARROW}</a>'
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
     img = _img(e)  # 写真は見出しの横に出す（10/26 オーナー「商品や宿とかの画像消えてるね。もったいない」：たたんだ中に入れて見えなくなっていた）
-    top = f'<div class="tw">{img}<div class="t">{phr(title)}</div></div>' if img else f'<div class="t">{phr(title)}</div>'
+    yen = f'<span class="yen">税込 {int(e["price"]):,}円〜</span>' if e.get("price") else ""  # 10/30 オーナー「見やすいように」：押す前に値段が分かるように
+    top = (f'<div class="tw">{img}<div><div class="t">{phr(title)}</div>{yen}</div></div>' if img
+           else f'<div class="t">{phr(title)}</div>{yen}')
     return (f'<article class="card cmp{" hot" if e.get("hot") else ""}">'
             f'{top}{head}{reason}{table}<div class="ft2">{btn}</div>{sample}</article>')
 
@@ -895,7 +899,16 @@ def render(items, ended, now, cfg):
     follow += ('<a class="co" data-en="LISTING" href="https://ig.me/m/ai_usagichan1" rel="noopener">おでかけ掲載'
                '<span>新しいお店や、毎年のイベント。<br>うさぎがご紹介します。ご相談はこちら</span></a>')
     spots = all_spots(items, now)
-    deals = [e for e in items["deal"] if e.get("url") and e["url"] not in _HOLD]
+    deals, dk = [], set()
+    for e in items["deal"]:
+        if not e.get("url") or e["url"] in _HOLD:
+            continue
+        e["title"] = re.sub(r"(は)?あと\d+日[!！]?", "", e["title"]).strip("、 ")  # 日数はカードの印（あと◯日）が毎回数える。文の日数は古くなる
+        k = re.sub(r"[0-9０-９/／~〜（）()：:｜|、・ 　]|まで|から|今日|明日|AIが比べた", "", e["title"])[:6]
+        if k in dk:  # 同じお得を2回載せない（10/30「無印良品週間」が2件、あと9日とあと5日で食い違い）
+            continue
+        dk.add(k)
+        deals.append(e)
     # しぼりこみは都県ごと（10/26 オーナー「関東と関西は広すぎ。月の見て、綺麗に分けてる」：月は府県ごと）
     tabs = '<button class="on" data-p="">すべて</button>' + "".join(
         f'<button data-p="{esc(x)}" style="--pc:{PREF_COLOR[x]}">{esc(x)}</button>' for x in KANTO_ORDER
@@ -1172,7 +1185,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .buy:hover .arw{{transform:translateX(3px)}}
 .cho{{margin:10px 0 0;padding:10px 12px;background:#FAF6F1;display:flex;align-items:center;gap:12px}}
 .cho .tx{{display:grid;gap:2px;min-width:0}}
-.cho .ph{{flex:0 0 76px;width:76px;height:76px;object-fit:contain;background:#fff;border:1px solid var(--line)}}
+.cho .ph{{flex:0 0 104px;width:104px;height:104px;object-fit:contain;background:#fff;border:1px solid var(--line)}}
 .cho .meta{{margin:2px 0 0}}
 .cho .lb{{font:400 10px/1.4 var(--en);letter-spacing:.2em;color:var(--brown)}}
 .cho b{{font-size:14.5px;line-height:1.5}}
@@ -1193,6 +1206,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .meta{{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin:4px 0 0}}
 .meta .ct{{min-width:0;text-align:left}}
 .yen{{font:400 12.5px/1 var(--en);color:var(--ink);letter-spacing:.02em}}
+.tw .yen,.cmp>.yen{{display:block;margin:8px 0 0;font-size:14px;font-weight:600}}
 .pk2 .m{{margin-top:10px}}
 .smp{{font-size:10px;color:var(--mute);text-align:right;margin:8px 0 0}}
 
@@ -1250,7 +1264,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .js .gm{{font-size:13px;color:var(--ink);border-bottom-color:var(--ink);letter-spacing:.06em}}
 #odekake .tip{{margin-top:6px}}
 .tw{{display:flex;align-items:center;gap:12px}} .tw .t{{margin:0}}
-.tw .ph{{flex:0 0 76px;width:76px;height:76px;object-fit:contain;background:#fff;border:1px solid var(--line)}}
+.tw .ph{{flex:0 0 104px;width:104px;height:104px;object-fit:contain;background:#fff;border:1px solid var(--line)}}
 /* 黒い四角のボタンは重く見える（月で10/26 オーナー「重圧感」）→ 白に細い線 */
 .buy{{background:#fff;color:var(--ink);border:1px solid var(--ink)}} .buy .arw{{color:var(--ink)}}
 .hot{{border:1px solid #E6CDBE;background:#fff}} .hot .cho{{background:#FAF6F1}}
