@@ -966,7 +966,7 @@ def render(items, ended, now, cfg):
             for k, en, jp, es in panes) + '</nav>'
         blocks.append(f'<nav class="flt" data-v="odekake" aria-label="しぼりこみ">{tabs}</nav>'
                       # 「今週末」は外した（10/26 オーナー「今週末いらない。休みが平日の人もいる」）。件数は月と同じ「開催中｜無料で楽しめる」
-                      f'<div class="chips" data-v="odekake"><button class="fr" type="button" data-k="free" aria-pressed="false">無料だけ</button></div>'
+                      # 「無料だけ」ボタンは外した（10/30 オーナー「無料だけいらない、変にスペースとる」）。月のリストにも無い。戻さないこと
                       f'<p class="cnt" data-v="odekake"><span>開催中<b id="n-now">{len(now_on)}</b>件</span><span>無料で楽しめる<b id="n-free">{n_free}</b>件</span></p>'
                       f'<section class="blk" id="odekake" data-v="odekake">{tabs2}'
                       + "".join(f'<div class="pane" data-t="{k}"{"" if k == first else " hidden"}>{cardlist(es, jp)}<p class="none">この都県のおでかけは、これから増やしていきます</p></div>'
