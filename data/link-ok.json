@@ -13,6 +13,12 @@
   "sec": 3.6,
   "why": ""
  },
+ "https://enoshima-seacandle.com/event/shonan-candle/": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 0.6,
+  "why": ""
+ },
  "https://floria-tokyo.jp/": {
   "at": "2026-10-30",
   "by": "browser",
@@ -25,6 +31,12 @@
   "by": "browser",
   "ok": true,
   "sec": 5.5,
+  "why": ""
+ },
+ "https://grekisi.pref.gunma.jp/event/6025/": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 1.8,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fevent.rakuten.co.jp%2Fcampaign%2Fpoint-up%2Fmarathon%2F&m=https%3A%2F%2Fevent.rakuten.co.jp%2Fcampaign%2Fpoint-up%2Fmarathon%2F": {
@@ -419,6 +431,18 @@
   "sec": 1.3,
   "why": "403"
  },
+ "https://kawasaki-fest.main.jp/": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
+ "https://kawasaki-festival.jp/": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 0.6,
+  "why": ""
+ },
  "https://koto.goguynet.jp/2026/10/27/ariakegarden_illumination2026/": {
   "at": "2026-10-30",
   "by": "browser",
@@ -431,6 +455,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.6,
+  "why": ""
+ },
+ "https://maebashi-biennale.com/": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://maruchiba.jp/event/detail_10895.html": {
@@ -587,6 +617,18 @@
   "sec": 4.3,
   "why": ""
  },
+ "https://tokyoatlas.jp/": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 0.1,
+  "why": ""
+ },
+ "https://uketsu.jp/museum/": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
  "https://wahhhp.com/gaudi": {
   "at": "2026-10-30",
   "by": "browser",
@@ -706,11 +748,29 @@
   "sec": 2.6,
   "why": ""
  },
+ "https://www.furusatofair.com/": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 0.3,
+  "why": ""
+ },
+ "https://www.hitachikaihin.jp/event/recommend-event/kaihanasotoasobi-2026.html": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 2.0,
+  "why": ""
+ },
  "https://www.hkc.or.jp/takaosan/momiji_fes/": {
   "at": "2026-10-30",
   "by": "browser",
   "ok": true,
   "sec": 3.9,
+  "why": ""
+ },
+ "https://www.houtokuji.jp/reflection-autumn.html": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 1.0,
   "why": ""
  },
  "https://www.ikaho-kankou.com/red_lightup/": {
@@ -727,11 +787,23 @@
   "sec": 6.0,
   "why": ""
  },
+ "https://www.jsf.or.jp/event/youkai": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
  "https://www.kahaku.go.jp/": {
   "at": "2026-10-27",
   "by": "browser",
   "ok": true,
   "sec": 7.3,
+  "why": ""
+ },
+ "https://www.kanko-hitachiota.com/page/page002118.html": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 0.1,
   "why": ""
  },
  "https://www.kasama-kankou.jp/page/dir000187.html": {
@@ -809,6 +881,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.4,
+  "why": ""
+ },
+ "https://www.nikko-kankou.org/event/1672": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.nmwa.go.jp/jp/exhibitions/2026turner.html": {
@@ -895,6 +973,12 @@
   "sec": 3.0,
   "why": ""
  },
+ "https://www.utsunomiya-cvb.org/event/detail_20043.html": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 1.3,
+  "why": ""
+ },
  "https://www.waterras.com/": {
   "at": "2026-10-30",
   "by": "browser",
@@ -930,6 +1014,12 @@
   "sec": 3.5,
   "why": ""
  },
+ "https://www.yamato-future.jp/events/event10654/": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 1.2,
+  "why": ""
+ },
  "https://www.yokohama-akarenga.jp/christmas/": {
   "at": "2026-10-30",
   "by": "browser",
@@ -942,6 +1032,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.0,
+  "why": ""
+ },
+ "https://www.yugawara.or.jp/sightseeing/701/": {
+  "at": "2026-10-30",
+  "ok": true,
+  "sec": 1.5,
   "why": ""
  },
  "https://yakiimofes.jp/": {
