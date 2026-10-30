@@ -1283,7 +1283,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <script>
 (function(){{
 var d=document.documentElement;d.classList.add("js");
-var pref="",free="0",wk="0";try{{pref=localStorage.getItem("pref")||"";}}catch(e){{}}
+var pref="",free="0",wk="0";try{{localStorage.removeItem("pref");}}catch(e){{}}
 function okc(c){{
   if(pref&&c.dataset.pref&&c.dataset.pref!==pref)return false;
   if(free==="1"&&c.dataset.free!=="1")return false;
@@ -1315,7 +1315,7 @@ document.querySelectorAll("#odekake .gm").forEach(function(x){{x.addEventListene
 document.querySelectorAll(".otab button").forEach(function(x){{x.addEventListener("click",function(){{if(!x.disabled)show(x.dataset.t);}});}});
 apply();
 function setp(v){{pref=v;document.querySelectorAll(".flt button[data-p]").forEach(function(y){{y.classList.toggle("on",y.dataset.p===v);}});
-  try{{localStorage.setItem("pref",v);}}catch(e){{}}reset();apply();fixtab();}}
+  reset();apply();fixtab();}}
 document.querySelectorAll(".flt button[data-p]").forEach(function(x){{x.addEventListener("click",function(){{setp(x.dataset.p);}});}});
 if(pref&&document.querySelector('.flt button[data-p="'+pref+'"]'))setp(pref);else pref="";
 document.querySelectorAll(".chips button").forEach(function(x){{x.addEventListener("click",function(){{
