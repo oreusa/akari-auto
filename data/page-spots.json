@@ -1092,6 +1092,39 @@
       "note": "台東区｜一般2,400円",
       "url": "https://www.tobikan.jp/exhibition/2026_orsay.html",
       "checked": "2026-10-30"
+    },
+    {
+      "title": "ヌルヌルネクサス",
+      "pref": "神奈川",
+      "place": "横浜ランドマークプラザ",
+      "kind": "shop",
+      "open": "2026-10-14",
+      "free": false,
+      "note": "ランドマークプラザ5階。落合陽一さんの常設シアター、約60分。おとな3,900円〜・予約制",
+      "url": "https://null2.nexus",
+      "checked": "2026-10-30"
+    },
+    {
+      "title": "THE ROBOT PARK ODAIBA",
+      "pref": "東京",
+      "place": "アクアシティお台場",
+      "kind": "shop",
+      "open": "2026-10-15",
+      "free": false,
+      "note": "アクアシティお台場 西館6階。ロボットに乗って遊べる。30分2,000円・3歳から",
+      "url": "https://skeletonics.com/the-robot-park-odaiba/",
+      "checked": "2026-10-30"
+    },
+    {
+      "title": "そよら ひたち野うしく",
+      "pref": "茨城",
+      "place": "そよらひたち野うしく",
+      "kind": "shop",
+      "open": "2026-11-18",
+      "free": true,
+      "note": "ひたち野うしく駅とデッキでつながる新しい商業施設。2階に子どもの屋内の遊び場",
+      "url": "https://prtimes.jp/main/html/rd/p/000006151.000007505.html",
+      "checked": "2026-10-30"
     }
   ]
 }
