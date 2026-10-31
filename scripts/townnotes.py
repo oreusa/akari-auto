@@ -8,6 +8,7 @@ page.py のあとに動かす（GitHub Actions。作業環境からは地図の�
 import html, json, os, re, sys, time, urllib.parse, urllib.request
 
 SRC = 'site/index.html'
+ILLUMI = 'site/illumination.html'  # 関東イルミネーションのページ（scripts/illumi.py）。同じ geo.json にピンの場所を足す
 CACHE = 'data/townnotes-geo.json'
 OUT = 'site/townnotes/geo.json'
 # 都県の大まかな範囲（南, 北, 西, 東）。外れた答えは使わない
@@ -76,11 +77,29 @@ def cards(h):
         yield k, pref, place.strip(), name.strip()
 
 
+def illumi_cards(h):
+    """イルミのページのカード（li.it の data-p が都県、.nm が名前、a.mp の query が探す言葉）"""
+    for m in re.finditer(r'<li class="it"[^>]*data-p="([^"]*)"[^>]*>(.*?)</li>', h, re.S):
+        pref, body = html.unescape(m.group(1)), m.group(2)
+        t = re.search(r'<span class="nm">(.*?)</span>', body, re.S)
+        if not t:
+            continue
+        name = text(t.group(1))
+        q = re.search(r'class="mp" href="[^"]*?query=([^"&]*)', body)
+        place = urllib.parse.unquote(html.unescape(q.group(1))) if q else ''
+        yield re.sub(r'\s+', '', name), pref, place.strip(), name.strip()
+
+
+def all_cards():
+    yield from cards(open(SRC, encoding='utf-8').read())
+    if os.path.exists(ILLUMI):
+        yield from illumi_cards(open(ILLUMI, encoding='utf-8').read())
+
+
 def main():
-    h = open(SRC, encoding='utf-8').read()
     cache = json.load(open(CACHE, encoding='utf-8')) if os.path.exists(CACHE) else {}
     out, new = {}, 0
-    for k, pref, place, name in cards(h):
+    for k, pref, place, name in all_cards():
         if k in out:
             continue
         ck = pref + '｜' + (place or name)
@@ -136,11 +155,25 @@ def live():
     open(SRC, 'w', encoding='utf-8').write(h)
 
 
+def live_illumi():
+    """イルミのページにも地図（10/31 オーナー「燈にも」）。本体は同じで、ページとのつなぎだけ違う map-illumi.js"""
+    js = 'site/townnotes/map-illumi.js'
+    if not (os.path.exists(ILLUMI) and os.path.exists(js)):
+        return
+    h = open(ILLUMI, encoding='utf-8').read()
+    if '/townnotes/map-illumi.js' in h:
+        return
+    v = __import__('hashlib').sha1(open(js, 'rb').read()).hexdigest()[:8]
+    h = h.replace('</body>', '<script src="/townnotes/map-illumi.js?v=' + v + '" defer></script></body>', 1)
+    open(ILLUMI, 'w', encoding='utf-8').write(h)
+
+
 if __name__ == '__main__':
     try:
         main()
         preview()
         live()
+        live_illumi()
     except Exception as e:  # 地図の場所が取れなくても、ページの公開は止めない
         print('townnotes_geo: しっぱい（ページはそのまま公開）', e)
         sys.exit(0)
