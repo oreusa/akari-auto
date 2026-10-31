@@ -4,7 +4,7 @@
 → site/kansai-yado.json（月の試しのページが読む）。覚え data/kansai-yado.json、7日たった所だけ調べ直す。
 失敗しても燈のページには関係ない（page.yml で || true）。
 """
-import json, math, time, urllib.parse, urllib.request
+import json, math, time, unicodedata, urllib.parse, urllib.request
 from datetime import date
 from lib import BROWSER_UA, http, rakuten_env, load_json, save_json, path
 
@@ -12,7 +12,7 @@ GEO = "https://usagi-odekake.usagi-fudosan.workers.dev/townnotes/geo.json"
 API = "https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426"
 MEMO = path("data", "kansai-yado.json")
 OUT = path("site", "kansai-yado.json")
-MAX_CALLS = 60   # 1回の実行で調べる数（楽天は1秒1回まで）
+MAX_CALLS = 150   # 1回の実行で調べる数（楽天は1秒1回まで）
 
 
 def dist(a, b, c, d):
@@ -46,7 +46,7 @@ def search(env, lat, lon, origin):
         if not b or not b.get("latitude"):
             continue
         km = dist(lat, lon, float(b["latitude"]), float(b["longitude"]))
-        hs.append({"n": b.get("hotelName", ""), "u": b.get("hotelInformationUrl", ""),
+        hs.append({"n": unicodedata.normalize("NFKC", b.get("hotelName", "")), "u": b.get("hotelInformationUrl", ""),
                    "km": round(km, 1), "r": b.get("reviewAverage"), "min": b.get("hotelMinCharge")})
     hs.sort(key=lambda x: x["km"])
     return [x for x in hs if x["u"]][:3]
@@ -66,6 +66,9 @@ def main():
     for name, v in geo.items():
         lat, lon = float(v[0]), float(v[1])
         m = memo.get(name)
+        if m and m.get("h"):
+            for x in m["h"]:
+                x["n"] = unicodedata.normalize("NFKC", x["n"])
         fresh = m and m.get("ll") == [lat, lon] and (today - date.fromisoformat(m["t"])).days < 7
         if fresh or calls >= MAX_CALLS:
             continue
