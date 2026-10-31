@@ -1,0 +1,355 @@
+{
+  "day": "2026-10-31",
+  "fetchedAt": "2026-11-01T04:32+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【明日11/1　丸亀製麺｜釜揚げうどんが半額🍜】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfIoa_9IDQL",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.51,
+        "views": 198,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【明日11/1　丸亀製麺｜釜揚げうどんが半額🍜】",
+      "url": "https://x.com/1753799832798629888/status/2116292825679540365",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 11.76,
+        "reposts": 0,
+        "impressions": 17,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "08:01",
+      "kind": "手動",
+      "first": "【2/14まで　あしかがフラワーパーク｜500万球超えの光の花の庭✨】",
+      "url": "https://www.instagram.com/p/DfItm33GJg1/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "follows": 0,
+        "reach": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "10/31から飯能でムーミン谷のクリスマス、今週始まる5つ🎄",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfI2KzcFYLn",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.78,
+        "views": 36,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "10/31から飯能でムーミン谷のクリスマス、今週始まる5つ🎄",
+      "url": "https://x.com/1753799832798629888/status/2116323051952390186",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "10/31から、横浜赤レンガ倉庫で全国ふるさとフェア、入場無料🍙",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfJKwi4EaAE",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 0.61,
+        "views": 329,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "10/31から、横浜赤レンガ倉庫で全国ふるさとフェア、入場無料🍙",
+      "url": "https://x.com/1753799832798629888/status/2116368329338245469",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【11/1〜11/5点灯　中華街・流山・けやき坂｜光る時間くらべ✨】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfJVDcvDQT5",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.51,
+        "views": 195,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【11/1〜11/5点灯　中華街・流山・けやき坂｜光る時間くらべ✨】",
+      "url": "https://x.com/1753799832798629888/status/2116390968979026082",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "10/30開業、清澄白河にダンデライオン・チョコレートの工場🍫",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfJfXILFaHu",
+      "metrics": {
+        "reactions": 2,
+        "comments": 1,
+        "engagementRate": 0.7,
+        "views": 427,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "10/30開業、清澄白河にダンデライオン・チョコレートの工場🍫",
+      "url": "https://x.com/1753799832798629888/status/2116413637501825270",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた毛布シングル3つ、選んだのは1,580円】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfJz85DlfJZ",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた毛布シングル3つ、選んだのは1,580円】",
+      "url": "https://x.com/1753799832798629888/status/2116458918838755667",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【12/17まで　湯河原温泉｜みかん狩りは食べ放題500円🍊】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfKBr_HIL4A",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【12/17まで　湯河原温泉｜みかん狩りは食べ放題500円🍊】",
+      "url": "https://x.com/1753799832798629888/status/2116489121136771437",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【2/28まで　東武動物公園｜約7万球のウインターイルミ✨】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfKG9_PnGIn",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【2/28まで　東武動物公園｜約7万球のウインターイルミ✨】",
+      "url": "https://x.com/1753799832798629888/status/2116500736477470774",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【11/8まで　中野・やきいもフェス｜毎日先着100名に無料クーポン🍠】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfKPcsdIBgD",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【11/8まで　中野・やきいもフェス｜毎日先着100名に無料クーポン🍠】",
+      "url": "https://x.com/1753799832798629888/status/2116519363012382797",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4019663100559882704",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【2/14まで　あしかがフラワーパーク｜500万球超えの光の花の庭✨】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfItlSsIOaH",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 20,
+        "views": 5,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【2/14まで　あしかがフラワーパーク｜500万球超えの光の花の庭✨】",
+      "url": "https://x.com/1753799832798629888/status/2116304166570074293",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 23.08,
+        "reposts": 0,
+        "impressions": 13,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DfIqQwAvF1D/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.13,
+        "averageTimeWatched": 7.82,
+        "reach": 0
+      }
+    }
+  ]
+}

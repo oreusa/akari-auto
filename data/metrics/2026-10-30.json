@@ -1,6 +1,6 @@
 {
   "day": "2026-10-30",
-  "fetchedAt": "2026-10-31T05:09+09:00",
+  "fetchedAt": "2026-11-01T04:32+09:00",
   "posts": [
     {
       "service": "threads",
@@ -11,8 +11,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.76,
-        "views": 21,
+        "engagementRate": 4.17,
+        "views": 24,
         "quotes": 0,
         "reposts": 0
       }
@@ -26,9 +26,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.17,
+        "engagementRate": 3.13,
         "reposts": 0,
-        "impressions": 24,
+        "impressions": 32,
         "clicks": 0
       }
     },
@@ -41,8 +41,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.44,
-        "views": 41,
+        "engagementRate": 1.92,
+        "views": 52,
         "quotes": 0,
         "reposts": 0
       }
@@ -56,9 +56,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 12.5,
+        "engagementRate": 1.08,
         "reposts": 0,
-        "impressions": 8,
+        "impressions": 93,
         "clicks": 0
       }
     },
@@ -71,8 +71,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.48,
-        "views": 207,
+        "engagementRate": 0.44,
+        "views": 228,
         "quotes": 0,
         "reposts": 0
       }
@@ -84,11 +84,11 @@
       "first": "【10/31〜11/3　青山公園｜ドイツフェスティバルは入場無料🍺】",
       "url": "https://x.com/1753799832798629888/status/2116005947365539867",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 0.41,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 487,
         "clicks": 0
       }
     },
@@ -101,8 +101,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.55,
-        "views": 22,
+        "engagementRate": 3.13,
+        "views": 32,
         "quotes": 0,
         "reposts": 0
       }
@@ -115,10 +115,10 @@
       "url": "https://x.com/1753799832798629888/status/2116028586951954938",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 1.44,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 139,
         "clicks": 0
       }
     },
@@ -129,10 +129,10 @@
       "first": "【10/31開業　横浜ベイサイド｜書店と遊びのMuchu Planet📚】",
       "url": "https://www.threads.com/@ai_usagichan1/post/DfG6jrPETLG",
       "metrics": {
-        "reactions": 2,
+        "reactions": 11,
         "comments": 1,
-        "engagementRate": 0.89,
-        "views": 338,
+        "engagementRate": 0.73,
+        "views": 1636,
         "quotes": 0,
         "reposts": 0
       }
@@ -145,10 +145,10 @@
       "url": "https://x.com/1753799832798629888/status/2116051231160389989",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 2.78,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 36,
         "clicks": 0
       }
     },
@@ -161,8 +161,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 25,
-        "views": 4,
+        "engagementRate": 9.09,
+        "views": 11,
         "quotes": 0,
         "reposts": 0
       }
@@ -175,10 +175,10 @@
       "url": "https://x.com/1753799832798629888/status/2116096533519044712",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 8.33,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 12,
         "clicks": 0
       }
     },
@@ -189,10 +189,10 @@
       "first": "【11/1から　長瀞・寳登山神社｜ライトアップと雲海の夜🍁】",
       "url": "https://www.threads.com/@ai_usagichan1/post/DfHc6atEYyR",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "reactions": 12,
+        "comments": 1,
+        "engagementRate": 1.1,
+        "views": 1186,
         "quotes": 0,
         "reposts": 0
       }
@@ -205,10 +205,10 @@
       "url": "https://x.com/1753799832798629888/status/2116126739604582685",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 1.21,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 165,
         "clicks": 0
       }
     },
@@ -219,10 +219,10 @@
       "first": "【11/15まで　草津温泉｜道の駅の紅葉ライトアップ🍁】",
       "url": "https://www.threads.com/@ai_usagichan1/post/DfHiO2WlhO6",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 1.25,
+        "views": 160,
         "quotes": 0,
         "reposts": 0
       }
@@ -235,10 +235,10 @@
       "url": "https://x.com/1753799832798629888/status/2116138368991961481",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 1.12,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 89,
         "clicks": 0
       }
     },
@@ -250,9 +250,9 @@
       "url": "https://www.threads.com/@ai_usagichan1/post/DfHqqjDFFq0",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 11.11,
+        "views": 9,
         "quotes": 0,
         "reposts": 0
       }
@@ -265,10 +265,10 @@
       "url": "https://x.com/1753799832798629888/status/2116156954649186378",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 5.56,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 18,
         "clicks": 0
       }
     },
