@@ -167,7 +167,7 @@ with tempfile.TemporaryDirectory() as d:
        f"4コマの予約がおかしい: {kc}")
     ig = [c for c in kc if c[0] == "instagram"]
     ok([c[4].get("ig_type") for c in ig] == ["post", "story", "story"] and len(ig[0][4]["images"]) == 4
-       and all(len(c[4]["images"]) == 1 for c in ig[1:]) and [c[1] for c in ig] == ["2026-10-24T23:00:00.000Z"] * 2 + ["2026-10-24T23:01:00.000Z"]
+       and all(len(c[4]["images"]) == 1 for c in ig[1:]) and [c[1] for c in ig] == ["2026-10-24T23:00:00.000Z", "2026-10-24T23:05:00.000Z", "2026-10-24T23:15:00.000Z"]
        and all(u.startswith("https://wsrv.nl/?url=https%3A%2F%2Fi%2Fx&cx=") for c in ig for u in c[4]["images"])
        and "h=1920" in ig[1][4]["images"][0] and "precrop=1" in ig[1][4]["images"][0], f"Instagramのスライド・ストーリーがおかしい: {ig}")
     lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 18, "text": "t", "image_url": "https://i/x", "video_url": "https://v/y"})
