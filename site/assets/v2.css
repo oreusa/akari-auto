@@ -29,3 +29,25 @@ body{padding-bottom:90px}
 html.v2bar-on #umenu{display:none!important}
 html.v2bar-on #utheme{right:12px}
 html[style*="overflow: hidden"] #v2bar{display:none}
+/* 11/1 オーナー「燈の見本、月と違うところあるよな？」→ 月とそろえる */
+/* おでかけ・終わったおでかけの枠（上の黒い線・白い箱）をなくす（月と同じ） */
+html body .wrap>#odekake.blk,html body .wrap>#archive.blk{background:transparent!important;border:0!important;padding:0!important}
+/* 件数→「イベント｜新しいお店・施設」→4つのタブ→都県→地図で見る→カード の順（月と同じ） */
+.v2tabs{margin:4px 0 6px}
+.v2tabs .otab{margin:0 0 4px}
+.v2tabs .otab button{color:#9A9A9A}.v2tabs .otab button.on{color:var(--ink)}
+.tgrp{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;margin:2px 0 6px}
+.tgrp span{display:block;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;color:var(--sub);padding:0 0 6px;border-bottom:1px solid #D6CCC1;position:relative}
+.tgrp span:after{content:"";position:absolute;left:50%;bottom:-4px;width:7px;height:7px;background:var(--bg,#fff);border-right:1px solid #D6CCC1;border-bottom:1px solid #D6CCC1;transform:translateX(-50%) rotate(45deg)}
+.wrap>p.cnt[data-v=odekake]{margin:10px 0 14px}
+/* 「地図で見る」の丸は月と同じ濃い色 */
+.tnbtn{border-color:#E2E2E2!important;box-shadow:none!important;border-radius:8px!important}
+.tnbtn .ar{background:var(--acc)!important;color:#fff!important}
+/* カード：地図の行と丸い矢印を同じ高さに（月と同じ） */
+#odekake .card.it{padding:14px 56px 0 16px}
+#odekake .card.it .t{margin:3px 0 0}
+#odekake .card.it .mpr{margin:6px -56px 0 -16px;padding:0 56px 12px 16px;min-height:32px}
+#odekake .card.it:after{bottom:12px}
+/* 上にもどる丸は、下のボタン列と重なるので出さない（月にも無い） */
+html.v2bar-on #totop{display:none!important}
+.wrap>nav.flt[data-v=odekake]{margin:14px 0 12px}
