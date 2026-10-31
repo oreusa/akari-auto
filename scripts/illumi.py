@@ -67,7 +67,7 @@ def render(items, today, now):
         if not rows:
             continue
         tabs.append(f'<button data-f="{p}">{p}</button>')
-        secs.append(f'<section class="pf" data-p="{p}"><h2>{full}<b class="c">{len(rows)}件</b></h2>'
+        secs.append(f'<section class="ps" data-p="{p}"><h2>{full}<b class="c">{len(rows)}件</b></h2>'
                     f'<ul>{"".join(card(e, today) for e in rows)}</ul></section>')
     names = [e["name"] for e in items if e.get("start")][:3]
     desc = (f"関東（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）のイルミネーション2026-2027を{n}か所、"
@@ -102,6 +102,7 @@ TEMPLATE = """<!doctype html>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400&display=swap">
 <script type="application/ld+json">{ld}</script>
 <style>
+/* 地図（townnotes/map-illumi.js）も .pf .fr .ar .st などを使うので、ページの見た目はカードや箱の中だけにかける */
 :root{{color-scheme:light;--bg:#FDFCFA;--ink:#2B2622;--sub:#6B6058;--mute:#8C7B6E;--line:#E6DED4;--line2:#D6CCC1;
   --brown:#A07E66;--brown2:#8C6A55;--free:#5E8A4A;--now:#B5643F;--soon:#71849B;
   --min:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--go:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
@@ -123,8 +124,8 @@ h1 small{{display:block;font-size:15px;letter-spacing:.2em;margin-top:4px}}
 .tabs::-webkit-scrollbar{{display:none}}
 .tabs button{{flex:none;font:700 12.5px/1 var(--go);letter-spacing:.06em;color:var(--mute);background:#fff;border:1px solid #D9CFC4;border-radius:99px;padding:10px 14px;cursor:pointer}}
 .tabs button.on{{background:var(--ink);border-color:var(--ink);color:#fff}}
-.pf h2{{display:flex;align-items:baseline;gap:8px;font:600 17px/1.4 var(--min);letter-spacing:.12em;margin:26px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line2)}}
-.pf h2 .c{{font:400 12px/1 var(--go);color:var(--mute);letter-spacing:.04em}}
+.ps h2{{display:flex;align-items:baseline;gap:8px;font:600 17px/1.4 var(--min);letter-spacing:.12em;margin:26px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line2)}}
+.ps h2 .c{{font:400 12px/1 var(--go);color:var(--mute);letter-spacing:.04em}}
 ul{{list-style:none;margin:0;padding:0}}
 .it{{margin:0 0 10px}}
 .cw{{position:relative}}
@@ -132,14 +133,14 @@ ul{{list-style:none;margin:0;padding:0}}
 .mp{{position:absolute;left:14px;bottom:10px;font-size:11px;letter-spacing:.08em;color:var(--sub);border-bottom:1px solid var(--line2);line-height:1.4;padding:6px 8px 0 0}}
 .mp:before{{content:"";display:inline-block;width:8px;height:10px;margin-right:4px;vertical-align:-1px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 10'%3E%3Cpath d='M4 0a4 4 0 0 0-4 4c0 3 4 6 4 6s4-3 4-6a4 4 0 0 0-4-4z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 10'%3E%3Cpath d='M4 0a4 4 0 0 0-4 4c0 3 4 6 4 6s4-3 4-6a4 4 0 0 0-4-4z'/%3E%3C/svg%3E") center/contain no-repeat}}
 .bd{{display:flex;gap:6px;margin-bottom:4px}}
-.st,.fr{{font:700 10.5px/1 var(--go);letter-spacing:.08em;padding:4px 7px;border-radius:2px}}
-.st.now{{background:var(--now);color:#fff}} .st.soon{{background:#fff;color:var(--soon);border:1px solid var(--soon)}}
-.st.tba{{background:#F1ECE6;color:var(--mute)}}
-.fr{{color:var(--free);border:1px solid #CFE0CC}}
+.cd .st,.cd .fr{{font:700 10.5px/1 var(--go);letter-spacing:.08em;padding:4px 7px;border-radius:2px}}
+.cd .st.now{{background:var(--now);color:#fff}} .cd .st.soon{{background:#fff;color:var(--soon);border:1px solid var(--soon)}}
+.cd .st.tba{{background:#F1ECE6;color:var(--mute)}}
+.cd .fr{{color:var(--free);border:1px solid #CFE0CC}}
 .dt{{display:block;font-size:12.5px;color:var(--sub)}}
 .nm{{display:block;font:600 15px/1.5 var(--min);letter-spacing:.04em;margin:2px 0}}
 .pl{{display:block;font-size:12px;color:var(--mute)}}
-.ar{{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--brown);font-family:var(--en)}}
+.cd .ar{{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--brown);font-family:var(--en)}}
 .yd{{display:block;font-size:11px;color:var(--brown2);text-decoration:underline;text-underline-offset:3px;margin:5px 2px 0;text-align:right}}
 .none{{font-size:12.5px;color:var(--mute);text-align:center;margin:14px 0}}
 .foot{{font-size:11.5px;line-height:1.9;color:var(--sub);border-top:1px solid var(--line2);margin-top:32px;padding-top:16px}}
@@ -171,21 +172,21 @@ ul{{list-style:none;margin:0;padding:0}}
     if(e&&e<t){{li.remove();return}}
     if(s&&b){{if(s<=t){{b.className='st now';b.textContent='開催中'}}else{{b.className='st soon';b.textContent='これから'}}}}
   }});
-  document.querySelectorAll('.pf').forEach(function(sec){{
+  document.querySelectorAll('.ps').forEach(function(sec){{
     var n=sec.querySelectorAll('.it').length;sec.querySelector('.c').textContent=n+'件';if(!n)sec.remove();
   }});
   var bs=document.querySelectorAll('.tabs button'),none=document.querySelector('.none');
   function show(f){{
     var any=false;
-    document.querySelectorAll('.pf').forEach(function(sec){{var on=!f||sec.dataset.p===f;sec.hidden=!on;if(on)any=true}});
+    document.querySelectorAll('.ps').forEach(function(sec){{var on=!f||sec.dataset.p===f;sec.hidden=!on;if(on)any=true}});
     none.hidden=any;
     bs.forEach(function(b){{b.classList.toggle('on',b.dataset.f===f)}});
   }}
   bs.forEach(function(b){{
-    if(b.dataset.f&&!document.querySelector('.pf[data-p="'+b.dataset.f+'"]'))b.remove();
+    if(b.dataset.f&&!document.querySelector('.ps[data-p="'+b.dataset.f+'"]'))b.remove();
     b.addEventListener('click',function(){{show(b.dataset.f);try{{localStorage.setItem('illumi-pref',b.dataset.f)}}catch(x){{}}}});
   }});
-  try{{var k=localStorage.getItem('illumi-pref');if(k&&document.querySelector('.pf[data-p="'+k+'"]'))show(k)}}catch(x){{}}
+  try{{var k=localStorage.getItem('illumi-pref');if(k&&document.querySelector('.ps[data-p="'+k+'"]'))show(k)}}catch(x){{}}
 }})();
 </script>
 </body></html>
