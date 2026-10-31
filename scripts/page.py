@@ -635,8 +635,7 @@ def spot(e):
     sat, sun = _weekend(now)
     wk = e.get("kind") not in ("deal", "shop") and (not st or st.date() <= sun) and (not en or en.date() >= max(sat, now.date()))
     left = (en.date() - now.date()).days if en and not (st and st > now) else None
-    if left is not None and 1 <= left <= 6:  # 終わりが近い物は「あと◯日」（10/26 月より使いやすく：急ぐ物が一目で分かる）
-        tag = f'<span class="lf">あと{left}日</span>' + tag
+    # 「あと◯日」は外した（10/31 オーナー「月とサイト作りは同じで良い」。月のカードには無い）
     pl = f'<span class="pl">{esc(pref)}</span>' if pref else ""
     if not e.get("url"):  # リンクのないカードは載せない（押しても何も開かないため）
         return ""
@@ -883,7 +882,8 @@ def past_list(ended, now, n=5):
         rows.append(f'<li><span>{_md(d)}</span>{esc(nm)}｜{esc(place)}</li>')
     if not rows:
         return ""
-    return '<div class="past"><p class="ph">終わったおでかけ</p><ul>' + "".join(rows[:n]) + '</ul></div>'
+    more = (f'<button class="pmo" type="button">もっと見る（{len(rows) - n}件）</button>') if len(rows) > n else ""
+    return ('<ul class="past">' + "".join(r if i < n else r.replace("<li>", "<li hidden>", 1) for i, r in enumerate(rows)) + '</ul>' + more)
 
 
 def render(items, ended, now, cfg):
@@ -985,8 +985,11 @@ def render(items, ended, now, cfg):
                       f'<section class="blk" id="odekake" data-v="odekake">{tabs2}'
                       + "".join(f'<div class="pane" data-t="{k}"{"" if k == first else " hidden"}>{cardlist(es, jp)}<p class="none">この都県のおでかけは、これから増やしていきます</p></div>'
                                 for k, en, jp, es in panes)
-                      + past_list(ended, now)
-                      + '<p class="tip">矢印で公式ページ、「地図」で場所が開きます。<br>出かける前に、必ず公式ページで<br>最新の情報を確かめてください。</p></section>')
+                      + '</section>')
+        # 10/31 月と同じ：終わったおでかけは別の箱（ARCHIVE）。注意書きもその下（オーナー「サイト作り自体は同じで良い」）
+        blocks.append(f'<section class="blk arch" id="archive" data-v="odekake">{head("ARCHIVE", "終わったおでかけ", "")}'
+                      + past_list(ended, now, n=4)
+                      + '<p class="tip">出かける前に、必ず公式ページで<br>最新の情報を確かめてください。</p></section>')
     if hot:  # 2. 今日のいち押し（おでかけの下。10/24 オーナー「おでかけの後でいい」）
         hot["hot"] = True
         blocks.append(f'<section class="blk hotb" id="hot" data-v="odekake">{head("TODAY&#39;S PICK", "今日のうさぎのいち押し", "その日にうさぎが比べて選んだ物のうち、使っている人がいちばん多い1つ。リンクは広告です")}'
@@ -1019,7 +1022,7 @@ def render(items, ended, now, cfg):
                       f'<nav class="stab" aria-label="項目">{stabs}</nav>{"".join(cards)}{moreb}</section>')
     cur, sea, sea_en, sea_jp = _season(now)
     return TEMPLATE.format(
-        nav="".join(nav), blocks="".join(blocks), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp, sea=sea, show_go=SHOW_GO,
+        nav="".join(nav), blocks=re.sub("[\U0001F000-\U0001FAFF\uFE0F]", "", "".join(blocks)), follow=follow, ring=_year_ring(cur), sea_en=sea_en, sea_jp=sea_jp, sea=sea, show_go=SHOW_GO,
         n_pr=sum(len(v) for v in goods.values()),
         pr_note=("このページには楽天アフィリエイトとAmazonアソシエイトの広告（PR）があります。<br>"
                  "Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。"
@@ -1277,6 +1280,15 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .sns a.co:before{{content:attr(data-en);display:block;font:500 9.5px/1 var(--en);letter-spacing:.32em;color:#9C8775;margin-bottom:8px}}
 .sns a.co:after{{content:"→";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--en);color:#9C8775;font-size:16px}}
 .sns a.co span{{color:var(--mute);font:400 11.5px/1.6 var(--go);letter-spacing:.04em;margin-top:6px}}
+/* 10/31 月とそろえる：ARCHIVE の箱・いち押しの色・終わったの行 */
+.arch .past{{list-style:none;margin:4px 0 0;padding:0;border:0}}
+.arch .past li{{font-size:12.5px;line-height:1.9;color:#3A302A;padding:2px 0 2px calc(12px + 1em);text-indent:-1em;border:0}}
+.ft{{font-size:10px;letter-spacing:.04em;text-wrap:balance}}
+.arch .past li span{{margin-right:4px}}
+.arch .pmo{{display:block;margin:10px auto 0;background:none;border:0;border-bottom:1px solid var(--ink);padding:4px 2px;font:500 13px/1 var(--go);letter-spacing:.06em;color:var(--ink);cursor:pointer}}
+.arch .tip{{margin-top:18px}}
+.hot{{border:1px solid #E2D8CD}} .hot .cho{{background:#FAF8F5}}
+.hot .buy{{color:var(--ink);border-color:var(--ink)}} .hot .buy .arw{{color:var(--ink)}}
 .ilk{{display:block;width:max-content;max-width:100%;margin:4px auto 18px;color:#231E1B;text-decoration:none;font:600 14px/1.5 var(--min);letter-spacing:.08em;border-bottom:1px solid #231E1B;padding-bottom:3px}}.ilk span{{font-family:Jost;margin-left:8px;color:#9C8775}}
 </style></head>
 <body class="s-{sea}"><div class="wrap">
@@ -1294,7 +1306,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 {blocks}
 <p class="pr-note">{pr_note}<br>買う前に、楽天のページで最新の情報を確かめてください。</p>
 <div class="sns"><h2>FOLLOW</h2>{follow}</div>
-<p class="ft">うさぎ│LIFE NOTES<br>終わったおでかけも、このページに残しています</p>
+<p class="ft">うさぎ│LIFE NOTES│過去のおでかけも、このページに残していきます</p>
 </div>
 <button id="totop" aria-label="上にもどる"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4A403A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
 <script>
@@ -1362,6 +1374,7 @@ document.addEventListener("click",function(ev){{
 var t=document.getElementById("totop");
 addEventListener("scroll",function(){{t.classList.toggle("on",scrollY>600);}},{{passive:true}});
 t.addEventListener("click",function(){{scrollTo({{top:0,behavior:"smooth"}});}});
+var pm=document.querySelector(".arch .pmo");if(pm)pm.addEventListener("click",function(){{document.querySelectorAll(".arch .past li[hidden]").forEach(function(l){{l.hidden=false;}});pm.remove();}});
 }})();
 </script>
 </body></html>
