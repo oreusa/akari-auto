@@ -2154,5 +2154,39 @@
         "min": 18850
       }
     ]
+  },
+  "とちぎ秋まつり": {
+    "v": 2,
+    "t": "2026-10-31",
+    "ll": [
+      36.38262,
+      139.73365
+    ],
+    "h": [
+      {
+        "n": "かな半旅館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D41393",
+        "km": 0.2,
+        "r": 4.62,
+        "rc": 131,
+        "min": 5600
+      },
+      {
+        "n": "business&activity chanvre(ホテル シャンブル)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D181824",
+        "km": 1.2,
+        "r": 4.11,
+        "rc": 494,
+        "min": 5700
+      },
+      {
+        "n": "ホテルサンルート栃木",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D84757",
+        "km": 0.1,
+        "r": 4.02,
+        "rc": 794,
+        "min": 6200
+      }
+    ]
   }
 }
