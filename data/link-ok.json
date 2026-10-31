@@ -1293,6 +1293,12 @@
   "sec": 2.4,
   "why": ""
  },
+ "https://prtimes.jp/main/html/rd/p/000000212.000027005.html": {
+  "at": "2026-11-01",
+  "ok": true,
+  "sec": 0.4,
+  "why": ""
+ },
  "https://prtimes.jp/main/html/rd/p/000006151.000007505.html": {
   "at": "2026-10-31",
   "by": "browser",
@@ -1389,6 +1395,12 @@
   "by": "browser",
   "ok": true,
   "sec": 3.9,
+  "why": ""
+ },
+ "https://tachikawaillumination.com": {
+  "at": "2026-11-01",
+  "ok": true,
+  "sec": 1.4,
   "why": ""
  },
  "https://tokyoatlas.jp/": {
@@ -1711,6 +1723,12 @@
   "by": "browser",
   "ok": true,
   "sec": 4.2,
+  "why": ""
+ },
+ "https://www.pref.tochigi.lg.jp/c10/kouhou/kouhou/202610-12artm-kikaku.html": {
+  "at": "2026-11-01",
+  "ok": true,
+  "sec": 0.6,
   "why": ""
  },
  "https://www.railway-museum.jp/event/exhibition.html": {
