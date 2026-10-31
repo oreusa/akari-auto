@@ -214,7 +214,7 @@ ul{{list-style:none;margin:0;padding:0}}
 .pn{{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}}.pn .pnh{{width:100%;text-align:center;font-size:11px;letter-spacing:.2em;color:var(--mute);margin:0}}
 .pn a{{font-size:12.5px;border:1px solid var(--line2);border-radius:99px;padding:7px 13px;background:#fff}}.pn a[aria-current]{{background:var(--ink);border-color:var(--ink);color:#fff}}
 .sign{{text-align:center;font:400 11px/1 var(--en);letter-spacing:.3em;color:var(--brown);margin:24px 0 0}}
-</style></head>
+</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=1" defer></script></head>
 <body><div class="wrap">
 <header class="head">
 <img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
@@ -264,7 +264,7 @@ ROBOTS = f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n"
 
 
 def sitemap(now):
-    pages = ["", PAGE] + [f"{PAGE}-{YADO[p]}" for p, _ in PREFS]
+    pages = ["", PAGE, "tomari"] + [f"{PAGE}-{YADO[p]}" for p, _ in PREFS]
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
             + "".join(f'  <url><loc>{SITE}/{u}</loc><lastmod>{now:%Y-%m-%d}</lastmod><changefreq>daily</changefreq></url>\n' for u in pages)

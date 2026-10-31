@@ -4,3 +4,7 @@ site/index.html
 site/illumination.html
 site/robots.txt
 site/sitemap.xml
+site/illumination-*.html
+site/kanto-yado.json
+site/kansai-yado.json
+site/tomari.html
