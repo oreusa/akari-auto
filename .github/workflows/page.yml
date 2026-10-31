@@ -39,7 +39,7 @@ jobs:
           python3 scripts/kansai_yado.py kanto || true
       - name: 泊まりで行くおでかけ（/tomari。遠いおでかけ＋近くの宿3軒。10/31 オーナー「燈の方も」。失敗してもHPは出す）
         run: python3 scripts/tomari.py || true
-      - name: 見本ページ（/preview-v2。月の見本と同じ形。10/31 オーナー「燈のもみして」。本番は変えない）
+      - name: 月と同じ見た目（v2）を本番と見本 /preview-v2 に入れる（10/31 見本、11/1 オーナー「改善してから本番OK」）
         run: python3 scripts/preview_v2.py || true
       - name: 公開する（Cloudflare Pages。鍵があるときだけ。アドレス usagi-life-notes.pages.dev）
         run: |
