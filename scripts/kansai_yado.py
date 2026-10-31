@@ -12,6 +12,10 @@ GEO = "https://usagi-odekake.usagi-fudosan.workers.dev/townnotes/geo.json"
 API = "https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426"
 MEMO = path("data", "kansai-yado.json")
 OUT = path("site", "kansai-yado.json")
+VER = 2         # 選び方を変えたら上げる（覚えを全部調べ直す）
+# 泊まりがけで行く場所だけに付ける：大きな街の真ん中から20km以上（10/31 月）
+CENTERS = [(34.7025, 135.4959), (34.6659, 135.5013), (34.9858, 135.7588), (34.6951, 135.1979)]  # 梅田・難波・京都駅・三宮
+FAR_KM = 20
 MAX_CALLS = 150   # 1回の実行で調べる数（楽天は1秒1回まで）
 
 
@@ -21,10 +25,14 @@ def dist(a, b, c, d):
     return 6371 * math.hypot(x, (c - a) * r)
 
 
+def far(ll):
+    return min(dist(ll[0], ll[1], a, b) for a, b in CENTERS) >= FAR_KM
+
+
 def search(env, lat, lon, origin):
     q = {"format": "json", "formatVersion": 2, "applicationId": env["RAKUTEN_APP_ID"],
          "accessKey": env["RAKUTEN_ACCESS_KEY"], "affiliateId": env["RAKUTEN_AFFILIATE_ID"],
-         "latitude": lat, "longitude": lon, "datumType": 1, "searchRadius": 3, "hits": 10}
+         "latitude": lat, "longitude": lon, "datumType": 1, "searchRadius": 3, "hits": 30}
     for wait in (2, 4, 0):
         st, txt, _ = http("GET", API + "?" + urllib.parse.urlencode(q),
                           headers={"Origin": origin, "Referer": origin + "/"})
@@ -47,9 +55,12 @@ def search(env, lat, lon, origin):
             continue
         km = dist(lat, lon, float(b["latitude"]), float(b["longitude"]))
         hs.append({"n": unicodedata.normalize("NFKC", b.get("hotelName", "")), "u": b.get("hotelInformationUrl", ""),
-                   "km": round(km, 1), "r": b.get("reviewAverage"), "min": b.get("hotelMinCharge")})
-    hs.sort(key=lambda x: x["km"])
-    return [x for x in hs if x["u"]][:3]
+                   "km": round(km, 1), "r": b.get("reviewAverage"), "rc": b.get("reviewCount"),
+                   "min": b.get("hotelMinCharge")})
+    # 10/31 オーナー「改善したい所ない？」→ 民泊・評価なしを外し、評価の高い順（同じなら近い順）
+    ok = [x for x in hs if x["u"] and "民泊" not in x["n"] and (x["r"] or 0) >= 3.5 and (x["rc"] or 0) >= 10 and x["min"]]
+    ok.sort(key=lambda x: (-float(x["r"]), x["km"]))
+    return ok[:3]
 
 
 def main():
@@ -69,19 +80,19 @@ def main():
         if m and m.get("h"):
             for x in m["h"]:
                 x["n"] = unicodedata.normalize("NFKC", x["n"])
-        fresh = m and m.get("ll") == [lat, lon] and (today - date.fromisoformat(m["t"])).days < 7
-        if fresh or calls >= MAX_CALLS:
+        fresh = m and m.get("v") == VER and m.get("ll") == [lat, lon] and (today - date.fromisoformat(m["t"])).days < 7
+        if fresh or calls >= MAX_CALLS or not far([lat, lon]):  # 街なかは調べない（楽天の呼び出しを減らす）
             continue
         try:
-            memo[name] = {"t": today.isoformat(), "ll": [lat, lon], "h": search(env, lat, lon, origin)}
+            memo[name] = {"v": VER, "t": today.isoformat(), "ll": [lat, lon], "h": search(env, lat, lon, origin)}
         except Exception as e:
             print("×", name, e)
             break
         calls += 1
         time.sleep(1.1)
-    memo = {k: v for k, v in memo.items() if k in geo}
+    memo = {k: v for k, v in memo.items() if k in geo and far(v["ll"])}
     save_json(MEMO, memo)
-    out = {k: v["h"] for k, v in memo.items() if v["h"]}
+    out = {k: v["h"] for k, v in memo.items() if v["h"] and far(v["ll"])}
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
     print(f"関西の宿: 調べた {calls} / 宿あり {len(out)} / 場所 {len(geo)}")
