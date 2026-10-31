@@ -1,7 +1,6 @@
 {
   "about": "投稿のあとで開かなくなった公式ページの差し替え（page.py の _fix_url）。左が元のURL、右が新しいURL。\"\" にするとカードを出さない。notes/linkcheck.md の「直す所」を見て集め係・夜の回が書く。",
   "fix": {
-    "https://visit-chiyoda.tokyo/app/event/detail/957": "https://www.kosho.or.jp/wppost/plg_WpPost_post.php?postid=28822",
     "https://www.ibarakiguide.jp/event/event.php?mode=detail&code=1418": "https://www.flowerpark.or.jp/news-column/autumn2026/"
   }
 }

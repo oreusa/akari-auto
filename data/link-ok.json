@@ -695,6 +695,13 @@
   "sec": 0.7,
   "why": ""
  },
+ "https://visit-chiyoda.tokyo/app/event/detail/957": {
+  "at": "2026-10-31",
+  "by": "browser",
+  "ok": true,
+  "sec": 0,
+  "why": "10/31 月：日本からは開く（海外のサーバーからだけ開かない）。千代田区観光協会の公式ページ"
+ },
  "https://wahhhp.com/gaudi": {
   "at": "2026-10-30",
   "by": "browser",
