@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 site/index.html
+site/illumination.html
+site/robots.txt
+site/sitemap.xml
