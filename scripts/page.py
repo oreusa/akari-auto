@@ -1277,6 +1277,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .sns a.co:before{{content:attr(data-en);display:block;font:500 9.5px/1 var(--en);letter-spacing:.32em;color:#9C8775;margin-bottom:8px}}
 .sns a.co:after{{content:"→";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--en);color:#9C8775;font-size:16px}}
 .sns a.co span{{color:var(--mute);font:400 11.5px/1.6 var(--go);letter-spacing:.04em;margin-top:6px}}
+.ilk{{display:block;width:max-content;max-width:100%;margin:4px auto 18px;color:#231E1B;text-decoration:none;font:600 14px/1.5 var(--min);letter-spacing:.08em;border-bottom:1px solid #231E1B;padding-bottom:3px}}.ilk span{{font-family:Jost;margin-left:8px;color:#9C8775}}
 </style></head>
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
@@ -1288,6 +1289,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <div class="sea"><span>{sea_en}</span><b>{sea_jp}</b></div>
 {ring}
 </header>
+<a class="ilk" href="illumination">関東イルミネーション 2026 日程一覧<span>→</span></a>
 <nav class="cats" id="cats" aria-label="項目">{nav}</nav>
 {blocks}
 <p class="pr-note">{pr_note}<br>買う前に、楽天のページで最新の情報を確かめてください。</p>
