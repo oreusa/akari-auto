@@ -59,39 +59,103 @@ def card(e, today):
     return out + "</li>"
 
 
-def render(items, today, now):
+def fu(p):
+    return dict(PREFS)[p]
+
+
+def jd(x):
+    d = date.fromisoformat(x)
+    return f"{d.month}/{d.day}"
+
+
+def faq(items, area):
+    """よくある質問（10/31 月：検索で上に出るため）。一覧のデータから作るので、書いた事は一覧と同じ"""
+    qa = []
+    nm = lambda xs: "、".join(e["name"] for e in xs[:6]) + ("など。" if len(xs) > 6 else "。")
+    fr = [e for e in items if e.get("free") is True]
+    if fr:
+        qa.append((f"{area}で無料で見られるイルミネーションは？", f"無料で見られるのは{len(fr)}か所です。" + nm(fr)))
+    xm = [e for e in items if e.get("start") and e.get("end") and e["start"] <= "2026-12-25" <= e["end"]]
+    if xm:
+        qa.append((f"クリスマス（12月25日）に見られる{area}のイルミネーションは？", f"12月25日に開催しているのは{len(xm)}か所です。" + nm(xm)))
+    lg = sorted([e for e in items if e.get("end") and e["end"] >= "2027-02-01"], key=lambda e: e["end"], reverse=True)
+    if lg:
+        qa.append((f"{area}で年明けの2月以降も見られるイルミネーションは？", "、".join(f'{e["name"]}（{jd(e["end"])}まで）' for e in lg[:5]) + "です。"))
+    st = sorted([e for e in items if e.get("start") and e["start"] >= "2026-11-01"], key=lambda e: e["start"])
+    if st:
+        nov = sum(1 for e in st if e["start"] < "2026-11-16")
+        qa.append((f"{area}のイルミネーションはいつから始まる？", (f"11月から始まる{len(st)}か所のうち、{nov}か所が11月前半に点灯します。" if nov else "")
+                   + "早い順に、" + "、".join(f'{e["name"]}は{jd(e["start"])}から' for e in st[:3]) + "です（日付は各公式の発表）。"))
+    pre = [e for e in items if not e.get("start")]
+    if pre:
+        qa.append(("日程が「発表前」の所はどうなりますか？", f"{len(pre)}か所は2026年の日程がまだ発表されていません。昨年の期間を目安にのせていて、発表されしだい書き足します。"))
+    h = '<section class="faq"><h2>よくある質問</h2>' + "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in qa) + "</section>"
+    j = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in qa]}
+    return h, j
+
+
+def render(items, today, now, pref=None):
+    if pref:
+        items = [e for e in items if e["pref"] == pref]
     n = len(items)
     secs, tabs = [], ['<button class="on" data-f="">すべて</button>']
     for p, full in PREFS:
+        if pref and p != pref:
+            continue
         rows = [e for e in items if e["pref"] == p]
         if not rows:
             continue
         tabs.append(f'<button data-f="{p}">{p}</button>')
-        secs.append(f'<section class="ps" data-p="{p}"><h2>{full}<b class="c">{len(rows)}件</b></h2>'
+        secs.append(f'<section class="ps" data-p="{p}"><h2>{full}のイルミネーション<b class="c">{len(rows)}件</b></h2>'
                     f'<ul>{"".join(card(e, today) for e in rows)}</ul></section>')
     names = [e["name"] for e in items if e.get("start")][:3]
+    upd = f"{now.year}年{now.month}月{now.day}日"
+    area = fu(pref) if pref else "関東"
+    fh, fj = faq(items, area)
+    page = f"{PAGE}-{YADO[pref]}" if pref else PAGE
+    crumb = [("関東おでかけリスト", ""), ("関東イルミネーション2026-2027", PAGE)] + ([(f"{pref}のイルミネーション", page)] if pref else [])
+    bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i + 1, "name": a, "item": f"{SITE}/{u}"} for i, (a, u) in enumerate(crumb)]}
+    pn = '<p class="pnh">都県ごとに見る</p>' + ('<a href="illumination">関東ぜんぶ</a>' if pref else "") + "".join(
+        f'<a href="{PAGE}-{YADO[p]}"{" aria-current=page" if p == pref else ""}>{f}</a>' for p, f in PREFS)
+    if pref:
+        fr = sum(1 for e in items if e.get("free") is True)
+        title = f"{pref}のイルミネーション2026-2027｜日程・場所・無料の{n}か所一覧"
+        desc = f"{fu(pref)}のイルミネーション{n}か所（無料{fr}か所）を、日程・場所・無料かどうかで一覧にしました。{'・'.join(names)}など。{upd}更新。"
+        h1, en = f"{pref}のイルミネーション", f"{YADO[pref].upper()} ILLUMINATION"
+        lead = f"{fu(pref)}のイルミネーション{n}か所を、日程・場所・無料かどうかで並べました。開催中・これからは、ページを開いた日で切り替わります。終わった所は消えます。"
+        tabs_html = ""
+    else:
+        title = "関東イルミネーション2026-2027｜東京・神奈川・埼玉・千葉・茨城・栃木・群馬の日程一覧"
+        h1, en = "関東イルミネーション", "KANTO ILLUMINATION"
+        lead = f"東京・神奈川・埼玉・千葉・茨城・栃木・群馬のイルミネーション{n}か所を、都県ごとに日程・場所・無料かどうかで並べました。開催中・これからは、ページを開いた日で切り替わります。終わった所は消えます。"
     desc = (f"関東（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）のイルミネーション2026-2027を{n}か所、"
-            f"都県ごとに日程・場所・無料かどうかで一覧に。{'・'.join(names)}など。{now.year}年{now.month}月{now.day}日更新。")
-    ld = {"@context": "https://schema.org", "@type": "ItemList", "name": "関東イルミネーション2026-2027 日程一覧",
+            f"都県ごとに日程・場所・無料かどうかで一覧に。{'・'.join(names)}など。{now.year}年{now.month}月{now.day}日更新。") if not pref else desc
+    ld = {"@context": "https://schema.org", "@type": "ItemList", "name": f"{area}のイルミネーション2026-2027 日程一覧",
           "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": {
               "@type": "Event", "name": e["name"], "startDate": e["start"], "endDate": e["end"],
               "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
               "location": {"@type": "Place", "name": e["venue"],
                            "address": f'{dict(PREFS)[e["pref"]]}{e["city"]}'}, "url": e["url"]}}
               for i, e in enumerate(x for x in items if x.get("start"))]}
+    if not pref:
+        tabs_html = f'<nav class="tabs" aria-label="都県でしぼる">{"".join(tabs)}</nav>'
+    lds = "".join('<script type="application/ld+json">' + json.dumps(x, ensure_ascii=False).replace("</", "<\\/") + "</script>" for x in (ld, fj, bc))
     return TEMPLATE.format(
-        n=n, desc=esc(desc), url=f"{SITE}/{PAGE}", tabs="".join(tabs), secs="".join(secs),
-        upd=f"{now.year}年{now.month}月{now.day}日 更新",
-        ld=json.dumps(ld, ensure_ascii=False).replace("</", "<\\/"))
+        n=n, desc=esc(desc), url=f"{SITE}/{page}", tabs=tabs_html, secs="".join(secs),
+        upd=f"{upd} 更新", title=esc(title), h1=h1, en=en, lead=lead, faq=fh, pn=pn, iso=now.strftime("%Y-%m-%d"),
+        ld=lds)
 
 
 TEMPLATE = """<!doctype html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>関東イルミネーション2026-2027｜東京・神奈川・埼玉・千葉・茨城・栃木・群馬の日程一覧</title>
+<title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{url}">
-<meta property="og:title" content="関東イルミネーション2026-2027 日程一覧｜うさぎ│LIFE NOTES">
+<meta property="og:title" content="{title}">
+<meta property="article:modified_time" content="{iso}T07:30:00+09:00">
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="https://usagi-life-notes.pages.dev/og-v10.png">
 <meta property="og:url" content="{url}">
@@ -100,7 +164,7 @@ TEMPLATE = """<!doctype html>
 <link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400&display=swap">
-<script type="application/ld+json">{ld}</script>
+{ld}
 <style>
 /* 地図（townnotes/map-illumi.js）も .pf .fr .ar .st などを使うので、ページの見た目はカードや箱の中だけにかける */
 :root{{color-scheme:light;--bg:#FDFCFA;--ink:#2B2622;--sub:#6B6058;--mute:#8C7B6E;--line:#E6DED4;--line2:#D6CCC1;
@@ -145,18 +209,22 @@ ul{{list-style:none;margin:0;padding:0}}
 .none{{font-size:12.5px;color:var(--mute);text-align:center;margin:14px 0}}
 .foot{{font-size:11.5px;line-height:1.9;color:var(--sub);border-top:1px solid var(--line2);margin-top:32px;padding-top:16px}}
 .back{{display:block;text-align:center;font:700 13px/1 var(--go);letter-spacing:.1em;border:1px solid var(--ink);border-radius:2px;padding:14px;margin:20px 0 0;background:#fff}}
+.faq{{margin-top:30px}}.faq details{{background:#fff;border:1px solid var(--line);border-radius:4px;margin:0 0 8px;padding:12px 14px}}
+.faq summary{{font-weight:700;font-size:13.5px;line-height:1.6;cursor:pointer}}.faq p{{font-size:12.5px;line-height:1.9;color:var(--sub);margin:8px 0 0}}
+.pn{{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}}.pn .pnh{{width:100%;text-align:center;font-size:11px;letter-spacing:.2em;color:var(--mute);margin:0}}
+.pn a{{font-size:12.5px;border:1px solid var(--line2);border-radius:99px;padding:7px 13px;background:#fff}}.pn a[aria-current]{{background:var(--ink);border-color:var(--ink);color:#fff}}
 .sign{{text-align:center;font:400 11px/1 var(--en);letter-spacing:.3em;color:var(--brown);margin:24px 0 0}}
 </style></head>
 <body><div class="wrap">
 <header class="head">
 <img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
-<p class="en">KANTO ILLUMINATION</p>
-<h1>関東イルミネーション<small>2026 - 2027 日程一覧</small></h1>
+<p class="en">{en}</p>
+<h1>{h1}<small>2026 - 2027 日程一覧</small></h1>
 <p class="up">{upd}</p>
-<p class="lead">東京・神奈川・埼玉・千葉・茨城・栃木・群馬のイルミネーション{n}か所を、都県ごとに日程・場所・無料かどうかで並べました。開催中・これからは、ページを開いた日で切り替わります。終わった所は消えます。</p>
+<p class="lead">{lead}</p>
 </header>
-<nav class="tabs" aria-label="都県でしぼる">{tabs}</nav>
-<main>{secs}<p class="none" hidden>この都県で、いま見られる物はありません。</p></main>
+{tabs}
+<main>{secs}<p class="none" hidden>この都県で、いま見られる物はありません。</p>{faq}<nav class="pn" aria-label="都県ごとのイルミネーション">{pn}</nav></main>
 <footer class="foot">
 <p>日程は各公式のお知らせで確かめた物です。名前を押すと公式のページ（無い所は市や観光協会のページ）、「地図」を押すと場所が開きます。「発表前」は2026年の日程がまだ出ていない所で、昨年の期間を書いています。時間や料金は変わることがあるので、行く前にリンク先で確かめてください。</p>
 <p>「近くの宿をさがす」は楽天トラベルの広告リンクです。</p>
@@ -175,7 +243,7 @@ ul{{list-style:none;margin:0;padding:0}}
   document.querySelectorAll('.ps').forEach(function(sec){{
     var n=sec.querySelectorAll('.it').length;sec.querySelector('.c').textContent=n+'件';if(!n)sec.remove();
   }});
-  var bs=document.querySelectorAll('.tabs button'),none=document.querySelector('.none');
+  var bs=document.querySelectorAll('.tabs button'),none=document.querySelector('.none');if(!bs.length)return;
   function show(f){{
     var any=false;
     document.querySelectorAll('.ps').forEach(function(sec){{var on=!f||sec.dataset.p===f;sec.hidden=!on;if(on)any=true}});
@@ -196,10 +264,11 @@ ROBOTS = f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n"
 
 
 def sitemap(now):
+    pages = ["", PAGE] + [f"{PAGE}-{YADO[p]}" for p, _ in PREFS]
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-            f'  <url><loc>{SITE}/{PAGE}</loc><lastmod>{now:%Y-%m-%d}</lastmod><changefreq>daily</changefreq></url>\n'
-            '</urlset>\n')
+            + "".join(f'  <url><loc>{SITE}/{u}</loc><lastmod>{now:%Y-%m-%d}</lastmod><changefreq>daily</changefreq></url>\n' for u in pages)
+            + '</urlset>\n')
 
 
 def main():
@@ -219,6 +288,9 @@ def main():
     site = os.path.join(ROOT, "site")
     os.makedirs(site, exist_ok=True)
     open(os.path.join(site, "illumination.html"), "w", encoding="utf-8").write(render(items, today, now))
+    # 10/31 都県ごとのページ（「東京 イルミネーション」などで探す人向け）
+    for p, _ in PREFS:
+        open(os.path.join(site, f"{PAGE}-{YADO[p]}.html"), "w", encoding="utf-8").write(render(items, today, now, p))
     open(os.path.join(site, "robots.txt"), "w", encoding="utf-8").write(ROBOTS)
     open(os.path.join(site, "sitemap.xml"), "w", encoding="utf-8").write(sitemap(now))
     print(json.dumps({"illumi": len(items), "ended": len(d["items"]) - len(items)}, ensure_ascii=False))

@@ -13,6 +13,8 @@
 
 ## 連絡
 
+- 10/31 月（オーナー「あらゆる手段を使って先頭に出やすく」）：**イルミのページを検索向けに強くした**（scripts/illumi.py）。都県ごとのページ7つ（/illumination-tokyo など、「東京 イルミネーション」で探す人向け）、よくある質問（無料・12/25・2月以降・いつから・発表前。data/illumi.json から自動）、FAQ とパンくずの構造化データ、sitemap にトップと全ページ。**燈がやること**：data/illumi.json を正しく保てば、質問の答えも毎回作り直される。都県のページは消さない。
+
 - 10/31 月：オーナーが Google Search Console に燈のページ（https://usagi-life-notes.pages.dev/）を登録し、sitemap.xml も送った。scripts/page.py の head にある `google-site-verification` の meta は**消さない**（消すと登録が外れる）。
 
 - 10/31 月（オーナー「燈もMissないか確認全部」「燈の方は？月が作っていいよ、報告入れといてあげたら」）：**燈のページのずれと見落としを直した**（PR は月の報告に）。
