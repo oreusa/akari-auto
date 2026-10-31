@@ -1125,6 +1125,114 @@
       "note": "ひたち野うしく駅とデッキでつながる新しい商業施設。2階に子どもの屋内の遊び場",
       "url": "https://prtimes.jp/main/html/rd/p/000006151.000007505.html",
       "checked": "2026-10-30"
+    },
+    {
+      "title": "全国ラーメンフェスタ秋の陣 2026 in 春日部",
+      "pref": "埼玉",
+      "place": "ヤマダデンキ Tecc LIFE SELECT 春日部本店",
+      "when": "10/31〜11/3",
+      "start": "2026-10-31",
+      "ends": "2026-11-03T18:00",
+      "free": true,
+      "note": "春日部市｜入場無料。ラーメンは1杯1,000円のチケット制",
+      "url": "https://sites.google.com/view/ramenfesta-archives/2026ramenfesta-akinojin/kasukabe2026",
+      "checked": "2026-10-31"
+    },
+    {
+      "title": "映像ミュージアム企画展 きかんしゃトーマスの世界展",
+      "pref": "埼玉",
+      "place": "SKIPシティ 彩の国ビジュアルプラザ",
+      "when": "10/6〜12/13",
+      "start": "2026-10-06",
+      "ends": "2026-12-13T17:00",
+      "free": false,
+      "note": "川口市｜大人520円・小人260円・未就学児無料。月曜休み",
+      "url": "https://www.skipcity.jp/event/vm/thomas/",
+      "checked": "2026-10-31"
+    },
+    {
+      "title": "大チーバくん展 さかざきちはるとチーバくんの20年",
+      "pref": "千葉",
+      "place": "千葉県立美術館",
+      "when": "10/31〜1/17",
+      "start": "2026-10-31",
+      "ends": "2027-01-17T16:30",
+      "free": false,
+      "note": "千葉市｜一般1,000円・中学生以下無料。11/3はだれでも無料",
+      "url": "https://www.chiba-muse.or.jp/ART/exhibition/events/event-10036/",
+      "checked": "2026-10-31"
+    },
+    {
+      "title": "千葉開府900年記念 千葉湊大漁まつり",
+      "pref": "千葉",
+      "place": "千葉ポートパーク",
+      "when": "11/3",
+      "start": "2026-11-03",
+      "ends": "2026-11-03T15:30",
+      "free": true,
+      "note": "千葉市｜10:00〜15:30。小学生以下は稚魚の放流体験（先着100人）",
+      "url": "https://www.city.chiba.jp/keizainosei/keizai/kanko/r8_tairyoumatsuri.html",
+      "checked": "2026-10-31"
+    },
+    {
+      "title": "究極のレインボー花畑 東京ドイツ村",
+      "pref": "千葉",
+      "place": "東京ドイツ村",
+      "when": "10/15〜11月中旬",
+      "start": "2026-10-15",
+      "ends": "2026-11-15T17:00",
+      "free": false,
+      "note": "袖ケ浦市｜七色の花畑。見ごろは11月中旬ごろまで",
+      "url": "https://t-doitsumura.co.jp/flowernews/best-time-autumn2026/",
+      "checked": "2026-10-31"
+    },
+    {
+      "title": "THE HEADLINERS 2026 キュン発力の時代",
+      "pref": "茨城",
+      "place": "茨城県陶芸美術館",
+      "when": "10/10〜12/13",
+      "start": "2026-10-10",
+      "ends": "2026-12-13T17:00",
+      "free": false,
+      "note": "笠間市｜一般950円。土曜は高校生以下無料・月曜休み",
+      "url": "https://www.tougei.museum.ibk.ed.jp/viewer/info.html?id=603&g=138",
+      "checked": "2026-10-31"
+    },
+    {
+      "title": "プラネタリウム版 チ。 地球の運動について",
+      "pref": "茨城",
+      "place": "つくばエキスポセンター",
+      "when": "7/18〜2月下旬（予定）",
+      "start": "2026-07-18",
+      "ends": "2027-02-20T17:00",
+      "free": false,
+      "note": "つくば市｜上映の時刻は公式の上映スケジュールで",
+      "url": "https://www.expocenter.or.jp/planetarium/program/detail/id=5049",
+      "checked": "2026-10-31"
+    },
+    {
+      "title": "とちぎ秋まつり",
+      "pref": "栃木",
+      "place": "とちぎ蔵の街大通り",
+      "when": "11/14・15",
+      "start": "2026-11-14",
+      "ends": "2026-11-15T20:00",
+      "free": true,
+      "note": "栃木市｜人形山車が蔵の街を巡る",
+      "url": "https://www.tochigi-kankou.or.jp/news/19382",
+      "checked": "2026-10-31"
+    },
+    {
+      "title": "絵師も動物も、人気モノ勢揃い 動物たちの浮世絵",
+      "pref": "栃木",
+      "place": "栃木市立美術館",
+      "when": "10/10〜12/13",
+      "start": "2026-10-10",
+      "ends": "2026-12-13T17:00",
+      "free": false,
+      "note": "栃木市｜一般800円・中学生以下無料。月曜休み",
+      "url": "https://www.city.tochigi.lg.jp/site/museum-tcam/92628.html",
+      "checked": "2026-10-31"
     }
   ]
 }
