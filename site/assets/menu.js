@@ -76,14 +76,13 @@
       var cur=x[1]===here,ext=/^https?:/.test(x[2]);
       h+='<a class="ui'+(cur?" cur":"")+'" data-k="'+x[1]+'" href="'+x[2]+'"'+(ext?' target="_blank" rel="noopener"':"")+(cur?' aria-current="page"':"")+'><small>'+x[0]+'</small><span>'+esc(x[3])+'</span><em>'+esc(x[4])+'</em></a>';
     });
-    h+='<div class="ut"><div>夜の見た目<em>暗い背景で、目にやさしく</em></div><button class="sw" type="button" role="switch" aria-label="夜の見た目"></button></div></nav>'+
+    /* 10/31 オーナー「夜の見た目？なにこれ」→ 切り替えは右上の太陽と月のマークだけ（月と同じ） */
+    h+='</nav>'+
       '<div class="us"><a href="https://www.instagram.com/ai_usagichan1/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@ai_usagichan1" target="_blank" rel="noopener">Threads</a><a href="https://x.com/ai_usagichan" target="_blank" rel="noopener">X</a></div>';
     pan.innerHTML=h;
     document.body.appendChild(btn);document.body.appendChild(mask);document.body.appendChild(pan);
-    var sw=pan.querySelector(".sw"),last=null;
-    function syncSw(){var n=window.usagiTheme&&window.usagiTheme.get()==="night";sw.setAttribute("aria-checked",n?"true":"false");}
-    syncSw();document.addEventListener("usagi-theme",syncSw);
-    function open(){last=document.activeElement;document.documentElement.classList.add("umenu-open");mask.classList.add("on");pan.classList.add("on");pan.setAttribute("aria-hidden","false");btn.setAttribute("aria-expanded","true");setTimeout(function(){pan.querySelector(".ux").focus();},50);ck("メニュー｜開く");}
+    var last=null;
+    function open(){last=document.activeElement;var nv=pan.querySelector("nav");if(nv)nv.scrollTop=0;document.documentElement.classList.add("umenu-open");mask.classList.add("on");pan.classList.add("on");pan.setAttribute("aria-hidden","false");btn.setAttribute("aria-expanded","true");setTimeout(function(){pan.querySelector(".ux").focus();},50);ck("メニュー｜開く");}
     function close(){document.documentElement.classList.remove("umenu-open");mask.classList.remove("on");pan.classList.remove("on");pan.setAttribute("aria-hidden","true");btn.setAttribute("aria-expanded","false");if(last&&last.focus)last.focus();}
     btn.addEventListener("click",open);mask.addEventListener("click",close);pan.querySelector(".ux").addEventListener("click",close);
     document.addEventListener("keydown",function(e){if(e.key==="Escape"&&pan.classList.contains("on"))close();});
@@ -98,7 +97,6 @@
     syncTb();document.addEventListener("usagi-theme",syncTb);
     tb.addEventListener("click",function(){if(!window.usagiTheme)return;var v=window.usagiTheme.get()==="night"?"day":"night";window.usagiTheme.set(v);ck(MK+(v==="night"?"夜":"昼")+"（マーク）");});
     var tk=0;addEventListener("scroll",function(){if(tk)return;tk=1;requestAnimationFrame(function(){tk=0;tb.classList.toggle("hide",scrollY>120);});},{passive:true});
-    sw.addEventListener("click",function(){if(!window.usagiTheme)return;var v=window.usagiTheme.get()==="night"?"day":"night";window.usagiTheme.set(v);ck("メニュー｜"+(v==="night"?"夜":"昼"));});
     pan.querySelectorAll("a.ui").forEach(function(a){a.addEventListener("click",function(e){
       var k=a.getAttribute("data-k");ck("メニュー｜"+a.querySelector("span").textContent);
       if(k===here&&k!=="map"){e.preventDefault();close();window.scrollTo({top:0,behavior:"smooth"});return;}
