@@ -156,7 +156,7 @@ h2 small{{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;color:#8C7
 .note{{font-size:12px;line-height:1.9;color:#7A6E66;background:#F5F1EC;padding:14px 16px;margin-top:30px}}
 .back{{display:block;width:max-content;margin:28px auto 0;color:#2B2622;text-decoration:none;font-size:13px;letter-spacing:.1em;border-bottom:1px solid #2B2622;padding-bottom:2px}}
 .ft{{text-align:center;font-size:10px;letter-spacing:.04em;color:#8C7B6E;margin-top:30px}}
-</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=1" defer></script></head><body><div class="wrap">
+</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=2" defer></script></head><body><div class="wrap">
 <header class="head"><img src="/logo-s.png" width="60" height="60" alt="うさぎ│LIFE NOTES"><div class="en">STAY &amp; GO</div>
 <h1>泊まりで行くおでかけ</h1><p class="sub">関東の少し遠いおでかけと、<br>近くの評価の高い宿をまとめました。</p>
 <div class="cnt"><span>おでかけ<b>{n_all}</b>か所</span><span>宿<b>{n_inn}</b>軒</span></div><div class="upd">{upd} 更新</div></header>

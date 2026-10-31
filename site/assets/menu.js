@@ -70,7 +70,7 @@
     var btn=document.createElement("button");btn.id="umenu";btn.type="button";btn.setAttribute("aria-label","メニューを開く");btn.setAttribute("aria-expanded","false");btn.setAttribute("aria-controls","upan");btn.innerHTML="<i></i><i></i><i></i>";
     var mask=document.createElement("div");mask.id="umask";
     var pan=document.createElement("div");pan.id="upan";pan.setAttribute("role","dialog");pan.setAttribute("aria-modal","true");pan.setAttribute("aria-label","メニュー");pan.setAttribute("aria-hidden","true");
-    var h='<div class="uh"><img src="/logo-s.png" alt=""><b>AKARI LIFE NOTES</b><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav><div class="ug">KANTO ODEKAKE</div>';
+    var h='<div class="uh"><img src="/logo-s.png" alt=""><b>USAGI LIFE NOTES</b><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav><div class="ug">KANTO ODEKAKE</div>';
     L.forEach(function(x){
       if(x[0]==="-"){h+='<div class="ug">'+x[1]+'</div>';return;}
       var cur=x[1]===here,ext=/^https?:/.test(x[2]);
