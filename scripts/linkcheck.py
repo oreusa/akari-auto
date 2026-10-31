@@ -71,13 +71,33 @@ async def hp_links(ctx):
     return links, small, hp_sec
 
 
+def target(href):
+    """売り場のリンクは、相手の商品ページを直接開く。アフィリエイトの入口（hb.afl・px.a8）を
+    ロボットが開くと「クリック」に数えられ、売れた帳の数字がにごる（10/31 月）。"""
+    u = urllib.parse.urlparse(href)
+    if "hb.afl.rakuten" in u.netloc:
+        q = urllib.parse.parse_qs(u.query)
+        return (q.get("m") or q.get("pc") or [None])[0]
+    if "px.a8.net" in u.netloc:
+        return None  # 行き先がURLに書いていない。開かない
+    if "amazon." in u.netloc and "tag=" in u.query:
+        q = [(k, v) for k, v in urllib.parse.parse_qsl(u.query) if k != "tag"]
+        return u._replace(query=urllib.parse.urlencode(q)).geturl()
+    return href
+
+
 async def open_one(ctx, sem, link):
     async with sem:
         page = await ctx.new_page()
         r = {**link, "status": 0, "sec": None, "final": "", "title": "", "err": ""}
         t0 = time.time()
+        url = target(link["href"])
+        if not url:  # A8：開かずに正常あつかい（押されたことにしない）
+            await page.close()
+            r.update(status=200, sec=0.0, title="（A8は開かない）")
+            return r
         try:
-            resp = await page.goto(link["href"], wait_until="domcontentloaded", timeout=LIMIT)
+            resp = await page.goto(url, wait_until="domcontentloaded", timeout=LIMIT)
             r["sec"] = round(time.time() - t0, 1)
             r["status"] = resp.status if resp else 0
             r["final"] = page.url

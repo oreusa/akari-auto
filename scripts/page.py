@@ -78,7 +78,15 @@ def _open_ok(url):
     import time
     import urllib.error
     import urllib.request
+    import urllib.parse
     t0 = time.time()
+    # 10/31 月：アフィリエイトの入口（hb.afl・px.a8）をロボットが開くとクリックに数えられる。商品ページを直接開く
+    u = urllib.parse.urlparse(url)
+    if "hb.afl.rakuten" in u.netloc:
+        q = urllib.parse.parse_qs(u.query)
+        url = (q.get("m") or q.get("pc") or [url])[0]
+    elif "px.a8.net" in u.netloc:
+        return {"ok": True, "why": "", "sec": 0.0}
     try:
         req = urllib.request.Request(url, headers={"User-Agent": UA_PHONE, "Accept-Language": "ja"})
         with urllib.request.urlopen(req, timeout=15) as r:
