@@ -45,10 +45,14 @@ def card(e, today):
         when = f'2026年の日程は発表前（昨年 {esc(e.get("last", ""))}）'
     free = '<span class="fr">無料</span>' if e.get("free") is True else ""
     data = f'data-s="{esc(e.get("start") or "")}" data-e="{esc(e.get("end") or "")}" data-p="{esc(e["pref"])}"'
-    out = (f'<li class="it" {data}><a class="cd" href="{esc(e["url"])}" target="_blank" rel="noopener">'
+    # 地図：Googleマップで会場を開く（10/31 オーナー「地図もつけよう」）。同じ言葉で TOWN NOTES の地図のピンも立てる（scripts/townnotes.py）
+    q = f'{e["venue"]} {dict(PREFS)[e["pref"]]}{e["city"]}'
+    gm = "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote(q)
+    out = (f'<li class="it" {data}><div class="cw"><a class="cd" href="{esc(e["url"])}" target="_blank" rel="noopener">'
            f'<span class="bd"><span class="st {st}">{badge}</span>{free}</span>'
            f'<span class="dt">{when}</span><span class="nm">{esc(e["name"])}</span>'
-           f'<span class="pl">{esc(e["city"])}｜{esc(e["venue"])}</span><span class="ar">→</span></a>')
+           f'<span class="pl">{esc(e["city"])}｜{esc(e["venue"])}</span><span class="ar">→</span></a>'
+           f'<a class="mp" href="{esc(gm)}" target="_blank" rel="noopener">地図</a></div>')
     if e.get("far"):
         out += (f'<a class="yd" href="{esc(yado(e["pref"]))}" target="_blank" rel="noopener sponsored">'
                 f'遠出になるので、近くの宿をさがす（楽天トラベル）</a>')
@@ -123,7 +127,10 @@ h1 small{{display:block;font-size:15px;letter-spacing:.2em;margin-top:4px}}
 .pf h2 .c{{font:400 12px/1 var(--go);color:var(--mute);letter-spacing:.04em}}
 ul{{list-style:none;margin:0;padding:0}}
 .it{{margin:0 0 10px}}
-.cd{{position:relative;display:block;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 34px 12px 14px}}
+.cw{{position:relative}}
+.cd{{position:relative;display:block;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 34px 36px 14px}}
+.mp{{position:absolute;left:14px;bottom:10px;font-size:11px;letter-spacing:.08em;color:var(--sub);border-bottom:1px solid var(--line2);line-height:1.4;padding:6px 8px 0 0}}
+.mp:before{{content:"";display:inline-block;width:8px;height:10px;margin-right:4px;vertical-align:-1px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 10'%3E%3Cpath d='M4 0a4 4 0 0 0-4 4c0 3 4 6 4 6s4-3 4-6a4 4 0 0 0-4-4z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 10'%3E%3Cpath d='M4 0a4 4 0 0 0-4 4c0 3 4 6 4 6s4-3 4-6a4 4 0 0 0-4-4z'/%3E%3C/svg%3E") center/contain no-repeat}}
 .bd{{display:flex;gap:6px;margin-bottom:4px}}
 .st,.fr{{font:700 10.5px/1 var(--go);letter-spacing:.08em;padding:4px 7px;border-radius:2px}}
 .st.now{{background:var(--now);color:#fff}} .st.soon{{background:#fff;color:var(--soon);border:1px solid var(--soon)}}
@@ -150,7 +157,7 @@ ul{{list-style:none;margin:0;padding:0}}
 <nav class="tabs" aria-label="都県でしぼる">{tabs}</nav>
 <main>{secs}<p class="none" hidden>この都県で、いま見られる物はありません。</p></main>
 <footer class="foot">
-<p>日程はウォーカープラスと各公式のお知らせで確かめた物です。「発表前」は2026年の日程がまだ出ていない所で、昨年の期間を書いています。時間や料金は変わることがあるので、行く前にリンク先で確かめてください。</p>
+<p>日程は各公式のお知らせで確かめた物です。名前を押すと公式のページ（無い所は市や観光協会のページ）、「地図」を押すと場所が開きます。「発表前」は2026年の日程がまだ出ていない所で、昨年の期間を書いています。時間や料金は変わることがあるので、行く前にリンク先で確かめてください。</p>
 <p>「近くの宿をさがす」は楽天トラベルの広告リンクです。</p>
 <a class="back" href="./">関東おでかけリストを見る</a>
 <p class="sign">うさぎ│LIFE NOTES</p>
