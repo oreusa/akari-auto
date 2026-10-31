@@ -647,7 +647,8 @@ def spot(e):
     mp = (f'<a class="mp" href="https://www.google.com/maps/search/?api=1&amp;query={esc(urllib.parse.quote(q))}" '
           f'rel="noopener">地図{OUT}</a>') if q else ""
     mpr = f'<div class="mpr">{mp}</div>' if mp else ""  # 地図だけの行（この行は押しても公式ページが開かない）
-    return (f'<div class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" data-wk="{1 if wk else 0}" style="--pc:{color}">'
+    de = f' data-e="{en.date().isoformat()}"' if en else ""  # 10/31 終わった日を過ぎたら、次の作り直しを待たずにページ側で隠す
+    return (f'<div class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" data-wk="{1 if wk else 0}"{de} style="--pc:{color}">'
             f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
             f'<div class="t"><a class="go" href="{href}" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
             f'{nt}{mpr}{ARROW}</div>')
@@ -1077,7 +1078,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
   background-size:46px 52px,31px 37px;background-position:8px 12px,22px 30px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}}
 .head img{{width:64px;height:64px;display:block;margin:0 auto;border-radius:50%;background:#fff}}
 .en{{font:300 10px/1 var(--en);letter-spacing:.5em;color:var(--brown);margin:16px 0 0;padding-left:.5em}}
-.ttl{{font:600 26px/1.3 var(--min);letter-spacing:.18em;font-feature-settings:"palt";color:#231E1B;margin:16px 0 10px;padding-left:.18em}}
+.ttl:not(:where(.tn *,.tnbtn *)){{font:600 26px/1.3 var(--min);letter-spacing:.18em;font-feature-settings:"palt";color:#231E1B;margin:16px 0 10px;padding-left:.18em}}
 .sub{{font-size:12.5px;line-height:1.95;color:var(--sub);margin:14px 0 0}}
 .sea{{display:flex;align-items:center;justify-content:center;gap:10px;margin:20px 0 0;font:400 11px/1 var(--en);letter-spacing:.32em;color:var(--brown)}}
 .sea:before,.sea:after{{content:"";flex:0 0 34px;height:1px;background:var(--brown)}}
@@ -1110,7 +1111,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .stab button i{{font:400 11px/1 var(--en);font-style:normal;margin-left:5px;opacity:.7}}
 .stab button.on{{background:var(--ink);border-color:var(--ink);color:#fff}}
 .js .card.sh.ex{{display:none}} .js #shop.open .card.sh.ex{{display:block}} .card.sh[hidden]{{display:none!important}}
-.mo{{display:block;width:100%;font:700 13px/1 var(--go);letter-spacing:.08em;color:var(--ink);background:#fff;border:1px solid var(--line2);padding:14px;cursor:pointer}}
+.mo:not(:where(.tn *,.tnbtn *)){{display:block;width:100%;font:700 13px/1 var(--go);letter-spacing:.08em;color:var(--ink);background:#fff;border:1px solid var(--line2);padding:14px;cursor:pointer}}
 #shop.open .mo,#shop.tab .mo{{display:none}}
 .pr-note{{font-size:11px;line-height:1.8;color:var(--mute);text-align:center;margin:0 0 20px}}
 .cats{{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:24px 0 10px}}
@@ -1138,16 +1139,16 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .card{{display:block;position:relative;background:#fff;border:1px solid var(--line);margin-bottom:12px;padding:12px 42px 38px 14px;box-shadow:inset 3px 0 0 var(--pc,var(--brown));transition:background .2s}}
 a.card:hover{{background:color-mix(in srgb,var(--pc,var(--brown)) 4%,#fff)}}
 .card[hidden]{{display:none}}
-.d{{display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;font-size:12px;line-height:1.5;letter-spacing:.02em;color:#8A6E5C}}
+.d:not(:where(.tn *,.tnbtn *)){{display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;font-size:12px;line-height:1.5;letter-spacing:.02em;color:#8A6E5C}}
 .pl{{font-weight:700;letter-spacing:.12em;color:var(--pc);margin-right:8px}}
 .pl:before{{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pc);margin-right:5px;vertical-align:1px}}
 .pl:after{{content:"";display:inline-block;width:1px;height:9px;background:var(--line2);margin-left:8px;vertical-align:-1px}}
 .tg{{font-size:11px;letter-spacing:.12em;color:var(--free);margin-left:8px}}
-.t{{font:700 15px/1.4 var(--go);letter-spacing:0;margin:3px 0 2px}}
+.t:not(:where(.tn *,.tnbtn *)){{font:700 15px/1.4 var(--go);letter-spacing:0;margin:3px 0 2px}}
 .nwp{{display:inline-block}} .nwp.sp{{margin-right:.3em}}
-.m{{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:2px}}
-.m li{{font-size:12px;line-height:1.7;color:var(--sub);padding-left:11px;position:relative}}
-.m li:before{{content:"";position:absolute;left:0;top:.8em;width:4px;height:1px;background:var(--line2)}}
+.m:not(:where(.tn *,.tnbtn *)){{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:2px}}
+.m:not(:where(.tn *,.tnbtn *)) li{{font-size:12px;line-height:1.7;color:var(--sub);padding-left:11px;position:relative}}
+.m:not(:where(.tn *,.tnbtn *)) li:before{{content:"";position:absolute;left:0;top:.8em;width:4px;height:1px;background:var(--line2)}}
 .card .go{{color:inherit;text-decoration:none}} .card .go:after{{content:"";position:absolute;inset:0;z-index:1}}
 .card.it:hover{{background:color-mix(in srgb,var(--pc,var(--brown)) 4%,#fff)}} .card.it:hover .arw{{transform:translate(3px,-50%)}}
 a.mp{{z-index:2;text-decoration:none;padding-top:10px}}
@@ -1161,7 +1162,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .prm{{font:500 9.5px/1 var(--en);letter-spacing:.14em;color:var(--pr);border:1px solid var(--pr);padding:3px 6px 2px;margin-right:8px}}
 .cmp .t{{margin-top:8px}}
 .tbl{{margin:10px 0 0;border-top:1px solid var(--line)}}
-.row{{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 0 9px;border-bottom:1px solid var(--line)}}
+.row:not(:where(.tn *,.tnbtn *)){{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 0 9px;border-bottom:1px solid var(--line)}}
 .nm{{font-size:13px;font-weight:500;min-width:0}}
 .nt{{display:block;font-size:11px;font-weight:400;color:var(--mute)}}
 .nu{{display:flex;gap:12px;align-items:baseline;white-space:nowrap}}
@@ -1253,7 +1254,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
    地図は名前の下の左に1行で置き、その行は押しても公式ページが開かない。矢印は右の真ん中 */
 .card.it .mpr{{position:relative;z-index:2;margin:12px -70px -14px -14px;padding:0 70px 14px 14px;background:transparent}}
 .card.it .mp{{position:static;padding:8px 10px 6px 0;border-bottom:0;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#CFC5BA}}
-.chips{{display:flex;justify-content:center;gap:8px;margin:12px 0 0}}
+.chips:not(:where(.tn *,.tnbtn *)){{display:flex;justify-content:center;gap:8px;margin:12px 0 0}}
 .chips .fr{{font:700 12.5px/1 var(--go);letter-spacing:.04em;color:var(--sub);background:#fff;border:1px solid #D9CFC4;border-radius:99px;padding:9px 14px;cursor:pointer}}
 .chips .fr[data-k=free]{{color:#5E8C5A;border-color:#CFE0CC}}
 .chips .fr.on{{background:var(--ink);border-color:var(--ink);color:#fff}} .chips .fr[data-k=free].on{{background:#5E8C5A;border-color:#5E8C5A}}
@@ -1295,6 +1296,8 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 </div>
 <button id="totop" aria-label="上にもどる"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4A403A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
 <script>
+/* 10/31 終わった日を過ぎたカードは、朝の作り直しを待たずに出さない（夜中〜朝のあいだ用） */
+(function(){{var t=new Date(Date.now()+9*36e5).toISOString().slice(0,10);document.querySelectorAll(".card.it[data-e]").forEach(function(c){{if(c.getAttribute("data-e")<t)c.remove();}});}})();
 (function(){{
 var d=document.documentElement;d.classList.add("js");
 var pref="",free="0",wk="0";try{{localStorage.removeItem("pref");}}catch(e){{}}
