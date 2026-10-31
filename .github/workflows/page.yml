@@ -33,6 +33,8 @@ jobs:
         run: python3 scripts/illumi.py || true
       - name: 地図（カードの場所を緯度経度に → 本番の / と試作 /townnotes/ に「地図で見る」。失敗しても地図なしでページは出す）
         run: python3 scripts/townnotes.py || true
+      - name: 月の関西おでかけリストの近くの宿（楽天トラベル・燈のIDを2人で使う 10/31 オーナー。失敗しても燈のHPは出す）
+        run: python3 scripts/kansai_yado.py || true
       - name: 公開する（Cloudflare Pages。鍵があるときだけ。アドレス usagi-life-notes.pages.dev）
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then echo "Cloudflareの鍵がまだないので公開しない"; exit 0; fi
@@ -53,7 +55,7 @@ jobs:
           if [ "${{ inputs.reset }}" = "true" ]; then python3 scripts/pagestats.py reset "$NS" || true; else python3 scripts/pagestats.py "$NS" || true; fi
           git config user.name "akari-auto"
           git config user.email "akari-auto@users.noreply.github.com"
-          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json 2>/dev/null || true
+          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/kansai-yado.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "ページの数とリンクの確かめを記録"
           for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done

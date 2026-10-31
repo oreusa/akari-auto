@@ -1,0 +1,3 @@
+/kansai-yado.json
+  Access-Control-Allow-Origin: https://usagi-odekake.usagi-fudosan.workers.dev
+  Cache-Control: public, max-age=3600
