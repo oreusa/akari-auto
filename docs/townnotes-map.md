@@ -25,8 +25,12 @@
 地図の本体は月の usagi-fudosan-media `tools/townnotes/`（関西と関東で同じ本体を使う）。
 - 関東の設定（色・名物の絵の場所・都県名の位置）: `region-kanto.js`
 - 燈のページとのつなぎ（タブ・都県ボタン・カードの読み方）: `site-akari.js`
-- 書き出し: `python3 tools/townnotes/build_akari.py <akari-autoの場所>` → `site/townnotes/map.js` と `kanto.json`
+- イルミのページとのつなぎ: `site-akari-illumi.js` → `site/townnotes/map-illumi.js`（scripts/townnotes.py の live_illumi() が読み込みを足す）
+- 泊まりのページとのつなぎ: `site-akari-tomari.js` → `site/townnotes/map-tomari.js`（10/31〜。scripts/tomari.py が読み込みを足す。ピンのカードに近くの宿3軒が出る。宿リンクは data-y のままなので数え方は ck("yado")）
+- 書き出し: `python3 tools/townnotes/build_akari.py <akari-autoの場所>` → `site/townnotes/map.js`・`map-illumi.js`・`map-tomari.js` と `kanto.json`
+- 燈のページは #FDFCFA の紙の色なので、build_akari.py は月の白・グレーの色を燈の色にもどして書き出す（WARM）
 燈のページの作り（.otab / .pane / .flt button[data-p] / .card.it / .t / a.go / .when / .tg / a.mp）を変えたら、`site-akari.js` も合わせて直すこと（変えないと地図が空になる）。
+泊まりのページ（scripts/tomari.py）の作り（section.ps[data-p] / article.it / a.card / .t / .d / .fr / .inn a.mp / .inn li a[data-y] / #flt / #wk）を変えたら `site-akari-tomari.js` も直すこと。
 
 ## 外すとき
 `scripts/townnotes.py` の最後の `live()` を消すだけ（試作 /townnotes/ は残る）。

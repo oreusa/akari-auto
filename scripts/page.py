@@ -1406,7 +1406,7 @@ function vis(e){{for(;e&&e!==document.body;e=e.parentElement){{if(e.hidden||getC
 function sync(){{document.querySelectorAll(".yk,.ykl").forEach(function(x){{x.hidden=!(x._c&&vis(x._c))||(x.className=="ykl"&&!x.dataset.op);}});}}
 function ck(k){{try{{navigator.sendBeacon("/c?f=yado&s=yado&k="+encodeURIComponent(k.slice(0,40)));}}catch(e){{}}}}
 function run(){{document.querySelectorAll("#odekake .card.it").forEach(function(c){{var t=c.querySelector(".t");if(!t||c.dataset.yk)return;
-var nm=t.textContent.replace(/\s+/g,""),H=Y[nm];if(!H)return;c.dataset.yk=1;
+var nm=t.textContent.replace(/\\s+/g,""),H=Y[nm];if(!H)return;c.dataset.yk=1;
 var d=document.createElement("div");d.className="yk";d._c=c;var b=document.createElement("a");b.href="#";b.className="inn";b.textContent="近くの宿";d.appendChild(b);
 var u=document.createElement("ul");u.className="ykl";u._c=c;
 H.forEach(function(h){{var li=document.createElement("li"),a=document.createElement("a");a.href=h.u;a.target="_blank";a.rel="noopener sponsored";
@@ -1416,7 +1416,7 @@ var s2=document.createElement("span");s2.className="mt";s2.textContent=(h.km<0.1
 var li=document.createElement("li");li.className="src";li.textContent="楽天トラベルの評価3.5以上・ここからの近さ（PR）";u.appendChild(li);
 b.addEventListener("click",function(e){{e.preventDefault();e.stopPropagation();if(!u.dataset.op)ck("宿を開く｜"+nm);u.dataset.op=u.dataset.op?"":"1";b.classList.toggle("op",!!u.dataset.op);sync();}});
 c.insertAdjacentElement("afterend",d);d.insertAdjacentElement("afterend",u);}});sync();}}
-fetch("/kanto-yado.json").then(function(r){{return r.ok?r.json():{{}}}}).then(function(j){{for(var k in (j||{{}}))Y[k.replace(/\s+/g,"")]=j[k];run();}}).catch(function(){{}});
+fetch("/kanto-yado.json").then(function(r){{return r.ok?r.json():{{}}}}).then(function(j){{for(var k in (j||{{}}))Y[k.replace(/\\s+/g,"")]=j[k];run();}}).catch(function(){{}});
 document.addEventListener("click",function(){{setTimeout(sync,80);}},true);
 }})();
 </script>

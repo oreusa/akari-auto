@@ -4,8 +4,11 @@
 → site/kansai-yado.json（月の試しのページが読む）。覚え data/kansai-yado.json、7日たった所だけ調べ直す。
 失敗しても燈のページには関係ない（page.yml で || true）。
 """
-import json, math, time, unicodedata, urllib.parse, urllib.request
+import json, math, re, time, unicodedata, urllib.parse, urllib.request
 from datetime import date
+# 10/31 宿の名前のうしろの「<淡路島>」「 ^」は楽天の付け足しなので消す（ページで見にくい）
+def hname(n):
+    return re.sub(r"\s*(<[^<>]*>|\^)\s*$", "", unicodedata.normalize("NFKC", n or "")).strip()
 from lib import BROWSER_UA, http, rakuten_env, load_json, save_json, path
 
 GEO = "https://usagi-odekake.usagi-fudosan.workers.dev/townnotes/geo.json"
@@ -56,7 +59,7 @@ def search(env, lat, lon, origin):
         if not b or not b.get("latitude"):
             continue
         km = dist(lat, lon, float(b["latitude"]), float(b["longitude"]))
-        hs.append({"n": unicodedata.normalize("NFKC", b.get("hotelName", "")), "u": b.get("hotelInformationUrl", ""),
+        hs.append({"n": hname(b.get("hotelName", "")), "u": b.get("hotelInformationUrl", ""),
                    "km": round(km, 1), "r": b.get("reviewAverage"), "rc": b.get("reviewCount"),
                    "min": b.get("hotelMinCharge")})
     # 10/31 オーナー「改善したい所ない？」→ 民泊・評価なしを外し、評価の高い順（同じなら近い順）
@@ -89,7 +92,7 @@ def main(region="kansai"):
         m = memo.get(name)
         if m and m.get("h"):
             for x in m["h"]:
-                x["n"] = unicodedata.normalize("NFKC", x["n"])
+                x["n"] = hname(x["n"])
         fresh = m and m.get("v") == VER and m.get("ll") == [lat, lon] and (today - date.fromisoformat(m["t"])).days < 7
         if fresh or calls >= MAX_CALLS or not far([lat, lon]):  # 街なかは調べない（楽天の呼び出しを減らす）
             continue

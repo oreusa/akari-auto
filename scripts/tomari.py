@@ -2,7 +2,7 @@
 遠くのおでかけ（近くの宿がある物）と、楽天トラベルの評価の高い宿3軒を1ページに → site/tomari.html（/tomari）。
 元：site/index.html のおでかけカード、site/illumination.html のカード、site/kanto-yado.json（scripts/kansai_yado.py kanto）。
 page.yml で kansai_yado.py のあとに動かす。失敗しても燈のHPは出す（|| true）。"""
-import html, json, os, re, sys
+import hashlib, html, json, os, re, sys
 from datetime import date, datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -102,6 +102,10 @@ def main():
                         f'<div class="inn"><div class="ih"><span>近くの宿</span>{mp}</div><ul>{hs}</ul></div></article>')
         secs.append(f'<section class="ps" data-p="{p}" style="--c:{PREF_COLOR[p]}"><h2>{p}<small>{len(items[p])}か所</small></h2>{"".join(rows)}</section>')
 
+    # 地図（10/31 オーナー「お泊まりは地図…燈のも」）：月の build_akari.py が作る site/townnotes/map-tomari.js。中身が変わると ?v= も変わる
+    _mj = os.path.join(SITE, "townnotes", "map-tomari.js")
+    mapjs = (f'<script src="/townnotes/map-tomari.js?v={hashlib.sha1(open(_mj, "rb").read()).hexdigest()[:8]}" defer></script>'
+             if os.path.exists(_mj) else "")
     btns = '<button class="on" data-p="すべて">すべて</button>' + "".join(
         f'<button data-p="{p}" style="--pc:{PREF_COLOR[p]}">{p}</button>' for p in KANTO_ORDER if items[p])
     upd = f"{today.year}年{today.month}月{today.day}日"
@@ -180,7 +184,7 @@ B.forEach(function(b){{b.addEventListener("click",function(){{B.forEach(function
 wk.addEventListener("click",function(){{W=!W;wk.setAttribute("aria-pressed",W);draw();ck("tomari","この週末");}});
 document.addEventListener("click",function(e){{var a=e.target.closest&&e.target.closest("a[data-k],a[data-y]");if(!a)return;if(a.dataset.y)ck("yado",a.dataset.y);else ck("tomari",a.dataset.k);}},true);
 draw();ck("tomari","表示");
-}})();</script></body></html>
+}})();</script>{mapjs}</body></html>
 '''
     open(os.path.join(SITE, "tomari.html"), "w", encoding="utf-8").write(out)
     print(json.dumps({"tomari": n_all, "yado": n_inn}, ensure_ascii=False))
