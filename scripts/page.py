@@ -1311,7 +1311,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .ykl .nm{{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}} .ykl .mt{{color:#8C7B6E;white-space:nowrap;font-size:11px}}
 .ykl .src{{font-size:10px;color:#A89A8E;padding:6px 0 2px;text-align:right}}
 .ilk{{display:block;width:max-content;max-width:100%;margin:4px auto 18px;color:#231E1B;text-decoration:none;font:600 14px/1.5 var(--min);letter-spacing:.08em;border-bottom:1px solid #231E1B;padding-bottom:3px}}.ilk span{{font-family:Jost;margin-left:8px;color:#9C8775}}
-</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=2" defer></script></head>
+</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=3" defer></script></head>
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
 <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
