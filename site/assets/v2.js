@@ -1,0 +1,36 @@
+/* 10/31 オーナー「燈のも見して」：月の見本（usagi links/assets/v2.js）と同じ形を燈のカードに合わせたもの。見本ページだけで読む */
+(function(){
+var T=new Date(Date.now()+9*36e5).toISOString().slice(0,10),WD=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function fd(s){var d=new Date(s+"T00:00:00Z");return (d.getUTCMonth()+1)+"."+String(d.getUTCDate()).padStart(2,"0")+" "+WD[d.getUTCDay()];}
+function deco(){document.querySelectorAll("#odekake .card.it").forEach(function(c){
+  if(c.querySelector(".v2c"))return;var d=c.querySelector(".d");if(!d)return;
+  var pref=c.dataset.pref||"",s=c.dataset.s,e=c.dataset.e,free=c.dataset.free==="1";
+  var st=s&&s>T?"これから":(e?"開催中":"");
+  var h='';if(pref)h+='<span class="p" data-p="'+pref+'">'+pref+'</span>';if(st)h+='<span'+(st==="開催中"?' class="on"':'')+'>'+st+'</span>';if(free)h+='<span class="f">無料</span>';
+  var cx=document.createElement("div");cx.className="v2c";cx.innerHTML=h;
+  var w=d.querySelector(".when");
+  var dt=document.createElement("div");dt.className="v2d";
+  dt.textContent=s&&s>T?fd(s)+(e&&e!==s?" — "+fd(e):""):(e?fd(e)+" まで":(w?w.textContent:""));
+  c.insertBefore(dt,c.firstChild);c.insertBefore(cx,dt);
+});}
+deco();
+document.addEventListener("click",function(ev){var p=ev.target.closest&&ev.target.closest(".v2c span.p");if(!p)return;ev.preventDefault();ev.stopPropagation();
+  var b=[].find.call(document.querySelectorAll(".flt[data-v=odekake] button"),function(x){return x.dataset.p===p.dataset.p});if(b){b.click();var f=b.parentNode;scrollTo({top:f.getBoundingClientRect().top+scrollY-70,behavior:"smooth"});}},true);
+/* 近くの宿：カードの中、地図の右へ */
+function mvYk(){document.querySelectorAll(".yk").forEach(function(y){var c=y.previousElementSibling;if(c&&c.classList.contains("it")&&!c.contains(y)){var r=c.querySelector(".mpr")||c;r.appendChild(y);}});}
+mvYk();new MutationObserver(function(){mvYk();deco();}).observe(document.getElementById("odekake")||document.body,{childList:true,subtree:true});
+var tabs=document.querySelector("#odekake .otab");
+var I={now:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',up:'<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>',map:'<svg viewBox="0 0 24 24"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>',inn:'<svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6v9H4z"/><path d="M10 20v-5h4v5"/></svg>'};
+var bar=document.createElement("nav");bar.id="v2bar";bar.setAttribute("aria-label","すぐ移動");
+bar.innerHTML='<button data-t="now" class="cur">'+I.now+'<span>開催中</span></button><button data-t="up">'+I.up+'<span>これから</span></button><button data-a="map">'+I.map+'<span>地図</span></button><button data-a="inn">'+I.inn+'<span>泊まり</span></button><button class="mn" data-a="menu"><i></i>MENU</button>';
+document.body.appendChild(bar);
+function syncBar(){var on=tabs&&tabs.querySelector("button.on");bar.querySelectorAll("button[data-t]").forEach(function(b){b.classList.toggle("cur",!!on&&b.dataset.t===on.dataset.t)});}
+bar.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
+  if(b.dataset.t){var cat=document.querySelector('#cats button[data-v=odekake]');if(cat&&!cat.classList.contains("on"))cat.click();
+    var t=tabs&&tabs.querySelector('button[data-t="'+b.dataset.t+'"]');if(t)t.click();syncBar();var o=document.getElementById("odekake");if(o)scrollTo({top:o.getBoundingClientRect().top+scrollY-10,behavior:"smooth"});}
+  else if(b.dataset.a==="map"){var m=document.querySelector(".tnbtn");if(m)m.click();}
+  else if(b.dataset.a==="inn")location.href="/tomari";
+  else{var u=document.getElementById("umenu");if(u)u.click();}});
+bar.classList.add("on");document.documentElement.classList.add("v2bar-on");
+if(tabs)tabs.addEventListener("click",function(){setTimeout(syncBar,30)});
+})();
