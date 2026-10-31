@@ -6,7 +6,7 @@
 """
 import json, math, time, urllib.parse, urllib.request
 from datetime import date
-from lib import http, rakuten_env, load_json, save_json, path
+from lib import BROWSER_UA, http, rakuten_env, load_json, save_json, path
 
 GEO = "https://usagi-odekake.usagi-fudosan.workers.dev/townnotes/geo.json"
 API = "https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426"
@@ -56,8 +56,10 @@ def main():
     import os
     env = rakuten_env()
     origin = os.environ.get("RAKUTEN_ORIGIN") or "https://github.com"
-    with urllib.request.urlopen(GEO, timeout=30) as r:
-        geo = json.load(r)
+    st, txt, _ = http("GET", GEO, headers={"User-Agent": BROWSER_UA})  # 普通の名乗りだと Cloudflare が 403
+    if st != 200:
+        raise RuntimeError(f"月の geo.json が読めない {st}")
+    geo = json.loads(txt)
     memo = load_json(MEMO, {}) or {}
     today = date.today()
     calls = 0
