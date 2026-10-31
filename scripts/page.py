@@ -1030,7 +1030,7 @@ def render(items, ended, now, cfg):
 
 
 TEMPLATE = """<!doctype html>
-<html lang="ja"><head><meta charset="utf-8">
+<html lang="ja"><head><meta charset="utf-8"><meta name="google-site-verification" content="19Vt8Ili5pokwJHyAI3SwQ2UKI-eqeLVJSHS3PVUO54">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>関東おでかけリスト｜うさぎ│LIFE NOTES</title>
 <meta name="description" content="関東で、今日から・新しく・無料で行ける場所の公式ページまとめと、うさぎが数字で比べた物を毎日。">
