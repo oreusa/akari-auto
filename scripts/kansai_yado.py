@@ -10,12 +10,14 @@ from lib import BROWSER_UA, http, rakuten_env, load_json, save_json, path
 
 GEO = "https://usagi-odekake.usagi-fudosan.workers.dev/townnotes/geo.json"
 API = "https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426"
-MEMO = path("data", "kansai-yado.json")
-OUT = path("site", "kansai-yado.json")
 VER = 2         # 選び方を変えたら上げる（覚えを全部調べ直す）
 # 泊まりがけで行く場所だけに付ける：大きな街の真ん中から20km以上（10/31 月）
-CENTERS = [(34.7025, 135.4959), (34.6659, 135.5013), (34.9858, 135.7588), (34.6951, 135.1979)]  # 梅田・難波・京都駅・三宮
-FAR_KM = 20
+# 10/31 オーナー「燈のも変えるよね？」→ 燈の関東も同じ形（東京駅・新宿・横浜から25km以上）
+REGIONS = {
+    "kansai": {"name": "関西", "geo": GEO, "centers": [(34.7025, 135.4959), (34.6659, 135.5013), (34.9858, 135.7588), (34.6951, 135.1979)], "far": 20},
+    "kanto": {"name": "関東", "geo": path("site", "townnotes", "geo.json"), "centers": [(35.6812, 139.7671), (35.6896, 139.7006), (35.4658, 139.6223)], "far": 25},
+}
+CENTERS, FAR_KM = REGIONS["kansai"]["centers"], 20
 MAX_CALLS = 150   # 1回の実行で調べる数（楽天は1秒1回まで）
 
 
@@ -63,14 +65,22 @@ def search(env, lat, lon, origin):
     return ok[:3]
 
 
-def main():
+def main(region="kansai"):
     import os
+    global CENTERS, FAR_KM
+    R = REGIONS[region]
+    CENTERS, FAR_KM = R["centers"], R["far"]
+    MEMO, OUT = path("data", f"{region}-yado.json"), path("site", f"{region}-yado.json")
     env = rakuten_env()
     origin = os.environ.get("RAKUTEN_ORIGIN") or "https://github.com"
-    st, txt, _ = http("GET", GEO, headers={"User-Agent": BROWSER_UA})  # 普通の名乗りだと Cloudflare が 403
-    if st != 200:
-        raise RuntimeError(f"月の geo.json が読めない {st}")
-    geo = json.loads(txt)
+    if R["geo"].startswith("http"):
+        st, txt, _ = http("GET", R["geo"], headers={"User-Agent": BROWSER_UA})  # 普通の名乗りだと Cloudflare が 403
+        if st != 200:
+            raise RuntimeError(f"geo.json が読めない {st}")
+        geo = json.loads(txt)
+    else:
+        geo = load_json(R["geo"], {}) or {}
+    geo = {k: v for k, v in geo.items() if v and v[0] is not None}
     memo = load_json(MEMO, {}) or {}
     today = date.today()
     calls = 0
@@ -95,8 +105,9 @@ def main():
     out = {k: v["h"] for k, v in memo.items() if v["h"] and far(v["ll"])}
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
-    print(f"関西の宿: 調べた {calls} / 宿あり {len(out)} / 場所 {len(geo)}")
+    print(f"{R['name']}の宿: 調べた {calls} / 宿あり {len(out)} / 場所 {len(geo)}")
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(sys.argv[1] if len(sys.argv) > 1 else "kansai")

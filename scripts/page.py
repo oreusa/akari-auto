@@ -1289,6 +1289,17 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .arch .tip{{margin-top:18px}}
 .hot{{border:1px solid #E2D8CD}} .hot .cho{{background:#FAF8F5}}
 .hot .buy{{color:var(--ink);border-color:var(--ink)}} .hot .buy .arw{{color:var(--ink)}}
+/* 10/31 近くの宿（月と同じ形） */
+.yk[hidden],.ykl[hidden]{{display:none}}
+.yk{{display:flex;justify-content:flex-end;margin:-4px 2px 12px;font-size:11.5px;letter-spacing:.04em}}
+.yk a{{color:#8C6A55;text-decoration:none;border:1px solid #D9C7B8;background:#fff;border-radius:99px;padding:6px 12px}}
+.yk a:before{{content:"";display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:-1px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1 9V4l4-3 4 3v5H6V6H4v3z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1 9V4l4-3 4 3v5H6V6H4v3z'/%3E%3C/svg%3E") center/contain no-repeat}}
+.yk a.op{{background:#F7F2EC}}
+.ykl{{letter-spacing:0;list-style:none;margin:-4px 2px 14px;padding:4px 14px;background:#fff;border:1px solid #E8DDD3;border-radius:10px;font-size:12px}}
+.ykl li{{border-top:1px solid #F1EAE3}} .ykl li:first-child{{border-top:0}}
+.ykl a{{display:flex;justify-content:space-between;gap:10px;padding:10px 0;color:#3A302A;text-decoration:none}}
+.ykl .nm{{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}} .ykl .mt{{color:#8C7B6E;white-space:nowrap;font-size:11px}}
+.ykl .src{{font-size:10px;color:#A89A8E;padding:6px 0 2px;text-align:right}}
 .ilk{{display:block;width:max-content;max-width:100%;margin:4px auto 18px;color:#231E1B;text-decoration:none;font:600 14px/1.5 var(--min);letter-spacing:.08em;border-bottom:1px solid #231E1B;padding-bottom:3px}}.ilk span{{font-family:Jost;margin-left:8px;color:#9C8775}}
 </style></head>
 <body class="s-{sea}"><div class="wrap">
@@ -1375,6 +1386,28 @@ var t=document.getElementById("totop");
 addEventListener("scroll",function(){{t.classList.toggle("on",scrollY>600);}},{{passive:true}});
 t.addEventListener("click",function(){{scrollTo({{top:0,behavior:"smooth"}});}});
 var pm=document.querySelector(".arch .pmo");if(pm)pm.addEventListener("click",function(){{document.querySelectorAll(".arch .past li[hidden]").forEach(function(l){{l.hidden=false;}});pm.remove();}});
+}})();
+</script>
+<script>
+/* 10/31 近くの宿（月と同じ）：遠い場所のカードの下に、楽天トラベルの評価の高い宿を3つ。宿の一覧は /kanto-yado.json（page.yml が作る） */
+(function(){{
+var Y={{}};
+function vis(e){{for(;e&&e!==document.body;e=e.parentElement){{if(e.hidden||getComputedStyle(e).display=="none")return false;}}return true;}}
+function sync(){{document.querySelectorAll(".yk,.ykl").forEach(function(x){{x.hidden=!(x._c&&vis(x._c))||(x.className=="ykl"&&!x.dataset.op);}});}}
+function ck(k){{try{{navigator.sendBeacon("/c?f=yado&s=yado&k="+encodeURIComponent(k.slice(0,40)));}}catch(e){{}}}}
+function run(){{document.querySelectorAll("#odekake .card.it").forEach(function(c){{var t=c.querySelector(".t");if(!t||c.dataset.yk)return;
+var nm=t.textContent.replace(/\s+/g,""),H=Y[nm];if(!H)return;c.dataset.yk=1;
+var d=document.createElement("div");d.className="yk";d._c=c;var b=document.createElement("a");b.href="#";b.className="inn";b.textContent="近くの宿";d.appendChild(b);
+var u=document.createElement("ul");u.className="ykl";u._c=c;
+H.forEach(function(h){{var li=document.createElement("li"),a=document.createElement("a");a.href=h.u;a.target="_blank";a.rel="noopener sponsored";
+a.addEventListener("click",function(){{ck("宿｜"+nm.slice(0,16)+"｜"+h.n);}});
+var m=document.createElement("span");m.className="nm";m.textContent=h.n;a.appendChild(m);
+var s2=document.createElement("span");s2.className="mt";s2.textContent=(h.km<0.1?"すぐそば":h.km+"km")+(h.r?"・★"+h.r:"")+(h.min?"・"+Number(h.min).toLocaleString()+"円〜":"");a.appendChild(s2);li.appendChild(a);u.appendChild(li);}});
+var li=document.createElement("li");li.className="src";li.textContent="楽天トラベルの評価3.5以上・ここからの近さ（PR）";u.appendChild(li);
+b.addEventListener("click",function(e){{e.preventDefault();e.stopPropagation();if(!u.dataset.op)ck("宿を開く｜"+nm);u.dataset.op=u.dataset.op?"":"1";b.classList.toggle("op",!!u.dataset.op);sync();}});
+c.insertAdjacentElement("afterend",d);d.insertAdjacentElement("afterend",u);}});sync();}}
+fetch("/kanto-yado.json").then(function(r){{return r.ok?r.json():{{}}}}).then(function(j){{for(var k in (j||{{}}))Y[k.replace(/\s+/g,"")]=j[k];run();}}).catch(function(){{}});
+document.addEventListener("click",function(){{setTimeout(sync,80);}},true);
 }})();
 </script>
 </body></html>
