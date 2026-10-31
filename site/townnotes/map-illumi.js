@@ -193,6 +193,7 @@ var css=`
 .tn .pi .t{font-family:"Shippori Mincho",serif;font-weight:600;font-size:15px;line-height:1.45;color:#2B2622;margin:3px 0 0}
 .tn .pi .ac{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:8px}
 .tn .pi .ac a{white-space:nowrap;display:inline-block;font-size:11.5px;letter-spacing:.08em;color:#2B2622;text-decoration:underline;text-decoration-color:#CFC5BA;text-underline-offset:4px;padding:5px 0}
+.tn .yd{margin-top:10px;border-top:1px dashed #EAE2D9;padding-top:8px}.tn .yd b{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.12em;color:#8C7B6E;margin-bottom:2px}.tn .yd a{display:flex;align-items:baseline;gap:8px;padding:5px 0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:12.5px;font-weight:700;color:#2B2622;text-decoration:none;border-bottom:1px solid #F4EFEA}.tn .yd a:last-child{border-bottom:0}.tn .yd a span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tn .yd a em{font-style:normal;font-weight:500;font-size:11px;color:#8C7B6E;white-space:nowrap}.tn .yd a:after{content:"→";color:#B3AAA1;font-size:11px}.tn .cc{max-width:82%}.tn .cc .cb{min-width:0}.tn .yd a span{width:0}.tn .cc .yd,.tn .cc.ph .cb>.yd{margin-top:6px;padding-top:4px;padding-right:0}.tn .cc .yd a{padding:3px 0;font-size:12px}
 .tn .pi.mini{cursor:pointer;padding:10px 46px 10px 14px;position:relative}
 .tn .pi.mini:after{content:"›";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:Jost,sans-serif;font-size:18px;color:#B3AAA1}
 .tn .pi.mini .t{font-size:13.5px}
@@ -426,6 +427,7 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;
 function row(it,full){var c=PC[it.pref]||"#2B2622";
  var h='<div class="d"><i style="color:'+c+'">● '+esc(it.pref)+'</i>'+esc(it.d)+it.tags.map(function(t){return '<u style="color:#5E8A4A">'+esc(t)+'</u>'}).join("")+'</div><div class="t">'+esc(it.t)+'</div>';
  if(full)h+='<div class="ac"><a href="'+esc(it.href)+'" target="_blank" rel="noopener" data-k="地図ピン｜'+esc(it.t)+'">くわしく見る →</a>'+(it.map?'<a href="'+esc(it.map)+'" target="_blank" rel="noopener" data-k="地図ピン地図｜'+esc(it.t)+'">行き方 ↗</a>':'')+'<a href="#" class="go2">リストで見る ↓</a></div>';
+ if(full&&typeof extraRow==="function")h+=extraRow(it);  // ページごとに足す行（泊まりのページ＝近くの宿）
  return h}
 // カードの出る場所：地図で押したら地図のすぐ下、一覧で押したらその行のすぐ下
 var popAt="map";
