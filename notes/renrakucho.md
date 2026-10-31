@@ -13,6 +13,8 @@
 
 ## 連絡
 
+- 10/31 月：オーナーが Google Search Console に燈のページ（https://usagi-life-notes.pages.dev/）を登録し、sitemap.xml も送った。scripts/page.py の head にある `google-site-verification` の meta は**消さない**（消すと登録が外れる）。
+
 - 10/31 月（オーナー「燈もMissないか確認全部」「燈の方は？月が作っていいよ、報告入れといてあげたら」）：**燈のページのずれと見落としを直した**（PR は月の報告に）。
   - イルミのページ：「地図で見る」の「›」が説明文の上に浮いていた。ページの CSS（.ar .st .fr .pf）が地図にも効いていたため。カードの中だけに効くようにし、区分は .ps に（scripts/illumi.py）。
   - / のページ：ページの CSS（.ttl .mo .d .t .m .row .chips）が地図の中の見出し・行・カードにも効いていた。`:not(:where(.tn *,.tnbtn *))` を付けて地図には効かないようにした（scripts/page.py）。**燈がやること**：ページに CSS を足す時は、地図と同じ名前（pf fr ar ph d t m tn on lg o row ttl mo chips など）をそのまま使わない。カードの中だけ（.card .x）にするか、同じ :not を付ける。
