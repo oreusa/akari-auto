@@ -1233,6 +1233,42 @@
       "note": "栃木市｜一般800円・中学生以下無料。月曜休み",
       "url": "https://www.city.tochigi.lg.jp/site/museum-tcam/92628.html",
       "checked": "2026-10-31"
+    },
+    {
+      "title": "2026 たちかわイルミネーション",
+      "pref": "東京",
+      "place": "立川駅北口",
+      "when": "11/1〜1/17",
+      "start": "2026-11-01T17:00",
+      "ends": "2027-01-17T23:59",
+      "free": true,
+      "note": "立川市｜サンサンロード、17:00〜24:00。11/1は17:30から点灯式",
+      "url": "https://tachikawaillumination.com",
+      "checked": "2026-10-31"
+    },
+    {
+      "title": "栃木県立美術館 松本哲男展",
+      "pref": "栃木",
+      "place": "栃木県立美術館",
+      "when": "10/24〜12/27",
+      "start": "2026-10-24T09:30",
+      "ends": "2026-12-27T17:00",
+      "free": false,
+      "note": "宇都宮市｜一般1,250円・中学生以下無料。11/3は無料。月曜休み",
+      "url": "https://www.pref.tochigi.lg.jp/c10/kouhou/kouhou/202610-12artm-kikaku.html",
+      "checked": "2026-10-31"
+    },
+    {
+      "title": "猿田彦珈琲 皇居東御苑店",
+      "pref": "東京",
+      "place": "皇居東御苑",
+      "kind": "shop",
+      "open": "2026-11-03",
+      "when": "11/3開店",
+      "free": false,
+      "note": "千代田区｜大手休憩所の中、46席＋立ち席10席。月曜休み",
+      "url": "https://prtimes.jp/main/html/rd/p/000000212.000027005.html",
+      "checked": "2026-10-31"
     }
   ]
 }
