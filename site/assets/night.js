@@ -17,7 +17,21 @@
     /* 題名まわりの丸い飾りは、夜は星と月あかりに */
     "html.night .head{background:radial-gradient(1.2px 1.2px at 12% 18%,#000 98%,transparent),radial-gradient(1px 1px at 27% 42%,#000 98%,transparent),radial-gradient(1.4px 1.4px at 44% 9%,#000 98%,transparent),radial-gradient(1px 1px at 63% 31%,#000 98%,transparent),radial-gradient(1.2px 1.2px at 78% 14%,#000 98%,transparent),radial-gradient(1px 1px at 88% 46%,#000 98%,transparent),radial-gradient(1px 1px at 8% 58%,#000 98%,transparent),radial-gradient(1.3px 1.3px at 92% 72%,#000 98%,transparent),radial-gradient(1px 1px at 35% 70%,#000 98%,transparent)!important}"+
     /* いまから行ける の地図：夜は暗い地図に */
-    "html.night .rd svg{filter:brightness(.42) saturate(1.1) invert(1) hue-rotate(180deg)}"+
+    "html.night .rd svg{filter:invert(1) hue-rotate(180deg)}"+
+    /* 11/2 オーナー「他のページまだ白モヤ」→ いまから行ける の地図も入口と同じ夜の地図に（白っぽい灰色をやめる） */
+    "html.night .rd svg>rect{fill:#141A28}"+
+    /* 地図で見る（全画面の地図）：夜は暗すぎたので、少し明るく・色をはっきり */
+    "html.night .tn svg.m{filter:brightness(.74) saturate(1.5)}"+
+    "html.night #mpL path{fill-opacity:.42;stroke:rgba(255,255,255,.1)}"+
+    "html.night #mpL path[fill=none]{stroke:rgba(255,255,255,.35)}"+
+    "html.night .rd .mn{fill:#8F9AB3}"+
+    "html.night .rd .rng{stroke:#C9D2E6;opacity:.5}"+
+    "html.night .rd .rgl{fill:#E6EAF2;stroke:#141A28}"+
+    "html.night .rd .pt{stroke:#141A28}"+
+    "html.night #mpMe circle:first-child{fill:#fff;opacity:.15}html.night #mpMe circle+circle{fill:#F3F1EC;stroke:#141A28}html.night #mpMe rect{fill:#F3F1EC}html.night #mpMe text{fill:#141A28}"+
+    /* 飾りの丸（入口の PAGE 01/02 の後ろ、燈のイルミの題名の後ろ）は夜は出さない */
+    "html.night a.ls:before{display:none}"+
+    "html.night header.head:before,html.night header.head:after{display:none}"+
     "html.night .blob{display:none}"+
     /* MENU の四角は、夜はベージュにならないよう月あかりの銀に */
     "html.night #v2bar button.mn{background:#121826}"+
