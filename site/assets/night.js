@@ -10,7 +10,17 @@
     document.dispatchEvent(new CustomEvent("usagi-theme",{detail:v}));}
   var css="html.night{background:#fff;filter:invert(.92) hue-rotate(180deg)}"+
     "html.night img,html.night video,html.night picture,html.night svg image,html.night .nofilt,html.night .tnbtn .mm{filter:invert(1) hue-rotate(180deg)}"+
-    "html.night .head img{background:#fff;border-radius:50%}";
+    "html.night .head img{background:#fff;border-radius:50%}"+
+    /* 11/2 オーナー「夜もっと何とかならん」「夜のお洒落感」→ 真っ黒をやめて深い夜空の紺に。白い面も同じ紺になるよう、薄い青を全体に重ねる */
+    "html.night body:after{content:'';position:fixed;inset:-50vh 0;background:#E9F0FF;mix-blend-mode:multiply;pointer-events:none;z-index:2147483646}"+
+    /* 題名まわりの丸い飾りは、夜は星と月あかりに */
+    "html.night .head{background:radial-gradient(1.2px 1.2px at 12% 18%,#000 98%,transparent),radial-gradient(1px 1px at 27% 42%,#000 98%,transparent),radial-gradient(1.4px 1.4px at 44% 9%,#000 98%,transparent),radial-gradient(1px 1px at 63% 31%,#000 98%,transparent),radial-gradient(1.2px 1.2px at 78% 14%,#000 98%,transparent),radial-gradient(1px 1px at 88% 46%,#000 98%,transparent),radial-gradient(1px 1px at 8% 58%,#000 98%,transparent),radial-gradient(1.3px 1.3px at 92% 72%,#000 98%,transparent),radial-gradient(1px 1px at 35% 70%,#000 98%,transparent),radial-gradient(circle at 82% 8%,rgba(40,70,140,.10) 0 90px,transparent 160px)!important}"+
+    /* いまから行ける の地図：夜は暗い地図に */
+    "html.night .rd svg{filter:brightness(.42) saturate(1.1) invert(1) hue-rotate(180deg)}"+
+    "html.night .blob{display:none}"+
+    /* MENU の四角は、夜はベージュにならないよう月あかりの銀に */
+    "html.night #v2bar button.mn{background:#121826}"+
+    "html.night .rd{border-color:#000}";
   var st=document.createElement("style");st.textContent=css;(document.head||d).appendChild(st);
   set(pick());
   window.usagiTheme={get:function(){return d.classList.contains("night")?"night":"day"},set:function(v){set(v,true)}};
