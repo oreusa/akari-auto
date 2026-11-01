@@ -191,6 +191,13 @@
 ・「比べた全部の平均より◯%安い」は、ページと同じ計算（1−1位/平均）のときだけ書く。
 ・効き目：tanka の型のPRと、ふつうの3つ比べのPRのクリックを notes/sales-board.md に並べて書き、3日で型を決める。
 
+■ふるさと納税が主役（11/1 オーナー経由で月から。12/31まで毎晩読む。目標：11/15までに成果1件）
+- 最初に notes/strategy.md「今夜やること」の一番上（11/1 18時 月から）と notes/renrakucho.md の 11/1 月の行を読む。
+- 11/3 の予定表から毎日1本、楽天PR枠のうち1本を data/furusato.json の数字で書く：1行目【楽天ふるさと納税の◯◯◯件を寄付1万円あたりで比べた｜1位は◯kg】、2つ目は1位の返礼品ページ＋選んだ理由＋#PR、最後に /furusato を1行。数字は data/furusato.json にある物だけ（無い・古い日は書かずに通常のPR、log に1行）。
+- おでかけの投稿の最後の1行で /furusato・/tanka・/kaimawari を案内してよい（1日2本まで）。
+- 毎晩 notes/sales-board.md に /furusato のクリック数（data/page-stats.json の /c?f=furusato）を1行足す。
+- 楽天とAmazonを同じ数に、の決まりは、ふるさと納税の1本を楽天側に数える。
+
 ■雫（4コマ）と凪（楽天ROOM）への台本
 ・ROOMの台本（20件まで）は、予定表 schedule/D.json の "room" にも入れる：[{"url":商品ページ,"expect":商品名に必ず入る言葉,"comment":コメント全文}, …]。check が楽天で確かめる（×なら差し替える）。
 ・ArtifactData で、artifact https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H の collection "akari2"、doc_id "D" に set する。data は {"koma4": 4コマの台本, "amazon": 凪が明日20:20に開くAmazonの商品ページのURLの配列（10まで。売れ筋ページは入れない）, "amazon_note": 何を比べるか1行（例「貼るカイロ30個入りを5つ比べる」）, "room": ROOMの台本（check が通った20件まで。凪が貼る形：「1｜コレクション：〜／商品：〜／探し方：URL／コメント：〜／ハッシュタグ：〜」）, "kakunin": 汐に明日の朝開いてもらうページ（下の「汐の確認帳」。[{"url", "what"}] 5件まで。無ければ書かない）, "goals": {"汐": 汐の明日の目標, "凪": 凪の明日の目標, "汐の覚えたこと": [最大3つ], "凪の覚えたこと": [最大3つ]}（上の「AI社員の毎日の目標」）, "writtenAt": 今の日本時間}。
