@@ -360,10 +360,10 @@ def sale_box():
             e2 = en + timedelta(minutes=1)
             when = f"開催中・{e2.month}/{e2.day}（{wk[e2.weekday()]}）{e2:%H:%M}まで"
             sub = "まだの方は、買う前にエントリーを。1,000円以上を何店で買うかでポイントが増えます"
-        return (f'<section class="sbox" id="sale"><p class="sb-k">RAKUTEN SALE</p><p class="sb-t">{name}</p>'
-                f'<p class="sb-w">{html.escape(when)}</p><a class="buy sb-go" href="{url}" rel="sponsored noopener" target="_blank">楽天でエントリーする<span>→</span></a>'
-                f'<p class="sb-s">{html.escape(sub)}</p>'
-                f'<a class="sb-l" href="kaimawari">買いまわりの1,000円ぽっきりを見る →</a><p class="sb-pr">リンクは楽天アフィリエイトの広告です</p></section>')
+        # 11/1 オーナー「キレそう」：赤い大きな箱が月とちがい、リストが下に押された → 月の「関連ページ」と同じ白い箱に小さくまとめる
+        return (f'<section class="sbox" id="sale"><div class="sb-x"><p class="sb-t">{name}</p>'
+                f'<p class="sb-w">{html.escape(when)}</p></div><a class="buy sb-go" href="{url}" rel="sponsored noopener" target="_blank">エントリー<span>→</span></a>'
+                f'<p class="sb-s">{html.escape(sub)}<span>（楽天アフィリエイトの広告）</span></p></section>')
     return ""
 
 
@@ -1120,7 +1120,7 @@ TEMPLATE = """<!doctype html>
 <meta property="og:image" content="https://usagi-life-notes.pages.dev/og-v10.png">
 <meta property="og:url" content="https://usagi-life-notes.pages.dev/">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#FAF8F5">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap">
@@ -1128,7 +1128,7 @@ TEMPLATE = """<!doctype html>
 /* 紙の手帳のような生成りの地に、白い紙を重ねる。色はロゴの茶と、地域ごとの淡い色だけ */
 :root{{
   color-scheme:light;
-  --bg:#FDFCFA; --paper:#FFFFFF; --ink:#2B2622; --sub:#6B6058; --mute:#8C7B6E; --line:#E6DED4; --line2:#D6CCC1;
+  --bg:#FFFFFF; --paper:#FFFFFF; --ink:#2B2622; --sub:#6B6058; --mute:#8C7B6E; --line:#E6DED4; --line2:#D6CCC1;
   --brown:#A07E66; --brown2:#8C6A55; --free:#5E8A4A; --pr:#B5643F; --acc:#A07E66;
   --c1:rgba(242,214,194,.6); --c2:rgba(205,224,236,.65); --c3:rgba(214,228,205,.65); --c4:rgba(240,214,218,.65);
   --min:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
@@ -1192,7 +1192,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .stab button i{{font:400 11px/1 var(--en);font-style:normal;margin-left:5px;opacity:.7}}
 .stab button.on{{background:var(--ink);border-color:var(--ink);color:#fff}}
 .js .card.sh.ex{{display:none}} .js #shop.open .card.sh.ex{{display:block}} .card.sh[hidden]{{display:none!important}}
-.mo:not(:where(.tn *,.tnbtn *)){{display:block;width:100%;font:700 13px/1 var(--go);letter-spacing:.08em;color:var(--ink);background:#fff;border:1px solid var(--line2);padding:14px;cursor:pointer}}
+.mo:not(:where(.tn *,.tnbtn *,#utheme *)){{display:block;width:100%;font:700 13px/1 var(--go);letter-spacing:.08em;color:var(--ink);background:#fff;border:1px solid var(--line2);padding:14px;cursor:pointer}}
 #shop.open .mo,#shop.tab .mo{{display:none}}
 .pr-note{{font-size:11px;line-height:1.8;color:var(--mute);text-align:center;margin:0 0 20px}}
 .cats{{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:24px 0 10px}}
@@ -1265,7 +1265,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .buy{{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;font:500 13px/1 var(--go);letter-spacing:.2em;padding:13px 18px 13px 22px}}
 .buy .arw{{position:static;transform:none;color:#fff;width:20px}}
 .buy:hover .arw{{transform:translateX(3px)}}
-.cho{{margin:10px 0 0;padding:10px 12px;background:#FAF6F1;display:flex;align-items:center;gap:12px}}
+.cho{{margin:10px 0 0;padding:10px 12px;background:#F6F6F6;display:flex;align-items:center;gap:12px}}
 .cho .tx{{display:grid;gap:2px;min-width:0}}
 .cho .ph{{flex:0 0 104px;width:104px;height:104px;object-fit:contain;background:#fff;border:1px solid var(--line)}}
 .cho .meta{{margin:2px 0 0}}
@@ -1349,7 +1349,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .tw .ph{{flex:0 0 104px;width:104px;height:104px;object-fit:contain;background:#fff;border:1px solid var(--line)}}
 /* 黒い四角のボタンは重く見える（月で10/26 オーナー「重圧感」）→ 白に細い線 */
 .buy{{background:#fff;color:var(--ink);border:1px solid var(--ink)}} .buy .arw{{color:var(--ink)}}
-.hot{{border:1px solid #E6CDBE;background:#fff}} .hot .cho{{background:#FAF6F1}}
+.hot{{border:1px solid #E6CDBE;background:#fff}} .hot .cho{{background:#F6F6F6}}
 .hot .buy{{background:#fff;color:var(--pr);border-color:var(--pr)}} .hot .buy .arw{{color:var(--pr)}}
 .sns{{margin-top:40px}}
 .sns a:not(.co){{display:inline-block;border:0;border-bottom:1px solid var(--ink);padding:4px 0;margin:0 12px 26px;font-size:13px;letter-spacing:.1em}}
@@ -1365,21 +1365,21 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .arch .past li span{{margin-right:4px}}
 .arch .pmo{{display:block;margin:10px auto 0;background:none;border:0;border-bottom:1px solid var(--ink);padding:4px 2px;font:500 13px/1 var(--go);letter-spacing:.06em;color:var(--ink);cursor:pointer}}
 .arch .tip{{margin-top:18px}}
-.hot{{border:1px solid #E2D8CD}} .hot .cho{{background:#FAF8F5}}
+.hot{{border:1px solid #E2D8CD}} .hot .cho{{background:#F7F7F7}}
 .hot .buy{{color:var(--ink);border-color:var(--ink)}} .hot .buy .arw{{color:var(--ink)}}
 /* 10/31 近くの宿（月と同じ形） */
 .yk[hidden],.ykl[hidden]{{display:none}}
 .yk{{display:flex;justify-content:flex-end;margin:-4px 2px 12px;font-size:11.5px;letter-spacing:.04em}}
 .yk a{{color:#8C6A55;text-decoration:none;border:1px solid #D9C7B8;background:#fff;border-radius:99px;padding:6px 12px}}
 .yk a:before{{content:"";display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:-1px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1 9V4l4-3 4 3v5H6V6H4v3z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1 9V4l4-3 4 3v5H6V6H4v3z'/%3E%3C/svg%3E") center/contain no-repeat}}
-.yk a.op{{background:#F7F2EC}}
+.yk a.op{{background:#F2F2F2}}
 .ykl{{letter-spacing:0;list-style:none;margin:-4px 2px 14px;padding:4px 14px;background:#fff;border:1px solid #E8DDD3;border-radius:10px;font-size:12px}}
 .ykl li{{border-top:1px solid #F1EAE3}} .ykl li:first-child{{border-top:0}}
 .ykl a{{display:flex;justify-content:space-between;gap:10px;padding:10px 0;color:#3A302A;text-decoration:none}}
 .ykl .nm{{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}} .ykl .mt{{color:#8C7B6E;white-space:nowrap;font-size:11px}}
 .ykl .src{{font-size:10px;color:#A89A8E;padding:6px 0 2px;text-align:right}}
-.sbox{{border:1px solid #BF0000;border-radius:6px;background:#fff;padding:16px 16px 12px;margin:0 0 20px;text-align:center}}.sb-k{{font:400 10px/1 Jost,sans-serif;letter-spacing:.3em;color:#BF0000;margin:0 0 8px}}.sb-t{{font:600 18px/1.4 var(--min);margin:0;color:#231E1B}}.sb-w{{font-size:13px;font-weight:700;color:#BF0000;margin:4px 0 12px}}.sb-go{{display:block;background:#BF0000;color:#fff;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.06em;padding:13px 10px;border-radius:4px}}.sb-go span{{margin-left:8px}}.sb-s{{font-size:11.5px;line-height:1.7;color:#6B6058;margin:10px 0 6px}}.sb-l{{font-size:12.5px;color:#231E1B}}.sb-pr{{font-size:10px;color:#9C9089;margin:8px 0 0}}.tnx{{display:block;margin:18px auto 6px;max-width:420px;text-align:center;text-decoration:none;color:#2B2622;background:#fff;border:1px solid #D6CCC1;border-radius:14px;padding:14px 16px 13px}}.tnx small{{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.2em;color:#9C8775;margin-bottom:4px}}.tnx b{{font-family:"Shippori Mincho",serif;font-weight:600;font-size:16px;letter-spacing:.08em}}.tnx b span{{font-family:Jost;margin-left:8px;color:#9C8775}}.tnx i{{display:block;font-style:normal;font-family:"Zen Kaku Gothic New",sans-serif;font-size:12px;color:#857A70;margin-top:4px}}.ilk{{display:block;width:max-content;max-width:100%;margin:4px auto 18px;color:#231E1B;text-decoration:none;font:600 14px/1.5 var(--min);letter-spacing:.08em;border-bottom:1px solid #231E1B;padding-bottom:3px}}.ilk span{{font-family:Jost;margin-left:8px;color:#9C8775}}
-</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=5" defer></script></head>
+.sbox{{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;max-width:420px;margin:0 auto 20px;background:#fff;border:1px solid #D6CCC1;border-radius:14px;padding:12px 14px 10px}}.sb-x{{flex:1;min-width:0}}.sb-t{{font:600 15px/1.4 var(--min);letter-spacing:.06em;margin:0;color:#231E1B}}.sb-w{{font-size:12px;font-weight:700;color:#BF0000;margin:2px 0 0}}.sb-go{{flex:none;background:#BF0000;color:#fff;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.06em;padding:10px 14px;border-radius:99px}}.sb-go span{{margin-left:6px}}.sb-s{{flex-basis:100%;font-size:11px;line-height:1.6;color:#857A70;margin:2px 0 0}}.sb-s span{{color:#A89A8E}}.tnx{{display:block;margin:18px auto 6px;max-width:420px;text-align:center;text-decoration:none;color:#2B2622;background:#fff;border:1px solid #D6CCC1;border-radius:14px;padding:14px 16px 13px}}.tnx small{{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.2em;color:#9C8775;margin-bottom:4px}}.tnx b{{font-family:"Shippori Mincho",serif;font-weight:600;font-size:16px;letter-spacing:.08em}}.tnx b span{{font-family:Jost;margin-left:8px;color:#9C8775}}.tnx i{{display:block;font-style:normal;font-family:"Zen Kaku Gothic New",sans-serif;font-size:12px;color:#857A70;margin-top:4px}}.ilk{{display:block;width:max-content;max-width:100%;margin:4px auto 18px;color:#231E1B;text-decoration:none;font:600 14px/1.5 var(--min);letter-spacing:.08em;border-bottom:1px solid #231E1B;padding-bottom:3px}}.ilk span{{font-family:Jost;margin-left:8px;color:#9C8775}}
+</style><script src="/assets/night.js?v=3"></script><script src="/assets/menu.js?v=5" defer></script></head>
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
 <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
@@ -1392,12 +1392,11 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 </header>
 {salebox}
 <a class="ilk" href="illumination">関東イルミネーション 2026 日程一覧<span>→</span></a>
-<a class="ilk" href="kaimawari">お買い物マラソン 買いまわりの1,000円ぽっきり<span>→</span></a><a class="ilk" href="furusato">ふるさと納税 寄付1万円あたりで比べた（12/31まで）<span>→</span></a><a class="ilk" href="tanka">水・お米・トイレットペーパー 1個あたりで比べた<span>→</span></a>
 <nav class="cats" id="cats" aria-label="項目">{nav}</nav>
 {blocks}
 <p class="pr-note">{pr_note}<br>買う前に、楽天のページで最新の情報を確かめてください。</p>
 <div class="sns"><h2>FOLLOW</h2>{follow}</div>
-<p class="ft">うさぎ│LIFE NOTES│過去のおでかけも、このページに残していきます</p><a class="tnx buy" href="furusato" data-k="下の入口｜ふるさと納税"><small>関連ページ</small><b>ふるさと納税を比べた<span>→</span></b><i>寄付1万円あたりの量で・12/31まで</i></a><a class="tnx" href="tanka" data-k="下の入口｜1個あたり"><small>関連ページ</small><b>1個あたりで比べた<span>→</span></b><i>楽天の水・お米などを1Lあたり・1kgあたりで</i></a>
+<p class="ft">うさぎ│LIFE NOTES│過去のおでかけも、このページに残していきます</p><a class="tnx buy" href="furusato" data-k="下の入口｜ふるさと納税"><small>関連ページ</small><b>ふるさと納税を比べた<span>→</span></b><i>寄付1万円あたりの量で・12/31まで</i></a><a class="tnx" href="tanka" data-k="下の入口｜1個あたり"><small>関連ページ</small><b>1個あたりで比べた<span>→</span></b><i>楽天の水・お米などを1Lあたり・1kgあたりで</i></a><a class="tnx" href="kaimawari" data-k="下の入口｜買いまわり"><small>関連ページ</small><b>買いまわりの1,000円ぽっきり<span>→</span></b><i>楽天お買い物マラソンの時に</i></a>
 </div>
 <button id="totop" aria-label="上にもどる"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4A403A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
 <script>

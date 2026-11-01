@@ -8,7 +8,7 @@
   function pick(){try{var v=localStorage.getItem(K);if(v==="day"||v==="night")return v;}catch(e){}return "day";}
   function set(v,save){d.classList.toggle("night",v==="night");if(save)try{localStorage.setItem(K,v);}catch(e){}
     document.dispatchEvent(new CustomEvent("usagi-theme",{detail:v}));}
-  var css="html.night{background:#fff;filter:invert(.8) hue-rotate(180deg)}"+
+  var css="html.night{background:#fff;filter:invert(.92) hue-rotate(180deg)}"+
     "html.night img,html.night video,html.night picture,html.night svg image,html.night .nofilt,html.night .tnbtn .mm{filter:invert(1) hue-rotate(180deg)}"+
     "html.night .head img{background:#fff;border-radius:50%}";
   var st=document.createElement("style");st.textContent=css;(document.head||d).appendChild(st);
