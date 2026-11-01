@@ -1351,7 +1351,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 {ring}
 </header>
 <a class="ilk" href="illumination">関東イルミネーション 2026 日程一覧<span>→</span></a>
-<a class="ilk" href="kaimawari">お買い物マラソン 買いまわりの1,000円ぽっきり<span>→</span></a>
+<a class="ilk" href="kaimawari">お買い物マラソン 買いまわりの1,000円ぽっきり<span>→</span></a><a class="ilk" href="tanka">水・お米・トイレットペーパー 1個あたりで比べた<span>→</span></a>
 <nav class="cats" id="cats" aria-label="項目">{nav}</nav>
 {blocks}
 <p class="pr-note">{pr_note}<br>買う前に、楽天のページで最新の情報を確かめてください。</p>
