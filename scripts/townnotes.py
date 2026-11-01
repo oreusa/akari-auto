@@ -140,7 +140,8 @@ def preview():
              'background:#2B2622;color:#fff;padding:2px 8px;pointer-events:none">PROTOTYPE</div>')
     h = h.replace('</body>', badge + '<script src="map.js?v=' + v + '" defer></script></body>', 1)
     assert 'src="map.js?v=' in h
-    open('site/townnotes/index.html', 'w', encoding='utf-8').write(h)
+    # 11/1 試作は役目を終えた（地図は本番に入った）。古い見た目を人目に出さないよう、本番の / へ送る
+    open('site/townnotes/index.html', 'w', encoding='utf-8').write('<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url=/"><link rel="canonical" href="/"><title>関東おでかけリスト</title><script>location.replace("/")</script></head><body></body></html>')
 
 
 def live():

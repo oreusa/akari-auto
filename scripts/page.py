@@ -1128,7 +1128,7 @@ TEMPLATE = """<!doctype html>
 /* 紙の手帳のような生成りの地に、白い紙を重ねる。色はロゴの茶と、地域ごとの淡い色だけ */
 :root{{
   color-scheme:light;
-  --bg:#FFFFFF; --paper:#FFFFFF; --ink:#2B2622; --sub:#6B6058; --mute:#8C7B6E; --line:#E6DED4; --line2:#D6CCC1;
+  --bg:#FFFFFF; --paper:#FFFFFF; --ink:#2B2622; --sub:#6B6058; --mute:#8C7B6E; --line:#DDDDDD; --line2:#CECECE;
   --brown:#A07E66; --brown2:#8C6A55; --free:#5E8A4A; --pr:#B5643F; --acc:#A07E66;
   --c1:rgba(242,214,194,.6); --c2:rgba(205,224,236,.65); --c3:rgba(214,228,205,.65); --c4:rgba(240,214,218,.65);
   --min:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
@@ -1175,9 +1175,9 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 
 /* 切り替え */
 .seg{{display:flex;justify-content:center;margin:22px 0 0}}
-.seg button{{font:700 12.5px/1 var(--go);letter-spacing:.12em;color:var(--mute);background:#fff;border:1px solid #D9CFC4;padding:9px 18px;cursor:pointer;margin-left:-1px}}
+.seg button{{font:700 12.5px/1 var(--go);letter-spacing:.12em;color:var(--mute);background:#fff;border:1px solid #CFCFCF;padding:9px 18px;cursor:pointer;margin-left:-1px}}
 .seg button.on{{background:var(--ink);border-color:var(--ink);color:#fff}}
-.flt{{display:flex;flex-wrap:wrap;justify-content:center;gap:0 11px;border-top:1px solid #DDD3C8;border-bottom:1px solid #DDD3C8;padding:10px 0;margin:12px 0 14px}}
+.flt{{display:flex;flex-wrap:wrap;justify-content:center;gap:0 11px;border-top:1px solid #D3D3D3;border-bottom:1px solid #D3D3D3;padding:10px 0;margin:12px 0 14px}}
 .flt button{{font:700 13px/1 var(--go);letter-spacing:.02em;color:var(--pc,var(--mute));background:none;border:0;border-bottom:1px solid transparent;padding:11px 2px 9px;cursor:pointer}}
 .flt button.on{{color:var(--pc,var(--ink));border-bottom-color:var(--pc,var(--ink))}}
 .flt button.fr{{color:#5E8C5A;border:1px solid #CFE0CC;border-radius:99px;padding:8px 12px;margin:3px 0 0}}
@@ -1188,7 +1188,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .cnt b{{font:600 17px/1 var(--min);color:var(--ink);margin:0 3px}}
 .nt{{font-size:12px;line-height:1.6;color:var(--sub);margin:2px 0 0}}
 .stab{{display:flex;gap:6px;overflow-x:auto;margin:4px -2px 14px;padding:2px;scrollbar-width:none}} .stab::-webkit-scrollbar{{display:none}}
-.stab button{{flex:none;font:700 12.5px/1 var(--go);letter-spacing:.06em;color:var(--mute);background:#fff;border:1px solid #D9CFC4;border-radius:99px;padding:9px 14px;cursor:pointer}}
+.stab button{{flex:none;font:700 12.5px/1 var(--go);letter-spacing:.06em;color:var(--mute);background:#fff;border:1px solid #CFCFCF;border-radius:99px;padding:9px 14px;cursor:pointer}}
 .stab button i{{font:400 11px/1 var(--en);font-style:normal;margin-left:5px;opacity:.7}}
 .stab button.on{{background:var(--ink);border-color:var(--ink);color:#fff}}
 .js .card.sh.ex{{display:none}} .js #shop.open .card.sh.ex{{display:block}} .card.sh[hidden]{{display:none!important}}
@@ -1206,7 +1206,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .more{{margin:4px 0 12px}} .more summary{{display:block;width:max-content;margin:0 auto 12px;padding:10px 4px 2px}} .more[hidden]{{display:none}}
 
 /* 章 */
-.blk{{background:var(--paper);border:1px solid #ECE5DC;border-top:3px solid var(--acc);padding:22px 14px 12px;margin-bottom:18px;scroll-margin-top:12px}}
+.blk{{background:var(--paper);border:1px solid #E4E4E4;border-top:3px solid var(--acc);padding:22px 14px 12px;margin-bottom:18px;scroll-margin-top:12px}}
 .blk.hid{{display:none}}
 .wk{{display:flex;flex-direction:column;gap:6px;margin:0 0 6px}}
 .en2{{font:400 10px/1 var(--en);letter-spacing:.36em;color:var(--acc)}}
@@ -1214,7 +1214,7 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .lead{{font-size:11.5px;color:var(--mute);margin:0 0 14px}}
 .none{{display:none;font-size:12px;color:var(--mute);text-align:center;margin:4px 0 12px}}
 .blk.empty .none{{display:block}}
-.gm{{display:none}} .js .gm{{display:block;width:max-content;margin:0 auto 12px;padding:10px 4px 2px;background:none;border:0;border-bottom:1px solid #CFC5BA;font-size:11.5px;letter-spacing:.12em;color:#5B514A;cursor:pointer}} .js .gm[hidden]{{display:none}}
+.gm{{display:none}} .js .gm{{display:block;width:max-content;margin:0 auto 12px;padding:10px 4px 2px;background:none;border:0;border-bottom:1px solid #C8C8C8;font-size:11.5px;letter-spacing:.12em;color:#5B514A;cursor:pointer}} .js .gm[hidden]{{display:none}}
 
 /* おでかけのカード */
 .card{{display:block;position:relative;background:#fff;border:1px solid var(--line);margin-bottom:12px;padding:12px 42px 38px 14px;box-shadow:inset 3px 0 0 var(--pc,var(--brown));transition:background .2s}}
@@ -1233,7 +1233,7 @@ a.card:hover{{background:color-mix(in srgb,var(--pc,var(--brown)) 4%,#fff)}}
 .card .go{{color:inherit;text-decoration:none}} .card .go:after{{content:"";position:absolute;inset:0;z-index:1}}
 .card.it:hover{{background:color-mix(in srgb,var(--pc,var(--brown)) 4%,#fff)}} .card.it:hover .arw{{transform:translate(3px,-50%)}}
 a.mp{{z-index:2;text-decoration:none;padding-top:10px}}
-.mp{{position:absolute;left:14px;bottom:12px;display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:500;letter-spacing:.14em;color:#5B514A;border-bottom:1px solid #CFC5BA;padding-bottom:1px}}
+.mp{{position:absolute;left:14px;bottom:12px;display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:500;letter-spacing:.14em;color:#5B514A;border-bottom:1px solid #C8C8C8;padding-bottom:1px}}
 .out{{width:9px;height:9px}}
 .arw{{position:absolute;right:14px;top:50%;width:22px;height:11px;transform:translateY(-50%);color:#A99C90;transition:transform .2s}}
 a.card:hover .arw{{transform:translate(3px,-50%)}}
@@ -1249,8 +1249,8 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .nu{{display:flex;gap:12px;align-items:baseline;white-space:nowrap}}
 .av{{font:400 13px/1 var(--en);letter-spacing:.02em;color:var(--brown2)}}
 .ct{{font:300 12px/1 var(--en);color:var(--mute);min-width:4.4em;text-align:right;font-variant-numeric:tabular-nums}}
-.br{{grid-column:1/-1;height:2px;background:#F2EDE7}}
-.br i{{display:block;height:100%;background:#D9CDC1}}
+.br{{grid-column:1/-1;height:2px;background:#EDEDED}}
+.br i{{display:block;height:100%;background:#CDCDCD}}
 .row.on .nm{{font-weight:700}} .row.on .ct{{color:var(--ink);font-weight:400}}
 .row.on .br i{{background:var(--brown)}}
 .pk{{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.12em;color:#fff;background:var(--brown);padding:1px 6px;margin-right:6px;vertical-align:1px}}
@@ -1276,12 +1276,12 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .cmp .why.but,.pk2 .why.but{{margin-top:4px}}
 .cmp .why,.pk2 .why{{margin:10px 0 0;padding:0;border:0;font-size:12.5px;line-height:1.8;color:var(--sub)}}
 .hotb{{border-top-color:var(--pr)}}
-.hot{{border:1.5px solid var(--pr);background:linear-gradient(180deg,#FFF8F3,#fff 60%)}}
+.hot{{border:1.5px solid var(--pr);background:linear-gradient(180deg,#F9F9F9,#fff 60%)}}
 .hot .t{{font-size:17px}}
-.hot .cho{{background:#FFF1E8}}
+.hot .cho{{background:#F3F3F3}}
 .hot .buy{{background:var(--pr)}}
 .fold{{margin:10px 0 0}}
-.fold summary{{cursor:pointer;list-style:none;font-size:11.5px;letter-spacing:.12em;color:#5B514A;display:inline-block;border-bottom:1px solid #CFC5BA}}
+.fold summary{{cursor:pointer;list-style:none;font-size:11.5px;letter-spacing:.12em;color:#5B514A;display:inline-block;border-bottom:1px solid #C8C8C8}}
 .fold summary::-webkit-details-marker{{display:none}}
 .fold summary:after{{content:" ＋";color:var(--brown)}} .fold[open] summary:after{{content:" −"}}
 .ft2{{justify-content:flex-end}}
@@ -1308,19 +1308,19 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .sns a{{display:block;border:1px solid var(--ink);padding:14px;margin:0 0 10px;font:500 13px/1.5 var(--go);letter-spacing:.1em}}
 .sns a span{{font:400 12px var(--en);color:var(--mute);margin-left:8px;letter-spacing:.06em}}
 .sns a.co{{background:#5B5450;border-color:#5B5450;color:#fff}}
-.sns a.co span{{display:block;margin:4px 0 0;color:#E9E1D8;font-family:var(--go)}}
+.sns a.co span{{display:block;margin:4px 0 0;color:#E1E1E1;font-family:var(--go)}}
 .ft{{text-align:center;font-size:10.5px;letter-spacing:.06em;color:var(--mute);margin-top:28px;line-height:1.9}}
-#totop{{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.94);border:1px solid #CFC4B8;box-shadow:0 2px 8px rgba(60,45,35,.12);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;cursor:pointer;padding:0}}
+#totop{{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.94);border:1px solid #C7C7C7;box-shadow:0 2px 8px rgba(60,45,35,.12);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;cursor:pointer;padding:0}}
 #totop.on{{opacity:1;pointer-events:auto}}
 /* 10/26 オーナー「月のhp配色、綺麗な配置なってるから真似して」：月の並べ方と色に合わせる */
-.cats{{display:flex;justify-content:center;gap:0 22px;margin:22px 0 0;padding:12px 0;border-top:1px solid #DDD3C8;border-bottom:1px solid #DDD3C8}}
+.cats{{display:flex;justify-content:center;gap:0 22px;margin:22px 0 0;padding:12px 0;border-top:1px solid #D3D3D3;border-bottom:1px solid #D3D3D3}}
 .cats button{{background:none;border:0;border-bottom:2px solid transparent;cursor:pointer;font:500 13.5px/1 var(--go);letter-spacing:.08em;color:var(--mute);padding:9px 2px 8px}}
 .cats button small{{font:400 11px/1 var(--en);margin-left:4px;color:var(--mute)}}
 .cats button.on{{color:var(--ink);font-weight:700;border-bottom-color:var(--ink)}}
 .wrap > [data-v][hidden]{{display:none!important}}
 .flt{{margin:0;border:0;padding:0}} .cats{{margin-bottom:18px}}
 .cnt{{margin:14px 0 22px}}
-.blk,.hotb{{border:1px solid #ECE5DC;border-top:2px solid var(--ink)}}
+.blk,.hotb{{border:1px solid #E4E4E4;border-top:2px solid var(--ink)}}
 .otab{{display:flex;border-bottom:1px solid var(--line);margin:-6px -2px 16px}}
 .otab button{{flex:1;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:6px 0 12px;cursor:pointer;color:var(--mute);font:600 15px/1.3 var(--min);letter-spacing:.1em}}
 .otab button i{{display:block;font:400 9.5px/1 var(--en);font-style:normal;letter-spacing:.3em;margin-bottom:7px}}
@@ -1334,9 +1334,9 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 /* 地図と公式ページの押し間違いをなくす（10/26 オーナー「地図とリンクを押し間違える、クレームが来る前に」、月の直しと同じ）：
    地図は名前の下の左に1行で置き、その行は押しても公式ページが開かない。矢印は右の真ん中 */
 .card.it .mpr{{position:relative;z-index:2;margin:12px -70px -14px -14px;padding:0 70px 14px 14px;background:transparent}}
-.card.it .mp{{position:static;padding:8px 10px 6px 0;border-bottom:0;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#CFC5BA}}
+.card.it .mp{{position:static;padding:8px 10px 6px 0;border-bottom:0;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#C8C8C8}}
 .chips:not(:where(.tn *,.tnbtn *)){{display:flex;justify-content:center;gap:8px;margin:12px 0 0}}
-.chips .fr{{font:700 12.5px/1 var(--go);letter-spacing:.04em;color:var(--sub);background:#fff;border:1px solid #D9CFC4;border-radius:99px;padding:9px 14px;cursor:pointer}}
+.chips .fr{{font:700 12.5px/1 var(--go);letter-spacing:.04em;color:var(--sub);background:#fff;border:1px solid #CFCFCF;border-radius:99px;padding:9px 14px;cursor:pointer}}
 .chips .fr[data-k=free]{{color:#5E8C5A;border-color:#CFE0CC}}
 .chips .fr.on{{background:var(--ink);border-color:var(--ink);color:#fff}} .chips .fr[data-k=free].on{{background:#5E8C5A;border-color:#5E8C5A}}
 .lf{{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--pr);margin-left:8px}}
@@ -1354,7 +1354,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .sns{{margin-top:40px}}
 .sns a:not(.co){{display:inline-block;border:0;border-bottom:1px solid var(--ink);padding:4px 0;margin:0 12px 26px;font-size:13px;letter-spacing:.1em}}
 .sns a:not(.co) span{{display:none}}
-.sns a.co{{display:block;position:relative;background:#fff;border:1px solid #E2D8CD;margin:0 0 10px;color:var(--ink);text-align:left;padding:18px 44px 18px 18px;font:600 16px/1.5 var(--min);letter-spacing:.08em}}
+.sns a.co{{display:block;position:relative;background:#fff;border:1px solid #D8D8D8;margin:0 0 10px;color:var(--ink);text-align:left;padding:18px 44px 18px 18px;font:600 16px/1.5 var(--min);letter-spacing:.08em}}
 .sns a.co:before{{content:attr(data-en);display:block;font:500 9.5px/1 var(--en);letter-spacing:.32em;color:#9C8775;margin-bottom:8px}}
 .sns a.co:after{{content:"→";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--en);color:#9C8775;font-size:16px}}
 .sns a.co span{{color:var(--mute);font:400 11.5px/1.6 var(--go);letter-spacing:.04em;margin-top:6px}}
@@ -1365,7 +1365,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .arch .past li span{{margin-right:4px}}
 .arch .pmo{{display:block;margin:10px auto 0;background:none;border:0;border-bottom:1px solid var(--ink);padding:4px 2px;font:500 13px/1 var(--go);letter-spacing:.06em;color:var(--ink);cursor:pointer}}
 .arch .tip{{margin-top:18px}}
-.hot{{border:1px solid #E2D8CD}} .hot .cho{{background:#F7F7F7}}
+.hot{{border:1px solid #D8D8D8}} .hot .cho{{background:#F7F7F7}}
 .hot .buy{{color:var(--ink);border-color:var(--ink)}} .hot .buy .arw{{color:var(--ink)}}
 /* 10/31 近くの宿（月と同じ形） */
 .yk[hidden],.ykl[hidden]{{display:none}}
@@ -1373,12 +1373,12 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .yk a{{color:#8C6A55;text-decoration:none;border:1px solid #D9C7B8;background:#fff;border-radius:99px;padding:6px 12px}}
 .yk a:before{{content:"";display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:-1px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1 9V4l4-3 4 3v5H6V6H4v3z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1 9V4l4-3 4 3v5H6V6H4v3z'/%3E%3C/svg%3E") center/contain no-repeat}}
 .yk a.op{{background:#F2F2F2}}
-.ykl{{letter-spacing:0;list-style:none;margin:-4px 2px 14px;padding:4px 14px;background:#fff;border:1px solid #E8DDD3;border-radius:10px;font-size:12px}}
-.ykl li{{border-top:1px solid #F1EAE3}} .ykl li:first-child{{border-top:0}}
+.ykl{{letter-spacing:0;list-style:none;margin:-4px 2px 14px;padding:4px 14px;background:#fff;border:1px solid #DDDDDD;border-radius:10px;font-size:12px}}
+.ykl li{{border-top:1px solid #EAEAEA}} .ykl li:first-child{{border-top:0}}
 .ykl a{{display:flex;justify-content:space-between;gap:10px;padding:10px 0;color:#3A302A;text-decoration:none}}
 .ykl .nm{{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}} .ykl .mt{{color:#8C7B6E;white-space:nowrap;font-size:11px}}
 .ykl .src{{font-size:10px;color:#A89A8E;padding:6px 0 2px;text-align:right}}
-.sbox{{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;max-width:420px;margin:0 auto 20px;background:#fff;border:1px solid #D6CCC1;border-radius:14px;padding:12px 14px 10px}}.sb-x{{flex:1;min-width:0}}.sb-t{{font:600 15px/1.4 var(--min);letter-spacing:.06em;margin:0;color:#231E1B}}.sb-w{{font-size:12px;font-weight:700;color:#BF0000;margin:2px 0 0}}.sb-go{{flex:none;background:#BF0000;color:#fff;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.06em;padding:10px 14px;border-radius:99px}}.sb-go span{{margin-left:6px}}.sb-s{{flex-basis:100%;font-size:11px;line-height:1.6;color:#857A70;margin:2px 0 0}}.sb-s span{{color:#A89A8E}}.tnx{{display:block;margin:18px auto 6px;max-width:420px;text-align:center;text-decoration:none;color:#2B2622;background:#fff;border:1px solid #D6CCC1;border-radius:14px;padding:14px 16px 13px}}.tnx small{{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.2em;color:#9C8775;margin-bottom:4px}}.tnx b{{font-family:"Shippori Mincho",serif;font-weight:600;font-size:16px;letter-spacing:.08em}}.tnx b span{{font-family:Jost;margin-left:8px;color:#9C8775}}.tnx i{{display:block;font-style:normal;font-family:"Zen Kaku Gothic New",sans-serif;font-size:12px;color:#857A70;margin-top:4px}}html body a.tnx.buy{{display:block;background:#fff;color:#2B2622;border:1px solid #D6CCC1;font:inherit;letter-spacing:normal;padding:14px 16px 13px;gap:0}}.ilk{{display:block;width:max-content;max-width:100%;margin:4px auto 18px;color:#231E1B;text-decoration:none;font:600 14px/1.5 var(--min);letter-spacing:.08em;border-bottom:1px solid #231E1B;padding-bottom:3px}}.ilk span{{font-family:Jost;margin-left:8px;color:#9C8775}}
+.sbox{{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;max-width:420px;margin:0 auto 20px;background:#fff;border:1px solid #CECECE;border-radius:14px;padding:12px 14px 10px}}.sb-x{{flex:1;min-width:0}}.sb-t{{font:600 15px/1.4 var(--min);letter-spacing:.06em;margin:0;color:#231E1B}}.sb-w{{font-size:12px;font-weight:700;color:#BF0000;margin:2px 0 0}}.sb-go{{flex:none;background:#BF0000;color:#fff;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.06em;padding:10px 14px;border-radius:99px}}.sb-go span{{margin-left:6px}}.sb-s{{flex-basis:100%;font-size:11px;line-height:1.6;color:#857A70;margin:2px 0 0}}.sb-s span{{color:#A89A8E}}.tnx{{display:block;margin:18px auto 6px;max-width:420px;text-align:center;text-decoration:none;color:#2B2622;background:#fff;border:1px solid #CECECE;border-radius:14px;padding:14px 16px 13px}}.tnx small{{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.2em;color:#9C8775;margin-bottom:4px}}.tnx b{{font-family:"Shippori Mincho",serif;font-weight:600;font-size:16px;letter-spacing:.08em}}.tnx b span{{font-family:Jost;margin-left:8px;color:#9C8775}}.tnx i{{display:block;font-style:normal;font-family:"Zen Kaku Gothic New",sans-serif;font-size:12px;color:#857A70;margin-top:4px}}html body a.tnx.buy{{display:block;background:#fff;color:#2B2622;border:1px solid #CECECE;font:inherit;letter-spacing:normal;padding:14px 16px 13px;gap:0}}.ilk{{display:block;width:max-content;max-width:100%;margin:4px auto 18px;color:#231E1B;text-decoration:none;font:600 14px/1.5 var(--min);letter-spacing:.08em;border-bottom:1px solid #231E1B;padding-bottom:3px}}.ilk span{{font-family:Jost;margin-left:8px;color:#9C8775}}
 </style><script src="/assets/night.js?v=3"></script><script src="/assets/menu.js?v=6" defer></script></head>
 <body class="s-{sea}"><div class="wrap">
 <header class="head">

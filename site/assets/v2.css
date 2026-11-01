@@ -37,8 +37,8 @@ html body .wrap>#odekake.blk,html body .wrap>#archive.blk{background:transparent
 .v2tabs .otab{margin:0 0 4px}
 .v2tabs .otab button{color:#9A9A9A}.v2tabs .otab button.on{color:var(--ink)}
 .tgrp{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;margin:2px 0 6px}
-.tgrp span{display:block;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;color:var(--sub);padding:0 0 6px;border-bottom:1px solid #D6CCC1;position:relative}
-.tgrp span:after{content:"";position:absolute;left:50%;bottom:-4px;width:7px;height:7px;background:var(--bg,#fff);border-right:1px solid #D6CCC1;border-bottom:1px solid #D6CCC1;transform:translateX(-50%) rotate(45deg)}
+.tgrp span{display:block;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;color:var(--sub);padding:0 0 6px;border-bottom:1px solid #CECECE;position:relative}
+.tgrp span:after{content:"";position:absolute;left:50%;bottom:-4px;width:7px;height:7px;background:var(--bg,#fff);border-right:1px solid #CECECE;border-bottom:1px solid #CECECE;transform:translateX(-50%) rotate(45deg)}
 .wrap>p.cnt[data-v=odekake]{margin:10px 0 14px}
 /* 「地図で見る」の丸は月と同じ濃い色 */
 .tnbtn{border-color:#E2E2E2!important;box-shadow:none!important;border-radius:8px!important}

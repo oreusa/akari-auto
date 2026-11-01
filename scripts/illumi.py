@@ -165,7 +165,7 @@ TEMPLATE = """<!doctype html>
 {ld}
 <style>
 /* 地図（townnotes/map-illumi.js）も .pf .fr .ar .st などを使うので、ページの見た目はカードや箱の中だけにかける */
-:root{{color-scheme:light;--bg:#FFFFFF;--ink:#2B2622;--sub:#6B6058;--mute:#8C7B6E;--line:#E6DED4;--line2:#D6CCC1;
+:root{{color-scheme:light;--bg:#FFFFFF;--ink:#2B2622;--sub:#6B6058;--mute:#8C7B6E;--line:#DDDDDD;--line2:#CECECE;
   --brown:#A07E66;--brown2:#8C6A55;--free:#5E8A4A;--now:#B5643F;--soon:#71849B;
   --min:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--go:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
   --en:"Jost","Futura","Avenir Next",sans-serif}}
@@ -184,7 +184,7 @@ h1 small{{display:block;font-size:15px;letter-spacing:.2em;margin-top:4px}}
 .lead{{font-size:13px;line-height:2;color:#6B6058;margin:14px 0 0;text-align:center;text-wrap:balance}}
 .tabs{{display:flex;gap:6px;overflow-x:auto;margin:22px -2px 6px;padding:2px;scrollbar-width:none;position:sticky;top:0;background:var(--bg);z-index:2}}
 .tabs::-webkit-scrollbar{{display:none}}
-.tabs button{{flex:none;font:700 12.5px/1 var(--go);letter-spacing:.06em;color:var(--mute);background:#fff;border:1px solid #D9CFC4;border-radius:99px;padding:10px 14px;cursor:pointer}}
+.tabs button{{flex:none;font:700 12.5px/1 var(--go);letter-spacing:.06em;color:var(--mute);background:#fff;border:1px solid #CFCFCF;border-radius:99px;padding:10px 14px;cursor:pointer}}
 .tabs button.on{{background:var(--ink);border-color:var(--ink);color:#fff}}
 .ps h2{{display:flex;align-items:baseline;gap:8px;font:600 17px/1.4 var(--min);letter-spacing:.12em;margin:26px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line2)}}
 .ps h2 .c{{font:400 12px/1 var(--go);color:var(--mute);letter-spacing:.04em}}
@@ -197,7 +197,7 @@ ul{{list-style:none;margin:0;padding:0}}
 .bd{{display:flex;gap:6px;margin-bottom:4px}}
 .cd .st,.cd .fr{{font:700 10.5px/1 var(--go);letter-spacing:.08em;padding:4px 7px;border-radius:2px}}
 .cd .st.now{{background:var(--now);color:#fff}} .cd .st.soon{{background:#fff;color:var(--soon);border:1px solid var(--soon)}}
-.cd .st.tba{{background:#F1ECE6;color:var(--mute)}}
+.cd .st.tba{{background:#ECECEC;color:var(--mute)}}
 .cd .fr{{color:var(--free);border:1px solid #CFE0CC}}
 .dt{{display:block;font-size:12.5px;color:var(--sub)}}
 .nm{{display:block;font:600 15px/1.5 var(--min);letter-spacing:.04em;margin:2px 0}}
@@ -212,7 +212,7 @@ ul{{list-style:none;margin:0;padding:0}}
 .pn{{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}}.pn .pnh{{width:100%;text-align:center;font-size:11px;letter-spacing:.2em;color:var(--mute);margin:0}}
 .pn a{{font-size:12.5px;border:1px solid var(--line2);border-radius:99px;padding:7px 13px;background:#fff}}.pn a[aria-current]{{background:var(--ink);border-color:var(--ink);color:#fff}}
 .sign{{text-align:center;font:400 11px/1 var(--en);letter-spacing:.3em;color:var(--brown);margin:24px 0 0}}
-</style><script src="/assets/night.js?v=3"></script><script src="/assets/menu.js?v=6" defer></script><link rel="stylesheet" href="/assets/sub.css?v=3"><script src="/assets/v2sub.js?v=3" defer></script><script src="/assets/yado.js?v=1" defer></script></head>
+</style><script src="/assets/night.js?v=3"></script><script src="/assets/menu.js?v=6" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=3" defer></script><script src="/assets/yado.js?v=2" defer></script></head>
 <body><div class="wrap">
 <header class="head">
 <img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
