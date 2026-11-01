@@ -53,9 +53,7 @@ def card(e, today):
            f'<span class="dt">{when}</span><span class="nm">{esc(e["name"])}</span>'
            f'<span class="pl">{esc(e["city"])}｜{esc(e["venue"])}</span><span class="ar">→</span></a>'
            f'<a class="mp" href="{esc(gm)}" target="_blank" rel="noopener">地図</a></div>')
-    if e.get("far"):
-        out += (f'<a class="yd" href="{esc(yado(e["pref"]))}" target="_blank" rel="noopener sponsored">'
-                f'遠出になるので、近くの宿をさがす（楽天トラベル）</a>')
+    # 11/1 近くの宿は月と同じ形（丸いボタン→宿3軒が開く）。assets/yado.js が /kanto-yado.json から付ける
     return out + "</li>"
 
 
@@ -124,12 +122,12 @@ def render(items, today, now, pref=None):
         title = f"{pref}のイルミネーション2026-2027｜日程・場所・無料の{n}か所一覧"
         desc = f"{fu(pref)}のイルミネーション{n}か所（無料{fr}か所）を、日程・場所・無料かどうかで一覧にしました。{'・'.join(names)}など。{upd}更新。"
         h1, en = f"{pref}のイルミネーション", f"{YADO[pref].upper()} ILLUMINATION"
-        lead = f"{fu(pref)}のイルミネーション{n}か所を、日程・場所・無料かどうかで並べました。開催中・これからは、ページを開いた日で切り替わります。終わった所は消えます。"
+        lead = f"{fu(pref)}の{n}か所を、日程・場所・<br>無料かどうかでまとめました。"  # 11/1 月と同じ短い2行・まん中
         tabs_html = ""
     else:
         title = "関東イルミネーション2026-2027｜東京・神奈川・埼玉・千葉・茨城・栃木・群馬の日程一覧"
         h1, en = "関東イルミネーション", "KANTO ILLUMINATION"
-        lead = f"東京・神奈川・埼玉・千葉・茨城・栃木・群馬のイルミネーション{n}か所を、都県ごとに日程・場所・無料かどうかで並べました。開催中・これからは、ページを開いた日で切り替わります。終わった所は消えます。"
+        lead = f"東京・神奈川・埼玉・千葉・茨城・栃木・群馬の{n}か所を、<br>都県ごとに日程・場所・無料かどうかでまとめました。"
     desc = (f"関東（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）のイルミネーション2026-2027を{n}か所、"
             f"都県ごとに日程・場所・無料かどうかで一覧に。{'・'.join(names)}など。{now.year}年{now.month}月{now.day}日更新。") if not pref else desc
     ld = {"@context": "https://schema.org", "@type": "ItemList", "name": f"{area}のイルミネーション2026-2027 日程一覧",
@@ -160,14 +158,14 @@ TEMPLATE = """<!doctype html>
 <meta property="og:image" content="https://usagi-life-notes.pages.dev/og-v10.png">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#FAF8F5">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400&display=swap">
 {ld}
 <style>
 /* 地図（townnotes/map-illumi.js）も .pf .fr .ar .st などを使うので、ページの見た目はカードや箱の中だけにかける */
-:root{{color-scheme:light;--bg:#FDFCFA;--ink:#2B2622;--sub:#6B6058;--mute:#8C7B6E;--line:#E6DED4;--line2:#D6CCC1;
+:root{{color-scheme:light;--bg:#FFFFFF;--ink:#2B2622;--sub:#6B6058;--mute:#8C7B6E;--line:#E6DED4;--line2:#D6CCC1;
   --brown:#A07E66;--brown2:#8C6A55;--free:#5E8A4A;--now:#B5643F;--soon:#71849B;
   --min:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--go:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
   --en:"Jost","Futura","Avenir Next",sans-serif}}
@@ -182,8 +180,8 @@ a:focus-visible,button:focus-visible{{outline:1px solid var(--brown);outline-off
 .en{{font:300 10px/1 var(--en);letter-spacing:.5em;color:var(--brown);margin:16px 0 0;padding-left:.5em}}
 h1{{font:600 23px/1.45 var(--min);letter-spacing:.1em;font-feature-settings:"palt";margin:14px 0 6px}}
 h1 small{{display:block;font-size:15px;letter-spacing:.2em;margin-top:4px}}
-.up{{font-size:11.5px;color:var(--mute);margin:0}}
-.lead{{font-size:12.5px;line-height:1.95;color:var(--sub);margin:14px 0 0;text-align:left}}
+.up{{font-size:11.5px;color:var(--mute);margin:8px 0 0}}
+.lead{{font-size:13px;line-height:2;color:#6B6058;margin:14px 0 0;text-align:center;text-wrap:balance}}
 .tabs{{display:flex;gap:6px;overflow-x:auto;margin:22px -2px 6px;padding:2px;scrollbar-width:none;position:sticky;top:0;background:var(--bg);z-index:2}}
 .tabs::-webkit-scrollbar{{display:none}}
 .tabs button{{flex:none;font:700 12.5px/1 var(--go);letter-spacing:.06em;color:var(--mute);background:#fff;border:1px solid #D9CFC4;border-radius:99px;padding:10px 14px;cursor:pointer}}
@@ -214,20 +212,21 @@ ul{{list-style:none;margin:0;padding:0}}
 .pn{{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}}.pn .pnh{{width:100%;text-align:center;font-size:11px;letter-spacing:.2em;color:var(--mute);margin:0}}
 .pn a{{font-size:12.5px;border:1px solid var(--line2);border-radius:99px;padding:7px 13px;background:#fff}}.pn a[aria-current]{{background:var(--ink);border-color:var(--ink);color:#fff}}
 .sign{{text-align:center;font:400 11px/1 var(--en);letter-spacing:.3em;color:var(--brown);margin:24px 0 0}}
-</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=5" defer></script><link rel="stylesheet" href="/assets/sub.css?v=2"><script src="/assets/v2sub.js?v=2" defer></script></head>
+</style><script src="/assets/night.js?v=3"></script><script src="/assets/menu.js?v=5" defer></script><link rel="stylesheet" href="/assets/sub.css?v=3"><script src="/assets/v2sub.js?v=3" defer></script><script src="/assets/yado.js?v=1" defer></script></head>
 <body><div class="wrap">
 <header class="head">
 <img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
 <p class="en">{en}</p>
 <h1>{h1}<small>2026 - 2027 日程一覧</small></h1>
-<p class="up">{upd}</p>
 <p class="lead">{lead}</p>
+<p class="up">{upd}</p>
 </header>
 {tabs}
-<main>{secs}<p class="none" hidden>この都県で、いま見られる物はありません。</p>{faq}<nav class="pn" aria-label="都県ごとのイルミネーション">{pn}</nav></main>
+<main>{secs}<p class="none" hidden>この都県で、いま見られる物はありません。</p>{faq}</main>
 <footer class="foot">
 <p>日程は各公式のお知らせで確かめた物です。名前を押すと公式のページ（無い所は市や観光協会のページ）、「地図」を押すと場所が開きます。「発表前」は2026年の日程がまだ出ていない所で、昨年の期間を書いています。時間や料金は変わることがあるので、行く前にリンク先で確かめてください。</p>
-<p>「近くの宿をさがす」は楽天トラベルの広告リンクです。</p>
+<p>「近くの宿」は楽天トラベルの広告リンクです。</p>
+<nav class="pn" aria-label="都県ごとのイルミネーション">{pn}</nav>
 <a class="back" href="./">関東おでかけリストを見る</a>
 <p class="sign">うさぎ│LIFE NOTES</p>
 </footer>

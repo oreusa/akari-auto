@@ -2,6 +2,7 @@
 遠くのおでかけ（近くの宿がある物）と、楽天トラベルの評価の高い宿3軒を1ページに → site/tomari.html（/tomari）。
 元：site/index.html のおでかけカード、site/illumination.html のカード、site/kanto-yado.json（scripts/kansai_yado.py kanto）。
 page.yml で kansai_yado.py のあとに動かす。失敗しても燈のHPは出す（|| true）。"""
+import urllib.parse
 import hashlib, html, json, os, re, sys
 from datetime import date, datetime, timedelta, timezone
 
@@ -41,6 +42,13 @@ def load_cards(Y):
         cards[k] = dict(t=t, p=html.unescape(grab(r'data-pref="([^"]*)"', a)), s=grab(r'data-s="([^"]*)"', a), e=grab(r'data-e="([^"]*)"', a),
                         d=txt(grab(r'<span class="when">(.*?)</span>', body)), m="", free=grab(r'data-free="(\d)"', a) == "1",
                         href=html.unescape(grab(r'<a class="go" href="([^"]*)"', body)), mp=html.unescape(grab(r'<a class="mp" href="([^"]*)"', body)))
+        # 11/1 月と同じく、カードに「都県｜場所」を出す（場所は地図のリンクの検索の言葉から）
+        q = urllib.parse.parse_qs(urllib.parse.urlparse(cards[k]["mp"]).query).get("query", [""])[0].strip()
+        pf = cards[k]["p"]
+        if q.endswith(" " + pf):
+            q = q[: -len(pf) - 1].strip()
+        if q and q != pf:
+            cards[k]["m"] = f"{pf}｜{q}" if pf else q
     p = os.path.join(SITE, "illumination.html")
     if os.path.exists(p):
         s = open(p, encoding="utf-8").read()
@@ -117,7 +125,7 @@ def main():
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap">
 <style>
-body{{margin:0;background:#FDFCFA;font-family:"Zen Kaku Gothic New",sans-serif;color:#2B2622}}
+body{{margin:0;background:#FFFFFF;font-family:"Zen Kaku Gothic New",sans-serif;color:#2B2622}}
 .wrap{{max-width:440px;margin:0 auto;padding:0 16px 40px}}
 .head{{text-align:center;padding:34px 0 8px}}
 .head img{{width:60px;height:60px;display:block;margin:0 auto;border-radius:50%;background:#fff}}
@@ -157,10 +165,10 @@ h2 small{{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;color:#8C7
 .hp{{grid-column:2;grid-row:1/3;align-self:center;font-family:Jost,sans-serif;font-size:13px;color:#2B2622;white-space:nowrap}}
 .hp:after{{content:" →";color:#9C8775}}
 .none{{display:none;text-align:center;font-size:13px;color:#8C7B6E;padding:40px 0}}
-.note{{font-size:12px;line-height:1.9;color:#7A6E66;background:#F5F1EC;padding:14px 16px;margin-top:30px}}
+.note{{font-size:12px;line-height:1.9;color:#7A6E66;background:#F1F1F1;padding:14px 16px;margin-top:30px}}
 .back{{display:block;width:max-content;margin:28px auto 0;color:#2B2622;text-decoration:none;font-size:13px;letter-spacing:.1em;border-bottom:1px solid #2B2622;padding-bottom:2px}}
 .ft{{text-align:center;font-size:10px;letter-spacing:.04em;color:#8C7B6E;margin-top:30px}}
-</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=5" defer></script><link rel="stylesheet" href="/assets/sub.css?v=2"><script src="/assets/v2sub.js?v=2" defer></script></head><body><div class="wrap">
+</style><script src="/assets/night.js?v=3"></script><script src="/assets/menu.js?v=5" defer></script><link rel="stylesheet" href="/assets/sub.css?v=3"><script src="/assets/v2sub.js?v=3" defer></script></head><body><div class="wrap">
 <header class="head"><img src="/logo-s.png" width="60" height="60" alt="うさぎ│LIFE NOTES"><div class="en">STAY &amp; GO</div>
 <h1>泊まりで行くおでかけ</h1><p class="sub">関東の少し遠いおでかけと、<br>近くの評価の高い宿をまとめました。</p>
 <div class="cnt"><span>おでかけ<b>{n_all}</b>か所</span><span>宿<b>{n_inn}</b>軒</span></div><div class="upd">{upd} 更新</div></header>
