@@ -10,7 +10,7 @@
     document.dispatchEvent(new CustomEvent("usagi-theme",{detail:v}));}
   var css="html.night{background:#fff;filter:invert(.95) hue-rotate(180deg)}"+
     "html.night img,html.night video,html.night picture,html.night svg image,html.night .nofilt,html.night .tnbtn .mm{filter:invert(1) hue-rotate(180deg)}"+
-    "html.night .head img{background:#fff;border-radius:50%}"+
+    "html.night .head img{background:#fff;border-radius:50%;filter:brightness(.72) invert(1) hue-rotate(180deg)}"+
     /* 11/2 オーナー「夜もっと何とかならん」「夜のお洒落感」→ 真っ黒をやめて深い夜空の紺に。白い面も同じ紺になるよう、薄い青を全体に重ねる */
     "html.night body:after{content:'';position:fixed;inset:-50vh 0;background:#E9F0FF;mix-blend-mode:multiply;pointer-events:none;z-index:2147483646}"+
     /* 題名まわりの丸い飾りは、夜は星と月あかりに */
