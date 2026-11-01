@@ -620,7 +620,8 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
     direct = igreel.direct_ready(cfg) and rec.get("ig_direct", {}).get("state") != "failed"
     todo = [s for s in KOMA4_SERVICES if s in cfg["channels"] and open_(s)
             and (s != "instagram" or (k.get("video_url") and k.get("video_ok") and not direct))]  # リールは機械の確認（videocheck.py）に通った動画だけ
-    ig_todo = [e for e in IG_EXTRA if "instagram" in cfg["channels"] and open_(e[0])]
+    reel_day = bool(k.get("video_url") and k.get("video_ok"))  # 11/1 オーナー「リール投稿あるから4枚スライドなしにしようか」→リールの日はスライドを出さない
+    ig_todo = [e for e in IG_EXTRA if "instagram" in cfg["channels"] and open_(e[0]) and not (e[0] == "ig_slides" and reel_day)]
     if not todo and not ig_todo:
         return _replace_text_post(state, day, k) if suffix == "-tabi" else False
     bad = media_problem(k["image_url"], "image") or (k.get("video_ok") and media_problem(k["video_url"], "video"))

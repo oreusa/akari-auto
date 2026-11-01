@@ -179,6 +179,7 @@ with tempfile.TemporaryDirectory() as d:
     ok(len(kc) == 6 and len(reel) == 1 and reel[0][4]["video"] == "https://v/y", f"Instagramのリールがおかしい／二重予約: {kc}")
     # ストーリー：wsrv.nl が見本と違う絵を返したら出さない（10/24 ずれたまま出た）
     lib.save_json(os.path.join(d, "state", "booked.json"), {})
+    lib.save_json(os.path.join(d, "koma4", "2026-10-25.json"), {"slot": "08:00", "episode": 18, "text": "t", "image_url": "https://i/x"})  # 動画なしの日（リールの日はスライドなし）
     n0 = len(kc)
     book.fetch_image = lambda u: Image.new("RGB", (1080, 1920), "black") if "h=1920" in u else Image.new("RGB", (724, 2172), "white")
     book.run(datetime(2026, 10, 25, 7, 40, tzinfo=lib.JST))
