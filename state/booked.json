@@ -4266,5 +4266,147 @@
       ],
       "topic": "暮らし"
     }
+  },
+  "2026-11-02 4コマ": {
+    "ig_media": {
+      "slides": [
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU&cx=7&cy=94&cw=709&ch=472&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU&cx=7&cy=644&cw=709&ch=415&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU&cx=7&cy=1174&cw=709&ch=400&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU&cx=7&cy=1640&cw=709&ch=512&output=jpg&q=92"
+      ],
+      "stories": [
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU&cx=7&cy=94&cw=709&ch=965&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU&cx=7&cy=1174&cw=709&ch=978&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+      ],
+      "how": "見つけた",
+      "boxes": [
+        [
+          7,
+          94,
+          709,
+          472
+        ],
+        [
+          7,
+          644,
+          709,
+          415
+        ],
+        [
+          7,
+          1174,
+          709,
+          400
+        ],
+        [
+          7,
+          1640,
+          709,
+          512
+        ]
+      ],
+      "src": "https://drive.google.com/uc?export=download&id=17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU",
+      "v": 2,
+      "story_diff": [
+        0.9,
+        0.8
+      ],
+      "story_ok": [
+        true,
+        true
+      ]
+    },
+    "twitter": {
+      "tries": 1,
+      "id": "6ae7ba7c01fa08ffbe6d8b06",
+      "kind": "4コマ",
+      "at": "08:00",
+      "texts": [
+        "【11/23まで　湯西川温泉｜川に竹の灯り、見るのは無料🏮】\n\n✦ 毎日17:00〜21:00\n✦ 湯平橋〜湯前橋の川沿い\n\n川の灯りと温泉、どっちを先にしますか。\n\nうさぎちゃんのおでかけ4コマ 第26話「川の上の竹あかり」🌙",
+        "湯西川温泉 平家あかりのページです（11/1時点）\nhttps://www.nikko-kankou.org/event/1672\n\n関東のおでかけ115件、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=x0800"
+      ],
+      "topic": "栃木",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU",
+        "video": null,
+        "alt": "4コマ漫画 第26話"
+      },
+      "svc": "twitter"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "6ae7ba7d48ce42a6b42cd6c7",
+      "kind": "4コマ",
+      "at": "08:00",
+      "texts": [
+        "【11/23まで　湯西川温泉｜川に竹の灯り、見るのは無料🏮】\n\n✦ 毎日17:00〜21:00\n✦ 湯平橋〜湯前橋の川沿い\n\n川の灯りと温泉、どっちを先にしますか。\n\nうさぎちゃんのおでかけ4コマ 第26話「川の上の竹あかり」🌙",
+        "湯西川温泉 平家あかりのページです（11/1時点）\nhttps://www.nikko-kankou.org/event/1672\n\n関東のおでかけ115件、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=t0800"
+      ],
+      "topic": "栃木",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU",
+        "video": null,
+        "alt": "4コマ漫画 第26話"
+      },
+      "svc": "threads"
+    },
+    "bgm_video": {
+      "src": "https://drive.google.com/uc?export=download&id=1r5h6OYcP-Zvk6ORzcNQJknb-9IIuyZRn",
+      "url": "https://45ff0390.akari-reels.pages.dev/2026-11-02-bgm-26.mp4",
+      "error": null
+    },
+    "instagram": {
+      "tries": 1,
+      "id": "6ae7baa0779ee9f13cbaed00",
+      "kind": "4コマ",
+      "at": "08:00",
+      "texts": [
+        "【11/23まで　湯西川温泉｜川に竹の灯り、見るのは無料🏮】\n\n✦ 毎日17:00〜21:00\n✦ 湯平橋〜湯前橋の川沿い\n\n川の灯りと温泉、どっちを先にしますか。\n\nうさぎちゃんのおでかけ4コマ 第26話「川の上の竹あかり」🌙\n\nくわしい場所と公式ページは、プロフィールのリンク「関東おでかけリスト」からどうぞ。\n\n#湯西川温泉 #平家あかり #群馬おでかけ #関東おでかけ #温泉"
+      ],
+      "topic": "栃木",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU",
+        "video": "https://45ff0390.akari-reels.pages.dev/2026-11-02-bgm-26.mp4",
+        "alt": "4コマ漫画 第26話"
+      },
+      "svc": "instagram"
+    },
+    "ig_story1": {
+      "tries": 1,
+      "id": "6ae7baa1902c3fb1debe599e",
+      "kind": "4コマ",
+      "at": "08:05",
+      "texts": [
+        "【11/23まで　湯西川温泉｜川に竹の灯り、見るのは無料🏮】\n\n✦ 毎日17:00〜21:00\n✦ 湯平橋〜湯前橋の川沿い\n\n川の灯りと温泉、どっちを先にしますか。\n\nうさぎちゃんのおでかけ4コマ 第26話「川の上の竹あかり」🌙"
+      ],
+      "topic": "栃木",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU&cx=7&cy=94&cw=709&ch=965&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+        ],
+        "ig_type": "story",
+        "alt": "4コマ漫画 第26話"
+      },
+      "svc": "instagram"
+    },
+    "ig_story2": {
+      "tries": 1,
+      "id": "6ae7baa1902c3fb1debe59c8",
+      "kind": "4コマ",
+      "at": "08:15",
+      "texts": [
+        "【11/23まで　湯西川温泉｜川に竹の灯り、見るのは無料🏮】\n\n✦ 毎日17:00〜21:00\n✦ 湯平橋〜湯前橋の川沿い\n\n川の灯りと温泉、どっちを先にしますか。\n\nうさぎちゃんのおでかけ4コマ 第26話「川の上の竹あかり」🌙"
+      ],
+      "topic": "栃木",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D17R_T4jPsHOAXwzTQuZ2gQneWVa_95aMU&cx=7&cy=1174&cw=709&ch=978&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+        ],
+        "ig_type": "story",
+        "alt": "4コマ漫画 第26話"
+      },
+      "svc": "instagram"
+    }
   }
 }
