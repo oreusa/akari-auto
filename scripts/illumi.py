@@ -212,6 +212,16 @@ ul{{list-style:none;margin:0;padding:0}}
 .pn{{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}}.pn .pnh{{width:100%;text-align:center;font-size:11px;letter-spacing:.2em;color:var(--mute);margin:0}}
 .pn a{{font-size:12.5px;border:1px solid var(--line2);border-radius:99px;padding:7px 13px;background:#fff}}.pn a[aria-current]{{background:var(--ink);border-color:var(--ink);color:#fff}}
 .sign{{text-align:center;font:400 11px/1 var(--en);letter-spacing:.3em;color:var(--brown);margin:24px 0 0}}
+/* 11/1 オーナー「昔のままのやつも確認しろ」→ カードを月と同じ形に（白い角丸・左に都県の色の線・丸い札・ゴシックの題名・右下の丸い矢印） */
+html body .cw .cd{{border:1px solid #E2E2E2;border-radius:8px;box-shadow:inset 4px 0 0 var(--pc,#8C7B6E);padding:14px 16px 52px 18px}}
+html body .cw .cd .bd{{flex-wrap:wrap;gap:6px;margin-bottom:8px}}
+html body .cw .cd .st,html body .cw .cd .fr{{border:0;border-radius:99px;padding:4px 10px;font:700 11px/1.2 var(--go);letter-spacing:.04em}}
+html body .cw .cd .st.now{{background:var(--pc);color:#fff}}html body .cw .cd .st.soon{{background:color-mix(in srgb,var(--pc) 12%,#fff);color:color-mix(in srgb,var(--pc) 80%,#000)}}html body .cw .cd .st.tba{{background:#F1F2F4;color:#6B6058}}
+html body .cw .cd .fr{{background:#fff;box-shadow:inset 0 0 0 1px #CFCFCF;color:#3A3A3A}}
+html body .cw .cd .dt{{font-size:13px;font-weight:500;color:#6B6058}}
+html body .cw .cd .nm{{font:700 16.5px/1.5 var(--go);letter-spacing:0;color:#1C1C1C;margin:4px 0 6px}}
+html body .cw .cd .ar{{right:12px;top:auto;bottom:10px;transform:none;width:38px;height:38px;border-radius:50%;background:var(--pc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:300}}
+html body .cw .mp{{left:18px;bottom:21px;padding:0;border-bottom-color:#BFBFBF}}html body .cw>.yk{{left:72px;bottom:21px}}html body .cw>.yk a{{padding:0;border-bottom-color:#BFBFBF}}
 </style><script src="/assets/night.js?v=3"></script><script src="/assets/menu.js?v=6" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=3" defer></script><script src="/assets/yado.js?v=2" defer></script></head>
 <body><div class="wrap">
 <header class="head">
