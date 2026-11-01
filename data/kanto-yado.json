@@ -833,40 +833,6 @@
       }
     ]
   },
-  "第一回前橋国際芸術祭2026": {
-    "v": 2,
-    "t": "2026-10-31",
-    "ll": [
-      36.39071,
-      139.07139
-    ],
-    "h": [
-      {
-        "n": "SHIROIYA HOTEL(白井屋ホテル)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182188",
-        "km": 0.1,
-        "r": 4.62,
-        "rc": 53,
-        "min": 22283
-      },
-      {
-        "n": "天然温泉 妙義の湯 ドーミーイン前橋(ドーミーイン・御宿野乃 ホテルズグループ)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D172226",
-        "km": 0.6,
-        "r": 4.51,
-        "rc": 1517,
-        "min": 6210
-      },
-      {
-        "n": "ヴィラテラス前橋",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D192779",
-        "km": 1.9,
-        "r": 4.45,
-        "rc": 11,
-        "min": 6800
-      }
-    ]
-  },
   "ムーミン谷のクリスマス2026": {
     "v": 2,
     "t": "2026-10-31",
