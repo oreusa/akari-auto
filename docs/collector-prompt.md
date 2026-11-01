@@ -36,7 +36,7 @@
 4. 保存：data/page-spots.json・data/page-goods.json・notes/collector-log.md の3つを、mcp__github__push_files で1回にまとめて branch=main に保存する（commit「集め係：T」。1回にまとめるのは、保存のたびにGitHubの自動チェックが動いて無料の分数を使うため。10/26 オーナー「無駄はぶいてね」）。保存の直前に get_file_contents で3つを読み直し、今のファイルの items に足す（前の物を消さない。消すのは終わった物・開けない物・同じ物だけ）。JSON は indent 2、about はそのまま。
 5. （保存する collector-log の行に書くこと）公式ページなのに機械からは開けなかった物は、行の「メモ：」に「開けない：URL｜何を見たいか」の形で書く（5件まで。夜の回がGPTの汐に渡し、翌朝ブラウザで開いて写してもらう）。
 6. notes/collector-log.md は、見出しの下の一番上に1行足す：「- T（曜）：おでかけ+◯（東京◯・神奈川◯…）、お店+◯、商品+◯、消した物◯。残りの×：…」。
-6-2. log/T.md（今日の予約係の記録）を読み、「予約×」「中止」のあと同じ時刻・同じ先の「予約OK」が無い行があれば、docs/handoff.md「予約×の直し方」のとおり schedule/T.json を直して保存し、book.yml を動かして予約OKを確かめる（10/28 オーナー「エラーの情報はきてた」）。直せない時だけ mcp__hearthbot__message_thread（thread_id "cmsg_01Cb1bws8cre3tNtasLshGkCDjDi1qeUfAU2s9MMvQZUwZ"）で1回知らせる。
+6-2. log/T.md（今日の予約係の記録）を読み、「予約×」「中止」のあと同じ時刻・同じ先の「予約OK」が無い行があれば、docs/handoff.md「予約×の直し方」のとおり schedule/T.json を直して保存し、book.yml を動かして予約OKを確かめる（10/28 オーナー「エラーの情報はきてた」）。直せない時だけ mcp__hearthbot__message_thread（thread_id "cmsg_01Cb1bws8cre3tNtasLshGkC71VoszxEiwYvkZqsTrctiM"）で1回知らせる。
 7. 最後に1行だけ書く：「集め係 T：おでかけ+◯・お店+◯・商品+◯、残りの×◯件」。
 8. mcp__hearthbot__set_thread_resolved（resolved=true）があれば呼んで、このスレッドを閉じる（10/26 オーナー「スレ無駄なのは閉じといてね。話せる基本スレがあればいい」）。オーナーへのメッセージは送らない。
 
