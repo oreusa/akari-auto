@@ -698,6 +698,7 @@ def spot(e):
     pref = _pref(e)
     color = PREF_COLOR.get(pref, "#A07E66")
     when, name = _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))
+    when = re.sub(r"^(?:今日|明日|あす)\s*", "", when or "")  # 11/1 月：投稿した日の「あす」がHPに残って、11/1 に「あす10/28」と出ていた
     when = _wd(when, e["year"]) if when else _wd(e["day"], e["year"]) + "調べ"
     if e.get("name"):
         name = e["name"]
@@ -824,6 +825,7 @@ def pick(e):
 
 def sale(e):
     when, name = _split_title(e["title"].replace("AIが比べた", "", 1).strip("、 "))
+    when = re.sub(r"^(?:今日|明日|あす)\s*", "", when or "")  # 11/1 月：投稿した日の「あす」がHPに残って、11/1 に「あす10/28」と出ていた
     when = _wd(when, e["year"]) if when else _wd(e["day"], e["year"]) + "調べ"
     btn = f'<a class="buy" href="{esc(e["url"])}" rel="sponsored noopener">楽天で見る{ARROW}</a>'
     return (f'<article class="card cmp"><div class="d"><span class="when">{esc(when)}</span></div>'
