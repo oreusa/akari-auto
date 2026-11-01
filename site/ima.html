@@ -29,7 +29,15 @@ h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-heigh
 .now i{display:block;font-style:normal;font-size:10.5px;color:var(--sub);margin-top:2px;min-height:15px}
 .msg{font-size:12px;line-height:1.8;color:#6B6058;text-align:center;margin:10px 0 0;min-height:0}
 .msg:empty{display:none}
-.pk .gm{text-align:left;background:#F7F7F8;border-radius:10px;padding:10px 12px;margin:10px 0 0;color:#2B2622}
+.pk .gm{text-align:left;background:#F7F7F8;border-radius:12px;padding:14px 14px 12px;margin:10px 0 0;color:#2B2622;font-size:13px;line-height:1.6}
+.pk .gm .gh{display:block;font-size:14.5px;font-weight:700}
+.pk .gm .gs{display:block;color:#6B6058;margin-top:2px}
+.pk .gm .gt{display:block;font-size:12px;font-weight:700;color:#6B6058;margin-top:12px;letter-spacing:.04em}
+.pk .gm ol{margin:6px 0 0;padding:0 0 0 1.4em}
+.pk .gm li{margin:0 0 8px;line-height:1.9}
+.pk .gm li b{font-weight:700;background:#fff;border:1px solid #E2E2E2;border-radius:6px;padding:1px 6px;white-space:nowrap}
+.pk .gm li i{font-style:normal;color:#9A9A9A;margin:0 3px}
+.pk .gm .gf{display:block;margin-top:4px;font-weight:700}
 .rd{position:relative;margin:14px 0 0;width:100%;aspect-ratio:1;border-radius:14px;overflow:hidden;border:1px solid #E2E2E2}
 .rd svg{display:block;width:100%;height:100%}
 .rd .rng{fill:none;stroke:#2B2622;stroke-width:1;stroke-dasharray:3 4;opacity:.45}
@@ -173,11 +181,12 @@ function gps(){if(!navigator.geolocation){msg("この端末では場所がわか
     msg(far?"関東から少し離れた場所にいるようです。時間は目安としてご覧ください。":"いまいる場所から近い順に並べました（場所はこの端末の中だけで使い、送りません）。");
     setOrg({g:1,n:"いまいる場所",p:near[1],la:la,lo:lo},false);},
   function(e){var ios=/iPhone|iPad/.test(navigator.userAgent),app=/Instagram|FBAN|FBAV|Line\/|Threads|Barcelona|Twitter/i.test(navigator.userAgent);
-    msg("");pkOpen(true);document.getElementById("gmsg").textContent=(e&&e.code===1?("この端末で、このページの位置情報が「許可しない」になっています。一度断ると、ブラウザは次から聞いてくれません。"+
-      (app?"右上のメニューから「ブラウザで開く」を選ぶと、もう一度聞かれます。":
-       ios?"iPhoneは「設定」→「プライバシーとセキュリティ」→「位置情報サービス」→「Safariのサイト」を「使用中のみ」に。またはアドレスバーの「ぁあ」→「Webサイトの設定」→「位置情報」を「確認」に。":
-       "アドレスバーの左の鍵のマークから「位置情報」を許可にしてください。")+"下の駅を選んでも使えます。")
-      :"場所を取れませんでした（電波や設定のため）。下の駅を選んでも使えます。");},{enableHighAccuracy:false,timeout:10000,maximumAge:300000});}
+    msg("");pkOpen(true);var G=document.getElementById("gmsg");
+    G.innerHTML=(e&&e.code===1?'<b class="gh">位置情報が「許可しない」になっています</b><span class="gs">一度断ると、次からは聞かれません。</span>'+
+      (app?'<b class="gt">もう一度使うには</b><ol><li>右上のメニュー<i>›</i><b>ブラウザで開く</b></li></ol>':
+       ios?'<b class="gt">もう一度使うには（どちらか1つ）</b><ol><li>アドレスバーの<b>ぁあ</b><i>›</i><b>Webサイトの設定</b><i>›</i><b>位置情報</b><i>›</i><b>許可</b></li><li><b>設定</b>アプリ<i>›</i><b>プライバシーとセキュリティ</b><i>›</i><b>位置情報サービス</b><i>›</i><b>Safariのサイト</b><i>›</i><b>使用中のみ</b></li></ol>':
+       '<b class="gt">もう一度使うには</b><ol><li>アドレスバーの<b>鍵のマーク</b><i>›</i><b>位置情報</b><i>›</i><b>許可</b></li></ol>')+'<span class="gf">下の駅を選べば、位置情報なしでも使えます。</span>'
+      :'<b class="gh">場所を取れませんでした</b><span class="gs">電波や設定のためです。下の駅を選べば使えます。</span>');},{enableHighAccuracy:false,timeout:10000,maximumAge:300000});}
 function clock(){var n=jst();document.getElementById("nT").textContent=n.getUTCHours()+":"+String(n.getUTCMinutes()).padStart(2,"0");
   document.getElementById("nD").textContent=(n.getUTCMonth()+1)+"/"+n.getUTCDate()+"（"+WD[n.getUTCDay()]+"）";
   if(!O)return;var s=sunset(O.la,O.lo),left=Math.round((s-Date.now())/6e4);
