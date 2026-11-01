@@ -380,6 +380,8 @@ def goods_store(now):
     売り切れ・値段は作るたびに楽天で確かめ直すので、売っていない物は自動で消える。"""
     out = []
     for it in (load_json(path("data", "page-goods.json"), {}) or {}).get("items", []):
+        if it.get("asin") and not it.get("url"):  # 11/1 Amazon も置く（凪が確かめた物だけ）
+            it = dict(it, url=f"https://www.amazon.co.jp/dp/{it['asin']}")
         if not str(it.get("url", "")).startswith("https://"):
             continue
         if it.get("until") and it["until"] < now.date().isoformat():
@@ -409,16 +411,42 @@ def _room_picks(now, since, skip=(), limit=90):
         data = load_json(f, {}) or {}
         days.append((d, data.get("room", []) + data.get("page_goods", [])))  # page_goods＝投稿しないがHPに置く物（夜の回が選ぶ）
     store = sorted(goods_store(now), key=lambda it: it.get("added", ""), reverse=True)
+    # 11/1 オーナー「継続してほしいちゃんと」：凪が毎晩○にしたAmazonの商品は、人の手を待たずにHPへ（7日以内の確認だけ）
+    have = {it.get("asin") for it in store if it.get("asin")}
+    amz, names = [], set()
+    from lib import amazon_checked
+    for asin, a in sorted((amazon_checked() or {}).items(), key=lambda kv: str(kv[1].get("checkedAt", "")), reverse=True):
+        nm, spec = str(a.get("name", "")), str(a.get("specs", ""))
+        if asin in have or a.get("ok") is False or nm[:20] in names:  # 色違いは1つだけ
+            continue
+        names.add(nm[:20])
+        try:
+            why = f"選んだ理由：Amazonのレビュー{int(a.get('reviews') or 0):,}件で、評価は{float(a.get('stars') or 0)}でした。"
+        except (TypeError, ValueError):
+            continue
+        amz.append({"asin": asin, "url": f"https://www.amazon.co.jp/dp/{asin}", "expect": "",
+                      "comment": why + ("\n" + spec.replace("／", "、") if spec else ""), "added": str(a.get("checkedAt", ""))[:10]})
+    days.insert(0, (now.date(), amz))  # Amazonは先に読む（ROOM台本で90件が埋まって出なくならないように）
     days.append((now.date(), store))
     for d, its in days:
-        if its is store:
+        if its is store or its is amz:
             d = None
         for it in its:
             url = it.get("url", "")
             if not url or url in seen or url in skip:  # 上の「AIが比べた」と同じ物は出さない
                 continue
             seen.add(url)
-            r = _resolve({"type": "ichiba", "url": url, "expect": it.get("expect", "")}, [it.get("comment", "")])
+            is_amz = bool(it.get("asin"))
+            if is_amz:  # 11/1 オーナー「Amazonも、hpは置けるんじゃないの？」：凪が7日以内に確かめた物だけ
+                if not ((load_json(path("config.json"), {}) or {}).get("page") or {}).get("amazon"):
+                    continue
+                from lib import amazon_link
+                try:
+                    r = amazon_link(it["asin"], it.get("expect", ""), now=now, max_age_h=24 * 7)
+                except Exception as e:
+                    r = {"ok": False, "why": str(e)[:80]}
+            else:
+                r = _resolve({"type": "ichiba", "url": url, "expect": it.get("expect", "")}, [it.get("comment", "")])
             if not r.get("ok"):
                 continue
             lines = [ln.strip() for ln in (it.get("comment") or "").split("\n") if ln.strip() and not ln.startswith("#")]
@@ -426,7 +454,7 @@ def _room_picks(now, since, skip=(), limit=90):
             out.append({"day": f"{dd.month}/{dd.day}", "name": _short(r.get("name")) or it.get("expect", ""),
                         "expect": it.get("expect", ""), "price": r.get("price"), "count": r.get("reviewCount"),
                         "avg": r.get("reviewAverage"), "lines": lines[:3], "url": r["link"],
-                        "sample": r.get("sample", False), "image": r.get("image", "")})
+                        "sample": r.get("sample", False), "image": r.get("image", ""), "amazon": is_amz})
             cs = cats(now)
             out[-1]["cat"] = (it["cat"] if it.get("cat") in {k for k, *_ in cs}
                               else _cat(" ".join([out[-1]["name"], out[-1]["expect"]] + lines[:1]), cs))
@@ -743,7 +771,7 @@ def pick(e):
         meta.append(f'<span class="av">★ {esc(str(e["avg"]))}</span>')
     if e.get("count"):
         meta.append(f'<span class="ct">レビュー {int(e["count"]):,}件</span>')
-    if e.get("price"):
+    if isinstance(e.get("price"), (int, float)) and e["price"]:
         meta.append(f'<span class="yen">税込 {int(e["price"]):,}円</span>')
     lis = "".join(f'<p class="why{" but" if i else ""}">{esc(ln)}</p>' for i, ln in enumerate(e["lines"][:3]))
     sample = '<p class="smp">見本：本番は楽天で販売中を確かめたPRリンクになります</p>' if e.get("sample") else ""
@@ -751,7 +779,7 @@ def pick(e):
             f'<div class="cho">{_img(e)}<div class="tx"><span class="lb">選んだのは</span><b>{phr(e["name"])}</b>'
             f'<div class="meta">{"".join(meta)}</div></div></div>{lis}'
             f'<div class="ft2">'
-            f'<a class="buy" href="{esc(e["url"])}" rel="sponsored noopener">楽天で見る{ARROW}</a></div>{sample}</article>')
+            f'<a class="buy" href="{esc(e["url"])}" rel="sponsored noopener">{go_label(e)}{ARROW}</a></div>{sample}</article>')
 
 
 def sale(e):
@@ -1036,7 +1064,7 @@ def render(items, ended, now, cfg):
         n_pr=sum(len(v) for v in goods.values()),
         pr_note=("このページには楽天アフィリエイトとAmazonアソシエイトの広告（PR）があります。<br>"
                  "Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。"
-                 if any(e.get("amazon") for e in items["pr"]) else
+                 if any(e.get("amazon") for e in items["pr"] + items.get("pick", [])) else
                  "このページにはアフィリエイト広告（PR）があります" if items.get("a8") else
                  "このページには楽天アフィリエイトの広告（PR）があります"),
         updated=f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M}")

@@ -636,7 +636,7 @@ def amazon_checked(path=None):
         return {}
 
 
-def amazon_link(asin, expect="", now=None, items=None):
+def amazon_link(asin, expect="", now=None, items=None, max_age_h=None):
     """凪が確かめた Amazon の商品だけ合格にして、うちのタグ付きリンクを返す。"""
     asin = str(asin or "").strip().upper()
     if not re.match(r"^[A-Z0-9]{10}$", asin):
@@ -651,8 +651,9 @@ def amazon_link(asin, expect="", now=None, items=None):
             at = at.replace(tzinfo=JST)
     except ValueError:
         return {"ok": False, "why": "Amazon確認帳の確認時刻が読めない"}
-    if now - at > timedelta(hours=AMAZON_MAX_AGE_H):
-        return {"ok": False, "why": f"Amazon確認帳の確認が古い（{AMAZON_MAX_AGE_H}時間より前）"}
+    age = max_age_h or AMAZON_MAX_AGE_H  # HPの置き場は7日まで（投稿は36時間）
+    if now - at > timedelta(hours=age):
+        return {"ok": False, "why": f"Amazon確認帳の確認が古い（{age}時間より前）"}
     if it.get("ok") is False:
         return {"ok": False, "why": "凪の確認で×（ページ切れ・在庫なしなど）"}
     name = str(it.get("name", ""))
