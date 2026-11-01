@@ -10,13 +10,28 @@
     document.dispatchEvent(new CustomEvent("usagi-theme",{detail:v}));}
   var css="html.night{background:#fff;filter:invert(.95) hue-rotate(180deg)}"+
     "html.night img,html.night video,html.night picture,html.night svg image,html.night .nofilt,html.night .tnbtn .mm{filter:invert(1) hue-rotate(180deg)}"+
-    "html.night .head img{background:#fff;border-radius:50%;filter:brightness(.72) invert(1) hue-rotate(180deg)}"+
+    /* 11/2 オーナー「中のデザインだけ光らせたら？」→ 夜は丸い台をなくし、ロゴの線だけを光らせる */
+    "html.night .head img{background:none;filter:brightness(1.8) saturate(.95) drop-shadow(0 0 3px rgba(255,214,170,.75)) drop-shadow(0 0 10px rgba(255,190,140,.35)) invert(1) hue-rotate(180deg)}"+
     /* 11/2 オーナー「夜もっと何とかならん」「夜のお洒落感」→ 真っ黒をやめて深い夜空の紺に。白い面も同じ紺になるよう、薄い青を全体に重ねる */
     "html.night body:after{content:'';position:fixed;inset:-50vh 0;background:#E9F0FF;mix-blend-mode:multiply;pointer-events:none;z-index:2147483646}"+
     /* 題名まわりの丸い飾りは、夜は星と月あかりに */
     "html.night .head{background:radial-gradient(1.2px 1.2px at 12% 18%,#000 98%,transparent),radial-gradient(1px 1px at 27% 42%,#000 98%,transparent),radial-gradient(1.4px 1.4px at 44% 9%,#000 98%,transparent),radial-gradient(1px 1px at 63% 31%,#000 98%,transparent),radial-gradient(1.2px 1.2px at 78% 14%,#000 98%,transparent),radial-gradient(1px 1px at 88% 46%,#000 98%,transparent),radial-gradient(1px 1px at 8% 58%,#000 98%,transparent),radial-gradient(1.3px 1.3px at 92% 72%,#000 98%,transparent),radial-gradient(1px 1px at 35% 70%,#000 98%,transparent)!important}"+
     /* いまから行ける の地図：夜は暗い地図に */
-    "html.night .rd svg{filter:brightness(.42) saturate(1.1) invert(1) hue-rotate(180deg)}"+
+    "html.night .rd svg{filter:invert(1) hue-rotate(180deg)}"+
+    /* 11/2 オーナー「他のページまだ白モヤ」→ いまから行ける の地図も入口と同じ夜の地図に（白っぽい灰色をやめる） */
+    "html.night .rd svg>rect{fill:#141A28}"+
+    /* 地図で見る（全画面の地図）：夜は暗すぎたので、少し明るく・色をはっきり */
+    "html.night .tn svg.m{filter:brightness(.74) saturate(1.5)}"+
+    "html.night #mpL path{fill-opacity:.42;stroke:rgba(255,255,255,.1)}"+
+    "html.night #mpL path[fill=none]{stroke:rgba(255,255,255,.35)}"+
+    "html.night .rd .mn{fill:#8F9AB3}"+
+    "html.night .rd .rng{stroke:#C9D2E6;opacity:.5}"+
+    "html.night .rd .rgl{fill:#E6EAF2;stroke:#141A28}"+
+    "html.night .rd .pt{stroke:#141A28}"+
+    "html.night #mpMe circle:first-child{fill:#fff;opacity:.15}html.night #mpMe circle+circle{fill:#F3F1EC;stroke:#141A28}html.night #mpMe rect{fill:#F3F1EC}html.night #mpMe text{fill:#141A28}"+
+    /* 飾りの丸（入口の PAGE 01/02 の後ろ、燈のイルミの題名の後ろ）は夜は出さない */
+    "html.night a.ls:before{display:none}"+
+    "html.night header.head:before,html.night header.head:after{display:none}"+
     "html.night .blob{display:none}"+
     /* MENU の四角は、夜はベージュにならないよう月あかりの銀に */
     "html.night #v2bar button.mn{background:#121826}"+
@@ -52,7 +67,10 @@
         if(!pth.isPointInFill||!pth.isPointInFill(pt))continue;got++;var q=r2();
         out+='<circle cx="'+pt.x.toFixed(1)+'" cy="'+pt.y.toFixed(1)+'" r="'+(q<.1?2.2:q<.4?1.5:1).toFixed(1)+'"'+(q>.8?' class="t"':q>.62?' class="u"':'')+' opacity="'+(.55+r2()*.45).toFixed(2)+'"/>';}});
     g.innerHTML=out;var lb=m.querySelector(".lb");m.insertBefore(g,lb);}
-  function go(){if(d.classList.contains("night"))deco();}
+  /* 燈のロゴは白い台つきの絵なので、夜は台のない絵に替える */
+  function logo(){var n=d.classList.contains("night"),im=document.querySelectorAll('.head img[src*="logo-s"]');
+    for(var i=0;i<im.length;i++){var s0=im[i].getAttribute("src");im[i].setAttribute("src",n?s0.replace(/logo-s(-night)?\.png/,"logo-s-night.png"):s0.replace("logo-s-night.png","logo-s.png"));}}
+  function go(){logo();if(d.classList.contains("night"))deco();}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();
   document.addEventListener("usagi-theme",function(){if(document.readyState!=="loading")go();});
   window.usagiTheme={get:function(){return d.classList.contains("night")?"night":"day"},set:function(v){set(v,true)}};
