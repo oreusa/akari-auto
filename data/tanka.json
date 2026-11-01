@@ -1,0 +1,188 @@
+{
+  "at": "2026-11-01 12:07",
+  "cats": [
+    {
+      "key": "water",
+      "title": "水（ミネラルウォーター）",
+      "unit": "1L",
+      "seen": 120,
+      "read": 61,
+      "ok": 10,
+      "avg": 152.4,
+      "top": [
+        {
+          "name": "水 ミネラルウォーター 熊野古道水 2L 12本 送料無料 天然水 軟水『送料無料（一部地域…",
+          "price": 1918,
+          "per": 79.9,
+          "amt": "2000ml×12本",
+          "rc": 12331,
+          "av": 4.58,
+          "shop": "よろずやマルシェ",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00prcko.m2lhf20c.g00prcko.m2lhg0d6/"
+        },
+        {
+          "name": "国産 ミネラルウォーター 自然の恵み 天然水 2L×12本 水 2リットル",
+          "price": 1948,
+          "per": 81.2,
+          "amt": "2000ml×12本",
+          "rc": 11688,
+          "av": 4.65,
+          "shop": "ココデカウ",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00qq8to.m2lhff7f.g00qq8to.m2lhg28f/"
+        },
+        {
+          "name": "365日最短当日出荷！ 水想い ナチュラルミネラルウォーター 2L×9本 ラベルレス 水 2…",
+          "price": 1480,
+          "per": 82.2,
+          "amt": "2000ml×9本",
+          "rc": 8537,
+          "av": 4.78,
+          "shop": "水想い 公式ストア",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00t98eo.m2lhf348.g00t98eo.m2lhg292/"
+        },
+        {
+          "name": "水 2リットル ラベルレス 12本 送料無料 ラベルレス ミネラルウォーター 2l 天然水 …",
+          "price": 2160,
+          "per": 90.0,
+          "amt": "2000ml×12本",
+          "rc": 1391,
+          "av": 4.57,
+          "shop": "快適ホームライフ",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00rqlbo.m2lhfc93.g00rqlbo.m2lhg098/"
+        },
+        {
+          "name": "公式 水 500ml 48本 送料無料 天然水 ミネラルウォーター ラベルレス 48本 富士…",
+          "price": 2480,
+          "per": 103.3,
+          "amt": "500ml×48本",
+          "rc": 6322,
+          "av": 4.63,
+          "shop": "アイリスオーヤマ公式 楽天市場店",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00t3zto.m2lhfc3f.g00t3zto.m2lhg012/"
+        }
+      ]
+    },
+    {
+      "key": "soda",
+      "title": "炭酸水",
+      "unit": "1L",
+      "seen": 120,
+      "read": 66,
+      "ok": 26,
+      "avg": 157.4,
+      "top": [
+        {
+          "name": "水 ミネラルウォーター 熊野古道水 2L 12本 送料無料 天然水 軟水『送料無料（一部地域…",
+          "price": 1918,
+          "per": 79.9,
+          "amt": "2000ml×12本",
+          "rc": 12331,
+          "av": 4.58,
+          "shop": "よろずやマルシェ",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00prcko.m2lhf20c.g00prcko.m2lhg0d6/"
+        },
+        {
+          "name": "国産 ミネラルウォーター 自然の恵み 天然水 2L×12本 水 2リットル",
+          "price": 1948,
+          "per": 81.2,
+          "amt": "2000ml×12本",
+          "rc": 11688,
+          "av": 4.65,
+          "shop": "ココデカウ",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00qq8to.m2lhff7f.g00qq8to.m2lhg28f/"
+        },
+        {
+          "name": "365日最短当日出荷！ 水想い ナチュラルミネラルウォーター 2L×9本 ラベルレス 水 2…",
+          "price": 1480,
+          "per": 82.2,
+          "amt": "2000ml×9本",
+          "rc": 8537,
+          "av": 4.78,
+          "shop": "水想い 公式ストア",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00t98eo.m2lhf348.g00t98eo.m2lhg292/"
+        },
+        {
+          "name": "水 2リットル ラベルレス 12本 送料無料 ラベルレス ミネラルウォーター 2l 天然水 …",
+          "price": 2160,
+          "per": 90.0,
+          "amt": "2000ml×12本",
+          "rc": 1391,
+          "av": 4.57,
+          "shop": "快適ホームライフ",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00rqlbo.m2lhfc93.g00rqlbo.m2lhg098/"
+        },
+        {
+          "name": "公式 水 500ml 48本 送料無料 天然水 ミネラルウォーター ラベルレス 48本 富士…",
+          "price": 2480,
+          "per": 103.3,
+          "amt": "500ml×48本",
+          "rc": 6322,
+          "av": 4.63,
+          "shop": "アイリスオーヤマ公式 楽天市場店",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00t3zto.m2lhfc3f.g00t3zto.m2lhg012/"
+        }
+      ]
+    },
+    {
+      "key": "rice",
+      "title": "お米",
+      "unit": "1kg",
+      "seen": 120,
+      "read": 18,
+      "ok": 10,
+      "avg": 525.2,
+      "top": [
+        {
+          "name": "米 10kg 送料無料 訳あり米 産直の米 お米マイスター厳選米 米 10kg 送料無料 白…",
+          "price": 3980,
+          "per": 398.0,
+          "amt": "10kg",
+          "rc": 1369,
+          "av": 4.42,
+          "shop": "ライスマイルねっとショップ",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00srvuo.m2lhf962.g00srvuo.m2lhgdac/"
+        },
+        {
+          "name": "米 10kg 送料無料 「徳用米10kg」令和8年産入り お米 10キロ 白米 精米 ブレン…",
+          "price": 3990,
+          "per": 399.0,
+          "amt": "10kg",
+          "rc": 3992,
+          "av": 4.63,
+          "shop": "お米のもりかわ楽天市場店",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00s6afo.m2lhffe4.g00s6afo.m2lhga1d/"
+        },
+        {
+          "name": "米 10kg ブレンド米 きらめぐり 白米10kg お米 精米 10キロ 送料無料 最短発送…",
+          "price": 4190,
+          "per": 419.0,
+          "amt": "10kg",
+          "rc": 1362,
+          "av": 4.68,
+          "shop": "米屋 太三郎",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00q8l4o.m2lhf410.g00q8l4o.m2lhg4eb/"
+        },
+        {
+          "name": "生活応援米 エース 米 10kg 送料無料 10kg×1袋 ブレンド米 エース 激安米 米 …",
+          "price": 4970,
+          "per": 497.0,
+          "amt": "10kg",
+          "rc": 1043,
+          "av": 4.49,
+          "shop": "お米専門店あじつかみ",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00rw37o.m2lhf7e4.g00rw37o.m2lhg5fa/"
+        },
+        {
+          "name": "お米 10kg 送料無料 オリジナルブレンド米 日本の味 10kg1袋 複数原料米",
+          "price": 4980,
+          "per": 498.0,
+          "amt": "10kg",
+          "rc": 2296,
+          "av": 4.58,
+          "shop": "お米・菓子の直売所あじわいの朝",
+          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00skdro.m2lhfb68.g00skdro.m2lhg2d0/"
+        }
+      ]
+    }
+  ]
+}
