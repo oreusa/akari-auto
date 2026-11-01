@@ -29,6 +29,7 @@ h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-heigh
 .now i{display:block;font-style:normal;font-size:10.5px;color:var(--sub);margin-top:2px;min-height:15px}
 .msg{font-size:12px;line-height:1.8;color:#6B6058;text-align:center;margin:10px 0 0;min-height:0}
 .msg:empty{display:none}
+.pk .gm{text-align:left;background:#F7F7F8;border-radius:10px;padding:10px 12px;margin:10px 0 0;color:#2B2622}
 .rd{position:relative;margin:14px 0 0;width:100%;aspect-ratio:1;border-radius:14px;overflow:hidden;border:1px solid #E2E2E2}
 .rd svg{display:block;width:100%;height:100%}
 .rd .rng{fill:none;stroke:#2B2622;stroke-width:1;stroke-dasharray:3 4;opacity:.45}
@@ -105,7 +106,7 @@ h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-heigh
 <h1>いまから行ける<br>おでかけ</h1><p class="sub">いる場所といまの時刻から、<br>きょう開いている所を近い順に並べます。</p>
 <div class="cnt"><span>きょう開いている<b id="nOpen">–</b>か所</span><span>1時間以内<b id="nNear">–</b>か所</span></div></div>
 <div class="og" id="og"><div><small>出発する所</small><b id="ogN">–</b><span>から</span></div><button type="button" id="ogB">変える</button></div>
-<div class="pk" id="pk" hidden><button type="button" class="gps" id="gpsB">いまいる場所を使う</button><input id="q" type="search" placeholder="駅の名前で探す（ひらがなでも）" autocomplete="off" enterkeyhint="search"><div id="pkL"></div></div>
+<div class="pk" id="pk" hidden><button type="button" class="gps" id="gpsB">いまいる場所を使う</button><p class="msg gm" id="gmsg"></p><input id="q" type="search" placeholder="駅の名前で探す（ひらがなでも）" autocomplete="off" enterkeyhint="search"><div id="pkL"></div></div>
 <p class="msg" id="msg"></p>
 <div class="now" id="now"><div><small>いま</small><b id="nT">--:--</b><i id="nD"></i></div><div><small>日の入り</small><b id="sS">--:--</b><i id="sL"></i></div><div><small>降水確率</small><b id="wP">–</b><i id="wT"></i></div></div>
 <p class="tq">どのくらいまで行く？</p>
@@ -171,7 +172,12 @@ function gps(){if(!navigator.geolocation){msg("この端末では場所がわか
     near=ST.slice().sort(function(a,b){return km(la,lo,a[2],a[3])-km(la,lo,b[2],b[3])})[0],far=km(la,lo,near[2],near[3])>80;
     msg(far?"関東から少し離れた場所にいるようです。時間は目安としてご覧ください。":"いまいる場所から近い順に並べました（場所はこの端末の中だけで使い、送りません）。");
     setOrg({g:1,n:"いまいる場所",p:near[1],la:la,lo:lo},false);},
-  function(){msg("場所を使えませんでした。近い駅を選んでください。");},{enableHighAccuracy:false,timeout:10000,maximumAge:300000});}
+  function(e){var ios=/iPhone|iPad/.test(navigator.userAgent),app=/Instagram|FBAN|FBAV|Line\/|Threads|Barcelona|Twitter/i.test(navigator.userAgent);
+    msg("");pkOpen(true);document.getElementById("gmsg").textContent=(e&&e.code===1?("この端末で、このページの位置情報が「許可しない」になっています。一度断ると、ブラウザは次から聞いてくれません。"+
+      (app?"右上のメニューから「ブラウザで開く」を選ぶと、もう一度聞かれます。":
+       ios?"iPhoneは「設定」→「プライバシーとセキュリティ」→「位置情報サービス」→「Safariのサイト」を「使用中のみ」に。またはアドレスバーの「ぁあ」→「Webサイトの設定」→「位置情報」を「確認」に。":
+       "アドレスバーの左の鍵のマークから「位置情報」を許可にしてください。")+"下の駅を選んでも使えます。")
+      :"場所を取れませんでした（電波や設定のため）。下の駅を選んでも使えます。");},{enableHighAccuracy:false,timeout:10000,maximumAge:300000});}
 function clock(){var n=jst();document.getElementById("nT").textContent=n.getUTCHours()+":"+String(n.getUTCMinutes()).padStart(2,"0");
   document.getElementById("nD").textContent=(n.getUTCMonth()+1)+"/"+n.getUTCDate()+"（"+WD[n.getUTCDay()]+"）";
   if(!O)return;var s=sunset(O.la,O.lo),left=Math.round((s-Date.now())/6e4);
