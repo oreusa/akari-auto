@@ -3,7 +3,7 @@
    ページを足すときは L に1行足すだけ。/#shop・/#deal・/#trip はリストの欄ボタンを押す。押された数は /c の s=menu。 */
 (function(){
   var P=location.pathname.replace(/^\/townnotes\//,"/"),here=
-    /^\/(index\.html)?$/.test(P)?"list":/^\/illumination/.test(P)?"illumi":/^\/tomari/.test(P)?"tomari":/^\/kaimawari/.test(P)?"kaimawari":"";
+    /^\/(index\.html)?$/.test(P)?"list":/^\/illumination/.test(P)?"illumi":/^\/tomari/.test(P)?"tomari":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":"";
   var L=[
     ["LIST","list","/","関東おでかけリスト","開催中・これからのおでかけ"],
     ["MAP","map","/#map","地図で見る","関東の地図から、近くのおでかけを"],
@@ -11,7 +11,8 @@
     ["STAY","tomari","/tomari","泊まりで行くおでかけ","遠くのおでかけと、近くの宿"],
     ["-","SHOPPING"],
     ["KAIMAWARI","kaimawari","/kaimawari","買いまわりの1,000円ぽっきり","お買い物マラソン用・送料込み・レビュー1,000件以上"],
-    ["PER UNIT","tanka","/tanka","1個あたりで比べた","楽天の水・お米・トイレットペーパーを1Lあたりで"],
+    ["FURUSATO","furusato","/furusato","ふるさと納税を比べた","寄付1万円あたりの量で・12/31まで"],
+    ["PER UNIT","tanka","/tanka","1個あたりで比べた","楽天の水・お米などを1Lあたり・1kgあたりで"],
     ["SHOP","shop","/#shop","うさぎが比べた買い物","くらべて選んだ、暮らしの物"],
     ["DEAL","deal","/#deal","今だけのお得","ポイントアップ・セールの日"],
     ["HOTEL","trip","/#trip","宿と予約","口コミ1,000件以上・評価4.5以上の宿"]
@@ -41,7 +42,10 @@
   "#upan .ux{width:42px;height:42px;border:0;background:none;font-size:24px;line-height:1;color:#3A3330;cursor:pointer;border-radius:50%}"+
   "#upan .ux:active{background:#F3F3F3}"+
   "#upan nav{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:6px 0 10px}"+
-  "#upan .ug{font-family:Jost,sans-serif;font-size:9.5px;letter-spacing:.34em;color:#A09488;padding:18px 20px 6px}"+
+  /* 11/1 月と同じ：ジャンルの見出しを薄い帯にして、日本語で（オーナー「メニュージャンルの区切りあると分かりやすい」） */
+  "#upan .ug{display:flex;align-items:baseline;gap:10px;margin-top:14px;padding:9px 20px;background:#F1F2F4;border-top:1px solid #E4E5E8;border-bottom:1px solid #E4E5E8;font-family:'Zen Kaku Gothic New',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.12em;color:#3A3330}"+
+  "#upan nav>.ug:first-child{margin-top:0;border-top:0}"+
+  "#upan .ug small{font-family:Jost,sans-serif;font-weight:400;font-size:9px;letter-spacing:.3em;color:#9C8775}"+
   "#upan a.ui{display:block;position:relative;text-decoration:none;color:#2B2622;padding:13px 44px 13px 20px;border-top:1px solid #F1F1F1}"+
   "#upan a.ui:first-of-type{border-top:0}"+
   "#upan a.ui:active{background:#F7F7F7}"+
@@ -67,14 +71,16 @@
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
   function openView(v){var b=document.querySelector('button[data-v="'+v+'"]');if(!b)return;b.click();setTimeout(function(){var y=b.getBoundingClientRect().top+scrollY-10;scrollTo({top:y,behavior:"smooth"});},60);}
   function openMap(){var n=0;(function t(){var b=document.querySelector(".tnbtn");if(b){b.click();return;}if(++n<40)setTimeout(t,100);})();}
+  var GJ={"KANTO ODEKAKE":"おでかけ","SHOPPING":"買い物"};
+  function ug(k){return '<div class="ug">'+(GJ[k]||k)+(GJ[k]?'<small>'+k+'</small>':"")+'</div>';}
   function build(){
     var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
     var btn=document.createElement("button");btn.id="umenu";btn.type="button";btn.setAttribute("aria-label","メニューを開く");btn.setAttribute("aria-expanded","false");btn.setAttribute("aria-controls","upan");btn.innerHTML="<i></i><i></i><i></i>";
     var mask=document.createElement("div");mask.id="umask";
     var pan=document.createElement("div");pan.id="upan";pan.setAttribute("role","dialog");pan.setAttribute("aria-modal","true");pan.setAttribute("aria-label","メニュー");pan.setAttribute("aria-hidden","true");
-    var h='<div class="uh"><img src="/logo-s.png" alt=""><b>USAGI LIFE NOTES</b><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav><div class="ug">KANTO ODEKAKE</div>';
+    var h='<div class="uh"><img src="/logo-s.png" alt=""><b>USAGI LIFE NOTES</b><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+ug("KANTO ODEKAKE");
     L.forEach(function(x){
-      if(x[0]==="-"){h+='<div class="ug">'+x[1]+'</div>';return;}
+      if(x[0]==="-"){h+=ug(x[1]);return;}
       var cur=x[1]===here,ext=/^https?:/.test(x[2]);
       h+='<a class="ui'+(cur?" cur":"")+'" data-k="'+x[1]+'" href="'+x[2]+'"'+(ext?' target="_blank" rel="noopener"':"")+(cur?' aria-current="page"':"")+'><small>'+x[0]+'</small><span>'+esc(x[3])+'</span><em>'+esc(x[4])+'</em></a>';
     });
