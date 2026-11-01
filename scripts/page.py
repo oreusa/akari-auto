@@ -327,6 +327,46 @@ def _rakuten_afl(url):
     enc = urllib.parse.quote(url, safe="")
     return f"https://hb.afl.rakuten.co.jp/hgc/{aid}/?pc={enc}&m={enc}"
 
+MARATHON_URL = "https://event.rakuten.co.jp/campaign/point-up/marathon/"
+
+
+def sale_box():
+    """11/1 月（オーナー「燈のHPも改良して…ここから稼げなきゃ終わる」）：楽天の大きなセールの前の7日と開催中だけ、
+    いちばん上に「エントリー」の入口を出す。楽天は、リンクを押してから24時間のうちの買い物がまとめて紹介料の対象になるので、
+    1つの商品より、みんなが必ず押すエントリーのページがいちばん効く。日程は data/sales.json（夜の回が公式で確かめる）。"""
+    try:
+        d = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "sales.json"), encoding="utf-8"))
+    except Exception:
+        return ""
+    now = datetime.now(JST).replace(tzinfo=None)
+    wk = "月火水木金土日"
+    for x in d.get("sales", []):
+        try:
+            st = datetime.fromisoformat(x["start"])
+            en = datetime.fromisoformat(x["end"])
+        except Exception:
+            continue
+        if not (st - timedelta(days=7) <= now <= en):
+            continue
+        name = html.escape(x.get("name", "楽天のセール"))
+        url = html.escape(_rakuten_afl(x.get("url") or MARATHON_URL), quote=True)
+        if now < st:
+            left = (st.date() - now.date()).days
+            when = f"{st.month}/{st.day}（{wk[st.weekday()]}）{st:%H:%M}から" + (f"・あと{left}日" if left else "・今日から")
+            if x.get("note"):
+                when += "（見込み）"
+            sub = "買う前にエントリーが必要です（エントリーしたあとの買い物だけポイントが増えます）"
+        else:
+            e2 = en + timedelta(minutes=1)
+            when = f"開催中・{e2.month}/{e2.day}（{wk[e2.weekday()]}）{e2:%H:%M}まで"
+            sub = "まだの方は、買う前にエントリーを。1,000円以上を何店で買うかでポイントが増えます"
+        return (f'<section class="sbox" id="sale"><p class="sb-k">RAKUTEN SALE</p><p class="sb-t">{name}</p>'
+                f'<p class="sb-w">{html.escape(when)}</p><a class="buy sb-go" href="{url}" rel="sponsored noopener" target="_blank">楽天でエントリーする<span>→</span></a>'
+                f'<p class="sb-s">{html.escape(sub)}</p>'
+                f'<a class="sb-l" href="kaimawari">買いまわりの1,000円ぽっきりを見る →</a><p class="sb-pr">リンクは楽天アフィリエイトの広告です</p></section>')
+    return ""
+
+
 
 def _cat(text, cs):
     for key, _, _, _, words in cs:  # 宿とセールは言葉を持たないので当たらない
@@ -1067,7 +1107,7 @@ def render(items, ended, now, cfg):
                  if any(e.get("amazon") for e in items["pr"] + items.get("pick", [])) else
                  "このページにはアフィリエイト広告（PR）があります" if items.get("a8") else
                  "このページには楽天アフィリエイトの広告（PR）があります"),
-        updated=f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M}")
+        updated=f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M}", salebox=sale_box())
 
 
 TEMPLATE = """<!doctype html>
@@ -1338,7 +1378,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 .ykl a{{display:flex;justify-content:space-between;gap:10px;padding:10px 0;color:#3A302A;text-decoration:none}}
 .ykl .nm{{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}} .ykl .mt{{color:#8C7B6E;white-space:nowrap;font-size:11px}}
 .ykl .src{{font-size:10px;color:#A89A8E;padding:6px 0 2px;text-align:right}}
-.ilk{{display:block;width:max-content;max-width:100%;margin:4px auto 18px;color:#231E1B;text-decoration:none;font:600 14px/1.5 var(--min);letter-spacing:.08em;border-bottom:1px solid #231E1B;padding-bottom:3px}}.ilk span{{font-family:Jost;margin-left:8px;color:#9C8775}}
+.sbox{{border:1px solid #BF0000;border-radius:6px;background:#fff;padding:16px 16px 12px;margin:0 0 20px;text-align:center}}.sb-k{{font:400 10px/1 Jost,sans-serif;letter-spacing:.3em;color:#BF0000;margin:0 0 8px}}.sb-t{{font:600 18px/1.4 var(--min);margin:0;color:#231E1B}}.sb-w{{font-size:13px;font-weight:700;color:#BF0000;margin:4px 0 12px}}.sb-go{{display:block;background:#BF0000;color:#fff;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.06em;padding:13px 10px;border-radius:4px}}.sb-go span{{margin-left:8px}}.sb-s{{font-size:11.5px;line-height:1.7;color:#6B6058;margin:10px 0 6px}}.sb-l{{font-size:12.5px;color:#231E1B}}.sb-pr{{font-size:10px;color:#9C9089;margin:8px 0 0}}.ilk{{display:block;width:max-content;max-width:100%;margin:4px auto 18px;color:#231E1B;text-decoration:none;font:600 14px/1.5 var(--min);letter-spacing:.08em;border-bottom:1px solid #231E1B;padding-bottom:3px}}.ilk span{{font-family:Jost;margin-left:8px;color:#9C8775}}
 </style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=3" defer></script></head>
 <body class="s-{sea}"><div class="wrap">
 <header class="head">
@@ -1350,6 +1390,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 <div class="sea"><span>{sea_en}</span><b>{sea_jp}</b></div>
 {ring}
 </header>
+{salebox}
 <a class="ilk" href="illumination">関東イルミネーション 2026 日程一覧<span>→</span></a>
 <a class="ilk" href="kaimawari">お買い物マラソン 買いまわりの1,000円ぽっきり<span>→</span></a><a class="ilk" href="furusato">ふるさと納税 寄付1万円あたりで比べた（12/31まで）<span>→</span></a><a class="ilk" href="tanka">水・お米・トイレットペーパー 1個あたりで比べた<span>→</span></a>
 <nav class="cats" id="cats" aria-label="項目">{nav}</nav>
