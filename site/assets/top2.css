@@ -1,0 +1,28 @@
+/* 11/2 オーナー「ここに色んな項目が詰め込まれすぎて…初めて見る人は使えるかな」→ 見本 /preview-top だけに効く（html.top2）。
+   上を「題名 → 3つの入口 → 4つのタブ → 府県」だけにして、1枚目のカードを早く見せる */
+html.top2 .head{padding-bottom:14px!important}
+html.top2 #yr,html.top2 #sea{display:none!important}
+html.top2 a.ilk,html.top2 .cnt,html.top2 .tgrp,html.top2 button.tnbtn{display:none!important}
+html.top2 .qk{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:6px 0 18px}
+html.top2 .qk a{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:#1C1C1C;background:#fff;border:1px solid #E2E2E2;border-radius:14px;padding:14px 4px 12px;-webkit-tap-highlight-color:transparent}
+html.top2 .qk a:active{background:#F4F4F4}
+html.top2 .qk svg{width:26px;height:26px;fill:none;stroke:#3A2F28;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+html.top2 .qk b{font-size:13px;font-weight:700;letter-spacing:.02em}
+html.top2 .qk small{font-size:10.5px;color:#6B6B6B;line-height:1.3;text-align:center}
+html.top2 .tabs{display:grid!important;grid-template-columns:repeat(4,1fr)!important}
+html.top2 .tabs button{font-size:0!important;letter-spacing:0!important;padding:10px 0 9px!important}
+html.top2 .tabs button b{display:block!important;font-family:"Zen Kaku Gothic New",sans-serif!important;font-size:13.5px!important;font-weight:700!important;letter-spacing:.02em!important;margin:0!important;white-space:nowrap}
+html.top2 .tabs button b i{display:block!important;font-family:Jost,sans-serif!important;font-style:normal!important;font-size:11px!important;font-weight:400!important;color:#8C7B6E!important;margin-top:3px!important}
+/* 燈：セールの箱は1行に（広告の表記は残す） */
+html.top2 .sbox{display:grid!important;grid-template-columns:1fr auto;align-items:center;gap:4px 12px;padding:12px 14px!important;margin:0 0 16px!important}
+html.top2 .sbox .sb-t{font-size:14px!important;margin:0!important}
+html.top2 .sbox .sb-w{font-size:11.5px!important;margin:2px 0 0!important}
+html.top2 .sbox .sb-go{padding:9px 14px!important;font-size:13px!important}
+html.top2 .sbox .sb-s{grid-column:1/-1;font-size:0!important;margin:2px 0 0!important}
+html.top2 .sbox .sb-s span{font-size:10px!important;color:#9A9A9A}
+/* 燈：季節の輪とEN、件数の行 */
+html.top2 .head svg.yr,html.top2 .head .sea{display:none!important}
+html.top2 .head{padding-bottom:10px!important}
+html.top2 .otab button i{display:none!important}
+html.top2 .otab button{font-family:"Zen Kaku Gothic New",sans-serif!important;font-size:13.5px!important;font-weight:700!important;letter-spacing:.02em!important;white-space:nowrap;padding:10px 0 9px!important}
+html.top2 .otab button small{display:block!important;font-family:Jost,sans-serif!important;font-size:11px!important;font-weight:400!important;color:#8C7B6E!important;margin-top:3px!important}
