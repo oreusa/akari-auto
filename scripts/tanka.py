@@ -26,15 +26,16 @@ PAGES = 4  # 1つの物で 30件×4ページ＝最大120件
 TOP = 5
 
 NUM = r"(\d+(?:\.\d+)?)"
+MUST = {"soda": "炭酸", "tp": "トイレット", "rice": "米"}  # 名前に必ずある言葉（検索で別の物が混ざるため）
 # key, 見出し, 検索の言葉, ジャンル, 単位, 入れない言葉, 1単位のありえる値段の幅
 CATS = [
     ("water", "水（ミネラルウォーター）", "水 天然水 ミネラルウォーター", "100316", "1L",
      ("炭酸", "茶", "サーバー", "定期", "コーヒー", "ジュース", "スポーツ", "ふるさと"), (15, 400)),
-    ("soda", "炭酸水", "炭酸水", "100316", "1L",
+    ("soda", "炭酸水", "炭酸水 強炭酸", "100316", "1L",
      ("サーバー", "定期", "ジュース", "コーラ", "ふるさと", "茶"), (20, 500)),
     ("rice", "お米", "米 精米 kg", "100227", "1kg",
      ("ふるさと", "定期", "雑穀", "もち米", "玄米", "パック", "レトルト", "無洗米ではない"), (200, 2500)),
-    ("tp", "トイレットペーパー", "トイレットペーパー", "215783", "100m",
+    ("tp", "トイレットペーパー", "トイレットペーパー", "", "100m",
      ("ふるさと", "定期", "ホルダー", "ケース", "収納", "ラック"), (5, 200)),
 ]
 
@@ -78,19 +79,30 @@ def amount(cat, name):
     if cat == "tp":
         m = [float(v) for v in re.findall(NUM + r"\s*(?:m|M|メートル)(?![mlLa-zA-Z])", t)]
         r = [int(v) for v in re.findall(r"(\d+)\s*(?:ロール|R(?![a-zA-Z]))", t)]
+        pk = re.findall(r"(\d+)\s*(?:ロール|R)\s*[x×]\s*(\d+)\s*(?:パック|袋|セット)", t)
         a, b = one(m), one(r)
+        if pk and len(set(pk)) == 1 and a:  # 12ロール×4パック の形は掛ける
+            b = int(pk[0][0]) * int(pk[0][1])
         if not a or not b or a < 10 or a > 300:
             return None
         return a * b / 100, f"{a:g}m×{b}ロール"
     return None
 
 
+def item_page(it):
+    """楽天の商品ページURL（itemCode「店:番号」から。投稿の2つ目のリンクと expect に使う）。"""
+    shop, _, no = str(it.get("itemCode") or "").partition(":")
+    return f"https://item.rakuten.co.jp/{shop}/{no}/" if shop and no else ""
+
+
 def fetch(cat):
     key, _, kw, gid, unit, ng, (lo, hi) = cat
     rows, seen, n_all, err = [], set(), 0, ""
     for page in range(1, PAGES + 1):
-        items, err = lib._rakuten_search({"keyword": kw, "genreId": gid, "postageFlag": 1, "availability": 1,
-                                          "sort": "-reviewCount", "hits": 30, "page": page})
+        q = {"keyword": kw, "postageFlag": 1, "availability": 1, "sort": "-reviewCount", "hits": 30, "page": page}
+        if gid:
+            q["genreId"] = gid
+        items, err = lib._rakuten_search(q)
         time.sleep(1.1)  # 楽天APIは1秒に1回まで
         if not items:
             break
@@ -101,7 +113,7 @@ def fetch(cat):
             seen.add(code)
             n_all += 1
             name = it.get("itemName") or ""
-            if any(w in name for w in ng):
+            if any(w in name for w in ng) or (MUST.get(key) and MUST[key] not in name):
                 continue
             am = amount(key, name)
             price = int(it.get("itemPrice") or 0)
@@ -115,7 +127,7 @@ def fetch(cat):
                 continue
             rows.append({"name": short(name), "price": price, "per": round(per, 1), "amt": am[1],
                          "rc": int(it.get("reviewCount") or 0), "av": float(it.get("reviewAverage") or 0),
-                         "shop": it.get("shopName") or "", "url": aff, "plain": lib._plain_url(it).split("?")[0],
+                         "shop": it.get("shopName") or "", "url": aff, "plain": item_page(it),
                          "img": lib._item_image(it)})
     ok = sorted([r for r in rows if r["rc"] >= 1000 and r["av"] >= 4.0], key=lambda r: r["per"])
     out, shops = [], set()
