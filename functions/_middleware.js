@@ -2,7 +2,7 @@
 // 数えるのは、ページの中でアフィリエイトのリンク（PR）が押された回数だけ（10/24 オーナー「あくまでアフィリエイトだけ」）。
 // /c?f=…&s=…&k=… を受けて、どの投稿から来た人が（f）、どの項目の（s）、どの物を（k）押したかを数える。リンク先はそのまま。
 // 開いた数（10/24 オーナー「HPも見られてるか足す」）は、1日の合計1つだけを数え、1日500で止める（押した数300と合わせてもKVの書き込み1日1,000回の無料枠に収まる）。
-// 呼ばれるのは / と /c だけ（site/_routes.json）。
+// 呼ばれるのは / と /c と /wx（site/_routes.json）。/wx は functions/wx.js。/ima が / を読むときは x-ima を付けるので開いた数に入れない。
 // 数は KV（CLICKS）のキーのメタデータ n に入れる。scripts/pagestats.py が読んで data/page-stats.json にする。
 const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|externalagent|buffer|embedly|whatsapp|discord|slack|telegram|curl|wget|python|headless/i;
 
@@ -50,7 +50,7 @@ export async function onRequest(ctx) {
   if (/(?:^|;\s*)me=1(?:;|$)/.test(request.headers.get("cookie") || "")) {
     return url.pathname === "/c" ? new Response(null, { status: 204 }) : ctx.next();
   }
-  if (url.pathname === "/" && request.method === "GET" && !BOT.test(ua) && !request.headers.get("purpose") && !request.headers.get("sec-purpose")) {
+  if (url.pathname === "/" && request.method === "GET" && !BOT.test(ua) && !request.headers.get("purpose") && !request.headers.get("sec-purpose") && !request.headers.get("x-ima")) {
     ctx.waitUntil(view(env).catch(() => {}));
   }
   if (url.pathname === "/c") {
