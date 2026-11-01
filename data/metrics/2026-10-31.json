@@ -1,6 +1,6 @@
 {
   "day": "2026-10-31",
-  "fetchedAt": "2026-11-01T04:32+09:00",
+  "fetchedAt": "2026-11-02T04:53+09:00",
   "posts": [
     {
       "service": "threads",
@@ -11,8 +11,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.51,
-        "views": 198,
+        "engagementRate": 0.48,
+        "views": 210,
         "quotes": 0,
         "reposts": 0
       }
@@ -26,9 +26,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 11.76,
+        "engagementRate": 8.33,
         "reposts": 0,
-        "impressions": 17,
+        "impressions": 60,
         "clicks": 0
       }
     },
@@ -58,8 +58,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.78,
-        "views": 36,
+        "engagementRate": 2.33,
+        "views": 43,
         "quotes": 0,
         "reposts": 0
       }
@@ -72,10 +72,10 @@
       "url": "https://x.com/1753799832798629888/status/2116323051952390186",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 0.68,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 148,
         "clicks": 0
       }
     },
@@ -88,8 +88,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 0.61,
-        "views": 329,
+        "engagementRate": 0.45,
+        "views": 446,
         "quotes": 0,
         "reposts": 0
       }
@@ -102,10 +102,10 @@
       "url": "https://x.com/1753799832798629888/status/2116368329338245469",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 0.86,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 233,
         "clicks": 0
       }
     },
@@ -118,8 +118,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.51,
-        "views": 195,
+        "engagementRate": 0.41,
+        "views": 246,
         "quotes": 0,
         "reposts": 0
       }
@@ -132,10 +132,10 @@
       "url": "https://x.com/1753799832798629888/status/2116390968979026082",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 0.97,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 103,
         "clicks": 0
       }
     },
@@ -146,10 +146,10 @@
       "first": "10/30開業、清澄白河にダンデライオン・チョコレートの工場🍫",
       "url": "https://www.threads.com/@ai_usagichan1/post/DfJfXILFaHu",
       "metrics": {
-        "reactions": 2,
+        "reactions": 3,
         "comments": 1,
-        "engagementRate": 0.7,
-        "views": 427,
+        "engagementRate": 0.46,
+        "views": 866,
         "quotes": 0,
         "reposts": 0
       }
@@ -161,11 +161,11 @@
       "first": "10/30開業、清澄白河にダンデライオン・チョコレートの工場🍫",
       "url": "https://x.com/1753799832798629888/status/2116413637501825270",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "reactions": 2,
+        "comments": 1,
+        "engagementRate": 2.33,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 215,
         "clicks": 0
       }
     },
@@ -177,9 +177,9 @@
       "url": "https://www.threads.com/@ai_usagichan1/post/DfJz85DlfJZ",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 8.33,
+        "views": 12,
         "quotes": 0,
         "reposts": 0
       }
@@ -192,10 +192,10 @@
       "url": "https://x.com/1753799832798629888/status/2116458918838755667",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 4.55,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 22,
         "clicks": 0
       }
     },
@@ -206,12 +206,12 @@
       "first": "【12/17まで　湯河原温泉｜みかん狩りは食べ放題500円🍊】",
       "url": "https://www.threads.com/@ai_usagichan1/post/DfKBr_HIL4A",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "reactions": 20,
+        "comments": 2,
+        "engagementRate": 1.27,
+        "views": 1813,
         "quotes": 0,
-        "reposts": 0
+        "reposts": 1
       }
     },
     {
@@ -221,11 +221,11 @@
       "first": "【12/17まで　湯河原温泉｜みかん狩りは食べ放題500円🍊】",
       "url": "https://x.com/1753799832798629888/status/2116489121136771437",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 5.41,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 37,
         "clicks": 0
       }
     },
@@ -238,8 +238,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0,
-        "views": 0,
+        "engagementRate": 0.49,
+        "views": 203,
         "quotes": 0,
         "reposts": 0
       }
@@ -252,10 +252,10 @@
       "url": "https://x.com/1753799832798629888/status/2116500736477470774",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 2.63,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 76,
         "clicks": 0
       }
     },
@@ -267,9 +267,9 @@
       "url": "https://www.threads.com/@ai_usagichan1/post/DfKPcsdIBgD",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 0.33,
+        "views": 302,
         "quotes": 0,
         "reposts": 0
       }
@@ -281,11 +281,11 @@
       "first": "【11/8まで　中野・やきいもフェス｜毎日先着100名に無料クーポン🍠】",
       "url": "https://x.com/1753799832798629888/status/2116519363012382797",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 0.89,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 451,
         "clicks": 0
       }
     },
@@ -312,8 +312,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 20,
-        "views": 5,
+        "engagementRate": 14.29,
+        "views": 7,
         "quotes": 0,
         "reposts": 0
       }
@@ -325,11 +325,11 @@
       "first": "【2/14まで　あしかがフラワーパーク｜500万球超えの光の花の庭✨】",
       "url": "https://x.com/1753799832798629888/status/2116304166570074293",
       "metrics": {
-        "reactions": 0,
+        "reactions": 2,
         "comments": 1,
-        "engagementRate": 23.08,
+        "engagementRate": 10.29,
         "reposts": 0,
-        "impressions": 13,
+        "impressions": 68,
         "clicks": 0
       }
     },
@@ -343,12 +343,12 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 0,
+        "views": 14,
         "shares": 0,
         "saves": 0,
-        "totalTimeWatched": 0.13,
-        "averageTimeWatched": 7.82,
-        "reach": 0
+        "totalTimeWatched": 0.39,
+        "averageTimeWatched": 1.48,
+        "reach": 14
       }
     }
   ]

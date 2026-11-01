@@ -1,0 +1,387 @@
+{
+  "day": "2026-11-01",
+  "fetchedAt": "2026-11-02T04:53+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【今日11/1　立川駅北口｜約60万球が点灯、点灯式は無料✨】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfLNN2ImEtS",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.81,
+        "views": 124,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【今日11/1　立川駅北口｜約60万球が点灯、点灯式は無料✨】",
+      "url": "https://x.com/1753799832798629888/status/2116655211146043807",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.88,
+        "reposts": 0,
+        "impressions": 17,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "08:00",
+      "kind": "手動",
+      "first": "【11/3まで　青山公園｜ドイツフェスティバルは入場無料🍺】",
+      "url": "https://www.instagram.com/p/DfLSbUnFQKc/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "follows": 0,
+        "reach": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "11/7から宇都宮で餃子祭り、今週始まる5つ🥟",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfLa8wrHB9z",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.29,
+        "views": 348,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "11/7から宇都宮で餃子祭り、今週始まる5つ🥟",
+      "url": "https://x.com/1753799832798629888/status/2116685413796511915",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "今日11/1から、横浜中華街で美食節、上海蟹フェアも🦀",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfLvjBFl3Nh",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.67,
+        "views": 150,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "今日11/1から、横浜中華街で美食節、上海蟹フェアも🦀",
+      "url": "https://x.com/1753799832798629888/status/2116730706835468310",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【11/3無料　栃木・葉山・横須賀｜ふだんの観覧料くらべ🎨】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfL52V7lR3_",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.08,
+        "views": 48,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【11/3無料　栃木・葉山・横須賀｜ふだんの観覧料くらべ🎨】",
+      "url": "https://x.com/1753799832798629888/status/2116753360560771392",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "11/3開店、皇居東御苑の休憩所に猿田彦珈琲☕",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfMEJzeDhMD",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 1.22,
+        "views": 164,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "11/3開店、皇居東御苑の休憩所に猿田彦珈琲☕",
+      "url": "https://x.com/1753799832798629888/status/2116776019453485167",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べたAnkerの10000mAh 3つ、選んだのは200g】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfMYwL4FoSB",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べたAnkerの10000mAh 3つ、選んだのは200g】",
+      "url": "https://x.com/1753799832798629888/status/2116821315927642490",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【今日11/1まで　楽天ワンダフルデー｜合計3,000円以上でポイント3倍】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfMmeyXkTGq",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【今日まで　楽天ワンダフルデー｜合計3,000円以上でポイント3倍】",
+      "url": "https://x.com/1753799832798629888/status/2116851506183913795",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【4/4まで　東京ドイツ村｜テーマは「Why USA!?」のイルミ✨】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfMrxoblhCb",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【4/4まで　東京ドイツ村｜テーマは「Why USA!?」のイルミ✨】",
+      "url": "https://x.com/1753799832798629888/status/2116862982084853933",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【今日23:59まで　ワンダフルデー｜簡易トイレが楽天総合の上位に】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfM0OkoFSFg",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【今日23:59まで　簡易トイレが楽天総合の上位に】",
+      "url": "https://x.com/1753799832798629888/status/2116881707504652400",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4020390390020745920",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4020395458795010215",
+      "metrics": {
+        "views": 2,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/3まで　青山公園｜ドイツフェスティバルは入場無料🍺】",
+      "url": "https://www.instagram.com/reel/DfLSYcGATm0/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 3,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.31,
+        "averageTimeWatched": 3.73,
+        "reach": 3
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/3まで　青山公園｜ドイツフェスティバルは入場無料🍺】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfLSY48CfCa",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.85,
+        "views": 26,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/3まで　青山公園｜ドイツフェスティバルは入場無料🍺】",
+      "url": "https://x.com/1753799832798629888/status/2116666582508192020",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DfLO8zOBn7p/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.04,
+        "averageTimeWatched": 1.26,
+        "reach": 0
+      }
+    }
+  ]
+}
