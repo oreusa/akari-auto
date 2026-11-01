@@ -85,6 +85,13 @@ def render(groups, now, sale):
     upd = f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M} 楽天で確かめた値段"
     if sale:
         head = f'<p class="sale"><b>{esc(sale["name"])}</b><br>{when(sale)}</p>'
+        # 11/1 月：買う前に要るエントリーの入口（楽天は押してから24時間の買い物が紹介料の対象）
+        import urllib.parse
+        aid = os.environ.get("RAKUTEN_AFFILIATE_ID")
+        mu = sale.get("url") or "https://event.rakuten.co.jp/campaign/point-up/marathon/"
+        eu = f"https://hb.afl.rakuten.co.jp/hgc/{aid}/?pc={urllib.parse.quote(mu, safe='')}&m={urllib.parse.quote(mu, safe='')}" if aid else mu
+        head += (f'<a class="entry" href="{esc(eu)}" rel="sponsored noopener" target="_blank" data-k="エントリー">楽天でエントリーする →</a>'
+                 '<p class="note">買う前にエントリーが必要です（エントリーしたあとの買い物だけポイントが増えます）</p>')
         if sale.get("note"):
             head += f'<p class="note">{esc(sale["note"])}</p>'
     else:
@@ -104,7 +111,7 @@ def render(groups, now, sale):
 <link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400&display=swap">
-<style>
+<style>.entry{{display:block;background:#BF0000;color:#fff;text-align:center;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.06em;padding:14px 10px;border-radius:6px;margin:12px 0 4px}}
 :root{{color-scheme:light;--bg:#FDFCFA;--ink:#2B2622;--sub:#6B6058;--mute:#8C7B6E;--line:#E6DED4;--line2:#D6CCC1;--brown:#A07E66;--red:#B5643F;
   --min:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--go:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;--en:"Jost","Futura","Avenir Next",sans-serif}}
 *{{box-sizing:border-box}}html{{-webkit-text-size-adjust:100%}}
@@ -139,7 +146,7 @@ ul{{list-style:none;margin:0;padding:0}}.it{{margin:0 0 10px}}
 .foot{{font-size:11.5px;line-height:1.9;color:var(--sub);border-top:1px solid var(--line2);margin-top:32px;padding-top:16px}}
 .back{{display:block;text-align:center;font:700 13px/1 var(--go);letter-spacing:.1em;border:1px solid var(--ink);border-radius:2px;padding:14px;margin:20px 0 0;background:#fff}}
 .sign{{text-align:center;font:400 11px/1 var(--en);letter-spacing:.3em;color:var(--brown);margin:24px 0 0}}
-</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=4" defer></script></head>
+</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=4" defer></script><link rel="stylesheet" href="/assets/sub.css?v=1"><script src="/assets/v2sub.js?v=1" defer></script></head>
 <body><div class="wrap">
 <header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
 <p class="en">KAIMAWARI</p>

@@ -205,7 +205,9 @@ def render(cats, now):
                  f'<ul>{lis}</ul>'
                  + (f'<h3 class="az3">Amazonでは（Amazonのページを開いて確かめた物）</h3><ul>{"".join(amz_card(r, c["unit"]) for r in c["amz"])}</ul>'
                     if c.get("amz") else "") + '</section>')
-    title = "1個あたりで比べた 楽天の水・お米・トイレットペーパー｜うさぎ│LIFE NOTES"
+    names = "・".join(c["title"].split("（")[0] for c in cats)
+    amz = any(c.get("amz") for c in cats)
+    title = f"1個あたりで比べた 楽天{'とAmazon' if amz else ''}の{names}｜うさぎ│LIFE NOTES"
     desc = f"楽天の送料込みの商品{seen}件を、1Lあたり・1kgあたり・100mあたりに直して比べました。レビュー1,000件以上・評価4.0以上の中で安い順。"
     css = open(os.path.join(ROOT, "scripts", "kaimawari.py"), encoding="utf-8").read()
     css = css[css.index("<style>") + 7:css.index("</style>")].replace("{{", "{").replace("}}", "}")
@@ -227,11 +229,11 @@ def render(cats, now):
 .az3{{font:600 13px/1.5 var(--go);color:var(--sub);margin:16px 0 8px}}
 .big{{background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;margin:18px 0 0;text-align:center}}
 .big b{{display:block;font:600 30px/1.2 var(--min);color:var(--ink);letter-spacing:.04em}}.big span{{font-size:12px;color:var(--mute)}}
-</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=4" defer></script></head>
+</style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=4" defer></script><link rel="stylesheet" href="/assets/sub.css?v=1"><script src="/assets/v2sub.js?v=1" defer></script></head>
 <body><div class="wrap">
 <header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
 <p class="en">PER UNIT</p>
-<h1>1個あたりで比べた<small>楽天とAmazonの、毎日なくなる物</small></h1>
+<h1>1個あたりで比べた<small>楽天{"とAmazon" if amz else ""}の、毎日なくなる物</small></h1>
 <p class="up">{esc(upd)}</p>
 <div class="big"><b>{seen:,}件</b><span>今回、楽天で見て比べた商品の数</span></div>
 <p class="lead">値段だけでは、どれが本当に安いか分かりません。燈が楽天の送料込みの商品を毎回取り直し、商品名の量（ml・本・kg・ロール・m）から1Lあたり・1kgあたり・100mあたりに直して比べました。24本・48本を選ぶ物のように量がひとつに決まらない物は、数字をまちがえないよう比べていません。</p>
