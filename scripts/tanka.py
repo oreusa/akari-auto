@@ -35,7 +35,7 @@ CATS = [
      ("サーバー", "定期", "ジュース", "コーラ", "ふるさと", "茶"), (20, 500)),
     ("rice", "お米", "米 精米 kg", "100227", "1kg",
      ("ふるさと", "定期", "雑穀", "もち米", "玄米", "パック", "レトルト", "無洗米ではない"), (200, 2500)),
-    ("tp", "トイレットペーパー", "トイレットペーパー", "", "100m",
+    ("tp", "トイレットペーパー", "トイレットペーパー ロール まとめ買い", "", "100m",
      ("ふるさと", "定期", "ホルダー", "ケース", "収納", "ラック"), (5, 200)),
 ]
 
@@ -50,7 +50,7 @@ def short(name, n=46):
 
 
 def z2h(s):
-    return str(s).translate(str.maketrans("０１２３４５６７８９．ｍｌＭＬｋｇＫＧ×ｘＸ", "0123456789.mlMLkgKGxxx"))
+    return str(s).translate(str.maketrans("０１２３４５６７８９．ｍｌＭＬｋｇＫＧｘＸ＊*", "0123456789.mlMLkgKG××××"))
 
 
 def one(vals):
@@ -141,6 +141,42 @@ def fetch(cat):
             "avg": avg, "top": out[:TOP]}, err
 
 
+AMZ_WORDS = {"water": ("天然水", "ミネラルウォーター", "水 "), "soda": ("炭酸",), "rice": ("米",), "tp": ("トイレット",)}
+
+
+def amazon_rows(key, unit_lo_hi):
+    """凪がブラウザで確かめたAmazonの商品（7日以内・○・レビュー1,000件以上・★4.0以上）のうち、この物に当たる物。
+    11/1 オーナー「Amazonも、使えよ」。Amazonは値段を隠すことが多いので、値段が読めた物だけ1Lあたりを出し、
+    読めない物は「値段はAmazonのページで」として並べる（数字は作らない）。"""
+    lo, hi = unit_lo_hi
+    out = []
+    for asin, it in lib.amazon_checked().items():
+        name = str(it.get("name", ""))
+        if not any(w in name for w in AMZ_WORDS[key]) or (key == "water" and "炭酸" in name):
+            continue
+        res = lib.amazon_link(asin, max_age_h=168)
+        if not res.get("ok"):
+            continue
+        m = re.search(r"[￥¥]\s*([\d,]+)|([\d,]+)\s*円", str(it.get("price", "")))
+        price = int((m.group(1) or m.group(2)).replace(",", "")) if m else 0
+        am = amount(key, name + " " + str(it.get("specs", "")))
+        per = round(price / am[0], 1) if price and am else 0
+        if per and not (lo <= per <= hi):
+            per = 0
+        out.append({"name": short(name), "price": price, "per": per, "amt": am[1] if am else str(it.get("specs", ""))[:30],
+                    "rc": int(it.get("reviews") or 0), "av": float(it.get("stars") or 0), "url": res["link"], "asin": asin})
+    return sorted(out, key=lambda r: (r["per"] == 0, r["per"]))[:2]
+
+
+def amz_card(r, unit):
+    pu = f'<span class="pu">{unit}あたり <b>{yen(r["per"])}円</b>（{r["price"]:,}円で計算・送料はページで）</span>' if r["per"] else \
+        '<span class="pu">値段はAmazonのページで（Amazonはページを開かないと値段が出ない物があります）</span>'
+    return (f'<li class="it"><a class="cd" href="{esc(r["url"])}" rel="sponsored noopener" target="_blank" data-k="amz:{esc(r["asin"])}">'
+            f'<span class="rk az">A</span><span class="tx"><span class="nm">{esc(r["name"])}</span>{pu}'
+            f'<span class="mt">{esc(r["amt"])}　★{r["av"]:.1f}　レビュー{r["rc"]:,}件</span>'
+            f'<span class="go">Amazonで見る →</span></span></a></li>')
+
+
 def yen(v):
     return f"{v:,.0f}" if v >= 100 else f"{v:,.1f}".rstrip("0").rstrip(".")
 
@@ -166,7 +202,9 @@ def render(cats, now):
                  f'<p class="how">楽天の送料込みの{c["seen"]}件を見て、量が読めた{c["read"]}件を{c["unit"]}あたりに直しました。'
                  f'レビュー1,000件以上・評価4.0以上は{c["ok"]}件。その中で安い順です（同じお店は1つ）。'
                  f'{"比べた全部の平均は" + c["unit"] + "あたり" + yen(c["avg"]) + "円。" if c["avg"] else ""}</p>'
-                 f'<ul>{lis}</ul></section>')
+                 f'<ul>{lis}</ul>'
+                 + (f'<h3 class="az3">Amazonでは（Amazonのページを開いて確かめた物）</h3><ul>{"".join(amz_card(r, c["unit"]) for r in c["amz"])}</ul>'
+                    if c.get("amz") else "") + '</section>')
     title = "1個あたりで比べた 楽天の水・お米・トイレットペーパー｜うさぎ│LIFE NOTES"
     desc = f"楽天の送料込みの商品{seen}件を、1Lあたり・1kgあたり・100mあたりに直して比べました。レビュー1,000件以上・評価4.0以上の中で安い順。"
     css = open(os.path.join(ROOT, "scripts", "kaimawari.py"), encoding="utf-8").read()
@@ -185,13 +223,15 @@ def render(cats, now):
 .rk{{flex:none;width:22px;font:600 18px/1 var(--min);color:var(--brown);padding-top:4px;text-align:center}}
 .pu{{font-size:12.5px;color:var(--sub)}}.pu b{{font-size:19px;color:var(--red);letter-spacing:.02em}}
 .df{{font-size:11.5px;color:var(--red)}}
+.az{{font:700 13px/22px var(--en);color:#fff;background:#2B2622;border-radius:50%;width:22px;height:22px;padding:0;margin-top:2px}}
+.az3{{font:600 13px/1.5 var(--go);color:var(--sub);margin:16px 0 8px}}
 .big{{background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;margin:18px 0 0;text-align:center}}
 .big b{{display:block;font:600 30px/1.2 var(--min);color:var(--ink);letter-spacing:.04em}}.big span{{font-size:12px;color:var(--mute)}}
 </style><script src="/assets/night.js?v=2"></script><script src="/assets/menu.js?v=4" defer></script></head>
 <body><div class="wrap">
 <header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
 <p class="en">PER UNIT</p>
-<h1>1個あたりで比べた<small>楽天の毎日なくなる物</small></h1>
+<h1>1個あたりで比べた<small>楽天とAmazonの、毎日なくなる物</small></h1>
 <p class="up">{esc(upd)}</p>
 <div class="big"><b>{seen:,}件</b><span>今回、楽天で見て比べた商品の数</span></div>
 <p class="lead">値段だけでは、どれが本当に安いか分かりません。燈が楽天の送料込みの商品を毎回取り直し、商品名の量（ml・本・kg・ロール・m）から1Lあたり・1kgあたり・100mあたりに直して比べました。24本・48本を選ぶ物のように量がひとつに決まらない物は、数字をまちがえないよう比べていません。</p>
@@ -200,7 +240,7 @@ def render(cats, now):
 <main>{secs}</main>
 <footer class="foot">
 <p>値段・送料・レビューは、このページを作った時に楽天で確かめた物です。量は商品名から読んでいるので、買う前にリンク先で内容量を確かめてください。</p>
-<p>このページのリンクは楽天アフィリエイトの広告（PR）です。</p>
+<p>このページのリンクは楽天アフィリエイト・Amazonアソシエイトの広告（PR）です。Amazonのアソシエイトとして、うさぎ│LIFE NOTES は適格販売により収入を得ています。</p>
 <a class="back" href="./">関東おでかけリストを見る</a>
 <p class="sign">うさぎ│LIFE NOTES</p>
 </footer></div>
@@ -228,6 +268,10 @@ def main():
         if err:
             errs.append(f"{c[0]}: {err[:80]}")
         if r and r["top"]:
+            try:
+                r["amz"] = amazon_rows(c[0], c[6])
+            except Exception as e:  # Amazonが読めなくても楽天の比べは出す
+                errs.append(f"{c[0]} amazon: {str(e)[:60]}")
             cats.append(r)
     print(json.dumps({"tanka": [(c["key"], c["seen"], c["read"], c["ok"], len(c["top"])) for c in cats], "errs": errs},
                      ensure_ascii=False))
@@ -237,7 +281,8 @@ def main():
     os.makedirs(site, exist_ok=True)
     open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(cats, now))
     slim = [{k: c[k] for k in ("key", "title", "unit", "seen", "read", "ok", "avg")} |
-            {"top": [{k: r[k] for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain")} for r in c["top"]]}
+            {"top": [{k: r[k] for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain")} for r in c["top"]],
+             "amazon": [{k: r[k] for k in ("asin", "name", "price", "per", "amt", "rc", "av")} for r in c.get("amz", [])]}
             for c in cats]
     lib.save_json(os.path.join(ROOT, "data", "tanka.json"), {"at": now.strftime("%Y-%m-%d %H:%M"), "cats": slim})
 
