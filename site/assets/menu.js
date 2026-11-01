@@ -15,7 +15,9 @@
     ["PER UNIT","tanka","/tanka","1個あたりで比べた","楽天の水・お米などを1Lあたり・1kgあたりで"],
     ["SHOP","shop","/#shop","うさぎが比べた買い物","くらべて選んだ、暮らしの物"],
     ["DEAL","deal","/#deal","今だけのお得","ポイントアップ・セールの日"],
-    ["HOTEL","trip","/#trip","宿と予約","口コミ1,000件以上・評価4.5以上の宿"]
+    ["HOTEL","trip","/#trip","宿と予約","口コミ1,000件以上・評価4.5以上の宿"],
+    ["-","CONTACT"],
+    ["LISTING","listing","https://ig.me/m/ai_usagichan1","おでかけ掲載","新しいお店やイベントのご紹介"]
   ];
   var css=
   "#umenu{position:fixed;top:12px;right:12px;z-index:9990;width:42px;height:42px;border-radius:50%;border:1px solid #DADADA;background:rgba(255,255,255,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.07);-webkit-tap-highlight-color:transparent}"+
@@ -71,7 +73,7 @@
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
   function openView(v){var b=document.querySelector('button[data-v="'+v+'"]');if(!b)return;b.click();setTimeout(function(){var y=b.getBoundingClientRect().top+scrollY-10;scrollTo({top:y,behavior:"smooth"});},60);}
   function openMap(){var n=0;(function t(){var b=document.querySelector(".tnbtn");if(b){b.click();return;}if(++n<40)setTimeout(t,100);})();}
-  var GJ={"KANTO ODEKAKE":"おでかけ","SHOPPING":"買い物"};
+  var GJ={"KANTO ODEKAKE":"おでかけ","SHOPPING":"買い物","CONTACT":"ご相談・お問い合わせ"};
   function ug(k){return '<div class="ug">'+(GJ[k]||k)+(GJ[k]?'<small>'+k+'</small>':"")+'</div>';}
   function build(){
     var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
