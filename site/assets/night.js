@@ -10,7 +10,8 @@
     document.dispatchEvent(new CustomEvent("usagi-theme",{detail:v}));}
   var css="html.night{background:#fff;filter:invert(.95) hue-rotate(180deg)}"+
     "html.night img,html.night video,html.night picture,html.night svg image,html.night .nofilt,html.night .tnbtn .mm{filter:invert(1) hue-rotate(180deg)}"+
-    "html.night .head img{background:#fff;border-radius:50%;filter:brightness(.72) invert(1) hue-rotate(180deg)}"+
+    /* 11/2 オーナー「中のデザインだけ光らせたら？」→ 夜は丸い台をなくし、ロゴの線だけを光らせる */
+    "html.night .head img{background:none;filter:brightness(1.8) saturate(.95) drop-shadow(0 0 3px rgba(255,214,170,.75)) drop-shadow(0 0 10px rgba(255,190,140,.35)) invert(1) hue-rotate(180deg)}"+
     /* 11/2 オーナー「夜もっと何とかならん」「夜のお洒落感」→ 真っ黒をやめて深い夜空の紺に。白い面も同じ紺になるよう、薄い青を全体に重ねる */
     "html.night body:after{content:'';position:fixed;inset:-50vh 0;background:#E9F0FF;mix-blend-mode:multiply;pointer-events:none;z-index:2147483646}"+
     /* 題名まわりの丸い飾りは、夜は星と月あかりに */
@@ -52,7 +53,10 @@
         if(!pth.isPointInFill||!pth.isPointInFill(pt))continue;got++;var q=r2();
         out+='<circle cx="'+pt.x.toFixed(1)+'" cy="'+pt.y.toFixed(1)+'" r="'+(q<.1?2.2:q<.4?1.5:1).toFixed(1)+'"'+(q>.8?' class="t"':q>.62?' class="u"':'')+' opacity="'+(.55+r2()*.45).toFixed(2)+'"/>';}});
     g.innerHTML=out;var lb=m.querySelector(".lb");m.insertBefore(g,lb);}
-  function go(){if(d.classList.contains("night"))deco();}
+  /* 燈のロゴは白い台つきの絵なので、夜は台のない絵に替える */
+  function logo(){var n=d.classList.contains("night"),im=document.querySelectorAll('.head img[src*="logo-s"]');
+    for(var i=0;i<im.length;i++){var s0=im[i].getAttribute("src");im[i].setAttribute("src",n?s0.replace(/logo-s(-night)?\.png/,"logo-s-night.png"):s0.replace("logo-s-night.png","logo-s.png"));}}
+  function go(){logo();if(d.classList.contains("night"))deco();}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();
   document.addEventListener("usagi-theme",function(){if(document.readyState!=="loading")go();});
   window.usagiTheme={get:function(){return d.classList.contains("night")?"night":"day"},set:function(v){set(v,true)}};
