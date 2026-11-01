@@ -3,13 +3,14 @@
    ページを足すときは L に1行足すだけ。/#shop・/#deal・/#trip はリストの欄ボタンを押す。押された数は /c の s=menu。 */
 (function(){
   var P=location.pathname.replace(/^\/townnotes\//,"/"),here=
-    /^\/(index\.html)?$/.test(P)?"list":/^\/illumination/.test(P)?"illumi":/^\/tomari/.test(P)?"tomari":"";
+    /^\/(index\.html)?$/.test(P)?"list":/^\/illumination/.test(P)?"illumi":/^\/tomari/.test(P)?"tomari":/^\/kaimawari/.test(P)?"kaimawari":"";
   var L=[
     ["LIST","list","/","関東おでかけリスト","開催中・これからのおでかけ"],
     ["MAP","map","/#map","地図で見る","関東の地図から、近くのおでかけを"],
     ["ILLUMINATION","illumi","/illumination","イルミネーション日程","2026-2027　都県ごとの日程と無料の所"],
     ["STAY","tomari","/tomari","泊まりで行くおでかけ","遠くのおでかけと、近くの宿"],
     ["-","SHOPPING"],
+    ["KAIMAWARI","kaimawari","/kaimawari","買いまわりの1,000円ぽっきり","お買い物マラソン用・送料込み・レビュー1,000件以上"],
     ["SHOP","shop","/#shop","うさぎが比べた買い物","くらべて選んだ、暮らしの物"],
     ["DEAL","deal","/#deal","今だけのお得","ポイントアップ・セールの日"],
     ["HOTEL","trip","/#trip","宿と予約","口コミ1,000件以上・評価4.5以上の宿"]

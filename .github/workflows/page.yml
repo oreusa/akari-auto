@@ -31,6 +31,8 @@ jobs:
         run: LINK_GATE=1 python3 scripts/page.py
       - name: 関東イルミネーションのまとめページと、検索用の robots.txt・sitemap.xml（10/31 月からの頼み。失敗してもHPは出す）
         run: python3 scripts/illumi.py || true
+      - name: 買いまわりの1,000円ぽっきり（11/1 オーナー「いつになったら売上作るんだ」。楽天の検索で毎回作る。失敗してもHPは出す）
+        run: python3 scripts/kaimawari.py || true
       - name: 地図（カードの場所を緯度経度に → 本番の / と試作 /townnotes/ に「地図で見る」。失敗しても地図なしでページは出す）
         run: python3 scripts/townnotes.py || true
       - name: 月の関西おでかけリストの近くの宿（楽天トラベル・燈のIDを2人で使う 10/31 オーナー。失敗しても燈のHPは出す）
