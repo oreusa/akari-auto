@@ -1365,11 +1365,10 @@
   "why": ""
  },
  "https://maebashi-biennale.com/": {
-  "at": "2026-11-01",
-  "by": "browser",
-  "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.3,
+  "why": ""
  },
  "https://maruchiba.jp/event/detail_10812.html": {
   "at": "2026-11-01",
