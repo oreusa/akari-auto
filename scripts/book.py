@@ -511,7 +511,9 @@ def ig_profile(texts, due):
     return IG_PROFILE
 # Instagram の毎日の4コマ（10/23 オーナー「OK」）：スライド4枚（8:00）とストーリー2枚（8:05・8:15）。動画の日はリールも
 # 10/31 7:30のリール・8:00のスライドとストーリー2枚が30分に4本重なり、スライドとストーリー2枚目がエラー（10/29もスライドがスパムの印）→間をあける
-IG_EXTRA = (("ig_slides", "post", 0), ("ig_story1", "story", 5), ("ig_story2", "story", 15))
+# 11/1 ストーリーは離して出た。スライドは10/29・10/31・11/1とも「スパムの疑い」＝8:00のリールと同じ時刻・同じ文だったため→3時間あけ、1行目を変える
+IG_EXTRA = (("ig_slides", "post", 180), ("ig_story1", "story", 5), ("ig_story2", "story", 15))
+IG_SLIDES_HEAD = "今朝の4コマを、1コマずつめくって読めます。"
 
 
 IG_V = 2  # 切り方を変えたら上げる（前の切り方のURLを使わない）
@@ -681,7 +683,9 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
         if svc in ("twitter", "threads") and URL_RE.search(k.get("text2") or ""):
             texts = with_page([k["text"], k["text2"].strip()], svc, cfg, slot, due)
         elif svc == "instagram" and media.get("ig_type") != "story" and IG_HEAD not in k["text"]:
-            texts = [k["text"].rstrip() + "\n\n" + ig_profile([k["text"]], due) + "\n\n" + ig_tags(k, due)]  # インスタの文はリンクを押せないので、HPへの道を1行（10/26 オーナー「プロフィールリンクに詳細あるよね？」）
+            texts = [k["text"].rstrip() + "\n\n" + ig_profile([k["text"]], due) + "\n\n" + ig_tags(k, due)]
+            if media.get("ig_type") == "post":  # スライドはリールと同じ文にしない（同じ文が続くとスパムの印）
+                texts = [IG_SLIDES_HEAD + "\n\n" + texts[0]]  # インスタの文はリンクを押せないので、HPへの道を1行（10/26 オーナー「プロフィールリンクに詳細あるよね？」）
         try:
             p = buffer_create(cfg["channels"][svc], svc, texts, at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
                               topic=threads_topic(k.get("topic") or "漫画", k.get("text", ""), due) if svc == "threads" else None, **media)
