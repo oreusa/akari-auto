@@ -1,0 +1,19 @@
+/* 11/1 オーナー「月のに比べて作り雑くない？HP内全部ちゃんとやれ」→ 燈の中のページ（イルミ・泊まり・1個あたり・買いまわり・ふるさと納税）を、トップと月のページと同じ形にそろえる。
+   上：トップと同じ色の丸い飾り／都県の色の下線タブ／見出しの左に色の線／カードは枠なしの白に薄い影／下：トップと同じ下のボタン列＋MENU（v2sub.js） */
+html body{padding-bottom:96px}
+html body .wrap{overflow-x:hidden}
+html body .head{position:relative;isolation:isolate}
+html body .head:before,html body .head:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);z-index:-1;pointer-events:none}
+html body .head:before{width:170px;height:170px;left:-60px;top:6px;background:#F6E3D8;opacity:.75}
+html body .head:after{width:120px;height:120px;right:-34px;top:-6px;background:#DCE8F2;opacity:.8}
+html body .head img{background:transparent}
+/* タブ：トップと同じ、下線の切り替え */
+html body .tabs{gap:0;margin:22px 0 10px;padding:0;border-top:1px solid #E4DED8;border-bottom:1px solid #E4DED8}
+html body .tabs button{background:none;border:0;border-radius:0;color:var(--pc,#6B6058);padding:15px 12px 12px;border-bottom:3px solid transparent;font-size:14px}
+html body .tabs button.on{background:none;color:#231E1B;border-bottom-color:#231E1B}
+/* 見出し：左に色の線（都県の色・ないときは茶） */
+html body .ps h2{border-bottom:0;padding:2px 0 2px 12px;border-left:4px solid var(--pc,#B98A6B);margin:30px 0 12px}
+/* カード：枠なしの白に薄い影 */
+html body .cd{border:0;border-radius:8px;box-shadow:0 1px 10px rgba(60,45,35,.08)}
+html body .faq details{border:0;box-shadow:0 1px 8px rgba(60,45,35,.06)}
+html body .back{border-radius:8px}
