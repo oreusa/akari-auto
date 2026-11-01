@@ -1396,7 +1396,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 {blocks}
 <p class="pr-note">{pr_note}<br>買う前に、楽天のページで最新の情報を確かめてください。</p>
 <div class="sns"><h2>FOLLOW</h2>{follow}</div>
-<p class="ft">うさぎ│LIFE NOTES│過去のおでかけも、このページに残していきます</p><a class="tnx buy" href="furusato" data-k="下の入口｜ふるさと納税"><small>関連ページ</small><b>ふるさと納税を比べた<span>→</span></b><i>寄付1万円あたりの量で・12/31まで</i></a><a class="tnx" href="tanka" data-k="下の入口｜1個あたり"><small>関連ページ</small><b>1個あたりで比べた<span>→</span></b><i>楽天の水・お米などを1Lあたり・1kgあたりで</i></a><a class="tnx" href="kaimawari" data-k="下の入口｜買いまわり"><small>関連ページ</small><b>買いまわりの1,000円ぽっきり<span>→</span></b><i>楽天お買い物マラソンの時に</i></a>
+<p class="ft">うさぎ│LIFE NOTES│過去のおでかけも、このページに残していきます</p><a class="tnx buy" href="nesage" data-k="下の入口｜本当に値下がり"><small>関連ページ</small><b>本当に値下がりした物だけ<span>→</span></b><i>楽天の毎日の物を燈が毎日記録</i></a><a class="tnx buy" href="furusato" data-k="下の入口｜ふるさと納税"><small>関連ページ</small><b>ふるさと納税を比べた<span>→</span></b><i>寄付1万円あたりの量で・12/31まで</i></a><a class="tnx" href="tanka" data-k="下の入口｜1個あたり"><small>関連ページ</small><b>1個あたりで比べた<span>→</span></b><i>楽天の水・お米などを1Lあたり・1kgあたりで</i></a><a class="tnx" href="kaimawari" data-k="下の入口｜買いまわり"><small>関連ページ</small><b>買いまわりの1,000円ぽっきり<span>→</span></b><i>楽天お買い物マラソンの時に</i></a>
 </div>
 <button id="totop" aria-label="上にもどる"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4A403A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
 <script>
