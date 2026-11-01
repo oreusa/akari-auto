@@ -79,17 +79,37 @@ h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-heigh
 .back{display:block;width:max-content;margin:28px auto 0;color:#2B2622;text-decoration:none;font-size:13px;letter-spacing:.1em;border-bottom:1px solid #2B2622;padding-bottom:2px}
 .ft{text-align:center;font-size:10px;letter-spacing:.04em;color:#8C7B6E;margin-top:30px}
 .ld{text-align:center;font-size:12px;color:#8C7B6E;padding:30px 0}
+/* 11/2 オーナー「もう少し見やすく」→ 出発は大きな1枚（変えるで駅を探す）、どこまで→レーダー→時間ごとの見出し */
+.og{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 0 0;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.og small{display:block;font-size:11px;letter-spacing:.12em;color:#8C7B6E}
+.og b{font-size:22px;font-weight:700;color:#1C1C1C;letter-spacing:.04em}.og span{font-size:13px;color:#6B6058;margin-left:4px}
+.og button{flex:none;font-family:"Zen Kaku Gothic New";font-size:13px;font-weight:700;color:#fff;background:#2B2622;border:0;border-radius:99px;padding:10px 18px;cursor:pointer}
+.pk{margin:8px 0 0;padding:14px 14px 6px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.pk .gps{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-family:"Zen Kaku Gothic New";font-size:14px;font-weight:700;color:#2B2622;background:#F1F1F1;border:0;border-radius:10px;padding:12px;cursor:pointer}
+.pk .gps:before{content:"";width:10px;height:10px;border-radius:50%;border:2px solid #2B2622;box-sizing:border-box}
+.pk input{display:block;width:100%;box-sizing:border-box;margin:10px 0 4px;font-family:"Zen Kaku Gothic New";font-size:16px;padding:11px 14px;border:1px solid #CECECE;border-radius:10px;background:#fff;color:#2B2622}
+.pg{margin:12px 0 8px}.pg p{display:flex;align-items:center;gap:6px;margin:0 0 7px;font-size:12px;font-weight:700;color:#3A3A3A;letter-spacing:.06em}.pg p:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pc)}
+.pg div{display:flex;flex-wrap:wrap;gap:6px}
+.pg button{font-family:"Zen Kaku Gothic New";font-size:13px;font-weight:700;color:#2B2622;background:#fff;border:1px solid #D4D4D4;border-radius:99px;padding:8px 13px;cursor:pointer}
+.pg button.on{background:#2B2622;border-color:#2B2622;color:#fff}
+.pn{font-size:13px;color:#8C7B6E;text-align:center;padding:14px 0}
+.tq{text-align:center;font-size:12px;letter-spacing:.1em;color:#8C7B6E;margin:22px 0 0}
+.tm{margin-top:8px}
+.bd2{display:flex;align-items:center;gap:10px;margin:22px 0 10px;font-size:13px;font-weight:700;color:#2B2622;letter-spacing:.06em}
+.bd2:after{content:"";flex:1;height:1px;background:#E2E2E2}.bd2 small{font-weight:500;color:#8C7B6E;font-size:11px}
+.now i{font-size:11.5px}
 </style><script src="assets/night.js?v=3"></script><script src="assets/menu.js?v=7" defer></script><script src="assets/v2sub.js?v=3" defer></script></head><body><div class="wrap">
 <div class="head"><img src="/logo-s.png" width="60" height="60" alt="ロゴ"><div class="en">NOW &amp; NEAR</div>
 <h1>いまから行ける<br>おでかけ</h1><p class="sub">いる場所といまの時刻から、<br>きょう開いている所を近い順に並べます。</p>
 <div class="cnt"><span>きょう開いている<b id="nOpen">–</b>か所</span><span>1時間以内<b id="nNear">–</b>か所</span></div></div>
-<p class="lb">FROM</p>
-<div class="flt" id="org"><button class="gps" data-g="1">いまいる場所</button></div>
+<div class="og" id="og"><div><small>出発する所</small><b id="ogN">–</b><span>から</span></div><button type="button" id="ogB">変える</button></div>
+<div class="pk" id="pk" hidden><button type="button" class="gps" id="gpsB">いまいる場所を使う</button><input id="q" type="search" placeholder="駅の名前で探す（ひらがなでも）" autocomplete="off" enterkeyhint="search"><div id="pkL"></div></div>
 <p class="msg" id="msg"></p>
 <div class="now" id="now"><div><small>いま</small><b id="nT">--:--</b><i id="nD"></i></div><div><small>日の入り</small><b id="sS">--:--</b><i id="sL"></i></div><div><small>降水確率</small><b id="wP">–</b><i id="wT"></i></div></div>
-<div class="rd" id="rd"><svg viewBox="0 0 320 320" aria-label="近いおでかけのレーダー" role="img"><defs><linearGradient id="swg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2B2622" stop-opacity="0"/><stop offset="1" stop-color="#2B2622" stop-opacity=".10"/></linearGradient></defs><g id="rdBase"></g><g class="sw"><path d="M160 160 L160 10 A150 150 0 0 1 266.07 53.93 Z" fill="url(#swg)"/><line x1="160" y1="160" x2="160" y2="10" stroke="#2B2622" stroke-opacity=".25" stroke-width="1"/></g><g id="rdPts"></g><g id="rdLb"></g><circle class="meh" cx="160" cy="160" r="8"/><circle class="me" cx="160" cy="160" r="4.5"/></svg><div class="tip" id="tip"></div></div>
-<div class="lg" id="lg"></div>
+<p class="tq">どのくらいまで行く？</p>
 <div class="tm" id="tm"><button data-m="30">30分</button><button data-m="60" class="on">1時間</button><button data-m="90">1時間半</button><button data-m="999">すべて</button></div>
+<div class="rd" id="rd"><svg viewBox="0 0 320 320" aria-label="近いおでかけのレーダー" role="img"><defs><linearGradient id="swg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2B2622" stop-opacity="0"/><stop offset="1" stop-color="#2B2622" stop-opacity=".10"/></linearGradient></defs><g id="rdBase"></g><g class="sw"><path d="M160 160 L160 10 A150 150 0 0 1 266.07 53.93 Z" fill="url(#swg)"/><line x1="160" y1="160" x2="160" y2="10" stroke="#2B2622" stroke-opacity=".25" stroke-width="1"/></g><g id="rdLb"></g><g id="rdPts"></g><circle class="meh" cx="160" cy="160" r="8"/><circle class="me" cx="160" cy="160" r="4.5"/></svg><div class="tip" id="tip"></div></div>
+<div class="lg" id="lg"></div>
 <div class="wkh"><span id="lh">近い順</span><small id="ls"></small></div>
 <div id="list"><div class="ld">おでかけリストを読んでいます…</div></div>
 <div class="none" id="none">この時間で行ける所は見つかりませんでした。<br>上の「1時間半」「すべて」でもう少し遠くまで探せます。</div>
@@ -100,7 +120,13 @@ h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-heigh
 var PC={"東京":"#4F86C6","神奈川":"#3FA3B5","埼玉":"#E09A3E","千葉":"#D9775A","茨城":"#5FA06A","栃木":"#D2697E","群馬":"#9C7BB8"};
 var JMA={"東京":"130000","神奈川":"140000","埼玉":"110000","千葉":"120000","茨城":"080000","栃木":"090000","群馬":"100000"};
 /* 出発の駅（だいたいの位置） */
-var ST=[["新宿","東京",35.6896,139.7006],["東京","東京",35.6812,139.7671],["渋谷","東京",35.6580,139.7016],["池袋","東京",35.7295,139.7109],["品川","東京",35.6285,139.7388],["立川","東京",35.6980,139.4137],["横浜","神奈川",35.4658,139.6223],["大宮","埼玉",35.9064,139.6239],["千葉","千葉",35.6131,140.1134]];
+var ST=[["新宿","東京",35.6896,139.7006,"しんじゅく"],["東京","東京",35.6812,139.7671,"とうきょう"],["渋谷","東京",35.658,139.7016,"しぶや"],["池袋","東京",35.7295,139.7109,"いけぶくろ"],["品川","東京",35.6285,139.7388,"しながわ"],["上野","東京",35.7138,139.7773,"うえの"],["秋葉原","東京",35.6984,139.7731,"あきはばら"],["新橋","東京",35.6662,139.7583,"しんばし"],["浜松町","東京",35.6555,139.757,"はままつちょう"],["恵比寿","東京",35.6467,139.7101,"えびす"],["中目黒","東京",35.644,139.699,"なかめぐろ"],["大井町","東京",35.6074,139.7349,"おおいまち"],["豊洲","東京",35.655,139.7964,"とよす"],["押上","東京",35.7101,139.8132,"おしあげ すかいつりー"],["錦糸町","東京",35.6964,139.8146,"きんしちょう"],["北千住","東京",35.7497,139.8049,"きたせんじゅ"],["赤羽","東京",35.7779,139.721,"あかばね"],["中野","東京",35.7056,139.6656,"なかの"],["吉祥寺","東京",35.7032,139.5797,"きちじょうじ"],["二子玉川","東京",35.6115,139.6268,"ふたこたまがわ"],["立川","東京",35.698,139.4137,"たちかわ"],["八王子","東京",35.6556,139.3389,"はちおうじ"],["町田","東京",35.5422,139.4458,"まちだ"],
+["横浜","神奈川",35.4658,139.6223,"よこはま"],["桜木町","神奈川",35.451,139.6311,"さくらぎちょう みなとみらい"],["新横浜","神奈川",35.5068,139.6176,"しんよこはま"],["川崎","神奈川",35.5313,139.6969,"かわさき"],["武蔵小杉","神奈川",35.5764,139.6595,"むさしこすぎ"],["藤沢","神奈川",35.3389,139.4875,"ふじさわ"],["鎌倉","神奈川",35.3192,139.5503,"かまくら"],["海老名","神奈川",35.4526,139.3906,"えびな"],["本厚木","神奈川",35.4396,139.3647,"ほんあつぎ"],["横須賀中央","神奈川",35.2786,139.6702,"よこすかちゅうおう"],["小田原","神奈川",35.2563,139.1552,"おだわら"],
+["大宮","埼玉",35.9064,139.6239,"おおみや"],["浦和","埼玉",35.8587,139.6574,"うらわ"],["川越","埼玉",35.9077,139.483,"かわごえ"],["所沢","埼玉",35.787,139.4729,"ところざわ"],["越谷レイクタウン","埼玉",35.8763,139.8227,"こしがやれいくたうん"],["春日部","埼玉",35.98,139.7525,"かすかべ"],["熊谷","埼玉",36.1394,139.3902,"くまがや"],
+["千葉","千葉",35.6131,140.1134,"ちば"],["船橋","千葉",35.7019,139.9851,"ふなばし"],["舞浜","千葉",35.6363,139.8833,"まいはま"],["海浜幕張","千葉",35.6484,140.042,"かいひんまくはり"],["松戸","千葉",35.7843,139.9006,"まつど"],["柏","千葉",35.8622,139.9711,"かしわ"],["成田","千葉",35.7762,140.3178,"なりた"],["木更津","千葉",35.3813,139.9254,"きさらづ"],
+["水戸","茨城",36.3709,140.4764,"みと"],["つくば","茨城",36.0826,140.1114,"つくば"],["土浦","茨城",36.0784,140.2063,"つちうら"],
+["宇都宮","栃木",36.5594,139.8985,"うつのみや"],["小山","栃木",36.3148,139.8001,"おやま"],["東武日光","栃木",36.748,139.6199,"とうぶにっこう にっこう"],
+["高崎","群馬",36.3229,139.0127,"たかさき"],["前橋","群馬",36.3833,139.0733,"まえばし"]];
 var WD=["日","月","火","水","木","金","土"],WE=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 function jst(){return new Date(Date.now()+9*36e5);}
 function ymd(d){return d.toISOString().slice(0,10);}
@@ -123,14 +149,19 @@ function fd(s){var d=new Date(s+"T00:00:00Z");return (d.getUTCMonth()+1)+"."+Str
 function dd(a,b){return Math.round((Date.parse(b)-Date.parse(a))/864e5);}
 
 var O=null,MAXM=60,ITEMS=[],SEL=null;
-var org=document.getElementById("org");
-ST.forEach(function(s){var b=document.createElement("button");b.textContent=s[0];b.dataset.n=s[0];org.appendChild(b);});
-function setOrg(o,save){O=o;org.querySelectorAll("button").forEach(function(b){b.classList.toggle("on",o.g?!!b.dataset.g:b.dataset.n===o.n);});
+var og=document.getElementById("og"),pk=document.getElementById("pk"),q=document.getElementById("q"),pkL=document.getElementById("pkL"),PO=Object.keys(PC);
+function kana(t){return t.replace(/[\u30a1-\u30f6]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96)});}
+function pkDraw(){var v=kana((q.value||"").trim()),h="";PO.forEach(function(p){var L=ST.filter(function(x){return x[1]===p&&(!v||x[0].indexOf(v)>=0||x[4].indexOf(v)>=0||p.indexOf(v)>=0)});if(!L.length)return;
+  h+='<div class="pg" style="--pc:'+PC[p]+'"><p>'+p+'</p><div>'+L.map(function(x){return '<button type="button" data-n="'+x[0]+'"'+(O&&!O.g&&O.n===x[0]?' class="on"':'')+'>'+x[0]+'</button>'}).join("")+'</div></div>';});
+  pkL.innerHTML=h||'<p class="pn">見つかりませんでした。近くの大きな駅を選んでください。</p>';}
+function pkOpen(o){pk.hidden=!o;document.getElementById("ogB").textContent=o?"閉じる":"変える";if(o)pkDraw();}
+document.getElementById("ogB").addEventListener("click",function(){pkOpen(pk.hidden);if(!pk.hidden)ck("いま｜出発を変える");});
+q.addEventListener("input",pkDraw);
+pkL.addEventListener("click",function(e){var b=e.target.closest("button[data-n]");if(!b)return;var x=ST.filter(function(y){return y[0]===b.dataset.n})[0];msg("");q.value="";pkOpen(false);setOrg({n:x[0],p:x[1],la:x[2],lo:x[3]},true);ck("いま｜出発："+x[0]);scrollTo({top:og.getBoundingClientRect().top+scrollY-12,behavior:"smooth"});});
+document.getElementById("gpsB").addEventListener("click",function(){pkOpen(false);gps();ck("いま｜出発：いまいる場所");});
+function setOrg(o,save){O=o;document.getElementById("ogN").textContent=o.g?"いまいる場所":o.n+"駅";
   if(save&&!o.g)try{localStorage.setItem("usagi_ima_from",o.n);}catch(e){}
   clock();wx();draw();}
-org.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
-  if(b.dataset.g){gps();ck("いま｜出発：いまいる場所");return;}
-  var s=ST.filter(function(x){return x[0]===b.dataset.n})[0];msg("");setOrg({n:s[0],p:s[1],la:s[2],lo:s[3]},true);ck("いま｜出発："+s[0]);});
 function msg(t){document.getElementById("msg").textContent=t;}
 function gps(){if(!navigator.geolocation){msg("この端末では場所がわかりません。近い駅を選んでください。");return;}
   msg("いまいる場所を確かめています…");
@@ -162,16 +193,15 @@ function load(){Promise.all([
   doc.querySelectorAll("div.card.it[data-pref]").forEach(function(a){if(!PC[a.dataset.pref])return;var tt=a.querySelector(".t"),t=tt?tt.textContent.trim():"",k=t.replace(/\s+/g,""),g=G[k];if(!t||!g||g[0]==null||seen[k])return;seen[k]=1;
     var s=a.dataset.s||"",e=a.dataset.e||"",lk=a.querySelector(".t a"),mp=a.querySelector("a.mp"),q="";
     if(mp){var mq=(mp.getAttribute("href")||"").match(/query=([^&]*)/);if(mq)try{q=decodeURIComponent(mq[1]).replace(" "+a.dataset.pref,"").trim();}catch(x){}}
-    var open=e?((s||T)<=T&&T<=e):(s?s<=T:!/予定|準備中|オープン前/.test((a.querySelector(".when")||{}).textContent||""));  /* 日付の無い「◯月オープン予定」などは出さない */if(!open||!lk)return;
+    var open=e?((s||T)<=T&&T<=e):(s?s<=T:!/予定|準備中|オープン前/.test((a.querySelector(".when")||{}).textContent||""));if(!open||!lk)return;
     ITEMS.push({t:t,p:a.dataset.pref,s:s,e:e,op:"",free:a.dataset.free==="1",m:q,place:a.dataset.pref,d:((a.querySelector(".when")||{}).textContent||""),href:lk.getAttribute("href"),la:+g[0],lo:+g[1],
       inside:/美術館|博物館|ミュージアム|展$|展[　 （(]|展覧|水族館|ホール|アリーナ|ドーム|百貨店|プラネタリウム|シアター|館/.test(t+" "+q)});});
   document.getElementById("nOpen").textContent=ITEMS.length;draw();ck("表示：いまから行けるおでかけ");
 }).catch(function(){document.getElementById("list").innerHTML='<div class="ld">リストを読めませんでした。少しして開き直してください。</div>';});}
 /* レーダーの土台 */
-(function(){var g=document.getElementById("rdBase"),h="";[150,112.5,75,37.5].forEach(function(r,i){h+='<circle class="ring'+(i===2?" r2":"")+'" cx="160" cy="160" r="'+r+'"/>';});
+(function(){var g=document.getElementById("rdBase"),h="";
   h+='<line class="ax" x1="160" y1="6" x2="160" y2="314"/><line class="ax" x1="6" y1="160" x2="314" y2="160"/>';
-  h+='<text class="nl" x="160" y="0" text-anchor="middle">N</text>';g.innerHTML=h;var lb="";
-  ["30分","1時間","1時間半","2時間"].forEach(function(t,i){lb+='<text class="rl" x="163" y="'+(160-37.5*(i+1)+11)+'">'+t+'</text>';});document.getElementById("rdLb").innerHTML=lb;
+  h+='<text class="nl" x="160" y="0" text-anchor="middle">N</text>';g.innerHTML=h;
   var lg=document.getElementById("lg");Object.keys(PC).forEach(function(p){var s=document.createElement("span");s.style.setProperty("--pc",PC[p]);s.textContent=p;lg.appendChild(s);});})();
 function draw(){if(!O||!ITEMS.length)return;
   ITEMS.forEach(function(x){x.k=km(O.la,O.lo,x.la,x.lo);x.min=mins(x.k);x.b=brg(O.la,O.lo,x.la,x.lo);});
@@ -179,12 +209,17 @@ function draw(){if(!O||!ITEMS.length)return;
   document.getElementById("nNear").textContent=ITEMS.filter(function(x){return x.min<=60}).length;
   document.getElementById("lh").textContent=RAIN?"雨の予報：屋内らしい所を先に":"近い順";
   document.getElementById("ls").textContent=(O.g?"いまいる場所":O.n)+"から　"+show.length+"か所";
-  /* レーダーの点（2時間を外の輪。それより遠い所は輪の上に薄く） */
-  var ph="";L.slice().reverse().forEach(function(x,i){var r=Math.min(150,x.min/120*150),px=160+r*Math.sin(x.b),py=160-r*Math.cos(x.b);
-    ph+='<circle class="pt'+(x.min>MAXM?" far":"")+(SEL===x.t?" sel":"")+'" data-t="'+esc(x.t)+'" cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="'+(x.min<=MAXM?6:4.5)+'" fill="'+PC[x.p]+'" stroke="#fff" stroke-width="1.5"/>';});
-  document.getElementById("rdPts").innerHTML=ph;
+  /* レーダー：外の輪＝選んだ時間（すべては3時間）。その外の所は出さない。輪の時間も選んだ時間に合わせる */
+  var RM=MAXM>=999?180:MAXM,ph="",lb="";L.slice().reverse().forEach(function(x){if(x.min>RM)return;var r=x.min/RM*150,px=160+r*Math.sin(x.b),py=160-r*Math.cos(x.b);
+    ph+='<circle class="pt'+(SEL===x.t?" sel":"")+'" data-t="'+esc(x.t)+'" cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="7" fill="'+PC[x.p]+'" stroke="#fff" stroke-width="2"/>';});
+  var RG={30:[10,20,30],60:[15,30,45,60],90:[30,60,90],180:[30,60,120,180]}[RM]||[RM];
+  RG.forEach(function(m){var r=m/RM*150;lb+='<circle class="ring" cx="160" cy="160" r="'+r+'"/><text class="rl" x="163" y="'+(160-r+11)+'">'+(m<60?m+"分":Math.floor(m/60)+"時間"+(m%60?m%60+"分":""))+'</text>';});
+  document.getElementById("rdPts").innerHTML=ph;document.getElementById("rdLb").innerHTML=lb;
   var h="",dir=O.g?O.la+","+O.lo:O.n+"駅";
-  show.forEach(function(x){var st=x.e&&x.e===T?'<span class="ls">きょうまで</span>':(x.e&&dd(T,x.e)<=3?'<span class="ls">あと'+dd(T,x.e)+'日</span>':(x.e?'<span class="on">開催中</span>':""));
+  var BD=[15,30,45,60,90,120,180,1e9],cb=-1;
+  show.forEach(function(x){if(!RAIN){var bi=0;while(x.min>BD[bi])bi++;if(bi!==cb){cb=bi;var n=show.filter(function(y){return y.min<=BD[bi]&&(bi===0||y.min>BD[bi-1])}).length;
+      h+='<div class="bd2">'+(BD[bi]>1e8?"3時間より遠く":(BD[bi]<60?BD[bi]+"分":Math.floor(BD[bi]/60)+"時間"+(BD[bi]%60?BD[bi]%60+"分":""))+"以内")+'<small>'+n+'か所</small></div>';}}
+    var st=x.e&&x.e===T?'<span class="ls">きょうまで</span>':(x.e&&dd(T,x.e)<=3?'<span class="ls">あと'+dd(T,x.e)+'日</span>':(x.e?'<span class="on">開催中</span>':""));
     var dt=x.e?fd(x.e)+" まで":(x.d.replace(/\s+/g," ").trim());
     var route="https://www.google.com/maps/dir/?api=1&origin="+encodeURIComponent(dir)+"&destination="+x.la+","+x.lo+"&travelmode=transit";
     h+='<article class="it" id="i-'+esc(x.t)+'" style="--pc:'+PC[x.p]+'"><a class="card" href="'+esc(x.href)+'" target="_blank" rel="noopener" data-k="公式｜'+esc(x.t)+'"><div class="v2c"><span class="p">'+x.p+'</span>'+st+(x.free?'<span class="f">無料</span>':"")+'</div><div class="v2d">'+esc(dt)+'</div><div class="t">'+esc(x.t)+'</div><div class="m">'+esc(x.place+(x.m?"｜"+x.m:""))+'</div><div class="tt"><small>約</small>'+tmin(x.min)+'<i>'+(x.k<10?x.k.toFixed(1):Math.round(x.k))+' km</i></div><div class="go">→</div></a><div class="rt"><a href="'+route+'" target="_blank" rel="noopener" data-k="行き方｜'+esc(x.t)+'">行き方</a></div></article>';});
