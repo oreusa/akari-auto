@@ -1772,16 +1772,16 @@
   },
   "HitachiStarlightIllumination2026": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-01",
     "ll": [
-      36.59915,
-      140.65062
+      36.59008,
+      140.65959
     ],
     "h": [
       {
         "n": "日立・太田尻海岸 うのしまヴィラ",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D147444",
-        "km": 3.4,
+        "km": 3.5,
         "r": 4.86,
         "rc": 60,
         "min": 10890
@@ -1789,18 +1789,18 @@
       {
         "n": "KOKO STAY 日立",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D4830",
-        "km": 1.1,
-        "r": 4.26,
-        "rc": 1582,
+        "km": 0.3,
+        "r": 4.27,
+        "rc": 1591,
         "min": 2850
       },
       {
         "n": "ツーリストホテル日立",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D50252",
         "km": 0.7,
-        "r": 4.21,
-        "rc": 1197,
-        "min": 4500
+        "r": 4.18,
+        "rc": 1206,
+        "min": 4700
       }
     ]
   },
@@ -2055,10 +2055,10 @@
   },
   "高崎光のページェント2026": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-01",
     "ll": [
-      36.32163,
-      139.0115
+      36.32086,
+      139.01226
     ],
     "h": [
       {
@@ -2070,20 +2070,20 @@
         "min": 9923
       },
       {
-        "n": "ホテルココ・グラン高崎",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136287",
-        "km": 0.3,
-        "r": 4.61,
-        "rc": 2192,
-        "min": 8250
+        "n": "メゾン・ド・エール",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D177534",
+        "km": 0.7,
+        "r": 4.63,
+        "rc": 27,
+        "min": 9618
       },
       {
-        "n": "ホテル グランビュー高崎",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D165867",
-        "km": 1.1,
-        "r": 4.59,
-        "rc": 1014,
-        "min": 5900
+        "n": "ホテルココ・グラン高崎",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136287",
+        "km": 0.4,
+        "r": 4.61,
+        "rc": 2198,
+        "min": 8250
       }
     ]
   },
@@ -2220,6 +2220,92 @@
         "r": 4.47,
         "rc": 124,
         "min": 5500
+      }
+    ]
+  },
+  "塩原高原大根大根大鍋ふるまい": {
+    "v": 2,
+    "t": "2026-11-01",
+    "ll": [
+      36.95806,
+      139.82515
+    ],
+    "h": [
+      {
+        "n": "源泉掛け流しのちいさなホテル 塩原山荘",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D9129",
+        "km": 1.5,
+        "r": 5.0,
+        "rc": 10,
+        "min": 16450
+      },
+      {
+        "n": "塩原温泉 割烹旅館 湯の花荘",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D10893",
+        "km": 1.0,
+        "r": 4.86,
+        "rc": 222,
+        "min": 39600
+      },
+      {
+        "n": "塩原温泉 おやど 小梅や",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D130092",
+        "km": 1.0,
+        "r": 4.78,
+        "rc": 204,
+        "min": 22500
+      }
+    ]
+  },
+  "三崎マグロ「茜身」スタンプラリー2026": {
+    "v": 2,
+    "t": "2026-11-01",
+    "ll": [
+      35.14122,
+      139.61796
+    ],
+    "h": [
+      {
+        "n": "ふふ 城ヶ島 海風のしらべ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198710",
+        "km": 1.0,
+        "r": 4.94,
+        "rc": 17,
+        "min": 38300
+      },
+      {
+        "n": "三浦半島の旅宿 三崎宿",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D176924",
+        "km": 0.0,
+        "r": 4.8,
+        "rc": 108,
+        "min": 12000
+      },
+      {
+        "n": "民宿でぐち荘",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D165762",
+        "km": 1.6,
+        "r": 4.62,
+        "rc": 122,
+        "min": 7150
+      }
+    ]
+  },
+  "IBARAKIisBlossoming続薬屋の巡遊録": {
+    "v": 2,
+    "t": "2026-11-01",
+    "ll": [
+      36.21239,
+      140.17325
+    ],
+    "h": [
+      {
+        "n": "花やさと山",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182409",
+        "km": 0.1,
+        "r": 5.0,
+        "rc": 17,
+        "min": 10750
       }
     ]
   }

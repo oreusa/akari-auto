@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-01 12:07",
+  "at": "2026-11-01 18:29",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 61,
+      "read": 63,
       "ok": 10,
-      "avg": 152.4,
+      "avg": 152.8,
       "top": [
         {
           "name": "水 ミネラルウォーター 熊野古道水 2L 12本 送料無料 天然水 軟水『送料無料（一部地域…",
@@ -18,7 +18,7 @@
           "rc": 12331,
           "av": 4.58,
           "shop": "よろずやマルシェ",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00prcko.m2lhf20c.g00prcko.m2lhg0d6/"
+          "plain": "https://item.rakuten.co.jp/onestep/10045575/"
         },
         {
           "name": "国産 ミネラルウォーター 自然の恵み 天然水 2L×12本 水 2リットル",
@@ -28,7 +28,7 @@
           "rc": 11688,
           "av": 4.65,
           "shop": "ココデカウ",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00qq8to.m2lhff7f.g00qq8to.m2lhg28f/"
+          "plain": "https://item.rakuten.co.jp/cocodecow/10058666/"
         },
         {
           "name": "365日最短当日出荷！ 水想い ナチュラルミネラルウォーター 2L×9本 ラベルレス 水 2…",
@@ -38,7 +38,7 @@
           "rc": 8537,
           "av": 4.78,
           "shop": "水想い 公式ストア",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00t98eo.m2lhf348.g00t98eo.m2lhg292/"
+          "plain": "https://item.rakuten.co.jp/mizuomoi/10000004/"
         },
         {
           "name": "水 2リットル ラベルレス 12本 送料無料 ラベルレス ミネラルウォーター 2l 天然水 …",
@@ -48,89 +48,91 @@
           "rc": 1391,
           "av": 4.57,
           "shop": "快適ホームライフ",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00rqlbo.m2lhfc93.g00rqlbo.m2lhg098/"
+          "plain": "https://item.rakuten.co.jp/k-home/10088179/"
         },
         {
           "name": "公式 水 500ml 48本 送料無料 天然水 ミネラルウォーター ラベルレス 48本 富士…",
           "price": 2480,
           "per": 103.3,
           "amt": "500ml×48本",
-          "rc": 6322,
+          "rc": 6329,
           "av": 4.63,
           "shop": "アイリスオーヤマ公式 楽天市場店",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00t3zto.m2lhfc3f.g00t3zto.m2lhg012/"
+          "plain": "https://item.rakuten.co.jp/irisplaza-r/10136708/"
         }
-      ]
+      ],
+      "amazon": []
     },
     {
       "key": "soda",
       "title": "炭酸水",
       "unit": "1L",
       "seen": 120,
-      "read": 66,
-      "ok": 26,
-      "avg": 157.4,
+      "read": 57,
+      "ok": 8,
+      "avg": 146.2,
       "top": [
         {
-          "name": "水 ミネラルウォーター 熊野古道水 2L 12本 送料無料 天然水 軟水『送料無料（一部地域…",
-          "price": 1918,
-          "per": 79.9,
-          "amt": "2000ml×12本",
-          "rc": 12331,
-          "av": 4.58,
-          "shop": "よろずやマルシェ",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00prcko.m2lhf20c.g00prcko.m2lhg0d6/"
+          "name": "＼激熱価格！／アイリスオーヤマ アイリスフーズ アイリスの強炭酸水 CRYSTAL SPAR…",
+          "price": 1280,
+          "per": 106.7,
+          "amt": "500ml×24本",
+          "rc": 1295,
+          "av": 4.59,
+          "shop": "暮らし健康ネット館",
+          "plain": "https://item.rakuten.co.jp/kurashikenkou/10220307/"
         },
         {
-          "name": "国産 ミネラルウォーター 自然の恵み 天然水 2L×12本 水 2リットル",
-          "price": 1948,
-          "per": 81.2,
-          "amt": "2000ml×12本",
-          "rc": 11688,
-          "av": 4.65,
-          "shop": "ココデカウ",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00qq8to.m2lhff7f.g00qq8to.m2lhg28f/"
-        },
-        {
-          "name": "365日最短当日出荷！ 水想い ナチュラルミネラルウォーター 2L×9本 ラベルレス 水 2…",
-          "price": 1480,
-          "per": 82.2,
-          "amt": "2000ml×9本",
-          "rc": 8537,
-          "av": 4.78,
-          "shop": "水想い 公式ストア",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00t98eo.m2lhf348.g00t98eo.m2lhg292/"
-        },
-        {
-          "name": "水 2リットル ラベルレス 12本 送料無料 ラベルレス ミネラルウォーター 2l 天然水 …",
-          "price": 2160,
-          "per": 90.0,
-          "amt": "2000ml×12本",
-          "rc": 1391,
-          "av": 4.57,
-          "shop": "快適ホームライフ",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00rqlbo.m2lhfc93.g00rqlbo.m2lhg098/"
-        },
-        {
-          "name": "公式 水 500ml 48本 送料無料 天然水 ミネラルウォーター ラベルレス 48本 富士…",
-          "price": 2480,
-          "per": 103.3,
-          "amt": "500ml×48本",
-          "rc": 6322,
-          "av": 4.63,
+          "name": "炭酸水 500ml 24本 アイリスオーヤマ 強炭酸水 選べる ラベルレス プレーン レモン…",
+          "price": 1420,
+          "per": 118.3,
+          "amt": "500ml×24本",
+          "rc": 3910,
+          "av": 4.6,
           "shop": "アイリスオーヤマ公式 楽天市場店",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00t3zto.m2lhfc3f.g00t3zto.m2lhg012/"
+          "plain": "https://item.rakuten.co.jp/irisplaza-r/10158174/"
+        },
+        {
+          "name": "最強配送 送料無料 サンガリア 伊賀の天然水 強炭酸水 500ml×2ケース 48本炭酸 ペ…",
+          "price": 3007,
+          "per": 125.3,
+          "amt": "500ml×48本",
+          "rc": 1015,
+          "av": 4.8,
+          "shop": "リカーBOSS 楽天市場店",
+          "plain": "https://item.rakuten.co.jp/liquor-boss/10004086/"
+        },
+        {
+          "name": "24本セット 炭酸水 500ml 送料無料 24本 強炭酸水 プレーン レモン グレープフル…",
+          "price": 1520,
+          "per": 126.7,
+          "amt": "500ml×24本",
+          "rc": 1108,
+          "av": 4.64,
+          "shop": "快適ホームライフ",
+          "plain": "https://item.rakuten.co.jp/k-home/10084344/"
+        },
+        {
+          "name": "炭酸水 サンガリア 伊賀の天然水 強炭酸水 500ml 48本 送料無料 2ケース PET …",
+          "price": 3068,
+          "per": 127.8,
+          "amt": "500ml×48本",
+          "rc": 1199,
+          "av": 4.71,
+          "shop": "お酒の専門店 リカマン楽天市場店",
+          "plain": "https://item.rakuten.co.jp/likaman/10024008/"
         }
-      ]
+      ],
+      "amazon": []
     },
     {
       "key": "rice",
       "title": "お米",
       "unit": "1kg",
       "seen": 120,
-      "read": 18,
-      "ok": 10,
-      "avg": 525.2,
+      "read": 16,
+      "ok": 9,
+      "avg": 530.5,
       "top": [
         {
           "name": "米 10kg 送料無料 訳あり米 産直の米 お米マイスター厳選米 米 10kg 送料無料 白…",
@@ -140,27 +142,27 @@
           "rc": 1369,
           "av": 4.42,
           "shop": "ライスマイルねっとショップ",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00srvuo.m2lhf962.g00srvuo.m2lhgdac/"
+          "plain": "https://item.rakuten.co.jp/rice-smile/10000005/"
         },
         {
           "name": "米 10kg 送料無料 「徳用米10kg」令和8年産入り お米 10キロ 白米 精米 ブレン…",
           "price": 3990,
           "per": 399.0,
           "amt": "10kg",
-          "rc": 3992,
+          "rc": 3993,
           "av": 4.63,
           "shop": "お米のもりかわ楽天市場店",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00s6afo.m2lhffe4.g00s6afo.m2lhga1d/"
+          "plain": "https://item.rakuten.co.jp/morikawakomeya/10000029/"
         },
         {
           "name": "米 10kg ブレンド米 きらめぐり 白米10kg お米 精米 10キロ 送料無料 最短発送…",
           "price": 4190,
           "per": 419.0,
           "amt": "10kg",
-          "rc": 1362,
+          "rc": 1363,
           "av": 4.68,
           "shop": "米屋 太三郎",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00q8l4o.m2lhf410.g00q8l4o.m2lhg4eb/"
+          "plain": "https://item.rakuten.co.jp/tasaburo/10000441/"
         },
         {
           "name": "生活応援米 エース 米 10kg 送料無料 10kg×1袋 ブレンド米 エース 激安米 米 …",
@@ -170,19 +172,42 @@
           "rc": 1043,
           "av": 4.49,
           "shop": "お米専門店あじつかみ",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00rw37o.m2lhf7e4.g00rw37o.m2lhg5fa/"
+          "plain": "https://item.rakuten.co.jp/ajitukami/10000053/"
         },
         {
-          "name": "お米 10kg 送料無料 オリジナルブレンド米 日本の味 10kg1袋 複数原料米",
-          "price": 4980,
-          "per": 498.0,
+          "name": "1日までP5倍 新米 10kg コシヒカリ 米10キロ こしひかり 令和8年産 福島県 会津…",
+          "price": 5599,
+          "per": 559.9,
           "amt": "10kg",
-          "rc": 2296,
-          "av": 4.58,
-          "shop": "お米・菓子の直売所あじわいの朝",
-          "plain": "https://hb.afl.rakuten.co.jp/hgc/g00skdro.m2lhfb68.g00skdro.m2lhg2d0/"
+          "rc": 1721,
+          "av": 4.77,
+          "shop": "ごはん大好き 会津米",
+          "plain": "https://item.rakuten.co.jp/daisukiaizu/10000207/"
         }
-      ]
+      ],
+      "amazon": []
+    },
+    {
+      "key": "tp",
+      "title": "トイレットペーパー",
+      "unit": "100m",
+      "seen": 120,
+      "read": 23,
+      "ok": 1,
+      "avg": 107.1,
+      "top": [
+        {
+          "name": "＼レビュー2,000件獲得★／トイレットペーパー 備蓄 170m 3.4倍 芯なし 48ロー…",
+          "price": 5440,
+          "per": 66.7,
+          "amt": "170m×48ロール",
+          "rc": 2046,
+          "av": 4.52,
+          "shop": "暮らし健康ネット館",
+          "plain": "https://item.rakuten.co.jp/kurashikenkou/10151090/"
+        }
+      ],
+      "amazon": []
     }
   ]
 }

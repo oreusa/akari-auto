@@ -1,4 +1,10 @@
 {
+ "https://chiai-knowledge.com/stamprally/": {
+  "at": "2026-11-01",
+  "ok": true,
+  "sec": 1.5,
+  "why": ""
+ },
  "https://dai-tsukemen-haku.com/": {
   "at": "2026-10-31",
   "by": "browser",
@@ -1529,6 +1535,12 @@
   "sec": 2.5,
   "why": ""
  },
+ "https://www.civic.jp/event.php?mode=detail&f=1&code=492": {
+  "at": "2026-11-01",
+  "ok": true,
+  "sec": 1.8,
+  "why": ""
+ },
  "https://www.deutschlandfest.com/": {
   "at": "2026-10-31",
   "by": "browser",
@@ -1597,6 +1609,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.3,
+  "why": ""
+ },
+ "https://www.ibaraki-is-blossoming.jp/": {
+  "at": "2026-11-01",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.ikaho-kankou.com/red_lightup/": {
@@ -1766,11 +1784,23 @@
   "sec": 4.4,
   "why": ""
  },
+ "https://www.siobara.or.jp/information/20260909/1193/": {
+  "at": "2026-11-01",
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
+ },
  "https://www.skipcity.jp/event/vm/thomas/": {
   "at": "2026-10-31",
   "by": "browser",
   "ok": true,
   "sec": 4.0,
+  "why": ""
+ },
+ "https://www.takasaki.fm/hikari/": {
+  "at": "2026-11-01",
+  "ok": true,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.teien-art-museum.ne.jp/exhibition/20261003-1220_marimekko/": {
