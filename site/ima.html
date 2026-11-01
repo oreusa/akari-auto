@@ -29,16 +29,18 @@ h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-heigh
 .now i{display:block;font-style:normal;font-size:10.5px;color:var(--sub);margin-top:2px;min-height:15px}
 .msg{font-size:12px;line-height:1.8;color:#6B6058;text-align:center;margin:10px 0 0;min-height:0}
 .msg:empty{display:none}
-.rd{position:relative;margin:18px auto 0;width:100%;max-width:340px;aspect-ratio:1}
-.rd svg{display:block;width:100%;height:100%;overflow:visible}
+.rd{position:relative;margin:14px 0 0;width:100%;aspect-ratio:1;border-radius:14px;overflow:hidden;border:1px solid #E2E2E2}
+.rd svg{display:block;width:100%;height:100%}
+.rd .rng{fill:none;stroke:#2B2622;stroke-width:1;stroke-dasharray:3 4;opacity:.45}
+.rd .rgl{font-family:"Zen Kaku Gothic New";font-size:9.5px;font-weight:700;fill:#2B2622;opacity:.7;paint-order:stroke;stroke:#fff;stroke-width:3px}
+.rd .pn{font-family:"Zen Kaku Gothic New";font-size:11px;font-weight:700;letter-spacing:.1em;fill:#6B6058;opacity:.75;paint-order:stroke;stroke:#fff;stroke-width:3px;text-anchor:middle;pointer-events:none}
+.rd .mn{font-family:"Zen Kaku Gothic New";font-size:8.5px;fill:#8A8A8A;text-anchor:middle;pointer-events:none}
+.rd .mel{font-family:"Zen Kaku Gothic New";font-size:11px;font-weight:700;fill:#fff;text-anchor:middle}
 .rd .ring{fill:none;stroke:#E4E4E4;stroke-width:1}
 .rd .ring.r2{stroke:#D2D2D2}
 .rd .ax{stroke:#EDEDED;stroke-width:1}
 .rd .rl{font-family:Jost,"Zen Kaku Gothic New";font-size:9px;fill:#8A8A8A;letter-spacing:.06em;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;pointer-events:none}
 .rd .nl{font-family:Jost;font-size:9px;fill:#B0B0B0;letter-spacing:.2em}
-.rd .sw{transform-origin:160px 160px;animation:sw 6s linear infinite}
-@keyframes sw{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.rd .sw{animation:none;opacity:0}}
 .rd .pt{cursor:pointer;transition:r .2s}
 .rd .pt.far{opacity:.35}
 .rd .pt.sel{stroke:#2B2622;stroke-width:2}
@@ -108,7 +110,7 @@ h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-heigh
 <div class="now" id="now"><div><small>いま</small><b id="nT">--:--</b><i id="nD"></i></div><div><small>日の入り</small><b id="sS">--:--</b><i id="sL"></i></div><div><small>降水確率</small><b id="wP">–</b><i id="wT"></i></div></div>
 <p class="tq">どのくらいまで行く？</p>
 <div class="tm" id="tm"><button data-m="30">30分</button><button data-m="60" class="on">1時間</button><button data-m="90">1時間半</button><button data-m="999">すべて</button></div>
-<div class="rd" id="rd"><svg viewBox="0 0 320 320" aria-label="近いおでかけのレーダー" role="img"><defs><linearGradient id="swg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2B2622" stop-opacity="0"/><stop offset="1" stop-color="#2B2622" stop-opacity=".10"/></linearGradient></defs><g id="rdBase"></g><g class="sw"><path d="M160 160 L160 10 A150 150 0 0 1 266.07 53.93 Z" fill="url(#swg)"/><line x1="160" y1="160" x2="160" y2="10" stroke="#2B2622" stroke-opacity=".25" stroke-width="1"/></g><g id="rdLb"></g><g id="rdPts"></g><circle class="meh" cx="160" cy="160" r="8"/><circle class="me" cx="160" cy="160" r="4.5"/></svg><div class="tip" id="tip"></div></div>
+<div class="rd" id="rd"><svg id="mp" viewBox="0 0 320 320" aria-label="近いおでかけの地図" role="img"><rect width="320" height="320" fill="#EEF4F7"/><g id="mpL"></g><g id="rdLb"></g><g id="rdPts"></g><g id="mpMe"></g></svg><div class="tip" id="tip"></div></div>
 <div class="lg" id="lg"></div>
 <div class="wkh"><span id="lh">近い順</span><small id="ls"></small></div>
 <div id="list"><div class="ld">おでかけリストを読んでいます…</div></div>
@@ -185,6 +187,9 @@ function showWx(j){var now=Date.now(),p=null;(j.pops||[]).forEach(function(x){va
   document.getElementById("wP").textContent=p==null||p===""?"–":p+"%";
   document.getElementById("wT").textContent=(j.w||"").replace(/\s+/g,"");
   var r=p!=null&&+p>=50;if(r!==RAIN){RAIN=r;draw();}}
+/* 地図の形（国土数値情報を加工した物。トップの「地図で見る」と同じ） */
+var SH=null,PAS={"東京":"#CADBEE","神奈川":"#C5E3E9","埼玉":"#F6E1C5","千葉":"#F4D6CE","茨城":"#CFE2D2","栃木":"#F2D2D8","群馬":"#E1D7EA"};
+fetch("/townnotes/kanto.json").then(function(r){return r.json()}).then(function(j){SH=j;draw();}).catch(function(){});
 /* リストを読む */
 function load(){Promise.all([
   fetch("/",{cache:"no-store",headers:{"x-ima":"1"}}).then(function(r){return r.text()}),
@@ -198,10 +203,8 @@ function load(){Promise.all([
       inside:/美術館|博物館|ミュージアム|展$|展[　 （(]|展覧|水族館|ホール|アリーナ|ドーム|百貨店|プラネタリウム|シアター|館/.test(t+" "+q)});});
   document.getElementById("nOpen").textContent=ITEMS.length;draw();ck("表示：いまから行けるおでかけ");
 }).catch(function(){document.getElementById("list").innerHTML='<div class="ld">リストを読めませんでした。少しして開き直してください。</div>';});}
-/* レーダーの土台 */
-(function(){var g=document.getElementById("rdBase"),h="";
-  h+='<line class="ax" x1="160" y1="6" x2="160" y2="314"/><line class="ax" x1="6" y1="160" x2="314" y2="160"/>';
-  h+='<text class="nl" x="160" y="0" text-anchor="middle">N</text>';g.innerHTML=h;
+/* 府県の色の見本 */
+(function(){
   var lg=document.getElementById("lg");Object.keys(PC).forEach(function(p){var s=document.createElement("span");s.style.setProperty("--pc",PC[p]);s.textContent=p;lg.appendChild(s);});})();
 function draw(){if(!O||!ITEMS.length)return;
   ITEMS.forEach(function(x){x.k=km(O.la,O.lo,x.la,x.lo);x.min=mins(x.k);x.b=brg(O.la,O.lo,x.la,x.lo);});
@@ -209,12 +212,21 @@ function draw(){if(!O||!ITEMS.length)return;
   document.getElementById("nNear").textContent=ITEMS.filter(function(x){return x.min<=60}).length;
   document.getElementById("lh").textContent=RAIN?"雨の予報：屋内らしい所を先に":"近い順";
   document.getElementById("ls").textContent=(O.g?"いまいる場所":O.n)+"から　"+show.length+"か所";
-  /* レーダー：外の輪＝選んだ時間（すべては3時間）。その外の所は出さない。輪の時間も選んだ時間に合わせる */
-  var RM=MAXM>=999?180:MAXM,ph="",lb="";L.slice().reverse().forEach(function(x){if(x.min>RM)return;var r=x.min/RM*150,px=160+r*Math.sin(x.b),py=160-r*Math.cos(x.b);
-    ph+='<circle class="pt'+(SEL===x.t?" sel":"")+'" data-t="'+esc(x.t)+'" cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="7" fill="'+PC[x.p]+'" stroke="#fff" stroke-width="2"/>';});
-  var RG={30:[10,20,30],60:[15,30,45,60],90:[30,60,90],180:[30,60,120,180]}[RM]||[RM];
-  RG.forEach(function(m){var r=m/RM*150;lb+='<circle class="ring" cx="160" cy="160" r="'+r+'"/><text class="rl" x="163" y="'+(160-r+11)+'">'+(m<60?m+"分":Math.floor(m/60)+"時間"+(m%60?m%60+"分":""))+'</text>';});
+  /* 地図：自分を真ん中に、選んだ時間で行けるくらいの広さを出す（すべては3時間） */
+  var RM=MAXM>=999?180:MAXM,RK=Math.max(3,(RM-12)/1.35)*1.15,SC=150/RK,CL=Math.cos(O.la*R);
+  function px(lo){return 160+(lo-O.lo)*CL*111.32*SC;}function py(la){return 160-(la-O.la)*110.57*SC;}
+  function pth(c){return c.map(function(r){return "M"+r.map(function(q){return px(q[0]).toFixed(1)+","+py(q[1]).toFixed(1)}).join("L")+"Z"}).join("");}
+  function geo(g){return g.type==="Polygon"?pth(g.coordinates):[].concat.apply([],g.coordinates.map(function(c){return [pth(c)]})).join("");}
+  var mh="";if(SH){(SH.nb||{features:[]}).features.forEach(function(f){mh+='<path d="'+geo(f.geometry)+'" fill="#F3F3F3" stroke="#fff" stroke-width=".8"/>';});
+    SH.muni.features.forEach(function(f){mh+='<path d="'+geo(f.geometry)+'" fill="'+(PAS[f.properties.p]||"#F3F3F3")+'" stroke="#fff" stroke-width=".8"/>';});
+    SH.pref.features.forEach(function(f){mh+='<path d="'+geo(f.geometry)+'" fill="none" stroke="#9A9A9A" stroke-width="1" opacity=".6"/>';});
+    if(RM<60)SH.lab.features.forEach(function(f){var c=f.geometry.coordinates,x=px(c[0]),y=py(c[1]);if(x>12&&x<308&&y>12&&y<308)mh+='<text class="mn" x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'">'+esc(f.properties.n.replace(/^.+市(?=.+区$)/,""))+'</text>';});}
+  document.getElementById("mpL").innerHTML=mh;
+  var ph="",lb="";L.slice().reverse().forEach(function(x){if(x.min>RM)return;var X=px(x.lo),Y=py(x.la);
+    ph+='<circle class="pt'+(SEL===x.t?" sel":"")+'" data-t="'+esc(x.t)+'" cx="'+X.toFixed(1)+'" cy="'+Y.toFixed(1)+'" r="7" fill="'+PC[x.p]+'" stroke="#fff" stroke-width="2"/>';});
+  var rr=Math.max(3,(RM-12)/1.35)*SC;lb='<circle class="rng" cx="160" cy="160" r="'+rr.toFixed(1)+'"/><text class="rgl" x="160" y="'+(160-rr-4).toFixed(1)+'" text-anchor="middle">'+(RM<60?RM+"分":Math.floor(RM/60)+"時間"+(RM%60?RM%60+"分":""))+'くらい</text>';
   document.getElementById("rdPts").innerHTML=ph;document.getElementById("rdLb").innerHTML=lb;
+  var nm=O.g?"いまここ":O.n;document.getElementById("mpMe").innerHTML='<circle cx="160" cy="160" r="14" fill="#2B2622" opacity=".12"/><circle cx="160" cy="160" r="6" fill="#2B2622" stroke="#fff" stroke-width="2"/><rect x="'+(160-nm.length*6-8)+'" y="168" width="'+(nm.length*12+16)+'" height="20" rx="10" fill="#2B2622"/><text class="mel" x="160" y="182">'+esc(nm)+'</text>';
   var h="",dir=O.g?O.la+","+O.lo:O.n+"駅";
   var BD=[15,30,45,60,90,120,180,1e9],cb=-1;
   show.forEach(function(x){if(!RAIN){var bi=0;while(x.min>BD[bi])bi++;if(bi!==cb){cb=bi;var n=show.filter(function(y){return y.min<=BD[bi]&&(bi===0||y.min>BD[bi-1])}).length;
