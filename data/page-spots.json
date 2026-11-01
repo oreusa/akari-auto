@@ -1269,6 +1269,90 @@
       "note": "千代田区｜大手休憩所の中、46席＋立ち席10席。月曜休み",
       "url": "https://prtimes.jp/main/html/rd/p/000000212.000027005.html",
       "checked": "2026-10-31"
+    },
+    {
+      "title": "高崎光のページェント2026",
+      "pref": "群馬",
+      "place": "高崎駅",
+      "when": "10/30〜2/28",
+      "start": "2026-10-30T17:00",
+      "ends": "2027-02-28T23:00",
+      "free": true,
+      "note": "高崎市｜駅西口から高崎城址まで。17:00〜23:00（12月は16:00〜24:00）",
+      "url": "https://www.takasaki.fm/hikari/",
+      "checked": "2026-11-01"
+    },
+    {
+      "title": "塩原高原大根 大根大鍋ふるまい",
+      "pref": "栃木",
+      "place": "塩原温泉ビジターセンター",
+      "when": "11/1・11/3・11/7",
+      "start": "2026-11-01T10:00",
+      "ends": "2026-11-07T20:00",
+      "free": false,
+      "note": "那須塩原市｜11/3は七ツ岩園地、11/7は門前地区。旅館や道の駅で大根料理も",
+      "url": "https://www.siobara.or.jp/information/20260909/1193/",
+      "checked": "2026-11-01"
+    },
+    {
+      "title": "IBARAKI is Blossoming 続 薬屋の巡遊録",
+      "pref": "茨城",
+      "place": "いばらきフラワーパーク",
+      "when": "10/17〜1/18",
+      "start": "2026-10-17",
+      "ends": "2027-01-18T17:00",
+      "free": false,
+      "note": "茨城県内10か所｜『薬屋のひとりごと』のスタンプラリー。12/29〜1/3は休み",
+      "url": "https://www.ibaraki-is-blossoming.jp/",
+      "checked": "2026-11-01"
+    },
+    {
+      "title": "Hitachi Starlight Illumination 2026",
+      "pref": "茨城",
+      "place": "日立シビックセンター",
+      "when": "11/14〜1/11",
+      "start": "2026-11-14T16:30",
+      "ends": "2027-01-11T22:00",
+      "free": true,
+      "note": "日立市｜新都市広場と日立駅の自由通路。16:30〜22:00",
+      "url": "https://www.civic.jp/event.php?mode=detail&f=1&code=492",
+      "checked": "2026-11-01"
+    },
+    {
+      "title": "三崎マグロ「茜身」スタンプラリー2026",
+      "pref": "神奈川",
+      "place": "三崎港",
+      "when": "10/3〜12/31",
+      "start": "2026-10-03",
+      "ends": "2026-12-31T23:59",
+      "free": true,
+      "note": "三浦市｜参加は無料。スマホでQRを読み、ペア宿泊券などが当たる",
+      "url": "https://chiai-knowledge.com/stamprally/",
+      "checked": "2026-11-01"
+    },
+    {
+      "title": "秩父夜祭",
+      "pref": "埼玉",
+      "place": "秩父神社",
+      "when": "12/2〜12/3",
+      "start": "2026-12-02",
+      "ends": "2026-12-03T23:00",
+      "free": true,
+      "note": "秩父市｜毎年12/2・3。日本三大曳山祭りの一つ",
+      "url": "https://www.pref.saitama.lg.jp/b0112/kanko-tiiki-info/enjoy-winter.html",
+      "checked": "2026-11-01"
+    },
+    {
+      "title": "TOKYO SNOW DOME CITY",
+      "pref": "東京",
+      "place": "東京ドームシティ",
+      "when": "11/19〜2/28",
+      "start": "2026-11-19T17:00",
+      "ends": "2027-02-28T23:59",
+      "free": true,
+      "note": "文京区｜東京ドームシティ全体のイルミネーション。17:00〜24:00",
+      "url": "https://animeanime.jp/release/prtimes/20261008/318419.html",
+      "checked": "2026-11-01"
     }
   ]
 }
