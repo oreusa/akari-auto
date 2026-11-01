@@ -134,18 +134,18 @@ h1{{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-heig
 .sub{{font-size:13px;line-height:2;color:#6B6058;margin:0}}
 .cnt{{display:flex;justify-content:center;gap:18px;margin-top:12px;font-size:12px;color:#6B6058}}.cnt b{{font-family:"Shippori Mincho",serif;font-size:20px;color:#2B2622;margin:0 2px}}
 .upd{{font-size:11px;color:#8C7B6E;margin-top:4px}}
-.flt{{position:sticky;top:0;z-index:5;background:rgba(253,252,250,.96);display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:0 16px;margin:20px -16px 0;padding:10px 64px 10px 16px;border-top:1px solid #E6DED4;border-bottom:1px solid #E6DED4}}
+.flt{{position:sticky;top:0;z-index:5;background:rgba(253,252,250,.96);display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:0 16px;margin:20px -16px 0;padding:10px 64px 10px 16px;border-top:1px solid #DDDDDD;border-bottom:1px solid #DDDDDD}}
 .flt::-webkit-scrollbar{{display:none}}
 .flt button{{flex:none;border:none;background:none;padding:6px 0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--pc,#8C7B6E);border-bottom:1px solid transparent;cursor:pointer}}
 .flt button.on{{color:var(--pc,#2B2622);border-bottom-color:var(--pc,#2B2622)}}
 .wk{{display:flex;justify-content:center;margin:12px 0 0}}
-.wk button{{font-family:"Zen Kaku Gothic New",sans-serif;font-size:12px;letter-spacing:.04em;color:#5B5450;background:#fff;border:1px solid #D6CCC1;border-radius:99px;padding:8px 14px;cursor:pointer}}
+.wk button{{font-family:"Zen Kaku Gothic New",sans-serif;font-size:12px;letter-spacing:.04em;color:#5B5450;background:#fff;border:1px solid #CECECE;border-radius:99px;padding:8px 14px;cursor:pointer}}
 .wk button[aria-pressed=true]{{background:#2B2622;border-color:#2B2622;color:#fff}}
 .pr{{font-size:11px;line-height:1.8;color:#8C7B6E;text-align:center;margin:10px 0 0}}
 .ps{{scroll-margin-top:60px;margin-top:28px}}
 h2{{font-family:"Shippori Mincho",serif;font-weight:600;font-size:18px;letter-spacing:.14em;margin:0 0 12px;padding-left:10px;border-left:3px solid var(--c);display:flex;align-items:baseline;gap:10px}}
 h2 small{{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;color:#8C7B6E;letter-spacing:.04em;font-weight:500}}
-.it{{margin-bottom:16px;background:#fff;border:1px solid #E6DED4;border-radius:4px}}
+.it{{margin-bottom:16px;background:#fff;border:1px solid #DDDDDD;border-radius:4px}}
 .card{{display:block;position:relative;text-decoration:none;color:inherit;padding:14px 64px 12px 16px}}
 .tg{{display:flex;gap:6px;margin-bottom:6px}}
 .st,.fr{{font-size:10.5px;letter-spacing:.06em;padding:1px 7px;border:1px solid;line-height:1.7}}
@@ -153,12 +153,12 @@ h2 small{{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;color:#8C7
 .d{{font-size:13px;color:var(--c);font-weight:700;letter-spacing:.02em}}
 .t{{font-family:"Shippori Mincho",serif;font-weight:600;font-size:16px;line-height:1.5;margin:4px 0}}
 .m{{font-size:12px;color:#7A6E66;line-height:1.6}}
-.go{{position:absolute;right:14px;top:16px;font-size:11px;letter-spacing:.06em;color:#6B6058;border-bottom:1px solid #D6CCC1;padding-bottom:1px}}
-.inn{{border-top:1px dashed #E0D8CE;margin:0 16px;padding:10px 0 6px}}
+.go{{position:absolute;right:14px;top:16px;font-size:11px;letter-spacing:.06em;color:#6B6058;border-bottom:1px solid #CECECE;padding-bottom:1px}}
+.inn{{border-top:1px dashed #D7D7D7;margin:0 16px;padding:10px 0 6px}}
 .ih{{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.14em;color:#8C7B6E;margin-bottom:2px}}
-.ih .mp{{font-size:11px;letter-spacing:.08em;color:#6B6058;text-decoration:none;border-bottom:1px solid #D6CCC1;padding:4px 0 1px}}
+.ih .mp{{font-size:11px;letter-spacing:.08em;color:#6B6058;text-decoration:none;border-bottom:1px solid #CECECE;padding:4px 0 1px}}
 .inn ul{{list-style:none;margin:0;padding:0}}
-.inn li{{border-top:1px solid #F1ECE6}}.inn li:first-child{{border-top:0}}
+.inn li{{border-top:1px solid #ECECEC}}.inn li:first-child{{border-top:0}}
 .inn li a{{display:grid;grid-template-columns:1fr auto;column-gap:10px;padding:10px 0;text-decoration:none;color:#2B2622;min-height:44px;box-sizing:border-box}}
 .hn{{font-size:13.5px;font-weight:700;line-height:1.45;grid-column:1}}
 .hm{{grid-column:1;font-size:11px;color:#857A70;margin-top:2px}}.hm b{{color:#B5532F;font-weight:700}}
@@ -168,7 +168,7 @@ h2 small{{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;color:#8C7
 .note{{font-size:12px;line-height:1.9;color:#7A6E66;background:#F1F1F1;padding:14px 16px;margin-top:30px}}
 .back{{display:block;width:max-content;margin:28px auto 0;color:#2B2622;text-decoration:none;font-size:13px;letter-spacing:.1em;border-bottom:1px solid #2B2622;padding-bottom:2px}}
 .ft{{text-align:center;font-size:10px;letter-spacing:.04em;color:#8C7B6E;margin-top:30px}}
-</style><script src="/assets/night.js?v=3"></script><script src="/assets/menu.js?v=6" defer></script><link rel="stylesheet" href="/assets/sub.css?v=3"><script src="/assets/v2sub.js?v=3" defer></script></head><body><div class="wrap">
+</style><script src="/assets/night.js?v=3"></script><script src="/assets/menu.js?v=6" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=3" defer></script></head><body><div class="wrap">
 <header class="head"><img src="/logo-s.png" width="60" height="60" alt="うさぎ│LIFE NOTES"><div class="en">STAY &amp; GO</div>
 <h1>泊まりで行くおでかけ</h1><p class="sub">関東の少し遠いおでかけと、<br>近くの評価の高い宿をまとめました。</p>
 <div class="cnt"><span>おでかけ<b>{n_all}</b>か所</span><span>宿<b>{n_inn}</b>軒</span></div><div class="upd">{upd} 更新</div></header>

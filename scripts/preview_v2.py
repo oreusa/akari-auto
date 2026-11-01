@@ -3,7 +3,7 @@
 page.yml が page.py のあとに毎回動かす。site/index.html（本番）と site/preview-v2.html（見本・検索に出さない）。"""
 import os, re
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSS = '<link rel="stylesheet" href="/assets/v2.css?v=3">'
+CSS = '<link rel="stylesheet" href="/assets/v2.css?v=4">'
 JS = '<script src="/assets/v2.js?v=2"></script>'
 src = os.path.join(R, 'site/index.html')
 h = open(src, encoding='utf-8').read()
@@ -14,5 +14,6 @@ if 'assets/v2.css' not in h:
     open(src, 'w', encoding='utf-8').write(h)
 p = h.replace('<head>', '<head><meta name="robots" content="noindex">', 1)
 p = re.sub(r'<link rel="canonical"[^>]*>', '', p)
-open(os.path.join(R, 'site/preview-v2.html'), 'w', encoding='utf-8').write(p)
+# 11/1 見本は本番に入ったので、/preview-v2 は本番の / へ送る（古い見本を人目に出さない）
+open(os.path.join(R, 'site/preview-v2.html'), 'w', encoding='utf-8').write('<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url=/"><link rel="canonical" href="/"><title>関東おでかけリスト</title><script>location.replace("/")</script></head><body></body></html>')
 print('v2 index+preview', len(h))

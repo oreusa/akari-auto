@@ -8,7 +8,7 @@ html body .head:before{width:170px;height:170px;left:-60px;top:6px;background:#F
 html body .head:after{width:120px;height:120px;right:-34px;top:-6px;background:#DCE8F2;opacity:.8}
 html body .head img{background:transparent}
 /* タブ：トップと同じ、下線の切り替え */
-html body .tabs{gap:0;margin:22px 0 10px;padding:0;border-top:1px solid #E4DED8;border-bottom:1px solid #E4DED8}
+html body .tabs{gap:0;margin:22px 0 10px;padding:0;border-top:1px solid #DEDEDE;border-bottom:1px solid #DEDEDE}
 html body .tabs button{background:none;border:0;border-radius:0;color:var(--pc,#6B6058);padding:15px 12px 12px;border-bottom:3px solid transparent;font-size:14px}
 html body .tabs button.on{background:none;color:#231E1B;border-bottom-color:#231E1B}
 /* 見出し：左に色の線（都県の色・ないときは茶） */
