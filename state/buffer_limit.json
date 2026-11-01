@@ -1,11 +1,11 @@
 {
- "at": "2026-11-01T03:01:27+00:00",
+ "at": "2026-11-01T05:48:57+00:00",
  "headers": {
   "buffer-ratelimit-upgrade": "\"15m\", \"24h\", \"30d\"",
-  "ratelimit": "\"3000-in-30days\"; r=2407; t=1748272",
+  "ratelimit": "\"3000-in-30days\"; r=2401; t=1738221",
   "ratelimit-policy": "\"3000-in-30days\"; q=3000; w=2592000; pk=:YTZlODA2NDQ5YjZj:",
   "x-ratelimit-limit": "3000",
-  "x-ratelimit-remaining": "2407",
+  "x-ratelimit-remaining": "2401",
   "x-ratelimit-reset": "1795250359"
  },
  "calls": {
@@ -16,6 +16,6 @@
   "2026-10-29": 37,
   "2026-10-30": 37,
   "2026-10-31": 36,
-  "2026-11-01": 23
+  "2026-11-01": 29
  }
 }
