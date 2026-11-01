@@ -264,7 +264,7 @@ ROBOTS = f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n"
 
 
 def sitemap(now):
-    pages = ["", PAGE, "tomari", "kaimawari", "tanka"] + [f"{PAGE}-{YADO[p]}" for p, _ in PREFS]
+    pages = ["", PAGE, "tomari", "kaimawari", "tanka", "furusato"] + [f"{PAGE}-{YADO[p]}" for p, _ in PREFS]
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
             + "".join(f'  <url><loc>{SITE}/{u}</loc><lastmod>{now:%Y-%m-%d}</lastmod><changefreq>daily</changefreq></url>\n' for u in pages)
