@@ -42,6 +42,7 @@
   "#upan .uh{display:flex;align-items:center;gap:10px;padding:16px 14px 14px 20px;border-bottom:1px solid #EDEDED}"+
   "#upan .uh img{width:34px;height:34px}"+
   "#upan .uh b{flex:1;font-family:Jost,sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.32em;color:#8C7B6E}"+
+  "#upan .uh .uhl{flex:1;display:flex;align-items:center;gap:10px;text-decoration:none;-webkit-tap-highlight-color:transparent}"+
   "#upan .ux{width:42px;height:42px;border:0;background:none;font-size:24px;line-height:1;color:#3A3330;cursor:pointer;border-radius:50%}"+
   "#upan .ux:active{background:#F3F3F3}"+
   "#upan nav{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:6px 0 10px}"+
@@ -81,7 +82,7 @@
     var btn=document.createElement("button");btn.id="umenu";btn.type="button";btn.setAttribute("aria-label","メニューを開く");btn.setAttribute("aria-expanded","false");btn.setAttribute("aria-controls","upan");btn.innerHTML="<i></i><i></i><i></i>";
     var mask=document.createElement("div");mask.id="umask";
     var pan=document.createElement("div");pan.id="upan";pan.setAttribute("role","dialog");pan.setAttribute("aria-modal","true");pan.setAttribute("aria-label","メニュー");pan.setAttribute("aria-hidden","true");
-    var h='<div class="uh"><img src="/logo-s.png" alt=""><b>USAGI LIFE NOTES</b><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+ug("KANTO ODEKAKE");
+    var h='<div class="uh"><a class="uhl" href="/" aria-label="関東おでかけリストのいちばん上へ"><img src="/logo-s.png" alt=""><b>USAGI LIFE NOTES</b></a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+ug("KANTO ODEKAKE");
     L.forEach(function(x){
       if(x[0]==="-"){h+=ug(x[1]);return;}
       var cur=x[1]===here,ext=/^https?:/.test(x[2]);
