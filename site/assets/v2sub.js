@@ -13,6 +13,7 @@ document.body.appendChild(bar);document.documentElement.classList.add("v2bar-on"
 function col(el,t){for(var k in PC){if(t.indexOf(k)===0){el.style.setProperty("--pc",PC[k]);return;}}}
 document.querySelectorAll(".tabs button").forEach(function(b){col(b,b.textContent.trim());});
 document.querySelectorAll(".ps h2").forEach(function(h){col(h,h.textContent.trim());});
+document.querySelectorAll(".pn a").forEach(function(a){col(a,a.textContent.trim());});
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();
 })();
