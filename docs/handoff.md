@@ -55,7 +55,7 @@
 | 7:15〜 | 予約係 | 4コマを8:00に予約（X・Threadsは画像。インスタは毎日、1コマずつのスライド4枚＋2コマずつのストーリー2枚〔8:00・8:01〕、動画があればリールも。10/23 オーナー「OK」）。出たかも確かめる | `log/日付.md` |
 | 7:15・9:15・12:15・13:45・15:15・18:15(PR)・20:15・21:00・22:15(PR) | 予約係 | 燈が書いた9本が出る（4コマと合わせて各媒体10本。10/22 オーナー決定） | `schedule/日付.json` |
 | 7:45 | 汐（ChatGPT。10/27に7:30から変更） | 楽天・A8 のクリックと売上を「分析メモ」へ。A8のリンクを「リンク帳」へ | ドライブ 連絡ノート |
-| 20:20 | 凪（ChatGPT） | 返信（Buffer Community）→楽天ROOM（「ROOM台本」どおり）→Amazonを5件まで開いて「Amazon確認帳」へ（10/27から この順） | ドライブ「ROOM台本」 |
+| 20:20 | 凪（ChatGPT） | 返信（Buffer Community）→楽天ROOM（「ROOM台本」どおり）→Amazonを10件まで開いて（20:20に5件、残りは21:40）「Amazon確認帳」へ（10/27から この順） | ドライブ「ROOM台本」 |
 | 22:11 | 燈 夜の回（Claude） | 翌日の予定表と4コマ・ROOM台本を書く。指示は `docs/nightly-prompt.md` | `schedule/翌日.json`・ArtifactData akari2/翌日 |
 | 予定表を置いたとき | check（`check.yml`） | 決まりと楽天（販売中・商品名・数字・レビュー4.0以上）と出どころを確かめる。×は赤 | GitHub Actions |
 | 23:41 | 受け渡し役（Claude） | 4コマ台本とROOM台本・汐と凪の目標（「今日の目標」1FVhaChTwa4UnAftvfYLFGK-kc69CulyHJhZEMbJLhjY）をドライブへ、売上とA8の行を akari2/report へ写す | ドライブ・ArtifactData |
