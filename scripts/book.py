@@ -235,6 +235,12 @@ def rebook_requests(cfg, state, now):
             continue
         if q.get("texts"):  # 文を全部入れ替える（10/30 長すぎて代わりの文で出そうになったPRを、縮めた文で入れ直す）
             texts = list(q["texts"])
+        if q.get("link") and any("{{LINK}}" in t for t in texts):  # 11/1 通常の枠をPRに入れ替える（オーナー「何がなんでも売上上げろ」）
+            res = resolve_link(q["link"], texts)
+            if not res.get("ok"):
+                append_log(day, f"{tag}：PRのリンク×（元のまま）：{str(res.get('why', ''))[:120]}")
+                continue
+            texts = [t.replace("{{LINK}}", res["link"]) for t in texts]
         if q.get("first_line"):
             rest = texts[0].split("\n", 1)
             texts[0] = q["first_line"] + ("\n" + rest[1] if len(rest) > 1 else "")
