@@ -196,14 +196,33 @@ def last_num(t):
 MOSHIMO_YAHOO = "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url="
 
 
-def yahoo_url(title):
+def shop_q(title):
     """商品名から検索の言葉を作る（【】や（）の中の宣伝文句を外して、前の方の言葉だけ）"""
-    from urllib.parse import quote
     t = re.sub(r"[【\[（(＜<《].*?[】\]）)＞>》]", " ", title)
     t = re.sub(r"(送料無料|ポイント\d+倍|楽天\S*|あす楽|クーポン\S*|最大\S*%\S*|\d+%OFF|公式|SALE|セール)", " ", t, flags=re.I)
     w = [x for x in re.split(r"[\s　/／・,、|｜]+", t) if x][:4]
-    q = " ".join(w)[:40] or title[:30]
-    return MOSHIMO_YAHOO + quote("https://shopping.yahoo.co.jp/search?p=" + quote(q), safe="")
+    return " ".join(w)[:40] or title[:30]
+
+
+def yahoo_url(title):
+    from urllib.parse import quote
+    return MOSHIMO_YAHOO + quote("https://shopping.yahoo.co.jp/search?p=" + quote(shop_q(title)), safe="")
+
+
+# 11/2 オーナー「Amazonは元々登録してる」→ アソシエイトに直接（lib.AMAZON_TAG）。商品名で探した結果へ
+def amazon_url(title):
+    from urllib.parse import quote
+    import lib
+    return f"https://www.amazon.co.jp/s?k={quote(shop_q(title))}&tag={lib.AMAZON_TAG}"
+
+
+def others(c, shop):
+    """楽天の品だけ、同じ品を Amazon と Yahoo! でも探せる小さな文字リンク"""
+    if shop != "楽天":
+        return ""
+    return ('<span class="kot">'
+            f'<a class="kyh" href="{E(amazon_url(c["title"]))}" rel="sponsored noopener" target="_blank">Amazon<i>›</i></a>'
+            f'<a class="kyh" href="{E(yahoo_url(c["title"]))}" rel="sponsored noopener" target="_blank">Yahoo!<i>›</i></a></span>')
 
 
 def card_html(c, col, i=0):
@@ -246,7 +265,7 @@ def card_html(c, col, i=0):
                 f'<div class="t">{go}</div>'
                 + (f'<div class="ks">{E(price)}</div>' if price else "")
                 + (f'<div class="kr">{E(rate)}</div>' if rate else "")
-                + f'<div class="kbt"><span class="kgo">{shop}で見る<i>›</i></span>' + (f'<a class="kyh" href="{E(yahoo_url(c["title"]))}" rel="sponsored noopener" target="_blank">Yahoo!でも見る<i>›</i></a>' if shop == "楽天" else "") + '</div></div></div>')
+                + f'<div class="kbt"><span class="kgo">{shop}で見る<i>›</i></span>' + others(c, shop) + '</div></div></div>')
     # 比べて選んだ物（大きなカード）
     why = c.get("sub") or ""
     but = c.get("but") or ""
@@ -257,7 +276,7 @@ def card_html(c, col, i=0):
             + (f'<p class="kwhy"><b>選んだ理由</b>{E(why)}</p>' if why else "")
             + (f'<p class="kbut"><b>ただし</b>{E(but.replace("ただし、", "").replace("ただし", ""))}</p>' if but else "")
             + '<div class="kf">' + (f'<span class="kr">{E(rate)}</span>' if rate else "<span></span>")
-            + f'<span class="kbt"><span class="kgo">{shop}で見る<i>›</i></span>' + (f'<a class="kyh" href="{E(yahoo_url(c["title"]))}" rel="sponsored noopener" target="_blank">Yahoo!でも見る<i>›</i></a>' if shop == "楽天" else "") + '</span></div></div></div>')
+            + f'<span class="kbt"><span class="kgo">{shop}で見る<i>›</i></span>' + others(c, shop) + '</span></div></div></div>')
 
 
 TABS = [("pick", "COMPARED", "くらべた物", "/okaimono", ""),
@@ -287,7 +306,7 @@ def build(od, ix):
     # ---- 見出し
     h = re.sub(r'<h1 class="ttl">.*?</h1>', '<h1 class="ttl">くらべたおかいものリスト</h1>', h, count=1, flags=re.S)
     h = re.sub(r'<p class="sub">.*?</p>', '<p class="sub">楽天の送料込みの値段を、1個あたりに直して、<br>うさぎが毎日くらべています</p>'
-               '<p class="kprl">このページには楽天・Yahoo!ショッピングの広告（アフィリエイト）リンクがあります</p>', h, count=1, flags=re.S)
+               '<p class="kprl">このページには楽天・Amazon・Yahoo!ショッピングの広告（アフィリエイト）リンクがあります</p>', h, count=1, flags=re.S)
     h = re.sub(r'<div class="sea">.*?</div>', "", h, count=1, flags=re.S)
     # 上の3つの入口（いま行ける・地図・イルミ）と季節の輪はおでかけだけ → 外す（月の不動産リストと同じ：入口1行＋件数）
     h = re.sub(r'<script>document\.documentElement\.classList\.add\("top2"\)</script><link rel="stylesheet" href="/assets/top2\.css[^"]*">', "", h)
@@ -372,7 +391,7 @@ def build(od, ix):
     # ---- 下の欄
     h = re.sub(r'<p class="tip">.*?</p>', "", h, flags=re.S)
     h = re.sub(r'<p class="pr-note">.*?</p>',
-               '<p class="pr-note">このページには楽天アフィリエイト・もしもアフィリエイト（Yahoo!ショッピング）の広告（PR）があります。<br>値段は確かめた時のものです。買う前に、各お店のページで最新の値段を確かめてください。<br><a href="/privacy">プライバシーポリシーと広告について</a></p>',
+               '<p class="pr-note">このページには楽天アフィリエイト・Amazonアソシエイト・もしもアフィリエイト（Yahoo!ショッピング）の広告（PR）があります。<br>値段は確かめた時のものです。買う前に、各お店のページで最新の値段を確かめてください。<br><a href="/privacy">プライバシーポリシーと広告について</a></p>',
                h, count=1, flags=re.S)
     h = h.replace('<a class="co" data-en="LISTING" href="https://ig.me/m/ai_usagichan1" rel="noopener">',
                   '<a class="co" data-en="RAKUTEN ROOM" href="https://room.rakuten.co.jp/ai_usagichan/items" rel="noopener">', 1)
@@ -413,7 +432,7 @@ def build(od, ix):
            '#odekake .kc .ks{margin-top:3px;font-size:11.5px;line-height:1.5;color:#6B6B6B}'
            '#odekake .kc.ku .kgo{margin-top:8px}'
            '#odekake .kc .kbt{display:flex;align-items:center;gap:14px;flex-wrap:wrap}#odekake .kc.ku .kbt{margin-top:8px}#odekake .kc.ku .kbt .kgo{margin-top:0}'
-           '#odekake .kc .kyh{position:relative;z-index:2;display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:#6B6B6B;text-decoration:none;border-bottom:1px solid #BDBDBD;padding-bottom:1px}'
+           '#odekake .kc .kot{display:inline-flex;gap:12px}#odekake .kc .kyh{position:relative;z-index:2;display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:#6B6B6B;text-decoration:none;border-bottom:1px solid #BDBDBD;padding-bottom:1px}'
            '#odekake .kc .kyh i{font-style:normal;font-family:Jost,sans-serif;font-size:14px;line-height:1}'
            # 大きなカード（比べて選んだ物）
            '#odekake .kc.kb2{padding:0;overflow:hidden}'
@@ -471,7 +490,7 @@ def build(od, ix):
           'var el=document.querySelector(a.getAttribute("href"));if(el)scrollTo({top:el.getBoundingClientRect().top+scrollY-80,behavior:"smooth"});},60);});});'
           'var F="";try{F=sessionStorage.getItem("f")||"";}catch(e){}'
           'document.addEventListener("click",function(ev){var a=ev.target.closest&&ev.target.closest("a.go[rel~=sponsored],a.ilk[rel~=sponsored],a.kyh");if(!a||!navigator.sendBeacon)return;'
-          'var p=a.closest(".pane"),k=(a.classList.contains("kyh")?"Y!"+((a.closest(".kc")||a).querySelector(".go")||a).textContent:a.textContent).replace(/\\s+/g,"").slice(0,30);'
+          'var p=a.closest(".pane"),k=(a.classList.contains("kyh")?a.textContent.replace(/[›\\s]/g,"")+"｜"+((a.closest(".kc")||a).querySelector(".go")||a).textContent:a.textContent).replace(/\\s+/g,"").slice(0,30);'
           'try{navigator.sendBeacon("/c?f="+encodeURIComponent(F||"direct")+"&s="+encodeURIComponent(("okai-"+(p?p.dataset.t:"top")).slice(0,16))+"&k="+encodeURIComponent(k));}catch(e){}},true);'
           'var q=null;try{q=new URLSearchParams(location.search).get("t");}catch(e){}var hs=location.hash.slice(1);if(!q&&hs)q={deal:"sale",sale:"sale",shop:"pick",trip:"pick",hot:"pick",unit:"unit",down:"down"}[hs]||null;if(q){var b=document.querySelector(\'.otab button[data-t="\'+q+\'"]\');if(b&&!b.disabled)b.click();}'
           '})();</script>')
