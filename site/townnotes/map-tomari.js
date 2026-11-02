@@ -213,8 +213,17 @@ var css=`
 `;
 /* 11/2 オーナー「夜やはり地図奇妙だな。暗すぎる？」→ 夜は、府県をその府県の色ではっきり塗り、線も同じ色に。府県の名前は明るい色で読みやすく
    （夜はページ全体を反転しているので、ここで書く色は反転される前の色） */
-css+=PREFS.map(function(p){return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:'+PC[p]+';fill-opacity:.48;stroke:'+PC[p]+';stroke-width:1.4px}'}).join("")+
- 'html.night .tn .pf.off{fill:#D9D9D9}html.night .tn .sh{opacity:0!important}html.night .tn .lb.p{color:#3A332E!important}html.night .tn .lb.p small{opacity:.75}html.night .tn .mu{fill-opacity:.3}html.night .tn .g-pin .dot{fill:#4A423C;stroke:#FFFFFF}';
+/* 11/2 19:17 オーナー「夜の地図オシャレじゃない、絵が分かりにくい、文字も」→ 夜は紺の地に府県の色の細い線だけ（塗りはごく薄く）、文字は白く、絵は白い線画に。
+   夜はページごと反転しているので、ここの色は「反転される前」の色（明るい色ほど暗く見える） */
+css+=PREFS.map(function(p){return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:'+PC[p]+';fill-opacity:.1;stroke:'+PC[p]+';stroke-width:1.3px;stroke-opacity:.95}'}).join("")+
+ 'html.night .tn .pf.off{fill:#F0F2F5;stroke:#C9CED6}html.night .tn .sh{opacity:0!important}'+
+ 'html.night .tn .lb.p{color:#14110E!important;text-shadow:0 0 3px #F4F6FA,0 0 8px #F4F6FA!important}html.night .tn .lb.p small{opacity:.62}'+
+ 'html.night .tn .lb.w{color:#4A4540}html.night .tn .lb.w.h{color:#1E1B18}'+
+ 'html.night .tn .ic .icb{filter:grayscale(1) brightness(.42) contrast(1.4)!important;opacity:.85}'+
+ 'html.night .tn .mu{fill-opacity:.12}html.night .tn .g-pin .dot{fill:#3A3530;stroke:#FFFFFF}'+
+ /* 11/2 19:18 オーナー「同じ色の文字が夜は綺麗に見えない」→ 夜は府県の色の文字をやめ、白い文字＋府県の色の小さな丸にする */
+ 'html.night .tn .fsh .row.pf button:not(.on){color:#2B2622}html.night .tn .fsh .row.pf button:not(.on):before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:2px}'+
+ 'html.night .tn .cc .d i,html.night .tn .qb .qp{color:#2B2622!important}html.night .tn .chips button.cur b{color:#2B2622}';
 var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
 
 // ---- 枠 ----

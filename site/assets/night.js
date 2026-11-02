@@ -57,6 +57,9 @@
     ".kmap .lt{pointer-events:none;filter:drop-shadow(0 0 2px rgba(255,214,140,.9))}"+
     ".kmap .lt circle{fill:#FFE2A6}.kmap .lt .t{animation:tw 3.8s ease-in-out infinite}.kmap .lt .u{animation:tw 5.2s ease-in-out 1.7s infinite}"+
     "@keyframes tw{0%,100%{opacity:1}50%{opacity:.25}}@keyframes tw2{0%,100%{opacity:1}45%,60%{opacity:0}}"+
+    /* 11/2 19:18 オーナー「同じ色の文字が夜は綺麗に見えない」→ 夜は府県の色の文字をやめ、白っぽい文字に（選んだ府県は下線だけ府県の色） */
+    "html.night .flt button[style*='--pc']:not(.on){color:#3A3632!important}"+
+    "html.night .flt button.on{color:#14110E!important}html.night .mp{color:#3A3632!important}html.night .v2c span.p{color:#2B2622!important}"+
     "@media (prefers-reduced-motion:reduce){.nsky i,.kmap .lt circle{animation:none!important}}";
   var st=document.createElement("style");st.textContent=css;(document.head||d).appendChild(st);
   set(pick());

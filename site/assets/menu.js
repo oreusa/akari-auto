@@ -140,3 +140,53 @@
   }
   if(document.body)build();else document.addEventListener("DOMContentLoaded",build);
 })();
+
+/* 11/2 オーナー「地図、AppleマップとGoogle、Google使ってない人も多いから選べるように」
+   ページの中の Googleマップ のリンクを押したとき、最初の1回だけ「Googleマップ／Appleマップ」を選んでもらい、次からはその地図で開く。
+   選んだ物はこの端末に覚える（usagi_mapapp）。メニューの下の「地図アプリ」でいつでも変えられる。 */
+(function(){
+  var KEY="usagi_mapapp";
+  function get(){try{return localStorage.getItem(KEY)||"";}catch(e){return "";}}
+  function set(v){try{localStorage.setItem(KEY,v);}catch(e){}document.dispatchEvent(new Event("usagi-mapapp"));}
+  function apple(u){
+    try{var x=new URL(u),q=x.searchParams;
+      if(/\/maps\/dir/.test(x.pathname)){var f={transit:"r",walking:"w",driving:"d"}[q.get("travelmode")||""]||"";
+        var o="https://maps.apple.com/?daddr="+encodeURIComponent(q.get("destination")||"");if(q.get("origin"))o+="&saddr="+encodeURIComponent(q.get("origin"));return o+(f?"&dirflg="+f:"");}
+      var s=q.get("query")||q.get("q");if(!s){var m=x.pathname.match(/\/maps\/(?:search|place)\/([^\/]+)/);if(m)s=decodeURIComponent(m[1].replace(/\+/g," "));}
+      return s?"https://maps.apple.com/?q="+encodeURIComponent(s):u;
+    }catch(e){return u;}}
+  function go(a,app){var u=a.href;if(app==="apple")u=apple(u);
+    if(a.target==="_blank")window.open(u,"_blank","noopener");else location.href=u;}
+  var css="#umap-m{position:fixed;inset:0;background:rgba(20,22,28,.38);z-index:2147483000;opacity:0;transition:opacity .2s}#umap-m.on{opacity:1}"+
+    "#umap-s{position:fixed;left:0;right:0;bottom:0;z-index:2147483001;background:#fff;border-radius:18px 18px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.12);transform:translateY(100%);transition:transform .25s ease;max-width:560px;margin:0 auto;font-family:\"Zen Kaku Gothic New\",sans-serif;color:#333}"+
+    "#umap-s.on{transform:none}#umap-s h3{margin:0 0 4px;font-size:16px;font-weight:600;text-align:center}#umap-s p{margin:0 0 14px;font-size:12px;color:#777;text-align:center}"+
+    "#umap-s .b{display:flex;gap:10px}#umap-s button{flex:1;padding:14px 8px;border:1px solid #E2E4E8;border-radius:12px;background:#fff;font-family:inherit;font-weight:700;font-size:15px;color:#333;cursor:pointer}"+
+    "#umap-s button:active{background:#F1F2F4}#umap-s .x{display:block;margin:12px auto 0;flex:none;border:0;padding:6px 14px;font-size:13px;color:#777;background:none}"+
+    "html.night #umap-s{box-shadow:none}";
+  function sheet(a){
+    if(!document.getElementById("umap-css")){var st=document.createElement("style");st.id="umap-css";st.textContent=css;document.head.appendChild(st);}
+    var m=document.createElement("div");m.id="umap-m";var s=document.createElement("div");s.id="umap-s";s.setAttribute("role","dialog");s.setAttribute("aria-modal","true");s.setAttribute("aria-label","地図アプリを選ぶ");
+    s.innerHTML='<h3>どの地図で開きますか？</h3><p>次からは選んだ地図で開きます（メニューの下で変えられます）</p><div class="b"><button type="button" data-a="google">Googleマップ</button><button type="button" data-a="apple">Appleマップ</button></div><button type="button" class="x">やめる</button>';
+    document.body.appendChild(m);document.body.appendChild(s);
+    requestAnimationFrame(function(){m.classList.add("on");s.classList.add("on");});
+    function close(){m.classList.remove("on");s.classList.remove("on");setTimeout(function(){m.remove();s.remove();},260);}
+    m.addEventListener("click",close);s.querySelector(".x").addEventListener("click",close);
+    s.querySelectorAll("[data-a]").forEach(function(b){b.addEventListener("click",function(){var v=b.getAttribute("data-a");set(v);close();go(a,v);});});
+    var f=s.querySelector("[data-a]");if(f)f.focus();
+  }
+  document.addEventListener("click",function(e){
+    if(e.defaultPrevented||e.button>0||e.metaKey||e.ctrlKey||e.shiftKey)return;
+    var a=e.target.closest&&e.target.closest('a[href*="google.com/maps"],a[href*="maps.google."]');if(!a)return;
+    var v=get();e.preventDefault();
+    if(v==="google"||v==="apple")go(a,v);else sheet(a);
+  });
+  /* メニューの下の切り替え（メニューができてから足す） */
+  function row(){var nv=document.querySelector("#upan nav");if(!nv||document.getElementById("umaprow"))return;
+    var st=document.createElement("style");st.textContent="#umaprow{display:flex;align-items:center;justify-content:center;gap:8px;margin:18px 0 22px;font-family:\"Zen Kaku Gothic New\",sans-serif;font-size:12px;color:#777}#umaprow button{border:1px solid #E2E4E8;background:#fff;border-radius:999px;padding:5px 12px;font:inherit;font-size:12px;color:#555;cursor:pointer}#umaprow button.on{border-color:#555;color:#222;font-weight:600}";document.head.appendChild(st);
+    var d=document.createElement("div");d.id="umaprow";d.innerHTML='<span>地図アプリ</span><button type="button" data-a="google">Google</button><button type="button" data-a="apple">Apple</button>';
+    nv.appendChild(d);
+    function sync(){var v=get();d.querySelectorAll("button").forEach(function(b){var on=b.getAttribute("data-a")===v;b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");});}
+    d.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){set(b.getAttribute("data-a"));});});
+    document.addEventListener("usagi-mapapp",sync);sync();}
+  var n=0;(function t(){row();if(!document.getElementById("umaprow")&&++n<50)setTimeout(t,100);})();
+})();
