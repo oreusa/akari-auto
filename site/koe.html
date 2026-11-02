@@ -1,0 +1,87 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>リクエスト・感想を送る｜LIFE NOTE</title><meta name="description" content="LIFE NOTE（関東おでかけリスト・くらべたおかいものリスト）へのリクエストや、使ってみた感想を送れます。">
+<link rel="canonical" href="https://usagi-life-notes.pages.dev/koe">
+<link rel="icon" href="/logo-s.png"><link rel="apple-touch-icon" href="/logo-s.png">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1C1C;--sub:#6B6B6B;--line:#E2E2E2;--chip:#F1F1F1;--acc:#3A2F28}
+body{margin:0;background:#FFFFFF;font-family:"Zen Kaku Gothic New",sans-serif;color:#2B2622}
+.wrap{max-width:440px;margin:0 auto;padding:0 16px 40px}
+.head{text-align:center;margin:0 -16px;padding:30px 16px 22px;background:radial-gradient(circle at 14% 26%,rgba(242,214,194,.55) 0 74px,transparent 75px),radial-gradient(circle at 88% 16%,rgba(205,224,236,.6) 0 54px,transparent 55px),radial-gradient(circle at 80% 88%,rgba(214,228,205,.6) 0 48px,transparent 49px),#FFFFFF}
+.head img{width:60px;height:60px}
+.en{font-family:Jost;font-weight:300;font-size:10px;letter-spacing:.42em;color:#8C7B6E;margin-top:10px}
+h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-height:1.5;letter-spacing:.12em;color:#231E1B;margin:14px 0 10px;font-feature-settings:"palt"}
+.sub{font-size:13px;line-height:2;color:#6B6058;margin:0;text-wrap:balance}
+.pp{margin:8px 0 0}.pp h2{font-family:"Shippori Mincho",serif;font-weight:600;font-size:16px;letter-spacing:.06em;color:#231E1B;margin:28px 0 8px;padding-top:18px;border-top:1px solid #E2E2E2}
+.pp p{font-size:13.5px;line-height:2;color:#3A332E;margin:0 0 10px}.pp a{color:#2B2622}
+.pp .dt{text-align:right;font-size:12px;color:#8C7B6E;margin-top:24px}
+.back{display:block;text-align:center;margin:28px 0 0;padding:14px;border:1px solid #D4D4D4;border-radius:999px;font-size:13px;font-weight:700;color:#2B2622;text-decoration:none}
+.ft{text-align:center;font-family:Jost;font-size:11px;letter-spacing:.2em;color:#8C7B6E;margin:22px 0 90px}
+
+.kf{margin:22px 0 0}.kl{font-size:12px;font-weight:700;letter-spacing:.08em;color:#6B6058;margin:20px 0 8px}
+.kk{display:grid;grid-template-columns:1fr;gap:8px}
+.kk label{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid #DADADA;border-radius:14px;background:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.kk input{position:absolute;opacity:0;pointer-events:none}
+.kk b{display:block;font-size:14.5px;color:#231E1B}.kk small{display:block;font-size:12px;color:#8C7B6E;margin-top:2px}
+.kk .dot{flex:none;width:18px;height:18px;border-radius:50%;border:1.5px solid #BDBDBD;box-sizing:border-box}
+.kk label:has(input:checked){border-color:#2B2622;box-shadow:0 0 0 1px #2B2622 inset}
+.kk label:has(input:checked) .dot{border:5px solid #2B2622}
+.st{display:flex;gap:6px}.st button{width:42px;height:42px;border:0;background:none;padding:0;font-size:30px;line-height:42px;color:#D9D9D9;cursor:pointer}
+.st button.on{color:#E0A33A}
+textarea,.nm{width:100%;box-sizing:border-box;border:1px solid #D4D4D4;border-radius:14px;padding:12px 14px;font:15px/1.8 "Zen Kaku Gothic New",sans-serif;color:#231E1B;background:#fff}
+textarea{min-height:130px;resize:vertical}.cnt{text-align:right;font-size:11px;color:#9A9A9A;margin-top:4px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.go{display:block;width:100%;margin:22px 0 0;padding:15px;border:0;border-radius:999px;background:#2B2622;color:#fff;font:700 15px "Zen Kaku Gothic New",sans-serif;letter-spacing:.1em;cursor:pointer}
+.go:disabled{opacity:.45}
+.msg{font-size:13px;line-height:1.9;color:#B3412E;margin:10px 0 0;text-align:center;min-height:1em}
+.done{text-align:center;padding:26px 16px;border:1px solid #E2E2E2;border-radius:16px;margin:22px 0 0}
+.done b{display:block;font-family:"Shippori Mincho",serif;font-size:18px;color:#231E1B;margin-bottom:8px}.done p{font-size:13px;line-height:2;color:#6B6058;margin:0}
+.note{font-size:12px;line-height:1.9;color:#8C7B6E;margin:14px 0 0}
+.vo h2{font-family:"Shippori Mincho",serif;font-weight:600;font-size:17px;letter-spacing:.08em;color:#231E1B;margin:34px 0 10px;padding-top:20px;border-top:1px solid #E2E2E2}
+.vo li{list-style:none;border:1px solid #E2E2E2;border-radius:14px;padding:14px;margin:0 0 10px;font-size:13.5px;line-height:1.9;color:#3A332E}
+.vo ul{padding:0;margin:0}.vo .vk{font-size:11px;font-weight:700;color:#6B6058;background:#F1F1F1;border-radius:99px;padding:2px 9px;margin-right:6px}.vo .vs{color:#E0A33A;letter-spacing:.1em}
+.vo .vr{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed #E2E2E2;font-size:12.5px;color:#6B6058}
+</style><script src="assets/night.js?v=5"></script><script src="assets/menu.js?v=10" defer></script><script src="assets/v2sub.js?v=6" defer></script></head><body><div class="wrap">
+<div class="head"><img src="/logo-s.png" width="60" height="60" alt="ロゴ"><div class="en">REQUEST &amp; REVIEW</div>
+<h1>リクエスト・感想</h1><p class="sub">「これを増やしてほしい」「これがほしい」<br>使ってみた感想を、ひとことでもどうぞ。<br>うさぎが全部読んで、ページづくりに使います。</p></div>
+<form class="kf" id="kf" novalidate>
+<div class="kl">どれを送りますか</div>
+<div class="kk" role="radiogroup">
+<label><input type="radio" name="kind" value="more"><span class="dot"></span><span><b>増やしてほしい</b><small>のせてほしい場所・イベント・比べてほしい物</small></span></label>
+<label><input type="radio" name="kind" value="want"><span class="dot"></span><span><b>これがほしい</b><small>あったら便利な使い方・ページ</small></span></label>
+<label><input type="radio" name="kind" value="review"><span class="dot"></span><span><b>使ってみた感想</b><small>よかった所・使いにくかった所</small></span></label>
+</div>
+<div id="sw" hidden><div class="kl">ひとことで言うと</div><div class="st" id="st"></div></div>
+<div class="kl">くわしく</div>
+<textarea id="tx" maxlength="400" placeholder="例：横浜のクリスマスマーケットものせてほしい"></textarea><div class="cnt"><span id="cn">0</span>/400</div>
+<div class="kl">お名前（なくても大丈夫です）</div>
+<input class="nm" id="nm" maxlength="20" placeholder="ニックネーム" autocomplete="nickname">
+<div class="hp" aria-hidden="true"><input id="hp" tabindex="-1" autocomplete="off"></div>
+<button class="go" id="go" type="submit" disabled>送る</button>
+<p class="msg" id="msg" role="status"></p>
+<p class="note">お返事が必要なときは、インスタのメッセージ（<a href="https://ig.me/m/ai_usagichan1" rel="noopener">@ai_usagichan1</a>）からお願いいたします。いただいた感想は、ニックネームとあわせて下の「みなさんの声」にのせることがあります（個人が分かる内容はのせません）。</p>
+</form>
+<div class="done" id="done" hidden><b>ありがとうございます</b><p>ちゃんと届きました。<br>いただいた声は、これからのページづくりに使います。</p></div>
+<section class="vo" id="vo" hidden><h2>みなさんの声</h2><ul id="vl"></ul></section>
+<a class="back" href="/">LIFE NOTE へ戻る</a>
+<div class="ft">LIFE NOTE</div></div>
+<script>
+(function(){
+var f=document.getElementById("kf"),tx=document.getElementById("tx"),go=document.getElementById("go"),msg=document.getElementById("msg"),sw=document.getElementById("sw"),st=document.getElementById("st"),star=0;
+for(var i=1;i<=5;i++){var b=document.createElement("button");b.type="button";b.textContent="★";b.setAttribute("aria-label",i+"つ星");b.dataset.n=i;st.appendChild(b);}
+st.addEventListener("click",function(e){var n=+(e.target.dataset.n||0);if(!n)return;star=n;[].forEach.call(st.children,function(c){c.classList.toggle("on",+c.dataset.n<=n);});});
+function kind(){var c=f.querySelector("input[name=kind]:checked");return c?c.value:"";}
+function ok(){go.disabled=!(kind()&&tx.value.trim().length>=5);document.getElementById("cn").textContent=tx.value.length;}
+f.addEventListener("change",function(){sw.hidden=kind()!=="review";ok();});tx.addEventListener("input",ok);
+var q=new URLSearchParams(location.search),from=(q.get("from")||document.referrer.replace(/^https?:\/\/[^/]+/,"")||"").slice(0,40);
+f.addEventListener("submit",function(e){e.preventDefault();if(go.disabled)return;go.disabled=true;msg.textContent="送っています…";
+fetch("/koe-send",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({kind:kind(),text:tx.value,name:document.getElementById("nm").value,star:star,page:from,hp:document.getElementById("hp").value})})
+.then(function(r){return r.json();}).then(function(j){if(j.ok){f.hidden=true;document.getElementById("done").hidden=false;scrollTo(0,0);}else{msg.textContent=j.msg||"送れませんでした";go.disabled=false;}})
+.catch(function(){msg.textContent="送れませんでした。電波のよい所でもう一度お試しください。";go.disabled=false;});});
+fetch("/koe-public.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():[];}).then(function(a){if(!a||!a.length)return;var ul=document.getElementById("vl");
+a.forEach(function(v){var li=document.createElement("li"),h='<span class="vk"></span>';li.innerHTML=h+(v.star?'<span class="vs"></span>':'')+'<div class="vt"></div>'+(v.reply?'<span class="vr"></span>':'');
+li.querySelector(".vk").textContent=v.kind;if(v.star)li.querySelector(".vs").textContent="★★★★★".slice(0,v.star);li.querySelector(".vt").textContent=v.text+(v.name?"（"+v.name+"さん）":"");if(v.reply)li.querySelector(".vr").textContent="うさぎより："+v.reply;ul.appendChild(li);});
+document.getElementById("vo").hidden=false;}).catch(function(){});
+})();
+</script>
+</body></html>
