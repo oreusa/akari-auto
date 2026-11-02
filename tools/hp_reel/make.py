@@ -73,6 +73,15 @@ for(let i=0;i<30*%s;i++){await p.evaluate(t=>render(t),i/30);await p.screenshot(
         print(work)
         return
     subprocess.run(['node', f'{work}/rec.js'], check=True)
+    try:  # 確かめ用の静止画6枚を1枚に（reel-hp/out/D.jpg。夜の回・見回りが中身を見る）
+        from PIL import Image
+        ts = (1, 6, 11, 16, 22, 27)
+        sheet = Image.new('RGB', (360 * len(ts), 640), 'white')
+        for n, t in enumerate(ts):
+            sheet.paste(Image.open(f'{work}/fr/{int(t * 30):04d}.jpg').resize((360, 640)), (360 * n, 0))
+        sheet.save(os.path.splitext(out)[0] + '.jpg', quality=80)
+    except Exception as e:
+        print('静止画を作れない', e)
     bgm = os.path.join(ROOT, 'bgm', 'reel_bgm.m4a')
     if os.path.exists(bgm):
         audio = ['-stream_loop', '-1', '-i', bgm, '-af', f'afade=t=out:st={SECONDS - 2}:d=2']
