@@ -1,0 +1,41 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Min;src:url(file://__FONTS__/ShipporiMincho-Bold.ttf)}
+@font-face{font-family:GoM;src:url(file://__FONTS__/ZenKakuGothicNew-Medium.ttf)}
+@font-face{font-family:Jost;src:url(file://__FONTS__/Jost-VF.ttf)}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#FFFFFF;overflow:hidden;color:#2B2622;font-family:GoM;position:relative}
+.frame{position:absolute;inset:40px;border:2px solid #A8783A;z-index:40}
+.sc{position:absolute;inset:0;visibility:hidden}
+.top{position:absolute;left:0;right:0;top:120px;text-align:center}
+.k{font-family:GoM;font-size:30px;letter-spacing:.2em;color:#A8783A}
+.k span{font-family:Jost;font-size:26px;letter-spacing:.2em;color:#A8783A;margin-left:28px}
+.h{font-family:Min;font-size:76px;letter-spacing:.04em;margin-top:26px;line-height:1.25}
+.ph{position:absolute;left:195px;top:400px;width:690px;height:1250px;border-radius:44px;overflow:hidden;background:#FFFFFF;
+ box-shadow:0 0 0 3px #A8783A,0 30px 70px rgba(43,38,34,.14)}
+.ph img{position:absolute;left:0;top:0;width:690px}
+.note{position:absolute;left:100px;right:100px;top:1712px;text-align:center;font-size:42px;line-height:1.45;color:#2B2622}
+#end{position:absolute;inset:0;visibility:hidden;text-align:center}
+#end img{width:300px;height:300px;margin-top:520px;border-radius:50%}
+#end .h{font-size:84px;margin-top:90px}
+#end .bar{width:120px;height:4px;background:#A8783A;margin:60px auto 0}
+#end .note{position:static;margin-top:60px}
+</style></head><body>
+<div class="frame"></div>
+__SCENES__
+<div id="end"><img src="logo.png"><div class="h">プロフィールの<br>リンクから</div><div class="bar"></div><div class="note">__ENDNOTE__</div></div>
+<script>
+const N=__N__,HS=__HS__,T=__SECONDS__,END=__END__,VIEW=1250;
+const per=(T-END)/N;
+function ease(x){x=Math.max(0,Math.min(1,x));return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2}
+function render(t){
+ const i=Math.min(N,Math.floor(t/per));
+ for(let j=0;j<N;j++){const s=document.getElementById('sc'+j);s.style.visibility=(j===i)?'visible':'hidden';}
+ document.getElementById('end').style.visibility=(t>=T-END)?'visible':'hidden';
+ if(t>=T-END){const e=document.getElementById('end');e.style.opacity=Math.min(1,(t-(T-END))/0.5);return}
+ const s=document.getElementById('sc'+i),u=(t-i*per)/per;
+ s.style.opacity=Math.min(1,u*per/0.4);
+ const max=Math.max(0,Math.min(HS[i]-VIEW,1800));
+ document.getElementById('im'+i).style.transform='translateY('+(-max*ease((u-0.18)/0.72))+'px)';
+}
+render(0);
+</script></body></html>
