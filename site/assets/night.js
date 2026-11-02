@@ -71,7 +71,7 @@
     "html.night .st.on,html.night .st.now,html.night .tn8,html.night .card span.on{background:transparent!important;box-shadow:inset 0 0 0 1px #372100!important;border-color:transparent!important;color:#372100!important}"+
     "html.night .st.soon,html.night .st.pre,html.night .st.next{background:transparent!important;box-shadow:inset 0 0 0 1px #30394B!important;color:#30394B!important}"+
     "html.night .card .fr,html.night .it .fr{background:transparent!important;box-shadow:inset 0 0 0 1px #30394B!important;color:#30394B!important}"+
-    "html.night .card div.go,html.night .it div.go,html.night .it span.ar,html.night .paper .card.it:after{background:transparent!important;box-shadow:inset 0 0 0 1px #372100!important;color:#372100!important}"+
+    "html.night .card div.go,html.night .it div.go,html.night .it span.ar,html.night .card.it:after{background:transparent!important;box-shadow:inset 0 0 0 1px #372100!important;color:#372100!important}"+
     /* 入口の地図で府県に data-p が無いもの（燈の関東）も、夜は紺の陸地＋府県の色の光る線に（色は昼の塗りの色を使う） */
     "html.night .kmap .pf path{fill:#182139!important;fill-opacity:1!important;filter:drop-shadow(0 0 2.5px var(--c,rgba(200,215,255,.6)))}html.night .kmap .pf path:not([data-p]){stroke:var(--c,#8FB6EA);stroke-width:1.6px}"+
     "@media (prefers-reduced-motion:reduce){.nsky i,.kmap .lt circle{animation:none!important}}";
