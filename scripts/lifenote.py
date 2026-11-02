@@ -148,7 +148,8 @@ if os.path.exists(tn):
 for n in ("sitemap.xml", "robots.txt"):
     f = os.path.join(S, n)
     if os.path.exists(f):
-        open(f, "w", encoding="utf-8").write(open(f, encoding="utf-8").read().replace(OLD, BASE))
+        t = open(f, encoding="utf-8").read()  # 先に読む（"w" で開くと中身が消える）
+        open(f, "w", encoding="utf-8").write(t.replace(OLD, BASE))
 sm = os.path.join(S, "sitemap.xml")
 if os.path.exists(sm):
     x = open(sm, encoding="utf-8").read()
