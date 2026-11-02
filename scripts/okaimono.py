@@ -357,7 +357,7 @@ def build(od, ix):
     # ---- 下の欄
     h = re.sub(r'<p class="tip">.*?</p>', "", h, flags=re.S)
     h = re.sub(r'<p class="pr-note">.*?</p>',
-               '<p class="pr-note">このページには楽天アフィリエイトの広告（PR）があります。<br>値段は確かめた時のものです。買う前に、楽天のページで最新の値段を確かめてください。</p>',
+               '<p class="pr-note">このページには楽天アフィリエイトの広告（PR）があります。<br>値段は確かめた時のものです。買う前に、楽天のページで最新の値段を確かめてください。<br><a href="/privacy">プライバシーポリシーと広告について</a></p>',
                h, count=1, flags=re.S)
     h = h.replace('<a class="co" data-en="LISTING" href="https://ig.me/m/ai_usagichan1" rel="noopener">',
                   '<a class="co" data-en="RAKUTEN ROOM" href="https://room.rakuten.co.jp/ai_usagichan/items" rel="noopener">', 1)
