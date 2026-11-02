@@ -10,8 +10,9 @@
    "city": "文京区",
    "venue": "六義園",
    "free": false,
-   "time": "18:00〜20:30（入園19:30まで）・夜間観賞券1,000円",
-   "url": "https://www.tokyo-park.or.jp/park/rikugien/news/2026/rikugiengardens.html"
+   "url": "https://www.tokyo-park.or.jp/park/rikugien/news/2026/rikugiengardens.html",
+   "hours": "18:00〜20:30（入園19:30まで）",
+   "fee": "夜間観賞券 1,000円"
   },
   {
    "pref": "東京",
@@ -21,8 +22,9 @@
    "city": "文京区",
    "venue": "小石川後楽園",
    "free": false,
-   "time": "18:00〜21:00（入園20:00まで）・前売1,000円／当日1,200円",
-   "url": "https://www.tokyo-park.or.jp/special/koishikawa_lightingup/index.html"
+   "url": "https://www.tokyo-park.or.jp/special/koishikawa_lightingup/index.html",
+   "hours": "18:00〜21:00（入園20:00まで）",
+   "fee": "前売1,000円・当日1,200円（小学生以下無料）"
   },
   {
    "pref": "東京",
@@ -32,8 +34,9 @@
    "city": "立川市",
    "venue": "国営昭和記念公園",
    "free": false,
-   "time": "16:30〜20:30・入園料450円（夜の日本庭園は別券）",
-   "url": "https://www.showakinen-koen.jp/autumn-night-walk/"
+   "url": "https://www.showakinen-koen.jp/autumn-night-walk/",
+   "hours": "16:30〜20:30",
+   "fee": "入園料 450円（夜の日本庭園は別券）"
   },
   {
    "pref": "東京",
@@ -44,8 +47,9 @@
    "city": "杉並区",
    "venue": "大田黒公園",
    "free": false,
-   "time": "時間・料金は発表待ち（昼は無料）",
-   "url": "https://ogikubo3gardens.jp/ootaguro/"
+   "url": "https://ogikubo3gardens.jp/ootaguro/",
+   "hours": "公式で発表待ち",
+   "fee": "公式で発表待ち（昼は無料）"
   },
   {
    "pref": "神奈川",
@@ -55,8 +59,9 @@
    "city": "伊勢原市",
    "venue": "大山寺",
    "free": null,
-   "time": "日没〜19:00（土日祝は20:00）・大山ケーブルカーも夜まで",
-   "url": "https://isehara-kanko.com/autumn-lightup/"
+   "url": "https://isehara-kanko.com/autumn-lightup/",
+   "hours": "日没〜19:00（土日祝は20:00）",
+   "fee": "公式でご確認ください"
   },
   {
    "pref": "神奈川",
@@ -67,8 +72,9 @@
    "city": "鎌倉市",
    "venue": "長谷寺",
    "free": false,
-   "time": "日没〜19:00ごろ・拝観料",
-   "url": "https://www.hasedera.jp/"
+   "url": "https://www.hasedera.jp/",
+   "hours": "公式でご確認ください",
+   "fee": "拝観料"
   },
   {
    "pref": "埼玉",
@@ -78,8 +84,9 @@
    "city": "長瀞町",
    "venue": "月の石もみじ公園",
    "free": false,
-   "time": "16:00〜21:00・中学生以上500円（小学生以下無料）",
-   "url": "https://www.nagatoro.gr.jp/2026/10/%e9%95%b7%e7%80%9e%e7%b4%85%e8%91%89%e3%81%be%e3%81%a4%e3%82%8a2026/"
+   "url": "https://www.nagatoro.gr.jp/2026/10/%e9%95%b7%e7%80%9e%e7%b4%85%e8%91%89%e3%81%be%e3%81%a4%e3%82%8a2026/",
+   "hours": "16:00〜21:00",
+   "fee": "中学生以上 500円（小学生以下無料）"
   },
   {
    "pref": "埼玉",
@@ -89,8 +96,9 @@
    "city": "長瀞町",
    "venue": "寳登山神社",
    "free": null,
-   "time": "17:00〜21:00",
-   "url": "https://www.nagatoro.gr.jp/2026/10/%e9%95%b7%e7%80%9e%e7%b4%85%e8%91%89%e3%81%be%e3%81%a4%e3%82%8a2026/"
+   "url": "https://www.nagatoro.gr.jp/2026/10/%e9%95%b7%e7%80%9e%e7%b4%85%e8%91%89%e3%81%be%e3%81%a4%e3%82%8a2026/",
+   "hours": "17:00〜21:00",
+   "fee": "公式でご確認ください"
   },
   {
    "pref": "埼玉",
@@ -101,8 +109,9 @@
    "city": "滑川町",
    "venue": "国営武蔵丘陵森林公園",
    "free": false,
-   "time": "入園料450円",
-   "url": "https://www.shinrinkoen.jp/"
+   "url": "https://www.shinrinkoen.jp/",
+   "hours": "公式で発表待ち",
+   "fee": "入園料 450円"
   },
   {
    "pref": "千葉",
@@ -113,8 +122,9 @@
    "city": "大多喜町",
    "venue": "養老渓谷",
    "free": null,
-   "time": "17:00〜21:00（予定）",
-   "url": "https://maruchiba.jp/event/detail_11340.html"
+   "url": "https://maruchiba.jp/event/detail_11340.html",
+   "hours": "17:00〜21:00（予定）",
+   "fee": "公式でご確認ください"
   },
   {
    "pref": "千葉",
@@ -125,8 +135,9 @@
    "city": "南房総市",
    "venue": "小松寺",
    "free": true,
-   "time": "紅葉の時期の夜",
-   "url": "https://maruchiba.jp/event/detail_10807.html"
+   "url": "https://maruchiba.jp/event/detail_10807.html",
+   "hours": "紅葉の時期の夜",
+   "fee": "無料"
   },
   {
    "pref": "茨城",
@@ -136,8 +147,9 @@
    "city": "水戸市",
    "venue": "偕楽園 もみじ谷",
    "free": true,
-   "time": "日没〜21:00",
-   "url": "https://ibaraki-kairakuen.jp/news/detail?id=5899"
+   "url": "https://ibaraki-kairakuen.jp/news/detail?id=5899",
+   "hours": "日没〜21:00",
+   "fee": "無料"
   },
   {
    "pref": "茨城",
@@ -148,8 +160,9 @@
    "city": "大子町",
    "venue": "袋田の滝",
    "free": false,
-   "time": "11月は20:00まで・観瀑トンネルは有料",
-   "url": "https://www.town.daigo.ibaraki.jp/page/page001474.html"
+   "url": "https://www.town.daigo.ibaraki.jp/page/page001474.html",
+   "hours": "11月は20:00まで",
+   "fee": "観瀑トンネルは有料"
   },
   {
    "pref": "栃木",
@@ -159,8 +172,9 @@
    "city": "日光市",
    "venue": "日光東照宮",
    "free": true,
-   "time": "17:00〜21:00（8日は20:00まで）・東照宮・二荒山神社・輪王寺",
-   "url": "https://lightup-nikko.jp/"
+   "url": "https://lightup-nikko.jp/",
+   "hours": "17:00〜21:00（8日は20:00まで）",
+   "fee": "無料（東照宮・二荒山神社・輪王寺）"
   },
   {
    "pref": "群馬",
@@ -170,8 +184,9 @@
    "city": "桐生市",
    "venue": "宝徳寺",
    "free": false,
-   "time": "受付17:00〜19:00・1,200円（高校生以下無料）",
-   "url": "https://www.houtokuji.jp/reflection-autumn.html"
+   "url": "https://www.houtokuji.jp/reflection-autumn.html",
+   "hours": "受付 17:00〜19:00",
+   "fee": "1,200円（高校生以下無料）"
   },
   {
    "pref": "群馬",
@@ -181,8 +196,9 @@
    "city": "渋川市",
    "venue": "河鹿橋",
    "free": true,
-   "time": "16:30〜22:00",
-   "url": "https://www.ikaho-kankou.com/red_lightup/"
+   "url": "https://www.ikaho-kankou.com/red_lightup/",
+   "hours": "16:30〜22:00",
+   "fee": "無料"
   }
  ]
 }
