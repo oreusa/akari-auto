@@ -1,4 +1,10 @@
 {
+ "https://artetokyo.jp/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 0.2,
+  "why": ""
+ },
  "https://chiai-knowledge.com/stamprally/": {
   "at": "2026-11-01",
   "by": "browser",
@@ -20,6 +26,12 @@
   "sec": 3.7,
   "why": ""
  },
+ "https://djs.dialogue.or.jp/news/20260826news/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 3.2,
+  "why": ""
+ },
  "https://enoshima-seacandle.com/event/shonan-candle/": {
   "at": "2026-11-01",
   "by": "browser",
@@ -38,6 +50,12 @@
   "by": "browser",
   "ok": true,
   "sec": 4.8,
+  "why": ""
+ },
+ "https://fujiko-museum.com/exhibition.html": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.4,
   "why": ""
  },
  "https://global.toyota/info/themoveum/": {
@@ -1342,6 +1360,12 @@
   "sec": 1.3,
   "why": "403"
  },
+ "https://kawasaki-ac.jp/movie/theater/detail/?id=002518": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.3,
+  "why": ""
+ },
  "https://kawasaki-fest.main.jp/": {
   "at": "2026-10-31",
   "by": "browser",
@@ -1596,6 +1620,12 @@
   "sec": 7.0,
   "why": ""
  },
+ "https://shinagawa-kanko.or.jp/event/shinasuillc2026/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.8,
+  "why": ""
+ },
  "https://sites.google.com/view/ramenfesta-archives/2026ramenfesta-akinojin/kasukabe2026": {
   "at": "2026-11-01",
   "by": "browser",
@@ -1644,6 +1674,12 @@
   "sec": 2.8,
   "why": ""
  },
+ "https://tgs.jp.net/event/miniature-bakery/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.4,
+  "why": ""
+ },
  "https://tokyo-sg.com/news/3963": {
   "at": "2026-11-02",
   "ok": true,
@@ -1655,6 +1691,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.9,
+  "why": ""
+ },
+ "https://tokyonominoichi.com/2026_autumn/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://uketsu.jp/museum/": {
@@ -1768,6 +1810,12 @@
   "sec": 5.5,
   "why": ""
  },
+ "https://www.city.chuo.lg.jp/a0016/bunkakankou/kankoujouhou/event/kankousyougyoumaturi.html": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.3,
+  "why": ""
+ },
  "https://www.city.hanno.lg.jp/soshikikarasagasu/kankyokeizaibu/kanko/10480.html": {
   "at": "2026-11-01",
   "by": "browser",
@@ -1878,6 +1926,12 @@
   "sec": 4.6,
   "why": ""
  },
+ "https://www.honjo-kanko.jp/topics/none/20261014_10704/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.6,
+  "why": ""
+ },
  "https://www.houtokuji.jp/reflection-autumn.html": {
   "at": "2026-11-01",
   "by": "browser",
@@ -1920,11 +1974,23 @@
   "sec": 7.3,
   "why": ""
  },
+ "https://www.kanagawaparks.com/kurihama/news/2026100414204410478.html": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 2.3,
+  "why": ""
+ },
  "https://www.kanko-hitachiota.com/page/page002118.html": {
   "at": "2026-11-01",
   "by": "browser",
   "ok": true,
   "sec": 1.7,
+  "why": ""
+ },
+ "https://www.kanko-shinjuku.jp/event/c085/article_6396.html": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.kasama-kankou.jp/page/dir000187.html": {
@@ -2024,6 +2090,12 @@
   "sec": 7.3,
   "why": ""
  },
+ "https://www.pref.saitama.lg.jp/spo-navi/event/higashimatsuyama/3-day-march-49r.html": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.5,
+  "why": ""
+ },
  "https://www.pref.tochigi.lg.jp/c10/kouhou/kouhou/202610-12artm-kikaku.html": {
   "at": "2026-11-01",
   "by": "browser",
@@ -2052,11 +2124,23 @@
   "sec": 3.9,
   "why": ""
  },
+ "https://www.seaparadise.co.jp/en/event/akipara2026autumn/index.html": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 2.2,
+  "why": ""
+ },
  "https://www.seibu-leisure.co.jp/matsuri/info/chichibudewinefair/index.html": {
   "at": "2026-11-01",
   "by": "browser",
   "ok": true,
   "sec": 5.8,
+  "why": ""
+ },
+ "https://www.shikinokaori-rose-garden.com/event/10899/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.7,
   "why": ""
  },
  "https://www.showakinen-koen.jp/autumn-night-walk/": {
@@ -2120,6 +2204,18 @@
   "by": "browser",
   "ok": true,
   "sec": 3.1,
+  "why": ""
+ },
+ "https://www.tokyo-dome.co.jp/aamo/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 0.3,
+  "why": ""
+ },
+ "https://www.tokyo-park.or.jp/park/kyu-furukawa/news/2026/10_10_11_6.html": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.9,
   "why": ""
  },
  "https://www.tokyomegaillumi.jp/": {
@@ -2246,6 +2342,12 @@
   "by": "browser",
   "ok": true,
   "sec": 7.1,
+  "why": ""
+ },
+ "https://yayoikusamamuseum.jp/en/exhibition/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.6,
   "why": ""
  },
  "https://yokohama-landmark.jp/plaza_news/detail.html?act=64030": {
