@@ -287,6 +287,10 @@ def main():
     today = now.date()
     d = json.load(open(os.path.join(ROOT, "data", "illumi.json"), encoding="utf-8"))
     # 終わった物は外す。開催中→これから→発表前の順、その中は終わる日・始まる日の近い順
+    # 11/2 終わる日が無いのに始まる日だけある物でページ作りが止まった → 日程未発表として扱う
+    for e in d["items"]:
+        if e.get("start") and not e.get("end"):
+            e["start"] = None
     items = [e for e in d["items"] if not e.get("end") or date.fromisoformat(e["end"]) >= today]
 
     def key(e):

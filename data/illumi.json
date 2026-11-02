@@ -884,7 +884,7 @@
     {
       "pref": "東京",
       "name": "東京イースト21 ウィンターイルミネーション",
-      "start": "2026-11-01",
+      "start": null,
       "end": null,
       "city": "江東区",
       "venue": "東京イースト21",
@@ -2077,6 +2077,27 @@
       "free": false,
       "url": "https://harunavi.jp/",
       "last": "2025/12/19〜12/21"
+    },
+    {
+      "pref": "東京",
+      "name": "新宿ミナミルミ",
+      "start": "2026-11-11",
+      "end": "2027-02-14",
+      "city": "新宿区",
+      "venue": "JR新宿駅南口周辺（6施設）",
+      "free": true,
+      "url": "https://www.gotokyo.org/jp/spot/ev134/index.html"
+    },
+    {
+      "pref": "栃木",
+      "name": "まちの駅 新・鹿沼宿イルミネーション",
+      "start": null,
+      "end": null,
+      "last": "12/6〜3/1",
+      "city": "鹿沼市",
+      "venue": "まちの駅 新・鹿沼宿 芝生広場",
+      "free": false,
+      "url": "https://www.city.kanuma.tochigi.jp/0706/info-0000010909-1.html"
     }
   ]
 }

@@ -70,6 +70,10 @@ def dress(h, koyo, href="/illumination"):
 
 def load(today):
     d = json.load(open(os.path.join(ROOT, "data", "koyo.json"), encoding="utf-8"))
+    # 11/2 終わる日が無いのに始まる日だけある物でページ作りが止まった → 日程未発表として扱う
+    for e in d["items"]:
+        if e.get("start") and not e.get("end"):
+            e["start"] = None
     items = [e for e in d["items"] if not e.get("end") or date.fromisoformat(e["end"]) >= today]
 
     def key(e):

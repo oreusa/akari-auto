@@ -307,6 +307,18 @@
    "url": "https://www.tochinavi.net/spot/home/index.shtml?id=6929",
    "hours": "17:00〜22:00",
    "fee": "無料"
+  },
+  {
+   "pref": "群馬",
+   "name": "洞窟観音・徳明園の紅葉",
+   "start": null,
+   "end": null,
+   "last": "例年11月中旬〜12月上旬（土日にライトアップ）",
+   "city": "高崎市",
+   "venue": "徳明園",
+   "free": false,
+   "url": "https://www.city.takasaki.gunma.jp/page/2625.html",
+   "fee": "入園 大人800円・小学生400円（高崎市の案内、2023年更新）"
   }
  ]
 }
