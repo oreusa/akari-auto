@@ -501,6 +501,24 @@ def ig_tags(k, due):
     return " ".join(dict.fromkeys(tags[:5]))
 
 
+# 11/2 オーナー「毎日のリールの説明文にも、HPの紹介を1行足す（HPにある機能だけ・日替わり）」
+# 11/2 に本物のページを開いて確かめた機能だけ。ページが変わったら直す
+HP_LINES = (
+    "HPでは、街の名前を入れると、その街のおでかけとイルミネーションがまとめて出ます。",
+    "HPの「いまから行ける おでかけ」は、いる場所といまの時刻から、きょう開いている所を近い順に並べます。",
+    "HPの「泊まりで行くおでかけ」は、関東の少し遠いおでかけと、近くの評価の高い宿をまとめています。",
+    "HPの「本当に値下がりした物だけ」は、楽天のよく買われる毎日の物の値段を、毎日記録しています。",
+    "HPのふるさと納税のページは、返礼品を寄付1万円あたりの量に直して比べています。",
+    "HPのおでかけリストは、地図でも探せて、近くの宿も見られます。",
+    "HPのおかいものリストは、3つ以上を数字で比べて選んだ、暮らしの物です。",
+)
+
+
+def hp_line(due):
+    """日替わりのHPの紹介1行（同じ日の2本のリールは同じ行）。"""
+    return HP_LINES[due.toordinal() % len(HP_LINES)]
+
+
 def ig_profile(texts, due):
     """インスタの文の最後の定型文（10/26 オーナー「ちゃんと考えて定型文つくろ」「みてもどこで詳しく書いてるか分かるわけない」）。
     インスタは文のリンクを押せないので、見た人が次にどこを押せばいいかを書く。
@@ -690,7 +708,7 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
         if svc in ("twitter", "threads") and URL_RE.search(k.get("text2") or ""):
             texts = with_page([k["text"], k["text2"].strip()], svc, cfg, slot, due)
         elif svc == "instagram" and media.get("ig_type") != "story" and IG_HEAD not in k["text"]:
-            texts = [k["text"].rstrip() + "\n\n" + ig_profile([k["text"]], due) + "\n\n" + ig_tags(k, due)]
+            texts = [k["text"].rstrip() + "\n\n" + ig_profile([k["text"]], due) + ("\n" + hp_line(due) if media.get("video") else "") + "\n\n" + ig_tags(k, due)]
             if media.get("ig_type") == "post":  # スライドはリールと同じ文にしない（同じ文が続くとスパムの印）
                 texts = [IG_SLIDES_HEAD + "\n\n" + texts[0]]  # インスタの文はリンクを押せないので、HPへの道を1行（10/26 オーナー「プロフィールリンクに詳細あるよね？」）
         try:
@@ -753,6 +771,8 @@ def book_outing_reel(cfg, state, now):
         cap = OUTING_KICKER + "\n" + cap
     if IG_HEAD not in cap:
         cap = cap.rstrip() + "\n\nくわしくはプロフィールのリンクの「関東おでかけリスト」から"
+    if not any(l in cap for l in HP_LINES):
+        cap = cap.rstrip() + "\n" + hp_line(due)
     tags = " ".join(spec.get("ig_tags") or [])
     if tags and tags not in cap:
         cap += "\n\n" + tags
