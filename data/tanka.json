@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-02 16:12",
+  "at": "2026-11-02 18:14",
   "cats": [
     {
       "key": "water",
@@ -15,7 +15,7 @@
           "price": 1360,
           "per": 75.6,
           "amt": "2000ml×9本",
-          "rc": 2054,
+          "rc": 2055,
           "av": 4.49,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10151238/"
@@ -45,7 +45,7 @@
           "price": 1480,
           "per": 82.2,
           "amt": "2000ml×9本",
-          "rc": 8539,
+          "rc": 8540,
           "av": 4.78,
           "shop": "水想い 公式ストア",
           "plain": "https://item.rakuten.co.jp/mizuomoi/10000004/"
@@ -70,14 +70,14 @@
       "seen": 120,
       "read": 57,
       "ok": 8,
-      "avg": 146.1,
+      "avg": 146.3,
       "top": [
         {
           "name": "＼激熱価格！／アイリスオーヤマ アイリスフーズ アイリスの強炭酸水 CRYSTAL SPAR…",
           "price": 1280,
           "per": 106.7,
           "amt": "500ml×24本",
-          "rc": 1301,
+          "rc": 1302,
           "av": 4.59,
           "shop": "暮らし健康ネット館",
           "plain": "https://item.rakuten.co.jp/kurashikenkou/10220307/"
@@ -87,7 +87,7 @@
           "price": 1420,
           "per": 118.3,
           "amt": "500ml×24本",
-          "rc": 3915,
+          "rc": 3916,
           "av": 4.59,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10158174/"
@@ -107,8 +107,8 @@
           "price": 1520,
           "per": 126.7,
           "amt": "500ml×24本",
-          "rc": 1108,
-          "av": 4.64,
+          "rc": 1109,
+          "av": 4.63,
           "shop": "快適ホームライフ",
           "plain": "https://item.rakuten.co.jp/k-home/10084344/"
         },
@@ -130,9 +130,9 @@
       "title": "お米",
       "unit": "1kg",
       "seen": 120,
-      "read": 16,
-      "ok": 9,
-      "avg": 530.5,
+      "read": 17,
+      "ok": 10,
+      "avg": 528.6,
       "top": [
         {
           "name": "米 10kg 送料無料 訳あり米 産直の米 お米マイスター厳選米 米 10kg 送料無料 白…",
@@ -175,14 +175,14 @@
           "plain": "https://item.rakuten.co.jp/ajitukami/10000053/"
         },
         {
-          "name": "新米 10kg コシヒカリ 米10キロ こしひかり 令和8年産 福島県 会津産 送料無料",
-          "price": 5599,
-          "per": 559.9,
+          "name": "お米 10kg 送料無料 オリジナルブレンド米 日本の味 10kg1袋 複数原料米",
+          "price": 4980,
+          "per": 498.0,
           "amt": "10kg",
-          "rc": 1721,
-          "av": 4.77,
-          "shop": "ごはん大好き 会津米",
-          "plain": "https://item.rakuten.co.jp/daisukiaizu/10000207/"
+          "rc": 2296,
+          "av": 4.58,
+          "shop": "お米・菓子の直売所あじわいの朝",
+          "plain": "https://item.rakuten.co.jp/ajiwainoasa/10000028/"
         }
       ],
       "amazon": []
