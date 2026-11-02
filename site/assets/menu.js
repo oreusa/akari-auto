@@ -5,23 +5,36 @@
   /* 11/2 オーナー「燈のhpを LIFE NOTE…関東おでかけリスト・おかいものリスト 完全に分ける」→ / は入口、/odekake と /okaimono に分けた */
   var P=location.pathname.replace(/^\/townnotes\//,"/odekake").replace(/\.html$/,""),here=
     /^\/(index)?$/.test(P)?"tn":/^\/odekake/.test(P)?"list":/^\/okaimono/.test(P)?"okai":/^\/illumination/.test(P)?"illumi":/^\/tomari/.test(P)?"tomari":/^\/ima/.test(P)?"ima":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":/^\/nesage/.test(P)?"nesage":"";
+  var SH=/^(\/okaimono|\/nesage|\/tanka|\/furusato|\/kaimawari)/.test(P);
+  /* 11/2 オーナー「もっとまとめろよ。TOWNNOTEこんなんじゃないだろ」→ 月と同じく、リストごとに自分の項目だけ＋関連サイト */
   var L=[
     ["LIST","list","/odekake","関東おでかけリスト","開催中・これからのおでかけ"],
     ["MAP","map","/odekake#map","地図で見る","関東の地図から、近くのおでかけを"],
     ["NOW","ima","/ima","いまから行けるおでかけ","いる場所から近い順に、きょう開いている所"],
     ["ILLUMINATION","illumi","/illumination","イルミネーション日程","2026-2027　都県ごとの日程と無料の所"],
     ["STAY","tomari","/tomari","泊まりで行くおでかけ","遠くのおでかけと、近くの宿"],
-    ["-","OKAIMONO"],
-    ["LIST","okai","/okaimono","くらべたおかいものリスト","うさぎが数字で比べた物と、お得な日"],
-    ["PRICE DOWN","nesage","/nesage","本当に値下がりした物だけ","楽天の毎日の物を、毎日記録して"],
-    ["PER UNIT","tanka","/tanka","1個あたりで比べた","楽天の水・お米などを1Lあたり・1kgあたりで"],
-    ["FURUSATO","furusato","/furusato","ふるさと納税を比べた","寄付1万円あたりの量で・12/31まで"],
-    ["KAIMAWARI","kaimawari","/kaimawari","買いまわりの1,000円ぽっきり","お買い物マラソン用・送料込み・レビュー1,000件以上"],
-    ["DEAL","deal","/okaimono#deal","今だけのお得","ポイントアップ・セールの日"],
-    ["HOTEL","trip","/okaimono#trip","宿と予約","口コミ1,000件以上・評価4.5以上の宿"],
     ["-","CONTACT"],
-    ["LISTING","listing","https://ig.me/m/ai_usagichan1","おでかけ掲載","新しいお店やイベントのご紹介"]
+    ["LISTING","listing","https://ig.me/m/ai_usagichan1","おでかけ掲載","新しいお店やイベントのご紹介"],
+    ["-","関連サイト"],
+    ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","うさぎが数字で比べた物と、本当に安い物"],
+    ["LIFE NOTE","tn","/","LIFE NOTE","関東のくらしのノート"]
   ];
+  if(SH)L=[
+    ["LIST","okai","/okaimono","くらべたおかいものリスト","3つ以上を数字で比べて選んだ物"],
+    ["PER UNIT","tanka","/tanka","1個あたりで比べた","水・お米などを1Lあたり・1kgあたりで"],
+    ["FURUSATO","furusato","/furusato","ふるさと納税を比べた","寄付1万円あたりの量で・12/31まで"],
+    ["PRICE DOWN","nesage","/nesage","本当に値下がりした物","毎日の値段を記録して、下がった物だけ"],
+    ["SALE","kaimawari","/kaimawari","買いまわりの1,000円ぽっきり","送料込み・レビュー1,000件以上"],
+    ["-","関連サイト"],
+    ["KANTO ODEKAKE","list","/odekake","関東おでかけリスト","関東のイベント・新しいお店や施設"],
+    ["LIFE NOTE","tn","/","LIFE NOTE","関東のくらしのノート"]
+  ];
+  /* 入口は、2つのリストとご連絡だけ */
+  if(here==="tn")L=[["-","LIFE NOTE"],
+    ["KANTO ODEKAKE","list","/odekake","関東おでかけリスト","関東のイベント・新しいお店や施設"],
+    ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","うさぎが数字で比べた物と、本当に安い物"],
+    ["-","CONTACT"],
+    ["LISTING","listing","https://ig.me/m/ai_usagichan1","おでかけ掲載","新しいお店やイベントのご紹介"]];
   var css=
   "#umenu{position:fixed;top:12px;right:12px;z-index:9990;width:42px;height:42px;border-radius:50%;border:1px solid #DADADA;background:rgba(255,255,255,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.07);-webkit-tap-highlight-color:transparent}"+
 "#utheme{position:fixed;top:12px;right:62px;z-index:9990;width:76px;height:42px;border-radius:99px;border:1px solid #DADADA;background:rgba(255,255,255,.94);padding:0;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.07);-webkit-tap-highlight-color:transparent;transition:opacity .25s,transform .25s}"+
@@ -77,14 +90,14 @@
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
   function openView(v){var b=document.querySelector('button[data-v="'+v+'"]');if(!b)return;b.click();setTimeout(function(){var y=b.getBoundingClientRect().top+scrollY-10;scrollTo({top:y,behavior:"smooth"});},60);}
   function openMap(){var n=0;(function t(){var b=document.querySelector(".tnbtn");if(b){b.click();return;}if(++n<40)setTimeout(t,100);})();}
-  var GJ={"KANTO ODEKAKE":"関東おでかけリスト","OKAIMONO":"くらべたおかいものリスト","CONTACT":"ご相談・お問い合わせ"};
+  var GJ={"KANTO ODEKAKE":"おでかけ","OKAIMONO LIST":"くらべた買い物","LIFE NOTE":"2つのリスト","CONTACT":"ご相談・お問い合わせ"};
   function ug(k){return '<div class="ug">'+(GJ[k]||k)+(GJ[k]?'<small>'+k+'</small>':"")+'</div>';}
   function build(){
     var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
     var btn=document.createElement("button");btn.id="umenu";btn.type="button";btn.setAttribute("aria-label","メニューを開く");btn.setAttribute("aria-expanded","false");btn.setAttribute("aria-controls","upan");btn.innerHTML="<i></i><i></i><i></i>";
     var mask=document.createElement("div");mask.id="umask";
     var pan=document.createElement("div");pan.id="upan";pan.setAttribute("role","dialog");pan.setAttribute("aria-modal","true");pan.setAttribute("aria-label","メニュー");pan.setAttribute("aria-hidden","true");
-    var h='<div class="uh"><a class="uhl" href="/" aria-label="LIFE NOTE の入口へ"><img src="/logo-s.png" alt=""><b>LIFE NOTE</b></a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+ug("KANTO ODEKAKE");
+    var h='<div class="uh"><a class="uhl" href="/" aria-label="LIFE NOTE の入口へ"><img src="/logo-s.png" alt=""><b>LIFE NOTE</b></a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+(here==="tn"?"":ug(SH?"OKAIMONO LIST":"KANTO ODEKAKE"));
     L.forEach(function(x){
       if(x[0]==="-"){h+=ug(x[1]);return;}
       var cur=x[1]===here,ext=/^https?:/.test(x[2]);
