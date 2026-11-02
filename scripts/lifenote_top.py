@@ -89,7 +89,7 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <div class="sns"><h2>FOLLOW</h2><a href="https://www.instagram.com/ai_usagichan1/">Instagram</a><a href="https://www.threads.com/@ai_usagichan1">Threads</a><a href="https://x.com/ai_usagichan">X</a></div>
 <a href="/privacy" style="display:block;text-align:center;font-size:11px;color:#8C7B6E;margin:18px 0 0">プライバシーポリシーと広告について</a><div class="ft">LIFE NOTE（ライフノート）</div></div>
 <script>(function(){{
-var PC={json.dumps(PC, ensure_ascii=False)},EN={json.dumps(EN, ensure_ascii=False)};
+var PC={json.dumps(PC, ensure_ascii=False)},EN={json.dumps(EN, ensure_ascii=False)};var SLUG={{"東京":"tokyo","神奈川":"kanagawa","埼玉":"saitama","千葉":"chiba","茨城":"ibaraki","栃木":"tochigi","群馬":"gunma"}};
 /* どの投稿から来たか（?f=）は、リストに移っても数えられるように覚えておく（リストと同じ sessionStorage の f） */
 var F="";try{{F=new URLSearchParams(location.search).get("f")||"";if(F)sessionStorage.setItem("f",F);else F=sessionStorage.getItem("f")||"";}}catch(e){{}}
 function c(k){{try{{navigator.sendBeacon("/c?f="+encodeURIComponent(F||"direct")+"&s=top&k="+encodeURIComponent(String(k).slice(0,40)));}}catch(e){{}}}}
@@ -125,8 +125,8 @@ svg.querySelectorAll(".pf path").forEach(function(el){{el.addEventListener("clic
  svg.classList.add("sel");svg.querySelectorAll(".pf path").forEach(function(x){{x.classList.toggle("on",x.getAttribute("data-p")===p)}});
  var od=OD.filter(function(x){{return x.p===p}}),nw=od.filter(function(x){{return x.now}}),fr=od.filter(function(x){{return x.f}}),il=IL.filter(function(x){{return x.p===p}});
  pp.style.setProperty("--pc",PC[p]);pp.hidden=false;var u='<small style="font-size:12px">件</small>';
- pp.innerHTML='<h3>'+p+'<small>'+EN[p]+'</small></h3><div class="g"><a href="/odekake" data-k="入口の地図｜おでかけ｜'+p+'"><span>おでかけ（開催中）</span><b>'+nw.length+u+'</b><em>'+(nw[0]?esc(nw[0].t):"これから足します")+'</em></a>'+
-  '<a href="/illumination" data-k="入口の地図｜イルミ｜'+p+'"><span>イルミネーション</span><b>'+il.length+u+'</b><em>'+(il[0]?esc(il[0].t):(fr[0]?"無料 "+esc(fr[0].t):"これから足します"))+'</em></a></div>';
+ pp.innerHTML='<h3>'+p+'<small>'+EN[p]+'</small></h3><div class="g"><a href="/odekake?pref='+encodeURIComponent(p)+'" data-k="入口の地図｜おでかけ｜'+p+'"><span>おでかけ（開催中）</span><b>'+nw.length+u+'</b><em>'+(nw[0]?esc(nw[0].t):"これから足します")+'</em></a>'+
+  '<a href="/illumination-'+SLUG[p]+'" data-k="入口の地図｜イルミ｜'+p+'"><span>イルミネーション</span><b>'+il.length+u+'</b><em>'+(il[0]?esc(il[0].t):(fr[0]?"無料 "+esc(fr[0].t):"これから足します"))+'</em></a></div>';
  c("入口の地図："+p);}});}});}});
 /* あなたの街：おでかけとイルミをまとめて */
 var q=document.getElementById("q"),res=document.getElementById("res"),tq;
@@ -134,7 +134,7 @@ function find(v){{v=v.replace(/\\s/g,"");if(!v){{res.innerHTML="";return;}}var v
  var od=OD.filter(function(x){{return (x.t+x.m).replace(/\\s/g,"").indexOf(vv)>=0}}).slice(0,6);
  var il=IL.filter(function(x){{return x.x.replace(/\\s/g,"").indexOf(vv)>=0}}).slice(0,4);
  var h="";if(od.length)h+='<div class="sec">ODEKAKE　おでかけ</div>'+od.map(function(x){{return '<a href="'+esc(x.h)+'" rel="noopener" style="--pc:'+(PC[x.p]||"#8C7B6E")+'" data-k="入口の検索｜おでかけ｜'+esc(x.t.slice(0,20))+'"><i>'+esc(x.p)+'</i><b>'+esc(x.t)+'<small>'+esc(x.w)+(x.now?"・開催中":x.up?"・これから":"")+'</small></b><em style="color:#9C8775">→</em></a>'}}).join("");
- if(il.length)h+='<div class="sec">ILLUMINATION　イルミネーション</div>'+il.map(function(x){{return '<a href="/illumination" style="--pc:'+(PC[x.p]||"#8C7B6E")+'" data-k="入口の検索｜イルミ｜'+esc(x.t.slice(0,20))+'"><i>'+esc(x.p||"関東")+'</i><b>'+esc(x.t)+'</b><em style="color:#9C8775">→</em></a>'}}).join("");
+ if(il.length)h+='<div class="sec">ILLUMINATION　イルミネーション</div>'+il.map(function(x){{return '<a href="'+(SLUG[x.p]?"/illumination-"+SLUG[x.p]:"/illumination")+'" style="--pc:'+(PC[x.p]||"#8C7B6E")+'" data-k="入口の検索｜イルミ｜'+esc(x.t.slice(0,20))+'"><i>'+esc(x.p||"関東")+'</i><b>'+esc(x.t)+'</b><em style="color:#9C8775">→</em></a>'}}).join("");
  res.innerHTML=h||'<div class="none">「'+esc(v)+'」はまだありません。調べて、リストに足していきます。</div>';}}
 q.oninput=function(){{Promise.all([pO,pI]).then(function(){{find(q.value)}});clearTimeout(tq);tq=setTimeout(function(){{if(q.value.trim())c("入口で探す："+q.value.trim())}},1500);}};
 document.querySelectorAll(".chips button").forEach(function(b){{b.onclick=function(){{q.value=b.textContent;Promise.all([pO,pI]).then(function(){{find(b.textContent)}});c("入口で探す："+b.textContent);}}}});
