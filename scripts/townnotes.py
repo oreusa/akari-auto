@@ -106,6 +106,8 @@ def all_cards():
 def main():
     cache = json.load(open(CACHE, encoding='utf-8')) if os.path.exists(CACHE) else {}
     out, new = {}, 0
+    # 11/2 新しい場所が一度に多いと調べるのに10分を超え、公開まで止まった → 1回に調べるのは4分まで。残りは次の回（調べた分は保存されて続きから）
+    stop = time.time() + 240
     for k, pref, place, name in all_cards():
         if k in out:
             continue
@@ -113,6 +115,9 @@ def main():
         today = time.strftime('%Y-%m-%d')
         if ck in cache and cache[ck][0] is None and (cache[ck] + [''])[3] != today:
             del cache[ck]  # 取れなかった場所は1日1回だけ調べなおす
+        if ck not in cache and time.time() > stop:
+            out[k] = [None, None, 'later']
+            continue
         if ck not in cache:
             got = None
             base = place.replace(' ' + pref, '').strip() if place else ''
