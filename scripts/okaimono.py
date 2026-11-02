@@ -6,7 +6,8 @@
   カードの中身は、それまでの係が作ったページ（index の比べた物・いち押し・宿、/tanka・/furusato・/nesage・/kaimawari）から読む。
 scripts/lifenote.py が呼ぶ：build(odekake_html, index_html) → okaimono の html。
 """
-import html, os, re
+import html, json, os, re, sys, time, urllib.parse
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = os.path.join(R, "site")
@@ -50,22 +51,27 @@ def first(pat, s, default=""):
 
 
 # ---------- カードを集める（1枚 = dict(tab, cat, top, title, sub, href, pr, e)） ----------
+def rate_of(a):
+    return txt(first(r'<span class="sc">(.*?)</span>', a)).replace("｜", "・")
+
+
 def from_index(ix):
     out = []
     names = dict(re.findall(r'<button data-c="(\w+)">([^<]+)<i>', ix))  # 比べた物の種類（stab）
     for a in block(ix, r'<article class="card cmp hot"'):
         out.append(dict(tab="pick", cat="いち押し", top="今日のうさぎのいち押し", title=txt(first(r'<div class="t">(.*?)</div>', a)),
-                        sub=txt(first(r'<p class="why">(.*?)</p>', a)), href=html.unescape(first(r'<a class="buy" href="([^"]+)"', a)), pr=True))
+                        sub=txt(first(r'<p class="why">(.*?)</p>', a)), href=html.unescape(first(r'<a class="buy" href="([^"]+)"', a)), pr=True, rate=rate_of(a)))
     for a in block(ix, r'<article data-c="\w+" class="card sh'):
         c = first(r'data-c="(\w+)"', a)
         when = txt(first(r'<span class="when">(.*?)</span>', a))
         out.append(dict(tab="pick", cat=names.get(c, "くらしの物"), top=when or "3つ以上を比べて選んだ物",
                         title=txt(first(r'<div class="t">(.*?)</div>', a)), sub=txt(first(r'<p class="why">(.*?)</p>', a)),
-                        href=html.unescape(first(r'<a class="buy" href="([^"]+)"', a)), pr=True))
+                        href=html.unescape(first(r'<a class="buy" href="([^"]+)"', a)), pr=True, rate=rate_of(a)))
     trip = (block(ix, r'<section class="blk" id="trip"') or [""])[0]
     for a in block(trip, r'<article class="card'):
         out.append(dict(tab="pick", cat="宿", top="口コミ1,000件以上・評価4.5以上の宿", title=txt(first(r'<div class="t">(.*?)</div>', a)),
-                        sub=txt(first(r'<p class="why">(.*?)</p>', a)), href=html.unescape(first(r'<a class="buy" href="([^"]+)"', a)), pr=True))
+                        sub=txt(first(r'<p class="why">(.*?)</p>', a)), href=html.unescape(first(r'<a class="buy" href="([^"]+)"', a)), pr=True,
+                        rate=rate_of(a), img=html.unescape(first(r'<img class="ph" src="([^"]+)"', a))))
     deal = (block(ix, r'<section class="blk" id="deal"') or [""])[0]
     for a in block(deal, r'<div class="card it"'):
         out.append(dict(tab="sale", cat="お店のお得", top=txt(first(r'<span class="when">(.*?)</span>', a)),
@@ -91,7 +97,66 @@ def li_card(cat, li, tab, src):
     pu = txt(first(r'<span class="pu">(.*?)</span>', li))
     df = txt(first(r'<span class="df[^"]*">(.*?)</span>', li))
     mt = txt(first(r'<span class="mt">(.*?)</span>', li))
-    return dict(tab=tab, cat=cat, top="・".join(x for x in (pu, df) if x) or src, title=nm, sub=mt, href=href, pr=True)
+    price, _, rate = mt.partition("★")
+    rate = ("★" + rate.strip()) if rate else ""
+    return dict(tab=tab, cat=cat, top=pu or src, big=df, title=nm, sub=price.strip(), href=href, pr=True,
+                rate=re.sub(r"\s+", "・", rate), img=html.unescape(first(r'<img src="([^"]+)"', li)))
+
+
+# ---------- 写真（11/2 オーナー「写真もついてないし。俺だったらここで買わないかも」）
+# 比べた物・いち押しのカードには写真がないので、楽天のAPIで商品（宿）の写真を取る。1度取った写真は data/okaimono_img.json に残す
+IMGF = os.path.join(R, "data", "okaimono_img.json")
+
+
+def real_url(href):
+    m = re.search(r"[?&]pc=([^&]+)", href)
+    return urllib.parse.unquote(m.group(1)) if m else href
+
+
+def photos(cards):
+    try:
+        cache = json.load(open(IMGF, encoding="utf-8"))
+    except Exception:
+        cache = {}
+    try:
+        import lib
+        lib.rakuten_env()
+        api = True
+    except Exception:
+        api = False
+    n = 0
+    for c in cards:
+        if c.get("img"):
+            continue
+        u = real_url(c["href"])
+        if u in cache:
+            c["img"] = cache[u]
+            continue
+        if not api or n >= 30:
+            continue
+        got = ""
+        try:
+            code = lib.item_code_from_url(u)
+            hm = re.search(r"travel\.rakuten\.co\.jp/HOTEL/(\d+)", u)
+            if code:
+                r = lib.rakuten_item(code)
+                got = r.get("image") or ""
+            elif hm:
+                r = lib.rakuten_travel_api(hm.group(1))
+                got = (r.get("hotelImageUrl") or r.get("hotelThumbnailUrl") or "") if isinstance(r, dict) else ""
+            n += 1
+            time.sleep(1.1)
+        except Exception as e:
+            print("写真が取れない", u[:60], e)
+        if got.startswith("https://"):
+            cache[u] = got
+            c["img"] = got
+    try:
+        os.makedirs(os.path.dirname(IMGF), exist_ok=True)
+        json.dump(cache, open(IMGF, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+    except Exception:
+        pass
+    print("おかいもの 写真", sum(1 for c in cards if c.get("img")), "/", len(cards), "（APIで新しく", n, "件）")
 
 
 def collect(ix):
@@ -110,7 +175,9 @@ def collect(ix):
         c = li_card(cat, li, "sale", "1,000円ぽっきり")
         c["top"] = "買いまわりの1,000円ぽっきり（送料込み）"
         cards.append(c)
-    return [c for c in cards if c["href"] and c["title"]]
+    cards = [c for c in cards if c["href"] and c["title"]]
+    photos(cards)
+    return cards
 
 
 def card_html(c, col):
@@ -118,12 +185,22 @@ def card_html(c, col):
     rel = "sponsored noopener" if c["pr"] else "noopener"
     chips = f'<span class="p" data-p="{E(c["cat"])}">{E(c["cat"])}</span>' + ('<span class="f">PR</span>' if c["pr"] else '<span class="f">公式</span>')
     e = f' data-e="{E(c["e"])}"' if c.get("e") else ""
-    return (f'<div class="card it kc" data-pref="{E(c["cat"])}" data-free="0" data-wk="0"{e} style="--pc:{pc}">'
-            f'<div class="v2c">{chips}</div><div class="v2d">{E(c["top"])}</div>'
-            f'<div class="t"><a class="go" href="{E(c["href"])}" rel="{rel}" target="_blank" aria-label="{E(c["title"][:40])}を開く">'
+    u = real_url(c["href"])
+    btn = "楽天トラベルで見る" if "travel.rakuten" in u else ("楽天で見る" if c["pr"] else "公式ページを見る")
+    img = (f'<span class="kp"><img src="{E(c["img"])}" alt="" width="96" height="96" loading="lazy" decoding="async" '
+           f'referrerpolicy="no-referrer" onerror="this.parentNode.classList.add(\'no\');this.remove()"></span>') if c.get("img") else ""
+    top = E(c["top"])
+    top = re.sub(r"([\d,.]+)(円|%)", r"<b>\1</b>\2", top)
+    return (f'<div class="card it kc{"" if img else " noimg"}" data-pref="{E(c["cat"])}" data-free="0" data-wk="0"{e} style="--pc:{pc}">'
+            f'<div class="v2c">{chips}</div><div class="kb">{img}<div class="kx">'
+            f'<div class="v2d">{top}</div>'
+            + (f'<div class="kbig">{E(c["big"])}</div>' if c.get("big") else "")
+            + f'<div class="t"><a class="go" href="{E(c["href"])}" rel="{rel}" target="_blank" aria-label="{E(c["title"][:40])}を{btn[:-2]}で開く">'
             f'<span class="nwp">{E(c["title"])}</span></a></div>'
-            + (f'<div class="mpr"><span class="ks">{E(c["sub"])}</span></div>' if c["sub"] else '<div class="mpr"></div>')
-            + '</div>')
+            + (f'<div class="ks">{E(c["sub"])}</div>' if c["sub"] else "")
+            + '</div></div>'
+            f'<div class="kf"><span class="kr">{E(c.get("rate") or "")}</span><span class="kbtn">{btn}<i>→</i></span></div>'
+            '</div>')
 
 
 TABS = [("pick", "COMPARED", "くらべた物", "/okaimono", ""),
@@ -207,10 +284,23 @@ def build(od, ix):
                '<b>関東おでかけリスト<span>→</span></b><i>関東のイベント・新しいお店や施設を、公式ページつきで</i></a>', h, count=1, flags=re.S)
     css = ('<style>'
            '.ilks{text-align:center;font-size:11px;color:var(--sub);margin:-12px 0 16px}'
-           '#odekake .kc .t{font-size:15px;line-height:1.55}'
-           '#odekake .kc .ks{font-size:12px;line-height:1.6;color:var(--sub);display:block}'
-           '#odekake .kc .mpr{padding-bottom:14px}'
-           '#odekake .kc .v2d{font-family:"Zen Kaku Gothic New",sans-serif;font-size:12px;letter-spacing:.02em;color:color-mix(in srgb,var(--pc) 75%,#000);font-weight:700}'
+           # 買い物のカード：左に商品の写真、右に「1Lあたり○円」と名前、下に評価と「楽天で見る」
+           '#odekake .card.it.kc{padding:14px 14px 14px 16px}'
+           '#odekake .card.it.kc:after{content:none}'
+           '#odekake .kc .kb{display:flex;gap:12px;align-items:flex-start;margin-top:8px}'
+           '#odekake .kc .kp{flex:none;width:96px;height:96px;border-radius:8px;background:#fff;border:1px solid #ECECEC;overflow:hidden;display:flex;align-items:center;justify-content:center}'
+           '#odekake .kc .kp img{width:100%;height:100%;object-fit:contain;display:block}'
+           '#odekake .kc .kp.no{display:none}'
+           '#odekake .kc .kx{flex:1;min-width:0}'
+           '#odekake .kc .v2d{margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:12.5px;line-height:1.5;letter-spacing:.02em;color:color-mix(in srgb,var(--pc) 72%,#000);font-weight:700}'
+           '#odekake .kc .v2d b{font-family:Jost,sans-serif;font-size:19px;font-weight:600;letter-spacing:0;margin:0 1px}'
+           '#odekake .kc .kbig{display:inline-block;margin:4px 0 2px;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--pc) 12%,#fff);color:color-mix(in srgb,var(--pc) 70%,#000);font-size:11px;font-weight:700}'
+           '#odekake .kc .t{margin:4px 0 0;font-size:14px;line-height:1.5;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}'
+           '#odekake .kc .ks{margin-top:4px;font-size:12px;line-height:1.55;color:var(--sub);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}'
+           '#odekake .kc .kf{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding-top:10px;border-top:1px dashed #E4E4E4}'
+           '#odekake .kc .kr{font-size:11.5px;color:var(--sub);min-width:0}'
+           '#odekake .kc .kbtn{flex:none;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:99px;background:var(--pc);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.04em}'
+           '#odekake .kc .kbtn i{font-style:normal;font-family:Jost,sans-serif}'
            '.pdeep{display:block;width:max-content;max-width:100%;margin:6px auto 4px;color:#231E1B;text-decoration:none;font:600 13px/1.5 var(--min);letter-spacing:.06em;border-bottom:1px solid #231E1B;padding-bottom:3px}'
            '.pdeep span{font-family:Jost;margin-left:8px;color:#9C8775}'
            '.flt[data-v=odekake]{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.flt[data-v=odekake]::-webkit-scrollbar{display:none}'
