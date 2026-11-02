@@ -102,7 +102,7 @@
     var btn=document.createElement("button");btn.id="umenu";btn.type="button";btn.setAttribute("aria-label","メニューを開く");btn.setAttribute("aria-expanded","false");btn.setAttribute("aria-controls","upan");btn.innerHTML="<i></i><i></i><i></i>";
     var mask=document.createElement("div");mask.id="umask";
     var pan=document.createElement("div");pan.id="upan";pan.setAttribute("role","dialog");pan.setAttribute("aria-modal","true");pan.setAttribute("aria-label","メニュー");pan.setAttribute("aria-hidden","true");
-    var h='<div class="uh"><a class="uhl" href="/" aria-label="LIFE NOTE の入口へ"><img src="/logo-s.png" alt=""><b>LIFE NOTE</b></a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+(here==="tn"?"":ug(SH?"OKAIMONO LIST":"KANTO ODEKAKE"));
+    var h='<div class="uh"><a class="uhl" href="/" aria-label="LIFE NOTE の入口へ"><img src="'+(document.documentElement.classList.contains("night")?"/logo-s-night.png":"/logo-s.png")+'" alt=""><b>LIFE NOTE</b></a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+(here==="tn"?"":ug(SH?"OKAIMONO LIST":"KANTO ODEKAKE"));
     L.forEach(function(x){
       if(x[0]==="-"){h+=ug(x[1]);return;}
       var cur=x[1]===here,ext=/^https?:/.test(x[2]);

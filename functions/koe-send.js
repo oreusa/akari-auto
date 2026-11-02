@@ -12,38 +12,45 @@ function day() {
 function clean(v, max) {
   return String(v || "").replace(/[\u0000-\u0009\u000B-\u001F\u007F]/g, "").trim().slice(0, max);
 }
-function res(ok, msg) {
+// 11/2 月（TOWN NOTE）の /koe からも、ここに送る（月のサイトには保存する場所がないため）。月のページからだけ受ける
+const ORIGINS = ["https://townnote.pages.dev", "https://usagi-life-notes.pages.dev"];
+function res(C, ok, msg) {
   return new Response(JSON.stringify({ ok, msg }), {
     status: ok ? 200 : 400,
-    headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" },
+    headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", ...C },
   });
 }
 
 export async function onRequestPost({ request, env }) {
+  const o = request.headers.get("origin") || "";
+  const C = ORIGINS.includes(o) ? { "access-control-allow-origin": o, vary: "origin" } : {};
   const ua = request.headers.get("user-agent") || "";
-  if (BOT.test(ua)) return res(false, "送れませんでした");
+  if (BOT.test(ua)) return res(C, false, "送れませんでした");
   let b;
-  try { b = await request.json(); } catch (e) { return res(false, "送れませんでした"); }
-  if (b.hp) return res(true, "ok"); // 隠し欄に字がある＝機械。受けたふりだけする
+  try { b = await request.json(); } catch (e) { return res(C, false, "送れませんでした"); }
+  if (b.hp) return res(C, true, "ok"); // 隠し欄に字がある＝機械。受けたふりだけする
   const kind = KINDS[b.kind] ? b.kind : "";
   const text = clean(b.text, 400);
-  if (!kind) return res(false, "種類を選んでください");
-  if (text.length < 5) return res(false, "5文字以上で書いてください");
+  if (!kind) return res(C, false, "種類を選んでください");
+  if (text.length < 5) return res(C, false, "5文字以上で書いてください");
   const star = kind === "review" ? Math.max(0, Math.min(5, parseInt(b.star, 10) || 0)) : 0;
   const name = clean(b.name, 20);
   const page = clean(b.page, 40);
-  if (!env.CLICKS) return res(false, "いまは送れません。時間をおいてお試しください");
+  const site = b.site === "月" ? "月" : "燈";
+  if (!env.CLICKS) return res(C, false, "いまは送れません。時間をおいてお試しください");
   const cnt = `${day()}|koe-n`;
   const got = await env.CLICKS.getWithMetadata(cnt);
   const n = (got && got.metadata && got.metadata.n) || 0;
-  if (n >= MAX_DAY) return res(false, "今日はたくさん届いたため、明日またお送りください");
+  if (n >= MAX_DAY) return res(C, false, "今日はたくさん届いたため、明日またお送りください");
   await env.CLICKS.put(cnt, "", { metadata: { n: n + 1 }, expirationTtl: 60 * 60 * 24 * 3 });
   const at = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 16).replace("T", " ");
   const key = `koe|${at}|${Math.random().toString(36).slice(2, 8)}`;
-  await env.CLICKS.put(key, JSON.stringify({ at, kind: KINDS[kind], star, text, name, page }), { expirationTtl: 60 * 60 * 24 * 60 });
-  return res(true, "ok");
+  await env.CLICKS.put(key, JSON.stringify({ at, site, kind: KINDS[kind], star, text, name, page }), { expirationTtl: 60 * 60 * 24 * 60 });
+  return res(C, true, "ok");
 }
 
-export async function onRequest() {
-  return new Response(null, { status: 405 });
+export async function onRequestOptions({ request }) {
+  const o = request.headers.get("origin") || "";
+  if (!ORIGINS.includes(o)) return new Response(null, { status: 403 });
+  return new Response(null, { status: 204, headers: { "access-control-allow-origin": o, "access-control-allow-methods": "POST", "access-control-allow-headers": "content-type", "access-control-max-age": "86400", vary: "origin" } });
 }

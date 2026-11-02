@@ -27,7 +27,7 @@
     /* 11/2 オーナー「他のページまだ白モヤ」→ いまから行ける の地図も入口と同じ夜の地図に（白っぽい灰色をやめる） */
     "html.night .rd svg>rect{fill:#141A28}"+
     /* 地図で見る（全画面の地図）：夜は暗すぎたので、少し明るく・色をはっきり */
-    "html.night .tn svg.m{filter:brightness(.74) saturate(1.5)}"+
+    
     "html.night #mpL path{fill-opacity:.42;stroke:rgba(255,255,255,.1)}"+
     "html.night #mpL path[fill=none]{stroke:rgba(255,255,255,.35)}"+
     "html.night .rd .mn{fill:#8F9AB3}"+
@@ -74,7 +74,7 @@
         out+='<circle cx="'+pt.x.toFixed(1)+'" cy="'+pt.y.toFixed(1)+'" r="'+(q<.1?2.2:q<.4?1.5:1).toFixed(1)+'"'+(q>.8?' class="t"':q>.62?' class="u"':'')+' opacity="'+(.55+r2()*.45).toFixed(2)+'"/>';}});
     g.innerHTML=out;var lb=m.querySelector(".lb");m.insertBefore(g,lb);}
   /* 燈のロゴは白い台つきの絵なので、夜は台のない絵に替える */
-  function logo(){var n=d.classList.contains("night"),im=document.querySelectorAll('.head img[src*="logo-s"]');
+  function logo(){var n=d.classList.contains("night"),im=document.querySelectorAll('.head img[src*="logo-s"],.uh img[src*="logo-s"]');
     for(var i=0;i<im.length;i++){var s0=im[i].getAttribute("src");im[i].setAttribute("src",n?s0.replace(/logo-s(-night)?\.png/,"logo-s-night.png"):s0.replace("logo-s-night.png","logo-s.png"));}}
   function go(){logo();if(d.classList.contains("night"))deco();}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();
