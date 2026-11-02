@@ -74,6 +74,7 @@
     "html.night .card div.go,html.night .it div.go,html.night .it span.ar,html.night .card.it:after{background:transparent!important;box-shadow:inset 0 0 0 1px #372100!important;color:#372100!important}"+
     /* 入口の地図で府県に data-p が無いもの（燈の関東）も、夜は紺の陸地＋府県の色の光る線に（色は昼の塗りの色を使う） */
     "html.night .kmap .pf path{fill:#182139!important;fill-opacity:1!important;filter:drop-shadow(0 0 2.5px var(--c,rgba(200,215,255,.6)))}html.night .kmap .pf path:not([data-p]){stroke:var(--c,#8FB6EA);stroke-width:1.6px}"+
+    "html.night .nsky.pg{position:fixed;inset:0;z-index:-1;opacity:.6}"+
     "@media (prefers-reduced-motion:reduce){.nsky i,.kmap .lt circle{animation:none!important}}";
   var st=document.createElement("style");st.textContent=css;(document.head||d).appendChild(st);
   set(pick());
@@ -102,8 +103,14 @@
         var g=j<54?j%3:3;L[g]+=(L[g]?",":"")+x+"px "+y+"px 0 "+(sz-1)/2+"px "+c;}
       var d2=document.createElement("div");d2.className="nsky";d2.setAttribute("aria-hidden","true");
       d2.innerHTML='<i style="box-shadow:'+L[0]+'"></i><i class="s2" style="box-shadow:'+L[1]+'"></i><i class="s3" style="box-shadow:'+L[2]+'"></i><i class="s4" style="box-shadow:'+L[3]+'"></i>';
-      d2.innerHTML+='<em class="ss"></em>';shoot(d2);
       h.insertBefore(d2,h.firstChild);}
+    /* 11/2 21:12 オーナー「ここ星いらん？流れ星流れたら嬉しくない？」→ ページ全体の後ろにも、うすい星（カードのすき間から見える）。
+       流れ星はこの層で、画面のどこにでも、たまーに1本 */
+    if(!document.querySelector(".nsky.pg")){var r3=rnd(23),W=Math.max(innerWidth,320),H=Math.max(innerHeight,560),P=["","",""];
+      for(var q=0;q<48;q++){var z2=r3();P[q%3]+=(P[q%3]?",":"")+Math.round(r3()*W)+"px "+Math.round(r3()*H)+"px 0 "+(z2<.15?.4:0)+"px #000";}
+      var pg=document.createElement("div");pg.className="nsky pg";pg.setAttribute("aria-hidden","true");
+      pg.innerHTML='<i style="box-shadow:'+P[0]+'"></i><i class="s2" style="box-shadow:'+P[1]+'"></i><i class="s3" style="box-shadow:'+P[2]+'"></i><em class="ss"></em>';
+      document.body.insertBefore(pg,document.body.firstChild);shoot(pg);}
     var m=document.querySelector(".kmap");if(!m||m.querySelector(".lt"))return;
     var N={"東京":90,"神奈川":70,"埼玉":55,"千葉":50,"茨城":30,"栃木":26,"群馬":26},g=document.createElementNS("http://www.w3.org/2000/svg","g"),out="",r2=rnd(11);
     g.setAttribute("class","lt");
