@@ -4,7 +4,7 @@
 (function(){
   /* 11/2 オーナー「燈のhpを LIFE NOTE…関東おでかけリスト・おかいものリスト 完全に分ける」→ / は入口、/odekake と /okaimono に分けた */
   var P=location.pathname.replace(/^\/townnotes\//,"/odekake").replace(/\.html$/,""),here=
-    /^\/(index)?$/.test(P)?"tn":/^\/odekake/.test(P)?"list":/^\/okaimono/.test(P)?"okai":/^\/illumination/.test(P)?"illumi":/^\/tomari/.test(P)?"tomari":/^\/ima/.test(P)?"ima":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":/^\/nesage/.test(P)?"nesage":"";
+    /^\/(index)?$/.test(P)?"tn":/^\/odekake/.test(P)?"list":/^\/okaimono/.test(P)?"okai":/^\/illumination/.test(P)?"illumi":/^\/koyo/.test(P)?"koyo":/^\/tomari/.test(P)?"tomari":/^\/ima/.test(P)?"ima":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":/^\/nesage/.test(P)?"nesage":"";
   var SH=/^(\/okaimono|\/nesage|\/tanka|\/furusato|\/kaimawari)/.test(P);
   /* 11/2 オーナー「もっとまとめろよ。TOWNNOTEこんなんじゃないだろ」→ 月と同じく、リストごとに自分の項目だけ＋関連サイト */
   var L=[
@@ -12,6 +12,7 @@
     ["MAP","map","/odekake#map","地図で見る","関東の地図から、近くのおでかけを"],
     ["NOW","ima","/ima","いまから行けるおでかけ","いる場所から近い順に、きょう開いている所"],
     ["ILLUMINATION","illumi","/illumination","イルミネーション日程","2026-2027　都県ごとの日程と無料の所"],
+    ["AUTUMN LEAVES","koyo","/koyo","紅葉ライトアップ日程","2026　夜の時間・料金・近くの宿"],
     ["STAY","tomari","/tomari","泊まりで行くおでかけ","遠くのおでかけと、近くの宿"],
     ["-","CONTACT"],
     ["LISTING","listing","https://ig.me/m/ai_usagichan1","おでかけ掲載","新しいお店やイベントのご紹介"],
