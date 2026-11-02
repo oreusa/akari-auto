@@ -125,8 +125,8 @@ h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-heigh
 <div id="list"><div class="ld">おでかけリストを読んでいます…</div></div>
 <div class="none" id="none">この時間で行ける所は見つかりませんでした。<br>上の「1時間半」「すべて」でもう少し遠くまで探せます。</div>
 <div class="note">かかる時間は、直線距離から出した目安です（電車と歩きを合わせたおおよその時間）。本当の行き方と時間は、各カードの「行き方」から Google マップでご確認ください。<br>日の入りはこのページで計算した時刻、降水確率は気象庁の府県の予報です。開いている時間や休みの日は、出かける前に必ず公式ページで確かめてください。</div>
-<a class="back" href="/">関東おでかけリストへ戻る</a>
-<div class="ft">うさぎ│LIFE NOTES　関東おでかけリスト</div></div>
+<a class="back" href="/odekake">関東おでかけリストへ戻る</a>
+<div class="ft">LIFE NOTE　関東おでかけリスト</div></div>
 <script>(function(){
 var PC={"東京":"#4F86C6","神奈川":"#3FA3B5","埼玉":"#E09A3E","千葉":"#D9775A","茨城":"#5FA06A","栃木":"#D2697E","群馬":"#9C7BB8"};
 var JMA={"東京":"130000","神奈川":"140000","埼玉":"110000","千葉":"120000","茨城":"080000","栃木":"090000","群馬":"100000"};
@@ -207,7 +207,7 @@ var SH=null,PAS={"東京":"#CADBEE","神奈川":"#C5E3E9","埼玉":"#F6E1C5","�
 fetch("/townnotes/kanto.json").then(function(r){return r.json()}).then(function(j){SH=j;draw();}).catch(function(){});
 /* リストを読む */
 function load(){Promise.all([
-  fetch("/",{cache:"no-store",headers:{"x-ima":"1"}}).then(function(r){return r.text()}),
+  fetch("/odekake",{cache:"no-store",headers:{"x-ima":"1"}}).then(function(r){return r.text()}),
   fetch("townnotes/geo.json",{cache:"no-store"}).then(function(r){return r.json()}).catch(function(){return{}})
 ]).then(function(v){var doc=new DOMParser().parseFromString(v[0],"text/html"),G=v[1],seen={};
   doc.querySelectorAll("div.card.it[data-pref]").forEach(function(a){if(!PC[a.dataset.pref])return;var tt=a.querySelector(".t"),t=tt?tt.textContent.trim():"",k=t.replace(/\s+/g,""),g=G[k];if(!t||!g||g[0]==null||seen[k])return;seen[k]=1;

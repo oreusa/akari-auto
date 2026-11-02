@@ -60,7 +60,7 @@
       d2.innerHTML='<i style="box-shadow:'+L[0]+'"></i><i class="s2" style="box-shadow:'+L[1]+'"></i><i class="s3" style="box-shadow:'+L[2]+'"></i>';
       h.insertBefore(d2,h.firstChild);}
     var m=document.querySelector(".kmap");if(!m||m.querySelector(".lt"))return;
-    var N={"大阪":90,"兵庫":70,"京都":55,"奈良":30,"滋賀":30,"和歌山":24},g=document.createElementNS("http://www.w3.org/2000/svg","g"),out="",r2=rnd(11);
+    var N={"東京":90,"神奈川":70,"埼玉":55,"千葉":50,"茨城":30,"栃木":26,"群馬":26},g=document.createElementNS("http://www.w3.org/2000/svg","g"),out="",r2=rnd(11);
     g.setAttribute("class","lt");
     [].forEach.call(m.querySelectorAll(".pf path"),function(pth){var n=N[pth.getAttribute("data-p")]||20,bb=pth.getBBox(),pt=m.createSVGPoint(),got=0,tries=0;
       while(got<n&&tries<n*40){tries++;pt.x=bb.x+r2()*bb.width;pt.y=bb.y+r2()*bb.height;
