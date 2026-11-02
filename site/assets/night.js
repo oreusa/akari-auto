@@ -47,7 +47,7 @@
     "html.night .head{position:relative;isolation:isolate}"+
     ".nsky{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}"+
     ".nsky i{position:absolute;left:0;top:0;width:1px;height:1px;border-radius:50%}"+
-    ".nsky .s2{animation:tw 3.2s ease-in-out infinite}.nsky .s3{animation:tw 4.6s ease-in-out 1.4s infinite}"+
+    ".nsky .s2{animation:tw 3.2s ease-in-out infinite}.nsky .s3{animation:tw 4.6s ease-in-out 1.4s infinite}.nsky .s4{animation:tw2 3.8s ease-in-out .6s infinite}"+
  /* 11/2 オーナー「月もうちょい明るく・星ももう少し綺麗に」→ 19:10「月すこーーーしだけ抑える／星は前の控えめな方がきれい／流れ星は色んな方向からたまーーーにの隠し要素」→ 月（ロゴの丸）をやわらかく光らせ、きらっと光る星と、ときどき流れ星。
     夜はページ全体を反転しているので、ここの色は「反転される前」の色（#000 が白、#3A2A00 があたたかい白に見える） */
   "html.night .head img[src*='logo-s-night']{filter:brightness(1.18) contrast(1.03) invert(1) hue-rotate(180deg) drop-shadow(0 0 9px rgba(58,42,0,.82)) drop-shadow(0 0 24px rgba(58,42,0,.42))}"+
@@ -56,7 +56,7 @@
 
     ".kmap .lt{pointer-events:none;filter:drop-shadow(0 0 2px rgba(255,214,140,.9))}"+
     ".kmap .lt circle{fill:#FFE2A6}.kmap .lt .t{animation:tw 3.8s ease-in-out infinite}.kmap .lt .u{animation:tw 5.2s ease-in-out 1.7s infinite}"+
-    "@keyframes tw{0%,100%{opacity:1}50%{opacity:.25}}"+
+    "@keyframes tw{0%,100%{opacity:1}50%{opacity:.25}}@keyframes tw2{0%,100%{opacity:1}45%,60%{opacity:0}}"+
     "@media (prefers-reduced-motion:reduce){.nsky i,.kmap .lt circle{animation:none!important}}";
   var st=document.createElement("style");st.textContent=css;(document.head||d).appendChild(st);
   set(pick());
@@ -77,11 +77,11 @@
   function deco(){
     var r=rnd(7),hs=document.querySelectorAll(".head");
     for(var k=0;k<hs.length;k++){var h=hs[k];if(h.querySelector(".nsky"))continue;
-      var w=Math.max(h.offsetWidth,320),ht=Math.max(h.offsetHeight,240),L=["","",""];
-      for(var j=0;j<54;j++){var x=Math.round(r()*w),y=Math.round(r()*ht*.92),z=r(),sz=z<.12?2:z<.45?1.4:1,c=r()<.18?"#2A2410":"#000";
-        L[j%3]+=(L[j%3]?",":"")+x+"px "+y+"px 0 "+(sz-1)/2+"px "+c;}
+      var w=Math.max(h.offsetWidth,320),ht=Math.max(h.offsetHeight,240),L=["","","",""];
+      for(var j=0;j<66;j++){var x=Math.round(r()*w),y=Math.round(r()*ht*.92),z=r(),sz=z<.12?2:z<.45?1.4:1,c=r()<.18?"#2A2410":"#000";
+        var g=j<54?j%3:3;L[g]+=(L[g]?",":"")+x+"px "+y+"px 0 "+(sz-1)/2+"px "+c;}
       var d2=document.createElement("div");d2.className="nsky";d2.setAttribute("aria-hidden","true");
-      d2.innerHTML='<i style="box-shadow:'+L[0]+'"></i><i class="s2" style="box-shadow:'+L[1]+'"></i><i class="s3" style="box-shadow:'+L[2]+'"></i>';
+      d2.innerHTML='<i style="box-shadow:'+L[0]+'"></i><i class="s2" style="box-shadow:'+L[1]+'"></i><i class="s3" style="box-shadow:'+L[2]+'"></i><i class="s4" style="box-shadow:'+L[3]+'"></i>';
       d2.innerHTML+='<em class="ss"></em>';shoot(d2);
       h.insertBefore(d2,h.firstChild);}
     var m=document.querySelector(".kmap");if(!m||m.querySelector(".lt"))return;
