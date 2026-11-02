@@ -36,7 +36,9 @@ jobs:
             W="npx -y wrangler@3.80.0"
             $W pages project create lifenote --production-branch=main >/dev/null 2>&1 || true
             d=$($W pages project list 2>/dev/null | grep -o 'lifenote[a-z0-9-]*\.pages\.dev' | head -1 || true)
-            if [ -n "$d" ]; then base="https://$d"; fi
+            # lifenote.pages.dev は他の人が先に使っていて、Cloudflare は lifenote-7b1.pages.dev を付けた（11/2）。
+            # 付いたアドレスがちょうど lifenote.pages.dev の時だけ使う。それ以外は今のアドレスのまま（オーナーが名前を決めるまで）
+            if [ "$d" = "lifenote.pages.dev" ]; then base="https://$d"; fi
           fi
           echo "LIFE_BASE=$base" >> "$GITHUB_ENV"; echo "アドレス: $base"
       - name: ページを作る（載せる前に、おでかけ・お得のリンクを開いて確かめる）
@@ -91,5 +93,7 @@ jobs:
           git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/kansai-yado.json data/kanto-yado.json data/tanka.json data/furusato.json data/price-history.json data/nesage.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "ページの数とリンクの確かめを記録"
+          # 公開用に書き換えた site/ のページ（ima.html など）は戻す（戻さないと pull できない）
+          git checkout -- site 2>/dev/null || true
           for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done
           exit 1
