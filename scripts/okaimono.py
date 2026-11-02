@@ -128,11 +128,14 @@ def photos(cards):
         api = False
     n = 0
     for c in cards:
-        if c.get("img"):
-            continue
         u = real_url(c["href"])
-        if u in cache:
+        # 11/2 比べた物のカードは見出しが「〇〇3つ、…」なので、Amazon・Yahoo! で探すための本当の商品名も取る
+        want_nm = c["tab"] == "pick" and "travel.rakuten" not in u
+        if not c.get("img") and u in cache:
             c["img"] = cache[u]
+        if want_nm and ("n:" + u) in cache:
+            c["nm"] = cache["n:" + u]
+        if (c.get("img") or u in cache) and (not want_nm or c.get("nm")):
             continue
         if not api or n >= 30:
             continue
@@ -143,6 +146,8 @@ def photos(cards):
             if code:
                 r = lib.rakuten_item(code)
                 got = r.get("image") or ""
+                if r.get("name"):
+                    cache["n:" + u] = c["nm"] = r["name"]
             elif hm:
                 r = lib.rakuten_travel_api(hm.group(1))
                 got = (r.get("hotelImageUrl") or r.get("hotelThumbnailUrl") or "") if isinstance(r, dict) else ""
@@ -150,7 +155,7 @@ def photos(cards):
             time.sleep(1.1)
         except Exception as e:
             print("写真が取れない", u[:60], e)
-        if got.startswith("https://"):
+        if got.startswith("https://") and not c.get("img"):
             cache[u] = got
             c["img"] = got
     try:
@@ -220,9 +225,13 @@ def others(c, shop):
     """楽天の品だけ、同じ品を Amazon と Yahoo! でも探せる小さな文字リンク"""
     if shop != "楽天":
         return ""
+    # 1個あたり・値下がりのカードは商品名そのもの。比べた物は API で取った商品名（無ければ付けない）
+    name = c.get("nm") or ("" if c["tab"] == "pick" else c["title"])
+    if not name:
+        return ""
     return ('<span class="kot">'
-            f'<a class="kyh" href="{E(amazon_url(c["title"]))}" rel="sponsored noopener" target="_blank">Amazon<i>›</i></a>'
-            f'<a class="kyh" href="{E(yahoo_url(c["title"]))}" rel="sponsored noopener" target="_blank">Yahoo!<i>›</i></a></span>')
+            f'<a class="kyh" href="{E(amazon_url(name))}" rel="sponsored noopener" target="_blank">Amazon<i>›</i></a>'
+            f'<a class="kyh" href="{E(yahoo_url(name))}" rel="sponsored noopener" target="_blank">Yahoo!<i>›</i></a></span>')
 
 
 def card_html(c, col, i=0):
@@ -432,7 +441,7 @@ def build(od, ix):
            '#odekake .kc .ks{margin-top:3px;font-size:11.5px;line-height:1.5;color:#6B6B6B}'
            '#odekake .kc.ku .kgo{margin-top:8px}'
            '#odekake .kc .kbt{display:flex;align-items:center;gap:14px;flex-wrap:wrap}#odekake .kc.ku .kbt{margin-top:8px}#odekake .kc.ku .kbt .kgo{margin-top:0}'
-           '#odekake .kc .kot{display:inline-flex;gap:12px}#odekake .kc .kyh{position:relative;z-index:2;display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:#6B6B6B;text-decoration:none;border-bottom:1px solid #BDBDBD;padding-bottom:1px}'
+           '#odekake .kc .kot{display:inline-flex;gap:12px}#odekake .kc.kb2 .kf{flex-wrap:wrap;row-gap:10px}#odekake .kc.kb2 .kf .kr{white-space:nowrap}#odekake .kc.kb2 .kf .kbt{margin-left:auto}#odekake .kc .kyh{position:relative;z-index:2;display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:#6B6B6B;text-decoration:none;border-bottom:1px solid #BDBDBD;padding-bottom:1px}'
            '#odekake .kc .kyh i{font-style:normal;font-family:Jost,sans-serif;font-size:14px;line-height:1}'
            # 大きなカード（比べて選んだ物）
            '#odekake .kc.kb2{padding:0;overflow:hidden}'

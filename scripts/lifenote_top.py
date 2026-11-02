@@ -53,7 +53,7 @@ desc = "関東のくらしで見つけたことを、ノートにまとめてい
 ld = {"@context": "https://schema.org", "@type": "WebSite", "name": "LIFE NOTE", "url": f"{BASE}/", "description": desc}
 
 page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="19Vt8Ili5pokwJHyAI3SwQ2UKI-eqeLVJSHS3PVUO54">
-<title>LIFE NOTE（ライフノート）｜関東おでかけリスト・くらべたおかいものリスト</title>
+<title>LIFE NOTE（ライフノート）｜関東のおでかけと、くらべた楽天の買い物のノート</title>
 <meta name="description" content="{E(desc)}"><link rel="canonical" href="{BASE}/">
 <meta property="og:type" content="website"><meta property="og:url" content="{BASE}/"><meta property="og:title" content="LIFE NOTE"><meta property="og:description" content="{E(desc)}">
 <meta property="og:image" content="{BASE}/og-v10.png"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#FFFFFF">
