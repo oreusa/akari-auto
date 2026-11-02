@@ -25,5 +25,8 @@ document.querySelectorAll(".tabs button").forEach(function(b){col(b,b.textConten
 document.querySelectorAll(".ps").forEach(function(s){var h=s.querySelector("h2");if(h)col(s,h.textContent.trim());});document.querySelectorAll(".ps h2").forEach(function(h){col(h,h.textContent.trim());});
 document.querySelectorAll(".pn a").forEach(function(a){col(a,a.textContent.trim());});
 }
+/* 11/2 オーナー「イルミ、紅葉、地図動かない」→ そのページに自分の地図（イルミ・紅葉・泊まり）があるときは、下のバーの「地図」でそのページの地図を開く（おでかけリストへ飛ばない） */
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('#v2bar a[href*="v2t=map"]');if(!a)return;
+  var t=document.querySelector(".tnbtn");if(!t)return;e.preventDefault();var tn=document.querySelector(".tn");if(tn&&tn.classList.contains("fs"))return;t.click();},true);
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();
 })();
