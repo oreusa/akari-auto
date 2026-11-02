@@ -34,7 +34,7 @@ def far(ll):
     return min(dist(ll[0], ll[1], a, b) for a, b in CENTERS) >= FAR_KM
 
 
-def search(env, lat, lon, origin):
+def search(env, lat, lon, origin, keep=False):
     q = {"format": "json", "formatVersion": 2, "applicationId": env["RAKUTEN_APP_ID"],
          "accessKey": env["RAKUTEN_ACCESS_KEY"], "affiliateId": env["RAKUTEN_AFFILIATE_ID"],
          "latitude": lat, "longitude": lon, "datumType": 1, "searchRadius": 3, "hits": 30}
@@ -61,11 +61,39 @@ def search(env, lat, lon, origin):
         km = dist(lat, lon, float(b["latitude"]), float(b["longitude"]))
         hs.append({"n": hname(b.get("hotelName", "")), "u": b.get("hotelInformationUrl", ""),
                    "km": round(km, 1), "r": b.get("reviewAverage"), "rc": b.get("reviewCount"),
-                   "min": b.get("hotelMinCharge")})
+                   "min": b.get("hotelMinCharge"), "_ll": (float(b["latitude"]), float(b["longitude"]))})
     # 10/31 オーナー「改善したい所ない？」→ 民泊・評価なしを外し、評価の高い順（同じなら近い順）
     ok = [x for x in hs if x["u"] and "民泊" not in x["n"] and (x["r"] or 0) >= 3.5 and (x["rc"] or 0) >= 10 and x["min"]]
     ok.sort(key=lambda x: (-float(x["r"]), x["km"]))
-    return ok[:3]
+    if not keep:
+        for x in ok:
+            x.pop("_ll", None)
+    return ok[:3] if not keep else ok
+
+
+def search_wide(env, lat, lon, origin):
+    """11/2 オーナー「全部」（案2）: 3km に良い宿がない遠い会場（貴志川・馬見・ハーベストの丘など）は、
+    まわり4方向（約4km先）でも探して、会場から8km以内の宿を出す。km は会場からの近さ。"""
+    hs = search(env, lat, lon, origin)
+    if hs:
+        return hs
+    seen, out = set(), []
+    dl = 4 / 111
+    for a, b in ((dl, 0), (-dl, 0), (0, dl / math.cos(lat * math.pi / 180)), (0, -dl / math.cos(lat * math.pi / 180))):
+        time.sleep(1.1)
+        for x in search(env, lat + a, lon + b, origin, keep=True):
+            if x["u"] in seen:
+                continue
+            seen.add(x["u"])
+            x = dict(x)
+            x["km"] = round(dist(lat, lon, *x["_ll"]), 1)
+            out.append(x)
+    out = [x for x in out if x["km"] <= 8]
+    out.sort(key=lambda x: (-float(x["r"]), x["km"]))
+    for x in out:
+        x.pop("_ll", None)
+    return out[:3]
+
 
 
 def main(region="kansai"):
@@ -93,11 +121,11 @@ def main(region="kansai"):
         if m and m.get("h"):
             for x in m["h"]:
                 x["n"] = hname(x["n"])
-        fresh = m and m.get("v") == VER and m.get("ll") == [lat, lon] and (today - date.fromisoformat(m["t"])).days < 7
+        fresh = m and (m.get("h") or m.get("w")) and m.get("v") == VER and m.get("ll") == [lat, lon] and (today - date.fromisoformat(m["t"])).days < 7
         if fresh or calls >= MAX_CALLS or not far([lat, lon]):  # 街なかは調べない（楽天の呼び出しを減らす）
             continue
         try:
-            memo[name] = {"v": VER, "t": today.isoformat(), "ll": [lat, lon], "h": search(env, lat, lon, origin)}
+            memo[name] = {"v": VER, "t": today.isoformat(), "ll": [lat, lon], "w": 1, "h": search_wide(env, lat, lon, origin)}
         except Exception as e:
             print("×", name, e)
             break
