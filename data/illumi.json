@@ -828,6 +828,28 @@
       "free": true,
       "url": "https://www.kusatsu-onsen.ne.jp/event/2029.php",
       "far": true
+    },
+    {
+      "pref": "茨城",
+      "name": "光がつくる“Art”水郷桜イルミネーション",
+      "start": null,
+      "end": null,
+      "city": "土浦市",
+      "venue": "霞ヶ浦総合公園 オランダ型風車のまわり",
+      "free": true,
+      "url": "https://www.city.tsuchiura.lg.jp/",
+      "last": "2025/11/22〜2026/1/12（17〜21時）"
+    },
+    {
+      "pref": "群馬",
+      "name": "上毛電気鉄道 駅のイルミネーション",
+      "start": null,
+      "end": null,
+      "city": "前橋市・桐生市",
+      "venue": "大胡駅・中央前橋駅・赤城駅・西桐生駅",
+      "free": true,
+      "url": "https://www.jomorailway.com/",
+      "last": "2025/11/14〜2026/2/1（17〜22時）"
     }
   ]
 }
