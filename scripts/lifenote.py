@@ -12,7 +12,8 @@ import os, re, subprocess, sys
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = os.path.join(R, "site")
 # 11/2 オーナー「3はB」→ アドレスは lifenote.pages.dev。page.yml が Cloudflare で決まった本当のアドレスを LIFE_BASE に入れる
-BASE = os.environ.get("LIFE_BASE") or "https://lifenote.pages.dev"
+# 11/2 lifenote.pages.dev はほかの人の物だった。決まるまでは今のアドレス（違うアドレスを canonical に書くと検索に出なくなる）
+BASE = os.environ.get("LIFE_BASE") or "https://usagi-life-notes.pages.dev"
 OLD = "https://usagi-life-notes.pages.dev"
 # 全ページ共通の部品は、直したら番号を上げる（古い物が手元に残らないように）
 VER = {"menu.js": 8, "v2sub.js": 6, "v2.js": 4, "night.js": 5}
@@ -82,7 +83,8 @@ o = re.sub(r'<p class="pr-note">.*?</p>',
            '<p class="pr-note">このページには楽天トラベルの広告（PR）があります（近くの宿）。<br>泊まる前に、楽天トラベルのページで最新の情報を確かめてください。<br><a href="/privacy">プライバシーポリシーと広告について</a></p>', o, count=1, flags=re.S)
 o = re.sub(r'<p class="ft">.*?</p>', '<p class="ft">LIFE NOTE│過去のおでかけも、このページに残していきます</p>'
            '<a class="tnx" href="/okaimono" data-k="下の入口｜おかいものリスト"><small>関連サイト</small><b>くらべたおかいものリスト<span>→</span></b><i>うさぎが数字で比べた物と、本当に安い物</i></a>', o, count=1, flags=re.S)
-o = meta(o, "関東おでかけリスト｜LIFE NOTE", "関東で、今日から・新しく・無料で行ける場所を、公式ページつきで毎日。地図・いまから行ける所・近くの宿も。", "/odekake")
+o = meta(o, "関東のおでかけ 今週末・今日行けるイベント一覧（無料あり）｜関東おでかけリスト",
+         "東京・神奈川・埼玉・千葉・茨城・栃木・群馬で、今週末や今日から行けるイベント、新しいお店・施設を公式ページつきで毎日更新。無料の場所、地図、近くの宿も。", "/odekake")
 wr("odekake.html", o)
 
 # ---------- くらべたおかいものリスト ----------
@@ -91,10 +93,20 @@ wr("odekake.html", o)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import okaimono
 k = okaimono.build(o, src)
-k = meta(k, "くらべたおかいものリスト｜LIFE NOTE", "うさぎが3つ以上を数字で比べて選んだ暮らしの物。1個あたり・ふるさと納税1万円あたり・本当に値下がりした物・セールも。広告（PR）を含みます。", "/okaimono")
+k = meta(k, "楽天の日用品を1個あたりで比較｜本当に安い物だけ くらべたおかいものリスト",
+         "楽天の水・お米・トイレットペーパーなど毎日の物を、送料込みの1個あたりの値段に直して比べています。ふるさと納税1万円あたり、本当に値下がりした物、セールも毎日更新。広告（PR）を含みます。", "/okaimono")
 wr("okaimono.html", k)
 
 # ---------- ほかのページの「戻る」とブランド ----------
+REL = {
+    "illumination": [("/tomari", "会場の近くの宿"), ("/ima", "今から行ける所"), ("/illumination", "関東イルミ一覧")],
+    "ima": [("/illumination", "イルミネーション"), ("/tomari", "泊まりで行く所")],
+    "tomari": [("/illumination", "イルミネーション"), ("/ima", "今から行ける所")],
+    "tanka": [("/furusato", "ふるさと納税1万円あたり"), ("/nesage", "値下がりした物")],
+    "furusato": [("/tanka", "1個あたりで比べた物"), ("/nesage", "値下がりした物")],
+    "nesage": [("/tanka", "1個あたりで比べた物"), ("/kaimawari", "買いまわり1,000円")],
+    "kaimawari": [("/nesage", "値下がりした物"), ("/tanka", "1個あたりで比べた物")],
+}
 SHOP = {"nesage.html", "furusato.html", "tanka.html", "kaimawari.html"}
 for n in os.listdir(S):
     if not n.endswith(".html") or n in ("index.html", "odekake.html", "okaimono.html"):
@@ -107,8 +119,31 @@ for n in os.listdir(S):
         h2 = re.sub(r'<a class="back" href="(?:\./|/)">関東おでかけリスト(を見る|へ戻る)</a>', r'<a class="back" href="/odekake">関東おでかけリスト\1</a>', h2)
     # 古い見本・試作の行き先（/ に送っていた物）はおでかけリストへ
     h2 = h2.replace('content="0;url=/"><link rel="canonical" href="/">', 'content="0;url=/odekake"><link rel="canonical" href="/odekake">').replace('location.replace("/")', 'location.replace("/odekake")')
+    # 11/2 検索用：中身の近いページどうしをつなぐ（「戻る」の下に小さく1行。見た目は今の文字の色と大きさのまま）
+    rel = REL.get("illumination" if n.startswith("illumination") else n[:-5])
+    if rel and 'class="rel"' not in h2:
+        row = "".join(f'<a href="{u}" style="color:inherit;white-space:nowrap;margin:0 8px">{t}</a>' for u, t in rel if u != "/" + n[:-5])
+        h2 = re.sub(r'(<a class="back"[^>]*>[^<]*</a>)', r'\1' + f'<p class="rel" style="text-align:center;font-size:12px;line-height:2;color:#8C7B6E;margin:16px 0 0;padding:0;background:none;border:0">あわせて見る<br>{row}</p>', h2, count=1)
     if h2 != h:
         wr(n, h2)
+# ---------- 検索用：1ページに1つ、探される言葉を題と説明に（11/2 オーナー OK「どのページもヒットさせたい」。見た目は変えない）
+SEO = {
+    "ima.html": ("今から行ける関東のおでかけ｜近い順・今日開いている所と天気", None, "/ima"),
+    "tomari.html": ("泊まりで行く関東のおでかけ｜イベント会場の近くの宿｜LIFE NOTE", None, "/tomari"),
+    "nesage.html": ("楽天で本当に値下がりした物だけ｜毎日の値段を記録して比較｜LIFE NOTE",
+                    "楽天のよく買われる毎日の物の値段を毎日記録して、ふだんの値段より本当に下がった物だけを並べます。お買い物マラソン・ブラックフライデーの前に。", "/nesage"),
+}
+for n, (t, d, path) in SEO.items():
+    f = os.path.join(S, n)
+    if not os.path.exists(f):
+        continue
+    h = rd(n)
+    if d is None:
+        d = (re.search(r'<meta name="description" content="([^"]*)"', h) or [None, ""])[1]
+    if 'property="og:title"' not in h:
+        h = h.replace("</title>", '</title><meta property="og:title" content="">', 1)
+    wr(n, meta(h, t, d, path))
+
 tn = os.path.join(S, "townnotes", "index.html")
 if os.path.exists(tn):
     t = open(tn, encoding="utf-8").read().replace('url=/"', 'url=/odekake"').replace('href="/"', 'href="/odekake"').replace('location.replace("/")', 'location.replace("/odekake")')
@@ -123,7 +158,7 @@ for n in ("sitemap.xml", "robots.txt"):
 sm = os.path.join(S, "sitemap.xml")
 if os.path.exists(sm):
     x = open(sm, encoding="utf-8").read()
-    add = "".join(f"<url><loc>{BASE}{p}</loc></url>" for p in ("/odekake", "/okaimono") if f"{BASE}{p}<" not in x)
+    add = "".join(f"<url><loc>{BASE}{p}</loc></url>" for p in ("/odekake", "/okaimono", "/nesage", "/privacy") if f"{BASE}{p}<" not in x)
     if add:
         open(sm, "w", encoding="utf-8").write(x.replace("</urlset>", add + "</urlset>", 1))
 
