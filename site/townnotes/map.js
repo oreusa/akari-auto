@@ -222,7 +222,8 @@ function NI(h){var t=[1,3,5].map(function(k){return parseInt(h.substr(k,2),16)/2
  return "#"+M.map(function(r){var v=(.95-(r[0]*t[0]+r[1]*t[1]+r[2]*t[2]))/.9;v=Math.max(0,Math.min(1,v));return ("0"+Math.round(v*255).toString(16)).slice(-2)}).join("")}
 function LT(h,a){return "#"+[1,3,5].map(function(k){var v=parseInt(h.substr(k,2),16);return ("0"+Math.round(v+(255-v)*a).toString(16)).slice(-2)}).join("")}
 var GOLD=NI("#EBD7A6"),SILV=NI("#EEF1F7"),DIM=NI("#8E98AE"),NAVY=NI("#141A28"),LAND=NI("#1A2236"),EDGE=NI("#2D3854");
-css+=PREFS.map(function(p){var c=NI(LT(PC[p],.38));return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:'+LAND+';fill-opacity:1;stroke:'+c+';stroke-width:1.3px;stroke-opacity:1;vector-effect:non-scaling-stroke}html.night .tn:not(.lv2):not(.lv3) .pf[data-p="'+p+'"]:not(.off){filter:drop-shadow(0 0 2.5px '+c+')}'}).join("")+
+// 11/3 オーナー「周りの枠の色めちゃくちゃ。オシャレでもない」→ 夜の府県の線は府県の色をやめ、全部同じ金の細い線（光らせない）
+css+='html.night .tn .pf:not(.off){fill:'+LAND+';fill-opacity:1;stroke:'+GOLD+';stroke-width:1px;stroke-opacity:.55;vector-effect:non-scaling-stroke;filter:none}'+
  'html.night .tn .pf.off{fill:'+LAND+';stroke:'+EDGE+';stroke-width:.8px}html.night .tn .sh{opacity:0!important}'+
  'html.night .tn .mu{fill-opacity:0!important;stroke:'+EDGE+'!important;stroke-width:.6px}'+
  'html.night .tn .lb.p{color:'+SILV+'!important;text-shadow:0 0 4px '+NAVY+',0 0 10px '+NAVY+'!important;letter-spacing:.14em}html.night .tn .lb.p small{color:'+GOLD+';opacity:.85}'+
