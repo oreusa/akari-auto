@@ -3230,5 +3230,137 @@
         "min": 4700
       }
     ]
+  },
+  "特別展「高照らすみやこ」": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.47723,
+      135.82231
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "あすか癒俚の里 森羅塾",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136286",
+        "km": 1.0,
+        "r": 5.0,
+        "rc": 18,
+        "min": 24750
+      },
+      {
+        "n": "ホテル奈良さくらいの郷",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184470",
+        "km": 2.1,
+        "r": 4.48,
+        "rc": 160,
+        "min": 8267
+      },
+      {
+        "n": "民宿 吉田",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D172285",
+        "km": 0.2,
+        "r": 4.42,
+        "rc": 25,
+        "min": 4950
+      }
+    ]
+  },
+  "没後25年 上村松篁展": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.7102,
+      135.74717
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "奈良の温泉旅館 宝来温泉 奈良パークホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D7941",
+        "km": 3.6,
+        "r": 4.03,
+        "rc": 997,
+        "min": 8500
+      },
+      {
+        "n": "山翠旅館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D7887",
+        "km": 1.9,
+        "r": 3.95,
+        "rc": 141,
+        "min": 3000
+      }
+    ]
+  },
+  "長野八幡神社例祭（住吉踊）": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      33.72911,
+      135.38893
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ゲストハウス 熊野",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D164868",
+        "km": 0.9,
+        "r": 4.43,
+        "rc": 24,
+        "min": 2800
+      },
+      {
+        "n": "コンフォートホテル紀伊田辺",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D193416",
+        "km": 0.3,
+        "r": 4.35,
+        "rc": 519,
+        "min": 4650
+      },
+      {
+        "n": "ガーデンホテルハナヨ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D9344",
+        "km": 1.2,
+        "r": 4.31,
+        "rc": 483,
+        "min": 5750
+      }
+    ]
+  },
+  "竹あかりと紅葉のライトアップ": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.43523,
+      135.55343
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "天然温泉 河内長野荘",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136816",
+        "km": 2.5,
+        "r": 4.46,
+        "rc": 333,
+        "min": 12160
+      },
+      {
+        "n": "おばな旅館 富貴亭",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D160798",
+        "km": 2.5,
+        "r": 4.29,
+        "rc": 86,
+        "min": 6349
+      },
+      {
+        "n": "河内の宿",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D170390",
+        "km": 2.1,
+        "r": 4.0,
+        "rc": 10,
+        "min": 5916
+      }
+    ]
   }
 }

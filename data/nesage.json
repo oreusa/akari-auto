@@ -1,8 +1,58 @@
 {
-  "at": "2026-11-02 22:56",
+  "at": "2026-11-03 01:35",
   "since": "2026-11-01",
   "tracked": 244,
-  "days": 1,
-  "downs": [],
-  "ups": []
+  "days": 2,
+  "downs": [
+    {
+      "title": "モバイルバッテリー",
+      "name": "モットル公式店 充電式カイロ モバイルバッテリー 10000mAh 大容量 長時間 液晶表示…",
+      "price": 1689,
+      "base": 2904.5,
+      "pct": 42,
+      "days": 2,
+      "rc": 1189,
+      "av": 4.42,
+      "shop": "mottole(モットル)",
+      "plain": "https://item.rakuten.co.jp/mottole-shop/10000179/"
+    }
+  ],
+  "ups": [
+    {
+      "title": "プロテイン",
+      "name": "MyLOHAS マイロハス グラスフェッド ホエイプロテイン チョコ 抹茶 バニラ 苺 1k…",
+      "price": 7480,
+      "base": 5980.0,
+      "pct": 25,
+      "days": 2,
+      "rc": 1702,
+      "av": 4.54,
+      "shop": "MyLOHAS公式ストア",
+      "plain": "https://item.rakuten.co.jp/lohas-s/10000382/"
+    },
+    {
+      "title": "プロテイン",
+      "name": "MyLOHAS マイロハス グラスフェッド ホエイプロテイン 1kg 乳清たんぱく のみ使用…",
+      "price": 7480,
+      "base": 5980.0,
+      "pct": 25,
+      "days": 2,
+      "rc": 1488,
+      "av": 4.65,
+      "shop": "MyLOHAS公式ストア",
+      "plain": "https://item.rakuten.co.jp/lohas-s/10000090/"
+    },
+    {
+      "title": "ドッグフード",
+      "name": "ソルビダ グレインフリー チキン 室内飼育 成犬用 1.8kg 送料無料",
+      "price": 6116,
+      "base": 5313.0,
+      "pct": 15,
+      "days": 2,
+      "rc": 887,
+      "av": 4.63,
+      "shop": "ペッツビレッジクロス",
+      "plain": "https://item.rakuten.co.jp/kurosu/10015308/"
+    }
+  ]
 }
