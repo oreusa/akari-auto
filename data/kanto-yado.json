@@ -2974,5 +2974,234 @@
         "min": 6300
       }
     ]
+  },
+  "光がつくる“Art”水郷桜イルミネーション": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      36.06256,
+      140.21915
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "【JR土浦駅直結】 BEB5土浦 by 星野リゾート",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178358",
+        "km": 2.1,
+        "r": 4.5,
+        "rc": 401,
+        "min": 4510
+      },
+      {
+        "n": "湖北ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D31538",
+        "km": 2.7,
+        "r": 4.36,
+        "rc": 1012,
+        "min": 3041
+      },
+      {
+        "n": "ホテルフィット",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106074",
+        "km": 1.8,
+        "r": 4.33,
+        "rc": 2022,
+        "min": 4850
+      }
+    ]
+  },
+  "御岳山紅葉ライトアップ": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      35.78972,
+      139.15364
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "御岳山荘(みたけ山荘)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D43977",
+        "km": 0.6,
+        "r": 5.0,
+        "rc": 52,
+        "min": 14300
+      },
+      {
+        "n": "駒鳥山荘",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D2731",
+        "km": 0.7,
+        "r": 5.0,
+        "rc": 141,
+        "min": 13000
+      },
+      {
+        "n": "宿坊 能保利",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D128503",
+        "km": 0.6,
+        "r": 4.9,
+        "rc": 34,
+        "min": 15950
+      }
+    ]
+  },
+  "筑波山紅葉ライトアップ（ケーブルカーオータムナイトライド）": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      36.21786,
+      140.10034
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "筑波山温泉 筑波山ホテル 青木屋",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D13479",
+        "km": 0.7,
+        "r": 4.31,
+        "rc": 473,
+        "min": 14520
+      },
+      {
+        "n": "亀の井ホテル 筑波山",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D38574",
+        "km": 0.7,
+        "r": 4.22,
+        "rc": 1036,
+        "min": 10510
+      },
+      {
+        "n": "筑波山温泉 筑波山江戸屋",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D10637",
+        "km": 0.6,
+        "r": 4.16,
+        "rc": 549,
+        "min": 9350
+      }
+    ]
+  },
+  "塩原紅葉ライトアップ": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      36.95806,
+      139.82515
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "源泉掛け流しのちいさなホテル 塩原山荘",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D9129",
+        "km": 1.5,
+        "r": 5.0,
+        "rc": 10,
+        "min": 16450
+      },
+      {
+        "n": "塩原温泉 割烹旅館 湯の花荘",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D10893",
+        "km": 1.0,
+        "r": 4.86,
+        "rc": 222,
+        "min": 37400
+      },
+      {
+        "n": "塩原温泉 おやど 小梅や",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D130092",
+        "km": 1.0,
+        "r": 4.78,
+        "rc": 204,
+        "min": 22500
+      }
+    ]
+  },
+  "花貫渓谷紅葉ライトアップ": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      36.72829,
+      140.62438
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "天空の庭 天馬夢",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D142930",
+        "km": 4.2,
+        "r": 4.41,
+        "rc": 22,
+        "min": 10000
+      },
+      {
+        "n": "高萩山の湯",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D180457",
+        "km": 5.7,
+        "r": 4.36,
+        "rc": 137,
+        "min": 5000
+      }
+    ]
+  },
+  "足利織姫神社紅葉ライトアップ": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      36.34015,
+      139.44975
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ビジネスホテル ニュー大栄 (足利)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D38264",
+        "km": 1.4,
+        "r": 4.72,
+        "rc": 161,
+        "min": 7500
+      },
+      {
+        "n": "HOTEL R9 The Yard 足利福富",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178579",
+        "km": 2.6,
+        "r": 4.34,
+        "rc": 223,
+        "min": 3600
+      },
+      {
+        "n": "ニューミヤコホテル別館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D44879",
+        "km": 1.4,
+        "r": 4.17,
+        "rc": 429,
+        "min": 4000
+      }
+    ]
+  },
+  "大雄山最乗寺紅葉ライトアップ": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      35.30195,
+      139.07544
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "モダン湯治 おんりーゆー",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D139780",
+        "km": 0.8,
+        "r": 4.43,
+        "rc": 70,
+        "min": 9900
+      },
+      {
+        "n": "ホテルとざんコンフォート大雄山",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D84894",
+        "km": 3.1,
+        "r": 3.95,
+        "rc": 539,
+        "min": 4750
+      }
+    ]
   }
 }
