@@ -15,7 +15,7 @@ S = os.path.join(R, "site")
 BASE = os.environ.get("LIFE_BASE") or "https://lifenote.pages.dev"
 OLD = "https://usagi-life-notes.pages.dev"
 # 全ページ共通の部品は、直したら番号を上げる（古い物が手元に残らないように）
-VER = {"menu.js": 7, "v2sub.js": 5, "v2.js": 3, "night.js": 4}
+VER = {"menu.js": 8, "v2sub.js": 6, "v2.js": 4, "night.js": 4}
 
 
 def rd(n):
@@ -86,42 +86,12 @@ o = meta(o, "関東おでかけリスト｜LIFE NOTE", "関東で、今日から
 wr("odekake.html", o)
 
 # ---------- くらべたおかいものリスト ----------
-k = src
-for r in [r'<nav class="flt"', r'<p class="cnt"', r'<section class="blk" id="odekake"', r'<section class="blk arch" id="archive"',
-          r'<a class="ilk"']:
-    k = cut(k, r)
-k = cut(k, r'<a class="co" data-en="LISTING"')
-k = cut(k, r'<a class="tnx')
-k = re.sub(r'<script src="/townnotes/map\.js[^"]*"[^>]*></script>', "", k)
-k = re.sub(r'<script src="/assets/v2\.js[^"]*"></script>', "", k)
-k = re.sub(r'<script src="/assets/top2\.js[^"]*"></script>', '<script src="/assets/v2sub.js?v=5" defer></script>', k)
-k = re.sub(r'<h1 class="ttl">.*?</h1>', '<h1 class="ttl">くらべたおかいものリスト</h1>', k, count=1, flags=re.S)
-k = re.sub(r'<p class="sub">.*?</p>', '<p class="sub">うさぎが3つ以上を数字で比べて選んだ物と、<br>本当にお得な日を、毎日のせています</p>', k, count=1, flags=re.S)
-# いち押しは「おでかけ」の欄に入っていたので、買い物の最初の欄にする
-k = re.sub(r'<button type="button" class="on" data-v="odekake">.*?</button>', "", k, count=1, flags=re.S)
-k = k.replace('id="hot" data-v="odekake"', 'id="hot" data-v="pick"')
-n_hot = 1 if 'id="hot"' in k else 0
-k = re.sub(r'<nav class="cats" id="cats" aria-label="項目">',
-           '<nav class="cats" id="cats" aria-label="項目">' + ('<button type="button" class="on" data-v="pick">いち押し<small>1</small></button>' if n_hot else ''), k, count=1)
-first = "pick" if n_hot else (re.search(r'id="cats"[^>]*><button type="button" data-v="(\w+)"', k) or [None, "deal"])[1]
-if not n_hot:
-    k = k.replace(f'<button type="button" data-v="{first}">', f'<button type="button" class="on" data-v="{first}">', 1)
-k = k.replace('e.hidden=e.dataset.v!=="odekake";', f'e.hidden=e.dataset.v!=="{first}";')
-QK = ('<nav class="qk q4" aria-label="さがし方">'
-      '<a href="/nesage" data-k="入口｜値下がり"><svg viewBox="0 0 24 24"><path d="M4 6l6 6 4-4 6 6"/><path d="M20 10v4h-4"/></svg><b>値下がり</b><small>本当に下がった物</small></a>'
-      '<a href="/tanka" data-k="入口｜1個あたり"><svg viewBox="0 0 24 24"><path d="M12 4v16M6 8h12M6 8l-3 6h6zM18 8l-3 6h6z"/></svg><b>1個あたり</b><small>1Lあたり・1kgあたり</small></a>'
-      '<a href="/furusato" data-k="入口｜ふるさと"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M12 9v11M4 13h16M12 9c-2-4-6-4-6-1.5S10 9 12 9zm0 0c2-4 6-4 6-1.5S14 9 12 9z"/></svg><b>ふるさと納税</b><small>1万円あたりの量</small></a>'
-      '<a href="/kaimawari" data-k="入口｜買いまわり"><svg viewBox="0 0 24 24"><path d="M5 7h14l-1.5 9h-11z"/><circle cx="9" cy="19.5" r="1.2"/><circle cx="16" cy="19.5" r="1.2"/><path d="M8 7l1.5-3M16 7l-1.5-3"/></svg><b>買いまわり</b><small>1,000円ぽっきり</small></a>'
-      '</nav>')
-k = k.replace("</header>", "</header>" + QK, 1)
-k = k.replace("</head>", "<style>html.top2 .qk.q4{grid-template-columns:repeat(2,1fr)}html.top2 .qk.q4 a{flex-direction:row;justify-content:flex-start;gap:10px;padding:12px 12px;text-align:left}"
-              "html.top2 .qk.q4 a span{display:flex;flex-direction:column}html.top2 .qk.q4 small{text-align:left}"
-              ".wrap>.sbox{margin-top:0}.head .ttl{font-size:26px;letter-spacing:.06em}</style></head>", 1)
-k = re.sub(r'<p class="ft">.*?</p>', '<p class="ft">LIFE NOTE│リンクは広告（PR）です。買う前に、お店のページで最新の情報を確かめてください</p>'
-           '<a class="tnx" href="/odekake" data-k="下の入口｜おでかけリスト"><small>PAGE 01</small><b>関東おでかけリスト<span>→</span></b><i>開催中・これからのおでかけを、公式ページつきで</i></a>', k, count=1, flags=re.S)
-k = meta(k, "くらべたおかいものリスト｜LIFE NOTE", "うさぎが3つ以上を数字で比べて選んだ暮らしの物と、楽天のセール・ポイントアップの日。本当に値下がりした物、1個あたり、ふるさと納税も。広告（PR）を含みます。", "/okaimono")
-# 4つの入口の中の文字は2行に（アイコンの右）
-k = re.sub(r'(<nav class="qk q4".*?</nav>)', lambda m: re.sub(r"(<b>.*?</small>)", r"<span>\1</span>", m.group(1)), k, count=1, flags=re.S)
+# 11/2 オーナー「買い物のほうはもっと真剣に工夫しろ」→ 月の不動産リストと同じく、おでかけリストの作り（件数・タブ・しぼりこみ・カード・下のボタン列）を使い、
+# 中のカードだけ買い物にする（scripts/okaimono.py）
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import okaimono
+k = okaimono.build(o, src)
+k = meta(k, "くらべたおかいものリスト｜LIFE NOTE", "うさぎが3つ以上を数字で比べて選んだ暮らしの物。1個あたり・ふるさと納税1万円あたり・本当に値下がりした物・セールも。広告（PR）を含みます。", "/okaimono")
 wr("okaimono.html", k)
 
 # ---------- ほかのページの「戻る」とブランド ----------
