@@ -16,7 +16,7 @@ S = os.path.join(R, "site")
 BASE = os.environ.get("LIFE_BASE") or "https://usagi-life-notes.pages.dev"
 OLD = "https://usagi-life-notes.pages.dev"
 # 全ページ共通の部品は、直したら番号を上げる（古い物が手元に残らないように）
-VER = {"menu.js": 8, "v2sub.js": 6, "v2.js": 4, "night.js": 5}
+VER = {"menu.js": 9, "v2sub.js": 6, "v2.js": 4, "night.js": 5}
 
 
 def rd(n):
@@ -48,7 +48,7 @@ def cut(h, start_re):
 def brand(h):
     h = h.replace(OLD, BASE)
     for f, v in VER.items():
-        h = re.sub(rf'/assets/{re.escape(f)}\?v=\d+', f"/assets/{f}?v={v}", h)
+        h = re.sub(rf'(["/])assets/{re.escape(f)}\?v=\d+', rf"\g<1>assets/{f}?v={v}", h)
     h = h.replace("うさぎ│LIFE NOTES", "LIFE NOTE").replace("USAGI LIFE NOTES", "LIFE NOTE").replace("LIFE NOTES", "LIFE NOTE")
     return h
 
@@ -126,9 +126,9 @@ wr("okaimono.html", k)
 
 # ---------- ほかのページの「戻る」とブランド ----------
 REL = {
-    "illumination": [("/tomari", "会場の近くの宿"), ("/ima", "今から行ける所"), ("/illumination", "関東イルミ一覧")],
-    "ima": [("/illumination", "イルミネーション"), ("/tomari", "泊まりで行く所")],
-    "tomari": [("/illumination", "イルミネーション"), ("/ima", "今から行ける所")],
+    "illumination": [("/koyo", "紅葉ライトアップ"), ("/tomari", "会場の近くの宿"), ("/ima", "今から行ける所"), ("/illumination", "関東イルミ一覧")],
+    "ima": [("/illumination", "イルミネーション"), ("/koyo", "紅葉ライトアップ"), ("/tomari", "泊まりで行く所")],
+    "tomari": [("/illumination", "イルミネーション"), ("/koyo", "紅葉ライトアップ"), ("/ima", "今から行ける所")],
     "tanka": [("/furusato", "ふるさと納税1万円あたり"), ("/nesage", "値下がりした物")],
     "furusato": [("/tanka", "1個あたりで比べた物"), ("/nesage", "値下がりした物")],
     "nesage": [("/tanka", "1個あたりで比べた物"), ("/kaimawari", "買いまわり1,000円")],
