@@ -48,6 +48,19 @@
     ".nsky{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}"+
     ".nsky i{position:absolute;left:0;top:0;width:1px;height:1px;border-radius:50%}"+
     ".nsky .s2{animation:tw 3.2s ease-in-out infinite}.nsky .s3{animation:tw 4.6s ease-in-out 1.4s infinite}"+
+ /* 11/2 オーナー「月もうちょい明るく・星ももう少し綺麗に」→ 月（ロゴの丸）をやわらかく光らせ、きらっと光る星と、ときどき流れ星。
+    夜はページ全体を反転しているので、ここの色は「反転される前」の色（#000 が白、#3A2A00 があたたかい白に見える） */
+  "html.night .head img[src*='logo-s-night']{filter:brightness(1.3) contrast(1.05) invert(1) hue-rotate(180deg) drop-shadow(0 0 10px rgba(58,42,0,.95)) drop-shadow(0 0 28px rgba(58,42,0,.55))}"+
+  ".nsky .sp{position:absolute;width:13px;height:13px;margin:-6px 0 0 -6px;animation:spk 5s ease-in-out infinite;opacity:.9}"+
+  ".nsky .sp:before,.nsky .sp:after{content:'';position:absolute;left:50%;top:0;width:1.4px;height:100%;margin-left:-.7px;border-radius:2px;background:linear-gradient(transparent,#000 45%,#000 55%,transparent)}"+
+  ".nsky .sp:after{transform:rotate(90deg)}"+
+  ".nsky .sp i{position:absolute;left:50%;top:50%;width:3px;height:3px;margin:-1.5px;border-radius:50%;background:#000;box-shadow:0 0 6px 2px rgba(0,0,0,.55)}"+
+  ".nsky .sp.w:before,.nsky .sp.w:after{background:linear-gradient(transparent,#3A2A00 45%,#3A2A00 55%,transparent)}.nsky .sp.w i{background:#3A2A00;box-shadow:0 0 6px 2px rgba(58,42,0,.55)}"+
+  "@keyframes spk{0%,100%{transform:scale(.55) rotate(0);opacity:.45}50%{transform:scale(1) rotate(20deg);opacity:1}}"+
+  ".nsky .ss{position:absolute;top:18%;left:78%;width:90px;height:1.5px;border-radius:2px;background:linear-gradient(90deg,#000,transparent);transform:rotate(-24deg);opacity:0;animation:ss 11s linear 3s infinite}"+
+  "@keyframes ss{0%{opacity:0;transform:translate(0,0) rotate(-24deg)}1%{opacity:1}7%{opacity:0;transform:translate(-190px,85px) rotate(-24deg)}100%{opacity:0;transform:translate(-190px,85px) rotate(-24deg)}}"+
+  "@media (prefers-reduced-motion:reduce){.nsky .sp,.nsky .ss{animation:none!important}.nsky .ss{display:none}}"+
+
     ".kmap .lt{pointer-events:none;filter:drop-shadow(0 0 2px rgba(255,214,140,.9))}"+
     ".kmap .lt circle{fill:#FFE2A6}.kmap .lt .t{animation:tw 3.8s ease-in-out infinite}.kmap .lt .u{animation:tw 5.2s ease-in-out 1.7s infinite}"+
     "@keyframes tw{0%,100%{opacity:1}50%{opacity:.25}}"+
@@ -60,10 +73,12 @@
     var r=rnd(7),hs=document.querySelectorAll(".head");
     for(var k=0;k<hs.length;k++){var h=hs[k];if(h.querySelector(".nsky"))continue;
       var w=Math.max(h.offsetWidth,320),ht=Math.max(h.offsetHeight,240),L=["","",""];
-      for(var j=0;j<54;j++){var x=Math.round(r()*w),y=Math.round(r()*ht*.92),z=r(),sz=z<.12?2:z<.45?1.4:1,c=r()<.18?"#2A2410":"#000";
+      for(var j=0;j<78;j++){var x=Math.round(r()*w),y=Math.round(r()*ht*.92),z=r(),sz=z<.1?2.2:z<.4?1.5:1,cq=r(),c=cq<.2?"#3A2A00":cq<.32?"#001130":"#000";
         L[j%3]+=(L[j%3]?",":"")+x+"px "+y+"px 0 "+(sz-1)/2+"px "+c;}
       var d2=document.createElement("div");d2.className="nsky";d2.setAttribute("aria-hidden","true");
       d2.innerHTML='<i style="box-shadow:'+L[0]+'"></i><i class="s2" style="box-shadow:'+L[1]+'"></i><i class="s3" style="box-shadow:'+L[2]+'"></i>';
+      var sp="";for(var q=0;q<6;q++){var sx=Math.round(8+r()*84),sy=Math.round(6+r()*80),sc=(.7+r()*.6).toFixed(2);sp+='<b class="sp'+(q%3===1?' w':'')+'" style="left:'+sx+'%;top:'+sy+'%;width:'+Math.round(13*sc)+'px;height:'+Math.round(13*sc)+'px;animation-delay:-'+(r()*5).toFixed(1)+'s"><i></i></b>';}
+      d2.innerHTML+=sp+'<em class="ss"></em>';
       h.insertBefore(d2,h.firstChild);}
     var m=document.querySelector(".kmap");if(!m||m.querySelector(".lt"))return;
     var N={"東京":90,"神奈川":70,"埼玉":55,"千葉":50,"茨城":30,"栃木":26,"群馬":26},g=document.createElementNS("http://www.w3.org/2000/svg","g"),out="",r2=rnd(11);
