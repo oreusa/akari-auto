@@ -71,7 +71,7 @@ def hotel(c, h):
     rc = f"（{int(h['rc']):,}件）" if h.get("rc") else ""
     pr = f"{int(h['min']):,}円〜" if h.get("min") else ""
     return (f'<li><a href="{E(h["u"])}" target="_blank" rel="noopener sponsored" data-y="宿｜{E(c["t"][:16])}｜{E(h["n"])}">'
-            f'<span class="hn">{E(h["n"])}</span><span class="hm"><b>{rv}</b>{rc}・{km}</span><span class="hp">{pr}</span></a></li>')
+            f'<span class="hn">{E(h["n"])}</span><span class="hm"><b>{rv}</b>{rc}・{km}</span><span class="hp"><span class="hy">{pr}</span><span class="hv">空室を見る</span></span></a></li>')
 
 
 def main():
@@ -162,8 +162,10 @@ h2 small{{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;color:#8C7
 .inn li a{{display:grid;grid-template-columns:1fr auto;column-gap:10px;padding:10px 0;text-decoration:none;color:#2B2622;min-height:44px;box-sizing:border-box}}
 .hn{{font-size:13.5px;font-weight:700;line-height:1.45;grid-column:1}}
 .hm{{grid-column:1;font-size:11px;color:#857A70;margin-top:2px}}.hm b{{color:#B5532F;font-weight:700}}
-.hp{{grid-column:2;grid-row:1/3;align-self:center;font-family:Jost,sans-serif;font-size:13px;color:#2B2622;white-space:nowrap}}
-.hp:after{{content:" →";color:#9C8775}}
+.hp{{grid-column:2;grid-row:1/3;align-self:center;display:flex;flex-direction:column;align-items:flex-end;gap:5px;white-space:nowrap}}
+.hy{{font-family:Jost,sans-serif;font-size:13px;color:#2B2622}}
+.hv{{font-size:11px;font-weight:700;color:#B5532F;border:1px solid #B5532F;border-radius:999px;padding:3px 10px;line-height:1.4}}
+.hv:after{{content:" →"}}
 .none{{display:none;text-align:center;font-size:13px;color:#8C7B6E;padding:40px 0}}
 .note{{font-size:12px;line-height:1.9;color:#7A6E66;background:#F1F1F1;padding:14px 16px;margin-top:30px}}
 .back{{display:block;width:max-content;margin:28px auto 0;color:#2B2622;text-decoration:none;font-size:13px;letter-spacing:.1em;border-bottom:1px solid #2B2622;padding-bottom:2px}}
