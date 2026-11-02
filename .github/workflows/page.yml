@@ -29,6 +29,16 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+      - name: LIFE NOTE のアドレスを用意する（11/2 オーナー「3はB」→ lifenote.pages.dev。Cloudflare で決まった本当のアドレスを LIFE_BASE に。作れない時は今のアドレスのまま）
+        run: |
+          base="https://usagi-life-notes.pages.dev"
+          if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
+            W="npx -y wrangler@3.80.0"
+            $W pages project create lifenote --production-branch=main >/dev/null 2>&1 || true
+            d=$($W pages project list 2>/dev/null | grep -o 'lifenote[a-z0-9-]*\.pages\.dev' | head -1 || true)
+            if [ -n "$d" ]; then base="https://$d"; fi
+          fi
+          echo "LIFE_BASE=$base" >> "$GITHUB_ENV"; echo "アドレス: $base"
       - name: ページを作る（載せる前に、おでかけ・お得のリンクを開いて確かめる）
         run: LINK_GATE=1 python3 scripts/page.py
       - name: 関東イルミネーションのまとめページと、検索用の robots.txt・sitemap.xml（10/31 月からの頼み。失敗してもHPは出す）
@@ -51,7 +61,9 @@ jobs:
         run: python3 scripts/tomari.py || true
       - name: 月と同じ見た目（v2）を本番と見本 /preview-v2 に入れる（10/31 見本、11/1 オーナー「改善してから本番OK」）
         run: python3 scripts/preview_v2.py || true
-      - name: 公開する（Cloudflare Pages。鍵があるときだけ。アドレス usagi-life-notes.pages.dev）
+      - name: LIFE NOTE に分ける（/ 入口・/odekake 関東おでかけリスト・/okaimono くらべたおかいものリスト。11/2 オーナー「完全に分ける」「TOWN NOTE 仕様」）
+        run: python3 scripts/lifenote.py
+      - name: 公開する（Cloudflare Pages。鍵があるときだけ。アドレス lifenote.pages.dev と、前の usagi-life-notes.pages.dev にも同じ物）
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then echo "Cloudflareの鍵がまだないので公開しない"; exit 0; fi
           W="npx -y wrangler@3.80.0"
@@ -63,6 +75,11 @@ jobs:
             echo "数える場所あり"
           else echo "数える場所が見つからない。公開だけする"; fi
           $W pages deploy site --project-name=usagi-life-notes --branch=main --commit-dirty=true
+          # 11/2 LIFE NOTE の新しいアドレスにも同じ物を出す（数える場所 KV も同じ。wrangler.toml の name だけ替える）
+          if [ "$LIFE_BASE" != "https://usagi-life-notes.pages.dev" ]; then
+            [ -f wrangler.toml ] && sed -i 's/^name = "usagi-life-notes"/name = "lifenote"/' wrangler.toml
+            $W pages deploy site --project-name=lifenote --branch=main --commit-dirty=true || echo "lifenote に出せなかった"
+          fi
           echo "NS=$ns" >> "$GITHUB_ENV"
       - name: 数えた数を読む（開いた数・押された数 → data/page-stats.json）
         if: env.NS != ''

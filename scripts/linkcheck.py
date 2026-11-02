@@ -43,9 +43,18 @@ def same(name, title):
 
 
 async def hp_links(ctx):
+    # 11/2 LIFE NOTE：リストは /odekake と /okaimono の2枚に分けた。両方を開く
+    L, SM, sec0 = [], [], None
+    for path in ("odekake", "okaimono"):
+        links, small, sec = await _one(ctx, HP.rstrip("/") + "/" + path)
+        L += links; SM += small; sec0 = sec if sec0 is None else sec0
+    return L, SM, sec0
+
+
+async def _one(ctx, url):
     page = await ctx.new_page()
     t0 = time.time()
-    await page.goto(HP + "?me=check", wait_until="load", timeout=30000)
+    await page.goto(url + "?me=check", wait_until="load", timeout=30000)
     hp_sec = time.time() - t0
     # 隠れているタブ・欄も含めて、全部のリンクを取る
     links = await page.evaluate("""() => [...document.querySelectorAll('a[href^="http"]')].map(a => {

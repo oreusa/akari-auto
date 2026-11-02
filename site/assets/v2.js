@@ -38,4 +38,9 @@ bar.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)
   else{var u=document.getElementById("umenu");if(u)u.click();}});
 bar.classList.add("on");document.documentElement.classList.add("v2bar-on");
 if(tabs)tabs.addEventListener("click",function(){setTimeout(syncBar,30)});
+/* 11/2 ほかのページの下のボタン（/odekake?v2t=0・1・map）から来たら、そのタブ・地図を開く */
+(function(){var q=null;try{q=new URLSearchParams(location.search).get("v2t");}catch(e){}if(q===null)return;
+  try{var u=new URLSearchParams(location.search);u.delete("v2t");history.replaceState(null,"",location.pathname+(u.toString()?"?"+u:"")+location.hash);}catch(e){}
+  setTimeout(function(){if(q==="map"){var n=0;(function t(){var m=document.querySelector(".tnbtn");if(m){m.click();return;}if(++n<40)setTimeout(t,100);})();return;}
+    var b=bar.querySelector('button[data-t="'+(q==="1"?"up":"now")+'"]');if(b)b.click();},120);})();
 })();
