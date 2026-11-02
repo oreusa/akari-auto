@@ -68,6 +68,8 @@ jobs:
       - name: LIFE NOTE に分ける（/ 入口・/odekake 関東おでかけリスト・/okaimono くらべたおかいものリスト。11/2 オーナー「完全に分ける」「TOWN NOTE 仕様」）
         run: |
           python3 scripts/lifenote.py
+          # 11/2 オーナー「アプリできるようにできてるよな？」「town、LIFEどっちも必ず」→ ホーム画面に置ける（PWA）
+          python3 scripts/pwa.py || true
           # 11/2 リクエスト・感想（/koe）：オーナーがOKした声だけを載せる
           cp data/koe_public.json site/koe-public.json || true
       - name: 公開する（Cloudflare Pages。鍵があるときだけ。アドレス lifenote.pages.dev と、前の usagi-life-notes.pages.dev にも同じ物）

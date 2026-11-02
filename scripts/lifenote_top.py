@@ -114,10 +114,10 @@ var pI=fetch("/illumination").then(function(r){{return r.text()}}).then(function
  d.querySelectorAll(".card").forEach(function(a){{var e=a.getAttribute("data-e")||"";if(e&&e<today)return;var tt=a.querySelector(".t,h3,.nm");if(!tt)return;var tx=a.textContent.replace(/\\s+/g," ");
   IL.push({{t:tt.textContent.trim(),x:tx,p:prefOf(tx)}});}});}}).catch(function(){{}});
 fetch("/okaimono",{{headers:{{"x-ima":"1"}}}}).then(function(r){{return r.text()}}).then(function(t){{var d=new DOMParser().parseFromString(t,"text/html"),u='<small style="font-size:12px">件</small>';
- var sh=d.querySelectorAll("#shop article.card").length,dl=d.querySelectorAll("#deal .card").length;
+ var sh=d.querySelectorAll('.pane[data-t="pick"] .card,.pane[data-t="unit"] .card,.pane[data-t="down"] .card').length,dl=d.querySelectorAll('.pane[data-t="sale"] .card').length;
  document.getElementById("k1").innerHTML=sh+u;document.getElementById("k2").innerHTML=dl+u;
  var rows=[],h=d.querySelector("#hot .nm,#hot h3");if(h)rows.push(["いち押し",h.textContent.trim()]);
- d.querySelectorAll("#shop article.card").forEach(function(a){{if(rows.length>=3)return;var n=a.querySelector(".nm,h3");if(n)rows.push(["比べた",n.textContent.trim()]);}});
+ d.querySelectorAll('.pane[data-t="pick"] .card').forEach(function(a){{if(rows.length>=3)return;var n=a.querySelector(".t,.nm,h3");if(n)rows.push(["比べた",n.textContent.trim()]);}});
  document.getElementById("kpv").innerHTML=rows.map(function(r){{return '<div><i style="color:#C2703F">'+r[0]+'</i>'+esc(r[1].slice(0,40))+'</div>'}}).join("");}}).catch(function(){{}});
 /* 地図：都県を押すと、その都県のおでかけの数 */
 var svg=document.querySelector(".kmap"),pp=document.getElementById("pp");
