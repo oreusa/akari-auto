@@ -1,0 +1,16 @@
+{
+  "name": "LIFE NOTE",
+  "short_name": "LIFE NOTE",
+  "description": "関東のくらしのノート。関東おでかけリストと、くらべたおかいものリスト。",
+  "lang": "ja",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    {"src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/assets/icon-mask-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
