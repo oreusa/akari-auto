@@ -27,6 +27,12 @@
   "sec": 2.5,
   "why": ""
  },
+ "https://event.gardenplace.jp/special/2026baccarat/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.0,
+  "why": ""
+ },
  "https://floria-tokyo.jp/": {
   "at": "2026-11-01",
   "by": "browser",
@@ -1350,6 +1356,12 @@
   "sec": 2.5,
   "why": ""
  },
+ "https://kobito-2610.sync-innovation.co.jp/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 0.6,
+  "why": ""
+ },
  "https://koto.goguynet.jp/2026/10/27/ariakegarden_illumination2026/": {
   "at": "2026-10-30",
   "by": "browser",
@@ -1482,6 +1494,12 @@
   "sec": 3.1,
   "why": ""
  },
+ "https://nasushiobara-kanko.jp/events/36783/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.4,
+  "why": ""
+ },
  "https://null2.nexus": {
   "at": "2026-10-30",
   "ok": true,
@@ -1549,6 +1567,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.9,
+  "why": ""
+ },
+ "https://rekishikan-ibk.jp/event/festival/post-15132/": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.5,
   "why": ""
  },
  "https://resemom.jp/release/prtimes/20261021/221970.html": {
@@ -1620,6 +1644,12 @@
   "sec": 2.8,
   "why": ""
  },
+ "https://tokyo-sg.com/news/3963": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.7,
+  "why": ""
+ },
  "https://tokyoatlas.jp/": {
   "at": "2026-11-01",
   "by": "browser",
@@ -1674,6 +1704,12 @@
   "by": "browser",
   "ok": true,
   "sec": 0.1,
+  "why": ""
+ },
+ "https://www.arkhills.com/events/2026/11/0231.html": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 0.8,
   "why": ""
  },
  "https://www.ashikaga.co.jp/flowerfantasy_special2026/jp/": {
@@ -1753,6 +1789,12 @@
   "sec": 7.3,
   "why": ""
  },
+ "https://www.city.saitama.lg.jp/006/014/008/003/015/007/p134331.html": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.3,
+  "why": ""
+ },
  "https://www.city.tochigi.lg.jp/site/museum-tcam/92628.html": {
   "at": "2026-11-01",
   "by": "browser",
@@ -1814,6 +1856,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.7,
+  "why": ""
+ },
+ "https://www.gotokyo.org/jp/spot/ev132/index.html": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.5,
   "why": ""
  },
  "https://www.hitachikaihin.jp/event/recommend-event/kaihanasotoasobi-2026.html": {
@@ -1884,6 +1932,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.3,
+  "why": ""
+ },
+ "https://www.kasumigaura-kankou.jp/page/page000986.html": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 0.3,
   "why": ""
  },
  "https://www.keiseirose.co.jp/garden/": {
@@ -2192,6 +2246,12 @@
   "by": "browser",
   "ok": true,
   "sec": 7.1,
+  "why": ""
+ },
+ "https://yokohama-landmark.jp/plaza_news/detail.html?act=64030": {
+  "at": "2026-11-02",
+  "ok": true,
+  "sec": 1.1,
   "why": ""
  }
 }

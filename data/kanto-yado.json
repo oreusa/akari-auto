@@ -2535,5 +2535,110 @@
         "min": 6800
       }
     ]
+  },
+  "歴史館いちょうまつり": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      36.08539,
+      140.1933
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "【JR土浦駅直結】 BEB5土浦 by 星野リゾート",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178358",
+        "km": 1.4,
+        "r": 4.5,
+        "rc": 401,
+        "min": 4510
+      },
+      {
+        "n": "湖北ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D31538",
+        "km": 1.7,
+        "r": 4.36,
+        "rc": 1012,
+        "min": 3041
+      },
+      {
+        "n": "ホテルフィット",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106074",
+        "km": 1.7,
+        "r": 4.33,
+        "rc": 2022,
+        "min": 4850
+      }
+    ]
+  },
+  "こびとづかんこびと大発見": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      35.40673,
+      140.06252
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "まるのもり Glamping with dog",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188322",
+        "km": 5.0,
+        "r": 4.81,
+        "rc": 60,
+        "min": 10870
+      },
+      {
+        "n": "トレーテル市原牛久店",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191988",
+        "km": 6.9,
+        "r": 4.7,
+        "rc": 42,
+        "min": 5312
+      },
+      {
+        "n": "ETOWA KISARAZU(エトワ木更津)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187326",
+        "km": 6.3,
+        "r": 4.41,
+        "rc": 340,
+        "min": 11495
+      }
+    ]
+  },
+  "11/15まで高尾山・草津・伊香保｜紅葉の夜は何時までくらべ": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      36.49208,
+      138.91487
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "伊香保温泉 香雲館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D70871",
+        "km": 1.2,
+        "r": 4.83,
+        "rc": 336,
+        "min": 29150
+      },
+      {
+        "n": "伊香保温泉 ホテル木暮",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D6266",
+        "km": 0.8,
+        "r": 4.74,
+        "rc": 2056,
+        "min": 21560
+      },
+      {
+        "n": "伊香保温泉 Doggyスイート ペロ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188003",
+        "km": 1.1,
+        "r": 4.73,
+        "rc": 69,
+        "min": 27825
+      }
+    ]
   }
 }
