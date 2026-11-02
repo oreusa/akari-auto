@@ -215,15 +215,23 @@ var css=`
    （夜はページ全体を反転しているので、ここで書く色は反転される前の色） */
 /* 11/2 19:17 オーナー「夜の地図オシャレじゃない、絵が分かりにくい、文字も」→ 夜は紺の地に府県の色の細い線だけ（塗りはごく薄く）、文字は白く、絵は白い線画に。
    夜はページごと反転しているので、ここの色は「反転される前」の色（明るい色ほど暗く見える） */
-css+=PREFS.map(function(p){return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:'+PC[p]+';fill-opacity:.1;stroke:'+PC[p]+';stroke-width:1.3px;stroke-opacity:.95}'}).join("")+
- 'html.night .tn .pf.off{fill:#F0F2F5;stroke:#C9CED6}html.night .tn .sh{opacity:0!important}'+
- 'html.night .tn .lb.p{color:#14110E!important;text-shadow:0 0 3px #F4F6FA,0 0 8px #F4F6FA!important}html.night .tn .lb.p small{opacity:.62}'+
- 'html.night .tn .lb.w{color:#4A4540}html.night .tn .lb.w.h{color:#1E1B18}'+
- 'html.night .tn .ic .icb{filter:grayscale(1) brightness(.42) contrast(1.4)!important;opacity:.85}'+
- 'html.night .tn .mu{fill-opacity:.12}html.night .tn .g-pin .dot{fill:#3A3530;stroke:#FFFFFF}'+
- /* 11/2 19:18 オーナー「同じ色の文字が夜は綺麗に見えない」→ 夜は府県の色の文字をやめ、白い文字＋府県の色の小さな丸にする */
- 'html.night .tn .fsh .row.pf button:not(.on){color:#2B2622}html.night .tn .fsh .row.pf button:not(.on):before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:2px}'+
- 'html.night .tn .cc .d i,html.night .tn .qb .qp{color:#2B2622!important}html.night .tn .chips button.cur b{color:#2B2622}';
+/* 11/2 20:14 オーナー「夜、星と月以外オシャレに見えない。地図とかずっといや」→ 夜の地図は「星座の図」に。
+   紺の地に、府県は色の細い光る線だけ（塗りはほぼ無し）、街の点は金色の星、絵は月あかりの金の線、文字は銀。
+   夜はページごと反転しているので、NI() で「見せたい色」から「反転される前の色」を計算して書く */
+function NI(h){var t=[1,3,5].map(function(k){return parseInt(h.substr(k,2),16)/255}),M=[[-.574,1.43,.144],[.426,.43,.144],[.426,1.43,-.856]];
+ return "#"+M.map(function(r){var v=(.95-(r[0]*t[0]+r[1]*t[1]+r[2]*t[2]))/.9;v=Math.max(0,Math.min(1,v));return ("0"+Math.round(v*255).toString(16)).slice(-2)}).join("")}
+function LT(h,a){return "#"+[1,3,5].map(function(k){var v=parseInt(h.substr(k,2),16);return ("0"+Math.round(v+(255-v)*a).toString(16)).slice(-2)}).join("")}
+var GOLD=NI("#EBD7A6"),SILV=NI("#EEF1F7"),DIM=NI("#8E98AE"),NAVY=NI("#141A28"),LAND=NI("#1A2236"),EDGE=NI("#2D3854");
+css+=PREFS.map(function(p){var c=NI(LT(PC[p],.38));return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:'+LAND+';fill-opacity:1;stroke:'+c+';stroke-width:1.2px;stroke-opacity:1;filter:drop-shadow(0 0 2.5px '+c+')}'}).join("")+
+ 'html.night .tn .pf.off{fill:'+LAND+';stroke:'+EDGE+';stroke-width:.8px}html.night .tn .sh{opacity:0!important}'+
+ 'html.night .tn .mu{fill-opacity:0!important;stroke:'+EDGE+'!important;stroke-width:.6px}'+
+ 'html.night .tn .lb.p{color:'+SILV+'!important;text-shadow:0 0 4px '+NAVY+',0 0 10px '+NAVY+'!important;letter-spacing:.14em}html.night .tn .lb.p small{color:'+GOLD+';opacity:.85}'+
+ 'html.night .tn .lb.w{color:'+DIM+';text-shadow:0 0 3px '+NAVY+'!important}html.night .tn .lb.w.h{color:'+SILV+'}'+
+ 'html.night .tn .ic .icb{filter:drop-shadow(0 0 2px '+NAVY+')!important;opacity:.95}html.night .tn .ic .icb,html.night .tn .ic .icb *{stroke:'+GOLD+'!important}html.night .tn .ic .icb [fill]:not([fill=none]){fill:'+GOLD+'!important;fill-opacity:.18}'+
+ 'html.night .tn .g-pin .dot{fill:'+GOLD+';stroke:'+NAVY+';filter:drop-shadow(0 0 2px '+GOLD+')}'+
+ 'html.night .tn .fsh .row.pf button:not(.on){color:'+SILV+'}html.night .tn .fsh .row.pf button:not(.on):before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:2px}'+
+ 'html.night .tnbtn .mm{background:#141A28!important}html.night .tnbtn .mm svg path{fill:#1C2643!important;stroke:#5B6C99!important}html.night .tnbtn .ar{background:transparent!important;box-shadow:inset 0 0 0 1px '+GOLD+';color:'+GOLD+'!important}'+
+ 'html.night .tn .cc .d i,html.night .tn .qb .qp{color:'+SILV+'!important}html.night .tn .chips button.cur b{color:'+SILV+'}';
 var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
 
 // ---- 枠 ----
