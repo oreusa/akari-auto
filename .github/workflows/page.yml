@@ -66,7 +66,10 @@ jobs:
       - name: 月と同じ見た目（v2）を本番と見本 /preview-v2 に入れる（10/31 見本、11/1 オーナー「改善してから本番OK」）
         run: python3 scripts/preview_v2.py || true
       - name: LIFE NOTE に分ける（/ 入口・/odekake 関東おでかけリスト・/okaimono くらべたおかいものリスト。11/2 オーナー「完全に分ける」「TOWN NOTE 仕様」）
-        run: python3 scripts/lifenote.py
+        run: |
+          python3 scripts/lifenote.py
+          # 11/2 リクエスト・感想（/koe）：オーナーがOKした声だけを載せる
+          cp data/koe_public.json site/koe-public.json || true
       - name: 公開する（Cloudflare Pages。鍵があるときだけ。アドレス lifenote.pages.dev と、前の usagi-life-notes.pages.dev にも同じ物）
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then echo "Cloudflareの鍵がまだないので公開しない"; exit 0; fi
@@ -90,9 +93,10 @@ jobs:
         run: |
           rm -f wrangler.toml
           if [ "${{ inputs.reset }}" = "true" ]; then python3 scripts/pagestats.py reset "$NS" || true; else python3 scripts/pagestats.py "$NS" || true; fi
+          python3 scripts/koe.py "$NS" || true
           git config user.name "akari-auto"
           git config user.email "akari-auto@users.noreply.github.com"
-          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/kansai-yado.json data/kanto-yado.json data/tanka.json data/furusato.json data/price-history.json data/nesage.json data/okaimono_img.json 2>/dev/null || true
+          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/kansai-yado.json data/kanto-yado.json data/tanka.json data/furusato.json data/price-history.json data/nesage.json data/okaimono_img.json data/koe.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "ページの数とリンクの確かめを記録"
           # 公開用に書き換えた site/ のページ（ima.html など）は戻す（戻さないと pull できない）
