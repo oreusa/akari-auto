@@ -28,8 +28,8 @@
     "html.night .rd svg>rect{fill:#141A28}"+
     /* 地図で見る（全画面の地図）：夜は暗すぎたので、少し明るく・色をはっきり */
     
-    "html.night #mpL path{fill-opacity:.42;stroke:rgba(255,255,255,.1)}"+
-    "html.night #mpL path[fill=none]{stroke:rgba(255,255,255,.35)}"+
+    "html.night #mpL path{fill:#182139!important;fill-opacity:1;stroke:rgba(200,215,255,.16)}"+
+    "html.night #mpL path[fill=none]{fill:none!important;stroke:rgba(235,215,166,.55)}"+
     "html.night .rd .mn{fill:#8F9AB3}"+
     "html.night .rd .rng{stroke:#C9D2E6;opacity:.5}"+
     "html.night .rd .rgl{fill:#E6EAF2;stroke:#141A28}"+
@@ -40,7 +40,6 @@
     "html.night header.head:before,html.night header.head:after{display:none}"+
     "html.night .blob{display:none}"+
     /* MENU の四角は、夜はベージュにならないよう月あかりの銀に */
-    "html.night #v2bar button.mn{background:#121826}"+
     "html.night .rd{border-color:#000}"+
     /* 11/2 オーナー「夜空感がいい、夜景を見に行ってるかのような」→ 星がまたたき、入口の地図に街の灯り */
     ".nsky,.kmap .lt{display:none}html.night .nsky,html.night .kmap .lt{display:block}"+
@@ -60,9 +59,27 @@
     /* 11/2 19:18 オーナー「同じ色の文字が夜は綺麗に見えない」→ 夜は府県の色の文字をやめ、白っぽい文字に（選んだ府県は下線だけ府県の色） */
     "html.night .flt button[style*='--pc']:not(.on){color:#3A3632!important}"+
     "html.night .flt button.on{color:#14110E!important}html.night .mp{color:#3A3632!important}html.night .v2c span.p{color:#2B2622!important}"+
+    /* 11/2 20:14 オーナー「夜、星と月以外オシャレに見えない」→ 夜のカード・ボタン・下の列も夜空に合わせる。
+       色の塗りつぶし（府県の色の丸やタグ）をやめ、月あかりの金の細い線と銀の文字に。ここの色も「反転される前」の色 */
+    "html.night .v2c span.on{background:transparent!important;box-shadow:inset 0 0 0 1px #372100;color:#372100!important}"+
+    "html.night .v2c span.p{background:#D7E1FC!important;color:#04070F!important}"+
+    "html.night .v2c span.f{background:transparent!important;box-shadow:inset 0 0 0 1px #30394B;color:#30394B!important}"+
+    "html.night .paper .it .card .go{background:transparent!important;box-shadow:inset 0 0 0 1px #372100;color:#372100!important}"+
+    "html.night #v2bar{background:#E1E9FE!important;box-shadow:inset 0 0 0 1px #C4D0EC!important}"+
+    "html.night #v2bar button{color:#30394B}html.night #v2bar button.cur{color:#372100}html.night #v2bar button.cur span{border-bottom-color:#372100}"+
+    "html.night #v2bar button.mn{background:transparent!important;color:#372100!important;box-shadow:inset 1px 0 0 #C4D0EC}html.night #v2bar button.mn i{background:#372100!important;box-shadow:0 -5px 0 #372100,0 5px 0 #372100!important}"+
+    "html.night .st.on,html.night .st.now,html.night .tn8,html.night .card span.on{background:transparent!important;box-shadow:inset 0 0 0 1px #372100!important;border-color:transparent!important;color:#372100!important}"+
+    "html.night .st.soon,html.night .st.pre,html.night .st.next{background:transparent!important;box-shadow:inset 0 0 0 1px #30394B!important;color:#30394B!important}"+
+    "html.night .card .fr,html.night .it .fr{background:transparent!important;box-shadow:inset 0 0 0 1px #30394B!important;color:#30394B!important}"+
+    "html.night .card div.go,html.night .it div.go,html.night .it span.ar,html.night .paper .card.it:after{background:transparent!important;box-shadow:inset 0 0 0 1px #372100!important;color:#372100!important}"+
+    /* 入口の地図で府県に data-p が無いもの（燈の関東）も、夜は紺の陸地＋府県の色の光る線に（色は昼の塗りの色を使う） */
+    "html.night .kmap .pf path{fill:#182139!important;fill-opacity:1!important;filter:drop-shadow(0 0 2.5px var(--c,rgba(200,215,255,.6)))}html.night .kmap .pf path:not([data-p]){stroke:var(--c,#8FB6EA);stroke-width:1.6px}"+
     "@media (prefers-reduced-motion:reduce){.nsky i,.kmap .lt circle{animation:none!important}}";
   var st=document.createElement("style");st.textContent=css;(document.head||d).appendChild(st);
   set(pick());
+  /* 入口の地図の府県の色を覚えておく（夜の光る線に使う） */
+  function km(){[].forEach.call(document.querySelectorAll(".kmap .pf path"),function(x){var f=x.getAttribute("fill");if(f&&f.charAt(0)=="#")x.style.setProperty("--c",f)})}
+  if(document.readyState!="loading")km();else document.addEventListener("DOMContentLoaded",km);
   /* 星と街の灯り：毎回同じ並びになるよう、決まった数から作る */
   function rnd(n){var x=n;return function(){x=(x*16807)%2147483647;return x/2147483647;};}
   /* 流れ星（隠し要素）：夜の見た目で、40〜120秒に1回だけ、毎回ちがう場所・向きから1本流れる */

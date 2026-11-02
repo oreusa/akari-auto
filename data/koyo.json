@@ -199,6 +199,114 @@
    "url": "https://www.ikaho-kankou.com/red_lightup/",
    "hours": "16:30〜22:00",
    "fee": "無料"
+  },
+  {
+   "pref": "東京",
+   "name": "御岳山 紅葉ライトアップ",
+   "start": "2026-10-24",
+   "end": "2026-11-23",
+   "city": "青梅市",
+   "venue": "御岳山",
+   "free": true,
+   "url": "https://www.city.ome.tokyo.jp/",
+   "hours": "日没〜21:00",
+   "fee": "無料（ケーブルカーは運賃が必要）"
+  },
+  {
+   "pref": "東京",
+   "name": "芝公園 もみじ谷ライトアップ",
+   "start": "2026-12-05",
+   "end": "2026-12-25",
+   "city": "港区",
+   "venue": "芝公園 19号地 もみじ谷",
+   "free": true,
+   "url": "https://www.tokyo-park.or.jp/park/shiba/",
+   "hours": "16:30〜21:00",
+   "fee": "無料"
+  },
+  {
+   "pref": "神奈川",
+   "name": "大雄山最乗寺 紅葉ライトアップ",
+   "start": "2026-11-21",
+   "end": "2026-11-29",
+   "city": "南足柄市",
+   "venue": "大雄山最乗寺",
+   "free": true,
+   "url": "https://kanagawa-kankou.or.jp/spot/200",
+   "hours": "17:00〜20:30ごろ",
+   "fee": "無料"
+  },
+  {
+   "pref": "茨城",
+   "name": "筑波山 紅葉ライトアップ（ケーブルカー オータムナイトライド）",
+   "start": "2026-10-24",
+   "end": "2026-11-29",
+   "city": "つくば市",
+   "venue": "筑波山ケーブルカー",
+   "free": false,
+   "url": "https://www.mt-tsukuba.com/",
+   "hours": "土日祝 17:00〜20:00（11/24〜27 も）",
+   "fee": "ケーブルカー運賃"
+  },
+  {
+   "pref": "茨城",
+   "name": "花貫渓谷 紅葉ライトアップ",
+   "start": "2026-11-07",
+   "end": "2026-11-23",
+   "city": "高萩市",
+   "venue": "花貫渓谷 汐見滝吊り橋",
+   "free": true,
+   "url": "https://www.city.takahagi.ibaraki.jp/",
+   "hours": "日没〜19:00",
+   "fee": "無料（紅葉まつりの間は駐車場 1,000円）"
+  },
+  {
+   "pref": "茨城",
+   "name": "花園神社 紅葉ライトアップ",
+   "start": "2026-11-01",
+   "end": "2026-11-30",
+   "city": "北茨城市",
+   "venue": "花園神社（花園渓谷）",
+   "free": true,
+   "url": "https://www.city.kitaibaraki.lg.jp/",
+   "hours": "16:30〜21:00",
+   "fee": "無料"
+  },
+  {
+   "pref": "栃木",
+   "name": "塩原 紅葉ライトアップ",
+   "start": "2026-10-17",
+   "end": "2026-11-30",
+   "city": "那須塩原市",
+   "venue": "塩原温泉郷",
+   "free": true,
+   "url": "https://www.tochinavi.net/spot/home/index.shtml?id=9726",
+   "hours": "17:00〜21:00",
+   "fee": "無料"
+  },
+  {
+   "pref": "栃木",
+   "name": "大山参道 紅葉ライトアップ",
+   "start": "2026-10-24",
+   "end": "2026-11-30",
+   "city": "那須塩原市",
+   "venue": "大山参道（乃木神社のそば）",
+   "free": true,
+   "url": "https://www.city.nasushiobara.tochigi.jp/",
+   "hours": "17:00〜23:00（予定）",
+   "fee": "無料"
+  },
+  {
+   "pref": "栃木",
+   "name": "足利織姫神社 紅葉ライトアップ",
+   "start": "2026-11-14",
+   "end": "2026-11-23",
+   "city": "足利市",
+   "venue": "足利織姫神社・織姫公園もみじ谷",
+   "free": true,
+   "url": "https://www.tochinavi.net/spot/home/index.shtml?id=6929",
+   "hours": "17:00〜22:00",
+   "fee": "無料"
   }
  ]
 }
