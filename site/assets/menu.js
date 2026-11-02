@@ -175,11 +175,11 @@
     var f=s.querySelector("[data-a]");if(f)f.focus();
   }
   document.addEventListener("click",function(e){
-    if(e.defaultPrevented||e.button>0||e.metaKey||e.ctrlKey||e.shiftKey)return;
+    if(e.button>0||e.metaKey||e.ctrlKey||e.shiftKey)return;
     var a=e.target.closest&&e.target.closest('a[href*="google.com/maps"],a[href*="maps.google."]');if(!a)return;
     var v=get();e.preventDefault();
     if(v==="google"||v==="apple")go(a,v);else sheet(a);
-  });
+  },true);
   /* メニューの下の切り替え（メニューができてから足す） */
   function row(){var nv=document.querySelector("#upan nav");if(!nv||document.getElementById("umaprow"))return;
     var st=document.createElement("style");st.textContent="#umaprow{display:flex;align-items:center;justify-content:center;gap:8px;margin:18px 0 22px;font-family:\"Zen Kaku Gothic New\",sans-serif;font-size:12px;color:#777}#umaprow button{border:1px solid #E2E4E8;background:#fff;border-radius:999px;padding:5px 12px;font:inherit;font-size:12px;color:#555;cursor:pointer}#umaprow button.on{border-color:#555;color:#222;font-weight:600}";document.head.appendChild(st);

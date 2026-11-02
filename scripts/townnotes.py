@@ -8,6 +8,7 @@ page.py のあとに動かす（GitHub Actions。作業環境からは地図の�
 import html, json, os, re, sys, time, urllib.parse, urllib.request
 
 SRC = 'site/index.html'
+KOYO = 'site/koyo.html'  # 11/2 紅葉ライトアップのページにも地図（オーナー「紅葉、地図動かない」）
 ILLUMI = 'site/illumination.html'  # 関東イルミネーションのページ（scripts/illumi.py）。同じ geo.json にピンの場所を足す
 CACHE = 'data/townnotes-geo.json'
 OUT = 'site/townnotes/geo.json'
@@ -79,8 +80,12 @@ def cards(h):
 
 def illumi_cards(h):
     """イルミのページのカード（li.it の data-p が都県、.nm が名前、a.mp の query が探す言葉）"""
-    for m in re.finditer(r'<li class="it"[^>]*data-p="([^"]*)"[^>]*>(.*?)</li>', h, re.S):
-        pref, body = html.unescape(m.group(1)), m.group(2)
+    # 11/2 紅葉のカード（class="it ky"・style が先の物）も読む
+    for m in re.finditer(r'<li\b([^>]*\bclass="it[ "][^>]*)>(.*?)</li>', h, re.S):
+        dp = re.search(r'data-p="([^"]*)"', m.group(1))
+        if not dp:
+            continue
+        pref, body = html.unescape(dp.group(1)), m.group(2)
         t = re.search(r'<span class="nm">(.*?)</span>', body, re.S)
         if not t:
             continue
@@ -94,6 +99,8 @@ def all_cards():
     yield from cards(open(SRC, encoding='utf-8').read())
     if os.path.exists(ILLUMI):
         yield from illumi_cards(open(ILLUMI, encoding='utf-8').read())
+    if os.path.exists(KOYO):
+        yield from illumi_cards(open(KOYO, encoding='utf-8').read())
 
 
 def main():
@@ -159,14 +166,19 @@ def live():
 def live_illumi():
     """イルミのページにも地図（10/31 オーナー「燈にも」）。本体は同じで、ページとのつなぎだけ違う map-illumi.js"""
     js = 'site/townnotes/map-illumi.js'
-    if not (os.path.exists(ILLUMI) and os.path.exists(js)):
-        return
-    h = open(ILLUMI, encoding='utf-8').read()
-    if '/townnotes/map-illumi.js' in h:
+    if not os.path.exists(js):
         return
     v = __import__('hashlib').sha1(open(js, 'rb').read()).hexdigest()[:8]
-    h = h.replace('</body>', '<script src="/townnotes/map-illumi.js?v=' + v + '" defer></script></body>', 1)
-    open(ILLUMI, 'w', encoding='utf-8').write(h)
+    # 11/2 紅葉のページにも同じ地図（月の /koyo と同じ）。入っていても ?v= は今の中身にそろえる
+    for f in (ILLUMI, KOYO):
+        if not os.path.exists(f):
+            continue
+        h = open(f, encoding='utf-8').read()
+        if '/townnotes/map-illumi.js' in h:
+            h = re.sub(r'/townnotes/map-illumi\.js\?v=[0-9a-f]+', '/townnotes/map-illumi.js?v=' + v, h)
+        else:
+            h = h.replace('</body>', '<script src="/townnotes/map-illumi.js?v=' + v + '" defer></script></body>', 1)
+        open(f, 'w', encoding='utf-8').write(h)
 
 
 if __name__ == '__main__':
