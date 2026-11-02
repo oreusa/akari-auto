@@ -224,6 +224,12 @@ function LT(h,a){return "#"+[1,3,5].map(function(k){var v=parseInt(h.substr(k,2)
 var GOLD=NI("#EBD7A6"),SILV=NI("#EEF1F7"),DIM=NI("#8E98AE"),NAVY=NI("#141A28"),LAND=NI("#1A2236"),EDGE=NI("#2D3854");
 css+=PREFS.map(function(p){var c=NI(LT(PC[p],.38));return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:'+LAND+';fill-opacity:1;stroke:'+c+';stroke-width:1.3px;stroke-opacity:1;vector-effect:non-scaling-stroke}html.night .tn:not(.lv2):not(.lv3) .pf[data-p="'+p+'"]:not(.off){filter:drop-shadow(0 0 2.5px '+c+')}'}).join("")+
  'html.night .tn .pf.off{fill:'+LAND+';stroke:'+EDGE+';stroke-width:.8px}html.night .tn .sh{opacity:0!important}'+
+ '.tn .g-lt{display:none;pointer-events:none}html.night .tn .g-lt{display:inline}'+
+ '.tn .g-lt path{fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke}'+
+ '.tn .g-lt .l0{stroke:'+NI("#E0A852")+';stroke-width:1.1px;stroke-opacity:.7}'+
+ '.tn .g-lt .l1{stroke:'+NI("#FFD98C")+';stroke-width:1.5px;stroke-opacity:.9}'+
+ '.tn .g-lt .l2{stroke:'+NI("#FFF4DE")+';stroke-width:1.9px}'+
+ '.tn .g-lt .lh{stroke:'+NI("#FFB84D")+';stroke-width:7px;stroke-opacity:.10}'+
  'html.night .tn .mu{fill-opacity:0!important;stroke:'+EDGE+'!important;stroke-width:.6px}'+
  'html.night .tn .lb.p{color:'+SILV+'!important;text-shadow:0 0 4px '+NAVY+',0 0 10px '+NAVY+'!important;letter-spacing:.14em}html.night .tn .lb.p small{color:'+GOLD+';opacity:.85}'+
  'html.night .tn .lb.w{color:'+DIM+';text-shadow:0 0 3px '+NAVY+'!important}html.night .tn .lb.w.h{color:'+SILV+'}'+
@@ -238,13 +244,13 @@ var st=document.createElement("style");st.textContent=css;document.head.appendCh
 var box=document.createElement("div");box.className="tn";
 box.innerHTML=''+
  '<div class="fsh"><div class="ttl"><b><small>TOWN NOTE MAP</small>'+R.name+'おでかけマップ</b><button type="button" class="cl" aria-label="地図を閉じる">×</button></div><div class="row tb"></div><div class="row pf"></div></div>'+
- '<div class="fr"><svg class="m" preserveAspectRatio="xMidYMid meet"><g class="g-sh"></g><g class="g-pf"></g><g class="g-mu"></g><g class="g-mini"></g><g class="g-pin"></g></svg><div class="lbs"></div>'+
+ '<div class="fr"><svg class="m" preserveAspectRatio="xMidYMid meet"><g class="g-sh"></g><g class="g-pf"></g><g class="g-mu"></g><g class="g-lt"></g><g class="g-mini"></g><g class="g-pin"></g></svg><div class="lbs"></div>'+
  '<div class="crumb"></div><div class="n" id="tnn"></div><div class="cen">'+R.en_all+'</div><button type="button" class="bk"></button><div class="hint"></div><div class="zm"><button type="button" data-z="in" aria-label="近づく">＋</button><button type="button" data-z="out" aria-label="はなれる">−</button></div><div class="cr">地図：国土数値情報（行政区域）を加工</div></div>'+
  '<div class="car"></div>'+
  '<div class="chips"></div>'+
  '<div class="pop" role="dialog"><button class="x" type="button" aria-label="閉じる">×</button><div class="pb"></div></div>'+
  '<div class="lg"><span>開催・オープン</span><span class="s">これからできる</span></div>';
-var svg=$("svg.m",box),G={sh:$(".g-sh",svg),pf:$(".g-pf",svg),mu:$(".g-mu",svg),mini:$(".g-mini",svg),pin:$(".g-pin",svg)},LBS=$(".lbs",box),pop=$(".pop",box);
+var svg=$("svg.m",box),G={sh:$(".g-sh",svg),pf:$(".g-pf",svg),mu:$(".g-mu",svg),lt:$(".g-lt",svg),mini:$(".g-mini",svg),pin:$(".g-pin",svg)},LBS=$(".lbs",box),pop=$(".pop",box);
 
 // ---- 今のページの状態を読む ----
 var GEO={},OTH=[];
@@ -289,6 +295,22 @@ function D(col){return col;  // 点描はやめた（10/29 オーナー：前の
  if(!DP[id]){var pt=el("pattern",{id:id,patternUnits:"userSpaceOnUse",width:4,height:4},DEFS);el("rect",{width:"100%",height:"100%",fill:mix(col,.55)},pt);DP[id]=el("circle",{cx:2,cy:2,r:1,fill:shade(col,.93)},pt)}
  return "url(#"+id+")"}
 function dotSize(u){var S=5.2*u;$$("pattern",DEFS||svg).forEach(function(pt){pt.setAttribute("width",S);pt.setAttribute("height",S);var c=pt.querySelector("circle");c.setAttribute("cx",S/2);c.setAttribute("cy",S/2);c.setAttribute("r",1.55*u)})}
+// ---- 11/2 21:26 オーナー「上から見た夜の街の画面、地図に出してみない？」→ 夜だけ、街の明かりを点で描く ----
+// 市区町村ごとに明かりを置く。小さい区（大阪市内など）ほど明かりがぎっしり＝街の中心が明るく見える
+function lights(){var g=G.lt;if(!g||g.firstChild)return;var seed=7;function r(){seed=(seed*16807)%2147483647;return seed/2147483647}
+ var A=["","",""];
+ MU.forEach(function(m){var ps=m.g.type==="Polygon"?[m.g.coordinates]:m.g.coordinates,ar=0;
+  ps.forEach(function(p){var q=p[0].map(function(c){return P(c[0],c[1])});for(var i=0,j=q.length-1;i<q.length;j=i++)ar+=(q[j][0]*q[i][1]-q[i][0]*q[j][1])/2});ar=Math.abs(ar)||1e-6;
+  m.ar=ar});
+ var med=MU.map(function(m){return m.ar}).sort(function(a,b){return a-b})[Math.floor(MU.length/2)];
+ MU.forEach(function(m){var k=med/m.ar,n=Math.round(Math.min(130,Math.max(m.c&&/市$/.test(m.c)?55:/市$/.test(m.n)?28:3,9*Math.pow(k,.8)))),bb=m.bb,cx=(bb[0]+bb[2])/2,cy=(bb[1]+bb[3])/2,w=bb[2]-bb[0],h=bb[3]-bb[1],got=0,tries=0;
+  while(got<n&&tries<n*12){tries++;
+   // 真ん中に寄せる（街の中心ほど明るい）。たまに外側にも
+   var t=r()<.75?.2:.42,x=cx+(r()+r()+r()-1.5)*w*t*1.3,y=cy+(r()+r()+r()-1.5)*h*t*1.3;
+   try{if(!m.path.isPointInFill(new DOMPoint(x,y)))continue}catch(e){}
+   got++;var z=r(),i=z<.08?2:z<.4?1:0;A[i]+="M"+x.toFixed(2)+" "+y.toFixed(2)+"h0"}});
+ g.innerHTML='<path class="l0" d="'+A[0]+'"/><path class="l1" d="'+A[1]+'"/><path class="l2" d="'+A[2]+'"/><path class="lh" d="'+A[1]+A[2]+'"/>';
+}
 function setup(KS){
  KS.pref.features.forEach(function(f){var p=f.properties.p,d=geom2d(f.geometry);PF[p]={bb:gbb(f.geometry),sh:el("path",{d:d,"class":"sh"},G.sh),path:el("path",{d:d,"class":"pf","data-p":p,fill:D(FILL[p])},G.pf)};
   PF[p].path.addEventListener("click",function(){if(level()===1&&PF[p].has)flash(PF[p].path,DEEP[p],function(){pickPref(p)})})});
@@ -609,7 +631,7 @@ st.textContent+=ZONE.split(",").map(function(z){return z+" button"}).join(",")+"
 var geoP=fetch(TNB+"geo.json",{cache:"no-store"}).then(function(r){return r.json()}).catch(function(){return{}}).then(function(g){Object.keys(g).forEach(function(k){if(g[k][0]!=null)GEO[key(k)]=g[k]});mbUpd()});
 var loading=false;function load(){loading=true;
 Promise.all([geoP,fetch(TNB+R.shapes).then(function(r){return r.json()})]).then(function(a){
- setup(a[1]);drawIcons();ready=true;lastSig="";sync();mbUpd();window.__tnReady=true;
+ setup(a[1]);lights();drawIcons();ready=true;lastSig="";sync();mbUpd();window.__tnReady=true;
 }).catch(function(e){console.error(e);$(".fr",box).style.display="none"});}
 setOpen(OPEN);mbUpd();
 // 小さい関西の絵の大きさを合わせる
