@@ -174,6 +174,13 @@ var css=`
 .tn .cc .ac{display:flex;gap:16px;align-items:center}
 .tn .cc .ac a{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:12px;color:#2B2622;text-decoration:none;border-bottom:1px solid #C7C7C7;padding:6px 0 2px}
 .tn .cc .ac .ix{margin-left:auto;font-family:Jost,sans-serif;font-size:10.5px;color:#B3AAA1;letter-spacing:.08em}
+/* 11/2 オーナー「横にスライドしたら楽だけど伝わらないかも」→ 前・次のボタンも付ける（NN/g：めくれると分かる印と、指以外の送り方を） */
+.tn .carw{position:relative;flex:none}
+.tn .cnav{position:absolute;top:50%;z-index:40;width:36px;height:36px;margin-top:-22px;border-radius:50%;border:1px solid #D4D4D4;background:rgba(255,255,255,.96);color:#2B2622;font:500 18px/1 Jost,sans-serif;padding:0 0 2px;cursor:pointer;box-shadow:0 2px 8px rgba(60,45,35,.14);-webkit-tap-highlight-color:transparent;transition:opacity .2s}
+.tn .cnav.pv{left:4px}.tn .cnav.nx{right:4px}.tn .cnav[hidden]{display:none}
+.tn:not(.fs) .cnav{display:none}
+@keyframes tnnudge{0%,100%{transform:translateX(0)}40%{transform:translateX(-46px)}70%{transform:translateX(-46px)}}
+.tn .car.nudge .cc{animation:tnnudge 1.1s cubic-bezier(.3,.7,.2,1) 1}
 .tn .zm{position:absolute;right:10px;bottom:46px;z-index:6;display:flex;flex-direction:column;gap:6px}
 .tn .zm button,.tn .omk{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.94);border:1px solid #D4D4D4;box-shadow:0 1px 4px rgba(60,45,35,.1);color:#5E534B;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;padding:0}
 .tn .zm button{width:34px;height:34px;border-radius:50%;font-family:Jost,sans-serif;font-size:19px;font-weight:400;line-height:1}
@@ -204,6 +211,10 @@ var css=`
 .tn .g-mini circle{pointer-events:none}
 .it.tnf .card{box-shadow:0 0 0 2px var(--pc,#2B2622)!important;transition:box-shadow .3s}
 `;
+/* 11/2 オーナー「夜やはり地図奇妙だな。暗すぎる？」→ 夜は、府県をその府県の色ではっきり塗り、線も同じ色に。府県の名前は明るい色で読みやすく
+   （夜はページ全体を反転しているので、ここで書く色は反転される前の色） */
+css+=PREFS.map(function(p){return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:'+PC[p]+';fill-opacity:.48;stroke:'+PC[p]+';stroke-width:1.4px}'}).join("")+
+ 'html.night .tn .pf.off{fill:#D9D9D9}html.night .tn .sh{opacity:0!important}html.night .tn .lb.p{color:#3A332E!important}html.night .tn .lb.p small{opacity:.75}html.night .tn .mu{fill-opacity:.3}html.night .tn .g-pin .dot{fill:#4A423C;stroke:#FFFFFF}';
 var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
 
 // ---- 枠 ----
@@ -262,7 +273,7 @@ function D(col){return col;  // 点描はやめた（10/29 オーナー：前の
  return "url(#"+id+")"}
 function dotSize(u){var S=5.2*u;$$("pattern",DEFS||svg).forEach(function(pt){pt.setAttribute("width",S);pt.setAttribute("height",S);var c=pt.querySelector("circle");c.setAttribute("cx",S/2);c.setAttribute("cy",S/2);c.setAttribute("r",1.55*u)})}
 function setup(KS){
- KS.pref.features.forEach(function(f){var p=f.properties.p,d=geom2d(f.geometry);PF[p]={bb:gbb(f.geometry),sh:el("path",{d:d,"class":"sh"},G.sh),path:el("path",{d:d,"class":"pf",fill:D(FILL[p])},G.pf)};
+ KS.pref.features.forEach(function(f){var p=f.properties.p,d=geom2d(f.geometry);PF[p]={bb:gbb(f.geometry),sh:el("path",{d:d,"class":"sh"},G.sh),path:el("path",{d:d,"class":"pf","data-p":p,fill:D(FILL[p])},G.pf)};
   PF[p].path.addEventListener("click",function(){if(level()===1&&PF[p].has)flash(PF[p].path,DEEP[p],function(){pickPref(p)})})});
  KS.muni.features.forEach(function(f){var pr=f.properties,m={p:pr.p,n:pr.n,c:pr.c,g:f.geometry,bb:gbb(f.geometry)};m.id=m.p+"|"+m.c+"|"+m.n;
   m.path=el("path",{d:geom2d(f.geometry),"class":"mu"},G.mu);m.path.__mu=m;m.path.addEventListener("click",function(ev){if(level()===2&&state.pref===m.p&&m.grp.has){ev.stopPropagation();var g=m.grp;g.mus.forEach(function(x){x.path.style.fill=D(DEEP[x.p])});setTimeout(function(){goMuni(g)},180)}});MU.push(m)});
@@ -366,7 +377,7 @@ function muniOf(it){if(it._m!==undefined)return it._m;it._m=null;for(var i=0;i<M
  if(!it._m){var q=P(it.lon,it.lat),best=1e9;MU.forEach(function(m){if(m.p!==it.pref)return;var cx=(m.bb[0]+m.bb[2])/2,cy=(m.bb[1]+m.bb[3])/2,d=(cx-q[0])*(cx-q[0])+(cy-q[1])*(cy-q[1]);if(d<best){best=d;it._m=m}})}return it._m}
 
 function render(){var lv=level(),pf=state.pref,m=state.muni,pins=list.filter(function(i){return i.lat!=null});
- PREFS.forEach(function(p){var n=pins.filter(function(i){return i.pref===p}).length;PF[p].has=n>0;var on=lv===1?n>0:p===pf;PF[p].path.setAttribute("fill",D(on?FILL[p]:"#EAEAEA"));PF[p].sh.style.opacity=on?1:0;PF[p].path.style.cursor=lv===1&&n>0?"pointer":"default"});
+ PREFS.forEach(function(p){var n=pins.filter(function(i){return i.pref===p}).length;PF[p].has=n>0;var on=lv===1?n>0:p===pf;PF[p].path.setAttribute("fill",D(on?FILL[p]:"#EAEAEA"));PF[p].path.classList.toggle("off",!on);PF[p].sh.style.opacity=on?1:0;PF[p].path.style.cursor=lv===1&&n>0?"pointer":"default"});
  var cnt={};pins.forEach(function(i){if(i.pref!==pf)return;var mm=muniOf(i);if(mm){cnt[mm.grp.id]=(cnt[mm.grp.id]||0)+1}});
  var LIGHT=function(p){return R.light[p]};
  Object.keys(GR).forEach(function(id){GR[id].has=!!cnt[id]});
@@ -513,8 +524,16 @@ function buildCar(arr){var sig=arr.map(function(i){return i.k}).join("|")+"#"+le
   return '<div class="cc'+(PH?' ph':'')+'" data-i="'+i+'" style="--c:'+(PC[it.pref]||"#2B2622")+'">'+(PH?thumb(it,'cth')+'<div class="cb">':'')+row(it,true).replace(/<u style[^>]*>無料<\/u>/,"").replace('<div class="t">','<div class="t">'+(level()===3&&it._n?'<i class="nb">'+it._n+'</i>':'')).replace('<div class="ac">',w+'<div class="ac">')+(PH?'</div>':'')+'</div>'}).join("");
  $$(".cc",CAR).forEach(function(c,i){var ac=$(".ac",c);if(ac){var g2=$(".go2",ac);if(g2)g2.remove();var ix=document.createElement("span");ix.className="ix";ix.textContent=(i+1)+" / "+arr.length;ac.appendChild(ix)}
   c.addEventListener("click",function(e){if(e.target.closest("a"))return;var it=carItems[i];if(sel!==it){carTo(it)}})});
- CAR.scrollLeft=0;if(arr.length&&(!sel||arr.indexOf(sel)<0)){sel=arr[0];setTimeout(function(){render()},0)}markCar()}
-function markCar(){$$(".cc",CAR).forEach(function(c,i){c.classList.toggle("on",carItems[i]===sel)})}
+ CAR.scrollLeft=0;if(arr.length&&(!sel||arr.indexOf(sel)<0)){sel=arr[0];setTimeout(function(){render()},0)}markCar();nudge()}
+// はじめて地図を開いた時だけ、カードを少し横に動かして「めくれる」と見せる（1台に1回）
+function nudge(){if(!FS||RM||carItems.length<2)return;try{if(localStorage.getItem("tn_nudge"))return;localStorage.setItem("tn_nudge","1")}catch(e){return}
+ setTimeout(function(){CAR.classList.add("nudge");setTimeout(function(){CAR.classList.remove("nudge")},1200)},900)}
+function markCar(){$$(".cc",CAR).forEach(function(c,i){c.classList.toggle("on",carItems[i]===sel)});var k=carItems.indexOf(sel);CPV.hidden=k<=0;CNX.hidden=k<0||k>=carItems.length-1}
+// 11/2 オーナー「横にスライドしたら楽だけど伝わらないかも」→ カードの左右に「前・次」の丸いボタン（NN/g：めくれると分かる印と、指で払う以外の送り方も）
+var CW=document.createElement("div");CW.className="carw";CAR.parentNode.insertBefore(CW,CAR);CW.appendChild(CAR);
+function cbtn(c,t,l,d){var b=document.createElement("button");b.type="button";b.className="cnav "+c;b.textContent=t;b.setAttribute("aria-label",l);b.hidden=true;
+ b.addEventListener("click",function(){var j=carItems.indexOf(sel)+d;if(carItems[j])carTo(carItems[j])});CW.appendChild(b);return b}
+var CPV=cbtn("pv","‹","前のおでかけ",-1),CNX=cbtn("nx","›","次のおでかけ",1);
 function carTo(it){var i=carItems.indexOf(it);if(i<0)return;var c=$$(".cc",CAR)[i];carLock=it;sel=it;markCar();
  CAR.scrollTo({left:c.offsetLeft-(CAR.clientWidth-c.offsetWidth)/2,behavior:RM?"auto":"smooth"});setTimeout(function(){carLock=null},700);seePin(it)}
 function seePin(it){var q=P(it.lon,it.lat),mx=vb[2]*.12,my=vb[3]*.18;if(q[0]<vb[0]+mx||q[0]>vb[0]+vb[2]-mx||q[1]<vb[1]+my||q[1]>vb[1]+vb[3]-my)fly([q[0]-vb[2]/2,q[1]-vb[3]/2,vb[2],vb[3]])}
