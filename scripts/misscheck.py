@@ -36,7 +36,10 @@ def files(now):
         if not os.path.exists(f'koma4/{d}.json'):
             out.append(f'4コマ koma4/{d}.json が無い')
         if d >= '2026-10-30':  # 07:30 の関東おでかけリール（10/30から）
-            if not os.path.exists(f'reel/{d}.json'):
+            if os.path.exists(f'reel-hp/{d}.json'):  # 11/2 HPリールの日は、おでかけリールを翌週に回す
+                if not (load(f'reel-hp/out/{d}.json') or {}).get('url') and (d != today or now.hour < 18):
+                    out.append(f'HPリールの動画 reel-hp/out/{d}.json に url が無い（hp-reel.yml を動かす）')
+            elif not os.path.exists(f'reel/{d}.json'):
                 out.append(f'おでかけリール reel/{d}.json が無い（docs/outing-reel.md）')
             elif not (load(f'reel/out/{d}.json') or {}).get('url') and (d != today or now.hour < 8):
                 out.append(f'おでかけリールの動画 reel/out/{d}.json に url が無い（outing-reel.yml を動かす）')

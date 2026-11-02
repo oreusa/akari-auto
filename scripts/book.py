@@ -430,6 +430,7 @@ def run(now=None):
         append_log(now.date().isoformat(), f"4コマ 予約×：{str(e)[:150]}")
     try:
         changed |= book_outing_reel(cfg, state, now)
+        changed |= book_hp_reel(cfg, state, now)
     except BufferError as e:
         append_log(now.date().isoformat(), f"おでかけリール 予約×：{str(e)[:150]}")
     try:
@@ -738,6 +739,8 @@ def book_outing_reel(cfg, state, now):
     spec = load_json(path("reel", f"{day}.json"))
     if not spec or "instagram" not in cfg["channels"]:
         return False
+    if os.path.exists(path("reel-hp", f"{day}.json")):  # 11/2 HPリールの日はおでかけリールを出さない（翌週に回す）
+        return False
     slot = spec.get("time") or "07:30"
     due = datetime.fromisoformat(f"{day}T{slot}").replace(tzinfo=JST)
     mins = (due - now).total_seconds() / 60
@@ -787,6 +790,49 @@ def book_outing_reel(cfg, state, now):
     except BufferError as e:
         rec["error"] = str(e)[:200]
         append_log(day, f"おでかけリール instagram 予約×（{rec['tries']}回目）：{str(e)[:150]}")
+    return True
+
+
+def book_hp_reel(cfg, state, now):
+    """週1本のHPの紹介リール（11/2 オーナー「29秒のリールで、HPの本物の画面を順番に見せる」「夕方の枠と入れ替えて出す」）。
+    reel-hp/D.json（docs/hp-reel.md）→ hp-reel.yml が動画を作り reel-hp/out/D.json に URL → ここで夕方（time、ふつう18:00）に予約。"""
+    day = now.date().isoformat()
+    spec = load_json(path("reel-hp", f"{day}.json"))
+    if not spec or "instagram" not in cfg["channels"]:
+        return False
+    slot = spec.get("time") or "18:00"
+    due = datetime.fromisoformat(f"{day}T{slot}").replace(tzinfo=JST)
+    mins = (due - now).total_seconds() / 60
+    if mins > LEAD_MIN or mins < -4 * 60:
+        return False
+    top = state.setdefault(f"{day} HPリール", {})
+    rec = top.setdefault("instagram", {"tries": 0})
+    if rec.get("id") or rec.get("tries", 0) >= MAX_TRIES:
+        return False
+    made = load_json(path("reel-hp", "out", f"{day}.json")) or {}
+    if not made.get("url"):
+        if not rec.get("error"):
+            rec["error"] = made.get("error") or "動画がない"
+            append_log(day, f"HPリール 予約できない：{rec['error']}（reel-hp/out/{day}.json。hp-reel.yml を見る）")
+            return True
+        return False
+    cap = (spec.get("caption") or "").strip()
+    if IG_HEAD not in cap:
+        cap = cap.rstrip() + "\n\nくわしくはプロフィールのリンクから"
+    tags = " ".join(spec.get("ig_tags") or [])
+    if tags and tags not in cap:
+        cap += "\n\n" + tags
+    when = due if mins >= 3 else now + timedelta(minutes=3)
+    rec["tries"] = rec.get("tries", 0) + 1
+    try:
+        p = buffer_create(cfg["channels"]["instagram"], "instagram", [cap], when.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                          video=made["url"], ig_type="reel", alt="HPの紹介リール")
+        rec.update({"id": p["id"], "kind": "HPリール", "at": when.strftime("%H:%M"), "texts": [cap], "svc": "instagram"})
+        rec.pop("error", None)
+        append_log(day, f"HPリール instagram 予約OK（{when.strftime('%H:%M')}）")
+    except BufferError as e:
+        rec["error"] = str(e)[:200]
+        append_log(day, f"HPリール instagram 予約×（{rec['tries']}回目）：{str(e)[:150]}")
     return True
 
 

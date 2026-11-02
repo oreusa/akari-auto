@@ -1,0 +1,79 @@
+name: hp-reel（HPの紹介リールを作って置く・週1本）
+# 11/2 オーナー「29秒のリールで、HPの本物の画面を順番に見せる。最後は『プロフィールのリンクから』」「画面は毎週撮り直し」
+# 燈が reel-hp/D.json を保存すると動く。その時の本物のHP（usagi-life-notes.pages.dev）を撮って tools/hp_reel/make.py で動画にし、
+# Cloudflare Pages（akari-reels）に置いて URL を reel-hp/out/D.json に書く。予約は book.py（夕方 time にインスタのリール）。
+# 1回 約4分（週1回＝月約16分）。
+on:
+  push:
+    branches: [main]
+    paths: ["reel-hp/*.json"]
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "作り直す日（YYYY-MM-DD。空なら今日から3日の、まだ作っていない分）"
+        required: false
+permissions:
+  contents: write
+concurrency:
+  group: akari-hp-reel
+  cancel-in-progress: false
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      ONLY: ${{ github.event.inputs.date }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: 作る日を決める
+        id: days
+        run: |
+          set -eu
+          todo=""
+          for d in ${ONLY:-$(TZ=Asia/Tokyo date +%F) $(TZ=Asia/Tokyo date -d tomorrow +%F) $(TZ=Asia/Tokyo date -d '2 days' +%F)}; do
+            [ -f "reel-hp/$d.json" ] || continue
+            sha=$(sha1sum "reel-hp/$d.json" | cut -c1-12)
+            if [ -z "${ONLY:-}" ] && [ -f "reel-hp/out/$d.json" ] && grep -q "$sha" "reel-hp/out/$d.json"; then continue; fi
+            todo="$todo $d"
+          done
+          echo "todo=$todo" >> "$GITHUB_OUTPUT"; echo "作る日：$todo"
+      - name: 道具（ffmpeg・Chromium）
+        if: steps.days.outputs.todo != ''
+        run: |
+          command -v ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+          pip install -q pillow
+          mkdir -p /tmp/pw && cd /tmp/pw && npm init -y -q >/dev/null && npm i -q playwright@1.47.2 && npx playwright install chromium
+      - name: HPを撮る・動画を作る・置く
+        if: steps.days.outputs.todo != ''
+        env:
+          NODE_PATH: /tmp/pw/node_modules
+          TODO: ${{ steps.days.outputs.todo }}
+        run: |
+          set -eu
+          mkdir -p reel-hp/out
+          for d in $TODO; do
+            sha=$(sha1sum "reel-hp/$d.json" | cut -c1-12)
+            if ! python3 tools/hp_reel/make.py "reel-hp/$d.json" "/tmp/$d.mp4"; then
+              python3 -c "import json,sys;json.dump({'date':sys.argv[1],'error':'動画を作れない','spec_sha':sys.argv[2]},open(f'reel-hp/out/{sys.argv[1]}.json','w'),ensure_ascii=False)" "$d" "$sha"; continue
+            fi
+            python3 - "$d" "$sha" <<'PY'
+          import json, sys, time
+          sys.path.insert(0, "scripts")
+          import igreel
+          d, sha = sys.argv[1], sys.argv[2]
+          url, err = igreel.host_bytes(open(f"/tmp/{d}.mp4", "rb").read(), f"{d}-hp-{time.strftime('%H%M%S')}")
+          out = {"date": d, "spec_sha": sha, "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+          out.update({"url": url} if url else {"error": err})
+          json.dump(out, open(f"reel-hp/out/{d}.json", "w"), ensure_ascii=False, indent=1)
+          print(out)
+          PY
+          done
+      - name: 保存
+        if: steps.days.outputs.todo != ''
+        run: |
+          git config user.name "akari-auto"; git config user.email "akari-auto@users.noreply.github.com"
+          git add reel-hp/out
+          git diff --cached --quiet && exit 0
+          git commit -q -m "HPリールの動画を置いた"
+          for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done
