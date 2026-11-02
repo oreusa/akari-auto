@@ -87,7 +87,7 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 
 <nav class="cos"><a href="https://ig.me/m/ai_usagichan1" data-k="入口｜おでかけ掲載"><small>LISTING</small><b>おでかけ掲載</b><span>新しいお店や、毎年のイベントのご紹介</span></a><a href="https://room.rakuten.co.jp/ai_usagichan/items" data-k="入口｜楽天ROOM"><small>RAKUTEN ROOM</small><b>楽天ROOM</b><span>うさぎが比べて選んだ物を、まとめて置いています</span></a></nav>
 <div class="sns"><h2>FOLLOW</h2><a href="https://www.instagram.com/ai_usagichan1/">Instagram</a><a href="https://www.threads.com/@ai_usagichan1">Threads</a><a href="https://x.com/ai_usagichan">X</a></div>
-<div class="ft">LIFE NOTE（ライフノート）</div></div>
+<a href="/privacy" style="display:block;text-align:center;font-size:11px;color:#8C7B6E;margin:18px 0 0">プライバシーポリシーと広告について</a><div class="ft">LIFE NOTE（ライフノート）</div></div>
 <script>(function(){{
 var PC={json.dumps(PC, ensure_ascii=False)},EN={json.dumps(EN, ensure_ascii=False)};
 /* どの投稿から来たか（?f=）は、リストに移っても数えられるように覚えておく（リストと同じ sessionStorage の f） */

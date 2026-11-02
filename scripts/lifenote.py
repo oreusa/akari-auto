@@ -79,7 +79,7 @@ for r in [r'<section class="sbox" id="sale"', r'<nav class="cats"', r'<section c
 o = cut(o, r'<a class="co" data-en="RAKUTEN ROOM"')
 o = re.sub(r'<p class="sub">.*?</p>', '<p class="sub">関東の今日から・新しく・無料で行ける場所を、<br>公式ページつきで、毎日のせています</p>', o, count=1, flags=re.S)
 o = re.sub(r'<p class="pr-note">.*?</p>',
-           '<p class="pr-note">このページには楽天トラベルの広告（PR）があります（近くの宿）。<br>泊まる前に、楽天トラベルのページで最新の情報を確かめてください。</p>', o, count=1, flags=re.S)
+           '<p class="pr-note">このページには楽天トラベルの広告（PR）があります（近くの宿）。<br>泊まる前に、楽天トラベルのページで最新の情報を確かめてください。<br><a href="/privacy">プライバシーポリシーと広告について</a></p>', o, count=1, flags=re.S)
 o = re.sub(r'<p class="ft">.*?</p>', '<p class="ft">LIFE NOTE│過去のおでかけも、このページに残していきます</p>'
            '<a class="tnx" href="/okaimono" data-k="下の入口｜おかいものリスト"><small>関連サイト</small><b>くらべたおかいものリスト<span>→</span></b><i>うさぎが数字で比べた物と、本当に安い物</i></a>', o, count=1, flags=re.S)
 o = meta(o, "関東おでかけリスト｜LIFE NOTE", "関東で、今日から・新しく・無料で行ける場所を、公式ページつきで毎日。地図・いまから行ける所・近くの宿も。", "/odekake")
