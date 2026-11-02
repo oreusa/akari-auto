@@ -156,7 +156,7 @@ def render(cats, now):
 .big{{background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;margin:18px 0 0;text-align:center;display:grid;grid-template-columns:1fr 1fr;gap:8px}}
 .big b{{display:block;font:600 28px/1.2 var(--min);color:var(--ink);letter-spacing:.04em}}.big span{{font-size:12px;color:var(--mute)}}
 .note{{font-size:12px;line-height:1.85;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 14px;margin:14px 0 0}}
-</style><script src="/assets/night.js?v=3"></script><script src="/assets/menu.js?v=6" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=3" defer></script></head>
+</style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=6" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=3" defer></script></head>
 <body><div class="wrap">
 <header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
 <p class="en">FURUSATO NOZEI</p>
