@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-03 06:36",
+  "at": "2026-11-03 06:42",
   "since": "2026-11-01",
   "tracked": 244,
   "days": 2,
@@ -15,6 +15,18 @@
       "av": 4.42,
       "shop": "mottole(モットル)",
       "plain": "https://item.rakuten.co.jp/mottole-shop/10000179/"
+    },
+    {
+      "title": "プロテイン",
+      "name": "SAVE ホエイプロテイン ザ・ナチュラル！ ( 1kg / 3kg / 5kg ) ノンフ…",
+      "price": 6390,
+      "base": 6790.0,
+      "pct": 6,
+      "days": 2,
+      "rc": 1604,
+      "av": 4.63,
+      "shop": "シープウィング",
+      "plain": "https://item.rakuten.co.jp/auc-sheepwing/10001895/"
     }
   ],
   "ups": [
