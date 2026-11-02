@@ -60,22 +60,22 @@ def from_index(ix):
     names = dict(re.findall(r'<button data-c="(\w+)">([^<]+)<i>', ix))  # 比べた物の種類（stab）
     for a in block(ix, r'<article class="card cmp hot"'):
         out.append(dict(tab="pick", cat="いち押し", top="今日のうさぎのいち押し", title=txt(first(r'<div class="t">(.*?)</div>', a)),
-                        sub=txt(first(r'<p class="why">(.*?)</p>', a)), href=html.unescape(first(r'<a class="buy" href="([^"]+)"', a)), pr=True, rate=rate_of(a)))
+                        sub=txt(first(r'<p class="why">(.*?)</p>', a)), href=html.unescape(first(r'<a class="buy" href="([^"]+)"', a)), pr=True, rate=rate_of(a), but=txt(first(r'<p class="why but">(.*?)</p>', a))))
     for a in block(ix, r'<article data-c="\w+" class="card sh'):
         c = first(r'data-c="(\w+)"', a)
         when = txt(first(r'<span class="when">(.*?)</span>', a))
         out.append(dict(tab="pick", cat=names.get(c, "くらしの物"), top=when or "3つ以上を比べて選んだ物",
                         title=txt(first(r'<div class="t">(.*?)</div>', a)), sub=txt(first(r'<p class="why">(.*?)</p>', a)),
-                        href=html.unescape(first(r'<a class="buy" href="([^"]+)"', a)), pr=True, rate=rate_of(a)))
+                        href=html.unescape(first(r'<a class="buy" href="([^"]+)"', a)), pr=True, rate=rate_of(a), but=txt(first(r'<p class="why but">(.*?)</p>', a))))
     trip = (block(ix, r'<section class="blk" id="trip"') or [""])[0]
     for a in block(trip, r'<article class="card'):
         out.append(dict(tab="pick", cat="宿", top="口コミ1,000件以上・評価4.5以上の宿", title=txt(first(r'<div class="t">(.*?)</div>', a)),
                         sub=txt(first(r'<p class="why">(.*?)</p>', a)), href=html.unescape(first(r'<a class="buy" href="([^"]+)"', a)), pr=True,
-                        rate=rate_of(a), img=html.unescape(first(r'<img class="ph" src="([^"]+)"', a))))
+                        rate=rate_of(a), but=txt(first(r'<p class="why but">(.*?)</p>', a)), img=html.unescape(first(r'<img class="ph" src="([^"]+)"', a))))
     deal = (block(ix, r'<section class="blk" id="deal"') or [""])[0]
     for a in block(deal, r'<div class="card it"'):
-        out.append(dict(tab="sale", cat="お店のお得", top=txt(first(r'<span class="when">(.*?)</span>', a)),
-                        title=txt(first(r'<div class="t">(.*?)</div>', a)), sub="公式ページで確かめたお得です",
+        out.append(dict(tab="sale", kind="deal", cat="お店のお得", top=txt(first(r'<span class="when">(.*?)</span>', a)),
+                        title=txt(first(r'<div class="t">(.*?)</div>', a)), sub="",
                         href=html.unescape(first(r'<a class="go" href="([^"]+)"', a)), pr=False, e=first(r'data-e="([^"]+)"', a)))
     return [x for x in out if x["href"] and x["title"]]
 
@@ -175,40 +175,74 @@ def collect(ix):
         cards.append(li_card(txt(first(r'<span class="ct">(.*?)</span>', li)) or "値下がり", li, "down", "値下がり"))
     for cat, li in lis("kaimawari.html"):
         c = li_card(cat, li, "sale", "1,000円ぽっきり")
-        c["top"] = "買いまわりの1,000円ぽっきり（送料込み）"
+        c["top"] = "1,000円ぽっきり（送料込み）"
         cards.append(c)
     cards = [c for c in cards if c["href"] and c["title"]]
     photos(cards)
     return cards
 
 
-def card_html(c, col):
+def last_num(t):
+    """「1Lあたり 75.6円」→ ("1Lあたり", "75.6", "円")。いちばん後ろの数字が主役。"""
+    ms = list(re.finditer(r"([\d,.]+)(円|kg|g|L|ロール|m|個|本)", t))
+    if not ms:
+        return None
+    m = ms[-1]
+    return t[:m.start()].strip(), m.group(1), m.group(2)
+
+
+def card_html(c, col, i=0):
+    """11/2 100サイトを見て作り直し（mybest・価格.com・LOHACO・Wirecutter・Baymard・北欧暮らしの道具店 ほか）。
+    数字で選ぶ物（1個あたり・値下がり・セール）は横長の1行カード：左に写真の台、右に「1Lあたり○円」を主役、平均との差、送料込みの値段、★と件数。
+    比べて選んだ物は大きな写真のカード：見出し・選んだ理由・「ただし」（正直な弱み）・評価。
+    PRの札はカードに付けず、ページの上に1行（mybest と同じ。11/2 オーナー「PRっぽくない方が読まれる」）。"""
     pc = col.get(c["cat"], "#8C7B6E")
     rel = "sponsored noopener" if c["pr"] else "noopener"
-    chips = f'<span class="p" data-p="{E(c["cat"])}">{E(c["cat"])}</span>' + ('<span class="f">PR</span>' if c["pr"] else '<span class="f">公式</span>')
     e = f' data-e="{E(c["e"])}"' if c.get("e") else ""
     u = real_url(c["href"])
-    btn = "楽天トラベルで見る" if "travel.rakuten" in u else ("楽天で見る" if c["pr"] else "公式ページを見る")
-    img = (f'<span class="kp"><img src="{E(c["img"])}" alt="" width="96" height="96" loading="lazy" decoding="async" '
-           f'referrerpolicy="no-referrer" onerror="this.parentNode.classList.add(\'no\');this.remove()">'
-           + (f'<em class="krk">{"No." + c["rk"]}</em>' if c.get("rk") and c["tab"] == "unit" else "") + '</span>') if c.get("img") else ""
-    bar = ""
-    if c.get("pct"):
-        bar = (f'<div class="kbar" aria-label="比べた平均より{c["pct"]}%安い">'
-               f'<div class="kbr"><span>この商品</span><i style="width:{100 - c["pct"]}%"></i><b>{c["pct"]}%安い</b></div>'
-               f'<div class="kbr av"><span>比べた平均</span><i style="width:100%"></i></div></div>')
-    top = E(c["top"])
-    top = re.sub(r"([\d,.]+)(円|%)", r"<b>\1</b>\2", top)
-    return (f'<div class="card it kc{"" if img else " noimg"}" data-pref="{E(c["cat"])}" data-free="0" data-wk="0"{e} style="--pc:{pc}">'
-            f'<div class="v2c">{chips}</div><div class="kb">{img}<div class="kx">'
-            f'<div class="v2d">{top}</div>'
-            + (f'<div class="kbig">{E(c["big"])}</div>' if c.get("big") and not c.get("pct") else "")
-            + f'<div class="t"><a class="go" href="{E(c["href"])}" rel="{rel}" target="_blank" aria-label="{E(c["title"][:40])}を{btn[:-2]}で開く">'
-            f'<span class="nwp">{E(c["title"])}</span></a></div>'
-            + (f'<div class="ks">{E(c["sub"])}</div>' if c["sub"] else "")
-            + '</div></div>' + bar
-            + f'<div class="kf"><span class="kr">{E(c.get("rate") or "")}</span><span class="kbtn">{btn}<i>→</i></span></div>'
-            '</div>')
+    shop = "楽天トラベル" if "travel.rakuten" in u else ("楽天" if c["pr"] else "公式ページ")
+    img = (f'<img src="{E(c["img"])}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" '
+           f'onerror="this.parentNode.classList.add(\'no\');this.remove()">') if c.get("img") else ""
+    ph_cls = "kp" + ("" if img else " no")
+    go = (f'<a class="go" href="{E(c["href"])}" rel="{rel}" target="_blank" aria-label="{E(c["title"][:40])}を{shop}で見る">'
+          f'<span class="nwp">{E(c["title"])}</span></a>')
+    rate = c.get("rate") or ""
+    rate = re.sub(r"★\s*([\d.]+)\s*[・ ]\s*レビュー\s*([\d,]+)件", r"★\1（\2件）", rate)
+    unit = c["tab"] in ("unit", "down", "sale") and c.get("sub") is not None and c["tab"] != "pick" and c.get("kind") != "deal"
+    cid = f' id="k{i}"'
+    if unit:
+        top = E(c["top"])
+        m = last_num(c["top"])
+        if m:
+            hero = (f'<div class="kv"><span class="kvl">{E(m[0])}</span>'
+                    f'<b>{E(m[1])}</b><span class="kvu">{E(m[2])}</span></div>')
+        else:
+            hero = f'<div class="kv"><span class="kvl">{top}</span></div>'
+        diff = ""
+        if c.get("pct"):
+            diff = f'<span class="kd">平均より{c["pct"]}%安い</span>'
+        elif c.get("big"):
+            diff = f'<span class="kd">{E(c["big"].replace("比べた全部の", ""))}</span>'
+        rk = f'<em class="krk{" top" if c.get("rk") in ("1", "2", "3") else ""}">{E(c["rk"])}</em>' if c.get("rk") else ""
+        price = c.get("sub") or ""
+        return (f'<div class="card it kc ku" data-pref="{E(c["cat"])}" data-free="0" data-wk="0"{e}{cid} style="--pc:{pc}">'
+                f'<div class="{ph_cls}">{rk}{img}</div><div class="kx">'
+                f'<span class="kcat">{E(c["cat"])}</span>{hero}{diff}'
+                f'<div class="t">{go}</div>'
+                + (f'<div class="ks">{E(price)}</div>' if price else "")
+                + (f'<div class="kr">{E(rate)}</div>' if rate else "")
+                + f'<span class="kgo">{shop}で見る<i>›</i></span></div></div>')
+    # 比べて選んだ物（大きなカード）
+    why = c.get("sub") or ""
+    but = c.get("but") or ""
+    return (f'<div class="card it kc kb2" data-pref="{E(c["cat"])}" data-free="0" data-wk="0"{e}{cid} style="--pc:{pc}">'
+            f'<div class="{ph_cls}">{img}</div><div class="kx">'
+            f'<span class="kcat">{E(c["cat"])}<i>{E(c["top"])}</i></span>'
+            f'<div class="t">{go}</div>'
+            + (f'<p class="kwhy"><b>選んだ理由</b>{E(why)}</p>' if why else "")
+            + (f'<p class="kbut"><b>ただし</b>{E(but.replace("ただし、", "").replace("ただし", ""))}</p>' if but else "")
+            + '<div class="kf">' + (f'<span class="kr">{E(rate)}</span>' if rate else "<span></span>")
+            + f'<span class="kgo">{shop}で見る<i>›</i></span></div></div></div>')
 
 
 TABS = [("pick", "COMPARED", "くらべた物", "/okaimono", ""),
@@ -237,7 +271,8 @@ def build(od, ix):
     h = od
     # ---- 見出し
     h = re.sub(r'<h1 class="ttl">.*?</h1>', '<h1 class="ttl">くらべたおかいものリスト</h1>', h, count=1, flags=re.S)
-    h = re.sub(r'<p class="sub">.*?</p>', '<p class="sub">うさぎが3つ以上を数字で比べて選んだ物と、<br>本当に安くなった物を、毎日のせています</p>', h, count=1, flags=re.S)
+    h = re.sub(r'<p class="sub">.*?</p>', '<p class="sub">楽天の送料込みの値段を、1個あたりに直して、<br>うさぎが毎日くらべています</p>'
+               '<p class="kprl">このページには楽天の広告（アフィリエイト）リンクがあります</p>', h, count=1, flags=re.S)
     h = re.sub(r'<div class="sea">.*?</div>', "", h, count=1, flags=re.S)
     # 上の3つの入口（いま行ける・地図・イルミ）と季節の輪はおでかけだけ → 外す（月の不動産リストと同じ：入口1行＋件数）
     h = re.sub(r'<script>document\.documentElement\.classList\.add\("top2"\)</script><link rel="stylesheet" href="/assets/top2\.css[^"]*">', "", h)
@@ -251,7 +286,7 @@ def build(od, ix):
         go = first(r'<a class="sb-go" href="([^"]+)"', sale)
         nm, wh = txt(first(r'<p class="sb-t">(.*?)</p>', sale)), txt(first(r'<p class="sb-w">(.*?)</p>', sale))
         top = (f'<a class="ilk" href="{go}" rel="sponsored noopener" target="_blank" data-k="上の入口｜セールのエントリー">{E(nm)}　エントリー<span>→</span></a>'
-               f'<p class="ilks">{E(wh)}（楽天アフィリエイトの広告）</p>')
+               f'<p class="ilks">{E(wh)}</p>')
     else:
         top = '<a class="ilk" href="/furusato" data-k="上の入口｜ふるさと納税">ふるさと納税 寄付1万円あたりで比べた<span>→</span></a>'
     n = {t: sum(1 for c in cards if c["tab"] == t) for t, *_ in TABS}
@@ -274,11 +309,10 @@ def build(od, ix):
     if fs["seen"] and n["unit"]:
         steps = [("楽天で見た商品", fs["seen"]), ("量を読んで、1個あたりに直した", fs["read"]),
                  ("レビュー1,000件以上・評価4.0以上", fs["ok"]), ("同じお店は1つにして、安い順にのせた", n["unit"])]
-        fun = ('<section class="kfun" aria-label="うさぎの比べ方"><p class="kft"><i>HOW WE COMPARE</i>うさぎの比べ方</p>'
-               + "".join(f'<div class="kfs"><span class="kfl">{E(l)}</span><b>{v:,}<small>件</small></b>'
-                         f'<span class="kfb"><i style="width:{max(3, round(v * 100 / fs["seen"]))}%"></i></span></div>' for l, v in steps)
-               + (f'<p class="kfx">のせた物は、比べた平均より<b>最大{best}%</b>安い</p>' if best else "")
-               + '<p class="kfn">毎日2回、楽天の送料込みの値段で比べ直しています</p></section>')
+        lab = ["楽天で見た", "量で比べた", "評価の条件", "のせた"]
+        fun = ('<section class="kfun" aria-label="うさぎの比べ方"><p class="kft">うさぎが楽天で比べて、しぼりました</p><div class="kfr">'
+               + '<i class="kfa">→</i>'.join(f'<div class="kfs"><b>{v:,}</b><span>{lab[i]}</span></div>' for i, (l, v) in enumerate(steps))
+               + '</div>' + (f'<p class="kfx">のせた物は、比べた平均より<b>最大{best}%</b>安い</p>' if best else "") + '</section>')
     flt = ('<nav class="flt" data-v="odekake" aria-label="しぼりこみ"><button class="on" data-p="">すべて</button>'
            + "".join(f'<button data-p="{E(c)}" style="--pc:{col[c]}">{E(c)}</button>' for c in cats) + "</nav>")
     first_t = next((t for t, *_ in TABS if n[t]), "pick")
@@ -287,8 +321,8 @@ def build(od, ix):
         for t, en, jp, *_ in TABS) + "</nav>")
     panes = ""
     for t, en, jp, link, lt in TABS:
-        cs = [card_html(c, col) for c in cards if c["tab"] == t]
-        more = f'<button class="gm" type="button" data-l="もっと見る（あと">もっと見る（あと{len(cs) - 5}件）</button>' if len(cs) > 5 else ""
+        cs = [card_html(c, col, cards.index(c)) for c in cards if c["tab"] == t]
+        more = f'<button class="gm" type="button" data-l="もっと見る（あと">もっと見る（あと{len(cs) - 8}件）</button>' if len(cs) > 8 else ""
         deep = f'<a class="pdeep" href="{link}" data-k="タブの下｜{jp}">{lt}<span>→</span></a>' if lt else ""
         panes += (f'<div class="pane" data-t="{t}"{"" if t == first_t else " hidden"}>{"".join(cs)}{more}'
                   f'<p class="none">{NONE.get(t, "この種類の物は、これから増やしていきます")}</p>{deep}</div>')
@@ -297,7 +331,29 @@ def build(od, ix):
     for r in (r'<nav class="flt"', r'<p class="cnt"', r'<section class="blk arch" id="archive"'):
         for b in block(h, r):
             h = h.replace(b, "", 1)
-    h = h.replace('<section class="blk" id="odekake"', top + fun + cnt + flt + '<section class="blk" id="odekake"', 1)
+    # 11/2 うさぎの結論（360life・mybest のベストバイ型を、種類ごとの1位を1行ずつに）。押すとその商品のカードへ
+    con = ""
+    ones = [(i, c) for i, c in enumerate(cards) if c["tab"] == "unit" and c.get("rk") == "1"]
+    if ones:
+        rows = ""
+        for i, c in ones:
+            m = last_num(c["top"])
+            val = f'{E(m[1])}<small style="display:inline;color:#1A1A1A;font-size:11px">{E(m[2])}</small>' if m else ""
+            lab = (m[0] if m else c["top"]).split("・")[-1]
+            nm = ("ふるさと納税・" + c["top"].split("・")[0]) if c["cat"] == "ふるさと納税" else c["cat"]
+            sub = f'平均より{c["pct"]}%安い' if c.get("pct") else E(c.get("big", "").replace("比べた全部の", ""))
+            im = f'<img src="{E(c["img"])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if c.get("img") else '<i class="ph0"></i>'
+            rows += (f'<a href="#k{i}" data-t="unit" data-p="{E(c["cat"])}" data-k="結論｜{E(c["cat"])}">{im}'
+                     f'<span><b>{E(nm)}</b>{E(lab)}{"いちばん多い" if c["cat"] == "ふるさと納税" else "いちばん安い"}</span><em>{val}<small>{sub}</small></em></a>')
+        upd = first(r'"at": "([^"]+)"', open(os.path.join(R, "data", "tanka.json"), encoding="utf-8").read()) if os.path.exists(os.path.join(R, "data", "tanka.json")) else ""
+        con = (f'<section class="kcon" aria-label="うさぎの結論"><div class="kch"><b>うさぎの結論</b><small>{E(upd[5:].replace("-", "/"))} 楽天で確かめた値段</small></div>{rows}</section>')
+    # ふるさと納税の締め切り（細い帯1本だけ。秒のカウントダウンはしない）
+    import datetime
+    today = datetime.datetime.utcnow() + datetime.timedelta(hours=9)
+    left = (datetime.datetime(today.year, 12, 31) - today).days + 1
+    dl = (f'<a class="kdl" href="/furusato" data-k="上の帯｜ふるさと"><span>ふるさと納税　今年の分は12/31まで</span><span>あと<b>{left}</b>日 ›</span></a>'
+          if 0 < left <= 100 else "")
+    h = h.replace('<section class="blk" id="odekake"', top + con + fun + dl + cnt + flt + '<section class="blk" id="odekake"', 1)
     # ---- 下の欄
     h = re.sub(r'<p class="tip">.*?</p>', "", h, flags=re.S)
     h = re.sub(r'<p class="pr-note">.*?</p>',
@@ -311,41 +367,68 @@ def build(od, ix):
                '<b>関東おでかけリスト<span>→</span></b><i>関東のイベント・新しいお店や施設を、公式ページつきで</i></a>', h, count=1, flags=re.S)
     css = ('<style>'
            '.ilks{text-align:center;font-size:11px;color:var(--sub);margin:-12px 0 16px}'
-           # 買い物のカード：左に商品の写真、右に「1Lあたり○円」と名前、下に評価と「楽天で見る」
-           '#odekake .card.it.kc{padding:14px 14px 14px 16px}'
+           # 11/2 100サイトを見て：白・細線・影なし。数字は Jost、主役は1個あたり。写真は冷たいグレーの台に乗せてそろえる
+           '#odekake .pane:not([hidden]){display:block}'
+           '#odekake .card.it.kc{margin:0 0 12px;padding:14px;border:1px solid #E8E8E8;border-radius:12px;box-shadow:none!important;background:#fff}'
            '#odekake .card.it.kc:after{content:none}'
-           '#odekake .kc .kb{display:flex;gap:12px;align-items:flex-start;margin-top:8px}'
-           '#odekake .kc .kp{flex:none;width:96px;height:96px;border-radius:8px;background:#fff;border:1px solid #ECECEC;overflow:hidden;display:flex;align-items:center;justify-content:center}'
-           '#odekake .kc .kp img{width:100%;height:100%;object-fit:contain;display:block}'
+           '#odekake .kc .kp{position:relative;flex:none;background:#F5F5F7;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}'
+           '#odekake .kc .kp img{width:100%;height:100%;object-fit:contain;padding:8%;box-sizing:border-box;mix-blend-mode:multiply;display:block}'
            '#odekake .kc .kp.no{display:none}'
-           '#odekake .kc .kx{flex:1;min-width:0}'
-           '#odekake .kc .v2d{margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:12.5px;line-height:1.5;letter-spacing:.02em;color:color-mix(in srgb,var(--pc) 72%,#000);font-weight:700}'
-           '#odekake .kc .v2d b{font-family:Jost,sans-serif;font-size:19px;font-weight:600;letter-spacing:0;margin:0 1px}'
-           '#odekake .kc .kbig{display:inline-block;margin:4px 0 2px;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--pc) 12%,#fff);color:color-mix(in srgb,var(--pc) 70%,#000);font-size:11px;font-weight:700}'
-           '#odekake .kc .t{margin:4px 0 0;font-size:14px;line-height:1.5;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}'
-           '#odekake .kc .ks{margin-top:4px;font-size:12px;line-height:1.55;color:var(--sub);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}'
-           '#odekake .kc .kf{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding-top:10px;border-top:1px dashed #E4E4E4}'
-           '#odekake .kc .kr{font-size:11.5px;color:var(--sub);min-width:0}'
-           '#odekake .kc .kbtn{flex:none;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:99px;background:var(--pc);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.04em}'
-           '#odekake .kc .kbtn i{font-style:normal;font-family:Jost,sans-serif}'
-           '#odekake .kc .kp{position:relative}'
-           '#odekake .kc .krk{position:absolute;left:0;top:0;padding:3px 7px;border-radius:0 0 8px 0;background:var(--pc);color:#fff;font:600 11px/1.2 Jost,sans-serif;font-style:normal;letter-spacing:.04em}'
-           '#odekake .kc .kbar{margin-top:10px;display:grid;gap:4px}'
-           '#odekake .kc .kbr b{font:700 11px "Zen Kaku Gothic New",sans-serif;color:color-mix(in srgb,var(--pc) 72%,#000);white-space:nowrap}'
-           '#odekake .kc .kbr{display:grid;grid-template-columns:64px 1fr 56px;align-items:center;gap:8px;font-size:10.5px;color:var(--sub)}'
-           '#odekake .kc .kbr i{display:block;height:8px;border-radius:99px;background:var(--pc)}'
-           '#odekake .kc .kbr.av i{background:#D5D7DB}'
-           '.kfun{margin:4px 0 22px;padding:18px 16px 14px;border:1px solid #E6E7EA;border-radius:12px;background:#fff}'
-           '.kft{margin:0 0 12px;text-align:center;font:600 15px/1.4 var(--min);letter-spacing:.14em;color:#231E1B}'
-           '.kft i{display:block;font:400 9.5px/1.6 Jost,sans-serif;letter-spacing:.32em;color:#9C8775;font-style:normal}'
-           '.kfs{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2px 10px;margin-top:10px}'
-           '.kfl{font-size:12px;color:#5E554F}'
-           '.kfs b{font:600 22px/1 Jost,sans-serif;color:#231E1B;text-align:right}.kfs b small{font:700 11px "Zen Kaku Gothic New",sans-serif;margin-left:2px;color:#5E554F}'
-           '.kfb{grid-column:1/3;height:10px;border-radius:99px;background:#F1F2F4;overflow:hidden}'
-           '.kfb i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#C2703F,#E0A070)}'
-           '.kfs:last-of-type .kfb i{background:#C2703F}'
-           '.kfx{margin:14px 0 0;text-align:center;font-size:13px;font-weight:700;color:#231E1B}.kfx b{font:600 20px Jost,sans-serif;color:#C2703F;margin:0 3px}'
-           '.kfn{margin:6px 0 0;text-align:center;font-size:11px;color:#8C7B6E}'
+           '#odekake .kc .t{margin:4px 0 0;font-size:14px;line-height:1.5;font-weight:700;color:#1A1A1A;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}'
+           '#odekake .kc .t .nwp{display:inline}'
+           '#odekake .kc .kcat{display:block;font-size:11px;letter-spacing:.08em;color:#6B6B6B}'
+           '#odekake .kc .kcat:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pc);margin-right:6px;vertical-align:1px}'
+           '#odekake .kc .kcat i{font-style:normal;margin-left:8px;color:#9A9A9A;letter-spacing:.02em}'
+           '#odekake .kc .kr{margin-top:4px;font:500 12px/1.4 Jost,"Zen Kaku Gothic New",sans-serif;color:#1A1A1A}'
+           '#odekake .kc .kgo{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#1A1A1A;border-bottom:1px solid #1A1A1A;padding-bottom:1px}'
+           '#odekake .kc .kgo i{font-style:normal;font-family:Jost,sans-serif;font-size:15px;line-height:1}'
+           # 横長（1個あたり・値下がり・セール）
+           '#odekake .kc.ku{display:flex;gap:14px;align-items:flex-start}'
+           '#odekake .kc.ku .kp{width:104px;height:104px}'
+           '#odekake .kc.ku .kx{flex:1;min-width:0}'
+           '#odekake .kc .krk{position:absolute;left:6px;top:6px;z-index:1;min-width:24px;height:24px;padding:0 5px;box-sizing:border-box;border-radius:99px;border:1px solid #BDBDBD;background:#fff;color:#6B6B6B;font:500 12px/22px Jost,sans-serif;font-style:normal;text-align:center}'
+           '#odekake .kc .krk.top{background:#1A1A1A;border-color:#1A1A1A;color:#fff}'
+           '#odekake .kc .kv{margin-top:2px;display:flex;align-items:baseline;gap:3px;flex-wrap:wrap;color:#1A1A1A}'
+           '#odekake .kc .kvl{font-size:11.5px;color:#6B6B6B;margin-right:2px}'
+           '#odekake .kc .kv b{font:500 26px/1.1 Jost,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em}'
+           '#odekake .kc .kvu{font-size:12px;font-weight:700}'
+           '#odekake .kc .kd{display:inline-block;margin-top:4px;padding:2px 8px;border-radius:99px;background:#E8F3EE;color:#1F6B4F;font-size:11px;font-weight:700}'
+           '#odekake .kc.ku .t{font-size:12.5px;font-weight:500;color:#333;margin-top:6px}'
+           '#odekake .kc .ks{margin-top:3px;font-size:11.5px;line-height:1.5;color:#6B6B6B}'
+           '#odekake .kc.ku .kgo{margin-top:8px}'
+           # 大きなカード（比べて選んだ物）
+           '#odekake .kc.kb2{padding:0;overflow:hidden}'
+           '#odekake .kc.kb2 .kp{border-radius:0;aspect-ratio:4/3;width:100%}'
+           '#odekake .kc.kb2 .kp img{padding:6%}'
+           '#odekake .kc.kb2 .kx{padding:14px 16px 16px}'
+           '#odekake .kc.kb2 .t{margin-top:6px;font:600 18px/1.5 var(--min);letter-spacing:.02em;-webkit-line-clamp:3}'
+           '#odekake .kc .kwhy,#odekake .kc .kbut{margin:10px 0 0;font-size:12.5px;line-height:1.7;color:#333}'
+           '#odekake .kc .kwhy b,#odekake .kc .kbut b{display:inline-block;margin-right:8px;font-size:10.5px;letter-spacing:.06em;color:#1F6B4F;border:1px solid currentColor;border-radius:3px;padding:0 5px;line-height:1.6;vertical-align:1px}'
+           '#odekake .kc .kbut{color:#555;margin-top:6px}#odekake .kc .kbut b{color:#8A6D3B}'
+           '#odekake .kc .kf{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid #EFEFEF}'
+           # ページの上の1行（広告の表示）と、結論
+           '.head .kprl{position:relative;margin:10px 0 0;text-align:center;font-size:10.5px;line-height:1.5;color:#9A9A9A}'
+           '.kcon{margin:0 0 16px;border:1px solid #E8E8E8;border-radius:12px;overflow:hidden}'
+           '.kcon .kch{display:flex;justify-content:space-between;align-items:baseline;padding:12px 14px 8px}'
+           '.kcon .kch b{font:600 15px/1.4 var(--min);letter-spacing:.08em;color:#1A1A1A}'
+           '.kcon .kch small{font-size:10.5px;color:#9A9A9A}'
+           '.kcon a{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:9px 14px;border-top:1px solid #F0F0F0;text-decoration:none;color:#1A1A1A}'
+           '.kcon a img,.kcon a .ph0{width:44px;height:44px;border-radius:8px;background:#F5F5F7;object-fit:contain;mix-blend-mode:multiply}'
+           '.kcon a .ph0{display:block}'
+           '.kcon a span{min-width:0;font-size:11.5px;color:#6B6B6B;line-height:1.4}'
+           '.kcon a span b{display:block;font-size:13px;color:#1A1A1A;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+           '.kcon a em{font-style:normal;text-align:right;font:500 20px/1.1 Jost,sans-serif;color:#1A1A1A;white-space:nowrap}'
+           '.kcon a em small{display:block;font:700 10px "Zen Kaku Gothic New",sans-serif;color:#1F6B4F;margin-top:2px}'
+           '.kdl{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 10px;padding:8px 12px;border-radius:8px;background:#F5F5F7;font-size:11.5px;color:#333;text-decoration:none}'
+           '.kdl b{font:500 15px Jost,sans-serif;color:#1A1A1A;margin:0 2px}'
+           '.kfun{margin:0 0 18px;padding:12px 12px 10px;border:1px solid #E6E7EA;border-radius:12px;background:#fff}'
+           '.kft{margin:0 0 8px;text-align:center;font:600 12.5px/1.4 "Zen Kaku Gothic New",sans-serif;letter-spacing:.06em;color:#231E1B}'
+           '.kft i{display:none}'
+           '.kfr{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;text-align:center}'
+           '.kfs b{display:block;font:600 19px/1.1 Jost,sans-serif;color:#231E1B}.kfs:last-child b{color:#C0392B;font-size:23px}'
+           '.kfs span{display:block;margin-top:3px;font-size:9.5px;line-height:1.3;color:#8C7B6E}'
+           '.kfa{color:#C9B8A8;font-family:Jost,sans-serif;font-size:13px}'
+           '.kfx{margin:8px 0 0;text-align:center;font-size:11.5px;font-weight:700;color:#231E1B}.kfx b{font:600 15px Jost,sans-serif;color:#C0392B;margin:0 2px}'
            '.pdeep{display:block;width:max-content;max-width:100%;margin:6px auto 4px;color:#231E1B;text-decoration:none;font:600 13px/1.5 var(--min);letter-spacing:.06em;border-bottom:1px solid #231E1B;padding-bottom:3px}'
            '.pdeep span{font-family:Jost;margin-left:8px;color:#9C8775}'
            '.flt[data-v=odekake]{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.flt[data-v=odekake]::-webkit-scrollbar{display:none}'
@@ -363,6 +446,10 @@ def build(od, ix):
           'function en(){document.querySelectorAll(".otab button").forEach(function(b){if(document.querySelector(\'#odekake .pane[data-t="\'+b.dataset.t+\'"] .card.it\'))b.disabled=false;});}'
           'document.querySelectorAll(".otab button").forEach(function(b){b.addEventListener("click",function(){setTimeout(sync,0);});});'
           'document.querySelectorAll(".flt button[data-p]").forEach(function(b){b.addEventListener("click",function(){setTimeout(en,0);});});sync();'
+          'document.querySelectorAll(".kcon a").forEach(function(a){a.addEventListener("click",function(ev){ev.preventDefault();'
+          'var b=document.querySelector(\'.otab button[data-t="\'+a.dataset.t+\'"]\');if(b)b.click();'
+          'var f=document.querySelector(\'.flt button[data-p="\'+a.dataset.p+\'"]\');setTimeout(function(){if(f)f.click();'
+          'var el=document.querySelector(a.getAttribute("href"));if(el)scrollTo({top:el.getBoundingClientRect().top+scrollY-80,behavior:"smooth"});},60);});});'
           'var F="";try{F=sessionStorage.getItem("f")||"";}catch(e){}'
           'document.addEventListener("click",function(ev){var a=ev.target.closest&&ev.target.closest("a.go[rel~=sponsored],a.ilk[rel~=sponsored]");if(!a||!navigator.sendBeacon)return;'
           'var p=a.closest(".pane"),k=a.textContent.replace(/\\s+/g,"").slice(0,30);'
@@ -370,5 +457,6 @@ def build(od, ix):
           'var q=null;try{q=new URLSearchParams(location.search).get("t");}catch(e){}var hs=location.hash.slice(1);if(!q&&hs)q={deal:"sale",sale:"sale",shop:"pick",trip:"pick",hot:"pick",unit:"unit",down:"down"}[hs]||null;if(q){var b=document.querySelector(\'.otab button[data-t="\'+q+\'"]\');if(b&&!b.disabled)b.click();}'
           '})();</script>')
     h = h.replace('<body class="', '<body data-bar="okai" class="', 1)
+    h = h.replace("c.hidden=!ok||(!op&&k>5);", "c.hidden=!ok||(!op&&k>8);").replace('m.dataset.l+(k-5)+"件）";m.hidden=op||k<=5;', 'm.dataset.l+(k-8)+"件）";m.hidden=op||k<=8;')
     i = h.rfind("</body>")
     return h[:i] + js + h[i:]
