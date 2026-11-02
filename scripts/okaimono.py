@@ -371,6 +371,7 @@ def build(od, ix):
            '#odekake .pane:not([hidden]){display:block}'
            '#odekake .card.it.kc{margin:0 0 12px;padding:14px;border:1px solid #E8E8E8;border-radius:12px;box-shadow:none!important;background:#fff}'
            '#odekake .card.it.kc:after{content:none}'
+           '#odekake .card.it.kc[hidden]{display:none!important}'
            '#odekake .kc .kp{position:relative;flex:none;background:#F5F5F7;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}'
            '#odekake .kc .kp img{width:100%;height:100%;object-fit:contain;padding:8%;box-sizing:border-box;mix-blend-mode:multiply;display:block}'
            '#odekake .kc .kp.no{display:none}'
