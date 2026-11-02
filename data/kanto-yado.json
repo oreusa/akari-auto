@@ -205,12 +205,38 @@
   },
   "究極のレインボー花畑東京ドイツ村": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
       35.40673,
       140.06252
     ],
-    "h": []
+    "w": 1,
+    "h": [
+      {
+        "n": "まるのもり Glamping with dog",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188322",
+        "km": 5.0,
+        "r": 4.81,
+        "rc": 60,
+        "min": 10870
+      },
+      {
+        "n": "トレーテル市原牛久店",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191988",
+        "km": 6.9,
+        "r": 4.7,
+        "rc": 42,
+        "min": 5312
+      },
+      {
+        "n": "ETOWA KISARAZU(エトワ木更津)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187326",
+        "km": 6.3,
+        "r": 4.41,
+        "rc": 340,
+        "min": 11495
+      }
+    ]
   },
   "草津道の駅紅葉ライトアップ2026": {
     "v": 2,
@@ -586,12 +612,38 @@
   },
   "宝徳寺秋の床もみじ特別公開": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
       36.45272,
       139.31725
     ],
-    "h": []
+    "w": 1,
+    "h": [
+      {
+        "n": "HOTEL R9 The Yard 桐生",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196188",
+        "km": 6.6,
+        "r": 4.58,
+        "rc": 96,
+        "min": 3600
+      },
+      {
+        "n": "新桐生ビジネスホテル シティ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D40642",
+        "km": 6.4,
+        "r": 4.3,
+        "rc": 289,
+        "min": 3900
+      },
+      {
+        "n": "桐生 ホテル桐盛館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D38960",
+        "km": 5.0,
+        "r": 4.27,
+        "rc": 362,
+        "min": 3500
+      }
+    ]
   },
   "千葉まちアンソロジー": {
     "v": 2,
@@ -887,11 +939,12 @@
   },
   "棚田のあかり大山千枚田": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
       35.12996,
       139.97496
     ],
+    "w": 1,
     "h": []
   },
   "大チーバくん展さかざきちはるとチーバくんの20年": {
@@ -930,21 +983,73 @@
   },
   "あしかがフラワーパーク光の花の庭": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
       36.31511,
       139.51835
     ],
-    "h": []
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテル一乃館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D167051",
+        "km": 6.0,
+        "r": 4.63,
+        "rc": 60,
+        "min": 13200
+      },
+      {
+        "n": "古都佐野 旅館 旭館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136006",
+        "km": 6.4,
+        "r": 4.51,
+        "rc": 123,
+        "min": 4400
+      },
+      {
+        "n": "ホテル三吉野別館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D29156",
+        "km": 6.3,
+        "r": 4.35,
+        "rc": 1370,
+        "min": 4400
+      }
+    ]
   },
   "光の花の庭FlowerFantasy2026-2027": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
       36.31511,
       139.51835
     ],
-    "h": []
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテル一乃館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D167051",
+        "km": 6.0,
+        "r": 4.63,
+        "rc": 60,
+        "min": 13200
+      },
+      {
+        "n": "古都佐野 旅館 旭館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136006",
+        "km": 6.4,
+        "r": 4.51,
+        "rc": 123,
+        "min": 4400
+      },
+      {
+        "n": "ホテル三吉野別館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D29156",
+        "km": 6.3,
+        "r": 4.35,
+        "rc": 1370,
+        "min": 4400
+      }
+    ]
   },
   "プラネタリウム版チ。地球の運動について": {
     "v": 2,
@@ -982,30 +1087,108 @@
   },
   "東武動物公園ウインターイルミネーション": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
       36.02496,
       139.72657
     ],
-    "h": []
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルグリーンコア プラスワン(本館徒歩1分)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D40314",
+        "km": 5.7,
+        "r": 4.44,
+        "rc": 1181,
+        "min": 4900
+      },
+      {
+        "n": "ホテルグリーンコア本館(プラスワン徒歩1分)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D6992",
+        "km": 5.8,
+        "r": 4.44,
+        "rc": 777,
+        "min": 5500
+      },
+      {
+        "n": "スーパーホテル埼玉・春日部駅前天然温泉",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D183799",
+        "km": 5.4,
+        "r": 4.4,
+        "rc": 849,
+        "min": 6022
+      }
+    ]
   },
   "東京ドイツ村イルミネーション2026": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
       35.40673,
       140.06252
     ],
-    "h": []
+    "w": 1,
+    "h": [
+      {
+        "n": "まるのもり Glamping with dog",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188322",
+        "km": 5.0,
+        "r": 4.81,
+        "rc": 60,
+        "min": 10870
+      },
+      {
+        "n": "トレーテル市原牛久店",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191988",
+        "km": 6.9,
+        "r": 4.7,
+        "rc": 42,
+        "min": 5312
+      },
+      {
+        "n": "ETOWA KISARAZU(エトワ木更津)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187326",
+        "km": 6.3,
+        "r": 4.41,
+        "rc": 340,
+        "min": 11495
+      }
+    ]
   },
   "東京ドイツ村ウインターイルミネーション2026-2027": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
       35.40673,
       140.06252
     ],
-    "h": []
+    "w": 1,
+    "h": [
+      {
+        "n": "まるのもり Glamping with dog",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188322",
+        "km": 5.0,
+        "r": 4.81,
+        "rc": 60,
+        "min": 10870
+      },
+      {
+        "n": "トレーテル市原牛久店",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191988",
+        "km": 6.9,
+        "r": 4.7,
+        "rc": 42,
+        "min": 5312
+      },
+      {
+        "n": "ETOWA KISARAZU(エトワ木更津)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187326",
+        "km": 6.3,
+        "r": 4.41,
+        "rc": 340,
+        "min": 11495
+      }
+    ]
   },
   "長瀞紅葉まつり2026": {
     "v": 2,
@@ -1693,12 +1876,38 @@
   },
   "東京ドイツ村ウインターイルミネーション": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
       35.40673,
       140.06252
     ],
-    "h": []
+    "w": 1,
+    "h": [
+      {
+        "n": "まるのもり Glamping with dog",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188322",
+        "km": 5.0,
+        "r": 4.81,
+        "rc": 60,
+        "min": 10870
+      },
+      {
+        "n": "トレーテル市原牛久店",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191988",
+        "km": 6.9,
+        "r": 4.7,
+        "rc": 42,
+        "min": 5312
+      },
+      {
+        "n": "ETOWA KISARAZU(エトワ木更津)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187326",
+        "km": 6.3,
+        "r": 4.41,
+        "rc": 340,
+        "min": 11495
+      }
+    ]
   },
   "いばらきフラワーパークMoonlightRoseGarden": {
     "v": 2,
@@ -1876,12 +2085,30 @@
   },
   "さのあかりまちなか寺社の光": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
       36.20091,
       139.88504
     ],
-    "h": []
+    "w": 1,
+    "h": [
+      {
+        "n": "大谷旅館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D41724",
+        "km": 4.0,
+        "r": 5.0,
+        "rc": 11,
+        "min": 4730
+      },
+      {
+        "n": "しもつま温泉 ビアスパークしもつま",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D147895",
+        "km": 5.1,
+        "r": 4.08,
+        "rc": 222,
+        "min": 6200
+      }
+    ]
   },
   "華厳滝ライトアップ": {
     "v": 2,
