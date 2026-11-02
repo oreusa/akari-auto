@@ -1323,18 +1323,19 @@
   },
   "好古園 紅葉会": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
-      34.83797,
-      134.68961
+      34.83781,
+      134.68981
     ],
+    "w": 1,
     "h": [
       {
         "n": "ホテルモントレ姫路",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D163181",
         "km": 1.2,
         "r": 4.46,
-        "rc": 2860,
+        "rc": 2895,
         "min": 5850
       },
       {
@@ -1342,8 +1343,8 @@
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D167604",
         "km": 1.0,
         "r": 4.43,
-        "rc": 1922,
-        "min": 5450
+        "rc": 1935,
+        "min": 5050
       },
       {
         "n": "ヒメジガハハゲストハウス",
@@ -1554,18 +1555,19 @@
   },
   "室生寺 紅葉ライトアップ": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
-      34.53797,
-      136.04062
+      34.53783,
+      136.04218
     ],
+    "w": 1,
     "h": [
       {
         "n": "民宿 むろう",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D141274",
-        "km": 0.5,
-        "r": 4.76,
-        "rc": 76,
+        "km": 0.7,
+        "r": 4.77,
+        "rc": 77,
         "min": 8250
       }
     ]
@@ -1658,18 +1660,19 @@
   },
   "永源寺 紅葉ライトアップ": {
     "v": 2,
-    "t": "2026-10-31",
+    "t": "2026-11-02",
     "ll": [
-      35.08058,
-      136.31999
+      35.08154,
+      136.31505
     ],
+    "w": 1,
     "h": [
       {
         "n": "永源寺温泉 八風の湯 宿「八風別館」",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D147618",
-        "km": 0.7,
+        "km": 0.5,
         "r": 4.37,
-        "rc": 1056,
+        "rc": 1064,
         "min": 11000
       }
     ]
@@ -2915,6 +2918,76 @@
         "r": 4.67,
         "rc": 150,
         "min": 6050
+      }
+    ]
+  },
+  "錦秋の玄宮園ライトアップ": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      35.27969,
+      136.25401
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "蒼の湖邸 BIWAFRONT HIKONE",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187651",
+        "km": 2.2,
+        "r": 4.86,
+        "rc": 323,
+        "min": 28380
+      },
+      {
+        "n": "料亭旅館やす井",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D149302",
+        "km": 1.7,
+        "r": 4.69,
+        "rc": 124,
+        "min": 37400
+      },
+      {
+        "n": "とばや旅館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108718",
+        "km": 1.5,
+        "r": 4.67,
+        "rc": 150,
+        "min": 6050
+      }
+    ]
+  },
+  "高野山 金剛峯寺 正門・蛇腹路ライトアップ": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.21312,
+      135.58383
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "増福院",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D39332",
+        "km": 0.2,
+        "r": 5.0,
+        "rc": 11,
+        "min": 9000
+      },
+      {
+        "n": "高野山別格本山 総持院",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D104593",
+        "km": 0.2,
+        "r": 4.75,
+        "rc": 134,
+        "min": 27000
+      },
+      {
+        "n": "宿坊 桜池院",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D54921",
+        "km": 0.5,
+        "r": 4.75,
+        "rc": 47,
+        "min": 22000
       }
     ]
   }
