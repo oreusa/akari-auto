@@ -2857,5 +2857,378 @@
         "min": 4845
       }
     ]
+  },
+  "南大阪リアル謎解きゲーム きくなーれのなぞとき大冒険": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.48315,
+      135.42325
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ビジネス旅館 新若松",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D130463",
+        "km": 3.0,
+        "r": 4.8,
+        "rc": 21,
+        "min": 4300
+      },
+      {
+        "n": "みまつ旅館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106135",
+        "km": 1.7,
+        "r": 4.53,
+        "rc": 58,
+        "min": 4900
+      },
+      {
+        "n": "天然温泉「旅人の湯」ホテルルートイン大阪和泉府中",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184527",
+        "km": 0.4,
+        "r": 4.36,
+        "rc": 485,
+        "min": 6200
+      }
+    ]
+  },
+  "企画展「ふれる×れきはく」": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.84112,
+      134.69687
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルモントレ姫路",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D163181",
+        "km": 1.6,
+        "r": 4.46,
+        "rc": 2895,
+        "min": 5850
+      },
+      {
+        "n": "ダイワロイネットホテル姫路",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D167604",
+        "km": 1.4,
+        "r": 4.43,
+        "rc": 1935,
+        "min": 5050
+      },
+      {
+        "n": "ヒメジガハハゲストハウス",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D137832",
+        "km": 0.9,
+        "r": 4.33,
+        "rc": 27,
+        "min": 3880
+      }
+    ]
+  },
+  "出石お城まつり": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      35.46184,
+      134.87321
+    ],
+    "w": 1,
+    "h": []
+  },
+  "如意輪寺 菊まつり": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.36471,
+      135.86757
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "吉野温泉元湯",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D56233",
+        "km": 0.5,
+        "r": 4.6,
+        "rc": 216,
+        "min": 19250
+      },
+      {
+        "n": "吉野館 ひとりでも”自分らしく”泊まれる宿",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106055",
+        "km": 0.5,
+        "r": 4.6,
+        "rc": 85,
+        "min": 12650
+      },
+      {
+        "n": "花見塚 楽(らく)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D177554",
+        "km": 0.6,
+        "r": 4.57,
+        "rc": 55,
+        "min": 7150
+      }
+    ]
+  },
+  "談山神社 けまり祭": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.46564,
+      135.86141
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテル奈良さくらいの郷",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184470",
+        "km": 3.2,
+        "r": 4.48,
+        "rc": 160,
+        "min": 8267
+      },
+      {
+        "n": "多武峰観光ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D14788",
+        "km": 0.1,
+        "r": 4.42,
+        "rc": 138,
+        "min": 12500
+      }
+    ]
+  },
+  "日本遺産認定10周年記念「鯨とともに生きる」周遊スタンプラリー": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.22611,
+      135.1675
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "TSUKIJI HOSTEL Wakayama",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179632",
+        "km": 1.2,
+        "r": 5.0,
+        "rc": 25,
+        "min": 3200
+      },
+      {
+        "n": "GuesthouseRICO",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D151384",
+        "km": 1.3,
+        "r": 5.0,
+        "rc": 16,
+        "min": 3672
+      },
+      {
+        "n": "ビジネス旅館 みどり",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D107814",
+        "km": 2.1,
+        "r": 5.0,
+        "rc": 13,
+        "min": 3800
+      }
+    ]
+  },
+  "第20回まっせ・はしもと ～柿まつり 2026～": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.31472,
+      135.60527
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホステルイン橋本",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D173099",
+        "km": 1.1,
+        "r": 4.33,
+        "rc": 56,
+        "min": 9600
+      },
+      {
+        "n": "ホテル ルートイン橋本",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D145476",
+        "km": 0.5,
+        "r": 4.12,
+        "rc": 1007,
+        "min": 7900
+      }
+    ]
+  },
+  "和歌山城公園菊花展": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.22765,
+      135.17151
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "TSUKIJI HOSTEL Wakayama",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179632",
+        "km": 0.8,
+        "r": 5.0,
+        "rc": 25,
+        "min": 3200
+      },
+      {
+        "n": "GuesthouseRICO",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D151384",
+        "km": 0.9,
+        "r": 5.0,
+        "rc": 16,
+        "min": 3672
+      },
+      {
+        "n": "ダイワロイネットホテル和歌山",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D31375",
+        "km": 0.4,
+        "r": 4.5,
+        "rc": 4570,
+        "min": 4845
+      }
+    ]
+  },
+  "りんくうプレミアム・アウトレット ウィンターイルミネーション": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.40811,
+      135.29506
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "オディシススイーツ大阪エアポートホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187454",
+        "km": 0.6,
+        "r": 4.6,
+        "rc": 355,
+        "min": 4750
+      },
+      {
+        "n": "レフ関空泉佐野 by ベッセルホテルズ|REF関空泉佐野|サウナ付大浴場(関西空港)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D183997",
+        "km": 2.0,
+        "r": 4.53,
+        "rc": 802,
+        "min": 4278
+      },
+      {
+        "n": "ホテル ユタカウイング",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D1318",
+        "km": 1.7,
+        "r": 4.5,
+        "rc": 116,
+        "min": 4200
+      }
+    ]
+  },
+  "Sennan Park Light Up": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.36573,
+      135.27397
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "URBAN CAMP HOTEL Marble Beach",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D180300",
+        "km": 2.5,
+        "r": 4.44,
+        "rc": 36,
+        "min": 11550
+      },
+      {
+        "n": "ホテルアストンプラザ関西空港",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D160665",
+        "km": 4.2,
+        "r": 4.18,
+        "rc": 942,
+        "min": 3750
+      },
+      {
+        "n": "ホテル・ザ・ネクスト関空",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D50912",
+        "km": 1.8,
+        "r": 3.76,
+        "rc": 545,
+        "min": 4000
+      }
+    ]
+  },
+  "生野イルミネーションロード": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      35.24578,
+      135.21178
+    ],
+    "w": 1,
+    "h": []
+  },
+  "たかのはらイルミネーション": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      34.685,
+      135.80472
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "Ferie奈良",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D161089",
+        "km": 1.4,
+        "r": 5.0,
+        "rc": 15,
+        "min": 5500
+      },
+      {
+        "n": "レジデンスFerie奈良駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184854",
+        "km": 1.5,
+        "r": 4.86,
+        "rc": 10,
+        "min": 11000
+      },
+      {
+        "n": "天然温泉 飛鳥の湯 スーパーホテルPremierJR奈良駅",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D76939",
+        "km": 1.4,
+        "r": 4.53,
+        "rc": 7362,
+        "min": 5640
+      }
+    ]
+  },
+  "Lighting Bell in NOTOGAWA": {
+    "v": 2,
+    "t": "2026-11-02",
+    "ll": [
+      35.1824,
+      136.16117
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "アズイン東近江能登川駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106091",
+        "km": 0.5,
+        "r": 4.2,
+        "rc": 1656,
+        "min": 4700
+      }
+    ]
   }
 }
