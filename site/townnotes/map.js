@@ -221,7 +221,7 @@ var css=`
 function NI(h){var t=[1,3,5].map(function(k){return parseInt(h.substr(k,2),16)/255}),M=[[-.574,1.43,.144],[.426,.43,.144],[.426,1.43,-.856]];
  return "#"+M.map(function(r){var v=(.95-(r[0]*t[0]+r[1]*t[1]+r[2]*t[2]))/.9;v=Math.max(0,Math.min(1,v));return ("0"+Math.round(v*255).toString(16)).slice(-2)}).join("")}
 function LT(h,a){return "#"+[1,3,5].map(function(k){var v=parseInt(h.substr(k,2),16);return ("0"+Math.round(v+(255-v)*a).toString(16)).slice(-2)}).join("")}
-var GOLD=NI("#EBD7A6"),SILV=NI("#EEF1F7"),DIM=NI("#8E98AE"),NAVY=NI("#141A28"),LAND=NI("#1A2236"),EDGE=NI("#2D3854");
+var GOLD=NI("#EBD7A6"),SILV=NI("#EEF1F7"),DIM=NI("#8E98AE"),NAVY=NI("#141A28"),LAND=NI("#0E121D"),EDGE=NI("#2D3854");
 css+=PREFS.map(function(p){var c=NI(LT(PC[p],.38));return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:'+LAND+';fill-opacity:1;stroke:'+c+';stroke-width:1.3px;stroke-opacity:1;vector-effect:non-scaling-stroke}html.night .tn:not(.lv2):not(.lv3) .pf[data-p="'+p+'"]:not(.off){filter:drop-shadow(0 0 2.5px '+c+')}'}).join("")+
  'html.night .tn .pf.off{fill:'+LAND+';stroke:'+EDGE+';stroke-width:.8px}html.night .tn .sh{opacity:0!important}'+
  '.tn .g-lt{display:none;pointer-events:none}html.night .tn .g-lt{display:inline}'+
@@ -230,6 +230,7 @@ css+=PREFS.map(function(p){var c=NI(LT(PC[p],.38));return 'html.night .tn .pf[da
  '.tn .g-lt .l1{stroke:'+NI("#FFD98C")+';stroke-width:1.5px;stroke-opacity:.9}'+
  '.tn .g-lt .l2{stroke:'+NI("#FFF4DE")+';stroke-width:1.9px}'+
  '.tn .g-lt .lh{stroke:'+NI("#FFB84D")+';stroke-width:7px;stroke-opacity:.10}'+
+ '.tn .g-lt .rd{stroke:'+NI("#FFB15C")+';stroke-width:1px;stroke-opacity:.28;stroke-dasharray:1 3;stroke-linecap:round}'+
  'html.night .tn .mu{fill-opacity:0!important;stroke:'+EDGE+'!important;stroke-width:.6px}'+
  'html.night .tn .lb.p{color:'+SILV+'!important;text-shadow:0 0 4px '+NAVY+',0 0 10px '+NAVY+'!important;letter-spacing:.14em}html.night .tn .lb.p small{color:'+GOLD+';opacity:.85}'+
  'html.night .tn .lb.w{color:'+DIM+';text-shadow:0 0 3px '+NAVY+'!important}html.night .tn .lb.w.h{color:'+SILV+'}'+
@@ -320,7 +321,11 @@ function lights(){var g=G.lt;if(!g||g.firstChild)return;var seed=7;function r(){
    var t=r()<.75?.2:.42,x=cx+(r()+r()+r()-1.5)*w*t*1.3,y=cy+(r()+r()+r()-1.5)*h*t*1.3;
    try{if(!m.path.isPointInFill(new DOMPoint(x,y)))continue}catch(e){}
    got++;var z=r(),i=z<.08?2:z<.4?1:0;A[i]+="M"+x.toFixed(2)+" "+y.toFixed(2)+"h0"}});
- g.innerHTML='<path class="l0" d="'+A[0]+'"/><path class="l1" d="'+A[1]+'"/><path class="l2" d="'+A[2]+'"/><path class="lh" d="'+A[1]+A[2]+'"/>';
+ // 道路の光の筋：市と市の真ん中どうしを、近い2つまで線でつなぐ（高速道路の明かりのつもり）
+ var C=MU.filter(function(m){return /市$/.test(m.n)||(m.c&&/市$/.test(m.c))}).map(function(m){return [(m.bb[0]+m.bb[2])/2,(m.bb[1]+m.bb[3])/2]}),RD="",seen={};
+ var GL="";MU.forEach(function(m){var k=med/m.ar,city=/市$/.test(m.n)||(m.c&&/市$/.test(m.c));if(!city&&k<2)return;var R0=Math.sqrt(m.ar)*.9,op=Math.min(.9,.25+.18*Math.pow(k,.5));GL+='<circle cx="'+((m.bb[0]+m.bb[2])/2).toFixed(2)+'" cy="'+((m.bb[1]+m.bb[3])/2).toFixed(2)+'" r="'+R0.toFixed(2)+'" fill="url(#tnglow)" opacity="'+op.toFixed(2)+'"/>'});
+ C.forEach(function(a,ia){C.map(function(b,ib){return [Math.hypot(a[0]-b[0],a[1]-b[1]),ib]}).filter(function(d){return d[1]!==ia}).sort(function(x,y){return x[0]-y[0]}).slice(0,2).forEach(function(d){var k=Math.min(ia,d[1])+"-"+Math.max(ia,d[1]);if(seen[k])return;seen[k]=1;var b=C[d[1]],mx=(a[0]+b[0])/2+(b[1]-a[1])*.08,my=(a[1]+b[1])/2-(b[0]-a[0])*.08;RD+="M"+a[0].toFixed(2)+" "+a[1].toFixed(2)+"Q"+mx.toFixed(2)+" "+my.toFixed(2)+" "+b[0].toFixed(2)+" "+b[1].toFixed(2)})});
+ g.innerHTML='<path class="rd" d="'+RD+'"/><defs><radialGradient id="tnglow"><stop offset="0" stop-color="'+NI("#FFA24A")+'" stop-opacity=".55"/><stop offset=".45" stop-color="'+NI("#FF8A3A")+'" stop-opacity=".18"/><stop offset="1" stop-color="'+NI("#FF8A3A")+'" stop-opacity="0"/></radialGradient></defs>'+GL+'<path class="l0" d="'+A[0]+'"/><path class="l1" d="'+A[1]+'"/><path class="l2" d="'+A[2]+'"/><path class="lh" d="'+A[1]+A[2]+'"/>';
 }
 function setup(KS){
  KS.pref.features.forEach(function(f){var p=f.properties.p,d=geom2d(f.geometry);PF[p]={bb:gbb(f.geometry),sh:el("path",{d:d,"class":"sh"},G.sh),path:el("path",{d:d,"class":"pf","data-p":p,fill:D(FILL[p])},G.pf)};
