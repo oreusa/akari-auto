@@ -1353,6 +1353,126 @@
       "note": "文京区｜東京ドームシティ全体のイルミネーション。17:00〜24:00",
       "url": "https://animeanime.jp/release/prtimes/20261008/318419.html",
       "checked": "2026-11-01"
+    },
+    {
+      "title": "塩原温泉 紅葉ライトアップ",
+      "pref": "栃木",
+      "place": "紅の吊橋",
+      "when": "10/17〜11/30",
+      "start": "2026-10-17",
+      "ends": "2026-11-30T21:00",
+      "free": false,
+      "note": "那須塩原市｜紅の吊橋のライトアップ。17:00〜21:00",
+      "url": "https://nasushiobara-kanko.jp/events/36783/",
+      "checked": "2026-11-02"
+    },
+    {
+      "title": "歴史館いちょうまつり",
+      "pref": "茨城",
+      "place": "茨城県立歴史館",
+      "when": "11/1〜11/23",
+      "start": "2026-11-01",
+      "ends": "2026-11-23T17:00",
+      "free": false,
+      "note": "水戸市｜いちょう並木と庭園のライトアップ",
+      "url": "https://rekishikan-ibk.jp/event/festival/post-15132/",
+      "checked": "2026-11-02"
+    },
+    {
+      "title": "第19回かすみがうら祭",
+      "pref": "茨城",
+      "place": "第1常陸野公園",
+      "when": "11/3",
+      "start": "2026-11-03",
+      "ends": "2026-11-03T15:00",
+      "free": true,
+      "note": "かすみがうら市｜入場無料。熱気球体験は大人1,000円",
+      "url": "https://www.kasumigaura-kankou.jp/page/page000986.html",
+      "checked": "2026-11-02"
+    },
+    {
+      "title": "こびとづかん こびと大発見",
+      "pref": "千葉",
+      "place": "東京ドイツ村",
+      "when": "10/31〜1/31",
+      "start": "2026-10-31",
+      "ends": "2027-01-31T20:00",
+      "free": false,
+      "note": "袖ケ浦市｜入園 大人1,500円。ラリーは1コース600円",
+      "url": "https://kobito-2610.sync-innovation.co.jp/",
+      "checked": "2026-11-02"
+    },
+    {
+      "title": "東京スクエアガーデン ウィンターイルミネーション",
+      "pref": "東京",
+      "place": "東京スクエアガーデン",
+      "when": "11/5〜1/31",
+      "start": "2026-11-05",
+      "ends": "2027-01-31T23:59",
+      "free": true,
+      "note": "中央区｜京橋駅前。16:00〜24:00",
+      "url": "https://tokyo-sg.com/news/3963",
+      "checked": "2026-11-02"
+    },
+    {
+      "title": "ARK HILLS CHRISTMAS 2026",
+      "pref": "東京",
+      "place": "アークヒルズ",
+      "when": "11/7〜12/25",
+      "start": "2026-11-07",
+      "ends": "2026-12-25T23:30",
+      "free": true,
+      "note": "港区｜高さ約6mの生木のツリー",
+      "url": "https://www.arkhills.com/events/2026/11/0231.html",
+      "checked": "2026-11-02"
+    },
+    {
+      "title": "恵比寿ガーデンプレイス バカラ シャンデリア",
+      "pref": "東京",
+      "place": "恵比寿ガーデンプレイス",
+      "when": "11/14〜1/11",
+      "start": "2026-11-14",
+      "ends": "2027-01-11T23:00",
+      "free": true,
+      "note": "渋谷区｜センター広場。11:00〜23:00（11/14は17:00から）",
+      "url": "https://event.gardenplace.jp/special/2026baccarat/",
+      "checked": "2026-11-02"
+    },
+    {
+      "title": "横浜・みなとみらい Winter Holiday 2026",
+      "pref": "神奈川",
+      "place": "横浜ランドマークプラザ",
+      "when": "11/11〜1/11",
+      "start": "2026-11-11",
+      "ends": "2027-01-11T23:59",
+      "free": true,
+      "note": "横浜市西区｜ドラクエ×FFのツリー。7:00〜24:00",
+      "url": "https://yokohama-landmark.jp/plaza_news/detail.html?act=64030",
+      "checked": "2026-11-02"
+    },
+    {
+      "title": "さいたま新都心イルミネーション 2026",
+      "pref": "埼玉",
+      "place": "さいたま新都心駅",
+      "when": "11/7〜2/14",
+      "start": "2026-11-07",
+      "ends": "2027-02-14T23:59",
+      "free": true,
+      "note": "さいたま市大宮区｜けやきひろば・コクーンシティも。17:00〜24:00",
+      "url": "https://www.city.saitama.lg.jp/006/014/008/003/015/007/p134331.html",
+      "checked": "2026-11-02"
+    },
+    {
+      "title": "TOKYO ILLUMILIA 2026-2027",
+      "pref": "東京",
+      "place": "さくら通り 八重洲",
+      "when": "11/5〜2/14",
+      "start": "2026-11-05",
+      "ends": "2027-02-14T23:30",
+      "free": true,
+      "note": "中央区｜八重洲から日本橋への通り。16:30〜23:30",
+      "url": "https://www.gotokyo.org/jp/spot/ev132/index.html",
+      "checked": "2026-11-02"
     }
   ]
 }
