@@ -65,6 +65,9 @@ jobs:
           url, err = igreel.host_bytes(open(f"/tmp/{d}.mp4", "rb").read(), f"{d}-hp-{time.strftime('%H%M%S')}")
           out = {"date": d, "spec_sha": sha, "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
           out.update({"url": url} if url else {"error": err})
+          import shutil, os
+          if os.path.exists(f"/tmp/{d}.jpg"):
+              shutil.copy(f"/tmp/{d}.jpg", f"reel-hp/out/{d}.jpg"); out["sheet"] = f"reel-hp/out/{d}.jpg"
           json.dump(out, open(f"reel-hp/out/{d}.json", "w"), ensure_ascii=False, indent=1)
           print(out)
           PY
