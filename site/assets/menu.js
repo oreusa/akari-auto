@@ -1,5 +1,5 @@
 /* 10/31 オーナー「三本線を作って項目を選べるように…燈の方も」（月の links/assets/menu.js と同じ形）
-   全ページ共通のメニュー。右上の三本線 → 右から出る紙。昼と夜の切り替えもここ（night.js）。
+   全ページ共通のメニュー（11/3 テスターの声「メニューが見にくい」→ 項目はゴシックの太字・英字の小見出しなし・説明を濃く）。右上の三本線 → 右から出る紙。昼と夜の切り替えもここ（night.js）。
    ページを足すときは L に1行足すだけ。/#shop・/#deal・/#trip はリストの欄ボタンを押す。押された数は /c の s=menu。 */
 (function(){
   /* 11/2 オーナー「燈のhpを LIFE NOTE…関東おでかけリスト・おかいものリスト 完全に分ける」→ / は入口、/odekake と /okaimono に分けた */
@@ -70,12 +70,12 @@
   "#upan .ug{display:flex;align-items:baseline;gap:10px;margin-top:14px;padding:9px 20px;background:#F1F2F4;border-top:1px solid #E4E5E8;border-bottom:1px solid #E4E5E8;font-family:'Zen Kaku Gothic New',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.12em;color:#3A3330}"+
   "#upan nav>.ug:first-child{margin-top:0;border-top:0}"+
   "#upan .ug small{font-family:Jost,sans-serif;font-weight:400;font-size:9px;letter-spacing:.3em;color:#9C8775}"+
-  "#upan a.ui{display:block;position:relative;text-decoration:none;color:#2B2622;padding:13px 44px 13px 20px;border-top:1px solid #F1F1F1}"+
+  "#upan a.ui{display:block;position:relative;text-decoration:none;color:#2B2622;padding:12px 44px 12px 20px;border-top:1px solid #F1F1F1}"+
   "#upan a.ui:first-of-type{border-top:0}"+
   "#upan a.ui:active{background:#F7F7F7}"+
-  "#upan a.ui small{display:block;font-family:Jost,sans-serif;font-size:9px;letter-spacing:.3em;color:#9C8775}"+
-  "#upan a.ui span{display:block;font-family:'Shippori Mincho',serif;font-weight:600;font-size:16.5px;letter-spacing:.08em;margin-top:3px}"+
-  "#upan a.ui em{display:block;font-style:normal;font-size:11.5px;color:#857A70;margin-top:3px;letter-spacing:.02em}"+
+  "#upan a.ui small{display:none}"+
+  "#upan a.ui span{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;font-size:16px;letter-spacing:.02em;line-height:1.4}"+
+  "#upan a.ui em{display:block;font-style:normal;font-size:12.5px;color:#5F554D;margin-top:2px;letter-spacing:0;line-height:1.5}"+
   "#upan a.ui:after{content:'\\2192';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:Jost,sans-serif;color:#9C8775}"+
   "#upan a.ui.cur{background:#F7F7F7}"+
   "#upan a.ui.cur:before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:3px;background:#2B2622}"+
