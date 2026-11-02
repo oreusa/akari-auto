@@ -99,7 +99,9 @@ def li_card(cat, li, tab, src):
     mt = txt(first(r'<span class="mt">(.*?)</span>', li))
     price, _, rate = mt.partition("★")
     rate = ("★" + rate.strip()) if rate else ""
+    pm = re.search(r"平均より\s*(\d+)%\s*安い", df)
     return dict(tab=tab, cat=cat, top=pu or src, big=df, title=nm, sub=price.strip(), href=href, pr=True,
+                rk=first(r'<span class="rk">(\d+)</span>', li), pct=int(pm.group(1)) if pm else 0,
                 rate=re.sub(r"\s+", "・", rate), img=html.unescape(first(r'<img src="([^"]+)"', li)))
 
 
@@ -188,18 +190,24 @@ def card_html(c, col):
     u = real_url(c["href"])
     btn = "楽天トラベルで見る" if "travel.rakuten" in u else ("楽天で見る" if c["pr"] else "公式ページを見る")
     img = (f'<span class="kp"><img src="{E(c["img"])}" alt="" width="96" height="96" loading="lazy" decoding="async" '
-           f'referrerpolicy="no-referrer" onerror="this.parentNode.classList.add(\'no\');this.remove()"></span>') if c.get("img") else ""
+           f'referrerpolicy="no-referrer" onerror="this.parentNode.classList.add(\'no\');this.remove()">'
+           + (f'<em class="krk">{"No." + c["rk"]}</em>' if c.get("rk") and c["tab"] == "unit" else "") + '</span>') if c.get("img") else ""
+    bar = ""
+    if c.get("pct"):
+        bar = (f'<div class="kbar" aria-label="比べた平均より{c["pct"]}%安い">'
+               f'<div class="kbr"><span>この商品</span><i style="width:{100 - c["pct"]}%"></i><b>{c["pct"]}%安い</b></div>'
+               f'<div class="kbr av"><span>比べた平均</span><i style="width:100%"></i></div></div>')
     top = E(c["top"])
     top = re.sub(r"([\d,.]+)(円|%)", r"<b>\1</b>\2", top)
     return (f'<div class="card it kc{"" if img else " noimg"}" data-pref="{E(c["cat"])}" data-free="0" data-wk="0"{e} style="--pc:{pc}">'
             f'<div class="v2c">{chips}</div><div class="kb">{img}<div class="kx">'
             f'<div class="v2d">{top}</div>'
-            + (f'<div class="kbig">{E(c["big"])}</div>' if c.get("big") else "")
+            + (f'<div class="kbig">{E(c["big"])}</div>' if c.get("big") and not c.get("pct") else "")
             + f'<div class="t"><a class="go" href="{E(c["href"])}" rel="{rel}" target="_blank" aria-label="{E(c["title"][:40])}を{btn[:-2]}で開く">'
             f'<span class="nwp">{E(c["title"])}</span></a></div>'
             + (f'<div class="ks">{E(c["sub"])}</div>' if c["sub"] else "")
-            + '</div></div>'
-            f'<div class="kf"><span class="kr">{E(c.get("rate") or "")}</span><span class="kbtn">{btn}<i>→</i></span></div>'
+            + '</div></div>' + bar
+            + f'<div class="kf"><span class="kr">{E(c.get("rate") or "")}</span><span class="kbtn">{btn}<i>→</i></span></div>'
             '</div>')
 
 
@@ -252,6 +260,25 @@ def build(od, ix):
         seen += sum(int(x.replace(",", "")) for x in re.findall(r"の(\d[\d,]*)件を見て", rd(p)))
     cnt = (f'<p class="cnt" data-v="odekake"><span>比べた物<b id="n-now">{n["pick"] + n["unit"]}</b>件</span>'
            + (f'<span>調べた商品<b>{seen:,}</b>件</span>' if seen else f'<span>値下がり<b>{n["down"]}</b>件</span>') + '</p>')
+    # 11/2 オーナー「なんか凄いなってならない」→ どれだけ比べてしぼったかを、上で1枚に（楽天で見た数 → のせた数）
+    fs = {"seen": 0, "read": 0, "ok": 0}
+    for f in ("tanka.json", "furusato.json"):
+        try:
+            for cc in json.load(open(os.path.join(R, "data", f), encoding="utf-8")).get("cats", []):
+                for k in fs:
+                    fs[k] += int(cc.get(k) or 0)
+        except Exception:
+            pass
+    best = max([c.get("pct") or 0 for c in cards] + [0])
+    fun = ""
+    if fs["seen"] and n["unit"]:
+        steps = [("楽天で見た商品", fs["seen"]), ("量を読んで、1個あたりに直した", fs["read"]),
+                 ("レビュー1,000件以上・評価4.0以上", fs["ok"]), ("同じお店は1つにして、安い順にのせた", n["unit"])]
+        fun = ('<section class="kfun" aria-label="うさぎの比べ方"><p class="kft"><i>HOW WE COMPARE</i>うさぎの比べ方</p>'
+               + "".join(f'<div class="kfs"><span class="kfl">{E(l)}</span><b>{v:,}<small>件</small></b>'
+                         f'<span class="kfb"><i style="width:{max(3, round(v * 100 / fs["seen"]))}%"></i></span></div>' for l, v in steps)
+               + (f'<p class="kfx">のせた物は、比べた平均より<b>最大{best}%</b>安い</p>' if best else "")
+               + '<p class="kfn">毎日2回、楽天の送料込みの値段で比べ直しています</p></section>')
     flt = ('<nav class="flt" data-v="odekake" aria-label="しぼりこみ"><button class="on" data-p="">すべて</button>'
            + "".join(f'<button data-p="{E(c)}" style="--pc:{col[c]}">{E(c)}</button>' for c in cats) + "</nav>")
     first_t = next((t for t, *_ in TABS if n[t]), "pick")
@@ -270,7 +297,7 @@ def build(od, ix):
     for r in (r'<nav class="flt"', r'<p class="cnt"', r'<section class="blk arch" id="archive"'):
         for b in block(h, r):
             h = h.replace(b, "", 1)
-    h = h.replace('<section class="blk" id="odekake"', top + cnt + flt + '<section class="blk" id="odekake"', 1)
+    h = h.replace('<section class="blk" id="odekake"', top + fun + cnt + flt + '<section class="blk" id="odekake"', 1)
     # ---- 下の欄
     h = re.sub(r'<p class="tip">.*?</p>', "", h, flags=re.S)
     h = re.sub(r'<p class="pr-note">.*?</p>',
@@ -301,6 +328,24 @@ def build(od, ix):
            '#odekake .kc .kr{font-size:11.5px;color:var(--sub);min-width:0}'
            '#odekake .kc .kbtn{flex:none;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:99px;background:var(--pc);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.04em}'
            '#odekake .kc .kbtn i{font-style:normal;font-family:Jost,sans-serif}'
+           '#odekake .kc .kp{position:relative}'
+           '#odekake .kc .krk{position:absolute;left:0;top:0;padding:3px 7px;border-radius:0 0 8px 0;background:var(--pc);color:#fff;font:600 11px/1.2 Jost,sans-serif;font-style:normal;letter-spacing:.04em}'
+           '#odekake .kc .kbar{margin-top:10px;display:grid;gap:4px}'
+           '#odekake .kc .kbr b{font:700 11px "Zen Kaku Gothic New",sans-serif;color:color-mix(in srgb,var(--pc) 72%,#000);white-space:nowrap}'
+           '#odekake .kc .kbr{display:grid;grid-template-columns:64px 1fr 56px;align-items:center;gap:8px;font-size:10.5px;color:var(--sub)}'
+           '#odekake .kc .kbr i{display:block;height:8px;border-radius:99px;background:var(--pc)}'
+           '#odekake .kc .kbr.av i{background:#D5D7DB}'
+           '.kfun{margin:4px 0 22px;padding:18px 16px 14px;border:1px solid #E6E7EA;border-radius:12px;background:#fff}'
+           '.kft{margin:0 0 12px;text-align:center;font:600 15px/1.4 var(--min);letter-spacing:.14em;color:#231E1B}'
+           '.kft i{display:block;font:400 9.5px/1.6 Jost,sans-serif;letter-spacing:.32em;color:#9C8775;font-style:normal}'
+           '.kfs{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2px 10px;margin-top:10px}'
+           '.kfl{font-size:12px;color:#5E554F}'
+           '.kfs b{font:600 22px/1 Jost,sans-serif;color:#231E1B;text-align:right}.kfs b small{font:700 11px "Zen Kaku Gothic New",sans-serif;margin-left:2px;color:#5E554F}'
+           '.kfb{grid-column:1/3;height:10px;border-radius:99px;background:#F1F2F4;overflow:hidden}'
+           '.kfb i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#C2703F,#E0A070)}'
+           '.kfs:last-of-type .kfb i{background:#C2703F}'
+           '.kfx{margin:14px 0 0;text-align:center;font-size:13px;font-weight:700;color:#231E1B}.kfx b{font:600 20px Jost,sans-serif;color:#C2703F;margin:0 3px}'
+           '.kfn{margin:6px 0 0;text-align:center;font-size:11px;color:#8C7B6E}'
            '.pdeep{display:block;width:max-content;max-width:100%;margin:6px auto 4px;color:#231E1B;text-decoration:none;font:600 13px/1.5 var(--min);letter-spacing:.06em;border-bottom:1px solid #231E1B;padding-bottom:3px}'
            '.pdeep span{font-family:Jost;margin-left:8px;color:#9C8775}'
            '.flt[data-v=odekake]{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.flt[data-v=odekake]::-webkit-scrollbar{display:none}'
