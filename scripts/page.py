@@ -1407,7 +1407,7 @@ a.card:hover .arw{{transform:translate(3px,-50%)}}
 (function(){{var t=new Date(Date.now()+9*36e5).toISOString().slice(0,10);document.querySelectorAll(".card.it[data-e]").forEach(function(c){{if(c.getAttribute("data-e")<t)c.remove();}});}})();
 (function(){{
 var d=document.documentElement;d.classList.add("js");
-var pref="",free="0",wk="0";try{{localStorage.removeItem("pref");}}catch(e){{}}
+var pref=(location.search.match(/[?&]pref=([^&]+)/)||[])[1]||"",free="0",wk="0";try{{pref=decodeURIComponent(pref);}}catch(e){{pref="";}}try{{localStorage.removeItem("pref");}}catch(e){{}}
 function okc(c){{
   if(pref&&c.dataset.pref&&c.dataset.pref!==pref)return false;
   if(free==="1"&&c.dataset.free!=="1")return false;
@@ -1441,7 +1441,7 @@ apply();
 function setp(v){{pref=v;document.querySelectorAll(".flt button[data-p]").forEach(function(y){{y.classList.toggle("on",y.dataset.p===v);}});
   reset();apply();fixtab();}}
 document.querySelectorAll(".flt button[data-p]").forEach(function(x){{x.addEventListener("click",function(){{setp(x.dataset.p);}});}});
-if(pref&&document.querySelector('.flt button[data-p="'+pref+'"]'))setp(pref);else pref="";
+if(pref&&document.querySelector('.flt button[data-p="'+pref+'"]')){{setp(pref);setTimeout(function(){{var f=document.querySelector(".flt");if(f)scrollTo(0,Math.max(0,f.getBoundingClientRect().top+scrollY-80));}},350);}}else pref="";
 document.querySelectorAll(".chips button").forEach(function(x){{x.addEventListener("click",function(){{
   var on=!x.classList.contains("on");x.classList.toggle("on",on);x.setAttribute("aria-pressed",on);
   if(x.dataset.k==="wk")wk=on?"1":"0";else free=on?"1":"0";reset();apply();fixtab();}});}});
