@@ -73,7 +73,7 @@
     "html.night .card .fr,html.night .it .fr{background:transparent!important;box-shadow:inset 0 0 0 1px #30394B!important;color:#30394B!important}"+
     "html.night .card div.go,html.night .it div.go,html.night .it span.ar,html.night .card.it:after{background:transparent!important;box-shadow:inset 0 0 0 1px #372100!important;color:#372100!important}"+
     /* 入口の地図で府県に data-p が無いもの（燈の関東）も、夜は紺の陸地＋府県の色の光る線に（色は昼の塗りの色を使う） */
-    "html.night .kmap .pf path{fill:#182139!important;fill-opacity:1!important;filter:drop-shadow(0 0 2.5px var(--c,rgba(200,215,255,.6)))}html.night .kmap .pf path:not([data-p]){stroke:var(--c,#8FB6EA);stroke-width:1.6px}"+
+    "html.night .kmap .pf path{fill:#182139!important;fill-opacity:1!important;filter:drop-shadow(0 0 2.5px var(--c,rgba(200,215,255,.6)))}html.night .kmap .pf path:not([data-p]){stroke:var(--c,#8FB6EA);stroke-width:3.2px}html.night .kmap .pf path.kcl{clip-path:var(--kc)}"+
     "html.night .nsky.pg{position:fixed;inset:0;z-index:-1;opacity:.6}"+
     "@media (prefers-reduced-motion:reduce){.nsky i,.kmap .lt circle{animation:none!important}}";
   var st=document.createElement("style");st.textContent=css;(document.head||d).appendChild(st);
@@ -127,3 +127,8 @@
   document.addEventListener("usagi-theme",function(){if(document.readyState!=="loading")go();});
   window.usagiTheme={get:function(){return d.classList.contains("night")?"night":"day"},set:function(v){set(v,true)}};
 })();
+/* 11/3 オーナー「府県の色が所々バラバラに重なる理由は？」→ となりの都県の線が同じ境目で重なり、後に描いた色が上に来ていた（月と同じ直し）。
+   夜は各都県の色を自分の内側だけに出す（線を太くして外側を切る）。境目では2色がきれいに並ぶ */
+(function(){function mk(){document.querySelectorAll("svg.kmap").forEach(function(svg){if(svg.__clip)return;svg.__clip=1;var NS="http://www.w3.org/2000/svg",df=document.createElementNS(NS,"defs");svg.insertBefore(df,svg.firstChild);
+ svg.querySelectorAll(".pf path").forEach(function(pa,i){var c=document.createElementNS(NS,"clipPath"),q=document.createElementNS(NS,"path");c.id="kc"+i;q.setAttribute("d",pa.getAttribute("d"));c.appendChild(q);df.appendChild(c);pa.classList.add("kcl");pa.style.setProperty("--kc","url(#kc"+i+")")});});}
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",mk);else mk();})();

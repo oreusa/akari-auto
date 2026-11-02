@@ -223,7 +223,10 @@ function NI(h){var t=[1,3,5].map(function(k){return parseInt(h.substr(k,2),16)/2
 function LT(h,a){return "#"+[1,3,5].map(function(k){var v=parseInt(h.substr(k,2),16);return ("0"+Math.round(v+(255-v)*a).toString(16)).slice(-2)}).join("")}
 var GOLD=NI("#EBD7A6"),SILV=NI("#EEF1F7"),DIM=NI("#8E98AE"),NAVY=NI("#141A28"),LAND=NI("#1A2236"),EDGE=NI("#2D3854");
 // 11/3 オーナー「周りの枠の色めちゃくちゃ。オシャレでもない」→ 夜の府県の線は府県の色をやめ、全部同じ金の細い線（光らせない）
-css+='html.night .tn .pf:not(.off){fill:'+LAND+';fill-opacity:1;stroke:'+GOLD+';stroke-width:1px;stroke-opacity:.55;vector-effect:non-scaling-stroke;filter:none}'+
+// 11/3 オーナー「表紙と同じにしたら？表紙めっちゃお洒落」→ 入口（表紙）の地図と同じ：紺の陸に府県の色の細い線をうっすら光らせる、ざらざらの模様なし
+var TOP={"大阪":"#F2A788","京都":"#C3A6E0","兵庫":"#8FB6EA","奈良":"#9ED19A","滋賀":"#86D3DF","和歌山":"#F1C27E","東京":"#8FB6EA","神奈川":"#86D3DF","埼玉":"#F1C27E","千葉":"#F2A788","茨城":"#9ED19A","栃木":"#C3A6E0","群馬":"#E8A6B8"};
+css+='html.night .tn .fr:after{display:none}html.night .tn .fr{background:#fff!important}';
+css+=PREFS.map(function(p){var c=NI(TOP[p]||"#8FB6EA");return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:#D0DFFA;fill-opacity:1;stroke:'+c+';stroke-width:2.4px;stroke-opacity:.6;vector-effect:non-scaling-stroke;filter:none;clip-path:url(#tnc'+PREFS.indexOf(p)+')}'}).join("")+
  'html.night .tn .pf.off{fill:'+LAND+';stroke:'+EDGE+';stroke-width:.8px}html.night .tn .sh{opacity:0!important}'+
  'html.night .tn .mu{fill-opacity:0!important;stroke:'+EDGE+'!important;stroke-width:.6px}'+
  'html.night .tn .lb.p{color:'+SILV+'!important;text-shadow:0 0 4px '+NAVY+',0 0 10px '+NAVY+'!important;letter-spacing:.14em}html.night .tn .lb.p small{color:'+GOLD+';opacity:.85}'+
@@ -292,6 +295,8 @@ function D(col){return col;  // 点描はやめた（10/29 オーナー：前の
 function dotSize(u){var S=5.2*u;$$("pattern",DEFS||svg).forEach(function(pt){pt.setAttribute("width",S);pt.setAttribute("height",S);var c=pt.querySelector("circle");c.setAttribute("cx",S/2);c.setAttribute("cy",S/2);c.setAttribute("r",1.55*u)})}
 function setup(KS){
  KS.pref.features.forEach(function(f){var p=f.properties.p,d=geom2d(f.geometry);PF[p]={bb:gbb(f.geometry),sh:el("path",{d:d,"class":"sh"},G.sh),path:el("path",{d:d,"class":"pf","data-p":p,fill:D(FILL[p])},G.pf)};
+  // 夜の線を府県の内側だけに出す切り抜き（となりの線とバラバラに重ならない）
+  if(!DEFS){DEFS=el("defs",{},svg);svg.insertBefore(DEFS,svg.firstChild)}var ci="tnc"+PREFS.indexOf(p);el("path",{d:d},el("clipPath",{id:ci},DEFS));
   PF[p].path.addEventListener("click",function(){if(level()===1&&PF[p].has)flash(PF[p].path,DEEP[p],function(){pickPref(p)})})});
  KS.muni.features.forEach(function(f){var pr=f.properties,m={p:pr.p,n:pr.n,c:pr.c,g:f.geometry,bb:gbb(f.geometry)};m.id=m.p+"|"+m.c+"|"+m.n;
   m.path=el("path",{d:geom2d(f.geometry),"class":"mu"},G.mu);m.path.__mu=m;m.path.addEventListener("click",function(ev){if(level()===2&&state.pref===m.p&&m.grp.has){ev.stopPropagation();var g=m.grp;g.mus.forEach(function(x){x.path.style.fill=D(DEEP[x.p])});setTimeout(function(){goMuni(g)},180)}});MU.push(m)});
