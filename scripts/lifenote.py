@@ -83,6 +83,33 @@ o = re.sub(r'<p class="pr-note">.*?</p>',
            '<p class="pr-note">このページには楽天トラベルの広告（PR）があります（近くの宿）。<br>泊まる前に、楽天トラベルのページで最新の情報を確かめてください。<br><a href="/privacy">プライバシーポリシーと広告について</a></p>', o, count=1, flags=re.S)
 o = re.sub(r'<p class="ft">.*?</p>', '<p class="ft">LIFE NOTE│過去のおでかけも、このページに残していきます</p>'
            '<a class="tnx" href="/okaimono" data-k="下の入口｜おかいものリスト"><small>関連サイト</small><b>くらべたおかいものリスト<span>→</span></b><i>うさぎが数字で比べた物と、本当に安い物</i></a>', o, count=1, flags=re.S)
+# 11/2 検索結果に日付が出るように、日付のあるおでかけを schema.org の Event に（見た目は変えない）
+def events_ld(h):
+    import json, urllib.parse
+    ev = []
+    for m in re.finditer(r'<div class="card it" data-pref="([^"]+)"[^>]*?data-e="(\d{4}-\d\d-\d\d)" data-s="(\d{4}-\d\d-\d\d)"[^>]*>(.*?)<svg class="arw"', h, re.S):
+        pref, e, st, body = m.groups()
+        a = re.search(r'<a class="go" href="([^"]+)"[^>]*>(.*?)</a>', body, re.S)
+        if not a:
+            continue
+        name = re.sub(r"<[^>]+>", " ", a.group(2))
+        name = re.sub(r"\s+", " ", name).strip()
+        q = re.search(r'query=([^"&]+)', body)
+        place = urllib.parse.unquote(q.group(1)).replace("+", " ").strip() if q else ""
+        place = re.sub(r"\s*" + re.escape(pref) + r"$", "", place) or pref
+        ev.append({"@type": "Event", "name": name, "startDate": st, "endDate": e,
+                   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled",
+                   "location": {"@type": "Place", "name": place, "address": {"@type": "PostalAddress", "addressRegion": pref + ("都" if pref == "東京" else "県"), "addressCountry": "JP"}},
+                   "url": a.group(1).replace("&amp;", "&")})
+    if not ev:
+        return h
+    ld = {"@context": "https://schema.org", "@type": "ItemList", "name": "関東おでかけリスト",
+          "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": x} for i, x in enumerate(ev[:60])]}
+    tag = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+    return h.replace("</head>", tag + "</head>", 1)
+
+
+o = events_ld(o)
 o = meta(o, "関東のおでかけ 今週末・今日行けるイベント一覧（無料あり）｜関東おでかけリスト",
          "東京・神奈川・埼玉・千葉・茨城・栃木・群馬で、今週末や今日から行けるイベント、新しいお店・施設を公式ページつきで毎日更新。無料の場所、地図、近くの宿も。", "/odekake")
 wr("odekake.html", o)
@@ -130,6 +157,10 @@ for n in os.listdir(S):
 SEO = {
     "ima.html": ("今から行ける関東のおでかけ｜近い順・今日開いている所と天気", None, "/ima"),
     "tomari.html": ("泊まりで行く関東のおでかけ｜イベント会場の近くの宿｜LIFE NOTE", None, "/tomari"),
+    # 買う直前の人が打つ言葉（11/2 オーナー OK「アフェリエイトの方も検索で出やすく」）
+    "furusato.html": ("ふるさと納税 お米1万円で何kg？トイレットペーパー・水も寄付1万円あたりで比較｜LIFE NOTE", None, "/furusato"),
+    "tanka.html": ("トイレットペーパー・水・お米 1個あたりいちばん安いのは？楽天を送料込みで比較｜LIFE NOTE", None, "/tanka"),
+    "kaimawari.html": ("楽天お買い物マラソン 買いまわり1,000円ぽっきり おすすめ（送料込み・レビュー1,000件以上）｜LIFE NOTE", None, "/kaimawari"),
     "nesage.html": ("楽天で本当に値下がりした物だけ｜毎日の値段を記録して比較｜LIFE NOTE",
                     "楽天のよく買われる毎日の物の値段を毎日記録して、ふだんの値段より本当に下がった物だけを並べます。お買い物マラソン・ブラックフライデーの前に。", "/nesage"),
 }
