@@ -8,7 +8,13 @@
   function pick(){try{var v=localStorage.getItem(K);if(v==="day"||v==="night")return v;}catch(e){}return "day";}
   function set(v,save){d.classList.toggle("night",v==="night");if(save)try{localStorage.setItem(K,v);}catch(e){}
     document.dispatchEvent(new CustomEvent("usagi-theme",{detail:v}));}
-  var css="html.night{background:#fff;filter:invert(.95) hue-rotate(180deg)}"+
+  var css="html.night{background:transparent;filter:invert(.95) hue-rotate(180deg)}"+
+    /* 11/2 オーナー「画面周りに白くモヤ。見にくいから消して」→ iPhone の Safari は body の背景色で画面の上下をぼかす。
+       夜も body が白のままだったので白いモヤが出ていた。body の色は夜の紺にして、見た目の白い面は後ろの1枚（反転して紺になる）で出す */
+    "html.night body{background:#141A28!important}"+
+    "html.night body:before{content:'';position:fixed;inset:-50vh 0;background:#fff;z-index:-1;pointer-events:none}"+
+    /* 黒い影は反転すると白いモヤになるので、夜は影をなくす（下のボタン列・右上の丸） */
+    "html.night #v2bar,html.night #utheme,html.night #umenu{box-shadow:none!important}"+
     "html.night img,html.night video,html.night picture,html.night svg image,html.night .nofilt,html.night .tnbtn .mm{filter:invert(1) hue-rotate(180deg)}"+
     /* 11/2 オーナー「中のデザインだけ光らせたら？」→ 夜は丸い台をなくし、ロゴの線だけを光らせる */
     "html.night .head img{background:none;border-radius:50%}"+
