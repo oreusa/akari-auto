@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-02 20:31",
+  "at": "2026-11-02 20:55",
   "cats": [
     {
       "key": "water",
@@ -77,7 +77,7 @@
           "price": 1280,
           "per": 106.7,
           "amt": "500ml×24本",
-          "rc": 1302,
+          "rc": 1304,
           "av": 4.59,
           "shop": "暮らし健康ネット館",
           "plain": "https://item.rakuten.co.jp/kurashikenkou/10220307/"
@@ -87,8 +87,8 @@
           "price": 1420,
           "per": 118.3,
           "amt": "500ml×24本",
-          "rc": 3916,
-          "av": 4.59,
+          "rc": 3917,
+          "av": 4.6,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10158174/"
         },
@@ -97,7 +97,7 @@
           "price": 3007,
           "per": 125.3,
           "amt": "500ml×48本",
-          "rc": 1015,
+          "rc": 1016,
           "av": 4.8,
           "shop": "リカーBOSS 楽天市場店",
           "plain": "https://item.rakuten.co.jp/liquor-boss/10004086/"
@@ -107,7 +107,7 @@
           "price": 1520,
           "per": 126.7,
           "amt": "500ml×24本",
-          "rc": 1109,
+          "rc": 1110,
           "av": 4.63,
           "shop": "快適ホームライフ",
           "plain": "https://item.rakuten.co.jp/k-home/10084344/"
@@ -159,7 +159,7 @@
           "price": 4190,
           "per": 419.0,
           "amt": "10kg",
-          "rc": 1363,
+          "rc": 1364,
           "av": 4.68,
           "shop": "米屋 太三郎",
           "plain": "https://item.rakuten.co.jp/tasaburo/10000441/"
