@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-03 11:57",
+  "at": "2026-11-03 12:20",
   "cats": [
     {
       "key": "water",
@@ -912,6 +912,88 @@
           "rc": 245,
           "av": 4.52,
           "shop": "イトマンダイレクト Yahoo!店"
+        }
+      ]
+    },
+    {
+      "key": "diaper",
+      "title": "おむつ",
+      "unit": "1枚",
+      "seen": 60,
+      "read": 37,
+      "ok": 37,
+      "avg": 54.9,
+      "top": [
+        {
+          "name": "箱売り/3個セット ユニ・チャーム ムーニー マシュマロ肌ごこち モレ安心 新生児用 お誕生…",
+          "price": 5128,
+          "per": 26.7,
+          "amt": "192枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "NSC-Shop",
+          "plain": "https://item.rakuten.co.jp/nsc-kj/10002019/"
+        },
+        {
+          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
+          "price": 7944,
+          "per": 28.4,
+          "amt": "280枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Rafinagift楽天市場店",
+          "plain": "https://item.rakuten.co.jp/rafinagift/10008628/"
+        },
+        {
+          "name": "ケース販売3袋・送料無料(北海道、沖縄除く) 大容量マミーポコパンツ L ドラえもん 9kg…",
+          "price": 5600,
+          "per": 30.1,
+          "amt": "186枚",
+          "rc": 2,
+          "av": 4.0,
+          "shop": "アップショップ",
+          "plain": "https://item.rakuten.co.jp/up-shop/10001051/"
+        },
+        {
+          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
+          "price": 8828,
+          "per": 31.5,
+          "amt": "280枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Ciel de neige",
+          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/"
+        },
+        {
+          "name": "パンツ Mサイズ マミーポコ パンツ ドラえもん オムツ（6~13kg）144枚（48枚×3…",
+          "price": 4729,
+          "per": 32.8,
+          "amt": "144枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "actonlineshop",
+          "plain": "https://item.rakuten.co.jp/actonlineshop/10025244/"
+        }
+      ],
+      "amazon": [],
+      "yahoo": [
+        {
+          "name": "P＆G (ケース販売) パンパース はじめての肌へのいちばん テープ ウルトラジャンボ S(…",
+          "price": 6430,
+          "per": 32.5,
+          "amt": "198枚",
+          "rc": 86,
+          "av": 4.88,
+          "shop": "コジマYahoo!店"
+        },
+        {
+          "name": "moony パンツ ムーニー マシュマロ肌ごこち モレ安心 M たっち パンツ型ベビー用紙オ…",
+          "price": 5313,
+          "per": 34.1,
+          "amt": "156枚",
+          "rc": 45,
+          "av": 4.71,
+          "shop": "ユニ・チャームダイレクトショップ"
         }
       ]
     },
