@@ -395,7 +395,7 @@ def pick_row(c, i, col):
         name, n, res = m.group(1), m.group(2) + m.group(3), m.group(4).replace("選んだのは", "")
         v = re.match(r"(.*?)約?([\d,.]+)円$", res)
         if v:
-            val = v.group(2) + "円"
+            val = v.group(2)
             sub = f"{n}比べた" + (f"・{v.group(1).rstrip('の')}" if v.group(1) else "")
         else:
             sub = f"{n}比べて選んだのは{res}"
@@ -415,7 +415,7 @@ def pick_row(c, i, col):
             + (f'<p class="kbut"><b>ただし</b>{E(but.replace("ただし、", "").replace("ただし", ""))}</p>' if but else "")
             + (f'<p class="kr">{E(rate)}</p>' if rate else ""))
     return (f'<details class="kpr" id="k{i}" style="--pc:{pc}"><summary>{im}<span><b>{E(name)}</b>{E(sub)}</span>'
-            f'<em>{E(val)}</em></summary><div class="kpb">{body}'
+            f'<em>{E(val)}{"<small>円</small>" if val else ""}</em></summary><div class="kpb">{body}'
             f'<div class="kpg"><a class="go kgo2" href="{E(c["href"])}" rel="{rel}" target="_blank">{shop}で見る<i>›</i></a>'
             + others(c, shop) + '</div></div></details>')
 
@@ -669,6 +669,7 @@ def build(od, ix):
            '.kpr summary span{min-width:0;font-size:11.5px;color:#6B6B6B;line-height:1.45}'
            '.kpr summary span b{display:block;font-size:13.5px;color:#1A1A1A;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}'
            '.kpr summary em{font-style:normal;font:500 19px/1.1 Jost,sans-serif;color:#1A1A1A;white-space:nowrap}'
+           '.kpr summary em small{font:700 11px "Zen Kaku Gothic New",sans-serif;margin-left:1px}'
            '.kpb{padding:2px 14px 14px 68px;font-size:12.5px;line-height:1.7;color:#333}'
            '.kpb p{margin:0 0 6px}.kpb p b{display:inline-block;margin-right:8px;font-size:11px;color:#6B6B6B}'
            '.kpb .kbut b{color:#A0522D}'
