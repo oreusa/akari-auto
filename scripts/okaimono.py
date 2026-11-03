@@ -404,7 +404,14 @@ def build(od, ix):
     ncat = {}
     for c in cards:
         ncat[c["cat"]] = ncat.get(c["cat"], 0) + 1
-    chips = "".join(f'<button type="button" data-q="{E(c)}" style="--pc:{col[c]}"><b>{E(c)}</b><small>{ncat[c]}件</small></button>'
+    # mybest・Baymard：種類の入口は写真つきの大きなタイル（その種類の1位の写真）。文字だけのボタンより早く見つかる
+    pic = {}
+    for c in cards:
+        if c.get("img") and (c["cat"] not in pic or (c["tab"] == "unit" and c.get("rk") == "1")):
+            pic[c["cat"]] = c["img"]
+    chips = "".join(f'<button type="button" data-q="{E(c)}" style="--pc:{col[c]}">'
+                    + (f'<img src="{E(pic[c])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if pic.get(c) else '<i></i>')
+                    + f'<b>{E(c)}</b><small>{ncat[c]}件</small></button>'
                     for c in cats if c not in ("宿", "お店のお得", "楽天のセール", "いち押し"))
     ask = (f'<section class="kq" aria-label="AIに聞く" data-amz="{E(lib.AMAZON_TAG)}" data-yh="{E(MOSHIMO_YAHOO)}"><p class="kqh">{E(COPY)}</p>'
            '<form class="kqf" role="search"><input id="kq" type="search" autocomplete="off" enterkeyhint="search" placeholder="例：トイレットペーパー、水、洗剤" aria-label="ほしい物">'
@@ -512,6 +519,8 @@ def build(od, ix):
            '.kqc{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}'
            '.kqc button{position:relative;padding:12px 4px 10px;border:1px solid #E0E0E0;border-radius:10px;background:#fff;color:#1A1A1A;text-align:center;min-height:58px}'
            '.kqc button:before{content:"";position:absolute;left:50%;top:0;width:24px;height:3px;margin-left:-12px;border-radius:0 0 3px 3px;background:var(--pc)}'
+           '.kqc button img,.kqc button i{display:block;width:52px;height:52px;margin:0 auto 6px;object-fit:contain;mix-blend-mode:multiply;background:#F5F5F7;border-radius:8px}'
+           '.kqf{position:sticky;top:6px;z-index:5}'
            '.kqc button b{display:block;font-size:13.5px;line-height:1.3}.kqc button small{display:block;margin-top:2px;font:500 11px Jost,sans-serif;color:#6B6B6B}'
            '.kqs{margin:10px 0 0;text-align:center;font-size:11px;color:#6B6B6B}.kqs b{font:600 13px Jost,sans-serif;color:#1A1A1A;margin:0 2px}'
            '.kqon2 .kcon,.kqon2 .kfun,.kqon2 .kdl,.kqon2 a.ilk,.kqon2 .ilks{display:none!important}'
