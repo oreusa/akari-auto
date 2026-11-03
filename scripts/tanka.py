@@ -319,6 +319,10 @@ def amazon_rows(key, unit_lo_hi):
 
 # 11/3 オーナー「楽天だけじゃねぇだろ」→ Yahoo!ショッピングも同じ物差しで比べる（鍵 YAHOO_APP_ID がある時だけ。無ければ今までどおり）
 MOSHIMO_YAHOO = "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url="
+# 11/3 バリューコマース（Yahoo!ショッピングの公式の窓口）が通った。LIFE NOTE のサイトID 3786665。
+# pid（Yahoo!ショッピングの広告番号）が入ったら、Yahoo!の検索がそのまま報酬つきのリンクを返す（affiliate_type=vc）。空の間は もしも のまま
+VC_SID = "3786665"
+VC_PID = ""
 
 
 def yahoo_rows(cat):
@@ -329,7 +333,10 @@ def yahoo_rows(cat):
     if not appid:
         return []
     key, _, kw, _, _, ng, (lo, hi) = cat
-    q = urllib.parse.urlencode({"query": kw, "results": 50, "sort": "-review_count", "shipping": "free", "in_stock": "true"})
+    qd = {"query": kw, "results": 50, "sort": "-review_count", "shipping": "free", "in_stock": "true"}
+    if VC_PID:
+        qd.update(affiliate_type="vc", affiliate_id=f"https://ck.jp.ap.valuecommerce.com/servlet/referral?sid={VC_SID}&pid={VC_PID}&vc_url=")
+    q = urllib.parse.urlencode(qd)
     # 11/3 鍵だけだと 403。Yahoo!は User-Agent に「Yahoo AppID: 鍵」を入れる決まり
     req = urllib.request.Request("https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch?" + q,
                                  headers={"User-Agent": f"Yahoo AppID: {appid}"})
@@ -353,7 +360,7 @@ def yahoo_rows(cat):
             continue
         shops.add(shop)
         out.append({"name": short(name), "price": price, "per": round(per, 1), "amt": am[1], "rc": rc, "av": av, "shop": shop,
-                    "url": MOSHIMO_YAHOO + urllib.parse.quote(it.get("url") or "", safe=""), "img": (it.get("image") or {}).get("medium") or ""})
+                    "url": (it.get("url") or "") if VC_PID else MOSHIMO_YAHOO + urllib.parse.quote(it.get("url") or "", safe=""), "img": (it.get("image") or {}).get("medium") or ""})
     return sorted(out, key=lambda r: r["per"])[:2]
 
 
