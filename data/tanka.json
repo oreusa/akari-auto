@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-03 12:20",
+  "at": "2026-11-03 12:39",
   "cats": [
     {
       "key": "water",
@@ -378,7 +378,7 @@
       "seen": 60,
       "read": 47,
       "ok": 7,
-      "avg": 353.0,
+      "avg": 355.2,
       "top": [
         {
           "name": "コカ・コーラ コーヒー ジョージア 深み焙煎贅沢ブラック 無糖 950ml ペットボトル 1…",
@@ -920,29 +920,19 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 60,
-      "read": 37,
-      "ok": 37,
-      "avg": 54.9,
+      "read": 33,
+      "ok": 33,
+      "avg": 63.4,
       "top": [
         {
-          "name": "箱売り/3個セット ユニ・チャーム ムーニー マシュマロ肌ごこち モレ安心 新生児用 お誕生…",
-          "price": 5128,
-          "per": 26.7,
-          "amt": "192枚",
+          "name": "メリーズ Merries テープ 新生児用 オムツ さら さらエアスルー (お誕生~5000…",
+          "price": 4841,
+          "per": 29.5,
+          "amt": "164枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "NSC-Shop",
-          "plain": "https://item.rakuten.co.jp/nsc-kj/10002019/"
-        },
-        {
-          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
-          "price": 7944,
-          "per": 28.4,
-          "amt": "280枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "Rafinagift楽天市場店",
-          "plain": "https://item.rakuten.co.jp/rafinagift/10008628/"
+          "shop": "ちいさなしあわせストア",
+          "plain": "https://item.rakuten.co.jp/chiisana--shiawase/10019140/"
         },
         {
           "name": "ケース販売3袋・送料無料(北海道、沖縄除く) 大容量マミーポコパンツ L ドラえもん 9kg…",
@@ -955,24 +945,34 @@
           "plain": "https://item.rakuten.co.jp/up-shop/10001051/"
         },
         {
-          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
-          "price": 8828,
-          "per": 31.5,
-          "amt": "280枚",
+          "name": "送料無料 最強配送 P&G パンパース はじめての肌へのいちばん 新生児 5kgまで テープ…",
+          "price": 10400,
+          "per": 36.1,
+          "amt": "288枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "TIGTIG 楽天市場店",
+          "plain": "https://item.rakuten.co.jp/tigtig/10002667/"
+        },
+        {
+          "name": "メリーズ テープ Sサイズ さら さらエアスルー (4~8kg)296枚 (74枚×4) ケ…",
+          "price": 10815,
+          "per": 36.5,
+          "amt": "296枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Reve2018",
+          "plain": "https://item.rakuten.co.jp/reve2018/10069649/"
+        },
+        {
+          "name": "パンツ Mサイズ グーン ぐんぐん吸収パンツ おむつ (6~12kg) 192枚(64枚×3…",
+          "price": 7185,
+          "per": 37.4,
+          "amt": "192枚",
           "rc": 0,
           "av": 0.0,
           "shop": "Ciel de neige",
-          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/"
-        },
-        {
-          "name": "パンツ Mサイズ マミーポコ パンツ ドラえもん オムツ（6~13kg）144枚（48枚×3…",
-          "price": 4729,
-          "per": 32.8,
-          "amt": "144枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "actonlineshop",
-          "plain": "https://item.rakuten.co.jp/actonlineshop/10025244/"
+          "plain": "https://item.rakuten.co.jp/cieldeneige/10052518/"
         }
       ],
       "amazon": [],
