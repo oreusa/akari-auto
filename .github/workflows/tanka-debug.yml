@@ -1,0 +1,20 @@
+name: tanka-debug（比べる物が少ない理由をログに出すだけ）
+on:
+  workflow_dispatch:
+    inputs:
+      cats:
+        description: "key をスペース区切り（空なら新しい種類ぜんぶ）"
+        required: false
+        default: ""
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+      RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+      RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+      RAKUTEN_ORIGIN: ${{ secrets.RAKUTEN_ORIGIN }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/tanka_debug.py ${{ github.event.inputs.cats }}
