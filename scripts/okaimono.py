@@ -198,6 +198,7 @@ def last_num(t):
 
 # 11/2 もしもアフィリエイト（Yahoo!ショッピング・審査なしで提携済み）。同じ品を Yahoo! でも探せるボタン。
 # a_id はオーナーの もしも の「LIFE NOTE」用の番号（公開リンクに出る物なので秘密ではない）。Amazon は審査が通ったら足す。
+COPY = "買う前に、AIに聞いてみる。"  # 11/3 ページ一番上の一言（オーナーが選ぶ）
 MOSHIMO_YAHOO = "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url="
 
 
@@ -370,7 +371,7 @@ def build(od, ix):
         panes += (f'<div class="pane" data-t="{t}"{"" if t == first_t else " hidden"}>{"".join(cs)}{more}'
                   f'<p class="none">{NONE.get(t, "この種類の物は、これから増やしていきます")}</p>{deep}</div>')
     od_sec = (block(h, r'<section class="blk" id="odekake"') or [""])[0]
-    h = h.replace(od_sec, f'<section class="blk" id="odekake" data-v="odekake">{otab}{panes}</section>')
+    h = h.replace(od_sec, f'<section class="blk" id="odekake" data-v="odekake"><div id="kqr" hidden></div>{otab}{panes}</section>')
     for r in (r'<nav class="flt"', r'<p class="cnt"', r'<section class="blk arch" id="archive"'):
         for b in block(h, r):
             h = h.replace(b, "", 1)
@@ -396,7 +397,15 @@ def build(od, ix):
     left = (datetime.datetime(today.year, 12, 31) - today).days + 1
     dl = (f'<a class="kdl" href="/furusato" data-k="上の帯｜ふるさと"><span>ふるさと納税　今年の分は12/31まで</span><span>あと<b>{left}</b>日 ›</span></a>'
           if 0 < left <= 100 else "")
-    h = h.replace('<section class="blk" id="odekake"', top + con + fun + dl + cnt + flt + '<section class="blk" id="odekake"', 1)
+    # 11/3 オーナー「目を引く凄いHPに。みんな使いやすく、このAIに調べさせたら楽だと」→ 一番上に「聞く」欄（site/assets/kq.js）。
+    # 燈が毎日比べてためた答えからすぐ探す（その場でAIは使わない＝お金がかからない）。無い物は記録して、次の日に燈が比べる
+    import lib
+    chips = "".join(f'<button type="button" data-q="{E(c)}">{E(c)}</button>' for c in cats if c not in ("宿", "お店のお得", "楽天のセール", "いち押し"))
+    ask = (f'<section class="kq" aria-label="AIに聞く" data-amz="{E(lib.AMAZON_TAG)}" data-yh="{E(MOSHIMO_YAHOO)}"><p class="kqh">{E(COPY)}</p>'
+           '<form class="kqf" role="search"><input id="kq" type="search" autocomplete="off" enterkeyhint="search" placeholder="例：トイレットペーパー、水、洗剤" aria-label="ほしい物">'
+           '<button type="submit">比べる</button></form>'
+           + (f'<div class="kqc">{chips}</div>' if chips else "") + '</section>')
+    h = h.replace('<section class="blk" id="odekake"', ask + top + con + fun + dl + cnt + flt + '<section class="blk" id="odekake"', 1)
     # ---- 下の欄
     h = re.sub(r'<p class="tip">.*?</p>', "", h, flags=re.S)
     h = re.sub(r'<p class="pr-note">.*?</p>',
@@ -482,6 +491,24 @@ def build(od, ix):
            '.flt[data-v=odekake] button{flex:none}.flt button.hid{display:none}'
            'h1.ttl:not(:where(.tn *)){font-size:clamp(20px,6.2vw,30px);letter-spacing:.06em;white-space:nowrap}'
            '.flt[data-v=odekake]{justify-content:flex-start}.flt[data-v=odekake]:before,.flt[data-v=odekake]:after{content:"";flex:1 0 0}'
+           # 11/3 聞く欄（白・細線。ボタンだけ黒）
+           '.kq{margin:4px 0 18px;padding:16px 14px 12px;border:1px solid #1A1A1A;border-radius:14px;background:#fff}'
+           '.kqh{margin:0 0 10px;text-align:center;font:600 16px/1.5 var(--min);letter-spacing:.06em;color:#1A1A1A}'
+           '.kqf{display:flex;gap:8px;margin:0}'
+           '.kqf input{flex:1;min-width:0;height:46px;padding:0 14px;border:1px solid #D0D0D0;border-radius:10px;font-size:16px;background:#fff;color:#1A1A1A;-webkit-appearance:none;box-sizing:border-box}'
+           '.kqf input:focus{outline:none;border-color:#1A1A1A}'
+           '.kqf button{flex:none;height:46px;padding:0 18px;border:0;border-radius:10px;background:#1A1A1A;color:#fff;font-size:15px;font-weight:700}'
+           '.kqc{display:flex;gap:6px;margin-top:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.kqc::-webkit-scrollbar{display:none}'
+           '.kqc button{flex:none;padding:5px 11px;border:1px solid #E0E0E0;border-radius:99px;background:#fff;font-size:12px;color:#333}'
+           '#kqr{margin:0 0 16px}'
+           '#kqr .kqt{margin:0 0 10px;font-size:13px;font-weight:700;color:#1A1A1A}#kqr .kqt small{display:block;font-weight:400;font-size:11px;color:#6B6B6B;margin-top:2px}'
+           '#kqr .kqn{padding:16px;border:1px solid #E8E8E8;border-radius:12px;font-size:13px;line-height:1.7;color:#333}'
+           '#kqr .kqn a{display:inline-block;margin:10px 14px 0 0;font-weight:700;color:#1A1A1A;border-bottom:1px solid #1A1A1A;text-decoration:none}'
+           '#kqr .kqx{display:block;margin:6px auto 0;padding:8px 16px;border:1px solid #D0D0D0;border-radius:99px;background:#fff;font-size:12px;color:#333}'
+           '#kqr .kqb{margin:0 0 6px;font-size:11.5px;font-weight:700;letter-spacing:.04em;color:#1F6B4F}'
+           '#odekake #kqr .card.it.kc.kq1{border:2px solid #1A1A1A}'
+           '#kqr .kqe{margin:4px 0 10px;padding:10px 12px;border-radius:10px;background:#F5F5F7}#kqr .kqe small{display:block;font-size:11px;color:#6B6B6B;margin-bottom:4px}#kqr .kqe .ilk{margin:0}'
+           '#odekake.kqon>.otab,#odekake.kqon>.pane{display:none!important}.kqon2 .flt[data-v=odekake]{display:none}'
            '</style>')
     h = h.replace("</head>", css + "</head>", 1)
     # 種類のしぼりこみは、いま開いているタブにある種類だけ出す／押されたPRを数える／下のボタン列は買い物の4つ
@@ -505,5 +532,6 @@ def build(od, ix):
           '})();</script>')
     h = h.replace('<body class="', '<body data-bar="okai" class="', 1)
     h = h.replace("c.hidden=!ok||(!op&&k>5);", "c.hidden=!ok||(!op&&k>8);").replace('m.dataset.l+(k-5)+"件）";m.hidden=op||k<=5;', 'm.dataset.l+(k-8)+"件）";m.hidden=op||k<=8;')
+    js += '<script src="/assets/kq.js?v=1" defer></script>'
     i = h.rfind("</body>")
     return h[:i] + js + h[i:]
