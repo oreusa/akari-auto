@@ -26,10 +26,26 @@ PAGES = 4  # 1つの物で 30件×4ページ＝最大120件
 TOP = 5
 
 NUM = r"(\d+(?:\.\d+)?)"
-MUST = {"soda": "炭酸", "tp": "トイレット", "rice": "米", "tea": "茶", "coffee": "コーヒー", "detergent": "洗剤", "softener": "柔軟剤",
-        "shampoo": "シャンプー", "bodysoap": "ボディ", "dish": "食器", "tissue": "ティッシュ", "diaper": "おむつ", "wipes": "ふき",
-        "trash": "袋", "battery": "単3", "mask": "マスク", "pasta": "パスタ", "protein": "プロテイン", "beans": "豆",
-        "dogfood": "ドッグフード", "catfood": "キャットフード"}
+MUST = {"soda": "炭酸", "tp": "トイレット", "rice": "米", "tea": "茶", "coffee": ("コーヒー", "珈琲", "BOSS", "ブラック"), "detergent": "洗剤",
+        "softener": ("柔軟剤", "柔軟仕上げ"), "shampoo": "シャンプー", "bodysoap": ("ボディソープ", "ボディーソープ", "ボディウォッシュ"),
+        "dish": "食器", "tissue": "ティッシュ", "diaper": ("おむつ", "オムツ"), "wipes": ("ふき", "拭き"),
+        "trash": "袋", "battery": ("単3", "単三"), "mask": "マスク", "pasta": ("パスタ", "スパゲッティ", "スパゲティ"), "protein": "プロテイン",
+        "beans": ("豆", "コーヒー", "珈琲"), "dogfood": ("ドッグフード", "犬", "ドッグ"), "catfood": ("キャットフード", "猫", "キャット")}
+
+
+def must_ok(key, name):
+    """名前に必ずある言葉（どれか1つ）。検索で別の物が混ざるため。"""
+    m = MUST.get(key)
+    if not m:
+        return True
+    return any(w in name for w in ((m,) if isinstance(m, str) else m))
+
+
+# 11/3 楽天で調べたら、洗剤・おむつ・ペットフードなどはレビュー1,000件の物がほとんど無い（1商品のレビューが散らばる）。
+# 水・お米などの4つは今まで通り1,000件、足した物は100件以上・★4.0以上（カードにレビュー数をそのまま出す）
+RMIN = {"water": 1000, "soda": 1000, "rice": 1000, "tp": 1000}
+RMIN_NEW = 100
+NGKW = "ふるさと 定期便 お試し サンプル"  # 楽天の検索で先に外す（30件の枠を使わない）
 NG = ("ふるさと", "定期", "お試し", "サンプル")
 KIND = {"tea": "vol", "coffee": "vol", "detergent": "vol", "softener": "vol", "shampoo": "vol", "bodysoap": "vol", "dish": "vol",
         "tissue": "kumi", "diaper": "pcs", "wipes": "pcs", "trash": "pcs", "mask": "pcs", "battery": "hon",
@@ -52,21 +68,21 @@ CATS = [
         ("tea", "お茶（ペットボトル）", "お茶 ペットボトル 緑茶 ケース", "1L", ("紅茶", "ティーバッグ", "茶葉", "粉末", "パウダー"), (30, 500)),
         ("coffee", "コーヒー（ボトル）", "コーヒー ペットボトル 無糖 ケース", "1L", ("豆", "粉", "ドリップ", "インスタント", "カプセル"), (50, 800)),
         ("detergent", "洗濯洗剤（詰め替え）", "洗濯洗剤 詰め替え 超特大", "1L・1kg", ("粉", "シート", "ジェルボール", "柔軟剤"), (100, 3000)),
-        ("softener", "柔軟剤（詰め替え）", "柔軟剤 詰め替え 超特大", "1L・1kg", ("洗剤", "シート"), (100, 3000)),
-        ("shampoo", "シャンプー（詰め替え）", "シャンプー 詰め替え 大容量", "1L・1kg", ("トリートメントのみ", "サロン専売"), (200, 8000)),
-        ("bodysoap", "ボディソープ（詰め替え）", "ボディソープ 詰め替え 大容量", "1L・1kg", ("固形", "石鹸 個"), (100, 5000)),
-        ("dish", "食器用洗剤（詰め替え）", "食器用洗剤 詰め替え 大容量", "1L・1kg", ("食洗機", "タブレット", "粉"), (100, 3000)),
-        ("tissue", "ティッシュ", "ティッシュペーパー 箱 まとめ買い", "100組", ("ウェット", "トイレット", "ケース", "カバー", "ポケット"), (2, 100)),
-        ("diaper", "おむつ", "おむつ テープ パンツ ケース", "1枚", ("おしりふき", "大人", "ペット", "防水シート"), (10, 120)),
-        ("wipes", "おしりふき・ウェットシート", "おしりふき ケース まとめ買い", "1枚", ("おむつ", "ケース単体", "フタ"), (0.3, 15)),
+        ("softener", "柔軟剤（詰め替え）", "柔軟剤 詰め替え 超特大", "1L・1kg", ("洗濯洗剤", "シート", "ビーズ"), (100, 3000)),
+        ("shampoo", "シャンプー（詰め替え）", "シャンプー 詰め替え 大容量", "1L・1kg", ("トリートメントのみ", "ディスペンサー", "ボトル", "容器", "アダプター", "ホルダー", "ケース"), (200, 8000)),
+        ("bodysoap", "ボディソープ（詰め替え）", "ボディソープ 詰め替え 大容量", "1L・1kg", ("固形", "石鹸 個", "ディスペンサー", "ボトル", "容器", "アダプター", "スクラブ", "シャンプー"), (100, 5000)),
+        ("dish", "食器用洗剤（詰め替え）", "食器用洗剤 詰め替え 大容量", "1L・1kg", ("食洗機", "タブレット", "粉", "ディスペンサー", "自動", "ボトル"), (100, 3000)),
+        ("tissue", "ティッシュ", "ティッシュペーパー まとめ買い", "100組", ("ウェット", "トイレット", "ティッシュケース", "カバー", "ポケット", "ペーパータオル"), (2, 200)),
+        ("diaper", "おむつ", "おむつ ベビー ケース", "1枚", ("おしりふき", "大人", "介護", "ペット", "防水シート", "パッド"), (10, 120)),
+        ("wipes", "おしりふき", "おしりふき まとめ買い", "1枚", ("おむつ", "ケース単体", "フタ", "ペット", "おしり拭きケース"), (0.3, 15)),
         ("trash", "ゴミ袋", "ゴミ袋 45L 枚", "1枚", ("ゴミ箱", "ホルダー", "スタンド"), (1, 60)),
-        ("battery", "乾電池（単3）", "単3 乾電池 アルカリ 本", "1本", ("充電器", "単4", "ケース", "ホルダー", "充電池"), (15, 400)),
+        ("battery", "乾電池（単3）", "単3 乾電池 アルカリ", "1本", ("充電器", "単4", "単四", "ケース", "ホルダー", "充電池"), (15, 400)),
         ("mask", "マスク", "マスク 不織布 枚", "1枚", ("ケース", "ストラップ", "ホルダー", "シートマスク", "パック"), (1, 120)),
         ("pasta", "パスタ", "パスタ スパゲッティ kg", "1kg", ("ソース", "レトルト", "冷凍", "マシン"), (150, 3000)),
         ("protein", "プロテイン", "プロテイン ホエイ kg", "1kg", ("バー", "シェイカー", "ドリンク 本"), (1000, 15000)),
         ("beans", "コーヒー豆", "コーヒー豆 kg 焙煎", "1kg", ("ドリップバッグ", "インスタント", "ミル", "カプセル"), (800, 15000)),
-        ("dogfood", "ドッグフード", "ドッグフード ドライ kg", "1kg", ("おやつ", "ウェット", "缶", "パウチ"), (100, 6000)),
-        ("catfood", "キャットフード", "キャットフード ドライ kg", "1kg", ("おやつ", "ウェット", "缶", "パウチ", "ちゅ"), (100, 6000)),
+        ("dogfood", "ドッグフード", "ドッグフード ドライ kg", "1kg", ("おやつ", "ウェット", "缶", "パウチ", "生肉", "冷凍", "療法食", "トッピング"), (100, 6000)),
+        ("catfood", "キャットフード", "キャットフード ドライ kg", "1kg", ("おやつ", "ウェット", "缶", "パウチ", "ちゅ", "療法食"), (100, 6000)),
     ]
 ]
 
@@ -81,7 +97,9 @@ def short(name, n=46):
 
 
 def z2h(s):
-    return str(s).translate(str.maketrans("０１２３４５６７８９．ｍｌＭＬｋｇＫＧｘＸ＊*", "0123456789.mlMLkgKG××××"))
+    t = str(s).translate(str.maketrans("０１２３４５６７８９．，ｍｌＭＬｋｇＫＧｘＸ＊*", "0123456789.,mlMLkgKG××××"))
+    t = re.sub(r"(?<=\d),(?=\d{3}(?!\d))", "", t)  # 2,580g → 2580g
+    return re.sub(r"1\s*(?:枚|本|個|kg|L)\s*(?:あたり|当たり)[^\s　]*", " ", t)  # 「1枚あたり12円」は量ではない
 
 
 def one(vals):
@@ -118,48 +136,98 @@ def amount(cat, name):
             return None
         return a * b / 100, f"{a:g}m×{b}ロール"
     k = KIND.get(cat)
-    cnt = [int(v) for v in re.findall(r"[x×]\s*(\d+)\s*(?:本|個|袋|パック|セット|箱|ケース)?", t)] + \
-          [int(v) for v in re.findall(r"(\d+)\s*(?:本|個|袋|パック|セット)(?:入|セット|組)?(?!\s*[x×]?\s*\d)", t)]
-    c1 = one(cnt) if cnt else 1
-    if not c1 or c1 > 200:
-        return None
     if k == "vol":
         ml = [float(v) for v in re.findall(NUM + r"\s*(?:ml|mL|ML|ミリリットル)", t)]
         ml += [float(v) * 1000 for v in re.findall(NUM + r"\s*(?:L|ℓ|リットル)(?![a-zA-Z])", t)]
-        if cat not in ("tea", "coffee"):  # 洗剤などの液体は g で売る物が多い（水に近い重さ）→ 1L・1kgあたりで同じに比べる
+        isg = False
+        if cat not in ("tea", "coffee") and not ml:  # 洗剤などの液体は g で売る物が多い（水に近い重さ）→ 1L・1kgあたりで同じに比べる
             ml += [float(v) for v in re.findall(NUM + r"\s*(?:g|グラム)(?![a-zA-Z])", t)]
             ml += [float(v) * 1000 for v in re.findall(NUM + r"\s*(?:kg|KG|Kg|キロ)", t)]
-        a = one(ml)
-        if not a or a < 100 or a > 6000:
-            return None
-        isg = bool(re.search(NUM + r"\s*(?:g|グラム|kg|KG|Kg|キロ)(?![a-zA-Z])", t)) and cat not in ("tea", "coffee") and not re.search(r"ml|mL|ML|L(?![a-zA-Z])", t)
-        d = (f"{a / 1000:g}kg" if a >= 1000 else f"{a:g}g") if isg else (f"{a / 1000:g}L" if a >= 1000 else f"{a:g}ml")
-        return a * c1 / 1000, d + (f"×{c1}" if c1 > 1 else "")
+            isg = True
+        return _per_pack(t, ml, 100, 6000, lambda a: (f"{a / 1000:g}kg" if a >= 1000 else f"{a:g}g") if isg else
+                         (f"{a / 1000:g}L" if a >= 1000 else f"{a:g}ml"), 1000)
     if k == "wt":
         g = [float(v) for v in re.findall(NUM + r"\s*(?:g|グラム)(?![a-zA-Z])", t)]
         g += [float(v) * 1000 for v in re.findall(NUM + r"\s*(?:kg|KG|Kg|キロ)", t)]
-        a = one(g)
-        if not a or a < 100 or a > 30000:
-            return None
-        return a * c1 / 1000, (f"{a / 1000:g}kg" if a >= 1000 else f"{a:g}g") + (f"×{c1}" if c1 > 1 else "")
+        return _per_pack(t, g, 100, 30000, lambda a: f"{a / 1000:g}kg" if a >= 1000 else f"{a:g}g", 1000)
     if k in ("pcs", "hon"):
         w = "枚" if k == "pcs" else "本"
-        n = [int(v) for v in re.findall(r"(\d+)\s*" + w, t)]
-        pk = re.findall(r"(\d+)\s*" + w + r"\s*(?:入り?)?\s*[x×]\s*(\d+)", t)
-        a = one(n)
-        if pk and len(set(pk)) == 1:
-            a = int(pk[0][0]) * int(pk[0][1])
+        tot = re.findall(r"(?:合計|計)\s*(\d+)\s*" + w, t)
+        if len(set(tot)) == 1:
+            a = int(tot[0])
+        else:
+            n = sorted(set(int(v) for v in re.findall(r"(\d+)\s*" + w, t)))
+            pk = set(int(x) * int(y) for x, y in re.findall(r"(\d+)\s*" + w + r"\s*(?:入り?)?\s*[)）]?\s*[x×]?\s*(\d+)\s*(?:" + PACK + ")", t))
+            pk |= set(int(x) * int(y) for x, y in re.findall(r"(\d+)\s*" + w + r"\s*(?:入り?)?\s*[)）]?\s*[x×]\s*(\d+)", t))
+            if len(pk) == 1:
+                a = pk.pop()
+                if any(v != a and a % v for v in n):  # 「80枚×12個」のほかに合わない枚数があれば読まない
+                    return None
+            elif len(pk) > 1:
+                return None
+            elif len(n) == 1:
+                a = n[0]
+                if k == "pcs":  # 「【4個セット】38枚」＝4袋
+                    c = set(int(v) for v in re.findall(r"(\d+)\s*(?:" + PACK + r")\s*セット", t))
+                    if len(c) == 1:
+                        a *= c.pop()
+            elif len(n) == 2 and n[1] % n[0] == 0 and str(n[1] // n[0]) in re.findall(r"(\d+)\s*(?:" + PACK + ")", t):
+                a = n[1]  # 「200枚 50枚 4箱」
+            else:
+                return None
         if not a or a < 2 or a > 5000:
             return None
         return a, f"{a}{w}"
     if k == "kumi":
-        kumi = [int(v) for v in re.findall(r"(\d+)\s*組", t)]
-        box = [int(v) for v in re.findall(r"(\d+)\s*(?:箱|個|パック)", t)]
-        a, b = one(kumi), one(box)
-        if not a or not b or a < 50 or a > 1000:
+        kumi = sorted(set(int(v) for v in re.findall(r"(\d+)\s*組", t)))
+        box = sorted(set(int(v) for v in re.findall(r"(\d+)\s*(?:箱|個|パック|袋)", t)))
+        if len(kumi) != 1 or len(box) != 1:
             return None
-        return a * b / 100, f"{a}組×{b}箱"
+        a, b = kumi[0], box[0]
+        if a < 50 or a > 1000:
+            return None
+        return a * b / 100, f"{a}組×{b}" + ("袋" if re.search(str(b) + r"\s*袋", t) else "箱")
     return None
+
+
+PACK = r"本|個|袋|パック|箱|小箱|缶|冊|コ|ケース|セット|点"
+
+
+def _count(t):
+    """何個（本・袋・箱）入りか。読めない時は None、書いていない時は 1。
+    「12本入り×2ケース」「24本×2箱」は掛ける。「24本 48本 選べる」のように2つ以上あれば読まない。"""
+    tot = re.findall(r"(?:合計|計)\s*(\d+)\s*(?:本|個|袋|缶)", t)
+    if len(set(tot)) == 1:
+        return int(tot[0])
+    pk = set(int(x) * int(y) for x, y in re.findall(r"(\d+)\s*(?:本|個|袋|パック|缶|コ)\s*(?:入り?)?\s*[)）]?\s*[x×]\s*(\d+)", t))
+    one_ = set(int(v) for v in re.findall(r"(?<![\d.])(\d+)\s*(?:本|個|袋|パック|缶|コ)(?!\s*[x×]\s*\d|パック)", t))
+    one_ |= set(int(v) for v in re.findall(r"[x×]\s*(\d+)(?![\d.]|\s*(?:ml|mL|L|g|kg|枚|組|m|cm|mm))", t))
+    if len(pk) == 1:
+        a = next(iter(pk))
+        return a if all(v == a or a % v == 0 for v in one_) else None
+    if len(pk) > 1:
+        return None
+    if not one_:
+        return 1
+    return one_.pop() if len(one_) == 1 else None
+
+
+def _per_pack(t, vals, lo, hi, fmt, div):
+    """1袋（1本）の量 × 何袋。「15kg (5kg×3袋)」「500g×4個 2kg」のように合計も書いてある時は合計を使う。"""
+    v = sorted(set(vals))
+    c = _count(t)
+    if len(v) == 2 and c and c > 1 and abs(v[0] * c - v[1]) < 1:
+        return v[1] / div, f"{fmt(v[0])}×{c}"
+    if len(v) == 2 and not c:
+        cs = set(int(x) for x in re.findall(r"[x×]\s*(\d+)", t))
+        if len(cs) == 1 and abs(v[0] * next(iter(cs)) - v[1]) < 1:
+            return v[1] / div, f"{fmt(v[0])}×{next(iter(cs))}"
+    if len(v) != 1 or not c or c > 200:
+        return None
+    a = v[0]
+    if a < lo or a > hi:
+        return None
+    return a * c / div, fmt(a) + (f"×{c}" if c > 1 else "")
 
 
 def item_page(it):
@@ -175,6 +243,8 @@ def fetch(cat):
         q = {"keyword": kw, "postageFlag": 1, "availability": 1, "sort": "-reviewCount", "hits": 30, "page": page}
         if gid:
             q["genreId"] = gid
+        if key in KIND:
+            q["NGKeyword"] = NGKW + (" 大人 介護" if key == "diaper" else "")
         items, err = lib._rakuten_search(q)
         time.sleep(1.1)  # 楽天APIは1秒に1回まで
         if not items:
@@ -186,7 +256,7 @@ def fetch(cat):
             seen.add(code)
             n_all += 1
             name = it.get("itemName") or ""
-            if any(w in name for w in ng) or (MUST.get(key) and MUST[key] not in name):
+            if any(w in name for w in ng) or not must_ok(key, name):
                 continue
             am = amount(key, name)
             price = int(it.get("itemPrice") or 0)
@@ -202,7 +272,8 @@ def fetch(cat):
                          "rc": int(it.get("reviewCount") or 0), "av": float(it.get("reviewAverage") or 0),
                          "shop": it.get("shopName") or "", "url": aff, "plain": item_page(it),
                          "img": lib._item_image(it)})
-    ok = sorted([r for r in rows if r["rc"] >= 1000 and r["av"] >= 4.0], key=lambda r: r["per"])
+    rmin = RMIN.get(key, RMIN_NEW)
+    ok = sorted([r for r in rows if r["rc"] >= rmin and r["av"] >= 4.0], key=lambda r: r["per"])
     out, shops = [], set()
     for r in ok:  # 同じ店は1つ（並びが1店で埋まらないように）
         if r["shop"] in shops:
@@ -211,7 +282,7 @@ def fetch(cat):
         out.append(r)
     avg = round(sum(r["per"] for r in rows) / len(rows), 1) if rows else 0
     return {"key": key, "title": cat[1], "unit": unit, "seen": n_all, "read": len(rows), "ok": len(ok),
-            "avg": avg, "top": out[:TOP]}, err
+            "avg": avg, "rmin": rmin, "top": out[:TOP]}, err
 
 
 AMZ_WORDS = {"water": ("天然水", "ミネラルウォーター", "水 "), "soda": ("炭酸",), "rice": ("米",), "tp": ("トイレット",)}
@@ -254,19 +325,22 @@ def yahoo_rows(cat):
         return []
     key, _, kw, _, _, ng, (lo, hi) = cat
     q = urllib.parse.urlencode({"appid": appid, "query": kw, "results": 50, "sort": "-review_count", "shipping": "free", "in_stock": "true"})
-    with urllib.request.urlopen("https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch?" + q, timeout=20) as r:
+    # 11/3 鍵だけだと 403。Yahoo!は User-Agent に「Yahoo AppID: 鍵」を入れる決まり
+    req = urllib.request.Request("https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch?" + q,
+                                 headers={"User-Agent": f"Yahoo AppID: {appid}"})
+    with urllib.request.urlopen(req, timeout=20) as r:
         hits = json.load(r).get("hits") or []
     time.sleep(1.1)
     out, shops = [], set()
     for it in hits:
         name = it.get("name") or ""
-        if any(w in name for w in ng) or (MUST.get(key) and MUST[key] not in name):
+        if any(w in name for w in ng) or not must_ok(key, name):
             continue
         am = amount(key, name)
         price = int(it.get("price") or 0)
         rv = it.get("review") or {}
         rc, av = int(rv.get("count") or 0), float(rv.get("rate") or 0)
-        if not am or not price or rc < 300 or av < 4.0:
+        if not am or not price or rc < min(300, RMIN.get(key, RMIN_NEW)) or av < 4.0:
             continue
         per = price / am[0]
         shop = (it.get("seller") or {}).get("name") or ""
@@ -319,7 +393,7 @@ def render(cats, now):
         lis = "".join(card(r, i, c["unit"], c["avg"]) for i, r in enumerate(c["top"], 1))
         secs += (f'<section class="ps" data-p="{c["key"]}"><h2>{esc(c["title"])}</h2>'
                  f'<p class="how">楽天の送料込みの{c["seen"]}件を見て、量が読めた{c["read"]}件を{c["unit"]}あたりに直しました。'
-                 f'レビュー1,000件以上・評価4.0以上は{c["ok"]}件。その中で安い順です（同じお店は1つ）。'
+                 f'レビュー{c.get("rmin", 1000):,}件以上・評価4.0以上は{c["ok"]}件。その中で安い順です（同じお店は1つ）。'
                  f'{"比べた全部の平均は" + c["unit"] + "あたり" + yen(c["avg"]) + "円。" if c["avg"] else ""}</p>'
                  f'<ul>{lis}</ul>'
                  + (f'<h3 class="az3">Yahoo!ショッピングでは（送料無料・同じ物差し）</h3><ul>{"".join(yh_card(r, c["unit"]) for r in c["yh"])}</ul>'
@@ -329,7 +403,7 @@ def render(cats, now):
     names = "・".join(c["title"].split("（")[0] for c in cats)
     amz = any(c.get("amz") for c in cats)
     title = f"1個あたりで比べた 楽天{'とAmazon' if amz else ''}の{names}｜うさぎ│LIFE NOTES"
-    desc = f"楽天の送料込みの商品{seen}件を、1Lあたり・1kgあたり・100mあたりに直して比べました。レビュー1,000件以上・評価4.0以上の中で安い順。"
+    desc = f"楽天の送料込みの商品{seen}件を、1Lあたり・1kgあたり・100mあたりに直して比べました。レビューの多い評価4.0以上の中で安い順。"
     css = open(os.path.join(ROOT, "scripts", "kaimawari.py"), encoding="utf-8").read()
     css = css[css.index("<style>") + 7:css.index("</style>")].replace("{{", "{").replace("}}", "}")
     return f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">

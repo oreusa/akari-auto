@@ -357,7 +357,7 @@ def build(od, ix):
     fun = ""
     if fs["seen"] and n["unit"]:
         steps = [("楽天で見た商品", fs["seen"]), ("量を読んで、1個あたりに直した", fs["read"]),
-                 ("レビュー1,000件以上・評価4.0以上", fs["ok"]), ("同じお店は1つにして、安い順にのせた", n["unit"])]
+                 ("レビューが多く・評価4.0以上", fs["ok"]), ("同じお店は1つにして、安い順にのせた", n["unit"])]
         lab = ["楽天で見た", "量で比べた", "評価の条件", "のせた"]
         fun = ('<section class="kfun" aria-label="うさぎの比べ方"><p class="kft">うさぎが楽天で比べて、しぼりました</p><div class="kfr">'
                + '<i class="kfa">→</i>'.join(f'<div class="kfs"><b>{v:,}</b><span>{lab[i]}</span></div>' for i, (l, v) in enumerate(steps))
