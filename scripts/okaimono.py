@@ -102,7 +102,7 @@ def li_card(cat, li, tab, src):
     pm = re.search(r"平均より\s*(\d+)%\s*安い", df)
     return dict(tab=tab, cat=cat, top=pu or src, big=df, title=nm, sub=price.strip(), href=href, pr=True,
                 rk=first(r'<span class="rk">(\d+)</span>', li), pct=int(pm.group(1)) if pm else 0,
-                rate=re.sub(r"\s+", "・", rate), img=html.unescape(first(r'<img src="([^"]+)"', li)))
+                rate=re.sub(r"\s+", "・", rate), img=html.unescape(first(r'<img[^>]*? src="([^"]+)"', li)))
 
 
 # ---------- 写真（11/2 オーナー「写真もついてないし。俺だったらここで買わないかも」）
@@ -168,9 +168,22 @@ def photos(cards):
 
 def collect(ix):
     cards = from_index(ix)
+    # 11/3 楽天とYahoo!を同じ種類の中で1個あたりの安い順に並べ直し、順位も付け直す（Yahoo!が下にまとまって写真も順位も無かった）
+    grp = {}
     for cat, li in lis("tanka.html"):
         if "Amazon" not in li:
-            cards.append(li_card(cat, li, "unit", "1個あたり"))
+            grp.setdefault(cat, []).append(li_card(cat, li, "unit", "1個あたり"))
+    for cat, cs in grp.items():
+        def per(c):
+            m = last_num(c["top"])
+            try:
+                return float(m[1].replace(",", "")) if m else 9e9
+            except ValueError:
+                return 9e9
+        cs.sort(key=per)
+        for j, c in enumerate(cs, 1):
+            c["rk"] = str(j)
+        cards.extend(cs)
     for cat, li in lis("furusato.html"):
         c = li_card("ふるさと納税", li, "unit", "寄付1万円あたり")
         c["top"] = cat + "・" + c["top"]
@@ -396,7 +409,7 @@ def build(od, ix):
             rows += (f'<a href="#k{i}" data-t="unit" data-p="{E(c["cat"])}" data-k="結論｜{E(c["cat"])}">{im}'
                      f'<span><b>{E(nm)}</b>{E(lab)}{"いちばん多い" if c["cat"] == "ふるさと納税" else "いちばん安い"}</span><em>{val}<small>{sub}</small></em></a>')
         upd = first(r'"at": "([^"]+)"', open(os.path.join(R, "data", "tanka.json"), encoding="utf-8").read()) if os.path.exists(os.path.join(R, "data", "tanka.json")) else ""
-        con = (f'<section class="kcon" aria-label="うさぎの結論"><div class="kch"><b>うさぎの結論</b><small>{E(upd[5:].replace("-", "/"))} 楽天で確かめた値段</small></div>{rows}</section>')
+        con = (f'<section class="kcon" aria-label="うさぎの結論"><div class="kch"><b>うさぎの結論</b><small>{E(upd[5:].replace("-", "/"))} 楽天・Yahoo!で確かめた値段</small></div>{rows}</section>')
     # ふるさと納税の締め切り（細い帯1本だけ。秒のカウントダウンはしない）
     import datetime
     today = datetime.datetime.utcnow() + datetime.timedelta(hours=9)
