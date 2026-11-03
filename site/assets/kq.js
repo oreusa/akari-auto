@@ -24,6 +24,18 @@
       var h=document.createElement("p");h.className="kqt";
       h.innerHTML="「"+sh+"」の答え　"+hit.length+"件<small>うさぎが送料込み・1個あたりで比べた中から出しています</small>";
       qr.appendChild(h);
+      /* ひと目でわかる差：同じ物差し（1Lあたり など）の上位5つを棒で並べる。文字を読まなくても差が見える */
+      var rows=[],lab="";
+      hit.forEach(function(c){var b=c.querySelector(".kv b"),l=c.querySelector(".kvl"),u=c.querySelector(".kvu");if(!b||!l)return;
+        var v=parseFloat(b.textContent.replace(/[^\d.]/g,""));if(!(v>0))return;var L=l.textContent.trim()+"|"+(u?u.textContent.trim():"");
+        if(!lab)lab=L;if(L===lab)rows.push({v:v,c:c,u:u?u.textContent.trim():""});});
+      rows.sort(function(a,b){return a.v-b.v;});rows=rows.slice(0,5);
+      if(rows.length>=3){var mx=Math.max.apply(null,rows.map(function(r){return r.v;})),g=document.createElement("div");g.className="kqg";
+        g.innerHTML='<p>'+esc(lab.split("|")[0])+'の値段（短いほど安い）</p>'+rows.map(function(r,i){
+          var im=r.c.querySelector(".kp img");
+          return '<div class="kqr'+(i===0?" b":"")+'">'+(im?'<img src="'+im.getAttribute("src")+'" alt="" referrerpolicy="no-referrer">':'<i></i>')
+            +'<span><em style="width:'+Math.max(8,Math.round(r.v/mx*100))+'%"></em></span><b>'+r.v+'<small>'+esc(r.u)+'</small></b></div>';}).join("");
+        qr.appendChild(g);}
       hit.slice(0,12).forEach(function(c,i){var k=c.cloneNode(true);k.hidden=false;k.removeAttribute("id");k.style.display="";
         if(i===0){var b=document.createElement("p");b.className="kqb";b.textContent="うさぎの答え　いちばんお得なのはこれ";qr.appendChild(b);k.classList.add("kq1");}
         qr.appendChild(k);});

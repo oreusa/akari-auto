@@ -318,7 +318,7 @@ def build(od, ix):
     h = od
     # ---- 見出し
     h = re.sub(r'<h1 class="ttl">.*?</h1>', '<h1 class="ttl">くらべたおかいものリスト</h1>', h, count=1, flags=re.S)
-    h = re.sub(r'<p class="sub">.*?</p>', '<p class="sub">楽天の送料込みの値段を、1個あたりに直して、<br>うさぎが毎日くらべています</p>'
+    h = re.sub(r'<p class="sub">.*?</p>', '<p class="sub">送料込み・1個あたりで、毎日くらべています</p>'
                '<p class="kprl">このページには楽天・Amazon・Yahoo!ショッピングの広告（アフィリエイト）リンクがあります</p>', h, count=1, flags=re.S)
     h = re.sub(r'<div class="sea">.*?</div>', "", h, count=1, flags=re.S)
     # 上の3つの入口（いま行ける・地図・イルミ）と季節の輪はおでかけだけ → 外す（月の不動産リストと同じ：入口1行＋件数）
@@ -536,6 +536,12 @@ def build(od, ix):
            '.kqc button:before{content:"";position:absolute;left:50%;top:0;width:24px;height:3px;margin-left:-12px;border-radius:0 0 3px 3px;background:var(--pc)}'
            '.kqc button img,.kqc button i{display:block;width:52px;height:52px;margin:0 auto 6px;object-fit:contain;mix-blend-mode:multiply;background:#F5F5F7;border-radius:8px}'
            '.kqf{position:sticky;top:6px;z-index:5}'
+           '#kqr .kqg{margin:0 0 14px;padding:12px 14px;border:1px solid #E8E8E8;border-radius:12px}#kqr .kqg p{margin:0 0 8px;font-size:11px;color:#6B6B6B}'
+           '#kqr .kqr{display:grid;grid-template-columns:30px 1fr auto;gap:8px;align-items:center;margin:6px 0}'
+           '#kqr .kqr img,#kqr .kqr i{width:30px;height:30px;border-radius:6px;object-fit:contain;background:#F5F5F7;mix-blend-mode:multiply;display:block}'
+           '#kqr .kqr span{height:10px;border-radius:99px;background:#F0F0F2;overflow:hidden}#kqr .kqr em{display:block;height:100%;border-radius:99px;background:#C8CCD2}'
+           '#kqr .kqr.b em{background:#1F6B4F}#kqr .kqr b{font:600 15px Jost,sans-serif;color:#1A1A1A;white-space:nowrap}#kqr .kqr b small{font:700 10px "Zen Kaku Gothic New",sans-serif;margin-left:1px}'
+           '#kqr .kqr.b b{color:#1F6B4F}'
            '.kqc .kqm{display:none}.kqc.op .kqm{display:block}.kqc .kqmore{grid-column:1/-1;min-height:0;padding:9px;font-size:12.5px;color:#333}.kqc.op .kqmore{display:none}'
            '.kqc button b.lg{font-size:11.5px;letter-spacing:-.02em}'
            '.kqon2 .kqc,.kqon2 .kqs,.kqon2 .otab{display:none!important}'
@@ -574,6 +580,6 @@ def build(od, ix):
           '})();</script>')
     h = h.replace('<body class="', '<body data-bar="okai" class="', 1)
     h = h.replace("c.hidden=!ok||(!op&&k>5);", "c.hidden=!ok||(!op&&k>8);").replace('m.dataset.l+(k-5)+"件）";m.hidden=op||k<=5;', 'm.dataset.l+(k-8)+"件）";m.hidden=op||k<=8;')
-    js += '<script src="/assets/kq.js?v=2" defer></script>'
+    js += '<script src="/assets/kq.js?v=3" defer></script>'
     i = h.rfind("</body>")
     return h[:i] + js + h[i:]
