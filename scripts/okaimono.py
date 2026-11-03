@@ -146,6 +146,17 @@ def photos(cards):
             if code:
                 r = lib.rakuten_item(code)
                 got = r.get("image") or ""
+                # 11/3 商品ページの名前（mf-003 など）と楽天の番号が違う物は、見出しの言葉でお店の中を探し直す
+                if not got:
+                    kw = re.split(r"[|｜、,，0-9０-９（(]", re.sub(r"^楽天ふるさと納税の", "", c["title"]))[0].strip()
+                    for k in [kw, kw[:2]]:
+                        if len(k) < 2:
+                            continue
+                        time.sleep(1.1)
+                        r2 = lib.rakuten_item(code, keyword=k)
+                        if r2.get("image"):
+                            r, got = r2, r2["image"]
+                            break
                 if not got:
                     print("写真なし", u[:70], (r.get("why") or "")[:80], list(r)[:6])
                 if r.get("name"):
