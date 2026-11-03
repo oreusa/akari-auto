@@ -75,6 +75,7 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <section class="lists"><h2>IN THIS NOTE　─　このノートの中身</h2>
 <a class="ls" href="/odekake" data-k="入口｜関東おでかけリスト" style="--ac:#4F86C6;--bg:#EAF1FA;--c:#4F86C6"><div class="no"><small>PAGE</small>01</div><div class="en">KANTO ODEKAKE</div><h3>関東おでかけリスト</h3>
 <p>イベント・新しいお店や施設を、公式ページつきで。<br>地図でも探せて、近くの宿も見られます。</p>
+<!-- 11/3 開催中・これからはリストのタブ（.pane[data-t]）と同じ数え方。入口136件・リスト131件と食い違っていた -->
 <div class="st"><div><span>開催中</span><b id="o1">―</b></div><div><span>これから</span><b id="o2">―</b></div><div><span>入場無料</span><b id="o3">―</b></div></div>
 <div class="pv" id="opv"></div><div class="go">おでかけリストを開く<span>→</span></div></a>
 <a class="ls" href="/okaimono" data-k="入口｜くらべたおかいものリスト" style="--ac:#C2703F;--bg:#FBEEE6;--c:#C2703F"><div class="no"><small>PAGE</small>02</div><div class="en">OKAIMONO LIST</div><h3>くらべたおかいものリスト</h3>
@@ -102,9 +103,9 @@ var today=new Date(Date.now()+9*36e5).toISOString().slice(0,10),pcs=Object.keys(
 function prefOf(t){{for(var i=0;i<pcs.length;i++)if(t.indexOf(pcs[i])>=0)return pcs[i];return "";}}
 var OD=[],IL=[];
 var pO=fetch("/odekake",{{headers:{{"x-ima":"1"}}}}).then(function(r){{return r.text()}}).then(function(t){{var d=new DOMParser().parseFromString(t,"text/html");
- d.querySelectorAll("#odekake .card.it").forEach(function(a){{var e=a.getAttribute("data-e")||"",s=a.getAttribute("data-s")||"",tt=a.querySelector(".t"),w=a.querySelector(".when"),g=a.querySelector("a.go"),mp=a.querySelector("a.mp");if(e&&e<today)return;if(!tt)return;
+ d.querySelectorAll("#odekake .card.it").forEach(function(a){{var pn=a.closest(".pane"),pt=pn?pn.getAttribute("data-t"):"",e=a.getAttribute("data-e")||"",s=a.getAttribute("data-s")||"",tt=a.querySelector(".t"),w=a.querySelector(".when"),g=a.querySelector("a.go"),mp=a.querySelector("a.mp");if(e&&e<today)return;if(!tt)return;
   var q="";try{{q=decodeURIComponent((mp&&mp.getAttribute("href")||"").split("query=")[1]||"");}}catch(x){{}}
-  OD.push({{t:tt.textContent.trim().replace(/\\s+/g," "),m:q,w:w?w.textContent.trim():"",p:a.getAttribute("data-pref")||"",h:g?g.getAttribute("href"):"/odekake",f:a.getAttribute("data-free")==="1",now:!(s&&s>today),up:!!(s&&s>today)}});}});
+  OD.push({{t:tt.textContent.trim().replace(/\\s+/g," "),m:q,w:w?w.textContent.trim():"",p:a.getAttribute("data-pref")||"",h:g?g.getAttribute("href"):"/odekake",f:a.getAttribute("data-free")==="1",now:pt==="now",up:pt==="up"}});}});
  var n1=OD.filter(function(x){{return x.now}}).length,n2=OD.filter(function(x){{return x.up}}).length,n3=OD.filter(function(x){{return x.f}}).length,u='<small style="font-size:12px">件</small>';
  document.getElementById("o1").innerHTML=n1+u;document.getElementById("o2").innerHTML=n2+u;document.getElementById("o3").innerHTML=n3+u;
  /* 3件は都県がかぶらないように */
