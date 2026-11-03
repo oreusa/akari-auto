@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-03 11:27",
+  "at": "2026-11-03 11:37",
   "cats": [
     {
       "key": "water",
@@ -45,7 +45,7 @@
           "price": 1480,
           "per": 82.2,
           "amt": "2000ml×9本",
-          "rc": 8541,
+          "rc": 8542,
           "av": 4.78,
           "shop": "水想い 公式ストア",
           "plain": "https://item.rakuten.co.jp/mizuomoi/10000004/"
@@ -55,7 +55,7 @@
           "price": 2160,
           "per": 90.0,
           "amt": "2000ml×12本",
-          "rc": 1392,
+          "rc": 1393,
           "av": 4.57,
           "shop": "快適ホームライフ",
           "plain": "https://item.rakuten.co.jp/k-home/10088179/"
@@ -77,7 +77,7 @@
           "price": 1280,
           "per": 106.7,
           "amt": "500ml×24本",
-          "rc": 1308,
+          "rc": 1309,
           "av": 4.59,
           "shop": "暮らし健康ネット館",
           "plain": "https://item.rakuten.co.jp/kurashikenkou/10220307/"
@@ -159,7 +159,7 @@
           "price": 4190,
           "per": 419.0,
           "amt": "10kg",
-          "rc": 1365,
+          "rc": 1366,
           "av": 4.68,
           "shop": "米屋 太三郎",
           "plain": "https://item.rakuten.co.jp/tasaburo/10000441/"
@@ -205,6 +205,250 @@
           "av": 4.52,
           "shop": "暮らし健康ネット館",
           "plain": "https://item.rakuten.co.jp/kurashikenkou/10151090/"
+        }
+      ],
+      "amazon": []
+    },
+    {
+      "key": "tea",
+      "title": "お茶（ペットボトル）",
+      "unit": "1L",
+      "seen": 60,
+      "read": 16,
+      "ok": 2,
+      "avg": 160.4,
+      "top": [
+        {
+          "name": "＼訳あり焙じ茶が激熱価格！／お茶 緑茶 ほうじ茶 ペットボトル 500ml 24本 48本 …",
+          "price": 1280,
+          "per": 53.3,
+          "amt": "500ml×48",
+          "rc": 7367,
+          "av": 4.74,
+          "shop": "暮らし健康ネット館",
+          "plain": "https://item.rakuten.co.jp/kurashikenkou/10225574/"
+        },
+        {
+          "name": "『送料無料！』（地域限定）サントリー 緑茶 伊右衛門 特茶 500mlペットボトル（24本入…",
+          "price": 4296,
+          "per": 358.0,
+          "amt": "500ml×24",
+          "rc": 1730,
+          "av": 4.6,
+          "shop": "あぶらじん楽天市場店",
+          "plain": "https://item.rakuten.co.jp/aburajin/10006213/"
+        }
+      ],
+      "amazon": []
+    },
+    {
+      "key": "tissue",
+      "title": "ティッシュ",
+      "unit": "100組",
+      "seen": 60,
+      "read": 3,
+      "ok": 1,
+      "avg": 65.1,
+      "top": [
+        {
+          "name": "業務用 ティッシュペーパー 詰め替え用 200組 50パック 200W 1P×50 田子浦パ…",
+          "price": 6800,
+          "per": 68.0,
+          "amt": "200組×50箱",
+          "rc": 1552,
+          "av": 4.77,
+          "shop": "エコ肥料店",
+          "plain": "https://item.rakuten.co.jp/eco-hiryo/10000073/"
+        }
+      ],
+      "amazon": []
+    },
+    {
+      "key": "mask",
+      "title": "マスク",
+      "unit": "1枚",
+      "seen": 60,
+      "read": 28,
+      "ok": 27,
+      "avg": 19.7,
+      "top": [
+        {
+          "name": "高評価☆不織布マスク マスク 不織布マスク cicibella シシベラ マスク 大容量51…",
+          "price": 4541,
+          "per": 4.5,
+          "amt": "1020枚",
+          "rc": 5033,
+          "av": 4.5,
+          "shop": "CICI BELLA",
+          "plain": "https://item.rakuten.co.jp/cicib/10001790/"
+        },
+        {
+          "name": "総合ランキング入賞 大容量50枚入 接触冷感 マスク 不織布 バイカラー 3Dマスク バイカ…",
+          "price": 399,
+          "per": 8.0,
+          "amt": "50枚",
+          "rc": 2604,
+          "av": 4.52,
+          "shop": "通販の暁",
+          "plain": "https://item.rakuten.co.jp/patri/10003645/"
+        },
+        {
+          "name": "新色 ラメ耳紐 ランキング1位 大容量50枚入 冷感 接触冷感マスク 不織布 カラー 花粉対…",
+          "price": 398,
+          "per": 8.0,
+          "amt": "50枚",
+          "rc": 2105,
+          "av": 4.46,
+          "shop": "雑貨の国のアリス",
+          "plain": "https://item.rakuten.co.jp/alice-zk/10003649/"
+        },
+        {
+          "name": "5％OFFクーポンで474円〜 マスク 不織布 40枚 立体マスク 小顔マスク 血色マスク …",
+          "price": 498,
+          "per": 12.4,
+          "amt": "40枚",
+          "rc": 4036,
+          "av": 4.19,
+          "shop": "Aショップ 楽天市場店",
+          "plain": "https://item.rakuten.co.jp/ashop/10004509/"
+        },
+        {
+          "name": "高評価★4.61★ マスク 小さめ 153枚 子供用 オメガ形状 プリーツ 不織布 3層構造…",
+          "price": 1980,
+          "per": 12.9,
+          "amt": "153枚",
+          "rc": 5091,
+          "av": 4.62,
+          "shop": "ALTENA公式店(アルティーナ)",
+          "plain": "https://item.rakuten.co.jp/mtkshop/10006154/"
+        }
+      ],
+      "amazon": []
+    },
+    {
+      "key": "protein",
+      "title": "プロテイン",
+      "unit": "1kg",
+      "seen": 60,
+      "read": 40,
+      "ok": 9,
+      "avg": 6229.6,
+      "top": [
+        {
+          "name": "プロテイン WPC エクスプロージョン 3kg ミルクチョコレート味 ホエイプロテイン 3キ…",
+          "price": 13790,
+          "per": 4596.7,
+          "amt": "3kg",
+          "rc": 2439,
+          "av": 4.44,
+          "shop": "X-PLOSION 公式オンラインショップ",
+          "plain": "https://item.rakuten.co.jp/x-plosion/10000023/"
+        },
+        {
+          "name": "プロテイン ホエイ 1kg FIXIT 国内製造 ホエイプロテイン WPC 低糖質 低脂質 …",
+          "price": 4980,
+          "per": 4980.0,
+          "amt": "1kg",
+          "rc": 6122,
+          "av": 4.52,
+          "shop": "AZ.MARKET エージーマーケット",
+          "plain": "https://item.rakuten.co.jp/import-garden/10002770/"
+        },
+        {
+          "name": "SCU ホエイプロテイン 1kg×3袋 送料無料 〈rBSTホルモン剤不使用〉 WPC プレ…",
+          "price": 15900,
+          "per": 5300.0,
+          "amt": "1kg×3",
+          "rc": 1067,
+          "av": 4.73,
+          "shop": "NICHIGA(楽天市場店)",
+          "plain": "https://item.rakuten.co.jp/auc-garlic/10000676/"
+        },
+        {
+          "name": "単品買いよりお得！ ALPRON ホエイプロテイン 900g×3袋セット WPC 大容量 チ…",
+          "price": 19462,
+          "per": 7208.1,
+          "amt": "900g×3",
+          "rc": 1385,
+          "av": 4.58,
+          "shop": "プロテインのアルプロン",
+          "plain": "https://item.rakuten.co.jp/alpron/10001781/"
+        },
+        {
+          "name": "MyLOHAS マイロハス グラスフェッド ホエイプロテイン チョコ 抹茶 バニラ 苺 1k…",
+          "price": 7480,
+          "per": 7480.0,
+          "amt": "1kg",
+          "rc": 1702,
+          "av": 4.54,
+          "shop": "MyLOHAS公式ストア",
+          "plain": "https://item.rakuten.co.jp/lohas-s/10000382/"
+        }
+      ],
+      "amazon": []
+    },
+    {
+      "key": "beans",
+      "title": "コーヒー豆",
+      "unit": "1kg",
+      "seen": 60,
+      "read": 4,
+      "ok": 1,
+      "avg": 1910.9,
+      "top": [
+        {
+          "name": "コーヒー豆 コーヒー粉 送料無料 珈琲豆 おからクッキー付き 秋味グルメ福袋 1.6kg 4…",
+          "price": 6110,
+          "per": 954.7,
+          "amt": "1.6kg×4",
+          "rc": 17540,
+          "av": 4.73,
+          "shop": "澤井珈琲Beans&Leaf",
+          "plain": "https://item.rakuten.co.jp/sawaicoffee-tea/10000079/"
+        }
+      ],
+      "amazon": []
+    },
+    {
+      "key": "dogfood",
+      "title": "ドッグフード",
+      "unit": "1kg",
+      "seen": 60,
+      "read": 24,
+      "ok": 1,
+      "avg": 2755.0,
+      "top": [
+        {
+          "name": "犬 糖尿病 療法食 ヒルズ w/d 3kg 小粒 体重管理 糖尿ケア 低カロリー 高食物繊維…",
+          "price": 8580,
+          "per": 2860.0,
+          "amt": "3kg",
+          "rc": 1860,
+          "av": 4.69,
+          "shop": "Pet館〜ペット館〜",
+          "plain": "https://item.rakuten.co.jp/dog-kan/10016215/"
+        }
+      ],
+      "amazon": []
+    },
+    {
+      "key": "catfood",
+      "title": "キャットフード",
+      "unit": "1kg",
+      "seen": 60,
+      "read": 28,
+      "ok": 1,
+      "avg": 2108.3,
+      "top": [
+        {
+          "name": "1種類を選べる ニュートロ ナチュラルチョイス(2kg) ナチュラルチョイス(NATURAL…",
+          "price": 3980,
+          "per": 1990.0,
+          "amt": "2kg",
+          "rc": 1055,
+          "av": 4.71,
+          "shop": "楽天24 ペット館",
+          "plain": "https://item.rakuten.co.jp/nyanzaq/10140829/"
         }
       ],
       "amazon": []
