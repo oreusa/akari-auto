@@ -241,6 +241,52 @@ def amazon_rows(key, unit_lo_hi):
     return sorted(out, key=lambda r: (r["per"] == 0, r["per"]))[:2]
 
 
+# 11/3 オーナー「楽天だけじゃねぇだろ」→ Yahoo!ショッピングも同じ物差しで比べる（鍵 YAHOO_APP_ID がある時だけ。無ければ今までどおり）
+MOSHIMO_YAHOO = "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url="
+
+
+def yahoo_rows(cat):
+    """Yahoo!ショッピング商品検索（v3）で、送料無料・レビュー多い順の物を同じ読み方で1個あたりに直し、安い2つ。"""
+    import urllib.parse
+    import urllib.request
+    appid = os.environ.get("YAHOO_APP_ID", "").strip()
+    if not appid:
+        return []
+    key, _, kw, _, _, ng, (lo, hi) = cat
+    q = urllib.parse.urlencode({"appid": appid, "query": kw, "results": 50, "sort": "-review_count", "shipping": "free", "in_stock": "true"})
+    with urllib.request.urlopen("https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch?" + q, timeout=20) as r:
+        hits = json.load(r).get("hits") or []
+    time.sleep(1.1)
+    out, shops = [], set()
+    for it in hits:
+        name = it.get("name") or ""
+        if any(w in name for w in ng) or (MUST.get(key) and MUST[key] not in name):
+            continue
+        am = amount(key, name)
+        price = int(it.get("price") or 0)
+        rv = it.get("review") or {}
+        rc, av = int(rv.get("count") or 0), float(rv.get("rate") or 0)
+        if not am or not price or rc < 300 or av < 4.0:
+            continue
+        per = price / am[0]
+        shop = (it.get("seller") or {}).get("name") or ""
+        if not (lo <= per <= hi) or shop in shops:
+            continue
+        shops.add(shop)
+        out.append({"name": short(name), "price": price, "per": round(per, 1), "amt": am[1], "rc": rc, "av": av, "shop": shop,
+                    "url": MOSHIMO_YAHOO + urllib.parse.quote(it.get("url") or "", safe=""), "img": (it.get("image") or {}).get("medium") or ""})
+    return sorted(out, key=lambda r: r["per"])[:2]
+
+
+def yh_card(r, unit):
+    return (f'<li class="it"><a class="cd" href="{esc(r["url"])}" rel="sponsored noopener" target="_blank" data-k="yh">'
+            + (f'<img class="ph" src="{esc(r["img"])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if r.get("img") else "")
+            + f'<span class="rk az" style="background:#FF0033">Y</span><span class="tx"><span class="nm">{esc(r["name"])}</span>'
+            f'<span class="pu">{unit}あたり <b>{yen(r["per"])}円</b>（送料無料・{r["price"]:,}円）</span>'
+            f'<span class="mt">{esc(r["amt"])}　★{r["av"]:.1f}　レビュー{r["rc"]:,}件</span>'
+            f'<span class="go">Yahoo!ショッピングで見る →</span></span></a></li>')
+
+
 def amz_card(r, unit):
     pu = f'<span class="pu">{unit}あたり <b>{yen(r["per"])}円</b>（{r["price"]:,}円で計算・送料はページで）</span>' if r["per"] else \
         '<span class="pu">値段はAmazonのページで（Amazonはページを開かないと値段が出ない物があります）</span>'
@@ -276,6 +322,8 @@ def render(cats, now):
                  f'レビュー1,000件以上・評価4.0以上は{c["ok"]}件。その中で安い順です（同じお店は1つ）。'
                  f'{"比べた全部の平均は" + c["unit"] + "あたり" + yen(c["avg"]) + "円。" if c["avg"] else ""}</p>'
                  f'<ul>{lis}</ul>'
+                 + (f'<h3 class="az3">Yahoo!ショッピングでは（送料無料・同じ物差し）</h3><ul>{"".join(yh_card(r, c["unit"]) for r in c["yh"])}</ul>'
+                    if c.get("yh") else "")
                  + (f'<h3 class="az3">Amazonでは（Amazonのページを開いて確かめた物）</h3><ul>{"".join(amz_card(r, c["unit"]) for r in c["amz"])}</ul>'
                     if c.get("amz") else "") + '</section>')
     names = "・".join(c["title"].split("（")[0] for c in cats)
@@ -344,6 +392,10 @@ def main():
             errs.append(f"{c[0]}: {err[:80]}")
         if r and r["top"]:
             try:
+                r["yh"] = yahoo_rows(c)
+            except Exception as e:  # Yahoo!が読めなくても楽天の比べは出す
+                errs.append(f"{c[0]} yahoo: {str(e)[:60]}")
+            try:
                 r["amz"] = amazon_rows(c[0], c[6])
             except Exception as e:  # Amazonが読めなくても楽天の比べは出す
                 errs.append(f"{c[0]} amazon: {str(e)[:60]}")
@@ -357,7 +409,8 @@ def main():
     open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(cats, now))
     slim = [{k: c[k] for k in ("key", "title", "unit", "seen", "read", "ok", "avg")} |
             {"top": [{k: r[k] for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain")} for r in c["top"]],
-             "amazon": [{k: r[k] for k in ("asin", "name", "price", "per", "amt", "rc", "av")} for r in c.get("amz", [])]}
+             "amazon": [{k: r[k] for k in ("asin", "name", "price", "per", "amt", "rc", "av")} for r in c.get("amz", [])],
+             "yahoo": [{k: r[k] for k in ("name", "price", "per", "amt", "rc", "av", "shop")} for r in c.get("yh", [])]}
             for c in cats]
     lib.save_json(os.path.join(ROOT, "data", "tanka.json"), {"at": now.strftime("%Y-%m-%d %H:%M"), "cats": slim})
 

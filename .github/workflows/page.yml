@@ -26,6 +26,7 @@ jobs:
       RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
       RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
       RAKUTEN_ORIGIN: ${{ vars.RAKUTEN_ORIGIN }}
+      YAHOO_APP_ID: ${{ secrets.YAHOO_APP_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
