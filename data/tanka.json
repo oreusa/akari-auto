@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-03 13:07",
+  "at": "2026-11-03 13:18",
   "cats": [
     {
       "key": "water",
@@ -378,7 +378,7 @@
       "seen": 60,
       "read": 47,
       "ok": 7,
-      "avg": 353.0,
+      "avg": 355.2,
       "top": [
         {
           "name": "コカ・コーラ コーヒー ジョージア 深み焙煎贅沢ブラック 無糖 950ml ペットボトル 1…",
@@ -458,9 +458,9 @@
       "title": "洗濯洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 60,
-      "read": 26,
+      "read": 27,
       "ok": 4,
-      "avg": 1117.3,
+      "avg": 1170.1,
       "top": [
         {
           "name": "アタック 抗菌EX 部屋干し 洗剤 洗濯洗剤 詰め替え 超特大 ゾンビ臭 液体 じめじめ 密…",
@@ -920,9 +920,9 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 60,
-      "read": 40,
-      "ok": 40,
-      "avg": 62.2,
+      "read": 37,
+      "ok": 37,
+      "avg": 60.8,
       "top": [
         {
           "name": ".co.jp 限定 テープ 新生児用 メリーズ オムツ さら さらエアスルー (お誕生~50…",
@@ -955,24 +955,24 @@
           "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/"
         },
         {
-          "name": "パンツ Sサイズ マミーポコ パンツ ドラえもん オムツ（4~9kg）156枚（52枚×3）…",
-          "price": 5414,
-          "per": 34.7,
-          "amt": "156枚",
+          "name": "ケース販売 マミーポコパンツ Lサイズ 62枚×3袋 ドラえもん パンツタイプ オムツ 紙お…",
+          "price": 6350,
+          "per": 34.1,
+          "amt": "186枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "Senses",
-          "plain": "https://item.rakuten.co.jp/senses/10030911/"
+          "shop": "Care-Life 楽天市場店",
+          "plain": "https://item.rakuten.co.jp/fragrance-fukuyama/10000500/"
         },
         {
-          "name": "パンツ Sサイズ ムーニーマン オムツ(4~8kg)216枚(72枚×3) [ケース品]",
-          "price": 8197,
-          "per": 37.9,
-          "amt": "216枚",
+          "name": "メリーズ テープ Sサイズ さら さらエアスルー (4~8kg)296枚 (74枚×4) ケ…",
+          "price": 10815,
+          "per": 36.5,
+          "amt": "296枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "kichibei",
-          "plain": "https://item.rakuten.co.jp/kichibei0318/10074871/"
+          "shop": "Reve2018",
+          "plain": "https://item.rakuten.co.jp/reve2018/10069649/"
         }
       ],
       "amazon": [],
