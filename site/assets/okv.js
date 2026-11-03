@@ -11,7 +11,13 @@
     +"#okvh{display:none;align-items:center;gap:12px;padding:18px 2px 10px}"
     +"body.okv #okvh{display:flex}"
     +"#okvh b{font-size:19px;letter-spacing:.06em;color:#1A1A1A}#okvh b small{margin-left:8px;font:500 12px Jost,sans-serif;color:#6B6B6B;letter-spacing:0}"
-    +"#okvh button{border:1px solid #DADADA;background:#fff;border-radius:99px;padding:7px 13px;font-size:12px;color:#333}";
+    +"#okvh button{border:1px solid #DADADA;background:#fff;border-radius:99px;padding:7px 13px;font-size:12px;color:#333}"
+    /* 11/3 オーナー「あと使いやすく」→ 種類はまるいボタンにして、選んでいる種類を黒くぬる。右がうすくなって、横にまだあると分かる */
+    +"body.okv .flt[data-v=odekake]{gap:8px!important;padding:10px 24px 10px 0!important;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}"
+    +"body.okv .flt[data-v=odekake]:before,body.okv .flt[data-v=odekake]:after{display:none!important}"
+    +"body.okv .flt[data-v=odekake] button{border:1px solid #DADADA!important;border-radius:99px!important;padding:8px 15px!important;font-size:14px!important;background:#fff!important;box-shadow:none!important;text-decoration:none!important}"
+    +"body.okv .flt[data-v=odekake] button:after{display:none!important}"
+    +"body.okv .flt[data-v=odekake] button.on{background:#1A1A1A!important;border-color:#1A1A1A!important;color:#fff!important}";
   document.head.appendChild(st);
   var hidden=[],cur="";
   function anchor(){return document.querySelector(".v2tabs")||document.querySelector("#odekake .otab");}
@@ -34,11 +40,14 @@
     /* 1個あたりは種類が多いので、「すべて」のままなら最初の種類から見せる（全部並べると長すぎる） */
     if(t==="unit")setTimeout(function(){var al=document.querySelector('.flt button[data-p=""]');if(al&&al.classList.contains("on")){
       var f=[].slice.call(document.querySelectorAll('.flt button[data-p]')).filter(function(x){return x.dataset.p&&!x.classList.contains("hid");})[0];if(f)f.click();}
-      scrollTo(0,0);},150);
+      var o=document.querySelector('.flt[data-v=odekake] button.on');if(o)try{o.scrollIntoView({inline:"center",block:"nearest"});}catch(x){}scrollTo(0,0);},150);
     cur=t;scrollTo(0,0);}
   function off(){hidden.forEach(function(s){s.classList.remove("okv-hide");});hidden=[];document.body.classList.remove("okv");cur="";
     var bar=document.getElementById("v2bar");if(bar)bar.querySelectorAll("button[data-t]").forEach(function(b){b.classList.remove("cur");});
     scrollTo(0,0);}
+  /* 押した種類を見えるところへ寄せる */
+  document.addEventListener("click",function(ev){var f=ev.target.closest&&ev.target.closest(".flt[data-v=odekake] button");
+    if(f&&document.body.classList.contains("okv")){setTimeout(function(){try{f.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"});}catch(x){}scrollTo(0,0);},30);}});
   document.addEventListener("click",function(ev){var b=ev.target.closest&&ev.target.closest("#v2bar button[data-t]");if(!b)return;
     var t=b.dataset.t;setTimeout(function(){on(t);},0);setTimeout(function(){scrollTo(0,0);},60);},true);
   /* はじめは「はじめの画面」なので、下のバーはどれも選ばれていない形に */
