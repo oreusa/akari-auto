@@ -217,6 +217,15 @@ def collect(ix):
             seen.add(k)
             uniq.append(c)
     cards = uniq
+    # 11/3 種類の点検：商品名と種類が合わない物（日用品の言葉なのに食べ物など）は直して、ログに残す
+    try:
+        from page import LIFE_WORDS
+    except Exception:
+        LIFE_WORDS = ("トイレットペーパー", "ティッシュ", "洗剤", "柔軟剤", "シャンプー", "マスク", "ゴミ袋", "おむつ")
+    for c in cards:
+        if c["tab"] == "pick" and c["cat"] in ("食べ物", "食べ物・飲み物") and any(w in c["title"] for w in LIFE_WORDS):
+            print("種類を直した", c["cat"], "→ 日用品：", c["title"][:40])
+            c["cat"] = "日用品"
     photos(cards)
     return cards
 
