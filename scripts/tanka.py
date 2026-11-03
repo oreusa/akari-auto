@@ -293,7 +293,9 @@ def fetch(cat):
     # 11/3 点検：読んだ全部の真ん中の値段より極端に安い物は、量の読みちがいの事が多い → 外してログに残す
     if len(rows) >= 8:
         med = sorted(r["per"] for r in rows)[len(rows) // 2]
-        bad = [r for r in ok if r["per"] < med * 0.3]
+        # 11/3 オーナーに見せる前の見直し：本当に安い大袋（マスク1020枚・ドッグフード10kg）まで外していた。
+        # 「×3」のように数をかけた時だけ読みちがいを疑う。かけていない物は、真ん中の15%未満の時だけ外す
+        bad = [r for r in ok if r["per"] < med * 0.15 or (r["per"] < med * 0.3 and "×" in str(r.get("amt") or ""))]
         for r in bad:
             print("安すぎて外した（量の読みちがいかも）", key, r["per"], r["amt"], r["name"][:40])
         ok = [r for r in ok if r not in bad]
@@ -502,9 +504,9 @@ def main():
             try:
                 r["yh"] = yahoo_rows(c)
                 if r.get("avg"):  # 11/3 楽天の平均の3割より安いYahoo!は読みちがいとして外す
-                    for y in [y for y in r["yh"] if y["per"] < r["avg"] * 0.3]:
+                    for y in [y for y in r["yh"] if y["per"] < r["avg"] * 0.15 or (y["per"] < r["avg"] * 0.3 and "×" in str(y.get("amt") or ""))]:
                         print("安すぎて外した（Yahoo!）", c[0], y["per"], y["amt"], y["name"][:40])
-                    r["yh"] = [y for y in r["yh"] if y["per"] >= r["avg"] * 0.3]
+                    r["yh"] = [y for y in r["yh"] if not (y["per"] < r["avg"] * 0.15 or (y["per"] < r["avg"] * 0.3 and "×" in str(y.get("amt") or "")))]
             except Exception as e:  # Yahoo!が読めなくても楽天の比べは出す
                 errs.append(f"{c[0]} yahoo: {str(e)[:60]}")
             try:
