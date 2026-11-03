@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-03 13:21",
+  "at": "2026-11-03 17:58",
   "since": "2026-11-01",
   "tracked": 246,
   "days": 2,
@@ -15,6 +15,18 @@
       "av": 4.42,
       "shop": "mottole(モットル)",
       "plain": "https://item.rakuten.co.jp/mottole-shop/10000179/"
+    },
+    {
+      "title": "モバイルバッテリー",
+      "name": "期間限定セール実施中 11/11まで Anker MagGo Power Bank (100…",
+      "price": 7490,
+      "base": 9990.0,
+      "pct": 25,
+      "days": 2,
+      "rc": 541,
+      "av": 4.53,
+      "shop": "アンカー・ダイレクト楽天市場店",
+      "plain": "https://item.rakuten.co.jp/anker/10002086/"
     },
     {
       "title": "プロテイン",
