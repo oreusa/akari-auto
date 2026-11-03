@@ -146,6 +146,8 @@ def photos(cards):
             if code:
                 r = lib.rakuten_item(code)
                 got = r.get("image") or ""
+                if not got:
+                    print("写真なし", u[:70], (r.get("why") or "")[:80], list(r)[:6])
                 if r.get("name"):
                     cache["n:" + u] = c["nm"] = r["name"]
             elif hm:
@@ -597,6 +599,6 @@ def build(od, ix):
           '})();</script>')
     h = h.replace('<body class="', '<body data-bar="okai" class="', 1)
     h = h.replace("c.hidden=!ok||(!op&&k>5);", "c.hidden=!ok||(!op&&k>8);").replace('m.dataset.l+(k-5)+"件）";m.hidden=op||k<=5;', 'm.dataset.l+(k-8)+"件）";m.hidden=op||k<=8;')
-    js += '<script src="/assets/kq.js?v=3" defer></script>'
+    js += '<script src="/assets/kq.js?v=4" defer></script><script src="/assets/okv.js?v=1" defer></script>'
     i = h.rfind("</body>")
     return h[:i] + js + h[i:]
