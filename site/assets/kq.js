@@ -16,6 +16,8 @@
     ["unit","pick","down","sale"].forEach(function(t){
       document.querySelectorAll('#odekake .pane[data-t="'+t+'"] .card.it').forEach(function(c){
         if(nz(c.textContent+" "+(c.dataset.pref||"")).indexOf(q)>=0)hit.push(c);});});
+    /* その種類そのもの（「水」なら種類が水の物）を先に。炭酸水などの「水」を含む物はあと */
+    hit=hit.filter(function(c){return nz(c.dataset.pref)===q;}).concat(hit.filter(function(c){return nz(c.dataset.pref)!==q;}));
     od.classList.add("kqon");document.body.classList.add("kqon2");qr.hidden=false;
     var sh=esc(v.slice(0,30));
     if(hit.length){
@@ -40,9 +42,10 @@
     if(log&&q!==last&&navigator.sendBeacon){last=q;
       try{navigator.sendBeacon("/c?f="+encodeURIComponent(F||"direct")+"&s=okai-ask&k="+encodeURIComponent((hit.length?"有｜":"無｜")+v.slice(0,24)));}catch(e){}}
   }
-  function go(){var r=qr.getBoundingClientRect().top+scrollY-70;scrollTo({top:r,behavior:"smooth"});}
+  function go(){var r=box.getBoundingClientRect().top+scrollY-10;scrollTo({top:r,behavior:"smooth"});}
   qi.addEventListener("input",function(){clearTimeout(qt);var v=qi.value;qt=setTimeout(function(){ask(v,false);},200);});
   box.querySelector("form").addEventListener("submit",function(ev){ev.preventDefault();ask(qi.value,true);qi.blur();go();});
-  box.querySelectorAll(".kqc button").forEach(function(b){b.addEventListener("click",function(){qi.value=b.dataset.q;ask(b.dataset.q,true);go();});});
+  var mo=box.querySelector(".kqmore");if(mo)mo.addEventListener("click",function(){box.querySelector(".kqc").classList.add("op");});
+  box.querySelectorAll(".kqc button[data-q]").forEach(function(b){b.addEventListener("click",function(){qi.value=b.dataset.q;ask(b.dataset.q,true);go();});});
   qi.addEventListener("change",function(){if(qi.value)ask(qi.value,true);});
 })();

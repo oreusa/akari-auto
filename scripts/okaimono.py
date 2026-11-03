@@ -409,10 +409,17 @@ def build(od, ix):
     for c in cards:
         if c.get("img") and (c["cat"] not in pic or (c["tab"] == "unit" and c.get("rk") == "1")):
             pic[c["cat"]] = c["img"]
-    chips = "".join(f'<button type="button" data-q="{E(c)}" style="--pc:{col[c]}">'
-                    + (f'<img src="{E(pic[c])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if pic.get(c) else '<i></i>')
-                    + f'<b>{E(c)}</b><small>{ncat[c]}件</small></button>'
-                    for c in cats if c not in ("宿", "お店のお得", "楽天のセール", "いち押し"))
+    # 11/3 撮って確かめ：16種類だと答えが画面の下に落ちる → 最初は9つ（1個あたりで比べた物・写真のある物を先に）、残りは「ほかの種類」で開く
+    unitc = {c["cat"] for c in cards if c["tab"] == "unit"}
+    tiles = [c for c in cats if c not in ("宿", "お店のお得", "楽天のセール", "いち押し")]
+    tiles.sort(key=lambda c: (c not in unitc, not pic.get(c), -ncat[c]))
+    def tile(c, i):
+        return (f'<button type="button" data-q="{E(c)}" style="--pc:{col[c]}"{" class=kqm" if i >= 9 else ""}>'
+                + (f'<img src="{E(pic[c])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if pic.get(c) else '<i></i>')
+                + f'<b{" class=lg" if len(c) > 6 else ""}>{E(c)}</b><small>{ncat[c]}件</small></button>')
+    chips = "".join(tile(c, i) for i, c in enumerate(tiles))
+    if len(tiles) > 9:
+        chips += f'<button type="button" class="kqmore">ほかの種類も見る（あと{len(tiles) - 9}）</button>'
     ask = (f'<section class="kq" aria-label="AIに聞く" data-amz="{E(lib.AMAZON_TAG)}" data-yh="{E(MOSHIMO_YAHOO)}"><p class="kqh">{E(COPY)}</p>'
            '<form class="kqf" role="search"><input id="kq" type="search" autocomplete="off" enterkeyhint="search" placeholder="例：トイレットペーパー、水、洗剤" aria-label="ほしい物">'
            '<button type="submit">比べる</button></form>'
@@ -521,6 +528,9 @@ def build(od, ix):
            '.kqc button:before{content:"";position:absolute;left:50%;top:0;width:24px;height:3px;margin-left:-12px;border-radius:0 0 3px 3px;background:var(--pc)}'
            '.kqc button img,.kqc button i{display:block;width:52px;height:52px;margin:0 auto 6px;object-fit:contain;mix-blend-mode:multiply;background:#F5F5F7;border-radius:8px}'
            '.kqf{position:sticky;top:6px;z-index:5}'
+           '.kqc .kqm{display:none}.kqc.op .kqm{display:block}.kqc .kqmore{grid-column:1/-1;min-height:0;padding:9px;font-size:12.5px;color:#333}.kqc.op .kqmore{display:none}'
+           '.kqc button b.lg{font-size:11.5px;letter-spacing:-.02em}'
+           '.kqon2 .kqc,.kqon2 .kqs,.kqon2 .otab{display:none!important}'
            '.kqc button b{display:block;font-size:13.5px;line-height:1.3}.kqc button small{display:block;margin-top:2px;font:500 11px Jost,sans-serif;color:#6B6B6B}'
            '.kqs{margin:10px 0 0;text-align:center;font-size:11px;color:#6B6B6B}.kqs b{font:600 13px Jost,sans-serif;color:#1A1A1A;margin:0 2px}'
            '.kqon2 .kcon,.kqon2 .kfun,.kqon2 .kdl,.kqon2 a.ilk,.kqon2 .ilks{display:none!important}'
@@ -556,6 +566,6 @@ def build(od, ix):
           '})();</script>')
     h = h.replace('<body class="', '<body data-bar="okai" class="', 1)
     h = h.replace("c.hidden=!ok||(!op&&k>5);", "c.hidden=!ok||(!op&&k>8);").replace('m.dataset.l+(k-5)+"件）";m.hidden=op||k<=5;', 'm.dataset.l+(k-8)+"件）";m.hidden=op||k<=8;')
-    js += '<script src="/assets/kq.js?v=1" defer></script>'
+    js += '<script src="/assets/kq.js?v=2" defer></script>'
     i = h.rfind("</body>")
     return h[:i] + js + h[i:]
