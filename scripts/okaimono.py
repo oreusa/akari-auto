@@ -346,8 +346,82 @@ NONE = {"down": "値段の記録が2日分たまると、本当に下がった�
         "sale": "いまはセールの物がありません。大きなセールの前に出します"}
 
 
+def stale(c):
+    """11/3 「明日11/1丸亀製麺…」が11/3にも出ていた → 日付が過ぎたお得は出さない"""
+    import datetime
+    m = re.search(r"(\d{1,2})/(\d{1,2})", c.get("title") or "")
+    if not m or c["tab"] != "pick":
+        return False
+    t = datetime.datetime.utcnow() + datetime.timedelta(hours=9)
+    try:
+        d = datetime.date(t.year, int(m.group(1)), int(m.group(2)))
+    except ValueError:
+        return False
+    if (t.date() - d).days > 300:  # 年をまたぐ（12月に1/5など）
+        d = d.replace(year=t.year + 1)
+    return d < t.date()
+
+
+# 11/3 オーナー「うさぎの結論めっちゃわかりやすい。使いやすさと見やすさ、本気で」→ 結論を種類のまとまりで区切る
+GROUPS = [("飲み物", ("水", "炭酸水", "お茶", "コーヒー")),
+          ("食べ物", ("お米", "パスタ", "プロテイン", "コーヒー豆")),
+          ("洗たく・おふろ・台所", ("洗濯洗剤", "柔軟剤", "シャンプー", "ボディソープ", "食器用洗剤")),
+          ("くらしの消耗品", ("トイレットペーパー", "ティッシュ", "ゴミ袋", "乾電池", "マスク")),
+          ("赤ちゃん", ("おむつ", "おしりふき")),
+          ("ペット", ("ドッグフード", "キャットフード")),
+          ("ふるさと納税", ("ふるさと納税",))]
+
+
+def group_of(cat):
+    for i, (g, cs) in enumerate(GROUPS):
+        if cat in cs:
+            return i, g
+    return len(GROUPS), "そのほか"
+
+
+BAG = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>'
+
+
+def compared(c):
+    return bool(re.match(r"(.+?)(\d+)(つ|軒|社|種類)、", c["title"]) or "｜" in c["title"])
+
+
+def pick_row(c, i, col):
+    """比べて選んだ物を、結論と同じ1行に。押すと理由・注意・お店のボタンが開く（details なので JS いらず）"""
+    t = c["title"]
+    name, sub, val = t, (c.get("sub") or c["cat"]).split("。")[0], ""
+    m = re.match(r"(.+?)(\d+)(つ|軒|社|種類)、(.+)$", t)
+    if m:
+        name, n, res = m.group(1), m.group(2) + m.group(3), m.group(4).replace("選んだのは", "")
+        v = re.match(r"(.*?)約?([\d,.]+)円$", res)
+        if v:
+            val = v.group(2) + "円"
+            sub = f"{n}比べた" + (f"・{v.group(1).rstrip('の')}" if v.group(1) else "")
+        else:
+            sub = f"{n}比べて選んだのは{res}"
+    elif "｜" in t:
+        name, sub = t.split("｜", 1)
+        name = name.replace("楽天ふるさと納税の", "ふるさと納税・")
+    pc = col.get(c["cat"], "#8C7B6E")
+    u = real_url(c["href"])
+    yh = "yahoo" in u.lower() or "valuecommerce" in u or "moshimo" in u
+    shop = "楽天トラベル" if "travel.rakuten" in u else ("Yahoo!ショッピング" if yh else ("楽天" if c["pr"] else "公式ページ"))
+    rel = "sponsored noopener" if c["pr"] else "noopener"
+    im = (f'<img src="{E(c["img"])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if c.get("img")
+          else f'<i class="ph0" style="--pc:{pc}">{BAG}</i>')
+    why, but, rate = c.get("sub") or "", c.get("but") or "", c.get("rate") or ""
+    rate = re.sub(r"★\s*([\d.]+)\s*[・ ]\s*レビュー\s*([\d,]+)件", r"★\1（\2件）", rate)
+    body = ((f'<p class="kwhy"><b>選んだ理由</b>{E(why)}</p>' if why else "")
+            + (f'<p class="kbut"><b>ただし</b>{E(but.replace("ただし、", "").replace("ただし", ""))}</p>' if but else "")
+            + (f'<p class="kr">{E(rate)}</p>' if rate else ""))
+    return (f'<details class="kpr" id="k{i}" style="--pc:{pc}"><summary>{im}<span><b>{E(name)}</b>{E(sub)}</span>'
+            f'<em>{E(val)}</em></summary><div class="kpb">{body}'
+            f'<div class="kpg"><a class="go kgo2" href="{E(c["href"])}" rel="{rel}" target="_blank">{shop}で見る<i>›</i></a>'
+            + others(c, shop) + '</div></div></details>')
+
+
 def build(od, ix):
-    cards = collect(ix)
+    cards = [c for c in collect(ix) if not stale(c)]
     cats = []
     for c in cards:
         if c["cat"] not in cats:
@@ -416,7 +490,14 @@ def build(od, ix):
         for t, en, jp, *_ in TABS) + "</nav>")
     panes = ""
     for t, en, jp, link, lt in TABS:
-        cs = [card_html(c, col, cards.index(c)) for c in cards if c["tab"] == t]
+        if t == "pick":
+            pk = [c for c in cards if c["tab"] == t]
+            a = [pick_row(c, cards.index(c), col) for c in pk if compared(c)]
+            b = [pick_row(c, cards.index(c), col) for c in pk if not compared(c)]
+            cs = (['<section class="kpl"><div class="kch"><b>うさぎが比べて選んだ物</b><small>押すと理由が開きます</small></div>'
+                   + "".join(a) + ('<p class="kgh">ほかのおすすめ</p>' + "".join(b) if b else "") + '</section>'] if (a or b) else [])
+        else:
+            cs = [card_html(c, col, cards.index(c)) for c in cards if c["tab"] == t]
         more = f'<button class="gm" type="button" data-l="もっと見る（あと">もっと見る（あと{len(cs) - 8}件）</button>' if len(cs) > 8 else ""
         deep = f'<a class="pdeep" href="{link}" data-k="タブの下｜{jp}">{lt}<span>→</span></a>' if lt else ""
         panes += (f'<div class="pane" data-t="{t}"{"" if t == first_t else " hidden"}>{"".join(cs)}{more}'
@@ -429,9 +510,14 @@ def build(od, ix):
     # 11/2 うさぎの結論（360life・mybest のベストバイ型を、種類ごとの1位を1行ずつに）。押すとその商品のカードへ
     con = ""
     ones = [(i, c) for i, c in enumerate(cards) if c["tab"] == "unit" and c.get("rk") == "1"]
+    ones.sort(key=lambda x: group_of(x[1]["cat"])[0])
     if ones:
-        rows = ""
+        rows, gl = "", None
         for i, c in ones:
+            g = group_of(c["cat"])[1]
+            if g != gl:
+                rows += f'<p class="kgh">{E(g)}</p>'
+                gl = g
             m = last_num(c["top"])
             val = f'{E(m[1])}<small style="display:inline;color:#1A1A1A;font-size:11px">{E(m[2])}</small>' if m else ""
             lab = (m[0] if m else c["top"]).split("・")[-1]
@@ -569,6 +655,27 @@ def build(od, ix):
            '.kcon a span{min-width:0;font-size:11.5px;color:#6B6B6B;line-height:1.4}'
            '.kcon a span b{display:block;font-size:13px;color:#1A1A1A;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
            '.kcon a em{font-style:normal;text-align:right;font:500 20px/1.1 Jost,sans-serif;color:#1A1A1A;white-space:nowrap}'
+           # 11/3 結論のまとまり見出し・比べて選んだ物の1行（結論と同じ形。押すと開く）
+           '.kcon .kgh,.kpl .kgh{margin:0;padding:14px 14px 6px;border-top:1px solid #F0F0F0;font-size:11px;font-weight:700;letter-spacing:.12em;color:#8C8C8C;background:#FAFAFA}'
+           '.kpl{margin:0 0 16px;border:1px solid #E8E8E8;border-radius:12px;overflow:hidden;background:#fff}'
+           '.kpl .kch{display:flex;justify-content:space-between;align-items:baseline;padding:12px 14px 8px}'
+           '.kpl .kch b{font:600 15px/1.4 var(--min);letter-spacing:.08em;color:#1A1A1A}.kpl .kch small{font-size:10.5px;color:#9A9A9A}'
+           '.kpr{border-top:1px solid #F0F0F0}'
+           '.kpr summary{display:grid;grid-template-columns:44px 1fr auto 14px;gap:10px;align-items:center;padding:10px 14px;cursor:pointer;list-style:none}'
+           '.kpr summary::-webkit-details-marker{display:none}'
+           '.kpr summary:after{content:"+";font:300 18px/1 Jost,sans-serif;color:#9A9A9A;text-align:center}.kpr[open] summary:after{content:"−"}'
+           '.kpr summary img,.kpr summary .ph0,.kcon a .ph0{width:44px;height:44px;border-radius:8px;background:#F5F5F7;object-fit:contain;mix-blend-mode:multiply}'
+           '.kpr summary .ph0,.kcon a .ph0{display:flex;align-items:center;justify-content:center;font:600 18px/1 var(--min),serif;font-style:normal;color:var(--pc,#8C7B6E);background:color-mix(in srgb,var(--pc,#8C7B6E) 12%,#fff)}'
+           '.kpr summary span{min-width:0;font-size:11.5px;color:#6B6B6B;line-height:1.45}'
+           '.kpr summary span b{display:block;font-size:13.5px;color:#1A1A1A;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}'
+           '.kpr summary em{font-style:normal;font:500 19px/1.1 Jost,sans-serif;color:#1A1A1A;white-space:nowrap}'
+           '.kpb{padding:2px 14px 14px 68px;font-size:12.5px;line-height:1.7;color:#333}'
+           '.kpb p{margin:0 0 6px}.kpb p b{display:inline-block;margin-right:8px;font-size:11px;color:#6B6B6B}'
+           '.kpb .kbut b{color:#A0522D}'
+           '.kpg{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:8px}'
+           '.kpg .kgo2{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:99px;background:#1A1A1A;color:#fff;font-size:12.5px;font-weight:700;text-decoration:none}'
+           '.kpg .kgo2 i{font-style:normal;font-family:Jost,sans-serif}'
+           '.kpg .kot{display:inline-flex;gap:16px}.kpg .kyh{display:inline-flex;gap:4px;font-size:12px;font-weight:700;color:#6B6B6B;text-decoration:none;border-bottom:1px solid #BDBDBD;padding-bottom:1px}.kpg .kyh i{font-style:normal}'
            '.kcon a em small{display:block;font:700 10px "Zen Kaku Gothic New",sans-serif;color:#1F6B4F;margin-top:2px}'
            '.kdl{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 10px;padding:8px 12px;border-radius:8px;background:#F5F5F7;font-size:11.5px;color:#333;text-decoration:none}'
            '.kdl b{font:500 15px Jost,sans-serif;color:#1A1A1A;margin:0 2px}'
@@ -618,12 +725,13 @@ def build(od, ix):
            '#kqr .kqb{margin:0 0 6px;font-size:11.5px;font-weight:700;letter-spacing:.04em;color:#1F6B4F}'
            '#odekake #kqr .card.it.kc.kq1{border:2px solid #1A1A1A}'
            '#kqr .kqe{margin:4px 0 10px;padding:10px 12px;border-radius:10px;background:#F5F5F7}#kqr .kqe small{display:block;font-size:11px;color:#6B6B6B;margin-bottom:4px}#kqr .kqe .ilk{margin:0}'
+           'body.okp .flt[data-v=odekake],#odekake .pane[data-t=pick] .none{display:none!important}'
            '#odekake.kqon>.otab,#odekake.kqon>.pane{display:none!important}.kqon2 .flt[data-v=odekake]{display:none}'
            '</style>')
     h = h.replace("</head>", css + "</head>", 1)
     # 種類のしぼりこみは、いま開いているタブにある種類だけ出す／押されたPRを数える／下のボタン列は買い物の4つ
     js = ('<script>(function(){'
-          'function sync(){var on=document.querySelector(".otab button.on"),t=on?on.dataset.t:"pick",has={};'
+          'function sync(){var on=document.querySelector(".otab button.on"),t=on?on.dataset.t:"pick",has={};document.body.classList.toggle("okp",t==="pick");'
           'document.querySelectorAll(\'#odekake .pane[data-t="\'+t+\'"] .card.it\').forEach(function(c){has[c.dataset.pref]=1;});'
           'document.querySelectorAll(".flt button[data-p]").forEach(function(b){if(b.dataset.p)b.classList.toggle("hid",!has[b.dataset.p]);});'
           'var cur=document.querySelector(".flt button.on");if(cur&&cur.dataset.p&&!has[cur.dataset.p]){var a=document.querySelector(\'.flt button[data-p=""]\');if(a)a.click();}}'
@@ -636,12 +744,12 @@ def build(od, ix):
           'var el=document.querySelector(a.getAttribute("href"));if(el)scrollTo({top:el.getBoundingClientRect().top+scrollY-80,behavior:"smooth"});},60);});});'
           'var F="";try{F=sessionStorage.getItem("f")||"";}catch(e){}'
           'document.addEventListener("click",function(ev){var a=ev.target.closest&&ev.target.closest("a.go[rel~=sponsored],a.ilk[rel~=sponsored],a.kyh");if(!a||!navigator.sendBeacon)return;'
-          'var p=a.closest(".pane"),k=(a.classList.contains("kyh")?a.textContent.replace(/[›\\s]/g,"")+"｜"+((a.closest(".kc")||a).querySelector(".go")||a).textContent:a.textContent).replace(/\\s+/g,"").slice(0,30);'
+          'var p=a.closest(".pane"),k=((a.classList.contains("kyh")||a.classList.contains("kgo2"))?a.textContent.replace(/[›\\s]/g,"")+"｜"+((a.closest(".kc")||a).querySelector(".go")||(a.closest(".kpr")||a).querySelector("summary b")||a).textContent:a.textContent).replace(/\\s+/g,"").slice(0,30);'
           'try{navigator.sendBeacon("/c?f="+encodeURIComponent(F||"direct")+"&s="+encodeURIComponent(("okai-"+(p?p.dataset.t:"top")).slice(0,16))+"&k="+encodeURIComponent(k));}catch(e){}},true);'
           'var q=null;try{q=new URLSearchParams(location.search).get("t");}catch(e){}var hs=location.hash.slice(1);if(!q&&hs)q={deal:"sale",sale:"sale",shop:"pick",trip:"pick",hot:"pick",unit:"unit",down:"down"}[hs]||null;if(q){var b=document.querySelector(\'.otab button[data-t="\'+q+\'"]\');if(b&&!b.disabled)b.click();}'
           '})();</script>')
     h = h.replace('<body class="', '<body data-bar="okai" class="', 1)
     h = h.replace("c.hidden=!ok||(!op&&k>5);", "c.hidden=!ok||(!op&&k>8);").replace('m.dataset.l+(k-5)+"件）";m.hidden=op||k<=5;', 'm.dataset.l+(k-8)+"件）";m.hidden=op||k<=8;')
-    js += '<script src="/assets/kq.js?v=4" defer></script><script src="/assets/okv.js?v=2" defer></script>'
+    js += '<script src="/assets/kq.js?v=4" defer></script><script src="/assets/okv.js?v=3" defer></script>'
     i = h.rfind("</body>")
     return h[:i] + js + h[i:]
