@@ -283,8 +283,11 @@ def card_html(c, col, i=0):
             f'<div class="{ph_cls}">{img}</div><div class="kx">'
             f'<span class="kcat">{E(c["cat"])}<i>{E(c["top"])}</i></span>'
             f'<div class="t">{go}</div>'
-            + (f'<p class="kwhy"><b>選んだ理由</b>{E(why)}</p>' if why else "")
-            + (f'<p class="kbut"><b>ただし</b>{E(but.replace("ただし、", "").replace("ただし", ""))}</p>' if but else "")
+            # 11/3 オーナー「文字ばっかりにならないように。誰も読まない」→ 理由と「ただし」は押した人だけに開く
+            + ((f'<details class="kwd"><summary>選んだ理由{"と注意" if but else ""}を見る</summary>'
+                + (f'<p class="kwhy"><b>選んだ理由</b>{E(why)}</p>' if why else "")
+                + (f'<p class="kbut"><b>ただし</b>{E(but.replace("ただし、", "").replace("ただし", ""))}</p>' if but else "")
+                + '</details>') if (why or but) else "")
             + '<div class="kf">' + (f'<span class="kr">{E(rate)}</span>' if rate else "<span></span>")
             + f'<span class="kbt"><span class="kgo">{shop}で見る<i>›</i></span>' + others(c, shop) + '</span></div></div></div>')
 
@@ -485,6 +488,11 @@ def build(od, ix):
            '#odekake .kc.kb2 .t{margin-top:6px;font:600 18px/1.5 var(--min);letter-spacing:.02em;-webkit-line-clamp:3}'
            '#odekake .kc .kwhy,#odekake .kc .kbut{margin:10px 0 0;font-size:12.5px;line-height:1.7;color:#333}'
            '#odekake .kc .kwhy b,#odekake .kc .kbut b{display:inline-block;margin-right:8px;font-size:10.5px;letter-spacing:.06em;color:#1F6B4F;border:1px solid currentColor;border-radius:3px;padding:0 5px;line-height:1.6;vertical-align:1px}'
+           '#odekake .kc .kwd{position:relative;z-index:2;margin-top:10px}'
+           '#odekake .kc .kwd summary{display:inline-flex;align-items:center;gap:6px;list-style:none;cursor:pointer;font-size:12px;font-weight:700;color:#6B6B6B}'
+           '#odekake .kc .kwd summary::-webkit-details-marker{display:none}'
+           '#odekake .kc .kwd summary:after{content:"＋";font-size:12px;color:#9A9A9A}#odekake .kc .kwd[open] summary:after{content:"−"}'
+           '#odekake .kc.kb2 .t{-webkit-line-clamp:2!important}'
            '#odekake .kc .kbut{color:#555;margin-top:6px}#odekake .kc .kbut b{color:#8A6D3B}'
            '#odekake .kc .kf{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid #EFEFEF}'
            # ページの上の1行（広告の表示）と、結論
