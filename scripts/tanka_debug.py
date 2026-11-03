@@ -37,7 +37,7 @@ print("\n=== yahoo 鍵:", "あり" if ap else "なし", len(ap))
 if ap:
     for cat in tanka.CATS[:3] + [c for c in tanka.CATS if c[0] in ("detergent", "diaper")]:
         try:
-            q = urllib.parse.urlencode({"appid": ap, "query": cat[2], "results": 50, "sort": "-review_count", "shipping": "free", "in_stock": "true"})
+            q = urllib.parse.urlencode({"query": cat[2], "results": 50, "sort": "-review_count", "shipping": "free", "in_stock": "true"})
             req = urllib.request.Request("https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch?" + q, headers={"User-Agent": f"Yahoo AppID: {ap}"})
             with urllib.request.urlopen(req, timeout=20) as r:
                 hits = json.load(r).get("hits") or []

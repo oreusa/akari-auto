@@ -43,7 +43,10 @@ def must_ok(key, name):
 
 # 11/3 楽天で調べたら、洗剤・おむつ・ペットフードなどはレビュー1,000件の物がほとんど無い（1商品のレビューが散らばる）。
 # 水・お米などの4つは今まで通り1,000件、足した物は100件以上・★4.0以上（カードにレビュー数をそのまま出す）
-RMIN = {"water": 1000, "soda": 1000, "rice": 1000, "tp": 1000}
+RMIN = {"water": 1000, "soda": 1000, "rice": 1000, "tp": 1000,
+        # 洗剤・おむつなどは1商品のレビューが特に少ない（11/3 楽天で見たら多くて50件ほど）
+        "detergent": 20, "softener": 20, "bodysoap": 20, "dish": 20, "diaper": 20,
+        "coffee": 50, "trash": 50, "pasta": 50, "battery": 50, "tissue": 50, "wipes": 50, "tea": 50}
 RMIN_NEW = 100
 NGKW = "ふるさと 定期便 お試し サンプル"  # 楽天の検索で先に外す（30件の枠を使わない）
 NG = ("ふるさと", "定期", "お試し", "サンプル")
@@ -73,7 +76,7 @@ CATS = [
         ("bodysoap", "ボディソープ（詰め替え）", "ボディソープ 詰め替え 大容量", "1L・1kg", ("固形", "石鹸 個", "ディスペンサー", "ボトル", "容器", "アダプター", "スクラブ", "シャンプー"), (100, 5000)),
         ("dish", "食器用洗剤（詰め替え）", "食器用洗剤 詰め替え 大容量", "1L・1kg", ("食洗機", "タブレット", "粉", "ディスペンサー", "自動", "ボトル"), (100, 3000)),
         ("tissue", "ティッシュ", "ティッシュペーパー まとめ買い", "100組", ("ウェット", "トイレット", "ティッシュケース", "カバー", "ポケット", "ペーパータオル"), (2, 200)),
-        ("diaper", "おむつ", "おむつ ベビー ケース", "1枚", ("おしりふき", "大人", "介護", "ペット", "防水シート", "パッド"), (10, 120)),
+        ("diaper", "おむつ", "紙おむつ パンツ ケース", "1枚", ("大人", "介護", "ペット", "防水シート", "パッド", "ストッカー", "ポーチ", "巾着", "収納", "バッグ"), (10, 120)),
         ("wipes", "おしりふき", "おしりふき まとめ買い", "1枚", ("おむつ", "ケース単体", "フタ", "ペット", "おしり拭きケース"), (0.3, 15)),
         ("trash", "ゴミ袋", "ゴミ袋 45L 枚", "1枚", ("ゴミ箱", "ホルダー", "スタンド"), (1, 60)),
         ("battery", "乾電池（単3）", "単3 乾電池 アルカリ", "1本", ("充電器", "単4", "単四", "ケース", "ホルダー", "充電池"), (15, 400)),
@@ -144,7 +147,7 @@ def amount(cat, name):
             ml += [float(v) for v in re.findall(NUM + r"\s*(?:g|グラム)(?![a-zA-Z])", t)]
             ml += [float(v) * 1000 for v in re.findall(NUM + r"\s*(?:kg|KG|Kg|キロ)", t)]
             isg = True
-        return _per_pack(t, ml, 100, 6000, lambda a: (f"{a / 1000:g}kg" if a >= 1000 else f"{a:g}g") if isg else
+        return _per_pack(t, ml, 100, 20000, lambda a: (f"{a / 1000:g}kg" if a >= 1000 else f"{a:g}g") if isg else
                          (f"{a / 1000:g}L" if a >= 1000 else f"{a:g}ml"), 1000)
     if k == "wt":
         g = [float(v) for v in re.findall(NUM + r"\s*(?:g|グラム)(?![a-zA-Z])", t)]
@@ -200,7 +203,7 @@ def _count(t):
     if len(set(tot)) == 1:
         return int(tot[0])
     pk = set(int(x) * int(y) for x, y in re.findall(r"(\d+)\s*(?:本|個|袋|パック|缶|コ)\s*(?:入り?)?\s*[)）]?\s*[x×]\s*(\d+)", t))
-    one_ = set(int(v) for v in re.findall(r"(?<![\d.])(\d+)\s*(?:本|個|袋|パック|缶|コ)(?!\s*[x×]\s*\d|パック)", t))
+    one_ = set(int(v) for v in re.findall(r"(?<![\d.])(\d+)\s*(?:本|個|袋|パック|缶|コ)(?!\s*[x×]\s*\d|パック|分)", t))
     one_ |= set(int(v) for v in re.findall(r"[x×]\s*(\d+)(?![\d.]|\s*(?:ml|mL|L|g|kg|枚|組|m|cm|mm))", t))
     if len(pk) == 1:
         a = next(iter(pk))
@@ -324,7 +327,7 @@ def yahoo_rows(cat):
     if not appid:
         return []
     key, _, kw, _, _, ng, (lo, hi) = cat
-    q = urllib.parse.urlencode({"appid": appid, "query": kw, "results": 50, "sort": "-review_count", "shipping": "free", "in_stock": "true"})
+    q = urllib.parse.urlencode({"query": kw, "results": 50, "sort": "-review_count", "shipping": "free", "in_stock": "true"})
     # 11/3 鍵だけだと 403。Yahoo!は User-Agent に「Yahoo AppID: 鍵」を入れる決まり
     req = urllib.request.Request("https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch?" + q,
                                  headers={"User-Agent": f"Yahoo AppID: {appid}"})
