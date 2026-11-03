@@ -1,3 +1,13 @@
+/* 11/3 オーナー「下にスライドしたら、すぐ閉じちゃう」（アプリの中で開いたページが、下に引くとページごと閉じる）。
+   ページが一番上にぴったり居ると、下に引く動きをアプリが「閉じる」に使う。指を置いた時・一番上に戻った時は 1px だけ下げておく（見た目は変わらない） */
+(function(){
+  try{if(!matchMedia("(pointer:coarse)").matches)return;}catch(e){return;}
+  document.documentElement.style.overscrollBehaviorY="none";
+  function nudge(){var d=document.documentElement;if(window.scrollY<1&&d.scrollHeight>innerHeight+2)window.scrollTo(0,1);}
+  addEventListener("touchstart",nudge,{passive:true});
+  addEventListener("scroll",function(){if(window.scrollY<1)requestAnimationFrame(nudge);},{passive:true});
+  addEventListener("load",function(){setTimeout(nudge,50);});
+})();
 /* 10/31 オーナー「三本線を作って項目を選べるように…燈の方も」（月の links/assets/menu.js と同じ形）
    全ページ共通のメニュー（11/3 テスターの声「メニューが見にくい」→ 項目はゴシックの太字・英字の小見出しなし・説明を濃く）。右上の三本線 → 右から出る紙。昼と夜の切り替えもここ（night.js）。
    ページを足すときは L に1行足すだけ。/#shop・/#deal・/#trip はリストの欄ボタンを押す。押された数は /c の s=menu。 */
