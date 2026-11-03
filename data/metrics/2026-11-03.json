@@ -1,0 +1,388 @@
+{
+  "day": "2026-11-03",
+  "fetchedAt": "2026-11-04T06:16+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【明日11/4 20時から　楽天お買い物マラソン｜1店1,000円以上で数える🛍",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfQWzuGiYpp",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 14.29,
+        "views": 7,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【明日11/4 20時から　楽天お買い物マラソン｜1店1,000円以上で数える🛍",
+      "url": "https://x.com/1753799832798629888/status/2117379990748557809",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 8.33,
+        "reposts": 0,
+        "impressions": 36,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "07:31",
+      "kind": "手動",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DfQYlmCJvG0/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 1,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.03,
+        "averageTimeWatched": 1.95,
+        "reach": 1
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "11/7からさいたま新都心でイルミ、今週始まる5つ✨",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfQkipckfD8",
+      "metrics": {
+        "reactions": 2,
+        "comments": 1,
+        "engagementRate": 1.37,
+        "views": 219,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "11/7からさいたま新都心でイルミ、今週始まる5つ✨",
+      "url": "https://x.com/1753799832798629888/status/2117410190945361965",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 1.13,
+        "reposts": 0,
+        "impressions": 266,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "11/3から、新宿でラー1グランプリ第6陣、8店がバトル🍜",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfQ5J6yET2_",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.76,
+        "views": 132,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "11/3から、新宿でラー1グランプリ第6陣、8店がバトル🍜",
+      "url": "https://x.com/1753799832798629888/status/2117455519182922011",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.54,
+        "reposts": 0,
+        "impressions": 130,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【11/5から　京橋・八重洲・赤坂｜イルミは何時まで光るかくらべ✨】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfRDcPmjU38",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.78,
+        "views": 129,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【11/5から　京橋・八重洲・赤坂｜イルミは何時まで光るかくらべ✨】",
+      "url": "https://x.com/1753799832798629888/status/2117478141039898921",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.89,
+        "reposts": 0,
+        "impressions": 53,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "10/31開店、横浜の関内に赤から鍋の「赤から」🍲",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfRNvMuFvpd",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "10/31開店、横浜の関内に赤から鍋の「赤から」🍲",
+      "url": "https://x.com/1753799832798629888/status/2117500783201558620",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.75,
+        "reposts": 0,
+        "impressions": 57,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた楽天ふるさと納税のトイレットペーパー｜1万円で7,200m】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfRiWOcFfjA",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた楽天ふるさと納税のトイレットペーパー｜1万円で7,200m】",
+      "url": "https://x.com/1753799832798629888/status/2117546086055243958",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 6.33,
+        "reposts": 1,
+        "impressions": 79,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【2/20まで　横浜中華街｜国内最大級の龍のランタン🐉】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfRwGS1EZFj",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【2/20まで　横浜中華街｜国内最大級の龍のランタン🐉】",
+      "url": "https://x.com/1753799832798629888/status/2117576310566367705",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 9.09,
+        "reposts": 0,
+        "impressions": 22,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "HPのご紹介 その2｜おでかけとおかいもの、何がのっているか🗒",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfR1fcOlnOl",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "HPのご紹介 その2｜おでかけとおかいもの、何がのっているか🗒",
+      "url": "https://x.com/1753799832798629888/status/2117588007779795328",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 16.67,
+        "reposts": 0,
+        "impressions": 6,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【1/11まで　鴨川・大山千枚田｜棚田のあかりは見学自由🌾】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfR92UNFusP",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "【1/11まで　鴨川・大山千枚田｜棚田のあかりは見学自由🌾】",
+      "url": "https://x.com/1753799832798629888/status/2117606552039215312",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.76,
+        "reposts": 0,
+        "impressions": 21,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4021845064993646328",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4021839928027808181",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/29まで　昭和記念公園｜夜のイチョウ並木、中学生以下は無料🍂】",
+      "url": "https://www.instagram.com/reel/DfQcDbcvUd-/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 14,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.45,
+        "averageTimeWatched": 1.95,
+        "reach": 13
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/29まで　昭和記念公園｜夜のイチョウ並木、中学生以下は無料🍂】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfQcAtqEVPB",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 7.14,
+        "views": 14,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/29まで　昭和記念公園｜夜のイチョウ並木、中学生以下は無料🍂】",
+      "url": "https://x.com/1753799832798629888/status/2117391401071546871",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 4.33,
+        "reposts": 0,
+        "impressions": 254,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DfQYkcHsqF8/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 7.14,
+        "views": 17,
+        "shares": 1,
+        "saves": 0,
+        "totalTimeWatched": 1.63,
+        "averageTimeWatched": 6.51,
+        "reach": 14
+      }
+    }
+  ]
+}

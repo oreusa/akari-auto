@@ -26,11 +26,14 @@
     },
     "2026-11-03": {
       "note": "Bufferからは取れない（欄なし）"
+    },
+    "2026-11-04": {
+      "note": "Bufferからは取れない（欄なし）"
     }
   },
   "fields": [],
   "schema": {
-    "types": 378,
+    "types": 394,
     "roots": [
       "account",
       "dailyPostingLimits",
@@ -38,6 +41,7 @@
       "channels",
       "aggregatedPostMetrics",
       "snippets",
+      "collaborationNotes",
       "post",
       "posts",
       "contentItem",
