@@ -244,7 +244,8 @@ def card_html(c, col, i=0):
     rel = "sponsored noopener" if c["pr"] else "noopener"
     e = f' data-e="{E(c["e"])}"' if c.get("e") else ""
     u = real_url(c["href"])
-    shop = "楽天トラベル" if "travel.rakuten" in u else ("楽天" if c["pr"] else "公式ページ")
+    yh = "yahoo" in u.lower() or "valuecommerce" in u or "moshimo" in u
+    shop = "楽天トラベル" if "travel.rakuten" in u else ("Yahoo!ショッピング" if yh else ("楽天" if c["pr"] else "公式ページ"))
     img = (f'<img src="{E(c["img"])}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" '
            f'onerror="this.parentNode.classList.add(\'no\');this.remove()">') if c.get("img") else ""
     ph_cls = "kp" + ("" if img else " no")
