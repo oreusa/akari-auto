@@ -361,8 +361,8 @@ def yh_card(r, unit):
     return (f'<li class="it"><a class="cd" href="{esc(r["url"])}" rel="sponsored noopener" target="_blank" data-k="yh">'
             + (f'<img class="ph" src="{esc(r["img"])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if r.get("img") else "")
             + f'<span class="rk az" style="background:#FF0033">Y</span><span class="tx"><span class="nm">{esc(r["name"])}</span>'
-            f'<span class="pu">{unit}あたり <b>{yen(r["per"])}円</b>（送料無料・{r["price"]:,}円）</span>'
-            f'<span class="mt">{esc(r["amt"])}　★{r["av"]:.1f}　レビュー{r["rc"]:,}件</span>'
+            f'<span class="pu">{unit}あたり <b>{yen(r["per"])}円</b></span>'
+            f'<span class="mt">{r["price"]:,}円（送料無料・{esc(r["amt"])}）　★{r["av"]:.2f}　レビュー{r["rc"]:,}件</span>'
             f'<span class="go">Yahoo!ショッピングで見る →</span></span></a></li>')
 
 
