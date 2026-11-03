@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-03 18:52",
+  "at": "2026-11-03 20:02",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 62,
+      "read": 63,
       "ok": 11,
-      "avg": 153.0,
+      "avg": 154.4,
       "top": [
         {
           "name": "公式 水 2リットル 9本 天然水 ミネラルウォーター 2L 送料無料 ラベルレス 富士山 …",
@@ -232,7 +232,7 @@
           "price": 3680,
           "per": 368.0,
           "amt": "10kg",
-          "rc": 5898,
+          "rc": 5899,
           "av": 4.25,
           "shop": "まんま屋"
         },
@@ -365,7 +365,7 @@
           "price": 1632,
           "per": 136.0,
           "amt": "500ml×24",
-          "rc": 15086,
+          "rc": 15087,
           "av": 4.72,
           "shop": "LIFEDRINKオンラインストア"
         }
@@ -458,9 +458,9 @@
       "title": "洗濯洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 60,
-      "read": 26,
+      "read": 27,
       "ok": 4,
-      "avg": 1117.3,
+      "avg": 1170.1,
       "top": [
         {
           "name": "アタック 抗菌EX 部屋干し 洗剤 洗濯洗剤 詰め替え 超特大 ゾンビ臭 液体 じめじめ 密…",
@@ -851,30 +851,10 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 60,
-      "read": 36,
-      "ok": 36,
-      "avg": 56.9,
+      "read": 39,
+      "ok": 39,
+      "avg": 60.9,
       "top": [
-        {
-          "name": "メリーズ Merries テープ 新生児用 オムツ さら さらエアスルー (お誕生~5000…",
-          "price": 4841,
-          "per": 29.5,
-          "amt": "164枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "ちいさなしあわせストア",
-          "plain": "https://item.rakuten.co.jp/chiisana--shiawase/10019140/"
-        },
-        {
-          "name": ".co.jp 限定 テープ 新生児用 メリーズ オムツ さら さらエアスルー (お誕生~50…",
-          "price": 4862,
-          "per": 29.6,
-          "amt": "164枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "Homey Store 楽天市場店",
-          "plain": "https://item.rakuten.co.jp/homeystore/10118455/"
-        },
         {
           "name": "ケース販売3袋・送料無料(北海道、沖縄除く) 大容量マミーポコパンツ L ドラえもん 9kg…",
           "price": 5600,
@@ -886,24 +866,44 @@
           "plain": "https://item.rakuten.co.jp/up-shop/10001051/"
         },
         {
-          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
-          "price": 8828,
-          "per": 31.5,
-          "amt": "280枚",
+          "name": "パンツ Mサイズ マミーポコ パンツ ドラえもん オムツ（6~13kg）144枚（48枚×3…",
+          "price": 4729,
+          "per": 32.8,
+          "amt": "144枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "Ciel de neige",
-          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/"
+          "shop": "actonlineshop",
+          "plain": "https://item.rakuten.co.jp/actonlineshop/10025244/"
         },
         {
-          "name": "ケース販売 マミーポコパンツ Lサイズ 62枚×3袋 ドラえもん パンツタイプ オムツ 紙お…",
-          "price": 6350,
-          "per": 34.1,
-          "amt": "186枚",
+          "name": "パンツ Sサイズ マミーポコ パンツ ドラえもん オムツ（4~9kg）156枚（52枚×3）…",
+          "price": 5414,
+          "per": 34.7,
+          "amt": "156枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "Care-Life 楽天市場店",
-          "plain": "https://item.rakuten.co.jp/fragrance-fukuyama/10000500/"
+          "shop": "Senses",
+          "plain": "https://item.rakuten.co.jp/senses/10030911/"
+        },
+        {
+          "name": "コストコ メリーズ 素肌さらさらエアスルー パンツ Lサイズ 54枚×3パック 合計162枚…",
+          "price": 6300,
+          "per": 38.9,
+          "amt": "162枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "YSマーケット",
+          "plain": "https://item.rakuten.co.jp/ysmarket/10000165/"
+        },
+        {
+          "name": "まとめ買い メリーズ エアスルー テープ Sサイズ 62枚入り×4個 赤ちゃん おむつ 紙お…",
+          "price": 9670,
+          "per": 39.0,
+          "amt": "248枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "ダイユーエイト楽天市場店",
+          "plain": "https://item.rakuten.co.jp/daiyu8/10169391/"
         }
       ],
       "amazon": [],
@@ -1375,7 +1375,7 @@
           "price": 13790,
           "per": 4596.7,
           "amt": "3kg",
-          "rc": 3154,
+          "rc": 3155,
           "av": 4.65,
           "shop": "X-PLOSION Yahoo!店"
         }
