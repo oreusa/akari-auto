@@ -540,6 +540,13 @@ def build(od, ix):
            '#odekake .kc .kwd summary::-webkit-details-marker{display:none}'
            '#odekake .kc .kwd summary:after{content:"＋";font-size:12px;color:#9A9A9A}#odekake .kc .kwd[open] summary:after{content:"−"}'
            '#odekake .kc.kb2 .t{-webkit-line-clamp:2!important}'
+           # 11/3 オーナー「見やすく」→ 写真が画面いっぱいで1枚しか見えなかった。写真は左に小さく、横長のカードに（1個あたりと同じ形）
+           '#odekake .kc.kb2{display:flex!important;gap:14px;align-items:flex-start;padding:16px!important}'
+           '#odekake .kc.kb2 .kp{width:96px!important;height:96px!important;aspect-ratio:auto!important;border-radius:10px!important;flex:none}'
+           '#odekake .kc.kb2 .kp img{padding:8%}'
+           '#odekake .kc.kb2 .kx{flex:1;min-width:0;padding:0!important}'
+           '#odekake .kc.kb2 .t{font-size:15.5px!important;line-height:1.5!important;margin-top:4px}'
+           '#odekake .kc.kb2 .kcat i{display:none}'  # 「3つ以上を比べて選んだ物」は毎回同じなので、上の説明1か所に
            '#odekake .kc .kbut{color:#555;margin-top:6px}#odekake .kc .kbut b{color:#8A6D3B}'
            '#odekake .kc .kf{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid #EFEFEF}'
            # ページの上の1行（広告の表示）と、結論
