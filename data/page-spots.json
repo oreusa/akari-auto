@@ -558,7 +558,7 @@
       "ends": "2026-11-15T21:00",
       "note": "新宿区｜1杯800円から。11:00〜21:00",
       "url": "https://dai-tsukemen-haku.com/",
-      "checked": "2026-10-28"
+      "checked": "2026-11-03"
     },
     {
       "title": "マリメッコ展 模様のちから",
@@ -959,7 +959,7 @@
       "free": false,
       "note": "桐生市｜11月は1,200円。11/14からライトアップ",
       "url": "https://www.houtokuji.jp/reflection-autumn.html",
-      "checked": "2026-10-30"
+      "checked": "2026-11-03"
     },
     {
       "title": "オータムワークショップ",
@@ -1977,6 +1977,78 @@
       "note": "都立庭園を巡るスタンプラリー。浜離宮は一般300円・中学生以下（都内在住・在学）無料",
       "url": "https://www.tokyo-park.or.jp/event_search/9_2_2.html",
       "checked": "2026-11-02"
+    },
+    {
+      "title": "多摩センターイルミネーション2026",
+      "pref": "東京",
+      "place": "多摩センター駅",
+      "when": "11/14〜1/11",
+      "start": "2026-11-14",
+      "ends": "2027-01-11T22:30",
+      "free": false,
+      "note": "多摩市｜16:30〜22:30（一部は20:30まで）。11/14に点灯式",
+      "url": "https://tamaillumi.myportfolio.com/",
+      "checked": "2026-11-03"
+    },
+    {
+      "title": "SHIBUYA SKY Sparkling View",
+      "pref": "東京",
+      "place": "SHIBUYA SKY",
+      "when": "11/5〜12/25",
+      "start": "2026-11-05",
+      "ends": "2026-12-25T22:00",
+      "free": false,
+      "note": "渋谷区｜19時から屋上の光のツリー、30分ごとに演出。入場券が必要",
+      "url": "https://www.shibuya-scramble-square.com/sky/sparkling_view",
+      "checked": "2026-11-03"
+    },
+    {
+      "title": "小石川後楽園 深山光葉を楽しむ",
+      "pref": "東京",
+      "place": "小石川後楽園",
+      "when": "11/13〜11/24",
+      "start": "2026-11-13",
+      "ends": "2026-11-24T21:00",
+      "free": false,
+      "note": "文京区｜紅葉のライトアップ。18:00〜21:00、当日1,200円（小学生以下無料）",
+      "url": "https://www.tokyo-park.or.jp/special/koishikawa_lightingup/index.html",
+      "checked": "2026-11-03"
+    },
+    {
+      "title": "偕楽園 もみじ谷ライトアップ",
+      "pref": "茨城",
+      "place": "偕楽園 水戸市",
+      "when": "11/7〜11/29",
+      "start": "2026-11-07",
+      "ends": "2026-11-29T21:00",
+      "free": false,
+      "note": "水戸市｜日没〜21:00。色づきで期間が変わることがあります",
+      "url": "https://ibaraki-kairakuen.jp/news/detail?id=5899",
+      "checked": "2026-11-03"
+    },
+    {
+      "title": "きつれ川花火大会2026",
+      "pref": "栃木",
+      "place": "道の駅きつれがわ",
+      "when": "11/7",
+      "start": "2026-11-07",
+      "ends": "2026-11-07T19:10",
+      "free": true,
+      "note": "さくら市｜18:00〜19:10、約5,000発。荒天は11/8",
+      "url": "https://sakura-navi.net/event/kitsuregawa-hanabi-festival/",
+      "checked": "2026-11-03"
+    },
+    {
+      "title": "さがみはらフェスタ2026",
+      "pref": "神奈川",
+      "place": "相模総合補給廠一部返還地 相模原市",
+      "when": "11/7〜11/8",
+      "start": "2026-11-07",
+      "ends": "2026-11-08T20:00",
+      "free": false,
+      "note": "相模原市中央区｜ラーメンの投票やランタンの夜。土10:00〜21:00・日〜20:00",
+      "url": "https://sagamihara-festa.com/",
+      "checked": "2026-11-03"
     }
   ]
 }
