@@ -1120,41 +1120,6 @@
       }
     ]
   },
-  "東京ドイツ村ウインターイルミネーション2026-2027": {
-    "v": 2,
-    "t": "2026-11-02",
-    "ll": [
-      35.40673,
-      140.06252
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "まるのもり Glamping with dog",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188322",
-        "km": 5.0,
-        "r": 4.81,
-        "rc": 60,
-        "min": 10870
-      },
-      {
-        "n": "トレーテル市原牛久店",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191988",
-        "km": 6.9,
-        "r": 4.7,
-        "rc": 42,
-        "min": 5312
-      },
-      {
-        "n": "ETOWA KISARAZU(エトワ木更津)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187326",
-        "km": 6.3,
-        "r": 4.41,
-        "rc": 340,
-        "min": 11495
-      }
-    ]
-  },
   "長瀞紅葉まつり2026": {
     "v": 2,
     "t": "2026-10-31",

@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-03 20:02",
+  "at": "2026-11-04 02:15",
   "cats": [
     {
       "key": "water",
@@ -15,7 +15,7 @@
           "price": 1360,
           "per": 75.6,
           "amt": "2000ml×9本",
-          "rc": 2059,
+          "rc": 2062,
           "av": 4.49,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10151238/"
@@ -35,7 +35,7 @@
           "price": 1948,
           "per": 81.2,
           "amt": "2000ml×12本",
-          "rc": 11689,
+          "rc": 11690,
           "av": 4.65,
           "shop": "ココデカウ",
           "plain": "https://item.rakuten.co.jp/cocodecow/10058666/"
@@ -45,7 +45,7 @@
           "price": 1480,
           "per": 82.2,
           "amt": "2000ml×9本",
-          "rc": 8542,
+          "rc": 8544,
           "av": 4.78,
           "shop": "水想い 公式ストア",
           "plain": "https://item.rakuten.co.jp/mizuomoi/10000004/"
@@ -61,7 +61,26 @@
           "plain": "https://item.rakuten.co.jp/k-home/10088179/"
         }
       ],
-      "amazon": [],
+      "amazon": [
+        {
+          "asin": "B08GZR18S3",
+          "name": "by Amazon 天然水ラベルレス 2L×9本",
+          "price": 1216,
+          "per": 67.6,
+          "amt": "2000ml×9本",
+          "rc": 51063,
+          "av": 4.3
+        },
+        {
+          "asin": "B09G9YRX1P",
+          "name": "サントリー 天然水 ラベルレス 2L ×9本 南アルプス Amazon.co.jp限定 まと…",
+          "price": 0,
+          "per": 0,
+          "amt": "2000ml×9本",
+          "rc": 46495,
+          "av": 4.4
+        }
+      ],
       "yahoo": [
         {
           "name": "水 2リットル 国産 ミネラルウォーター 自然の恵み 天然水 2L×12本",
@@ -97,7 +116,7 @@
           "price": 1280,
           "per": 106.7,
           "amt": "500ml×24本",
-          "rc": 1310,
+          "rc": 1311,
           "av": 4.59,
           "shop": "暮らし健康ネット館",
           "plain": "https://item.rakuten.co.jp/kurashikenkou/10220307/"
@@ -107,7 +126,7 @@
           "price": 1420,
           "per": 118.3,
           "amt": "500ml×24本",
-          "rc": 3922,
+          "rc": 3923,
           "av": 4.59,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10158174/"
@@ -150,8 +169,8 @@
           "price": 2560,
           "per": 106.7,
           "amt": "500ml×48本",
-          "rc": 573,
-          "av": 4.68,
+          "rc": 572,
+          "av": 4.69,
           "shop": "東京酒粋(トウキョウシュスイ)"
         },
         {
@@ -179,7 +198,7 @@
           "price": 3980,
           "per": 398.0,
           "amt": "10kg",
-          "rc": 1369,
+          "rc": 1371,
           "av": 4.42,
           "shop": "ライスマイルねっとショップ",
           "plain": "https://item.rakuten.co.jp/rice-smile/10000005/"
@@ -189,7 +208,7 @@
           "price": 3990,
           "per": 399.0,
           "amt": "10kg",
-          "rc": 3994,
+          "rc": 3995,
           "av": 4.63,
           "shop": "お米のもりかわ楽天市場店",
           "plain": "https://item.rakuten.co.jp/morikawakomeya/10000029/"
@@ -199,7 +218,7 @@
           "price": 4190,
           "per": 419.0,
           "amt": "10kg",
-          "rc": 1367,
+          "rc": 1370,
           "av": 4.68,
           "shop": "米屋 太三郎",
           "plain": "https://item.rakuten.co.jp/tasaburo/10000441/"
@@ -232,7 +251,7 @@
           "price": 3680,
           "per": 368.0,
           "amt": "10kg",
-          "rc": 5899,
+          "rc": 5900,
           "av": 4.25,
           "shop": "まんま屋"
         },
@@ -261,13 +280,32 @@
           "price": 5440,
           "per": 66.7,
           "amt": "170m×48ロール",
-          "rc": 2047,
+          "rc": 2048,
           "av": 4.52,
           "shop": "暮らし健康ネット館",
           "plain": "https://item.rakuten.co.jp/kurashikenkou/10151090/"
         }
       ],
-      "amazon": [],
+      "amazon": [
+        {
+          "asin": "B085GDK3FH",
+          "name": "トイレット ダブル 3倍長持ち 75m 12ロール スコッティフラワーパック",
+          "price": 1364,
+          "per": 151.6,
+          "amt": "75m×12ロール",
+          "rc": 10243,
+          "av": 4.4
+        },
+        {
+          "asin": "B07WCSL63X",
+          "name": "by Amazon トイレットペーパー 長さ2倍巻 50m x 12ロール ダブル 単品 (…",
+          "price": 0,
+          "per": 0,
+          "amt": "ダブル50m×12ロール／幅108mm×長さ2枚重ね50m",
+          "rc": 12991,
+          "av": 4.2
+        }
+      ],
       "yahoo": [
         {
           "name": "＼ランキング1位／ トイレットペーパー 芯なし シングル 3倍 48ロール 6ロール×8パッ…",
@@ -323,7 +361,7 @@
           "price": 2580,
           "per": 107.5,
           "amt": "2L×12",
-          "rc": 118,
+          "rc": 119,
           "av": 4.73,
           "shop": "Good Luck便 楽天市場店",
           "plain": "https://item.rakuten.co.jp/good-luckbin/10000357/"
@@ -365,7 +403,7 @@
           "price": 1632,
           "per": 136.0,
           "amt": "500ml×24",
-          "rc": 15087,
+          "rc": 15090,
           "av": 4.72,
           "shop": "LIFEDRINKオンラインストア"
         }
@@ -789,7 +827,7 @@
           "per": 43.0,
           "amt": "150組×40箱",
           "rc": 497,
-          "av": 4.57,
+          "av": 4.56,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10156163/"
         },
@@ -851,10 +889,20 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 60,
-      "read": 39,
-      "ok": 39,
-      "avg": 60.9,
+      "read": 34,
+      "ok": 34,
+      "avg": 65.8,
       "top": [
+        {
+          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
+          "price": 7944,
+          "per": 28.4,
+          "amt": "280枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Rafinagift楽天市場店",
+          "plain": "https://item.rakuten.co.jp/rafinagift/10008628/"
+        },
         {
           "name": "ケース販売3袋・送料無料(北海道、沖縄除く) 大容量マミーポコパンツ L ドラえもん 9kg…",
           "price": 5600,
@@ -866,34 +914,24 @@
           "plain": "https://item.rakuten.co.jp/up-shop/10001051/"
         },
         {
+          "name": "メリーズ テープ Sサイズ さら さらエアスルー (4~8kg)296枚 (74枚×4) ケ…",
+          "price": 10815,
+          "per": 36.5,
+          "amt": "296枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Reve2018",
+          "plain": "https://item.rakuten.co.jp/reve2018/10069649/"
+        },
+        {
           "name": "パンツ Mサイズ マミーポコ パンツ ドラえもん オムツ（6~13kg）144枚（48枚×3…",
-          "price": 4729,
-          "per": 32.8,
+          "price": 5318,
+          "per": 36.9,
           "amt": "144枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "actonlineshop",
-          "plain": "https://item.rakuten.co.jp/actonlineshop/10025244/"
-        },
-        {
-          "name": "パンツ Sサイズ マミーポコ パンツ ドラえもん オムツ（4~9kg）156枚（52枚×3）…",
-          "price": 5414,
-          "per": 34.7,
-          "amt": "156枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "Senses",
-          "plain": "https://item.rakuten.co.jp/senses/10030911/"
-        },
-        {
-          "name": "コストコ メリーズ 素肌さらさらエアスルー パンツ Lサイズ 54枚×3パック 合計162枚…",
-          "price": 6300,
-          "per": 38.9,
-          "amt": "162枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "YSマーケット",
-          "plain": "https://item.rakuten.co.jp/ysmarket/10000165/"
+          "shop": "Natures shop online 楽天市場店",
+          "plain": "https://item.rakuten.co.jp/only-one-store/10001027/"
         },
         {
           "name": "まとめ買い メリーズ エアスルー テープ Sサイズ 62枚入り×4個 赤ちゃん おむつ 紙お…",
@@ -933,9 +971,9 @@
       "title": "おしりふき",
       "unit": "1枚",
       "seen": 60,
-      "read": 26,
+      "read": 25,
       "ok": 10,
-      "avg": 4.2,
+      "avg": 4.4,
       "top": [
         {
           "name": "おしり拭き 送料無料 おしりふき 水99 パラベンフリー 80枚×48個 合計3,840枚 …",
@@ -1159,7 +1197,7 @@
           "price": 399,
           "per": 8.0,
           "amt": "50枚",
-          "rc": 2604,
+          "rc": 2605,
           "av": 4.52,
           "shop": "通販の暁",
           "plain": "https://item.rakuten.co.jp/patri/10003645/"
@@ -1306,7 +1344,7 @@
       "seen": 60,
       "read": 45,
       "ok": 45,
-      "avg": 6427.7,
+      "avg": 6390.6,
       "top": [
         {
           "name": "先着限定1,000円OFFクーポン+ポイント5倍 グロング ソイプロテイン 3kg 黒糖きな…",
@@ -1353,7 +1391,7 @@
           "price": 13790,
           "per": 4596.7,
           "amt": "3kg",
-          "rc": 2439,
+          "rc": 2440,
           "av": 4.44,
           "shop": "X-PLOSION 公式オンラインショップ",
           "plain": "https://item.rakuten.co.jp/x-plosion/10000023/"
@@ -1468,9 +1506,9 @@
       "title": "ドッグフード",
       "unit": "1kg",
       "seen": 60,
-      "read": 37,
-      "ok": 37,
-      "avg": 2166.5,
+      "read": 38,
+      "ok": 38,
+      "avg": 2185.2,
       "top": [
         {
           "name": "即納在庫品 愛犬元気 10kg ジャンボパック ビーフ・緑黄色野菜・小魚味 / ささみ・ビー…",
@@ -1579,7 +1617,7 @@
           "price": 5997,
           "per": 1499.2,
           "amt": "4kg",
-          "rc": 738,
+          "rc": 739,
           "av": 4.74,
           "shop": "モコペットチャリティストア",
           "plain": "https://item.rakuten.co.jp/1096dog/10013213/"
@@ -1599,7 +1637,7 @@
           "price": 3980,
           "per": 1990.0,
           "amt": "2kg",
-          "rc": 1055,
+          "rc": 1057,
           "av": 4.71,
           "shop": "楽天24 ペット館",
           "plain": "https://item.rakuten.co.jp/nyanzaq/10140829/"
