@@ -29,3 +29,22 @@ for cat in tanka.CATS:
     for k, v in samp.items():
         if k == "OK" or k.startswith("ng"): continue
         for s in v: print("  ", s)
+
+# Yahoo! の鍵が効くか（11/3 オーナーが鍵を入れた）。鍵そのものは出さない
+import json, urllib.parse, urllib.request  # noqa: E402
+ap = os.environ.get("YAHOO_APP_ID", "").strip()
+print("\n=== yahoo 鍵:", "あり" if ap else "なし", len(ap))
+if ap:
+    for cat in tanka.CATS[:3] + [c for c in tanka.CATS if c[0] in ("detergent", "diaper")]:
+        try:
+            q = urllib.parse.urlencode({"appid": ap, "query": cat[2], "results": 50, "sort": "-review_count", "shipping": "free", "in_stock": "true"})
+            with urllib.request.urlopen("https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch?" + q, timeout=20) as r:
+                hits = json.load(r).get("hits") or []
+            rows = tanka.yahoo_rows(cat)
+            print(cat[0], "hits", len(hits), "ok", len(rows), [(x["per"], x["amt"], x["rc"]) for x in rows])
+            for it in hits[:4]:
+                rv = it.get("review") or {}
+                print("   ", rv.get("count"), rv.get("rate"), it.get("price"), (it.get("name") or "")[:80], "| amt", tanka.amount(cat[0], it.get("name") or ""))
+        except Exception as e:
+            print(cat[0], "ERR", str(e)[:200])
+        time.sleep(1.2)
