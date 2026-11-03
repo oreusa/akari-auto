@@ -209,6 +209,14 @@ def collect(ix):
         c["top"] = "1,000円ぽっきり（送料込み）"
         cards.append(c)
     cards = [c for c in cards if c["href"] and c["title"]]
+    # 11/3 同じ物が2回出ていた（ふるさと納税のトイレットペーパー）→ 同じタブ・見出し・リンクは1つに
+    seen, uniq = set(), []
+    for c in cards:
+        k = (c["tab"], c["title"], c["href"])
+        if k not in seen:
+            seen.add(k)
+            uniq.append(c)
+    cards = uniq
     photos(cards)
     return cards
 
