@@ -400,12 +400,23 @@ def build(od, ix):
     # 11/3 オーナー「目を引く凄いHPに。みんな使いやすく、このAIに調べさせたら楽だと」→ 一番上に「聞く」欄（site/assets/kq.js）。
     # 燈が毎日比べてためた答えからすぐ探す（その場でAIは使わない＝お金がかからない）。無い物は記録して、次の日に燈が比べる
     import lib
-    chips = "".join(f'<button type="button" data-q="{E(c)}">{E(c)}</button>' for c in cats if c not in ("宿", "お店のお得", "楽天のセール", "いち押し"))
+    # 11/3 オーナー「めちゃくちゃ使いにくい」→ 一番上は「聞く欄」と大きな種類のボタンだけ。押すとその物の安い順がすぐ出る。他の情報は下へ
+    ncat = {}
+    for c in cards:
+        ncat[c["cat"]] = ncat.get(c["cat"], 0) + 1
+    chips = "".join(f'<button type="button" data-q="{E(c)}" style="--pc:{col[c]}"><b>{E(c)}</b><small>{ncat[c]}件</small></button>'
+                    for c in cats if c not in ("宿", "お店のお得", "楽天のセール", "いち押し"))
     ask = (f'<section class="kq" aria-label="AIに聞く" data-amz="{E(lib.AMAZON_TAG)}" data-yh="{E(MOSHIMO_YAHOO)}"><p class="kqh">{E(COPY)}</p>'
            '<form class="kqf" role="search"><input id="kq" type="search" autocomplete="off" enterkeyhint="search" placeholder="例：トイレットペーパー、水、洗剤" aria-label="ほしい物">'
            '<button type="submit">比べる</button></form>'
-           + (f'<div class="kqc">{chips}</div>' if chips else "") + '</section>')
-    h = h.replace('<section class="blk" id="odekake"', ask + top + con + fun + dl + cnt + flt + '<section class="blk" id="odekake"', 1)
+           + (f'<div class="kqc">{chips}</div>' if chips else "")
+           + (f'<p class="kqs">うさぎが楽天の商品<b>{seen:,}</b>件を、送料込み・1個あたりで比べました</p>' if seen else "") + '</section>')
+    # 並び：聞く欄 → 種類ごとの1位（結論）→ セールの入口・ふるさとの帯 → 全部の一覧。比べ方の図は一番下
+    h = h.replace('<section class="blk" id="odekake"', ask + con + top + dl + flt + '<section class="blk" id="odekake"', 1)
+    if fun:
+        ob = (block(h, r'<section class="blk" id="odekake"') or [""])[0]
+        if ob:
+            h = h.replace(ob, ob + fun, 1)
     # ---- 下の欄
     h = re.sub(r'<p class="tip">.*?</p>', "", h, flags=re.S)
     h = re.sub(r'<p class="pr-note">.*?</p>',
@@ -498,8 +509,12 @@ def build(od, ix):
            '.kqf input{flex:1;min-width:0;height:46px;padding:0 14px;border:1px solid #D0D0D0;border-radius:10px;font-size:16px;background:#fff;color:#1A1A1A;-webkit-appearance:none;box-sizing:border-box}'
            '.kqf input:focus{outline:none;border-color:#1A1A1A}'
            '.kqf button{flex:none;height:46px;padding:0 18px;border:0;border-radius:10px;background:#1A1A1A;color:#fff;font-size:15px;font-weight:700}'
-           '.kqc{display:flex;gap:6px;margin-top:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.kqc::-webkit-scrollbar{display:none}'
-           '.kqc button{flex:none;padding:5px 11px;border:1px solid #E0E0E0;border-radius:99px;background:#fff;font-size:12px;color:#333}'
+           '.kqc{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}'
+           '.kqc button{position:relative;padding:12px 4px 10px;border:1px solid #E0E0E0;border-radius:10px;background:#fff;color:#1A1A1A;text-align:center;min-height:58px}'
+           '.kqc button:before{content:"";position:absolute;left:50%;top:0;width:24px;height:3px;margin-left:-12px;border-radius:0 0 3px 3px;background:var(--pc)}'
+           '.kqc button b{display:block;font-size:13.5px;line-height:1.3}.kqc button small{display:block;margin-top:2px;font:500 11px Jost,sans-serif;color:#6B6B6B}'
+           '.kqs{margin:10px 0 0;text-align:center;font-size:11px;color:#6B6B6B}.kqs b{font:600 13px Jost,sans-serif;color:#1A1A1A;margin:0 2px}'
+           '.kqon2 .kcon,.kqon2 .kfun,.kqon2 .kdl,.kqon2 a.ilk,.kqon2 .ilks{display:none!important}'
            '#kqr{margin:0 0 16px}'
            '#kqr .kqt{margin:0 0 10px;font-size:13px;font-weight:700;color:#1A1A1A}#kqr .kqt small{display:block;font-weight:400;font-size:11px;color:#6B6B6B;margin-top:2px}'
            '#kqr .kqn{padding:16px;border:1px solid #E8E8E8;border-radius:12px;font-size:13px;line-height:1.7;color:#333}'
