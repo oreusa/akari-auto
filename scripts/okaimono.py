@@ -292,6 +292,8 @@ def card_html(c, col, i=0):
     img = (f'<img src="{E(c["img"])}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" '
            f'onerror="this.parentNode.classList.add(\'no\');this.remove()">') if c.get("img") else ""
     ph_cls = "kp" + ("" if img else " no")
+    # 11/3 写真がない時も形をそろえる：種類の頭文字を種類の色で出す
+    kpi = f'<span class="kpi">{E((c.get("cat") or "・")[0])}</span>'
     go = (f'<a class="go" href="{E(c["href"])}" rel="{rel}" target="_blank" aria-label="{E(c["title"][:40])}を{shop}で見る">'
           f'<span class="nwp">{E(c["title"])}</span></a>')
     rate = c.get("rate") or ""
@@ -314,8 +316,8 @@ def card_html(c, col, i=0):
         rk = f'<em class="krk{" top" if c.get("rk") in ("1", "2", "3") else ""}">{E(c["rk"])}</em>' if c.get("rk") else ""
         price = c.get("sub") or ""
         return (f'<div class="card it kc ku" data-pref="{E(c["cat"])}" data-free="0" data-wk="0"{e}{cid} style="--pc:{pc}">'
-                f'<div class="{ph_cls}">{rk}{img}</div><div class="kx">'
-                f'<span class="kcat">{E(c["cat"])}</span>{hero}{diff}'
+                f'<div class="{ph_cls}">{rk}{kpi}{img}</div><div class="kx">'
+                f'<span class="kcat">{E(c["cat"])}</span>{hero[:-6]}{diff}</div>'
                 f'<div class="t">{go}</div>'
                 + (f'<div class="ks">{E(price)}</div>' if price else "")
                 + (f'<div class="kr">{E(rate)}</div>' if rate else "")
@@ -324,7 +326,7 @@ def card_html(c, col, i=0):
     why = c.get("sub") or ""
     but = c.get("but") or ""
     return (f'<div class="card it kc kb2" data-pref="{E(c["cat"])}" data-free="0" data-wk="0"{e}{cid} style="--pc:{pc}">'
-            f'<div class="{ph_cls}">{img}</div><div class="kx">'
+            f'<div class="{ph_cls}">{kpi}{img}</div><div class="kx">'
             f'<span class="kcat">{E(c["cat"])}<i>{E(c["top"])}</i></span>'
             f'<div class="t">{go}</div>'
             # 11/3 オーナー「文字ばっかりにならないように。誰も読まない」→ 理由と「ただし」は押した人だけに開く
@@ -546,7 +548,13 @@ def build(od, ix):
            '#odekake .kc.kb2 .kp img{padding:8%}'
            '#odekake .kc.kb2 .kx{flex:1;min-width:0;padding:0!important}'
            '#odekake .kc.kb2 .t{font-size:15.5px!important;line-height:1.5!important;margin-top:4px}'
-           '#odekake .kc.kb2 .kcat i{display:none}'  # 「3つ以上を比べて選んだ物」は毎回同じなので、上の説明1か所に
+           '#odekake .kc.kb2 .kcat i{display:none}'
+           # 11/3 写真なしでも同じ形に（頭文字）。1個あたりは「平均より◯%安い」を値段の横に並べて短く
+           '#odekake .kc .kpi{display:none}'
+           '#odekake .kc.kb2 .kp.no,#odekake .kc.ku .kp.no{display:flex!important;background:color-mix(in srgb,var(--pc) 12%,#fff)}'
+           '#odekake .kc .kp.no .kpi{display:block;font:600 34px/1 var(--min),serif;color:var(--pc)}'
+           '#odekake .kc.ku .kv .kd{margin:0 0 0 6px;align-self:center}'
+           '#odekake .kc.ku .kbt{margin-top:6px}'  # 「3つ以上を比べて選んだ物」は毎回同じなので、上の説明1か所に
            '#odekake .kc .kbut{color:#555;margin-top:6px}#odekake .kc .kbut b{color:#8A6D3B}'
            '#odekake .kc .kf{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid #EFEFEF}'
            # ページの上の1行（広告の表示）と、結論
