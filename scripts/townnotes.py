@@ -113,8 +113,9 @@ def main():
             continue
         ck = pref + '｜' + (place or name)
         today = time.strftime('%Y-%m-%d')
-        if ck in cache and cache[ck][0] is None and (cache[ck] + [''])[3] != today:
-            del cache[ck]  # 取れなかった場所は1日1回だけ調べなおす
+        # 11/3 月：取れなかった場所を毎日調べ直すと1回4分かかり、燈の GitHub の無料枠（月2,000分）を使い切る → 7日に1回だけ調べ直す
+        if ck in cache and cache[ck][0] is None and (cache[ck] + [''])[3] <= time.strftime('%Y-%m-%d', time.gmtime(time.time() - 7 * 86400)):
+            del cache[ck]
         if ck not in cache and time.time() > stop:
             out[k] = [None, None, 'later']
             continue
