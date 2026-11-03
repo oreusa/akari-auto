@@ -26,7 +26,15 @@ PAGES = 4  # 1つの物で 30件×4ページ＝最大120件
 TOP = 5
 
 NUM = r"(\d+(?:\.\d+)?)"
-MUST = {"soda": "炭酸", "tp": "トイレット", "rice": "米"}  # 名前に必ずある言葉（検索で別の物が混ざるため）
+MUST = {"soda": "炭酸", "tp": "トイレット", "rice": "米", "tea": "茶", "coffee": "コーヒー", "detergent": "洗剤", "softener": "柔軟剤",
+        "shampoo": "シャンプー", "bodysoap": "ボディ", "dish": "食器", "tissue": "ティッシュ", "diaper": "おむつ", "wipes": "ふき",
+        "trash": "袋", "battery": "単3", "mask": "マスク", "pasta": "パスタ", "protein": "プロテイン", "beans": "豆",
+        "dogfood": "ドッグフード", "catfood": "キャットフード"}
+NG = ("ふるさと", "定期", "お試し", "サンプル")
+KIND = {"tea": "vol", "coffee": "vol", "detergent": "vol", "softener": "vol", "shampoo": "vol", "bodysoap": "vol", "dish": "vol",
+        "tissue": "kumi", "diaper": "pcs", "wipes": "pcs", "trash": "pcs", "mask": "pcs", "battery": "hon",
+        "pasta": "wt", "protein": "wt", "beans": "wt", "dogfood": "wt", "catfood": "wt"}
+NEWPAGES = 2  # 足した物は 30件×2ページ（楽天APIを使いすぎない）  # 名前に必ずある言葉（検索で別の物が混ざるため）
 # key, 見出し, 検索の言葉, ジャンル, 単位, 入れない言葉, 1単位のありえる値段の幅
 CATS = [
     ("water", "水（ミネラルウォーター）", "水 天然水 ミネラルウォーター", "100316", "1L",
@@ -37,6 +45,29 @@ CATS = [
      ("ふるさと", "定期", "雑穀", "もち米", "玄米", "パック", "レトルト", "無洗米ではない"), (200, 2500)),
     ("tp", "トイレットペーパー", "トイレットペーパー ロール まとめ買い", "", "100m",
      ("ふるさと", "定期", "ホルダー", "ケース", "収納", "ラック"), (5, 200)),
+] + [
+    # 11/3 オーナー「もっと比べさせろ。項目もっとあるだろ。ここが運営資金」→ 毎日使う物を一気に足す。
+    # 量の読み方は KIND（vol＝ml×本、wt＝g/kg×袋、pcs＝枚、hon＝本、kumi＝ティッシュの組×箱）。読めない物は比べない（数字をまちがえない）
+    (k, t, q, "", u, NG + ng, rg) for k, t, q, u, ng, rg in [
+        ("tea", "お茶（ペットボトル）", "お茶 ペットボトル 緑茶 ケース", "1L", ("紅茶", "ティーバッグ", "茶葉", "粉末", "パウダー"), (30, 500)),
+        ("coffee", "コーヒー（ボトル）", "コーヒー ペットボトル 無糖 ケース", "1L", ("豆", "粉", "ドリップ", "インスタント", "カプセル"), (50, 800)),
+        ("detergent", "洗濯洗剤（詰め替え）", "洗濯洗剤 詰め替え 超特大", "1L・1kg", ("粉", "シート", "ジェルボール", "柔軟剤"), (100, 3000)),
+        ("softener", "柔軟剤（詰め替え）", "柔軟剤 詰め替え 超特大", "1L・1kg", ("洗剤", "シート"), (100, 3000)),
+        ("shampoo", "シャンプー（詰め替え）", "シャンプー 詰め替え 大容量", "1L・1kg", ("トリートメントのみ", "サロン専売"), (200, 8000)),
+        ("bodysoap", "ボディソープ（詰め替え）", "ボディソープ 詰め替え 大容量", "1L・1kg", ("固形", "石鹸 個"), (100, 5000)),
+        ("dish", "食器用洗剤（詰め替え）", "食器用洗剤 詰め替え 大容量", "1L・1kg", ("食洗機", "タブレット", "粉"), (100, 3000)),
+        ("tissue", "ティッシュ", "ティッシュペーパー 箱 まとめ買い", "100組", ("ウェット", "トイレット", "ケース", "カバー", "ポケット"), (2, 100)),
+        ("diaper", "おむつ", "おむつ テープ パンツ ケース", "1枚", ("おしりふき", "大人", "ペット", "防水シート"), (10, 120)),
+        ("wipes", "おしりふき・ウェットシート", "おしりふき ケース まとめ買い", "1枚", ("おむつ", "ケース単体", "フタ"), (0.3, 15)),
+        ("trash", "ゴミ袋", "ゴミ袋 45L 枚", "1枚", ("ゴミ箱", "ホルダー", "スタンド"), (1, 60)),
+        ("battery", "乾電池（単3）", "単3 乾電池 アルカリ 本", "1本", ("充電器", "単4", "ケース", "ホルダー", "充電池"), (15, 400)),
+        ("mask", "マスク", "マスク 不織布 枚", "1枚", ("ケース", "ストラップ", "ホルダー", "シートマスク", "パック"), (1, 120)),
+        ("pasta", "パスタ", "パスタ スパゲッティ kg", "1kg", ("ソース", "レトルト", "冷凍", "マシン"), (150, 3000)),
+        ("protein", "プロテイン", "プロテイン ホエイ kg", "1kg", ("バー", "シェイカー", "ドリンク 本"), (1000, 15000)),
+        ("beans", "コーヒー豆", "コーヒー豆 kg 焙煎", "1kg", ("ドリップバッグ", "インスタント", "ミル", "カプセル"), (800, 15000)),
+        ("dogfood", "ドッグフード", "ドッグフード ドライ kg", "1kg", ("おやつ", "ウェット", "缶", "パウチ"), (100, 6000)),
+        ("catfood", "キャットフード", "キャットフード ドライ kg", "1kg", ("おやつ", "ウェット", "缶", "パウチ", "ちゅ"), (100, 6000)),
+    ]
 ]
 
 
@@ -86,6 +117,48 @@ def amount(cat, name):
         if not a or not b or a < 10 or a > 300:
             return None
         return a * b / 100, f"{a:g}m×{b}ロール"
+    k = KIND.get(cat)
+    cnt = [int(v) for v in re.findall(r"[x×]\s*(\d+)\s*(?:本|個|袋|パック|セット|箱|ケース)?", t)] + \
+          [int(v) for v in re.findall(r"(\d+)\s*(?:本|個|袋|パック|セット)(?:入|セット|組)?(?!\s*[x×]?\s*\d)", t)]
+    c1 = one(cnt) if cnt else 1
+    if not c1 or c1 > 200:
+        return None
+    if k == "vol":
+        ml = [float(v) for v in re.findall(NUM + r"\s*(?:ml|mL|ML|ミリリットル)", t)]
+        ml += [float(v) * 1000 for v in re.findall(NUM + r"\s*(?:L|ℓ|リットル)(?![a-zA-Z])", t)]
+        if cat not in ("tea", "coffee"):  # 洗剤などの液体は g で売る物が多い（水に近い重さ）→ 1L・1kgあたりで同じに比べる
+            ml += [float(v) for v in re.findall(NUM + r"\s*(?:g|グラム)(?![a-zA-Z])", t)]
+            ml += [float(v) * 1000 for v in re.findall(NUM + r"\s*(?:kg|KG|Kg|キロ)", t)]
+        a = one(ml)
+        if not a or a < 100 or a > 6000:
+            return None
+        isg = bool(re.search(NUM + r"\s*(?:g|グラム|kg|KG|Kg|キロ)(?![a-zA-Z])", t)) and cat not in ("tea", "coffee") and not re.search(r"ml|mL|ML|L(?![a-zA-Z])", t)
+        d = (f"{a / 1000:g}kg" if a >= 1000 else f"{a:g}g") if isg else (f"{a / 1000:g}L" if a >= 1000 else f"{a:g}ml")
+        return a * c1 / 1000, d + (f"×{c1}" if c1 > 1 else "")
+    if k == "wt":
+        g = [float(v) for v in re.findall(NUM + r"\s*(?:g|グラム)(?![a-zA-Z])", t)]
+        g += [float(v) * 1000 for v in re.findall(NUM + r"\s*(?:kg|KG|Kg|キロ)", t)]
+        a = one(g)
+        if not a or a < 100 or a > 30000:
+            return None
+        return a * c1 / 1000, (f"{a / 1000:g}kg" if a >= 1000 else f"{a:g}g") + (f"×{c1}" if c1 > 1 else "")
+    if k in ("pcs", "hon"):
+        w = "枚" if k == "pcs" else "本"
+        n = [int(v) for v in re.findall(r"(\d+)\s*" + w, t)]
+        pk = re.findall(r"(\d+)\s*" + w + r"\s*(?:入り?)?\s*[x×]\s*(\d+)", t)
+        a = one(n)
+        if pk and len(set(pk)) == 1:
+            a = int(pk[0][0]) * int(pk[0][1])
+        if not a or a < 2 or a > 5000:
+            return None
+        return a, f"{a}{w}"
+    if k == "kumi":
+        kumi = [int(v) for v in re.findall(r"(\d+)\s*組", t)]
+        box = [int(v) for v in re.findall(r"(\d+)\s*(?:箱|個|パック)", t)]
+        a, b = one(kumi), one(box)
+        if not a or not b or a < 50 or a > 1000:
+            return None
+        return a * b / 100, f"{a}組×{b}箱"
     return None
 
 
@@ -98,7 +171,7 @@ def item_page(it):
 def fetch(cat):
     key, _, kw, gid, unit, ng, (lo, hi) = cat
     rows, seen, n_all, err = [], set(), 0, ""
-    for page in range(1, PAGES + 1):
+    for page in range(1, (NEWPAGES if key in KIND else PAGES) + 1):
         q = {"keyword": kw, "postageFlag": 1, "availability": 1, "sort": "-reviewCount", "hits": 30, "page": page}
         if gid:
             q["genreId"] = gid
@@ -152,7 +225,7 @@ def amazon_rows(key, unit_lo_hi):
     out = []
     for asin, it in lib.amazon_checked().items():
         name = str(it.get("name", ""))
-        if not any(w in name for w in AMZ_WORDS[key]) or (key == "water" and "炭酸" in name):
+        if not any(w in name for w in AMZ_WORDS.get(key, ())) or (key == "water" and "炭酸" in name):
             continue
         res = lib.amazon_link(asin, max_age_h=168)
         if not res.get("ok"):

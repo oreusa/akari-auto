@@ -275,7 +275,7 @@ def card_html(c, col, i=0):
                 f'<div class="t">{go}</div>'
                 + (f'<div class="ks">{E(price)}</div>' if price else "")
                 + (f'<div class="kr">{E(rate)}</div>' if rate else "")
-                + f'<div class="kbt"><span class="kgo">{shop}で見る<i>›</i></span>' + others(c, shop) + '</div></div></div>')
+                + f'<div class="kbt"><span class="kgo">{shop}で見る<i>›</i></span>' + others(c, shop) + ('<small class="kpr">PR</small>' if c["pr"] else "") + '</div></div></div>')
     # 比べて選んだ物（大きなカード）
     why = c.get("sub") or ""
     but = c.get("but") or ""
@@ -289,7 +289,7 @@ def card_html(c, col, i=0):
                 + (f'<p class="kbut"><b>ただし</b>{E(but.replace("ただし、", "").replace("ただし", ""))}</p>' if but else "")
                 + '</details>') if (why or but) else "")
             + '<div class="kf">' + (f'<span class="kr">{E(rate)}</span>' if rate else "<span></span>")
-            + f'<span class="kbt"><span class="kgo">{shop}で見る<i>›</i></span>' + others(c, shop) + '</span></div></div></div>')
+            + f'<span class="kbt"><span class="kgo">{shop}で見る<i>›</i></span>' + others(c, shop) + ('<small class="kpr">PR</small>' if c["pr"] else "") + '</span></div></div></div>')
 
 
 TABS = [("pick", "COMPARED", "くらべた物", "/okaimono", ""),
@@ -319,7 +319,9 @@ def build(od, ix):
     # ---- 見出し
     h = re.sub(r'<h1 class="ttl">.*?</h1>', '<h1 class="ttl">くらべたおかいものリスト</h1>', h, count=1, flags=re.S)
     h = re.sub(r'<p class="sub">.*?</p>', '<p class="sub">送料込み・1個あたりで、毎日くらべています</p>'
-               '<p class="kprl">このページには楽天・Amazon・Yahoo!ショッピングの広告（アフィリエイト）リンクがあります</p>', h, count=1, flags=re.S)
+               , h, count=1, flags=re.S)
+    # 11/3 オーナー「上と下どっちもPRいらねぇだろ、同じ画面だぞ上は消せ」→ 上の1行は消す。広告の表示（ステマ規制）は
+    # 下の欄＋買うボタンの横の小さな「PR」で守る（mybest と同じ形。文字は増やさない）
     h = re.sub(r'<div class="sea">.*?</div>', "", h, count=1, flags=re.S)
     # 上の3つの入口（いま行ける・地図・イルミ）と季節の輪はおでかけだけ → 外す（月の不動産リストと同じ：入口1行＋件数）
     h = re.sub(r'<script>document\.documentElement\.classList\.add\("top2"\)</script><link rel="stylesheet" href="/assets/top2\.css[^"]*">', "", h)
@@ -488,6 +490,7 @@ def build(od, ix):
            '#odekake .kc.kb2 .t{margin-top:6px;font:600 18px/1.5 var(--min);letter-spacing:.02em;-webkit-line-clamp:3}'
            '#odekake .kc .kwhy,#odekake .kc .kbut{margin:10px 0 0;font-size:12.5px;line-height:1.7;color:#333}'
            '#odekake .kc .kwhy b,#odekake .kc .kbut b{display:inline-block;margin-right:8px;font-size:10.5px;letter-spacing:.06em;color:#1F6B4F;border:1px solid currentColor;border-radius:3px;padding:0 5px;line-height:1.6;vertical-align:1px}'
+           '#odekake .kc .kpr{font:500 9.5px Jost,sans-serif;letter-spacing:.06em;color:#9A9A9A;border:1px solid #D0D0D0;border-radius:3px;padding:0 3px;line-height:1.5}'
            '#odekake .kc .kwd{position:relative;z-index:2;margin-top:10px}'
            '#odekake .kc .kwd summary{display:inline-flex;align-items:center;gap:6px;list-style:none;cursor:pointer;font-size:12px;font-weight:700;color:#6B6B6B}'
            '#odekake .kc .kwd summary::-webkit-details-marker{display:none}'
