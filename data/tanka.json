@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-05 02:26",
+  "at": "2026-11-05 03:55",
   "cats": [
     {
       "key": "water",
@@ -121,7 +121,7 @@
           "price": 1280,
           "per": 106.7,
           "amt": "500ml×24本",
-          "rc": 1313,
+          "rc": 1314,
           "av": 4.59,
           "shop": "暮らし健康ネット館",
           "plain": "https://item.rakuten.co.jp/kurashikenkou/10220307/",
@@ -132,7 +132,7 @@
           "price": 1420,
           "per": 118.3,
           "amt": "500ml×24本",
-          "rc": 3931,
+          "rc": 3930,
           "av": 4.6,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10158174/",
@@ -685,9 +685,9 @@
       "title": "シャンプー（詰め替え）",
       "unit": "1L・1kg",
       "seen": 150,
-      "read": 35,
+      "read": 32,
       "ok": 5,
-      "avg": 2781.3,
+      "avg": 2650.0,
       "top": [
         {
           "name": "選べるセット パンテーン エクストラダメージリペア シャンプー1.7L コンディショナー1.…",
@@ -848,9 +848,9 @@
       "title": "食器用洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 142,
-      "read": 61,
+      "read": 63,
       "ok": 9,
-      "avg": 787.7,
+      "avg": 777.3,
       "top": [
         {
           "name": "食器用洗剤 JOY キッチン用洗剤 プロフェッショナル 除菌ジョイコンパクト 業務用 4L …",
@@ -966,7 +966,7 @@
           "price": 2580,
           "per": 43.0,
           "amt": "150組×40箱",
-          "rc": 498,
+          "rc": 499,
           "av": 4.56,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10156163/",
@@ -1011,10 +1011,21 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 60,
-      "read": 35,
-      "ok": 35,
-      "avg": 67.7,
+      "read": 36,
+      "ok": 36,
+      "avg": 62.7,
       "top": [
+        {
+          "name": "テープ 新生児サイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（お誕生~5000gまで…",
+          "price": 7833,
+          "per": 25.8,
+          "amt": "304枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Rafinagift楽天市場店",
+          "plain": "https://item.rakuten.co.jp/rafinagift/10008629/",
+          "bd": "ムーニー"
+        },
         {
           "name": ".co.jp 限定 テープ 新生児用 メリーズ オムツ さら さらエアスルー (お誕生~50…",
           "price": 4841,
@@ -1024,17 +1035,6 @@
           "av": 0.0,
           "shop": "川山商店 楽天市場店",
           "plain": "https://item.rakuten.co.jp/kawayamasyouten/10067414/",
-          "bd": "メリーズ"
-        },
-        {
-          "name": "メリーズ Merries テープ 新生児用 オムツ さら さらエアスルー (お誕生~5000…",
-          "price": 4841,
-          "per": 29.5,
-          "amt": "164枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "ちいさなしあわせストア",
-          "plain": "https://item.rakuten.co.jp/chiisana--shiawase/10019140/",
           "bd": "メリーズ"
         },
         {
@@ -1049,25 +1049,25 @@
           "bd": "マミーポコ"
         },
         {
-          "name": "パンツ Sサイズ マミーポコ パンツ ドラえもん オムツ（4~9kg）156枚（52枚×3）…",
-          "price": 5414,
-          "per": 34.7,
-          "amt": "156枚",
+          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
+          "price": 8828,
+          "per": 31.5,
+          "amt": "280枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "Senses",
-          "plain": "https://item.rakuten.co.jp/senses/10030911/",
-          "bd": "マミーポコ"
+          "shop": "Ciel de neige",
+          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/",
+          "bd": "ムーニー"
         },
         {
-          "name": "グ〜ンゆるうんちモレ0へ M 52枚×4袋入り 21001920 大王製紙 │ グーン ベビ…",
+          "name": "グ〜ンゆるうんちモレ0へ S 62枚×4袋入り 21001889 大王製紙 │ グーン ベビ…",
           "price": 8250,
-          "per": 39.7,
-          "amt": "208枚",
+          "per": 33.3,
+          "amt": "248枚",
           "rc": 0,
           "av": 0.0,
           "shop": "Pandora+",
-          "plain": "https://item.rakuten.co.jp/pandoraplus/10009864/",
+          "plain": "https://item.rakuten.co.jp/pandoraplus/10009861/",
           "bd": "グーン"
         }
       ],
@@ -1166,9 +1166,9 @@
       "title": "ゴミ袋",
       "unit": "1枚",
       "seen": 142,
-      "read": 100,
+      "read": 97,
       "ok": 6,
-      "avg": 19.9,
+      "avg": 19.2,
       "top": [
         {
           "name": "エントリーでP10倍★4日20:00〜11日1:59まで ごみ袋 45リットル 半透明 65…",
