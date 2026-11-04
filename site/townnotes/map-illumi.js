@@ -103,7 +103,8 @@ var css=`
 .tn .qth{flex:0 0 40px;height:40px;border-radius:4px;display:flex;align-items:center;justify-content:center}.tn .qth svg{width:26px;height:26px}
 .tn .qx{min-width:0}
 .tn .cc.ph{position:relative}.tn .cc.ph .cb>:not(.ac){padding-right:58px}
-.tn .cth{position:absolute;top:12px;right:12px;width:48px;height:48px;border-radius:4px;display:flex;align-items:center;justify-content:center}.tn .cth svg{width:30px;height:30px}
+.tn .cth{position:absolute;top:12px;right:12px;width:48px;height:48px;border-radius:4px;display:flex;align-items:center;justify-content:center}
+.tn .cmw{background:none!important;padding:0!important;overflow:visible}.tn .cth svg{width:30px;height:30px}
 .tn .qb:after{content:"";position:absolute;left:var(--ax);bottom:-6px;width:10px;height:10px;margin-left:-5px;background:#fff;border-right:1px solid #D8D8D8;border-bottom:1px solid #D8D8D8;transform:rotate(45deg)}
 .tn .qb.dn:after{bottom:auto;top:-6px;transform:rotate(225deg);background:var(--c);border:0}
 .tn .qb .qm{display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;font-size:10.5px;line-height:1.4;color:#7A6F66}
@@ -554,7 +555,9 @@ var KI={leaf:'<path d="M12 3l1.6 3.6 3.6-1-1 3.6 3.3 1.8-3.6 1.6 1.2 3.4-3.6-1.4
  tree:'<circle cx="12" cy="9" r="5.5"/><path d="M12 14.5V21M9.5 17.5l2.5 1.5 2.5-1.5"/>',
  pin:'<path d="M12 21s6.5-6.1 6.5-11A6.5 6.5 0 0 0 5.5 10c0 4.9 6.5 11 6.5 11z"/><circle cx="12" cy="10" r="2.3"/>'};
 function kindOf(it){var t=(it.t||"")+" "+(it.tags||[]).join(" ");for(var i=0;i<KIND.length;i++)if(KIND[i][0].test(t))return KIND[i][1];return it.soon||/できた|もうすぐ/.test(curTab())?"shop":"pin"}
-function thumb(it,cls){var c=PC[it.pref]||"#2B2622",k=kindOf(it);return '<div class="'+cls+'" data-k="'+k+'" style="background:'+(LIGHT[it.pref]||"#F0F0F0")+'"><svg viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+KI[k]+'</svg></div>'}
+function thumb(it,cls){var c=PC[it.pref]||"#2B2622",k=kindOf(it);
+ // 11/4 オーナー「地図下選択のロゴも変わるよね？」→ カードと同じ絵・形（cardmark.js の cmTile）があればそれを使う
+ if(window.cmTile)return '<div class="'+cls+' cmw" data-k="'+k+'">'+window.cmTile(it.t,c)+'</div>';return '<div class="'+cls+'" data-k="'+k+'" style="background:'+(LIGHT[it.pref]||"#F0F0F0")+'"><svg viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+KI[k]+'</svg></div>'}
 // ---- 全画面の地図：下のカードを横にめくると、地図のピンが光る ----
 var FS=false,CAR=$(".car",box),carSig="",carItems=[],carLock=null,carQ=false;
 function buildCar(arr){var sig=arr.map(function(i){return i.k}).join("|")+"#"+level();if(sig===carSig)return;carSig=sig;carItems=arr.slice();
