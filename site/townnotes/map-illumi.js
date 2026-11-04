@@ -232,8 +232,9 @@ var TOP={"大阪":"#F2A788","京都":"#C3A6E0","兵庫":"#8FB6EA","奈良":"#9ED
    夜は地図の枠ごと反転を打ち消し、ここでは見せたい色をそのまま書く */
 css+='.tn .fr{background:linear-gradient(180deg,#EEF5FB,#F8FBFE)!important}.tn .fr:after{opacity:.03}'+
  PREFS.map(function(p,i){return '.tn .pf[data-p="'+p+'"]:not(.off){fill:url(#tdg'+i+')!important;stroke:#fff;stroke-width:2.6px;vector-effect:non-scaling-stroke;filter:drop-shadow(0 4px 6px rgba(60,80,120,.16))}'+
-  'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:url(#tnm'+i+')!important;stroke:'+MX(TOP[p]||"#8FB6EA","#ffffff",.85)+';stroke-width:2px;filter:none}'}).join("")+
- '.tn .gl{pointer-events:none}.tn .gl.off{display:none}.tn .sh{opacity:0!important}'+
+  'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:url(#tnm'+i+')!important;stroke:'+MX(TOP[p]||"#8FB6EA","#ffffff",.85)+';stroke-width:2px;filter:none}'+
+  'html.night .tn .mu[data-p="'+p+'"]{fill:'+MX(TOP[p]||"#8FB6EA","#2B3459",.18)+'!important;fill-opacity:.92}html.night .tn.lv3 .pf[data-p="'+p+'"]:not(.off){fill:'+MX(TOP[p]||"#8FB6EA","#232B4C",.16)+'!important}html.night .tn .mu.hw[data-p="'+p+'"]{fill:'+MX(TOP[p]||"#8FB6EA","#4A558A",.42)+'!important}'}).join("")+
+ 'html.night .tn.lv3 .gl{display:none}.tn .gl{pointer-events:none}.tn .gl.off{display:none}.tn .sh{opacity:0!important}'+
  'html.night .tn .fr{filter:invert(1) hue-rotate(180deg);background:linear-gradient(180deg,#1E2646,#141A30)!important}html.night .tn .fr:after{display:none}html.night .tn .fr:before{border-color:rgba(255,255,255,.18)}'+
  'html.night .tn .pf.off{fill:#1F2744!important;stroke:#3A4568;stroke-width:.8px;vector-effect:non-scaling-stroke}'+
  'html.night .tn .mu{fill-opacity:.5;stroke:rgba(255,255,255,.28)}'+
@@ -247,6 +248,7 @@ css+='.tn .fr{background:linear-gradient(180deg,#EEF5FB,#F8FBFE)!important}.tn .
  'html.night .tn .hint{background:rgba(30,38,70,.9);color:#E8ECF6}html.night .tn .cr{color:#6E7894}'+
  'html.night .tn .fsh .row.pf button:not(.on){color:'+SILV+'}html.night .tn .fsh .row.pf button:not(.on):before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:2px}'+
  'html.night .tnbtn .mm{background:#141A28!important}html.night .tnbtn .mm svg path{fill:#1C2643!important;stroke:#5B6C99!important}html.night .tnbtn .ar{background:transparent!important;box-shadow:inset 0 0 0 1px '+GOLD+';color:'+GOLD+'!important}'+
+ 'html.night .tn .qb{background:#2A3358;border-color:rgba(255,255,255,.18);border-top-color:var(--c);box-shadow:0 6px 18px rgba(0,0,0,.45)}html.night .tn .qb:after{background:#2A3358;border-color:rgba(255,255,255,.18)}html.night .tn .qb.dn:after{background:var(--c)}html.night .tn .qb .qt{color:#fff}html.night .tn .qb .qm{color:#C9D0E2}html.night .tn .qb .qf{color:#9ED19A}html.night .tn .fr .cmt{filter:none}'+
  'html.night .tn .cc .d i,html.night .tn .qb .qp{color:'+SILV+'!important}html.night .tn .chips button.cur b{color:'+SILV+'}';
 var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
 
@@ -317,7 +319,7 @@ function setup(KS){
   PF[p].gl=el("path",{d:d,"class":"gl",fill:"url(#tnhl)"},G.pf);
   PF[p].path.addEventListener("click",function(){if(level()===1&&PF[p].has)flash(PF[p].path,DEEP[p],function(){pickPref(p)})})});
  KS.muni.features.forEach(function(f){var pr=f.properties,m={p:pr.p,n:pr.n,c:pr.c,g:f.geometry,bb:gbb(f.geometry)};m.id=m.p+"|"+m.c+"|"+m.n;
-  m.path=el("path",{d:geom2d(f.geometry),"class":"mu"},G.mu);m.path.__mu=m;m.path.addEventListener("click",function(ev){if(level()===2&&state.pref===m.p&&m.grp.has){ev.stopPropagation();var g=m.grp;g.mus.forEach(function(x){x.path.style.fill=D(DEEP[x.p])});setTimeout(function(){goMuni(g)},180)}});MU.push(m)});
+  m.path=el("path",{d:geom2d(f.geometry),"class":"mu"},G.mu);m.path.__mu=m;m.path.setAttribute("data-p",m.p);m.path.addEventListener("click",function(ev){if(level()===2&&state.pref===m.p&&m.grp.has){ev.stopPropagation();var g=m.grp;g.mus.forEach(function(x){x.path.style.fill=D(DEEP[x.p])});setTimeout(function(){goMuni(g)},180)}});MU.push(m)});
  // 大阪市・京都市・神戸市・堺市などは、区をまとめて「市」として寄る
  MU.forEach(function(m){var cc=m.c&&/市$/.test(m.c)?m.c:"";var gid=m.p+"|"+(cc||m.n);var g=GR[gid];if(!g){g=GR[gid]={id:gid,p:m.p,n:cc||m.n,city:!!cc,mus:[],bb:[1e9,1e9,-1e9,-1e9]}}g.mus.push(m);m.grp=g;g.bb=[Math.min(g.bb[0],m.bb[0]),Math.min(g.bb[1],m.bb[1]),Math.max(g.bb[2],m.bb[2]),Math.max(g.bb[3],m.bb[3])]});
  var b=[1e9,1e9,-1e9,-1e9];PREFS.forEach(function(p){var x=PF[p].bb;b=[Math.min(b[0],x[0]),Math.min(b[1],x[1]),Math.max(b[2],x[2]),Math.max(b[3],x[3])]});HOME=b;
@@ -428,7 +430,7 @@ function render(){var lv=level(),pf=state.pref,m=state.muni,pins=list.filter(fun
  var hw={};if(lv===3)pins.forEach(function(i){var mm=muniOf(i);if(mm&&mm.grp===m)hw[mm.id]=1});
  MU.forEach(function(x){var inP=x.p===pf,mine=lv===3&&x.grp===m,hot=x.grp.has,show=inP&&(lv===2?hot:(mine||hot));x.path.style.display=show?"":"none";if(!show)return;
   x.path.style.pointerEvents=lv===2?"auto":"none";x.path.style.cursor=lv===2?"pointer":"default";
-  x.path.style.fill=D(mine?(hw[x.id]?DEEP[x.p]:FILL[x.p]):FILL[x.p]);x.path.style.opacity=lv===3&&!mine?.55:1});
+  x.path.style.fill=D(mine?(hw[x.id]?DEEP[x.p]:FILL[x.p]):FILL[x.p]);x.path.style.opacity=lv===3&&!mine?.55:1;x.path.classList.toggle("hw",!!(mine&&hw[x.id]))});
  LBS.innerHTML="";LB=[];
  if(lv===1)PREFS.forEach(function(p){var c=LP[p],q=P(c[0],c[1]),n=pins.filter(function(i){return i.pref===p}).length;addL(q[0],q[1],"p",p+(n?"<small>"+n+(n>1?" SPOTS":" SPOT")+"</small>":""),9).style.color=n?PC[p]:"#B9AFA5"});
  if(lv===2)Object.keys(GR).forEach(function(id){var g=GR[id];if(g.p!==pf||!cnt[id])return;
