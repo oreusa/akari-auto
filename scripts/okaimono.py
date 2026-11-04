@@ -101,6 +101,7 @@ def li_card(cat, li, tab, src):
     rate = ("★" + rate.strip()) if rate else ""
     pm = re.search(r"平均より\s*(\d+)%\s*安い", df)
     return dict(tab=tab, cat=cat, top=pu or src, big=df, title=nm, sub=price.strip(), href=href, pr=True,
+                bd=html.unescape(first(r'data-bd="([^"]*)"', li)),
                 rk=first(r'<span class="rk">(\d+)</span>', li), pct=int(pm.group(1)) if pm else 0,
                 rate=re.sub(r"\s+", "・", rate), img=html.unescape(first(r'<img[^>]*? src="([^"]+)"', li)))
 
@@ -193,7 +194,8 @@ def collect(ix):
                 return float(m[1].replace(",", "")) if m else 9e9
             except ValueError:
                 return 9e9
-        cs.sort(key=per)
+        # 11/4 奥さんの感想「知らないメーカーが上位だと買う気にならない」→ 名の知れたメーカー（/tanka の data-bd）を先に
+        cs.sort(key=lambda c: (not c.get("bd"), per(c)))
         for j, c in enumerate(cs, 1):
             c["rk"] = str(j)
         cards.extend(cs)
