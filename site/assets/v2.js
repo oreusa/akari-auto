@@ -54,4 +54,4 @@ if(tabs)tabs.addEventListener("click",function(){setTimeout(syncBar,30)});
 })();
 
 /* 11/4 カードの日付と絵（cardmark.js。月と同じ）を読み込む */
-(function(){if(document.querySelector('script[src*="cardmark.js"]'))return;var s=document.createElement("script");s.src="/assets/cardmark.js?v=7";s.defer=true;document.head.appendChild(s);})();
+(function(){if(document.querySelector('script[src*="cardmark.js"]'))return;var s=document.createElement("script");s.src="/assets/cardmark.js?v=8";s.defer=true;document.head.appendChild(s);})();
