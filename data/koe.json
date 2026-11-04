@@ -1,4 +1,16 @@
 {
   "about": "/koe から届いた声。public はオーナーがOKした物だけ true（公開は data/koe_public.json）",
-  "items": []
+  "items": [
+    {
+      "at": "2026-11-04 23:18",
+      "site": "燈",
+      "kind": "使ってみた感想",
+      "star": 0,
+      "text": "11月20日から楽天、11月22日からYahoo、11月27日からAmazonがブラックフライデーやから準備よろしく",
+      "name": "",
+      "page": "/",
+      "key": "koe|2026-11-04 23:18|ax36z6",
+      "public": false
+    }
+  ]
 }

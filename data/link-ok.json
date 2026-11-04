@@ -5403,9 +5403,9 @@
   "why": ""
  },
  "https://tachikawaillumination.com": {
-  "at": "2026-11-01",
+  "at": "2026-11-05",
   "ok": true,
-  "sec": 1.4,
+  "sec": 1.5,
   "why": ""
  },
  "https://tachikawaillumination.com/": {
@@ -5416,11 +5416,10 @@
   "why": ""
  },
  "https://tamaillumi.myportfolio.com/": {
-  "at": "2026-11-04",
-  "by": "browser",
-  "ok": false,
-  "sec": 0.2,
-  "why": "Page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://ta"
+  "at": "2026-11-05",
+  "ok": true,
+  "sec": 0.1,
+  "why": ""
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
   "at": "2026-11-04",
@@ -7766,6 +7765,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.3,
+  "why": ""
+ },
+ "https://www.utsunomiya-cvb.org/event/detail_30068.html": {
+  "at": "2026-11-05",
+  "ok": true,
+  "sec": 1.3,
   "why": ""
  },
  "https://www.waterras.com/": {
