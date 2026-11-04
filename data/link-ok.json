@@ -4101,6 +4101,12 @@
   "sec": 0.8,
   "why": ""
  },
+ "https://litpla.com/space/muchu-yokohamabayside/": {
+  "at": "2026-11-04",
+  "ok": true,
+  "sec": 0.2,
+  "why": ""
+ },
  "https://macg.roppongihills.com/jp/exhibitions/haikyu-challengers/": {
   "at": "2026-11-03",
   "by": "browser",
@@ -5790,6 +5796,12 @@
   "sec": 3.4,
   "why": ""
  },
+ "https://www.gotokyo.org/jp/spot/ev134/index.html": {
+  "at": "2026-11-04",
+  "ok": true,
+  "sec": 2.1,
+  "why": ""
+ },
  "https://www.hakone.or.jp/8483": {
   "at": "2026-11-03",
   "ok": true,
@@ -6002,6 +6014,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.5,
+  "why": ""
+ },
+ "https://www.omochaoukoku.com/karuizawa/event/ezy_roller/": {
+  "at": "2026-11-04",
+  "ok": true,
+  "sec": 2.1,
   "why": ""
  },
  "https://www.pref.saitama.lg.jp/spo-navi/event/higashimatsuyama/3-day-march-49r.html": {
@@ -6302,6 +6320,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.4,
+  "why": ""
+ },
+ "https://zen.vie.style/kenchoji2026/": {
+  "at": "2026-11-04",
+  "ok": true,
+  "sec": 1.0,
   "why": ""
  }
 }
