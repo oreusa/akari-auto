@@ -220,6 +220,7 @@ var css=`
    夜はページごと反転しているので、NI() で「見せたい色」から「反転される前の色」を計算して書く */
 function NI(h){var t=[1,3,5].map(function(k){return parseInt(h.substr(k,2),16)/255}),M=[[-.574,1.43,.144],[.426,.43,.144],[.426,1.43,-.856]];
  return "#"+M.map(function(r){var v=(.95-(r[0]*t[0]+r[1]*t[1]+r[2]*t[2]))/.9;v=Math.max(0,Math.min(1,v));return ("0"+Math.round(v*255).toString(16)).slice(-2)}).join("")}
+function MX(a,b,w){var A=parseInt(a.slice(1),16),B=parseInt(b.slice(1),16);return "#"+[16,8,0].map(function(k){var v=Math.round(((A>>k)&255)*w+((B>>k)&255)*(1-w));return ("0"+v.toString(16)).slice(-2)}).join("")}
 function LT(h,a){return "#"+[1,3,5].map(function(k){var v=parseInt(h.substr(k,2),16);return ("0"+Math.round(v+(255-v)*a).toString(16)).slice(-2)}).join("")}
 var GOLD=NI("#EBD7A6"),SILV=NI("#EEF1F7"),DIM=NI("#8E98AE"),NAVY=NI("#141A28"),LAND=NI("#1A2236"),EDGE=NI("#2D3854");
 // 11/3 オーナー「周りの枠の色めちゃくちゃ。オシャレでもない」→ 夜の府県の線は府県の色をやめ、全部同じ金の細い線（光らせない）
@@ -227,6 +228,7 @@ var GOLD=NI("#EBD7A6"),SILV=NI("#EEF1F7"),DIM=NI("#8E98AE"),NAVY=NI("#141A28"),L
 var TOP={"大阪":"#F2A788","京都":"#C3A6E0","兵庫":"#8FB6EA","奈良":"#9ED19A","滋賀":"#86D3DF","和歌山":"#F1C27E","東京":"#8FB6EA","神奈川":"#86D3DF","埼玉":"#F1C27E","千葉":"#F2A788","茨城":"#9ED19A","栃木":"#C3A6E0","群馬":"#E8A6B8"};
 css+='html.night .tn .fr:after{display:none}html.night .tn .fr{background:#fff!important}';
 css+=PREFS.map(function(p){var c=NI(TOP[p]||"#8FB6EA");return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:#D0DFFA;fill-opacity:1;stroke:'+c+';stroke-width:2.4px;stroke-opacity:.6;vector-effect:non-scaling-stroke;filter:none;clip-path:url(#tnc'+PREFS.indexOf(p)+')}'}).join("")+
+ '.tn .gl{display:none;pointer-events:none}html.night .tn .gl{display:inline}html.night .tn .gl.off{display:none}'+PREFS.map(function(p,i){return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:url(#tng'+i+')!important}'}).join("")+
  'html.night .tn .pf.off{fill:'+LAND+';stroke:'+EDGE+';stroke-width:.8px}html.night .tn .sh{opacity:0!important}'+
  'html.night .tn .mu{fill-opacity:0!important;stroke:'+EDGE+'!important;stroke-width:.6px}'+
  'html.night .tn .lb.p{color:'+SILV+'!important;text-shadow:0 0 4px '+NAVY+',0 0 10px '+NAVY+'!important;letter-spacing:.14em}html.night .tn .lb.p small{color:'+GOLD+';opacity:.85}'+
@@ -308,6 +310,11 @@ function setup(KS){
  KS.pref.features.forEach(function(f){var p=f.properties.p,d=geom2d(f.geometry);PF[p]={bb:gbb(f.geometry),sh:el("path",{d:d,"class":"sh"},G.sh),path:el("path",{d:d,"class":"pf","data-p":p,fill:D(FILL[p])},G.pf)};
   // 夜の線を府県の内側だけに出す切り抜き（となりの線とバラバラに重ならない）
   if(!DEFS){DEFS=el("defs",{},svg);svg.insertBefore(DEFS,svg.firstChild)}var ci="tnc"+PREFS.indexOf(p);el("path",{d:d},el("clipPath",{id:ci},DEFS));
+  // 11/4 オーナー「夜の地図、ツヤなし」→ 夜は府県ごとに、上が明るく下が深い紺のグラデーション（府県の色をほんのり）と、上の方に光の反射を重ねる
+  var gi="tng"+PREFS.indexOf(p),gg=el("linearGradient",{id:gi,x1:0,y1:0,x2:.35,y2:1},DEFS);
+  [[0,MX(TOP[p]||"#8FB6EA","#34426C",.26)],[.5,"#1F2843"],[1,MX(TOP[p]||"#8FB6EA","#121828",.12)]].forEach(function(z){el("stop",{offset:z[0],"stop-color":NI(z[1])},gg)});
+  if(!$("#tnhl",DEFS)){var hl=el("linearGradient",{id:"tnhl",x1:0,y1:0,x2:0,y2:1},DEFS);[[0,.3],[.3,.09],[.6,0]].forEach(function(z){el("stop",{offset:z[0],"stop-color":NI("#FFFFFF"),"stop-opacity":z[1]},hl)})}
+  PF[p].gl=el("path",{d:d,"class":"gl",fill:"url(#tnhl)"},G.pf);
   PF[p].path.addEventListener("click",function(){if(level()===1&&PF[p].has)flash(PF[p].path,DEEP[p],function(){pickPref(p)})})});
  KS.muni.features.forEach(function(f){var pr=f.properties,m={p:pr.p,n:pr.n,c:pr.c,g:f.geometry,bb:gbb(f.geometry)};m.id=m.p+"|"+m.c+"|"+m.n;
   m.path=el("path",{d:geom2d(f.geometry),"class":"mu"},G.mu);m.path.__mu=m;m.path.addEventListener("click",function(ev){if(level()===2&&state.pref===m.p&&m.grp.has){ev.stopPropagation();var g=m.grp;g.mus.forEach(function(x){x.path.style.fill=D(DEEP[x.p])});setTimeout(function(){goMuni(g)},180)}});MU.push(m)});
@@ -411,7 +418,7 @@ function muniOf(it){if(it._m!==undefined)return it._m;it._m=null;for(var i=0;i<M
  if(!it._m){var q=P(it.lon,it.lat),best=1e9;MU.forEach(function(m){if(m.p!==it.pref)return;var cx=(m.bb[0]+m.bb[2])/2,cy=(m.bb[1]+m.bb[3])/2,d=(cx-q[0])*(cx-q[0])+(cy-q[1])*(cy-q[1]);if(d<best){best=d;it._m=m}})}return it._m}
 
 function render(){var lv=level(),pf=state.pref,m=state.muni,pins=list.filter(function(i){return i.lat!=null});box.classList.toggle("lv2",lv===2);box.classList.toggle("lv3",lv===3);
- PREFS.forEach(function(p){var n=pins.filter(function(i){return i.pref===p}).length;PF[p].has=n>0;var on=lv===1?n>0:p===pf;PF[p].path.setAttribute("fill",D(on?FILL[p]:"#EAEAEA"));PF[p].path.classList.toggle("off",!on);PF[p].sh.style.opacity=on?1:0;PF[p].path.style.cursor=lv===1&&n>0?"pointer":"default"});
+ PREFS.forEach(function(p){var n=pins.filter(function(i){return i.pref===p}).length;PF[p].has=n>0;var on=lv===1?n>0:p===pf;PF[p].path.setAttribute("fill",D(on?FILL[p]:"#EAEAEA"));PF[p].path.classList.toggle("off",!on);if(PF[p].gl)PF[p].gl.classList.toggle("off",!on);PF[p].sh.style.opacity=on?1:0;PF[p].path.style.cursor=lv===1&&n>0?"pointer":"default"});
  var cnt={};pins.forEach(function(i){if(i.pref!==pf)return;var mm=muniOf(i);if(mm){cnt[mm.grp.id]=(cnt[mm.grp.id]||0)+1}});
  var LIGHT=function(p){return R.light[p]};
  Object.keys(GR).forEach(function(id){GR[id].has=!!cnt[id]});
