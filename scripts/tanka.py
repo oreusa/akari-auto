@@ -33,6 +33,49 @@ MUST = {"soda": "炭酸", "tp": "トイレット", "rice": "米", "tea": "茶", 
         "beans": ("豆", "コーヒー", "珈琲"), "dogfood": ("ドッグフード", "犬", "ドッグ"), "catfood": ("キャットフード", "猫", "キャット")}
 
 
+# 11/4 オーナーの奥さんがお買い物リストを使った感想「知らないメーカーが上位だと、そりゃ安いだろと思って買う気にならない。
+# おしりふきならムーニーやパンパースが無い」→ 名の知れたメーカー（下の BRAND）の物を先に、その中で安い順に並べる。
+# 名の知れた物が3つに足りない時だけ、そのメーカー名で楽天をもう1回ずつ探し、それでも足りなければ他の物で埋める。
+BRAND = {
+    "water": ("サントリー", "いろはす", "い・ろ・は・す", "エビアン", "evian", "ボルヴィック", "volvic", "クリスタルガイザー", "アルカリイオンの水", "森の水だより", "六甲のおいしい水", "キリン", "アサヒ", "伊藤園", "コカ・コーラ"),
+    "soda": ("ウィルキンソン", "WILKINSON", "サントリー", "アサヒ", "キリン", "ペリエ", "サンペレグリノ", "伊藤園", "アイリスオーヤマ", "VOX"),
+    "rice": ("コシヒカリ", "あきたこまち", "ひとめぼれ", "ななつぼし", "ゆめぴりか", "つや姫", "はえぬき", "ヒノヒカリ", "青天の霹靂", "雪若丸", "ミルキークイーン", "さがびより", "にこまる", "まっしぐら", "ふさこがね"),
+    "tp": ("エリエール", "スコッティ", "ネピア", "クリネックス", "シャワートイレ"),
+    "tea": ("伊藤園", "お〜いお茶", "お～いお茶", "おーいお茶", "綾鷹", "伊右衛門", "生茶", "サントリー", "キリン", "アサヒ", "十六茶", "爽健美茶", "からだすこやか茶", "健康ミネラルむぎ茶", "コカ・コーラ"),
+    "coffee": ("BOSS", "ボス", "ジョージア", "GEORGIA", "UCC", "ワンダ", "ファイア", "キーコーヒー", "ドトール", "スターバックス", "AGF", "ネスカフェ", "ブレンディ", "クラフトボス"),
+    "detergent": ("アタック", "アリエール", "ボールド", "トップ", "ナノックス", "さらさ", "ライオン", "花王", "P&G"),
+    "softener": ("レノア", "ハミング", "ソフラン", "フレア", "ダウニー", "ファーファ", "花王", "ライオン", "P&G"),
+    "shampoo": ("パンテーン", "いち髪", "TSUBAKI", "メリット", "ラックス", "LUX", "エッセンシャル", "ボタニスト", "BOTANIST", "ダイアン", "ハーバルエッセンス", "h&s", "スカルプD", "&honey", "アンドハニー", "ディアボーテ", "花王", "資生堂", "ミノン"),
+    "bodysoap": ("ビオレ", "ダヴ", "Dove", "ナイーブ", "ミノン", "牛乳石鹸", "カウブランド", "ボタニスト", "BOTANIST", "ミューズ", "hadakara", "ハダカラ", "花王", "ライオン"),
+    "dish": ("ジョイ", "JOY", "キュキュット", "チャーミー", "ファミリーフレッシュ", "マジカ", "花王", "ライオン", "P&G"),
+    "tissue": ("エリエール", "スコッティ", "ネピア", "クリネックス", "鼻セレブ"),
+    "diaper": ("メリーズ", "ムーニー", "オヤスミマン", "パンパース", "グーン", "マミーポコ", "GENKI", "ナチュラルムーニー"),
+    "wipes": ("ムーニー", "パンパース", "メリーズ", "グーン", "マミーポコ", "ピジョン", "Pigeon", "ネピア", "和光堂", "GENKI", "ユニ・チャーム", "ユニチャーム", "大王製紙"),
+    "trash": ("サニパック", "ジャパックス", "アイリスオーヤマ", "ケミカルジャパン", "日泉", "オルディ"),
+    "battery": ("パナソニック", "Panasonic", "エボルタ", "富士通", "FDK", "東芝", "TOSHIBA", "マクセル", "maxell", "三菱", "デュラセル", "Duracell", "アイリスオーヤマ"),
+    "mask": ("ユニ・チャーム", "ユニチャーム", "超快適", "超立体", "アイリスオーヤマ", "白元", "快適ガード", "ハクゾウ", "興和", "三次元"),
+    "pasta": ("マ・マー", "ママー", "ディ・チェコ", "ディチェコ", "DE CECCO", "バリラ", "Barilla", "ボルカノ", "日清"),
+    "protein": ("ザバス", "SAVAS", "マイプロテイン", "MYPROTEIN", "ゴールドスタンダード", "ビーレジェンド", "be LEGEND", "グロング", "GronG", "エクスプロージョン", "X-PLOSION", "DNS", "VALX", "バルクス"),
+    "beans": ("UCC", "キーコーヒー", "KEY COFFEE", "ドトール", "スターバックス", "澤井珈琲", "小川珈琲", "カルディ", "AGF"),
+    "dogfood": ("ロイヤルカナン", "ヒルズ", "サイエンス・ダイエット", "サイエンスダイエット", "ピュリナ", "ニュートロ", "ペディグリー", "ビタワン", "ユニ・チャーム", "愛犬元気", "グラン・デリ", "アイムス", "モグワン", "カナガン", "ブッチ"),
+    "catfood": ("ロイヤルカナン", "ヒルズ", "サイエンス・ダイエット", "サイエンスダイエット", "ピュリナ", "ニュートロ", "カルカン", "モンプチ", "ねこ元気", "銀のスプーン", "アイシア", "オールウェル", "フリスキー", "アイムス", "モグニャン", "カナガン"),
+}
+BRAND_MIN = 3  # 名の知れた物がこれより少ない時だけ、メーカー名で探し足す
+BRAND_ASK = 3  # 探し足すメーカーは前から3つまで（楽天APIを使いすぎない）
+
+
+def brand_of(key, name):
+    """名の知れたメーカーなら、その名前（大文字小文字は見ない）。"""
+    low = name.lower()
+    return next((b for b in BRAND.get(key, ()) if b.lower() in low), "")
+
+
+def brand_first(key, rows, n):
+    """名の知れたメーカーの物を先に（その中で安い順）、足りない分だけ他の物で埋める。rows は安い順。"""
+    a = [r for r in rows if r.get("bd")]
+    return (a + [r for r in rows if r not in a])[:n]
+
+
 def must_ok(key, name):
     """名前に必ずある言葉（どれか1つ）。検索で別の物が混ざるため。"""
     m = MUST.get(key)
@@ -255,16 +298,9 @@ def item_page(it):
 def fetch(cat):
     key, _, kw, gid, unit, ng, (lo, hi) = cat
     rows, seen, n_all, err = [], set(), 0, ""
-    for page in range(1, (NEWPAGES if key in KIND else PAGES) + 1):
-        q = {"keyword": kw, "postageFlag": 1, "availability": 1, "sort": "-reviewCount", "hits": 30, "page": page}
-        if gid:
-            q["genreId"] = gid
-        if key in KIND:
-            q["NGKeyword"] = NGKW + (" 大人 介護" if key == "diaper" else "")
-        items, err = lib._rakuten_search(q)
-        time.sleep(1.1)  # 楽天APIは1秒に1回まで
-        if not items:
-            break
+
+    def take(items):
+        nonlocal n_all
         for it in items:
             code = it.get("itemCode")
             if code in seen:
@@ -287,9 +323,35 @@ def fetch(cat):
             rows.append({"name": short(name), "price": price, "per": round(per, 1), "amt": am[1],
                          "rc": int(it.get("reviewCount") or 0), "av": float(it.get("reviewAverage") or 0),
                          "shop": it.get("shopName") or "", "url": aff, "plain": item_page(it),
-                         "img": lib._item_image(it)})
+                         "img": lib._item_image(it), "bd": brand_of(key, name)})
+
+    for page in range(1, (NEWPAGES if key in KIND else PAGES) + 1):
+        q = {"keyword": kw, "postageFlag": 1, "availability": 1, "sort": "-reviewCount", "hits": 30, "page": page}
+        if gid:
+            q["genreId"] = gid
+        if key in KIND:
+            q["NGKeyword"] = NGKW + (" 大人 介護" if key == "diaper" else "")
+        items, err = lib._rakuten_search(q)
+        time.sleep(1.1)  # 楽天APIは1秒に1回まで
+        if not items:
+            break
+        take(items)
+    # 名の知れた物が少ない時は、メーカー名でもう1回ずつ探す（最初の言葉＋メーカー名、30件）
+    have = {r["bd"] for r in rows} - {""}
+    if len(have) < BRAND_MIN:
+        for b in [b for b in BRAND.get(key, ()) if b not in have][:BRAND_ASK]:
+            q = {"keyword": f"{kw.split()[0]} {b}", "postageFlag": 1, "availability": 1, "sort": "-reviewCount", "hits": 30}
+            if gid:
+                q["genreId"] = gid
+            items, _ = lib._rakuten_search(q)
+            time.sleep(1.1)
+            take(items or [])
     rmin = RMIN.get(key, RMIN_NEW)
-    ok = sorted([r for r in rows if r["rc"] >= rmin and (r["av"] >= 4.0 or not rmin)], key=lambda r: r["per"])
+    # 名の知れたメーカーの物は、レビューの数を10件まで下げてよい（1商品のレビューが散らばるため。★4.0以上は同じ）。
+    def passes(r):
+        m = min(rmin, 10) if r["bd"] and rmin < 1000 else rmin  # 水・炭酸水・お米・トイレットペーパーは1,000件のまま
+        return r["rc"] >= m and (r["av"] >= 4.0 or not m)
+    ok = sorted([r for r in rows if passes(r)], key=lambda r: r["per"])
     # 11/3 点検：読んだ全部の真ん中の値段より極端に安い物は、量の読みちがいの事が多い → 外してログに残す
     if len(rows) >= 8:
         med = sorted(r["per"] for r in rows)[len(rows) // 2]
@@ -309,8 +371,10 @@ def fetch(cat):
         names.add(nk)
         out.append(r)
     avg = round(sum(r["per"] for r in rows) / len(rows), 1) if rows else 0
+    top = brand_first(key, out, TOP)
+    print("名の知れた物", key, sum(1 for r in top if r["bd"]), "/", len(top))
     return {"key": key, "title": cat[1], "unit": unit, "seen": n_all, "read": len(rows), "ok": len(ok),
-            "avg": avg, "rmin": rmin, "top": out[:TOP]}, err
+            "avg": avg, "rmin": rmin, "top": top}, err
 
 
 AMZ_WORDS = {"water": ("天然水", "ミネラルウォーター", "水 "), "soda": ("炭酸",), "rice": ("米",), "tp": ("トイレット",)}
@@ -382,13 +446,13 @@ def yahoo_rows(cat):
         if not (lo <= per <= hi) or shop in shops:
             continue
         shops.add(shop)
-        out.append({"name": short(name), "price": price, "per": round(per, 1), "amt": am[1], "rc": rc, "av": av, "shop": shop,
+        out.append({"name": short(name), "price": price, "per": round(per, 1), "amt": am[1], "rc": rc, "av": av, "shop": shop, "bd": brand_of(key, name),
                     "url": (it.get("url") or "") if VC_PID else MOSHIMO_YAHOO + urllib.parse.quote(it.get("url") or "", safe=""), "img": (it.get("image") or {}).get("medium") or ""})
-    return sorted(out, key=lambda r: r["per"])[:2]
+    return brand_first(key, sorted(out, key=lambda r: r["per"]), 2)
 
 
 def yh_card(r, unit):
-    return (f'<li class="it"><a class="cd" href="{esc(r["url"])}" rel="sponsored noopener" target="_blank" data-k="yh">'
+    return (f'<li class="it"><a class="cd" href="{esc(r["url"])}" rel="sponsored noopener" target="_blank" data-k="yh" data-bd="{esc(r.get("bd") or "")}">'
             + (f'<img class="ph" src="{esc(r["img"])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if r.get("img") else "")
             + f'<span class="rk az" style="background:#FF0033">Y</span><span class="tx"><span class="nm">{esc(r["name"])}</span>'
             f'<span class="pu">{unit}あたり <b>{yen(r["per"])}円</b></span>'
@@ -412,7 +476,7 @@ def yen(v):
 def card(r, i, unit, avg):
     img = f'<img src="{esc(r["img"])}" alt="" width="84" height="84" loading="lazy" onerror="this.remove()">' if r["img"] else ""
     diff = f'<span class="df">比べた全部の平均より {round((1 - r["per"] / avg) * 100)}% 安い</span>' if avg and r["per"] < avg * 0.95 else ""
-    return (f'<li class="it"><a class="cd" href="{esc(r["url"])}" rel="sponsored noopener" target="_blank" data-k="{esc(r["name"][:30])}">'
+    return (f'<li class="it"><a class="cd" href="{esc(r["url"])}" rel="sponsored noopener" target="_blank" data-k="{esc(r["name"][:30])}" data-bd="{esc(r.get("bd") or "")}">'
             f'<span class="rk">{i}</span>{img}<span class="tx"><span class="nm">{esc(r["name"])}</span>'
             f'<span class="pu">{unit}あたり <b>{yen(r["per"])}円</b></span>{diff}'
             f'<span class="mt">{r["price"]:,}円（送料込み・{esc(r["amt"])}）　★{r["av"]:.2f}　レビュー{r["rc"]:,}件</span>'
@@ -429,7 +493,7 @@ def render(cats, now):
         secs += (f'<section class="ps" data-p="{c["key"]}"><h2>{esc(c["title"])}</h2>'
                  f'<p class="how">楽天の送料込みの{c["seen"]}件を見て、量が読めた{c["read"]}件を{c["unit"]}あたりに直しました。'
                  + (f'レビュー{c.get("rmin", 1000):,}件以上・評価4.0以上は{c["ok"]}件。' if c.get("rmin", 1000) else f'大手の{c["ok"]}件（ケース売りはレビューがほぼ無いので、メーカー名でしぼりました）。')
-                 + f'その中で安い順です（同じお店は1つ）。'
+                 + f'名の知れたメーカーの物を先に、その中で安い順です（同じお店は1つ）。'
                  f'{"比べた全部の平均は" + c["unit"] + "あたり" + yen(c["avg"]) + "円。" if c["avg"] else ""}</p>'
                  f'<ul>{lis}</ul>'
                  + (f'<h3 class="az3">Yahoo!ショッピングでは（送料無料・同じ物差し）</h3><ul>{"".join(yh_card(r, c["unit"]) for r in c["yh"])}</ul>'
@@ -522,7 +586,7 @@ def main():
     os.makedirs(site, exist_ok=True)
     open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(cats, now))
     slim = [{k: c[k] for k in ("key", "title", "unit", "seen", "read", "ok", "avg")} |
-            {"top": [{k: r[k] for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain")} for r in c["top"]],
+            {"top": [{k: r.get(k, "") for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain", "bd")} for r in c["top"]],
              "amazon": [{k: r[k] for k in ("asin", "name", "price", "per", "amt", "rc", "av")} for r in c.get("amz", [])],
              "yahoo": [{k: r[k] for k in ("name", "price", "per", "amt", "rc", "av", "shop")} for r in c.get("yh", [])]}
             for c in cats]
