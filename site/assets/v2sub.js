@@ -30,3 +30,6 @@ document.addEventListener("click",function(e){var a=e.target.closest&&e.target.c
   var t=document.querySelector(".tnbtn");if(!t)return;e.preventDefault();var tn=document.querySelector(".tn");if(tn&&tn.classList.contains("fs"))return;t.click();},true);
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();
 })();
+
+/* 11/4 カードの日付と絵（cardmark.js。月と同じ）を読み込む */
+(function(){if(document.querySelector('script[src*="cardmark.js"]'))return;var s=document.createElement("script");s.src="/assets/cardmark.js?v=2";s.defer=true;document.head.appendChild(s);})();
