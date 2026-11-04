@@ -23,7 +23,7 @@
  "ig_tags": ["#関東おでかけ", "..."]}
 ```
 - scenes は3〜6つ。題と1行は、書く前にそのページを開いて本当に出ている言葉で書く。
-- 作り直し：hp-reel.yml を workflow_dispatch（date=D）。確かめる静止画は `python3 tools/hp_reel/make.py reel-hp/D.json /tmp/x.mp4 1,6,12,18,24,27`。
+- 作り直し：hp-reel.yml を workflow_dispatch（date=D）。確かめる静止画は `python3 tools/hp_reel/make.py reel-hp/D.json /tmp/x.mp4 0,6,12,18,24,27`。0秒のコマがインスタの表紙になるので、無地になっていないかを必ず見る（11/4 表紙が真っ白だった）。
 
 ## 記録（同じ動画をくり返さないため）
 | 日 | 見せた機能 | 画面の順 |
