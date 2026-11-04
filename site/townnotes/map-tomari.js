@@ -394,7 +394,7 @@ function placeBub(){if(!FS||!sel||sel.lat==null||level()<3){BUB.classList.remove
  if(bubIt!==sel){bubIt=sel;var fr=(sel.tags||[]).some(function(t){return t.indexOf("無料")>=0});
   BUB.style.setProperty("--c",PC[sel.pref]||"#2B2622");
   BUB.classList.toggle("ph",PH);BUB.innerHTML=(PH?thumb(sel,'qth'):'')+'<div class="qx"><div class="qm"><span class="qp">'+esc(sel.pref)+'</span>'+(sel.d?'<span class="qd">'+esc(sel.d)+'</span>':'')+(fr?'<span class="qf">無料</span>':'')+'</div><div class="qt">'+esc(sel.t)+'</div></div>'}
- var R=FR.getBoundingClientRect(),d=g.querySelector(".dot").getBoundingClientRect(),cx=d.left+d.width/2-R.left,top=d.top-R.top,bot=d.bottom-R.top;
+ var R=FR.getBoundingClientRect(),d=g.querySelector(".dot").getBoundingClientRect(),dp=g.querySelector(".drp"),pt=dp?Math.min(d.top,dp.getBoundingClientRect().top):d.top,cx=d.left+d.width/2-R.left,top=pt-R.top,bot=d.bottom-R.top;  // 上はしずくの頭の上から測る（頭に吹き出しが重ならないように）
  if(cx<0||cx>R.width||top<0||bot>R.height){BUB.classList.remove("on");return}
  BUB.classList.add("on");var w=BUB.offsetWidth,h=BUB.offsetHeight,x=Math.max(8,Math.min(R.width-w-8,cx-w/2));
  // 上と下で、市の名前の札に重ならない方に出す（重なりが少ない方）
