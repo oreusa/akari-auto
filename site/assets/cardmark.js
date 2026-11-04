@@ -54,7 +54,21 @@ var css=
 '.cmb .dd small{font-family:Jost,sans-serif;font-size:8px;font-weight:500;letter-spacing:.14em;color:var(--pc,#8a8f98)}'+
 '.cmb .dd.tx b{font-family:"Zen Kaku Gothic New",sans-serif;font-size:10px;font-weight:700;letter-spacing:.04em}'+
 '.cmb .cd{display:inline-block;margin-top:5px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:9.5px;color:var(--pc,#8a8f98);letter-spacing:.06em;white-space:nowrap}'+
-'.cmb .cd.hot{background:var(--pc,#8a8f98);color:#fff;border-radius:999px;padding:3px 7px 2px}';
+'.cmb .cd.hot{background:var(--pc,#8a8f98);color:#fff;border-radius:999px;padding:3px 7px 2px}'+
+/* 11/4 オーナー「夜可愛くない 反転だけしたよう」「左上は太陽か？」→ 夜は反転を打ち消して、夜専用の色で描く。
+   夜空の紺のタイルに府県の色がにじむツヤ、絵は光る線、左上の丸は小さくまたたく星に */
+'html.night .cmb{filter:invert(1) hue-rotate(180deg);--pl:color-mix(in srgb,var(--pc,#8a8f98) 52%,#fff)}'+
+'html.night .cmb .ib{background:radial-gradient(120% 90% at 50% 115%,color-mix(in srgb,var(--pc,#8a8f98) 55%,transparent) 0%,transparent 62%),linear-gradient(160deg,#28324D 0%,#151C2E 100%);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--pl) 30%,transparent),inset 0 1px 0 rgba(255,255,255,.22),0 0 18px -4px color-mix(in srgb,var(--pc,#8a8f98) 75%,transparent);color:var(--pl)}'+
+'html.night .cmb .ib::before{width:auto;height:auto;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.04) 42%,transparent 43%)}'+
+'html.night .cmb .ib::after{width:9px;height:9px;border-radius:0;left:9px;top:8px;right:auto;background:#FFF6D8;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 2px #FFE7A0);animation:cmtw 2.8s ease-in-out infinite}'+
+'@keyframes cmtw{0%,100%{opacity:.95;transform:scale(1)}50%{opacity:.35;transform:scale(.6)}}'+
+'html.night .cmb .ib svg{fill:color-mix(in srgb,var(--pc,#8a8f98) 28%,transparent);filter:drop-shadow(0 0 3px color-mix(in srgb,var(--pl) 85%,transparent))}'+
+'html.night .cmb .lb{color:var(--pl);opacity:.95}'+
+'html.night .cmb .dd{background:linear-gradient(180deg,#2C3652,#1B2338);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--pl) 38%,transparent),inset 0 1px 0 rgba(255,255,255,.14),0 4px 10px -3px rgba(0,0,0,.5)}'+
+'html.night .cmb .dd b{color:#F4F1EA}html.night .cmb .dd small{color:var(--pl)}'+
+'html.night .cmb .cd{color:var(--pl)}'+
+'html.night .cmb .cd.hot{background:linear-gradient(180deg,var(--pl),var(--pc,#8a8f98));color:#141A28;box-shadow:0 0 10px -2px var(--pc,#8a8f98)}'+
+'@media (prefers-reduced-motion:reduce){html.night .cmb .ib::after{animation:none}}';
 var st=document.createElement('style');st.textContent=css;(document.head||document.documentElement).appendChild(st);
 function kind(a,ad){var t=(a.querySelector(ad.t)||{}).textContent||'';var m=(a.querySelector('.m,.pl,small')||{}).textContent||'';
   for(var i=0;i<R.length;i++)if(R[i][0].test(t))return R[i][1];
