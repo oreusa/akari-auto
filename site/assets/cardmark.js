@@ -5,18 +5,18 @@
 (function(){
 if(window.__cardmark)return;window.__cardmark=1;
 var I={
-fes:'<path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/><circle cx="12" cy="9.5" r="1.3"/>',
-koyo:'<path d="M12 21v-6"/><path d="M12 15c-5 0-8-4-8-8 3 0 5 1 6 3 0-3 1-5 2-7 1 2 2 4 2 7 1-2 3-3 6-3 0 4-3 8-8 8z"/>',
+fes:'<path d="M9.5 3.5h5v2h-5zM9.5 18.5h5v2h-5z"/><ellipse cx="12" cy="12" rx="6.2" ry="6.6"/><path d="M6.2 9.6h11.6M5.8 12h12.4M6.2 14.4h11.6"/>',
+koyo:'<path d="M12 3l1.6 3.8 3-1.6-.6 3.6 3.6-.4-2 3 2.6 1.6-4 1 .6 2.4-3-1.2-1.8 3-1.8-3-3 1.2.6-2.4-4-1 2.6-1.6-2-3 3.6.4-.6-3.6 3 1.6z"/><path d="M12 15.5V21"/>',
 light:'<path d="M10 3C10.6 7.5 11.5 8.4 16 9C11.5 9.6 10.6 10.5 10 15C9.4 10.5 8.5 9.6 4 9C8.5 8.4 9.4 7.5 10 3Z"/><path d="M17.5 13.2c.3 2 .7 2.4 2.5 2.7c-1.8.3-2.2.7-2.5 2.7c-.3-2-.7-2.4-2.5-2.7c1.8-.3 2.2-.7 2.5-2.7Z"/><circle cx="6.5" cy="18.5" r="1"/>',
-art:'<rect x="4" y="5" width="16" height="13" rx="1.5"/><path d="M4 15l4.5-4 3.5 3 3-2.5L20 15"/><circle cx="15.5" cy="9" r="1.3"/>',
+art:'<rect x="3.5" y="4.5" width="17" height="14" rx="1"/><rect x="6.5" y="7.5" width="11" height="8"/><path d="M6.5 15.5l3.3-3.3 2.4 2.2 2-1.8 3.3 2.9"/><circle cx="14.6" cy="9.8" r=".9"/>',
 food:'<path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10"/><path d="M17 21V3c-2 1.5-3 4-3 7h3"/>',
 flower:'<circle cx="12" cy="10" r="2"/><path d="M12 8c0-3 3-4 3-1 3 0 2 3 0 3 2 2-1 4-3 2-2 2-5 0-3-2-2 0-3-3 0-3 0-3 3-2 3 1z"/><path d="M12 13v8M12 18c-2-2-4-2-5-1"/>',
 hallo:'<path d="M12 6c-5 0-8 3-8 7s3 7 8 7 8-3 8-7-3-7-8-7z"/><path d="M12 6V3.5"/><path d="M9 12l1.5 1.5M15 12l-1.5 1.5M9 16.5c2 1 4 1 6 0"/>',
-xmas:'<path d="M12 3l3 4.5h-1.6L17 12h-2l3.5 5h-13L9 12H7l3.6-4.5H9z"/><path d="M12 17v4"/>',
-quest:'<circle cx="10.5" cy="10.5" r="5.5"/><path d="M14.5 14.5L20 20"/><path d="M9 9.2a1.6 1.6 0 1 1 2.2 1.5c-.6.3-.7.6-.7 1.1"/>',
-animal:'<ellipse cx="12" cy="15.5" rx="4" ry="3.3"/><circle cx="6.5" cy="10.5" r="1.7"/><circle cx="17.5" cy="10.5" r="1.7"/><circle cx="9.5" cy="6.5" r="1.7"/><circle cx="14.5" cy="6.5" r="1.7"/>',
-play:'<circle cx="12" cy="10" r="6"/><path d="M12 4v12M6 10h12M7.8 5.8l8.4 8.4M16.2 5.8l-8.4 8.4"/><path d="M9 21l3-5 3 5"/>',
-shop:'<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+xmas:'<path d="M12 5.5l3 4h-1.6l3.6 4.5h-2l3.5 4.5h-13L9 14H7l3.6-4.5H9z"/><path d="M12 18.5V21"/><path d="M12 1.8l.7 1.5 1.6.2-1.2 1.1.3 1.6-1.4-.8-1.4.8.3-1.6-1.2-1.1 1.6-.2z"/>',
+quest:'<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/><path d="M8.6 8.9a2 2 0 1 1 2.8 1.8c-.7.3-.9.8-.9 1.4"/><circle cx="10.5" cy="14" r=".5"/>',
+animal:'<path d="M12 12.5c-2.8 0-5 2.4-5 4.6 0 1.6 1.3 2.4 2.6 2.4 1 0 1.6-.5 2.4-.5s1.4.5 2.4.5c1.3 0 2.6-.8 2.6-2.4 0-2.2-2.2-4.6-5-4.6z"/><ellipse cx="6" cy="10.5" rx="1.7" ry="2.1"/><ellipse cx="18" cy="10.5" rx="1.7" ry="2.1"/><ellipse cx="9.3" cy="6.3" rx="1.7" ry="2.2"/><ellipse cx="14.7" cy="6.3" rx="1.7" ry="2.2"/>',
+play:'<circle cx="12" cy="10" r="6.5"/><path d="M12 3.5v13M5.5 10h13M7.4 5.4l9.2 9.2M16.6 5.4l-9.2 9.2"/><circle cx="12" cy="3.5" r="1.2"/><circle cx="18.5" cy="10" r="1.2"/><circle cx="5.5" cy="10" r="1.2"/><circle cx="12" cy="16.5" r="1.2"/><path d="M8.5 21l3.5-5 3.5 5"/>',
+shop:'<path d="M4 9l2-4.5h12L20 9"/><path d="M4 9a2 2 0 0 0 4 0a2 2 0 0 0 4 0a2 2 0 0 0 4 0a2 2 0 0 0 4 0"/><path d="M5.5 11v9h13v-9"/><path d="M9.5 20v-5h5v5"/>',
 spot:'<path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/>'};
 var LB={fes:'MATSURI',koyo:'KOYO',light:'LIGHT',art:'ART',food:'FOOD',flower:'FLOWER',hallo:'HALLOWEEN',xmas:'XMAS',quest:'NAZOTOKI',animal:'ANIMAL',play:'PLAY',shop:'MARKET',spot:'SPOT'};
 var R=[[/ENLIGHTENMENT|Superblue|イマーシブ|ミュージアム|美術館|博物館/i,'art'],[/ハロウィ[ンー]|HALLOWEEN|ゾンビ|仮装/i,'hallo'],[/クリスマス|CHRISTMAS|Xmas|サンタ|ツリー/i,'xmas'],[/紅葉|もみじ|錦秋|イチョウ|銀杏/,'koyo'],
@@ -41,6 +41,12 @@ function fromText(x){ /* 「11/21（土）まで」「10/1（木）〜1/31（日
 var css=
 'html body .cm.cm.cm.cm.cm{position:relative;padding-left:98px!important;min-height:150px;box-sizing:border-box}'+
 'html body a.card.cm.cmh .v2d,html body a.card.cm.cmh>.d,html body a.card.cm.cmh .bd>.d,html body .cm.cmh .when,html body .cm.cmh .v2d,html body a.cd.cm.cmh>.dt,html body a.fc.cm.cmh>span{display:none!important}'+'html body .paper .it.cmp>a.mp,html body .cmp.cmp>a.mp{left:98px!important}html body .cmp.cmp>.rt{padding-left:98px}html body .paper .it.cmp>.yk,html body .cmp.cmp>.yk{left:160px!important}'+
+'.cmt{position:relative;width:100%;height:100%;border-radius:15px;display:grid;place-items:center;overflow:hidden;color:var(--pc,#8a8f98);background:linear-gradient(150deg,color-mix(in srgb,var(--pc,#8a8f98) 7%,#fff),color-mix(in srgb,var(--pc,#8a8f98) 24%,#fff));box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 6px 12px -8px color-mix(in srgb,var(--pc,#8a8f98) 70%,transparent)}'+
+'.cmt::before{content:"";position:absolute;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.55);left:-8px;top:-10px}'+
+'.cmt svg{position:relative;width:27px;height:27px;fill:color-mix(in srgb,var(--pc,#8a8f98) 22%,#fff);stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}'+
+'html.night .cmt{filter:invert(1) hue-rotate(180deg);--pl:color-mix(in srgb,var(--pc,#8a8f98) 52%,#fff);color:var(--pl);background:radial-gradient(120% 90% at 50% 115%,color-mix(in srgb,var(--pc,#8a8f98) 55%,transparent),transparent 62%),linear-gradient(160deg,#28324D,#151C2E);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--pl) 30%,transparent),inset 0 1px 0 rgba(255,255,255,.22)}'+
+'html.night .cmt::before{width:7px;height:7px;border-radius:0;left:6px;top:6px;background:#FFF6D8;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}'+
+'html.night .cmt svg{fill:color-mix(in srgb,var(--pc,#8a8f98) 28%,transparent);filter:drop-shadow(0 0 3px color-mix(in srgb,var(--pl) 85%,transparent))}'+
 '.cmb{position:absolute;left:15px;top:15px;width:68px;text-align:center;line-height:1;pointer-events:none}'+
 '.cmb .ib{position:relative;width:66px;height:66px;margin:0 auto;border-radius:22px;background:linear-gradient(150deg,color-mix(in srgb,var(--pc,#8a8f98) 7%,#fff) 0%,color-mix(in srgb,var(--pc,#8a8f98) 24%,#fff) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 16px -10px color-mix(in srgb,var(--pc,#8a8f98) 70%,transparent);display:grid;place-items:center;color:var(--pc,#8a8f98);overflow:hidden}'+
 '.cmb .ib::before{content:"";position:absolute;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.55);left:-10px;top:-14px}'+
@@ -110,6 +116,10 @@ function go(){for(var j=0;j<AD.length;j++){var L=document.querySelectorAll(AD[j]
   var M=document.querySelectorAll('a.card.cm~a.mp,a.card.cm~.rt,a.cd.cm~a.mp');for(i=0;i<M.length;i++)M[i].parentElement.classList.add('cmp');}
 var tm;function later(){clearTimeout(tm);tm=setTimeout(go,60)}
 if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go);
+
+function kindT(t){t=t||'';for(var i=0;i<R.length;i++)if(R[i][0].test(t))return R[i][1];if(/illumination/.test(location.pathname))return 'light';if(/koyo/.test(location.pathname))return 'koyo';return 'spot';}
+/* 11/4 オーナー「地図下選択のロゴも変わるよね？」→ 地図の下のカードの絵も、カードと同じ絵と形にする（map.js から呼ぶ） */
+window.cmTile=function(t,pc){var k=kindT(t);return '<div class="cmt" style="--pc:'+(pc||'#8a8f98')+'"><svg viewBox="0 0 24 24">'+I[k]+'</svg></div>';};
 window.addEventListener('load',go);
 try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
