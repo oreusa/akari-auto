@@ -1,0 +1,405 @@
+{
+  "day": "2026-11-04",
+  "fetchedAt": "2026-11-05T06:30+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【今日11/4 20時から　楽天お買い物マラソン｜999円以下は1店に数えない🛍",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfS7m_nlZnE",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 25,
+        "views": 4,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【今日11/4 20時から　楽天お買い物マラソン｜999円以下は1店に数えない🛍",
+      "url": "https://x.com/1753799832798629888/status/2117742396456788227",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.26,
+        "reposts": 0,
+        "impressions": 19,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "11/7から水戸の偕楽園で、もみじ谷ライトアップ、今週始まる5つ🍁",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfTJWTKlY8V",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.85,
+        "views": 54,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "11/7から水戸の偕楽園で、もみじ谷ライトアップ、今週始まる5つ🍁",
+      "url": "https://x.com/1753799832798629888/status/2117772577707864325",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.22,
+        "reposts": 0,
+        "impressions": 45,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【11/7（土）　土浦・成田・さくら｜花火は何時に上がるかくらべ🎆】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfToO65jVXh",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【11/7（土）　土浦・成田・さくら｜花火は何時に上がるかくらべ🎆】",
+      "url": "https://x.com/1753799832798629888/status/2117840518486851759",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.56,
+        "reposts": 0,
+        "impressions": 179,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "15:15",
+      "kind": "手動",
+      "first": "今朝の4コマを、1コマずつめくって読めます。",
+      "url": "https://www.instagram.com/p/DfTykXSlVbw/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "saves": 0,
+        "follows": 0,
+        "reach": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【今夜20時から　お買い物マラソン｜始まる前にカートへ🛒】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfTyjKKlpBp",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【今夜20時から　お買い物マラソン｜始まる前にカートへ🛒】",
+      "url": "https://x.com/1753799832798629888/status/2117863171138429222",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 8.33,
+        "reposts": 0,
+        "impressions": 12,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べたトイレットペーパー3つ｜1ロール75mで3倍長持ち🧻】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfUHIm1FQWq",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べたトイレットペーパー3つ｜1ロール75mで3倍長持ち🧻】",
+      "url": "https://x.com/1753799832798629888/status/2117908476743541070",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 9.09,
+        "reposts": 0,
+        "impressions": 11,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/4 20時からマラソン｜燈が毎日記録、本当に下がった物だけのページ📉】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfUU4tanCJu",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/4 20時からマラソン｜燈が毎日記録、本当に下がった物だけのページ📉】",
+      "url": "https://x.com/1753799832798629888/status/2117938682753622104",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 6.25,
+        "reposts": 0,
+        "impressions": 16,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "HPのご紹介 その3｜おでかけリストの便利な使い方🧭",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfUaN-GoAJG",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "HPのご紹介 その3｜おでかけリストの便利な使い方🧭",
+      "url": "https://x.com/1753799832798629888/status/2117950278045491203",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 50,
+        "reposts": 0,
+        "impressions": 2,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "PR",
+      "first": "【AIが比べたふるさと納税の長巻3つ｜1ロール170m🧻】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfUio_fFl_b",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "PR",
+      "first": "【AIが比べたふるさと納税の長巻3つ｜1ロール170m🧻】",
+      "url": "https://x.com/1753799832798629888/status/2117968922162979093",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.45,
+        "reposts": 0,
+        "impressions": 29,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4022569886928668459",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4022564722582843463",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/15まで　草津温泉｜道の駅の紅葉ライトアップは17時から🍁】",
+      "url": "https://www.instagram.com/reel/DfTA4veuTwm/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 1,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.01,
+        "averageTimeWatched": 0.76,
+        "reach": 1
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/15まで　草津温泉｜道の駅の紅葉ライトアップは17時から🍁】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfTAzihH33u",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 14.29,
+        "views": 7,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/15まで　草津温泉｜道の駅の紅葉ライトアップは17時から🍁】",
+      "url": "https://x.com/1753799832798629888/status/2117753800400265450",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 5.56,
+        "reposts": 0,
+        "impressions": 72,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "HPリール",
+      "kind": "HPリール",
+      "first": "HPの画面を、そのままご紹介します📒",
+      "url": "https://www.instagram.com/reel/DfUFiMVBO5P/",
+      "metrics": {}
+    },
+    {
+      "service": "instagram",
+      "slot": "旅4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4022698191837032546",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "旅4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4022693044998862782",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "旅4コマ",
+      "kind": "4コマ",
+      "first": "【11/30まで　愛知・香嵐渓｜約3,000本のもみじを日没から21時まで照らす",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfTd9QODZrX",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 6.25,
+        "views": 16,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "旅4コマ",
+      "kind": "4コマ",
+      "first": "【11/30まで　愛知・香嵐渓｜約3,000本のもみじを日没から21時まで照らす",
+      "url": "https://x.com/1753799832798629888/status/2117817922353566195",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.2,
+        "reposts": 0,
+        "impressions": 250,
+        "clicks": 0
+      }
+    }
+  ]
+}

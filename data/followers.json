@@ -29,11 +29,14 @@
     },
     "2026-11-04": {
       "note": "Bufferからは取れない（欄なし）"
+    },
+    "2026-11-05": {
+      "note": "Bufferからは取れない（欄なし）"
     }
   },
   "fields": [],
   "schema": {
-    "types": 394,
+    "types": 399,
     "roots": [
       "account",
       "dailyPostingLimits",
@@ -48,6 +51,7 @@
       "contentItems",
       "tag",
       "tagsV2",
+      "selectableTeamMembers",
       "instagramAudio",
       "searchInstagramAudio",
       "trendingInstagramAudio",
