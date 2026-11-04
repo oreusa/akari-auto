@@ -70,6 +70,30 @@ def where(title, city, pref):
     return None
 
 
+# 11/4 オーナーが選んだ「絵入りしずく」：ピンの頭に、カードと同じ絵（cardmark.js の絵と見分け方をそのまま読む）
+_CM = None
+def _cm():
+    global _CM
+    if _CM is None:
+        try:
+            js = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../site/assets/cardmark.js"), encoding="utf-8").read()
+            a = js.index("var R="); rb = js[a:js.index("];", a) + 2]
+            R = [(re.compile(p, re.I if fl else 0), k) for p, fl, k in re.findall(r"\[/(.*?)/(i?),'(\w+)'\]", rb)]
+            b = js.index("var I={"); ib = js[b:js.index("};", b)]
+            I = dict(re.findall(r"^(\w+):'(.*?)',?$", ib, re.M))
+            _CM = (R, I)
+        except Exception:
+            _CM = ([], {})
+    return _CM
+def pin_icon(title, c):
+    R, I = _cm()
+    k = next((k for r, k in R if r.search(title or "")), "spot")
+    svg = I.get(k) or I.get("spot", "")
+    if not svg:
+        return '<circle cx="0" cy="-22" r="4.6" fill="#fff"/>'
+    return ('<circle cx="0" cy="-22" r="8" fill="#fff"/><g transform="translate(-6.6 -28.6) scale(.55)" fill="none" stroke="' + c +
+            '" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">' + svg + '</g>')
+
 def render(pref, title, city, label):
     if pref not in PC: return ""
     pf = [f for f in K["pref"]["features"] if f["properties"]["p"] == pref]
@@ -125,7 +149,7 @@ def render(pref, title, city, label):
         out.append(f'<circle cx="{lx:.1f}" cy="{ly:.1f}" r="{13 * k:.2f}" fill="{PC[pref]}" opacity=".18"/>'
                    f'<g transform="translate({lx:.1f} {ly:.1f}) scale({k:.3f})"><ellipse cx="0" cy="1" rx="6" ry="2.2" fill="#2B2622" opacity=".22"/>'
                    f'<path d="M0 0C-3-7-12-12-12-22a12 12 0 0 1 24 0C12-12 3-7 0 0Z" fill="{PC[pref]}" stroke="#fff" stroke-width="2.2"/>'
-                   f'<circle cx="0" cy="-22" r="4.6" fill="#fff"/></g>')
+                   + pin_icon(title, PC[pref]) + '</g>')
         # 会場の名前の札（白い角丸・影）。右に入らなければ左へ
         t = label if len(label) <= 14 else label[:13] + "…"
         bw = (12 * len(t) + 22) * sw; bh = 26 * sw

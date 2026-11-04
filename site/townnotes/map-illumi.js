@@ -76,6 +76,7 @@ var css=`
 .tn .mu{fill:transparent;stroke:#FFFFFF;stroke-width:1.1px;stroke-linejoin:round;cursor:pointer;transition:fill .4s,opacity .4s}
 .tn .sh{fill:rgba(120,88,58,.16);transition:opacity .4s}
 .tn .psh{fill:rgba(70,45,25,.22)}
+.tn .pinx .dot,.tn .pinx .psh,.tn .pinx .pn{opacity:0}.tn .drp{pointer-events:none;filter:drop-shadow(0 1px 1.2px rgba(0,0,0,.25))}.tn .dsh{fill:#000;fill-opacity:.2}.tn .dpn{font-family:Jost,sans-serif;font-weight:600;font-size:5.6px;text-anchor:middle;dominant-baseline:central}
 .tn .pn{font-family:Jost,sans-serif;font-weight:600;fill:#fff;text-anchor:middle;dominant-baseline:central;pointer-events:none}
 .tn .chips button.sp{flex:1 1 100%;justify-content:flex-start;font-family:"Shippori Mincho",serif;font-weight:600;font-size:14px;min-height:48px}
 .tn .chips button.sp i{flex:none;font-style:normal;font-family:Jost,sans-serif;font-weight:600;font-size:12px;width:22px;height:22px;line-height:22px;text-align:center;border-radius:50%;background:var(--c);color:#fff}
@@ -372,7 +373,7 @@ function apply(full){if(full===undefined)full=true;svg.setAttribute("viewBox",vb
   for(var it=0;it<80;it++){var mv=false;for(var i=0;i<P2.length;i++)for(var j=i+1;j<P2.length;j++){var dx=P2[j][0]-P2[i][0],dy=P2[j][1]-P2[i][1],d=Math.hypot(dx,dy);if(d<D){mv=true;if(d<.01){dx=Math.cos(i+j);dy=Math.sin(i+j);d=1}var k=(D-d)/2/d;P2[i][0]-=dx*k;P2[i][1]-=dy*k;P2[j][0]+=dx*k;P2[j][1]+=dy*k}}if(!mv)break}
   gs.forEach(function(g,i){var dx=(P2[i][0]-O[i][0])*u,dy=(P2[i][1]-O[i][1])*u;if(Math.abs(dx)+Math.abs(dy)<1e-6)g.removeAttribute("transform");else g.setAttribute("transform","translate("+dx+" "+dy+")")})}
  var mr=(lv===1?1.4:lv===2?2.4:3)*u;$$("circle",G.mini).forEach(function(c){c.setAttribute("r",mr);c.setAttribute("stroke-width",.6*u)});
- $$(".pinx",G.pin).forEach(function(g){var r=+g.dataset.r,d=g.querySelector(".dot");d.setAttribute("r",r*u);var tn=g.querySelector(".pn");if(tn)tn.setAttribute("font-size",10*u);if(!full)g.removeAttribute("transform");var ps=g.querySelector(".psh");if(ps){ps.setAttribute("r",(r+.6)*u);ps.setAttribute("transform","translate(0 "+(1.6*u)+")")}if(full)d.setAttribute("stroke-width",r>4?2:1.2);g.querySelector(".hit").setAttribute("r",(lv===1?0:lv===3?(r<4?0:12):22)*u);var s=g.querySelector(".sel-r");if(s){s.setAttribute("r",(r+7)*u);s.setAttribute("stroke-width",1.5)}});
+ $$(".pinx",G.pin).forEach(function(g){var r=+g.dataset.r,d=g.querySelector(".dot");d.setAttribute("r",r*u);var tn=g.querySelector(".pn");if(tn)tn.setAttribute("font-size",10*u);if(!full)g.removeAttribute("transform");var ps=g.querySelector(".psh");if(ps){ps.setAttribute("r",(r+.6)*u);ps.setAttribute("transform","translate(0 "+(1.6*u)+")")}if(full)d.setAttribute("stroke-width",r>4?2:1.2);var dp=g.querySelector(".drp");if(dp){var k=+dp.dataset.k||.85;dp.setAttribute("transform","translate("+g.__q[0]+" "+g.__q[1]+") scale("+(k*u)+")")}g.querySelector(".hit").setAttribute("r",(lv===1?0:lv===3?(r<4?0:12):22)*u);var s=g.querySelector(".sel-r");if(s){s.setAttribute("r",(r+7)*u);s.setAttribute("stroke-width",1.5)}});
  // 番号ピンに重なる区の名前は消す（番号を見やすく・押しやすく）
  if(full&&lv===3){var DR=$$(".pinx",G.pin).filter(function(g){return g.dataset.n}).map(function(g){return g.querySelector(".dot").getBoundingClientRect()});
   LB.forEach(function(l){if(l.e.classList.contains("hide"))return;var b=l.e.getBoundingClientRect();if(DR.some(function(o){return b.left<o.right&&b.right>o.left&&b.top<o.bottom&&b.bottom>o.top}))l.e.classList.add("hide")})}
@@ -445,6 +446,14 @@ function render(){var lv=level(),pf=state.pref,m=state.muni,pins=list.filter(fun
   if(lv>1)el("circle",{"class":"psh",cx:q[0],cy:q[1]},g);
   if(isS){el("circle",{"class":"sel-r",cx:q[0],cy:q[1],stroke:c},g);if(inM||FS)el("circle",{"class":"glo",cx:q[0],cy:q[1],stroke:c},g)}
   el("circle",{"class":"dot",cx:q[0],cy:q[1],fill:it.soon?"#fff":c,stroke:it.soon?c:"#fff"},g);
+  // 11/4 オーナーが見本から選んだ「絵入りしずく」：しずくの頭に、カードと同じ絵（市の画面では番号）。丸の .dot は位置の目安として見えないまま残す
+  var dk=lv===1?(isS?1.4:.85):lv===2?(isS?2.2:1.8):(inM?(isS?2.4:2):.8),dg=el("g",{"class":"drp"},g);dg.dataset.k=dk;
+  el("ellipse",{cx:0,cy:0,rx:2.6,ry:.9,"class":"dsh"},dg);
+  el("path",{d:"M0 0c-.75-4.2-5-6.6-5-11.4a5 5 0 1 1 10 0c0 4.8-4.25 7.2-5 11.4z",fill:it.soon?"#fff":c,stroke:it.soon?c:"#fff","stroke-width":.9,"stroke-linejoin":"round"},dg);
+  el("circle",{cx:0,cy:-11.4,r:3.9,fill:it.soon?c:"#fff","fill-opacity":it.soon?.14:1},dg);
+  if(inM){var nt=el("text",{x:0,y:-11.3,"class":"dpn",fill:c},dg);nt.textContent=it._n}
+  else if(lv===2&&window.cmIcon){var ig=el("g",{transform:"translate(-3.7 -15.1) scale(.31)",fill:"none",stroke:c,"stroke-width":2,"stroke-linecap":"round","stroke-linejoin":"round"},dg);ig.innerHTML=window.cmIcon(it.t||"")}
+  else el("circle",{cx:0,cy:-11.4,r:1.5,fill:c},dg);
   if(inM){var t=el("text",{"class":"pn",x:q[0],y:q[1]},g);t.textContent=it._n;g.dataset.n=1;if(it.soon)t.setAttribute("fill",c)}
   g.__it=it;g.__q=q;
   var h=el("circle",{"class":"hit",cx:q[0],cy:q[1]},g);h.addEventListener("click",function(ev){ev.stopPropagation();tapPin(it)});

@@ -50,7 +50,7 @@ h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-heigh
 .rd .ax{stroke:#EDEDED;stroke-width:1}
 .rd .rl{font-family:Jost,"Zen Kaku Gothic New";font-size:9px;fill:#8A8A8A;letter-spacing:.06em;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;pointer-events:none}
 .rd .nl{font-family:Jost;font-size:9px;fill:#B0B0B0;letter-spacing:.2em}
-.rd .pt{cursor:pointer;transition:r .2s}
+.rd .pt{cursor:pointer;transition:r .2s}.rd .drp{pointer-events:none;filter:drop-shadow(0 1px 1.2px rgba(0,0,0,.25))}
 .rd .pt.far{opacity:.35}
 .rd .pt.sel{stroke:#2B2622;stroke-width:2}
 .rd .me{fill:#2B2622}.rd .meh{fill:none;stroke:#2B2622;stroke-width:1;opacity:.35;transform-origin:160px 160px;animation:mh 2.4s ease-out infinite}
@@ -225,6 +225,8 @@ function load(){Promise.all([
 /* 府県の色の見本 */
 (function(){
   var lg=document.getElementById("lg");Object.keys(PC).forEach(function(p){var s=document.createElement("span");s.style.setProperty("--pc",PC[p]);s.textContent=p;lg.appendChild(s);});})();
+/* 11/4 ピンの絵（cardmark.js）があとから読みこまれたら、もう一度描く */
+document.addEventListener("cm-ready",function(){try{draw()}catch(e){}});
 function draw(){if(!O||!ITEMS.length)return;
   ITEMS.forEach(function(x){x.k=km(O.la,O.lo,x.la,x.lo);x.min=mins(x.k);x.b=brg(O.la,O.lo,x.la,x.lo);});
   var L=ITEMS.slice().sort(function(a,b){return (RAIN?(b.inside-a.inside):0)||a.min-b.min||a.k-b.k}),show=L.filter(function(x){return x.min<=MAXM});
@@ -242,7 +244,10 @@ function draw(){if(!O||!ITEMS.length)return;
     if(RM<60)SH.lab.features.forEach(function(f){var c=f.geometry.coordinates,x=px(c[0]),y=py(c[1]);if(x>12&&x<308&&y>12&&y<308)mh+='<text class="mn" x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'">'+esc(f.properties.n.replace(/^.+市(?=.+区$)/,""))+'</text>';});}
   document.getElementById("mpL").innerHTML=mh;
   var ph="",lb="";L.slice().reverse().forEach(function(x){if(x.min>RM)return;var X=px(x.lo),Y=py(x.la);
-    ph+='<circle class="pt'+(SEL===x.t?" sel":"")+'" data-t="'+esc(x.t)+'" cx="'+X.toFixed(1)+'" cy="'+Y.toFixed(1)+'" r="7" fill="'+PC[x.p]+'" stroke="#fff" stroke-width="2"/>';});
+    /* 11/4 オーナーが選んだ「絵入りしずく」（月と同じ）：しずくの頭にカードと同じ絵。押すのは見えない丸（.pt）のまま */
+    var c=PC[x.p],sl=SEL===x.t,k=sl?1.35:1.05,ic=window.cmIcon?'<g transform="translate(-3.7 -15.1) scale(.31)" fill="none" stroke="'+c+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+window.cmIcon(x.t)+'</g>':'<circle cx="0" cy="-11.4" r="1.5" fill="'+c+'"/>';
+    ph+='<g class="drp" transform="translate('+X.toFixed(1)+' '+Y.toFixed(1)+') scale('+(k*1.6)+')"><ellipse cx="0" cy="0" rx="2.6" ry=".9" fill="#000" fill-opacity=".2"/><path d="M0 0c-.75-4.2-5-6.6-5-11.4a5 5 0 1 1 10 0c0 4.8-4.25 7.2-5 11.4z" fill="'+c+'" stroke="'+(sl?"#2B2622":"#fff")+'" stroke-width=".9" stroke-linejoin="round"/><circle cx="0" cy="-11.4" r="3.9" fill="#fff"/>'+ic+'</g>';
+    ph+='<circle class="pt'+(sl?" sel":"")+'" data-t="'+esc(x.t)+'" cx="'+X.toFixed(1)+'" cy="'+(Y-11).toFixed(1)+'" r="11" fill="transparent"/>';});
   var rr=Math.max(3,(RM-12)/1.35)*SC;lb='<circle class="rng" cx="160" cy="160" r="'+rr.toFixed(1)+'"/><text class="rgl" x="160" y="'+(160-rr-4).toFixed(1)+'" text-anchor="middle">'+(RM<60?RM+"分":Math.floor(RM/60)+"時間"+(RM%60?RM%60+"分":""))+'くらい</text>';
   document.getElementById("rdPts").innerHTML=ph;document.getElementById("rdLb").innerHTML=lb;
   var nm=O.g?"いまここ":O.n;document.getElementById("mpMe").innerHTML='<circle cx="160" cy="160" r="14" fill="#2B2622" opacity=".12"/><circle cx="160" cy="160" r="6" fill="#2B2622" stroke="#fff" stroke-width="2"/><rect x="'+(160-nm.length*6-8)+'" y="168" width="'+(nm.length*12+16)+'" height="20" rx="10" fill="#2B2622"/><text class="mel" x="160" y="182">'+esc(nm)+'</text>';

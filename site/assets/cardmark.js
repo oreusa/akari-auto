@@ -10,7 +10,7 @@ koyo:'<path d="M12 3l1.6 3.8 3-1.6-.6 3.6 3.6-.4-2 3 2.6 1.6-4 1 .6 2.4-3-1.2-1.
 light:'<path d="M10 3C10.6 7.5 11.5 8.4 16 9C11.5 9.6 10.6 10.5 10 15C9.4 10.5 8.5 9.6 4 9C8.5 8.4 9.4 7.5 10 3Z"/><path d="M17.5 13.2c.3 2 .7 2.4 2.5 2.7c-1.8.3-2.2.7-2.5 2.7c-.3-2-.7-2.4-2.5-2.7c1.8-.3 2.2-.7 2.5-2.7Z"/><circle cx="6.5" cy="18.5" r="1"/>',
 art:'<rect x="3.5" y="4.5" width="17" height="14" rx="1"/><rect x="6.5" y="7.5" width="11" height="8"/><path d="M6.5 15.5l3.3-3.3 2.4 2.2 2-1.8 3.3 2.9"/><circle cx="14.6" cy="9.8" r=".9"/>',
 food:'<path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10"/><path d="M17 21V3c-2 1.5-3 4-3 7h3"/>',
-flower:'<circle cx="12" cy="10" r="2"/><path d="M12 8c0-3 3-4 3-1 3 0 2 3 0 3 2 2-1 4-3 2-2 2-5 0-3-2-2 0-3-3 0-3 0-3 3-2 3 1z"/><path d="M12 13v8M12 18c-2-2-4-2-5-1"/>',
+flower:'<path d="M12.00 8.00Q13.30 5.70 12.00 3.40Q10.70 5.70 12.00 8.00Z"/><path d="M12.00 8.00Q14.40 6.90 14.70 4.28Q12.30 5.38 12.00 8.00Z"/><path d="M12.00 8.00Q14.59 8.53 16.37 6.58Q13.79 6.05 12.00 8.00Z"/><path d="M12.00 8.00Q13.79 9.95 16.37 9.42Q14.59 7.47 12.00 8.00Z"/><path d="M12.00 8.00Q12.30 10.62 14.70 11.72Q14.40 9.10 12.00 8.00Z"/><path d="M12.00 8.00Q10.70 10.30 12.00 12.60Q13.30 10.30 12.00 8.00Z"/><path d="M12.00 8.00Q9.60 9.10 9.30 11.72Q11.70 10.62 12.00 8.00Z"/><path d="M12.00 8.00Q9.41 7.47 7.63 9.42Q10.21 9.95 12.00 8.00Z"/><path d="M12.00 8.00Q10.21 6.05 7.63 6.58Q9.41 8.53 12.00 8.00Z"/><path d="M12.00 8.00Q11.70 5.38 9.30 4.28Q9.60 6.90 12.00 8.00Z"/><circle cx="12" cy="8" r="1.6"/><path d="M12 9.6V21"/><path d="M12 17c-1.6-2.2-4-2.4-5.2-1.4 1.3 1.7 3.6 2.1 5.2 1.4zM12 15.5c1.6-2.2 4-2.4 5.2-1.4-1.3 1.7-3.6 2.1-5.2 1.4z"/>',
 hallo:'<path d="M12 6c-5 0-8 3-8 7s3 7 8 7 8-3 8-7-3-7-8-7z"/><path d="M12 6V3.5"/><path d="M9 12l1.5 1.5M15 12l-1.5 1.5M9 16.5c2 1 4 1 6 0"/>',
 xmas:'<path d="M12 5.5l3 4h-1.6l3.6 4.5h-2l3.5 4.5h-13L9 14H7l3.6-4.5H9z"/><path d="M12 18.5V21"/><path d="M12 1.8l.7 1.5 1.6.2-1.2 1.1.3 1.6-1.4-.8-1.4.8.3-1.6-1.2-1.1 1.6-.2z"/>',
 quest:'<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/><path d="M8.6 8.9a2 2 0 1 1 2.8 1.8c-.7.3-.9.8-.9 1.4"/><circle cx="10.5" cy="14" r=".5"/>',
@@ -119,7 +119,9 @@ if(document.readyState!=='loading')go();else document.addEventListener('DOMConte
 
 function kindT(t){t=t||'';for(var i=0;i<R.length;i++)if(R[i][0].test(t))return R[i][1];if(/illumination/.test(location.pathname))return 'light';if(/koyo/.test(location.pathname))return 'koyo';return 'spot';}
 /* 11/4 オーナー「地図下選択のロゴも変わるよね？」→ 地図の下のカードの絵も、カードと同じ絵と形にする（map.js から呼ぶ） */
+window.cmIcon=function(t){return I[kindT(t)]};
 window.cmTile=function(t,pc){var k=kindT(t);return '<div class="cmt" style="--pc:'+(pc||'#8a8f98')+'"><svg viewBox="0 0 24 24">'+I[k]+'</svg></div>';};
+try{document.dispatchEvent(new CustomEvent('cm-ready'))}catch(e){}
 window.addEventListener('load',go);
 try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
