@@ -95,6 +95,8 @@ jobs:
           python3 scripts/lifenote.py
           # 11/4 オーナー「検索なんでも引っかかって欲しい」→ おでかけ1件ずつ（/o/）と都県ごと（/odekake-tokyo など）のページ
           python3 scripts/spot_pages.py || true
+          # 11/4 1件ページを LINE・X に貼った時の画像（地図つき。月と同じ）
+          (pip install -q cairosvg pillow && python3 scripts/spot_og.py) || echo "og images skipped"
           # 11/2 オーナー「アプリできるようにできてるよな？」「town、LIFEどっちも必ず」→ ホーム画面に置ける（PWA）
           python3 scripts/pwa.py || true
           # 11/2 リクエスト・感想（/koe）：オーナーがOKした声だけを載せる
