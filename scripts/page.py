@@ -357,7 +357,8 @@ def sale_box():
             when = f"{st.month}/{st.day}（{wk[st.weekday()]}）{st:%H:%M}から" + (f"・あと{left}日" if left else "・今日から")
             if x.get("note"):
                 when += "（見込み）"
-            sub = "買う前にエントリーが必要です（エントリーしたあとの買い物だけポイントが増えます）"
+            # 11/4 オーナー「普通マラソン前に人って調べない？」：始まる前は、下調べ（カートに入れておく）を促す
+            sub = "買う前にエントリーが必要です。始まる前に、買う物をカートに入れておくと、すぐに買えます"
         else:
             e2 = en + timedelta(minutes=1)
             when = f"開催中・{e2.month}/{e2.day}（{wk[e2.weekday()]}）{e2:%H:%M}まで"
