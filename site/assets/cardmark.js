@@ -29,6 +29,7 @@ var R=[[/ENLIGHTENMENT|Superblue|イマーシブ|ミュージアム|美術館|�
 [/おもちゃ|アスレチック|サーカス|遊園|ランド|ドライブ|ライド|サイクル|ペダル|体験|ツアー|ウォーキング|キャラクター|コナン|ムーミン|USJ|ユニバーサル|パーク|PARK|運動会|ワークショップ|こびと|ウルトラ|ROBOT|SLパレオ|鉄道|プラネタリウム|オビツ/i,'play'],
 [/祭|まつり|フェス|Festa|Festival|FES|カーニバル|パレード/i,'fes'],
 [/マーケット|セール|フリマ|蚤の市|昼市|朝市|マルシェ/,'shop']];
+var PCM={"大阪":"#B97A62","京都":"#8A7495","兵庫":"#4F6681","奈良":"#6F8C68","滋賀":"#5F8F98","和歌山":"#C4925A","東京":"#4F86C6","群馬":"#9C7BB8","栃木":"#D2697E","千葉":"#D9775A","埼玉":"#E09A3E","神奈川":"#3FA3B5","茨城":"#5FA06A"};
 var MO=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'],WE=['SUN','MON','TUE','WED','THU','FRI','SAT'];
 var T0=new Date(Date.now()+9*36e5).toISOString().slice(0,10),TY=+T0.slice(0,4),TM=+T0.slice(5,7);
 function days(a,b){return Math.round((new Date(b+'T00:00:00Z')-new Date(a+'T00:00:00Z'))/864e5)}
@@ -69,8 +70,12 @@ var AD=[
 function one(a,ad){
   if(a.dataset.cm||a.dataset.cat||a.classList.contains('kc')||!a.querySelector(ad.t))return;a.dataset.cm=1;
   var bx=ad.box?a.closest(ad.box):a;
+  if(!bx.hasAttribute('data-s')&&!bx.hasAttribute('data-e')){var up=a.parentElement&&a.parentElement.closest('[data-s],[data-e]');if(up&&up.querySelectorAll(ad.q).length===1)bx=up;}
   var s=bx.dataset.s||'',e=bx.dataset.e||'',o=bx.dataset.open||'';
   if(!bx.hasAttribute('data-s')&&!bx.hasAttribute('data-e')){var dt=a.querySelector(ad.d);var r=fromText(dt&&dt.textContent);s=r.s||'';e=r.e||'';}
+  if(!getComputedStyle(a).getPropertyValue('--pc').trim()){var up2=a.closest('[data-pref],[data-p]')||{dataset:{}};var pr=a.dataset.pref||bx.dataset.p||up2.dataset.pref||up2.dataset.p||'';
+    if(!PCM[pr]){var tx=a.textContent;for(var q in PCM)if(tx.indexOf(q)>=0){pr=q;break}}
+    if(PCM[pr])a.style.setProperty('--pc',PCM[pr]);}
   if(!getComputedStyle(a).getPropertyValue('--pc').trim()){var bc=getComputedStyle(a).borderLeftColor;if(bc&&!/rgba\(0, 0, 0, 0\)/.test(bc))a.style.setProperty('--pc',bc);}
   var d,w,n=-1;
   if(o){d=o;w='オープン'}else if(s&&s>T0){d=s;w='から'}else if(e){d=e;w='まで'}else if(s){d=s;w='から'}
