@@ -110,6 +110,10 @@
   "#upan .sw[aria-checked=true]:after{transform:translateX(20px)}"+
   "#upan .us{display:flex;gap:22px;justify-content:center;padding:14px 20px calc(18px + env(safe-area-inset-bottom));border-top:1px solid #EDEDED}"+
   "#upan .us a{font-family:Jost,sans-serif;font-size:13px;letter-spacing:.06em;color:#2B2622;text-decoration:none;border-bottom:1px solid #2B2622;padding:6px 0 2px}"+
+  "#upan .ush{display:flex;align-items:center;justify-content:center;gap:16px;padding:12px 20px 0;border-top:1px solid #EDEDED;font-size:12px;color:#8A8A8A}"+
+  "#upan .ush button{font:inherit;font-size:12px;color:#5A5450;background:none;border:0;padding:6px 0;cursor:pointer;-webkit-tap-highlight-color:transparent}"+
+  "#upan .ush+.us{border-top:0}"+
+  "html.night #upan .ush{border-top-color:#dbe1ff}"+
   "html.umenu-open,html.umenu-open body{overflow:hidden}"+
   "@media (prefers-reduced-motion:reduce){#upan,#umask{transition:none}}";
   function ck(k){try{navigator.sendBeacon("/c?f=menu&s=menu&k="+encodeURIComponent(k.slice(0,40)));}catch(e){}}
@@ -165,13 +169,20 @@
     });
     if(openG)h+='</div>';
     /* 10/31 オーナー「夜の見た目？なにこれ」→ 切り替えは右上の太陽と月のマークだけ（月と同じ） */
+    /* 11/4 オーナー「hp共有を入れよう アプリにしたら誰かに送れない」「cだけで良いかも。もう少し主張しなくて良い」→ メニューの下に小さく1行 */
     h+='</nav>'+
+      '<div class="ush"><span>このページを送る</span>'+(navigator.share?'<button type="button" data-s="share">送る</button>':'')+'<button type="button" data-s="line">LINE</button><button type="button" data-s="copy">コピー</button></div>'+
       '<div class="us"><a href="https://www.instagram.com/ai_usagichan1/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@ai_usagichan1" target="_blank" rel="noopener">Threads</a><a href="https://x.com/ai_usagichan" target="_blank" rel="noopener">X</a></div>';
     pan.innerHTML=h;
     document.body.appendChild(btn);document.body.appendChild(mask);document.body.appendChild(pan);
     var last=null;
     function open(){last=document.activeElement;var nv=pan.querySelector("nav");if(nv)nv.scrollTop=0;document.documentElement.classList.add("umenu-open");mask.classList.add("on");pan.classList.add("on");pan.setAttribute("aria-hidden","false");btn.setAttribute("aria-expanded","true");setTimeout(function(){pan.querySelector(".ux").focus();},50);ck("メニュー｜開く");}
     function close(){document.documentElement.classList.remove("umenu-open");mask.classList.remove("on");pan.classList.remove("on");pan.setAttribute("aria-hidden","true");btn.setAttribute("aria-expanded","false");if(last&&last.focus)last.focus();}
+    pan.querySelector(".ush").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var k=b.getAttribute("data-s"),u=location.origin+location.pathname,t=document.title;ck(MK+"送る（"+b.textContent+"）");
+      if(k==="share"){navigator.share({title:t,url:u}).catch(function(){});return;}
+      if(k==="line"){window.open("https://social-plugins.line.me/lineit/share?url="+encodeURIComponent(u),"_blank","noopener");return;}
+      var done=function(){b.textContent="コピーしました";setTimeout(function(){b.textContent="コピー";},1800);};
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(done,function(){prompt("このURLをコピーしてください",u);});else prompt("このURLをコピーしてください",u);});
     btn.addEventListener("click",open);mask.addEventListener("click",close);pan.querySelector(".ux").addEventListener("click",close);
     document.addEventListener("keydown",function(e){if(e.key==="Escape"&&pan.classList.contains("on"))close();});
     /* 右へなでて閉じる */
