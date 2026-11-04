@@ -38,7 +38,7 @@ function fromText(x){ /* 「11/21（土）まで」「10/1（木）〜1/31（日
   var p=m.map(function(v){var q=v.split(/[\/.]|月/);return iso(+q[0],+q[1])});
   if(p.length>=2)return{s:p[0],e:p[1]};if(p.length==1){if(/まで/.test(x))return{e:p[0]};if(/〜\s*$|から/.test(x))return{s:p[0]};return{s:p[0],e:p[0]};}return{};}
 var css=
-'html body .cm.cm.cm{position:relative;padding-left:98px!important;min-height:150px;box-sizing:border-box}'+
+'html body .cm.cm.cm.cm.cm{position:relative;padding-left:98px!important;min-height:150px;box-sizing:border-box}'+
 'html body a.card.cm.cmh .v2d,html body a.card.cm.cmh>.d,html body a.card.cm.cmh .bd>.d,html body .cm.cmh .when,html body .cm.cmh .v2d,html body a.cd.cm.cmh>.dt,html body a.fc.cm.cmh>span{display:none!important}'+'html body .paper .it.cmp>a.mp,html body .cmp.cmp>a.mp{left:98px!important}html body .cmp.cmp>.rt{padding-left:98px}html body .paper .it.cmp>.yk,html body .cmp.cmp>.yk{left:160px!important}'+
 '.cmb{position:absolute;left:15px;top:15px;width:68px;text-align:center;line-height:1;pointer-events:none}'+
 '.cmb .ib{position:relative;width:66px;height:66px;margin:0 auto;border-radius:22px;background:linear-gradient(150deg,color-mix(in srgb,var(--pc,#8a8f98) 7%,#fff) 0%,color-mix(in srgb,var(--pc,#8a8f98) 24%,#fff) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 16px -10px color-mix(in srgb,var(--pc,#8a8f98) 70%,transparent);display:grid;place-items:center;color:var(--pc,#8a8f98);overflow:hidden}'+
