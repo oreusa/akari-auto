@@ -2049,6 +2049,53 @@
       "note": "相模原市中央区｜ラーメンの投票やランタンの夜。土10:00〜21:00・日〜20:00",
       "url": "https://sagamihara-festa.com/",
       "checked": "2026-11-03"
+    },
+    {
+      "title": "ZEN NIGHT KAMAKURA 2026",
+      "pref": "神奈川",
+      "place": "建長寺",
+      "when": "10/29〜12/6",
+      "start": "2026-10-29",
+      "ends": "2026-12-06T20:00",
+      "free": false,
+      "note": "鎌倉市｜夜の建長寺の光の催し。17:00〜20:00、前売大人2,400円〜",
+      "url": "https://zen.vie.style/kenchoji2026/",
+      "checked": "2026-11-04"
+    },
+    {
+      "title": "新宿ミナミルミ",
+      "pref": "東京",
+      "place": "新宿駅 南口",
+      "when": "11/11〜2/14",
+      "start": "2026-11-11",
+      "ends": "2027-02-14T23:59",
+      "free": true,
+      "note": "新宿区｜南口の6つのビルが光る。17:00〜24:00",
+      "url": "https://www.gotokyo.org/jp/spot/ev134/index.html",
+      "checked": "2026-11-04"
+    },
+    {
+      "title": "Ezy Roller（軽井沢おもちゃ王国）",
+      "pref": "群馬",
+      "place": "軽井沢おもちゃ王国",
+      "when": "9/5〜11/23",
+      "start": "2026-09-05",
+      "ends": "2026-11-23T17:00",
+      "free": false,
+      "note": "嬬恋村｜2歳から乗れる足こぎカート。10分500円（入園料は別）",
+      "url": "https://www.omochaoukoku.com/karuizawa/event/ezy_roller/",
+      "checked": "2026-11-04"
+    },
+    {
+      "title": "Muchu Planet ユニクロパーク 横浜ベイサイド",
+      "pref": "神奈川",
+      "place": "UNIQLO PARK 横浜ベイサイド",
+      "kind": "shop",
+      "open": "2026-10-31",
+      "free": false,
+      "note": "横浜市金沢区｜本と遊べる屋内キッズパーク。平日30分700円〜",
+      "url": "https://litpla.com/space/muchu-yokohamabayside/",
+      "checked": "2026-11-04"
     }
   ]
 }
