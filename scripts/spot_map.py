@@ -161,3 +161,24 @@ def render(pref, title, city, label):
                    f'<text x="{bx + bw / 2:.1f}" y="{by + bh / 2:.1f}" text-anchor="middle" dominant-baseline="central" style="font-family:\'Zen Kaku Gothic New\',sans-serif;font-weight:700;font-size:{12 * sw:.2f}px;letter-spacing:.04em" fill="#3A2F28">{html.escape(t)}</text>')
     out.append("</svg>")
     return "".join(out)
+
+
+def _mx(a, b, w):  # a を w、b を 1-w で混ぜる
+    x = [int(a[i:i + 2], 16) for i in (1, 3, 5)]; y = [int(b[i:i + 2], 16) for i in (1, 3, 5)]
+    return "#" + "".join("%02x" % round(x[k] * w + y[k] * (1 - w)) for k in range(3))
+
+
+def night_css():
+    """11/4 夜は地図だけ反転を打ち消し、夜の地図（月あかり）と同じ紺の色で描く"""
+    c = [
+         'html.night .tmap svg{filter:invert(1) hue-rotate(180deg)}',
+         'html.night .tmap svg>rect:first-of-type{fill:#141A30}',
+         'html.night .tmap path[fill="#F4F2EF"]{fill:#1F2744}',
+         'html.night .tmap path[opacity=".45"]{fill:#2A3358}',
+         'html.night .tmap text[fill="#2B2622"]{fill:#fff}',
+         'html.night .tmap rect[rx]{fill:#2A3358}html.night .tmap text[fill="#3A2F28"]{fill:#fff}']
+    for p, pc in PC.items():
+        if p in FILL:
+            c.append('html.night .tmap path[fill="%s"]:not([opacity]){fill:%s}' % (FILL[p], _mx(pc, "#2B3459", .25)))
+        c.append('html.night .tmap path[fill="%s"]{fill:%s}' % (mix(pc, .45), _mx(pc, "#4A558A", .55)))
+    return "".join(c)
