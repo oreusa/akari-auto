@@ -90,8 +90,8 @@ def pin_icon(title, c):
     k = next((k for r, k in R if r.search(title or "")), "spot")
     svg = I.get(k) or I.get("spot", "")
     if not svg:
-        return '<circle cx="0" cy="-22" r="4.6" fill="#fff"/>'
-    return ('<circle cx="0" cy="-22" r="8" fill="#fff"/><g transform="translate(-6.6 -28.6) scale(.55)" fill="none" stroke="' + c +
+        return '<circle class="nd" cx="0" cy="-22" r="3.4" fill="' + c + '"/>'
+    return ('<g class="ni" transform="translate(-6.6 -28.6) scale(.55)" fill="none" stroke="' + c +
             '" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">' + svg + '</g>')
 
 def render(pref, title, city, label):
@@ -147,8 +147,9 @@ def render(pref, title, city, label):
     if loc:
         k = sw
         out.append(f'<circle cx="{lx:.1f}" cy="{ly:.1f}" r="{13 * k:.2f}" fill="{PC[pref]}" opacity=".18"/>'
-                   f'<g transform="translate({lx:.1f} {ly:.1f}) scale({k:.3f})"><ellipse cx="0" cy="1" rx="6" ry="2.2" fill="#2B2622" opacity=".22"/>'
-                   f'<path d="M0 0C-3-7-12-12-12-22a12 12 0 0 1 24 0C12-12 3-7 0 0Z" fill="{PC[pref]}" stroke="#fff" stroke-width="2.2"/>'
+                   f'<g class="neo" style="color:{PC[pref]};--nl:{_mx(PC[pref], "#ffffff", .5)}" transform="translate({lx:.1f} {ly:.1f}) scale({k:.3f})"><ellipse class="nsh" cx="0" cy="1" rx="6" ry="2.2" fill="#2B2622" opacity=".22"/>'
+                   # 11/4 オーナーが20案から選んだ「ネオン」：線だけのしずく。昼は白地に色の線、夜は明るい線が光る
+                   f'<path class="nb" d="M0 0C-3-7-12-12-12-22a12 12 0 0 1 24 0C12-12 3-7 0 0Z" fill="#fff" stroke="{PC[pref]}" stroke-width="2.4" stroke-linejoin="round"/>'
                    + pin_icon(title, PC[pref]) + '</g>')
         # 会場の名前の札（白い角丸・影）。右に入らなければ左へ
         t = label if len(label) <= 14 else label[:13] + "…"
@@ -176,7 +177,8 @@ def night_css():
          'html.night .tmap path[fill="#F4F2EF"]{fill:#1F2744}',
          'html.night .tmap path[opacity=".45"]{fill:#2A3358}',
          'html.night .tmap text[fill="#2B2622"]{fill:#fff}',
-         'html.night .tmap rect[rx]{fill:#2A3358}html.night .tmap text[fill="#3A2F28"]{fill:#fff}']
+         'html.night .tmap rect[rx]{fill:#2A3358}html.night .tmap text[fill="#3A2F28"]{fill:#fff}',
+         'html.night .tmap .neo{filter:drop-shadow(0 0 1.5px currentColor) drop-shadow(0 0 4px currentColor)}html.night .tmap .neo .nb{fill:#1A2140;stroke:var(--nl)}html.night .tmap .neo .ni{stroke:var(--nl)}html.night .tmap .neo .nd{fill:var(--nl)}html.night .tmap .neo .nsh{display:none}']
     for p, pc in PC.items():
         if p in FILL:
             c.append('html.night .tmap path[fill="%s"]:not([opacity]){fill:%s}' % (FILL[p], _mx(pc, "#2B3459", .25)))

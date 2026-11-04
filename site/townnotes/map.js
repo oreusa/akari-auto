@@ -76,7 +76,7 @@ var css=`
 .tn .mu{fill:transparent;stroke:#FFFFFF;stroke-width:1.1px;stroke-linejoin:round;cursor:pointer;transition:fill .4s,opacity .4s}
 .tn .sh{fill:rgba(120,88,58,.16);transition:opacity .4s}
 .tn .psh{fill:rgba(70,45,25,.22)}
-.tn .pinx .dot,.tn .pinx .psh,.tn .pinx .pn{opacity:0}.tn .drp{pointer-events:none;filter:drop-shadow(0 1px 1.2px rgba(0,0,0,.25))}.tn .dsh{fill:#000;fill-opacity:.2}.tn .dpn{font-family:Jost,sans-serif;font-weight:600;font-size:5.6px;text-anchor:middle;dominant-baseline:central}
+.tn .pinx .dot,.tn .pinx .psh,.tn .pinx .pn{opacity:0}.tn .pinx.pt .dot{opacity:1;stroke-width:.35px;stroke-opacity:.9}.tn .drp{pointer-events:none;filter:drop-shadow(0 1px 1.2px rgba(0,0,0,.25))}.tn .dsh{fill:#000;fill-opacity:.2}.tn .drp.neo{filter:drop-shadow(0 1px 1px rgba(0,0,0,.18))}html.night .tn .drp.neo{filter:drop-shadow(0 0 1.2px currentColor) drop-shadow(0 0 3px currentColor)}html.night .tn .drp.neo .nb{fill:rgba(20,26,48,.55);stroke:var(--nl)}html.night .tn .drp.neo g.ni{stroke:var(--nl)}html.night .tn .drp.neo text.ni,html.night .tn .drp.neo circle.ni{fill:var(--nl)}html.night .tn .drp.neo .dsh{display:none}.tn .dpn{font-family:Jost,sans-serif;font-weight:600;font-size:5.6px;text-anchor:middle;dominant-baseline:central}
 .tn .pn{font-family:Jost,sans-serif;font-weight:600;fill:#fff;text-anchor:middle;dominant-baseline:central;pointer-events:none}
 .tn .chips button.sp{flex:1 1 100%;justify-content:flex-start;font-family:"Shippori Mincho",serif;font-weight:600;font-size:14px;min-height:48px}
 .tn .chips button.sp i{flex:none;font-style:normal;font-family:Jost,sans-serif;font-weight:600;font-size:12px;width:22px;height:22px;line-height:22px;text-align:center;border-radius:50%;background:var(--c);color:#fff}
@@ -461,12 +461,15 @@ function render(){var lv=level(),pf=state.pref,m=state.muni,pins=list.filter(fun
   el("circle",{"class":"dot",cx:q[0],cy:q[1],fill:it.soon?"#fff":c,stroke:it.soon?c:"#fff"},g);
   // 11/4 オーナーが見本から選んだ「絵入りしずく」：しずくの頭に、カードと同じ絵（市の画面では番号）。丸の .dot は位置の目安として見えないまま残す
   var dk=lv===1?(isS?1.4:.85):lv===2?(isS?2.2:1.8):(inM?(isS?2.4:2):.8),dg=el("g",{"class":"drp"},g);dg.dataset.k=dk;
-  el("ellipse",{cx:0,cy:0,rx:2.6,ry:.9,"class":"dsh"},dg);
-  el("path",{d:"M0 0c-.75-4.2-5-6.6-5-11.4a5 5 0 1 1 10 0c0 4.8-4.25 7.2-5 11.4z",fill:it.soon?"#fff":c,stroke:it.soon?c:"#fff","stroke-width":.9,"stroke-linejoin":"round"},dg);
-  el("circle",{cx:0,cy:-11.4,r:3.9,fill:it.soon?c:"#fff","fill-opacity":it.soon?.14:1},dg);
-  if(inM){var nt=el("text",{x:0,y:-11.3,"class":"dpn",fill:c},dg);nt.textContent=it._n}
-  else if(lv===2&&window.cmIcon){var ig=el("g",{transform:"translate(-3.7 -15.1) scale(.31)",fill:"none",stroke:c,"stroke-width":2,"stroke-linecap":"round","stroke-linejoin":"round"},dg);ig.innerHTML=window.cmIcon(it.t||"")}
-  else el("circle",{cx:0,cy:-11.4,r:1.5,fill:c},dg);
+  // 11/4 オーナーが20案から選んだ「ネオン」：線だけのしずく。昼は白地に色の線、夜は明るい線がふわっと光る
+  dg.setAttribute("class","drp neo");dg.style.color=c;dg.style.setProperty("--nl",MX(c,"#FFFFFF",.5));
+  el("ellipse",{cx:0,cy:0,rx:2.4,ry:.8,"class":"dsh"},dg);
+  el("path",{"class":"nb",d:"M0 0c-.75-4.2-5-6.6-5-11.4a5 5 0 1 1 10 0c0 4.8-4.25 7.2-5 11.4z",fill:"#fff",stroke:c,"stroke-width":.95,"stroke-linejoin":"round","stroke-dasharray":it.soon?"1.6 1.1":null},dg);
+  if(inM){var nt=el("text",{x:0,y:-11.3,"class":"dpn ni",fill:c},dg);nt.textContent=it._n}
+  else if(lv===2&&window.cmIcon){var ig=el("g",{"class":"ni",transform:"translate(-3.7 -15.1) scale(.31)",fill:"none",stroke:c,"stroke-width":2.2,"stroke-linecap":"round","stroke-linejoin":"round"},dg);ig.innerHTML=window.cmIcon(it.t||"")}
+  else el("circle",{"class":"ni",cx:0,cy:-11.4,r:1.6,fill:c},dg);
+  // 11/4 オーナー案：遠くから（関西・関東全体）見たときは、選んだ物以外は小さな点にする（ピンが重なって見にくいため）
+  if(lv===1&&!isS){dg.remove();g.classList.add("pt")}
   if(inM){var t=el("text",{"class":"pn",x:q[0],y:q[1]},g);t.textContent=it._n;g.dataset.n=1;if(it.soon)t.setAttribute("fill",c)}
   g.__it=it;g.__q=q;
   var h=el("circle",{"class":"hit",cx:q[0],cy:q[1]},g);h.addEventListener("click",function(ev){ev.stopPropagation();tapPin(it)});
