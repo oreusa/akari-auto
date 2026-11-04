@@ -226,15 +226,23 @@ var GOLD=NI("#EBD7A6"),SILV=NI("#EEF1F7"),DIM=NI("#8E98AE"),NAVY=NI("#141A28"),L
 // 11/3 オーナー「周りの枠の色めちゃくちゃ。オシャレでもない」→ 夜の府県の線は府県の色をやめ、全部同じ金の細い線（光らせない）
 // 11/3 オーナー「表紙と同じにしたら？表紙めっちゃお洒落」→ 入口（表紙）の地図と同じ：紺の陸に府県の色の細い線をうっすら光らせる、ざらざらの模様なし
 var TOP={"大阪":"#F2A788","京都":"#C3A6E0","兵庫":"#8FB6EA","奈良":"#9ED19A","滋賀":"#86D3DF","和歌山":"#F1C27E","東京":"#8FB6EA","神奈川":"#86D3DF","埼玉":"#F1C27E","千葉":"#F2A788","茨城":"#9ED19A","栃木":"#C3A6E0","群馬":"#E8A6B8"};
-css+='html.night .tn .fr:after{display:none}html.night .tn .fr{background:#fff!important}';
-css+=PREFS.map(function(p){var c=NI(TOP[p]||"#8FB6EA");return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:#D0DFFA;fill-opacity:1;stroke:'+c+';stroke-width:2.4px;stroke-opacity:.6;vector-effect:non-scaling-stroke;filter:none;clip-path:url(#tnc'+PREFS.indexOf(p)+')}'}).join("")+
- '.tn .gl{display:none;pointer-events:none}html.night .tn .gl{display:inline}html.night .tn .gl.off{display:none}'+PREFS.map(function(p,i){return 'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:url(#tng'+i+')!important}'}).join("")+
- 'html.night .tn .pf.off{fill:'+LAND+';stroke:'+EDGE+';stroke-width:.8px}html.night .tn .sh{opacity:0!important}'+
- 'html.night .tn .mu{fill-opacity:0!important;stroke:'+EDGE+'!important;stroke-width:.6px}'+
- 'html.night .tn .lb.p{color:'+SILV+'!important;text-shadow:0 0 4px '+NAVY+',0 0 10px '+NAVY+'!important;letter-spacing:.14em}html.night .tn .lb.p small{color:'+GOLD+';opacity:.85}'+
- 'html.night .tn .lb.w{color:'+DIM+';text-shadow:0 0 3px '+NAVY+'!important}html.night .tn .lb.w.h{color:'+SILV+'}'+
- 'html.night .tn .ic .icb{filter:drop-shadow(0 0 2px '+NAVY+')!important;opacity:.95}html.night .tn .ic .icb,html.night .tn .ic .icb *{stroke:'+GOLD+'!important}html.night .tn .ic .icb [fill]:not([fill=none]){fill:'+GOLD+'!important;fill-opacity:.18}'+
- 'html.night .tn .g-pin .dot{fill:'+GOLD+';stroke:'+NAVY+';filter:drop-shadow(0 0 2px '+GOLD+')}'+
+/* 11/4 オーナーが見本から選んだ形：昼は「D ステッカー」、夜は「C 月あかり」＋ピンは昼と同じ府県の色の丸（「Aのピンが可愛い」）。
+   夜は地図の枠ごと反転を打ち消し、ここでは見せたい色をそのまま書く */
+css+='.tn .fr{background:linear-gradient(180deg,#EEF5FB,#F8FBFE)!important}.tn .fr:after{opacity:.03}'+
+ PREFS.map(function(p,i){return '.tn .pf[data-p="'+p+'"]:not(.off){fill:url(#tdg'+i+')!important;stroke:#fff;stroke-width:2.6px;vector-effect:non-scaling-stroke;filter:drop-shadow(0 4px 6px rgba(60,80,120,.16))}'+
+  'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:url(#tnm'+i+')!important;stroke:'+MX(TOP[p]||"#8FB6EA","#ffffff",.85)+';stroke-width:2px;filter:none}'}).join("")+
+ '.tn .gl{pointer-events:none}.tn .gl.off{display:none}.tn .sh{opacity:0!important}'+
+ 'html.night .tn .fr{filter:invert(1) hue-rotate(180deg);background:linear-gradient(180deg,#1E2646,#141A30)!important}html.night .tn .fr:after{display:none}html.night .tn .fr:before{border-color:rgba(255,255,255,.18)}'+
+ 'html.night .tn .pf.off{fill:#1F2744!important;stroke:#3A4568;stroke-width:.8px;vector-effect:non-scaling-stroke}'+
+ 'html.night .tn .mu{fill-opacity:.5;stroke:rgba(255,255,255,.28)}'+
+ 'html.night .tn .lb{text-shadow:0 1px 3px rgba(10,14,30,.85),0 0 8px rgba(10,14,30,.6)}'+
+ 'html.night .tn .lb.p{color:#fff!important}html.night .tn .lb.p small{color:#FBE7B0!important;opacity:1}'+
+ 'html.night .tn .lb.w{color:#C9D0E2}html.night .tn .lb.w.h,html.night .tn .lb.t{color:#fff}'+
+ 'html.night .tn .lb.m{background:#2A3358;color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.2),0 3px 10px rgba(0,0,0,.35)}html.night .tn .ldr{background:#C9D0E2}'+
+ 'html.night .tn .ic .icb{filter:drop-shadow(0 0 3px rgba(10,14,30,.8))!important}html.night .tn .ic .icb,html.night .tn .ic .icb *{stroke:#FBE7B0!important}html.night .tn .ic .icb [fill]:not([fill=none]){fill:#FBE7B0!important;fill-opacity:.2}'+
+ 'html.night .tn .n{color:#AEB6CB}html.night .tn .n b,html.night .tn .crumb{color:#fff}html.night .tn .crumb button{color:#C9D0E2;text-decoration-color:rgba(255,255,255,.3)}html.night .tn .crumb i,html.night .tn .cen{color:#8E98B4}'+
+ 'html.night .tn .bk,html.night .tn .zm button{background:rgba(42,51,88,.92);border-color:rgba(255,255,255,.22);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}'+
+ 'html.night .tn .hint{background:rgba(30,38,70,.9);color:#E8ECF6}html.night .tn .cr{color:#6E7894}'+
  'html.night .tn .fsh .row.pf button:not(.on){color:'+SILV+'}html.night .tn .fsh .row.pf button:not(.on):before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:2px}'+
  'html.night .tnbtn .mm{background:#141A28!important}html.night .tnbtn .mm svg path{fill:#1C2643!important;stroke:#5B6C99!important}html.night .tnbtn .ar{background:transparent!important;box-shadow:inset 0 0 0 1px '+GOLD+';color:'+GOLD+'!important}'+
  'html.night .tn .cc .d i,html.night .tn .qb .qp{color:'+SILV+'!important}html.night .tn .chips button.cur b{color:'+SILV+'}';
@@ -304,9 +312,10 @@ function setup(KS){
   // 夜の線を府県の内側だけに出す切り抜き（となりの線とバラバラに重ならない）
   if(!DEFS){DEFS=el("defs",{},svg);svg.insertBefore(DEFS,svg.firstChild)}var ci="tnc"+PREFS.indexOf(p);el("path",{d:d},el("clipPath",{id:ci},DEFS));
   // 11/4 オーナー「夜の地図、ツヤなし」→ 夜は府県ごとに、上が明るく下が深い紺のグラデーション（府県の色をほんのり）と、上の方に光の反射を重ねる
-  var gi="tng"+PREFS.indexOf(p),gg=el("linearGradient",{id:gi,x1:0,y1:0,x2:.35,y2:1},DEFS);
-  [[0,MX(TOP[p]||"#8FB6EA","#34426C",.26)],[.5,"#1F2843"],[1,MX(TOP[p]||"#8FB6EA","#121828",.12)]].forEach(function(z){el("stop",{offset:z[0],"stop-color":NI(z[1])},gg)});
-  if(!$("#tnhl",DEFS)){var hl=el("linearGradient",{id:"tnhl",x1:0,y1:0,x2:0,y2:1},DEFS);[[0,.3],[.3,.09],[.6,0]].forEach(function(z){el("stop",{offset:z[0],"stop-color":NI("#FFFFFF"),"stop-opacity":z[1]},hl)})}
+  var c0=TOP[p]||"#8FB6EA",ix=PREFS.indexOf(p),g1=el("linearGradient",{id:"tdg"+ix,x1:0,y1:0,x2:.3,y2:1},DEFS),g2=el("linearGradient",{id:"tnm"+ix,x1:0,y1:0,x2:.3,y2:1},DEFS);
+  [[0,MX(c0,"#ffffff",.38)],[1,MX(c0,"#ffffff",.78)]].forEach(function(z){el("stop",{offset:z[0],"stop-color":z[1]},g1)});
+  [[0,MX(c0,"#5A669A",.32)],[1,MX(c0,"#2B3459",.18)]].forEach(function(z){el("stop",{offset:z[0],"stop-color":z[1]},g2)});
+  if(!$("#tnhl",DEFS)){var hl=el("linearGradient",{id:"tnhl",x1:0,y1:0,x2:0,y2:1},DEFS);[[0,.3],[.3,.09],[.6,0]].forEach(function(z){el("stop",{offset:z[0],"stop-color":"#FFFFFF","stop-opacity":z[1]},hl)})}
   PF[p].gl=el("path",{d:d,"class":"gl",fill:"url(#tnhl)"},G.pf);
   PF[p].path.addEventListener("click",function(){if(level()===1&&PF[p].has)flash(PF[p].path,DEEP[p],function(){pickPref(p)})})});
  KS.muni.features.forEach(function(f){var pr=f.properties,m={p:pr.p,n:pr.n,c:pr.c,g:f.geometry,bb:gbb(f.geometry)};m.id=m.p+"|"+m.c+"|"+m.n;
