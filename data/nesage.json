@@ -1,9 +1,21 @@
 {
-  "at": "2026-11-04 16:54",
+  "at": "2026-11-04 18:12",
   "since": "2026-11-01",
   "tracked": 248,
   "days": 3,
   "downs": [
+    {
+      "title": "ドッグフード",
+      "name": "1000円ポッキリ&ポイント5倍 フィールドゲインズ ウルトラプレミアム 2kg (1kg×…",
+      "price": 1000,
+      "base": 1650,
+      "pct": 39,
+      "days": 3,
+      "rc": 517,
+      "av": 4.32,
+      "shop": "フィールドゲインズ楽天市場店",
+      "plain": "https://item.rakuten.co.jp/fieldgaines/10000092/"
+    },
     {
       "title": "モバイルバッテリー",
       "name": "期間限定セール実施中 11/11まで Anker MagGo Power Bank (100…",
@@ -95,7 +107,7 @@
       "base": 5460,
       "pct": 7,
       "days": 3,
-      "rc": 320,
+      "rc": 321,
       "av": 4.69,
       "shop": "快適ホームライフ",
       "plain": "https://item.rakuten.co.jp/k-home/10077529/"
@@ -111,18 +123,6 @@
       "av": 4.67,
       "shop": "暮らし健康ネット館",
       "plain": "https://item.rakuten.co.jp/kurashikenkou/10147733/"
-    },
-    {
-      "title": "プロテイン",
-      "name": "SAVE ホエイプロテイン ザ・ナチュラル！ ( 1kg / 3kg / 5kg ) ノンフ…",
-      "price": 6390,
-      "base": 6790,
-      "pct": 6,
-      "days": 3,
-      "rc": 1604,
-      "av": 4.63,
-      "shop": "シープウィング",
-      "plain": "https://item.rakuten.co.jp/auc-sheepwing/10001895/"
     }
   ],
   "ups": [
