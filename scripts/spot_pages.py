@@ -7,6 +7,7 @@ import os, re, json, html, hashlib, glob, datetime, urllib.parse, sys
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = os.path.join(R, "site")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import spot_map  # 11/4 場所の地図（LIFE NOTE の地図と同じ絵）
 BASE = os.environ.get("LIFE_BASE") or "https://usagi-life-notes.pages.dev"
 # 共通の部品の番号は lifenote.py と同じ物を使う
 VER = {"menu.js": 13, "v2sub.js": 7, "night.js": 13}
@@ -26,7 +27,9 @@ CSS += """.act{display:grid;gap:8px;margin:22px 0 0}.act a{display:block;text-al
 .yl{list-style:none;margin:0;padding:0}.yl li{border-bottom:1px solid #ECECEC}.yl a{display:flex;justify-content:space-between;gap:10px;padding:12px 2px;text-decoration:none;color:#2B2622;font-size:13.5px;font-weight:700}
 .yl a span{font-size:11.5px;color:#8C7B6E;font-weight:500;white-space:nowrap}.wrap{padding-bottom:120px}
 .pn{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:28px 0 0}.pn a{font-size:13px;padding:6px 12px;border:1px solid #DCDFE4;border-radius:99px;color:#3a3330;text-decoration:none;background:#fff}
-.pn a[aria-current]{background:#2B2622;color:#fff;border-color:#2B2622}"""
+.pn a[aria-current]{background:#2B2622;color:#fff;border-color:#2B2622}
+.tmap{margin:14px 0 0;border-radius:18px;overflow:hidden;box-shadow:0 1px 2px rgba(43,38,34,.05),0 6px 18px rgba(43,38,34,.06);background:#fff}
+.tmap svg{display:block;width:100%;height:auto}.tmap p{margin:0;padding:10px 14px 12px;text-align:center;font-size:11.5px;letter-spacing:.06em;color:#8C7B6E}"""
 
 
 def e(x): return html.escape(x, quote=True)
@@ -123,10 +126,17 @@ for sp in spots:
         li = "".join(f'<li><a href="{e(h["u"])}" target="_blank" rel="noopener sponsored">{e(h["n"])}<span>{"すぐそば" if h.get("km", 1) < 0.1 else str(h.get("km")) + "km"}{"・★" + str(h["r"]) if h.get("r") else ""}{"・" + format(int(h["min"]), ",") + "円〜" if h.get("min") else ""}</span></a></li>' for h in Y[sp["key"]][:3])
         yh = f'<h2>近くの宿</h2><p class="cap">楽天トラベルの評価の高い宿を、ここからの近さで選びました（PR）</p><ul class="yl">{li}</ul>'
     near = [o for o in spots if o is not sp and o["pref"] == p][:6]
+    lbl = sp["place"].split(" ")[0] if sp["place"] else nm
+    lbl = lbl if len(lbl) < 16 else nm
+    try:
+        msvg = spot_map.render(p, sp["q"], "", lbl) if sp["q"] else ""
+    except Exception:
+        msvg = ""
+    mapd = f'<div class="tmap">{msvg}<p>{e(lbl)}の場所（{e(fu)}）</p></div>' if msvg and "<circle" in msvg else ""
     page = head(title, desc, canon, {"@context": "https://schema.org", "@graph": [ev, bc]}, pc)
     page += f"""<div class="head"><img src="/logo-s.png" width="60" height="60" alt="LIFE NOTE のロゴ"><div class="en">{SLUG[p].upper()} ─ ODEKAKE</div>
 <h1>{e(nm)}<span>{yr} 日程・場所</span></h1><p class="sub">{e(where)}</p><div class="upd">{UPD} 確認</div></div>
-<div class="big">{big}</div><p class="lead">{e(lead)}</p><div class="act">{act}</div>{yh}
+<div class="big">{big}</div>{mapd}<p class="lead">{e(lead)}</p><div class="act">{act}</div>{yh}
 <h2>{e(p)}のほかのおでかけ</h2>{"".join(card(o) for o in near)}{prefnav(p)}
 <a class="back" href="/odekake-{SLUG[p]}">{e(p)}おでかけリストへ</a><a class="back" href="/odekake" style="margin-top:14px">関東おでかけリストへ</a>
 <div class="note">日程や料金は変わることがあります。出かける前に、必ず公式ページで確かめてください。{"<br>「近くの宿」のリンクは広告です。" if ads else ""}</div>
