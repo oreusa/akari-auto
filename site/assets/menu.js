@@ -110,10 +110,13 @@
   "#upan .sw[aria-checked=true]:after{transform:translateX(20px)}"+
   "#upan .us{display:flex;gap:22px;justify-content:center;padding:14px 20px calc(18px + env(safe-area-inset-bottom));border-top:1px solid #EDEDED}"+
   "#upan .us a{font-family:Jost,sans-serif;font-size:13px;letter-spacing:.06em;color:#2B2622;text-decoration:none;border-bottom:1px solid #2B2622;padding:6px 0 2px}"+
-  "#upan .ush{display:flex;align-items:center;justify-content:center;gap:16px;padding:12px 20px 0;border-top:1px solid #EDEDED;font-size:12px;color:#8A8A8A}"+
-  "#upan .ush button{font:inherit;font-size:12px;color:#5A5450;background:none;border:0;padding:6px 0;cursor:pointer;-webkit-tap-highlight-color:transparent}"+
-  "#upan .ush+.us{border-top:0}"+
-  "html.night #upan .ush{border-top-color:#dbe1ff}"+
+  "#upan .ush{margin:6px 16px 4px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#FBEEE8,#EEF2FB);display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}"+
+  "#upan .ush>svg{width:24px;height:24px;fill:none;stroke:#2B2622;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}"+
+  "#upan .ush .ust{flex:1;min-width:0}#upan .ush .ust b{display:block;font-size:15px;font-weight:700;letter-spacing:.08em;color:#2B2622}#upan .ush .ust small{display:block;font-size:12px;color:#857A70;letter-spacing:.02em}"+
+  "#upan .ush .ub{width:100%;display:flex;gap:8px}"+
+  "#upan .ush button{flex:1;height:40px;border-radius:999px;border:1px solid #DDD;background:#fff;color:#2B2622;font:700 13px sans-serif;letter-spacing:.04em;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent}"+
+  "#upan .ush button[data-s=share]{background:#2B2622;border-color:#2B2622;color:#fff}#upan .ush button[data-s=line]{background:#06C755;border-color:#06C755;color:#fff}"+
+  "html.night #upan .ush{background:linear-gradient(135deg,#dbe1ff,#e6eaff);box-shadow:inset 0 0 0 1px #d4dbff}html.night #upan .ush button{background:#f4f6ff;border-color:#d4dbff}html.night #upan .ush button[data-s=share]{background:#2B2622;border-color:#2B2622}html.night #upan .ush button[data-s=line]{background:#06C755;border-color:#06C755}"+
   "html.umenu-open,html.umenu-open body{overflow:hidden}"+
   "@media (prefers-reduced-motion:reduce){#upan,#umask{transition:none}}";
   function ck(k){try{navigator.sendBeacon("/c?f=menu&s=menu&k="+encodeURIComponent(k.slice(0,40)));}catch(e){}}
@@ -169,9 +172,9 @@
     });
     if(openG)h+='</div>';
     /* 10/31 オーナー「夜の見た目？なにこれ」→ 切り替えは右上の太陽と月のマークだけ（月と同じ） */
-    /* 11/4 オーナー「hp共有を入れよう アプリにしたら誰かに送れない」「cだけで良いかも。もう少し主張しなくて良い」→ メニューの下に小さく1行 */
+    /* 11/4 オーナー「hp共有を入れよう アプリにしたら誰かに送れない」「cだけで良いかも」→ 11/4「もう少し分かりやすくても良かった、さっきの感じで下の方でよい」→ C の箱をメニューの下に */
     h+='</nav>'+
-      '<div class="ush"><span>このページを送る</span>'+(navigator.share?'<button type="button" data-s="share">送る</button>':'')+'<button type="button" data-s="line">LINE</button><button type="button" data-s="copy">コピー</button></div>'+
+      '<div class="ush"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="M7.5 7.5L12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><div class="ust"><b>友だちに送る</b><small>このページを LINE などで送れます</small></div><div class="ub">'+(navigator.share?'<button type="button" data-s="share">送る</button>':'')+'<button type="button" class="nofilt" data-s="line">LINE</button><button type="button" data-s="copy">コピー</button></div></div>'+
       '<div class="us"><a href="https://www.instagram.com/ai_usagichan1/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@ai_usagichan1" target="_blank" rel="noopener">Threads</a><a href="https://x.com/ai_usagichan" target="_blank" rel="noopener">X</a></div>';
     pan.innerHTML=h;
     document.body.appendChild(btn);document.body.appendChild(mask);document.body.appendChild(pan);
