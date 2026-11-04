@@ -73,9 +73,12 @@ for(let i=0;i<30*%s;i++){await p.evaluate(t=>render(t),i/30);await p.screenshot(
         print(work)
         return
     subprocess.run(['node', f'{work}/rec.js'], check=True)
+    from PIL import Image, ImageStat
+    if max(ImageStat.Stat(Image.open(f'{work}/fr/0000.jpg').convert('L')).stddev) < 8:  # 最初のコマ＝表紙が無地
+        sys.exit('最初のコマ（インスタの表紙）が無地です。template.html を直す')
     try:  # 確かめ用の静止画6枚を1枚に（reel-hp/out/D.jpg。夜の回・見回りが中身を見る）
         from PIL import Image
-        ts = (1, 6, 11, 16, 22, 27)
+        ts = (0, 6, 11, 16, 22, 27)  # 0秒＝インスタの表紙。白いままなら出さない
         sheet = Image.new('RGB', (360 * len(ts), 640), 'white')
         for n, t in enumerate(ts):
             sheet.paste(Image.open(f'{work}/fr/{int(t * 30):04d}.jpg').resize((360, 640)), (360 * n, 0))

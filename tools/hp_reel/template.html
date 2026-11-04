@@ -33,7 +33,7 @@ function render(t){
  document.getElementById('end').style.visibility=(t>=T-END)?'visible':'hidden';
  if(t>=T-END){const e=document.getElementById('end');e.style.opacity=Math.min(1,(t-(T-END))/0.5);return}
  const s=document.getElementById('sc'+i),u=(t-i*per)/per;
- s.style.opacity=Math.min(1,u*per/0.4);
+ s.style.opacity=i===0?1:Math.min(1,u*per/0.4); // 1枚目はフェードなし：最初のコマがインスタの表紙になる（11/4 表紙が真っ白だった）
  const max=Math.max(0,Math.min(HS[i]-VIEW,1800));
  document.getElementById('im'+i).style.transform='translateY('+(-max*ease((u-0.18)/0.72))+'px)';
 }
