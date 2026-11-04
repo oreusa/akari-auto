@@ -59,8 +59,8 @@ var css=
 '.cmb .dd b{font-family:Jost,sans-serif;font-weight:500;font-size:13px;color:#2B2622;letter-spacing:.02em}'+
 '.cmb .dd small{font-family:Jost,sans-serif;font-size:8px;font-weight:500;letter-spacing:.14em;color:var(--pc,#8a8f98)}'+
 '.cmb .dd.tx b{font-family:"Zen Kaku Gothic New",sans-serif;font-size:10px;font-weight:700;letter-spacing:.04em}'+
-'.cmb .cd{display:inline-block;margin-top:5px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:9.5px;color:var(--pc,#8a8f98);letter-spacing:.06em;white-space:nowrap}'+
-'.cmb .cd.hot{background:var(--pc,#8a8f98);color:#fff;border-radius:999px;padding:3px 7px 2px}'+
+'.cmb .cdn{display:inline-block;margin-top:5px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:9.5px;color:var(--pc,#8a8f98);letter-spacing:.06em;white-space:nowrap}'+
+'.cmb .cdn.hot{background:var(--pc,#8a8f98);color:#fff;border-radius:999px;padding:3px 7px 2px}'+
 /* 11/4 オーナー「夜可愛くない 反転だけしたよう」「左上は太陽か？」→ 夜は反転を打ち消して、夜専用の色で描く。
    夜空の紺のタイルに府県の色がにじむツヤ、絵は光る線、左上の丸は小さくまたたく星に */
 'html.night .cmb{filter:invert(1) hue-rotate(180deg);--pl:color-mix(in srgb,var(--pc,#8a8f98) 52%,#fff)}'+
@@ -72,8 +72,8 @@ var css=
 'html.night .cmb .lb{color:var(--pl);opacity:.95}'+
 'html.night .cmb .dd{background:linear-gradient(180deg,#2C3652,#1B2338);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--pl) 38%,transparent),inset 0 1px 0 rgba(255,255,255,.14),0 4px 10px -3px rgba(0,0,0,.5)}'+
 'html.night .cmb .dd b{color:#F4F1EA}html.night .cmb .dd small{color:var(--pl)}'+
-'html.night .cmb .cd{color:var(--pl)}'+
-'html.night .cmb .cd.hot{background:linear-gradient(180deg,var(--pl),var(--pc,#8a8f98));color:#141A28;box-shadow:0 0 10px -2px var(--pc,#8a8f98)}'+
+'html.night .cmb .cdn{color:var(--pl)}'+
+'html.night .cmb .cdn.hot{background:linear-gradient(180deg,var(--pl),var(--pc,#8a8f98));color:#141A28;box-shadow:0 0 10px -2px var(--pc,#8a8f98)}'+
 '@media (prefers-reduced-motion:reduce){html.night .cmb .ib::after{animation:none!important}}';
 var st=document.createElement('style');st.textContent=css;(document.head||document.documentElement).appendChild(st);
 function kind(a,ad){var t=(a.querySelector(ad.t)||{}).textContent||'';var m=(a.querySelector('.m,.pl,small')||{}).textContent||'';
@@ -101,10 +101,10 @@ function one(a,ad){
   if(o){d=o;w='オープン'}else if(s&&s>T0){d=s;w='から'}else if(e){d=e;w='まで'}else if(s){d=s;w='から'}
   var k=kind(a,ad),pill='',cd='';
   if(d){var y=new Date(d+'T00:00:00Z');pill='<div class="dd"><b>'+(y.getUTCMonth()+1)+'.'+y.getUTCDate()+'</b><small>'+WE[y.getUTCDay()]+'</small></div>';
-    if(w==='まで'){n=days(T0,d);cd=n<=0?'<span class="cd hot">今日まで</span>':n<=7?'<span class="cd hot">あと'+n+'日</span>':'<span class="cd">あと'+n+'日</span>';}
-    else if(w==='から'&&e===s){n=days(T0,d);cd=n<=7?'<span class="cd hot">'+n+'日後</span>':'<span class="cd">'+n+'日後</span>';}
-    else if(w==='から'){n=days(T0,d);cd=n<=0?'<span class="cd">から開催中</span>':n<=7?'<span class="cd hot">'+n+'日後から</span>':'<span class="cd">'+n+'日後から</span>';}
-    else cd='<span class="cd">'+w+'</span>';}
+    if(w==='まで'){n=days(T0,d);cd=n<=0?'<span class="cdn hot">今日まで</span>':n<=7?'<span class="cdn hot">あと'+n+'日</span>':'<span class="cdn">あと'+n+'日</span>';}
+    else if(w==='から'&&e===s){n=days(T0,d);cd=n<=7?'<span class="cdn hot">'+n+'日後</span>':'<span class="cdn">'+n+'日後</span>';}
+    else if(w==='から'){n=days(T0,d);cd=n<=0?'<span class="cdn">から開催中</span>':n<=7?'<span class="cdn hot">'+n+'日後から</span>':'<span class="cdn">'+n+'日後から</span>';}
+    else cd='<span class="cdn">'+w+'</span>';}
   var c=document.createElement('div');c.className='cmb';c.setAttribute('aria-hidden','true');
   c.innerHTML='<div class="ib"><svg viewBox="0 0 24 24">'+I[k]+'</svg><span class="lb">'+LB[k]+'</span></div>'+pill+cd;
   a.insertBefore(c,a.firstChild);a.classList.add('cm');

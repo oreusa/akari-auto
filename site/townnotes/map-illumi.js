@@ -233,7 +233,7 @@ var TOP={"大阪":"#F2A788","京都":"#C3A6E0","兵庫":"#8FB6EA","奈良":"#9ED
 css+='.tn .fr{background:linear-gradient(180deg,#EEF5FB,#F8FBFE)!important}.tn .fr:after{opacity:.03}'+
  PREFS.map(function(p,i){return '.tn .pf[data-p="'+p+'"]:not(.off){fill:url(#tdg'+i+')!important;stroke:#fff;stroke-width:2.6px;vector-effect:non-scaling-stroke;filter:drop-shadow(0 4px 6px rgba(60,80,120,.16))}'+
   'html.night .tn .pf[data-p="'+p+'"]:not(.off){fill:url(#tnm'+i+')!important;stroke:'+MX(TOP[p]||"#8FB6EA","#ffffff",.85)+';stroke-width:2px;filter:none}'+
-  'html.night .tn .mu[data-p="'+p+'"]{fill:'+MX(TOP[p]||"#8FB6EA","#2B3459",.18)+'!important;fill-opacity:.92}html.night .tn.lv3 .pf[data-p="'+p+'"]:not(.off){fill:'+MX(TOP[p]||"#8FB6EA","#232B4C",.16)+'!important}html.night .tn .mu.hw[data-p="'+p+'"]{fill:'+MX(TOP[p]||"#8FB6EA","#4A558A",.42)+'!important}'}).join("")+
+  'html.night .tn .mu[data-p="'+p+'"]{fill:'+MX(TOP[p]||"#8FB6EA","#2B3459",.18)+'!important;fill-opacity:.92}html.night .tn.lv3 .pf[data-p="'+p+'"]:not(.off){fill:'+MX(TOP[p]||"#8FB6EA","#232B4C",.16)+'!important}html.night .tn .mu.hw[data-p="'+p+'"]{fill:'+MX(TOP[p]||"#8FB6EA","#3A4470",.26)+'!important}'}).join("")+
  'html.night .tn.lv3 .gl{display:none}.tn .gl{pointer-events:none}.tn .gl.off{display:none}.tn .sh{opacity:0!important}'+
  'html.night .tn .fr{filter:invert(1) hue-rotate(180deg);background:linear-gradient(180deg,#1E2646,#141A30)!important}html.night .tn .fr:after{display:none}html.night .tn .fr:before{border-color:rgba(255,255,255,.18)}'+
  'html.night .tn .pf.off{fill:#1F2744!important;stroke:#3A4568;stroke-width:.8px;vector-effect:non-scaling-stroke}'+
