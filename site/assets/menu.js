@@ -14,8 +14,8 @@
 (function(){
   /* 11/2 オーナー「燈のhpを LIFE NOTE…関東おでかけリスト・おかいものリスト 完全に分ける」→ / は入口、/odekake と /okaimono に分けた */
   var P=location.pathname.replace(/^\/townnotes\//,"/odekake").replace(/\.html$/,""),here=
-    /^\/(index)?$/.test(P)?"tn":/^\/odekake/.test(P)?"list":/^\/okaimono/.test(P)?"okai":/^\/illumination/.test(P)?"illumi":/^\/koyo/.test(P)?"koyo":/^\/koe/.test(P)?"koe":/^\/tomari/.test(P)?"tomari":/^\/ima/.test(P)?"ima":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":/^\/nesage/.test(P)?"nesage":"";
-  var SH=/^(\/okaimono|\/nesage|\/tanka|\/furusato|\/kaimawari)/.test(P);
+    /^\/(index)?$/.test(P)?"tn":/^\/odekake/.test(P)?"list":/^\/okaimono/.test(P)?"okai":/^\/otoku/.test(P)?"otoku":/^\/illumination/.test(P)?"illumi":/^\/koyo/.test(P)?"koyo":/^\/koe/.test(P)?"koe":/^\/tomari/.test(P)?"tomari":/^\/ima/.test(P)?"ima":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":/^\/nesage/.test(P)?"nesage":"";
+  var SH=/^(\/okaimono|\/nesage|\/tanka|\/furusato|\/kaimawari|\/otoku)/.test(P);
   /* 11/6 夜「おかいものからリクエストへ行くと、下のバーがおでかけ側に変わって戻れない」→ どちらのリストから来たかを覚えて、リクエストのページもそちら側にする */
   try{if(SH)sessionStorage.setItem("usagi_side","okai");else if(here&&here!=="koe")sessionStorage.setItem("usagi_side","list");if(here==="koe"&&sessionStorage.getItem("usagi_side")==="okai")SH=true;}catch(e){}
   /* 11/2 オーナー「もっとまとめろよ。TOWNNOTEこんなんじゃないだろ」→ 月と同じく、リストごとに自分の項目だけ＋関連サイト */
@@ -34,11 +34,12 @@
     ["LIFE NOTE","tn","/","LIFE NOTE","関東のくらしのノート"]
   ];
   if(SH)L=[
-    ["LIST","okai","/okaimono","くらべたおかいものリスト","3つ以上を数字で比べて選んだ物"],
-    ["PER UNIT","tanka","/tanka","1個あたりで比べた","水・お米などを1Lあたり・1kgあたりで"],
-    ["FURUSATO","furusato","/furusato","ふるさと納税を比べた","寄付1万円あたりの量で・12/31まで"],
-    ["PRICE DOWN","nesage","/nesage","本当に値下がりした物","毎日の値段を記録して、下がった物だけ"],
-    ["SALE","kaimawari","/kaimawari","買いまわりの1,000円ぽっきり","送料込み・レビュー1,000件以上"],
+    /* 11/6 /okaimono を「くらべる」1つに作り直した → メニューも下のバー（くらべる・買い時・セール・ふるさと）と同じ並びに */
+    ["COMPARE","okai","/okaimono","くらべる","日用品21種類の最安とおすすめ"],
+    ["PRICE DOWN","nesage","/nesage","買い時","本当に値下がりした物"],
+    ["SALE","kaimawari","/kaimawari","セール","買いまわりの1,000円ぽっきり"],
+    ["FURUSATO","furusato","/furusato","ふるさと納税","寄付1万円あたりの量で・12/31まで"],
+    ["DEALS","otoku","/otoku","お得まとめ・AIに聞く","セール・ふるさと・宿をまとめて"],
     ["-","CONTACT"],
     ["REQUEST","koe","/koe","リクエスト・感想","増やしてほしい・これがほしい・使ってみた感想"],
     ["-","関連サイト"],
@@ -92,6 +93,8 @@
   "#upan a.tl em{font-style:normal;font-size:10.5px;color:#7A6E66;line-height:1.4}"+
   "#upan a.sm{display:flex;align-items:center;gap:8px;padding:11px 10px;border-radius:12px;background:#F6F6F7;font-size:12px;font-weight:700;line-height:1.35}"+
   "#upan a.sm i{display:block;width:17px;height:17px;flex:none}"+
+  /* 11/6 オーナー「関連サイトがもう少しだけ大きくてもいい」→ 関連サイトの2つだけ少し大きく */
+  "#upan .urel a.sm{padding:15px 10px;font-size:13px;gap:8px;white-space:nowrap}#upan .urel a.sm i{width:20px;height:20px}"+
   "#upan a.sm em{display:none}"+
   "#upan a.ui svg{width:100%;height:100%;fill:none;stroke:#3A2F28;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}"+
   "#upan a.sm svg{stroke:#8C7B6E}"+
@@ -112,11 +115,11 @@
   "#upan .sw[aria-checked=true]:after{transform:translateX(20px)}"+
   "#upan .us{display:flex;gap:22px;justify-content:center;padding:14px 20px calc(18px + env(safe-area-inset-bottom));border-top:1px solid #EDEDED}"+
   "#upan .us a{font-family:Jost,sans-serif;font-size:13px;letter-spacing:.06em;color:#2B2622;text-decoration:none;border-bottom:1px solid #2B2622;padding:6px 0 2px}"+
-  "#upan .ush{margin:6px 16px 4px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#FBEEE8,#EEF2FB);display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}"+
-  "#upan .ush>svg{width:24px;height:24px;fill:none;stroke:#2B2622;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}"+
-  "#upan .ush .ust{flex:1;min-width:0}#upan .ush .ust b{display:block;font-size:15px;font-weight:700;letter-spacing:.08em;color:#2B2622}#upan .ush .ust small{display:block;font-size:12px;color:#857A70;letter-spacing:.02em}"+
-  "#upan .ush .ub{width:100%;display:flex;gap:8px}"+
-  "#upan .ush button{flex:1;height:40px;border-radius:999px;border:1px solid #DDD;background:#fff;color:#2B2622;font:700 13px sans-serif;letter-spacing:.04em;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent}"+
+  "#upan .ush{margin:4px 16px 2px;padding:8px 10px 8px 14px;border-radius:14px;background:linear-gradient(135deg,#FBEEE8,#EEF2FB);display:flex;flex-wrap:nowrap;align-items:center;gap:8px}"+
+  "#upan .ush>svg{width:18px;height:18px;fill:none;stroke:#2B2622;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}"+
+  "#upan .ush .ust{flex:1;min-width:0}#upan .ush .ust b{display:block;font-size:12.5px;white-space:nowrap;font-weight:700;letter-spacing:.08em;color:#2B2622}#upan .ush .ust small{display:none}"+
+  "#upan .ush .ub{display:flex;gap:5px;flex:none}"+
+  "#upan .ush button{flex:none;height:30px;padding:0 10px;border-radius:999px;border:1px solid #DDD;background:#fff;color:#2B2622;font:700 11.5px sans-serif;letter-spacing:.04em;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent}"+
   "#upan .ush button[data-s=share]{background:#2B2622;border-color:#2B2622;color:#fff}#upan .ush button[data-s=line]{background:#06C755;border-color:#06C755;color:#fff}"+
   "html.night #upan .ush{background:linear-gradient(135deg,#dbe1ff,#e6eaff);box-shadow:inset 0 0 0 1px #d4dbff}html.night #upan .ush button{background:#f4f6ff;border-color:#d4dbff}html.night #upan .ush button[data-s=share]{background:#2B2622;border-color:#2B2622}html.night #upan .ush button[data-s=line]{background:#06C755;border-color:#06C755}"+
   "html.umenu-open,html.umenu-open body{overflow:hidden}"+
@@ -151,11 +154,12 @@
     furusato:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
     nesage:'<path d="M4 6l6 6 4-4 6 6"/><path d="M20 10v4h-4"/>',
     kaimawari:'<path d="M20 12l-8 8-8-8V4h8z"/><circle cx="8" cy="8" r="1.5"/>',
+    otoku:'<path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3"/><circle cx="12" cy="12" r="3.5"/>',
     gyosha:'<path d="M3 12l4-4 4 3 3-3 7 6"/><path d="M7 15l3 3M11 14l3 3M14 13l2 2"/>'
   };
-  var ST={okai:"おかいものリスト",tanka:"1個あたり",furusato:"ふるさと納税",nesage:"本当に値下がり",kaimawari:"1,000円ぽっきり",list:"おでかけリスト",ima:"いま行ける",illumi:"イルミネーション",koyo:"紅葉ライトアップ",tomari:"泊まりで行く",flist:"不動産リスト",chika:"地価ランキング",chikao:"大阪市24区",
+  var ST={okai:"くらべる",tanka:"1個あたり",furusato:"ふるさと納税",nesage:"買い時",kaimawari:"セール",otoku:"お得まとめ",list:"おでかけリスト",ima:"いま行ける",illumi:"イルミネーション",koyo:"紅葉ライトアップ",tomari:"泊まりで行く",flist:"不動産リスト",chika:"地価ランキング",chikao:"大阪市24区",
     uru:"売る前に大事なこと",satei:"売却・査定のご相談"};
-  var SS={okai:"数字で比べて選んだ物",tanka:"1Lあたり・1kgあたり",furusato:"寄付1万円あたりの量",nesage:"下がった物だけ",kaimawari:"送料込み・レビュー多め",list:"開催中・これから",map:"近くをさがす",ima:"近い順・きょう開く所",illumi:"日程・無料の所",koyo:"夜の時間・料金",tomari:"遠くのおでかけと宿",
+  var SS={okai:"日用品の最安とおすすめ",tanka:"1Lあたり・1kgあたり",furusato:"寄付1万円あたりの量",nesage:"本当に値下がりした物",kaimawari:"1,000円ぽっきり",otoku:"AIに聞く・宿",list:"開催中・これから",map:"近くをさがす",ima:"近い順・きょう開く所",illumi:"日程・無料の所",koyo:"夜の時間・料金",tomari:"遠くのおでかけと宿",
     flist:"地価・人口・制度",fq:"市区町村の名前で",fmap:"上がった街を色で",chika:"関西205の街",chikao:"24区の上がり幅",fnew:"最近足した数字"};
   function item(x,tile){var cur=x[1]===here,ext=/^https?:/.test(x[2]);
     return '<a class="ui '+(tile?"tl":"sm")+(cur?" cur":"")+'" data-k="'+x[1]+'" href="'+x[2]+'"'+(ext?' target="_blank" rel="noopener"':"")+(cur?' aria-current="page"':"")+'>'+(cur&&tile?'<u>いま</u>':'')+'<i><svg viewBox="0 0 24 24" aria-hidden="true">'+(IC[x[1]]||IC.list)+'</svg></i><span data-n="'+esc(x[3])+'">'+esc(ST[x[1]]||x[3])+'</span><em>'+esc(tile?(SS[x[1]]||x[4]):x[4])+'</em>'+(cur&&!tile?'<u>いま</u>':'')+'</a>';}
@@ -166,10 +170,10 @@
     var pan=document.createElement("div");pan.id="upan";pan.setAttribute("role","dialog");pan.setAttribute("aria-modal","true");pan.setAttribute("aria-label","メニュー");pan.setAttribute("aria-hidden","true");
     var h='<div class="uh"><a class="uhl" href="/" aria-label="LIFE NOTE の入口へ"><img src="'+(document.documentElement.classList.contains("night")?"/logo-s-night.png":"/logo-s.png")+'" alt=""><b>LIFE NOTE</b></a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+(here==="tn"?"":ug(SH?"OKAIMONO LIST":"KANTO ODEKAKE"));
     /* 最初のまとまり＝タイル、あとのまとまり＝小さいボタン */
-    var tiled=false,openG="";
+    var tiled=false,openG="",rel=false;
     L.forEach(function(x){
-      if(x[0]==="-"){if(openG){h+='</div>';openG="";}h+=ug(x[1]);return;}
-      if(!openG){openG=tiled?"usm":"utg";tiled=true;h+='<div class="'+openG+'">';}
+      if(x[0]==="-"){if(openG){h+='</div>';openG="";}h+=ug(x[1]);rel=x[1]==="関連サイト";return;}
+      if(!openG){openG=tiled?"usm":"utg";tiled=true;h+='<div class="'+openG+(rel?" urel":"")+'">';}
       h+=item(x,openG==="utg");
     });
     if(openG)h+='</div>';
@@ -205,10 +209,10 @@
       var k=a.getAttribute("data-k");var sp=a.querySelector("span");ck("メニュー｜"+(sp.getAttribute("data-n")||sp.textContent));
       if(k===here&&k!=="map"){e.preventDefault();close();window.scrollTo({top:0,behavior:"smooth"});return;}
       if(k==="map"&&here==="list"){e.preventDefault();close();setTimeout(openMap,280);}
-      if(/^(shop|deal|trip)$/.test(k)&&here==="okai"){e.preventDefault();close();setTimeout(function(){openView(k);},280);}
+      if(/^(shop|deal|trip)$/.test(k)&&here==="otoku"){e.preventDefault();close();setTimeout(function(){openView(k);},280);}
     });});
     var hv=location.hash.slice(1);
-    if((here==="list"&&hv==="map")||(here==="okai"&&/^(shop|deal|trip|hot)$/.test(hv))){try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}if(hv==="map")openMap();else setTimeout(function(){openView(hv==="hot"?"pick":hv);},300);}
+    if((here==="list"&&hv==="map")||(here==="otoku"&&/^(shop|deal|trip|hot)$/.test(hv))){try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}if(hv==="map")openMap();else setTimeout(function(){openView(hv==="hot"?"pick":hv);},300);}
   }
   if(document.body)build();else document.addEventListener("DOMContentLoaded",build);
 })();
