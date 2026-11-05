@@ -45,9 +45,9 @@ bar.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)
   else if(b.dataset.a==="map"){var m=document.querySelector(".tnbtn");if(m)m.click();}
   else if(b.dataset.a==="inn")location.href="/tomari";
   else if(b.dataset.a==="town")location.href="/#town";
-  else if(b.dataset.a==="ai"){var k=document.getElementById("kq");if(k&&k.offsetParent){k.scrollIntoView({block:"center",behavior:"smooth"});try{k.focus({preventScroll:true});}catch(e){}}else{location.href="/okaimono#kq";if(location.pathname.replace(/\.html$/,"")==="/okaimono")location.reload();}}
+  else if(b.dataset.a==="ai"){var k=document.getElementById("kq"),bk=document.querySelector("#okvh button");if(k&&!k.offsetParent&&bk&&bk.offsetParent){bk.click();setTimeout(function(){k.scrollIntoView({block:"center"});try{k.focus({preventScroll:true});}catch(e){}},80);}else if(k&&k.offsetParent){k.scrollIntoView({block:"center",behavior:"smooth"});try{k.focus({preventScroll:true});}catch(e){}}else{location.href="/okaimono#kq";if(location.pathname.replace(/\.html$/,"")==="/okaimono")location.reload();}}
   else{var u=document.getElementById("umenu");if(u)u.click();}});
-bar.classList.add("on");document.documentElement.classList.add("v2bar-on");
+bar.classList.add("on");(function(){var c=document.createElement("style");c.textContent="#v2bar a:active,#v2bar button:active{background:#F1EEEA}#v2bar button.cur span,#v2bar a.cur span{font-weight:800}";document.head.appendChild(c);})();document.documentElement.classList.add("v2bar-on");
 if(tabs)tabs.addEventListener("click",function(){setTimeout(syncBar,30)});
 if(location.hash==="#kq")setTimeout(function(){var k=document.getElementById("kq");if(k){k.scrollIntoView({block:"center"});try{k.focus({preventScroll:true});}catch(e){}}},200);
 /* 11/2 ほかのページの下のボタン（/odekake?v2t=0・1・map）から来たら、そのタブ・地図を開く */

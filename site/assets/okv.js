@@ -11,7 +11,7 @@
     +"#okvh{display:none;align-items:center;gap:12px;padding:18px 2px 10px}"
     +"body.okv #okvh{display:flex}"
     +"#okvh b{font-size:19px;letter-spacing:.06em;color:#1A1A1A}#okvh b small{margin-left:8px;font:500 12px Jost,sans-serif;color:#6B6B6B;letter-spacing:0}"
-    +"#okvh button{border:1px solid #DADADA;background:#fff;border-radius:99px;padding:7px 13px;font-size:12px;color:#333}"
+    +"#okvh button{border:1px solid #BDBDBD;background:#fff;border-radius:99px;padding:10px 16px;font-size:13px;font-weight:700;color:#222;min-height:40px}"
     /* 11/3 オーナー「あと使いやすく」→ 種類はまるいボタンにして、選んでいる種類を黒くぬる。右がうすくなって、横にまだあると分かる */
     +"body.okv .flt[data-v=odekake]{gap:8px!important;padding:10px 24px 10px 0!important;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}"
     +"body.okv .flt[data-v=odekake]:before,body.okv .flt[data-v=odekake]:after{display:none!important}"

@@ -719,7 +719,7 @@ def build(od, ix):
            '.kqon2 .kqc,.kqon2 .kqs,.kqon2 .otab{display:none!important}'
            '.kqc button b{display:block;font-size:13.5px;line-height:1.3}.kqc button small{display:block;margin-top:2px;font:500 11px Jost,sans-serif;color:#6B6B6B}'
            '.kqs{margin:10px 0 0;text-align:center;font-size:11px;color:#6B6B6B}.kqs b{font:600 13px Jost,sans-serif;color:#1A1A1A;margin:0 2px}'
-           '.kqon2 .kcon,.kqon2 .kfun,.kqon2 .kdl,.kqon2 a.ilk,.kqon2 .ilks{display:none!important}'
+           '.kqon2 .kcon,.kqon2 .kfun,.kqon2 .kdl,.kqon2 a.ilk:not(.kqe a),.kqon2 .ilks{display:none!important}.kqe a.ilk{display:block!important;margin:6px auto 0}'
            '#kqr{margin:0 0 16px}'
            '#kqr .kqt{margin:0 0 10px;font-size:13px;font-weight:700;color:#1A1A1A}#kqr .kqt small{display:block;font-weight:400;font-size:11px;color:#6B6B6B;margin-top:2px}'
            '#kqr .kqn{padding:16px;border:1px solid #E8E8E8;border-radius:12px;font-size:13px;line-height:1.7;color:#333}'
@@ -753,6 +753,6 @@ def build(od, ix):
           '})();</script>')
     h = h.replace('<body class="', '<body data-bar="okai" class="', 1)
     h = h.replace("c.hidden=!ok||(!op&&k>5);", "c.hidden=!ok||(!op&&k>8);").replace('m.dataset.l+(k-5)+"件）";m.hidden=op||k<=5;', 'm.dataset.l+(k-8)+"件）";m.hidden=op||k<=8;')
-    js += '<script src="/assets/kq.js?v=4" defer></script><script src="/assets/okv.js?v=3" defer></script>'
+    js += '<script src="/assets/kq.js?v=5" defer></script><script src="/assets/okv.js?v=4" defer></script>'
     i = h.rfind("</body>")
     return h[:i] + js + h[i:]
