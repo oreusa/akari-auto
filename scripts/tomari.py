@@ -87,10 +87,11 @@ def main():
     for k, c in cards.items():
         if c["p"] not in items or not c["href"] or (c["e"] and c["e"] < T):
             continue
-        c["on"], c["k"] = (not c["s"]) or c["s"] <= T, k
+        c["on"], c["k"] = bool(c["s"]) and c["s"] <= T, k  # 11/6 夜：始まる日が無い（日程の発表前）物を「開催中」にしない
+        c["pre"] = not c["s"]
         items[c["p"]].append(c)
     for p in KANTO_ORDER:
-        items[p].sort(key=lambda c: (0, c["e"] or "9") if c["on"] else (1, c["s"]))
+        items[p].sort(key=lambda c: (0, c["e"] or "9") if c["on"] else ((2, "") if c["pre"] else (1, c["s"])))
     n_all = sum(len(v) for v in items.values())
     n_inn = sum(len(Y[c["k"]][:3]) for v in items.values() for c in v)
 
@@ -100,10 +101,10 @@ def main():
             continue
         rows = []
         for c in items[p]:
-            tag = (f'<span class="st {"on" if c["on"] else "soon"}">{"開催中" if c["on"] else "これから"}</span>'
+            tag = (f'<span class="st {"on" if c["on"] else ("pre" if c["pre"] else "soon")}">{"開催中" if c["on"] else ("日程は発表前" if c["pre"] else "これから")}</span>'
                    + ('<span class="fr">無料</span>' if c["free"] else ""))
             mp = f'<a class="mp" href="{E(c["mp"])}" target="_blank" rel="noopener" data-k="地図｜{E(c["t"][:14])}">地図</a>' if c["mp"] else ""
-            hs = "".join(hotel(c, h) for h in Y[c["k"]][:3])
+            hs = "".join(hotel(c, h) for h in sorted(Y[c["k"]][:3], key=lambda h: h.get("km") or 99))  # 11/6 夜：近い順に
             m = f'<div class="m">{E(c["m"])}</div>' if c["m"] else ""
             rows.append(f'<article class="it" data-s="{E(c["s"])}" data-e="{E(c["e"])}"><a class="card" href="{E(c["href"])}" target="_blank" rel="noopener" data-k="公式｜{E(c["t"][:14])}">'
                         f'<div class="tg">{tag}</div><div class="d">{E(c["d"])}</div><div class="t">{E(c["t"])}</div>{m}<div class="go">公式 →</div></a>'
@@ -149,7 +150,7 @@ h2 small{{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;color:#8C7
 .card{{display:block;position:relative;text-decoration:none;color:inherit;padding:14px 64px 12px 16px}}
 .tg{{display:flex;gap:6px;margin-bottom:6px}}
 .st,.fr{{font-size:10.5px;letter-spacing:.06em;padding:1px 7px;border:1px solid;line-height:1.7}}
-.st.on{{color:#fff;background:var(--c);border-color:var(--c)}}.st.soon{{color:var(--c)}}.fr{{color:#5F8A5A}}
+.st.on{{color:#fff;background:var(--c);border-color:var(--c)}}.st.soon{{color:var(--c)}}.st.pre{{color:#8A8A8A;border-color:#C9C9C9}}.fr{{color:#5F8A5A}}
 .d{{font-size:13px;color:var(--c);font-weight:700;letter-spacing:.02em}}
 .t{{font-family:"Shippori Mincho",serif;font-weight:600;font-size:16px;line-height:1.5;margin:4px 0}}
 .m{{font-size:12px;color:#7A6E66;line-height:1.6}}
@@ -188,7 +189,7 @@ function we(){{var n=new Date(Date.now()+9*36e5),d=n.getUTCDay(),sat=new Date(n)
 var WE=we(),T=new Date(Date.now()+9*36e5).toISOString().slice(0,10);
 /* 作り直しの前に終わった物は、ページ側で隠す */
 document.querySelectorAll(".it").forEach(function(it){{if(it.dataset.e&&it.dataset.e<T)it.remove();}});
-function draw(){{var any=0;S.forEach(function(s){{var on=P==="すべて"||s.dataset.p===P,c=0;s.querySelectorAll(".it").forEach(function(it){{var a=it.dataset.s||"0000",e=it.dataset.e||"9999",ok=!W||(a<=WE[1]&&e>=WE[0]);it.hidden=!ok;if(ok)c++;}});var h=s.querySelector("h2 small");if(h)h.textContent=c+"か所";s.hidden=!on||!c;if(on&&c)any++;}});document.getElementById("none").style.display=any?"none":"block";}}
+function draw(){{var any=0;S.forEach(function(s){{var on=P==="すべて"||s.dataset.p===P,c=0;s.querySelectorAll(".it").forEach(function(it){{var a=it.dataset.s||"0000",e=it.dataset.e||"9999",ok=!W||(it.dataset.s&&a<=WE[1]&&e>=WE[0])/* 11/6 夜：日程の発表前は週末に入れない */;it.hidden=!ok;if(ok)c++;}});var h=s.querySelector("h2 small");if(h)h.textContent=c+"か所";s.hidden=!on||!c;if(on&&c)any++;}});document.getElementById("none").style.display=any?"none":"block";}}
 function ck(f,k){{try{{navigator.sendBeacon("/c?f="+f+"&s="+f+"&k="+encodeURIComponent(k.slice(0,40)));}}catch(e){{}}}}
 B.forEach(function(b){{b.addEventListener("click",function(){{B.forEach(function(x){{x.classList.toggle("on",x===b)}});P=b.dataset.p;draw();ck("tomari","絞り込み："+P);var t=document.querySelector(".flt").getBoundingClientRect().top+scrollY;if(scrollY>t)scrollTo({{top:t,behavior:"smooth"}});}});}});
 wk.addEventListener("click",function(){{W=!W;wk.setAttribute("aria-pressed",W);draw();ck("tomari","この週末");}});
