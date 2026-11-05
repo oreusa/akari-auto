@@ -637,12 +637,18 @@ mb.innerHTML='<span class="mm"><svg>'+Object.keys(MINI).map(function(k){return '
 function mbUpd(){var a=items(),n=a.filter(function(i){return i.lat!=null}).length,t=curTab();/* 10/31 オーナー「数あってる？」：場所が1つに決まらないカード（3か所くらべ等）があるときは、全部の数も出す */var x=!n?R.name+"の地図で探す":n<a.length?t+a.length+"件のうち、"+n+"か所を地図で":t+"の"+n+"か所を、"+R.name+"の地図で",e=$(".t2",mb);if(e.textContent!==x)e.textContent=x}
 // 開くと画面いっぱいの地図になる。閉じるとリストのいつもの場所にもどる
 function setOpen(v,fromPop){if(v===OPEN&&v)return;OPEN=v;FS=v;
- if(v){document.body.appendChild(box);box.classList.remove("shut");box.classList.add("fs");document.documentElement.style.overflow="hidden";
+ if(v){RET=document.activeElement;document.body.appendChild(box);box.classList.remove("shut");box.classList.add("fs");document.documentElement.style.overflow="hidden";box.setAttribute("role","dialog");box.setAttribute("aria-modal","true");box.setAttribute("aria-label",R.name+"の地図");setTimeout(function(){var f=$(".fsh .cl",box);if(f)f.focus({preventScroll:true})},60);
   if(!fromPop)try{history.pushState({tnmap:1},"")}catch(e){}
   buildHead();carSig="";if(!loading)load();else if(ready){lastSig="";sync()}}
- else{box.classList.remove("fs");box.classList.add("shut");document.documentElement.style.overflow="";sel=null;pop.classList.remove("on");mount()}
+ else{box.classList.remove("fs");box.classList.add("shut");document.documentElement.style.overflow="";sel=null;pop.classList.remove("on");box.removeAttribute("role");box.removeAttribute("aria-modal");mount();if(RET&&RET.focus)try{RET.focus({preventScroll:true})}catch(e){}RET=null}
  if(v===false)mbUpd()}
 mb.addEventListener("click",function(){cnt1("地図｜地図で見る");setOpen(true)});
+/* 11/6 夜「地図を開いてもフォーカスが後ろのリンクに残る・Escapeで閉じない」→ 開いたら閉じるボタンへ、Tabは地図の中だけ、Escapeで閉じて元のボタンへ戻す */
+var RET=null;
+document.addEventListener("keydown",function(e){if(!FS)return;
+ if(e.key==="Escape"){if(pop.classList.contains("on")){closePop();return}var c=$(".fsh .cl",box);if(c)c.click();e.preventDefault();return}
+ if(e.key==="Tab"){var f=[].filter.call(box.querySelectorAll("button,a[href],input,[tabindex]:not([tabindex='-1'])"),function(x){return x.offsetParent!==null});if(!f.length)return;var a=f[0],z=f[f.length-1];
+  if(!box.contains(document.activeElement)){a.focus();e.preventDefault()}else if(e.shiftKey&&document.activeElement===a){z.focus();e.preventDefault()}else if(!e.shiftKey&&document.activeElement===z){a.focus();e.preventDefault()}}});
 function toMap(){var y=box.getBoundingClientRect().top+scrollY-12;scrollTo({top:y,behavior:RM?"auto":"smooth"})}
 function sync(){mount();if(!ready||!OPEN)return;var pf=curPref(),sig=pf+"|"+curTab();if(sig===lastSig)return;var first=!lastSig,pfChanged=first||lastSig.split("|")[0]!==pf;lastSig=sig;
  list=items();OTH=others();var tb=curTab();$(".lg",box).innerHTML='<span'+(tb==="もうすぐ"?' class="s"':'')+'>'+esc(tb)+'</span><span class="o">ほかのタブ</span>';$(".lg",box).style.display="flex";sel=null;pop.classList.remove("on");

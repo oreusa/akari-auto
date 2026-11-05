@@ -634,7 +634,7 @@ def build(od, ix):
            '#odekake .kc.kb2 .t{margin-top:6px;font:600 18px/1.5 var(--min);letter-spacing:.02em;-webkit-line-clamp:3}'
            '#odekake .kc .kwhy,#odekake .kc .kbut{margin:10px 0 0;font-size:12.5px;line-height:1.7;color:#333}'
            '#odekake .kc .kwhy b,#odekake .kc .kbut b{display:inline-block;margin-right:8px;font-size:10.5px;letter-spacing:.06em;color:#1F6B4F;border:1px solid currentColor;border-radius:3px;padding:0 5px;line-height:1.6;vertical-align:1px}'
-           '.head .sub .kad{display:block;margin-top:2px;font-size:10px;color:#A0A0A0;letter-spacing:.02em}'
+           '.head .sub .kad{display:block;margin-top:2px;font-size:11px;color:#6E6E6E;letter-spacing:.02em}'
            '#odekake .kc .kwd{position:relative;z-index:2;margin-top:10px}'
            '#odekake .kc .kwd summary{display:inline-flex;align-items:center;gap:6px;list-style:none;cursor:pointer;font-size:12px;font-weight:700;color:#6B6B6B}'
            '#odekake .kc .kwd summary::-webkit-details-marker{display:none}'
