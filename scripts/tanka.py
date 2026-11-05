@@ -349,7 +349,9 @@ def fetch(cat):
     rmin = RMIN.get(key, RMIN_NEW)
     # 名の知れたメーカーの物は、レビューの数を10件まで下げてよい（1商品のレビューが散らばるため。★4.0以上は同じ）。
     def passes(r):
-        m = min(rmin, 10) if r["bd"] and rmin < 1000 else rmin  # 水・炭酸水・お米・トイレットペーパーは1,000件のまま
+        # 11/5 オーナー「ノーブランドで安いのは当たり前」：水・トイレットペーパーなど1,000件の種類でも、名の知れたメーカーは100件まで下げる
+        # （1位がメーカー名なしの物ばかりになっていた）。名の知れていない物は1,000件のまま
+        m = (min(rmin, 10) if rmin < 1000 else 100) if r["bd"] else rmin
         return r["rc"] >= m and (r["av"] >= 4.0 or not m)
     ok = sorted([r for r in rows if passes(r)], key=lambda r: r["per"])
     # 11/3 点検：読んだ全部の真ん中の値段より極端に安い物は、量の読みちがいの事が多い → 外してログに残す
@@ -586,7 +588,7 @@ def main():
     os.makedirs(site, exist_ok=True)
     open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(cats, now))
     slim = [{k: c[k] for k in ("key", "title", "unit", "seen", "read", "ok", "avg")} |
-            {"top": [{k: r.get(k, "") for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain", "bd")} for r in c["top"]],
+            {"top": [{k: r.get(k, "") for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain", "bd", "url", "img")} for r in c["top"]],
              "amazon": [{k: r[k] for k in ("asin", "name", "price", "per", "amt", "rc", "av")} for r in c.get("amz", [])],
              "yahoo": [{k: r[k] for k in ("name", "price", "per", "amt", "rc", "av", "shop")} for r in c.get("yh", [])]}
             for c in cats]

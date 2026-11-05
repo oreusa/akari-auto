@@ -93,6 +93,8 @@ jobs:
       - name: LIFE NOTE に分ける（/ 入口・/odekake 関東おでかけリスト・/okaimono くらべたおかいものリスト。11/2 オーナー「完全に分ける」「TOWN NOTE 仕様」）
         run: |
           python3 scripts/lifenote.py
+          # 11/5 オーナー「わざわざここで買う理由がない」→ おかいものリストの上に「いつもの物の値段帳」（名の知れたメーカーだけ・いつもより安いかの札）
+          python3 scripts/okai_note.py || true
           # 11/4 オーナー「検索なんでも引っかかって欲しい」→ おでかけ1件ずつ（/o/）と都県ごと（/odekake-tokyo など）のページ
           python3 scripts/spot_pages.py || true
           # 11/4 1件ページを LINE・X に貼った時の画像（地図つき。月と同じ）
@@ -127,7 +129,7 @@ jobs:
           python3 scripts/koe.py "$NS" || true
           git config user.name "akari-auto"
           git config user.email "akari-auto@users.noreply.github.com"
-          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/kansai-yado.json data/kanto-yado.json data/tanka.json data/furusato.json data/price-history.json data/nesage.json data/okaimono_img.json data/koe.json 2>/dev/null || true
+          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/kansai-yado.json data/kanto-yado.json data/tanka.json data/furusato.json data/price-history.json data/nesage.json data/okaimono_img.json data/koe.json data/note-history.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "ページの数とリンクの確かめを記録"
           # 公開用に書き換えた site/ のページ（ima.html など）は戻す（戻さないと pull できない）
