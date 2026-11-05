@@ -295,6 +295,23 @@ def item_page(it):
     return f"https://item.rakuten.co.jp/{shop}/{no}/" if shop and no else ""
 
 
+# 11/6 テスター「キャットフード 4kg×2 6,190円 と出るが、6,190円は4kg単品。2個は12,140円」
+# → 1つのページで量や個数を選べる物は、楽天の値段がいちばん安い選び方の値段になり、名前の量と合わない。
+#   値段と量が1つに決まらない物は、1個あたりの順位に入れない（まちがった安さを出さない）
+AMBIG = re.compile(r"選べる|選択|さらにお得|セットがお得|セットでお得|単品|よりどり|バリエーション|[1１][個袋本箱]・|[1１][個袋本箱]/")
+
+
+def ambiguous(name, it=None):
+    if AMBIG.search(name or ""):
+        return True
+    it = it or {}
+    lo_, hi_ = it.get("itemPriceMin1"), it.get("itemPriceMax1")
+    try:
+        return bool(lo_ and hi_ and int(lo_) != int(hi_))
+    except (TypeError, ValueError):
+        return False
+
+
 def fetch(cat):
     key, _, kw, gid, unit, ng, (lo, hi) = cat
     rows, seen, n_all, err = [], set(), 0, ""
@@ -312,7 +329,7 @@ def fetch(cat):
                 continue
             am = amount(key, name)
             price = int(it.get("itemPrice") or 0)
-            if not am or not price:
+            if not am or not price or ambiguous(name, it):
                 continue
             per = price / am[0]
             if not (lo <= per <= hi):  # 読みまちがいらしい物は入れない
@@ -363,6 +380,23 @@ def fetch(cat):
         for r in bad:
             print("安すぎて外した（量の読みちがいかも）", key, r["per"], r["amt"], r["name"][:40])
         ok = [r for r in ok if r not in bad]
+    # 11/6 夜：「4kg×2 6,190円」は4kg 1つの値段だった。同じメーカーの1つ（4kg）の値段×数より、まとめ買いがずっと安い物は、
+    #   1つの値段を読んでいる見込みが高い → 外してログに残す（本当のまとめ割はふつう2〜3割引きまで）
+    singles = {}
+    for r in rows:
+        a = str(r.get("amt") or "")
+        if r["bd"] and "×" not in a:
+            singles.setdefault((r["bd"], a), []).append(r["price"])
+    def bundle_bad(r):
+        a = str(r.get("amt") or "")
+        m = re.match(r"(.+?)×(\d+)", a)
+        if not (m and r["bd"]):
+            return False
+        sp = singles.get((r["bd"], m.group(1)))
+        return bool(sp) and r["price"] < min(sp) * int(m.group(2)) * 0.7
+    for r in [r for r in ok if bundle_bad(r)]:
+        print("まとめ買いなのに安すぎて外した（1つの値段かも）", key, r["price"], r["amt"], r["name"][:40])
+    ok = [r for r in ok if not bundle_bad(r)]
     out, shops = [], set()
     names = set()
     for r in ok:  # 同じ店は1つ（並びが1店で埋まらないように）。11/3 同じ商品名（別の店の同じ物）も1つ
@@ -397,7 +431,7 @@ def amazon_rows(key, unit_lo_hi):
             continue
         m = re.search(r"[￥¥]\s*([\d,]+)|([\d,]+)\s*円", str(it.get("price", "")))
         price = int((m.group(1) or m.group(2)).replace(",", "")) if m else 0
-        am = amount(key, name + " " + str(it.get("specs", "")))
+        am = None if ambiguous(name) else amount(key, name + " " + str(it.get("specs", "")))
         per = round(price / am[0], 1) if price and am else 0
         if per and not (lo <= per <= hi):
             per = 0
@@ -439,6 +473,8 @@ def yahoo_rows(cat):
             continue
         am = amount(key, name)
         price = int(it.get("price") or 0)
+        if ambiguous(name):
+            continue
         rv = it.get("review") or {}
         rc, av = int(rv.get("count") or 0), float(rv.get("rate") or 0)
         if not am or not price or rc < min(300, RMIN.get(key, RMIN_NEW)) or av < 4.0:
@@ -559,6 +595,14 @@ def render(cats, now):
 def main():
     now = datetime.now(JST)
     cats, errs = [], []
+    if os.environ.get("TANKA_FROM_CACHE"):  # 手元で見た目を確かめる時だけ：前の回の data/tanka.json から作る（楽天は呼ばない・保存しない）
+        d = json.load(open(os.path.join(ROOT, "data", "tanka.json"), encoding="utf-8"))
+        for c in d["cats"]:
+            c["top"] = [r for r in c["top"] if not ambiguous(r["name"])]
+            cats.append(c | {"yh": [], "amz": []})
+        site = os.path.join(ROOT, "site")
+        open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(cats, now))
+        return
     for c in CATS:
         try:
             r, err = fetch(c)
