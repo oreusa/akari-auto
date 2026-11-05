@@ -183,7 +183,7 @@
     function close(){document.documentElement.classList.remove("umenu-open");mask.classList.remove("on");pan.classList.remove("on");pan.setAttribute("aria-hidden","true");btn.setAttribute("aria-expanded","false");if(last&&last.focus)last.focus();}
     pan.querySelector(".ush").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var k=b.getAttribute("data-s"),u=location.origin+location.pathname,t=document.title;ck(MK+"送る（"+b.textContent+"）");
       if(k==="share"){navigator.share({title:t,url:u}).catch(function(){});return;}
-      if(k==="line"){window.open("https://social-plugins.line.me/lineit/share?url="+encodeURIComponent(u),"_blank","noopener");return;}
+      if(k==="line"){location.href="https://line.me/R/share?text="+encodeURIComponent(t+"\n"+u);return;}
       var done=function(){b.textContent="コピーしました";setTimeout(function(){b.textContent="コピー";},1800);};
       if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(done,function(){prompt("このURLをコピーしてください",u);});else prompt("このURLをコピーしてください",u);});
     btn.addEventListener("click",open);mask.addEventListener("click",close);pan.querySelector(".ux").addEventListener("click",close);
