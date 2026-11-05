@@ -937,16 +937,6 @@
       }
     ]
   },
-  "棚田のあかり大山千枚田": {
-    "v": 2,
-    "t": "2026-11-02",
-    "ll": [
-      35.12996,
-      139.97496
-    ],
-    "w": 1,
-    "h": []
-  },
   "大チーバくん展さかざきちはるとチーバくんの20年": {
     "v": 2,
     "t": "2026-10-31",
@@ -4026,52 +4016,6 @@
         "r": 4.04,
         "rc": 872,
         "min": 10010
-      }
-    ]
-  },
-  "EzyRoller（軽井沢おもちゃ王国）": {
-    "v": 2,
-    "t": "2026-11-04",
-    "ll": [
-      36.47312,
-      138.54255
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ビラ秀琳",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106131",
-        "km": 1.0,
-        "r": 4.5,
-        "rc": 55,
-        "min": 4000
-      },
-      {
-        "n": "奥軽井沢温泉 ホテルグリーンプラザ軽井沢",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D11009",
-        "km": 0.4,
-        "r": 4.25,
-        "rc": 2628,
-        "min": 11716
-      }
-    ]
-  },
-  "多摩センターイルミネーション2026": {
-    "v": 2,
-    "t": "2026-11-04",
-    "ll": [
-      35.62394,
-      139.42426
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "LINK FOREST",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179467",
-        "km": 0.5,
-        "r": 4.5,
-        "rc": 637,
-        "min": 7840
       }
     ]
   }
