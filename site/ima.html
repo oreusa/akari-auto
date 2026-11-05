@@ -217,7 +217,10 @@ function load(){Promise.all([
   doc.querySelectorAll("div.card.it[data-pref]").forEach(function(a){if(!PC[a.dataset.pref])return;var tt=a.querySelector(".t"),t=tt?tt.textContent.trim():"",k=t.replace(/\s+/g,""),g=G[k];if(!t||!g||g[0]==null||seen[k])return;seen[k]=1;
     var s=a.dataset.s||"",e=a.dataset.e||"",lk=a.querySelector(".t a"),mp=a.querySelector("a.mp"),q="";
     if(mp){var mq=(mp.getAttribute("href")||"").match(/query=([^&]*)/);if(mq)try{q=decodeURIComponent(mq[1]).replace(" "+a.dataset.pref,"").trim();}catch(x){}}
-    var open=e?((s||T)<=T&&T<=e):(s?s<=T:!/予定|準備中|オープン前/.test((a.querySelector(".when")||{}).textContent||""));if(!open||!lk)return;
+    var open=e?((s||T)<=T&&T<=e):(s?s<=T:!/予定|準備中|オープン前/.test((a.querySelector(".when")||{}).textContent||""));/* 11/6 夜：土曜だけ・日曜だけの催しは、その曜日（we＝土日祝）しか出さない */
+    var dy=(a.dataset.days||"").split(","),wd=new Date(T+"T12:00:00+09:00").getDay(),HD=["2026-11-03","2026-11-23","2027-01-01","2027-01-11","2027-02-11","2027-02-23","2027-03-22"];
+    if(open&&dy[0]&&!(dy.indexOf(T)>=0||(dy.indexOf("we")>=0&&(wd===0||wd===6||HD.indexOf(T)>=0))||(dy.indexOf("sun")>=0&&wd===0)||(dy.indexOf("sat")>=0&&wd===6)))open=false;
+    if(!open||!lk)return;
     ITEMS.push({t:t,p:a.dataset.pref,s:s,e:e,op:"",free:a.dataset.free==="1",m:q,place:a.dataset.pref,d:((a.querySelector(".when")||{}).textContent||""),href:lk.getAttribute("href"),la:+g[0],lo:+g[1],
       inside:/美術館|博物館|ミュージアム|展$|展[　 （(]|展覧|水族館|ホール|アリーナ|ドーム|百貨店|プラネタリウム|シアター|館/.test(t+" "+q)});});
   document.getElementById("nOpen").textContent=ITEMS.length;draw();ck("表示：いまから行けるおでかけ");

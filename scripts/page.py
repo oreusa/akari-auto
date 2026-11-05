@@ -168,7 +168,7 @@ def _page_spots(now, ended=None):
                     "day": f"{now.month}/{now.day}", "year": y, "bullets": [it.get("note", "")],
                     "url": _fix_url(it["url"]), "place": it.get("place", ""), "pref_fixed": it.get("pref", ""),
                     "free_fixed": bool(it.get("free")), "note": it.get("note", ""), "kind": "shop" if shop else "odekake",
-                    "open": it.get("open", ""), "page": True})
+                    "open": it.get("open", ""), "days": it.get("days", ""), "page": True})
     return out
 
 
@@ -736,6 +736,8 @@ def spot(e):
     de = f' data-e="{en.date().isoformat()}"' if en else ""  # 10/31 終わった日を過ぎたら、次の作り直しを待たずにページ側で隠す
     if st:  # 10/31 泊まりのページ（scripts/tomari.py）が「開催中／これから」を分けるのに使う
         de += f' data-s="{st.date().isoformat()}"'
+    if e.get("days"):  # 11/6 夜「土曜だけ・日曜だけの催しが平日の『いまから』に出る」→ 開く日（sat・sun・we＝土日祝・日付）
+        de += f' data-days="{esc(e["days"])}"'
     return (f'<div class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" data-wk="{1 if wk else 0}"{de} style="--pc:{color}">'
             f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
             f'<div class="t"><a class="go" href="{href}" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
