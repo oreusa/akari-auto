@@ -9,15 +9,16 @@ var inn=/\/tomari/.test(location.pathname),P=location.pathname.replace(/\.html$/
 /* 11/2 LIFE NOTE：買い物のページ（くらべたおかいものリストとその仲間）は、買い物の下のボタン列。おでかけ側は /odekake へ */
 /* 11/2 くらべたおかいものリストのタブ4つ（くらべた物・1個あたり・値下がり・セール）へ。いまのページの仲間に下線 */
 /* 11/5 オーナー「AIで調べる項目、バーにいれたり、もっと見やすく使いやすく」→ 左に「AIに聞く」、ふるさと納税も1押しで */
-var SH=[["ask","AIに聞く",I.ai,/^$/,"/okaimono#kq"],["pick","結論",'<svg viewBox="0 0 24 24"><path d="M5 7h14l-1.5 9h-11z"/><circle cx="9" cy="19.5" r="1.2"/><circle cx="16" cy="19.5" r="1.2"/></svg>',/^\/okaimono$/],
- ["unit","1個あたり",'<svg viewBox="0 0 24 24"><path d="M12 4v16M6 8h12M6 8l-3 6h6zM18 8l-3 6h6z"/></svg>',/^\/tanka/],
- ["furu","ふるさと",'<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>',/^\/furusato/,"/furusato"],
- ["sale","セール",'<svg viewBox="0 0 24 24"><path d="M3 12l9-9h7v7l-9 9z"/><circle cx="15" cy="9" r="1.4"/></svg>',/^\/kaimawari/]];
-var shop=/^\/(okaimono|nesage|tanka|furusato|kaimawari)/.test(P);
+/* 11/6 オーナーOK「見本4」→ /okaimono はくらべる1つに。下のバーは くらべる・買い時・セール・ふるさと（前のページは /otoku） */
+var SH=[["cmp","くらべる",'<svg viewBox="0 0 24 24"><path d="M12 4v16M6 8h12M6 8l-3 6h6zM18 8l-3 6h6z"/></svg>',/^\/(okaimono|tanka)$/,"/okaimono"],
+ ["down","買い時",'<svg viewBox="0 0 24 24"><path d="M4 6l7 7 4-4 5 5"/><path d="M20 10v4h-4"/></svg>',/^\/nesage/,"/nesage"],
+ ["sale","セール",'<svg viewBox="0 0 24 24"><path d="M3 12l9-9h7v7l-9 9z"/><circle cx="15" cy="9" r="1.4"/></svg>',/^\/kaimawari/,"/kaimawari"],
+ ["furu","ふるさと",'<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>',/^\/furusato/,"/furusato"]];
+var shop=/^\/(okaimono|nesage|tanka|furusato|kaimawari|otoku)/.test(P);
 var bar=document.createElement("nav");bar.id="v2bar";bar.setAttribute("aria-label","すぐ移動");
 /* LIFE NOTE の入口ページ：2つのリストといまから行ける（月の TOWN NOTE 入口と同じ形） */
 var top=P===""||P==="/"||P==="/index";
-bar.innerHTML=top?'<a href="/odekake">'+I.map+'<span>おでかけ</span></a><a href="/okaimono"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>おかいもの</span></a><a href="/okaimono#kq">'+I.ai+'<span>AIに聞く</span></a><a href="/ima">'+I.now+'<span>いま行ける</span></a><button class="mn" type="button"><i></i>MENU</button>':(shop?SH.map(function(x){return '<a href="'+(x[4]||'/okaimono?t='+x[0])+'"'+(x[3].test(P)?' class="cur"':'')+'>'+x[2]+'<span>'+x[1]+'</span></a>';}).join(""):
+bar.innerHTML=top?'<a href="/odekake">'+I.map+'<span>おでかけ</span></a><a href="/okaimono"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>おかいもの</span></a><a href="/otoku#kq">'+I.ai+'<span>AIに聞く</span></a><a href="/ima">'+I.now+'<span>いま行ける</span></a><button class="mn" type="button"><i></i>MENU</button>':(shop?SH.map(function(x){return '<a href="'+(x[4]||'/okaimono?t='+x[0])+'"'+(x[3].test(P)?' class="cur"':'')+'>'+x[2]+'<span>'+x[1]+'</span></a>';}).join(""):
  '<a href="/#town">'+I.ai+'<span>街で探す</span></a><a href="/odekake?v2t=0">'+I.now+'<span>開催中</span></a><a href="/odekake?v2t=1">'+I.up+'<span>これから</span></a><a href="/odekake?v2t=map">'+I.map+'<span>地図</span></a><a href="/tomari"'+(inn?' class="cur"':'')+'>'+I.inn+'<span>泊まり</span></a>')+'<button class="mn" type="button"><i></i>MENU</button>';
 bar.querySelector(".mn").onclick=function(){var m=document.getElementById("umenu");if(m)m.click();};
 document.body.appendChild(bar);

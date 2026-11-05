@@ -1,0 +1,424 @@
+"""11/6 オーナーOK「見本4」→ くらべたおかいものリスト（/okaimono）を作り直す。
+
+夜（テスター）の参考サイト調査の学び＋燈だけの工夫：
+  ・最初の画面に答え（検索・よく買う8種類・「すべての種類」→ すぐ下に「最安」と「おすすめ」）
+  ・「最安（全部から）」と「おすすめ（名の知れたメーカーの中で）」を別の見出しに（夜#3・#68）
+  ・値段の横に送料込みの総額・お店の名前。比べた物・比べ方・更新・注意を答えのすぐ下に（夜#16・#17）
+  ・条件ボタンに件数、「条件をぜんぶ外す」。条件はURLに残る（戻る・再読込でも消えない 夜#11）
+  ・おむつはサイズ・テープ/パンツで同じ物だけ比べられる（夜#55）
+  ・ボタンはその商品のページへ直接（夜#14）。数える件数は画面に出ている物だけ（夜#15）
+  ・値段グラフに期間・単位・送料込み・更新、取れなかった日は線をつながない。グラフの点に商品名（夜#35）
+  ・燈だけ：わが家のいつもの物（この端末に保存→次に来たら前に見た日からの値動き）、1か月にいくら？、値段ちがいの連絡
+今までのページ（セール・宿・AIに聞く など）は /otoku に移して残す。
+lifenote.py・okai_note.py のあとに動かす。失敗したら今のページのまま。"""
+import html
+import json
+import os
+import re
+import shutil
+import sys
+from datetime import datetime, timedelta, timezone
+
+R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(R, "scripts"))
+try:
+    from tanka import BRAND, ALIAS
+except Exception:
+    BRAND, ALIAS = {}, {}
+JST = timezone(timedelta(hours=9))
+E = html.escape
+SITE = os.path.join(R, "site")
+
+NAME = {"water": "水", "soda": "炭酸水", "rice": "お米", "tp": "トイレットペーパー", "tea": "お茶", "coffee": "コーヒー",
+        "detergent": "洗濯洗剤", "softener": "柔軟剤", "shampoo": "シャンプー", "bodysoap": "ボディソープ", "dish": "食器用洗剤",
+        "tissue": "ティッシュ", "diaper": "おむつ", "wipes": "おしりふき", "trash": "ゴミ袋", "battery": "乾電池", "mask": "マスク",
+        "pasta": "パスタ", "beans": "コーヒー豆", "dogfood": "ドッグフード", "catfood": "キャットフード"}
+GROUPS = [("赤ちゃん", ["diaper", "wipes"]), ("紙・日用品", ["tp", "tissue", "trash", "mask", "battery"]),
+          ("洗濯・お風呂・台所", ["detergent", "softener", "shampoo", "bodysoap", "dish"]),
+          ("飲み物・食べ物", ["water", "tea", "soda", "coffee", "beans", "rice", "pasta"]), ("ペット", ["dogfood", "catfood"])]
+POP = ["tissue", "tp", "diaper", "water", "detergent", "softener", "rice", "catfood"]
+# 探す言葉（ひらがな・言いかえ）→ 種類
+SYN = {"といれっとぺーぱー": "tp", "といぺ": "tp", "とイレ": "tp", "てぃっしゅ": "tissue", "はなかみ": "tissue", "おむつ": "diaper", "オムツ": "diaper",
+       "おしりふき": "wipes", "おしり拭き": "wipes", "みず": "water", "天然水": "water", "ミネラルウォーター": "water", "たんさん": "soda",
+       "炭酸": "soda", "こめ": "rice", "米": "rice", "おこめ": "rice", "新米": "rice", "おちゃ": "tea", "茶": "tea", "緑茶": "tea",
+       "こーひー": "coffee", "珈琲": "coffee", "コーヒー豆": "beans", "豆": "beans", "せんざい": "detergent", "洗剤": "detergent",
+       "洗濯": "detergent", "じゅうなん": "softener", "柔軟": "softener", "しゃんぷー": "shampoo", "ぼでぃそーぷ": "bodysoap",
+       "ボディ": "bodysoap", "しょっき": "dish", "食器": "dish", "台所": "dish", "ごみ": "trash", "ゴミ": "trash", "ごみぶくろ": "trash",
+       "でんち": "battery", "電池": "battery", "ますく": "mask", "ぱすた": "pasta", "スパゲッティ": "pasta", "ドッグ": "dogfood", "犬": "dogfood",
+       "いぬ": "dogfood", "キャット": "catfood", "猫": "catfood", "ねこ": "catfood"}
+# 1か月に使う量のボタン（その人が選ぶ。燈が決めつけない）。count=何個入りで数える物
+USE = {"tissue": ("箱", [2, 5, 10], "count"), "tp": ("ロール", [4, 8, 16], "count"), "diaper": ("枚", [150, 210, 300], "q"),
+       "wipes": ("枚", [200, 400, 800], "q"), "trash": ("枚", [30, 60, 120], "q"), "battery": ("本", [2, 4, 8], "q"),
+       "mask": ("枚", [30, 60, 120], "q"), "water": ("L", [20, 40, 80], "q"), "soda": ("L", [5, 10, 20], "q"),
+       "tea": ("L", [10, 20, 40], "q"), "coffee": ("L", [5, 10, 20], "q"), "beans": ("kg", [0.3, 0.5, 1], "q"),
+       "rice": ("kg", [5, 10, 15], "q"), "pasta": ("kg", [1, 2, 3], "q"), "detergent": ("L・kg", [0.5, 1, 2], "q"),
+       "softener": ("L・kg", [0.5, 1, 2], "q"), "shampoo": ("L・kg", [0.2, 0.4, 0.8], "q"), "bodysoap": ("L・kg", [0.3, 0.6, 1.2], "q"),
+       "dish": ("L・kg", [0.2, 0.4, 0.8], "q"), "dogfood": ("kg", [2, 4, 8], "q"), "catfood": ("kg", [1, 2, 4], "q")}
+PROMO = [r"【[^】]*】", r"\[[^\]]*\]", r"［[^］]*］", r"＼[^／]*／", r"《[^》]*》", r"『[^』]*』", r"\([^)]*(?:送料|地域|限定|倍|OFF|クーポン)[^)]*\)",
+         r"ポイント(?:最大)?\d+(?:\.\d+)?倍", r"P\d+倍", r"エントリーで[^ 　]*", r"要エントリー", r"\d+%OFF\S*", r"\d+％OFF\S*", r"クーポン\S*",
+         r"期間限定", r"数量限定", r"セール特別価格", r"送料無料\S*", r"送料込\S*", r"最安値\S*", r"楽天\S*1位\S*", r"ランキング\S*",
+         r"\d+月\d+日\S*", r"\d+[/／]\d+\S*", r"…", r"\.\.\.", r"\d+日\d+時\S*", r"即納\S*", r"お買得！?", r"お得な", r"★", r"☆", r"◆[^◆]*◆", r"MA期間\S*",
+         r"マラソン限定\S*", r"訳あり", r"並行輸入品", r"公式", r"!+", r"！+", r"レビュー[\d,]+件\S*", r"当選確率\S*", r"\d等\S*", r"LINE追加\S*"]
+
+
+def clean(n):
+    for p in PROMO:
+        n = re.sub(p, " ", n)
+    n = re.sub(r"[｜|／/・]+\s*$", "", n)
+    n = re.sub(r"\s+", " ", n).strip(" 　-〜~、,")
+    if len(n) > 30:
+        n = n[:30].rsplit(" ", 1)[0] if " " in n[:30] else n[:30]
+    return re.sub(r"[\s\d]+$", "", n) if n else ""
+
+
+def brand(key, t):
+    if t.get("bd"):
+        b = t["bd"]
+    else:
+        low = (t.get("name") or "").lower()
+        b = next((x for x in BRAND.get(key, ()) if x.lower() in low), "")
+        if not b:  # お店の名前が「〇〇公式」の時は、そのメーカー（11/6 アイリスオーヤマを数えていなかった）
+            sh = t.get("shop") or ""
+            b = next((x for x in BRAND.get(key, ()) + ("アイリスオーヤマ",) if x in sh and "公式" in sh), "")
+    return ALIAS.get(b, b)
+
+
+def tags(key, t):
+    n = (t.get("name") or "") + " " + (t.get("amt") or "")
+    out = []
+    if key == "tissue":
+        out.append("ソフトパック" if ("ソフトパック" in n or "詰め替え" in n) else "箱")
+    elif key == "tp":
+        if "ダブル" in n: out.append("ダブル")
+        if "シングル" in n: out.append("シングル")
+        if re.search(r"(1\.5|1\.6|2|3|4)倍", n): out.append("長持ち")
+    elif key == "diaper":
+        if "テープ" in n: out.append("テープ")
+        if "パンツ" in n: out.append("パンツ")
+        for s, lab in (("新生児", "新生児"), ("Sサイズ", "S"), ("Mサイズ", "M"), ("Lサイズ", "L"), ("ビッグ", "ビッグ"), ("BIG", "ビッグ")):
+            if s in n and lab not in out: out.append(lab)
+        if not any(x in out for x in ("新生児", "S", "M", "L", "ビッグ")):
+            m = re.search(r"(?<![A-Za-z])(S|M|L)(?:サイズ)?(?![A-Za-z])", t.get("name") or "")
+            if m: out.append(m.group(1))
+    elif key in ("detergent", "softener", "shampoo", "bodysoap", "dish"):
+        out.append("詰め替え" if re.search(r"詰め?替|つめかえ|業務用|\d{1,2}L(?![a-z])", n) else "本体")
+        if re.search(r"無香|香りなし|微香", n): out.append("無香料・微香")
+        if key == "detergent":
+            if "粉" in n: out.append("粉")
+            if "ジェルボール" in n: out.append("ジェルボール")
+    elif key in ("water", "tea", "coffee", "soda"):
+        m = re.search(r"(\d+(?:\.\d+)?)\s*(ml|mL|L|ℓ)", t.get("amt") or "")
+        if m:
+            v = float(m.group(1)) * (1 if m.group(2).lower() in ("l", "ℓ") else 0.001)
+            out.append("2Lなど大きいボトル" if v >= 1.5 else "500mlなど小さいボトル" if v <= 0.7 else "1L前後")
+        if key == "coffee" and "無糖" in n: out.append("無糖")
+    elif key == "rice":
+        if "無洗米" in n: out.append("無洗米")
+        if "新米" in n: out.append("新米")
+        m = re.match(r"(\d+)kg", t.get("amt") or "")
+        if m: out.append(m.group(1) + "kg")
+    elif key == "mask":
+        for s in ("小さめ", "ふつう", "大きめ"):
+            if s in n: out.append(s)
+    elif key == "battery":
+        for s in ("単3", "単4"):
+            if s in n: out.append(s)
+    if t["bd"]:
+        out.append("名の知れたメーカー")
+    return out
+
+
+def amt_split(a):
+    m = re.match(r"\s*([\d.]+\s*[^\d×x]+?)\s*[×x]\s*(\d+)", a or "")
+    if m:
+        return m.group(1).strip(), int(m.group(2))
+    return (a or "").strip(), 1
+
+
+def code(u):
+    m = re.search(r"item\.rakuten\.co\.jp/([^/]+)/([^/?#]+)", u or "")
+    return f"{m.group(1)}:{m.group(2)}" if m else ""
+
+
+def build():
+    d = json.load(open(os.path.join(R, "data", "tanka.json"), encoding="utf-8"))
+    try:
+        hist = json.load(open(os.path.join(R, "data", "price-history.json"), encoding="utf-8")).get("codes", {})
+    except Exception:
+        hist = {}
+    at = d.get("at", "")
+    cats = []
+    for c in d["cats"]:
+        k = c["key"]
+        if k not in NAME:
+            continue
+        offers = []
+        for site, rows in (("楽天", c.get("top", [])), ("Yahoo!", c.get("yahoo", []))):
+            for t in rows:
+                if not t.get("per") or not t.get("price"):
+                    continue
+                url = t.get("url") or ""
+                if site == "Yahoo!" and not url:  # 前の回のデータには行き先が無い → 押せない物は出さない
+                    continue
+                o = {"n": clean(t.get("name") or "") or NAME[k], "p": int(t["price"]), "u": round(float(t["per"]), 1), "a": t.get("amt") or "",
+                     "s": t.get("shop") or "", "w": site, "av": t.get("av") or 0, "rc": t.get("rc") or 0, "url": url,
+                     "img": t.get("img") or "", "bd": ""}
+                o["bd"] = brand(k, {**t, "bd": t.get("bd") or ""})
+                if o["bd"] and o["bd"] not in o["n"]:
+                    o["n"] = (o["bd"] + " " + o["n"])[:34]
+                o["one"], o["cnt"] = amt_split(o["a"])
+                if c["unit"] == "1L・1kg":  # 夜#31 1Lか1kgかは商品ごと（量の書き方から）
+                    o["ut"] = "1kgあたり" if re.search(r"\d\s*(kg|g)(?![a-z])", o["a"], re.I) else "1Lあたり"
+                o["tg"] = tags(k, {**t, "bd": o["bd"]})
+                cd = code(t.get("plain") or "")
+                h = hist.get(cd, {}).get("p") if cd else None
+                if h:
+                    o["h"] = h
+                offers.append(o)
+        if not offers:
+            continue
+        # 同じ物が楽天とYahoo!にある時の印（メーカー＋量が同じ）
+        for o in offers:
+            o["same"] = [i for i, x in enumerate(offers) if x is not o and o["bd"] and x["bd"] == o["bd"] and x["a"] == o["a"]]
+        amz = [{"n": clean(a.get("name") or ""), "url": a.get("url") or (f"https://www.amazon.co.jp/dp/{a['asin']}" if a.get("asin") else "")}
+               for a in c.get("amazon", []) if a.get("asin") or a.get("url")]
+        cats.append({"k": k, "nm": NAME[k], "unit": c["unit"], "seen": c.get("seen", 0), "read": c.get("read", 0), "ok": c.get("ok", 0),
+                     "o": offers, "amz": amz, "use": USE.get(k)})
+    return at, cats
+
+
+CSS = """
+body{background:#fff;color:#222;font-family:"Zen Kaku Gothic New",sans-serif;font-size:14px;line-height:1.6;margin:0}
+.v4top{max-width:560px;margin:0 auto;padding:12px 16px;border-bottom:1px solid #E2E2E2}.v4top .en{display:block;font-size:10px;letter-spacing:.2em;color:#6E6E6E;text-decoration:none}.v4top b{font-family:"Shippori Mincho",serif;font-size:16px;font-weight:600}
+.v4{max-width:560px;margin:0 auto;padding:0 0 96px}
+.v4 h1{font-family:var(--min,"Shippori Mincho",serif);font-size:21px;line-height:1.45;margin:14px 16px 4px;font-weight:600}
+.v4 .lead{font-size:12.5px;color:var(--sub,#555);margin:0 16px}
+.v4 .pr{font-size:12px;color:#595959;text-align:right;margin:6px 16px 0}
+.v4 .srch{margin:12px 16px 0;display:flex;border:1.5px solid var(--ink,#222);border-radius:12px;overflow:hidden;background:var(--card,#fff)}
+.v4 .srch input{flex:1;min-width:0;border:0;padding:11px 12px;font:inherit;font-size:16px;background:transparent;color:inherit}
+.v4 .srch button{border:0;background:var(--ink,#222);color:var(--inkfg,#fff);padding:0 16px;font:inherit;font-weight:700}
+.v4 .read{margin:6px 16px 0;font-size:12.5px;color:var(--sub,#555)}
+.v4 .read button{border:0;background:none;color:var(--lk,#2F5FA8);text-decoration:underline;font:inherit;padding:0}
+.v4 .chs{margin:10px 16px 0}.v4 .chs p{font-size:11.5px;color:var(--mute,#6E6E6E);margin:8px 0 4px}
+.v4 .ch{display:inline-block;border:1px solid var(--line,#E2E2E2);border-radius:99px;padding:5px 12px;font:inherit;font-size:13px;margin:0 4px 6px 0;background:var(--card,#fff);color:inherit;cursor:pointer}
+.v4 .ch[aria-pressed=true]{background:var(--ink,#222);color:var(--inkfg,#fff);border-color:var(--ink,#222);font-weight:700}
+.v4 .ch i{font-style:normal;font-family:Jost,sans-serif;opacity:.65;margin-left:3px}
+.v4 .ch.all{border-color:var(--ink,#222);font-weight:700}
+.v4 .ch:disabled{opacity:.4;cursor:default}
+.v4 .hd{margin:14px 16px 0;padding-top:12px;border-top:1px solid var(--line,#E2E2E2)}
+.v4 .hd h2{font-size:18px;margin:0}.v4 .hd h2 small{font-size:12px;font-weight:400;color:var(--mute,#6E6E6E);margin-left:6px}
+.v4 .cl{font-size:12.5px;color:var(--sub,#555);margin:2px 16px 0;display:flex;justify-content:space-between;gap:8px}
+.v4 .cl button{border:0;background:none;color:var(--lk,#2F5FA8);text-decoration:underline;font:inherit;padding:0}
+.v4 .ans{margin:12px 16px 0;border:1.5px solid var(--ink,#222);border-radius:16px;overflow:hidden;background:var(--card,#fff)}
+.v4 .ans section{padding:14px}.v4 .ans section+section{border-top:1px solid var(--line,#E2E2E2)}
+.v4 .lab{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:6px}
+.v4 .lab small{font-weight:400;margin-left:4px}.v4 .lab.c{background:var(--gbg,#E8F4EE);color:var(--g,#1F7A4D)}.v4 .lab.r{background:var(--bbg,#E9EFF8);color:var(--b,#2F5FA8)}
+.v4 .it{display:flex;gap:12px;margin-top:8px}.v4 .it img,.v4 .ph{width:84px;height:84px;object-fit:contain;border-radius:10px;background:#fff;border:1px solid var(--line,#E2E2E2);flex:none}
+.v4 .nm{font-weight:700;line-height:1.45}
+.v4 .attr span{display:inline-block;font-size:11.5px;background:var(--box,#F1F2F4);border-radius:4px;padding:0 6px;margin:4px 4px 0 0;color:var(--sub,#555)}
+.v4 .pp{display:flex;align-items:baseline;gap:10px;margin-top:6px;flex-wrap:wrap}.v4 .pp .big{font-family:Jost,sans-serif;font-size:28px;font-weight:500}
+.v4 .pp .tot{font-size:12.5px;line-height:1.5}
+.v4 .why{font-size:12.5px;margin-top:6px;color:var(--sub,#555)}
+.v4 .btn{display:block;margin-top:10px;text-align:center;background:var(--ink,#222);color:var(--inkfg,#fff)!important;border-radius:10px;padding:11px;font-weight:700;font-size:14px;text-decoration:none}
+.v4 .sv{display:block;width:100%;margin-top:8px;border:1px solid var(--line,#E2E2E2);background:none;color:inherit;border-radius:10px;padding:9px;font:inherit;font-size:13px}
+.v4 .mo b{font-size:13.5px}.v4 .mo .row2{display:flex;gap:8px;margin-top:6px;font-size:12.5px}
+.v4 .mo .row2>div{flex:1;background:var(--box,#F1F2F4);border-radius:10px;padding:8px}.v4 .mo .row2 b.n{font-family:Jost,sans-serif;font-size:17px}
+.v4 .ev{background:var(--box,#F1F2F4);padding:12px 14px;font-size:12.5px;line-height:1.75}.v4 .ev dt{font-weight:700;float:left;width:64px}.v4 .ev dd{margin:0 0 0 64px}
+.v4 .ev a{color:var(--lk,#2F5FA8)}
+.v4 h3{font-size:15px;margin:22px 16px 8px}.v4 h3 small{font-size:12px;font-weight:400;color:var(--mute,#6E6E6E);margin-left:6px}
+.v4 .gr{margin:0 16px;border:1px solid var(--line,#E2E2E2);border-radius:12px;padding:12px;font-size:12.5px}.v4 .gr svg{display:block;width:100%;height:auto}
+.v4 .lst{margin:0 16px;padding:0;list-style:none}.v4 .lst li{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line,#E2E2E2)}
+.v4 .lst a{display:flex;gap:10px;flex:1;color:inherit;text-decoration:none;min-width:0}
+.v4 .lst .rk{width:18px;font-family:Jost,sans-serif;color:var(--mute,#6E6E6E);padding-top:2px;flex:none}
+.v4 .lst img,.v4 .lst .ph{width:56px;height:56px}
+.v4 .lst .r{text-align:right;min-width:92px;flex:none}.v4 .lst .r b{font-family:Jost,sans-serif;font-size:19px;font-weight:500}
+.v4 .tag{white-space:nowrap;display:inline-block;font-size:11px;font-weight:700;padding:0 6px;border-radius:4px;margin-left:4px}
+.v4 .na{margin:12px 16px 0;border:1px dashed var(--line,#CFCFCF);border-radius:12px;padding:10px 12px;font-size:12.5px;color:var(--sub,#555)}
+.v4 .na a{color:var(--lk,#2F5FA8)}
+.v4 .my{margin:12px 16px 0;border:1.5px solid var(--ink,#222);border-radius:14px;padding:12px 14px;background:var(--card,#fff)}
+.v4 .my .r1{display:flex;justify-content:space-between;font-size:12px}.v4 .my .r1 b{font-size:14px}
+.v4 .my a{display:flex;align-items:center;padding:8px 0;border-top:1px solid var(--line,#E2E2E2);margin-top:6px;color:inherit;text-decoration:none}
+.v4 .my .up{font-size:12px;font-weight:700}
+.v4 .zero{margin:12px 16px 0;padding:14px;border:1px solid var(--line,#E2E2E2);border-radius:12px;font-size:13px}
+.v4 .more{margin:22px 16px 0;font-size:13px}.v4 .more a{color:var(--lk,#2F5FA8)}
+.v4 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.v4 .n{font-family:Jost,sans-serif}.v4 .mut{color:var(--mute,#6E6E6E)}
+"""
+
+JS = r"""
+(function(){
+var D=JSON.parse(document.getElementById("v4d").textContent),C={},AT=D.at;D.cats.forEach(function(c){C[c.k]=c;});
+var $=function(s){return document.querySelector(s)},main=$("#v4m"),qi=$("#v4q"),rd=$("#v4r");
+function esc(x){return String(x==null?"":x).replace(/[<>&"']/g,function(c){return "&#"+c.charCodeAt(0)+";";});}
+function yen(v){return v>=100?Math.round(v).toLocaleString():(Math.round(v*10)/10).toString();}
+function nz(x){return (x||"").normalize("NFKC").toLowerCase().replace(/[\s　]/g,"").replace(/[ァ-ヶ]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96);});}
+var st={k:"",c:[],u:1};
+function load(){var p=new URLSearchParams(location.search);st.k=C[p.get("k")]?p.get("k"):"";st.c=(p.get("c")||"").split(",").filter(Boolean);st.u=+p.get("u")||1;}
+function save(push){var p=new URLSearchParams();if(st.k)p.set("k",st.k);if(st.c.length)p.set("c",st.c.join(","));if(st.u!==1)p.set("u",st.u);
+ var u=location.pathname+(p.toString()?"?"+p.toString():"");try{history[push?"pushState":"replaceState"](null,"",u);}catch(e){}}
+function track(k){try{navigator.sendBeacon("/c?f=okaimono&s=v4&k="+encodeURIComponent(k));}catch(e){}}
+var MY={};try{MY=JSON.parse(localStorage.getItem("okai_my")||"{}");}catch(e){}
+function mysave(){try{localStorage.setItem("okai_my",JSON.stringify(MY));}catch(e){}}
+/* 前に来た時の値段を「前に見た」にして、いまの値段を覚え直す（次に来た時は、今日からの値動き） */
+(function(){var ch=0;Object.keys(MY).forEach(function(k){var c=C[k],o=MY[k];if(!c||!c.o.length||o.d===AT)return;var m=c.o.slice().sort(function(a,b){return a.u-b.u;})[0].u;o.pu=o.u;o.pd=o.d;o.u=m;o.d=AT;ch=1;});if(ch)mysave();})();
+function pic(o,s){return o.img?'<img src="'+esc(o.img)+'" alt="'+esc(o.n)+'" width="'+s+'" height="'+s+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'ph\'}))">':'<span class="ph" aria-hidden="true"></span>';}
+function attrs(c,o){var a=[];if(o.cnt>1){a.push("1個 "+o.one);a.push(o.cnt+"個入り");}else a.push(o.a);
+ o.tg.forEach(function(t){if(t!=="名の知れたメーカー")a.push(t);});return '<div class="attr">'+a.map(function(x){return "<span>"+esc(x)+"</span>";}).join("")+"</div>";}
+function rv(o){return +o.rc?'★'+o.av+'（レビュー'+(+o.rc).toLocaleString()+'件）':'レビューはまだありません';}
+function unitTxt(c,o){return c.unit==="1L・1kg"?(o&&o.ut?o.ut:"1L・1kgあたり（商品ごと）"):c.unit+"あたり";}
+function upd(){var m=/(\d{4})-(\d\d)-(\d\d) (\d\d:\d\d)/.exec(AT||"");return m?(+m[2])+"/"+(+m[3])+" "+m[4]:AT;}
+function list(c){return c.o.filter(function(o){return st.c.every(function(t){return o.tg.indexOf(t)>=0;});});}
+function buyBtn(o){return '<a class="btn" href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="v4:'+esc(o.n.slice(0,20))+'">この商品を'+esc(o.w)+'で見る</a>';}
+function card(c,o,lab,why){return '<section><span class="lab '+(lab==="最安"?"c":"r")+'">'+lab+'<small>'+(lab==="最安"?"全部の中で・送料込み・"+unitTxt(c,o):"名の知れたメーカーの中で安い")+'</small></span>'+
+ '<div class="it">'+pic(o,84)+'<div><div class="nm">'+esc(o.n)+'</div>'+attrs(c,o)+'</div></div>'+
+ '<div class="pp"><span><b class="big">'+yen(o.u)+'</b>円<span style="font-size:12px">／'+unitTxt(c,o).replace("あたり","")+'</span></span><span class="tot">総額 <b class="n">'+o.p.toLocaleString()+'</b>円（送料込み）<br>'+esc(o.s)+'・'+esc(o.w)+'</span></div>'+
+ '<div class="why">'+why+'</div>'+buyBtn(o)+'</section>';}
+function months(c,o,u){var q=c.use;if(!q)return null;var cnt=q[2]==="count",tot=cnt?o.cnt:o.p/o.u,m=tot/u,per=cnt?o.p/o.cnt*u:o.u*u;return {m:m,per:per};}
+function mtxt(x){var v=x.m>=2?Math.round(x.m):Math.round(x.m*10)/10;return "約"+v+"か月分"+(x.m<1?"（1か月に足りません）":"");}
+function graph(c,o){if(!o||!o.h)return "";var ds=Object.keys(o.h).sort();if(ds.length<2)return "";
+ var vs=ds.map(function(d){return o.h[d];}),mn=Math.min.apply(null,vs),mx=Math.max.apply(null,vs),lo=Math.floor(mn*0.9/100)*100,hi=Math.ceil(mx*1.1/100)*100;if(hi===lo)hi=lo+100;
+ var d0=new Date(ds[0]),d1=new Date(ds[ds.length-1]),span=Math.max(1,(d1-d0)/864e5),X=function(d){return 44+((new Date(d)-d0)/864e5)/span*266;},Y=function(v){return 70-(v-lo)/(hi-lo)*60;};
+ var seg=[],cur=[];ds.forEach(function(d,i){if(i&&(new Date(d)-new Date(ds[i-1]))/864e5>1.5){seg.push(cur);cur=[];}cur.push(X(d).toFixed(1)+","+Y(o.h[d]).toFixed(1));});seg.push(cur);
+ var s='<svg viewBox="0 0 320 92" role="img" aria-label="'+esc(o.n)+'の値段（送料込み・楽天） '+ds.map(function(d){return (+d.slice(5,7))+"/"+(+d.slice(8))+" "+o.h[d].toLocaleString()+"円";}).join("、")+'">'+
+  '<line x1="40" y1="10" x2="40" y2="70" stroke="currentColor" stroke-opacity=".2"/><line x1="40" y1="70" x2="315" y2="70" stroke="currentColor" stroke-opacity=".2"/>'+
+  '<text x="0" y="14" font-size="10" fill="currentColor" opacity=".6">'+hi.toLocaleString()+'</text><text x="0" y="73" font-size="10" fill="currentColor" opacity=".6">'+lo.toLocaleString()+'</text>';
+ seg.forEach(function(g){s+='<polyline fill="none" stroke="var(--b,#2F5FA8)" stroke-width="2.5" points="'+g.join(" ")+'"/>';});
+ ds.forEach(function(d,i){s+='<circle cx="'+X(d).toFixed(1)+'" cy="'+Y(o.h[d]).toFixed(1)+'" r="3" fill="var(--b,#2F5FA8)"/>';if(i===0||i===ds.length-1||ds.length<=7)s+='<text x="'+(X(d)-10).toFixed(1)+'" y="88" font-size="10" fill="currentColor" opacity=".6">'+(+d.slice(5,7))+"/"+(+d.slice(8))+'</text>';});
+ s+='</svg>';var a=vs[0],b=vs[vs.length-1],t=b<a?(a-b).toLocaleString()+"円下がりました":b>a?(b-a).toLocaleString()+"円上がりました":"値段の動きはありません";
+ return '<h3>値段の動き<small>'+esc(o.n.slice(0,16))+'・総額・送料込み・楽天</small></h3><div class="gr">'+s+'<div>'+(+ds[0].slice(5,7))+"/"+(+ds[0].slice(8))+'から'+t+'（いまは <b class="n">'+b.toLocaleString()+'</b>円）。</div><div class="mut" style="font-size:11.5px">期間 '+ds[0].slice(5).replace("-","/")+'〜'+ds[ds.length-1].slice(5).replace("-","/")+'・1日1点（取れなかった日は線をつなぎません）・'+esc(upd())+' 更新</div></div>';}
+function render(){
+ document.querySelectorAll(".v4 [data-k2]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.k2===st.k?"true":"false");});
+ var c=C[st.k];if(!c){main.innerHTML='<p class="zero">上のボタンから、くらべたい物を選んでください。</p>';rd.innerHTML="";my();return;}
+ var all=c.o,L=list(c).slice().sort(function(a,b){return a.u-b.u;}),tg={};all.forEach(function(o){o.tg.forEach(function(t){tg[t]=(tg[t]||0)+1;});});
+ var h='<div class="hd"><h2>'+esc(c.nm)+'<small>'+unitTxt(c)+'で比べています</small></h2></div>';
+ var keys=Object.keys(tg).filter(function(t){return tg[t]<all.length||st.c.indexOf(t)>=0;});
+ if(keys.length){h+='<div class="chs" role="group" aria-label="条件">'+keys.map(function(t){var on=st.c.indexOf(t)>=0,n=list({o:all.filter(function(o){return o.tg.indexOf(t)>=0;})}).length;
+  return '<button type="button" class="ch" data-t="'+esc(t)+'" aria-pressed="'+on+'"'+(!on&&!n?" disabled":"")+'>'+esc(t)+'<i>'+(on?tg[t]:n)+'</i></button>';}).join("")+'</div>';}
+ var shops={};L.forEach(function(o){shops[o.s]=1;});
+ h+='<p class="cl"><span>'+(st.c.length?"条件「"+esc(st.c.join("・"))+"」：":"条件なし：")+'<b class="n">'+L.length+'</b>件（'+Object.keys(shops).length+'店）</span>'+(st.c.length?'<button type="button" id="v4x">条件をぜんぶ外す</button>':"")+'</p>';
+ if(c.k==="diaper"&&!st.c.some(function(t){return ["新生児","S","M","L","ビッグ"].indexOf(t)>=0;}))h+='<p class="cl" style="color:#B3261E">おむつはサイズで値段がちがいます。サイズ（新生児・S・M・L など）を選ぶと、同じサイズだけでくらべます。</p>';
+ if(!L.length){h+='<div class="zero">この条件に合う物は、いま比べた中にありません。<br><button type="button" class="ch" id="v4x2" style="margin-top:8px">条件をぜんぶ外す</button></div>';main.innerHTML=h;bind();my();return;}
+ var ch=L[0],br=L.filter(function(o){return o.bd;})[0];
+ h+='<div class="ans">'+card(c,ch,"最安",rv(ch)+(ch.bd?"。"+esc(ch.bd)+"の物です":""));
+ if(br&&br!==ch)h+=card(c,br,"おすすめ",'名の知れたメーカー'+L.filter(function(o){return o.bd;}).length+'件の中でいちばん安い物です。'+rv(br));
+ else if(br===ch)h+='<section class="why">最安の物が、名の知れたメーカー（'+esc(ch.bd)+'）の物です。おすすめも同じです。</section>';
+ else h+='<section class="why">名の知れたメーカーの物は、この条件では比べた中にありません。</section>';
+ if(c.use){var q=c.use,uu=q[1].indexOf(st.u)>=0?st.u:q[1][1];
+  var r1=months(c,ch,uu),r2=br&&br!==ch?months(c,br,uu):null;
+  h+='<section class="mo"><b>1か月にいくら？</b><span class="mut" style="font-size:12px">　まとめ買いは何か月分か</span><div style="margin-top:6px"><span class="mut" style="font-size:12.5px">1か月に使う'+esc(q[0])+'　</span>'+
+   q[1].map(function(v){return '<button type="button" class="ch" data-u="'+v+'" aria-pressed="'+(v===uu)+'">'+v+esc(q[0]==="L・kg"?"L":q[0])+'</button>';}).join("")+'</div><div class="row2">'+
+   '<div><span class="lab c" style="font-size:11px">最安</span><br>'+esc(ch.cnt>1?ch.cnt+"個入り":ch.a)+'＝<b>'+mtxt(r1)+'</b><br>1か月 <b class="n">'+Math.round(r1.per).toLocaleString()+'</b>円</div>'+
+   (r2?'<div><span class="lab r" style="font-size:11px">おすすめ</span><br>'+esc(br.cnt>1?br.cnt+"個入り":br.a)+'＝<b>'+mtxt(r2)+'</b><br>1か月 <b class="n">'+Math.round(r2.per).toLocaleString()+'</b>円</div>':"")+
+   '</div><div class="why">使う量はご自分で選んでください。1か月の値段は、1個あたりの値段×使う量の目安です。</div></section>';}
+ var yN=c.o.filter(function(o){return o.w==="Yahoo!";}).length;
+ h+='<dl class="ev"><dt>比べた物</dt><dd>楽天の送料込み'+c.seen.toLocaleString()+'件のうち、量が読めた'+c.read+'件から、条件に合う物をメーカー・お店ごとに選んだ'+c.o.filter(function(o){return o.w==="楽天";}).length+'件'+(yN?'と、Yahoo!の'+yN+'件':'')+'（この下に全部あります）</dd>'+
+  '<dt>比べ方</dt><dd>送料込みの値段 ÷ 量（'+unitTxt(c)+'）</dd><dt>更新</dt><dd>'+esc(upd())+'（1日2回）</dd>'+
+  '<dt>注意</dt><dd>北海道・沖縄・離島は送料が別にかかることがあります。量は商品名から読んでいるので、買う前にお店のページで確かめてください。<br><a href="/koe?q='+encodeURIComponent("値段のちがい："+c.nm+" ")+'">お店の値段とちがったら教えてください →</a></dd></dl>';
+ h+='<button type="button" class="sv" id="v4s">'+(MY[c.k]?"★ いつもの物に入っています（外す）":"☆ いつもの物に入れる（次に来た時、値動きが分かります）")+'</button></div>';
+ h+=graph(c,br&&br.h?br:ch.h?ch:null);
+ h+='<h3>比べた'+L.length+'件<small>'+unitTxt(c)+' 安い順</small></h3><ol class="lst">';
+ L.forEach(function(o,i){var tg2=o===ch?'<span class="tag" style="background:var(--gbg,#E8F4EE);color:var(--g,#1F7A4D)">最安</span>':o===br?'<span class="tag" style="background:var(--bbg,#E9EFF8);color:var(--b,#2F5FA8)">おすすめ</span>':"";
+  var sm=o.same.map(function(j){return c.o[j];}).filter(function(x){return L.indexOf(x)>=0&&x.p<o.p;})[0];if(sm)tg2+='<span class="tag" style="background:var(--box,#F1F2F4);color:var(--sub,#555)">同じ物が'+esc(sm.w)+'で'+(o.p-sm.p).toLocaleString()+'円安い</span>';
+  h+='<li><a href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="v4l:'+esc(o.n.slice(0,20))+'"><span class="rk">'+(i+1)+'</span>'+pic(o,56)+'<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700">'+esc(o.n)+tg2+'</div>'+attrs(c,o)+
+   '<div class="mut" style="font-size:12px;margin-top:3px">'+esc(o.s)+'・'+esc(o.w)+'　'+(+o.rc?'★'+o.av:'レビューなし')+'</div></div><div class="r"><b>'+yen(o.u)+'</b>円<span style="font-size:11px">／'+unitTxt(c,o).replace("あたり","")+'</span><div class="mut" style="font-size:12px">総額 <span class="n">'+o.p.toLocaleString()+'</span>円<br>送料込み</div></div></a></li>';});
+ h+='</ol>';
+ h+='<div class="na"><b>順位に入れていない物</b><br>Amazon：送料込みの値段がお店のページでしか分からないため、順位に入れていません。'+(c.amz.length?'<br>'+c.amz.slice(0,2).map(function(a){return '<a href="'+esc(a.url)+'" rel="sponsored noopener" target="_blank">'+esc(a.n||c.nm)+'（Amazonで見る）</a>';}).join("<br>"):"")+'</div>';
+ main.innerHTML=h;bind();my();
+ /* 見た時の値段を覚える（いつもの物だけ。次に来た時の値動き用） */
+ if(MY[c.k]&&!MY[c.k].now){}
+}
+function bind(){
+ main.querySelectorAll("[data-t]").forEach(function(b){b.onclick=function(){var t=b.dataset.t,i=st.c.indexOf(t);if(i>=0)st.c.splice(i,1);else st.c.push(t);save();render();track("条件:"+t);var f=main.querySelector('[data-t="'+t+'"]');if(f)f.focus();};});
+ main.querySelectorAll("[data-u]").forEach(function(b){b.onclick=function(){st.u=+b.dataset.u;save();render();var f=main.querySelector('[data-u="'+b.dataset.u+'"]');if(f)f.focus();};});
+ ["v4x","v4x2"].forEach(function(id){var x=document.getElementById(id);if(x)x.onclick=function(){st.c=[];save();render();};});
+ var s=document.getElementById("v4s");if(s)s.onclick=function(){var c=C[st.k],L=list(c).slice().sort(function(a,b){return a.u-b.u;});
+  if(MY[c.k])delete MY[c.k];else MY[c.k]={u:c.o.slice().sort(function(a,b){return a.u-b.u;})[0].u,d:AT};mysave();render();track("いつもの物:"+c.k);var f=document.getElementById("v4s");if(f)f.focus();};
+}
+function my(){var box=$("#v4my"),ks=Object.keys(MY).filter(function(k){return C[k];});if(!ks.length){box.hidden=true;$("#v4h").hidden=false;return;}
+ box.hidden=false;$("#v4h").hidden=true;
+ box.innerHTML='<div class="r1"><b>わが家のいつもの物</b><span class="mut">この端末だけに保存</span></div>'+ks.map(function(k){var c=C[k],m=c.o.slice().sort(function(a,b){return a.u-b.u;})[0],o=MY[k],bu=o.pu!=null?o.pu:o.u,df=bu-m.u,dd=/(\d{4})-(\d\d)-(\d\d)/.exec((o.pu!=null?o.pd:o.d)||"");
+  var t=Math.abs(df)<0.05?'<span class="up mut">前に見た'+(dd?(+dd[2])+"/"+(+dd[3]):"時")+'から変わらず</span>':'<span class="up" style="color:'+(df>0?"var(--g,#1F7A4D)":"#B3261E")+'">前に見た'+(dd?(+dd[2])+"/"+(+dd[3]):"時")+'より'+yen(Math.abs(df))+'円'+(df>0?"安い":"高い")+'</span>';
+  return '<a href="?k='+k+'" data-my="'+k+'"><div style="flex:1"><b>'+esc(c.nm)+'</b><div class="mut" style="font-size:11.5px">いちばん安い物の'+unitTxt(c)+'</div></div><div style="text-align:right"><span class="n" style="font-size:16px">'+yen(m.u)+'</span>円<div>'+t+'</div></div></a>';}).join("")+
+  '<div class="mut" style="font-size:11.5px;margin-top:6px">燈が1日2回とった値段（送料込み）とくらべています</div>';
+ box.querySelectorAll("[data-my]").forEach(function(a){a.onclick=function(e){e.preventDefault();pick(a.dataset.my,true);};});}
+function pick(k,push){st.k=k;st.c=[];st.u=1;save(push);render();track("種類:"+k);var hd=main.querySelector(".hd");if(hd&&push)hd.scrollIntoView({block:"start"});}
+document.querySelectorAll(".v4 [data-k2]").forEach(function(b){b.onclick=function(){pick(b.dataset.k2,true);var d=b.closest("details");if(d)d.open=false;};});
+/* 探す：種類の名前・言いかえを読み取り、残りの言葉は条件ボタンに合わせる。読み取った結果を見せる */
+var SYN=D.syn;
+function ask(v){var q=nz(v);if(!q){rd.innerHTML="";return;}var hit="",rest=q;
+ D.cats.forEach(function(c){var n=nz(c.nm);if(!hit&&q.indexOf(n)>=0){hit=c.k;rest=q.replace(n,"");}});
+ if(!hit)Object.keys(SYN).sort(function(a,b){return b.length-a.length;}).forEach(function(w){var n=nz(w);if(!hit&&q.indexOf(n)>=0&&C[SYN[w]]){hit=SYN[w];rest=q.replace(n,"");}});
+ if(!hit){rd.innerHTML='「'+esc(v)+'」は、くらべている'+D.cats.length+'種類にありません。下の「すべての種類」から選べます。<a href="/koe?q='+encodeURIComponent("比べてほしい："+v)+'">比べてほしい物を送る →</a>';track("探す・なし:"+v);return;}
+ st.k=hit;st.c=[];st.u=1;var tg={};C[hit].o.forEach(function(o){o.tg.forEach(function(t){tg[t]=1;});});var left=rest.replace(/[のでがをはにとも、。・]/g," ").trim(),miss=[];
+ left.split(/\s+/).filter(Boolean).forEach(function(w){var t=Object.keys(tg).filter(function(t){return nz(t).indexOf(w)>=0||w.indexOf(nz(t))>=0;})[0];if(t){if(st.c.indexOf(t)<0)st.c.push(t);}else miss.push(w);});
+ save(true);render();
+ rd.innerHTML='読み取った条件：種類＝<b>'+esc(C[hit].nm)+'</b>　条件＝'+(st.c.length?esc(st.c.join("・")):"なし")+(miss.length?'<br>「'+esc(miss.join(" "))+'」は、この種類の条件ボタンにないので外しました':'')+'　<button type="button" id="v4fx">直す</button>';
+ var fx=document.getElementById("v4fx");if(fx)fx.onclick=function(){qi.focus();qi.select();};track("探す:"+v);
+ var hd=main.querySelector(".hd");if(hd)hd.scrollIntoView({block:"start"});}
+$("#v4f").onsubmit=function(e){e.preventDefault();ask(qi.value);};
+window.addEventListener("popstate",function(){load();render();});
+load();if(!st.k){var ks=Object.keys(MY).filter(function(k){return C[k];});st.k=ks[0]||"tissue";save();}render();
+})();
+"""
+
+
+def page(at, cats, head):
+    data = {"at": at, "cats": cats, "syn": SYN}
+    total = sum(c["seen"] for c in cats)
+    have = {c["k"] for c in cats}
+    pop = "".join(f'<button type="button" class="ch" data-k2="{k}" aria-pressed="false">{E(NAME[k])}</button>' for k in POP if k in have)
+    allb = "".join(f'<p>{E(g)}</p>' + "".join(f'<button type="button" class="ch" data-k2="{k}" aria-pressed="false">{E(NAME[k])}</button>' for k in ks if k in have) for g, ks in GROUPS)
+    m = re.match(r"(\d{4})-(\d\d)-(\d\d) (\d\d:\d\d)", at or "")
+    up = f"{int(m.group(2))}/{int(m.group(3))} {m.group(4)}" if m else at
+    body = f"""<header class="v4top"><a href="/" class="en">LIFE NOTE</a><b>くらべたおかいものリスト</b></header>
+<main class="v4" role="main">
+<p class="pr">リンクは広告（PR）です</p>
+<div id="v4h"><h1>日用品を、送料込みの<br>1個あたりでくらべる</h1>
+<p class="lead">{len(cats)}種類・{"楽天とYahoo!" if any(o["w"] == "Yahoo!" for c in cats for o in c["o"]) else "楽天"}の送料込み<b class="n">{total:,}</b>件から　<span class="n">{E(up)}</span> 更新</p></div>
+<div class="my" id="v4my" hidden></div>
+<form class="srch" id="v4f" role="search"><input id="v4q" type="search" placeholder="例：無香料の柔軟剤" aria-label="くらべたい物を入れる（例：ダブルのトイレットペーパー）" enterkeyhint="search"><button type="submit">くらべる</button></form>
+<p class="read" id="v4r" aria-live="polite"></p>
+<div class="chs" role="group" aria-label="よく買う物">{pop}
+<details style="display:inline"><summary class="ch all" style="list-style:none;display:inline-block">すべての種類（{len(cats)}）▾</summary><div style="margin-top:4px">{allb}</div></details></div>
+<div id="v4m" aria-live="polite"></div>
+<p class="more">セール・ふるさと納税・宿の予約などのお得は <a href="/otoku">お得まとめ</a> にあります。</p>
+<script type="application/json" id="v4d">{json.dumps(data, ensure_ascii=False).replace("</", "<\\/")}</script>
+<noscript><p class="zero">このページは JavaScript を使います。<a href="/tanka">1個あたりの一覧</a>もご覧ください。</p></noscript>
+</main>"""
+    return f"""<!doctype html><html lang="ja"><head>{head}<style>{CSS}</style></head><body>{body}<script>{JS}</script></body></html>"""
+
+
+def main():
+    at, cats = build()
+    if len(cats) < 5:
+        print("okai_v4: 種類が少ないので今のページのまま", len(cats))
+        return
+    src = os.path.join(SITE, "okaimono.html")
+    old = open(src, encoding="utf-8").read()
+    # 今までのページは /otoku に残す（セール・宿・AIに聞く など）
+    otoku = old.replace('href="/okaimono?t=', 'href="/otoku?t=').replace('<link rel="canonical" href="', '<link rel="canonical" data-x="', 1)
+    otoku = re.sub(r"<title>[^<]*</title>", "<title>お得まとめ（セール・ふるさと・宿）｜くらべたおかいものリスト｜LIFE NOTE</title>", otoku, count=1)
+    otoku = otoku.replace("<head>", '<head><meta name="robots" content="noindex">', 1)
+    open(os.path.join(SITE, "otoku.html"), "w", encoding="utf-8").write(otoku)
+    def meta(pat):
+        m = re.search(pat, old, re.S)
+        return m.group(0) if m else ""
+    head = ('<meta charset="utf-8">' + meta(r'<meta name="google-site-verification"[^>]*>') +
+            '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
+            '<title>日用品を送料込みの1個あたりでくらべる｜くらべたおかいものリスト｜LIFE NOTE</title>'
+            + meta(r'<link rel="canonical"[^>]*>') +
+            '<meta name="description" content="ティッシュ・トイレットペーパー・おむつ・洗剤・水・お米など21種類を、楽天とYahoo!の送料込みの1個あたりでくらべて、最安と名の知れたメーカーのおすすめを毎日2回出しています。広告（PR）を含みます。">'
+            + meta(r'<meta property="og:image"[^>]*>') + meta(r'<meta property="og:url"[^>]*>') +
+            '<meta property="og:title" content="日用品を送料込みの1個あたりでくらべる｜くらべたおかいものリスト">'
+            '<meta name="twitter:card" content="summary"><meta name="theme-color" content="#FFFFFF">'
+            '<link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png">'
+            '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+            '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@400;500&display=swap">'
+            + meta(r'<script src="/assets/night\.js[^"]*"></script>') + meta(r'<script src="/assets/menu\.js[^"]*"[^>]*></script>') +
+            '<link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=9" defer></script>')
+    open(src, "w", encoding="utf-8").write(page(at, cats, head))
+    print("okai_v4:", len(cats), "種類", sum(len(c["o"]) for c in cats), "件")
+
+
+if __name__ == "__main__":
+    main()
