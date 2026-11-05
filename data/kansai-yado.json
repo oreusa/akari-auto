@@ -3376,5 +3376,40 @@
         "min": 8250
       }
     ]
+  },
+  "淡路島 秋のカーニバル2026": {
+    "v": 2,
+    "t": "2026-11-05",
+    "ll": [
+      34.56287,
+      135.01214
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "グランシャリオ北斗七星135°",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D167449",
+        "km": 1.4,
+        "r": 4.78,
+        "rc": 209,
+        "min": 38623
+      },
+      {
+        "n": "T・SQUARE",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187390",
+        "km": 2.3,
+        "r": 4.75,
+        "rc": 12,
+        "min": 26180
+      },
+      {
+        "n": "禅坊靖寧",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184605",
+        "km": 3.0,
+        "r": 4.75,
+        "rc": 14,
+        "min": 55000
+      }
+    ]
   }
 }

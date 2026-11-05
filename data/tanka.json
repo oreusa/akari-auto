@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-06 06:07",
+  "at": "2026-11-06 08:21",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 44,
+      "read": 45,
       "ok": 14,
-      "avg": 165.2,
+      "avg": 164.3,
       "top": [
         {
           "name": "サントリー 天然水 2L 2000ml ペットボトル 6本 1ケース 送料無料（一部地域除く…",
@@ -121,10 +121,10 @@
       "key": "soda",
       "title": "炭酸水",
       "unit": "1L",
-      "seen": 175,
+      "seen": 170,
       "read": 44,
-      "ok": 10,
-      "avg": 180.9,
+      "ok": 11,
+      "avg": 178.6,
       "top": [
         {
           "name": "ウィルキンソン タンサン ラベルレスボトル(500ml×24本入) ウィルキンソン [炭酸水…",
@@ -466,7 +466,7 @@
       "seen": 60,
       "read": 45,
       "ok": 18,
-      "avg": 358.5,
+      "avg": 369.0,
       "top": [
         {
           "name": "10%OFFクーポン対象！さらにエントリーでポイント7倍 11/11 01:59まで コカ・…",
@@ -561,9 +561,9 @@
       "title": "洗濯洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 60,
-      "read": 24,
+      "read": 23,
       "ok": 7,
-      "avg": 1148.2,
+      "avg": 1087.6,
       "top": [
         {
           "name": "アタック 抗菌EX 部屋干し 洗剤 洗濯洗剤 詰め替え 超特大 ゾンビ臭 液体 じめじめ 密…",
@@ -742,9 +742,9 @@
       "title": "シャンプー（詰め替え）",
       "unit": "1L・1kg",
       "seen": 150,
-      "read": 29,
+      "read": 28,
       "ok": 2,
-      "avg": 2484.8,
+      "avg": 2625.4,
       "top": [
         {
           "name": "11月1日から31日限定！ エントリーで全品ポイント5倍 パンテーン ミラクルズ カラーシャ…",
@@ -884,9 +884,9 @@
       "title": "食器用洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 143,
-      "read": 61,
+      "read": 58,
       "ok": 9,
-      "avg": 862.2,
+      "avg": 805.4,
       "top": [
         {
           "name": "食器用洗剤 JOY キッチン用洗剤 プロフェッショナル 除菌ジョイコンパクト 業務用 4L …",
@@ -910,7 +910,7 @@
           "av": 4.64,
           "shop": "コストホールストア",
           "plain": "https://item.rakuten.co.jp/frikstore/10006112/",
-          "bd": "JOY",
+          "bd": "ジョイ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00uhv0o.m2lhf7bd.g00uhv0o.m2lhgb94/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffrikstore%2Fctk2079%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ffrikstore%2Fi%2F10006112%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/frikstore/cabinet/costco4/11454040/imgrc0169407678.jpg?_ex=300x300"
         },
@@ -1162,9 +1162,9 @@
       "title": "おしりふき",
       "unit": "1枚",
       "seen": 140,
-      "read": 47,
+      "read": 48,
       "ok": 16,
-      "avg": 4.4,
+      "avg": 4.5,
       "top": [
         {
           "name": "ムーニー おしりふき やわらか素材 詰め替え 76枚×32個 moony ムーニー ベビー用…",
@@ -1240,9 +1240,9 @@
       "title": "ゴミ袋",
       "unit": "1枚",
       "seen": 142,
-      "read": 88,
+      "read": 87,
       "ok": 5,
-      "avg": 19.0,
+      "avg": 18.9,
       "top": [
         {
           "name": "エントリーでP10倍★4日20:00〜11日1:59まで ごみ袋 45リットル 半透明 65…",
@@ -1359,7 +1359,7 @@
           "price": 1368,
           "per": 34.2,
           "amt": "40本",
-          "rc": 37,
+          "rc": 38,
           "av": 4.89,
           "shop": "Kenko Tokina カメラ用品専門店",
           "plain": "https://item.rakuten.co.jp/kenko-tokina/10031419/",
@@ -1460,7 +1460,7 @@
           "av": 4.88,
           "shop": "介護もーる 介護用品専門店",
           "plain": "https://item.rakuten.co.jp/kaigomall/10036640/",
-          "bd": "ユニチャーム",
+          "bd": "ユニ・チャーム",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00s1n1o.m2lhf55d.g00s1n1o.m2lhg77f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkaigomall%2F4903111550685-2p%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkaigomall%2Fi%2F10036640%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kaigomall/cabinet/1kangokaigo/1-1kangokaigo/prits2.jpg?_ex=300x300"
         },
@@ -1504,10 +1504,10 @@
       "key": "pasta",
       "title": "パスタ",
       "unit": "1kg",
-      "seen": 60,
-      "read": 47,
+      "seen": 127,
+      "read": 83,
       "ok": 24,
-      "avg": 485.7,
+      "avg": 668.9,
       "top": [
         {
           "name": "バリラ No.5 5kg 3袋 業務用 パスタ スパゲティ 約1.8mm Barilla『送…",
@@ -1604,7 +1604,7 @@
       "seen": 127,
       "read": 61,
       "ok": 22,
-      "avg": 5069.5,
+      "avg": 5149.5,
       "top": [
         {
           "name": "6袋 セット キーコーヒー グランドテイスト アイスコーヒー 粉 240g KEY COFF…",
@@ -1725,7 +1725,7 @@
           "av": 4.71,
           "shop": "ペットランドピースワン楽天店",
           "plain": "https://item.rakuten.co.jp/peaceone/10001227/",
-          "bd": "サイエンスダイエット",
+          "bd": "ヒルズ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00pmn0o.m2lhf094.g00pmn0o.m2lhg70b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpeaceone%2F10001227%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpeaceone%2Fi%2F10001227%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/peaceone/cabinet/science/0052742015279.jpg?_ex=300x300"
         },
@@ -1796,12 +1796,12 @@
       "title": "キャットフード",
       "unit": "1kg",
       "seen": 112,
-      "read": 64,
-      "ok": 50,
-      "avg": 1552.5,
+      "read": 63,
+      "ok": 49,
+      "avg": 1556.5,
       "top": [
         {
-          "name": "11／5限定 当選確率2分の1！1等最大100％ キャットフード サイエンスダイエット アダ…",
+          "name": "キャットフード サイエンスダイエット アダルト 1〜6歳 成猫用 チキン 2．8kg×4袋 …",
           "price": 10922,
           "per": 975.2,
           "amt": "2.8kg×4",
