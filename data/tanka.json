@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-05 23:30",
+  "at": "2026-11-06 02:33",
   "cats": [
     {
       "key": "water",
@@ -301,13 +301,13 @@
           "shop": "越後の稲穂屋 ヤフー店"
         },
         {
-          "name": "セール 11/13〜順次発送 米 10kg 送料無料 白米 安い 訳あり ブレンド米『国内産…",
-          "price": 3580,
-          "per": 358.0,
+          "name": "新米 米 10kg 送料無料 福井米 福井県産100% 白米 令和8年産 ブレンド米",
+          "price": 3980,
+          "per": 398.0,
           "amt": "10kg",
-          "rc": 5901,
-          "av": 4.25,
-          "shop": "まんま屋"
+          "rc": 7210,
+          "av": 4.12,
+          "shop": "福井の米屋"
         }
       ]
     },
@@ -441,7 +441,7 @@
           "price": 4580,
           "per": 146.8,
           "amt": "650ml×48",
-          "rc": 374,
+          "rc": 375,
           "av": 4.72,
           "shop": "D-rink 北海道",
           "plain": "https://item.rakuten.co.jp/d-rink-hokkaido/10000032/",
@@ -587,9 +587,9 @@
       "title": "洗濯洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 60,
-      "read": 25,
+      "read": 26,
       "ok": 7,
-      "avg": 1110.4,
+      "avg": 1165.5,
       "top": [
         {
           "name": "アタック 抗菌EX 部屋干し 洗剤 洗濯洗剤 詰め替え 超特大 ゾンビ臭 液体 じめじめ 密…",
@@ -768,9 +768,9 @@
       "title": "シャンプー（詰め替え）",
       "unit": "1L・1kg",
       "seen": 150,
-      "read": 36,
+      "read": 32,
       "ok": 5,
-      "avg": 2761.2,
+      "avg": 2636.9,
       "top": [
         {
           "name": "選べるセット パンテーン エクストラダメージリペア シャンプー1.7L コンディショナー1.…",
@@ -949,9 +949,9 @@
       "title": "食器用洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 143,
-      "read": 60,
+      "read": 61,
       "ok": 9,
-      "avg": 804.5,
+      "avg": 802.7,
       "top": [
         {
           "name": "食器用洗剤 JOY キッチン用洗剤 プロフェッショナル 除菌ジョイコンパクト 業務用 4L …",
@@ -1130,22 +1130,22 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 60,
-      "read": 31,
-      "ok": 31,
-      "avg": 61.1,
+      "read": 34,
+      "ok": 34,
+      "avg": 60.4,
       "top": [
         {
-          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
-          "price": 7944,
-          "per": 28.4,
-          "amt": "280枚",
+          "name": "メリーズ Merries テープ 新生児用 オムツ さら さらエアスルー (お誕生~5000…",
+          "price": 4841,
+          "per": 29.5,
+          "amt": "164枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "Rafinagift楽天市場店",
-          "plain": "https://item.rakuten.co.jp/rafinagift/10008628/",
-          "bd": "ムーニー",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uq6jo.m2lhf5f0.g00uq6jo.m2lhgb59/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frafinagift%2Fha9279bb3316%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frafinagift%2Fi%2F10008628%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/rafinagift/cabinet/onesell043/ha9279bb3316_0.jpg?_ex=300x300"
+          "shop": "ちいさなしあわせストア",
+          "plain": "https://item.rakuten.co.jp/chiisana--shiawase/10019140/",
+          "bd": "メリーズ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uw1xo.m2lhf56e.g00uw1xo.m2lhg560/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fchiisana--shiawase%2F20260823041722_41%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fchiisana--shiawase%2Fi%2F10019140%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/chiisana--shiawase/cabinet/r_2026082357/20260823041722_41_1.jpg?_ex=300x300"
         },
         {
           "name": "ケース販売3袋・送料無料(北海道、沖縄除く) 大容量マミーポコパンツ L ドラえもん 9kg…",
@@ -1161,6 +1161,19 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/up-shop/cabinet/imgrc0189236006.jpg?_ex=300x300"
         },
         {
+          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
+          "price": 8828,
+          "per": 31.5,
+          "amt": "280枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Ciel de neige",
+          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uoo1o.m2lhf537.g00uoo1o.m2lhg030/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcieldeneige%2Fcl91611ab260%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcieldeneige%2Fi%2F10011999%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cieldeneige/cabinet/onesell117/cl91611ab260.jpg?_ex=300x300"
+        },
+        {
           "name": "パンツ Sサイズ マミーポコ パンツ ドラえもん オムツ（4~9kg）156枚（52枚×3）…",
           "price": 5414,
           "per": 34.7,
@@ -1174,30 +1187,17 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/senses/cabinet/r_2025080932/20250812230014_20_1.jpg?_ex=300x300"
         },
         {
-          "name": "メリーズ テープ Sサイズ さら さらエアスルー (4~8kg)296枚 (74枚×4) ケ…",
-          "price": 10815,
-          "per": 36.5,
-          "amt": "296枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "Reve2018",
-          "plain": "https://item.rakuten.co.jp/reve2018/10069649/",
-          "bd": "メリーズ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00utcqo.m2lhf3c0.g00utcqo.m2lhg6f2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Freve2018%2F20260923045701_234%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Freve2018%2Fi%2F10069649%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/reve2018/cabinet/r_2026030624/20260923045701_234_1.jpg?_ex=300x300"
-        },
-        {
-          "name": "パンツ Lサイズ マミーポコ パンツ オムツ（9~15kg）186枚（62枚×3）トミカ・プ…",
-          "price": 7213,
-          "per": 38.8,
+          "name": "ケース販売 マミーポコパンツ Lサイズ 62枚×3袋 ドラえもん パンツタイプ オムツ 紙お…",
+          "price": 6550,
+          "per": 35.2,
           "amt": "186枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "花丸良品堂 楽天市場店",
-          "plain": "https://item.rakuten.co.jp/hanamaruryohin/10075182/",
+          "shop": "Care-Life 楽天市場店",
+          "plain": "https://item.rakuten.co.jp/fragrance-fukuyama/10000500/",
           "bd": "マミーポコ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00tvu9o.m2lhfdfd.g00tvu9o.m2lhgc42/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhanamaruryohin%2F20260708145913_240%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhanamaruryohin%2Fi%2F10075182%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/hanamaruryohin/cabinet/r_2026070838/20260708145913_240_1.jpg?_ex=300x300"
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00un1do.m2lhf30a.g00un1do.m2lhge81/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffragrance-fukuyama%2F4903111130573%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ffragrance-fukuyama%2Fi%2F10000500%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/fragrance-fukuyama/cabinet/case20260924/r21-4903111130573.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
@@ -1307,7 +1307,7 @@
       "seen": 142,
       "read": 99,
       "ok": 6,
-      "avg": 18.4,
+      "avg": 18.3,
       "top": [
         {
           "name": "エントリーでP10倍★4日20:00〜11日1:59まで ごみ袋 45リットル 半透明 65…",
@@ -1389,9 +1389,9 @@
       "title": "乾電池（単3）",
       "unit": "1本",
       "seen": 60,
-      "read": 22,
-      "ok": 22,
-      "avg": 44.4,
+      "read": 21,
+      "ok": 21,
+      "avg": 45.0,
       "top": [
         {
           "name": "40本セット 単3電池 電池 単3 アルカリ 三菱電機 アルカリ乾電池 単3形 乾電池単3 …",
@@ -1433,19 +1433,6 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nighthawk/cabinet/amayahoo/08479700/kakou/free_1660810566013.jpg?_ex=300x300"
         },
         {
-          "name": "1000円 ポッキリ ぽっきり 送料無料 アルカリ 単3 電池 単三 防災 備えに 乾電池 …",
-          "price": 1000,
-          "per": 33.3,
-          "amt": "30本",
-          "rc": 54,
-          "av": 4.7,
-          "shop": "モノポケット楽天市場店",
-          "plain": "https://item.rakuten.co.jp/mono-pocket/10000869/",
-          "bd": "三菱",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00u5e4o.m2lhfed6.g00u5e4o.m2lhgbb6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmono-pocket%2F4902901605185-3%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmono-pocket%2Fi%2F10000869%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mono-pocket/cabinet/08705925/4902901605185-3.jpg?_ex=300x300"
-        },
-        {
           "name": "★お得な4パックセット！(40本) 即配 MITSUBISHI 三菱 アルカリ電池 単3電池…",
           "price": 1368,
           "per": 34.2,
@@ -1457,6 +1444,19 @@
           "bd": "三菱",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00tbz6o.m2lhfded.g00tbz6o.m2lhgac9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkenko-tokina%2F4902901605185-4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkenko-tokina%2Fi%2F10031419%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kenko-tokina/cabinet/others/others2/mitu3x4.jpg?_ex=300x300"
+        },
+        {
+          "name": "TOSHIBA アルカリ乾電池 単3形 10本入 ×3個 （合計30本） （送料無料）（ポス…",
+          "price": 1103,
+          "per": 36.8,
+          "amt": "30本",
+          "rc": 31,
+          "av": 4.81,
+          "shop": "紀州和歌山てんこもり",
+          "plain": "https://item.rakuten.co.jp/segp-shop/10106549/",
+          "bd": "東芝",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00rjk6o.m2lhf6c0.g00rjk6o.m2lhg9c5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsegp-shop%2F4904530021909%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsegp-shop%2Fi%2F10106549%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/segp-shop/cabinet/nichiyouhinzakka3/4904530021909.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
@@ -1559,15 +1559,6 @@
       "amazon": [],
       "yahoo": [
         {
-          "name": "マスク 不織布 カラーマスク アイリスオーヤマ 60枚 不織布マスク 小さめ ふつう 大きめ…",
-          "price": 598,
-          "per": 10.0,
-          "amt": "60枚",
-          "rc": 4334,
-          "av": 4.46,
-          "shop": "メガストア Yahoo!店"
-        },
-        {
           "name": "120枚〜 マスク 不織布 小さめ ふつう 大きめ おしゃれ 不織布マスク 子供 使い捨てマ…",
           "price": 1280,
           "per": 10.7,
@@ -1575,6 +1566,15 @@
           "rc": 4596,
           "av": 4.68,
           "shop": "ラクチーナ Yahoo!店"
+        },
+        {
+          "name": "マスク 不織布 カラーマスク アイリスオーヤマ 60枚 不織布マスク 小さめ ふつう 大きめ…",
+          "price": 698,
+          "per": 11.6,
+          "amt": "60枚",
+          "rc": 4334,
+          "av": 4.46,
+          "shop": "メガストア Yahoo!店"
         }
       ]
     },
@@ -1779,7 +1779,7 @@
       "seen": 60,
       "read": 36,
       "ok": 36,
-      "avg": 2157.5,
+      "avg": 2157.4,
       "top": [
         {
           "name": "即納在庫品 愛犬元気 10kg ジャンボパック ビーフ・緑黄色野菜・小魚味 / ささみ・ビー…",
@@ -1821,7 +1821,7 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/dog-kan/cabinet/royalcanin/9214386main.jpg?_ex=300x300"
         },
         {
-          "name": "11/5限定!先着最大1,000円OFFクーポン|ポイント最大57.5倍 ロイヤルカナン ゴ…",
+          "name": "ポイント最大56.5倍｜LINE追加で500円OFF ロイヤルカナン ゴールデンレトリバー …",
           "price": 13499,
           "per": 1124.9,
           "amt": "12kg",
@@ -1876,7 +1876,7 @@
       "seen": 112,
       "read": 79,
       "ok": 64,
-      "avg": 1553.9,
+      "avg": 1554.1,
       "top": [
         {
           "name": "セットはさらにお得！ ロイヤルカナン インドア プレミアムフード ドライ ドライフード 猫 …",

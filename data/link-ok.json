@@ -5320,10 +5320,9 @@
   "why": ""
  },
  "https://maruchiba.jp/event/detail_10895.html": {
-  "at": "2026-11-05",
-  "by": "browser",
+  "at": "2026-11-06",
   "ok": false,
-  "sec": 1.1,
+  "sec": 0.7,
   "why": "404"
  },
  "https://maruchiba.jp/event/detail_10897.html": {
@@ -5598,11 +5597,10 @@
   "why": ""
  },
  "https://tamaillumi.myportfolio.com/": {
-  "at": "2026-11-05",
-  "by": "browser",
-  "ok": false,
-  "sec": 0.2,
-  "why": "Page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://ta"
+  "at": "2026-11-06",
+  "ok": true,
+  "sec": 0.0,
+  "why": "403"
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
   "at": "2026-11-05",
@@ -7861,11 +7859,10 @@
   "why": ""
  },
  "https://www.omochaoukoku.com/karuizawa/event/ezy_roller/": {
-  "at": "2026-11-05",
-  "by": "browser",
-  "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "at": "2026-11-06",
+  "ok": true,
+  "sec": 2.0,
+  "why": ""
  },
  "https://www.pref.saitama.lg.jp/spo-navi/event/higashimatsuyama/3-day-march-49r.html": {
   "at": "2026-11-02",
@@ -8126,10 +8123,9 @@
   "why": ""
  },
  "https://www.yokohama-akarenga.jp/christmas/": {
-  "at": "2026-11-01",
-  "by": "browser",
+  "at": "2026-11-06",
   "ok": true,
-  "sec": 5.6,
+  "sec": 0.2,
   "why": ""
  },
  "https://www.yomiuriland.com/jewellumination/": {
