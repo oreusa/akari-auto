@@ -249,9 +249,11 @@ MOSHIMO_YAHOO = "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=
 
 def shop_q(title):
     """商品名から検索の言葉を作る（【】や（）の中の宣伝文句を外して、前の方の言葉だけ）"""
-    t = re.sub(r"[【\[（(＜<《].*?[】\]）)＞>》]", " ", title)
-    t = re.sub(r"(送料無料|ポイント\d+倍|楽天\S*|あす楽|クーポン\S*|最大\S*%\S*|\d+%OFF|公式|SALE|セール)", " ", t, flags=re.I)
-    w = [x for x in re.split(r"[\s　/／・,、|｜]+", t) if x][:4]
+    # 11/6 夜「Amazonの検索語が『P15倍 11 11 9:59迄』」→ ポイント・期限・値段の宣伝を全部外し、商品の言葉だけで探す
+    t = re.sub(r"[【\[（(＜<《≪＼\\].*?[】\]）)＞>》≫／/]", " ", title)
+    t = re.sub(r"(送料無料|送料込み?|ポイント\s*\d+倍|P\s*\d+倍|\d+倍|楽天\S*|あす楽|クーポン\S*|最大\S*%\S*|\d+%\s*OFF|公式|SALE|セール|"
+               r"\d{1,2}[/／月]\d{1,2}日?\S*|\d{1,2}:\d\d\S*|\S*迄|\S*まで|限定\S*|[\d,]+円\S*|ぽっきり\S*|当選\S*|\S*確率\S*|\S*から選べる|選べる\S*)", " ", t, flags=re.I)
+    w = [x for x in re.split(r"[\s　/／・,、|｜★☆！!]+", t) if x and not re.fullmatch(r"[\d.]+|[〜~-]", x)][:4]
     return " ".join(w)[:40] or title[:30]
 
 
@@ -317,7 +319,9 @@ def card_html(c, col, i=0):
             diff = f'<span class="kd">{E(c["big"].replace("比べた全部の", ""))}</span>'
         rk = f'<em class="krk{" top" if c.get("rk") in ("1", "2", "3") else ""}">{E(c["rk"])}</em>' if c.get("rk") else ""
         price = c.get("sub") or ""
-        return (f'<div class="card it kc ku" data-pref="{E(c["cat"])}" data-free="0" data-wk="0"{e}{cid} style="--pc:{pc}">'
+        ym = re.search(r"([\d,]+)\s*円", price)  # 11/6 検索の「3000円以下」で使う（送料込みの値段）
+        yen = f' data-yen="{ym.group(1).replace(",", "")}"' if ym else ""
+        return (f'<div class="card it kc ku" data-pref="{E(c["cat"])}" data-free="0" data-wk="0"{yen}{e}{cid} style="--pc:{pc}">'
                 f'<div class="{ph_cls}">{rk}{kpi}{img}</div><div class="kx">'
                 f'<span class="kcat">{E(c["cat"])}</span>{hero[:-6]}{diff}</div>'
                 f'<div class="t">{go}</div>'
@@ -352,7 +356,8 @@ def stale(c):
     """11/3 「明日11/1丸亀製麺…」が11/3にも出ていた → 日付が過ぎたお得は出さない"""
     import datetime
     m = re.search(r"(\d{1,2})/(\d{1,2})", c.get("title") or "")
-    if not m or c["tab"] != "pick":
+    # 11/6 夜「11/6にセール欄へ『明日11/1 丸亀製麺』」→ セールのタブにも同じ決まりを使う（1個あたりの比べは日付を持たない）
+    if not m or c["tab"] == "unit":
         return False
     t = datetime.datetime.utcnow() + datetime.timedelta(hours=9)
     try:
@@ -454,11 +459,16 @@ def build(od, ix):
         h = h.replace(a, "")
     sale = (block(ix, r'<section class="sbox" id="sale"') or [""])[0]
     if sale:
-        go = first(r'<a class="sb-go" href="([^"]+)"', sale)
+        # 11/6 テスター「エントリーを押すと自分のページが開く」→ ボタンの class は "buy sb-go nofilt" なので前の読み方では空だった。
+        # 楽天のアドレスが取れた時だけボタンを出す（取れない時は出さない）
+        go = first(r'<a class="[^"]*\bsb-go\b[^"]*" href="([^"]+)"', sale)
         nm, wh = txt(first(r'<p class="sb-t">(.*?)</p>', sale)), txt(first(r'<p class="sb-w">(.*?)</p>', sale))
-        top = (f'<a class="ilk" href="{go}" rel="sponsored noopener" target="_blank" data-k="上の入口｜セールのエントリー">{E(nm)}　エントリー<span>→</span></a>'
-               f'<p class="ilks">{E(wh)}</p>')
-    else:
+        if go.startswith("https://"):
+            top = (f'<a class="ilk" href="{go}" rel="sponsored noopener" target="_blank" data-k="上の入口｜セールのエントリー">{E(nm)}　エントリー<span>→</span></a>'
+                   f'<p class="ilks">{E(wh)}</p>')
+        else:
+            top = ""
+    if not sale or not top:
         top = '<a class="ilk" href="/furusato" data-k="上の入口｜ふるさと納税">ふるさと納税 寄付1万円あたりで比べた<span>→</span></a>'
     n = {t: sum(1 for c in cards if c["tab"] == t) for t, *_ in TABS}
     seen = 0
@@ -753,6 +763,6 @@ def build(od, ix):
           '})();</script>')
     h = h.replace('<body class="', '<body data-bar="okai" class="', 1)
     h = h.replace("c.hidden=!ok||(!op&&k>5);", "c.hidden=!ok||(!op&&k>8);").replace('m.dataset.l+(k-5)+"件）";m.hidden=op||k<=5;', 'm.dataset.l+(k-8)+"件）";m.hidden=op||k<=8;')
-    js += '<script src="/assets/kq.js?v=5" defer></script><script src="/assets/okv.js?v=4" defer></script>'
+    js += '<script src="/assets/kq.js?v=6" defer></script><script src="/assets/okv.js?v=4" defer></script>'
     i = h.rfind("</body>")
     return h[:i] + js + h[i:]
