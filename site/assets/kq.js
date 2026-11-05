@@ -12,17 +12,27 @@
   function ask(v,log){
     var q=nz(v);qr.innerHTML="";if(typeof mark==="function")mark(q?v:"");
     if(!q){qr.hidden=true;od.classList.remove("kqon");document.body.classList.remove("kqon2");return;}
-    var hit=[];
-    ["unit","pick","down","sale"].forEach(function(t){
+    /* 11/5 オーナー「動作に使いにくさがある、操作を考えろ」→ 言い方がちがっても出す（トイペ・洗濯・オムツ など）。
+       それでも無ければ、後ろから1字ずつ短くして近い物を出す（「トイレットペーパー12ロール」→「トイレットペーパー」） */
+    var SY={"といぺ":"といれっとぺーぱー","ぺーぱー":"といれっとぺーぱー","てぃっしゅ":"てぃっしゅ","せんたく":"洗剤","せんざい":"洗剤","じゅうなん":"柔軟剤",
+      "こめ":"米","おこめ":"米","みず":"水","おちゃ":"茶","こーひー":"こーひー","でんち":"電池","おむつ":"おむつ","おしりふき":"おしりふき","ますく":"ますく",
+      "ごみぶくろ":"ごみ","ごみ袋":"ごみ","しゃんぷー":"しゃんぷー","ぼでぃそーぷ":"ぼでぃ","はみがき":"歯磨","ふるさと":"ふるさと","ふるさとのうぜい":"ふるさと"};
+    function find(w){var r=[];["unit","pick","down","sale"].forEach(function(t){
       document.querySelectorAll('#odekake .pane[data-t="'+t+'"] .card.it').forEach(function(c){
-        if(nz(c.textContent+" "+(c.dataset.pref||"")).indexOf(q)>=0)hit.push(c);});});
+        if(r.indexOf(c)<0&&nz(c.textContent+" "+(c.dataset.pref||"")).indexOf(w)>=0)r.push(c);});});
+      /* うさぎの結論（いちばん上の比べた物の一覧）も探す。見えているのに「まだ比べていません」と出ていたため */
+      document.querySelectorAll("details.kpr").forEach(function(c){if(c.closest("#kqr"))return;var sm=c.querySelector("summary");
+        if(r.indexOf(c)<0&&nz(sm?sm.textContent:c.textContent).indexOf(w)>=0)r.push(c);});return r;}
+    var hit=find(q),near="";
+    if(!hit.length&&SY[q]){hit=find(nz(SY[q]));}
+    for(var cut=q.length-1;!hit.length&&cut>=2;cut--){var w=q.slice(0,cut);hit=find(w);if(hit.length)near=w;}
     /* その種類そのもの（「水」なら種類が水の物）を先に。炭酸水などの「水」を含む物はあと */
     hit=hit.filter(function(c){return nz(c.dataset.pref)===q;}).concat(hit.filter(function(c){return nz(c.dataset.pref)!==q;}));
     od.classList.add("kqon");document.body.classList.add("kqon2");qr.hidden=false;
     var sh=esc(v.slice(0,30));
     if(hit.length){
       var h=document.createElement("p");h.className="kqt";
-      h.innerHTML="「"+sh+"」の答え　"+hit.length+"件<small>うさぎが送料込み・1個あたりで比べた中から出しています</small>";
+      h.innerHTML="「"+sh+"」の答え　"+hit.length+"件"+(near?"（近い物）":"")+"<small>うさぎが送料込み・1個あたりで比べた中から出しています</small>";
       qr.appendChild(h);
       /* ひと目でわかる差：同じ物差し（1Lあたり など）の上位5つを棒で並べる。文字を読まなくても差が見える */
       var rows=[],lab="";
@@ -36,7 +46,7 @@
           return '<div class="kqr'+(i===0?" b":"")+'">'+(im?'<img src="'+im.getAttribute("src")+'" alt="" referrerpolicy="no-referrer">':'<i></i>')
             +'<span><em style="width:'+Math.max(8,Math.round(r.v/mx*100))+'%"></em></span><b>'+r.v+'<small>'+esc(r.u)+'</small></b></div>';}).join("");
         qr.appendChild(g);}
-      hit.slice(0,12).forEach(function(c,i){var k=c.cloneNode(true);k.hidden=false;k.removeAttribute("id");k.style.display="";
+      hit.slice(0,12).forEach(function(c,i){var k=c.cloneNode(true);k.hidden=false;k.removeAttribute("id");k.style.display="";if(k.tagName==="DETAILS"&&i===0)k.open=true;
         if(i===0){var b=document.createElement("p");b.className="kqb";b.textContent="うさぎの答え　いちばんお得なのはこれ";qr.appendChild(b);k.classList.add("kq1");}
         qr.appendChild(k);});
       /* 賢い誘導：セール中なら、買う前のエントリーを答えのすぐ下に（押し忘れるとポイントが付かない） */
