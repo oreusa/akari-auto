@@ -64,10 +64,21 @@ BRAND_MIN = 3  # 名の知れた物がこれより少ない時だけ、メーカ
 BRAND_ASK = 3  # 探し足すメーカーは前から3つまで（楽天APIを使いすぎない）
 
 
+# 11/6 夜「ジョイとJOYを別のメーカーのように数える」→ 書き方がちがうだけの名前は1つにそろえる
+ALIAS = {"JOY": "ジョイ", "WILKINSON": "ウィルキンソン", "ボス": "BOSS", "クラフトボス": "BOSS", "GEORGIA": "ジョージア", "LUX": "ラックス",
+         "BOTANIST": "ボタニスト", "Dove": "ダヴ", "Panasonic": "パナソニック", "エボルタ": "パナソニック", "TOSHIBA": "東芝", "maxell": "マクセル",
+         "Duracell": "デュラセル", "Pigeon": "ピジョン", "ユニチャーム": "ユニ・チャーム", "サイエンス・ダイエット": "ヒルズ", "サイエンスダイエット": "ヒルズ",
+         "ディチェコ": "ディ・チェコ", "DE CECCO": "ディ・チェコ", "Barilla": "バリラ", "ママー": "マ・マー", "KEY COFFEE": "キーコーヒー",
+         "evian": "エビアン", "volvic": "ボルヴィック", "い・ろ・は・す": "いろはす", "お〜いお茶": "伊藤園", "お～いお茶": "伊藤園", "おーいお茶": "伊藤園",
+         "SAVAS": "ザバス", "MYPROTEIN": "マイプロテイン", "GronG": "グロング", "X-PLOSION": "エクスプロージョン", "be LEGEND": "ビーレジェンド",
+         "バルクス": "VALX", "ハダカラ": "hadakara", "アンドハニー": "&honey", "カウブランド": "牛乳石鹸", "ナチュラルムーニー": "ムーニー", "オヤスミマン": "ムーニー"}
+
+
 def brand_of(key, name):
-    """名の知れたメーカーなら、その名前（大文字小文字は見ない）。"""
+    """名の知れたメーカーなら、その名前（大文字小文字は見ない）。書き方ちがいは ALIAS で1つに。"""
     low = name.lower()
-    return next((b for b in BRAND.get(key, ()) if b.lower() in low), "")
+    b = next((b for b in BRAND.get(key, ()) if b.lower() in low), "")
+    return ALIAS.get(b, b)
 
 
 def brand_first(key, rows, n):

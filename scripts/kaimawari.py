@@ -171,9 +171,12 @@ ul{{list-style:none;margin:0;padding:0}}.it{{margin:0 0 10px}}
 <script>
 (function(){{
   var n=document.getElementById('kn'),y=document.getElementById('ky'),r=document.getElementById('kr');
-  function calc(){{var s=Math.max(1,Math.min(10,parseInt(n.value||'1',10))),m=Math.max(0,parseInt(y.value||'0',10));
+  function calc(){{var s0=parseInt(n.value||'1',10),m0=parseInt(y.value||'0',10),s=Math.max(1,Math.min(10,s0||1)),m=Math.max(0,m0||0),nt='';
+    /* 11/6 夜「11店・0店・マイナスを黙って直す」→ 直した時は、なぜかを書く */
+    if(s0>10)nt='お店の数は10店までで計算します（買いまわりは10倍まで）。';else if(!(s0>=1))nt='お店の数は1〜10で入れてください（1店で計算しています）。';
+    if(m0<0)nt+='金額はマイナスにできないので、0円で計算しています。';
     var p=Math.min(7000,Math.floor(m*(s-1)/100));
-    r.innerHTML=s+'店で、買いまわりの分は <b>'+p.toLocaleString()+'</b> ポイント'+(s<10?'<br>あと1店（1,000円）足すと、+'+Math.min(7000-p,Math.floor((m+1000)*s/100)-p).toLocaleString()+'ポイント':'');}}
+    r.innerHTML=s+'店で、買いまわりの分は <b>'+p.toLocaleString()+'</b> ポイント'+(s<10?'<br>あと1店（1,000円）足すと、+'+Math.min(7000-p,Math.floor((m+1000)*s/100)-p).toLocaleString()+'ポイント':'')+(nt?'<br><small style="color:#A8432F">'+nt+'</small>':'');}}
   n.addEventListener('input',calc);y.addEventListener('input',calc);calc();
   var bs=document.querySelectorAll('.tabs button');
   bs.forEach(function(b){{b.addEventListener('click',function(){{var f=b.dataset.f;

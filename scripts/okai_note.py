@@ -11,6 +11,10 @@ import os
 import re
 import statistics
 import urllib.parse
+try:
+    from tanka import ALIAS
+except Exception:
+    ALIAS = {}
 from datetime import datetime, timedelta, timezone
 
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -57,6 +61,14 @@ def mark(hist):
     return "eq", "いつもどおり"
 
 
+def unit1(u, it):
+    """11/6 夜：「1L・1kg」は、その商品の量（2.6L×4 なら 1L、2.77kg×4 なら 1kg）で決める"""
+    if u != "1L・1kg":
+        return u
+    a = str(it.get("amt") or "") + " " + str(it.get("name") or "")
+    return "1L" if re.search(r"\d\s*(ml|mL|L|ℓ)", a) else "1kg" if re.search(r"\d\s*(kg|g)", a) else u
+
+
 def main():
     page = os.path.join(R, "site", "okaimono.html")
     if not os.path.exists(page):
@@ -74,7 +86,9 @@ def main():
             continue
         rows, seen = [], set()
         for it in c.get("top", []):
-            b = it.get("bd")
+            b = ALIAS.get(it.get("bd"), it.get("bd"))  # 11/6 夜：ジョイ と JOY を別に数えない
+            if b:
+                it["bd"] = b
             if not b or b in seen or not code(it.get("plain")):
                 continue
             seen.add(b)
@@ -100,9 +114,9 @@ def main():
                    f'<span class="nb-ni">{f"<img src={chr(34)}{E(im, quote=True)}{chr(34)} alt={chr(34)}{chr(34)} loading={chr(34)}lazy{chr(34)} referrerpolicy={chr(34)}no-referrer{chr(34)}>" if im else ""}</span>'
                    f'<span class="nb-nt"><b>{E(it["bd"])}</b><small>{E(str(it.get("amt") or ""))}・レビュー{int(it.get("rc") or 0):,}件</small>'
                    f'<i class="nb-nm {mk[0]}">{E(mk[1])}</i></span>'
-                   f'<span class="nb-np"><em>{it["per"]:g}<small>円</small></em><small>{E(c["unit"])}あたり</small><u>楽天で見る ›</u></span></a>')
+                   f'<span class="nb-np"><em>{it["per"]:g}<small>円</small></em><small>{E(unit1(c["unit"], it))}あたり</small><u>楽天で見る ›</u></span></a>')
         tiles.append(f'<button type="button" class="ntl" data-k="{k}"><b>{E(name)}</b><small>{E(rows[0]["bd"])} {rows[0]["per"]:g}円</small></button>')
-        panels.append(f'<div class="npn" id="n-{k}" data-k="{k}"><p class="nb-nh">{E(name)}<small>名の知れたメーカー{len(rows)}つ・送料込み・{E(c["unit"])}あたり</small></p>{rr}'
+        panels.append(f'<div class="npn" id="n-{k}" data-k="{k}"><p class="nb-nh">{E(name)}<small>名の知れたメーカー{len(rows)}つ・送料込み・{E((lambda us: us.pop() if len(us) == 1 else "1L・1kg（商品ごとに）")({unit1(c["unit"], r) for r in rows}))}あたり</small></p>{rr}'
                       f'<p class="nb-nf">楽天の{int(c.get("seen") or 0):,}件から、毎回しらべています</p></div>')
     if not panels:
         print("値段帳：名の知れた物が無いので入れない")

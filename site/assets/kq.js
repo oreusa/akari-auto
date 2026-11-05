@@ -35,11 +35,20 @@
     if(core)q=core;
     /* 種類の名前そのもの（タイル・結論・切り替えで押した時も）なら、その種類だけを出す（件数をタイルとそろえる） */
     var CAT=[].some.call(document.querySelectorAll("#odekake .card.it"),function(c){return nz(c.dataset.pref)===q;});
+    /* 11/6 夜「『無香料の柔軟剤』は0件、『柔軟剤 無香料』は6件」「『ダブル』と入れてもシングルが出る」→ 言葉の中から種類の名前を見つけ、
+       残りの言葉（無香料・ダブル など）は条件として守る。条件に合う物が無ければ、そう書いて条件をはずすボタンを出す */
+    var CN={},cat="",ck="",MODS=[],MOD0=0;
+    document.querySelectorAll("#odekake .card.it").forEach(function(c){var n=nz(c.dataset.pref);if(n&&n!=="お店のお得")CN[n]=1;});
+    Object.keys(CN).forEach(function(n){if(q.indexOf(n)>=0&&n.length>ck.length){cat=n;ck=n;}});
+    if(!cat)Object.keys(SY).forEach(function(k){var t=nz(SY[k]);if(k.length>=2&&q.indexOf(k)>=0&&k.length>ck.length){var m=Object.keys(CN).filter(function(n){return n.indexOf(t)>=0;});if(m.length===1){cat=m[0];ck=k;}}});
+    if(cat&&q!==cat&&!CAT){MODS=q.split(ck).join(" ").replace(/(の|で|を|が|は|と|も)+(\s|$)/g," ").replace(/(^|\s)(の|で|を|が|は|と)+/g," ").split(/\s+/).filter(function(w){return w.length>=2&&!/^\d+$/.test(w);});}
     var hit=find(q),near="";
+    if(cat&&!CAT){hit=find(cat).filter(function(c){return c.tagName==="DETAILS"||nz(c.dataset.pref)===cat;});
+      if(MODS.length){MOD0=hit.length;hit=hit.filter(function(c){var t=nz(c.textContent);return MODS.every(function(w){return t.indexOf(w)>=0;});});}}
     if(CAT)hit=hit.filter(function(c){return nz(c.dataset.pref)===q;});
-    if(!hit.length&&SY[q]){hit=find(nz(SY[q]));}
-    if(!hit.length)for(var k in SY){if(k.length>=2&&q.indexOf(k)>=0){hit=find(nz(SY[k]));if(hit.length){near=k;break;}}}
-    for(var cut=q.length-1;!hit.length&&cut>=2;cut--){var w=q.slice(0,cut);if(/\d/.test(w))break;hit=find(w);if(hit.length)near=w;}
+    if(!hit.length&&!MOD0&&SY[q]){hit=find(nz(SY[q]));}
+    if(!hit.length&&!MOD0)for(var k in SY){if(k.length>=2&&q.indexOf(k)>=0){hit=find(nz(SY[k]));if(hit.length){near=k;break;}}}
+    for(var cut=q.length-1;!hit.length&&!cat&&cut>=2;cut--){var w=q.slice(0,cut);if(/\d/.test(w))break;hit=find(w);if(hit.length)near=w;}
     var PRE=hit.length;
     if(LIM)hit=hit.filter(function(c){var y=parseInt(c.dataset.yen||"0",10);return y>0&&y<=LIM;});
     /* その種類そのもの（「水」なら種類が水の物）を先に。炭酸水などの「水」を含む物はあと */
@@ -48,7 +57,7 @@
     var sh=esc(v.slice(0,30));
     if(hit.length){
       var h=document.createElement("p");h.className="kqt";
-      h.innerHTML="「"+sh+"」の答え　"+hit.length+"件"+(near?"（「"+esc(near)+"」で探した近い物）":"")+(LIM?"（送料込み"+LIM.toLocaleString()+"円以下）":"")+"<small>うさぎが送料込み・1個あたりで比べた中から出しています</small>";
+      h.innerHTML="「"+sh+"」の答え　"+hit.length+"件"+(near?"（「"+esc(near)+"」で探した近い物）":"")+(LIM?"（送料込み"+LIM.toLocaleString()+"円以下）":"")+"<small>うさぎが送料込み・1個あたりで比べた中から出しています。送料込みはお店の表示で、北海道・沖縄・離島は別にかかることがあります</small>";
       qr.appendChild(h);
       /* ひと目でわかる差：同じ物差し（1Lあたり など）の上位5つを棒で並べる。文字を読まなくても差が見える */
       var rows=[],lab="";
@@ -73,6 +82,15 @@
       /* 賢い誘導：セール中なら、買う前のエントリーを答えのすぐ下に（押し忘れるとポイントが付かない） */
       var en=document.querySelector('a.ilk[rel~="sponsored"]');
       if(en){var w=document.createElement("div");w.className="kqe";w.innerHTML='<small>買う前に、これだけ</small>';var a=en.cloneNode(true);w.appendChild(a);qr.appendChild(w);}
+    }else if(MOD0){
+      /* 画面に出す言葉は、入れたままの字（ひらがなに直す前）で */
+      var CD=cat;document.querySelectorAll("#odekake .card.it").forEach(function(c){if(nz(c.dataset.pref)===cat)CD=c.dataset.pref;});
+      var MD=raw.replace(/([\d,]+)\s*円\s*(以下|まで|以内|未満|以上|から)?/g," ").split(CD).join(" ").split(ck).join(" ").replace(/(の|で|を|が|は|と|も)+(\s|　|$)/g," ").replace(/(^|\s|　)(の|で|を|が|は|と)+/g," ").split(/[\s　]+/).filter(function(w){return w.length>=2;});
+      if(MD.length===MODS.length)MODS=MD;cat=CD;
+      var m0=document.createElement("div");m0.className="kqn";
+      m0.innerHTML="「"+esc(cat)+"」で、名前に「"+esc(MODS.join("・"))+"」とある物は、いま比べた中にありません。<br>比べた"+MOD0+"件はどれもちがう物でした。";
+      var bm=document.createElement("button");bm.type="button";bm.className="kqx";bm.textContent="「"+MODS.join("・")+"」をはずして「"+cat+"」を見る";
+      bm.onclick=function(){var vv=cat+(LIM?" "+LIM+"円以下":"");qi.value=vv;ask(vv,true);};m0.appendChild(bm);qr.appendChild(m0);
     }else if(LIM&&PRE){
       var n0=document.createElement("div");n0.className="kqn";
       n0.innerHTML="「"+esc(q)+"」で、送料込み"+LIM.toLocaleString()+"円以下の物は、いまありません。<br>比べた"+PRE+"件はどれも"+LIM.toLocaleString()+"円より高い値段でした。";

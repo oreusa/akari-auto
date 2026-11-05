@@ -208,9 +208,18 @@ def collect(ix):
         cards.append(li_card(txt(first(r'<span class="ct">(.*?)</span>', li)) or "値下がり", li, "down", "値下がり"))
     for cat, li in lis("kaimawari.html"):
         c = li_card(cat, li, "sale", "1,000円ぽっきり")
-        c["top"] = "1,000円ぽっきり（送料込み）"
+        # 11/6 夜「大きく1,000円だが送料込み1,180円」→ 大きな数字は本当の値段（送料込み）にする
+        pm = re.search(r"([\d,]+)\s*円", c.get("sub") or "")
+        c["top"] = f"送料込み {pm.group(1)}円" if pm else "1,000円台（送料込み）"
         cards.append(c)
     cards = [c for c in cards if c["href"] and c["title"]]
+    # 11/6 夜「柔軟剤が1kgあたり515円、実は8.5Lで1Lあたり」→「1L・1kg」は、その商品の量の書き方で 1L か 1kg に決める
+    for c in cards:
+        if "1L・1kg" in (c.get("top") or ""):
+            t = (c.get("title") or "") + " " + (c.get("sub") or "")
+            u = "1L" if re.search(r"\d\s*(ml|mL|ML|ｍｌ|L|ℓ|リットル)", t) else "1kg" if re.search(r"\d\s*(kg|ｋｇ|g|ｇ|キロ)", t) else ""
+            if u:
+                c["top"] = c["top"].replace("1L・1kg", u)
     # 11/3 同じ物が2回出ていた（ふるさと納税のトイレットペーパー）→ 同じタブ・見出し・リンクは1つに
     seen, uniq = set(), []
     for c in cards:
@@ -445,7 +454,7 @@ def build(od, ix):
     h = od
     # ---- 見出し
     h = re.sub(r'<h1 class="ttl">.*?</h1>', '<h1 class="ttl">くらべたおかいものリスト</h1>', h, count=1, flags=re.S)
-    h = re.sub(r'<p class="sub">.*?</p>', '<p class="sub">送料込み・1個あたりで、毎日くらべています<span class="kad">リンクは広告です</span></p>'
+    h = re.sub(r'<p class="sub">.*?</p>', '<p class="sub">送料込み・1個あたりで、毎日くらべています<span class="kad">リンクは広告です。送料込みはお店の表示で、北海道・沖縄・離島は別にかかることがあります</span></p>'
                , h, count=1, flags=re.S)
     # 11/3 オーナー「上と下どっちもPRいらねぇだろ、同じ画面だぞ上は消せ」→ 上の1行は消す。広告の表示（ステマ規制）は
     # 11/3 オーナー「各ところにPRダサいからやめて」→ ボタン横のPRも消す。広告の表示（ステマ規制）は見出しの下の小さな1か所＋下の欄で守る
@@ -763,6 +772,6 @@ def build(od, ix):
           '})();</script>')
     h = h.replace('<body class="', '<body data-bar="okai" class="', 1)
     h = h.replace("c.hidden=!ok||(!op&&k>5);", "c.hidden=!ok||(!op&&k>8);").replace('m.dataset.l+(k-5)+"件）";m.hidden=op||k<=5;', 'm.dataset.l+(k-8)+"件）";m.hidden=op||k<=8;')
-    js += '<script src="/assets/kq.js?v=6" defer></script><script src="/assets/okv.js?v=4" defer></script>'
+    js += '<script src="/assets/kq.js?v=7" defer></script><script src="/assets/okv.js?v=4" defer></script>'
     i = h.rfind("</body>")
     return h[:i] + js + h[i:]
