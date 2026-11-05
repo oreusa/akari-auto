@@ -16,6 +16,8 @@
   var P=location.pathname.replace(/^\/townnotes\//,"/odekake").replace(/\.html$/,""),here=
     /^\/(index)?$/.test(P)?"tn":/^\/odekake/.test(P)?"list":/^\/okaimono/.test(P)?"okai":/^\/illumination/.test(P)?"illumi":/^\/koyo/.test(P)?"koyo":/^\/koe/.test(P)?"koe":/^\/tomari/.test(P)?"tomari":/^\/ima/.test(P)?"ima":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":/^\/nesage/.test(P)?"nesage":"";
   var SH=/^(\/okaimono|\/nesage|\/tanka|\/furusato|\/kaimawari)/.test(P);
+  /* 11/6 夜「おかいものからリクエストへ行くと、下のバーがおでかけ側に変わって戻れない」→ どちらのリストから来たかを覚えて、リクエストのページもそちら側にする */
+  try{if(SH)sessionStorage.setItem("usagi_side","okai");else if(here&&here!=="koe")sessionStorage.setItem("usagi_side","list");if(here==="koe"&&sessionStorage.getItem("usagi_side")==="okai")SH=true;}catch(e){}
   /* 11/2 オーナー「もっとまとめろよ。TOWNNOTEこんなんじゃないだろ」→ 月と同じく、リストごとに自分の項目だけ＋関連サイト */
   var L=[
     ["LIST","list","/odekake","関東おでかけリスト","開催中・これからのおでかけ"],

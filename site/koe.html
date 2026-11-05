@@ -57,9 +57,9 @@ textarea{min-height:130px;resize:vertical}.cnt{text-align:right;font-size:11px;c
 </div>
 <div id="sw" hidden><div class="kl">ひとことで言うと</div><div class="st" id="st"></div></div>
 <div class="kl">くわしく</div>
-<textarea id="tx" maxlength="400" placeholder="例：横浜のクリスマスマーケットものせてほしい"></textarea><div class="cnt"><span id="cn">0</span>/400</div>
+<textarea id="tx" aria-label="ご意見・リクエストの内容" maxlength="400" placeholder="例：横浜のクリスマスマーケットものせてほしい"></textarea><div class="cnt"><span id="cn">0</span>/400</div>
 <div class="kl">お名前（なくても大丈夫です）</div>
-<input class="nm" id="nm" maxlength="20" placeholder="ニックネーム" autocomplete="nickname">
+<input class="nm" id="nm" aria-label="ニックネーム（なくてもかまいません）" maxlength="20" placeholder="ニックネーム" autocomplete="nickname">
 <div class="hp" aria-hidden="true"><input id="hp" tabindex="-1" autocomplete="off"></div>
 <button class="go" id="go" type="submit" disabled>送る</button>
 <p class="msg" id="msg" role="status"></p>
@@ -67,7 +67,7 @@ textarea{min-height:130px;resize:vertical}.cnt{text-align:right;font-size:11px;c
 </form>
 <div class="done" id="done" hidden><b>ありがとうございます</b><p>ちゃんと届きました。<br>いただいた声は、これからのページづくりに使います。</p></div>
 <section class="vo" id="vo" hidden><h2>みなさんの声</h2><ul id="vl"></ul></section>
-<a class="back" href="/">LIFE NOTE へ戻る</a>
+<a class="back" href="/">LIFE NOTE へ戻る</a><script>/* 11/6 夜「来たページに戻れない」→ このサイトの別のページから来た時は、そのページへ戻る */(function(){try{var r=document.referrer,b=document.querySelector("a.back");if(b&&r&&new URL(r).origin===location.origin&&!/\/koe/.test(r)){var u=new URL(r);b.href=u.pathname+u.search+u.hash;b.textContent=/okaimono|nesage|tanka|furusato|kaimawari/.test(u.pathname)?"おかいものリストへ戻る":/odekake|illumination|koyo|tomari|ima/.test(u.pathname)?"おでかけリストへ戻る":"前のページへ戻る";}}catch(e){}})();</script>
 <div class="ft">LIFE NOTE</div></div>
 <script>
 (function(){
