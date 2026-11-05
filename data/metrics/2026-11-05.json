@@ -1,0 +1,370 @@
+{
+  "day": "2026-11-05",
+  "fetchedAt": "2026-11-06T06:34+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【今日11/5　楽天の5のつく日｜マラソン2日目と重なる🛒】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfVgZbCHbn6",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 25,
+        "views": 4,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【今日11/5　楽天の5のつく日｜マラソン2日目と重なる🛒】",
+      "url": "https://x.com/1753799832798629888/status/2118104769109651644",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.45,
+        "reposts": 0,
+        "impressions": 29,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "11/5から八重洲でTOKYO ILLUMILIA、今週始まる5つ✨",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfVuJcbETEa",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 2.56,
+        "views": 78,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "PR",
+      "first": "11/5から八重洲でTOKYO ILLUMILIA、今週始まる5つ✨",
+      "url": "https://x.com/1753799832798629888/status/2118135000709189971",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.69,
+        "reposts": 0,
+        "impressions": 59,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "11/7・8、宇都宮餃子祭りは約30店の屋台、一皿200円から🥟",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfWCuquEVcQ",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.91,
+        "views": 110,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "11/7・8、宇都宮餃子祭りは約30店の屋台、一皿200円から🥟",
+      "url": "https://x.com/1753799832798629888/status/2118180260160102560",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.44,
+        "reposts": 0,
+        "impressions": 41,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【紅葉の夜の入園料くらべ　立川・長瀞・小石川｜小学生まではどこも無料🍁】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfWNB8xlQRI",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【紅葉の夜の入園料くらべ　立川・長瀞・小石川｜小学生まではどこも無料🍁】",
+      "url": "https://x.com/1753799832798629888/status/2118202918474027390",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.41,
+        "reposts": 0,
+        "impressions": 482,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "11/6、イオンモール川口前川に今川焼きの月のうさぎ、埼玉に初出店🥞",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfWXVldFZpb",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "11/6、イオンモール川口前川に今川焼きの月のうさぎ、埼玉に初出店🥞",
+      "url": "https://x.com/1753799832798629888/status/2118225578901811427",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.27,
+        "reposts": 0,
+        "impressions": 44,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた水2L×9本3つ｜1リットルあたり約68円💧】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfWr-FFEV8s",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "PR",
+      "first": "【AIが比べた水2L×9本3つ｜1リットルあたり約68円💧】",
+      "url": "https://x.com/1753799832798629888/status/2118270919319663073",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.45,
+        "reposts": 0,
+        "impressions": 29,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "PR",
+      "first": "【AIが比べた1,000円ぽっきりの麺3つ｜1食あたり200円🍜】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfW5rnPluay",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "PR",
+      "first": "【AIが比べた1,000円ぽっきりの麺3つ｜1食あたり200円🍜】",
+      "url": "https://x.com/1753799832798629888/status/2118301063904133509",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 6.45,
+        "reposts": 0,
+        "impressions": 31,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "HPのご紹介 その4｜いまから行けるおでかけ🕒",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfW--MDoBm9",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "HPのご紹介 その4｜いまから行けるおでかけ🕒",
+      "url": "https://x.com/1753799832798629888/status/2118312726606836000",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 16.67,
+        "reposts": 0,
+        "impressions": 6,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "PR",
+      "first": "【AIが比べたふるさと納税のお米｜寄付1万円あたり約8.9kg🍚】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfXHc0TkUoE",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "PR",
+      "first": "【AIが比べたふるさと納税のお米｜寄付1万円あたり約8.9kg🍚】",
+      "url": "https://x.com/1753799832798629888/status/2118331353477390617",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.57,
+        "reposts": 0,
+        "impressions": 28,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4023294565989035348",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4023289775415935776",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/7〜12/25　アークヒルズ｜高さ約6mの生木のツリー🎄】",
+      "url": "https://www.instagram.com/reel/DfVllkwRmzE/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 1,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.01,
+        "averageTimeWatched": 0.54,
+        "reach": 1
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/7〜12/25　アークヒルズ｜高さ約6mの生木のツリー🎄】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfVlmhloCdm",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 10,
+        "views": 10,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/7〜12/25　アークヒルズ｜高さ約6mの生木のツリー🎄】",
+      "url": "https://x.com/1753799832798629888/status/2118116184880988292",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 7.69,
+        "reposts": 0,
+        "impressions": 13,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DfViJTliU0J/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 119,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 3.4,
+        "averageTimeWatched": 1.84,
+        "reach": 111
+      }
+    }
+  ]
+}
