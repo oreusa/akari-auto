@@ -32,10 +32,11 @@ var OK=document.body.dataset.bar==="okai";
 I.pick='<svg viewBox="0 0 24 24"><path d="M5 7h14l-1.5 9h-11z"/><circle cx="9" cy="19.5" r="1.2"/><circle cx="16" cy="19.5" r="1.2"/></svg>';
 I.unit='<svg viewBox="0 0 24 24"><path d="M12 4v16M6 8h12M6 8l-3 6h6zM18 8l-3 6h6z"/></svg>';
 I.down='<svg viewBox="0 0 24 24"><path d="M4 6l6 6 4-4 6 6"/><path d="M20 10v4h-4"/></svg>';
-I.sale='<svg viewBox="0 0 24 24"><path d="M3 12l9-9h7v7l-9 9z"/><circle cx="15" cy="9" r="1.4"/></svg>';
+I.ai='<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M9 9.5h4M11 7.5v4"/></svg>';I.sale='<svg viewBox="0 0 24 24"><path d="M3 12l9-9h7v7l-9 9z"/><circle cx="15" cy="9" r="1.4"/></svg>';
 if(OK){var tb=tabs?[].slice.call(tabs.querySelectorAll("button")):[];
-  bar.innerHTML=tb.map(function(b,i){var t=b.dataset.t,l=b.childNodes[1]?b.childNodes[1].textContent:"";return '<button data-t="'+t+'"'+(b.classList.contains("on")?' class="cur"':'')+'>'+(I[t]||"")+'<span>'+l+'</span></button>';}).join("")+'<button class="mn" data-a="menu"><i></i>MENU</button>';}
-else bar.innerHTML='<button data-t="now" class="cur">'+I.now+'<span>開催中</span></button><button data-t="up">'+I.up+'<span>これから</span></button><button data-a="map">'+I.map+'<span>地図</span></button><button data-a="inn">'+I.inn+'<span>泊まり</span></button><button class="mn" data-a="menu"><i></i>MENU</button>';
+  /* 11/5 オーナー「AIで調べる項目、バーにいれたり」→ 左に「AIに聞く」（上の聞く欄へ） */
+  bar.innerHTML='<button data-a="ai">'+I.ai+'<span>AIに聞く</span></button>'+tb.map(function(b,i){var t=b.dataset.t,l=b.childNodes[1]?b.childNodes[1].textContent:"";return '<button data-t="'+t+'"'+(b.classList.contains("on")?' class="cur"':'')+'>'+(I[t]||"")+'<span>'+l+'</span></button>';}).join("")+'<button class="mn" data-a="menu"><i></i>MENU</button>';}
+else bar.innerHTML='<button data-a="town">'+I.ai+'<span>街で探す</span></button><button data-t="now" class="cur">'+I.now+'<span>開催中</span></button><button data-t="up">'+I.up+'<span>これから</span></button><button data-a="map">'+I.map+'<span>地図</span></button><button data-a="inn">'+I.inn+'<span>泊まり</span></button><button class="mn" data-a="menu"><i></i>MENU</button>';
 document.body.appendChild(bar);
 function syncBar(){var on=tabs&&tabs.querySelector("button.on");bar.querySelectorAll("button[data-t]").forEach(function(b){b.classList.toggle("cur",!!on&&b.dataset.t===on.dataset.t)});}
 bar.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
@@ -43,9 +44,12 @@ bar.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)
     var t=tabs&&tabs.querySelector('button[data-t="'+b.dataset.t+'"]');if(t)t.click();syncBar();var o=document.getElementById("odekake");if(o)scrollTo({top:o.getBoundingClientRect().top+scrollY-10,behavior:"smooth"});}
   else if(b.dataset.a==="map"){var m=document.querySelector(".tnbtn");if(m)m.click();}
   else if(b.dataset.a==="inn")location.href="/tomari";
+  else if(b.dataset.a==="town")location.href="/#town";
+  else if(b.dataset.a==="ai"){var k=document.getElementById("kq");if(k&&k.offsetParent){k.scrollIntoView({block:"center",behavior:"smooth"});try{k.focus({preventScroll:true});}catch(e){}}else{location.href="/okaimono#kq";if(location.pathname.replace(/\.html$/,"")==="/okaimono")location.reload();}}
   else{var u=document.getElementById("umenu");if(u)u.click();}});
 bar.classList.add("on");document.documentElement.classList.add("v2bar-on");
 if(tabs)tabs.addEventListener("click",function(){setTimeout(syncBar,30)});
+if(location.hash==="#kq")setTimeout(function(){var k=document.getElementById("kq");if(k){k.scrollIntoView({block:"center"});try{k.focus({preventScroll:true});}catch(e){}}},200);
 /* 11/2 ほかのページの下のボタン（/odekake?v2t=0・1・map）から来たら、そのタブ・地図を開く */
 (function(){var q=null;try{q=new URLSearchParams(location.search).get("v2t");}catch(e){}if(q===null)return;
   try{var u=new URLSearchParams(location.search);u.delete("v2t");history.replaceState(null,"",location.pathname+(u.toString()?"?"+u:"")+location.hash);}catch(e){}

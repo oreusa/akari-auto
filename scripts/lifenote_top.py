@@ -66,13 +66,13 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <link rel="icon" href="/logo.png"><link rel="apple-touch-icon" href="/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
-<link rel="stylesheet" href="/assets/top.css?v=1"><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=19" defer></script><script src="/assets/v2sub.js?v=7" defer></script></head><body id="lifenote-top"><div class="wrap">
+<link rel="stylesheet" href="/assets/top.css?v=1"><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=19" defer></script><script src="/assets/v2sub.js?v=8" defer></script></head><body id="lifenote-top"><div class="wrap">
 <header class="head"><img src="/logo-s.png" width="74" height="74" alt="LIFE NOTE のロゴ">
 <h1>LIFE NOTE</h1><div class="kana">ライフノート</div>
 <p class="sub">関東のくらしで見つけたことを、<br>公式の情報つきで、このノートに書きとめています。</p>
 <div class="nofilt">{SVG}</div><div class="mapcap">都県を押すと、その都県の数が出ます</div><div class="pp" id="pp" hidden></div></header>
 
-<section class="find"><h2><small>YOUR TOWN</small>あなたの街を探す</h2>
+<section class="find" id="town"><h2><small>YOUR TOWN</small>あなたの街を探す</h2>
 <p>街の名前を入れると、その街の<b>おでかけ</b>と<b>イルミネーション</b>が<br>まとめて出ます。</p>
 <input class="fi" id="q" type="search" placeholder="例：横浜、川越、舞浜" enterkeyhint="search" aria-label="街の名前">
 <div class="chips">{"".join(f'<button type="button">{c}</button>' for c in CHIPS)}</div>

@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import spot_map  # 11/4 場所の地図（LIFE NOTE の地図と同じ絵）
 BASE = os.environ.get("LIFE_BASE") or "https://usagi-life-notes.pages.dev"
 # 共通の部品の番号は lifenote.py と同じ物を使う
-VER = {"menu.js": 13, "v2sub.js": 7, "night.js": 13}
+VER = {"menu.js": 13, "v2sub.js": 8, "night.js": 13}
 _m = re.search(r"VER = (\{[^}]*\})", open(os.path.join(R, "scripts", "lifenote.py"), encoding="utf-8").read())
 if _m: VER.update(json.loads(_m.group(1)))
 FU = {"東京": "東京都", "神奈川": "神奈川県", "埼玉": "埼玉県", "千葉": "千葉県", "茨城": "茨城県", "栃木": "栃木県", "群馬": "群馬県"}
