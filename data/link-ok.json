@@ -1952,6 +1952,12 @@
   "sec": 0.4,
   "why": ""
  },
+ "https://animeanime.jp/release/prtimes/20261008/318419.html": {
+  "at": "2026-11-05",
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
+ },
  "https://artetokyo.jp/": {
   "at": "2026-11-04",
   "by": "browser",

@@ -1,7 +1,7 @@
 {
-  "at": "2026-11-05 11:45",
+  "at": "2026-11-05 17:28",
   "since": "2026-11-01",
-  "tracked": 248,
+  "tracked": 251,
   "days": 4,
   "downs": [
     {
@@ -35,7 +35,7 @@
       "base": 3980.0,
       "pct": 25,
       "days": 4,
-      "rc": 4106,
+      "rc": 4107,
       "av": 4.37,
       "shop": "くらしのeショップ",
       "plain": "https://item.rakuten.co.jp/e-kurashi/10000628/"
