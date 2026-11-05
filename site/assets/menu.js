@@ -260,3 +260,27 @@
     document.addEventListener("usagi-mapapp",sync);sync();}
   var n=0;(function t(){row();if(!document.getElementById("umaprow")&&++n<50)setTimeout(t,100);})();
 })();
+
+/* 11/6 夜（読み上げ・キーボード）：どのページにも同じ手当て。見た目は変えない
+   ・しぼりこみボタンに「押されている」を伝える（aria-pressed）
+   ・本文に main の目印
+   ・「地図」リンクに、どこの地図かを名前で
+   ・名前のない検索欄に名前 */
+(function(){
+function pr(){var B=document.querySelectorAll("#flt button,.flt button,.tabs button,.sbk button,.mpc button,.dflt button");
+ for(var i=0;i<B.length;i++){var b=B[i];if(b.getAttribute("role")==="tab")continue;var on=b.classList.contains("on");if(b.getAttribute("aria-pressed")!==String(on))b.setAttribute("aria-pressed",on);}}
+function fix(){
+ if(!document.querySelector("main,[role=main]")){var w=document.querySelector(".wrap")||document.querySelector(".paper");if(w)w.setAttribute("role","main");}
+ var M=document.querySelectorAll("a.mp");for(var i=0;i<M.length;i++){var a=M[i];if(a.hasAttribute("aria-label"))continue;var box=a.closest(".it,.card,article,li")||a.parentElement,t=box&&box.querySelector(".t");
+  var n=t?t.textContent.replace(/（\d+月\d+日まで）/,"").trim():"";if(n)a.setAttribute("aria-label",n.slice(0,40)+"の地図（Googleマップ）");}
+ var S=document.querySelectorAll("input[type=search],input.fi,#q");for(var j=0;j<S.length;j++){var s=S[j];if(s.hasAttribute("aria-label")||s.labels&&s.labels.length)continue;s.setAttribute("aria-label",location.pathname.indexOf("fudosan")>=0?"市・区・町の名前で探す":/okaimono|nesage|kaimawari/.test(location.pathname)?"商品の名前で探す":s.placeholder?"検索（"+s.placeholder+"）":"街の名前やおでかけで探す");}
+ pr();}
+var tm;function later(){clearTimeout(tm);tm=setTimeout(fix,80)}
+if(document.readyState!=="loading")fix();else document.addEventListener("DOMContentLoaded",fix);
+addEventListener("load",fix);
+/* 押したボタンが作り直されてフォーカスが消えた時（「人口・駅」など）は、同じ名前のボタンへ戻す */
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("button"),tx=b&&b.textContent,cl=b&&b.parentElement&&b.parentElement.className;
+ function back(){pr();if(!b||document.activeElement!==document.body)return;if(b.isConnected&&b.offsetParent){b.focus({preventScroll:true});return;}var c=document.querySelectorAll("button");for(var i=0;i<c.length;i++){if(c[i].textContent===tx&&c[i].parentElement&&c[i].parentElement.className===cl){c[i].focus({preventScroll:true});break;}}}
+ setTimeout(back,0);setTimeout(back,120);},true);
+try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
+})();

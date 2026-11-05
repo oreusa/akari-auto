@@ -110,7 +110,9 @@ function one(a,ad){
   a.insertBefore(c,a.firstChild);a.classList.add('cm');
   /* 日付の行は「まで」の時だけ隠す（札と同じ内容）。期間・開く日・発表前などは残す */
   var dl=a.querySelector(ad.d);var dx=dl?dl.textContent:'';
-  if(w==='まで'&&!/開く日|〜\s*\d|発表前|公式/.test(dx))a.classList.add('cmh');}
+  if(w==='まで'&&!/開く日|〜\s*\d|発表前|公式/.test(dx)){a.classList.add('cmh');
+   /* 11/6 夜「日付が読み上げに出ない」→ 目に見える札は読み上げに出さないかわりに、見えない文で日付を伝える */
+   if(!a.querySelector('.srd')){var y2=new Date(d+'T00:00:00Z'),sr=document.createElement('span');sr.className='srd';sr.textContent='（'+(y2.getUTCMonth()+1)+'月'+y2.getUTCDate()+'日まで）';sr.style.cssText='position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap';a.appendChild(sr);/* .t の中に入れると地図の名前合わせが崩れるので、カードの最後に */}}}
 function go(){for(var j=0;j<AD.length;j++){var L=document.querySelectorAll(AD[j].q);for(var i=0;i<L.length;i++)one(L[i],AD[j]);}var i;
   /* 「地図」の小さなリンクがカードの左下にある形（リスト）は、絵のタイルと重ならないよう右へ */
   var M=document.querySelectorAll('a.card.cm~a.mp,a.card.cm~.rt,a.cd.cm~a.mp');for(i=0;i<M.length;i++)M[i].parentElement.classList.add('cmp');}
