@@ -125,6 +125,11 @@ html.night .rd .pt:not(.sel){stroke:none}html.night #mp .drp.neo{filter:drop-sha
 <p class="tq">どのくらいまで行く？</p>
 <div class="tm" id="tm"><button data-m="30">30分</button><button data-m="60" class="on">1時間</button><button data-m="90">1時間半</button><button data-m="999">すべて</button></div>
 <p class="tmn">時間は直線距離から出した目安です（乗りかえ・時刻表は入っていません）。きょう開催の所を出しています。開く時間は各公式でご確認ください。</p>
+<p class="tmn" id="tmh" hidden style="color:#B3261E;font-weight:700"></p>
+<script>/* 11/6 夜#44「5:04に、9:30に開く公園が出る」→ 朝早い時間と夜おそい時間は、まだ開いていない・もう閉まった所が多いことを、一覧の上に出す */
+(function(){var h=new Date().getHours(),e=document.getElementById("tmh");if(!e)return;
+if(h<9){e.textContent="いまは朝"+h+"時台です。多くの所はまだ開いていません（9時ごろからが多いです）。開く時間は各公式でご確認ください。";e.hidden=false;}
+else if(h>=18){e.textContent="いまは"+h+"時台です。昼だけの所はもう閉まっていることが多いです。夜も開いているかは各公式でご確認ください。";e.hidden=false;}})();</script>
 <div class="rd" id="rd"><svg id="mp" viewBox="0 0 320 320" aria-label="近いおでかけの地図" role="img"><rect width="320" height="320" fill="#EEF4F7"/><g id="mpL"></g><g id="rdLb"></g><g id="rdPts"></g><g id="mpMe"></g></svg><div class="tip" id="tip"></div></div>
 <div class="lg" id="lg"></div>
 <div class="wkh"><span id="lh">近い順</span><small id="ls"></small></div>
