@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-06 02:33",
+  "at": "2026-11-06 06:07",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 60,
-      "ok": 17,
-      "avg": 151.8,
+      "read": 44,
+      "ok": 14,
+      "avg": 165.2,
       "top": [
         {
           "name": "サントリー 天然水 2L 2000ml ペットボトル 6本 1ケース 送料無料（一部地域除く…",
@@ -121,88 +121,53 @@
       "key": "soda",
       "title": "炭酸水",
       "unit": "1L",
-      "seen": 120,
-      "read": 62,
-      "ok": 22,
-      "avg": 145.1,
+      "seen": 175,
+      "read": 44,
+      "ok": 10,
+      "avg": 180.9,
       "top": [
         {
-          "name": "＼激熱価格！／炭酸水 1L 15本 強炭酸水 炭酸 飲料 富士山の強炭酸水 ラベルレス ケー…",
-          "price": 1280,
-          "per": 85.3,
-          "amt": "1000ml×15本",
-          "rc": 735,
-          "av": 4.72,
-          "shop": "暮らし健康ネット館",
-          "plain": "https://item.rakuten.co.jp/kurashikenkou/10217349/",
-          "bd": "アイリスオーヤマ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F311521%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10217349%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashikenkou/cabinet/jisyakura2/311521.jpg?_ex=300x300"
-        },
-        {
-          "name": "炭酸水 1L 15本 選べるラベルレス 強炭酸水 アイリスオーヤマ 無糖 プレーン レモン …",
-          "price": 1630,
-          "per": 108.7,
-          "amt": "1000ml×15本",
-          "rc": 268,
-          "av": 4.73,
-          "shop": "食のこだわり総本舗 食彩館",
-          "plain": "https://item.rakuten.co.jp/s-kodawari/10005268/",
-          "bd": "アイリスオーヤマ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00tux1o.m2lhf799.g00tux1o.m2lhg5c1/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fs-kodawari%2F311521%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fs-kodawari%2Fi%2F10005268%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/s-kodawari/cabinet/eigyouyou1/311521_b.jpg?_ex=300x300"
-        },
-        {
-          "name": "炭酸水 1L ラベルレス 送料無料 15本 無糖 強炭酸水 アイリスオーヤマ プレーン レモ…",
-          "price": 1680,
-          "per": 112.0,
-          "amt": "1000ml×15本",
-          "rc": 254,
-          "av": 4.78,
-          "shop": "And marche",
-          "plain": "https://item.rakuten.co.jp/hobbytoy/10139040/",
-          "bd": "アイリスオーヤマ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qj33o.m2lhfcda.g00qj33o.m2lhge83/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhobbytoy%2F311521%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhobbytoy%2Fi%2F10139040%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/hobbytoy/cabinet/10126285/imgrc0119093574.jpg?_ex=300x300"
-        },
-        {
-          "name": "＼ 大容量／炭酸水 1L プレーン レモン ラベルあり (ケース） 1L×15本 強炭酸水 …",
-          "price": 1680,
-          "per": 112.0,
-          "amt": "1000ml×15本",
-          "rc": 189,
-          "av": 4.56,
-          "shop": "快適ホームライフ",
-          "plain": "https://item.rakuten.co.jp/k-home/10089321/",
-          "bd": "アイリスオーヤマ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00rqlbo.m2lhfc93.g00rqlbo.m2lhg098/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fk-home%2F311521%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fk-home%2Fi%2F10089321%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/k-home/cabinet/thum/naosi/syoumou_set/311521_thumb.jpg?_ex=300x300"
-        },
-        {
-          "name": "[エントリーでポイント最大10倍/スタンプラリー]炭酸水 500ml 24本 アイリスオーヤ…",
-          "price": 1420,
-          "per": 118.3,
+          "name": "ウィルキンソン タンサン ラベルレスボトル(500ml×24本入) ウィルキンソン [炭酸水…",
+          "price": 2307,
+          "per": 192.2,
           "amt": "500ml×24本",
-          "rc": 3935,
-          "av": 4.6,
-          "shop": "アイリスオーヤマ公式 楽天市場店",
-          "plain": "https://item.rakuten.co.jp/irisplaza-r/10158174/",
-          "bd": "アイリスオーヤマ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00t3zto.m2lhfc3f.g00t3zto.m2lhg012/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Firisplaza-r%2F312010%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Firisplaza-r%2Fi%2F10158174%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/irisplaza-r/cabinet/talent/crystalspark/312010_312012_rg.jpg?_ex=300x300"
+          "rc": 462,
+          "av": 4.68,
+          "shop": "楽天24",
+          "plain": "https://item.rakuten.co.jp/rakuten24/11109860/",
+          "bd": "ウィルキンソン",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00r136o.m2lhfd9e.g00r136o.m2lhge3b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakuten24%2F4514603420906%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakuten24%2Fi%2F11109860%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/rakuten24/cabinet/906/4514603420906.jpg?_ex=300x300"
+        },
+        {
+          "name": "最強配送 送料無料 サンガリア 伊賀の天然水 強炭酸水 500ml×2ケース 48本炭酸 ペ…",
+          "price": 3007,
+          "per": 125.3,
+          "amt": "500ml×48本",
+          "rc": 1018,
+          "av": 4.8,
+          "shop": "リカーBOSS 楽天市場店",
+          "plain": "https://item.rakuten.co.jp/liquor-boss/10004086/",
+          "bd": "",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00rryxo.m2lhf371.g00rryxo.m2lhg9a4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fliquor-boss%2F13223c2%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fliquor-boss%2Fi%2F10004086%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/liquor-boss/cabinet/261028_2/13223c2.jpg?_ex=300x300"
+        },
+        {
+          "name": "炭酸水 サンガリア 伊賀の天然水 強炭酸水 500ml 48本 送料無料 2ケース PET …",
+          "price": 3068,
+          "per": 127.8,
+          "amt": "500ml×48本",
+          "rc": 1199,
+          "av": 4.71,
+          "shop": "お酒の専門店 リカマン楽天市場店",
+          "plain": "https://item.rakuten.co.jp/likaman/10024008/",
+          "bd": "",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qo2ro.m2lhf159.g00qo2ro.m2lhg269/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flikaman%2F914648-48%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flikaman%2Fi%2F10024008%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/likaman/cabinet/cart-img/06103861/914648-48.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
       "yahoo": [
-        {
-          "name": "365日出荷 強炭酸水 VOX 1L ×15本 1000ml 軟水 国産 天然水 ストレート…",
-          "price": 1640,
-          "per": 109.3,
-          "amt": "1000ml×15本",
-          "rc": 936,
-          "av": 4.72,
-          "shop": "VOX 公式ストア"
-        },
         {
           "name": "炭酸水 500ml 48本 強炭酸水 アイリスオーヤマ ラムネ グレープソーダ レモン フレ…",
           "price": 3190,
@@ -211,6 +176,15 @@
           "rc": 4017,
           "av": 4.65,
           "shop": "ラクチーナ Yahoo!店"
+        },
+        {
+          "name": "炭酸水 500ml 48本 強炭酸水 500ml 48本 アイリスオーヤマ 炭酸水 プレーン…",
+          "price": 3480,
+          "per": 145.0,
+          "amt": "500ml×48本",
+          "rc": 3920,
+          "av": 4.68,
+          "shop": "メガストア Yahoo!店"
         }
       ]
     },
@@ -393,9 +367,9 @@
       "title": "お茶（ペットボトル）",
       "unit": "1L",
       "seen": 60,
-      "read": 27,
-      "ok": 25,
-      "avg": 191.6,
+      "read": 24,
+      "ok": 22,
+      "avg": 198.4,
       "top": [
         {
           "name": "サントリー 緑茶 伊右衛門 2L ペットボトル 1セット（18本：9本×2ケース） 送料無料",
@@ -415,13 +389,13 @@
           "price": 2580,
           "per": 107.5,
           "amt": "2L×12",
-          "rc": 119,
-          "av": 4.73,
+          "rc": 48,
+          "av": 4.83,
           "shop": "Good Luck便 楽天市場店",
-          "plain": "https://item.rakuten.co.jp/good-luckbin/10000357/",
+          "plain": "https://item.rakuten.co.jp/good-luckbin/10000462/",
           "bd": "綾鷹",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00u60uo.m2lhfd66.g00u60uo.m2lhg29d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgood-luckbin%2Fkoocha2l-2%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fgood-luckbin%2Fi%2F10000357%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/good-luckbin/cabinet/product_image/10coupon-1104/koocha2l-2.jpg?_ex=300x300"
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00u60uo.m2lhfd66.g00u60uo.m2lhg29d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgood-luckbin%2Fayakoi2lp-2%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fgood-luckbin%2Fi%2F10000462%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/good-luckbin/cabinet/product_image/10coupon-1104/ayakoi2lp-2.jpg?_ex=300x300"
         },
         {
           "name": "『送料無料！』（地域限定）キリンビバレッジ 生茶 2Lペットボトル(6本入り1ケース）日本茶…",
@@ -490,9 +464,9 @@
       "title": "コーヒー（ボトル）",
       "unit": "1L",
       "seen": 60,
-      "read": 47,
-      "ok": 19,
-      "avg": 359.8,
+      "read": 45,
+      "ok": 18,
+      "avg": 358.5,
       "top": [
         {
           "name": "10%OFFクーポン対象！さらにエントリーでポイント7倍 11/11 01:59まで コカ・…",
@@ -587,9 +561,9 @@
       "title": "洗濯洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 60,
-      "read": 26,
+      "read": 24,
       "ok": 7,
-      "avg": 1165.5,
+      "avg": 1148.2,
       "top": [
         {
           "name": "アタック 抗菌EX 部屋干し 洗剤 洗濯洗剤 詰め替え 超特大 ゾンビ臭 液体 じめじめ 密…",
@@ -684,9 +658,9 @@
       "title": "柔軟剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 60,
-      "read": 24,
+      "read": 23,
       "ok": 7,
-      "avg": 1166.6,
+      "avg": 1119.7,
       "top": [
         {
           "name": "送料無料・4個セット ハミング消臭実感 ローズ＆フローラルの香り 6.8倍 2600ml 柔…",
@@ -768,23 +742,10 @@
       "title": "シャンプー（詰め替え）",
       "unit": "1L・1kg",
       "seen": 150,
-      "read": 32,
-      "ok": 5,
-      "avg": 2636.9,
+      "read": 29,
+      "ok": 2,
+      "avg": 2484.8,
       "top": [
-        {
-          "name": "選べるセット パンテーン エクストラダメージリペア シャンプー1.7L コンディショナー1.…",
-          "price": 3480,
-          "per": 2047.1,
-          "amt": "1.7L",
-          "rc": 36,
-          "av": 4.72,
-          "shop": "zaccama 楽天市場店",
-          "plain": "https://item.rakuten.co.jp/zaccama/10000299/",
-          "bd": "パンテーン",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00tzkto.m2lhf0a3.g00tzkto.m2lhg7ab/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fzaccama%2F2417-002109%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fzaccama%2Fi%2F10000299%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/zaccama/cabinet/09375507/2417-002109.jpg?_ex=300x300"
-        },
         {
           "name": "11月1日から31日限定！ エントリーで全品ポイント5倍 パンテーン ミラクルズ カラーシャ…",
           "price": 1980,
@@ -799,30 +760,17 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/speedy-street/cabinet/biiino/item/main-image-5/20260903133437_1.jpg?_ex=300x300"
         },
         {
-          "name": "Wでおトク！ 11日01時59分まで20％オフ＆30％オフクーポン ラフィー シャンプー 1…",
-          "price": 3840,
-          "per": 3840.0,
-          "amt": "1L",
-          "rc": 663,
-          "av": 4.46,
+          "name": "11日01時59分まで 30％オフ ラフィーシャンプー 1000ml 2個セット(6ヵ月分)…",
+          "price": 9600,
+          "per": 4800.0,
+          "amt": "1L×2",
+          "rc": 397,
+          "av": 4.51,
           "shop": "Raffi 公式ショップ",
-          "plain": "https://item.rakuten.co.jp/raffi-hair/10000000/",
+          "plain": "https://item.rakuten.co.jp/raffi-hair/10000204/",
           "bd": "",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00r4reo.m2lhf6f0.g00r4reo.m2lhge72/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fraffi-hair%2F10000000%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fraffi-hair%2Fi%2F10000000%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/raffi-hair/cabinet/tool108/20261103_144439/000/10000000.jpg?_ex=300x300"
-        },
-        {
-          "name": "＼ポイント最大10倍／ 公式 ラ・カスタ アロマエステ シャンプー 詰め替え リフィル 〈単…",
-          "price": 4290,
-          "per": 7150.0,
-          "amt": "600ml",
-          "rc": 501,
-          "av": 4.78,
-          "shop": "ラ・カスタ 楽天市場店",
-          "plain": "https://item.rakuten.co.jp/lacasta/10000722/",
-          "bd": "",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00sjg0o.m2lhf8f9.g00sjg0o.m2lhgc31/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flacasta%2Frt-ae-refills%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flacasta%2Fi%2F10000722%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/lacasta/cabinet/goods/p10ichiran/rt-ae-refills.jpg?_ex=300x300"
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00r4reo.m2lhf6f0.g00r4reo.m2lhge72/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fraffi-hair%2F10000008%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fraffi-hair%2Fi%2F10000204%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/raffi-hair/cabinet/tool108/20261103_144439/000/10000008.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
@@ -852,9 +800,9 @@
       "title": "ボディソープ（詰め替え）",
       "unit": "1L・1kg",
       "seen": 60,
-      "read": 21,
-      "ok": 7,
-      "avg": 1098.1,
+      "read": 20,
+      "ok": 6,
+      "avg": 1111.1,
       "top": [
         {
           "name": "ボディソープ キレイキレイ せいけつボディソープ 10L 詰め替え用 大容量 ボディウォッシ…",
@@ -894,19 +842,6 @@
           "bd": "ダヴ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00psjvo.m2lhf0c0.g00psjvo.m2lhg83d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftry3%2F4902111764443-2%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftry3%2Fi%2F10034136%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/try3/cabinet/09857135/dove-22.jpg?_ex=300x300"
-        },
-        {
-          "name": "ビオレu 詰め替え ボディウォッシュ 2.2L 6.8回分 選べる 個数 ボディソープ KA…",
-          "price": 1848,
-          "per": 840.0,
-          "amt": "2.2L",
-          "rc": 13,
-          "av": 4.62,
-          "shop": "くらしの庭",
-          "plain": "https://item.rakuten.co.jp/kantouyouryo/10000079/",
-          "bd": "ビオレ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uorlo.m2lhfceb.g00uorlo.m2lhg5e7/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkantouyouryo%2F3776-002250%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkantouyouryo%2Fi%2F10000079%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kantouyouryo/cabinet/11588250/11588265/27.jpg?_ex=300x300"
         },
         {
           "name": "クーポンで5％OFF 公式 3点セット 四季折々 薬用 柿渋 ボディソープ 詰替 大容量 1…",
@@ -951,7 +886,7 @@
       "seen": 143,
       "read": 61,
       "ok": 9,
-      "avg": 802.7,
+      "avg": 862.2,
       "top": [
         {
           "name": "食器用洗剤 JOY キッチン用洗剤 プロフェッショナル 除菌ジョイコンパクト 業務用 4L …",
@@ -1130,10 +1065,23 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 60,
-      "read": 34,
-      "ok": 34,
-      "avg": 60.4,
+      "read": 32,
+      "ok": 32,
+      "avg": 56.2,
       "top": [
+        {
+          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
+          "price": 7944,
+          "per": 28.4,
+          "amt": "280枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Rafinagift楽天市場店",
+          "plain": "https://item.rakuten.co.jp/rafinagift/10008628/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uq6jo.m2lhf5f0.g00uq6jo.m2lhgb59/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frafinagift%2Fha9279bb3316%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frafinagift%2Fi%2F10008628%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/rafinagift/cabinet/onesell043/ha9279bb3316_0.jpg?_ex=300x300"
+        },
         {
           "name": "メリーズ Merries テープ 新生児用 オムツ さら さらエアスルー (お誕生~5000…",
           "price": 4841,
@@ -1159,19 +1107,6 @@
           "bd": "マミーポコ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00u8wjo.m2lhf18c.g00u8wjo.m2lhgf20/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fup-shop%2Fomutu-172%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fup-shop%2Fi%2F10001051%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/up-shop/cabinet/imgrc0189236006.jpg?_ex=300x300"
-        },
-        {
-          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
-          "price": 8828,
-          "per": 31.5,
-          "amt": "280枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "Ciel de neige",
-          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/",
-          "bd": "ムーニー",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uoo1o.m2lhf537.g00uoo1o.m2lhg030/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcieldeneige%2Fcl91611ab260%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcieldeneige%2Fi%2F10011999%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cieldeneige/cabinet/onesell117/cl91611ab260.jpg?_ex=300x300"
         },
         {
           "name": "パンツ Sサイズ マミーポコ パンツ ドラえもん オムツ（4~9kg）156枚（52枚×3）…",
@@ -1226,23 +1161,49 @@
       "key": "wipes",
       "title": "おしりふき",
       "unit": "1枚",
-      "seen": 60,
-      "read": 28,
-      "ok": 14,
-      "avg": 4.1,
+      "seen": 140,
+      "read": 47,
+      "ok": 16,
+      "avg": 4.4,
       "top": [
         {
-          "name": "★P3倍！11日9:59まで★ 56枚×12・18個 おしりふき パンパース 厚手 6P×3…",
-          "price": 2981,
-          "per": 4.4,
-          "amt": "672枚",
+          "name": "ムーニー おしりふき やわらか素材 詰め替え 76枚×32個 moony ムーニー ベビー用…",
+          "price": 3740,
+          "per": 1.5,
+          "amt": "2432枚",
           "rc": 20,
-          "av": 4.6,
-          "shop": "こどもラボ",
-          "plain": "https://item.rakuten.co.jp/kyarahouse/10142525/",
-          "bd": "パンパース",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qksho.m2lhf511.g00qksho.m2lhg34f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkyarahouse%2F7267359%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkyarahouse%2Fi%2F10142525%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kyarahouse/cabinet/12208305/7267359.jpg?_ex=300x300"
+          "av": 4.75,
+          "shop": "ユニ・チャームダイレクトショップ",
+          "plain": "https://item.rakuten.co.jp/unicharm/10001904/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00q215o.m2lhf52b.g00q215o.m2lhgc7e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Funicharm%2F100695%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Funicharm%2Fi%2F10001904%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/unicharm/cabinet/baby/care/100695.jpg?_ex=300x300"
+        },
+        {
+          "name": "ムーニー おしりふき 水分たっぷり 厚手 詰替(64枚入×20個) ムーニー ベビーケアウエ…",
+          "price": 2635,
+          "per": 2.1,
+          "amt": "1280枚",
+          "rc": 72,
+          "av": 4.89,
+          "shop": "楽天24 ベビー館",
+          "plain": "https://item.rakuten.co.jp/netbaby/10054084/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00pzd4o.m2lhf8d0.g00pzd4o.m2lhgf03/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnetbaby%2F4903111018628%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnetbaby%2Fi%2F10054084%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/netbaby/cabinet/628/4903111018628.jpg?_ex=300x300"
+        },
+        {
+          "name": "おしりふき ムーニー おしりふき 水分たっぷり厚手 純水99% 詰替 1920枚(64枚入×…",
+          "price": 5406,
+          "per": 2.8,
+          "amt": "1920枚",
+          "rc": 10,
+          "av": 4.8,
+          "shop": "Natures shop online 楽天市場店",
+          "plain": "https://item.rakuten.co.jp/only-one-store/10000954/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00u886o.m2lhf63a.g00u886o.m2lhgbba/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fonly-one-store%2F99998dd3c3f8e2%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fonly-one-store%2Fi%2F10000954%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/only-one-store/cabinet/imgrc0117057305.jpg?_ex=300x300"
         },
         {
           "name": "マラソン限定！最大2000円OFF ＼楽天ランキング1位／ ネピア おしりセレブ WET 詰…",
@@ -1269,32 +1230,6 @@
           "bd": "",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00pv4jo.m2lhfdbd.g00pv4jo.m2lhgaa5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flecdirect%2F4903320482647%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flecdirect%2Fi%2F10002420%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/lecdirect/cabinet/img/e/e00872-48ld1.jpg?_ex=300x300"
-        },
-        {
-          "name": "おしりふき 純水99.9% 流せる シート60枚×15個 900枚 W保湿成分 配合 肌にや…",
-          "price": 2330,
-          "per": 2.6,
-          "amt": "900枚",
-          "rc": 392,
-          "av": 4.57,
-          "shop": "レックダイレクト ホームストア",
-          "plain": "https://item.rakuten.co.jp/lecdirect-2/10003040/",
-          "bd": "",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00s5d7o.m2lhf3a8.g00s5d7o.m2lhg755/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flecdirect-2%2F4560319042413%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flecdirect-2%2Fi%2F10003040%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/lecdirect-2/cabinet/img/e/e00975-2.jpg?_ex=300x300"
-        },
-        {
-          "name": "レビューでプレゼント おしりふき アメジスト やわらかタオルベビーローション入おしりふき 8…",
-          "price": 10780,
-          "per": 3.7,
-          "amt": "2880枚",
-          "rc": 140,
-          "av": 4.53,
-          "shop": "アメジスト大衛 公式 楽天市場店",
-          "plain": "https://item.rakuten.co.jp/amethyst/10000003/",
-          "bd": "",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00ripko.m2lhf354.g00ripko.m2lhgf46/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Famethyst%2F0004%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Famethyst%2Fi%2F10000003%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/amethyst/cabinet/syouhinsetu/0003yawarakabebiro/imgrc0094060252.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
@@ -1305,9 +1240,9 @@
       "title": "ゴミ袋",
       "unit": "1枚",
       "seen": 142,
-      "read": 99,
-      "ok": 6,
-      "avg": 18.3,
+      "read": 88,
+      "ok": 5,
+      "avg": 19.0,
       "top": [
         {
           "name": "エントリーでP10倍★4日20:00〜11日1:59まで ごみ袋 45リットル 半透明 65…",
@@ -1321,19 +1256,6 @@
           "bd": "",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00r56ko.m2lhf164.g00r56ko.m2lhg614/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpoly-stadium%2Fk-53%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpoly-stadium%2Fi%2F10000059%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/poly-stadium/cabinet/hdpe/45l/kn-53n_1.jpg?_ex=300x300"
-        },
-        {
-          "name": "＼1,000円ぽっきり〜／ 30〜90Lから選べる ゴミ袋 45L 半透明ごみ袋 100枚 …",
-          "price": 1000,
-          "per": 10.0,
-          "amt": "100枚",
-          "rc": 69,
-          "av": 4.67,
-          "shop": "暮らし健康ネット館",
-          "plain": "https://item.rakuten.co.jp/kurashikenkou/10225682/",
-          "bd": "",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F7276048%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10225682%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashikenkou/cabinet/11663202/13792743/7276048.jpg?_ex=300x300"
         },
         {
           "name": "ゴミ袋 45L 半透明 600枚『送料無料（一部地域除く）』",
@@ -1389,9 +1311,9 @@
       "title": "乾電池（単3）",
       "unit": "1本",
       "seen": 60,
-      "read": 21,
-      "ok": 21,
-      "avg": 45.0,
+      "read": 19,
+      "ok": 19,
+      "avg": 40.8,
       "top": [
         {
           "name": "40本セット 単3電池 電池 単3 アルカリ 三菱電機 アルカリ乾電池 単3形 乾電池単3 …",
@@ -1486,9 +1408,9 @@
       "title": "マスク",
       "unit": "1枚",
       "seen": 129,
-      "read": 66,
-      "ok": 56,
-      "avg": 33.2,
+      "read": 51,
+      "ok": 40,
+      "avg": 38.4,
       "top": [
         {
           "name": "[エントリーでポイント最大10倍/スタンプラリー] 公式 マスク アイリスオーヤマ 不織布 …",
@@ -1583,9 +1505,9 @@
       "title": "パスタ",
       "unit": "1kg",
       "seen": 60,
-      "read": 53,
-      "ok": 28,
-      "avg": 484.6,
+      "read": 47,
+      "ok": 24,
+      "avg": 485.7,
       "top": [
         {
           "name": "バリラ No.5 5kg 3袋 業務用 パスタ スパゲティ 約1.8mm Barilla『送…",
@@ -1680,9 +1602,9 @@
       "title": "コーヒー豆",
       "unit": "1kg",
       "seen": 127,
-      "read": 82,
-      "ok": 36,
-      "avg": 4847.1,
+      "read": 61,
+      "ok": 22,
+      "avg": 5069.5,
       "top": [
         {
           "name": "6袋 セット キーコーヒー グランドテイスト アイスコーヒー 粉 240g KEY COFF…",
@@ -1762,13 +1684,13 @@
           "shop": "情熱畑 Yahoo!店"
         },
         {
-          "name": "送料無料 コーヒー コーヒー豆 コーヒー粉 福袋 2kg 飲み比べ 香り立つ 選べる 11種…",
-          "price": 5999,
-          "per": 2999.5,
-          "amt": "2kg",
-          "rc": 334,
-          "av": 4.52,
-          "shop": "ゴールド珈琲"
+          "name": "業務用卸3袋セット エチオピアモカ・ラデュース500g×3袋セット(ラデュ×3)/グルメコー…",
+          "price": 4698,
+          "per": 3132.0,
+          "amt": "500g×3",
+          "rc": 239,
+          "av": 4.49,
+          "shop": "グルメコーヒー豆専門!加藤珈琲店"
         }
       ]
     },
@@ -1777,9 +1699,9 @@
       "title": "ドッグフード",
       "unit": "1kg",
       "seen": 60,
-      "read": 36,
-      "ok": 36,
-      "avg": 2157.4,
+      "read": 26,
+      "ok": 26,
+      "avg": 2234.0,
       "top": [
         {
           "name": "即納在庫品 愛犬元気 10kg ジャンボパック ビーフ・緑黄色野菜・小魚味 / ささみ・ビー…",
@@ -1808,19 +1730,6 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/peaceone/cabinet/science/0052742015279.jpg?_ex=300x300"
         },
         {
-          "name": "ロイヤルカナン マキシ パピー 15kg 犬 大型犬 子犬 フード 犬用 ドッグフード ドラ…",
-          "price": 16780,
-          "per": 1118.7,
-          "amt": "15kg",
-          "rc": 165,
-          "av": 4.6,
-          "shop": "Pet館〜ペット館〜",
-          "plain": "https://item.rakuten.co.jp/dog-kan/10000192/",
-          "bd": "ロイヤルカナン",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00pr3zo.m2lhf6dd.g00pr3zo.m2lhg773/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdog-kan%2F9214386%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdog-kan%2Fi%2F10000192%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/dog-kan/cabinet/royalcanin/9214386main.jpg?_ex=300x300"
-        },
-        {
           "name": "ポイント最大56.5倍｜LINE追加で500円OFF ロイヤルカナン ゴールデンレトリバー …",
           "price": 13499,
           "per": 1124.9,
@@ -1845,6 +1754,19 @@
           "bd": "ヒルズ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00tbzmo.m2lhf6a0.g00tbzmo.m2lhg9e7/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhills-pet%2F52742030777%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhills-pet%2Fi%2F10000299%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/hills-pet/cabinet/77/52742030777.jpg?_ex=300x300"
+        },
+        {
+          "name": "◆4日20時〜299円OFFクーポン◆ロイヤルカナン BHN プードル 成犬用 1.5kg …",
+          "price": 2999,
+          "per": 1999.3,
+          "amt": "1.5kg",
+          "rc": 124,
+          "av": 4.85,
+          "shop": "ペットファミリー",
+          "plain": "https://item.rakuten.co.jp/familypet/10001183/",
+          "bd": "ロイヤルカナン",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00re8po.m2lhf639.g00re8po.m2lhgf1b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffamilypet%2F52902061%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ffamilypet%2Fi%2F10001183%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/familypet/cabinet/asd/item/royalcanin/52902061.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
@@ -1874,36 +1796,10 @@
       "title": "キャットフード",
       "unit": "1kg",
       "seen": 112,
-      "read": 79,
-      "ok": 64,
-      "avg": 1554.1,
+      "read": 64,
+      "ok": 50,
+      "avg": 1552.5,
       "top": [
-        {
-          "name": "セットはさらにお得！ ロイヤルカナン インドア プレミアムフード ドライ ドライフード 猫 …",
-          "price": 6190,
-          "per": 773.8,
-          "amt": "4kg×2",
-          "rc": 113,
-          "av": 4.81,
-          "shop": "Pet館〜ペット館〜",
-          "plain": "https://item.rakuten.co.jp/dog-kan/10015385/",
-          "bd": "ロイヤルカナン",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00pr3zo.m2lhf6dd.g00pr3zo.m2lhg773/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdog-kan%2F9217324%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdog-kan%2Fi%2F10015385%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/dog-kan/cabinet/royalcanin/9217324main.jpg?_ex=300x300"
-        },
-        {
-          "name": "≪ポイント10倍★6日10時迄≫ロイヤルカナン インドア プレミアムフード ドライ ド 猫 …",
-          "price": 6476,
-          "per": 809.5,
-          "amt": "4kg×2",
-          "rc": 114,
-          "av": 4.74,
-          "shop": "キャットランド",
-          "plain": "https://item.rakuten.co.jp/cat-land/10026146/",
-          "bd": "ロイヤルカナン",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qr6oo.m2lhfac7.g00qr6oo.m2lhg872/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcat-land%2F9217324%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcat-land%2Fi%2F10026146%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cat-land/cabinet/logo/9217324.jpg?_ex=300x300"
-        },
         {
           "name": "11／5限定 当選確率2分の1！1等最大100％ キャットフード サイエンスダイエット アダ…",
           "price": 10922,
@@ -1942,6 +1838,32 @@
           "bd": "ヒルズ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00r136o.m2lhfd9e.g00r136o.m2lhge3b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakuten24%2Fe381067h%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakuten24%2Fi%2F10322418%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/rakuten24/cabinet/207/52742355207.jpg?_ex=300x300"
+        },
+        {
+          "name": "ポイント最大56.5倍｜LINE追加で500円OFF ロイヤルカナン センシブル 15kg …",
+          "price": 18649,
+          "per": 1243.3,
+          "amt": "15kg",
+          "rc": 758,
+          "av": 4.64,
+          "shop": "モコペットチャリティストア",
+          "plain": "https://item.rakuten.co.jp/1096dog/10013227/",
+          "bd": "ロイヤルカナン",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qufso.m2lhf093.g00qufso.m2lhg519/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2F1096dog%2Fw-105189-00-00%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2F1096dog%2Fi%2F10013227%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/1096dog/cabinet/royalcanin_t/royalcanintrial/rinji/w-105189-00-00.jpg?_ex=300x300"
+        },
+        {
+          "name": "ヒルズ 猫用 サイエンスダイエット 1.4kg キャットフード ドライ 子猫 キトン 成猫 …",
+          "price": 2030,
+          "per": 1450.0,
+          "amt": "1.4kg",
+          "rc": 14,
+          "av": 4.29,
+          "shop": "Pet館〜ペット館〜",
+          "plain": "https://item.rakuten.co.jp/dog-kan/10196545/",
+          "bd": "ヒルズ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00pr3zo.m2lhf6dd.g00pr3zo.m2lhg773/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdog-kan%2F7262104%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdog-kan%2Fi%2F10196545%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/dog-kan/cabinet/hills/7262104main.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
