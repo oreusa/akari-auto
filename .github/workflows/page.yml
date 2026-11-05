@@ -95,6 +95,7 @@ jobs:
           python3 scripts/lifenote.py
           # 11/5 オーナー「わざわざここで買う理由がない」→ おかいものリストの上に「いつもの物の値段帳」（名の知れたメーカーだけ・いつもより安いかの札）
           python3 scripts/okai_note.py || true
+          python3 scripts/okai_v4.py || true
           # 11/4 オーナー「検索なんでも引っかかって欲しい」→ おでかけ1件ずつ（/o/）と都県ごと（/odekake-tokyo など）のページ
           python3 scripts/spot_pages.py || true
           # 11/4 1件ページを LINE・X に貼った時の画像（地図つき。月と同じ）
