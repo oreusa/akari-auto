@@ -560,7 +560,19 @@ def lk(u):
 def card(o):
     return (f'<a class="card" data-pref="{o["pref"]}" data-cat="{o["tab"]}" data-date="{o["date"]}" href="{E(o["url"])}">'
             f'<div class="bd"><div class="d">{E(o["src"])}</div><div class="t">{E(o["t"])}</div>'
-            f'<div class="m">{E(o["m"])}</div><div class="spc">数字：住宅地の変動率（{o["u"]}ごとの平均）・1月1日時点</div>{lk(o["url"])}</div><div class="go">→</div></a>')
+            f'<div class="m">{E(o["m"])}</div>' + (f'<div class="spc">数字：住宅地の変動率（{o["u"]}ごとの平均）・1月1日時点</div>' if o.get("u") else "") + f'{lk(o["url"])}</div><div class="go">→</div></a>')
+
+
+# ---- 11/7 人口・駅／新しい施設／制度のカード：data/kanto_facts.json（公式の資料で月か燈が確かめた物だけ。1件＝pref・tab(jinko|dekiru|seido)・date・src・t・m・url）
+try:
+    KF = json.load(open(os.path.join(R, "data", "kanto_facts.json"), encoding="utf-8"))
+except Exception:
+    KF = []
+WAIT = '<div class="tip" style="margin:6px 0 14px">関東の数字は、都県・市区町村の公式の資料で確かめてから、ここに載せていきます（準備中）。</div>'
+for cls, en, jp, tab in (("b-up", "PEOPLE", "人口と駅の数字", "jinko"), ("b-new", "NEW", "これからできる・最近できた施設（再開発・駅・お店）", "dekiru"), ("b-done", "MONEY", "住まいの制度とお金", "seido")):
+    cs = [o for o in KF if o.get("tab") == tab and o.get("url", "").startswith("http")]
+    rep(f'<div class="blk {cls}"><div class="wk hd2"><span class="en2">{en}</span><span class="jp2">{jp}</span></div></div>',
+        f'<div class="blk {cls}"><div class="wk hd2"><span class="en2">{en}</span><span class="jp2">{jp}</span></div>' + ("\n".join(card(o) for o in cs) if cs else WAIT) + '</div>')
 
 
 rep('<div class="blk b-now"><div class="wk hd2"><span class="en2">LAND PRICE</span><span class="jp2">地価・相場の数字</span></div></div>',
