@@ -58,6 +58,7 @@ var css=
 '.cmb .dd{position:relative;margin:-12px auto 0;display:inline-flex;align-items:baseline;gap:4px;background:#fff;border-radius:999px;padding:5px 10px;box-shadow:0 0 0 1px color-mix(in srgb,var(--pc,#8a8f98) 16%,#fff),0 3px 8px -2px rgba(60,40,20,.14);white-space:nowrap}'+
 '.cmb .dd b{font-family:Jost,sans-serif;font-weight:500;font-size:13px;color:#2B2622;letter-spacing:.02em}'+
 '.cmb .dd small{font-family:Jost,sans-serif;font-size:8px;font-weight:500;letter-spacing:.14em;color:var(--pc,#8a8f98)}'+
+'.cmb .dd small.ddw{font-family:"Zen Kaku Gothic New",sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.02em}'+
 '.cmb .dd.tx b{font-family:"Zen Kaku Gothic New",sans-serif;font-size:10px;font-weight:700;letter-spacing:.04em}'+
 '.cmb .cdn{display:inline-block;margin-top:5px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:9.5px;color:var(--pc,#8a8f98);letter-spacing:.06em;white-space:nowrap}'+
 '.cmb .cdn.hot{background:var(--pc,#8a8f98);color:#fff;border-radius:999px;padding:3px 7px 2px}'+
@@ -100,7 +101,8 @@ function one(a,ad){
   var d,w,n=-1;
   if(o){d=o;w='オープン'}else if(s&&s>T0){d=s;w='から'}else if(e){d=e;w='まで'}else if(s){d=s;w='から'}
   var k=kind(a,ad),pill='',cd='';
-  if(d){var y=new Date(d+'T00:00:00Z');pill='<div class="dd"><b>'+(y.getUTCMonth()+1)+'.'+y.getUTCDate()+'</b><small>'+WE[y.getUTCDay()]+'</small></div>';
+  /* 11/6 オーナーOKの見本：札は「11/8 まで」「11/7 だけ」「11/14 から」（開催日か終わる日か分かるように） */
+  if(d){var y=new Date(d+'T00:00:00Z'),wd=w==='から'&&e===s?'だけ':w;pill='<div class="dd"><b>'+(y.getUTCMonth()+1)+'/'+y.getUTCDate()+'</b><small class="ddw">'+wd+'</small></div>';
     if(w==='まで'){n=days(T0,d);cd=n<=0?'<span class="cdn hot">今日まで</span>':n<=7?'<span class="cdn hot">あと'+n+'日</span>':'<span class="cdn">あと'+n+'日</span>';}
     else if(w==='から'&&e===s){n=days(T0,d);cd=n<=7?'<span class="cdn hot">'+n+'日後</span>':'<span class="cdn">'+n+'日後</span>';}
     else if(w==='から'){n=days(T0,d);cd=n<=0?'<span class="cdn">から開催中</span>':n<=7?'<span class="cdn hot">'+n+'日後から</span>':'<span class="cdn">'+n+'日後から</span>';}
