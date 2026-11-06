@@ -394,7 +394,7 @@ def page(at, cats, head):
     allb = "".join(f'<p>{E(g)}</p>' + "".join(f'<button type="button" class="ch" data-k2="{k}" aria-pressed="false">{E(NAME[k])}</button>' for k in ks if k in have) for g, ks in GROUPS)
     m = re.match(r"(\d{4})-(\d\d)-(\d\d) (\d\d:\d\d)", at or "")
     up = f"{int(m.group(2))}/{int(m.group(3))} {m.group(4)}" if m else at
-    body = f"""<header class="v4top"><a href="/" class="en">LIFE NOTE</a><b>くらべたおかいものリスト</b></header>
+    body = f"""<header class="v4top"><a href="/" class="en">LIFE NOTE</a><b>くらべたおかいものリスト</b></header><script>/* 11/7 夜の調査：関西のTOWN NOTEから来た人に、もどる道（おかいものは1つ・入口は2つのHP） */(function(){{try{{var k="okai_from_tn";if(/townnote\\.pages\\.dev/.test(document.referrer)||/[?&]from=tn/.test(location.search))sessionStorage.setItem(k,"1");if(sessionStorage.getItem(k)!=="1")return;var h=document.currentScript.previousElementSibling,a=document.createElement("a");a.href="https://townnote.pages.dev/";a.textContent="← 関西のTOWN NOTEにもどる";a.style.cssText="display:block;margin:6px 16px 0;font-size:12.5px;color:#8C6A55;text-decoration:none";h.insertAdjacentElement("afterend",a);}}catch(e){{}}}})();</script>
 <main class="v4" role="main">
 <p class="pr">リンクは広告（PR）です</p>
 <div id="v4h"><h1>日用品を、送料込みの<br>1個あたりでくらべる</h1>
@@ -450,7 +450,7 @@ def otoku_page(old, head, cats):
            ".ok-cal{margin:8px 16px 0;padding:0;list-style:none;border:1px solid var(--line,#E2E2E2);border-radius:14px}.ok-cal li{display:grid;grid-template-columns:52px 1fr;gap:2px 12px;align-items:baseline;padding:11px 14px;border-top:1px solid var(--line,#E2E2E2)}.ok-cal li:first-child{border-top:0}"
            ".ok-cal span{width:52px;flex:none;font-size:12.5px;font-weight:700}.ok-cal li.now span{color:#B3261E}.ok-cal small{grid-column:2;display:block;font-size:12px;color:var(--sub,#555)}"
            ".ok-ent{display:block;margin:10px 16px 0;font-size:14px}.ok-ent .ilk{font-weight:700;color:inherit}.ok-ent .ilks{margin:2px 0 0;font-size:12px;color:var(--sub,#555)}")
-    body = f"""<header class="v4top"><a href="/" class="en">LIFE NOTE</a><b>くらべたおかいものリスト</b></header>
+    body = f"""<header class="v4top"><a href="/" class="en">LIFE NOTE</a><b>くらべたおかいものリスト</b></header><script>/* 11/7 夜の調査：関西のTOWN NOTEから来た人に、もどる道（おかいものは1つ・入口は2つのHP） */(function(){{try{{var k="okai_from_tn";if(/townnote\\.pages\\.dev/.test(document.referrer)||/[?&]from=tn/.test(location.search))sessionStorage.setItem(k,"1");if(sessionStorage.getItem(k)!=="1")return;var h=document.currentScript.previousElementSibling,a=document.createElement("a");a.href="https://townnote.pages.dev/";a.textContent="← 関西のTOWN NOTEにもどる";a.style.cssText="display:block;margin:6px 16px 0;font-size:12.5px;color:#8C6A55;text-decoration:none";h.insertAdjacentElement("afterend",a);}}catch(e){{}}}})();</script>
 <main class="v4" role="main"><p class="pr">リンクは広告（PR）です</p>
 <h1>お得まとめ</h1><p class="lead">日用品の最安は「くらべる」に。ここは、セール・ふるさと納税・宿など、そのほかのお得の入口です。</p>
 <h3>うさぎに聞く<small>探したい物を入れると、合うページを開きます</small></h3>
