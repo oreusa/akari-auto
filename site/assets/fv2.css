@@ -1,0 +1,52 @@
+/* v2 見本：Leapy を参考に（白と黒＋差し色1色、カードの丸いタグ、下に固定のボタン列） */
+:root{--ink:#1C1C1C;--sub:#6B6B6B;--line:#E2E2E2;--chip:#F1F1F1;--acc:#1F2F3F}
+html body .paper .blk{background:transparent!important;border:0!important;padding:0!important}
+html body .paper .blk.tb{border-top:0!important}
+.tgrp span{color:var(--sub)!important}
+.tabs button{color:#9A9A9A!important}.tabs button.on{color:var(--ink)!important}
+.tabs button.on:after,.tabs button.on::after{background:var(--ink)!important}
+/* カード */
+html body .paper .it{margin-bottom:12px!important}
+html body .paper .it .card{background:#fff!important;border:1px solid var(--line)!important;border-radius:8px!important;box-shadow:none!important;padding:14px 56px 50px 16px!important}
+.paper .it .card .d{display:none!important}
+.v2c{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 9px}
+.v2c span{display:inline-flex;align-items:center;gap:5px;background:var(--chip);color:#3A3A3A;border-radius:99px;padding:4px 10px 4px;font-size:11px;font-weight:700;letter-spacing:.04em;line-height:1.2}
+.v2c span.p:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--pc)}
+.v2c span.p{cursor:pointer}
+.v2c span.on{background:var(--acc);color:#fff}
+.v2c span.f{background:#fff;box-shadow:inset 0 0 0 1px #CFCFCF}
+.v2d{font-family:Jost,"Zen Kaku Gothic New",sans-serif;font-size:12.5px;letter-spacing:.06em;color:var(--sub);margin:0 0 4px}
+html body .paper .it .card .t{color:var(--ink)!important;font-size:16.5px!important;line-height:1.5!important}
+.paper .it .card .go{width:32px!important;height:32px!important;border-radius:50%!important;background:var(--acc)!important;color:#fff!important;display:flex!important;align-items:center;justify-content:center;font-size:15px!important;right:14px!important;top:auto!important;bottom:12px!important;transform:none!important}
+html body .paper .it .mp{left:16px!important;bottom:14px!important;border:0!important;background:none!important;padding:4px 0!important;color:var(--sub)!important;font-weight:500!important;font-size:12px!important;text-decoration:underline;text-underline-offset:3px}
+.yk a{border-color:var(--line)!important;color:var(--ink)!important}
+.tnbtn{border-color:var(--line)!important;box-shadow:none!important;border-radius:8px!important}
+/* 下に固定のボタン列 */
+#v2bar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:9980;display:flex;align-items:stretch;background:rgba(255,255,255,.97);border-radius:16px;box-shadow:0 6px 24px rgba(0,0,0,.14);overflow:hidden;transform:translateY(140%);transition:transform .3s;max-width:460px;margin:0 auto}
+#v2bar.on{transform:none}
+#v2bar button{flex:1;border:0;background:none;padding:10px 2px 9px;font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;font-weight:700;color:var(--ink);letter-spacing:.02em;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px}
+#v2bar button svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+#v2bar button.cur{color:var(--acc)}#v2bar button.cur span{border-bottom:2px solid var(--acc)}
+#v2bar button.mn{flex:0 0 72px;background:var(--acc);color:#fff;font-family:Jost,sans-serif;letter-spacing:.14em;font-size:10.5px}
+body{padding-bottom:90px}
+#v2bar button.mn{justify-content:center;gap:7px}
+#v2bar button.mn i{display:block;width:18px;height:1.5px;background:#fff;box-shadow:0 -5px 0 #fff,0 5px 0 #fff;margin:5px 0 3px}
+html.v2bar-on #umenu{opacity:0;pointer-events:none;transition:opacity .25s}
+.tnbtn .ar{background:var(--acc)!important;color:#fff!important}
+html.v2bar-on #umenu{display:none!important}
+html[style*="overflow: hidden"] #v2bar{display:none}
+/* 近くの宿はカードの中、地図の右 */
+html body .paper .it .yk{position:absolute;left:78px;bottom:14px;margin:0!important;display:block}
+html body .paper .it .yk[hidden]{display:none}
+html body .paper .it .yk a{display:inline-block;line-height:inherit;border:0!important;background:none!important;box-shadow:none!important;padding:4px 0!important;color:var(--sub)!important;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+html body .paper .it .yk a:before{display:none}
+.tip{border:0!important;background:none!important;padding:18px 0 4px!important;text-align:center!important;color:var(--sub)!important;font-size:12px!important;line-height:1.9!important}
+/* 10/31 オーナー「ネイビーはビジネス感」→ 色は府県の色に戻す。差し色はロゴに近い濃い茶色 */
+:root{--acc:#3A2F28}
+html body .paper .it .card{box-shadow:inset 4px 0 0 var(--pc)!important}
+.paper .it .card .go{background:var(--pc)!important}
+.v2c span.on{background:var(--pc);color:#fff}
+.v2c span.p{background:color-mix(in srgb,var(--pc) 12%,#fff);color:color-mix(in srgb,var(--pc) 80%,#000)}
+/* 10/31 オーナー「場所変だよ」→ 三本線を隠したので、太陽と月のマークを右の角へ */
+html.v2bar-on #utheme{right:12px}
+html body .paper .it .yk a+a{margin-left:14px!important}

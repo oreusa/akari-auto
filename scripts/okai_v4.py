@@ -487,7 +487,7 @@ def main():
             '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
             '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@400;500&display=swap">'
             + meta(r'<script src="/assets/night\.js[^"]*"></script>') + meta(r'<script src="/assets/menu\.js[^"]*"[^>]*></script>') +
-            '<link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=9" defer></script>')
+            '<link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=10" defer></script>')
     open(src, "w", encoding="utf-8").write(page(at, cats, head))
     open(os.path.join(SITE, "otoku.html"), "w", encoding="utf-8").write(otoku_page(old, head, cats))
     print("okai_v4:", len(cats), "種類", sum(len(c["o"]) for c in cats), "件")
