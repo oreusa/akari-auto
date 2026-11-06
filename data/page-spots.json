@@ -441,9 +441,9 @@
       "start": "2026-10-24",
       "ends": "2027-01-11T20:00",
       "free": true,
-      "note": "鴨川市｜棚田に灯りがともります。17:00〜20:00ごろ、見学は自由",
-      "url": "https://maruchiba.jp/event/detail_10895.html",
-      "checked": "2026-10-27"
+      "note": "鴨川市｜棚田に灯りがともります。毎日、日没から3時間",
+      "url": "https://www.senmaida.com/",
+      "checked": "2026-11-06"
     },
     {
       "title": "成田山公園 紅葉まつり",
@@ -2110,6 +2110,102 @@
       "free": false,
       "note": "文京区後楽｜22回目、テーマはSNOW DOME。17:00〜24:00に点灯",
       "url": "https://www.tokyo-dome.co.jp/illumination/",
+      "checked": "2026-11-06"
+    },
+    {
+      "title": "ROPPONGI HILLS CHRISTMAS 66プラザ・毛利庭園イルミネーション",
+      "pref": "東京",
+      "place": "六本木ヒルズ 66プラザ",
+      "when": "11/13〜12/25",
+      "start": "2026-11-13",
+      "ends": "2026-12-25T23:00",
+      "free": true,
+      "note": "港区｜66プラザは17:00〜24:00、毛利庭園は17:00〜23:00",
+      "url": "https://www.roppongihills.com/sp/christmashills/",
+      "checked": "2026-11-06"
+    },
+    {
+      "title": "Crystal Garden 2026-2027（アイガーデンエア）",
+      "pref": "東京",
+      "place": "アイガーデンエア",
+      "when": "11/11〜2/14",
+      "start": "2026-11-11",
+      "ends": "2027-02-14T23:00",
+      "free": true,
+      "note": "千代田区飯田橋｜毎日16:30〜23:00に点灯",
+      "url": "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html",
+      "checked": "2026-11-06"
+    },
+    {
+      "title": "MIDTOWN YAESU CHRISTMAS 2026",
+      "pref": "東京",
+      "place": "東京ミッドタウン八重洲",
+      "when": "11/19〜12/25",
+      "start": "2026-11-19",
+      "ends": "2026-12-25T23:00",
+      "free": true,
+      "note": "中央区｜高さ約7mのツリー。16:00〜23:00、10分ごとに演出",
+      "url": "https://www.yaesu.tokyo-midtown.com/special/xmas/",
+      "checked": "2026-11-06"
+    },
+    {
+      "title": "BALLPARK Xmas YOKOHAMA KANNAI 2026",
+      "pref": "神奈川",
+      "place": "横浜公園",
+      "when": "11/20〜12/25",
+      "start": "2026-11-20",
+      "ends": "2026-12-25T21:00",
+      "free": true,
+      "note": "横浜市中区｜入場無料（一部有料）。11:00〜21:00",
+      "url": "https://ballparkxmas.com/2026/",
+      "checked": "2026-11-06"
+    },
+    {
+      "title": "COCOON CITY Christmas Market 2026",
+      "pref": "埼玉",
+      "place": "コクーンシティ",
+      "when": "11/7〜12/25",
+      "start": "2026-11-07",
+      "ends": "2026-12-25T22:00",
+      "free": true,
+      "note": "さいたま市大宮区｜入場無料。12:00〜22:00",
+      "url": "https://christmasmarket.jp/202611-cocooncity/",
+      "checked": "2026-11-06"
+    },
+    {
+      "title": "おでかけ子ザメ サクラタウンさんぽ",
+      "pref": "埼玉",
+      "place": "ところざわサクラタウン",
+      "when": "9/18〜11/8",
+      "start": "2026-09-18",
+      "ends": "2026-11-08T18:00",
+      "free": true,
+      "note": "所沢市｜展示は無料、謎解きラリーは1,200円",
+      "url": "https://tokorozawa-sakuratown.com/event_categories/odekake-kozame.html",
+      "checked": "2026-11-06"
+    },
+    {
+      "title": "徳明園 秋の紅葉 金のライトアップ",
+      "pref": "群馬",
+      "place": "洞窟観音 徳明園",
+      "when": "11/14〜11/29の土日祝",
+      "start": "2026-11-14",
+      "ends": "2026-11-29T19:30",
+      "free": false,
+      "note": "高崎市｜11/14・15・21〜23・28・29、16:00ごろ点灯",
+      "url": "https://yamatokuen.com",
+      "checked": "2026-11-06"
+    },
+    {
+      "title": "没後150年 藤枝太郎英義の刀剣美",
+      "pref": "群馬",
+      "place": "玉村町文化センター",
+      "when": "10/8〜12/20",
+      "start": "2026-10-08",
+      "ends": "2026-12-20T16:00",
+      "free": true,
+      "note": "玉村町｜入館無料。10:00〜16:00、月曜休み",
+      "url": "https://www.town.tamamura.lg.jp/docs/2026100800010/",
       "checked": "2026-11-06"
     }
   ]
