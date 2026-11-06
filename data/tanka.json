@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-06 09:00",
+  "at": "2026-11-06 09:24",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 45,
+      "read": 44,
       "ok": 14,
-      "avg": 164.3,
+      "avg": 165.2,
       "top": [
         {
           "name": "サントリー 天然水 2L 2000ml ペットボトル 6本 1ケース 送料無料（一部地域除く…",
@@ -296,7 +296,7 @@
           "price": 3980,
           "per": 398.0,
           "amt": "10kg",
-          "rc": 7210,
+          "rc": 7211,
           "av": 4.12,
           "shop": "福井の米屋",
           "bd": "",
@@ -309,10 +309,10 @@
       "key": "tp",
       "title": "トイレットペーパー",
       "unit": "100m",
-      "seen": 201,
-      "read": 28,
-      "ok": 2,
-      "avg": 112.5,
+      "seen": 219,
+      "read": 29,
+      "ok": 3,
+      "avg": 111.0,
       "top": [
         {
           "name": "スコッティ トイレットペーパー フラワーパック 2倍長持ち 12ロール(シングル)12ロール…",
@@ -339,6 +339,19 @@
           "bd": "",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F7096355%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10151090%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashikenkou/cabinet/tasya112/imgrc0093775466.jpg?_ex=300x300"
+        },
+        {
+          "name": "トイレットペーパー シングル 芯なし 業務用 150m 48ロール(6ロール×8パック) コ…",
+          "price": 4972,
+          "per": 69.1,
+          "amt": "150m×48ロール",
+          "rc": 8104,
+          "av": 4.59,
+          "shop": "よろずやマルシェ",
+          "plain": "https://item.rakuten.co.jp/onestep/10052052/",
+          "bd": "",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00prcko.m2lhf20c.g00prcko.m2lhg0d6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fonestep%2F693039%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fonestep%2Fi%2F10052052%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/onestep/cabinet/life/life12/693039n.jpg?_ex=300x300"
         }
       ],
       "amazon": [
@@ -600,10 +613,10 @@
       "key": "detergent",
       "title": "洗濯洗剤（詰め替え）",
       "unit": "1L・1kg",
-      "seen": 60,
-      "read": 23,
-      "ok": 7,
-      "avg": 1087.6,
+      "seen": 119,
+      "read": 28,
+      "ok": 12,
+      "avg": 1187.1,
       "top": [
         {
           "name": "アタック 抗菌EX 部屋干し 洗剤 洗濯洗剤 詰め替え 超特大 ゾンビ臭 液体 じめじめ 密…",
@@ -669,6 +682,32 @@
           "bd": "アタック",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00psjvo.m2lhf0c0.g00psjvo.m2lhg83d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftry3%2F4901301406057%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftry3%2Fi%2F10034023%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/try3/cabinet/11147956/12526520/4901301466228-1.jpg?_ex=300x300"
+        },
+        {
+          "name": "シャボン玉石けん EM液体洗濯 5L 洗濯洗剤 業務用 大容量 無香料 石鹸 せっけん 衣類…",
+          "price": 4420,
+          "per": 884.0,
+          "amt": "5L",
+          "rc": 100,
+          "av": 4.72,
+          "shop": "ライフスタイル&生活雑貨のMoFu",
+          "plain": "https://item.rakuten.co.jp/cheeky/10358406/",
+          "bd": "",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00s4gao.m2lhffc7.g00s4gao.m2lhg33d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcheeky%2Fu500807%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcheeky%2Fi%2F10358406%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cheeky/cabinet/501-1000/u500807.jpg?_ex=300x300"
+        },
+        {
+          "name": "公式 ファーファ フリー＆(フリーアンド)超コンパクト液体洗剤 無香料 大容量 詰め替え4.…",
+          "price": 4356,
+          "per": 968.0,
+          "amt": "4.5kg",
+          "rc": 316,
+          "av": 4.72,
+          "shop": "柔軟剤の通販ファーファオンライン",
+          "plain": "https://item.rakuten.co.jp/nissansoap/10001799/",
+          "bd": "",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00psx0o.m2lhf3eb.g00psx0o.m2lhg786/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnissansoap%2F620082%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnissansoap%2Fi%2F10001799%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nissansoap/cabinet/06059944/620082b.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
@@ -703,10 +742,10 @@
       "key": "softener",
       "title": "柔軟剤（詰め替え）",
       "unit": "1L・1kg",
-      "seen": 60,
-      "read": 23,
-      "ok": 7,
-      "avg": 1119.7,
+      "seen": 90,
+      "read": 26,
+      "ok": 9,
+      "avg": 1074.3,
       "top": [
         {
           "name": "送料無料・4個セット ハミング消臭実感 ローズ＆フローラルの香り 6.8倍 2600ml 柔…",
@@ -733,6 +772,19 @@
           "bd": "ファーファ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00q7yxo.m2lhfb41.g00q7yxo.m2lhge95/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcosmebox%2Fj4902135670157s6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcosmebox%2Fi%2F10047463%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cosmebox/cabinet/item76/j4902135670157s6_1.jpg?_ex=300x300"
+        },
+        {
+          "name": "公式 送料無料 ケース販売 ファーファ フリー＆濃縮柔軟剤 無香料 エコパック 詰替 150…",
+          "price": 8567,
+          "per": 951.9,
+          "amt": "1.5L×6",
+          "rc": 31,
+          "av": 4.9,
+          "shop": "柔軟剤の通販ファーファオンライン",
+          "plain": "https://item.rakuten.co.jp/nissansoap/10001930/",
+          "bd": "ファーファ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00psx0o.m2lhf3eb.g00psx0o.m2lhg786/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnissansoap%2F870353c%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnissansoap%2Fi%2F10001930%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nissansoap/cabinet/06059944/freeand_set_sf6.jpg?_ex=300x300"
         },
         {
           "name": "11月1日から31日限定！ エントリーで全品ポイント5倍 ランキング1位受賞 フレアフレグラ…",
@@ -796,7 +848,7 @@
       "seen": 150,
       "read": 28,
       "ok": 2,
-      "avg": 2625.4,
+      "avg": 2682.6,
       "top": [
         {
           "name": "11月1日から31日限定！ エントリーで全品ポイント5倍 パンテーン ミラクルズ カラーシャ…",
@@ -857,7 +909,7 @@
       "key": "bodysoap",
       "title": "ボディソープ（詰め替え）",
       "unit": "1L・1kg",
-      "seen": 60,
+      "seen": 88,
       "read": 20,
       "ok": 6,
       "avg": 1111.1,
@@ -947,36 +999,23 @@
       "key": "dish",
       "title": "食器用洗剤（詰め替え）",
       "unit": "1L・1kg",
-      "seen": 143,
-      "read": 61,
-      "ok": 9,
-      "avg": 848.3,
+      "seen": 87,
+      "read": 28,
+      "ok": 12,
+      "avg": 837.9,
       "top": [
         {
           "name": "食器用洗剤 JOY キッチン用洗剤 プロフェッショナル 除菌ジョイコンパクト 業務用 4L …",
           "price": 2810,
           "per": 702.5,
           "amt": "4L",
-          "rc": 68,
-          "av": 4.76,
-          "shop": "暮らし健康ネット館",
-          "plain": "https://item.rakuten.co.jp/kurashikenkou/10221021/",
+          "rc": 35,
+          "av": 4.37,
+          "shop": "快適ホームライフ",
+          "plain": "https://item.rakuten.co.jp/k-home/10092406/",
           "bd": "ジョイ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F7269456%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10221021%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashikenkou/cabinet/tasyakura/7269456.jpg?_ex=300x300"
-        },
-        {
-          "name": "JOY 除菌詰替1810ml 食器用洗剤 ×2セット - JOY Dishwash Sani…",
-          "price": 2680,
-          "per": 740.3,
-          "amt": "1.81L×2",
-          "rc": 11,
-          "av": 4.64,
-          "shop": "コストホールストア",
-          "plain": "https://item.rakuten.co.jp/frikstore/10006112/",
-          "bd": "ジョイ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uhv0o.m2lhf7bd.g00uhv0o.m2lhgb94/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffrikstore%2Fctk2079%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ffrikstore%2Fi%2F10006112%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/frikstore/cabinet/costco4/11454040/imgrc0169407678.jpg?_ex=300x300"
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00rqlbo.m2lhfc93.g00rqlbo.m2lhg098/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fk-home%2F7269456%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fk-home%2Fi%2F10092406%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/k-home/cabinet/06135991/09344783/7269456.jpg?_ex=300x300"
         },
         {
           "name": "花王 キュキュット 4.5L×1本 業務用 食器用 詰め替え 食器用洗剤 食器洗剤 大容量",
@@ -990,6 +1029,19 @@
           "bd": "キュキュット",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00tvoao.m2lhffa0.g00tvoao.m2lhg0e4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fk-relight%2F003-4901301510778br%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fk-relight%2Fi%2F10000736%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/k-relight/cabinet/thum1/0070233785.jpg?_ex=300x300"
+        },
+        {
+          "name": "食器用洗剤 業務用 詰め替え 緑の魔女 キッチン 5L 洗剤 食器用 食器洗剤 無香料 香料…",
+          "price": 3170,
+          "per": 634.0,
+          "amt": "5L",
+          "rc": 143,
+          "av": 4.57,
+          "shop": "暮らし健康ネット館",
+          "plain": "https://item.rakuten.co.jp/kurashikenkou/10096123/",
+          "bd": "",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F9847345%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10096123%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashikenkou/cabinet/tasya113/9847345.jpg?_ex=300x300"
         },
         {
           "name": "オーガニックファブリカ公式 キッチン用 低刺激 (業務 詰替) 厨房用 中性洗剤 食器用 洗…",
@@ -1037,10 +1089,10 @@
       "key": "tissue",
       "title": "ティッシュ",
       "unit": "100組",
-      "seen": 138,
-      "read": 18,
-      "ok": 12,
-      "avg": 91.1,
+      "seen": 153,
+      "read": 19,
+      "ok": 13,
+      "avg": 88.2,
       "top": [
         {
           "name": "ポイント5倍 要エントリー 期間限定 スコッティ カシミヤ ティッシュペーパー 220組 2…",
@@ -1140,11 +1192,24 @@
       "key": "diaper",
       "title": "おむつ",
       "unit": "1枚",
-      "seen": 60,
-      "read": 32,
-      "ok": 32,
+      "seen": 120,
+      "read": 38,
+      "ok": 38,
       "avg": 55.5,
       "top": [
+        {
+          "name": "花王 メリーズ エアスルー テープ 新生児用5000g まで 68枚入り×4個入 紙おむつ …",
+          "price": 6920,
+          "per": 25.4,
+          "amt": "272枚",
+          "rc": 55,
+          "av": 4.89,
+          "shop": "ベイシア楽天市場店",
+          "plain": "https://item.rakuten.co.jp/beisia/10126180/",
+          "bd": "メリーズ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00s0vmo.m2lhf5d9.g00s0vmo.m2lhge2f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbeisia%2F4901301437693x4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbeisia%2Fi%2F10126180%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/beisia/cabinet/09476807/4901301437693.jpg?_ex=300x300"
+        },
         {
           "name": "パンツ Mサイズ マミーポコ パンツ ドラえもん オムツ（6~13kg）144枚（48枚×3…",
           "price": 4020,
@@ -1159,17 +1224,17 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/actonlineshop/cabinet/onesell027/acton2687cebc142b_0.jpg?_ex=300x300"
         },
         {
-          "name": "メリーズ Merries テープ 新生児用 オムツ さら さらエアスルー (お誕生~5000…",
-          "price": 4841,
-          "per": 29.5,
-          "amt": "164枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "ちいさなしあわせストア",
-          "plain": "https://item.rakuten.co.jp/chiisana--shiawase/10019140/",
-          "bd": "メリーズ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uw1xo.m2lhf56e.g00uw1xo.m2lhg560/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fchiisana--shiawase%2F20260823041722_41%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fchiisana--shiawase%2Fi%2F10019140%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/chiisana--shiawase/cabinet/r_2026082357/20260823041722_41_1.jpg?_ex=300x300"
+          "name": "P&G｜ピーアンドジー ＜テープ 新生児(5kgまで)＞ パンパース オムツ はじめての肌へ…",
+          "price": 6430,
+          "per": 29.8,
+          "amt": "216枚",
+          "rc": 6,
+          "av": 4.5,
+          "shop": "楽天ビック(ビックカメラ×楽天)",
+          "plain": "https://item.rakuten.co.jp/biccamera/14445386/",
+          "bd": "パンパース",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00r7ldo.m2lhf8d4.g00r7ldo.m2lhgce4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbiccamera%2F4987176206978%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbiccamera%2Fi%2F14445386%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/biccamera/cabinet/product/9143/00000012267041_a01.jpg?_ex=300x300"
         },
         {
           "name": "ケース販売3袋・送料無料(北海道、沖縄除く) 大容量マミーポコパンツ L ドラえもん 9kg…",
@@ -1198,17 +1263,17 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cieldeneige/cabinet/onesell117/cl91611ab260.jpg?_ex=300x300"
         },
         {
-          "name": "パンツ Sサイズ マミーポコ パンツ ドラえもん オムツ（4~9kg）156枚（52枚×3）…",
-          "price": 5414,
-          "per": 34.7,
-          "amt": "156枚",
+          "name": "パンツ ビッグサイズ ムーニーマン 女の子 オムツ(12-22kg)176枚(44枚×4) …",
+          "price": 8354,
+          "per": 47.5,
+          "amt": "176枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "Senses",
-          "plain": "https://item.rakuten.co.jp/senses/10030911/",
-          "bd": "マミーポコ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00url3o.m2lhfea6.g00url3o.m2lhgf9c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsenses%2F20250812230014_20%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsenses%2Fi%2F10030911%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/senses/cabinet/r_2025080932/20250812230014_20_1.jpg?_ex=300x300"
+          "shop": "kichibei",
+          "plain": "https://item.rakuten.co.jp/kichibei0318/10074864/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00u3ajo.m2lhfb1e.g00u3ajo.m2lhgea2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkichibei0318%2Fkichibee5fdaf05083%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkichibei0318%2Fi%2F10074864%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kichibei0318/cabinet/onesell038/kichibee5fdaf05083.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
@@ -1324,7 +1389,7 @@
       "seen": 142,
       "read": 87,
       "ok": 5,
-      "avg": 18.4,
+      "avg": 18.6,
       "top": [
         {
           "name": "エントリーでP10倍★4日20:00〜11日1:59まで ごみ袋 45リットル 半透明 65…",

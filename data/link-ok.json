@@ -5322,7 +5322,7 @@
  "https://maruchiba.jp/event/detail_10895.html": {
   "at": "2026-11-06",
   "ok": false,
-  "sec": 0.9,
+  "sec": 1.0,
   "why": "404"
  },
  "https://maruchiba.jp/event/detail_10897.html": {
@@ -8001,6 +8001,12 @@
   "by": "browser",
   "ok": true,
   "sec": 0.3,
+  "why": ""
+ },
+ "https://www.tokyo-dome.co.jp/illumination/": {
+  "at": "2026-11-06",
+  "ok": true,
+  "sec": 1.4,
   "why": ""
  },
  "https://www.tokyo-park.or.jp/event_search/9_2_2.html": {
