@@ -7701,7 +7701,7 @@
  "https://www.haramuseum.or.jp": {
   "at": "2026-11-07",
   "ok": false,
-  "sec": 0.6,
+  "sec": 0.7,
   "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate "
  },
  "https://www.haramuseum.or.jp/": {
