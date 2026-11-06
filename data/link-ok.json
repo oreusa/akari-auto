@@ -2142,11 +2142,10 @@
   "why": ""
  },
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
-  "at": "2026-11-06",
-  "by": "browser",
+  "at": "2026-11-07",
   "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "sec": 15.3,
+  "why": "<urlopen error timed out>"
  },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
   "at": "2026-11-06",
@@ -5473,9 +5472,9 @@
   "why": ""
  },
  "https://null2.nexus": {
-  "at": "2026-11-03",
+  "at": "2026-11-07",
   "ok": true,
-  "sec": 0.9,
+  "sec": 1.4,
   "why": ""
  },
  "https://null2.nexus/": {
@@ -5646,11 +5645,10 @@
   "why": ""
  },
  "https://tamaillumi.myportfolio.com/": {
-  "at": "2026-11-06",
-  "by": "browser",
-  "ok": false,
+  "at": "2026-11-07",
+  "ok": true,
   "sec": 0.1,
-  "why": "Page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://ta"
+  "why": "403"
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
   "at": "2026-11-06",
@@ -7701,11 +7699,10 @@
   "why": ""
  },
  "https://www.haramuseum.or.jp": {
-  "at": "2026-11-03",
-  "by": "browser",
-  "ok": true,
-  "sec": 3.0,
-  "why": ""
+  "at": "2026-11-07",
+  "ok": false,
+  "sec": 0.6,
+  "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate "
  },
  "https://www.haramuseum.or.jp/": {
   "at": "2026-11-06",
@@ -7760,6 +7757,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.4,
+  "why": ""
+ },
+ "https://www.ichou-festa.org/": {
+  "at": "2026-11-07",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.ikaho-kankou.com/red_lightup/": {
@@ -7843,6 +7846,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.5,
+  "why": ""
+ },
+ "https://www.kusatsu-onsen.ne.jp/event/2029.php": {
+  "at": "2026-11-07",
+  "ok": true,
+  "sec": 0.8,
   "why": ""
  },
  "https://www.marie2026.jp/": {

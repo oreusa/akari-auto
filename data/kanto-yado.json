@@ -4125,5 +4125,78 @@
         "min": 6050
       }
     ]
+  },
+  "多摩センターイルミネーション2026": {
+    "v": 2,
+    "t": "2026-11-06",
+    "ll": [
+      35.62394,
+      139.42426
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "LINK FOREST",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179467",
+        "km": 0.5,
+        "r": 4.5,
+        "rc": 637,
+        "min": 7840
+      }
+    ]
+  },
+  "八王子いちょう祭り": {
+    "v": 2,
+    "t": "2026-11-06",
+    "ll": [
+      35.64968,
+      139.29078
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "タカオネ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182499",
+        "km": 2.7,
+        "r": 4.52,
+        "rc": 232,
+        "min": 6750
+      }
+    ]
+  },
+  "湯畑ツリー＆イルミネーション2026": {
+    "v": 2,
+    "t": "2026-11-06",
+    "ll": [
+      36.62056,
+      138.59611
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "草津温泉 草津舘",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106048",
+        "km": 0.2,
+        "r": 4.8,
+        "rc": 895,
+        "min": 12100
+      },
+      {
+        "n": "うり房旅館仲通り うら房",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184611",
+        "km": 0.2,
+        "r": 4.78,
+        "rc": 32,
+        "min": 14300
+      },
+      {
+        "n": "うり房旅館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184503",
+        "km": 0.2,
+        "r": 4.74,
+        "rc": 61,
+        "min": 12100
+      }
+    ]
   }
 }
