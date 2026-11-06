@@ -166,6 +166,10 @@ def build():
                 o["bd"] = brand(k, {**t, "bd": t.get("bd") or ""})
                 if o["bd"] and o["bd"] not in o["n"]:
                     o["n"] = (o["bd"] + " " + o["n"])[:34]
+                # 11/6 売上の調査 B2：「訳あり」を名前から消していたため、楽天で初めて知って帰る人がいた → 名前の頭に出す
+                raw = t.get("name") or ""
+                if ("訳あり" in raw or "わけあり" in raw or "訳アリ" in raw) and "訳あり" not in o["n"]:
+                    o["n"] = ("訳あり品 " + o["n"])[:38]
                 o["one"], o["cnt"] = amt_split(o["a"])
                 if c["unit"] == "1L・1kg":  # 夜#31 1Lか1kgかは商品ごと（量の書き方から）
                     o["ut"] = "1kgあたり" if re.search(r"\d\s*(kg|g)(?![a-z])", o["a"], re.I) else "1Lあたり"
