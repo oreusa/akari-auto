@@ -4,7 +4,23 @@
 var PC={"東京":"#4F86C6","神奈川":"#3FA3B5","埼玉":"#E09A3E","千葉":"#D9775A","茨城":"#5FA06A","栃木":"#D2697E","群馬":"#9C7BB8"};
 var st=document.createElement("style");st.textContent=":root{--ink:#1C1C1C;--acc:#3A2F28}#v2bar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:9980;display:flex;align-items:stretch;background:rgba(255,255,255,.97);border-radius:16px;box-shadow:0 6px 24px rgba(0,0,0,.14);overflow:hidden;max-width:460px;margin:0 auto}#v2bar a,#v2bar button{flex:1;text-decoration:none;border:0;background:none;padding:10px 2px 9px;font-family:\"Zen Kaku Gothic New\",sans-serif;font-size:11px;font-weight:700;color:var(--ink);letter-spacing:.02em;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;-webkit-tap-highlight-color:transparent;transition:opacity .15s}#v2bar a:active,#v2bar button:active{opacity:.55}#v2bar svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}#v2bar a.cur{color:var(--acc)}#v2bar a.cur span{border-bottom:2px solid var(--acc)}#v2bar button.mn{flex:0 0 72px;background:var(--acc);color:#fff;font-family:Jost,sans-serif;letter-spacing:.14em;font-size:10.5px;justify-content:center;gap:7px}#v2bar button.mn i{display:block;width:18px;height:1.5px;background:#fff;box-shadow:0 -5px 0 #fff,0 5px 0 #fff;margin:5px 0 3px}html.v2bar-on #umenu{display:none!important}html[style*=\"overflow: hidden\"] #v2bar{display:none}html.v2bar-on #utheme{right:12px}";document.head.appendChild(st);
 var I={ai:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M9 9.5h4M11 7.5v4"/></svg>',now:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',up:'<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>',map:'<svg viewBox="0 0 24 24"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>',inn:'<svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6v9H4z"/><path d="M10 20v-5h4v5"/></svg>'};
+function goF(){
+/* 11/7 関東不動産リスト（月の v2sub.js の goF と同じ）：不動産のページの下のバー。街で探す・地図・ランキング・売る前に（新着は MENU） */
+var F={q:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>',rk:'<svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V5M16 20v-7M22 20H2"/></svg>',mp:'<svg viewBox="0 0 24 24"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>',ur:'<svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6v9H4z"/><path d="M10 20v-5h4v5"/></svg>'};
+var here=/\/fudosan-list/.test(location.pathname),rk=/\/chika-/.test(location.pathname);
+var ps=document.createElement("style");ps.textContent="body{padding-bottom:84px}";document.head.appendChild(ps);
+var bar=document.createElement("nav");bar.id="v2bar";bar.setAttribute("aria-label","すぐ移動");
+bar.innerHTML='<a data-m="q">'+F.q+'<span>街で探す</span></a><a data-m="map">'+F.mp+'<span>地図</span></a><a data-h="/chika-kanto"'+(rk?' class="cur"':'')+'>'+F.rk+'<span>ランキング</span></a><a data-h="/uru.html">'+F.ur+'<span>売る前に</span></a><button class="mn" type="button"><i></i>MENU</button>';
+bar.querySelectorAll("a").forEach(function(a){a.setAttribute("data-k","下のバー｜"+a.textContent);
+ if(a.dataset.h){a.href=a.dataset.h;return;}
+ if(here&&window.FQ){a.href="#";a.onclick=function(e){e.preventDefault();window.FQ.open(a.dataset.m);};}
+ else a.href="/fudosan-list?fq="+a.dataset.m;});
+bar.querySelector(".mn").onclick=function(){var m=document.getElementById("umenu");if(m)m.click();};
+document.body.appendChild(bar);bar.classList.add("on");document.documentElement.classList.add("v2bar-on");
+window.V2BAR=bar;
+}
 function go(){
+if(/^\/(fudosan-list|uru|chika-|machi\/)/.test(location.pathname))return goF();
 var inn=/\/tomari/.test(location.pathname),P=location.pathname.replace(/\.html$/,"");
 /* 11/2 LIFE NOTE：買い物のページ（くらべたおかいものリストとその仲間）は、買い物の下のボタン列。おでかけ側は /odekake へ */
 /* 11/2 くらべたおかいものリストのタブ4つ（くらべた物・1個あたり・値下がり・セール）へ。いまのページの仲間に下線 */
@@ -18,8 +34,10 @@ var shop=/^\/(okaimono|nesage|tanka|furusato|kaimawari|otoku)/.test(P);
 var bar=document.createElement("nav");bar.id="v2bar";bar.setAttribute("aria-label","すぐ移動");
 /* LIFE NOTE の入口ページ：2つのリストといまから行ける（月の TOWN NOTE 入口と同じ形） */
 var top=P===""||P==="/"||P==="/index";
-bar.innerHTML=top?'<a href="/odekake">'+I.map+'<span>おでかけ</span></a><a href="/okaimono"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>おかいもの</span></a><a href="/otoku#kq">'+I.ai+'<span>AIに聞く</span></a><a href="/ima">'+I.now+'<span>いま行ける</span></a><button class="mn" type="button"><i></i>MENU</button>':(shop?SH.map(function(x){return '<a href="'+(x[4]||'/okaimono?t='+x[0])+'"'+(x[3].test(P)?' class="cur"':'')+'>'+x[2]+'<span>'+x[1]+'</span></a>';}).join(""):
+bar.innerHTML=top?'<a href="/odekake">'+I.map+'<span>おでかけ</span></a><a href="/fudosan-list"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V5M16 20v-7M22 20H2"/></svg><span>不動産</span></a><a href="/okaimono"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>おかいもの</span></a><a href="/otoku#kq">'+I.ai+'<span>AIに聞く</span></a><a href="/ima">'+I.now+'<span>いま行ける</span></a><button class="mn" type="button"><i></i>MENU</button>':(shop?SH.map(function(x){return '<a href="'+(x[4]||'/okaimono?t='+x[0])+'"'+(x[3].test(P)?' class="cur"':'')+'>'+x[2]+'<span>'+x[1]+'</span></a>';}).join(""):
  '<a href="/#town">'+I.ai+'<span>街で探す</span></a><a href="/odekake?v2t=0">'+I.now+'<span>開催中</span></a><a href="/odekake?v2t=1">'+I.up+'<span>これから</span></a><a href="/odekake?v2t=map">'+I.map+'<span>地図</span></a><a href="/tomari"'+(inn?' class="cur"':'')+'>'+I.inn+'<span>泊まり</span></a>')+'<button class="mn" type="button"><i></i>MENU</button>';
+/* 11/7 入口に「不動産」を足して5つになったので、文字が2行に折れないよう少し小さく */
+if(top){bar.classList.add("b6");var s6=document.createElement("style");s6.textContent="#v2bar.b6 a{font-size:10px;letter-spacing:0;white-space:nowrap}";document.head.appendChild(s6);}
 bar.querySelector(".mn").onclick=function(){var m=document.getElementById("umenu");if(m)m.click();};
 document.body.appendChild(bar);
 function fo(){var h=location.hash;if(h==="#kq"){var k=document.getElementById("kq");if(k){k.scrollIntoView({block:"center"});try{k.focus({preventScroll:true});}catch(e){}}}

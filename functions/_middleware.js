@@ -2,7 +2,7 @@
 // 数えるのは、ページの中でアフィリエイトのリンク（PR）が押された回数だけ（10/24 オーナー「あくまでアフィリエイトだけ」）。
 // /c?f=…&s=…&k=… を受けて、どの投稿から来た人が（f）、どの項目の（s）、どの物を（k）押したかを数える。リンク先はそのまま。
 // 開いた数（10/24 オーナー「HPも見られてるか足す」）は、1日の合計1つだけを数え、1日500で止める（押した数300と合わせてもKVの書き込み1日1,000回の無料枠に収まる）。
-// 呼ばれるのは / と /odekake と /okaimono と /c と /wx（site/_routes.json）。/wx は functions/wx.js。/ima と入口が /odekake を読むときは x-ima を付けるので開いた数に入れない。
+// 呼ばれるのは / と /odekake と /okaimono と /fudosan-list と /c と /wx（site/_routes.json）。/wx は functions/wx.js。/ima と入口が /odekake を読むときは x-ima を付けるので開いた数に入れない。
 // 数は KV（CLICKS）のキーのメタデータ n に入れる。scripts/pagestats.py が読んで data/page-stats.json にする。
 const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|externalagent|buffer|embedly|whatsapp|discord|slack|telegram|curl|wget|python|headless/i;
 
@@ -54,7 +54,8 @@ export async function onRequest(ctx) {
   const ref = request.headers.get("referer") || "";
   const own = /^https:\/\/(lifenote[^/]*|usagi-life-notes)\.pages\.dev\//.test(ref);
   const lp = url.pathname.replace(/\.html$/, "");
-  const isView = lp === "/" || ((lp === "/odekake" || lp === "/okaimono") && !own);
+  // 11/7 関東不動産リスト /fudosan-list も、2つのリストと同じく外から直に来た時だけ数える
+  const isView = lp === "/" || ((lp === "/odekake" || lp === "/okaimono" || lp === "/fudosan-list") && !own);
   if (isView && request.method === "GET" && !BOT.test(ua) && !request.headers.get("purpose") && !request.headers.get("sec-purpose") && !request.headers.get("x-ima")) {
     ctx.waitUntil(view(env).catch(() => {}));
   }

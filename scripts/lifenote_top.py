@@ -1,7 +1,7 @@
 """LIFE NOTE の入口ページ（site/index.html = /）を作る。scripts/lifenote.py が最後に呼ぶ。
 11/2 オーナー「燈のhpを LIFE NOTE を作る…その他は完全に TOWN NOTE 仕様にする」
 → 月の TOWN NOTE 入口（usagi tools/townnotes_top/make.py）と同じ形：上に関東7都県の絵地図、まんなかに「あなたの街」、
-  下に PAGE 01 関東おでかけリスト・PAGE 02 くらべたおかいものリスト。数は開いた時に2つのリストから読むので、手で直さなくても毎日合う。
+  下に PAGE 01 関東おでかけリスト・PAGE 02 関東不動産リスト・PAGE 03 くらべたおかいものリスト（11/7 月の TOWN NOTE 入口と同じ並び）。数は開いた時に2つのリストから読むので、手で直さなくても毎日合う。
 """
 import html, json, math, os
 
@@ -49,7 +49,7 @@ SVG = (f'<svg class="kmap" viewBox="-10 -10 {W + 20:.0f} {H + 20:.0f}" role="img
        f'<g class="pf" stroke="#fff" stroke-width="2.4" stroke-linejoin="round">{"".join(paths)}</g>'
        f'<g class="lb">{"".join(labels)}</g></svg>')
 
-desc = "関東のくらしで見つけたことを、ノートにまとめています。イベントや新しいお店・施設の「関東おでかけリスト」と、うさぎが数字で比べた物とお得な日の「くらべたおかいものリスト」。"
+desc = "関東のくらしで見つけたことを、ノートにまとめています。イベントや新しいお店・施設の「関東おでかけリスト」、地価を公式の数字で見る「関東不動産リスト」、うさぎが数字で比べた物とお得な日の「くらべたおかいものリスト」。"
 ld = {"@context": "https://schema.org", "@type": "WebSite", "name": "LIFE NOTE", "url": f"{BASE}/", "description": desc}
 
 # 11/3 入口の「くらべ方 4つ」は古い数 → 1個あたりで比べている種類の数（data/tanka.json から）
@@ -66,14 +66,14 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <link rel="icon" href="/logo.png"><link rel="apple-touch-icon" href="/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
-<link rel="stylesheet" href="/assets/top.css?v=1"><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=20" defer></script><script src="/assets/v2sub.js?v=8" defer></script></head><body id="lifenote-top"><div class="wrap">
+<link rel="stylesheet" href="/assets/top.css?v=1"><script src="/assets/night.js?v=15"></script><script src="/assets/menu.js?v=21" defer></script><script src="/assets/v2sub.js?v=10" defer></script></head><body id="lifenote-top"><div class="wrap">
 <header class="head"><img src="/logo-s.png" width="74" height="74" alt="LIFE NOTE のロゴ">
 <h1>LIFE NOTE</h1><div class="kana">ライフノート</div>
 <p class="sub">関東のくらしで見つけたことを、<br>公式の情報つきで、このノートに書きとめています。</p>
 <div class="nofilt">{SVG}</div><div class="mapcap">都県を押すと、その都県の数が出ます</div><div class="pp" id="pp" hidden></div></header>
 
 <section class="find" id="town"><h2><small>YOUR TOWN</small>あなたの街を探す</h2>
-<p>街の名前を入れると、その街の<b>おでかけ</b>と<b>イルミネーション</b>が<br>まとめて出ます。</p>
+<p>街の名前を入れると、その街の<b>おでかけ</b>・<b>イルミネーション</b>・<b>地価</b>が<br>まとめて出ます。</p>
 <input class="fi" id="q" type="search" placeholder="例：横浜、川越、舞浜" enterkeyhint="search" aria-label="街の名前">
 <div class="chips">{"".join(f'<button type="button">{c}</button>' for c in CHIPS)}</div>
 <div class="res" id="res"></div></section>
@@ -84,7 +84,11 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <!-- 11/3 開催中・これからはリストのタブ（.pane[data-t]）と同じ数え方。入口136件・リスト131件と食い違っていた -->
 <div class="st"><div><span>開催中</span><b id="o1">―</b></div><div><span>これから</span><b id="o2">―</b></div><div><span>入場無料</span><b id="o3">―</b></div></div>
 <div class="pv" id="opv"></div><div class="go">おでかけリストを開く<span>→</span></div></a>
-<a class="ls" href="/okaimono" data-k="入口｜くらべたおかいものリスト" style="--ac:#C2703F;--bg:#FBEEE6;--c:#C2703F"><div class="no"><small>PAGE</small>02</div><div class="en">OKAIMONO LIST</div><h3>くらべたおかいものリスト</h3>
+<a class="ls" href="/fudosan-list" data-k="入口｜関東不動産リスト" style="--ac:#4F6681;--bg:#EEF3FA;--c:#4F6681"><div class="no"><small>PAGE</small>02</div><div class="en">KANTO REAL ESTATE</div><h3>関東不動産リスト</h3>
+<p>地価・人口・新しい施設・制度を、公式の数字で。<br>あなたの街が、1年でどう動いたかがわかります。</p>
+<div class="st"><div><span>関東の街</span><b id="f1">―</b></div><div><span>上がった街</span><b id="f2">―</b></div><div><span>調べた数字</span><b id="f3">―</b></div></div>
+<div class="pv" id="fpv"></div><div class="go">不動産リストを開く<span>→</span></div></a>
+<a class="ls" href="/okaimono" data-k="入口｜くらべたおかいものリスト" style="--ac:#C2703F;--bg:#FBEEE6;--c:#C2703F"><div class="no"><small>PAGE</small>03</div><div class="en">OKAIMONO LIST</div><h3>くらべたおかいものリスト</h3>
 <p>3つ以上を数字で比べて選んだ、暮らしの物。<br>本当に値下がりした物と、お得な日も。</p>
 <div class="st"><div><span>比べた物</span><b id="k1">―</b></div><div><span>今だけのお得</span><b id="k2">―</b></div><div><span>比べた種類</span><b>{NKIND}<small style="font-size:12px">種類</small></b></div></div>
 <div class="pv" id="kpv"></div><div class="go">おかいものリストを開く<span>→</span></div></a>
@@ -126,6 +130,12 @@ fetch("/okaimono",{{headers:{{"x-ima":"1"}}}}).then(function(r){{return r.text()
  var rows=[],h=d.querySelector("#hot .nm,#hot h3");if(h)rows.push(["いち押し",h.textContent.trim()]);
  d.querySelectorAll('.pane[data-t="pick"] .card').forEach(function(a){{if(rows.length>=3)return;var n=a.querySelector(".t,.nm,h3");if(n)rows.push(["比べた",n.textContent.trim()]);}});
  document.getElementById("kpv").innerHTML=rows.map(function(r){{return '<div><i style="color:#C2703F">'+r[0]+'</i>'+esc(r[1].slice(0,40))+'</div>'}}).join("");}}).catch(function(){{}});
+/* 11/7 関東不動産リスト（月の TOWN NOTE 入口と同じ）：街の数・上がった街・調べた数字 */
+function pct(v){{return (v>0?"+":v<0?"−":"±")+Math.abs(v).toFixed(1)+"%"}}
+var TW=[],pF=fetch("/assets/towns.json").then(function(r){{return r.json()}}).then(function(d){{TW=d;document.getElementById("f1").textContent=d.length;document.getElementById("f2").textContent=d.filter(function(t){{return t.r8>0}}).length;
+ var top=d.slice().sort(function(a,b){{return b.r8-a.r8}}),ps=[top[0].p].concat(pcs.filter(function(p){{return p!==top[0].p}})),pv=ps.slice(0,3).map(function(p){{return top.filter(function(t){{return t.p===p}})[0]}}).filter(Boolean);
+ document.getElementById("fpv").innerHTML=pv.map(function(t){{return '<div><i style="color:'+PC[t.p]+'">'+t.p+'</i>'+esc(t.n)+'　住宅地 '+pct(t.r8)+'（'+t.p+'で1位）</div>'}}).join("");}}).catch(function(){{}});
+fetch("/fudosan-list",{{headers:{{"x-ima":"1"}}}}).then(function(r){{return r.text()}}).then(function(t){{var m=t.match(/class="card"/g);document.getElementById("f3").innerHTML=(m?m.length:0)+'<small style="font-size:12px">件</small>';}}).catch(function(){{}});
 /* 地図：都県を押すと、その都県のおでかけの数 */
 var svg=document.querySelector(".kmap"),pp=document.getElementById("pp");
 svg.querySelectorAll(".pf path").forEach(function(el){{el.addEventListener("click",function(){{var p=el.getAttribute("data-p");Promise.all([pO,pI]).then(function(){{
@@ -137,14 +147,20 @@ svg.querySelectorAll(".pf path").forEach(function(el){{el.addEventListener("clic
  c("入口の地図："+p);}});}});}});
 /* あなたの街：おでかけとイルミをまとめて */
 var q=document.getElementById("q"),res=document.getElementById("res"),tq;
-function find(v){{v=v.replace(/\\s/g,"");if(!v){{res.innerHTML="";return;}}var vv=v.replace(/(市|区|町|村|駅)$/,"");
+var AL={{"池袋":"豊島区","いけぶくろ":"豊島区","舞浜":"浦安市","まいはま":"浦安市"}};
+function hira(x){{return x.replace(/[\u30a1-\u30f6]/g,function(c){{return String.fromCharCode(c.charCodeAt(0)-96)}})}}
+function find(v){{v=v.replace(/\\s/g,"");if(!v){{res.innerHTML="";return;}}var vv=v.replace(/(市|区|町|村|駅)$/,""),kn=/^[\u3041-\u3096\u30a1-\u30fcー]+$/.test(v)?hira(v):"",al=AL[v]||AL[vv]||"";
+ var tw=TW.filter(function(t){{return t.n.indexOf(vv)>=0||t.s.indexOf(vv)>=0||(kn&&kn.length>=2&&(t.k||"").indexOf(kn)>=0)||(al&&t.n===al)}});
+ var ex=tw.filter(function(t){{return t.n===v||t.n===al}});if(ex.length&&v.length>=4)tw=ex;tw=tw.slice(0,6);
  var od=OD.filter(function(x){{return (x.t+x.m).replace(/\\s/g,"").indexOf(vv)>=0}}).slice(0,6);
  var il=IL.filter(function(x){{return x.x.replace(/\\s/g,"").indexOf(vv)>=0}}).slice(0,4);
- var h="";if(od.length)h+='<div class="sec">ODEKAKE　おでかけ</div>'+od.map(function(x){{return '<a href="'+esc(x.h)+'" rel="noopener" style="--pc:'+(PC[x.p]||"#8C7B6E")+'" data-k="入口の検索｜おでかけ｜'+esc(x.t.slice(0,20))+'"><i>'+esc(x.p)+'</i><b>'+esc(x.t)+'<small>'+esc(x.w)+(x.now?"・開催中":x.up?"・これから":"")+'</small></b><em style="color:#9C8775">→</em></a>'}}).join("");
+ var h="";if(al)h+='<div class="none" style="padding:8px 2px;text-align:left">「'+esc(v)+'」の辺りは'+esc(al)+'です。'+esc(al)+'の地価もいっしょに出しています。</div>';
+ if(tw.length)h+='<div class="sec">LAND PRICE　街の地価</div>'+tw.map(function(t){{return '<a href="/machi/'+t.id+'" style="--pc:'+PC[t.p]+'" data-k="入口の検索｜地価｜'+esc(t.n)+'"><i>'+t.p+'</i><b>'+esc(t.n)+'<small>住宅地 1年の動き・'+t.p+'で'+t.rk+'位／'+t.of+'</small></b><em style="color:'+(t.r8>0?PC[t.p]:"#7A6E66")+'">'+pct(t.r8)+'</em></a>'}}).join("");
+ if(od.length)h+='<div class="sec">ODEKAKE　おでかけ</div>'+od.map(function(x){{return '<a href="'+esc(x.h)+'" rel="noopener" style="--pc:'+(PC[x.p]||"#8C7B6E")+'" data-k="入口の検索｜おでかけ｜'+esc(x.t.slice(0,20))+'"><i>'+esc(x.p)+'</i><b>'+esc(x.t)+'<small>'+esc(x.w)+(x.now?"・開催中":x.up?"・これから":"")+'</small></b><em style="color:#9C8775">→</em></a>'}}).join("");
  if(il.length)h+='<div class="sec">ILLUMINATION　イルミネーション</div>'+il.map(function(x){{return '<a href="'+(SLUG[x.p]?"/illumination-"+SLUG[x.p]:"/illumination")+'" style="--pc:'+(PC[x.p]||"#8C7B6E")+'" data-k="入口の検索｜イルミ｜'+esc(x.t.slice(0,20))+'"><i>'+esc(x.p||"関東")+'</i><b>'+esc(x.t)+'</b><em style="color:#9C8775">→</em></a>'}}).join("");
  res.innerHTML=h||'<div class="none">「'+esc(v)+'」はまだありません。調べて、リストに足していきます。</div>';}}
-q.oninput=function(){{Promise.all([pO,pI]).then(function(){{find(q.value)}});clearTimeout(tq);tq=setTimeout(function(){{if(q.value.trim())c("入口で探す："+q.value.trim())}},1500);}};
-document.querySelectorAll(".chips button").forEach(function(b){{b.onclick=function(){{q.value=b.textContent;Promise.all([pO,pI]).then(function(){{find(b.textContent)}});c("入口で探す："+b.textContent);}}}});
+q.oninput=function(){{Promise.all([pO,pI,pF]).then(function(){{find(q.value)}});clearTimeout(tq);tq=setTimeout(function(){{if(q.value.trim())c("入口で探す："+q.value.trim())}},1500);}};
+document.querySelectorAll(".chips button").forEach(function(b){{b.onclick=function(){{q.value=b.textContent;Promise.all([pO,pI,pF]).then(function(){{find(b.textContent)}});c("入口で探す："+b.textContent);}}}});
 document.addEventListener("click",function(e){{var a=e.target.closest&&e.target.closest("a");if(!a)return;c("入口｜"+(a.getAttribute("data-k")||a.textContent.trim().slice(0,30)));}},true);
 /* リストへ移る時も ?f= を付けたまま */
 if(location.search)document.querySelectorAll('a.ls,.pp a').forEach(function(a){{a.href=a.getAttribute("href")+location.search;}});
