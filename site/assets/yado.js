@@ -19,3 +19,6 @@ var P=fetch("/kanto-yado.json").then(function(r){return r.ok?r.json():{}}).then(
 window.addEventListener("load",function(){P.then(function(){run();sync();setTimeout(function(){run();sync();},800);});});
 document.addEventListener("click",function(){P.then(function(){setTimeout(function(){run();sync();},80);});},true);
 })();
+
+/* 11/7 泊まる日と人数を楽天トラベルへ（月と同じ yado-date.js） */
+(function(){if(document.querySelector('script[src*="yado-date.js"]'))return;var x=document.createElement("script");x.src="/assets/yado-date.js?v=1";x.defer=true;document.head.appendChild(x);})();
