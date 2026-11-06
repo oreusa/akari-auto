@@ -1,0 +1,9 @@
+[
+ {"p":"東京","csv":"tokyo","pfull":"東京都","src":"東京都財務局「令和8年地価公示 区市町村別用途別対前年変動率」（令和7年は同「令和7年地価公示 区市町村別用途別対前年変動率表」、平均価格は「令和8年地価公示 区市町村別用途別平均価格表」）","url":"https://www.zaimu.metro.tokyo.lg.jp/documents/d/zaimu/03_r8kouji_hendoritsu-hyou","url_r7":"https://www.zaimu.metro.tokyo.lg.jp/documents/d/zaimu/03_R7zennen-1","url_price":"https://www.zaimu.metro.tokyo.lg.jp/documents/d/zaimu/05_r8kouji_heikin-kakaku","none":"檜原村・奥多摩町（住宅地の地点なし）"},
+ {"p":"神奈川","csv":"kanagawa","pfull":"神奈川県","src":"神奈川県「地価公示の概要（令和8年地価公示）」3 市区町村別・用途別 地点数・平均価格・平均変動率","url":"https://www.pref.kanagawa.jp/documents/132848/08kouji_shiryou01.pdf"},
+ {"p":"埼玉","csv":"saitama","pfull":"埼玉県","src":"埼玉県「令和8年 地価公示のあらまし」12 市区町村別・用途別平均価格及び平均変動率一覧（令和7年は「令和7年 地価公示のあらまし」の同じ表）","url":"https://www.pref.saitama.lg.jp/documents/279475/03_r8aramashi.pdf","url_r7":"https://www.pref.saitama.lg.jp/documents/265989/03_r7aramashi.pdf","none":"長瀞町・東秩父村（住宅地の地点なし）"},
+ {"p":"千葉","csv":"chiba","pfull":"千葉県","src":"千葉県「令和8年地価公示 市区町村別・用途別平均価格及び平均変動率一覧表」「市区町村別平均変動率順位表《住宅地》」","url":"https://www.pref.chiba.lg.jp/youchi/toukeidata/chika/documents/02r8k-itiran.pdf","url_r7":"https://www.pref.chiba.lg.jp/youchi/toukeidata/chika/documents/03r8k-siku-henjyu.pdf","none":"南房総市・神崎町・睦沢町・長柄町・大多喜町・鋸南町（県の一覧に住宅地の数字なし）"},
+ {"p":"茨城","csv":"ibaraki","pfull":"茨城県","src":"茨城県「令和8年地価公示結果（茨城県内）の概要」第2表 市町村別・用途別の平均変動率・平均価格","url":"https://www.pref.ibaraki.jp/kikaku/mizuto/tochi/documents/r8koji_kekkagaiyou.pdf"},
+ {"p":"栃木","csv":"tochigi","pfull":"栃木県","src":"栃木県「令和8年地価公示のあらまし」参考2・参考3 市町別・用途別平均価格及び平均変動率","url":"https://www.pref.tochigi.lg.jp/a03/houdou/documents/r8koujiaramashi.pdf"},
+ {"p":"群馬","csv":"gunma","pfull":"群馬県","src":"群馬県「令和8年地価公示結果（群馬県分）」(5) 市町村別の住宅地の対前年平均変動率の状況","url":"https://www.pref.gunma.jp/uploaded/attachment/692437.pdf","none":"上野村・神流町・南牧村・高山村・片品村・川場村・昭和村（地価公示の住宅地の地点なし）。平均価格は市町村別の表が無いので空き"}
+]
