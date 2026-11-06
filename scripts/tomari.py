@@ -65,13 +65,60 @@ def load_cards(Y):
     return cards
 
 
+def sat_for(c, today):
+    """11/7 売上の調査 B1/C1：宿のリンクに泊まる日を付ける。次の土曜（おでかけが始まる前ならその後の最初の土曜）"""
+    d = today + timedelta(days=(5 - today.weekday()) % 7)
+    if c.get("s") and c["s"] > d.isoformat():
+        s = date.fromisoformat(c["s"])
+        d = s + timedelta(days=(5 - s.weekday()) % 7)
+    if c.get("e") and c["e"] < d.isoformat():
+        return None
+    return d
+
+
+def dated(u, d):
+    """楽天トラベルの宿の広告リンク（pc=…f_no=番号）を、同じ広告のまま日付つきのプラン一覧に替える。だめなら元のまま"""
+    if not d or not DATED_OK:
+        return u
+    pu = urllib.parse.urlparse(u)
+    q = urllib.parse.parse_qs(pu.query)
+    no = urllib.parse.parse_qs(urllib.parse.urlparse(q.get("pc", [""])[0]).query).get("f_no", [""])[0]
+    if "hb.afl.rakuten.co.jp" not in pu.netloc or not no.isdigit():
+        return u
+    n = d + timedelta(days=1)
+    tgt = (f"https://hotel.travel.rakuten.co.jp/hotelinfo/plan/{no}?f_nen1={d.year}&f_tuki1={d.month}&f_hi1={d.day}"
+           f"&f_nen2={n.year}&f_tuki2={n.month}&f_hi2={n.day}&f_heya_su=1&f_otona_su=2")
+    return u.split("?")[0] + "?pc=" + urllib.parse.quote(tgt, safe="")
+
+
+def check_dated():
+    """日付つきのプラン一覧が開くかを1回だけ確かめる（開かなければ今までの形のリンクのまま）"""
+    import urllib.request
+    d = date.today() + timedelta(days=14)
+    url = f"https://hotel.travel.rakuten.co.jp/hotelinfo/plan/13449?f_nen1={d.year}&f_tuki1={d.month}&f_hi1={d.day}&f_heya_su=1&f_otona_su=2"
+    try:
+        r = urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}), timeout=15)
+        ok = r.status == 200 and "/hotelinfo/plan/13449" in r.geturl()
+    except Exception as e:  # noqa: BLE001
+        print("日付つきの宿リンク：確かめられない", e)
+        return False
+    print("日付つきの宿リンク：", "使う" if ok else "使わない", r.geturl()[:120])
+    return ok
+
+
+DATED_OK = False
+
+
 def hotel(c, h):
     km = "すぐそば" if (h.get("km") or 9) < 0.1 else f"ここから{h['km']}km"
     rv = f"★{float(h['r']):.2f}".rstrip("0").rstrip(".") if h.get("r") else ""
     rc = f"（{int(h['rc']):,}件）" if h.get("rc") else ""
     pr = f"{int(h['min']):,}円〜" if h.get("min") else ""
-    return (f'<li><a href="{E(h["u"])}" target="_blank" rel="noopener sponsored" data-y="宿｜{E(c["t"][:16])}｜{E(h["n"])}">'
-            f'<span class="hn">{E(h["n"])}</span><span class="hm"><b>{rv}</b>{rc}・{km}</span><span class="hp"><span class="hy">{pr}</span><span class="hv">空室を見る</span></span></a></li>')
+    d = c.get("sat")
+    u = dated(h["u"], d)
+    lab = f"{d.month}/{d.day}（土）の空室" if d and u != h["u"] else "空室を見る"
+    return (f'<li><a href="{E(u)}" target="_blank" rel="noopener sponsored" data-y="宿｜{E(c["t"][:16])}｜{E(h["n"])}">'
+            f'<span class="hn">{E(h["n"])}</span><span class="hm"><b>{rv}</b>{rc}・{km}</span><span class="hp"><span class="hy">{pr}</span><span class="hv">{lab}</span></span></a></li>')
 
 
 def main():
@@ -82,6 +129,8 @@ def main():
         return
     Y = {re.sub(r"\s+", "", k): v for k, v in json.load(open(yp, encoding="utf-8")).items() if v}
     cards = load_cards(Y)
+    global DATED_OK
+    DATED_OK = check_dated()
     T = today.isoformat()
     items = {p: [] for p in KANTO_ORDER}
     for k, c in cards.items():
@@ -89,6 +138,7 @@ def main():
             continue
         c["on"], c["k"] = bool(c["s"]) and c["s"] <= T, k  # 11/6 夜：始まる日が無い（日程の発表前）物を「開催中」にしない
         c["pre"] = not c["s"]
+        c["sat"] = None if c["pre"] else sat_for(c, today)
         items[c["p"]].append(c)
     for p in KANTO_ORDER:
         items[p].sort(key=lambda c: (0, c["e"] or "9") if c["on"] else ((2, "") if c["pre"] else (1, c["s"])))
@@ -117,6 +167,7 @@ def main():
              if os.path.exists(_mj) else "")
     btns = '<button class="on" data-p="すべて">すべて</button>' + "".join(
         f'<button data-p="{p}" style="--pc:{PREF_COLOR[p]}">{p}</button>' for p in KANTO_ORDER if items[p])
+    dnote = "<br>「◯/◯（土）の空室」は、その土曜1泊・大人2人で開きます。" if DATED_OK else ""
     upd = f"{today.year}年{today.month}月{today.day}日"
     out = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>泊まりで行く関東のおでかけ｜近くの宿つき｜うさぎ│LIFE NOTES</title>
@@ -177,7 +228,7 @@ h2 small{{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;color:#8C7
 <div class="cnt"><span>おでかけ<b>{n_all}</b>か所</span><span>宿<b>{n_inn}</b>軒</span></div><div class="upd">{upd} 更新</div></header>
 <div class="flt" id="flt">{btns}</div>
 <div class="wk"><button type="button" id="wk" aria-pressed="false">この週末に開いている所だけ</button></div>
-<p class="pr">宿は楽天トラベルの評価3.5以上・口コミ10件以上から、評価の高い順に3軒。<br>値段は1泊の最安の目安で、日や人数で変わります。宿のリンクは広告（PR）です。</p>
+<p class="pr">宿は楽天トラベルの評価3.5以上・口コミ10件以上から、評価の高い順に3軒。<br>値段は1泊の最安の目安で、日や人数で変わります。{dnote}宿のリンクは広告（PR）です。</p>
 {"".join(secs)}
 <div class="none" id="none">この週末に開いている所はありません。</div>
 <div class="note">おでかけの日にちや時間は、出かける前に必ず公式ページで確かめてください。宿の空きや値段は楽天トラベルでご確認ください。</div>
