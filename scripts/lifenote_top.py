@@ -125,10 +125,12 @@ var pI=fetch("/illumination").then(function(r){{return r.text()}}).then(function
  d.querySelectorAll(".card").forEach(function(a){{var e=a.getAttribute("data-e")||"";if(e&&e<today)return;var tt=a.querySelector(".t,h3,.nm");if(!tt)return;var tx=a.textContent.replace(/\\s+/g," ");
   IL.push({{t:tt.textContent.trim(),x:tx,p:prefOf(tx)}});}});}}).catch(function(){{}});
 fetch("/okaimono",{{headers:{{"x-ima":"1"}}}}).then(function(r){{return r.text()}}).then(function(t){{var d=new DOMParser().parseFromString(t,"text/html"),u='<small style="font-size:12px">件</small>';
- var sh=d.querySelectorAll('.pane[data-t="pick"] .card,.pane[data-t="unit"] .card,.pane[data-t="down"] .card').length,dl=d.querySelectorAll('.pane[data-t="sale"] .card').length;
- document.getElementById("k1").innerHTML=sh+u;document.getElementById("k2").innerHTML=dl+u;
- var rows=[],h=d.querySelector("#hot .nm,#hot h3");if(h)rows.push(["いち押し",h.textContent.trim()]);
- d.querySelectorAll('.pane[data-t="pick"] .card').forEach(function(a){{if(rows.length>=3)return;var n=a.querySelector(".t,.nm,h3");if(n)rows.push(["比べた",n.textContent.trim()]);}});
+ /* 11/7 夜・オーナー「入口が0件なのに買い物ページには商品がある」→ 11/6 の作り直し（okai_v4 の #v4d）から数える */
+ var rows=[],V=null;try{{V=JSON.parse((d.getElementById("v4d")||{{}}).textContent||"null");}}catch(e){{}}
+ if(V&&V.cats){{var sh=0;V.cats.forEach(function(c){{sh+=(c.o||[]).length;}});document.getElementById("k1").innerHTML=sh+u;
+  V.cats.slice(0,3).forEach(function(c){{var o=(c.o||[]).slice().sort(function(x,y){{return x.u-y.u}})[0];if(o)rows.push(["最安",c.nm+"｜"+(o.n||"")]);}});}}
+ else{{var sh=d.querySelectorAll('.pane[data-t="pick"] .card,.pane[data-t="unit"] .card,.pane[data-t="down"] .card').length;document.getElementById("k1").innerHTML=sh+u;}}
+ fetch("/kaimawari",{{headers:{{"x-ima":"1"}}}}).then(function(r){{return r.ok?r.text():""}}).then(function(t2){{var n=(t2.match(/<li class="it"/g)||[]).length;document.getElementById("k2").innerHTML=n+u;}}).catch(function(){{}});
  document.getElementById("kpv").innerHTML=rows.map(function(r){{return '<div><i style="color:#C2703F">'+r[0]+'</i>'+esc(r[1].slice(0,40))+'</div>'}}).join("");}}).catch(function(){{}});
 /* 11/7 関東不動産リスト（月の TOWN NOTE 入口と同じ）：街の数・上がった街・調べた数字 */
 function pct(v){{return (v>0?"+":v<0?"−":"±")+Math.abs(v).toFixed(1)+"%"}}
