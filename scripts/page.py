@@ -1504,6 +1504,7 @@ fetch("/kanto-yado.json").then(function(r){{return r.ok?r.json():{{}}}}).then(fu
 document.addEventListener("click",function(){{setTimeout(sync,80);}},true);
 }})();
 </script>
+<script src="/assets/yado-date.js?v=1" defer></script>
 </body></html>
 """
 
