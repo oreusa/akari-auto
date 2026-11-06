@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-06 17:59",
+  "at": "2026-11-06 22:24",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 45,
+      "read": 46,
       "ok": 15,
-      "avg": 163.4,
+      "avg": 161.5,
       "top": [
         {
           "name": "サントリー 天然水 2L 2000ml ペットボトル 6本 1ケース 送料無料（一部地域除く…",
@@ -497,7 +497,7 @@
           "price": 4546,
           "per": 145.7,
           "amt": "650ml×48",
-          "rc": 465,
+          "rc": 466,
           "av": 4.81,
           "shop": "ドリンク屋 Yahoo!ショッピング店",
           "bd": "綾鷹",
@@ -614,9 +614,9 @@
       "title": "洗濯洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 119,
-      "read": 30,
+      "read": 29,
       "ok": 13,
-      "avg": 1231.3,
+      "avg": 1186.1,
       "top": [
         {
           "name": "アタック 抗菌EX 部屋干し 洗剤 洗濯洗剤 詰め替え 超特大 ゾンビ臭 液体 じめじめ 密…",
@@ -745,7 +745,7 @@
       "seen": 90,
       "read": 26,
       "ok": 9,
-      "avg": 1074.3,
+      "avg": 1091.1,
       "top": [
         {
           "name": "送料無料・4個セット ハミング消臭実感 ローズ＆フローラルの香り 6.8倍 2600ml 柔…",
@@ -846,9 +846,9 @@
       "title": "シャンプー（詰め替え）",
       "unit": "1L・1kg",
       "seen": 150,
-      "read": 26,
+      "read": 25,
       "ok": 2,
-      "avg": 2531.1,
+      "avg": 2415.9,
       "top": [
         {
           "name": "11月1日から31日限定！ エントリーで全品ポイント5倍 パンテーン ミラクルズ カラーシャ…",
@@ -1138,7 +1138,7 @@
           "price": 2580,
           "per": 43.0,
           "amt": "150組×40箱",
-          "rc": 501,
+          "rc": 502,
           "av": 4.56,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10156163/",
@@ -1195,7 +1195,7 @@
       "seen": 120,
       "read": 44,
       "ok": 44,
-      "avg": 57.0,
+      "avg": 53.4,
       "top": [
         {
           "name": "花王 メリーズ エアスルー テープ 新生児用5000g まで 68枚入り×4個入 紙おむつ …",
@@ -1211,6 +1211,19 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/beisia/cabinet/09476807/4901301437693.jpg?_ex=300x300"
         },
         {
+          "name": "箱売り/3個セット ユニ・チャーム ムーニー マシュマロ肌ごこち モレ安心 新生児用 お誕生…",
+          "price": 5128,
+          "per": 26.7,
+          "amt": "192枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "NSC-Shop",
+          "plain": "https://item.rakuten.co.jp/nsc-kj/10002019/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00rjmjo.m2lhf065.g00rjmjo.m2lhg733/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnsc-kj%2F4903111210947-3set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnsc-kj%2Fi%2F10002019%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nsc-kj/cabinet/shohin03/4903111210947-3p.jpg?_ex=300x300"
+        },
+        {
           "name": "パンツ Mサイズ マミーポコ パンツ ドラえもん オムツ（6~13kg）144枚（48枚×3…",
           "price": 4020,
           "per": 27.9,
@@ -1222,6 +1235,19 @@
           "bd": "マミーポコ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00uq9uo.m2lhfa3d.g00uq9uo.m2lhg7fc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Factonlineshop%2Facton2687cebc142b%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Factonlineshop%2Fi%2F10025244%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/actonlineshop/cabinet/onesell027/acton2687cebc142b_0.jpg?_ex=300x300"
+        },
+        {
+          "name": ".co.jp 限定 テープ 新生児用 メリーズ オムツ さら さらエアスルー (お誕生~50…",
+          "price": 4841,
+          "per": 29.5,
+          "amt": "164枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "川山商店 楽天市場店",
+          "plain": "https://item.rakuten.co.jp/kawayamasyouten/10067414/",
+          "bd": "メリーズ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00usmto.m2lhf962.g00usmto.m2lhg1aa/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkawayamasyouten%2F20260824111658_221%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkawayamasyouten%2Fi%2F10067414%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kawayamasyouten/cabinet/r_2025101311/20260824111658_221_1.jpg?_ex=300x300"
         },
         {
           "name": "P&G｜ピーアンドジー ＜テープ 新生児(5kgまで)＞ パンパース オムツ はじめての肌へ…",
@@ -1263,17 +1289,17 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/fragrance-fukuyama/cabinet/case20260924/r21-4903111130573.jpg?_ex=300x300"
         },
         {
-          "name": "パンツ ビッグサイズ マミーポコ パンツ オムツ（12~22kg）162枚（54枚×3）トミ…",
-          "price": 6534,
-          "per": 40.3,
-          "amt": "162枚",
+          "name": "パンツ ビッグサイズ ムーニーマン 女の子 オムツ(12-22kg)176枚(44枚×4) …",
+          "price": 10467,
+          "per": 59.5,
+          "amt": "176枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "nicobeststore",
-          "plain": "https://item.rakuten.co.jp/nicobest/10052804/",
-          "bd": "マミーポコ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00ut4po.m2lhf9ac.g00ut4po.m2lhgcdc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnicobest%2Fjs8d6846ebc4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnicobest%2Fi%2F10052804%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nicobest/cabinet/onesell077/js8d6846ebc4_0.jpg?_ex=300x300"
+          "shop": "Natures shop online 楽天市場店",
+          "plain": "https://item.rakuten.co.jp/only-one-store/10001082/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00u886o.m2lhf63a.g00u886o.m2lhgbba/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fonly-one-store%2F9999c4b5374fe2%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fonly-one-store%2Fi%2F10001082%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/only-one-store/cabinet/onesell001/9999c4b5374fe2.jpg?_ex=300x300"
         },
         {
           "name": "パンツ ビッグより大きいサイズ マミーポコ パンツ ドラえもん オムツ(13~28kg)66…",
@@ -1289,17 +1315,17 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/senses/cabinet/r_2025080118/20250812215518_20_1.jpg?_ex=300x300"
         },
         {
-          "name": "メリーズ テープ Sサイズ さら さらエアスルー (4~8kg)296枚 (74枚×4) ケ…",
-          "price": 10815,
-          "per": 36.5,
-          "amt": "296枚",
+          "name": "まとめ買い メリーズ エアスルー テープ Sサイズ 62枚入り×4個 赤ちゃん おむつ 紙お…",
+          "price": 9670,
+          "per": 39.0,
+          "amt": "248枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "Reve2018",
-          "plain": "https://item.rakuten.co.jp/reve2018/10069649/",
+          "shop": "ダイユーエイト楽天市場店",
+          "plain": "https://item.rakuten.co.jp/daiyu8/10169391/",
           "bd": "メリーズ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00utcqo.m2lhf3c0.g00utcqo.m2lhg6f2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Freve2018%2F20260923045701_234%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Freve2018%2Fi%2F10069649%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/reve2018/cabinet/r_2026030624/20260923045701_234_1.jpg?_ex=300x300"
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00tak5o.m2lhfddc.g00tak5o.m2lhg1ea/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdaiyu8%2F4901301437709-4set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdaiyu8%2Fi%2F10169391%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/daiyu8/cabinet/images258/4901301437709-4set_1.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
@@ -1337,7 +1363,7 @@
       "seen": 140,
       "read": 46,
       "ok": 16,
-      "avg": 4.6,
+      "avg": 4.5,
       "top": [
         {
           "name": "ムーニー おしりふき やわらか素材 詰め替え 76枚×32個 moony ムーニー ベビー用…",
@@ -1413,9 +1439,9 @@
       "title": "ゴミ袋",
       "unit": "1枚",
       "seen": 142,
-      "read": 87,
+      "read": 83,
       "ok": 5,
-      "avg": 19.5,
+      "avg": 18.7,
       "top": [
         {
           "name": "エントリーでP10倍★4日20:00〜11日1:59まで ごみ袋 45リットル 半透明 65…",
@@ -2007,7 +2033,7 @@
       "seen": 112,
       "read": 63,
       "ok": 49,
-      "avg": 1542.3,
+      "avg": 1542.0,
       "top": [
         {
           "name": "キャットフード サイエンスダイエット アダルト 1〜6歳 成猫用 チキン 2．8kg×4袋 …",
