@@ -5321,9 +5321,9 @@
  },
  "https://maruchiba.jp/event/detail_10895.html": {
   "at": "2026-11-06",
-  "ok": false,
-  "sec": 0.7,
-  "why": "404"
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
  },
  "https://maruchiba.jp/event/detail_10897.html": {
   "at": "2026-11-05",
