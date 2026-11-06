@@ -2092,6 +2092,12 @@
   "sec": 0.5,
   "why": ""
  },
+ "https://ballparkxmas.com/2026/": {
+  "at": "2026-11-06",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
  "https://bungaku.pref.gunma.jp/project/3148/": {
   "at": "2026-11-05",
   "by": "browser",
@@ -2104,6 +2110,12 @@
   "by": "browser",
   "ok": true,
   "sec": 3.2,
+  "why": ""
+ },
+ "https://christmasmarket.jp/202611-cocooncity/": {
+  "at": "2026-11-06",
+  "ok": true,
+  "sec": 0.6,
   "why": ""
  },
  "https://dai-tsukemen-haku.com/": {
@@ -2126,6 +2138,12 @@
   "ok": true,
   "sec": 4.7,
   "why": ""
+ },
+ "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
+  "at": "2026-11-06",
+  "ok": false,
+  "sec": 15.3,
+  "why": "<urlopen error timed out>"
  },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
   "at": "2026-11-05",
@@ -5609,6 +5627,12 @@
   "sec": 1.4,
   "why": ""
  },
+ "https://tokorozawa-sakuratown.com/event_categories/odekake-kozame.html": {
+  "at": "2026-11-06",
+  "ok": true,
+  "sec": 1.0,
+  "why": ""
+ },
  "https://tokyo-sg.com/news/3963": {
   "at": "2026-11-05",
   "by": "browser",
@@ -7891,6 +7915,12 @@
   "sec": 4.2,
   "why": ""
  },
+ "https://www.roppongihills.com/sp/christmashills/": {
+  "at": "2026-11-06",
+  "ok": true,
+  "sec": 0.6,
+  "why": ""
+ },
  "https://www.sagamiko-resort.jp/illumillion/": {
   "at": "2026-11-05",
   "by": "browser",
@@ -7910,6 +7940,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.4,
+  "why": ""
+ },
+ "https://www.senmaida.com/": {
+  "at": "2026-11-06",
+  "ok": true,
+  "sec": 1.7,
   "why": ""
  },
  "https://www.shibuya-scramble-square.com/sky/sparkling_view": {
@@ -8044,6 +8080,12 @@
   "sec": 2.4,
   "why": ""
  },
+ "https://www.town.tamamura.lg.jp/docs/2026100800010/": {
+  "at": "2026-11-06",
+  "ok": true,
+  "sec": 0.8,
+  "why": ""
+ },
  "https://www.tsurumi-uchinafes.jp/": {
   "at": "2026-10-31",
   "by": "browser",
@@ -8121,6 +8163,12 @@
   "sec": 1.0,
   "why": ""
  },
+ "https://www.yaesu.tokyo-midtown.com/special/xmas/": {
+  "at": "2026-11-06",
+  "ok": true,
+  "sec": 0.2,
+  "why": ""
+ },
  "https://www.yamato-future.jp/events/event10654/": {
   "at": "2026-11-05",
   "by": "browser",
@@ -8160,6 +8208,12 @@
   "by": "browser",
   "ok": true,
   "sec": 7.1,
+  "why": ""
+ },
+ "https://yamatokuen.com": {
+  "at": "2026-11-06",
+  "ok": true,
+  "sec": 1.1,
   "why": ""
  },
  "https://yayoikusamamuseum.jp/en/exhibition/": {

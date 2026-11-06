@@ -4074,5 +4074,75 @@
     ],
     "w": 1,
     "h": []
+  },
+  "没後150年藤枝太郎英義の刀剣美": {
+    "v": 2,
+    "t": "2026-11-06",
+    "ll": [
+      36.30559,
+      139.12218
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "未来ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198046",
+        "km": 4.8,
+        "r": 4.53,
+        "rc": 47,
+        "min": 3200
+      },
+      {
+        "n": "伊勢崎天然温泉 ハナホテル伊勢崎",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184707",
+        "km": 5.4,
+        "r": 4.22,
+        "rc": 1197,
+        "min": 3300
+      },
+      {
+        "n": "トレイルイン前橋駒形インター(Trail inn 前橋駒形インター)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D195970",
+        "km": 4.5,
+        "r": 4.19,
+        "rc": 114,
+        "min": 3200
+      }
+    ]
+  },
+  "徳明園秋の紅葉金のライトアップ": {
+    "v": 2,
+    "t": "2026-11-06",
+    "ll": [
+      36.30484,
+      138.98793
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "エールハウス",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182405",
+        "km": 3.3,
+        "r": 5.0,
+        "rc": 13,
+        "min": 9923
+      },
+      {
+        "n": "ホテルココ・グラン高崎",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136287",
+        "km": 3.1,
+        "r": 4.61,
+        "rc": 2198,
+        "min": 8250
+      },
+      {
+        "n": "ホテル グランビュー高崎",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D165867",
+        "km": 3.0,
+        "r": 4.59,
+        "rc": 1021,
+        "min": 6050
+      }
+    ]
   }
 }

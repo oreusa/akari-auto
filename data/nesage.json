@@ -1,7 +1,7 @@
 {
-  "at": "2026-11-06 11:49",
+  "at": "2026-11-06 18:03",
   "since": "2026-11-01",
-  "tracked": 251,
+  "tracked": 253,
   "days": 5,
   "downs": [
     {
@@ -39,6 +39,18 @@
       "av": 4.37,
       "shop": "くらしのeショップ",
       "plain": "https://item.rakuten.co.jp/e-kurashi/10000628/"
+    },
+    {
+      "title": "加湿器",
+      "name": "4重除菌 4.5L LAViNO エアリファイ 2027 医師推奨 除菌加湿 大容量 静音 …",
+      "price": 15840,
+      "base": 19800,
+      "pct": 20,
+      "days": 5,
+      "rc": 738,
+      "av": 4.13,
+      "shop": "美顔器 美容家電 アイビビッド",
+      "plain": "https://item.rakuten.co.jp/aibeaute/10000907/"
     },
     {
       "title": "ティッシュ",
@@ -107,22 +119,10 @@
       "base": 5440,
       "pct": 8,
       "days": 5,
-      "rc": 381,
+      "rc": 382,
       "av": 4.56,
       "shop": "快適ホームライフ",
       "plain": "https://item.rakuten.co.jp/k-home/10063600/"
-    },
-    {
-      "title": "ティッシュ",
-      "name": "ティッシュ スコッティ ティッシュペーパー 400枚 （200組）大容量 備蓄 防災 ボック…",
-      "price": 5090,
-      "base": 5460,
-      "pct": 7,
-      "days": 5,
-      "rc": 553,
-      "av": 4.75,
-      "shop": "暮らし健康ネット館",
-      "plain": "https://item.rakuten.co.jp/kurashikenkou/10188680/"
     }
   ],
   "ups": []
