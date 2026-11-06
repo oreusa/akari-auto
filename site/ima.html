@@ -66,6 +66,7 @@ h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:24px;line-heigh
 .wkh small{font-family:"Zen Kaku Gothic New";font-size:11px;font-weight:500;color:#8C7B6E;letter-spacing:.04em}
 .it{position:relative;margin:0 0 12px;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:inset 4px 0 0 var(--pc);transition:box-shadow .3s}
 .it.hl{box-shadow:inset 4px 0 0 var(--pc),0 0 0 2px var(--pc)}
+.v2c .tw{font-size:11px;font-weight:700;color:#B3261E;border:1px solid #E8B4AE;border-radius:6px;padding:0 6px;margin-left:4px}
 .card{display:block;text-decoration:none;color:inherit;padding:14px 56px 10px 16px}
 .v2c{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 9px;padding-right:34px}
 .v2c span{display:inline-flex;align-items:center;gap:5px;background:var(--chip);color:#3A3A3A;border-radius:99px;padding:4px 10px 4px;font-size:11px;font-weight:700;letter-spacing:.04em;line-height:1.2}
@@ -269,8 +270,10 @@ function draw(){if(!O||!ITEMS.length)return;
       h+='<div class="bd2">'+(BD[bi]>1e8?"3時間より遠く":(BD[bi]<60?BD[bi]+"分":Math.floor(BD[bi]/60)+"時間"+(BD[bi]%60?BD[bi]%60+"分":""))+"以内")+'<small>'+n+'か所</small></div>';}}
     var st=x.e&&x.e===T?'<span class="ls">きょうまで</span>':(x.e&&dd(T,x.e)<=3?'<span class="ls">あと'+dd(T,x.e)+'日</span>':(x.e?'<span class="on">開催中</span>':""));
     var dt=x.e?fd(x.e)+" まで":(x.d.replace(/\s+/g," ").trim());
+    /* 11/6 夜#44：朝早い・夜おそい時は、カードにも書く（月と同じ） */
+    var hh=jst().getUTCHours(),nt=/イルミ|ライトアップ|夜|ナイト|光|ルミナ|ランタン|花火/.test(x.t+" "+x.m),tw=hh<9?'<span class="tw">着くころ開く前かも</span>':(hh>=17&&!nt?'<span class="tw">着くころ閉まっているかも</span>':"");
     var route="https://www.google.com/maps/dir/?api=1&origin="+encodeURIComponent(dir)+"&destination="+x.la+","+x.lo+"&travelmode=transit";
-    h+='<article class="it" id="i-'+esc(x.t)+'" style="--pc:'+PC[x.p]+'"><a class="card" href="'+esc(x.href)+'" target="_blank" rel="noopener" data-k="公式｜'+esc(x.t)+'"><div class="v2c"><span class="p">'+x.p+'</span>'+st+(x.free?'<span class="f">無料</span>':"")+'</div><div class="v2d">'+esc(dt)+'</div><div class="t">'+esc(x.t)+'</div><div class="m">'+esc(x.place+(x.m?"｜"+x.m:""))+'</div><div class="tt"><small>約</small>'+tmin(x.min)+'<i>'+(x.k<10?x.k.toFixed(1):Math.round(x.k))+' km</i></div><div class="go">→</div></a><div class="rt"><a href="'+route+'" target="_blank" rel="noopener" data-k="行き方｜'+esc(x.t)+'">行き方</a></div></article>';});
+    h+='<article class="it" id="i-'+esc(x.t)+'" style="--pc:'+PC[x.p]+'"><a class="card" href="'+esc(x.href)+'" target="_blank" rel="noopener" data-k="公式｜'+esc(x.t)+'"><div class="v2c"><span class="p">'+x.p+'</span>'+st+(x.free?'<span class="f">無料</span>':"")+tw+'</div><div class="v2d">'+esc(dt)+'</div><div class="t">'+esc(x.t)+'</div><div class="m">'+esc(x.place+(x.m?"｜"+x.m:""))+'</div><div class="tt"><small>約</small>'+tmin(x.min)+'<i>'+(x.k<10?x.k.toFixed(1):Math.round(x.k))+' km</i></div><div class="go">→</div></a><div class="rt"><a href="'+route+'" target="_blank" rel="noopener" data-k="行き方｜'+esc(x.t)+'">行き方</a></div></article>';});
   document.getElementById("list").innerHTML=h;document.getElementById("none").style.display=show.length?"none":"block";}
 /* レーダーの点を押す → その所へ */
 var tip=document.getElementById("tip"),rd=document.getElementById("rd");
