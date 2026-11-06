@@ -109,6 +109,8 @@ NG = ("ふるさと", "定期", "お試し", "サンプル")
 KIND = {"tea": "vol", "coffee": "vol", "detergent": "vol", "softener": "vol", "shampoo": "vol", "bodysoap": "vol", "dish": "vol",
         "tissue": "kumi", "diaper": "pcs", "wipes": "pcs", "trash": "pcs", "mask": "pcs", "battery": "hon",
         "pasta": "wt", "protein": "wt", "beans": "wt", "dogfood": "wt", "catfood": "wt"}
+EXTRAQ = {"softener": ("無香料",), "detergent": ("無香料", "ジェルボール"), "dish": ("無香料",), "bodysoap": ("無添加",),
+          "diaper": ("パンツ L", "パンツ ビッグ", "テープ 新生児", "テープ S"), "tp": ("シングル",), "tissue": ("箱",)}
 NEWPAGES = 2  # 足した物は 30件×2ページ（楽天APIを使いすぎない）  # 名前に必ずある言葉（検索で別の物が混ざるため）
 # key, 見出し, 検索の言葉, ジャンル, 単位, 入れない言葉, 1単位のありえる値段の幅
 CATS = [
@@ -364,6 +366,16 @@ def fetch(cat):
         if not items:
             break
         take(items)
+    # 11/6 夜#69「無香料の柔軟剤」などで探す人がいる → よく探す条件の言葉でも1回ずつ探して、くらべる物に入れる（30件×数回）
+    for w in EXTRAQ.get(key, ()):
+        q = {"keyword": f"{kw.split()[0]} {w}", "postageFlag": 1, "availability": 1, "sort": "-reviewCount", "hits": 30}
+        if gid:
+            q["genreId"] = gid
+        if key in KIND:
+            q["NGKeyword"] = NGKW + (" 大人 介護" if key == "diaper" else "")
+        items, _ = lib._rakuten_search(q)
+        time.sleep(1.1)
+        take(items or [])
     # 名の知れた物が少ない時は、メーカー名でもう1回ずつ探す（最初の言葉＋メーカー名、30件）
     have = {r["bd"] for r in rows} - {""}
     if len(have) < BRAND_MIN:
@@ -419,6 +431,11 @@ def fetch(cat):
         out.append(r)
     avg = round(sum(r["per"] for r in rows) / len(rows), 1) if rows else 0
     top = brand_first(key, out, TOP)
+    # 11/6 条件の言葉（無香料・パンツLなど）の物が上に1つも無い時は、その中の安い物を2つまで足す（条件で選んだ時に0件にならないように）
+    for w in EXTRAQ.get(key, ()):
+        ws = w.split()
+        if not any(all(x in r["name"] for x in ws) for r in top):
+            top += [r for r in sorted(out, key=lambda r: r["per"]) if all(x in r["name"] for x in ws) and r not in top][:2]
     print("名の知れた物", key, sum(1 for r in top if r["bd"]), "/", len(top))
     return {"key": key, "title": cat[1], "unit": unit, "seen": n_all, "read": len(rows), "ok": len(ok),
             "avg": avg, "rmin": rmin, "top": top}, err

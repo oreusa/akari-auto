@@ -58,7 +58,11 @@ def esc(s):
 
 
 def short(name, n=46):
-    name = " ".join(str(name).replace("【", " ").replace("】", " ").split())
+    # 11/6 夜#13「電気毛布P15倍 11/11 9:59迄」：ポイント・期限などの宣伝を外して、商品の言葉だけにする
+    import re
+    t = re.sub(r"[【\[＜<《≪].*?[】\]＞>》≫]", " ", str(name))
+    t = re.sub(r"(P\s*\d+倍|ポイント\s*\d+倍|\d+倍|\d{1,2}[/／]\d{1,2}\S*|\d{1,2}:\d\d\S*|\S*迄|送料無料|あす楽|クーポン\S*|最大\S*%\S*|\d+%\s*OFF)", " ", t, flags=re.I)
+    name = " ".join(t.split()) or str(name)
     return name if len(name) <= n else name[:n] + "…"
 
 
