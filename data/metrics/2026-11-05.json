@@ -1,6 +1,6 @@
 {
   "day": "2026-11-05",
-  "fetchedAt": "2026-11-06T06:34+09:00",
+  "fetchedAt": "2026-11-07T06:05+09:00",
   "posts": [
     {
       "service": "threads",
@@ -11,8 +11,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 25,
-        "views": 4,
+        "engagementRate": 14.29,
+        "views": 7,
         "quotes": 0,
         "reposts": 0
       }
@@ -26,9 +26,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 3.45,
+        "engagementRate": 3.33,
         "reposts": 0,
-        "impressions": 29,
+        "impressions": 30,
         "clicks": 0
       }
     },
@@ -41,8 +41,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 2.56,
-        "views": 78,
+        "engagementRate": 2.22,
+        "views": 90,
         "quotes": 0,
         "reposts": 0
       }
@@ -56,9 +56,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.69,
+        "engagementRate": 1.16,
         "reposts": 0,
-        "impressions": 59,
+        "impressions": 86,
         "clicks": 0
       }
     },
@@ -69,10 +69,10 @@
       "first": "11/7・8、宇都宮餃子祭りは約30店の屋台、一皿200円から🥟",
       "url": "https://www.threads.com/@ai_usagichan1/post/DfWCuquEVcQ",
       "metrics": {
-        "reactions": 0,
+        "reactions": 1,
         "comments": 1,
-        "engagementRate": 0.91,
-        "views": 110,
+        "engagementRate": 0.32,
+        "views": 629,
         "quotes": 0,
         "reposts": 0
       }
@@ -86,9 +86,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.44,
+        "engagementRate": 1.52,
         "reposts": 0,
-        "impressions": 41,
+        "impressions": 66,
         "clicks": 0
       }
     },
@@ -99,10 +99,10 @@
       "first": "【紅葉の夜の入園料くらべ　立川・長瀞・小石川｜小学生まではどこも無料🍁】",
       "url": "https://www.threads.com/@ai_usagichan1/post/DfWNB8xlQRI",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "reactions": 4,
+        "comments": 1,
+        "engagementRate": 1.13,
+        "views": 443,
         "quotes": 0,
         "reposts": 0
       }
@@ -116,9 +116,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.41,
+        "engagementRate": 0.27,
         "reposts": 0,
-        "impressions": 482,
+        "impressions": 733,
         "clicks": 0
       }
     },
@@ -129,10 +129,10 @@
       "first": "11/6、イオンモール川口前川に今川焼きの月のうさぎ、埼玉に初出店🥞",
       "url": "https://www.threads.com/@ai_usagichan1/post/DfWXVldFZpb",
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "reactions": 15,
+        "comments": 3,
+        "engagementRate": 0.34,
+        "views": 5345,
         "quotes": 0,
         "reposts": 0
       }
@@ -146,9 +146,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.27,
+        "engagementRate": 1.25,
         "reposts": 0,
-        "impressions": 44,
+        "impressions": 80,
         "clicks": 0
       }
     },
@@ -160,9 +160,9 @@
       "url": "https://www.threads.com/@ai_usagichan1/post/DfWr-FFEV8s",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 8.33,
+        "views": 12,
         "quotes": 0,
         "reposts": 0
       }
@@ -176,9 +176,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 3.45,
+        "engagementRate": 2.63,
         "reposts": 0,
-        "impressions": 29,
+        "impressions": 38,
         "clicks": 0
       }
     },
@@ -190,9 +190,9 @@
       "url": "https://www.threads.com/@ai_usagichan1/post/DfW5rnPluay",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 6.25,
+        "views": 16,
         "quotes": 0,
         "reposts": 0
       }
@@ -206,9 +206,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 6.45,
+        "engagementRate": 5.41,
         "reposts": 0,
-        "impressions": 31,
+        "impressions": 37,
         "clicks": 0
       }
     },
@@ -220,9 +220,9 @@
       "url": "https://www.threads.com/@ai_usagichan1/post/DfW--MDoBm9",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 14.29,
+        "views": 7,
         "quotes": 0,
         "reposts": 0
       }
@@ -236,9 +236,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 16.67,
+        "engagementRate": 11.11,
         "reposts": 0,
-        "impressions": 6,
+        "impressions": 9,
         "clicks": 0
       }
     },
@@ -250,9 +250,9 @@
       "url": "https://www.threads.com/@ai_usagichan1/post/DfXHc0TkUoE",
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 4.17,
+        "views": 24,
         "quotes": 0,
         "reposts": 0
       }
@@ -266,9 +266,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 3.57,
+        "engagementRate": 2.27,
         "reposts": 0,
-        "impressions": 28,
+        "impressions": 44,
         "clicks": 0
       }
     },
@@ -327,8 +327,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 10,
-        "views": 10,
+        "engagementRate": 8.33,
+        "views": 12,
         "quotes": 0,
         "reposts": 0
       }
@@ -342,9 +342,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 7.69,
+        "engagementRate": 5.26,
         "reposts": 0,
-        "impressions": 13,
+        "impressions": 19,
         "clicks": 0
       }
     },
@@ -358,12 +358,12 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 119,
+        "views": 124,
         "shares": 0,
         "saves": 0,
-        "totalTimeWatched": 3.4,
-        "averageTimeWatched": 1.84,
-        "reach": 111
+        "totalTimeWatched": 3.55,
+        "averageTimeWatched": 1.87,
+        "reach": 113
       }
     }
   ]
