@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-06 09:24",
+  "at": "2026-11-06 10:05",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 44,
-      "ok": 14,
-      "avg": 165.2,
+      "read": 45,
+      "ok": 15,
+      "avg": 156.9,
       "top": [
         {
           "name": "サントリー 天然水 2L 2000ml ペットボトル 6本 1ケース 送料無料（一部地域除く…",
@@ -614,9 +614,9 @@
       "title": "洗濯洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 119,
-      "read": 28,
+      "read": 29,
       "ok": 12,
-      "avg": 1187.1,
+      "avg": 1233.9,
       "top": [
         {
           "name": "アタック 抗菌EX 部屋干し 洗剤 洗濯洗剤 詰め替え 超特大 ゾンビ臭 液体 じめじめ 密…",
@@ -848,7 +848,7 @@
       "seen": 150,
       "read": 28,
       "ok": 2,
-      "avg": 2682.6,
+      "avg": 2625.4,
       "top": [
         {
           "name": "11月1日から31日限定！ エントリーで全品ポイント5倍 パンテーン ミラクルズ カラーシャ…",
@@ -912,7 +912,7 @@
       "seen": 88,
       "read": 20,
       "ok": 6,
-      "avg": 1111.1,
+      "avg": 1109.4,
       "top": [
         {
           "name": "ボディソープ キレイキレイ せいけつボディソープ 10L 詰め替え用 大容量 ボディウォッシ…",
@@ -1195,7 +1195,7 @@
       "seen": 120,
       "read": 38,
       "ok": 38,
-      "avg": 55.5,
+      "avg": 51.6,
       "top": [
         {
           "name": "花王 メリーズ エアスルー テープ 新生児用5000g まで 68枚入り×4個入 紙おむつ …",
@@ -1224,6 +1224,19 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/actonlineshop/cabinet/onesell027/acton2687cebc142b_0.jpg?_ex=300x300"
         },
         {
+          "name": "メリーズ Merries テープ 新生児用 オムツ さら さらエアスルー (お誕生~5000…",
+          "price": 4841,
+          "per": 29.5,
+          "amt": "164枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "ちいさなしあわせストア",
+          "plain": "https://item.rakuten.co.jp/chiisana--shiawase/10019140/",
+          "bd": "メリーズ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uw1xo.m2lhf56e.g00uw1xo.m2lhg560/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fchiisana--shiawase%2F20260823041722_41%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fchiisana--shiawase%2Fi%2F10019140%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/chiisana--shiawase/cabinet/r_2026082357/20260823041722_41_1.jpg?_ex=300x300"
+        },
+        {
           "name": "P&G｜ピーアンドジー ＜テープ 新生児(5kgまで)＞ パンパース オムツ はじめての肌へ…",
           "price": 6430,
           "per": 29.8,
@@ -1250,17 +1263,17 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/up-shop/cabinet/imgrc0189236006.jpg?_ex=300x300"
         },
         {
-          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
-          "price": 8828,
-          "per": 31.5,
-          "amt": "280枚",
+          "name": "パンツ ビッグサイズ マミーポコ パンツ オムツ（12~22kg）162枚（54枚×3）トミ…",
+          "price": 6534,
+          "per": 40.3,
+          "amt": "162枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "Ciel de neige",
-          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/",
-          "bd": "ムーニー",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uoo1o.m2lhf537.g00uoo1o.m2lhg030/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcieldeneige%2Fcl91611ab260%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcieldeneige%2Fi%2F10011999%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cieldeneige/cabinet/onesell117/cl91611ab260.jpg?_ex=300x300"
+          "shop": "nicobeststore",
+          "plain": "https://item.rakuten.co.jp/nicobest/10052804/",
+          "bd": "マミーポコ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00ut4po.m2lhf9ac.g00ut4po.m2lhgcdc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnicobest%2Fjs8d6846ebc4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnicobest%2Fi%2F10052804%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nicobest/cabinet/onesell077/js8d6846ebc4_0.jpg?_ex=300x300"
         },
         {
           "name": "パンツ ビッグサイズ ムーニーマン 女の子 オムツ(12-22kg)176枚(44枚×4) …",
@@ -1274,6 +1287,32 @@
           "bd": "ムーニー",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00u3ajo.m2lhfb1e.g00u3ajo.m2lhgea2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkichibei0318%2Fkichibee5fdaf05083%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkichibei0318%2Fi%2F10074864%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kichibei0318/cabinet/onesell038/kichibee5fdaf05083.jpg?_ex=300x300"
+        },
+        {
+          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
+          "price": 8828,
+          "per": 31.5,
+          "amt": "280枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Ciel de neige",
+          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uoo1o.m2lhf537.g00uoo1o.m2lhg030/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcieldeneige%2Fcl91611ab260%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcieldeneige%2Fi%2F10011999%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cieldeneige/cabinet/onesell117/cl91611ab260.jpg?_ex=300x300"
+        },
+        {
+          "name": "まとめ買い メリーズ エアスルー テープ Sサイズ 62枚入り×4個 赤ちゃん おむつ 紙お…",
+          "price": 9670,
+          "per": 39.0,
+          "amt": "248枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "ダイユーエイト楽天市場店",
+          "plain": "https://item.rakuten.co.jp/daiyu8/10169391/",
+          "bd": "メリーズ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00tak5o.m2lhfddc.g00tak5o.m2lhg1ea/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdaiyu8%2F4901301437709-4set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdaiyu8%2Fi%2F10169391%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/daiyu8/cabinet/images258/4901301437709-4set_1.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
@@ -1309,7 +1348,7 @@
       "title": "おしりふき",
       "unit": "1枚",
       "seen": 140,
-      "read": 46,
+      "read": 48,
       "ok": 16,
       "avg": 4.6,
       "top": [
@@ -1387,7 +1426,7 @@
       "title": "ゴミ袋",
       "unit": "1枚",
       "seen": 142,
-      "read": 87,
+      "read": 86,
       "ok": 5,
       "avg": 18.6,
       "top": [
@@ -1672,7 +1711,7 @@
       "seen": 127,
       "read": 83,
       "ok": 24,
-      "avg": 668.9,
+      "avg": 668.7,
       "top": [
         {
           "name": "バリラ No.5 5kg 3袋 業務用 パスタ スパゲティ 約1.8mm Barilla『送…",
