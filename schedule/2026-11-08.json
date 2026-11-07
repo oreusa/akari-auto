@@ -142,11 +142,6 @@
  ],
  "room": [
   {
-   "url": "https://item.rakuten.co.jp/pajama/1000k/",
-   "expect": "パジャマ",
-   "comment": "冬の夜に、綿100％のネル起毛のキッズパジャマです。\n前開きのボタンで、着替えが楽な形です。\n寒くなる今から、子どもの寝冷えが気になる家に向いています。"
-  },
-  {
    "url": "https://item.rakuten.co.jp/romanjyu/lfh638/",
    "expect": "パジャマ",
    "comment": "綿100％の、子どもの冬の長袖パジャマです。\n上下のセットで、男の子にも女の子にも使えます。\n肌ざわりで選びたい家に向いています。"
@@ -155,11 +150,6 @@
    "url": "https://item.rakuten.co.jp/gift-bmcjapan/o20201116/",
    "expect": "スリーパー",
    "comment": "6重ガーゼの、綿のスリーパーです。\n布団をけってしまう子の寝冷え対策に使えます。\n新生児から7歳ごろまで使いたい家に向いています。"
-  },
-  {
-   "url": "https://item.rakuten.co.jp/yamabikoya/ibul_sleeper/",
-   "expect": "スリーパー",
-   "comment": "ケラッタの、6重ガーゼのイブルスリーパーです。\n横開きで、寝たまま着せられる形です。\n夜中に起こさず着せたい家に向いています。"
   },
   {
    "url": "https://item.rakuten.co.jp/chinavi/ibl-6gazslp/",
