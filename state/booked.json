@@ -6788,5 +6788,147 @@
       ],
       "topic": "神奈川"
     }
+  },
+  "2026-11-08 4コマ": {
+    "ig_media": {
+      "slides": [
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff&cx=7&cy=74&cw=709&ch=512&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff&cx=7&cy=596&cw=709&ch=512&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff&cx=7&cy=1118&cw=709&ch=512&output=jpg&q=92",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff&cx=7&cy=1640&cw=709&ch=512&output=jpg&q=92"
+      ],
+      "stories": [
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff&cx=7&cy=74&cw=709&ch=1034&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white",
+        "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff&cx=7&cy=1118&cw=709&ch=1034&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+      ],
+      "how": "見つけた",
+      "boxes": [
+        [
+          7,
+          74,
+          709,
+          512
+        ],
+        [
+          7,
+          596,
+          709,
+          512
+        ],
+        [
+          7,
+          1118,
+          709,
+          512
+        ],
+        [
+          7,
+          1640,
+          709,
+          512
+        ]
+      ],
+      "src": "https://drive.google.com/uc?export=download&id=1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff",
+      "v": 2,
+      "story_diff": [
+        1.0,
+        1.0
+      ],
+      "story_ok": [
+        true,
+        true
+      ]
+    },
+    "twitter": {
+      "tries": 1,
+      "id": "6aefa3ae229bf05daf788d9f",
+      "kind": "4コマ",
+      "at": "08:00",
+      "texts": [
+        "【11/8　笠間稲荷神社｜第119回 笠間の菊まつり🌼】\n\n✦ 明治41年から続く菊の祭典\n✦ 有料エリアは中学生以下無料\n\n菊と神社、先にどっちを見ますか。\n\nうさぎちゃんのおでかけ4コマ 第32話「菊の神社」🌙",
+        "笠間観光協会の菊まつりのページです（11/7時点）\nhttps://www.kasama-kankou.jp/page/page000160.html\n\n関東のおでかけ169件、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=x0800"
+      ],
+      "topic": "茨城",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff",
+        "video": null,
+        "alt": "4コマ漫画 第32話"
+      },
+      "svc": "twitter"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "6aefa3afd6bbae6fa1b38db6",
+      "kind": "4コマ",
+      "at": "08:00",
+      "texts": [
+        "【11/8　笠間稲荷神社｜第119回 笠間の菊まつり🌼】\n\n✦ 明治41年から続く菊の祭典\n✦ 有料エリアは中学生以下無料\n\n菊と神社、先にどっちを見ますか。\n\nうさぎちゃんのおでかけ4コマ 第32話「菊の神社」🌙",
+        "笠間観光協会の菊まつりのページです（11/7時点）\nhttps://www.kasama-kankou.jp/page/page000160.html\n\n関東のおでかけ169件、公式ページつきの一覧：https://usagi-life-notes.pages.dev/?f=t0800"
+      ],
+      "topic": "茨城",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff",
+        "video": null,
+        "alt": "4コマ漫画 第32話"
+      },
+      "svc": "threads"
+    },
+    "bgm_video": {
+      "src": "https://drive.google.com/uc?export=download&id=1Lvw3z6cwXxyXbPxvD_cfwJTrTQoeL5vy",
+      "url": "https://34d6e617.akari-reels.pages.dev/2026-11-08-bgm-32.mp4",
+      "error": null
+    },
+    "instagram": {
+      "tries": 1,
+      "id": "6aefa3c5229bf05daf7896a6",
+      "kind": "4コマ",
+      "at": "08:00",
+      "texts": [
+        "【11/8　笠間稲荷神社｜第119回 笠間の菊まつり🌼】\n\n✦ 明治41年から続く菊の祭典\n✦ 有料エリアは中学生以下無料\n\n菊と神社、先にどっちを見ますか。\n\nうさぎちゃんのおでかけ4コマ 第32話「菊の神社」🌙\n\nくわしい場所と公式ページは、プロフィールのリンク「関東おでかけリスト」からどうぞ。関東のおでかけを、ほかにもまとめています。\nHPでは、街の名前を入れると、その街のおでかけとイルミネーションがまとめて出ます。\n\n#笠間の菊まつり #笠間稲荷神社 #茨城おでかけ #関東おでかけ #無料イベント"
+      ],
+      "topic": "茨城",
+      "media": {
+        "image": "https://drive.google.com/uc?export=download&id=1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff",
+        "video": "https://34d6e617.akari-reels.pages.dev/2026-11-08-bgm-32.mp4",
+        "alt": "4コマ漫画 第32話"
+      },
+      "svc": "instagram"
+    },
+    "ig_story1": {
+      "tries": 1,
+      "id": "6aefa3c79214322f681b9c81",
+      "kind": "4コマ",
+      "at": "08:05",
+      "texts": [
+        "【11/8　笠間稲荷神社｜第119回 笠間の菊まつり🌼】\n\n✦ 明治41年から続く菊の祭典\n✦ 有料エリアは中学生以下無料\n\n菊と神社、先にどっちを見ますか。\n\nうさぎちゃんのおでかけ4コマ 第32話「菊の神社」🌙"
+      ],
+      "topic": "茨城",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff&cx=7&cy=74&cw=709&ch=1034&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+        ],
+        "ig_type": "story",
+        "alt": "4コマ漫画 第32話"
+      },
+      "svc": "instagram"
+    },
+    "ig_story2": {
+      "tries": 1,
+      "id": "6aefa3c89214322f681b9ca7",
+      "kind": "4コマ",
+      "at": "08:15",
+      "texts": [
+        "【11/8　笠間稲荷神社｜第119回 笠間の菊まつり🌼】\n\n✦ 明治41年から続く菊の祭典\n✦ 有料エリアは中学生以下無料\n\n菊と神社、先にどっちを見ますか。\n\nうさぎちゃんのおでかけ4コマ 第32話「菊の神社」🌙"
+      ],
+      "topic": "茨城",
+      "media": {
+        "images": [
+          "https://wsrv.nl/?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1hwar0z5bc0-7JxrXMEWPypg1HI9XTjff&cx=7&cy=1118&cw=709&ch=1034&output=jpg&q=92&precrop=1&w=1080&h=1920&fit=contain&cbg=white"
+        ],
+        "ig_type": "story",
+        "alt": "4コマ漫画 第32話"
+      },
+      "svc": "instagram"
+    }
   }
 }
