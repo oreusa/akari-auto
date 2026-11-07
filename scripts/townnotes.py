@@ -117,6 +117,15 @@ def verify(pref, place, ll):
     if towns:
         name = muni().get(code, '')
         if name and not any(t in name for t in towns):
+            # 境目の施設（恵比寿ガーデンプレイス・川・渓谷など）は隣の区市に出ることがある → 1.5km まわりに書いた市区町村があれば合う
+            d = 1.5 / 111
+            for a, b in ((d, 0), (-d, 0), (0, d * 1.25), (0, -d * 1.25)):
+                try:
+                    r2 = get('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress?lat=%s&lon=%s' % (ll[0] + a, ll[1] + b))
+                    if any(t in muni().get(int(r2['results']['muniCd']), '') for t in towns):
+                        return True
+                except Exception:
+                    pass
             return False
     return True
 
@@ -179,7 +188,7 @@ def main():
         if ck in cache and cache[ck][0] is None and (cache[ck] + [''])[3] <= time.strftime('%Y-%m-%d', time.gmtime(time.time() - 7 * 86400)):
             del cache[ck]
         c0 = cache.get(ck)
-        if c0 and c0[0] is not None and checked.get(ck) != '%s,%s' % (c0[0], c0[1]) and time.time() < stop:
+        if c0 and c0[0] is not None and c0[2] != 'manual' and checked.get(ck) != '%s,%s' % (c0[0], c0[1]) and time.time() < stop:
             v = verify(pref, place or name, c0)
             if v is False:
                 print('場所が都県・市区町村と合わない→調べ直す', ck, c0)
