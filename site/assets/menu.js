@@ -65,7 +65,7 @@
     ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","うさぎが数字で比べた物と、本当に安い物"],
     ["LIFE NOTE","tn","/","LIFE NOTE","関東のくらしのノート"]
   ];
-  /* 入口は、2つのリストとご連絡だけ */
+  /* 入口は、3つのリストとご連絡だけ */
   if(here==="tn")L=[["-","LIFE NOTE"],
     ["KANTO ODEKAKE","list","/odekake","関東おでかけリスト","関東のイベント・新しいお店や施設"],
     ["KANTO REAL ESTATE","flist","/fudosan-list","関東不動産リスト","地価・人口・新しい施設・制度を、公式の数字で"],
@@ -149,7 +149,7 @@
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
   function openView(v){var b=document.querySelector('button[data-v="'+v+'"]');if(!b)return;b.click();setTimeout(function(){var y=b.getBoundingClientRect().top+scrollY-10;scrollTo({top:y,behavior:"smooth"});},60);}
   function openMap(){var n=0;(function t(){var b=document.querySelector(".tnbtn");if(b){b.click();return;}if(++n<40)setTimeout(t,100);})();}
-  var GJ={"KANTO ODEKAKE":"おでかけ","KANTO REAL ESTATE":"不動産の数字","OKAIMONO LIST":"くらべた買い物","LIFE NOTE":"2つのリスト","CONTACT":"ご相談・お問い合わせ"};
+  var GJ={"KANTO ODEKAKE":"おでかけ","KANTO REAL ESTATE":"不動産の数字","OKAIMONO LIST":"くらべた買い物","LIFE NOTE":"3つのリスト","CONTACT":"ご相談・お問い合わせ"};
   function ug(k){return '<div class="ug">'+(GJ[k]||k)+(GJ[k]?'<small>'+k+'</small>':"")+'</div>';}
   var IC={
     list:'<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 12.5h8M8 16h5"/>',
