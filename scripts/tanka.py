@@ -631,6 +631,22 @@ def main():
         site = os.path.join(ROOT, "site")
         open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(cats, now))
         return
+    # 11/7 GitHubの分数が11月の2,000分を超える見込み（notes/actions-minutes.md）。楽天を100件以上呼ぶこの係が1回3分。
+    # 前の取り直しから10時間たっていなければ、楽天を呼ばずに前の data/tanka.json でページを作る（値段の時刻は前に確かめた時刻のまま出す）。
+    # 定時の 7:30・18:30 は11時間あくので、毎回取り直す。TANKA_FRESH=1 でいつも取り直す。
+    try:
+        d = json.load(open(os.path.join(ROOT, "data", "tanka.json"), encoding="utf-8"))
+        at = datetime.strptime(d["at"], "%Y-%m-%d %H:%M").replace(tzinfo=JST)
+        cached = d["cats"] if (now - at).total_seconds() < 10 * 3600 and not os.environ.get("TANKA_FRESH") else None
+    except Exception:
+        cached = None
+    if cached and len(cached) >= 2:
+        cats = [{"rmin": RMIN.get(c["key"], RMIN_NEW)} | c | {"yh": c.get("yahoo") or [], "amz": c.get("amazon") or []} for c in cached]
+        site = os.path.join(ROOT, "site")
+        os.makedirs(site, exist_ok=True)
+        open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(cats, at))
+        print(f"前の取り直し（{d['at']}）から10時間たっていないので、楽天を呼ばずに作った")
+        return
     for c in CATS:
         try:
             r, err = fetch(c)
@@ -659,7 +675,7 @@ def main():
     site = os.path.join(ROOT, "site")
     os.makedirs(site, exist_ok=True)
     open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(cats, now))
-    slim = [{k: c[k] for k in ("key", "title", "unit", "seen", "read", "ok", "avg")} |
+    slim = [{k: c[k] for k in ("key", "title", "unit", "seen", "read", "ok", "avg")} | {"rmin": c.get("rmin", 1000)} |
             {"top": [{k: r.get(k, "") for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain", "bd", "url", "img")} for r in c["top"]],
              "amazon": [{k: r.get(k, "") for k in ("asin", "name", "price", "per", "amt", "rc", "av", "url")} for r in c.get("amz", [])],
              "yahoo": [{k: r.get(k, "") for k in ("name", "price", "per", "amt", "rc", "av", "shop", "bd", "url", "img")} for r in c.get("yh", [])]}

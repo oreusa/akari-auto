@@ -84,6 +84,7 @@
 - `scripts/book.py` 予約係／`scripts/check.py` 決まりの確認／`scripts/metrics.py` 数字／`scripts/lib.py` 共通（楽天・A8・Buffer・ページの確認）／`scripts/selftest.py` 自己テスト。
 - ワークフロー：`book.yml`（2時間おき・朝6〜8時は30分おき。10/25 GitHubの分数の節約）、`metrics.yml`（夜0:45）、`check.yml`（push のたび。自己テスト→`check.py --online`）、`online.yml`（Bufferの送信・予約・下書きの一覧 `--sent-test`）、`a8.yml`（A8リンクの確認。入力「url|ドメイン」をスペース区切り）、`probe.yml`（ページが開けるかの調べ）、`setup.yml`・`test.yml`（最初の設定用）。
 - page.yml を手で動かすのは、直した物をまとめて1日3回まで（10/31 は手で19回・78分動かし、来月の見込みが4,590分／2,000分の×になった。決まった回だけなら1日約50分＝月1,500分）。急がない直しは7:30・18:30の決まった回に乗せる。
+- 11/7：11月は 11/7 朝で1,116分使い、月末の見込み5,588分／2,000分（超えると予約係 book.yml も止まり投稿が止まる）。force でも前の公開から1時間あける・1個あたりの係（tanka.py）は前の取り直しから10時間は楽天を呼ばない、にした。page.yml を手で動かすのは急ぎだけ、まとめて1日1〜2回。
 - Secrets：`BUFFER_API_KEY`（期限 2027-10-22）、`RAKUTEN_APP_ID`・`RAKUTEN_ACCESS_KEY`・`RAKUTEN_AFFILIATE_ID`（楽天アプリ「akariauto」、期限 2027-10-22。楽天の画面の「有効期限延長」で延ばす）。キーはチャットやファイルに書かない。
 - Buffer のチャンネル：X は ai_usagichan、Threads とインスタは ai_usagichan1。
 - 書き方の決まり：`docs/how-to-write.md`。形の見本：`docs/example-schedule.json`。学びの記録：`notes/learning.md`（毎晩1行）。
