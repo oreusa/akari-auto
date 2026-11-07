@@ -116,7 +116,9 @@ function stateLine(o,dk,short){var R=D[dk].d.filter(function(d){return d>=T;}),o
   if(o.s&&o.s>T&&R.indexOf(o.s)>=0)return mdw(o.s)+"から";
   if(short&&R.length>1)return "土・日とも開催";
   return "";}
-function cl(o,dk,short){var c=o.w.cloneNode(true);c.removeAttribute("id");c.style.removeProperty("display");c.classList.remove("cap");
+function cl(o,dk,short){var c=o.w.cloneNode(true);c.removeAttribute("id");
+  /* 11/7 夜のミス帳 #120 #121：写したカードに「宿・券を付けた」印が残り、券と近くの宿が出なかった → 印を外して付け直してもらう */
+  c.removeAttribute("data-yk");[].forEach.call(c.querySelectorAll("[data-yk]"),function(e){e.removeAttribute("data-yk");});c.style.removeProperty("display");c.classList.remove("cap");
   var t=c.querySelector(".t"),s=stateLine(o,dk,short);if(t&&s){var x=document.createElement("span");x.className="wst";x.textContent="● "+s;t.parentNode.insertBefore(x,t.nextSibling);c.classList.add("wsl");}
   if(o.href){var f=document.createElement("button");f.type="button";f.className="wfav"+(FAV[o.href]?" on":"");f.setAttribute("aria-label",(FAV[o.href]?"保存を外す":"行きたい所に保存"));f.textContent=FAV[o.href]?"★":"☆";f.dataset.h=o.href;c.appendChild(f);}
   return c;}
@@ -124,7 +126,7 @@ function group(list,key,head,sub,dk,short){if(!list.length)return;var h=document
   list.forEach(function(o,i){if(i>=5&&!more[key])return;sec.appendChild(cl(o,dk,short));});
   if(list.length>5&&!more[key]){var m=document.createElement("button");m.type="button";m.className="wmore";m.dataset.k=key;m.textContent="もっと見る（あと"+(list.length-5)+"件）";sec.appendChild(m);}}
 function byE(a,b){var x=a.e||"9999",y=b.e||"9999";return x<y?-1:x>y?1:0;}
-function render(){var pf=curPref();btns();var wc=box.querySelector(".wc");
+function render(){setTimeout(function(){if(window.ykRun)window.ykRun();},0);var pf=curPref();btns();var wc=box.querySelector(".wc");
   document.documentElement.classList.toggle("wmode",st.d!=="all");if(st.d!=="all")[].forEach.call(document.querySelectorAll("#v2bar button[data-t]"),function(b){b.classList.remove("cur");});sec.innerHTML="";sec.hidden=st.d==="all";
   if(st.d==="all"){wc.textContent="";syncUrl();return;}
   var L=ALL.filter(function(o){return pass(o,st.d,st.f,pf);}),dd=D[st.d].d.filter(function(d){return d>=T;}).map(function(d,i,a){return i&&a[i-1].slice(5,7)===d.slice(5,7)?String(+d.slice(8)):md(d);}).join("・"),lab=D[st.d].l+"（"+dd+"）";
