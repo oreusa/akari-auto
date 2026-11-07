@@ -3880,41 +3880,6 @@
       }
     ]
   },
-  "きつれ川花火大会2026": {
-    "v": 2,
-    "t": "2026-11-03",
-    "ll": [
-      36.71562,
-      140.03217
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "お丸山ホテル",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188396",
-        "km": 1.5,
-        "r": 4.36,
-        "rc": 90,
-        "min": 10000
-      },
-      {
-        "n": "ホテル かつらぎ",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D16270",
-        "km": 0.4,
-        "r": 4.2,
-        "rc": 19,
-        "min": 4500
-      },
-      {
-        "n": "亀の井ホテル 喜連川",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D104555",
-        "km": 1.8,
-        "r": 4.04,
-        "rc": 872,
-        "min": 10010
-      }
-    ]
-  },
   "EzyRoller（軽井沢おもちゃ王国）": {
     "v": 2,
     "t": "2026-11-05",
@@ -4259,6 +4224,41 @@
         "r": 3.57,
         "rc": 94,
         "min": 4235
+      }
+    ]
+  },
+  "養老渓谷紅葉ライトアップ": {
+    "v": 2,
+    "t": "2026-11-07",
+    "ll": [
+      35.26643,
+      140.15952
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "民宿さかや",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184400",
+        "km": 1.7,
+        "r": 4.64,
+        "rc": 59,
+        "min": 6400
+      },
+      {
+        "n": "SHINRA YORO VALLEY",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196002",
+        "km": 2.9,
+        "r": 4.55,
+        "rc": 94,
+        "min": 40900
+      },
+      {
+        "n": "養老渓谷温泉郷 温泉旅館 川の家",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D84819",
+        "km": 1.8,
+        "r": 4.5,
+        "rc": 135,
+        "min": 18700
       }
     ]
   }
