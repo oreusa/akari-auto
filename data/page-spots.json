@@ -2207,6 +2207,102 @@
       "note": "玉村町｜入館無料。10:00〜16:00、月曜休み",
       "url": "https://www.town.tamamura.lg.jp/docs/2026100800010/",
       "checked": "2026-11-06"
+    },
+    {
+      "title": "謎解き冒険ラリー 不思議ハンター in 幕張海浜公園",
+      "pref": "千葉",
+      "place": "幕張海浜公園",
+      "when": "11/7・11/8",
+      "start": "2026-11-07",
+      "ends": "2026-11-08T16:00",
+      "free": false,
+      "note": "千葉市美浜区｜1コース800円、付き添いの保護者は無料",
+      "url": "https://www.npo-tashizan.jp",
+      "checked": "2026-11-07"
+    },
+    {
+      "title": "第41回芝山はにわ祭",
+      "pref": "千葉",
+      "place": "芝山公園",
+      "when": "11/8",
+      "start": "2026-11-08",
+      "ends": "2026-11-08T16:30",
+      "free": true,
+      "note": "芝山町｜はにわの行列。はにわ博物館も当日無料",
+      "url": "https://www.haniwakan.com/matsuri/41haniwa.html",
+      "checked": "2026-11-07"
+    },
+    {
+      "title": "与一の里 大田原市産業文化祭",
+      "pref": "栃木",
+      "place": "栃木県立県北体育館",
+      "when": "11/7・11/8",
+      "start": "2026-11-07",
+      "ends": "2026-11-08T16:00",
+      "free": false,
+      "note": "大田原市｜県北体育館と美原公園。10:00〜16:00",
+      "url": "https://www.city.ohtawara.tochigi.jp/docs/2022110200031/",
+      "checked": "2026-11-07"
+    },
+    {
+      "title": "冬渡祭",
+      "pref": "栃木",
+      "place": "宇都宮二荒山神社",
+      "when": "12/15",
+      "start": "2026-12-15",
+      "ends": "2026-12-15T19:30",
+      "free": false,
+      "note": "宇都宮市｜16:30出御、17:30から市内を渡御する冬の夜祭",
+      "url": "https://www.utsunomiya-cvb.org/event/detail_20022.html",
+      "checked": "2026-11-07"
+    },
+    {
+      "title": "川口×絶品グルメ☆鍋祭り2026",
+      "pref": "埼玉",
+      "place": "キュポ・ラ広場",
+      "when": "12/4〜12/6",
+      "start": "2026-12-04",
+      "ends": "2026-12-06T18:00",
+      "free": true,
+      "note": "川口市｜入場無料、鍋は600円ほどから",
+      "url": "https://zeppin-yatai.com/kawaguchi/",
+      "checked": "2026-11-07"
+    },
+    {
+      "title": "ハワイアンフェス2026 in サクラタウン",
+      "pref": "埼玉",
+      "place": "ところざわサクラタウン",
+      "when": "11/7・11/8",
+      "start": "2026-11-07",
+      "ends": "2026-11-08T17:00",
+      "free": true,
+      "note": "所沢市｜入場無料。11:00〜17:00",
+      "url": "https://tokorozawa-sakuratown.com/event_categories/hawaiianfes2026.html",
+      "checked": "2026-11-07"
+    },
+    {
+      "title": "メッツァの北欧クリスマス2026",
+      "pref": "埼玉",
+      "place": "メッツァビレッジ",
+      "when": "10/31〜12/25",
+      "start": "2026-10-31",
+      "ends": "2026-12-25T20:00",
+      "free": true,
+      "note": "飯能市｜湖畔のクリスマスマーケットは入場無料",
+      "url": "https://metsa-hanno.com/event/46431/",
+      "checked": "2026-11-07"
+    },
+    {
+      "title": "筑波山の紅葉",
+      "pref": "茨城",
+      "place": "筑波山神社",
+      "when": "見ごろ 11月上旬〜下旬",
+      "start": "2026-11-01",
+      "ends": "2026-11-30T20:00",
+      "free": true,
+      "note": "つくば市｜11/6 山頂は色づきが進み、中腹は色づき始め",
+      "url": "https://ttca.jp/autumn-leaves-info2026/",
+      "checked": "2026-11-07"
     }
   ]
 }
