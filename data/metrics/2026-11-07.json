@@ -1,0 +1,370 @@
+{
+  "day": "2026-11-07",
+  "fetchedAt": "2026-11-08T04:37+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【12月着工の予定　京橋三丁目｜地上35階・約180mのビル🏗】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/Dfap_gNlMA3",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.94,
+        "views": 34,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【12月着工の予定　京橋三丁目｜地上35階・約180mのビル🏗】",
+      "url": "https://x.com/1753799832798629888/status/2118829553430757824",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 7.14,
+        "reposts": 0,
+        "impressions": 14,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "11/7からさいたま新都心でクリスマスマーケット、今週始まる5つ🎄",
+      "url": "https://www.threads.com/@ai_usagichan1/post/Dfa3uGdmzsE",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.12,
+        "views": 89,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "11/7からさいたま新都心でクリスマスマーケット、今週始まる5つ🎄",
+      "url": "https://x.com/1753799832798629888/status/2118859742894240039",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.62,
+        "reposts": 0,
+        "impressions": 324,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "今日11/7、塩原温泉の門前で高原大根の大鍋ふるまい、夜は花火🍲",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfbMUW7DISy",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "今日11/7、塩原温泉の門前で高原大根の大鍋ふるまい、夜は花火🍲",
+      "url": "https://x.com/1753799832798629888/status/2118905034599518590",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.76,
+        "reposts": 0,
+        "impressions": 42,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【2027年秋　日本橋｜高さ約284mの東京ミッドタウン日本橋🏙】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfbWna4FRMh",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【2027年秋　日本橋｜高さ約284mの東京ミッドタウン日本橋🏙】",
+      "url": "https://x.com/1753799832798629888/status/2118927680464732327",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.1,
+        "reposts": 0,
+        "impressions": 91,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "11/18、ひたち野うしくに「そよら」、550席のフードホール🍴",
+      "url": "https://www.threads.com/@ai_usagichan1/post/Dfbg6_QkYEu",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "11/18、ひたち野うしくに「そよら」、550席のフードホール🍴",
+      "url": "https://x.com/1753799832798629888/status/2118950343803285539",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.95,
+        "reposts": 0,
+        "impressions": 105,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "【ひと駅しらべ　大宮駅｜1日25万4,220人、JR東日本で7位🚉】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/Dfb1iMAFckG",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "【ひと駅しらべ　大宮駅｜1日25万4,220人、JR東日本で7位🚉】",
+      "url": "https://x.com/1753799832798629888/status/2118995672183525684",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.7,
+        "reposts": 0,
+        "impressions": 27,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/15まで　新宿御苑｜皇室ゆかりの菊花壇展、中学生以下は無料🌼】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfcDQx1lmyJ",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/15まで　新宿御苑｜皇室ゆかりの菊花壇展、中学生以下は無料🌼】",
+      "url": "https://x.com/1753799832798629888/status/2119025834946187623",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.67,
+        "reposts": 0,
+        "impressions": 60,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/29まで　長瀞・月の石もみじ公園｜小学生以下は無料で夜のもみじ🍁】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfcImIsG3Uj",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/29まで　長瀞・月の石もみじ公園｜小学生以下は無料で夜のもみじ🍁】",
+      "url": "https://x.com/1753799832798629888/status/2119037372775960784",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.44,
+        "reposts": 0,
+        "impressions": 82,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "HPのご紹介 その6｜本当に値下がりした物だけ📉",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfcQ_0SoMOu",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "HPのご紹介 その6｜本当に値下がりした物だけ📉",
+      "url": "https://x.com/1753799832798629888/status/2119056062665855086",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 6.9,
+        "reposts": 0,
+        "impressions": 29,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4024744077119897134",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4024739052536565004",
+      "metrics": {
+        "views": 1,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【12/25まで　六本木けやき坂｜約400mの坂が青と白に光る❄】",
+      "url": "https://www.instagram.com/reel/DfavLqczRKF/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 117,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 5.37,
+        "averageTimeWatched": 3.04,
+        "reach": 106
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【12/25まで　六本木けやき坂｜約400mの坂が青と白に光る❄】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfavMNoo5uA",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 14.29,
+        "views": 7,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【12/25まで　六本木けやき坂｜約400mの坂が青と白に光る❄】",
+      "url": "https://x.com/1753799832798629888/status/2118840963044933924",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5,
+        "reposts": 0,
+        "impressions": 20,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DfaruJDArnc/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 14,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.16,
+        "averageTimeWatched": 0.8,
+        "reach": 13
+      }
+    }
+  ]
+}
