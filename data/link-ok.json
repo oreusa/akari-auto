@@ -5443,6 +5443,12 @@
   "sec": 0.6,
   "why": ""
  },
+ "https://metsa-hanno.com/event/46431/": {
+  "at": "2026-11-07",
+  "ok": true,
+  "sec": 1.2,
+  "why": ""
+ },
  "https://metsa-hanno.com/news/press_release/47261/": {
   "at": "2026-11-06",
   "by": "browser",
@@ -5657,6 +5663,12 @@
   "sec": 1.9,
   "why": ""
  },
+ "https://tokorozawa-sakuratown.com/event_categories/hawaiianfes2026.html": {
+  "at": "2026-11-07",
+  "ok": true,
+  "sec": 0.9,
+  "why": ""
+ },
  "https://tokorozawa-sakuratown.com/event_categories/odekake-kozame.html": {
   "at": "2026-11-06",
   "by": "browser",
@@ -5682,6 +5694,12 @@
   "at": "2026-11-02",
   "ok": true,
   "sec": 1.2,
+  "why": ""
+ },
+ "https://ttca.jp/autumn-leaves-info2026/": {
+  "at": "2026-11-07",
+  "ok": true,
+  "sec": 1.8,
   "why": ""
  },
  "https://uenobotanen.com/schedule/autumn/": {
@@ -7580,6 +7598,12 @@
   "sec": 3.9,
   "why": ""
  },
+ "https://www.city.ohtawara.tochigi.jp/docs/2022110200031/": {
+  "at": "2026-11-07",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
  "https://www.city.sagamihara.kanagawa.jp/kankou/1026674/hayabusa2/1035623.html": {
   "at": "2026-11-06",
   "by": "browser",
@@ -7698,10 +7722,16 @@
   "sec": 0.9,
   "why": ""
  },
+ "https://www.haniwakan.com/matsuri/41haniwa.html": {
+  "at": "2026-11-07",
+  "ok": true,
+  "sec": 1.0,
+  "why": ""
+ },
  "https://www.haramuseum.or.jp": {
   "at": "2026-11-07",
   "ok": false,
-  "sec": 0.6,
+  "sec": 1.0,
   "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate "
  },
  "https://www.haramuseum.or.jp/": {
@@ -7915,6 +7945,12 @@
   "by": "browser",
   "ok": true,
   "sec": 3.2,
+  "why": ""
+ },
+ "https://www.npo-tashizan.jp": {
+  "at": "2026-11-07",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.nrtk.jp/enjoy/shikisaisai/narita-fireworks.html": {

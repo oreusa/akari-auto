@@ -4213,5 +4213,172 @@
         "min": 12100
       }
     ]
+  },
+  "NARITA花火大会in印旛沼": {
+    "v": 2,
+    "t": "2026-11-07",
+    "ll": [
+      35.7797,
+      140.2853
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "和空 成田山門前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184054",
+        "km": 2.9,
+        "r": 4.69,
+        "rc": 65,
+        "min": 19987
+      },
+      {
+        "n": "成田山門前 旅館 若松本店",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D4688",
+        "km": 3.0,
+        "r": 4.58,
+        "rc": 401,
+        "min": 12320
+      },
+      {
+        "n": "アパホテル〈京成成田駅前〉",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D76896",
+        "km": 2.9,
+        "r": 4.23,
+        "rc": 5791,
+        "min": 4140
+      }
+    ]
+  },
+  "与一の里大田原市産業文化祭": {
+    "v": 2,
+    "t": "2026-11-07",
+    "ll": [
+      36.85977,
+      140.00139
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "乃木温泉ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D70309",
+        "km": 2.6,
+        "r": 4.28,
+        "rc": 908,
+        "min": 8300
+      },
+      {
+        "n": "HOTEL R9 The Yard 大田原",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196190",
+        "km": 2.5,
+        "r": 4.25,
+        "rc": 164,
+        "min": 3600
+      },
+      {
+        "n": "ホテル和島屋",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D144550",
+        "km": 2.9,
+        "r": 4.14,
+        "rc": 84,
+        "min": 6270
+      }
+    ]
+  },
+  "筑波山の紅葉": {
+    "v": 2,
+    "t": "2026-11-07",
+    "ll": [
+      36.21312,
+      140.10127
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "筑波山温泉 筑波山ホテル 青木屋",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D13479",
+        "km": 0.2,
+        "r": 4.31,
+        "rc": 473,
+        "min": 13310
+      },
+      {
+        "n": "亀の井ホテル 筑波山",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D38574",
+        "km": 0.3,
+        "r": 4.22,
+        "rc": 1036,
+        "min": 11070
+      },
+      {
+        "n": "筑波山温泉 筑波山江戸屋",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D10637",
+        "km": 0.1,
+        "r": 4.16,
+        "rc": 549,
+        "min": 7150
+      }
+    ]
+  },
+  "メッツァの北欧クリスマス2026": {
+    "v": 2,
+    "t": "2026-11-07",
+    "ll": [
+      35.87309,
+      139.33135
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテル・ヘリテイジ飯能sta.",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D139833",
+        "km": 2.7,
+        "r": 3.97,
+        "rc": 972,
+        "min": 6300
+      },
+      {
+        "n": "奥むさし旅館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D54628",
+        "km": 2.7,
+        "r": 3.81,
+        "rc": 323,
+        "min": 6000
+      },
+      {
+        "n": "マロウドイン飯能",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D1819",
+        "km": 2.0,
+        "r": 3.77,
+        "rc": 1231,
+        "min": 7000
+      }
+    ]
+  },
+  "第41回芝山はにわ祭": {
+    "v": 2,
+    "t": "2026-11-07",
+    "ll": [
+      35.6917,
+      140.43082
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "成田空港温泉 空の湯",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179201",
+        "km": 7.2,
+        "r": 4.31,
+        "rc": 567,
+        "min": 5000
+      },
+      {
+        "n": "ファミリーロッジ旅籠屋・九十九里店",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D43914",
+        "km": 4.0,
+        "r": 3.57,
+        "rc": 94,
+        "min": 4235
+      }
+    ]
   }
 }
