@@ -3891,25 +3891,6 @@
       }
     ]
   },
-  "天空回廊上野スカイブリッジイルミネーション": {
-    "v": 2,
-    "t": "2026-11-02",
-    "ll": [
-      36.80741,
-      139.58983
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "TAOYA日光霧降",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D68664",
-        "km": 2.5,
-        "r": 4.24,
-        "rc": 2585,
-        "min": 20600
-      }
-    ]
-  },
   "ISESAKIまちなかイルミネーション": {
     "v": 2,
     "t": "2026-11-02",
@@ -3942,25 +3923,6 @@
         "r": 4.22,
         "rc": 1197,
         "min": 3300
-      }
-    ]
-  },
-  "しぶかわイルミネーション": {
-    "v": 2,
-    "t": "2026-11-02",
-    "ll": [
-      36.11936,
-      139.51512
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "レクトーレ羽生TERRACE(TKP Hotels & Resorts)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D192916",
-        "km": 3.6,
-        "r": 4.31,
-        "rc": 118,
-        "min": 5500
       }
     ]
   },

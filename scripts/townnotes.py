@@ -60,6 +60,67 @@ def inside(p, ll):
     return b and b[0] <= ll[0] <= b[1] and b[2] <= ll[1] <= b[3]
 
 
+# 11/7 夜#80・81・122：都県の四角は隣の県と重なるため、日光（栃木）が群馬・羽生（埼玉）が群馬・旭市が成田市として通っていた
+# → 国土地理院の「緯度経度→市区町村」で、都県と（場所に書いた）市区町村が合うかを確かめる
+PCODE = {'東京': 13, '神奈川': 14, '埼玉': 11, '千葉': 12, '茨城': 8, '栃木': 9, '群馬': 10}
+CHECKED = 'data/townnotes-geo-checked.json'  # 確かめ済みの {探す言葉: "lat,lon"}
+_MUNI = None
+
+
+def muni():
+    """市区町村コード → 名前（国土地理院 muni.js）。読めなければ {}"""
+    global _MUNI
+    if _MUNI is None:
+        _MUNI = {}
+        try:
+            with urllib.request.urlopen(urllib.request.Request('https://maps.gsi.go.jp/js/muni.js', headers=UA), timeout=20) as r:
+                t = r.read().decode('utf-8')
+            for c, name in re.findall(r"MUNI_ARRAY\[\"(\d+)\"\]\s*=\s*'\d+,[^,]*,\d+,([^']*)'", t):
+                _MUNI[int(c)] = name.replace('\u3000', '').replace(' ', '')
+        except Exception as e:
+            print('muni err', e)
+    return _MUNI
+
+
+def town_of(place, pref):
+    """場所の言葉から市区町村の名前を取る（muni.js にある名前だけ）"""
+    names = set()
+    for n in muni().values():
+        names.add(n)
+        m = re.match(r'(.+?郡)(.+)', n)
+        if m:
+            names.add(m.group(2))
+        m = re.match(r'(.+?市)(.+区)', n)
+        if m:
+            names.add(m.group(1))
+            names.add(m.group(2))
+    out = []
+    for w in re.split(r'[\s｜]+', place or ''):
+        w = w.replace(FULL.get(pref, '@@'), '')
+        for n in sorted(names, key=len, reverse=True):
+            if len(n) >= 2 and w.endswith(n):
+                out.append(n)
+                break
+    return out
+
+
+def verify(pref, place, ll):
+    """True=合う False=合わない None=確かめられない"""
+    try:
+        r = get('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress?lat=%s&lon=%s' % (ll[0], ll[1]))
+        code = int(r['results']['muniCd'])
+    except Exception:
+        return None
+    if pref in PCODE and code // 1000 != PCODE[pref]:
+        return False
+    towns = town_of(place, pref) if muni() else []
+    if towns:
+        name = muni().get(code, '')
+        if name and not any(t in name for t in towns):
+            return False
+    return True
+
+
 def text(s):
     return html.unescape(re.sub(r'<[^>]+>', '', s))
 
@@ -106,6 +167,7 @@ def all_cards():
 def main():
     cache = json.load(open(CACHE, encoding='utf-8')) if os.path.exists(CACHE) else {}
     out, new = {}, 0
+    checked = json.load(open(CHECKED, encoding='utf-8')) if os.path.exists(CHECKED) else {}
     # 11/2 新しい場所が一度に多いと調べるのに10分を超え、公開まで止まった → 1回に調べるのは4分まで。残りは次の回（調べた分は保存されて続きから）
     stop = time.time() + 240
     for k, pref, place, name in all_cards():
@@ -116,6 +178,14 @@ def main():
         # 11/3 月：取れなかった場所を毎日調べ直すと1回4分かかり、燈の GitHub の無料枠（月2,000分）を使い切る → 7日に1回だけ調べ直す
         if ck in cache and cache[ck][0] is None and (cache[ck] + [''])[3] <= time.strftime('%Y-%m-%d', time.gmtime(time.time() - 7 * 86400)):
             del cache[ck]
+        c0 = cache.get(ck)
+        if c0 and c0[0] is not None and checked.get(ck) != '%s,%s' % (c0[0], c0[1]) and time.time() < stop:
+            v = verify(pref, place or name, c0)
+            if v is False:
+                print('場所が都県・市区町村と合わない→調べ直す', ck, c0)
+                del cache[ck]
+            elif v:
+                checked[ck] = '%s,%s' % (c0[0], c0[1])
         if ck not in cache and time.time() > stop:
             out[k] = [None, None, 'later']
             continue
@@ -127,7 +197,7 @@ def main():
             for kind, fn, q in tries:
                 if not q:
                     continue
-                ll = next((x for x in fn(q) if inside(pref, x)), None)
+                ll = next((x for x in fn(q) if inside(pref, x) and verify(pref, place or name, x) is not False), None)
                 if ll:
                     got = [round(ll[0], 5), round(ll[1], 5), kind]
                     break
@@ -138,6 +208,7 @@ def main():
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     json.dump(cache, open(CACHE, 'w', encoding='utf-8'), ensure_ascii=False, indent=0, sort_keys=True)
+    json.dump(checked, open(CHECKED, 'w', encoding='utf-8'), ensure_ascii=False, indent=0, sort_keys=True)
     ok = sum(1 for v in out.values() if v[0] is not None)
     print(f'地図の場所: {ok}/{len(out)} 件（新しく調べた {new} 件）')
 
