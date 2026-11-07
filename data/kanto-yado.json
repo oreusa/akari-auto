@@ -1,39 +1,4 @@
 {
-  "こども＋おとな＋秋の美術館": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      36.29874,
-      139.07831
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ホテルルートインコート藤岡",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D13449",
-        "km": 1.8,
-        "r": 4.1,
-        "rc": 608,
-        "min": 6000
-      },
-      {
-        "n": "グランマーチBase高崎",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D199308",
-        "km": 2.6,
-        "r": 4.03,
-        "rc": 29,
-        "min": 4000
-      },
-      {
-        "n": "新町ステーションホテル",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D38642",
-        "km": 3.7,
-        "r": 3.5,
-        "rc": 101,
-        "min": 6900
-      }
-    ]
-  },
   "2026年宮の市商業祭": {
     "v": 2,
     "t": "2026-11-07",
@@ -2262,41 +2227,6 @@
       }
     ]
   },
-  "養老渓谷紅葉ライトアップ": {
-    "v": 2,
-    "t": "2026-11-02",
-    "ll": [
-      35.26643,
-      140.15952
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "民宿さかや",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184400",
-        "km": 1.7,
-        "r": 4.64,
-        "rc": 59,
-        "min": 6400
-      },
-      {
-        "n": "SHINRA YORO VALLEY",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196002",
-        "km": 2.9,
-        "r": 4.55,
-        "rc": 94,
-        "min": 40900
-      },
-      {
-        "n": "養老渓谷温泉郷 温泉旅館 川の家",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D84819",
-        "km": 1.8,
-        "r": 4.5,
-        "rc": 135,
-        "min": 18700
-      }
-    ]
-  },
   "小松寺紅葉ライトアップ": {
     "v": 2,
     "t": "2026-11-02",
@@ -2744,55 +2674,71 @@
   },
   "第96回企画展日本列島誕生のひみつ": {
     "v": 2,
-    "t": "2026-11-02",
+    "t": "2026-11-07",
     "ll": [
-      36.34174,
-      140.44682
+      36.00527,
+      139.91622
     ],
     "w": 1,
     "h": [
       {
-        "n": "水戸プラザホテル",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D5754",
-        "km": 1.2,
-        "r": 4.7,
-        "rc": 789,
-        "min": 9950
+        "n": "ホテルグリーンコア坂東(坂東ICより10分)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D158765",
+        "km": 5.7,
+        "r": 4.45,
+        "rc": 605,
+        "min": 4575
       },
       {
-        "n": "ホテル シーラックパル水戸",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D40212",
-        "km": 0.2,
-        "r": 4.41,
-        "rc": 5982,
-        "min": 4490
+        "n": "ホテルルートイン水海道駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D69312",
+        "km": 6.9,
+        "r": 4.02,
+        "rc": 627,
+        "min": 6525
       },
       {
-        "n": "コンフォートホテル水戸",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196793",
-        "km": 4.0,
-        "r": 4.39,
-        "rc": 461,
-        "min": 3650
+        "n": "HOTEL R9 The Yard 野田",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182600",
+        "km": 7.5,
+        "r": 4.0,
+        "rc": 212,
+        "min": 3900
       }
     ]
   },
   "第95回土浦全国花火競技大会": {
     "v": 2,
-    "t": "2026-11-02",
+    "t": "2026-11-07",
     "ll": [
-      36.32734,
-      140.09061
+      36.08665,
+      140.17775
     ],
     "w": 1,
     "h": [
       {
-        "n": "HOTEL R9 The Yard 桜川",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191797",
-        "km": 4.7,
-        "r": 4.2,
-        "rc": 146,
-        "min": 3600
+        "n": "フォレスト",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D134811",
+        "km": 2.2,
+        "r": 4.8,
+        "rc": 19,
+        "min": 3667
+      },
+      {
+        "n": "【JR土浦駅直結】 BEB5土浦 by 星野リゾート",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178358",
+        "km": 2.7,
+        "r": 4.5,
+        "rc": 401,
+        "min": 4510
+      },
+      {
+        "n": "BUB RESORT Tsukuba",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D197422",
+        "km": 3.1,
+        "r": 4.5,
+        "rc": 14,
+        "min": 45012
       }
     ]
   },
@@ -3252,33 +3198,6 @@
         "r": 4.0,
         "rc": 40,
         "min": 5000
-      }
-    ]
-  },
-  "さのあかりまちなか寺社の光": {
-    "v": 2,
-    "t": "2026-11-02",
-    "ll": [
-      36.20091,
-      139.88504
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "大谷旅館",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D41724",
-        "km": 4.0,
-        "r": 5.0,
-        "rc": 11,
-        "min": 4730
-      },
-      {
-        "n": "しもつま温泉 ビアスパークしもつま",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D147895",
-        "km": 5.1,
-        "r": 4.08,
-        "rc": 222,
-        "min": 6200
       }
     ]
   },
