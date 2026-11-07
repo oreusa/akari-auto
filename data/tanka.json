@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-07 18:12",
+  "at": "2026-11-08 07:59",
   "cats": [
     {
       "key": "water",
@@ -8,7 +8,7 @@
       "seen": 120,
       "read": 45,
       "ok": 15,
-      "avg": 162.7,
+      "avg": 167.9,
       "rmin": 1000,
       "top": [
         {
@@ -68,7 +68,7 @@
           "price": 1360,
           "per": 75.6,
           "amt": "2000ml×9本",
-          "rc": 2075,
+          "rc": 2076,
           "av": 4.5,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10151238/",
@@ -154,7 +154,7 @@
           "price": 3007,
           "per": 125.3,
           "amt": "500ml×48本",
-          "rc": 1019,
+          "rc": 1020,
           "av": 4.8,
           "shop": "リカーBOSS 楽天市場店",
           "plain": "https://item.rakuten.co.jp/liquor-boss/10004086/",
@@ -258,7 +258,7 @@
           "price": 7998,
           "per": 799.8,
           "amt": "10kg",
-          "rc": 1253,
+          "rc": 1254,
           "av": 4.69,
           "shop": "農家からの贈り物 楽天市場店",
           "plain": "https://item.rakuten.co.jp/komenouka/10000014/",
@@ -299,7 +299,7 @@
           "price": 3580,
           "per": 358.0,
           "amt": "10kg",
-          "rc": 5902,
+          "rc": 5903,
           "av": 4.25,
           "shop": "まんま屋",
           "bd": "",
@@ -398,7 +398,7 @@
           "price": 5480,
           "per": 67.2,
           "amt": "170m×48ロール",
-          "rc": 352,
+          "rc": 353,
           "av": 4.69,
           "shop": "メガストア Yahoo!店",
           "bd": "",
@@ -750,9 +750,9 @@
       "title": "柔軟剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 90,
-      "read": 27,
+      "read": 26,
       "ok": 9,
-      "avg": 1068.1,
+      "avg": 1091.1,
       "rmin": 20,
       "top": [
         {
@@ -854,9 +854,9 @@
       "title": "シャンプー（詰め替え）",
       "unit": "1L・1kg",
       "seen": 150,
-      "read": 24,
+      "read": 23,
       "ok": 2,
-      "avg": 2576.1,
+      "avg": 2596.6,
       "rmin": 100,
       "top": [
         {
@@ -1101,9 +1101,9 @@
       "title": "ティッシュ",
       "unit": "100組",
       "seen": 153,
-      "read": 19,
+      "read": 18,
       "ok": 13,
-      "avg": 90.8,
+      "avg": 92.7,
       "rmin": 50,
       "top": [
         {
@@ -1124,7 +1124,7 @@
           "price": 2980,
           "per": 33.1,
           "amt": "150組×60箱",
-          "rc": 265,
+          "rc": 266,
           "av": 4.76,
           "shop": "坪野谷紙業",
           "plain": "https://item.rakuten.co.jp/tsubonoya/10000023/",
@@ -1205,9 +1205,9 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 120,
-      "read": 41,
-      "ok": 41,
-      "avg": 59.0,
+      "read": 42,
+      "ok": 42,
+      "avg": 53.2,
       "rmin": 0,
       "top": [
         {
@@ -1222,6 +1222,32 @@
           "bd": "メリーズ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00s0vmo.m2lhf5d9.g00s0vmo.m2lhge2f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbeisia%2F4901301437693x4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbeisia%2Fi%2F10126180%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/beisia/cabinet/09476807/4901301437693.jpg?_ex=300x300"
+        },
+        {
+          "name": "メリーズ Merries テープ 新生児用 オムツ さらさらエアスルー (お誕生~5000g…",
+          "price": 4234,
+          "per": 25.8,
+          "amt": "164枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "actonlineshop",
+          "plain": "https://item.rakuten.co.jp/actonlineshop/10025108/",
+          "bd": "メリーズ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uq9uo.m2lhfa3d.g00uq9uo.m2lhg7fc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Factonlineshop%2Facton26ee8dc69da4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Factonlineshop%2Fi%2F10025108%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/actonlineshop/cabinet/onesell027/acton26ee8dc69da4_0.jpg?_ex=300x300"
+        },
+        {
+          "name": "テープ 新生児サイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（お誕生~5000gまで…",
+          "price": 8010,
+          "per": 26.3,
+          "amt": "304枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Rafinagift楽天市場店",
+          "plain": "https://item.rakuten.co.jp/rafinagift/10008629/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uq6jo.m2lhf5f0.g00uq6jo.m2lhgb59/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frafinagift%2Fhadb5c856024%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frafinagift%2Fi%2F10008629%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/rafinagift/cabinet/onesell043/hadb5c856024_0.jpg?_ex=300x300"
         },
         {
           "name": "P&G｜ピーアンドジー ＜テープ 新生児(5kgまで)＞ パンパース オムツ はじめての肌へ…",
@@ -1250,32 +1276,6 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/up-shop/cabinet/imgrc0189236006.jpg?_ex=300x300"
         },
         {
-          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
-          "price": 8831,
-          "per": 31.5,
-          "amt": "280枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "Ciel de neige",
-          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/",
-          "bd": "ムーニー",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uoo1o.m2lhf537.g00uoo1o.m2lhg030/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcieldeneige%2Fcl91611ab260%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcieldeneige%2Fi%2F10011999%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cieldeneige/cabinet/onesell117/cl91611ab260.jpg?_ex=300x300"
-        },
-        {
-          "name": "グ〜ンゆるうんちモレ0へ S 62枚×4袋入り 21001889 大王製紙 │ グーン ベビ…",
-          "price": 8250,
-          "per": 33.3,
-          "amt": "248枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "Pandora+",
-          "plain": "https://item.rakuten.co.jp/pandoraplus/10009861/",
-          "bd": "グーン",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uopxo.m2lhf1b3.g00uopxo.m2lhgd66/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpandoraplus%2F545187%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpandoraplus%2Fi%2F10009861%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/pandoraplus/cabinet/0003/545187.jpg?_ex=300x300"
-        },
-        {
           "name": "マミーポコ ビッグ サンリオ マミーポコ サンリオ パンツ ビッグサイズ マミーポコ パンツ…",
           "price": 7633,
           "per": 47.1,
@@ -1289,17 +1289,30 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/hanamaruryohin/cabinet/r_2026070838/20260708145926_240_1.jpg?_ex=300x300"
         },
         {
-          "name": "パンツ ビッグサイズ ムーニーマン 男の子 オムツ(12-22kg)176枚(44枚×4) …",
-          "price": 8354,
-          "per": 47.5,
-          "amt": "176枚",
+          "name": "パンツ ビッグより大きいサイズ マミーポコ パンツ ドラえもん オムツ(13~28kg)66…",
+          "price": 4994,
+          "per": 75.7,
+          "amt": "66枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "kichibei",
-          "plain": "https://item.rakuten.co.jp/kichibei0318/10074862/",
+          "shop": "Senses",
+          "plain": "https://item.rakuten.co.jp/senses/10030687/",
+          "bd": "マミーポコ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00url3o.m2lhfea6.g00url3o.m2lhgf9c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsenses%2F20250812215518_20%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsenses%2Fi%2F10030687%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/senses/cabinet/r_2025080118/20250812215518_20_1.jpg?_ex=300x300"
+        },
+        {
+          "name": "テープ Sサイズ ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70…",
+          "price": 8831,
+          "per": 31.5,
+          "amt": "280枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Ciel de neige",
+          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/",
           "bd": "ムーニー",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00u3ajo.m2lhfb1e.g00u3ajo.m2lhgea2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkichibei0318%2Fkichibee0e95559cc7%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkichibei0318%2Fi%2F10074862%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kichibei0318/cabinet/onesell038/kichibee0e95559cc7.jpg?_ex=300x300"
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uoo1o.m2lhf537.g00uoo1o.m2lhg030/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcieldeneige%2Fcl91611ab260%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcieldeneige%2Fi%2F10011999%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cieldeneige/cabinet/onesell117/cl91611ab260.jpg?_ex=300x300"
         }
       ],
       "amazon": [],
@@ -1335,9 +1348,9 @@
       "title": "おしりふき",
       "unit": "1枚",
       "seen": 140,
-      "read": 45,
+      "read": 46,
       "ok": 16,
-      "avg": 4.4,
+      "avg": 4.5,
       "rmin": 50,
       "top": [
         {
@@ -1416,7 +1429,7 @@
       "seen": 142,
       "read": 84,
       "ok": 5,
-      "avg": 18.8,
+      "avg": 18.5,
       "rmin": 50,
       "top": [
         {
@@ -1702,7 +1715,7 @@
       "seen": 127,
       "read": 81,
       "ok": 24,
-      "avg": 667.7,
+      "avg": 671.6,
       "rmin": 50,
       "top": [
         {
@@ -1719,30 +1732,17 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/onestep/cabinet/syoku/syoku01/s01195.jpg?_ex=300x300"
         },
         {
-          "name": "並行輸入品 ＼最安値挑戦中／パスタ 業務用 15kg (5kg×3袋) バリラ No.5 太…",
+          "name": "並行輸入品 パスタ 業務用 15kg (5kg×3袋) バリラ No.5 太さ 1.8mm …",
           "price": 5240,
           "per": 349.3,
           "amt": "5kg×3",
-          "rc": 88,
-          "av": 4.74,
-          "shop": "食のこだわり総本舗 食彩館",
-          "plain": "https://item.rakuten.co.jp/s-kodawari/10000210/",
-          "bd": "バリラ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00tux1o.m2lhf799.g00tux1o.m2lhg5c1/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fs-kodawari%2F9432664%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fs-kodawari%2Fi%2F10000210%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/s-kodawari/cabinet/08027404/9432664_smnranking.jpg?_ex=300x300"
-        },
-        {
-          "name": "並行輸入品 パスタ 15kg (5kg×3袋) 業務用 バリラ No.3 太さ 1.4mm …",
-          "price": 5240,
-          "per": 349.3,
-          "amt": "5kg×3",
-          "rc": 40,
+          "rc": 89,
           "av": 4.8,
           "shop": "暮らし健康ネット館",
-          "plain": "https://item.rakuten.co.jp/kurashikenkou/10199684/",
+          "plain": "https://item.rakuten.co.jp/kurashikenkou/10023957/",
           "bd": "バリラ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F7049289%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10199684%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashikenkou/cabinet/jishahin46/imgrc0087189071.jpg?_ex=300x300"
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F9432664%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10023957%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashikenkou/cabinet/bn/imgrc0091995296.jpg?_ex=300x300"
         },
         {
           "name": "並行輸入品 ＼最安値に挑戦！／ 15kg パスタ 業務用 15kg (5kg×3袋) バリラ…",
@@ -1756,6 +1756,19 @@
           "bd": "バリラ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00rqlbo.m2lhfc93.g00rqlbo.m2lhg098/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fk-home%2F9432664%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fk-home%2Fi%2F10071377%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/k-home/cabinet/06135991/09344783/9432664_khome.jpg?_ex=300x300"
+        },
+        {
+          "name": "並行輸入品 パスタ 15kg (5kg×3袋) 業務用 バリラ No.3 太さ 1.4mm …",
+          "price": 5240,
+          "per": 349.3,
+          "amt": "5kg×3",
+          "rc": 13,
+          "av": 4.46,
+          "shop": "食のこだわり総本舗 食彩館",
+          "plain": "https://item.rakuten.co.jp/s-kodawari/10000209/",
+          "bd": "バリラ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00tux1o.m2lhf799.g00tux1o.m2lhg5c1/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fs-kodawari%2F7049289%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fs-kodawari%2Fi%2F10000209%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/s-kodawari/cabinet/08081989/7049288_0001.jpg?_ex=300x300"
         },
         {
           "name": "バリラ 業務用 送料無料 5kg 3袋 No.3 約1.4mm Barilla パスタ スパ…",
@@ -1878,18 +1891,6 @@
       "amazon": [],
       "yahoo": [
         {
-          "name": "ウエシマコーヒー オリジナルブレンド レギュラー ２ｋｇ（粉） １袋",
-          "price": 4479,
-          "per": 2239.5,
-          "amt": "2kg",
-          "rc": 779,
-          "av": 4.64,
-          "shop": "ぱーそなるたのめーる",
-          "bd": "",
-          "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Ftanomail%2F5625512.html",
-          "img": "https://item-shopping.c.yimg.jp/i/g/tanomail_5625512"
-        },
-        {
           "name": "コーヒー 豆 粉 2kg 名古屋 街角喫茶 珈琲 500g 4袋 ブレンドコーヒー 深煎り …",
           "price": 5290,
           "per": 2645.0,
@@ -1900,6 +1901,18 @@
           "bd": "",
           "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Fjyonetsubatake%2F60161-c1.html",
           "img": "https://item-shopping.c.yimg.jp/i/g/jyonetsubatake_60161-c1"
+        },
+        {
+          "name": "業務用卸3袋セット エチオピアモカ・ラデュース500g×3袋セット(ラデュ×3)/グルメコー…",
+          "price": 4698,
+          "per": 3132.0,
+          "amt": "500g×3",
+          "rc": 240,
+          "av": 4.49,
+          "shop": "グルメコーヒー豆専門!加藤珈琲店",
+          "bd": "",
+          "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Fgourmetcoffee%2F0630-15a.html",
+          "img": "https://item-shopping.c.yimg.jp/i/g/gourmetcoffee_0630-15a"
         }
       ]
     },
@@ -1940,7 +1953,7 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/peaceone/cabinet/science/0052742015279.jpg?_ex=300x300"
         },
         {
-          "name": "ポイント最大57.5倍｜LINE追加で500円OFF ロイヤルカナン ゴールデンレトリバー …",
+          "name": "11/10限定!先着最大1,000円OFFクーポン|ポイント最大57.5倍 ロイヤルカナン …",
           "price": 13499,
           "per": 1124.9,
           "amt": "12kg",
@@ -1994,16 +2007,16 @@
           "img": "https://item-shopping.c.yimg.jp/i/g/sweet-pet_91596840"
         },
         {
-          "name": "ニュートロ ナチュラルチョイス プレミアムチキン 小型犬用 成犬用 チキン＆玄米 [６kg]…",
-          "price": 9534,
-          "per": 1589.0,
+          "name": "送料無料 ニュートロ シュプレモ 小型犬用 成犬用 ６ｋｇ",
+          "price": 10341,
+          "per": 1723.5,
           "amt": "6kg",
-          "rc": 406,
-          "av": 4.67,
-          "shop": "ペットスマイル ガレノス",
+          "rc": 998,
+          "av": 4.7,
+          "shop": "チャーム charm ヤフー店",
           "bd": "ニュートロ",
-          "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Fnutro-galenus%2Fpc-s-a-6.html",
-          "img": "https://item-shopping.c.yimg.jp/i/g/nutro-galenus_pc-s-a-6"
+          "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Fchanet%2F270018.html",
+          "img": "https://item-shopping.c.yimg.jp/i/g/chanet_270018"
         }
       ]
     },
@@ -2014,7 +2027,7 @@
       "seen": 112,
       "read": 62,
       "ok": 48,
-      "avg": 1537.5,
+      "avg": 1537.4,
       "rmin": 100,
       "top": [
         {
@@ -2057,7 +2070,7 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/rakuten24/cabinet/207/52742355207.jpg?_ex=300x300"
         },
         {
-          "name": "ポイント最大57.5倍｜LINE追加で500円OFF ロイヤルカナン センシブル 15kg …",
+          "name": "11/10限定!先着最大1,000円OFFクーポン|ポイント最大57.5倍 ロイヤルカナン …",
           "price": 18649,
           "per": 1243.3,
           "amt": "15kg",
@@ -2102,7 +2115,7 @@
           "price": 6476,
           "per": 1619.0,
           "amt": "4kg",
-          "rc": 1437,
+          "rc": 1439,
           "av": 4.76,
           "shop": "スイートペットYahoo!店",
           "bd": "ロイヤルカナン",
