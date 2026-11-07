@@ -549,6 +549,8 @@ rep('<h1>関西不動産リスト</h1><p class="sub">関西の街を調査して
 resub(r'<a class="ilk" href="chika-kansai">関西 \d+の街 地価ランキング 2026<span>→</span></a>',
       f'<a class="ilk" href="/chika-kanto">関東 {len(towns)}の街 地価ランキング 2026<span>→</span></a>')
 rep("この府県の分は、これから増やしていきます", "この都県の分は、これから増やしていきます")
+# 11/7 月の不動産リストと同じ形：何ができるかの1行・街の検索・横浜市西区の例（scripts/fudosan_kanto_head.html）
+resub(r'<div class="head">.*?<p class="sub">.*?</p>\s*</div>', open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "fudosan_kanto_head.html"), encoding="utf-8").read(), re.S)
 
 
 # ---- カード（地価のタブだけ。ほかのタブは、これから）
