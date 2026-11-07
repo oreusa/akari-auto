@@ -66,17 +66,27 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <link rel="icon" href="/logo.png"><link rel="apple-touch-icon" href="/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
-<link rel="stylesheet" href="/assets/top.css?v=1"><script src="/assets/night.js?v=15"></script><script src="/assets/menu.js?v=21" defer></script><script src="/assets/v2sub.js?v=10" defer></script></head><body id="lifenote-top"><div class="wrap">
+<link rel="stylesheet" href="/assets/top.css?v=1"><style>/* 11/7 月と同じ形：何ができるかの1行・3つのボタン・街の検索を上に・例・地図は下へ */
+.head{{padding:16px 96px 4px 16px!important;display:block;text-align:left!important}}.head .pur,.head .q3{{margin-right:-80px}}
+.head img{{width:40px!important;height:40px!important;vertical-align:middle}}
+.head h1{{display:inline-block;font-size:22px!important;margin:0 0 0 8px!important;vertical-align:middle;letter-spacing:.14em}}
+.head .kana{{display:none}}
+.pur{{font-family:"Shippori Mincho",serif;font-weight:600;font-size:15px;line-height:1.8;letter-spacing:.04em;margin:10px 0 0;color:#2B2622}}.pur b{{color:#4F86C6}}
+.q3{{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 0}}.q3 a{{display:block;text-decoration:none;color:#2B2622;border:1px solid #DADADA;border-radius:12px;padding:8px 4px 9px;font-weight:700;font-size:14px;background:#fff;text-align:center}}.q3 small{{display:block;font-family:Jost;font-weight:400;font-size:9px;letter-spacing:.2em;color:#9C8775;margin-bottom:2px}}
+.find{{margin:14px 0 0!important;padding:14px 14px 12px!important}}.find h2{{font-size:16px!important}}.find h2 small{{display:none}}.find p{{margin:6px 0 10px!important}}
+.exl{{font-size:11.5px;color:#8C7B6E;margin:10px 2px 0}}
+.mapsec{{margin:30px 0 0;text-align:center}}.mapsec h2{{font-family:"Shippori Mincho",serif;font-weight:600;font-size:18px;letter-spacing:.12em;margin:0}}.mapsec h2 small{{display:block;font-family:Jost;font-weight:400;font-size:10px;letter-spacing:.34em;color:#9C8775;margin-bottom:6px}}
+</style><script src="/assets/night.js?v=15"></script><script src="/assets/menu.js?v=21" defer></script><script src="/assets/v2sub.js?v=10" defer></script></head><body id="lifenote-top"><div class="wrap">
 <header class="head"><img src="/logo-s.png" width="74" height="74" alt="LIFE NOTE のロゴ">
 <h1>LIFE NOTE</h1><div class="kana">ライフノート</div>
-<p class="sub">関東のくらしで見つけたことを、<br>公式の情報つきで、このノートに書きとめています。</p>
-<div class="nofilt">{SVG}</div><div class="mapcap">都県を押すと、その都県の数が出ます</div><div class="pp" id="pp" hidden></div></header>
+<p class="pur">関東の<b>おでかけ</b>・<b>街の地価</b>・<b>日用品の最安</b>を、<br>公式の情報でしらべるノート</p>
+<nav class="q3"><a href="/odekake" data-k="入口の上｜おでかけ"><small>PAGE 01</small>おでかけ</a><a href="/fudosan-list" data-k="入口の上｜街の地価"><small>PAGE 02</small>街の地価</a><a href="/okaimono" data-k="入口の上｜おかいもの"><small>PAGE 03</small>おかいもの</a></nav></header>
 
 <section class="find" id="town"><h2><small>YOUR TOWN</small>あなたの街を探す</h2>
-<p>街の名前を入れると、その街の<b>おでかけ</b>・<b>イルミネーション</b>・<b>地価</b>が<br>まとめて出ます。</p>
+<p>街の名前を入れると、その街の<b>おでかけ</b>・<b>イルミネーション</b>・<b>地価</b>がまとめて出ます。</p>
 <input class="fi" id="q" type="search" placeholder="例：横浜、川越、舞浜" enterkeyhint="search" aria-label="街の名前">
 <div class="chips">{"".join(f'<button type="button">{c}</button>' for c in CHIPS)}</div>
-<div class="res" id="res"></div></section>
+<div class="exl" id="exl">例：「横浜」で探すと ↓</div><div class="res" id="res"></div></section>
 
 <section class="lists"><h2>IN THIS NOTE　─　このノートの中身</h2>
 <a class="ls" href="/odekake" data-k="入口｜関東おでかけリスト" style="--ac:#4F86C6;--bg:#EAF1FA;--c:#4F86C6"><div class="no"><small>PAGE</small>01</div><div class="en">KANTO ODEKAKE</div><h3>関東おでかけリスト</h3>
@@ -93,6 +103,8 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <div class="st"><div><span>比べた物</span><b id="k1">―</b></div><div><span>今だけのお得</span><b id="k2">―</b></div><div><span>比べた種類</span><b>{NKIND}<small style="font-size:12px">種類</small></b></div></div>
 <div class="pv" id="kpv"></div><div class="go">おかいものリストを開く<span>→</span></div></a>
 <p style="font-size:10.5px;color:#8C7B6E;text-align:center;margin:-6px 0 0">おかいものリストのリンクには広告（PR）があります</p></section>
+
+<section class="mapsec"><h2><small>MAP</small>地図から探す</h2><div class="nofilt">{SVG}</div><div class="mapcap">都県を押すと、その都県の数が出ます</div><div class="pp" id="pp" hidden></div></section>
 
 <section class="prom"><h2>NOTE RULES　─　書きかたの約束</h2><ol><li><b>公式だけ</b>おでかけは<br>公式ページだけ</li><li><b>数字で比べる</b>買い物は<br>3つ以上を比べて</li><li><b>7都県</b>どの都県も<br>同じように</li></ol></section>
 
@@ -161,8 +173,9 @@ function find(v){{v=v.replace(/\\s/g,"");if(!v){{res.innerHTML="";return;}}var v
  if(od.length)h+='<div class="sec">ODEKAKE　おでかけ</div>'+od.map(function(x){{return '<a href="'+esc(x.h)+'" rel="noopener" style="--pc:'+(PC[x.p]||"#8C7B6E")+'" data-k="入口の検索｜おでかけ｜'+esc(x.t.slice(0,20))+'"><i>'+esc(x.p)+'</i><b>'+esc(x.t)+'<small>'+esc(x.w)+(x.now?"・開催中":x.up?"・これから":"")+'</small></b><em style="color:#9C8775">→</em></a>'}}).join("");
  if(il.length)h+='<div class="sec">ILLUMINATION　イルミネーション</div>'+il.map(function(x){{return '<a href="'+(SLUG[x.p]?"/illumination-"+SLUG[x.p]:"/illumination")+'" style="--pc:'+(PC[x.p]||"#8C7B6E")+'" data-k="入口の検索｜イルミ｜'+esc(x.t.slice(0,20))+'"><i>'+esc(x.p||"関東")+'</i><b>'+esc(x.t)+'</b><em style="color:#9C8775">→</em></a>'}}).join("");
  res.innerHTML=h||'<div class="none">「'+esc(v)+'」はまだありません。調べて、リストに足していきます。</div>';}}
-q.oninput=function(){{Promise.all([pO,pI,pF]).then(function(){{find(q.value)}});clearTimeout(tq);tq=setTimeout(function(){{if(q.value.trim())c("入口で探す："+q.value.trim())}},1500);}};
-document.querySelectorAll(".chips button").forEach(function(b){{b.onclick=function(){{q.value=b.textContent;Promise.all([pO,pI,pF]).then(function(){{find(b.textContent)}});c("入口で探す："+b.textContent);}}}});
+q.oninput=function(){{var ex=document.getElementById("exl");if(ex)ex.style.display="none";Promise.all([pO,pI,pF]).then(function(){{find(q.value)}});clearTimeout(tq);tq=setTimeout(function(){{if(q.value.trim())c("入口で探す："+q.value.trim())}},1500);}};
+document.querySelectorAll(".chips button").forEach(function(b){{b.onclick=function(){{var ex=document.getElementById("exl");if(ex)ex.style.display="none";q.value=b.textContent;Promise.all([pO,pI,pF]).then(function(){{find(b.textContent)}});c("入口で探す："+b.textContent);}}}});
+Promise.all([pO,pI,pF]).then(function(){{if(!q.value.trim())find("横浜")}});
 document.addEventListener("click",function(e){{var a=e.target.closest&&e.target.closest("a");if(!a)return;c("入口｜"+(a.getAttribute("data-k")||a.textContent.trim().slice(0,30)));}},true);
 /* リストへ移る時も ?f= を付けたまま */
 if(location.search)document.querySelectorAll('a.ls,.pp a').forEach(function(a){{a.href=a.getAttribute("href")+location.search;}});
