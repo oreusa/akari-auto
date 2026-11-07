@@ -1773,40 +1773,6 @@
       }
     ]
   },
-  "塩原高原大根大根大鍋ふるまい": {
-    "v": 2,
-    "t": "2026-11-01",
-    "ll": [
-      36.95806,
-      139.82515
-    ],
-    "h": [
-      {
-        "n": "源泉掛け流しのちいさなホテル 塩原山荘",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D9129",
-        "km": 1.5,
-        "r": 5.0,
-        "rc": 10,
-        "min": 16450
-      },
-      {
-        "n": "塩原温泉 割烹旅館 湯の花荘",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D10893",
-        "km": 1.0,
-        "r": 4.86,
-        "rc": 222,
-        "min": 39600
-      },
-      {
-        "n": "塩原温泉 おやど 小梅や",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D130092",
-        "km": 1.0,
-        "r": 4.78,
-        "rc": 204,
-        "min": 22500
-      }
-    ]
-  },
   "三崎マグロ「茜身」スタンプラリー2026": {
     "v": 2,
     "t": "2026-11-01",
@@ -2704,41 +2670,6 @@
         "r": 4.0,
         "rc": 212,
         "min": 3900
-      }
-    ]
-  },
-  "第95回土浦全国花火競技大会": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      36.08665,
-      140.17775
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "フォレスト",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D134811",
-        "km": 2.2,
-        "r": 4.8,
-        "rc": 19,
-        "min": 3667
-      },
-      {
-        "n": "【JR土浦駅直結】 BEB5土浦 by 星野リゾート",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178358",
-        "km": 2.7,
-        "r": 4.5,
-        "rc": 401,
-        "min": 4510
-      },
-      {
-        "n": "BUB RESORT Tsukuba",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D197422",
-        "km": 3.1,
-        "r": 4.5,
-        "rc": 14,
-        "min": 45012
       }
     ]
   },
@@ -3987,25 +3918,6 @@
       }
     ]
   },
-  "多摩センターイルミネーション2026": {
-    "v": 2,
-    "t": "2026-11-06",
-    "ll": [
-      35.62394,
-      139.42426
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "LINK FOREST",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179467",
-        "km": 0.5,
-        "r": 4.5,
-        "rc": 637,
-        "min": 7840
-      }
-    ]
-  },
   "八王子いちょう祭り": {
     "v": 2,
     "t": "2026-11-06",
@@ -4057,41 +3969,6 @@
         "r": 4.74,
         "rc": 61,
         "min": 12100
-      }
-    ]
-  },
-  "NARITA花火大会in印旛沼": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      35.7797,
-      140.2853
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "和空 成田山門前",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184054",
-        "km": 2.9,
-        "r": 4.69,
-        "rc": 65,
-        "min": 19987
-      },
-      {
-        "n": "成田山門前 旅館 若松本店",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D4688",
-        "km": 3.0,
-        "r": 4.58,
-        "rc": 401,
-        "min": 12320
-      },
-      {
-        "n": "アパホテル〈京成成田駅前〉",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D76896",
-        "km": 2.9,
-        "r": 4.23,
-        "rc": 5791,
-        "min": 4140
       }
     ]
   },
