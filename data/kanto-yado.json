@@ -1,39 +1,4 @@
 {
-  "2026年宮の市商業祭": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      36.5597,
-      139.8829
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "リッチモンドホテル宇都宮駅前アネックス",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108189",
-        "km": 1.2,
-        "r": 4.54,
-        "rc": 3043,
-        "min": 4550
-      },
-      {
-        "n": "ザ ノット 宇都宮",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198048",
-        "km": 1.2,
-        "r": 4.4,
-        "rc": 609,
-        "min": 3782
-      },
-      {
-        "n": "JR東日本ホテルメッツ宇都宮",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136222",
-        "km": 1.4,
-        "r": 4.38,
-        "rc": 2508,
-        "min": 3450
-      }
-    ]
-  },
   "秩父ミューズパークイチョウ並木": {
     "v": 2,
     "t": "2026-11-07",
@@ -1212,33 +1177,6 @@
       }
     ]
   },
-  "ちばZOOフェスタ2026": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      35.64258,
-      140.12551
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "THE TSUBAKIMORI Hotel & Residence(椿森ホテル&レジデンス)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198773",
-        "km": 2.8,
-        "r": 4.57,
-        "rc": 49,
-        "min": 5000
-      },
-      {
-        "n": "グランパークホテルパネックス千葉",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D5146",
-        "km": 1.2,
-        "r": 3.96,
-        "rc": 1515,
-        "min": 5200
-      }
-    ]
-  },
   "ライトアップNIKKO2026": {
     "v": 2,
     "t": "2026-11-07",
@@ -1306,41 +1244,6 @@
         "r": 4.48,
         "rc": 38,
         "min": 6600
-      }
-    ]
-  },
-  "宇都宮餃子祭り2026": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      36.55451,
-      139.88535
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "リッチモンドホテル宇都宮駅前アネックス",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108189",
-        "km": 1.1,
-        "r": 4.54,
-        "rc": 3043,
-        "min": 4550
-      },
-      {
-        "n": "ザ ノット 宇都宮",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198048",
-        "km": 1.1,
-        "r": 4.4,
-        "rc": 609,
-        "min": 3782
-      },
-      {
-        "n": "【女性専用ゲストハウス】Travel Stay Utsunomiya",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D192046",
-        "km": 1.1,
-        "r": 4.38,
-        "rc": 62,
-        "min": 3781
       }
     ]
   },
@@ -2643,25 +2546,6 @@
       }
     ]
   },
-  "第53回坂東市将門まつり": {
-    "v": 2,
-    "t": "2026-11-02",
-    "ll": [
-      36.05688,
-      139.88664
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ホテルグリーンコア坂東(坂東ICより10分)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D158765",
-        "km": 0.8,
-        "r": 4.45,
-        "rc": 605,
-        "min": 4575
-      }
-    ]
-  },
   "第18回鹿沼そば天国withスタンプラリー": {
     "v": 2,
     "t": "2026-11-02",
@@ -3880,41 +3764,6 @@
       }
     ]
   },
-  "与一の里大田原市産業文化祭": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      36.85977,
-      140.00139
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "乃木温泉ホテル",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D70309",
-        "km": 2.6,
-        "r": 4.28,
-        "rc": 908,
-        "min": 8300
-      },
-      {
-        "n": "HOTEL R9 The Yard 大田原",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196190",
-        "km": 2.5,
-        "r": 4.25,
-        "rc": 164,
-        "min": 3600
-      },
-      {
-        "n": "ホテル和島屋",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D144550",
-        "km": 2.9,
-        "r": 4.14,
-        "rc": 84,
-        "min": 6270
-      }
-    ]
-  },
   "筑波山の紅葉": {
     "v": 2,
     "t": "2026-11-07",
@@ -3985,33 +3834,6 @@
       }
     ]
   },
-  "第41回芝山はにわ祭": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      35.6917,
-      140.43082
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "成田空港温泉 空の湯",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179201",
-        "km": 7.2,
-        "r": 4.31,
-        "rc": 567,
-        "min": 5000
-      },
-      {
-        "n": "ファミリーロッジ旅籠屋・九十九里店",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D43914",
-        "km": 4.0,
-        "r": 3.57,
-        "rc": 94,
-        "min": 4235
-      }
-    ]
-  },
   "養老渓谷紅葉ライトアップ": {
     "v": 2,
     "t": "2026-11-07",
@@ -4044,25 +3866,6 @@
         "r": 4.5,
         "rc": 135,
         "min": 18700
-      }
-    ]
-  },
-  "多摩センターイルミネーション2026": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      35.62394,
-      139.42426
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "LINK FOREST",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179467",
-        "km": 0.5,
-        "r": 4.5,
-        "rc": 637,
-        "min": 7840
       }
     ]
   },
