@@ -1,0 +1,370 @@
+{
+  "day": "2026-11-08",
+  "fetchedAt": "2026-11-09T04:57+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【11/30まで　横浜市｜中古の家の断熱改修に最大150万円🏠】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfdOyBmlu91",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.38,
+        "views": 42,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【11/30まで　横浜市｜中古の家の断熱改修に最大150万円🏠】",
+      "url": "https://x.com/1753799832798629888/status/2119191927920751008",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.88,
+        "reposts": 0,
+        "impressions": 17,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "11/14から相模湖で600万球のイルミリオン、今週始まる5つ✨",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfdchqLo6Lb",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 12.5,
+        "views": 8,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "11/14から相模湖で600万球のイルミリオン、今週始まる5つ✨",
+      "url": "https://x.com/1753799832798629888/status/2119222150229876796",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.59,
+        "reposts": 0,
+        "impressions": 126,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "今日11/8、横浜中華街で秋の味巡り、1個150円から🥟",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfdxHViDK7L",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "今日11/8、横浜中華街で秋の味巡り、1個150円から🥟",
+      "url": "https://x.com/1753799832798629888/status/2119267425132703860",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.86,
+        "reposts": 0,
+        "impressions": 35,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【2027年3/19から　横浜・上瀬谷｜約100haの花の博覧会🌷】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/Dfd7aOilZpX",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【2027年3/19から　横浜・上瀬谷｜約100haの花の博覧会🌷】",
+      "url": "https://x.com/1753799832798629888/status/2119290067214594238",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.88,
+        "reposts": 0,
+        "impressions": 17,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "11/3、皇居東御苑の中に猿田彦珈琲、46席のお店☕",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfeFtgsgJ-6",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "11/3、皇居東御苑の中に猿田彦珈琲、46席のお店☕",
+      "url": "https://x.com/1753799832798629888/status/2119312717529899167",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.13,
+        "reposts": 0,
+        "impressions": 64,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "【ひと駅しらべ　横浜駅｜1日37万3,010人、JR東日本で4位🚉】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfeaT7YFYuW",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "【ひと駅しらべ　横浜駅｜1日37万3,010人、JR東日本で4位🚉】",
+      "url": "https://x.com/1753799832798629888/status/2119358021654507564",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.76,
+        "reposts": 0,
+        "impressions": 21,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/23まで　湯西川温泉｜川ぞいの竹のあかり、見るのは無料🎋】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfeoDobGwqz",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/23まで　湯西川温泉｜川ぞいの竹のあかり、見るのは無料🎋】",
+      "url": "https://x.com/1753799832798629888/status/2119388245284803019",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 10,
+        "reposts": 0,
+        "impressions": 10,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/15まで　草津温泉｜道の駅の紅葉が夜に光る🍁】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfetRVgkZaL",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/15まで　草津温泉｜道の駅の紅葉が夜に光る🍁】",
+      "url": "https://x.com/1753799832798629888/status/2119399680568115420",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.17,
+        "reposts": 0,
+        "impressions": 24,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "HPのご紹介 その7｜ふるさと納税を寄付1万円あたりで🌾",
+      "url": "https://www.threads.com/@ai_usagichan1/post/Dfe1y8iERxx",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "HPのご紹介 その7｜ふるさと納税を寄付1万円あたりで🌾",
+      "url": "https://x.com/1753799832798629888/status/2119418458941063203",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.55,
+        "reposts": 0,
+        "impressions": 22,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4025468868261191083",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/ai_usagichan1/4025463825643018182",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/8　笠間稲荷神社｜第119回 笠間の菊まつり🌼】",
+      "url": "https://www.instagram.com/reel/DfdT8NGPOBl/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 4,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.11,
+        "averageTimeWatched": 1.6,
+        "reach": 4
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/8　笠間稲荷神社｜第119回 笠間の菊まつり🌼】",
+      "url": "https://www.threads.com/@ai_usagichan1/post/DfdT87wlbig",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.13,
+        "views": 47,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【11/8　笠間稲荷神社｜第119回 笠間の菊まつり🌼】",
+      "url": "https://x.com/1753799832798629888/status/2119203274150523046",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 7.46,
+        "reposts": 0,
+        "impressions": 67,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DfdQoAfIZ1C/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 2,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.02,
+        "averageTimeWatched": 0.72,
+        "reach": 2
+      }
+    }
+  ]
+}
