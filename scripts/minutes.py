@@ -54,6 +54,13 @@ def main():
     per_day = last7 / min(7, max(1, (now - start).days + 1))
     est = round(total + per_day * left)
     warn = "×1,600分を超えそう。HPの公開を1日2回に減らす" if est + TSUKI > 1600 else "○余裕あり"
+    # 11/8 燈のリポジトリも公開（public）。公開リポジトリの標準の機械は無料で、月2,000分の枠に入らない。分数は記録だけする
+    try:
+        public = get(f"https://api.github.com/repos/{repo}").get("visibility") == "public"
+    except Exception:
+        public = False
+    if public:
+        warn = "○公開リポジトリなので無料（2,000分の枠に入らない。記録だけ）"
     days7 = min(7, max(1, (now - start).days + 1))
     # 来月は直近24時間の使い方で見込む（直した機械の分が7日の平均に残るため。10/29 check を main だけにした）
     nov = round(last1 * 30) + TSUKI
@@ -61,7 +68,7 @@ def main():
     text = (f"# GitHub Actions の分数（{now.astimezone(JST):%Y-%m-%d %H:%M} に数えた）\n\n"
             f"- 今月の燈：{total}分（{n}回）／直近の1日あたり {per_day:.0f}分\n- 月末の見込み：燈 {est}分＋月 約{TSUKI}分＝{est + TSUKI}分／{LIMIT}分\n"
             f"- 判定：{warn}\n"
-            f"- 来月（30日）の見込み：燈 {round(last1 * 30)}分（直近24時間 {last1}分×30）＋月 約{TSUKI}分＝{nov}分／{LIMIT}分 {'×' if nov > LIMIT else '○'}\n\n"
+            f"- 来月（30日）の見込み：燈 {round(last1 * 30)}分（直近24時間 {last1}分×30）＋月 約{TSUKI}分＝{nov}分／{LIMIT}分 {'○（公開なので無料）' if public else ('×' if nov > LIMIT else '○')}\n\n"
             f"## 機械ごと（直近{days7}日）\n| 機械 | 分 | 1日あたり |\n|---|---|---|\n{rows}")
     os.makedirs("notes", exist_ok=True)
     open("notes/actions-minutes.md", "w").write(text)
