@@ -140,6 +140,19 @@ def code(u):
     return f"{m.group(1)}:{m.group(2)}" if m else ""
 
 
+PREFS = "北海道 青森 岩手 宮城 秋田 山形 福島 茨城 栃木 群馬 埼玉 千葉 東京 神奈川 新潟 富山 石川 福井 山梨 長野 岐阜 静岡 愛知 三重 滋賀 京都 大阪 兵庫 奈良 和歌山 鳥取 島根 岡山 広島 山口 徳島 香川 愛媛 高知 福岡 佐賀 長崎 熊本 大分 宮崎 鹿児島 沖縄".split()
+AREAS = "魚沼 南魚沼 会津 佐渡 岩船 庄内 津軽 伊賀 近江 丹波 但馬 淡路 十勝 富良野".split()
+
+
+def origin(name):
+    """名前の中の産地（県・地域）。県名は「◯◯県・◯◯産・◯◯米」の形だけ数える（京都・大阪は会社名にもあるため）"""
+    got = set(a for a in AREAS if a in name)
+    for pf in PREFS:
+        if re.search(pf + r"(県|府|道|都|産|米)", name):
+            got.add(pf)
+    return "・".join(sorted(got))
+
+
 def build():
     d = json.load(open(os.path.join(R, "data", "tanka.json"), encoding="utf-8"))
     try:
@@ -162,7 +175,7 @@ def build():
                     continue
                 o = {"n": clean(t.get("name") or "") or NAME[k], "p": int(t["price"]), "u": round(float(t["per"]), 1), "a": t.get("amt") or "",
                      "s": t.get("shop") or "", "w": site, "av": t.get("av") or 0, "rc": t.get("rc") or 0, "url": url,
-                     "img": t.get("img") or "", "bd": ""}
+                     "img": t.get("img") or "", "bd": "", "og": origin(t.get("name") or "")}
                 o["bd"] = brand(k, {**t, "bd": t.get("bd") or ""})
                 if o["bd"] and o["bd"] not in o["n"]:
                     o["n"] = (o["bd"] + " " + o["n"])[:34]
@@ -183,7 +196,10 @@ def build():
             continue
         # 同じ物が楽天とYahoo!にある時の印（メーカー＋量が同じ）
         for o in offers:
-            o["same"] = [i for i, x in enumerate(offers) if x is not o and o["bd"] and x["bd"] == o["bd"] and x["a"] == o["a"]]
+            # 11/8 夜#131：産地がちがう米を「同じ物」にしていた → 産地（県・地域）も同じ時だけ
+            o["same"] = [i for i, x in enumerate(offers) if x is not o and o["bd"] and x["bd"] == o["bd"] and x["a"] == o["a"] and x["og"] == o["og"]]
+        for o in offers:
+            o.pop("og", None)
         amz = [{"n": clean(a.get("name") or ""), "url": a.get("url") or (f"https://www.amazon.co.jp/dp/{a['asin']}" if a.get("asin") else "")}
                for a in c.get("amazon", []) if a.get("asin") or a.get("url")]
         cats.append({"k": k, "nm": NAME[k], "unit": c["unit"], "seen": c.get("seen", 0), "read": c.get("read", 0), "ok": c.get("ok", 0),
