@@ -75,16 +75,16 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 .q3{{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 0}}.q3 a{{display:block;text-decoration:none;color:#2B2622;border:1px solid #DADADA;border-radius:12px;padding:8px 4px 9px;font-weight:700;font-size:14px;background:#fff;text-align:center}}.q3 small{{display:block;font-family:Jost;font-weight:400;font-size:9px;letter-spacing:.2em;color:#9C8775;margin-bottom:2px}}
 .find{{margin:14px 0 0!important;padding:14px 14px 12px!important}}.find h2{{font-size:16px!important}}.find h2 small{{display:none}}.find p{{margin:6px 0 10px!important}}
 .exl{{font-size:11.5px;color:#8C7B6E;margin:10px 2px 0}}
-/* 11/8 オーナー「地図は1番上だろ お洒落に見やすく」→ 月と同じ：地図を名前と1行のすぐ下、白い台紙に */.head .mapsec{{margin:14px -80px 0 0;background:#fff;border:1px solid #E8E8EA;border-radius:20px;padding:12px 10px 6px;box-shadow:0 6px 22px rgba(43,38,34,.07)}}.mtag{{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#8C7B6E;margin:0 4px}}.mtag span{{font-family:Jost;font-weight:500;font-size:9.5px;letter-spacing:.32em;color:#fff;background:#2B2622;border-radius:99px;padding:3px 9px 3px 12px}}.head .kmap{{margin:4px 0 0}}.head .pp{{margin:4px 2px 8px;border-radius:12px}}
+/* 11/8 オーナー「地図は1番上だろ お洒落に見やすく」→ 月と同じ：地図を名前と1行のすぐ下、11/8 9:47 オーナー「枠いらない」→ 台紙・枠・MAP札なし */.head .mapsec{{margin:14px -80px 0 0;}}.mtag{{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#8C7B6E;margin:0 4px}}.mtag span{{font-family:Jost;font-weight:500;font-size:9.5px;letter-spacing:.32em;color:#fff;background:#2B2622;border-radius:99px;padding:3px 9px 3px 12px}}.head .kmap{{margin:4px 0 0}}.head .pp{{margin:4px 2px 8px;border-radius:12px}}
 </style><script src="/assets/night.js?v=15"></script><script src="/assets/menu.js?v=21" defer></script><script src="/assets/v2sub.js?v=10" defer></script></head><body id="lifenote-top"><div class="wrap">
 <header class="head"><img src="/logo-s.png" width="74" height="74" alt="LIFE NOTE のロゴ">
 <h1>LIFE NOTE</h1><div class="kana">ライフノート</div>
 <p class="pur">関東の<b>おでかけ</b>・<b>街の地価</b>・<b>日用品の最安</b>を、<br>公式の情報でしらべるノート</p>
-<section class="mapsec" aria-label="地図から探す"><div class="mtag"><span>MAP</span>都県を押すと、その都県の数が出ます</div><div class="nofilt">{SVG}</div><div class="pp" id="pp" hidden></div></section>
+<section class="mapsec" aria-label="地図から探す"><div class="nofilt">{SVG}</div><div class="pp" id="pp" hidden></div></section>
 <nav class="q3"><a href="/odekake" data-k="入口の上｜おでかけ"><small>PAGE 01</small>おでかけ</a><a href="/fudosan-list" data-k="入口の上｜街の地価"><small>PAGE 02</small>街の地価</a><a href="/okaimono" data-k="入口の上｜おかいもの"><small>PAGE 03</small>おかいもの</a></nav></header>
 
 <section class="find" id="town"><h2><small>YOUR TOWN</small>あなたの街を探す</h2>
-<p>街の名前を入れると、その街の<b>おでかけ</b>・<b>イルミネーション</b>・<b>地価</b>がまとめて出ます。</p>
+<p style="text-wrap:balance">街の名前を入れると、その街の<b>おでかけ</b>・<b>イルミ</b>・<b>地価</b>がまとめて出ます。</p>
 <input class="fi" id="q" type="search" placeholder="例：横浜、川越、舞浜" enterkeyhint="search" aria-label="街の名前">
 <div class="chips">{"".join(f'<button type="button">{c}</button>' for c in CHIPS)}</div>
 <div class="exl" id="exl">例：「横浜」で探すと ↓</div><div class="res" id="res"></div></section>
