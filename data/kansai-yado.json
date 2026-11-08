@@ -2413,34 +2413,35 @@
   },
   "ひこにゃん 彦根城に眠る謎を解け！（謎解き）": {
     "v": 2,
-    "t": "2026-11-01",
+    "t": "2026-11-08",
     "ll": [
       35.2771,
       136.25172
     ],
+    "w": 1,
     "h": [
       {
         "n": "蒼の湖邸 BIWAFRONT HIKONE",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187651",
         "km": 2.5,
-        "r": 4.86,
-        "rc": 323,
-        "min": 30250
+        "r": 4.85,
+        "rc": 330,
+        "min": 22660
       },
       {
         "n": "料亭旅館やす井",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D149302",
         "km": 1.5,
-        "r": 4.69,
-        "rc": 124,
-        "min": 37400
+        "r": 4.7,
+        "rc": 125,
+        "min": 31900
       },
       {
         "n": "とばや旅館",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108718",
         "km": 1.3,
-        "r": 4.67,
-        "rc": 150,
+        "r": 4.65,
+        "rc": 152,
         "min": 6050
       }
     ]
