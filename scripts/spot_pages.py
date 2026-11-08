@@ -174,3 +174,17 @@ if os.path.exists(sm):
     add = "".join(f"<url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>\n" for u in urls)
     open(sm, "w", encoding="utf-8").write(x.replace("</urlset>", add + "</urlset>", 1))
 print("spot pages", len(spots), "/ pref pages", sum(1 for u in urls if "/odekake-" in u))
+
+# 11/8 月のスレッド オーナー「本気でやれよ」（Google にまだ載っていない）→ 関東おでかけリスト（/odekake）から都県ページへのリンクが無かった。
+# 一番下に「都県ごとに見る」を足して、/odekake → /odekake-tokyo など → /o/ と Google がたどれるようにする（月の /odekake と同じ）。
+op = os.path.join(S, "odekake.html")
+h = open(op, encoding="utf-8").read()
+if "<!--pn-->" not in h:
+    nav = ('<!--pn--><style>.prefnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:28px 0 8px}.prefnav .plh{width:100%;text-align:center;font-size:12px;letter-spacing:.2em;color:#8a8f98;margin-bottom:4px}.prefnav a{font-size:13px;padding:6px 12px;border:1px solid #DCDFE4;border-radius:99px;color:#3a3330;text-decoration:none;background:#fff}</style>'
+           '<nav class="prefnav" aria-label="都県ごとに見る"><div class="plh">都県ごとに見る</div>' +
+           "".join(f'<a href="/odekake-{SLUG[q]}">{q}</a>' for q in FU if any(o["pref"] == q for o in spots)) + '</nav><!--/pn-->')
+    for anchor in ("出かける前に、必ず公式ページで", '<div class="sns">', "</body>"):
+        if anchor in h:
+            h = h.replace(anchor, nav + anchor, 1); break
+    open(op, "w", encoding="utf-8").write(h)
+    print("odekake.html: 都県ごとに見る を足した")
