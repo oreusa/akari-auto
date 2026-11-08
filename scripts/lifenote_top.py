@@ -72,7 +72,7 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 .head h1{{display:inline-block;font-size:22px!important;margin:0 0 0 8px!important;vertical-align:middle;letter-spacing:.14em}}
 .head .kana{{display:none}}
 .pur{{font-family:"Shippori Mincho",serif;font-weight:600;font-size:15px;line-height:1.8;letter-spacing:.04em;margin:10px 0 0;color:#2B2622}}.pur b{{color:#4F86C6}}
-.q3{{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 0}}.q3 a{{display:block;text-decoration:none;color:#2B2622;border:1px solid #DADADA;border-radius:12px;padding:8px 4px 9px;font-weight:700;font-size:14px;background:#fff;text-align:center}}.q3 small{{display:block;font-family:Jost;font-weight:400;font-size:9px;letter-spacing:.2em;color:#9C8775;margin-bottom:2px}}
+.q3{{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:22px 0 0;border-top:1px solid rgba(156,135,117,.28);border-bottom:1px solid rgba(156,135,117,.28)}}.q3 a{{display:block;text-decoration:none;color:#2B2622;border:0;border-left:1px solid rgba(156,135,117,.28);border-radius:0;padding:13px 2px 14px;font-family:"Shippori Mincho",serif;font-weight:600;font-size:14.5px;letter-spacing:.14em;background:transparent;text-align:center;transition:background .2s}}.q3 a:first-child{{border-left:0}}.q3 a:active{{background:rgba(156,135,117,.08)}}.q3 small{{display:block;font-family:Jost;font-weight:300;font-size:8.5px;letter-spacing:.32em;color:#9C8775;margin-bottom:5px}}
 .find{{margin:14px 0 0!important;padding:14px 14px 12px!important}}.find h2{{font-size:16px!important}}.find h2 small{{display:none}}.find p{{margin:6px 0 10px!important}}
 .exl{{font-size:11.5px;color:#8C7B6E;margin:10px 2px 0}}
 /* 11/8 オーナー「地図は1番上だろ お洒落に見やすく」→ 月と同じ：地図を名前と1行のすぐ下、11/8 9:47 オーナー「枠いらない」→ 台紙・枠・MAP札なし */.head .mapsec{{margin:14px -80px 0 0;}}.mtag{{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#8C7B6E;margin:0 4px}}.mtag span{{font-family:Jost;font-weight:500;font-size:9.5px;letter-spacing:.32em;color:#fff;background:#2B2622;border-radius:99px;padding:3px 9px 3px 12px}}.head .kmap{{margin:4px 0 0}}.head .pp{{margin:4px 2px 8px;border-radius:12px}}
@@ -83,7 +83,7 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <section class="mapsec" aria-label="地図から探す"><div class="nofilt">{SVG}</div><div class="pp" id="pp" hidden></div></section>
 <nav class="q3"><a href="/odekake" data-k="入口の上｜おでかけ"><small>PAGE 01</small>おでかけ</a><a href="/fudosan-list" data-k="入口の上｜街の地価"><small>PAGE 02</small>街の地価</a><a href="/okaimono" data-k="入口の上｜おかいもの"><small>PAGE 03</small>おかいもの</a></nav></header>
 
-<section class="find" id="town"><h2><small>YOUR TOWN</small>あなたの街を探す</h2>
+<section hidden style="display:none" class="find" id="town"><h2><small>YOUR TOWN</small>あなたの街を探す</h2>
 <p style="text-wrap:balance">街の名前を入れると、その街の<b>おでかけ</b>・<b>イルミ</b>・<b>地価</b>がまとめて出ます。</p>
 <input class="fi" id="q" type="search" placeholder="例：横浜、川越、舞浜" enterkeyhint="search" aria-label="街の名前">
 <div class="chips">{"".join(f'<button type="button">{c}</button>' for c in CHIPS)}</div>
