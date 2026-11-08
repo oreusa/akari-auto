@@ -83,11 +83,6 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <section class="mapsec" aria-label="地図から探す"><div class="nofilt">{SVG}</div><div class="pp" id="pp" hidden></div></section>
 <nav class="q3"><a href="/odekake" data-k="入口の上｜おでかけ"><small>PAGE 01</small>おでかけ</a><a href="/fudosan-list" data-k="入口の上｜街の地価"><small>PAGE 02</small>街の地価</a><a href="/okaimono" data-k="入口の上｜おかいもの"><small>PAGE 03</small>おかいもの</a></nav></header>
 
-<section hidden style="display:none" class="find" id="town"><h2><small>YOUR TOWN</small>あなたの街を探す</h2>
-<p style="text-wrap:balance">街の名前を入れると、その街の<b>おでかけ</b>・<b>イルミ</b>・<b>地価</b>がまとめて出ます。</p>
-<input class="fi" id="q" type="search" placeholder="例：横浜、川越、舞浜" enterkeyhint="search" aria-label="街の名前">
-<div class="chips">{"".join(f'<button type="button">{c}</button>' for c in CHIPS)}</div>
-<div class="exl" id="exl">例：「横浜」で探すと ↓</div><div class="res" id="res"></div></section>
 
 <section class="lists"><h2>IN THIS NOTE　─　このノートの中身</h2>
 <a class="ls" href="/odekake" data-k="入口｜関東おでかけリスト" style="--ac:#4F86C6;--bg:#EAF1FA;--c:#4F86C6"><div class="no"><small>PAGE</small>01</div><div class="en">KANTO ODEKAKE</div><h3>関東おでかけリスト</h3>
@@ -172,9 +167,9 @@ function find(v){{v=v.replace(/\\s/g,"");if(!v){{res.innerHTML="";return;}}var v
  if(od.length)h+='<div class="sec">ODEKAKE　おでかけ</div>'+od.map(function(x){{return '<a href="'+esc(x.h)+'" rel="noopener" style="--pc:'+(PC[x.p]||"#8C7B6E")+'" data-k="入口の検索｜おでかけ｜'+esc(x.t.slice(0,20))+'"><i>'+esc(x.p)+'</i><b>'+esc(x.t)+'<small>'+esc(x.w)+(x.now?"・開催中":x.up?"・これから":"")+'</small></b><em style="color:#9C8775">→</em></a>'}}).join("");
  if(il.length)h+='<div class="sec">ILLUMINATION　イルミネーション</div>'+il.map(function(x){{return '<a href="'+(SLUG[x.p]?"/illumination-"+SLUG[x.p]:"/illumination")+'" style="--pc:'+(PC[x.p]||"#8C7B6E")+'" data-k="入口の検索｜イルミ｜'+esc(x.t.slice(0,20))+'"><i>'+esc(x.p||"関東")+'</i><b>'+esc(x.t)+'</b><em style="color:#9C8775">→</em></a>'}}).join("");
  res.innerHTML=h||'<div class="none">「'+esc(v)+'」はまだありません。調べて、リストに足していきます。</div>';}}
-q.oninput=function(){{var ex=document.getElementById("exl");if(ex)ex.style.display="none";Promise.all([pO,pI,pF]).then(function(){{find(q.value)}});clearTimeout(tq);tq=setTimeout(function(){{if(q.value.trim())c("入口で探す："+q.value.trim())}},1500);}};
+if(q)q.oninput=function(){{var ex=document.getElementById("exl");if(ex)ex.style.display="none";Promise.all([pO,pI,pF]).then(function(){{find(q.value)}});clearTimeout(tq);tq=setTimeout(function(){{if(q.value.trim())c("入口で探す："+q.value.trim())}},1500);}};
 document.querySelectorAll(".chips button").forEach(function(b){{b.onclick=function(){{var ex=document.getElementById("exl");if(ex)ex.style.display="none";q.value=b.textContent;Promise.all([pO,pI,pF]).then(function(){{find(b.textContent)}});c("入口で探す："+b.textContent);}}}});
-Promise.all([pO,pI,pF]).then(function(){{if(!q.value.trim())find("横浜")}});
+if(q)Promise.all([pO,pI,pF]).then(function(){{if(!q.value.trim())find("横浜")}});
 document.addEventListener("click",function(e){{var a=e.target.closest&&e.target.closest("a");if(!a)return;c("入口｜"+(a.getAttribute("data-k")||a.textContent.trim().slice(0,30)));}},true);
 /* リストへ移る時も ?f= を付けたまま */
 if(location.search)document.querySelectorAll('a.ls,.pp a').forEach(function(a){{a.href=a.getAttribute("href")+location.search;}});
