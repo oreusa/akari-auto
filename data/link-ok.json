@@ -2144,7 +2144,7 @@
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
   "at": "2026-11-08",
   "ok": false,
-  "sec": 15.3,
+  "sec": 15.2,
   "why": "<urlopen error timed out>"
  },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
@@ -5673,6 +5673,12 @@
   "sec": 2.9,
   "why": ""
  },
+ "https://rekishikan-ibk.jp": {
+  "at": "2026-11-08",
+  "ok": true,
+  "sec": 1.3,
+  "why": ""
+ },
  "https://rekishikan-ibk.jp/event/festival/post-15132/": {
   "at": "2026-11-07",
   "by": "browser",
@@ -8011,6 +8017,12 @@
   "sec": 2.2,
   "why": ""
  },
+ "https://www.mappa.co.jp/15th/": {
+  "at": "2026-11-08",
+  "ok": true,
+  "sec": 0.8,
+  "why": ""
+ },
  "https://www.marie2026.jp/": {
   "at": "2026-11-07",
   "by": "browser",
@@ -8119,6 +8131,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.0,
+  "why": ""
+ },
+ "https://www.rindo.co.jp/event/134": {
+  "at": "2026-11-08",
+  "ok": true,
+  "sec": 0.7,
   "why": ""
  },
  "https://www.roppongihills.com/": {

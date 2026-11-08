@@ -1344,41 +1344,6 @@
       }
     ]
   },
-  "海・花そとあそび2026": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      36.40253,
-      140.59435
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "オーシャンフロント お宿 浜田館",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D76873",
-        "km": 3.0,
-        "r": 4.63,
-        "rc": 126,
-        "min": 14100
-      },
-      {
-        "n": "コトンひたちなかグランヴィラ",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184455",
-        "km": 1.1,
-        "r": 4.44,
-        "rc": 32,
-        "min": 12000
-      },
-      {
-        "n": "いそざき温泉 ホテルニュー白亜紀",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D68487",
-        "km": 3.6,
-        "r": 4.4,
-        "rc": 1555,
-        "min": 6380
-      }
-    ]
-  },
   "飯能まつり2026": {
     "v": 2,
     "t": "2026-11-07",
@@ -2675,68 +2640,6 @@
         "r": 4.0,
         "rc": 212,
         "min": 3900
-      }
-    ]
-  },
-  "北本まつり（宵まつり・産業まつり）": {
-    "v": 2,
-    "t": "2026-11-02",
-    "ll": [
-      36.02666,
-      139.52998
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "北本天然温泉 ハナホテル北本",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D180324",
-        "km": 1.5,
-        "r": 4.43,
-        "rc": 1443,
-        "min": 3325
-      },
-      {
-        "n": "ザ・セレクトン大宮快速・北本駅前",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D172208",
-        "km": 0.7,
-        "r": 4.23,
-        "rc": 480,
-        "min": 3370
-      }
-    ]
-  },
-  "成田市産業まつり": {
-    "v": 2,
-    "t": "2026-11-02",
-    "ll": [
-      35.79142,
-      140.39461
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "THE FARM スロウマウンテン成田",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196737",
-        "km": 2.6,
-        "r": 4.36,
-        "rc": 54,
-        "min": 17888
-      },
-      {
-        "n": "ANAクラウンプラザホテル成田 by IHG",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D215",
-        "km": 2.3,
-        "r": 4.34,
-        "rc": 1463,
-        "min": 5959
-      },
-      {
-        "n": "たびのホテルEXpress成田",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188746",
-        "km": 1.2,
-        "r": 4.3,
-        "rc": 312,
-        "min": 3500
       }
     ]
   },
@@ -4160,6 +4063,76 @@
         "r": 4.5,
         "rc": 637,
         "min": 7840
+      }
+    ]
+  },
+  "西塩子の回り舞台": {
+    "v": 2,
+    "t": "2026-11-08",
+    "ll": [
+      36.08539,
+      140.1933
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "【JR土浦駅直結】 BEB5土浦 by 星野リゾート",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178358",
+        "km": 1.4,
+        "r": 4.51,
+        "rc": 409,
+        "min": 4510
+      },
+      {
+        "n": "湖北ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D31538",
+        "km": 1.7,
+        "r": 4.36,
+        "rc": 1020,
+        "min": 3041
+      },
+      {
+        "n": "ホテルフィット",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106074",
+        "km": 1.7,
+        "r": 4.33,
+        "rc": 2040,
+        "min": 4850
+      }
+    ]
+  },
+  "『牧場物語』×那須高原りんどう湖ファミリー牧場": {
+    "v": 2,
+    "t": "2026-11-08",
+    "ll": [
+      37.04349,
+      140.04833
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ペンション山日記",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D76431",
+        "km": 1.8,
+        "r": 5.0,
+        "rc": 50,
+        "min": 12800
+      },
+      {
+        "n": "ゲストハウス もみの木",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D11186",
+        "km": 1.6,
+        "r": 4.91,
+        "rc": 72,
+        "min": 8000
+      },
+      {
+        "n": "ホテル四季の館那須",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D167732",
+        "km": 0.9,
+        "r": 4.68,
+        "rc": 85,
+        "min": 13755
       }
     ]
   }
