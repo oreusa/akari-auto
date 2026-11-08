@@ -1177,41 +1177,6 @@
       }
     ]
   },
-  "ライトアップNIKKO2026": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      36.75764,
-      139.59911
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "旅館 上州屋",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D52854",
-        "km": 0.9,
-        "r": 5.0,
-        "rc": 53,
-        "min": 11500
-      },
-      {
-        "n": "ふふ 日光",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182643",
-        "km": 1.1,
-        "r": 5.0,
-        "rc": 74,
-        "min": 56100
-      },
-      {
-        "n": "日光西町倶楽部あらとうと",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D165811",
-        "km": 0.3,
-        "r": 4.86,
-        "rc": 26,
-        "min": 34100
-      }
-    ]
-  },
   "月の石もみじ公園紅葉ライトアップ": {
     "v": 2,
     "t": "2026-11-07",
@@ -3901,6 +3866,25 @@
         "r": 4.68,
         "rc": 85,
         "min": 13755
+      }
+    ]
+  },
+  "多摩センターイルミネーション2026": {
+    "v": 2,
+    "t": "2026-11-08",
+    "ll": [
+      35.62394,
+      139.42426
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "LINK FOREST",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179467",
+        "km": 0.5,
+        "r": 4.5,
+        "rc": 647,
+        "min": 7840
       }
     ]
   }
