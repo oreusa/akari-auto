@@ -66,7 +66,7 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <link rel="icon" href="/logo.png"><link rel="apple-touch-icon" href="/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
-<link rel="stylesheet" href="/assets/top.css?v=1"><style>/* 11/7 月と同じ形：何ができるかの1行・3つのボタン・街の検索を上に・例・地図は下へ */
+<link rel="stylesheet" href="/assets/top.css?v=2"><style>/* 11/7 月と同じ形：何ができるかの1行・3つのボタン・街の検索を上に・例・地図は下へ */
 .head{{padding:16px 96px 4px 16px!important;display:block;text-align:left!important}}.head .pur,.head .q3{{margin-right:-80px}}
 .head img{{width:40px!important;height:40px!important;vertical-align:middle}}
 .head h1{{display:inline-block;font-size:22px!important;margin:0 0 0 8px!important;vertical-align:middle;letter-spacing:.14em}}
