@@ -2303,6 +2303,42 @@
       "note": "つくば市｜11/6 山頂は色づきが進み、中腹は色づき始め",
       "url": "https://ttca.jp/autumn-leaves-info2026/",
       "checked": "2026-11-07"
+    },
+    {
+      "title": "MAPPA EXPO 15th Anniversary",
+      "pref": "東京",
+      "place": "有楽町ミュージアム",
+      "when": "9/16〜12/7",
+      "start": "2026-09-16",
+      "ends": "2026-12-07T18:00",
+      "free": false,
+      "note": "千代田区｜日時指定。前売 一般2,000円・未就学児無料",
+      "url": "https://www.mappa.co.jp/15th/",
+      "checked": "2026-11-08"
+    },
+    {
+      "title": "西塩子の回り舞台",
+      "pref": "茨城",
+      "place": "茨城県立歴史館",
+      "when": "10/10〜12/6",
+      "start": "2026-10-10",
+      "ends": "2026-12-06T17:00",
+      "free": false,
+      "note": "水戸市｜9:30〜17:00、月曜休み。高校生以下無料",
+      "url": "https://rekishikan-ibk.jp",
+      "checked": "2026-11-08"
+    },
+    {
+      "title": "『牧場物語』×那須高原りんどう湖ファミリー牧場",
+      "pref": "栃木",
+      "place": "那須高原りんどう湖ファミリー牧場",
+      "when": "9/22〜1/11",
+      "start": "2026-09-22",
+      "ends": "2027-01-11T16:30",
+      "free": false,
+      "note": "那須町｜コラボの展示とスタンプラリー。入園 大人1,600円",
+      "url": "https://www.rindo.co.jp/event/134",
+      "checked": "2026-11-08"
     }
   ]
 }
