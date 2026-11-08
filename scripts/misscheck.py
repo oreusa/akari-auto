@@ -157,7 +157,7 @@ def capacity():
     if os.path.exists('notes/actions-minutes.md'):
         t = open('notes/actions-minutes.md', encoding='utf-8').read()
         for m in re.finditer(r'^- (判定|来月[^：]*)：(.*)$', t, re.M):
-            if '×' in m.group(2):
+            if '×' in m.group(2).replace('分×30', '') and '公開なので無料' not in m.group(2):  # 11/8 公開リポジトリは無料
                 out.append(f'Actions の分数 {m.group(1)}：{m.group(2)[:80]}')
     b = load('state/buffer_limit.json', {}) or {}
     rem = (b.get('headers') or {}).get('x-ratelimit-remaining')
