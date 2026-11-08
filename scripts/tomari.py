@@ -68,6 +68,9 @@ def load_cards(Y):
 def sat_for(c, today):
     """11/7 売上の調査 B1/C1：宿のリンクに泊まる日を付ける。次の土曜（おでかけが始まる前ならその後の最初の土曜）"""
     d = today + timedelta(days=(5 - today.weekday()) % 7)
+    # 11/8 売上の調査 B1：日曜に「この週末」を見た人が来週の土曜へ送られていた。日曜は、その日に開いていれば今夜（日→月）にする
+    if today.weekday() == 6 and (not c.get("s") or c["s"] <= today.isoformat()) and (not c.get("e") or c["e"] >= today.isoformat()):
+        return today
     if c.get("s") and c["s"] > d.isoformat():
         s = date.fromisoformat(c["s"])
         d = s + timedelta(days=(5 - s.weekday()) % 7)
@@ -116,7 +119,7 @@ def hotel(c, h):
     pr = f"{int(h['min']):,}円〜" if h.get("min") else ""
     d = c.get("sat")
     u = dated(h["u"], d)
-    lab = f"{d.month}/{d.day}（土）の空室" if d and u != h["u"] else "空室を見る"
+    lab = f"{d.month}/{d.day}（{WD[d.weekday()]}）の空室" if d and u != h["u"] else "空室を見る"
     return (f'<li><a href="{E(u)}" target="_blank" rel="noopener sponsored" data-y="宿｜{E(c["t"][:16])}｜{E(h["n"])}">'
             f'<span class="hn">{E(h["n"])}</span><span class="hm"><b>{rv}</b>{rc}・{km}</span><span class="hp"><span class="hy">{pr}</span><span class="hv">{lab}</span></span></a></li>')
 
@@ -167,7 +170,7 @@ def main():
              if os.path.exists(_mj) else "")
     btns = '<button class="on" data-p="すべて">すべて</button>' + "".join(
         f'<button data-p="{p}" style="--pc:{PREF_COLOR[p]}">{p}</button>' for p in KANTO_ORDER if items[p])
-    dnote = "<br>「◯/◯（土）の空室」は、その土曜1泊・大人2人で開きます。" if DATED_OK else ""
+    dnote = "<br>「◯/◯（土）の空室」は、その日1泊・大人2人で開きます（日曜は今夜の1泊）。" if DATED_OK else ""
     upd = f"{today.year}年{today.month}月{today.day}日"
     out = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>泊まりで行く関東のおでかけ｜近くの宿つき｜うさぎ│LIFE NOTES</title>
