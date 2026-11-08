@@ -7159,5 +7159,29 @@
       "svc": "instagram"
     },
     "url": "https://ffc900fe.akari-reels.pages.dev/2026-11-09-odekake-132932.mp4"
+  },
+  "2026-11-09 18:15": {
+    "twitter": {
+      "tries": 1,
+      "id": "6af0f02c9214322f687bdb8a",
+      "kind": "通常",
+      "at": "18:15",
+      "texts": [
+        "【ひと駅しらべ　浦和駅｜1日9万939人、JR東日本で39位🚉】\n\n✦ 定期の人 5万7,647人\n✦ 前の年度より3.1%増\n✦ 川口は7万5,061人で54位\n\n浦和駅、よく使いますか。\n#埼玉の街",
+        "JR東日本の各駅の乗車人員のページです（11/8時点）\nhttps://www.jreast.co.jp/company/data/passenger/\n\n関東の街の地価と数字は、こちらにまとめています\nhttps://usagi-life-notes.pages.dev/fudosan-list"
+      ],
+      "topic": "埼玉"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "6af0f02c004e4879a7e29d67",
+      "kind": "通常",
+      "at": "18:15",
+      "texts": [
+        "【ひと駅しらべ　浦和駅｜1日9万939人、JR東日本で39位🚉】\n\nJR東日本が出している「各駅の乗車人員 2024年度」で、浦和駅を調べました。\n\n✦ 1日平均の乗車人員\n　⊹ 合計 9万939人\n　⊹ JR東日本の駅で39位\n　⊹ 前の年度より3.1%増\n✦ 内わけ\n　⊹ 定期の人 5万7,647人\n　⊹ 定期でない人 3万3,292人\n✦ 近くのJRの駅\n　⊹ 川口 7万5,061人（54位）\n　⊹ 南浦和 5万5,310人（78位）\n　⊹ 武蔵浦和 5万372人（89位）\n\nAIが調べて分かった数字：4駅の中で、前の年度から一番増えたのは武蔵浦和の3.5%です。\n\n浦和駅で降りたら、まずどこへ行きますか。",
+        "JR東日本の各駅の乗車人員のページです（11/8時点）\nhttps://www.jreast.co.jp/company/data/passenger/\n\n関東の街の地価と数字は、こちらにまとめています\nhttps://usagi-life-notes.pages.dev/fudosan-list"
+      ],
+      "topic": "埼玉"
+    }
   }
 }
