@@ -328,8 +328,8 @@ VC_EXTRA_ON = False
 def itt_box(n):
     return (f'<section class="itt"><div class="en2">IN THIS TOWN</div><h2>{E(n)}で</h2><div class="itg">'
             f'<a class="itc" href="/uru.html" data-k="この街で｜売りたい｜{E(n)}"><b>売りたい</b><span>いくらで売れそうか、相場から順に（無料）</span><i>手順を見る →</i></a>'
-            f'<a class="itc" href="{E(YAHOO_RE)}" rel="nofollow sponsored" target="_blank" data-k="家を探す｜Yahoo!不動産｜{E(n)}"><b>買いたい</b><span>{E(n)}で、いま売り出し中の家を見る</span><i>物件を見る →</i></a>'
-            f'</div><p class="itn">「物件を見る」は広告です。</p></section>')
+            f'<a class="itc" href="{E(YAHOO_RE)}" rel="nofollow sponsored" target="_blank" data-k="家を探す｜Yahoo!不動産｜{E(n)}"><b>買いたい</b><span>Yahoo!不動産で地域を選んで、売り出し中の家を見る</span><i>物件を探す →</i></a>'
+            f'</div><p class="itn">「物件を探す」は広告です（Yahoo!不動産のトップが開きます）。</p></section>')
 
 
 def buy_box(n):
