@@ -93,17 +93,19 @@ def page(items, today, now):
     n = len(items)
     names = "・".join(e["name"] for e in items if e.get("start"))
     names = "・".join(names.split("・")[:3])
-    title = "関東の紅葉ライトアップ2026｜東京・神奈川・埼玉・千葉・茨城・栃木・群馬の日程・時間・料金"
-    desc = (f"関東（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）の紅葉ライトアップ2026を{n}か所、都県ごとに日程・夜の時間・料金・無料かどうかで一覧に。"
+    nm = sum(len(v) for v in meisho(today).values())
+    title = (f"関東の紅葉2026｜名所{nm}か所の見頃とライトアップ{n}か所" if nm else
+             "関東の紅葉ライトアップ2026｜東京・神奈川・埼玉・千葉・茨城・栃木・群馬の日程・時間・料金")
+    desc = (f"関東（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）の紅葉の名所{nm}か所の例年の見頃と、紅葉ライトアップ2026を{n}か所、都県ごとに日程・夜の時間・料金・無料かどうかで一覧に。"
             f"{names}など。近くの宿も。{now.year}年{now.month}月{now.day}日更新。")
     h = re.sub(r"<title>.*?</title>", f"<title>{esc(title)}</title>", h, count=1, flags=re.S)
     h = re.sub(r'(<meta (?:name="description"|property="og:description") content=")[^"]*', lambda m: m.group(1) + esc(desc), h)
     h = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m: m.group(1) + esc(title), h)
     h = h.replace(f"{illumi.SITE}/{illumi.PAGE}\"", f"{illumi.SITE}/{PAGE}\"")
     h = h.replace("KANTO ILLUMINATION", "KANTO AUTUMN LEAVES")
-    h = h.replace("<h1>関東イルミネーション<small>2026 - 2027 日程一覧</small></h1>", "<h1>関東の紅葉ライトアップ<small>2026 日程一覧</small></h1>")
+    h = h.replace("<h1>関東イルミネーション<small>2026 - 2027 日程一覧</small></h1>", "<h1>関東の紅葉<small>2026 名所とライトアップ</small></h1>")
     h = re.sub(r'<p class="lead">.*?</p>',
-               f'<p class="lead">東京・神奈川・埼玉・千葉・茨城・栃木・群馬の{n}か所を、<br>日程・夜の時間・料金でまとめました。</p>', h, count=1, flags=re.S)
+               f'<p class="lead">東京・神奈川・埼玉・千葉・茨城・栃木・群馬の<br>紅葉の名所{nm}か所（昼）と、ライトアップ{n}か所（夜）をまとめました。</p>', h, count=1, flags=re.S)
     # 都県ごとのイルミのページへの欄は、紅葉では「イルミネーションも見る」1つに
     h = re.sub(r'<nav class="pn"[^>]*>.*?</nav>',
                '<nav class="pn" aria-label="ほかのページ"><p class="pnh">あわせて見る</p><a href="illumination">関東のイルミネーション</a>'
@@ -121,6 +123,7 @@ def page(items, today, now):
                '<p>日程・時間・料金は、各公式ページで確かめてのせています。名前を押すと公式のページ、「地図」を押すと場所が開きます。「今夜やっています」は、今日が期間の中の所です。紅葉の色づきは年によってずれるので、お出かけ前にリンク先でご確認ください。</p>', h, count=1, flags=re.S)
     h = re.sub(r'(<nav class="tabs"[^>]*>.*?</nav>)', r'\1<div class="tnb"><button id="tnb" aria-pressed="false">今夜やっている所だけ</button></div>', h, count=1, flags=re.S)
     h = h.replace('<p class="none" hidden>', '<p class="none8" id="none8" hidden>今夜やっている所は、ありません。ボタンをもう一度押すと全部出ます。</p><p class="none" hidden>', 1)
+    h, _ = add_meisho(h, today)
     return dress(h, True)
 
 
@@ -152,6 +155,89 @@ def into_illumination(items, today):
             if not p:
                 h = re.sub(r'(<nav class="tabs"[^>]*>.*?)</nav>', lambda m: m.group(1) + '<button data-f="紅葉">紅葉</button></nav>', h, count=1, flags=re.S)
         open(f, "w", encoding="utf-8").write(dress(h, False, "/" + slug))
+
+
+# 11/9 紅葉の名所（昼に見る所）。月の /koyo と同じ形：都県ごとに「名所」の段をライトアップの段の前に。
+# data/meisho.json の見頃（公式の書き方のまま：「11月中旬〜12月上旬」など）を日にちにして、見頃が過ぎた所は出さない
+def prange(t, y=2026):
+    import calendar
+    def one(x, m0, first):
+        m = re.match(r"(?:(\d+)月)?(上旬|初旬|中旬|下旬|末)?", x.strip())
+        mo = int(m.group(1)) if m.group(1) else m0
+        if not mo:
+            return None, None
+        last = calendar.monthrange(y, mo)[1]
+        k = m.group(2)
+        a, b = {"上旬": (1, 10), "初旬": (1, 10), "中旬": (11, 20), "下旬": (21, last), "末": (21, last)}.get(k, (1, last))
+        return date(y, mo, a if first else b), mo
+    parts = [x for x in re.split(r"[〜~～]", t)]
+    s, m0 = one(parts[0], None, True)
+    if s is None:
+        return None, None
+    if len(parts) > 1 and parts[1].strip():
+        e, _ = one(parts[1], m0, False)
+    elif len(parts) > 1:
+        e = None  # 「11月中旬〜」= 終わりは公式で
+    else:
+        e, _ = one(parts[0], None, False)
+    return s, e
+
+
+def mcard(e, today):
+    s, en = prange(e["peak"])
+    if en and en < today:
+        return ""
+    if s and s <= today:
+        tag = '<span class="st now">見頃の時期です</span>'
+    elif s:
+        tag = f'<span class="st soon">見頃の時期まで あと{(s - today).days}日</span>'
+    else:
+        tag = '<span class="st tba">見頃は公式で</span>'
+    free = '<span class="fr">無料</span>' if (e.get("fee") or "").startswith("無料") else ""
+    q = f'{e["name"]} {dict(PREFS)[e["pref"]]}{e["city"]}'
+    gm = "https://www.google.com/maps/search/?api=1&query=" + illumi.urllib.parse.quote(q)
+    rows = f'<span class="kv"><span>見頃</span>例年 {esc(e["peak"])}</span>'
+    if e.get("fee"):
+        rows += f'<span class="kv"><span>料金</span>{esc(e["fee"])}</span>'
+    if e.get("note"):
+        rows += f'<span class="kv"><span>メモ</span>{esc(e["note"])}</span>'
+    return (f'<li class="it ky ms" data-s="" data-e="{en.isoformat() if en else ""}" data-p="{esc(e["pref"])}"><div class="cw">'
+            f'<a class="cd" href="{esc(e["url"])}" target="_blank" rel="noopener"><span class="bd">{tag}{free}</span>'
+            f'<span class="nm">{esc(e["name"])}</span><span class="pl">{esc(e["city"])}</span>{rows}<span class="ar">→</span></a>'
+            f'<a class="mp" href="{esc(gm)}" target="_blank" rel="noopener">地図</a></div></li>')
+
+
+def meisho(today):
+    f = os.path.join(ROOT, "data", "meisho.json")
+    if not os.path.exists(f):
+        return {}
+    out = {}
+    for e in json.load(open(f, encoding="utf-8"))["items"]:
+        c = mcard(e, today)
+        if c:
+            st = prange(e["peak"])[0] or date(2099, 1, 1)
+            out.setdefault(e["pref"], []).append((st > today, st, c))
+    # 見頃の時期の所を先に、そのあとは見頃が早い順
+    return {p: [c for *_, c in sorted(v)] for p, v in out.items()}
+
+
+def add_meisho(h, today):
+    ms = meisho(today)
+    for p, full in PREFS:
+        cs = ms.get(p)
+        if not cs:
+            continue
+        sec = (f'<section class="ps" data-p="{p}"><h2>{full}の紅葉の名所<b class="c">{len(cs)}件</b></h2>'
+               f'<p class="mnote">昼に見る所です。見頃は例年の時期（公式の案内のまま）。色づきは年でずれるので、お出かけ前に公式でご確認ください。</p>'
+               f'<ul>{"".join(cs)}</ul></section>')
+        key = f'<section class="ps" data-p="{p}">'
+        if key in h:
+            h = h.replace(key, sec + key, 1)
+        else:
+            h = h.replace('<p class="none" hidden>', sec + '<p class="none" hidden>', 1)
+    css = (".mnote{font-size:12px;line-height:1.7;color:#7A6E66;margin:-4px 0 10px}"
+           ".ms .st.soon,.ms .st.now{white-space:nowrap}")
+    return h.replace("</style>", css + "</style>", 1), sum(len(v) for v in ms.values())
 
 
 def main():

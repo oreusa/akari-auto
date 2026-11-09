@@ -1,0 +1,275 @@
+{
+ "_": "11/9 紅葉の名所（昼）。見頃は施設・都県・観光協会の公式ページの書き方のまま。他サイトの値は写さない。月の tools/illumi/data.py MEISHO と同じ。",
+ "items": [
+  {
+   "pref": "東京",
+   "name": "高尾山",
+   "city": "八王子市",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.gotokyo.org/jp/story/guide/autumn-leaves-forecast",
+   "note": ""
+  },
+  {
+   "pref": "東京",
+   "name": "国営昭和記念公園",
+   "city": "立川市・昭島市",
+   "peak": "10月下旬〜11月中旬",
+   "fee": "",
+   "url": "https://www.gotokyo.org/jp/story/guide/autumn-leaves-forecast",
+   "note": "夜の「秋の夜散歩」もあり"
+  },
+  {
+   "pref": "東京",
+   "name": "六義園",
+   "city": "文京区",
+   "peak": "11月下旬〜12月中旬",
+   "fee": "",
+   "url": "https://www.gotokyo.org/jp/story/guide/autumn-leaves-forecast",
+   "note": ""
+  },
+  {
+   "pref": "東京",
+   "name": "明治神宮外苑",
+   "city": "港区",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.gotokyo.org/jp/story/guide/autumn-leaves-forecast",
+   "note": "いちょう並木"
+  },
+  {
+   "pref": "東京",
+   "name": "新宿御苑",
+   "city": "新宿区",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.gotokyo.org/jp/story/guide/autumn-leaves-forecast",
+   "note": ""
+  },
+  {
+   "pref": "東京",
+   "name": "小石川後楽園",
+   "city": "文京区",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.gotokyo.org/jp/story/guide/autumn-leaves-forecast",
+   "note": ""
+  },
+  {
+   "pref": "東京",
+   "name": "殿ヶ谷戸庭園",
+   "city": "国分寺市",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "一般150円・65歳以上70円",
+   "url": "https://www.metro.tokyo.lg.jp/ja/information/press/2026/09/2026093013",
+   "note": "イロハモミジ約200本"
+  },
+  {
+   "pref": "東京",
+   "name": "浜離宮恩賜庭園",
+   "city": "中央区",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.gotokyo.org/jp/story/guide/autumn-leaves-forecast",
+   "note": ""
+  },
+  {
+   "pref": "神奈川",
+   "name": "箱根 強羅（箱根美術館）",
+   "city": "箱根町",
+   "peak": "11月中旬〜11月下旬",
+   "fee": "",
+   "url": "https://www.hakone.or.jp/1804",
+   "note": ""
+  },
+  {
+   "pref": "神奈川",
+   "name": "箱根 小涌谷（岡田美術館）",
+   "city": "箱根町",
+   "peak": "11月上旬〜11月下旬",
+   "fee": "",
+   "url": "https://www.hakone.or.jp/1804",
+   "note": ""
+  },
+  {
+   "pref": "神奈川",
+   "name": "三溪園",
+   "city": "横浜市中区",
+   "peak": "11月〜12月",
+   "fee": "",
+   "url": "https://www.sankeien.or.jp/flower/",
+   "note": "モミジ・イチョウ"
+  },
+  {
+   "pref": "神奈川",
+   "name": "県立相模原公園",
+   "city": "相模原市",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.kanagawa-kankou.or.jp/features/koyo-kanagawa",
+   "note": ""
+  },
+  {
+   "pref": "神奈川",
+   "name": "大磯城山公園",
+   "city": "大磯町",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.kanagawa-kankou.or.jp/features/koyo-kanagawa",
+   "note": ""
+  },
+  {
+   "pref": "埼玉",
+   "name": "平林寺",
+   "city": "新座市",
+   "peak": "11月下旬〜12月中旬",
+   "fee": "",
+   "url": "https://www.heirinji.or.jp/",
+   "note": ""
+  },
+  {
+   "pref": "埼玉",
+   "name": "嵐山渓谷",
+   "city": "嵐山町",
+   "peak": "11月中旬〜",
+   "fee": "",
+   "url": "https://www.town.ranzan.saitama.jp/0000008033.html",
+   "note": "みごろウィーク 11/14〜12/6"
+  },
+  {
+   "pref": "埼玉",
+   "name": "月の石もみじ公園（長瀞）",
+   "city": "長瀞町",
+   "peak": "11月",
+   "fee": "無料（駐車場500円）",
+   "url": "https://chocotabi-saitama.jp/spot/19031/",
+   "note": ""
+  },
+  {
+   "pref": "千葉",
+   "name": "養老渓谷",
+   "city": "市原市・大多喜町",
+   "peak": "11月下旬〜12月下旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html",
+   "note": "遊歩道の一部が通れません"
+  },
+  {
+   "pref": "千葉",
+   "name": "亀山湖",
+   "city": "君津市",
+   "peak": "11月下旬〜12月中旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html",
+   "note": "紅葉クルーズ 11/14〜12/13"
+  },
+  {
+   "pref": "千葉",
+   "name": "本土寺",
+   "city": "松戸市",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html",
+   "note": ""
+  },
+  {
+   "pref": "千葉",
+   "name": "成田山公園",
+   "city": "成田市",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html",
+   "note": ""
+  },
+  {
+   "pref": "茨城",
+   "name": "袋田の滝",
+   "city": "大子町",
+   "peak": "11月上旬〜11月中旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html",
+   "note": ""
+  },
+  {
+   "pref": "茨城",
+   "name": "花貫渓谷",
+   "city": "高萩市",
+   "peak": "11月中旬〜11月下旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html",
+   "note": ""
+  },
+  {
+   "pref": "茨城",
+   "name": "竜神峡",
+   "city": "常陸太田市",
+   "peak": "11月中旬〜11月下旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html",
+   "note": ""
+  },
+  {
+   "pref": "茨城",
+   "name": "筑波山",
+   "city": "つくば市",
+   "peak": "11月上旬〜11月下旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html",
+   "note": ""
+  },
+  {
+   "pref": "栃木",
+   "name": "いろは坂",
+   "city": "日光市",
+   "peak": "10月下旬〜11月上旬",
+   "fee": "",
+   "url": "https://www.nikko-kankou.org/features/78",
+   "note": "上から下へ見頃が移ります"
+  },
+  {
+   "pref": "栃木",
+   "name": "華厳の滝",
+   "city": "日光市",
+   "peak": "10月下旬〜11月上旬",
+   "fee": "",
+   "url": "https://www.nikko-kankou.org/features/78",
+   "note": ""
+  },
+  {
+   "pref": "栃木",
+   "name": "日光山内（神橋・東照宮のまわり）",
+   "city": "日光市",
+   "peak": "11月上旬〜11月中旬",
+   "fee": "",
+   "url": "https://www.nikko-kankou.org/features/78",
+   "note": ""
+  },
+  {
+   "pref": "栃木",
+   "name": "もみじ谷大吊橋（塩原）",
+   "city": "那須塩原市",
+   "peak": "11月上旬〜中旬",
+   "fee": "大人300円・中学生以下200円",
+   "url": "https://www.tochigiji.or.jp/spot/s7898",
+   "note": ""
+  },
+  {
+   "pref": "群馬",
+   "name": "吹割渓谷（吹割の滝）",
+   "city": "沼田市",
+   "peak": "10月下旬〜11月上旬",
+   "fee": "",
+   "url": "https://www.numata-kankou.jp/activity/flower/kouyou/index.html",
+   "note": ""
+  },
+  {
+   "pref": "群馬",
+   "name": "妙義山",
+   "city": "富岡市",
+   "peak": "11月上旬〜11月下旬",
+   "fee": "無料",
+   "url": "https://www.gunlabo.net/event/event.shtml?id=280",
+   "note": ""
+  }
+ ]
+}
