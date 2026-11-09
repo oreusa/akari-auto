@@ -130,9 +130,9 @@ REL = {
     "ima": [("/illumination", "イルミネーション"), ("/koyo", "紅葉ライトアップ"), ("/tomari", "泊まりで行く所")],
     "tomari": [("/illumination", "イルミネーション"), ("/koyo", "紅葉ライトアップ"), ("/ima", "今から行ける所")],
     "tanka": [("/furusato", "ふるさと納税1万円あたり"), ("/nesage", "値下がりした物")],
-    "furusato": [("/tanka", "1個あたりで比べた物"), ("/nesage", "値下がりした物")],
-    "nesage": [("/tanka", "1個あたりで比べた物"), ("/kaimawari", "買いまわり1,000円")],
-    "kaimawari": [("/nesage", "値下がりした物"), ("/tanka", "1個あたりで比べた物")],
+    "furusato": [("/okaimono", "1個あたりでくらべる（最安とおすすめ）"), ("/nesage", "値下がりした物")],
+    "nesage": [("/okaimono", "1個あたりでくらべる（最安とおすすめ）"), ("/kaimawari", "買いまわり1,000円")],
+    "kaimawari": [("/nesage", "値下がりした物"), ("/okaimono", "1個あたりでくらべる（最安とおすすめ）")],
 }
 SHOP = {"nesage.html", "furusato.html", "tanka.html", "kaimawari.html"}
 for n in os.listdir(S):
