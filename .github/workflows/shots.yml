@@ -5,7 +5,7 @@ on:
       urls:
         description: "撮るページ（スペース区切り）"
         required: true
-        default: "https://usagi-life-notes.pages.dev/okaimono https://townnote.pages.dev/okaimono"
+        default: "https://lifenote-kanto.pages.dev/okaimono https://townnote.pages.dev/okaimono"
 permissions:
   contents: write
 jobs:
