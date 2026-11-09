@@ -57,7 +57,7 @@
     "html.night .head{position:relative;isolation:isolate}"+
     ".nsky{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}"+
     ".nsky i{position:absolute;left:0;top:0;width:1px;height:1px;border-radius:50%}"+
-    ".nsky .s2{animation:tw 3.2s ease-in-out infinite}.nsky .s3{animation:tw 4.6s ease-in-out 1.4s infinite}.nsky .s4{animation:tw2 3.8s ease-in-out .6s infinite}"+
+    ".nsky .k2{animation:tw 3.2s ease-in-out infinite}.nsky .k3{animation:tw 4.6s ease-in-out 1.4s infinite}.nsky .k4{animation:tw2 3.8s ease-in-out .6s infinite}"+
  /* 11/2 オーナー「月もうちょい明るく・星ももう少し綺麗に」→ 19:10「月すこーーーしだけ抑える／星は前の控えめな方がきれい／流れ星は色んな方向からたまーーーにの隠し要素」→ 月（ロゴの丸）をやわらかく光らせ、きらっと光る星と、ときどき流れ星。
     夜はページ全体を反転しているので、ここの色は「反転される前」の色（#000 が白、#3A2A00 があたたかい白に見える） */
   "html.night .head img[src*='logo-s-night']{filter:brightness(1.18) contrast(1.03) invert(1) hue-rotate(180deg) drop-shadow(0 0 9px rgba(58,42,0,.82)) drop-shadow(0 0 24px rgba(58,42,0,.42))}"+
@@ -113,14 +113,14 @@
       for(var j=0;j<66;j++){var x=Math.round(r()*w),y=Math.round(r()*ht*.92),z=r(),sz=z<.12?2:z<.45?1.4:1,c=r()<.18?"#2A2410":"#000";
         var g=j<54?j%3:3;L[g]+=(L[g]?",":"")+x+"px "+y+"px 0 "+(sz-1)/2+"px "+c;}
       var d2=document.createElement("div");d2.className="nsky";d2.setAttribute("aria-hidden","true");
-      d2.innerHTML='<i style="box-shadow:'+L[0]+'"></i><i class="s2" style="box-shadow:'+L[1]+'"></i><i class="s3" style="box-shadow:'+L[2]+'"></i><i class="s4" style="box-shadow:'+L[3]+'"></i>';
+      d2.innerHTML='<i style="box-shadow:'+L[0]+'"></i><i class="k2" style="box-shadow:'+L[1]+'"></i><i class="k3" style="box-shadow:'+L[2]+'"></i><i class="k4" style="box-shadow:'+L[3]+'"></i>';
       h.insertBefore(d2,h.firstChild);}
     /* 11/2 21:12 オーナー「ここ星いらん？流れ星流れたら嬉しくない？」→ ページ全体の後ろにも、うすい星（カードのすき間から見える）。
        流れ星はこの層で、画面のどこにでも、たまーに1本 */
     if(!document.querySelector(".nsky.pg")){var r3=rnd(23),W=Math.max(innerWidth,320),H=Math.max(innerHeight,560),P=["","",""];
       for(var q=0;q<48;q++){var z2=r3();P[q%3]+=(P[q%3]?",":"")+Math.round(r3()*W)+"px "+Math.round(r3()*H)+"px 0 "+(z2<.15?.4:0)+"px #000";}
       var pg=document.createElement("div");pg.className="nsky pg";pg.setAttribute("aria-hidden","true");
-      pg.innerHTML='<i style="box-shadow:'+P[0]+'"></i><i class="s2" style="box-shadow:'+P[1]+'"></i><i class="s3" style="box-shadow:'+P[2]+'"></i><em class="ss"></em>';
+      pg.innerHTML='<i style="box-shadow:'+P[0]+'"></i><i class="k2" style="box-shadow:'+P[1]+'"></i><i class="k3" style="box-shadow:'+P[2]+'"></i><em class="ss"></em>';
       document.body.insertBefore(pg,document.body.firstChild);shoot(pg);}
     var m=document.querySelector(".kmap");if(!m||m.querySelector(".lt"))return;
     var N={"東京":90,"神奈川":70,"埼玉":55,"千葉":50,"茨城":30,"栃木":26,"群馬":26},g=document.createElementNS("http://www.w3.org/2000/svg","g"),out="",r2=rnd(11);
