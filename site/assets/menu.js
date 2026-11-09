@@ -1,5 +1,5 @@
 /* 11/9 色（見本4）を全ページに */
-(function(){try{if(document.getElementById("iro-css"))return;var l=document.createElement("link");l.id="iro-css";l.rel="stylesheet";l.href="/assets/iro.css?v=12";(document.head||document.documentElement).appendChild(l);}catch(e){}})();
+(function(){try{if(document.getElementById("iro-css"))return;var l=document.createElement("link");l.id="iro-css";l.rel="stylesheet";l.href="/assets/iro.css?v=13";(document.head||document.documentElement).appendChild(l);}catch(e){}})();
 /* 11/3 オーナー「下にスライドしたら、すぐ閉じちゃう」（アプリの中で開いたページが、下に引くとページごと閉じる）。
    ページが一番上にぴったり居ると、下に引く動きをアプリが「閉じる」に使う。指を置いた時・一番上に戻った時は 1px だけ下げておく（見た目は変わらない） */
 (function(){
@@ -315,3 +315,35 @@ try{new MutationObserver(later).observe(document.documentElement,{childList:true
 /* 11/7 関東不動産リスト：お家の売却・査定のご相談はメールで（月の menu.js と同じ。会社のHPは通さない）→ href="#ml" をメールに */
 /* 11/9 オーナー「関東はアフェリエイトでいく。対応できないからだ」→ 関東はご相談を受けない。#ml が残っていても「家を売る前に」へ */
 (function(){function ml(){document.querySelectorAll('a[href="#ml"]').forEach(function(a){a.href="/uru.html";});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",ml);else ml();document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href="#ml"]');if(a){ml();}},true);})();
+
+/* 11/9 オーナー「関連サイトも他もだけど、差別化して ここもわかりやすいように」→ ページの下を全リストで同じ順・同じ形に：
+   ①そのページでやること（そのまま）②お店・主催者の方へ（小さな1行）③ほかのリスト（小さなタイル・今のリストは出さない）④FOLLOW ⑤注意書き */
+(function(){
+function run(){
+var sns=document.querySelector(".sns");if(!sns||document.querySelector(".fx"))return;
+var life=/usagi-life/.test(location.host);
+var p=location.pathname;
+var cur=/fudosan|machi|uru|sagasu|chika|gyosha|moushikomi/.test(p)?"fu":/okaimono|otoku|tanka/.test(p)?"ok":"od";
+var I={od:'<path d="M12 21s-6-5.6-6-10.5A6 6 0 0 1 18 10.5C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/>',
+fu:'<path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/>',
+ok:'<path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 0 1 6 0"/>'};
+var L=[["od","ODEKAKE",life?"関東おでかけリスト":"関西おでかけリスト","週末どこ行く？を日付と地図で","/odekake","#E39B3A"],
+["fu","REAL ESTATE",life?"関東不動産リスト":"関西不動産リスト","地価・人口・制度を公式の数字で","/fudosan-list","#4F7BA8"],
+["ok","SHOPPING","おかいもの","比べた最安と、今だけのお得","/okaimono","#C2727F"]];
+var h='<div class="fx">';
+document.querySelectorAll(".sns a.co, .cos a.co").forEach(function(a){
+ var en=a.getAttribute("data-en")||"";var t=(a.childNodes[0]&&a.childNodes[0].nodeValue||a.textContent).trim();
+ var lab=en==="LISTING"?"お店・主催者の方へ：おでかけ掲載のご相談":t+"を見る";
+ h+='<a class="fl" href="'+a.getAttribute("href")+'" rel="noopener" data-k="下｜'+lab+'">'+lab+' <span>→</span></a>';});
+h+='<div class="oh">ほかのリスト</div><div class="og">';
+L.forEach(function(x){if(x[0]===cur)return;
+ h+='<a class="ot" style="--c:'+x[5]+'" href="'+x[4]+'" data-k="下の入口｜'+x[2]+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+I[x[0]]+'</svg><small>'+x[1]+'</small><b>'+x[2]+'</b><i>'+x[3]+'</i></a>';});
+h+='</div></div>';
+document.querySelectorAll(".cos, .sns a.co").forEach(function(e){e.remove();});
+document.querySelectorAll("a.tnx").forEach(function(e){e.remove();});
+sns.insertAdjacentHTML("beforebegin",h);
+var ft=document.querySelector(".ft");var after=sns;if(ft&&sns.parentNode){sns.parentNode.insertBefore(ft,sns.nextSibling);after=ft;}
+document.querySelectorAll(".pr-note").forEach(function(n){after.parentNode.insertBefore(n,after.nextSibling);after=n;});
+}
+if(document.readyState!=="loading")run();else document.addEventListener("DOMContentLoaded",run);
+})();
