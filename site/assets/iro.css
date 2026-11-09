@@ -83,3 +83,7 @@ section.s3{border:0!important;box-shadow:0 2px 12px rgba(20,25,40,.10)!important
 /* 地価の表：行の線を見える濃さに */
 li.r{border-bottom:1px solid #D3D6DC!important}
 details.kpr{border-top:1px solid #D3D6DC!important}
+/* 11/9 表紙（入口）も同じ区切り：IN THIS NOTE を薄い銀の帯に、3つのページを白く浮かせる */
+section.lists{background:#E9EBEF;margin:34px -16px 0!important;padding:24px 16px 6px}
+section.lists>h2{margin-bottom:18px!important}
+section.lists .ls{margin-bottom:20px!important;box-shadow:0 2px 12px rgba(20,25,40,.10)!important}
