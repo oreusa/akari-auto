@@ -50,18 +50,20 @@
     ["KANTO REAL ESTATE","flist","/fudosan-list","関東不動産リスト","地価・人口・新しい施設・制度を、公式の数字で"],
     ["LIFE NOTE","tn","/","LIFE NOTE","関東のくらしのノート"]
   ];
-  /* 11/9 オーナーOK（月の見本4と同じ）：不動産のメニューは さがす／したいこと／ほかのリスト、下に小さい文字 */
+  /* 11/9 オーナーOK（見本4）→ 11/9 12:54 オーナー「不動産だけメニューも色々ちがくない？」→ おでかけと同じ形（タイル6つ／ご相談・お問い合わせ／関連サイト）。関東はアフィリエイトだけなので申し込みは入れない */
   if(FU)L=[
-    ["-","さがす"],
-    ["SEARCH","fq","/fudosan-list?fq=q","街の名前で探す","市・区・町の名前で、その街の地価を"],
-    ["MAP","fmap","/fudosan-list?fq=map","地図で見る","上がった街・下がった街を、色で"],
-    ["RANKING","chika","/chika-kanto","地価ランキング（関東7都県）","7都県・329の市区町村の住宅地"],
-    ["-","したいこと"],
-    ["SELL","uru","/uru.html","家を売りたい方へ","いくらで売れそうか、相場から順に"],
-    ["BUY","fbuy","/fudosan-list?fq=q","家を買いたい方へ","住む街を選ぶと、値段と売り出し中の物件へ"],
-    ["-","ほかのリスト"],
-    ["ODEKAKE","list","/odekake","関東おでかけリスト","関東のイベント・新しいお店や施設"],
-    ["OKAIMONO","okai","/okaimono","くらべたおかいものリスト","うさぎが数字で比べた物と、本当に安い物"]
+    ["LIST","flist","/fudosan-list","関東不動産リスト","地価・人口・制度"],
+    ["SEARCH","fq","/fudosan-list?fq=q","街の名前で探す","市区町村の名前で"],
+    ["MAP","fmap","/fudosan-list?fq=map","地図で見る","上がった街を色で"],
+    ["RANKING","chika","/chika-kanto","地価ランキング","関東329の市区町村"],
+    ["SELL","uru","/uru.html","家を売りたい方へ","相場から順に"],
+    ["BUY","fbuy","/fudosan-list?fq=q","家を買いたい方へ","住む街の値段と物件"],
+    ["-","CONTACT"],
+    ["REQUEST","koe","/koe","リクエスト・感想","増やしてほしい・これがほしい・使ってみた感想"],
+    ["-","関連サイト"],
+    ["KANTO ODEKAKE","list","/odekake","関東おでかけリスト","関東のイベント・新しいお店や施設"],
+    ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","うさぎが数字で比べた物と、本当に安い物"],
+    ["LIFE NOTE","tn","/","LIFE NOTE","関東のくらしのノート"]
   ];
   /* 入口は、3つのリストとご連絡だけ */
   if(here==="tn")L=[["-","LIFE NOTE"],
@@ -149,7 +151,7 @@
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
   function openView(v){var b=document.querySelector('button[data-v="'+v+'"]');if(!b)return;b.click();setTimeout(function(){var y=b.getBoundingClientRect().top+scrollY-10;scrollTo({top:y,behavior:"smooth"});},60);}
   function openMap(){var n=0;(function t(){var b=document.querySelector(".tnbtn");if(b){b.click();return;}if(++n<40)setTimeout(t,100);})();}
-  var GJ={"KANTO ODEKAKE":"おでかけ","KANTO REAL ESTATE":"不動産の数字","OKAIMONO LIST":"くらべた買い物","LIFE NOTE":"3つのリスト","CONTACT":"ご相談・お問い合わせ"};
+  var GJ={"KANTO ODEKAKE":"おでかけ","KANTO REAL ESTATE":"不動産","OKAIMONO LIST":"くらべた買い物","LIFE NOTE":"3つのリスト","CONTACT":"ご相談・お問い合わせ"};
   function ug(k){return '<div class="ug">'+(GJ[k]||k)+(GJ[k]?'<small>'+k+'</small>':"")+'</div>';}
   var IC={
     list:'<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 12.5h8M8 16h5"/>',
@@ -179,20 +181,19 @@
     gyosha:'<path d="M3 12l4-4 4 3 3-3 7 6"/><path d="M7 15l3 3M11 14l3 3M14 13l2 2"/>'
   };
   var ST={okai:"くらべる",tanka:"1個あたり",furusato:"ふるさと納税",nesage:"買い時",kaimawari:"セール",otoku:"お得まとめ",list:"おでかけリスト",ima:"いま行ける",illumi:"イルミネーション",koyo:"紅葉ライトアップ",tomari:"泊まりで行く",flist:"不動産リスト",chika:"地価ランキング",chikao:"大阪市24区",
-    uru:"売る前に大事なこと",satei:"売却・査定のご相談"};
+    uru:"家を売りたい方へ",satei:"売却・査定のご相談"};
   var SS={okai:"日用品の最安とおすすめ",tanka:"1Lあたり・1kgあたり",furusato:"寄付1万円あたりの量",nesage:"本当に値下がりした物",kaimawari:"1,000円ぽっきり",otoku:"AIに聞く・宿",list:"開催中・これから",map:"近くをさがす",ima:"近い順・きょう開く所",illumi:"日程・無料の所",koyo:"夜の時間・料金",tomari:"遠くのおでかけと宿",
     flist:"地価・人口・制度",fq:"市区町村の名前で",fmap:"上がった街を色で",chika:"関東329の街",chikao:"24区の上がり幅",fnew:"最近足した数字"};
   function item(x,tile){var cur=x[1]===here,ext=/^https?:/.test(x[2]);
-    return '<a class="ui '+(tile?"tl":"sm")+(cur?" cur":"")+'" data-k="'+x[1]+'" href="'+x[2]+'"'+(ext?' target="_blank" rel="noopener"':"")+(cur?' aria-current="page"':"")+'>'+(cur&&tile?'<u>いま</u>':'')+'<i><svg viewBox="0 0 24 24" aria-hidden="true">'+(IC[x[1]]||IC.list)+'</svg></i><span data-n="'+esc(x[3])+'">'+esc((FU?0:ST[x[1]])||x[3])+'</span><em>'+esc(tile&&!FU?(SS[x[1]]||x[4]):x[4])+'</em>'+(cur&&!tile?'<u>いま</u>':'')+'</a>';}
+    return '<a class="ui '+(tile?"tl":"sm")+(cur?" cur":"")+'" data-k="'+x[1]+'" href="'+x[2]+'"'+(ext?' target="_blank" rel="noopener"':"")+(cur?' aria-current="page"':"")+'>'+(cur&&tile?'<u>いま</u>':'')+'<i><svg viewBox="0 0 24 24" aria-hidden="true">'+(IC[x[1]]||IC.list)+'</svg></i><span data-n="'+esc(x[3])+'">'+esc((!tile&&x[1]==="okai")?"おかいものリスト":(ST[x[1]]||x[3]))+'</span><em>'+esc(tile?(SS[x[1]]||x[4]):x[4])+'</em>'+(cur&&!tile?'<u>いま</u>':'')+'</a>';}
   function build(){
     var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
     var btn=document.createElement("button");btn.id="umenu";btn.type="button";btn.setAttribute("aria-label","メニューを開く");btn.setAttribute("aria-expanded","false");btn.setAttribute("aria-controls","upan");btn.innerHTML="<i></i><i></i><i></i>";
     var mask=document.createElement("div");mask.id="umask";
     var pan=document.createElement("div");pan.id="upan";pan.setAttribute("role","dialog");pan.setAttribute("aria-modal","true");pan.setAttribute("aria-label","メニュー");pan.setAttribute("aria-hidden","true");
-    var h='<div class="uh"><a class="uhl" href="/" aria-label="LIFE NOTE の入口へ"><img src="'+(document.documentElement.classList.contains("night")?"/logo-s-night.png":"/logo-s.png")+'" alt=""><b>LIFE NOTE</b></a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+(here==="tn"?"":(FU?"":ug(SH?"OKAIMONO LIST":"KANTO ODEKAKE")));
+    var h='<div class="uh"><a class="uhl" href="/" aria-label="LIFE NOTE の入口へ"><img src="'+(document.documentElement.classList.contains("night")?"/logo-s-night.png":"/logo-s.png")+'" alt=""><b>LIFE NOTE</b></a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+(here==="tn"?"":ug(FU?"KANTO REAL ESTATE":SH?"OKAIMONO LIST":"KANTO ODEKAKE"));
     /* 最初のまとまり＝タイル、あとのまとまり＝小さいボタン */
     var tiled=false,openG="",rel=false;
-    if(FU){h+='<div class="fml"><div class="fmt"><small>MENU</small><b>関東不動産リスト</b></div>';L.forEach(function(x){if(x[0]==="-"){h+='<div class="fmg">'+esc(x[1])+'</div>';return;}var cur=x[1]===here;h+='<a class="fmr'+(cur?' cur':'')+'" data-k="'+x[1]+'" href="'+x[2]+'"'+(cur?' aria-current="page"':'')+'><small>'+esc(x[0])+'</small><b>'+esc(x[3])+'</b></a>';});h+='</div>';L=[];}
     L.forEach(function(x){
       if(x[0]==="-"){if(openG){h+='</div>';openG="";}h+=ug(x[1]);rel=x[1]==="関連サイト"||x[1]==="ほかのリスト";return;}
       if(!openG){openG=tiled?"usm":"utg";tiled=true;h+='<div class="'+openG+(rel?" urel":"")+'">';}
@@ -201,7 +202,6 @@
     if(openG)h+='</div>';
     /* 10/31 オーナー「夜の見た目？なにこれ」→ 切り替えは右上の太陽と月のマークだけ（月と同じ） */
     /* 11/4 オーナー「hp共有を入れよう アプリにしたら誰かに送れない」「cだけで良いかも」→ 11/4「もう少し分かりやすくても良かった、さっきの感じで下の方でよい」→ C の箱をメニューの下に */
-    if(FU)h+='<p class="ufx"><a href="/koe" data-k="koe">リクエスト・感想</a>／<a href="/privacy" data-k="privacy">プライバシー</a></p>';
     h+='</nav>'+
       '<div class="ush"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="M7.5 7.5L12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><div class="ust"><b>友だちに送る</b><small>このページを LINE などで送れます</small></div><div class="ub">'+(navigator.share?'<button type="button" data-s="share">送る</button>':'')+'<button type="button" class="nofilt" data-s="line">LINE</button><button type="button" data-s="copy">コピー</button></div></div>'+
       '<div class="us"><a href="https://www.instagram.com/ai_usagichan1/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@ai_usagichan1" target="_blank" rel="noopener">Threads</a><a href="https://x.com/ai_usagichan" target="_blank" rel="noopener">X</a></div>';
