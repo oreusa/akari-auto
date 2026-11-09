@@ -2,7 +2,7 @@
 // TOWN NOTE・LIFE NOTE の /moushikomi から送られた売却・査定のお申し込みを、KV（CLICKS）に控えとして置く（キー mos|日時|乱数、60日で消える）。
 // メールはページが FormSubmit へ送る。ここはメールが届かなかった時の控え。個人の情報なので、リポジトリ（公開）には書き出さない。
 const BOT = /bot|crawl|spider|slurp|preview|headless|curl|wget|python/i;
-const ORIGINS = ["https://townnote.pages.dev", "https://usagi-life-notes.pages.dev"];
+const ORIGINS = ["https://townnote.pages.dev", "https://usagi-life-notes.pages.dev", "https://life-note.pages.dev", "https://lifenote-kanto.pages.dev"];
 const MAX_DAY = 30;
 function day() { return new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10); }
 function clean(v, max) { return String(v || "").replace(/[\u0000-\u0009\u000B-\u001F\u007F]/g, "").trim().slice(0, max); }

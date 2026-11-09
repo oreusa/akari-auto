@@ -13,7 +13,7 @@ function clean(v, max) {
   return String(v || "").replace(/[\u0000-\u0009\u000B-\u001F\u007F]/g, "").trim().slice(0, max);
 }
 // 11/2 月（TOWN NOTE）の /koe からも、ここに送る（月のサイトには保存する場所がないため）。月のページからだけ受ける
-const ORIGINS = ["https://townnote.pages.dev", "https://usagi-life-notes.pages.dev"];
+const ORIGINS = ["https://townnote.pages.dev", "https://usagi-life-notes.pages.dev", "https://life-note.pages.dev", "https://lifenote-kanto.pages.dev"];
 function res(C, ok, msg) {
   return new Response(JSON.stringify({ ok, msg }), {
     status: ok ? 200 : 400,
