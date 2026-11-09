@@ -38,13 +38,14 @@ def short(name, n=40):
     return name if len(name) <= n else name[:n] + "…"
 
 
-def fetch(genre):
+def fetch(genre, seen=None):
     """1,000〜1,199円・送料込み・販売中を、レビューの多い順に。条件に合う物だけ返す。"""
     items, err = lib._rakuten_search({"genreId": genre, "minPrice": 1000, "maxPrice": 1199, "postageFlag": 1,
                                       "availability": 1, "sort": "-reviewCount", "hits": 30})
     if not items:
         return [], err
-    out, seen = [], set()
+    out = []
+    seen = set() if seen is None else seen  # 11/9 夜#156：ジャンルをまたいで同じ店が出ていた → ページ全体で1店1つ
     for it in items:
         rc, av = int(it.get("reviewCount") or 0), float(it.get("reviewAverage") or 0)
         aff, shop = it.get("affiliateUrl") or "", it.get("shopCode") or ""
@@ -191,10 +192,10 @@ ul{{list-style:none;margin:0;padding:0}}.it{{margin:0 0 10px}}
 
 def main():
     now = datetime.now(JST)
-    groups, errs = [], []
+    groups, errs, seen = [], [], set()
     for g, gid in GENRES:
         try:
-            items, err = fetch(gid)
+            items, err = fetch(gid, seen)
         except Exception as e:  # 楽天につながらない時は、そのジャンルを出さない
             items, err = [], str(e)[:80]
         if err:
