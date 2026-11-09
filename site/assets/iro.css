@@ -5,7 +5,7 @@ html:not(.night) .sub,html:not(.night) .adn,html:not(.night) .m,html:not(.night)
 /* 11/9 オーナー「この3つもオシャレに」→ 入口の PAGE 01〜03 と同じ「細い線・明朝・小さな英字」。色の箱はやめて、色は線と英字だけ */
 .wdy .wr:nth-of-type(1),.qk a:nth-child(1){--g:#B0705A}.wdy .wr:nth-of-type(2),.qk a:nth-child(2){--g:#52688A}.wdy .wr:nth-of-type(3),.qk a:nth-child(3){--g:#B5883F}
 html.top2 .qk{gap:10px!important}
-html.top2 .qk a{background:#fff!important;border:1px solid #E9E4DF!important;border-radius:4px!important;padding:14px 4px 13px!important;gap:5px!important;position:relative}
+html.top2 .qk a{background:#fff!important;border:1px solid #E6E6E6!important;border-radius:4px!important;padding:14px 4px 13px!important;gap:5px!important;position:relative}
 html.top2 .qk a::before{content:"";display:block;font-family:Jost,sans-serif;font-size:9px;font-weight:500;letter-spacing:.3em;color:var(--g);margin-bottom:2px}
 html.top2 .qk a:nth-child(1)::before{content:"NEAR ME"}html.top2 .qk a:nth-child(2)::before{content:"MAP"}html.top2 .qk a:nth-child(3)::before{content:"LIGHTS"}
 html.top2 .qk a::after{content:"";position:absolute;left:50%;bottom:-1px;width:22px;height:2px;margin-left:-11px;background:var(--g)}
@@ -19,7 +19,7 @@ html.top2 .head{background:radial-gradient(circle at 14% 22%,rgba(242,214,194,.5
 html.top2 .qk b.ln{font-size:12.5px!important;letter-spacing:0!important}
 /* 11/9 オーナーOK（見本③）：「どこ・いつ」をまとめた帯。下に読んでも上にくっついて残る */
 html.top2 .adn{font-size:10.5px!important;color:#8A827B!important;margin:0 0 8px!important;text-align:center}
-html.top2 .tn-top{position:sticky;top:0;z-index:30;background:#FFFFFF;margin:0 -20px 14px;padding:8px 16px 10px;border-bottom:1px solid #ECE8E4;box-shadow:0 10px 16px -16px rgba(0,0,0,.4)}
+html.top2 .tn-top{position:sticky;top:0;z-index:30;background:#FFFFFF;margin:0 -16px 14px;padding:8px 16px 10px;border-bottom:1px solid #ECE8E4;box-shadow:0 10px 16px -16px rgba(0,0,0,.4)}
 html.top2 .tn-top .flt{background:transparent!important;margin:0 0 6px!important;padding:0!important;border:0!important;display:flex!important;gap:6px!important;overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap!important;justify-content:flex-start!important}
 html.top2 .tn-top .flt::-webkit-scrollbar{display:none}
 html.top2 .tn-top .flt button{flex:0 0 auto!important;height:32px;padding:0 13px!important;border-radius:999px!important;border:1px solid #E2DED9!important;background:#fff!important;font-size:13px!important;font-weight:700!important;margin:0!important}
