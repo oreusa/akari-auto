@@ -156,14 +156,14 @@ def render(cats, now):
 .big{{background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;margin:18px 0 0;text-align:center;display:grid;grid-template-columns:1fr 1fr;gap:8px}}
 .big b{{display:block;font:600 28px/1.2 var(--min);color:var(--ink);letter-spacing:.04em}}.big span{{font-size:12px;color:var(--mute)}}
 .note{{font-size:12px;line-height:1.85;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 14px;margin:14px 0 0}}
-</style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=32" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script></head>
+</style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=33" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script></head>
 <body><div class="wrap">
 <header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
 <p class="en">FURUSATO NOZEI</p>
 <h1>寄付1万円あたりで比べた<small>楽天のふるさと納税（{esc(names)}）</small></h1>
 <p class="up">{esc(upd)}</p>
 <div class="big"><div><b>{seen:,}件</b><span>比べた返礼品</span></div><div><b>あと{left}日</b><span>12/31の締め切りまで</span></div></div>
-<p class="lead">寄付額だけでは、どれがたくさんもらえるか分かりません。燈が楽天のふるさと納税の返礼品を毎回取り直し、商品名の量（kg・ロール・m・ml・本）から「寄付1万円あたり」に直して比べました。量を選ぶ物・定期便のように量がひとつに決まらない物は、数字をまちがえないよう比べていません。</p>
+<p class="lead">寄付額だけでは、どれがたくさんもらえるか分かりません。楽天のふるさと納税の返礼品を毎回取り直し、商品名の量（kg・ロール・m・ml・本）から「寄付1万円あたり」に直して比べました。量を選ぶ物・定期便のように量がひとつに決まらない物は、数字をまちがえないよう比べていません。</p>
 </header>
 <nav class="tabs" aria-label="物"><button type="button" data-f="" class="on">すべて</button>{tabs}</nav>
 <main>{secs}

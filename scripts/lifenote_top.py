@@ -76,7 +76,7 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 .find{{margin:14px 0 0!important;padding:14px 14px 12px!important}}.find h2{{font-size:16px!important}}.find h2 small{{display:none}}.find p{{margin:6px 0 10px!important}}
 .exl{{font-size:11.5px;color:#8C7B6E;margin:10px 2px 0}}
 /* 11/8 オーナー「地図は1番上だろ お洒落に見やすく」→ 月と同じ：地図を名前と1行のすぐ下、11/8 9:47 オーナー「枠いらない」→ 台紙・枠・MAP札なし */.head .mapsec{{margin:14px -80px 0 0;}}.mtag{{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#8C7B6E;margin:0 4px}}.mtag span{{font-family:Jost;font-weight:500;font-size:9.5px;letter-spacing:.32em;color:#fff;background:#2B2622;border-radius:99px;padding:3px 9px 3px 12px}}.head .kmap{{margin:4px 0 0}}.head .pp{{margin:4px 2px 8px;border-radius:12px}}
-</style><script src="/assets/night.js?v=15"></script><script src="/assets/menu.js?v=32" defer></script><script src="/assets/v2sub.js?v=11" defer></script></head><body id="lifenote-top"><div class="wrap">
+</style><script src="/assets/night.js?v=15"></script><script src="/assets/menu.js?v=33" defer></script><script src="/assets/v2sub.js?v=11" defer></script></head><body id="lifenote-top"><div class="wrap">
 <header class="head"><img src="/logo-s.png" width="74" height="74" alt="LIFE NOTE のロゴ">
 <h1>LIFE NOTE</h1><div class="kana">ライフノート</div>
 <p class="pur">関東の<b>おでかけ</b>・<b>街の地価</b>・<b>日用品の最安</b>を、<br>公式の情報でしらべるノート</p>
@@ -95,7 +95,7 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <div class="st"><div><span>関東の街</span><b id="f1">―</b></div><div><span>上がった街</span><b id="f2">―</b></div><div><span>調べた数字</span><b id="f3">―</b></div></div>
 <div class="pv" id="fpv"></div><div class="go">不動産リストを開く<span>→</span></div></a>
 <a class="ls" href="/okaimono" data-k="入口｜くらべたおかいものリスト" style="--ac:#C2703F;--bg:#FBEEE6;--c:#C2703F"><div class="no"><small>PAGE</small>03</div><div class="en">OKAIMONO LIST</div><h3>くらべたおかいものリスト</h3>
-<p>3つ以上を数字で比べて選んだ、暮らしの物。<br>本当に値下がりした物と、お得な日も。</p>
+<p>3つ以上を数字で比べて選んだ、暮らしの物。<br>いまが買い時の物と、お得な日も。</p>
 <div class="st"><div><span>比べた物</span><b id="k1">―</b></div><div><span>今だけのお得</span><b id="k2">―</b></div><div><span>比べた種類</span><b>{NKIND}<small style="font-size:12px">種類</small></b></div></div>
 <div class="pv" id="kpv"></div><div class="go">おかいものリストを開く<span>→</span></div></a>
 <p style="font-size:10.5px;color:#8C7B6E;text-align:center;margin:-6px 0 0">おかいものリストのリンクには広告（PR）があります</p></section>

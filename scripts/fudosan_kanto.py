@@ -552,11 +552,11 @@ rep('<meta name="twitter:image" content="https://townnote.pages.dev/assets/ogp.p
 rep('<link rel="icon" href="assets/ogp.png"><link rel="apple-touch-icon" href="/assets/icon-180.png"><link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#FFFFFF">',
     '<link rel="icon" href="/logo.png">')
 rep('<title>関西不動産リスト｜地価・人口・新しい施設・制度を公式の数字で</title>', '<title>関東不動産リスト｜地価・人口・新しい施設・制度を公式の数字で</title>')
-rep('<script src="assets/night.js?v=22"></script><script src="assets/menu.js?v=32" defer></script>',
+rep('<script src="assets/night.js?v=22"></script><script src="assets/menu.js?v=33" defer></script>',
     f'<script src="/assets/night.js?v={VER["night.js"]}"></script><script src="/assets/menu.js?v={VER["menu.js"]}" defer></script>')
 rep('<link rel="stylesheet" href="assets/v2.css?v=6">', '<link rel="stylesheet" href="/assets/fv2.css?v=1">')
 rep('<script src="assets/v2sub.js?v=11" defer></script>', f'<script src="/assets/v2sub.js?v={VER["v2sub.js"]}" defer></script>')
-rep('<script src="/assets/kurabe.js?v=1" defer></script>', '<script src="/assets/kurabe.js?v=1" defer></script>')
+rep('<script src="/assets/kurabe.js?v=2" defer></script>', '<script src="/assets/kurabe.js?v=2" defer></script>')
 # ---- 見出し
 rep('<img src="assets/logo-s.png?v=2" width="60" height="60" alt="ロゴ"><div class="en">TOWN NOTE</div>',
     '<img src="/logo-s.png" width="60" height="60" alt="LIFE NOTE のロゴ"><a class="en" href="/" style="display:block;text-decoration:none">LIFE NOTE</a>')
