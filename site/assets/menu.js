@@ -16,10 +16,10 @@
 (function(){
   /* 11/2 オーナー「燈のhpを LIFE NOTE…関東おでかけリスト・おかいものリスト 完全に分ける」→ / は入口、/odekake と /okaimono に分けた */
   var P=location.pathname.replace(/^\/townnotes\//,"/odekake").replace(/\.html$/,""),here=
-    /^\/fudosan-list/.test(P)?"flist":/^\/chika-/.test(P)?"chika":/^\/uru/.test(P)?"uru":/^\/(index)?$/.test(P)?"tn":/^\/odekake/.test(P)?"list":/^\/okaimono/.test(P)?"okai":/^\/otoku/.test(P)?"otoku":/^\/illumination/.test(P)?"illumi":/^\/koyo/.test(P)?"koyo":/^\/koe/.test(P)?"koe":/^\/tomari/.test(P)?"tomari":/^\/ima/.test(P)?"ima":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":/^\/nesage/.test(P)?"nesage":"";
+    /^\/sagasu/.test(P)?"fbuy":/^\/fudosan-list/.test(P)?"flist":/^\/chika-/.test(P)?"chika":/^\/uru/.test(P)?"uru":/^\/(index)?$/.test(P)?"tn":/^\/odekake/.test(P)?"list":/^\/okaimono/.test(P)?"okai":/^\/otoku/.test(P)?"otoku":/^\/illumination/.test(P)?"illumi":/^\/koyo/.test(P)?"koyo":/^\/koe/.test(P)?"koe":/^\/tomari/.test(P)?"tomari":/^\/ima/.test(P)?"ima":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":/^\/nesage/.test(P)?"nesage":"";
   var SH=/^(\/okaimono|\/nesage|\/tanka|\/furusato|\/kaimawari|\/otoku)/.test(P);
   /* 11/7 関東不動産リスト（月の関西不動産リストと同じ）：不動産のページは不動産だけのメニュー */
-  var FU=/^\/(fudosan-list|uru|chika-|machi\/)/.test(P);
+  var FU=/^\/(fudosan-list|uru|sagasu|chika-|machi\/)/.test(P);
   /* 11/6 夜「おかいものからリクエストへ行くと、下のバーがおでかけ側に変わって戻れない」→ どちらのリストから来たかを覚えて、リクエストのページもそちら側にする */
   try{if(SH)sessionStorage.setItem("usagi_side","okai");else if(here&&here!=="koe")sessionStorage.setItem("usagi_side","list");if(here==="koe"&&sessionStorage.getItem("usagi_side")==="okai")SH=true;}catch(e){}
   /* 11/2 オーナー「もっとまとめろよ。TOWNNOTEこんなんじゃないだろ」→ 月と同じく、リストごとに自分の項目だけ＋関連サイト */
@@ -59,7 +59,7 @@
     ["MAP","fmap","/fudosan-list?fq=map","地図で見る","上がった街を色で"],
     ["RANKING","chika","/chika-kanto","地価ランキング","関東329の市区町村"],
     ["SELL","uru","/uru.html","家を売りたい方へ","相場から順に"],
-    ["BUY","fbuy","/fudosan-list?fq=q","家を買いたい方へ","住む街の値段と物件"],
+    ["BUY","fbuy","/sagasu","家を買いたい方へ","住む街の値段と物件"],
     ["-","CONTACT"],
     ["REQUEST","koe","/koe","リクエスト・感想","増やしてほしい・これがほしい・使ってみた感想"],
     ["-","関連サイト"],
