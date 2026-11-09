@@ -369,6 +369,8 @@ function graph(c,o){if(!o||!o.h)return "";var ds=Object.keys(o.h).sort();if(ds.l
  return '<h3>値段の動き<small>'+esc(o.n.slice(0,16))+'・総額・送料込み・楽天</small></h3><div class="gr">'+s+'<div>'+(+ds[0].slice(5,7))+"/"+(+ds[0].slice(8))+'から'+t+'（いまは <b class="n">'+b.toLocaleString()+'</b>円）。</div><div class="mut" style="font-size:11.5px">期間 '+ds[0].slice(5).replace("-","/")+'〜'+ds[ds.length-1].slice(5).replace("-","/")+'・1日1点（取れなかった日は線をつなぎません）・'+esc(upd())+' 更新</div></div>';}
 function render(){
  document.querySelectorAll(".v4 [data-k2]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.k2===st.k?"true":"false");});
+ /* 選んでいる種類を、横の列の見える所へ（ページは動かさない） */
+ var kb=document.querySelector('.kat [aria-pressed="true"]');if(kb){var kt=kb.parentNode;kt.scrollLeft=Math.max(0,kb.offsetLeft-(kt.clientWidth-kb.offsetWidth)/2);}
  var c=C[st.k];if(!c){main.innerHTML='<p class="zero">上のボタンから、くらべたい物を選んでください。</p>';rd.innerHTML="";my();return;}
  var all=c.o,L=list(c).slice().sort(function(a,b){return a.u-b.u;}),tg={};
  /* 11/9 夜#148：1Lあたりと1kgあたりを同じ「安い順」にしない。多い方を先に出し、切りかえボタン */
