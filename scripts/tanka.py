@@ -353,7 +353,8 @@ def fetch(cat):
             rows.append({"name": short(name), "price": price, "per": round(per, 1), "amt": am[1],
                          "rc": int(it.get("reviewCount") or 0), "av": float(it.get("reviewAverage") or 0),
                          "shop": it.get("shopName") or "", "url": aff, "plain": item_page(it),
-                         "img": lib._item_image(it), "bd": brand_of(key, name)})
+                         "img": lib._item_image(it), "bd": brand_of(key, name),
+                         "ship": ship_note(name + " " + (it.get("itemCaption") or ""))})
 
     for page in range(1, (NEWPAGES if key in KIND else PAGES) + 1):
         q = {"keyword": kw, "postageFlag": 1, "availability": 1, "sort": "-reviewCount", "hits": 30, "page": page}
@@ -539,6 +540,19 @@ def yen(v):
     return f"{v:,.0f}" if v >= 100 else f"{v:,.1f}".rstrip("0").rstrip(".")
 
 
+# 11/9 売上の調査 11/8：最安の水が「11月中旬～11月下旬頃発送予定」だった。すぐ届かない物は、カードに発送の予定を1行出す
+SHIP_RE = re.compile(r"(\d{1,2}月\s*(?:\d{1,2}日|上旬|中旬|下旬|末)[^。、\n<>]{0,14}?(?:発送|出荷|お届け)(?:予定)?)")
+
+
+def ship_note(text):
+    m = SHIP_RE.search(text or "")
+    if m:
+        return m.group(1).replace(" ", "")[:24]
+    if re.search(r"予約(?:商品|販売|受付)|入荷待ち|お取り寄せ", text or ""):
+        return "予約・取り寄せ（届く日はリンク先で）"
+    return ""
+
+
 def card(r, i, unit, avg):
     img = f'<img src="{esc(r["img"])}" alt="" width="84" height="84" loading="lazy" onerror="this.remove()">' if r["img"] else ""
     diff = f'<span class="df">比べた全部の平均より {round((1 - r["per"] / avg) * 100)}% 安い</span>' if avg and r["per"] < avg * 0.95 else ""
@@ -546,7 +560,8 @@ def card(r, i, unit, avg):
             f'<span class="rk">{i}</span>{img}<span class="tx"><span class="nm">{esc(r["name"])}</span>'
             f'<span class="pu">{unit}あたり <b>{yen(r["per"])}円</b></span>{diff}'
             f'<span class="mt">{r["price"]:,}円（送料込み・{esc(r["amt"])}）　★{r["av"]:.2f}　レビュー{r["rc"]:,}件</span>'
-            f'<span class="go">楽天で見る →</span></span></a></li>')
+            + (f'<span class="df">発送：{esc(r["ship"])}（すぐには届きません）</span>' if r.get("ship") else "")
+            + f'<span class="go">楽天で見る →</span></span></a></li>')
 
 
 def render(cats, now):
@@ -676,7 +691,7 @@ def main():
     os.makedirs(site, exist_ok=True)
     open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(cats, now))
     slim = [{k: c[k] for k in ("key", "title", "unit", "seen", "read", "ok", "avg")} | {"rmin": c.get("rmin", 1000)} |
-            {"top": [{k: r.get(k, "") for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain", "bd", "url", "img")} for r in c["top"]],
+            {"top": [{k: r.get(k, "") for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain", "bd", "url", "img", "ship")} for r in c["top"]],
              "amazon": [{k: r.get(k, "") for k in ("asin", "name", "price", "per", "amt", "rc", "av", "url")} for r in c.get("amz", [])],
              "yahoo": [{k: r.get(k, "") for k in ("name", "price", "per", "amt", "rc", "av", "shop", "bd", "url", "img")} for r in c.get("yh", [])]}
             for c in cats]
