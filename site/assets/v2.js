@@ -58,7 +58,7 @@ if(location.hash==="#kq")setTimeout(function(){var k=document.getElementById("kq
 })();
 
 /* 11/4 カードの日付と絵（cardmark.js。月と同じ）を読み込む */
-(function(){if(document.querySelector('script[src*="cardmark.js"]'))return;var s=document.createElement("script");s.src="/assets/cardmark.js?v=11";s.defer=true;document.head.appendChild(s);})();
+(function(){if(document.querySelector('script[src*="cardmark.js"]'))return;var s=document.createElement("script");s.src="/assets/cardmark.js?v=12";s.defer=true;document.head.appendChild(s);})();
 
 /* 11/6 オーナーOK：日付4つ＋しぼりこむ（when.js。月と燈で同じ物） */
 (function(){if(document.querySelector('script[src*="when.js"]'))return;var s=document.createElement("script");s.src="/assets/when.js?v=3";document.head.appendChild(s);})();

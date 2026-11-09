@@ -201,7 +201,7 @@ def mcard(e, today):
         rows += f'<span class="kv"><span>料金</span>{esc(e["fee"])}</span>'
     if e.get("note"):
         rows += f'<span class="kv"><span>メモ</span>{esc(e["note"])}</span>'
-    return (f'<li class="it ky ms" data-s="" data-e="{en.isoformat() if en else ""}" data-p="{esc(e["pref"])}"><div class="cw">'
+    return (f'<li class="it ky ms" data-s="" data-e="" data-pe="{en.isoformat() if en else ""}" data-p="{esc(e["pref"])}"><div class="cw">'
             f'<a class="cd" href="{esc(e["url"])}" target="_blank" rel="noopener"><span class="bd">{tag}{free}</span>'
             f'<span class="nm">{esc(e["name"])}</span><span class="pl">{esc(e["city"])}</span>{rows}<span class="ar">→</span></a>'
             f'<a class="mp" href="{esc(gm)}" target="_blank" rel="noopener">地図</a></div></li>')
