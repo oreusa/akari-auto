@@ -920,7 +920,19 @@ def all_spots(items, now):
     """HPのおでかけの欄に出す物。並び：きのう・きょう投稿した物 → HPだけのおすすめ → それより前に投稿した物"""
     posted = [e for e in items["odekake"] + items["shop"] if e.get("url")]
     seen_t = {re.sub(r"\W", "", e["title"])[:12] for e in posted}
-    extra = [e for e in _page_spots(now) if not any(k and k in re.sub(r"\W", "", e["title"]) for k in seen_t)]
+    ps = _page_spots(now)
+    extra = [e for e in ps if not any(k and k in re.sub(r"\W", "", e["title"]) for k in seen_t)]
+    # 11/9 夜#155：投稿したカードが先に出ると、page-spots の「開く曜日（days）・opennote」が付かず、休館日も「行ける」に出ていた → 同じ催しなら移す
+    for p in ps:
+        if not (p.get("days") or p.get("opennote")):
+            continue
+        pk = re.sub(r"\W", "", p["title"])[:12]
+        for e in posted:
+            if pk and pk in re.sub(r"\W", "", e["title"]):
+                if not e.get("days"):
+                    e["days"] = p.get("days", "")
+                if not e.get("opennote"):
+                    e["opennote"] = p.get("opennote", "")
 
     def _age(e):
         m, d = (int(x) for x in e["day"].split("/"))
