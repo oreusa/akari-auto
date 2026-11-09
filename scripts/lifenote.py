@@ -110,7 +110,9 @@ def events_ld(h):
 
 
 o = events_ld(o)
-o = meta(o, "関東のおでかけ 今週末・今日行けるイベント一覧（無料あり）｜関東おでかけリスト",
+import datetime as _dt  # 11/9 mybest に倣い題に年月（毎日2回作るので月が変われば変わる）
+_n = _dt.datetime.now(_dt.timezone(_dt.timedelta(hours=9)))
+o = meta(o, f"関東のおでかけ 今週末・今日行けるイベント一覧【{_n.year}年{_n.month}月】｜関東おでかけリスト",
          "東京・神奈川・埼玉・千葉・茨城・栃木・群馬で、今週末や今日から行けるイベント、新しいお店・施設を公式ページつきで毎日更新。無料の場所、地図、近くの宿も。", "/odekake")
 wr("odekake.html", o)
 
