@@ -37,7 +37,7 @@ function iso(m,d){var y=TY;if(m<TM-3)y++;else if(m>TM+8)y--;return y+'-'+('0'+m)
 function fromText(x){ /* 「11/21（土）まで」「10/1（木）〜1/31（日）」「11/14（土）〜」など */
   if(!x||/発表前|未発表|昨年|公式/.test(x))return{};var m=x.match(/(\d{1,2})(?:[\/.]|月)(\d{1,2})/g)||[];
   m=m.filter(function(v){var q=v.split(/[\/.]|月/);return +q[0]>=1&&+q[0]<=12&&+q[1]>=1&&+q[1]<=31});var p=m.map(function(v){var q=v.split(/[\/.]|月/);return iso(+q[0],+q[1])});
-  if(p.length>=2)return{s:p[0],e:p[1]};if(p.length==1){if(/まで/.test(x))return{e:p[0]};if(/〜\s*$|から/.test(x))return{s:p[0]};return{s:p[0],e:p[0]};}return{};}
+  if(p.length>=2){if(p[0]>p[1])p[0]=(+p[0].slice(0,4)-1)+p[0].slice(4);return{s:p[0],e:p[1]};}/* 11/9 夜#157：「7/18〜11/15」の始まりを来年と読んで「249日後」と出ていた → 始まりが終わりより後なら前の年 */if(p.length==1){if(/まで/.test(x))return{e:p[0]};if(/〜\s*$|から/.test(x))return{s:p[0]};return{s:p[0],e:p[0]};}return{};}
 var css=
 'html body .cm.cm.cm.cm.cm{position:relative;padding-left:98px!important;min-height:150px;box-sizing:border-box}'+
 'html body a.card.cm.cmh .v2d,html body a.card.cm.cmh>.d,html body a.card.cm.cmh .bd>.d,html body .cm.cmh .when,html body .cm.cmh .v2d,html body a.cd.cm.cmh>.dt,html body a.fc.cm.cmh>span{display:none!important}'+'html body .paper .it.cmp>a.mp,html body .cmp.cmp>a.mp{left:98px!important}html body .cmp.cmp>.rt{padding-left:98px}html body .paper .it.cmp>.yk,html body .cmp.cmp>.yk{left:160px!important}'+
