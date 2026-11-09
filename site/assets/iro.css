@@ -114,3 +114,5 @@ html.night #upan .mfx .ot{background:#e3e8ff;border-color:#d4dbff}
 .fsn a span{font-family:Jost,sans-serif;font-weight:400;color:#857A70;font-size:12px;margin-left:6px}
 .fsn h2:before,.fsn h2:after{display:none!important}
 main>.fx,main>.fsn{margin-left:16px!important;margin-right:16px!important}
+/* 11/9 22:20 全ページ点検：.tn-top が画面より4px はみ出す（親の余白が12pxのページ）→ 余白に合わせる */
+html:root body .tn-top,html:root body .wrap>.flt{margin-left:max(-16px,calc((100% - 100vw)/2))!important;margin-right:max(-16px,calc((100% - 100vw)/2))!important;padding-left:min(16px,calc((100vw - 100%)/2))!important;padding-right:min(16px,calc((100vw - 100%)/2))!important}
