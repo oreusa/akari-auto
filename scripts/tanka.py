@@ -163,7 +163,11 @@ def short(name, n=46):
     for p in PRE:
         name = re.sub(p, " ", name)
     name = " ".join(name.replace("【", " ").replace("】", " ").split()).strip(" ｜|&＆・")
-    return name if len(name) <= n else name[:n] + "…"
+    if len(name) <= n:
+        return name
+    # 11/9 全文点検：「…60個 バ」のように言葉の途中で切れていた → 言葉の切れ目で切る
+    cut = name[:n]
+    return (cut.rsplit(" ", 1)[0] if " " in cut[n // 2:] else cut) + "…"
 
 
 def z2h(s):

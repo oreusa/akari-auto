@@ -62,6 +62,11 @@ PROMO = [r"【[^】]*】", r"\[[^\]]*\]", r"［[^］]*］", r"＼[^／]*／", r"
 
 
 def clean(n):
+    # 11/9 全文点検：お店の名前が「…バラ ケース販売 テ…」のように途中で切れている → 最後の切れた言葉を落とす
+    cut = (n or "").rstrip().endswith(("…", "...", "‥"))
+    n = re.sub(r"(…|\.\.\.|‥)\s*$", "", (n or "").rstrip())
+    if cut and " " in n.strip():
+        n = n.strip().rsplit(" ", 1)[0]
     for p in PROMO:
         n = re.sub(p, " ", n)
     n = re.sub(r"[｜|／/・]+\s*$", "", n)
@@ -182,7 +187,9 @@ def build():
                 # 11/6 売上の調査 B2：「訳あり」を名前から消していたため、楽天で初めて知って帰る人がいた → 名前の頭に出す
                 raw = t.get("name") or ""
                 if ("訳あり" in raw or "わけあり" in raw or "訳アリ" in raw) and "訳あり" not in o["n"]:
-                    o["n"] = ("訳あり品 " + o["n"])[:38]
+                    o["n"] = "訳あり品 " + o["n"]
+                    if len(o["n"]) > 38:  # 11/9 全文点検：「60個 バ」のように言葉の途中で切れていた → 言葉の切れ目で切る
+                        o["n"] = o["n"][:38].rsplit(" ", 1)[0]
                 o["one"], o["cnt"] = amt_split(o["a"])
                 if c["unit"] == "1L・1kg":  # 夜#31 1Lか1kgかは商品ごと（量の書き方から）
                     o["ut"] = "1kgあたり" if re.search(r"\d\s*(kg|g)(?![a-z])", o["a"], re.I) else "1Lあたり"
@@ -412,7 +419,7 @@ function render(){
  h+='<p class="kij">送料込みの値段 ÷ 量（'+esc(unitTxt(c))+'）でくらべています　'+esc(upd())+' 更新</p>';
  h+='<section class="hero"><span class="bd">'+(ctxt().length?'この条件でいちばん安い':'いちばん安い')+'</span><div class="hx">'+pic(ch,118)+'<div style="min-width:0"><div class="pz">'+yen(ch.u)+'<small>円／'+esc(ut)+'</small></div><div class="sub">総額 '+ch.p.toLocaleString()+'円（送料込み）<br>'+esc(ch.s)+'・'+esc(ch.w)+(+ch.rc?'　★'+ch.av:'')+'</div></div></div><div class="nm3">'+esc(ch.n)+'</div>'+attrs(c,ch)+
   '<a class="buy" href="'+esc(ch.url)+'" rel="sponsored noopener" target="_blank" data-k="v4:'+esc(ch.n.slice(0,20))+'">'+esc(ch.w)+'で見る ›</a></section>';
- if(br&&br!==ch)h+='<a class="rec2" href="'+esc(br.url)+'" rel="sponsored noopener" target="_blank" data-k="v4r:'+esc(br.n.slice(0,20))+'">'+pic(br,72)+'<div style="min-width:0;flex:1"><span class="bd">おすすめ</span><span style="font-size:11px;color:#555;margin-left:6px">名の知れたメーカーでいちばん安い</span><div style="font-size:12.5px;font-weight:700;margin-top:4px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+esc(br.n)+'</div><div><span class="pz">'+yen(br.u)+'</span>円／'+esc(unitTxt(c,br).replace("あたり",""))+'　<span style="font-size:11.5px;color:#555">'+esc(br.w)+'で見る ›</span></div></div></a>';
+ if(br&&br!==ch)h+='<a class="rec2" href="'+esc(br.url)+'" rel="sponsored noopener" target="_blank" data-k="v4r:'+esc(br.n.slice(0,20))+'">'+pic(br,72)+'<div style="min-width:0;flex:1"><span class="bd">おすすめ</span><span style="font-size:11px;color:#555;margin-left:6px">名の知れたメーカーでいちばん安い'+(L.indexOf(br)>0?'・安い順で'+(L.indexOf(br)+1)+'番目':'')+'</span><div style="font-size:12.5px;font-weight:700;margin-top:4px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+esc(br.n)+'</div><div><span class="pz">'+yen(br.u)+'</span>円／'+esc(unitTxt(c,br).replace("あたり",""))+'　<span style="font-size:11.5px;color:#555">'+esc(br.w)+'で見る ›</span></div></div></a>';
  else if(br===ch)h+='<p class="kij">いちばん安い物が、名の知れたメーカー（'+esc(ch.bd)+'）の物です。</p>';
  var R=L.filter(function(o){return o!==ch&&o!==br;});
  if(R.length){h+='<div class="gh">ほかの物も安い順に<small>'+R.length+'件</small></div><div class="grd">';
