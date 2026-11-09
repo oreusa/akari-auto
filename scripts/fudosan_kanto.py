@@ -601,6 +601,9 @@ rep('<a href="https://www.threads.com/@fudousan_ai_si">Threads<span>@fudousan_ai
 rep('<a href="https://x.com/fudosan_ai_si">X<span>@fudosan_ai_si</span></a>', '<a href="https://x.com/ai_usagichan">X<span>@ai_usagichan</span></a>')
 rep('<a class="co" data-en="BEFORE YOU SELL" href="uru.html">', '<a class="co" data-en="BEFORE YOU SELL" href="/uru.html">')
 rep('\n<a class="co" data-en="FOR AGENTS" href="gyosha.html">業者さまへ<span>物件のご紹介・ご相談はこちら</span></a>', '')
+# 11/9 オーナー「関東はアフェリエイトでいく。対応できないからだ」→ 売却・査定のご相談の箱は外す
+resub(r'\n<a class="co" data-en="FOR OWNERS" href="#ml">.*?</a>', '', re.S)
+rep('お家を売る前に大事なこと<span>ご相談の前に、ぜひご覧ください</span>', '家を売る前に<span>相場を見る・売り出し価格を見る・大事なことを知る</span>')
 rep('<div class="ft">ぴょんと街しらべ│調べた数字は、このページに残していきます<br><small style="font-size:10px;color:#A0A0A0">「前売り券」「近くの宿」のリンクは広告です（アソビュー・楽天トラベル）</small></div>',
     '<div class="ft">LIFE NOTE│調べた数字は、このページに残していきます</div>')
 rep('<a class="tnx" href="/odekake" data-k="下の入口｜関西おでかけリスト"><small>関連サイト</small><b>関西おでかけリスト<span>→</span></b><i>関西のイベント・新しいお店や施設を、公式ページつきで</i></a>',

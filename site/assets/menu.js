@@ -17,7 +17,7 @@
     /^\/fudosan-list/.test(P)?"flist":/^\/chika-/.test(P)?"chika":/^\/uru/.test(P)?"uru":/^\/(index)?$/.test(P)?"tn":/^\/odekake/.test(P)?"list":/^\/okaimono/.test(P)?"okai":/^\/otoku/.test(P)?"otoku":/^\/illumination/.test(P)?"illumi":/^\/koyo/.test(P)?"koyo":/^\/koe/.test(P)?"koe":/^\/tomari/.test(P)?"tomari":/^\/ima/.test(P)?"ima":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":/^\/nesage/.test(P)?"nesage":"";
   var SH=/^(\/okaimono|\/nesage|\/tanka|\/furusato|\/kaimawari|\/otoku)/.test(P);
   /* 11/7 関東不動産リスト（月の関西不動産リストと同じ）：不動産のページは不動産だけのメニュー */
-  var FU=/^\/(fudosan-list|uru|moushikomi|chika-|machi\/)/.test(P);
+  var FU=/^\/(fudosan-list|uru|chika-|machi\/)/.test(P);
   /* 11/6 夜「おかいものからリクエストへ行くと、下のバーがおでかけ側に変わって戻れない」→ どちらのリストから来たかを覚えて、リクエストのページもそちら側にする */
   try{if(SH)sessionStorage.setItem("usagi_side","okai");else if(here&&here!=="koe")sessionStorage.setItem("usagi_side","list");if(here==="koe"&&sessionStorage.getItem("usagi_side")==="okai")SH=true;}catch(e){}
   /* 11/2 オーナー「もっとまとめろよ。TOWNNOTEこんなんじゃないだろ」→ 月と同じく、リストごとに自分の項目だけ＋関連サイト */
@@ -315,5 +315,5 @@ try{new MutationObserver(later).observe(document.documentElement,{childList:true
 })();
 
 /* 11/7 関東不動産リスト：お家の売却・査定のご相談はメールで（月の menu.js と同じ。会社のHPは通さない）→ href="#ml" をメールに */
-/* 11/9 オーナー「申し込みページ作れないの？」→ href="#ml" はお申し込みページ /moushikomi へ */
-(function(){function ml(){document.querySelectorAll('a[href="#ml"]').forEach(function(a){a.href="/moushikomi";});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",ml);else ml();document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href="#ml"]');if(a){ml();}},true);})();
+/* 11/9 オーナー「関東はアフェリエイトでいく。対応できないからだ」→ 関東はご相談を受けない。#ml が残っていても「家を売る前に」へ */
+(function(){function ml(){document.querySelectorAll('a[href="#ml"]').forEach(function(a){a.href="/uru.html";});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",ml);else ml();document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href="#ml"]');if(a){ml();}},true);})();
