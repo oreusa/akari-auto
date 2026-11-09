@@ -4,7 +4,7 @@ page.yml が page.py のあとに毎回動かす。site/index.html（本番）�
 import os, re
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CSS = '<link rel="stylesheet" href="/assets/v2.css?v=4">'
-JS = '<script src="/assets/v2.js?v=2"></script>'
+JS = '<script src="/assets/v2.js?v=3"></script>'
 src = os.path.join(R, 'site/index.html')
 h = open(src, encoding='utf-8').read()
 if 'assets/v2.css' not in h:
