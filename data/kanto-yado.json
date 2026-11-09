@@ -3887,5 +3887,40 @@
         "min": 7840
       }
     ]
+  },
+  "さのあかりまちなか寺社の光": {
+    "v": 2,
+    "t": "2026-11-09",
+    "ll": [
+      36.32112,
+      139.57378
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "古都佐野 旅館 旭館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136006",
+        "km": 1.4,
+        "r": 4.51,
+        "rc": 123,
+        "min": 4400
+      },
+      {
+        "n": "ホテル三吉野別館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D29156",
+        "km": 1.5,
+        "r": 4.36,
+        "rc": 1375,
+        "min": 4400
+      },
+      {
+        "n": "仙水閣",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D183345",
+        "km": 1.5,
+        "r": 4.24,
+        "rc": 383,
+        "min": 4000
+      }
+    ]
   }
 }

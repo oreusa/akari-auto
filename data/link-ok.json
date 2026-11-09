@@ -5430,6 +5430,12 @@
   "sec": 1.0,
   "why": ""
  },
+ "https://kanko-shiki.com/archives/5214": {
+  "at": "2026-11-09",
+  "ok": true,
+  "sec": 5.1,
+  "why": ""
+ },
  "https://kannai-machi.com/": {
   "at": "2026-10-28",
   "by": "browser",
@@ -7788,6 +7794,12 @@
   "sec": 1.3,
   "why": ""
  },
+ "https://www.city.sano.lg.jp/miryokuhasshin/event/29076.html": {
+  "at": "2026-11-09",
+  "ok": true,
+  "sec": 1.5,
+  "why": ""
+ },
  "https://www.city.sano.lg.jp/sp/yoshizawakinembijutsukan/2/1_7/27423.html": {
   "at": "2026-11-08",
   "by": "browser",
@@ -8103,6 +8115,12 @@
  "https://www.naritasan.or.jp/monthly/gyoji/": {
   "at": "2026-11-08",
   "by": "browser",
+  "ok": true,
+  "sec": 1.6,
+  "why": ""
+ },
+ "https://www.nikko-kankou.org/event/1626": {
+  "at": "2026-11-09",
   "ok": true,
   "sec": 1.6,
   "why": ""
