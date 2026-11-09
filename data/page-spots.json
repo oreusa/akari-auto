@@ -1878,7 +1878,9 @@
       "free": false,
       "note": "日本列島のでき方を学ぶ企画展。入館料は公式で確認",
       "url": "https://www.bunkajoho.pref.ibaraki.jp/event-info/14013.html",
-      "checked": "2026-11-02"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "第95回 土浦全国花火競技大会",
@@ -1963,7 +1965,9 @@
       "free": false,
       "note": "伊藤若冲の作品を見る企画展。一般520円・高校生以下無料",
       "url": "https://www.city.sano.lg.jp/sp/yoshizawakinembijutsukan/2/1_7/27423.html",
-      "checked": "2026-11-02"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "さがみはら星空探査隊",
@@ -1999,7 +2003,9 @@
       "free": true,
       "note": "館内の無料ミニ企画。※常設展示室と企画展示室は改修工事で休室中",
       "url": "https://www.taromuseum.jp/exhibition.html",
-      "checked": "2026-11-02"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "第73回 箱根大名行列",
@@ -2262,7 +2268,9 @@
       "free": true,
       "note": "玉村町｜入館無料。10:00〜16:00、月曜休み",
       "url": "https://www.town.tamamura.lg.jp/docs/2026100800010/",
-      "checked": "2026-11-06"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（12月は月〜水休み）"
     },
     {
       "title": "謎解き冒険ラリー 不思議ハンター in 幕張海浜公園",
@@ -2382,7 +2390,9 @@
       "free": false,
       "note": "水戸市｜9:30〜17:00、月曜休み。高校生以下無料",
       "url": "https://rekishikan-ibk.jp",
-      "checked": "2026-11-08"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "『牧場物語』×那須高原りんどう湖ファミリー牧場",
