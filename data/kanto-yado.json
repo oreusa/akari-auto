@@ -1662,41 +1662,6 @@
       }
     ]
   },
-  "11/15まで高尾山・草津・伊香保｜紅葉の夜は何時までくらべ": {
-    "v": 2,
-    "t": "2026-11-09",
-    "ll": [
-      36.49208,
-      138.91487
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "伊香保温泉 香雲館",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D70871",
-        "km": 1.2,
-        "r": 4.83,
-        "rc": 337,
-        "min": 24200
-      },
-      {
-        "n": "伊香保温泉 Doggyスイート ペロ",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188003",
-        "km": 1.1,
-        "r": 4.74,
-        "rc": 71,
-        "min": 27825
-      },
-      {
-        "n": "伊香保温泉 ホテル木暮",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D6266",
-        "km": 0.8,
-        "r": 4.73,
-        "rc": 2063,
-        "min": 21560
-      }
-    ]
-  },
   "伊香保温泉河鹿橋紅葉ライトアップ": {
     "v": 2,
     "t": "2026-11-09",
@@ -4408,6 +4373,25 @@
         "r": 4.12,
         "rc": 192,
         "min": 7750
+      }
+    ]
+  },
+  "多摩センターイルミネーション2026": {
+    "v": 2,
+    "t": "2026-11-09",
+    "ll": [
+      35.62394,
+      139.42426
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "LINK FOREST",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179467",
+        "km": 0.5,
+        "r": 4.5,
+        "rc": 647,
+        "min": 7840
       }
     ]
   }

@@ -1,16 +1,16 @@
 {
-  "at": "2026-11-09 23:45",
+  "at": "2026-11-10 05:03",
   "since": "2026-11-01",
   "tracked": 256,
-  "days": 8,
+  "days": 9,
   "downs": [
     {
       "title": "加湿器",
       "name": "4重除菌 4.5L LAViNO エアリファイ 2027 医師推奨 除菌加湿 大容量 静音 …",
       "price": 15840,
-      "base": 19800.0,
+      "base": 19800,
       "pct": 20,
-      "days": 8,
+      "days": 9,
       "rc": 740,
       "av": 4.14,
       "shop": "美顔器 美容家電 アイビビッド",
@@ -20,14 +20,27 @@
       "title": "プロテイン",
       "name": "SAVE ホエイプロテイン 新やみつき プロテイン ( 750g← 1kg からの変更 / …",
       "price": 3190,
-      "base": 3490.0,
+      "base": 3490,
       "pct": 9,
-      "days": 8,
+      "days": 9,
       "rc": 996,
       "av": 4.6,
       "shop": "シープウィング",
       "plain": "https://item.rakuten.co.jp/auc-sheepwing/10001894/"
     }
   ],
-  "ups": []
+  "ups": [
+    {
+      "title": "モバイルバッテリー",
+      "name": "hagoogi 充電式カイロ 大容量 電気カイロ 軽量 分離式 10000mah 最高55℃…",
+      "price": 7280,
+      "base": 3640,
+      "pct": 100,
+      "days": 9,
+      "rc": 687,
+      "av": 4.55,
+      "shop": "Hagoogi公式 楽天市場店",
+      "plain": "https://item.rakuten.co.jp/hagoogi/10000130/"
+    }
+  ]
 }

@@ -2085,6 +2085,12 @@
   "sec": 3.5,
   "why": ""
  },
+ "https://ariake.shopping-sumitomo-rd.com/event/4900/": {
+  "at": "2026-11-10",
+  "ok": true,
+  "sec": 0.5,
+  "why": ""
+ },
  "https://artetokyo.jp/": {
   "at": "2026-11-09",
   "by": "browser",
@@ -2097,6 +2103,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.6,
+  "why": ""
+ },
+ "https://brand.sarutahiko.jp/shop/the_east_gardens_of_the_imperial_palace": {
+  "at": "2026-11-10",
+  "ok": true,
+  "sec": 1.4,
   "why": ""
  },
  "https://bungaku.pref.gunma.jp/project/3148/": {
@@ -2142,11 +2154,10 @@
   "why": ""
  },
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
-  "at": "2026-11-09",
-  "by": "browser",
+  "at": "2026-11-10",
   "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "sec": 15.3,
+  "why": "<urlopen error timed out>"
  },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
   "at": "2026-11-09",
@@ -5848,11 +5859,10 @@
   "why": ""
  },
  "https://tamaillumi.myportfolio.com/": {
-  "at": "2026-11-09",
-  "by": "browser",
-  "ok": false,
-  "sec": 0.2,
-  "why": "Page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://ta"
+  "at": "2026-11-10",
+  "ok": true,
+  "sec": 0.1,
+  "why": "403"
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
   "at": "2026-11-09",
@@ -5940,6 +5950,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.4,
+  "why": ""
+ },
+ "https://www.aeon.com/store/lp/592760/": {
+  "at": "2026-11-10",
+  "ok": true,
+  "sec": 0.7,
   "why": ""
  },
  "https://www.amazon.co.jp/dp/B000FQN97A?tag=aiusagichan-22": {
@@ -7984,6 +8000,12 @@
   "sec": 2.7,
   "why": ""
  },
+ "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html": {
+  "at": "2026-11-10",
+  "ok": true,
+  "sec": 3.1,
+  "why": ""
+ },
  "https://www.ibarakiguide.jp/special/hanabi.html": {
   "at": "2026-11-07",
   "by": "browser",
@@ -8107,6 +8129,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.4,
+  "why": ""
+ },
+ "https://www.metro.tokyo.lg.jp/information/press/2026/04/2026041007": {
+  "at": "2026-11-10",
+  "ok": true,
+  "sec": 0.8,
   "why": ""
  },
  "https://www.motherfarm.co.jp/information/news/detail.php?CN=432299": {
@@ -8345,6 +8373,12 @@
   "sec": 1.8,
   "why": ""
  },
+ "https://www.tobuzoo.com/": {
+  "at": "2026-11-10",
+  "ok": true,
+  "sec": 0.5,
+  "why": ""
+ },
  "https://www.tochigi-kankou.or.jp/news/19382": {
   "at": "2026-11-09",
   "by": "browser",
@@ -8357,6 +8391,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.3,
+  "why": ""
+ },
+ "https://www.tokyo-dome.co.jp/en/illumination/plan": {
+  "at": "2026-11-10",
+  "ok": true,
+  "sec": 1.1,
   "why": ""
  },
  "https://www.tokyo-dome.co.jp/illumination/": {
@@ -8535,9 +8575,9 @@
   "why": ""
  },
  "https://yamatokuen.com": {
-  "at": "2026-11-06",
+  "at": "2026-11-10",
   "ok": true,
-  "sec": 1.1,
+  "sec": 1.0,
   "why": ""
  },
  "https://yamatokuen.com/": {
