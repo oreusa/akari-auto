@@ -341,11 +341,11 @@ def buy_card(p, n):
 
 
 # 11/9 オーナーOK（月の見本3と同じ）：街ページは「売りたい・買いたい」の2つだけ（売る前に・Yahoo!の箱はここにまとめた）
-def itt_box(n, p=""):
+def itt_box(n, p="", tid=""):
     return (f'<section class="itt" id="itt"><div class="en2">IN THIS TOWN</div><h2>{E(n)}で</h2><div class="itg">'
             f'<a class="itc" href="/uru.html" data-k="この街で｜売りたい｜{E(n)}"><b>売りたい</b><span>いくらで売れそうか、相場から順に（無料）</span><i>手順を見る →</i></a>'
             f'' + buy_card(p, n) + f''
-            f'</div><p class="itn">「買いたい」の3つは広告です（Yahoo!不動産のこの街の一覧が開きます）。</p></section>')
+            f'</div>' + (f'<a class="itg2" href="/jikka/{tid}" data-k="この街で｜実家・空き家｜{E(n)}">相続した実家・空き家なら（売る・片付け・解体） <i>→</i></a>' if tid else '') + f'<p class="itn">「買いたい」の3つは広告です（Yahoo!不動産のこの街の一覧が開きます）。</p></section>')
 
 
 def buy_box(n):
@@ -356,7 +356,8 @@ def buy_box(n):
 
 
 # ================= 街ごとのページ
-TOWN_CSS = """.big{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 0}
+TOWN_CSS = """.itg2{display:flex;justify-content:space-between;margin:10px 0 0;padding:11px 14px;border-top:1px solid #E6E6E6;border-bottom:1px solid #E6E6E6;text-decoration:none;color:#5E544D;font-size:13px;text-align:left}.itg2 i{font-style:normal;font-family:Jost;color:#9C8775}
+.big{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 0}
 .big div{background:#F5F5F5;padding:12px 14px}.big b{display:block;font-family:Jost;font-size:24px;font-weight:500;color:var(--pc)}.big span{font-size:11px;color:#7A6E66;letter-spacing:.04em}
 .big .w{grid-column:1/3}.big .w b{font-size:15px;font-family:"Zen Kaku Gothic New";font-weight:700;color:#2B2622;line-height:1.7}
 .mp{margin:14px 0 0;padding:14px;background:#fff;border:1px solid #ECECEC}.mp svg{display:block;width:100%;height:auto;max-height:280px}
@@ -426,7 +427,7 @@ def town_page(t):
 <div class="upd">2026年1月1日時点の数字（{TODAY} 作成）</div></div>
 {big}
 <div class="mp nofilt">{pref_svg(t["p"], n)}<p>{E(sc)}の中の{E(short(n) if sc != pfull else n)}</p></div>
-{itt_box(n, t["p"])}
+{itt_box(n, t["p"], t["id"])}
 {rel_h}
 {nb_h}
 <a class="back" href="/chika-kanto#{fn}" data-k="{E(pfull)}のランキング" style="margin-top:18px">{E(pfull)}の街をランキングで見る</a>
@@ -674,11 +675,97 @@ for bad in ("関西", "府県", "大阪", "townnote.pages", "fudousan_ai", "fudo
     assert bad not in vis, ("関西の言葉が残っている", bad, vis[vis.find(bad) - 80:vis.find(bad) + 80])
 open(os.path.join(S, "fudosan-list.html"), "w", encoding="utf-8").write(h)
 
+# ================= 実家・空き家ノート（11/9 オーナー「つくれ」・月の関西版と同じ形）
+# 関東はアフィリエイトだけ（オーナー11/9）：相談・申し込みの言葉は使わない。売るは Yahoo!不動産の売却査定（VC）。片付け・解体は台帳に登録した広告ができてから足す
+J_SELL = YAHOO_RE.split("&vc_url=")[0] + "&vc_url=" + _q("https://realestate.yahoo.co.jp/sell/", safe="")
+J_SRC = [
+    ("相続登記を確かめる", "2024年4月1日から、相続を知った日から3年以内の相続登記が義務になりました。それより前の相続も対象で、2027年3月31日までに登記が必要です。",
+     "法務省「相続登記の申請義務化」", "https://www.moj.go.jp/MINJI/souzokutouki-gimuka/index.html"),
+    ("家財を片付ける", "遠方の実家なら、片付け・遺品整理の見積りを先に取ると、売る時期を決めやすくなります。見積りは作業の中身と追加料金を確かめてから頼みましょう。",
+     "国民生活センター「遺品整理を頼むときは、事業者選びは慎重に」", "https://www.kokusen.go.jp/mimamori/mj_mailmag/mj-shinsen525.html"),
+    ("売るか、解体するか", "古い家は「そのまま売る」「更地にして売る」で値段も費用も変わります。手入れされず市区町村から勧告を受けた空き家は、土地の固定資産税の軽減（住宅用地特例）が外れます。",
+     "国土交通省「空家等対策の推進に関する特別措置法の一部を改正する法律」概要", "https://www.mlit.go.jp/jutakukentiku/house/content/001621960.pdf"),
+    ("税金の特例を確かめる", "相続した空き家（1981年5月31日以前に建てた家など）を2027年12月31日までに売ると、最高3,000万円の特別控除があります（相続人が3人以上なら2,000万円まで・条件あり）。くわしくは税務署・税理士へ。",
+     "国税庁 タックスアンサー No.3306", "https://www.nta.go.jp/taxes/shiraberu/taxanswer/joto/3306.htm"),
+]
+J_CSS = """.jn{display:grid;grid-template-columns:1fr 1fr;gap:10px}.jn>div{background:#F4F4F6;border-radius:12px;padding:12px 14px}
+.jn b{display:block;font-family:Jost,"Zen Kaku Gothic New";font-weight:400;font-size:24px;color:#2B2622;line-height:1.3}.jn b small{font-size:12px}.jn span{display:block;font-size:11.5px;color:#7A6E66;margin-top:2px;line-height:1.6}
+.src{font-size:11px;color:#8C7B6E;line-height:1.7;margin:8px 0 0}.src a{color:#8C7B6E}
+.mk3{font-family:Jost,sans-serif;font-size:10.5px;letter-spacing:.3em;color:#9C8775;margin:30px 0 0}.jh{font-family:"Shippori Mincho",serif;font-weight:600;font-size:18px;letter-spacing:.1em;margin:4px 0 12px;padding:0;border:0}
+.st{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #ECECEC}.st:last-of-type{border-bottom:1px solid #ECECEC}.st i{font-style:normal;font-family:Jost,sans-serif;font-weight:300;font-size:20px;color:var(--pc);width:26px;flex:none;line-height:1.3}
+.st b{display:block;font-size:14.5px}.st p{margin:3px 0 0;font-size:13px;line-height:1.8;color:#4E453F}.st a{display:inline-block;font-size:11px;color:#8C7B6E;margin-top:4px}
+.jb{display:block;text-align:center;border-radius:12px;padding:14px 12px;font-size:14.5px;font-weight:700;margin-top:10px;text-decoration:none;color:#fff;background:#2B2622}.jb small{display:block;font-size:11px;font-weight:500;color:#D9D2CC;margin-top:2px}
+.jp{font-size:11.5px;color:#8C7B6E;text-align:center;margin:8px 0 0;line-height:1.7}
+.jl{display:flex;justify-content:space-between;margin:14px 0 0;padding:12px 4px;border-top:1px solid #E6E6E6;border-bottom:1px solid #E6E6E6;text-decoration:none;color:#5E544D;font-size:13px}.jl i{font-style:normal;font-family:Jost;color:#9C8775}
+.flt{display:flex;flex-wrap:nowrap;justify-content:center;gap:0 13px;margin:24px 0 8px;padding:10px 0;border-top:1px solid #D4D4D4;border-bottom:1px solid #D4D4D4;overflow-x:auto}
+.flt button{flex:none;border:none;background:none;padding:4px 0;font-family:"Zen Kaku Gothic New";font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--pc,#8C7B6E);border-bottom:1px solid transparent;cursor:pointer;opacity:.85}
+.flt button.on{opacity:1;border-bottom-color:currentColor}.pane{display:none}.pane.on{display:block}
+.jli{list-style:none;margin:0;padding:0}.jli li{border-bottom:1px solid #ECECEC}.jli a{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 2px;text-decoration:none;color:#2B2622;font-weight:700;font-size:14px}
+.jli a small{font-size:11.5px;color:#7A6E66;font-weight:500;text-align:right}"""
+
+
+def jikka_page(t):
+    pf, fn, en, col, sname, surl, pfull, s = PI[t["p"]]
+    n = t["n"]
+    title = f"{n}の実家・空き家｜売る・片付け・解体の前に（地価と順番）"
+    desc = (f"{pfull}{n}で親の家を相続した・空き家のままの方へ。住宅地の地価は令和8年地価公示で前の年から{pct(t['r8'])}。"
+            "相続登記の義務、片付け、売るか解体するか、3,000万円の特別控除まで、公式の出典つきで順番に。")
+    url = f"{BASE}/jikka/{t['id']}"
+    ld = {"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "関東不動産リスト", "item": f"{BASE}/fudosan-list"},
+        {"@type": "ListItem", "position": 2, "name": "実家・空き家ノート", "item": f"{BASE}/jikka/"},
+        {"@type": "ListItem", "position": 3, "name": f"{n}の実家・空き家", "item": url}]}]}
+    steps = "".join(f'<div class="st"><i>{i:02d}</i><div><b>{E(h)}</b><p>{E(p)}</p><a href="{E(u)}" target="_blank" rel="noopener" data-k="実家｜出典｜{i:02d}">出典：{E(sn)}</a></div></div>'
+                    for i, (h, p, sn, u) in enumerate(J_SRC, 1))
+    pr = f'<div><b>{t["price"] / 10000:.1f}<small>万円</small></b><span>住宅地の平均価格（1㎡）</span></div>' if t["price"] else f'<div><b>{t["rank"]}<small>位／{t["of"]}</small></b><span>{E(pfull)}での順位（上がり幅）</span></div>'
+    body = f'''<style>{HEAD_CSS}{J_CSS}</style>{SCRIPTS}</head><body style="--pc:{col}"><div class="wrap">
+<div class="head"><img src="/logo-s.png" width="60" height="60" alt="LIFE NOTE のロゴ"><div class="en">{en} ─ JIKKA NOTE</div>
+<h1>{E(n)}の実家・空き家ノート<span>売る・片付ける・解体する前に</span></h1>
+<p class="sub">親の家を相続した・空き家のままになっている。<br>この街で決めるための数字と順番です。</p>
+<div class="upd">2026年11月 更新</div></div>
+<p class="mk3">LAND PRICE 2026</p><h2 class="jh">この街の土地の値段</h2>
+<div class="jn"><div><b>{pct(t["r8"])}</b><span>住宅地 1年の動き</span></div>{pr}</div>
+<p class="src">出典：令和8年地価公示（2026年1月1日時点）。{E(pfull)}{t["of"]}市区町村で{t["rank"]}位。<a href="/machi/{t["id"]}" data-k="実家｜街ページ">この街の数字をくわしく →</a></p>
+<p class="mk3">STEPS</p><h2 class="jh">迷ったら、この順で</h2>
+{steps}
+<p class="mk3">NEXT</p><h2 class="jh">次にできること</h2>
+<a class="jb" href="{E(J_SELL)}" rel="nofollow sponsored" target="_blank" data-k="実家｜Yahoo!不動産 売却査定｜{E(n)}">いくらで売れるか、無料で査定を比べる<small>Yahoo!不動産の売却査定（広告）</small></a>
+<p class="jp">リンクは広告です。片付け・解体の見積りは、使えるサービスが決まりしだい足します。</p>
+<a class="jl" href="/jikka/#{fn}" data-k="実家｜一覧">ほかの街の実家・空き家ノート <i>→</i></a>
+<a class="back" href="/fudosan-list" data-k="関東不動産リストへ">関東不動産リストを見る</a>
+<div class="ft">LIFE NOTE</div></div>
+{beacon("実家｜" + n)}</body></html>'''
+    return head(title, desc, url, ld) + body
+
+
+os.makedirs(os.path.join(S, "jikka"), exist_ok=True)
+for f in os.listdir(os.path.join(S, "jikka")):
+    if f.endswith(".html"):
+        os.remove(os.path.join(S, "jikka", f))
+for t in towns:
+    open(os.path.join(S, "jikka", t["id"] + ".html"), "w", encoding="utf-8").write(jikka_page(t))
+_jp = [(fn, pf, [t for t in towns if t["p"] == pf]) for pf, fn, *_ in PREFS]
+_jl = head(f"関東の実家・空き家ノート｜{len(towns)}の街の地価と、売る・片付け・解体の順番",
+           f"関東{len(ORDER)}都県・{len(towns)}の市区町村ごとに、相続した実家・空き家を「売る・片付ける・解体する」前に見る数字と順番。相続登記の義務、3,000万円の特別控除を公式の出典つきで。",
+           f"{BASE}/jikka/") + f'''<style>{HEAD_CSS}{J_CSS}</style>{SCRIPTS}</head><body><div class="wrap">
+<div class="head"><img src="/logo-s.png" width="60" height="60" alt="LIFE NOTE のロゴ"><div class="en">KANTO ─ JIKKA NOTE</div>
+<h1>実家・空き家ノート<span>関東 {len(towns)}の街</span></h1>
+<p class="sub">親の家を相続した・空き家のままの方へ。<br>街を選ぶと、土地の値段と順番が見られます。</p>
+<div class="upd">2026年11月 更新</div></div>
+<nav class="flt">''' + "".join(f'<button data-p="{k}" style="--pc:{PI[pf][3]}"{" class=\"on\"" if i == 0 else ""}>{pf}</button>' for i, (k, pf, _) in enumerate(_jp)) + '</nav>' + \
+    "".join(f'<section class="pane{" on" if i == 0 else ""}" id="{k}"><ul class="jli">' + "".join(f'<li><a href="/jikka/{t["id"]}" data-k="実家一覧｜{E(t["n"])}">{E(t["n"])}<small>住宅地 {pct(t["r8"])}</small></a></li>' for t in ts) + '</ul></section>' for i, (k, pf, ts) in enumerate(_jp)) + f'''
+<a class="back" href="/fudosan-list" data-k="関東不動産リストへ">関東不動産リストを見る</a>
+<div class="ft">LIFE NOTE</div></div>
+<script>(function(){{function go(k){{var b=document.querySelector('.flt button[data-p="'+k+'"]');if(!b)return;document.querySelectorAll(".flt button,.pane").forEach(function(x){{x.classList.remove("on")}});b.classList.add("on");document.getElementById(k).classList.add("on");}}
+document.querySelectorAll(".flt button").forEach(function(b){{b.onclick=function(){{go(b.dataset.p);history.replaceState(null,"","#"+b.dataset.p);}}}});if(location.hash)go(location.hash.slice(1));}})();</script>
+{beacon("実家一覧")}</body></html>'''
+open(os.path.join(S, "jikka", "index.html"), "w", encoding="utf-8").write(_jl)
+
 # ================= sitemap（あれば足す）
 sm = os.path.join(S, "sitemap.xml")
 if LIVE and os.path.exists(sm):
     x = open(sm, encoding="utf-8").read()
-    add = "".join(f"<url><loc>{BASE}{p}</loc></url>" for p in ["/fudosan-list", "/chika-kanto", "/sagasu"] + [f"/machi/{t['id']}" for t in towns] if f"{BASE}{p}<" not in x)
+    add = "".join(f"<url><loc>{BASE}{p}</loc></url>" for p in ["/fudosan-list", "/chika-kanto", "/sagasu", "/jikka/"] + [f"/machi/{t['id']}" for t in towns] + [f"/jikka/{t['id']}" for t in towns] if f"{BASE}{p}<" not in x)
     if add:
         open(sm, "w", encoding="utf-8").write(x.replace("</urlset>", add + "</urlset>", 1))
 print("関東不動産リスト:", len(towns), "街のページ ・ /chika-kanto ・ /fudosan-list", len(FACTS), "件", "live" if LIVE else "noindex",
