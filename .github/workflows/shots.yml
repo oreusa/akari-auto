@@ -33,6 +33,7 @@ jobs:
           await b.close();})();
           EOF
           node s.js
+          i=0; for u in $URLS; do i=$((i+1)); curl -sL "$u" -o "/tmp/out/$(printf %02d $i).html" || true; done
       - name: shots ブランチに置く
         run: |
           cd /tmp/out
