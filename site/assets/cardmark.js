@@ -36,7 +36,7 @@ function days(a,b){return Math.round((new Date(b+'T00:00:00Z')-new Date(a+'T00:0
 function iso(m,d){var y=TY;if(m<TM-3)y++;else if(m>TM+8)y--;return y+'-'+('0'+m).slice(-2)+'-'+('0'+d).slice(-2)}
 function fromText(x){ /* 「11/21（土）まで」「10/1（木）〜1/31（日）」「11/14（土）〜」など */
   if(!x||/発表前|未発表|昨年|公式/.test(x))return{};var m=x.match(/(\d{1,2})(?:[\/.]|月)(\d{1,2})/g)||[];
-  var p=m.map(function(v){var q=v.split(/[\/.]|月/);return iso(+q[0],+q[1])});
+  m=m.filter(function(v){var q=v.split(/[\/.]|月/);return +q[0]>=1&&+q[0]<=12&&+q[1]>=1&&+q[1]<=31});var p=m.map(function(v){var q=v.split(/[\/.]|月/);return iso(+q[0],+q[1])});
   if(p.length>=2)return{s:p[0],e:p[1]};if(p.length==1){if(/まで/.test(x))return{e:p[0]};if(/〜\s*$|から/.test(x))return{s:p[0]};return{s:p[0],e:p[0]};}return{};}
 var css=
 'html body .cm.cm.cm.cm.cm{position:relative;padding-left:98px!important;min-height:150px;box-sizing:border-box}'+
@@ -89,7 +89,9 @@ var AD=[
  {q:'li.it>.cw>a.cd',t:'.nm',d:'.dt',box:'li.it'},      /* 燈のイルミ・紅葉 */
  {q:'a.fc',t:'b',d:'span'}];                            /* 1件ページの「ほかのおでかけ」・燈の都県ページ */
 function one(a,ad){
-  if(a.dataset.cm||a.dataset.cat||a.classList.contains('kc')||!a.querySelector(ad.t))return;a.dataset.cm=1;
+  if(a.dataset.cm||a.dataset.cat||a.classList.contains('kc')||!a.querySelector(ad.t))return;
+  if(a.matches('a.fc')&&!/^\/o\//.test(a.getAttribute('href')||''))return;/* 11/9 夜#154：街ページの数字カード（16.2万円など）を日付と読んで NaN/NaN と出ていた → おでかけ（/o/）だけ */
+  a.dataset.cm=1;
   var bx=ad.box?a.closest(ad.box):a;
   if(!bx.hasAttribute('data-s')&&!bx.hasAttribute('data-e')){var up=a.parentElement&&a.parentElement.closest('[data-s],[data-e]');if(up&&up.querySelectorAll(ad.q).length===1)bx=up;}
   var s=bx.dataset.s||'',e=bx.dataset.e||'',o=bx.dataset.open||'';
