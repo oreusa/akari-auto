@@ -2,10 +2,6 @@
 html:not(.night) body{color:#1F1A17}
 html:not(.night) .sub,html:not(.night) .adn,html:not(.night) .m,html:not(.night) .v2d,html:not(.night) .d,html:not(.night) .spc,html:not(.night) .lk,html:not(.night) .wnt,html:not(.night) .t2,html:not(.night) .mt,html:not(.night) .tk,html:not(.night) .wc,html:not(.night) .mp,html:not(.night) .wl,html:not(.night) .wdy span{color:#3F3833!important}
 .sub,.m,.d,.v2d,.spc,.lk,.wc,.wnt,.t2{font-size:13.5px!important;line-height:1.75}
-/* 昼のカードの絵：夜と同じ作りで、紺の代わりに白、府県の色の光 */
-html:not(.night) .cmb .ib{background:radial-gradient(130% 100% at 50% 120%,color-mix(in srgb,var(--pc,#8a8f98) 95%,transparent) 0%,color-mix(in srgb,var(--pc,#8a8f98) 45%,transparent) 55%,color-mix(in srgb,var(--pc,#8a8f98) 10%,transparent) 95%),linear-gradient(160deg,#FFFFFF 0%,#F4F1EE 100%)!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--pc,#8a8f98) 28%,transparent),inset 0 1px 0 #fff,0 8px 16px -10px color-mix(in srgb,var(--pc,#8a8f98) 70%,transparent)!important}
-html:not(.night) .cmb .ib svg{stroke:color-mix(in srgb,var(--pc,#8a8f98) 70%,#000)!important;fill:rgba(255,255,255,.6)!important}
-html:not(.night) .cmb .ib .lb{color:color-mix(in srgb,var(--pc,#8a8f98) 75%,#000)!important}
 /* 不動産 01〜03・おでかけの3つ：同じ「光るしるし」 */
 .wdy .wr i,.qk a svg{border-radius:12px;font-style:normal}
 .wdy .wr i{width:46px;height:46px;flex:0 0 46px;display:flex!important;align-items:center;justify-content:center;font-size:15px!important;font-weight:500!important}
@@ -13,7 +9,3 @@ html:not(.night) .cmb .ib .lb{color:color-mix(in srgb,var(--pc,#8a8f98) 75%,#000
 .wdy .wr:nth-of-type(1),.qk a:nth-child(1){--g:#B97A62}.wdy .wr:nth-of-type(2),.qk a:nth-child(2){--g:#4F6681}.wdy .wr:nth-of-type(3),.qk a:nth-child(3){--g:#C4925A}
 .wdy .wr i,.qk a svg{background:radial-gradient(130% 100% at 50% 120%,color-mix(in srgb,var(--g) 95%,transparent) 0%,color-mix(in srgb,var(--g) 45%,transparent) 55%,color-mix(in srgb,var(--g) 10%,transparent) 95%),linear-gradient(160deg,#fff,#F4F1EE)!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--g) 28%,transparent),0 8px 16px -10px color-mix(in srgb,var(--g) 70%,transparent);color:color-mix(in srgb,var(--g) 80%,#000)!important}
 .qk a svg *{stroke:color-mix(in srgb,var(--g) 80%,#000)!important}
-/* 夜のカードの灯りも少し強く */
-html.night .cmb .ib{background:radial-gradient(130% 100% at 50% 120%,color-mix(in srgb,var(--pc,#8a8f98) 75%,transparent) 0%,transparent 70%),linear-gradient(160deg,#28324D 0%,#151C2E 100%)!important}
-html:not(.night) .cmb .ib::before{width:auto!important;height:auto!important;inset:0!important;border-radius:inherit!important;background:linear-gradient(rgba(255,255,255,.55) 0%,rgba(255,255,255,.1) 42%,transparent 43%)!important}
-html:not(.night) .cmb .ib::after{opacity:.0!important}
