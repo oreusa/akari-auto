@@ -23,7 +23,8 @@
       "free": false,
       "note": "大井競馬場。16:30〜21:00（最終入場20:00）。日によって料金が変わります",
       "url": "https://www.tokyomegaillumi.jp/",
-      "checked": "2026-10-24"
+      "checked": "2026-11-09",
+      "opennote": "大井競馬の開催日と12/26・27・1/1は休み"
     },
     {
       "title": "昭和記念公園 秋の夜散歩2026",
@@ -70,8 +71,8 @@
       "ends": "2026-12-25T23:00",
       "free": true,
       "note": "港区｜けやき坂イルミネーション“SNOW＆BLUE”。17:00〜22:00、見るのは無料",
-      "url": "https://www.christmas.hills-site.com/",
-      "checked": "2026-10-27"
+      "url": "https://www.roppongihills.com/sp/christmashills/",
+      "checked": "2026-11-09"
     },
     {
       "title": "あしかがフラワーパーク 光の花の庭",
@@ -428,18 +429,6 @@
       "checked": "2026-10-27"
     },
     {
-      "title": "秩父ミューズパーク イチョウ並木",
-      "pref": "埼玉",
-      "place": "秩父ミューズパーク",
-      "when": "10/21〜11/9",
-      "start": "2026-10-21",
-      "ends": "2026-11-09T17:00",
-      "free": true,
-      "note": "秩父市｜スカイロードの黄色いイチョウ並木。見頃の時期",
-      "url": "https://www.chichibuji.gr.jp/event/icyou/",
-      "checked": "2026-10-27"
-    },
-    {
       "title": "棚田のあかり 大山千枚田",
       "pref": "千葉",
       "place": "大山千枚田",
@@ -509,8 +498,8 @@
       "ends": "2027-02-28T23:00",
       "free": true,
       "note": "10/31 17:50点灯式（無料）。11月は17:00〜23:00、12〜1月は16:00〜23:00",
-      "url": "https://resemom.jp/release/prtimes/20261021/221970.html",
-      "checked": "2026-10-31"
+      "url": "https://ariake.shopping-sumitomo-rd.com/event/4900/",
+      "checked": "2026-11-09"
     },
     {
       "title": "闇の魔術のハロウィーン",
@@ -660,8 +649,9 @@
       "start": "2026-10-24",
       "ends": "2027-02-28T20:00",
       "note": "宮代町｜17:00〜20:00。15時からの入園は大人1,700円",
-      "url": "https://digitalpr.jp/r/144828",
-      "checked": "2026-10-28"
+      "url": "https://www.tobuzoo.com/",
+      "checked": "2026-11-09",
+      "opennote": "1/1と、1/12〜2月の火・水曜は休み（祝日を除く）"
     },
     {
       "title": "Night Bloom 2026",
@@ -1160,8 +1150,8 @@
       "open": "2026-11-18",
       "free": true,
       "note": "ひたち野うしく駅とデッキでつながる新しい商業施設。2階に子どもの屋内の遊び場",
-      "url": "https://prtimes.jp/main/html/rd/p/000006151.000007505.html",
-      "checked": "2026-10-30"
+      "url": "https://www.aeon.com/store/lp/592760/",
+      "checked": "2026-11-09"
     },
     {
       "title": "全国ラーメンフェスタ秋の陣 2026 in 春日部",
@@ -1314,8 +1304,10 @@
       "when": "11/3開店",
       "free": false,
       "note": "千代田区｜大手休憩所の中、46席＋立ち席10席。月曜休み",
-      "url": "https://prtimes.jp/main/html/rd/p/000000212.000027005.html",
-      "checked": "2026-10-31"
+      "url": "https://brand.sarutahiko.jp/shop/the_east_gardens_of_the_imperial_palace",
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜定休（祝日は営業）"
     },
     {
       "title": "高崎光のページェント2026",
@@ -1400,8 +1392,8 @@
       "ends": "2027-02-28T23:59",
       "free": true,
       "note": "文京区｜東京ドームシティ全体のイルミネーション。17:00〜24:00",
-      "url": "https://animeanime.jp/release/prtimes/20261008/318419.html",
-      "checked": "2026-11-01"
+      "url": "https://www.tokyo-dome.co.jp/en/illumination/plan",
+      "checked": "2026-11-09"
     },
     {
       "title": "塩原温泉 紅葉ライトアップ",
@@ -1658,8 +1650,8 @@
       "ends": "2026-12-31T21:30",
       "free": false,
       "note": "東京都主催の秋冬の文化芸術祭。都内各所でアートやまち歩きなど。プログラムごとに料金が違うので公式で確認",
-      "url": "https://artetokyo.jp/",
-      "checked": "2026-11-02"
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/04/2026041007",
+      "checked": "2026-11-09"
     },
     {
       "title": "藤子・F・不二雄ミュージアム ドラえも～ん！願いをかなえるひみつ道具展",
@@ -2372,8 +2364,8 @@
       "ends": "2026-11-30T20:00",
       "free": true,
       "note": "つくば市｜11/6 山頂は色づきが進み、中腹は色づき始め",
-      "url": "https://ttca.jp/autumn-leaves-info2026/",
-      "checked": "2026-11-07"
+      "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html",
+      "checked": "2026-11-09"
     },
     {
       "title": "MAPPA EXPO 15th Anniversary",
@@ -2385,7 +2377,7 @@
       "free": false,
       "note": "千代田区｜日時指定。前売 一般2,000円・未就学児無料",
       "url": "https://www.mappa.co.jp/15th/",
-      "checked": "2026-11-08"
+      "checked": "2026-11-09"
     },
     {
       "title": "西塩子の回り舞台",
