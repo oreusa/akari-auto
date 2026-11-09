@@ -659,6 +659,14 @@ rep('"府県を選ぶと、市・区・町の名前と数字が出ます。"', '
 rep("'は、府県の資料に住宅地の平均がありません。", "'は、都県の資料に住宅地の平均がありません。")
 rep('placeholder="例：吹田、西宮、草津"', 'placeholder="例：港区、横浜、川越"')
 rep('c("地図：府県 "+p);', 'c("地図：都県 "+p);')
+# 11/9 20:30 オーナー「何個も同じやつ」「下のやつ見にくくない？」→ TOWN と同じ形：売る人向けの1ブロック → 関連サイト → FOLLOW と注意書き。箱の枠はやめて細い線と余白
+_m = re.search(r'<div class="sns"><h2>FOLLOW</h2>(.*?)<div class="cos">.*?</div>\s*</div>\s*(<div class="ft">.*?</div>)(<a class="tnx".*?</a>)', h, flags=re.S)
+assert _m, "下の欄が見つからない"
+_SELL = ('<section class="sell2"><small>BEFORE YOU SELL</small><h2>家を売る前に</h2>'
+         '<p>相場、いま売り出している家の値段、大事なことを、順番に見られます。</p>'
+         '<div class="b1"><a href="/uru.html" data-k="下｜売る前に読む">売る前に読む<span>相場・売り出し価格・大事なこと</span></a></div></section>')
+h = h[:_m.start()] + _SELL + _m.group(3) + '<div class="sns"><h2>FOLLOW</h2>' + _m.group(1) + '</div>' + _m.group(2) + h[_m.end():]
+h = h.replace("</style>", ".sell2{margin:40px 0 0;padding:26px 4px 0;border-top:1px solid #D6D9DE;text-align:center}.sell2 small{font-family:Jost,sans-serif;font-size:10px;letter-spacing:.32em;color:#9C8775}.sell2 h2{font-family:'Shippori Mincho',serif;font-weight:600;font-size:20px;letter-spacing:.1em;margin:6px 0 0;color:#2B2622}.sell2 p{font-size:12.5px;color:#6B6058;line-height:1.8;margin:8px 0 0}.sell2 .b1{margin:16px 0 0}.sell2 .b1 a{display:flex;flex-direction:column;justify-content:center;min-height:56px;text-decoration:none;font-weight:700;font-size:15px;color:#fff;background:#2B2622;border-radius:10px}.sell2 .b1 a span{font-weight:400;font-size:11px;color:#D9D2CC;margin-top:2px}.sell2+.tnx{margin-top:34px;border:0!important;border-top:1px solid #D6D9DE!important;border-radius:0!important;box-shadow:none!important}\n</style>", 1)
 for bad in ("関西", "府県", "大阪", "townnote.pages", "fudousan_ai", "fudosan_ai", "kansai", "TOWN NOTE", "ぴょん", "gyosha", "JSON.stringify({k"):
     left = [m.start() for m in re.finditer(re.escape(bad), h)]
     # CSS・スクリプトの中の月のメモ（/* … */）に残る言葉は見た目に出ないので、見える所だけ確かめる
