@@ -448,7 +448,7 @@ function my(){var box=$("#v4my"),ks=Object.keys(MY).filter(function(k){return C[
   return '<a href="?k='+k+'" data-my="'+k+'"><div style="flex:1"><b>'+esc(c.nm)+'</b><div class="mut" style="font-size:11.5px">いちばん安い物の'+unitTxt(c)+'</div></div><div style="text-align:right"><span class="n" style="font-size:16px">'+yen(m.u)+'</span>円<div>'+t+'</div></div></a>';}).join("")+
   '<div class="mut" style="font-size:11.5px;margin-top:6px">1日2回とった値段（送料込み）とくらべています</div>';
  box.querySelectorAll("[data-my]").forEach(function(a){a.onclick=function(e){e.preventDefault();pick(a.dataset.my,true);};});}
-function pick(k,push){st.k=k;st.c=[];st.u=1;st.p=0;save(push);render();var kb=document.querySelector('.kat [data-k2="'+k+'"]');if(kb)kb.scrollIntoView({block:"nearest",inline:"center"});track("種類:"+k);var hd=main.querySelector(".hd"),kt=document.querySelector(".kat");if(hd&&push)scrollTo(0,hd.getBoundingClientRect().top+scrollY-(kt?kt.offsetHeight:0)-6);}
+function pick(k,push){st.k=k;st.c=[];st.u=1;st.p=0;save(push);render();var kb=document.querySelector('.kat [data-k2="'+k+'"]');if(kb){var kr=kb.closest(".kat"),a=kb.getBoundingClientRect(),b=kr.getBoundingClientRect();kr.scrollLeft+=a.left-b.left-(b.width-a.width)/2;}track("種類:"+k);}
 document.querySelectorAll(".v4 [data-k2]").forEach(function(b){b.onclick=function(){pick(b.dataset.k2,true);var d=b.closest("details");if(d)d.open=false;};});
 /* 探す：種類の名前・言いかえを読み取り、残りの言葉は条件ボタンに合わせる。読み取った結果を見せる */
 var SYN=D.syn;
