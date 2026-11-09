@@ -355,3 +355,106 @@ document.querySelectorAll(".pr-note").forEach(function(n){after.parentNode.inser
 }
 if(document.readyState!=="loading")run();else document.addEventListener("DOMContentLoaded",run);
 })();
+
+/* 11/9 オーナー「メニュー見にくい」「差別化されたUIUX」「新しいHPを増やしても邪魔にならないように」→ 見本「ノートの見出し」OK（うんうん）
+   左に見出しタブ（リストごとに1本）、右にそのノートの目次。HPを足すときは NB に1つ足すだけ（タブが1本増える。メニューは長くならない）。
+   11/9 オーナー「インスタ・スレッズ・Xはロゴの方が可愛い 主張少なく」「送るも主張少なく」→ 下は細い線のマークだけ。閉じる×は右下（親指の届く所） */
+(function(){
+var O=window.TN_OL||{life:false},LF=O.life,P=location.pathname.replace(/^\/townnotes\//,"/").replace(/\.html$/,"");
+var A={site:LF?"関東":"関西",ig:LF?"usagichan_ai_si":"fudousan_ai_si",x:LF?"ai_usagichan":"fudosan_ai_si"};
+var NB=[
+ {k:"od",t:"おでかけ",en:"ODEKAKE",c:"#E39B3A",lead:"週末どこ行く？を、日付と地図で。",rows:[
+  ["/odekake","おでかけリスト","開催中",/^\/(odekake|index)?$/],["/ima","いま行ける","近い順・きょう開く所",/^\/ima/],
+  ["/illumination","イルミネーション","日程・無料の所",/^\/illumination/],["/koyo","紅葉ライトアップ","夜の時間・料金",/^\/koyo/],
+  ["/tomari","泊まりで行く","遠くのおでかけと宿",/^\/tomari/]],
+  sub:[["/koe","リクエスト・感想"],["https://ig.me/m/"+A.ig,"おでかけ掲載"]]},
+ {k:"fu",t:"不動産",en:"REAL ESTATE",c:"#4F7BA8",lead:A.site+"の街の値段を、公式の数字で。",rows:[
+  ["/fudosan-list","不動産リスト","地価・制度",/^\/fudosan-list/],["/uru","家を売りたい","相場と大事なこと",/^\/uru/],
+  ["/sagasu","家を買いたい","住む街をさがす",/^\/sagasu/],[LF?"/chika-kanto":"/chika-kansai","地価ランキング",LF?"関東の街":"関西205の街",/^\/chika-/]]
+  .concat(LF?[]:[["/gyosha","業者・士業の方","窓口",/^\/gyosha/]]),
+  sub:(LF?[]:[["/moushikomi","売却のお申し込み"]]).concat([["/koe","リクエスト・感想"]])},
+ {k:"jk",t:"実家",en:"JIKKA NOTE",c:"#5E9E6E",lead:"実家・空き家、何から始める？",nw:1,rows:[
+  ["/jikka/","実家・空き家ノート","4ステップ",/^\/jikka/]].concat(LF?[]:[["/moushikomi","売却・片付け・解体","ご相談",/^$/]]),
+  sub:[["/koe","リクエスト・感想"]]},
+ {k:"ok",t:"おかいもの",en:"SHOPPING",c:"#C2727F",lead:"比べた最安と、今だけのお得。",rows:[
+  ["/okaimono","くらべる","日用品の最安とおすすめ",/^\/okaimono/],["/nesage","買い時","ふだんより安い物",/^\/nesage/],
+  ["/kaimawari","セール","1,000円ぽっきり",/^\/kaimawari/],["/furusato","ふるさと納税","寄付1万円あたりの量",/^\/furusato/],
+  ["/otoku","お得まとめ","セール・ふるさと・宿",/^\/otoku/]],sub:[["/koe","リクエスト・感想"]]}
+].filter(function(n){return n.only!==false;});
+function side(){if(/^\/jikka/.test(P))return "jk";if(/^\/(fudosan|uru|moushikomi|gyosha|sagasu|chika-|machi\/)/.test(P))return "fu";if(/^\/(okaimono|otoku|tanka|nesage|furusato|kaimawari)/.test(P))return "ok";
+ if(/^\/koe/.test(P)){try{var s=sessionStorage.getItem("tn_side");if(s)return s;}catch(e){}}return "od";}
+var HERE=side();try{if(!/^\/koe/.test(P))sessionStorage.setItem("tn_side",HERE);}catch(e){}
+/* 前回のつづき：ほかのページを見ていたら、目次の上に1行（この端末だけ） */
+var LAST=null;try{LAST=JSON.parse(localStorage.getItem("tn_last")||"null");var tt=(document.title||"").split(/[｜|]/)[0].replace(/【[^】]*】/g,"").trim().slice(0,20);
+ if(tt&&!/^\/(koe|moushikomi|privacy)/.test(P))var U=location.pathname.replace(/\.html$/,"");localStorage.setItem("tn_last",JSON.stringify({u:U,t:tt}));if(LAST&&LAST.u.replace(/\.html$/,"")===U)LAST=null;}catch(e){}
+function ck(k){try{if(localStorage.getItem("usagi_owner")==="1")return;}catch(e){}try{var b=JSON.stringify({k:k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true});}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var css="#upan .nbk{flex:1;display:flex;min-height:0}"+
+"#upan .nbt{width:54px;flex:none;display:flex;flex-direction:column;gap:6px;padding:14px 0 0 8px}"+
+"#upan .nbt button{position:relative;flex:0 1 96px;min-height:64px;border:0;border-left:3px solid var(--c);border-radius:10px 0 0 10px;background:#F4F4F6;writing-mode:vertical-rl;font:700 12.5px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.26em;color:#8a8079;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}"+
+"#upan .nbt button.on{background:#fff;color:#231E1B;box-shadow:-4px 0 12px -6px rgba(0,0,0,.2);z-index:2}"+
+"#upan .nbt button.nw{border-left-style:dashed}#upan .nbt button i{position:absolute;top:7px;left:0;right:0;writing-mode:horizontal-tb;font:500 8px Jost,sans-serif;letter-spacing:.08em;color:var(--c);font-style:normal;text-align:center}#upan .nbt button.nw{padding-top:14px}"+
+"#upan nav{position:relative;border-left:1px solid #E7E8EB;padding:20px 16px 96px 18px!important}"+
+"#upan nav:before{content:'';position:absolute;left:-1px;top:0;bottom:0;width:3px;background:var(--c)}"+
+"#upan .nen{font:300 9.5px Jost,sans-serif;letter-spacing:.34em;color:var(--c)}"+
+"#upan .nh{font-family:'Shippori Mincho',serif;font-weight:600;font-size:21px;letter-spacing:.12em;color:#231E1B;margin:5px 0 3px}"+
+"#upan .nl{font-size:11.5px;color:#7d756f;margin:0 0 14px}"+
+"#upan .nlast{display:flex;align-items:center;gap:6px;margin:0 0 14px;padding:9px 11px;border-radius:10px;background:#F6F6F8;text-decoration:none;color:#3c3532;font-size:12px}#upan .nlast small{font-size:10.5px;color:#8a8079;flex:none}#upan .nlast b{font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#upan .nlast span{color:#aaa}"+
+"#upan a.nr{display:flex!important;align-items:center;gap:9px;padding:14px 2px!important;margin:0!important;height:auto!important;min-height:0;line-height:1.4;border-bottom:1px solid #EBECEF;text-decoration:none;color:#231E1B;-webkit-tap-highlight-color:transparent}#upan a.nr:first-of-type{border-top:1px solid #EBECEF}#upan a.nr:active{background:#F6F6F8}"+
+"#upan a.nr .no{font:300 13px Jost,sans-serif;color:var(--c);width:19px;flex:none}"+
+"#upan a.nr b{font-size:14.5px;font-weight:500;white-space:nowrap}"+
+"#upan a.nr .ld{flex:1;min-width:6px;height:0;border-bottom:1px dotted #cfd3d9;align-self:center;margin-top:4px}"+
+"#upan a.nr em{font-style:normal;font-size:10.5px;color:#7d756f;white-space:nowrap;flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}"+
+"#upan a.nr u{text-decoration:none;font:500 8.5px Jost,sans-serif;letter-spacing:.14em;color:#fff;background:var(--c);border-radius:3px;padding:1px 5px;margin-left:6px;vertical-align:2px}"+
+"#upan .nsub{margin-top:16px;font-size:12px;line-height:2.2}#upan .nsub a{color:#3c3532;text-decoration:none;border-bottom:1px solid #E3E5E9;margin-right:14px;white-space:nowrap}"+
+"#upan #umaprow{justify-content:flex-start!important;margin:14px 0 0!important}"+
+"#upan .ush,#upan .us{display:none!important}"+
+"#upan .nft{display:flex;align-items:center;gap:4px;padding:8px 84px calc(10px + env(safe-area-inset-bottom)) 14px;border-top:1px solid #EDEDED}"+
+"#upan .nft small{white-space:nowrap;font-size:10.5px;color:#8a8079;margin:0 2px 0 4px;letter-spacing:.06em}#upan .nft .sp{flex:0 0 14px}"+
+"#upan .nft a,#upan .nft button{width:40px;height:40px;display:grid;place-items:center;border:0;background:none;color:#5b524d;cursor:pointer;border-radius:50%;-webkit-tap-highlight-color:transparent;position:relative}"+
+"#upan .nft a:active,#upan .nft button:active{background:#F1F1F3}#upan .nft svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}"+
+"#upan .nft button.ok:after{content:'コピーしました';position:absolute;bottom:42px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10.5px;background:#231E1B;color:#fff;border-radius:6px;padding:3px 7px}"+
+"#upan .uh .ux{position:absolute;right:16px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:3;width:54px;height:54px;border-radius:50%;background:#fff;border:1px solid #DADDE2;box-shadow:0 4px 16px rgba(0,0,0,.10);font:300 26px Jost,sans-serif;color:#231E1B}"+
+"html.night #upan .nbt button{background:#dde3ff;color:#6b6f86}html.night #upan .nbt button.on{background:#ebeeff;color:#231E1B}html.night #upan nav{border-left-color:#d4dbff}"+
+"html.night #upan .nlast{background:#e1e6ff}html.night #upan a.nr,html.night #upan a.nr:first-of-type{border-color:#d9dfff}html.night #upan .nft{border-top-color:#d9dfff}html.night #upan .uh .ux{background:#ebeeff;border-color:#cfd6ff}";
+var IG='<svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>',
+TH='<svg viewBox="0 0 24 24"><path d="M16.6 11.3c-.4-2.6-2.1-3.9-4.5-3.9-2.6 0-4.4 1.9-4.4 4.6 0 2.9 1.9 4.9 4.6 4.9 2.3 0 3.6-1.3 3.6-2.9 0-1.7-1.4-2.6-3.3-2.6-1.7 0-2.6.8-2.6 1.8 0 .9.8 1.5 1.8 1.5 2.2 0 3.3-1.9 3-5.6"/><path d="M19.5 8.2C18.4 5.1 15.7 3.5 12.2 3.5 7 3.5 3.8 7 3.8 12s3.2 8.5 8.4 8.5c3.4 0 5.9-1.5 7-4.1"/></svg>',
+XL='<svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20" stroke-width="1.4"/></svg>',
+SH='<svg viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M7.5 7.5L12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>',
+LN='<svg viewBox="0 0 24 24"><path d="M12 4C7 4 3.5 7.1 3.5 10.9c0 3.4 2.8 6.2 6.7 6.8l-.4 2.6c-.1.5.4.8.8.5l3.9-3.2c4.3-.6 6-3.5 6-6.7C20.5 7.1 17 4 12 4z"/></svg>',
+CP='<svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>';
+function run(){
+ var pan=document.getElementById("upan"),nav=pan&&pan.querySelector("nav");if(!nav||pan.querySelector(".nbk"))return;
+ var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
+ var bk=document.createElement("div");bk.className="nbk";var tb=document.createElement("div");tb.className="nbt";tb.setAttribute("role","tablist");tb.setAttribute("aria-label","ノート");
+ nav.parentNode.insertBefore(bk,nav);bk.appendChild(tb);bk.appendChild(nav);
+ var cur=HERE;
+ function draw(){var n=NB.filter(function(x){return x.k===cur;})[0]||NB[0];
+  tb.innerHTML=NB.map(function(x){return '<button type="button" role="tab" aria-selected="'+(x.k===n.k)+'" class="'+(x.k===n.k?"on":"")+(x.nw?" nw":"")+'" style="--c:'+x.c+'" data-t="'+x.k+'">'+(x.nw?"<i>NEW</i>":"")+esc(x.t)+'</button>';}).join("");
+  nav.style.setProperty("--c",n.c);
+  var h='<div class="nen">'+n.en+'</div><div class="nh">'+esc(n.t)+'ノート</div><div class="nl">'+esc(n.lead)+'</div>';
+  if(LAST&&n.k===HERE)h+='<a class="nlast" href="'+esc(LAST.u)+'" data-n="つづき"><small>前回のつづき</small><b>'+esc(LAST.t)+'</b><span>→</span></a>';
+  n.rows.forEach(function(r,i){var on=r[3].test(P);h+='<a class="nr" href="'+r[0]+'" data-n="'+esc(r[1])+'"'+(on?' aria-current="page"':'')+'><span class="no">0'+(i+1)+'</span><b>'+esc(r[1])+(on?'<u>NOW</u>':'')+'</b><span class="ld"></span><em>'+esc(r[2])+'</em></a>';});
+  if(n.sub.length)h+='<div class="nsub">'+n.sub.map(function(s){var ex=/^https?:/.test(s[0]);return '<a href="'+s[0]+'" data-n="'+esc(s[1])+'"'+(ex?' target="_blank" rel="noopener"':'')+'>'+esc(s[1])+'</a>';}).join("")+'</div>';
+  var mr=document.getElementById("umaprow");nav.innerHTML=h;if(mr&&n.k==="od")nav.appendChild(mr);nav.scrollTop=0;}
+ draw();
+ tb.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;cur=b.getAttribute("data-t");draw();ck("メニュー｜タブ "+b.textContent.replace("NEW",""));});
+ nav.addEventListener("click",function(e){var a=e.target.closest("a");if(!a)return;ck("メニュー｜"+(a.getAttribute("data-n")||a.textContent));
+  if(a.getAttribute("aria-current")==="page"){e.preventDefault();pan.querySelector(".ux").click();window.scrollTo({top:0,behavior:"smooth"});}});
+ /* 地図アプリの切り替えは、おでかけのノートの下に（あとから足される） */
+ var mt=0;(function w(){var mr=document.getElementById("umaprow");if(mr){if(cur!=="od")mr.remove();return;}if(++mt<60)setTimeout(w,100);})();
+ /* 開くたびに、いま見ているノートから */
+ try{new MutationObserver(function(){if(pan.classList.contains("on")&&cur!==HERE){cur=HERE;draw();}}).observe(pan,{attributes:true,attributeFilter:["class"]});}catch(e){}
+ /* 下：送る（線のマーク）とSNS（ロゴ） */
+ var ft=document.createElement("div");ft.className="nft";
+ ft.innerHTML='<small>送る</small>'+(navigator.share?'<button type="button" data-s="share" aria-label="このページを送る">'+SH+'</button>':'')+'<button type="button" data-s="line" aria-label="LINEで送る">'+LN+'</button><button type="button" data-s="copy" aria-label="URLをコピー">'+CP+'</button><span class="sp"></span>'+
+  '<a href="https://www.instagram.com/'+A.ig+'/" target="_blank" rel="noopener" aria-label="Instagram">'+IG+'</a><a href="https://www.threads.com/@'+A.ig+'" target="_blank" rel="noopener" aria-label="Threads">'+TH+'</a><a href="https://x.com/'+A.x+'" target="_blank" rel="noopener" aria-label="X">'+XL+'</a>';
+ pan.appendChild(ft);
+ ft.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var k=b.getAttribute("data-s"),u=location.origin+location.pathname,t=document.title;ck("メニュー｜送る（"+k+"）");
+  if(k==="share"){navigator.share({title:t,url:u}).catch(function(){});return;}
+  if(k==="line"){location.href="https://line.me/R/share?text="+encodeURIComponent(t+"\n"+u);return;}
+  var done=function(){b.classList.add("ok");setTimeout(function(){b.classList.remove("ok");},1800);};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(done,function(){prompt("このURLをコピーしてください",u);});else prompt("このURLをコピーしてください",u);});
+}
+var n=0;(function t(){run();if(!document.querySelector("#upan .nbk")&&++n<50)setTimeout(t,100);})();
+})();
