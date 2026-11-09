@@ -263,6 +263,66 @@ body{background:#fff;color:#222;font-family:"Zen Kaku Gothic New",sans-serif;fon
 .v4 .more{margin:22px 16px 0;font-size:13px}.v4 .more a{color:var(--lk,#2F5FA8)}
 .v4 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .v4 .n{font-family:Jost,sans-serif}.v4 .mut{color:var(--mute,#6E6E6E)}
+
+.v4top{display:flex;flex-direction:column;align-items:center;text-align:center;border-bottom:0!important;padding:28px 16px 4px!important}
+.v4top .en{font-family:Jost,sans-serif;font-size:10px!important;letter-spacing:5px!important;color:#7C8AA0!important}
+.v4top b{font-size:25px!important;letter-spacing:3px;margin-top:6px;font-weight:500!important}
+.v4 .pr{text-align:center!important;font-size:11px!important;margin:4px 16px 0!important}
+.v4 #v4h h1{font-family:"Zen Kaku Gothic New",sans-serif!important;font-size:13.5px!important;font-weight:500!important;text-align:center;margin:8px 16px 0!important;color:#3F3833}
+.v4 #v4h h1 br{display:none}
+.v4 #v4h .lead{text-align:center;font-size:11.5px!important}
+.v4 .kat{position:sticky;top:0;z-index:30;background:#fff;display:flex;gap:6px;overflow-x:auto;padding:9px 16px;margin:12px 0 0;border-bottom:1px solid #ECE8E4;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.v4 .kat::-webkit-scrollbar{display:none}
+.v4 .kat .ch{flex:none;margin:0;height:32px;padding:0 13px;border-color:#E2DED9}
+.v4 .kat .ch[aria-pressed=true]{background:#fff;color:#2B2622;border:1.5px solid #2B2622}
+.v4 .hd{border-top:0!important;padding-top:4px!important;display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.v4 .hd h2{font-family:"Shippori Mincho",serif;font-size:21px!important;font-weight:600}
+.v4 .hd .st{border:0;background:none;font:inherit;font-size:12.5px;color:#8C6A55;padding:4px 0;white-space:nowrap;cursor:pointer}
+.v4 .chs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.v4 .chs::-webkit-scrollbar{display:none}
+.v4 .chs .ch{flex:none;margin:0}
+.v4 .kij{margin:6px 16px 0;font-size:11.5px;color:var(--mute,#6E6E6E)}
+.v4 .v5l{margin:8px 16px 0}
+.v4 .v5l li{display:block;padding:12px 0}
+.v4 .v5l li.top{border:1.5px solid #1F7A4D;border-radius:14px;padding:12px;margin:4px 0 6px}
+.v4 .v5l li.rec{border:1.5px solid #2F5FA8;border-radius:14px;padding:12px;margin:6px 0}
+.v4 .v5l li.top+li,.v4 .v5l li.rec+li{border-top:0}
+.v4 .v5l .lb{display:flex;gap:6px;margin-bottom:6px}
+.v4 .v5l a{display:flex;gap:10px;align-items:flex-start}
+.v4 .v5l .nm2{font-size:13.5px;font-weight:700;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.v4 .v5l .go{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;border:1px solid #2B2622;border-radius:99px;padding:3px 12px}
+.v4 .v5l li.top .go{background:#2B2622;color:#fff}
+.v4 .v5l .r b{font-size:21px!important}
+.v4 .kw{margin:16px 16px 0;border:1px solid var(--line,#E2E2E2);border-radius:14px;overflow:hidden}
+.v4 .kw>summary{list-style:none;cursor:pointer;padding:13px 14px;font-weight:700;font-size:14px;display:flex;justify-content:space-between}
+.v4 .kw>summary::-webkit-details-marker{display:none}
+.v4 .kw>summary small{font-weight:400;font-size:12px;color:var(--mute,#6E6E6E)}
+.v4 .kw>summary:after{content:"＋";color:#8C6A55}.v4 .kw[open]>summary:after{content:"－"}
+.v4 .kw .mo{padding:0 14px 12px;display:block}
+.v4 .kw h3{margin:14px 14px 6px!important}.v4 .kw .gr{margin:0 14px!important}
+.v4 .kw .ev{margin:12px 0 0}
+
+.v4 .hero{margin:10px 16px 0;border-radius:18px;background:#F3F7F4;padding:14px;position:relative}
+.v4 .hero .bd{display:inline-block;background:#1F7A4D;color:#fff;font-size:12px;font-weight:700;border-radius:99px;padding:3px 12px;letter-spacing:.06em}
+.v4 .hero .hx{display:flex;gap:14px;margin-top:10px;align-items:center}
+.v4 .hero img,.v4 .hero .ph{width:118px;height:118px;border-radius:14px;background:#fff;object-fit:contain;flex:none;border:0}
+.v4 .hero .pz{font-family:Jost,sans-serif;font-size:44px;font-weight:500;line-height:1;color:#1F7A4D}
+.v4 .hero .pz small{font-size:14px;color:#3F3833;font-family:"Zen Kaku Gothic New",sans-serif;margin-left:2px}
+.v4 .hero .nm3{font-size:13px;font-weight:700;line-height:1.45;margin-top:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.v4 .hero .sub{font-size:12px;color:#555;margin-top:4px}
+.v4 .hero .buy{display:block;margin-top:12px;text-align:center;background:#1F7A4D;color:#fff!important;border-radius:12px;padding:13px;font-weight:700;font-size:15px;text-decoration:none}
+.v4 .rec2{margin:10px 16px 0;border-radius:16px;background:#F1F5FB;padding:12px;display:flex;gap:12px;align-items:center;color:inherit;text-decoration:none}
+.v4 .rec2 img,.v4 .rec2 .ph{width:72px;height:72px;border-radius:12px;background:#fff;object-fit:contain;flex:none;border:0}
+.v4 .rec2 .bd{display:inline-block;background:#2F5FA8;color:#fff;font-size:11px;font-weight:700;border-radius:99px;padding:2px 10px}
+.v4 .rec2 .pz{font-family:Jost,sans-serif;font-size:24px;color:#2F5FA8}
+.v4 .gh{margin:22px 16px 8px;font-size:15px;font-weight:700}.v4 .gh small{font-weight:400;color:#6E6E6E;font-size:12px;margin-left:6px}
+.v4 .grd{margin:0 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.v4 .grd a{display:flex;flex-direction:column;border:1px solid #ECE8E4;border-radius:14px;padding:10px;color:inherit;text-decoration:none;position:relative;background:#fff}
+.v4 .grd img,.v4 .grd .ph{width:100%;height:auto;aspect-ratio:1;object-fit:contain;border-radius:10px;background:#fff;border:0}
+.v4 .grd .rk2{position:absolute;top:8px;left:8px;background:#2B2622;color:#fff;font-family:Jost,sans-serif;font-size:12px;width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px}
+.v4 .grd .nm4{font-size:12.5px;font-weight:700;line-height:1.4;margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:35px}
+.v4 .grd .pz{font-family:Jost,sans-serif;font-size:22px;margin-top:4px}.v4 .grd .pz small{font-size:11px;font-family:"Zen Kaku Gothic New",sans-serif}
+.v4 .grd .sub{font-size:11px;color:#6E6E6E;line-height:1.5}
+.v4 .grd .go2{margin-top:auto;padding-top:8px}.v4 .grd .go2 span{display:block;text-align:center;border:1px solid #2B2622;border-radius:99px;font-size:12px;font-weight:700;padding:5px}
 """
 
 JS = r"""
@@ -310,8 +370,11 @@ function graph(c,o){if(!o||!o.h)return "";var ds=Object.keys(o.h).sort();if(ds.l
 function render(){
  document.querySelectorAll(".v4 [data-k2]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.k2===st.k?"true":"false");});
  var c=C[st.k];if(!c){main.innerHTML='<p class="zero">上のボタンから、くらべたい物を選んでください。</p>';rd.innerHTML="";my();return;}
- var all=c.o,L=list(c).slice().sort(function(a,b){return a.u-b.u;}),tg={};all.forEach(function(o){o.tg.forEach(function(t){tg[t]=(tg[t]||0)+1;});});
- var h='<div class="hd"><h2>'+esc(c.nm)+'<small>'+unitTxt(c)+'で比べています</small></h2></div>';
+ var all=c.o,L=list(c).slice().sort(function(a,b){return a.u-b.u;}),tg={};
+ /* 11/9 夜#148：1Lあたりと1kgあたりを同じ「安い順」にしない。多い方を先に出し、切りかえボタン */
+ var UT={};L.forEach(function(o){if(o.ut)UT[o.ut]=(UT[o.ut]||0)+1;});var uts=Object.keys(UT).sort(function(a,b){return UT[b]-UT[a];});
+ if(uts.length>1){if(uts.indexOf(st.ut)<0)st.ut=uts[0];L=L.filter(function(o){return o.ut===st.ut;});}all.forEach(function(o){o.tg.forEach(function(t){tg[t]=(tg[t]||0)+1;});});
+ var h='<div class="hd"><h2>'+esc(c.nm)+'</h2><button type="button" class="st" id="v4s">'+(MY[c.k]?"★ いつもの物":"☆ いつもの物に入れる")+'</button></div>';
  var keys=Object.keys(tg).filter(function(t){return tg[t]<all.length||st.c.indexOf(t)>=0;});
  if(keys.length){h+='<div class="chs" role="group" aria-label="条件">'+keys.map(function(t){var on=st.c.indexOf(t)>=0,n=list({o:all.filter(function(o){return o.tg.indexOf(t)>=0;})}).length;
   return '<button type="button" class="ch" data-t="'+esc(t)+'" aria-pressed="'+on+'"'+(!on&&!n?" disabled":"")+'>'+esc(t)+'<i>'+(on?(tg[t]||0):n)+'</i></button>';}).join("")+(st.p?'<button type="button" class="ch" data-p="1" aria-pressed="true">総額'+st.p.toLocaleString()+'円以下 ×</button>':"")+'</div>';}
@@ -329,29 +392,32 @@ function render(){
    return '<li><button type="button" class="ch" data-t="'+z+'" aria-pressed="false" style="flex:none;min-width:64px;align-self:center">'+z+'</button><div style="flex:1;min-width:0;font-size:13px">'+esc(o.n)+'<div class="mut" style="font-size:12px">'+esc(o.s)+'・'+esc(o.w)+'</div></div><div class="r"><b>'+yen(o.u)+'</b>円<span style="font-size:11px">／1枚</span></div></li>';}).join("")+
    '</ol><div class="why">サイズを押すと、そのサイズだけで最安とおすすめを出します。</div></section></div>';
   main.innerHTML=h;bind();my();return;}
- h+='<div class="ans">'+card(c,ch,"最安",rv(ch)+(ch.bd?"。"+esc(ch.bd)+"の物です":""));
- if(br&&br!==ch)h+=card(c,br,"おすすめ",'名の知れたメーカー'+L.filter(function(o){return o.bd;}).length+'件の中でいちばん安い物です。'+rv(br));
- else if(br===ch)h+='<section class="why">最安の物が、名の知れたメーカー（'+esc(ch.bd)+'）の物です。おすすめも同じです。</section>';
- else h+='<section class="why">名の知れたメーカーの物は、この条件では比べた中にありません。</section>';
+ var K='';
  if(c.use){var q=c.use,uu=q[1].indexOf(st.u)>=0?st.u:q[1][1];
   var r1=months(c,ch,uu),r2=br&&br!==ch?months(c,br,uu):null;
-  h+='<section class="mo"><b>1か月にいくら？</b><span class="mut" style="font-size:12px">　まとめ買いは何か月分か</span><div style="margin-top:6px"><span class="mut" style="font-size:12.5px">1か月に使う'+esc(q[0])+'　</span>'+
+  K+='<section class="mo"><b>1か月にいくら？</b><span class="mut" style="font-size:12px">　まとめ買いは何か月分か</span><div style="margin-top:6px"><span class="mut" style="font-size:12.5px">1か月に使う'+esc(q[0])+'　</span>'+
    q[1].map(function(v){return '<button type="button" class="ch" data-u="'+v+'" aria-pressed="'+(v===uu)+'">'+v+esc(q[0]==="L・kg"?"L":q[0])+'</button>';}).join("")+'</div><div class="row2">'+
    '<div><span class="lab c" style="font-size:11px">最安</span><br>'+esc(ch.cnt>1?ch.cnt+"個入り":ch.a)+'＝<b>'+mtxt(r1)+'</b><br>1か月 <b class="n">'+Math.round(r1.per).toLocaleString()+'</b>円</div>'+
    (r2?'<div><span class="lab r" style="font-size:11px">おすすめ</span><br>'+esc(br.cnt>1?br.cnt+"個入り":br.a)+'＝<b>'+mtxt(r2)+'</b><br>1か月 <b class="n">'+Math.round(r2.per).toLocaleString()+'</b>円</div>':"")+
    '</div><div class="why">使う量はご自分で選んでください。1か月の値段は、1個あたりの値段×使う量の目安です。</div></section>';}
+ K+=graph(c,br&&br.h?br:ch.h?ch:null);
  var yN=c.o.filter(function(o){return o.w==="Yahoo!";}).length;
- h+='<dl class="ev"><dt>比べた物</dt><dd>楽天の送料込み'+c.seen.toLocaleString()+'件のうち、量が読めた'+c.read+'件から、条件に合う物をメーカー・お店ごとに選んだ'+c.o.filter(function(o){return o.w==="楽天";}).length+'件'+(yN?'と、Yahoo!の'+yN+'件':'')+'。'+(ctxt().length?'いまは条件に合う'+L.length+'件だけを出しています':'この下に全部あります')+'</dd>'+
+ K+='<dl class="ev"><dt>比べた物</dt><dd>楽天の送料込み'+c.seen.toLocaleString()+'件のうち、量が読めた'+c.read+'件から、条件に合う物をメーカー・お店ごとに選んだ'+c.o.filter(function(o){return o.w==="楽天";}).length+'件'+(yN?'と、Yahoo!の'+yN+'件':'')+'。'+(ctxt().length?'いまは条件に合う'+L.length+'件だけを出しています':'この下に全部あります')+'</dd>'+
   '<dt>比べ方</dt><dd>送料込みの値段 ÷ 量（'+unitTxt(c)+'）</dd><dt>更新</dt><dd>'+esc(upd())+'（1日2回）</dd>'+
   '<dt>注意</dt><dd>北海道・沖縄・離島は送料が別にかかることがあります。量は商品名から読んでいるので、買う前にお店のページで確かめてください。<br><a href="/koe?q='+encodeURIComponent("値段のちがい："+c.nm+" ")+'">お店の値段とちがったら教えてください →</a></dd></dl>';
- h+='<button type="button" class="sv" id="v4s">'+(MY[c.k]?"★ いつもの物に入っています（外す）":"☆ いつもの物に入れる（次に来た時、値動きが分かります）")+'</button></div>';
- h+=graph(c,br&&br.h?br:ch.h?ch:null);
- h+='<h3>比べた'+L.length+'件<small>'+unitTxt(c)+' 安い順</small></h3><ol class="lst">';
- L.forEach(function(o,i){var tg2=o===ch?'<span class="tag" style="background:var(--gbg,#E8F4EE);color:var(--g,#1F7A4D)">最安</span>':o===br?'<span class="tag" style="background:var(--bbg,#E9EFF8);color:var(--b,#2F5FA8)">おすすめ</span>':"";
-  var sm=o.same.map(function(j){return c.o[j];}).filter(function(x){return L.indexOf(x)>=0&&x.p<o.p;})[0];if(sm)tg2+='<span class="tag" style="background:var(--box,#F1F2F4);color:var(--sub,#555)">同じ物が'+esc(sm.w)+'で'+(o.p-sm.p).toLocaleString()+'円安い</span>';
-  h+='<li><a href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="v4l:'+esc(o.n.slice(0,20))+'"><span class="rk">'+(i+1)+'</span>'+pic(o,56)+'<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700">'+esc(o.n)+tg2+'</div>'+attrs(c,o)+
-   '<div class="mut" style="font-size:12px;margin-top:3px">'+esc(o.s)+'・'+esc(o.w)+'　'+(+o.rc?'★'+o.av:'レビューなし')+'</div></div><div class="r"><b>'+yen(o.u)+'</b>円<span style="font-size:11px">／'+unitTxt(c,o).replace("あたり","")+'</span><div class="mut" style="font-size:12px">総額 <span class="n">'+o.p.toLocaleString()+'</span>円<br>送料込み</div></div></a></li>';});
- h+='</ol>';
+ var ut=unitTxt(c,ch).replace("あたり","");
+ if(uts.length>1)h+='<div class="chs" role="group" aria-label="量の単位">'+uts.map(function(u){return '<button type="button" class="ch" data-ut="'+esc(u)+'" aria-pressed="'+(u===st.ut)+'">'+esc(u.replace("あたり",""))+'あたりでくらべる<i>'+UT[u]+'</i></button>';}).join("")+'</div><p class="kij" style="margin-top:4px">液体（L）と粉・ジェル（kg）は、べつべつにくらべています。</p>';
+ h+='<p class="kij">送料込みの値段 ÷ 量（'+esc(unitTxt(c))+'）でくらべています　'+esc(upd())+' 更新</p>';
+ h+='<section class="hero"><span class="bd">'+(ctxt().length?'この条件でいちばん安い':'いちばん安い')+'</span><div class="hx">'+pic(ch,118)+'<div style="min-width:0"><div class="pz">'+yen(ch.u)+'<small>円／'+esc(ut)+'</small></div><div class="sub">総額 '+ch.p.toLocaleString()+'円（送料込み）<br>'+esc(ch.s)+'・'+esc(ch.w)+(+ch.rc?'　★'+ch.av:'')+'</div></div></div><div class="nm3">'+esc(ch.n)+'</div>'+attrs(c,ch)+
+  '<a class="buy" href="'+esc(ch.url)+'" rel="sponsored noopener" target="_blank" data-k="v4:'+esc(ch.n.slice(0,20))+'">'+esc(ch.w)+'で見る ›</a></section>';
+ if(br&&br!==ch)h+='<a class="rec2" href="'+esc(br.url)+'" rel="sponsored noopener" target="_blank" data-k="v4r:'+esc(br.n.slice(0,20))+'">'+pic(br,72)+'<div style="min-width:0;flex:1"><span class="bd">おすすめ</span><span style="font-size:11px;color:#555;margin-left:6px">名の知れたメーカーでいちばん安い</span><div style="font-size:12.5px;font-weight:700;margin-top:4px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+esc(br.n)+'</div><div><span class="pz">'+yen(br.u)+'</span>円／'+esc(unitTxt(c,br).replace("あたり",""))+'　<span style="font-size:11.5px;color:#555">'+esc(br.w)+'で見る ›</span></div></div></a>';
+ else if(br===ch)h+='<p class="kij">いちばん安い物が、名の知れたメーカー（'+esc(ch.bd)+'）の物です。</p>';
+ var R=L.filter(function(o){return o!==ch&&o!==br;});
+ if(R.length){h+='<div class="gh">ほかの物も安い順に<small>'+R.length+'件</small></div><div class="grd">';
+ R.forEach(function(o){var i=L.indexOf(o);var sm=o.same.map(function(j){return c.o[j];}).filter(function(x){return L.indexOf(x)>=0&&x.p<o.p;})[0];
+  h+='<a href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="v4l:'+esc(o.n.slice(0,20))+'"><span class="rk2">'+(i+1)+'</span>'+pic(o,160)+'<div class="nm4">'+esc(o.n)+'</div><div class="pz">'+yen(o.u)+'<small>円／'+esc(unitTxt(c,o).replace("あたり",""))+'</small></div><div class="sub">総額 '+o.p.toLocaleString()+'円・送料込み<br>'+esc(o.s)+'・'+esc(o.w)+(sm?'<br><b style="color:#B3261E">同じ物が'+esc(sm.w)+'で'+(o.p-sm.p).toLocaleString()+'円安い</b>':'')+'</div><div class="go2"><span>'+esc(o.w)+'で見る ›</span></div></a>';});
+ h+='</div>';}
+ h+='<details class="kw"><summary><span>くわしく<br><small>'+(c.use?'1か月にいくら・':'')+'値段の動き・比べ方</small></span></summary>'+K+'</details>';
  h+='<div class="na"><b>順位に入れていない物</b><br>Amazon：送料込みの値段がお店のページでしか分からないため、順位に入れていません。'+(c.amz.length?'<br>'+c.amz.slice(0,2).map(function(a){return '<a href="'+esc(a.url)+'" rel="sponsored noopener" target="_blank">'+esc(a.n||c.nm)+'（Amazonで見る）</a>';}).join("<br>"):"")+'</div>';
  main.innerHTML=h;bind();my();
  /* 見た時の値段を覚える（いつもの物だけ。次に来た時の値動き用） */
@@ -359,6 +425,7 @@ function render(){
 }
 function bind(){
  main.querySelectorAll("[data-t]").forEach(function(b){b.onclick=function(){var t=b.dataset.t,i=st.c.indexOf(t);if(i>=0)st.c.splice(i,1);else st.c.push(t);save();render();track("条件:"+t);var f=main.querySelector('[data-t="'+t+'"]');if(f)f.focus();};});
+ main.querySelectorAll("[data-ut]").forEach(function(b){b.onclick=function(){st.ut=b.dataset.ut;render();};});
  main.querySelectorAll("[data-u]").forEach(function(b){b.onclick=function(){st.u=+b.dataset.u;save();render();var f=main.querySelector('[data-u="'+b.dataset.u+'"]');if(f)f.focus();};});
  ["v4x","v4x2"].forEach(function(id){var x=document.getElementById(id);if(x)x.onclick=function(){st.c=[];st.p=0;rd.innerHTML="";qi.value="";save();render();};});
  main.querySelectorAll("[data-p]").forEach(function(b){b.onclick=function(){st.p=0;rd.innerHTML="";save();render();};});
@@ -372,7 +439,7 @@ function my(){var box=$("#v4my"),ks=Object.keys(MY).filter(function(k){return C[
   return '<a href="?k='+k+'" data-my="'+k+'"><div style="flex:1"><b>'+esc(c.nm)+'</b><div class="mut" style="font-size:11.5px">いちばん安い物の'+unitTxt(c)+'</div></div><div style="text-align:right"><span class="n" style="font-size:16px">'+yen(m.u)+'</span>円<div>'+t+'</div></div></a>';}).join("")+
   '<div class="mut" style="font-size:11.5px;margin-top:6px">燈が1日2回とった値段（送料込み）とくらべています</div>';
  box.querySelectorAll("[data-my]").forEach(function(a){a.onclick=function(e){e.preventDefault();pick(a.dataset.my,true);};});}
-function pick(k,push){st.k=k;st.c=[];st.u=1;st.p=0;save(push);render();track("種類:"+k);var hd=main.querySelector(".hd");if(hd&&push)hd.scrollIntoView({block:"start"});}
+function pick(k,push){st.k=k;st.c=[];st.u=1;st.p=0;save(push);render();var kb=document.querySelector('.kat [data-k2="'+k+'"]');if(kb)kb.scrollIntoView({block:"nearest",inline:"center"});track("種類:"+k);var hd=main.querySelector(".hd"),kt=document.querySelector(".kat");if(hd&&push)scrollTo(0,hd.getBoundingClientRect().top+scrollY-(kt?kt.offsetHeight:0)-6);}
 document.querySelectorAll(".v4 [data-k2]").forEach(function(b){b.onclick=function(){pick(b.dataset.k2,true);var d=b.closest("details");if(d)d.open=false;};});
 /* 探す：種類の名前・言いかえを読み取り、残りの言葉は条件ボタンに合わせる。読み取った結果を見せる */
 var SYN=D.syn;
@@ -390,7 +457,7 @@ function ask(v){var raw=(v||"").normalize("NFKC"),lim=0,pm=/(\d[\d,]*)\s*円?\s*
   else if(bk.length>1){rd.innerHTML='「'+esc(v)+'」は、'+bk.map(function(k){return '<button type="button" class="v4bk" data-bk="'+k+'">'+esc(C[k].nm)+'</button>';}).join("・")+'にあります。どちらを見ますか？';main.innerHTML="";
    rd.querySelectorAll("[data-bk]").forEach(function(b){b.onclick=function(){rd.innerHTML="";pick(b.dataset.bk,true);};});track("探す・名前:"+v);return;}}
  if(!hit&&st.k&&lim&&!q.replace(/[のでがをはにとも、。・]/g,""))hit=st.k;
- if(!hit){rd.innerHTML='「'+esc(v)+'」は、くらべている'+D.cats.length+'種類にありません。下の「すべての種類」から選べます。<a href="/koe?q='+encodeURIComponent("比べてほしい："+v)+'">比べてほしい物を送る →</a>';main.innerHTML="";track("探す・なし:"+v);return;}
+ if(!hit){rd.innerHTML='「'+esc(v)+'」は、くらべている'+D.cats.length+'種類にありません。上の種類のボタンから選べます。<a href="/koe?q='+encodeURIComponent("比べてほしい："+v)+'">比べてほしい物を送る →</a>';main.innerHTML="";track("探す・なし:"+v);return;}
  var prev={k:st.k,c:st.c.slice(),u:st.u,p:st.p};st.k=hit;st.c=[];st.u=1;st.p=lim;var tg={};C[hit].o.forEach(function(o){o.tg.forEach(function(t){tg[t]=1;});});
  PARTS.forEach(function(x){var n=x[0],re=n.length===1?new RegExp("(^|[^0-9a-z])"+n+"(?![a-z])"):null,i=re?rest.search(re):rest.indexOf(n);if(i<0)return;
   var t=x[1].filter(function(t){return tg[t];})[0]||x[1][0];if(st.c.indexOf(t)<0)st.c.push(t);rest=re?rest.replace(re,"$1 "):rest.replace(n," ");});
@@ -417,6 +484,7 @@ def page(at, cats, head):
     have = {c["k"] for c in cats}
     pop = "".join(f'<button type="button" class="ch" data-k2="{k}" aria-pressed="false">{E(NAME[k])}</button>' for k in POP if k in have)
     allb = "".join(f'<p>{E(g)}</p>' + "".join(f'<button type="button" class="ch" data-k2="{k}" aria-pressed="false">{E(NAME[k])}</button>' for k in ks if k in have) for g, ks in GROUPS)
+    rest = "".join(f'<button type="button" class="ch" data-k2="{k}" aria-pressed="false">{E(NAME[k])}</button>' for g, ks in GROUPS for k in ks if k in have and k not in POP)
     m = re.match(r"(\d{4})-(\d\d)-(\d\d) (\d\d:\d\d)", at or "")
     up = f"{int(m.group(2))}/{int(m.group(3))} {m.group(4)}" if m else at
     body = f"""<header class="v4top"><a href="/" class="en">LIFE NOTE</a><b>くらべたおかいものリスト</b></header><script>/* 11/7 夜の調査：関西のTOWN NOTEから来た人に、もどる道（おかいものは1つ・入口は2つのHP） */(function(){{try{{var k="okai_from_tn";if(/townnote\\.pages\\.dev/.test(document.referrer)||/[?&]from=tn/.test(location.search))sessionStorage.setItem(k,"1");if(sessionStorage.getItem(k)!=="1")return;var h=document.currentScript.previousElementSibling,a=document.createElement("a");a.href="https://townnote.pages.dev/";var w=document.createElement("div");w.style.cssText="margin:8px 16px 0;padding:9px 12px;border:1px solid #E2E2E2;border-radius:10px;background:#F7F7F8;font-size:12.5px;line-height:1.6;color:#444";w.textContent="ここは TOWN NOTE の姉妹サイト「LIFE NOTE」の、くらべたおかいものリストです。";a.textContent="← 関西のTOWN NOTEにもどる";a.style.cssText="display:block;margin-top:4px;color:#8C6A55;font-weight:600;text-decoration:none";w.appendChild(a);h.insertAdjacentElement("afterend",w);}}catch(e){{}}}})();</script>
@@ -427,8 +495,7 @@ def page(at, cats, head):
 <div class="my" id="v4my" hidden></div>
 <form class="srch" id="v4f" role="search"><input id="v4q" type="search" placeholder="例：ダブルのトイレットペーパー" aria-label="くらべたい物を入れる（例：3000円以下のおむつ）" enterkeyhint="search"><button type="submit">くらべる</button></form>
 <p class="read" id="v4r" aria-live="polite"></p>
-<div class="chs" role="group" aria-label="よく買う物">{pop}
-<details style="display:inline"><summary class="ch all" style="list-style:none;display:inline-block">すべての種類（{len(cats)}）▾</summary><div style="margin-top:4px">{allb}</div></details></div>
+<div class="chs kat" role="group" aria-label="くらべる種類">{pop}{rest}</div>
 <div id="v4m" aria-live="polite"></div>
 <p class="more">セール・ふるさと納税・宿の予約などのお得は <a href="/otoku">お得まとめ</a> にあります。</p>
 <script type="application/json" id="v4d">{json.dumps(data, ensure_ascii=False).replace("</", "<\\/")}</script>
