@@ -80,17 +80,15 @@ body{padding-bottom:76px}
 .s3 .tqs{position:relative}.s3 #tq{width:100%;box-sizing:border-box;font-size:16px;padding:14px 16px;border:1.5px solid #CFC6BD;border-radius:14px;background:#fff;color:#2B2622}#tqo{position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid #ddd;border-radius:10px;z-index:9}#tqo a{display:block;padding:11px 14px;color:#2B2622;text-decoration:none;border-bottom:1px solid #eee;font-size:14px}#tqo:empty{display:none}
 .s3 .b1{display:flex;align-items:center;justify-content:space-between;background:#3A2E28;color:#fff;border-radius:14px;padding:16px 18px;font-weight:700;font-size:16px;text-decoration:none}.s3 .b1 small{font-weight:400;font-size:12px;opacity:.85}.s3 .nt{font-size:12.5px;color:#857A70;margin:8px 0 0}
 .s3 .acc details{border-top:1px solid #E6E6E6}.s3 .acc details:last-child{border-bottom:1px solid #E6E6E6}.s3 .acc summary{list-style:none;cursor:pointer;padding:16px 28px 16px 4px;font-weight:700;font-size:15px;color:#2B2622;position:relative}.s3 .acc summary::-webkit-details-marker{display:none}.s3 .acc summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:22px;font-weight:300;color:#9C8775}.s3 .acc details[open]>summary::after{content:"−"}.s3 .acc details>p{font-size:14px;line-height:1.8;color:#5E544D;margin:0 4px 14px}
-.s3 .acc .fq details{border-top:1px dashed #E6E6E6;border-bottom:0}.s3 .acc .fq details summary{font-size:14px;font-weight:600;padding:12px 26px 12px 8px}.s3 .cmp{margin:0 0 14px;font-size:12.5px}
-html.night .s3{background:#1E1B19;border-color:#3A3430}html.night .s3 h2,html.night .s3h h1,html.night .s3l,html.night .s3 .acc summary{color:#EDE6DF}html.night .s3 #tq{background:#14110F;color:#EDE6DF;border-color:#4A423C}</style>
+.s3 .acc .fq details{border-top:1px dashed #E6E6E6;border-bottom:0}.s3 .acc .fq details summary{font-size:14px;font-weight:600;padding:12px 26px 12px 8px}.s3 .cmp{margin:0 0 14px;font-size:12.5px}</style>
 <script>(function(){function go(){var T=[],q=document.getElementById("tq"),o=document.getElementById("tqo");if(!q)return;fetch("/assets/towns.json").then(function(r){return r.json()}).then(function(d){T=d.towns||d});q.addEventListener("input",function(){var v=q.value.trim();o.innerHTML="";if(!v)return;T.filter(function(t){return t.n.indexOf(v)>=0||(t.k||"").indexOf(v)>=0}).slice(0,8).forEach(function(t){var a=document.createElement("a");a.href="/machi/"+t.id;a.setAttribute("data-k","売る前に探す｜"+t.n);a.textContent=t.p+"　"+t.n;o.appendChild(a)})})}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();})();</script>
 </head><body><div class="wrap">
 <div class="s3h"><img src="/logo-s.png" width="52" height="52" alt="ロゴ"><div><div class="en">BEFORE YOU SELL</div><h1>家を売る前に</h1></div></div>
 <p class="s3l">この3つの順で進めると、迷いません。</p>
 <section class="s3"><div class="sn">STEP 01</div><h2>街の相場を見る</h2><p>あなたの街の地価の動き（国の地価公示）を見ます。</p>
 <div class="tqs"><input id="tq" type="search" placeholder="街の名前（例：川越市）" autocomplete="off" aria-label="街の名前で探す"><div id="tqo"></div></div></section>
-<section class="s3"><div class="sn">STEP 02</div><h2>値段を聞く（無料）</h2><p>「いくらで売れそうか」を、メールで聞けます。売るか決めていなくても大丈夫です。</p>
-<a class="b1 ml" href="#ml" data-k="売る前に｜メールで聞く">メールで聞く<small>無料</small></a>
-<p class="nt">場所（市区町村まで）とご連絡先をお書きください。</p></section>
+<section class="s3"><div class="sn">STEP 02</div><h2>値段を聞く（無料）</h2><p>「いくらで売れそうか」を、このサイトから聞けます。売るか決めていなくても大丈夫です。</p>
+<a class="b1" href="/moushikomi" data-k="売る前に｜申し込む">申し込みページへ<small>無料・約1分</small></a></section>
 <section class="s3"><div class="sn">STEP 03</div><h2>大事なことを知っておく</h2>
 <div class="acc">
 <details><summary>査定の額で売れるとは限らない</summary><p>査定額は「この金額で売れます」というお約束ではありません。相場より高く売り出して売れ残り、値下げをくり返すと、「売れ残っている物件」と見られてしまうこともあります。</p></details>
