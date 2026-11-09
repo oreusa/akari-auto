@@ -107,7 +107,9 @@
       "free": false,
       "note": "台東区｜上野公園の東京国立博物館 本館の特別展",
       "url": "https://www.tnm.jp/modules/r_free_page/index.php?id=2759",
-      "checked": "2026-10-26"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "ベスト オブ すみだ北斎美術館",
@@ -119,7 +121,9 @@
       "free": false,
       "note": "墨田区｜開館10周年の特別展。両国駅から歩いて行けます",
       "url": "https://hokusai-museum.jp/modules/Exhibition/exhibitions/view/5021",
-      "checked": "2026-10-26"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "特別展「豊臣兄弟！」",
@@ -143,7 +147,9 @@
       "free": false,
       "note": "台東区｜9:30〜17:30、金・土は20:00まで。月曜休館",
       "url": "https://www.nmwa.go.jp/jp/exhibitions/2026turner.html",
-      "checked": "2026-10-26"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "シンシナティ美術館展",
@@ -569,7 +575,9 @@
       "ends": "2026-12-20T18:00",
       "note": "港区｜一般1,400円。月曜休館",
       "url": "https://www.teien-art-museum.ne.jp/exhibition/20261003-1220_marimekko/",
-      "checked": "2026-10-28"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "東京雲海×TOKYO MOON",
@@ -591,7 +599,9 @@
       "ends": "2026-12-13T18:00",
       "note": "港区｜当日一般2,400円。火曜休館",
       "url": "https://www.nact.jp/artcommons/user/detail/80797",
-      "checked": "2026-10-28"
+      "checked": "2026-11-09",
+      "days": "wd:013456h",
+      "opennote": "火曜休み（祝日は開館）"
     },
     {
       "title": "ウルトラマルチバース 地球防衛大作戦 in 横浜赤レンガ倉庫",
@@ -614,7 +624,9 @@
       "free": true,
       "note": "横浜市中区｜入場無料。10:00〜17:00",
       "url": "https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw13428",
-      "checked": "2026-10-28"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "2027 春節燈花",
@@ -659,7 +671,9 @@
       "ends": "2026-11-23T20:30",
       "note": "前橋市｜17:00〜20:30。大人1,200円",
       "url": "https://www.flower-park.jp/night-bloom/",
-      "checked": "2026-10-28"
+      "checked": "2026-11-09",
+      "days": "wd:013456h",
+      "opennote": "火曜休み（祝日は開館）"
     },
     {
       "title": "こども＋おとな＋秋の美術館",
@@ -756,7 +770,9 @@
       "free": false,
       "note": "千葉市中央区｜一般300円、11/3はだれでも無料",
       "url": "https://maruchiba.jp/event/detail_16063.html",
-      "checked": "2026-10-29"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "千葉まちアンソロジー",
@@ -768,7 +784,9 @@
       "free": false,
       "note": "千葉市中央区｜千葉開府900年の特別展。9:00〜17:00",
       "url": "https://maruchiba.jp/event/detail_16027.html",
-      "checked": "2026-10-29"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "戦国の関宿 無双之名地",
@@ -780,7 +798,9 @@
       "free": false,
       "note": "野田市｜お城の形の博物館の企画展。一般300円",
       "url": "https://maruchiba.jp/event/detail_13095.html",
-      "checked": "2026-10-29"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "マザー牧場 秋限定イベント",
@@ -816,7 +836,9 @@
       "free": false,
       "note": "熊谷市〜秩父市｜土日祝が中心。SL指定席券1,000円",
       "url": "https://www.chichibu-railway.co.jp/blog/news/sl2026/",
-      "checked": "2026-10-29"
+      "checked": "2026-11-09",
+      "days": "we",
+      "opennote": "土日祝が中心・運転日は公式で"
     },
     {
       "title": "鉄道広告展 いろいろ、とりどり。",
@@ -840,7 +862,9 @@
       "free": false,
       "note": "川口市｜新しい美術館の開館記念展。当日2,000円",
       "url": "https://www.city.kawaguchi.lg.jp/material/files/group/184/0803Release.pdf",
-      "checked": "2026-10-29"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "辻村寿三郎 人形曼陀羅 REVIVAL",
@@ -852,7 +876,9 @@
       "free": false,
       "note": "さいたま市岩槻区｜一般500円、9:00〜17:00",
       "url": "https://www.city.saitama.lg.jp/006/014/008/003/015/005/p132422.html",
-      "checked": "2026-10-29"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "秩父deワインフェア",
@@ -948,7 +974,9 @@
       "free": false,
       "note": "前橋市｜街なかの会場をめぐる。水曜休み",
       "url": "https://maebashi-biennale.com/",
-      "checked": "2026-10-30"
+      "checked": "2026-11-09",
+      "days": "wd:012456h",
+      "opennote": "水曜休み（祝日は開場）"
     },
     {
       "title": "宝徳寺 秋の床もみじ特別公開",
@@ -1081,7 +1109,9 @@
       "free": true,
       "note": "港区・江東区・品川区｜観覧無料。月曜休み",
       "url": "https://tokyoatlas.jp/",
-      "checked": "2026-10-30"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "東京都美術館開館100周年記念 オルセー美術館所蔵 いまを生きる歓び",
@@ -1150,7 +1180,9 @@
       "free": false,
       "note": "川口市｜大人520円・小人260円・未就学児無料。月曜休み",
       "url": "https://www.skipcity.jp/event/vm/thomas/",
-      "checked": "2026-10-31"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "大チーバくん展 さかざきちはるとチーバくんの20年",
@@ -1162,7 +1194,9 @@
       "free": false,
       "note": "千葉市｜一般1,000円・中学生以下無料。11/3はだれでも無料",
       "url": "https://www.chiba-muse.or.jp/ART/exhibition/events/event-10036/",
-      "checked": "2026-10-31"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "千葉開府900年記念 千葉湊大漁まつり",
@@ -1198,7 +1232,9 @@
       "free": false,
       "note": "笠間市｜一般950円。土曜は高校生以下無料・月曜休み",
       "url": "https://www.tougei.museum.ibk.ed.jp/viewer/info.html?id=603&g=138",
-      "checked": "2026-10-31"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "プラネタリウム版 チ。 地球の運動について",
@@ -1234,7 +1270,9 @@
       "free": false,
       "note": "栃木市｜一般800円・中学生以下無料。月曜休み",
       "url": "https://www.city.tochigi.lg.jp/site/museum-tcam/92628.html",
-      "checked": "2026-10-31"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "2026 たちかわイルミネーション",
@@ -1258,7 +1296,9 @@
       "free": false,
       "note": "宇都宮市｜一般1,250円・中学生以下無料。11/3は無料。月曜休み",
       "url": "https://www.pref.tochigi.lg.jp/c10/kouhou/kouhou/202610-12artm-kikaku.html",
-      "checked": "2026-10-31"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "猿田彦珈琲 皇居東御苑店",
@@ -1360,13 +1400,13 @@
       "title": "塩原温泉 紅葉ライトアップ",
       "pref": "栃木",
       "place": "紅の吊橋",
-      "when": "10/17〜11/30",
+      "when": "10/17〜12/6",
       "start": "2026-10-17",
-      "ends": "2026-11-30T21:00",
+      "ends": "2026-12-06T21:00",
       "free": false,
       "note": "那須塩原市｜紅の吊橋のライトアップ。17:00〜21:00",
       "url": "https://nasushiobara-kanko.jp/events/36783/",
-      "checked": "2026-11-02"
+      "checked": "2026-11-09"
     },
     {
       "title": "歴史館いちょうまつり",
@@ -1378,7 +1418,9 @@
       "free": false,
       "note": "水戸市｜いちょう並木と庭園のライトアップ",
       "url": "https://rekishikan-ibk.jp/event/festival/post-15132/",
-      "checked": "2026-11-02"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "第19回かすみがうら祭",
@@ -1596,7 +1638,9 @@
       "free": false,
       "note": "パンやスイーツのミニチュア作品を集めた展示。入場800円（3歳以下無料）",
       "url": "https://tgs.jp.net/event/miniature-bakery/",
-      "checked": "2026-11-02"
+      "checked": "2026-11-09",
+      "days": "wd:03456h",
+      "opennote": "月・火曜休み（祝日は開館）"
     },
     {
       "title": "ARTE TOKYO（東京国際文化芸術祭）",
@@ -1680,7 +1724,9 @@
       "free": false,
       "note": "絵本の原画や体験コーナー。9:30〜17:00、大人520円・小人260円・未就学児無料（常設展示も入れます）",
       "url": "https://www.skipcity.jp/event/vm/thomas/",
-      "checked": "2026-11-02"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "令和8年「本庄まつり」",
@@ -1740,7 +1786,9 @@
       "free": false,
       "note": "月と星をテーマにした企画展。一般1,500円・大学生1,000円・高校生以下無料",
       "url": "https://www.ccma-net.jp/exhibitions/special/26-9-16-11-23/",
-      "checked": "2026-11-02"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "まるっとオビツ製作所",
@@ -1752,7 +1800,9 @@
       "free": false,
       "note": "ドール「オビツ」を作る会社を紹介する企画展。入館料は公式で確認",
       "url": "https://www.doll-museum.jp/?p=17537",
-      "checked": "2026-11-02"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "MOMASコレクション 第2期",
@@ -1776,7 +1826,9 @@
       "free": false,
       "note": "第130回企画展。一般500円・高校生と大学生250円・中学生以下無料",
       "url": "https://bungaku.pref.gunma.jp/project/3148/",
-      "checked": "2026-11-02"
+      "checked": "2026-11-09",
+      "days": "wd:013456h",
+      "opennote": "火曜休み（祝日は開館）"
     },
     {
       "title": "現代によみがえる能装束 ―縫の精緻 箔の輝き―",
@@ -1788,7 +1840,9 @@
       "free": false,
       "note": "第115回企画展。一般1,000円・高校生と大学生500円・中学生以下無料",
       "url": "https://grekisi.pref.gunma.jp/event/5961/",
-      "checked": "2026-11-02"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "Fly to the Moon: 月をめぐる5つの物語",
