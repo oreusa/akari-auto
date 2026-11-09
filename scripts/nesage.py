@@ -133,7 +133,7 @@ def render(downs, ups, n_items, n_days, since, now):
         main = '<p class="none">今は、ふだんより安くなっている物はありません。値段が下がったら、ここに出ます。</p>'
     up_sec = (f'<h2 class="h2">いつもより高い物（急がなくてよさそう）</h2><ul>{"".join(card(r, "up") for r in ups)}</ul>'
               if ups else "")
-    title = "いまが買い時の日用品｜ふだんの値段より安い物｜うさぎ│LIFE NOTES"
+    title = "いまが買い時の日用品｜ふだんの値段より安い物｜うさぎ│LIFE NOTE"
     desc = (f"楽天のよく買われる毎日の物{n_items}件の値段を{since_t}から毎日記録し、ふだんの値段より安くなった物だけを並べます。"
             "お買い物マラソン・ブラックフライデーの前に。")
     css = open(os.path.join(ROOT, "scripts", "kaimawari.py"), encoding="utf-8").read()
@@ -157,7 +157,7 @@ def render(downs, ups, n_items, n_days, since, now):
 .big b{{display:block;font:600 30px/1.2 var(--min);color:var(--ink);letter-spacing:.04em}}.big span{{font-size:12px;color:var(--mute)}}
 </style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=33" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script></head>
 <body><div class="wrap">
-<header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
+<header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTE のロゴ" width="64" height="64">
 <p class="en">PRICE DROP</p>
 <h1>いまが買い時の日用品<small>ふだんの値段より安くなった物を、毎日の記録から</small></h1>
 <p class="up">{esc(upd)}</p>
@@ -169,7 +169,7 @@ def render(downs, ups, n_items, n_days, since, now):
 <p>値段は送料込みの物だけで、このページを作った時に楽天で確かめた物です。ポイントやクーポンは入れていません。買う前にリンク先で値段を確かめてください。</p>
 <p>このページのリンクは楽天アフィリエイトの広告（PR）です。</p>
 <a class="back" href="./">関東おでかけリストを見る</a>
-<p class="sign">うさぎ│LIFE NOTES</p>
+<p class="sign">うさぎ│LIFE NOTE</p>
 </footer></div>
 <script>
 document.querySelectorAll('.cd').forEach(function(a){{a.addEventListener('click',function(){{

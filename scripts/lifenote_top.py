@@ -102,8 +102,8 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 
 <section class="prom"><h2>NOTE RULES　─　書きかたの約束</h2><ol><li><b>公式だけ</b>おでかけは<br>公式ページだけ</li><li><b>数字で比べる</b>買い物は<br>3つ以上を比べて</li><li><b>7都県</b>どの都県も<br>同じように</li></ol></section>
 
-<nav class="cos"><a href="https://ig.me/m/ai_usagichan1" data-k="入口｜おでかけ掲載"><small>LISTING</small><b>おでかけ掲載</b><span>新しいお店や、毎年のイベントのご紹介</span></a><a href="https://room.rakuten.co.jp/ai_usagichan/items" data-k="入口｜楽天ROOM"><small>RAKUTEN ROOM</small><b>楽天ROOM</b><span>うさぎが比べて選んだ物を、まとめて置いています</span></a></nav>
-<div class="sns"><h2>FOLLOW</h2><a href="https://www.instagram.com/ai_usagichan1/">Instagram</a><a href="https://www.threads.com/@ai_usagichan1">Threads</a><a href="https://x.com/ai_usagichan">X</a></div>
+<nav class="cos"><a href="https://ig.me/m/usagichan_ai_si" data-k="入口｜おでかけ掲載"><small>LISTING</small><b>おでかけ掲載</b><span>新しいお店や、毎年のイベントのご紹介</span></a><a href="https://room.rakuten.co.jp/ai_usagichan/items" data-k="入口｜楽天ROOM"><small>RAKUTEN ROOM</small><b>楽天ROOM</b><span>うさぎが比べて選んだ物を、まとめて置いています</span></a></nav>
+<div class="sns"><h2>FOLLOW</h2><a href="https://www.instagram.com/usagichan_ai_si/">Instagram</a><a href="https://www.threads.com/@usagichan_ai_si">Threads</a><a href="https://x.com/ai_usagichan">X</a></div>
 <a href="/privacy" style="display:block;text-align:center;font-size:11px;color:#8C7B6E;margin:18px 0 0">プライバシーポリシーと広告について</a><div class="ft">LIFE NOTE（ライフノート）</div></div>
 <script>(function(){{
 var PC={json.dumps(PC, ensure_ascii=False)},EN={json.dumps(EN, ensure_ascii=False)};var SLUG={{"東京":"tokyo","神奈川":"kanagawa","埼玉":"saitama","千葉":"chiba","茨城":"ibaraki","栃木":"tochigi","群馬":"gunma"}};

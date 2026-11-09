@@ -1,5 +1,5 @@
 /* 11/9 色（見本4）を全ページに */
-(function(){try{if(document.getElementById("iro-css"))return;var l=document.createElement("link");l.id="iro-css";l.rel="stylesheet";l.href="/assets/iro.css?v=9";(document.head||document.documentElement).appendChild(l);}catch(e){}})();
+(function(){try{if(document.getElementById("iro-css"))return;var l=document.createElement("link");l.id="iro-css";l.rel="stylesheet";l.href="/assets/iro.css?v=10";(document.head||document.documentElement).appendChild(l);}catch(e){}})();
 /* 11/3 オーナー「下にスライドしたら、すぐ閉じちゃう」（アプリの中で開いたページが、下に引くとページごと閉じる）。
    ページが一番上にぴったり居ると、下に引く動きをアプリが「閉じる」に使う。指を置いた時・一番上に戻った時は 1px だけ下げておく（見た目は変わらない） */
 (function(){
@@ -32,7 +32,7 @@
     ["STAY","tomari","/tomari","泊まりで行くおでかけ","遠くのおでかけと、近くの宿"],
     ["-","CONTACT"],
     ["REQUEST","koe","/koe","リクエスト・感想","増やしてほしい・これがほしい・使ってみた感想"],
-    ["LISTING","listing","https://ig.me/m/ai_usagichan1","おでかけ掲載","新しいお店やイベントのご紹介"],
+    ["LISTING","listing","https://ig.me/m/usagichan_ai_si","おでかけ掲載","新しいお店やイベントのご紹介"],
     ["-","関連サイト"],
     ["KANTO REAL ESTATE","flist","/fudosan-list","関東不動産リスト","地価・人口・新しい施設・制度を、公式の数字で"],
     ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","1個あたりで比べた、いちばん安い物"],
@@ -74,7 +74,7 @@
     ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","1個あたりで比べた、いちばん安い物"],
     ["-","CONTACT"],
     ["REQUEST","koe","/koe","リクエスト・感想","増やしてほしい・これがほしい・使ってみた感想"],
-    ["LISTING","listing","https://ig.me/m/ai_usagichan1","おでかけ掲載","新しいお店やイベントのご紹介"]];
+    ["LISTING","listing","https://ig.me/m/usagichan_ai_si","おでかけ掲載","新しいお店やイベントのご紹介"]];
   var css=
   "#upan .fml{padding:4px 4px 0}#upan .fmt small{display:block;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.3em;color:#9C8775}#upan .fmt b{display:block;font-family:\"Shippori Mincho\",serif;font-size:22px;font-weight:600;letter-spacing:.12em;color:#2B2622;margin:2px 0 6px}#upan .fmg{font-size:12px;letter-spacing:.3em;color:#9C8775;margin:20px 0 0;padding-bottom:8px;border-bottom:1px solid #E6E6E6}#upan .fmr{display:block;text-decoration:none;color:#2B2622;padding:14px 6px;border-bottom:1px solid #EFEFEF}#upan .fmr small{display:block;font-family:Jost,sans-serif;font-size:10.5px;letter-spacing:.26em;color:#9C8775}#upan .fmr b{display:block;font-family:\"Shippori Mincho\",serif;font-size:17px;font-weight:700;letter-spacing:.06em;margin-top:3px}#upan .fmr.cur b:after{content:\"　いま\";font-family:sans-serif;font-size:11px;color:#B5735A;font-weight:400}"+
   "#upan .ufx{margin:22px 4px 6px;padding-top:16px;border-top:1px solid #E6E6E6;font-size:12px;color:#9C8775;text-align:center;line-height:2}#upan .ufx a{color:#857A70;text-decoration:none;margin:0 6px}"+
@@ -206,7 +206,7 @@
     /* 11/4 オーナー「hp共有を入れよう アプリにしたら誰かに送れない」「cだけで良いかも」→ 11/4「もう少し分かりやすくても良かった、さっきの感じで下の方でよい」→ C の箱をメニューの下に */
     h+='</nav>'+
       '<div class="ush"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="M7.5 7.5L12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><div class="ust"><b>友だちに送る</b><small>このページを LINE などで送れます</small></div><div class="ub">'+(navigator.share?'<button type="button" data-s="share">送る</button>':'')+'<button type="button" class="nofilt" data-s="line">LINE</button><button type="button" data-s="copy">コピー</button></div></div>'+
-      '<div class="us"><a href="https://www.instagram.com/ai_usagichan1/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@ai_usagichan1" target="_blank" rel="noopener">Threads</a><a href="https://x.com/ai_usagichan" target="_blank" rel="noopener">X</a></div>';
+      '<div class="us"><a href="https://www.instagram.com/usagichan_ai_si/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@usagichan_ai_si" target="_blank" rel="noopener">Threads</a><a href="https://x.com/ai_usagichan" target="_blank" rel="noopener">X</a></div>';
     pan.innerHTML=h;
     document.body.appendChild(btn);document.body.appendChild(mask);document.body.appendChild(pan);
     var last=null;

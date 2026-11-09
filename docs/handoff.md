@@ -86,7 +86,7 @@
 - page.yml を手で動かすのは、直した物をまとめて1日3回まで（10/31 は手で19回・78分動かし、来月の見込みが4,590分／2,000分の×になった。決まった回だけなら1日約50分＝月1,500分）。急がない直しは7:30・18:30の決まった回に乗せる。
 - 11/8：燈のリポジトリは公開（public）なので、GitHub Actions の分数は無料で2,000分の枠に入らない（11/7 の「投稿が止まる」心配はまちがい。minutes.py が公開を見て○にする）。1個あたりの係（tanka.py）は楽天を呼びすぎないよう、前の取り直しから10時間は前の値段を使う。
 - Secrets：`BUFFER_API_KEY`（期限 2027-10-22）、`RAKUTEN_APP_ID`・`RAKUTEN_ACCESS_KEY`・`RAKUTEN_AFFILIATE_ID`（楽天アプリ「akariauto」、期限 2027-10-22。楽天の画面の「有効期限延長」で延ばす）。キーはチャットやファイルに書かない。
-- Buffer のチャンネル：X は ai_usagichan、Threads とインスタは ai_usagichan1。
+- Buffer のチャンネル：X は ai_usagichan、Threads とインスタは usagichan_ai_si。
 - 書き方の決まり：`docs/how-to-write.md`。形の見本：`docs/example-schedule.json`。学びの記録：`notes/learning.md`（毎晩1行）。
 
 ## 4. ドライブ（フォルダ「連絡ノート」 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）

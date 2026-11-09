@@ -614,8 +614,8 @@ for cls, en, jp, tab in (("b-up", "PEOPLE", "人口と駅の数字", "jinko"), (
 rep('<div class="blk b-now"><div class="wk hd2"><span class="en2">LAND PRICE</span><span class="jp2">地価・相場の数字</span></div></div>',
     '<div class="blk b-now"><div class="wk hd2"><span class="en2">LAND PRICE</span><span class="jp2">地価・相場の数字</span></div>' + "\n".join(card(o) for o in FACTS) + '</div>')
 # ---- 下の箱：フォローは燈の分。相談は「売る前に」「売却・査定のご相談（メール）」の2つ（業者さまページは燈に無いので入れない。会社名・会社HPは出さない）
-rep('<a href="https://www.instagram.com/fudousan_ai_si/">Instagram<span>@fudousan_ai_si</span></a>', '<a href="https://www.instagram.com/ai_usagichan1/">Instagram<span>@ai_usagichan1</span></a>')
-rep('<a href="https://www.threads.com/@fudousan_ai_si">Threads<span>@fudousan_ai_si</span></a>', '<a href="https://www.threads.com/@ai_usagichan1">Threads<span>@ai_usagichan1</span></a>')
+rep('<a href="https://www.instagram.com/fudousan_ai_si/">Instagram<span>@fudousan_ai_si</span></a>', '<a href="https://www.instagram.com/usagichan_ai_si/">Instagram<span>@usagichan_ai_si</span></a>')
+rep('<a href="https://www.threads.com/@fudousan_ai_si">Threads<span>@fudousan_ai_si</span></a>', '<a href="https://www.threads.com/@usagichan_ai_si">Threads<span>@usagichan_ai_si</span></a>')
 rep('<a href="https://x.com/fudosan_ai_si">X<span>@fudosan_ai_si</span></a>', '<a href="https://x.com/ai_usagichan">X<span>@ai_usagichan</span></a>')
 rep('<a class="co" data-en="BEFORE YOU SELL" href="uru.html">', '<a class="co" data-en="BEFORE YOU SELL" href="/uru.html">')
 rep('\n<a class="co" data-en="FOR AGENTS" href="gyosha.html">業者さまへ<span>物件のご紹介・ご相談はこちら</span></a>', '')
