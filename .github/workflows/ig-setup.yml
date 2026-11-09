@@ -12,7 +12,7 @@ on:
         default: "1638443601035185"
       ig_username:
         description: "燈のインスタのアカウント名（このアカウントがつながったページを選ぶ）"
-        default: "ai_usagichan1"
+        default: "usagichan_ai_si"
 permissions:
   contents: write
 jobs:
@@ -53,7 +53,7 @@ jobs:
           out["pages"] = [{"id": p["id"], "name": p["name"],
                            "ig": p.get("instagram_business_account")} for p in pages]
           if "error" in acc: out["accounts_error"] = acc["error"]
-          want = (os.environ.get("IG_NAME") or "ai_usagichan1").lower()
+          want = (os.environ.get("IG_NAME") or "usagichan_ai_si").lower()
           def mine(p):  # 月のページ（うさぎ TOWN NOTES）を選ばない。燈のインスタがつながったページだけ
               return bool(p.get("instagram_business_account")) and (p["instagram_business_account"].get("username") or "").lower() == want
           page = next((p for p in pages if mine(p)), None)

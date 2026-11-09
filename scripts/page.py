@@ -1004,15 +1004,15 @@ def past_list(ended, now, n=5):
 def render(items, ended, now, cfg):
     _NOW[:] = [now]
     p = cfg.get("page", {})
-    sns = [("Instagram", "@ai_usagichan1", "https://www.instagram.com/ai_usagichan1/"),
-           ("Threads", "@ai_usagichan1", "https://www.threads.com/@ai_usagichan1"),
+    sns = [("Instagram", "@usagichan_ai_si", "https://www.instagram.com/usagichan_ai_si/"),
+           ("Threads", "@usagichan_ai_si", "https://www.threads.com/@usagichan_ai_si"),
            ("X", "@ai_usagichan", "https://x.com/ai_usagichan")]
     follow = "".join(f'<a href="{esc(u)}" rel="noopener">{esc(n)}<span>{esc(h)}</span></a>' for n, h, u in sns)
     if p.get("room_url"):
         follow += (f'<a class="co" data-en="RAKUTEN ROOM" href="{esc(p["room_url"])}" rel="noopener">楽天ROOM'
                    f'<span>うさぎが比べて選んだ物を、まとめて置いています</span></a>')
     # おでかけ掲載のご相談（10/26 オーナー「月のhpにはおでかけ先の依頼とかやってる、まねしよ」：月と同じくインスタのDMへ）
-    follow += ('<a class="co" data-en="LISTING" href="https://ig.me/m/ai_usagichan1" rel="noopener">おでかけ掲載'
+    follow += ('<a class="co" data-en="LISTING" href="https://ig.me/m/usagichan_ai_si" rel="noopener">おでかけ掲載'
                '<span>新しいお店や、毎年のイベント。<br>うさぎがご紹介します。ご相談はこちら</span></a>')
     spots = all_spots(items, now)
     deals, dk = [], set()

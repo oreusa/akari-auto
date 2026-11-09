@@ -597,7 +597,7 @@ def build(od, ix):
     h = re.sub(r'<p class="pr-note">.*?</p>',
                '<p class="pr-note">このページには楽天アフィリエイト・Amazonアソシエイト・もしもアフィリエイト（Yahoo!ショッピング）の広告（PR）があります。<br>値段は確かめた時のものです。買う前に、各お店のページで最新の値段を確かめてください。<br><a href="/privacy">プライバシーポリシーと広告について</a></p>',
                h, count=1, flags=re.S)
-    h = h.replace('<a class="co" data-en="LISTING" href="https://ig.me/m/ai_usagichan1" rel="noopener">',
+    h = h.replace('<a class="co" data-en="LISTING" href="https://ig.me/m/usagichan_ai_si" rel="noopener">',
                   '<a class="co" data-en="RAKUTEN ROOM" href="https://room.rakuten.co.jp/ai_usagichan/items" rel="noopener">', 1)
     h = re.sub(r'(<a class="co" data-en="RAKUTEN ROOM"[^>]*>).*?</a>', r'\1楽天ROOM<span>うさぎが比べて選んだ物を、まとめて置いています</span></a>', h, count=1, flags=re.S)
     h = re.sub(r'<p class="ft">.*?</p>', '<p class="ft">LIFE NOTE│比べた物は、このページに毎日足していきます</p>', h, count=1, flags=re.S)
