@@ -43,6 +43,31 @@ for f in sorted(glob.glob(os.path.join(root, "assets", "*.js"))):
             s = text[max(0, m.start() - 20):m.end() + 20].replace("\n", " ").strip()
             bad.append(f"{os.path.relpath(f, root)}：{why}：…{s}…")
             break
+# 11/9 オーナー「レントラックス登録してないよな？」「記録してないのは管理体制に問題」
+# → お金のリンクのASPが台帳（asp.json）に無い・IDが台帳と違う物は赤にする。
+_here = os.path.dirname(os.path.abspath(__file__))
+_aspf = next((p for p in [os.path.join(_here, "asp.json"), os.path.join(_here, "..", "asp.json")] if os.path.exists(p)), None)
+if _aspf:
+    A = json.load(open(_aspf))
+    reg = {d: a for a in A["asp"] for d in a["domains"]}
+    nreg = {d: a for a in A.get("not_registered", []) for d in a["domains"]}
+    idpat = {"ck.jp.ap.valuecommerce.com": r"[?&](?:amp;)?sid=(\d+)", "af.moshimo.com": r"[?&](?:amp;)?a_id=(\d+)", "px.a8.net": r"a8mat=([A-Z0-9]+)", "hb.afl.rakuten.co.jp": r"/h[gc]c/([0-9a-f.]+)", "www.amazon.co.jp": r"[?&](?:amp;)?tag=([A-Za-z0-9-]+)"}
+    files = [f for f in sorted(glob.glob(os.path.join(root, "**", "*.html"), recursive=True)) + sorted(glob.glob(os.path.join(root, "assets", "*.js"))) if not SKIP.search(f)]
+    seen = set()
+    for f in files:
+        t = open(f, errors="ignore").read()
+        for m in re.finditer(r"https?://([A-Za-z0-9.-]+)([^\s\"'<>]*)", t):
+            host, rest = m.group(1).lower(), m.group(2)
+            key = None
+            if host in nreg or any(host.endswith("." + d) for d in nreg):
+                key = f"{os.path.relpath(f, root)}：台帳に無いASP（{(nreg.get(host) or {}).get('name', host)}）：{host}"
+            elif host in idpat and host in reg:
+                mm = re.search(idpat[host], rest)
+                if mm and mm.group(1) not in reg[host].get("ids", []):
+                    key = f"{os.path.relpath(f, root)}：台帳に無いID（{reg[host]['name']}）：{mm.group(1)}"
+            if key and key not in seen:
+                seen.add(key)
+                bad.append(key)
 for b in bad[:80]:
     print("×", b)
 print(f"ngcheck: {len(bad)} 件" if bad else "ngcheck: なし")
