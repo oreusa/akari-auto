@@ -439,7 +439,7 @@ function my(){var box=$("#v4my"),ks=Object.keys(MY).filter(function(k){return C[
  box.innerHTML='<div class="r1"><b>わが家のいつもの物</b><span class="mut">この端末だけに保存</span></div>'+ks.map(function(k){var c=C[k],m=c.o.slice().sort(function(a,b){return a.u-b.u;})[0],o=MY[k],bu=o.pu!=null?o.pu:o.u,df=bu-m.u,dd=/(\d{4})-(\d\d)-(\d\d)/.exec((o.pu!=null?o.pd:o.d)||"");
   var t=Math.abs(df)<0.05?'<span class="up mut">前に見た'+(dd?(+dd[2])+"/"+(+dd[3]):"時")+'から変わらず</span>':'<span class="up" style="color:'+(df>0?"var(--g,#1F7A4D)":"#B3261E")+'">前に見た'+(dd?(+dd[2])+"/"+(+dd[3]):"時")+'より'+yen(Math.abs(df))+'円'+(df>0?"安い":"高い")+'</span>';
   return '<a href="?k='+k+'" data-my="'+k+'"><div style="flex:1"><b>'+esc(c.nm)+'</b><div class="mut" style="font-size:11.5px">いちばん安い物の'+unitTxt(c)+'</div></div><div style="text-align:right"><span class="n" style="font-size:16px">'+yen(m.u)+'</span>円<div>'+t+'</div></div></a>';}).join("")+
-  '<div class="mut" style="font-size:11.5px;margin-top:6px">燈が1日2回とった値段（送料込み）とくらべています</div>';
+  '<div class="mut" style="font-size:11.5px;margin-top:6px">1日2回とった値段（送料込み）とくらべています</div>';
  box.querySelectorAll("[data-my]").forEach(function(a){a.onclick=function(e){e.preventDefault();pick(a.dataset.my,true);};});}
 function pick(k,push){st.k=k;st.c=[];st.u=1;st.p=0;save(push);render();var kb=document.querySelector('.kat [data-k2="'+k+'"]');if(kb)kb.scrollIntoView({block:"nearest",inline:"center"});track("種類:"+k);var hd=main.querySelector(".hd"),kt=document.querySelector(".kat");if(hd&&push)scrollTo(0,hd.getBoundingClientRect().top+scrollY-(kt?kt.offsetHeight:0)-6);}
 document.querySelectorAll(".v4 [data-k2]").forEach(function(b){b.onclick=function(){pick(b.dataset.k2,true);var d=b.closest("details");if(d)d.open=false;};});
@@ -534,7 +534,7 @@ def otoku_page(old, head, cats):
                      '<meta name="robots" content="noindex"><title>お得まとめ（セール・ふるさと納税・宿）｜くらべたおかいものリスト｜LIFE NOTE</title>')
     h = re.sub(r'<link rel="canonical"[^>]*>', "", h)
     h = re.sub(r'<meta property="og:url"[^>]*>', '<meta property="og:url" content="https://usagi-life-notes.pages.dev/otoku">', h)
-    go = [("/okaimono", "くらべる", f"日用品{len(cats)}種類の最安とおすすめ"), ("/nesage", "買い時", "本当に値下がりした物"),
+    go = [("/okaimono", "くらべる", f"日用品{len(cats)}種類の最安とおすすめ"), ("/nesage", "買い時", "ふだんより安い物"),
           ("/kaimawari", "セール", "買いまわりの1,000円ぽっきり"),
           ("/furusato", "ふるさと納税", "寄付1万円あたりの量" + (f"・あと{left.group(1)}日" if left else "")),
           ("/tomari", "宿の予約", "遠くのおでかけと近くの宿")]

@@ -35,13 +35,13 @@
     ["LISTING","listing","https://ig.me/m/ai_usagichan1","おでかけ掲載","新しいお店やイベントのご紹介"],
     ["-","関連サイト"],
     ["KANTO REAL ESTATE","flist","/fudosan-list","関東不動産リスト","地価・人口・新しい施設・制度を、公式の数字で"],
-    ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","うさぎが数字で比べた物と、本当に安い物"],
+    ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","1個あたりで比べた、いちばん安い物"],
     ["LIFE NOTE","tn","/","LIFE NOTE","関東のくらしのノート"]
   ];
   if(SH)L=[
     /* 11/6 /okaimono を「くらべる」1つに作り直した → メニューも下のバー（くらべる・買い時・セール・ふるさと）と同じ並びに */
     ["COMPARE","okai","/okaimono","くらべる","日用品21種類の最安とおすすめ"],
-    ["PRICE DOWN","nesage","/nesage","買い時","本当に値下がりした物"],
+    ["PRICE DOWN","nesage","/nesage","買い時","ふだんより安い物"],
     ["SALE","kaimawari","/kaimawari","セール","買いまわりの1,000円ぽっきり"],
     ["FURUSATO","furusato","/furusato","ふるさと納税","寄付1万円あたりの量で・12/31まで"],
     ["DEALS","otoku","/otoku","お得まとめ・AIに聞く","セール・ふるさと・宿をまとめて"],
@@ -64,14 +64,14 @@
     ["REQUEST","koe","/koe","リクエスト・感想","増やしてほしい・これがほしい・使ってみた感想"],
     ["-","関連サイト"],
     ["KANTO ODEKAKE","list","/odekake","関東おでかけリスト","関東のイベント・新しいお店や施設"],
-    ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","うさぎが数字で比べた物と、本当に安い物"],
+    ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","1個あたりで比べた、いちばん安い物"],
     ["LIFE NOTE","tn","/","LIFE NOTE","関東のくらしのノート"]
   ];
   /* 入口は、3つのリストとご連絡だけ */
   if(here==="tn")L=[["-","LIFE NOTE"],
     ["KANTO ODEKAKE","list","/odekake","関東おでかけリスト","関東のイベント・新しいお店や施設"],
     ["KANTO REAL ESTATE","flist","/fudosan-list","関東不動産リスト","地価・人口・新しい施設・制度を、公式の数字で"],
-    ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","うさぎが数字で比べた物と、本当に安い物"],
+    ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","1個あたりで比べた、いちばん安い物"],
     ["-","CONTACT"],
     ["REQUEST","koe","/koe","リクエスト・感想","増やしてほしい・これがほしい・使ってみた感想"],
     ["LISTING","listing","https://ig.me/m/ai_usagichan1","おでかけ掲載","新しいお店やイベントのご紹介"]];
@@ -184,7 +184,7 @@
   };
   var ST={okai:"くらべる",tanka:"1個あたり",furusato:"ふるさと納税",nesage:"買い時",kaimawari:"セール",otoku:"お得まとめ",list:"おでかけリスト",ima:"いま行ける",illumi:"イルミネーション",koyo:"紅葉ライトアップ",tomari:"泊まりで行く",flist:"不動産リスト",chika:"地価ランキング",chikao:"大阪市24区",
     uru:"家を売りたい方へ",satei:"売却・査定のご相談"};
-  var SS={okai:"日用品の最安とおすすめ",tanka:"1Lあたり・1kgあたり",furusato:"寄付1万円あたりの量",nesage:"本当に値下がりした物",kaimawari:"1,000円ぽっきり",otoku:"AIに聞く・宿",list:"開催中・これから",map:"近くをさがす",ima:"近い順・きょう開く所",illumi:"日程・無料の所",koyo:"夜の時間・料金",tomari:"遠くのおでかけと宿",
+  var SS={okai:"日用品の最安とおすすめ",tanka:"1Lあたり・1kgあたり",furusato:"寄付1万円あたりの量",nesage:"ふだんより安い物",kaimawari:"1,000円ぽっきり",otoku:"AIに聞く・宿",list:"開催中・これから",map:"近くをさがす",ima:"近い順・きょう開く所",illumi:"日程・無料の所",koyo:"夜の時間・料金",tomari:"遠くのおでかけと宿",
     flist:"地価・人口・制度",fq:"市区町村の名前で",fmap:"上がった街を色で",chika:"関東329の街",chikao:"24区の上がり幅",fnew:"最近足した数字"};
   function item(x,tile){var cur=x[1]===here,ext=/^https?:/.test(x[2]);
     return '<a class="ui '+(tile?"tl":"sm")+(cur?" cur":"")+'" data-k="'+x[1]+'" href="'+x[2]+'"'+(ext?' target="_blank" rel="noopener"':"")+(cur?' aria-current="page"':"")+'>'+(cur&&tile?'<u>いま</u>':'')+'<i><svg viewBox="0 0 24 24" aria-hidden="true">'+(IC[x[1]]||IC.list)+'</svg></i><span data-n="'+esc(x[3])+'">'+esc((!tile&&x[1]==="okai")?"おかいものリスト":(ST[x[1]]||x[3]))+'</span><em>'+esc(tile?(SS[x[1]]||x[4]):x[4])+'</em>'+(cur&&!tile?'<u>いま</u>':'')+'</a>';}

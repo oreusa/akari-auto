@@ -128,13 +128,13 @@ def render(downs, ups, n_items, n_days, since, now):
         main = f'<ul>{"".join(card(r, "down") for r in downs)}</ul>'
     elif n_days < MIN_DAYS:
         main = (f'<p class="none">{since_t}から値段の記録を始めました。今日より前の記録が{MIN_DAYS}日分たまると、'
-                f'ここに「本当に下がった物」が出ます。</p>')
+                f'ここに「ふだんより安い物」が出ます。</p>')
     else:
-        main = '<p class="none">今は、記録した中で本当に値下がりしている物はありません。値段が下がったら、ここに出ます。</p>'
+        main = '<p class="none">今は、ふだんより安くなっている物はありません。値段が下がったら、ここに出ます。</p>'
     up_sec = (f'<h2 class="h2">いつもより高い物（急がなくてよさそう）</h2><ul>{"".join(card(r, "up") for r in ups)}</ul>'
               if ups else "")
-    title = "楽天で本当に値下がりした物だけ｜燈が毎日値段を記録｜うさぎ│LIFE NOTES"
-    desc = (f"燈が楽天のよく買われる毎日の物{n_items}件の値段を{since_t}から毎日記録し、ふだんの値段より本当に下がった物だけを並べます。"
+    title = "いまが買い時の日用品｜ふだんの値段より安い物｜うさぎ│LIFE NOTES"
+    desc = (f"楽天のよく買われる毎日の物{n_items}件の値段を{since_t}から毎日記録し、ふだんの値段より安くなった物だけを並べます。"
             "お買い物マラソン・ブラックフライデーの前に。")
     css = open(os.path.join(ROOT, "scripts", "kaimawari.py"), encoding="utf-8").read()
     css = css[css.index("<style>") + 7:css.index("</style>")].replace("{{", "{").replace("}}", "}")
@@ -155,16 +155,16 @@ def render(downs, ups, n_items, n_days, since, now):
 .h2{{font:600 15px/1.5 var(--go);margin:26px 0 10px}}
 .big{{background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;margin:18px 0 0;text-align:center}}
 .big b{{display:block;font:600 30px/1.2 var(--min);color:var(--ink);letter-spacing:.04em}}.big span{{font-size:12px;color:var(--mute)}}
-</style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=32" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script></head>
+</style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=33" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script></head>
 <body><div class="wrap">
 <header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
-<p class="en">REAL PRICE DROP</p>
-<h1>本当に値下がりした物だけ<small>楽天のよく買われる毎日の物を、燈が毎日記録</small></h1>
+<p class="en">PRICE DROP</p>
+<h1>いまが買い時の日用品<small>ふだんの値段より安くなった物を、毎日の記録から</small></h1>
 <p class="up">{esc(upd)}</p>
 <div class="big"><b>{n_items:,}件</b><span>{since_t}から値段を記録している商品の数（{n_days}日分）</span></div>
-<p class="lead">セールの「〇%OFF」は、前の値段がいつの値段か分かりません。燈は、よく買われている水・お米・洗剤・おむつなどの値段を毎日楽天で記録し、記録した「ふだんの値段」（今日より前の14日分の真ん中）より5%以上安く、記録した中でいちばん安い物だけをここに出します。記録が{MIN_DAYS}日分より少ない物は比べていません。</p>
+<p class="lead">セールの「〇%OFF」は、前の値段がいつの値段か分かりません。このページでは、よく買われている水・お米・洗剤・おむつなどの値段を毎日楽天で記録し、記録した「ふだんの値段」（今日より前の14日分の真ん中）より5%以上安く、記録した中でいちばん安い物だけをここに出します。記録が{MIN_DAYS}日分より少ない物は比べていません。</p>
 </header>
-<main><h2 class="h2">今、本当に下がっている物</h2>{main}{up_sec}</main>
+<main><h2 class="h2">いま、ふだんより安い物</h2>{main}{up_sec}</main>
 <footer class="foot">
 <p>値段は送料込みの物だけで、このページを作った時に楽天で確かめた物です。ポイントやクーポンは入れていません。買う前にリンク先で値段を確かめてください。</p>
 <p>このページのリンクは楽天アフィリエイトの広告（PR）です。</p>

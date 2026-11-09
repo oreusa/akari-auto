@@ -614,14 +614,14 @@ def render(cats, now):
 .az3{{font:600 13px/1.5 var(--go);color:var(--sub);margin:16px 0 8px}}
 .big{{background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;margin:18px 0 0;text-align:center}}
 .big b{{display:block;font:600 30px/1.2 var(--min);color:var(--ink);letter-spacing:.04em}}.big span{{font-size:12px;color:var(--mute)}}
-</style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=32" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script></head>
+</style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=33" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script></head>
 <body><div class="wrap">
 <header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
 <p class="en">PER UNIT</p>
 <h1>1個あたりで比べた<small>楽天{"とAmazon" if amz else ""}の、毎日なくなる物</small></h1>
 <p class="up">{esc(upd)}</p>
 <div class="big"><b>{seen:,}件</b><span>今回、楽天で見て比べた商品の数</span></div>
-<p class="lead">値段だけでは、どれが本当に安いか分かりません。燈が楽天の送料込みの商品を毎回取り直し、商品名の量（ml・本・kg・ロール・m）から1Lあたり・1kgあたり・100mあたりに直して比べました。24本・48本を選ぶ物のように量がひとつに決まらない物は、数字をまちがえないよう比べていません。</p>
+<p class="lead">値段だけでは、どれがいちばん安いか分かりません。楽天の送料込みの商品を毎回取り直し、商品名の量（ml・本・kg・ロール・m）から1Lあたり・1kgあたり・100mあたりに直して比べました。24本・48本を選ぶ物のように量がひとつに決まらない物は、数字をまちがえないよう比べていません。</p>
 </header>
 <nav class="tabs" aria-label="物"><button type="button" data-f="" class="on">すべて</button>{tabs}</nav>
 <main>{secs}</main>

@@ -47,8 +47,8 @@ function draw(){marks();syncUrl();
    '<tr><th style="white-space:nowrap">'+(same?PF[a.p]+a.of+'市区町村で':'都県の中で')+'</th><td>'+rk(a,r3a)+'</td><td>'+rk(b,r3b)+'</td></tr>';
   if(moreOpen){var pa=avg(TW.filter(function(t){return t.p===a.p})),pb=avg(TW.filter(function(t){return t.p===b.p})),ka=avg(TW);
    h+='<tr><th>1年前（令和7年）</th><td>'+pct(a.r7)+'</td><td>'+pct(b.r7)+'</td></tr>'+
-    (same?'<tr><th>'+PF[a.p]+'の平均<span class="na">燈が計算</span></th><td colspan="2" style="text-align:center">'+pct(pa)+'</td></tr>':'<tr><th>都県の平均<span class="na">燈が計算</span></th><td>'+pct(pa)+'</td><td>'+pct(pb)+'</td></tr>')+
-    '<tr><th>関東'+TW.length+'市区町村の平均<span class="na">燈が計算</span></th><td colspan="2" style="text-align:center">'+pct(ka)+'</td></tr>';}
+    (same?'<tr><th>'+PF[a.p]+'の平均<span class="na">計算</span></th><td colspan="2" style="text-align:center">'+pct(pa)+'</td></tr>':'<tr><th>都県の平均<span class="na">計算</span></th><td>'+pct(pa)+'</td><td>'+pct(pb)+'</td></tr>')+
+    '<tr><th>関東'+TW.length+'市区町村の平均<span class="na">計算</span></th><td colspan="2" style="text-align:center">'+pct(ka)+'</td></tr>';}
   h+='</tbody></table>'+(moreOpen?'':'<button type="button" class="mo">もっと見る（1年前・都県と関東の平均）</button>')+
    '<button type="button" class="ch">街を替える</button><p class="nt">色の付いた方が、上がり方の強い方です。街の中の調査地点の平均の動きで、1軒ずつの値段ではありません。住みやすさや値上がりを約束する物でもありません。</p>';
   card.innerHTML=h;card.hidden=false;if(!FQ.querySelector(".fh")&&window.FQ)window.FQ.open("q");place();}

@@ -19,6 +19,7 @@ BANNED = [
     (re.compile(r"amazon\.co\.jp|amzn\.(to|asia)", re.I), "AmazonのURLを直接書かない（{{LINK}} と書き、link に type amazon と asin を入れる）"),
     (re.compile(r"a\.r10\.to", re.I), "楽天の短縮リンクは使わない（リンクは予約係が楽天から受け取る）"),
     (re.compile(r"hb\.afl\.rakuten|px\.a8\.net", re.I), "アフィリエイトリンクを直接書かない（{{LINK}} と書き、link に入れる）"),
+    (re.compile(r"(?<!ガス)燈(?=が|は|の|も|で|に|と|より)"), "中の名前（燈）をお客さんに見せない（11/9 オーナー「燈？」「頭悪いやろこれ」。「毎日記録しています」のように主語なしで書く）"),
 ]
 ASOF_RE = re.compile(r"(\d{1,2})/(\d{1,2})時点")
 SLOT_RE = re.compile(r"^([01]\d|2[0-3]):[0-5]\d$")

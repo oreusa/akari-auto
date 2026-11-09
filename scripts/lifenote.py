@@ -16,7 +16,7 @@ S = os.path.join(R, "site")
 BASE = os.environ.get("LIFE_BASE") or "https://usagi-life-notes.pages.dev"
 OLD = "https://usagi-life-notes.pages.dev"
 # 全ページ共通の部品は、直したら番号を上げる（古い物が手元に残らないように）
-VER = {"menu.js": 32, "v2sub.js": 12, "v2.js": 8, "night.js": 16}  # 11/7 関東不動産リスト：menu.js（不動産のメニュー・メールの相談）・v2sub.js（不動産の下のバー）・night.js（街のページの夜）
+VER = {"menu.js": 33, "v2sub.js": 12, "v2.js": 8, "night.js": 16}  # 11/7 関東不動産リスト：menu.js（不動産のメニュー・メールの相談）・v2sub.js（不動産の下のバー）・night.js（街のページの夜）
 
 
 def rd(n):
@@ -82,7 +82,7 @@ o = re.sub(r'<p class="sub">.*?</p>', '<p class="sub">関東の今日から・�
 o = re.sub(r'<p class="pr-note">.*?</p>',
            '<p class="pr-note">このページには楽天トラベルの広告（PR）があります（近くの宿）。<br>泊まる前に、楽天トラベルのページで最新の情報を確かめてください。<br><a href="/privacy">プライバシーポリシーと広告について</a></p>', o, count=1, flags=re.S)
 o = re.sub(r'<p class="ft">.*?</p>', '<p class="ft">LIFE NOTE│過去のおでかけも、このページに残していきます</p>'
-           '<a class="tnx" href="/okaimono" data-k="下の入口｜おかいものリスト"><small>関連サイト</small><b>くらべたおかいものリスト<span>→</span></b><i>うさぎが数字で比べた物と、本当に安い物</i></a>', o, count=1, flags=re.S)
+           '<a class="tnx" href="/okaimono" data-k="下の入口｜おかいものリスト"><small>関連サイト</small><b>くらべたおかいものリスト<span>→</span></b><i>1個あたりで比べた、いちばん安い物</i></a>', o, count=1, flags=re.S)
 # 11/2 検索結果に日付が出るように、日付のあるおでかけを schema.org の Event に（見た目は変えない）
 def events_ld(h):
     import json, urllib.parse
@@ -120,8 +120,8 @@ wr("odekake.html", o)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import okaimono
 k = okaimono.build(o, src)
-k = meta(k, "楽天の日用品を1個あたりで比較｜本当に安い物だけ くらべたおかいものリスト",
-         "楽天の水・お米・トイレットペーパーなど毎日の物を、送料込みの1個あたりの値段に直して比べています。ふるさと納税1万円あたり、本当に値下がりした物、セールも毎日更新。広告（PR）を含みます。", "/okaimono")
+k = meta(k, "楽天の日用品を1個あたりで比較｜いちばん安い物がすぐ分かる くらべたおかいものリスト",
+         "楽天の水・お米・トイレットペーパーなど毎日の物を、送料込みの1個あたりの値段に直して比べています。ふるさと納税1万円あたり、いまが買い時の物、セールも毎日更新。広告（PR）を含みます。", "/okaimono")
 wr("okaimono.html", k)
 
 # ---------- ほかのページの「戻る」とブランド ----------
@@ -161,8 +161,8 @@ SEO = {
     "furusato.html": ("ふるさと納税 お米1万円で何kg？トイレットペーパー・水も寄付1万円あたりで比較｜LIFE NOTE", None, "/furusato"),
     "tanka.html": ("トイレットペーパー・水・お米 1個あたりいちばん安いのは？楽天を送料込みで比較｜LIFE NOTE", None, "/tanka"),
     "kaimawari.html": ("楽天お買い物マラソン 買いまわり1,000円ぽっきり おすすめ（送料込み・レビュー1,000件以上）｜LIFE NOTE", None, "/kaimawari"),
-    "nesage.html": ("楽天で本当に値下がりした物だけ｜毎日の値段を記録して比較｜LIFE NOTE",
-                    "楽天のよく買われる毎日の物の値段を毎日記録して、ふだんの値段より本当に下がった物だけを並べます。お買い物マラソン・ブラックフライデーの前に。", "/nesage"),
+    "nesage.html": ("いまが買い時の日用品｜毎日の値段を記録して比較｜LIFE NOTE",
+                    "楽天のよく買われる毎日の物の値段を毎日記録して、ふだんの値段より安くなった物だけを並べます。お買い物マラソン・ブラックフライデーの前に。", "/nesage"),
 }
 for n, (t, d, path) in SEO.items():
     f = os.path.join(S, n)
