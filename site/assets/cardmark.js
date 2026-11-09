@@ -80,7 +80,7 @@ var st=document.createElement('style');st.textContent=css;(document.head||docume
 function kind(a,ad){var t=(a.querySelector(ad.t)||{}).textContent||'';var m=(a.querySelector('.m,.pl,small')||{}).textContent||'';
   for(var i=0;i<R.length;i++)if(R[i][0].test(t))return R[i][1];
   for(i=0;i<R.length;i++)if(R[i][0].test(m))return R[i][1];
-  var b=document.body&&document.body.getAttribute('data-kind')||'';if(/紅葉/.test(b))return 'koyo';if(/イルミ/.test(b)||/illumination/.test(location.pathname))return 'light';
+  var b=document.body&&document.body.getAttribute('data-kind')||'';if(/紅葉/.test(b))return 'koyo';if(/\/koyo/.test(location.pathname))return 'koyo';if(/イルミ/.test(b)||/illumination/.test(location.pathname))return 'light';
   return 'spot';}
 /* カードの形ごとの読み方：card=カード, t=名前, d=日付の行, box=データ(data-s/e)のある所 */
 var AD=[
