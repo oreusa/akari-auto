@@ -61,7 +61,8 @@ for m in re.finditer(r'<div class="card it"([^>]*)>(.*?)<svg class="arw"', src, 
     mp = re.search(r'class="mp" href="([^"]+)"', b)
     q = urllib.parse.unquote(html.unescape(mp.group(1)).split("query=", 1)[1]) if mp else ""
     place = re.sub(r"\s*(東京|神奈川|埼玉|千葉|茨城|栃木|群馬)(都|県)?$", "", q).strip()
-    spots.append(dict(name=name, key=key, pref=p, st=st, en=en, url=html.unescape(g.group(1)), when=txt(w.group(1)) if w else "",
+    _on = re.search(r"（([^（）]*のみ開館)）", txt(w.group(1)) if w else "")  # 11/9 夜#155：休館の曜日（例：木〜日・祝のみ開館）を1件ページと都県ページにも
+    spots.append(dict(name=name, key=key, pref=p, st=st, en=en, url=html.unescape(g.group(1)), when=txt(w.group(1)) if w else "", opn=_on.group(1) if _on else "",
                       free="無料" in b[:600], q=q, place=place, id=hashlib.md5(key.encode()).hexdigest()[:8],
                       pc=re.search(r"--pc:(#[0-9A-Fa-f]{6})", m.group(1)).group(1) if "--pc:" in m.group(1) else "#A07E66"))
 
@@ -80,6 +81,7 @@ def head(title, desc, canon, ld, pc):
 
 def card(o):
     d = (jd(o["st"]) + ("〜" + jd(o["en"]) if o["en"] and o["en"] != o["st"] else "")) if o["st"] else o["when"]
+    if o.get("opn") and o["opn"] not in d: d += f"（{o['opn']}）"
     return f'<a class="fc" href="/o/{o["id"]}" style="border-left-color:{o["pc"]}"><small>{e(o["pref"])}{"｜" + e(o["place"]) if o["place"] else ""}{"｜無料" if o["free"] else ""}</small><b>{e(o["name"])}</b><span>{e(d)}</span></a>'
 
 
@@ -94,6 +96,7 @@ urls = []
 for sp in spots:
     p, fu, nm, pc = sp["pref"], FU[sp["pref"]], sp["name"], sp["pc"]; yr = (sp["st"] or TODAY)[:4]
     when = (jd(sp["st"]) + ("〜" + jd(sp["en"]) if sp["en"] and sp["en"] != sp["st"] else "")) if sp["st"] else sp["when"] or "公式ページで"
+    if sp.get("opn") and sp["opn"] not in when: when += f"（{sp['opn']}）"
     stat = ""
     if sp["st"] and sp["st"] > TODAY: stat = f"あと{(datetime.date.fromisoformat(sp['st']) - D0).days}日ではじまります"
     elif sp["en"]:
