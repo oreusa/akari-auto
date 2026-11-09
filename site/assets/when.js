@@ -57,7 +57,7 @@ var ALL=[].slice.call(document.querySelectorAll(SEL)).map(function(w){var a=card
   return {w:w,s:a.getAttribute("data-s")||"",e:a.getAttribute("data-e")||"",days:a.getAttribute("data-days")||"",pref:w.getAttribute("data-pref")||a.getAttribute("data-pref")||"",
    free:AK?a.getAttribute("data-free")==="1":/無料/.test((a.getAttribute("data-tag")||"")+(a.getAttribute("data-note")||"")),kid:tg.indexOf("k")>=0,rain:tg.indexOf("i")>=0,href:link(w)};});
 function openOn(o,d){if(o.s&&d<o.s)return false;if(o.e&&d>o.e)return false;var r=o.days;if(!r)return true;
-  if(r==="sat")return dw(d)===6;if(r==="sun")return dw(d)===0;if(r==="we")return dw(d)===0||dw(d)===6||!!HOL[d];return r.split(",").indexOf(d)>=0;}
+  if(r.indexOf("wd:")===0)return (r.indexOf("h")>0&&!!HOL[d])||r.slice(3).indexOf(String(dw(d)))>=0;/* 11/9 夜「月曜休館の美術館が今日行けると出る」→ wd:開く曜日（0=日〜6=土）、h＝祝日も開く */if(r==="sat")return dw(d)===6;if(r==="sun")return dw(d)===0;if(r==="we")return dw(d)===0||dw(d)===6||!!HOL[d];return r.split(",").indexOf(d)>=0;}
 function inRange(o,dk){return D[dk].d.some(function(d){return d>=T&&openOn(o,d);});}
 function isShort(o){if(!o.s||!o.e)return false;return (Date.parse(o.e)-Date.parse(o.s))/864e5<=14||(o.days&&o.days.indexOf(",")>0);}
 function curPref(){var b=F.querySelector("button.on");if(!b)return "";var p=AK?(b.getAttribute("data-p")||""):b.textContent.trim();return p==="すべて"?"":p;}
