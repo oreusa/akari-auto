@@ -461,7 +461,8 @@
       "free": true,
       "note": "成田市｜第27回。土日祝は10:00〜15:00に催しがあります",
       "url": "https://maruchiba.jp/event/detail_10812.html",
-      "checked": "2026-10-27"
+      "checked": "2026-11-09",
+      "opennote": "イベントは土日祝のみ"
     },
     {
       "title": "いばらきフラワーパーク バラ農家の収穫祭",
@@ -734,7 +735,9 @@
       "free": false,
       "note": "千葉市美浜区｜紅葉の日本庭園ライトアップ。夜間500円",
       "url": "https://maruchiba.jp/event/detail_14113.html",
-      "checked": "2026-10-29"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休み（祝日は開園）"
     },
     {
       "title": "ちばZOOフェスタ2026",
@@ -1123,7 +1126,9 @@
       "free": false,
       "note": "台東区｜一般2,400円",
       "url": "https://www.tobikan.jp/exhibition/2026_orsay.html",
-      "checked": "2026-10-30"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休室（祝日は開室）"
     },
     {
       "title": "ヌルヌルネクサス",
@@ -1358,7 +1363,9 @@
       "free": true,
       "note": "日立市｜新都市広場と日立駅の自由通路。16:30〜22:00",
       "url": "https://www.civic.jp/event.php?mode=detail&f=1&code=492",
-      "checked": "2026-11-01"
+      "checked": "2026-11-09",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "三崎マグロ「茜身」スタンプラリー2026",
@@ -2428,7 +2435,8 @@
       "free": true,
       "note": "佐野市｜朝日森天満宮は16:00〜20:00。佐野厄よけ大師は11/14・15・20〜22",
       "url": "https://www.city.sano.lg.jp/miryokuhasshin/event/29076.html",
-      "checked": "2026-11-09"
+      "checked": "2026-11-09",
+      "opennote": "厄よけ大師の会場は11/14・15・20〜22のみ"
     },
     {
       "title": "志木駅東口駅前イルミネーション",
