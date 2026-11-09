@@ -172,8 +172,19 @@ def _page_spots(now, ended=None):
     return out
 
 
+# 11/9 オーナー「燈？」「本当に値下がりってタイトル変すぎ」→ 前の投稿の文をHPに出す時も、中の名前と変な言い方を直す（ngcheck で止まるため）
+_SAY = [("燈が毎日記録、本当に下がった物だけのページ", "いまが買い時の日用品のページ"), ("本当に値下がりした物だけ", "いまが買い時の日用品"),
+        ("本当に下がった物", "ふだんより安い物"), ("本当に値下がりした物", "ふだんより安い物"), ("本当に", "")]
+
+
+def _say(s):
+    for a, b in _SAY:
+        s = s.replace(a, b)
+    return re.sub(r"(?<!ガス)燈(?:が|は|の|も)、?", "", s)
+
+
 def _lines(text):
-    return [ln.strip() for ln in text.split("\n") if ln.strip()]
+    return [_say(ln.strip()) for ln in text.split("\n") if ln.strip()]
 
 
 def _title(text):
@@ -741,7 +752,19 @@ def spot(e):
     return (f'<div class="card it" data-pref="{esc(pref)}" data-free="{1 if free else 0}" data-wk="{1 if wk else 0}"{de} style="--pc:{color}">'
             f'<div class="d">{pl}<span class="when">{esc(when)}</span>{tag}</div>'
             f'<div class="t"><a class="go" href="{href}" rel="noopener" aria-label="{esc(link_label(e["url"]))}を開く">{phr(name)}</a></div>'
-            f'{nt}{mpr}{ARROW}</div>')
+            f'{_where(e)}{nt}{mpr}{ARROW}</div>')
+
+
+def _where(e):
+    """11/9 全文点検：関東のカードに「どこ」が無く「● 栃木 |」で終わっていた → 月と同じく「市｜会場」の行を出す"""
+    city = (e.get("note") or "").split("｜")[0].strip()
+    if not re.fullmatch(r"[^\s、。]{1,10}?[市区町村]", city):
+        city = ""
+    place = (e.get("place") or "").strip()
+    if place in ("-", city):
+        place = ""
+    s = "｜".join(x for x in (city, place) if x)
+    return f'<div class="m">{esc(s)}</div>' if s else ""
 
 
 _PLACE = re.compile(r"(?:場所は|会場は)[「『]?(.+?)(?:[」』]|です|（|。|、|$)")

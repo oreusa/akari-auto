@@ -115,8 +115,9 @@ for sp in spots:
         {"@type": "ListItem", "position": 2, "name": f"{p}おでかけリスト", "item": f"{BASE}/odekake-{SLUG[p]}"},
         {"@type": "ListItem", "position": 3, "name": nm, "item": canon}]}
     big = f'<div class="w"><span>日程</span><b>{e(when)}</b></div>'
-    big += f'<div><span>いまは</span><b style="color:{pc};font-size:15px;font-family:\'Zen Kaku Gothic New\';font-weight:700">{e(stat or "公式ページで")}</b></div>'
-    big += f'<div><span>入場</span><b style="color:#2B2622;font-size:15px;font-family:\'Zen Kaku Gothic New\';font-weight:700">{"無料" if sp["free"] else "公式ページで"}</b></div>'
+    # 11/9 全文点検：「いまは／公式ページで」は意味が通らない → 開催の状態が分かる時だけ出す
+    if stat: big += f'<div><span>いまは</span><b style="color:{pc};font-size:15px;font-family:\'Zen Kaku Gothic New\';font-weight:700">{e(stat)}</b></div>'
+    big += f'<div><span>入場</span><b style="color:#2B2622;font-size:15px;font-family:\'Zen Kaku Gothic New\';font-weight:700">{"無料" if sp["free"] else "公式で確認"}</b></div>'
     big += f'<div class="w"><span>場所</span><b>{e(where)}</b></div>'
     act = f'<a class="o" href="{e(sp["url"])}" target="_blank" rel="noopener">公式ページで最新の情報を見る</a>'
     if sp["q"]: act += f'<a class="g" href="https://www.google.com/maps/search/?api=1&amp;query={e(urllib.parse.quote(sp["q"]))}" target="_blank" rel="noopener">地図で場所を見る</a>'

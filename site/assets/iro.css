@@ -60,3 +60,6 @@ html body .wrap>.flt,html:not(.top2) .tn-top{position:sticky!important;top:0;z-i
 html:not(.top2) .tn-top .flt{position:static!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important}
 /* 11/9 オーナー「夜は背景カラフルけしたら？星見えるの好き」→ 夜は題名まわりの色の丸を消して、星だけに */
 html.night.top2 .head,html.night body .head.fhd{background:radial-gradient(1.2px 1.2px at 12% 18%,#000 98%,transparent),radial-gradient(1px 1px at 27% 42%,#000 98%,transparent),radial-gradient(1.4px 1.4px at 44% 9%,#000 98%,transparent),radial-gradient(1px 1px at 63% 31%,#000 98%,transparent),radial-gradient(1.2px 1.2px at 78% 14%,#000 98%,transparent),radial-gradient(1px 1px at 88% 46%,#000 98%,transparent),radial-gradient(1px 1px at 8% 58%,#000 98%,transparent),radial-gradient(1.3px 1.3px at 92% 72%,#000 98%,transparent),radial-gradient(1px 1px at 35% 70%,#000 98%,transparent),#FFFFFF!important}
+
+/* 11/9 全文点検：関東のカードは「● 栃木 | 日付 ・無料」が上の札と重なっていた → 日付のあるカードはこの行を出さない（月のカードと同じ形） */
+.card.it[data-s]>.d,.card.it[data-e]>.d{display:none!important}
