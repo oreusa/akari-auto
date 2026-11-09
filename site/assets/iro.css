@@ -102,3 +102,15 @@ section.lists .ls{margin-bottom:20px!important;box-shadow:0 2px 12px rgba(20,25,
 .fx .ot i{display:block;font-style:normal;font-size:11px;line-height:1.5;color:#777d85}
 .fx+.sns{margin-top:22px;padding-top:22px;border-top:1px solid #E3E5E9}
 .fx~.ft,.fx~.pr-note{margin-top:14px}
+/* 11/9 メニューの「ほかのリスト」もページの下と同じタイル */
+#upan .mfx{margin:4px 0 6px!important;max-width:none!important}
+#upan .mfx .og{padding-bottom:0}
+#upan .mfx .ot{background:#fff}
+html.night #upan .mfx .ot{background:#e3e8ff;border-color:#d4dbff}
+/* FOLLOW の無かったページに足した FOLLOW（入口・おでかけリストと同じ形） */
+.fsn{max-width:460px;margin:22px auto 0;text-align:center}
+.fsn h2{text-align:center!important;padding:0!important;border:0!important;background:none!important;font-family:Jost,sans-serif;font-size:10.5px;letter-spacing:.42em;color:#8C7B6E;font-weight:400;margin:0 0 14px}
+.fsn a{display:block;text-decoration:none;color:#2B2622;border:1px solid #2B2622;background:transparent;padding:13px 14px;margin:0 0 10px;font-size:13.5px;font-weight:500;letter-spacing:.06em}
+.fsn a span{font-family:Jost,sans-serif;font-weight:400;color:#857A70;font-size:12px;margin-left:6px}
+.fsn h2:before,.fsn h2:after{display:none!important}
+main>.fx,main>.fsn{margin-left:16px!important;margin-right:16px!important}

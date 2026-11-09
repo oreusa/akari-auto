@@ -1,5 +1,15 @@
+/* 11/9 ほかのリスト（ページの下とメニューで同じ名前・同じタイル）。cur＝いま見ているリスト（出さない） */
+window.TN_OL=(function(){var life=/usagi-life/.test(location.host),p=location.pathname;
+return {life:life,cur:/^\/(koe|privacy)/.test(p)?"":/fudosan|machi|uru|sagasu|chika|gyosha|moushikomi/.test(p)?"fu":/okaimono|otoku|tanka|nesage|furusato|kaimawari/.test(p)?"ok":"od",
+I:{od:'<path d="M12 21s-6-5.6-6-10.5A6 6 0 0 1 18 10.5C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/>',
+fu:'<path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/>',
+ok:'<path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 0 1 6 0"/>'},
+L:[["od","ODEKAKE",life?"関東おでかけリスト":"関西おでかけリスト","週末どこ行く？を日付と地図で","/odekake","#E39B3A"],
+["fu","REAL ESTATE",life?"関東不動産リスト":"関西不動産リスト","地価・人口・制度を公式の数字で","/fudosan-list","#4F7BA8"],
+["ok","SHOPPING","おかいもの","比べた最安と、今だけのお得","/okaimono","#C2727F"]],
+tiles:function(pre){var o=this,h="";o.L.forEach(function(x){if(x[0]===o.cur)return;h+='<a class="ot" style="--c:'+x[5]+'" href="'+x[4]+'" data-k="'+pre+x[2]+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+o.I[x[0]]+'</svg><small>'+x[1]+'</small><b>'+x[2]+'</b><i>'+x[3]+'</i></a>';});return h;}};})();
 /* 11/9 色（見本4）を全ページに */
-(function(){try{if(document.getElementById("iro-css"))return;var l=document.createElement("link");l.id="iro-css";l.rel="stylesheet";l.href="/assets/iro.css?v=13";(document.head||document.documentElement).appendChild(l);}catch(e){}})();
+(function(){try{if(document.getElementById("iro-css"))return;var l=document.createElement("link");l.id="iro-css";l.rel="stylesheet";l.href="/assets/iro.css?v=14";(document.head||document.documentElement).appendChild(l);}catch(e){}})();
 /* 11/3 オーナー「下にスライドしたら、すぐ閉じちゃう」（アプリの中で開いたページが、下に引くとページごと閉じる）。
    ページが一番上にぴったり居ると、下に引く動きをアプリが「閉じる」に使う。指を置いた時・一番上に戻った時は 1px だけ下げておく（見た目は変わらない） */
 (function(){
@@ -63,6 +73,8 @@
     ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","1個あたりで比べた、いちばん安い物"],
     ["LIFE NOTE","tn","/","LIFE NOTE","関東のくらしのノート"]
   ];
+  /* 11/9 オーナー「ちゃんと統一できてる？メニューは？」→ 関連サイトをページの下と同じ「ほかのリスト」タイルに（いまのリストは出さない・入口へは上の名前から）。おでかけは下のバーと同じ物（地図・泊まり）を外す */
+  (function(){var o=[],sk=false;L.forEach(function(x){if(x[0]==="-"){sk=x[1]==="関連サイト";if(sk)return;}else if(sk)return;if(x[1]==="map"||x[1]==="tomari")return;o.push(x);});o.push(["-","ほかのリスト"]);L=o;})();
   /* 入口は、3つのリストとご連絡だけ */
   if(here==="tn")L=[["-","LIFE NOTE"],
     ["KANTO ODEKAKE","list","/odekake","関東おでかけリスト","関東のイベント・新しいお店や施設"],
@@ -193,7 +205,7 @@
     /* 最初のまとまり＝タイル、あとのまとまり＝小さいボタン */
     var tiled=false,openG="",rel=false;
     L.forEach(function(x){
-      if(x[0]==="-"){if(openG){h+='</div>';openG="";}h+=ug(x[1]);rel=x[1]==="関連サイト"||x[1]==="ほかのリスト";return;}
+      if(x[0]==="-"){if(openG){h+='</div>';openG="";}h+=ug(x[1]);rel=x[1]==="関連サイト"||x[1]==="ほかのリスト";if(x[1]==="ほかのリスト")h+='<div class="fx mfx"><div class="og">'+window.TN_OL.tiles("メニュー｜")+'</div></div>';return;}
       if(!openG){openG=tiled?"usm":"utg";tiled=true;h+='<div class="'+openG+(rel?" urel":"")+'">';}
       h+=item(x,openG==="utg");
     });
@@ -320,29 +332,23 @@ try{new MutationObserver(later).observe(document.documentElement,{childList:true
    ①そのページでやること（そのまま）②お店・主催者の方へ（小さな1行）③ほかのリスト（小さなタイル・今のリストは出さない）④FOLLOW ⑤注意書き */
 (function(){
 function run(){
-var sns=document.querySelector(".sns");if(!sns||document.querySelector(".fx"))return;
-var life=/usagi-life/.test(location.host);
-var p=location.pathname;
-var cur=/fudosan|machi|uru|sagasu|chika|gyosha|moushikomi/.test(p)?"fu":/okaimono|otoku|tanka/.test(p)?"ok":"od";
-var I={od:'<path d="M12 21s-6-5.6-6-10.5A6 6 0 0 1 18 10.5C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/>',
-fu:'<path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/>',
-ok:'<path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 0 1 6 0"/>'};
-var L=[["od","ODEKAKE",life?"関東おでかけリスト":"関西おでかけリスト","週末どこ行く？を日付と地図で","/odekake","#E39B3A"],
-["fu","REAL ESTATE",life?"関東不動産リスト":"関西不動産リスト","地価・人口・制度を公式の数字で","/fudosan-list","#4F7BA8"],
-["ok","SHOPPING","おかいもの","比べた最安と、今だけのお得","/okaimono","#C2727F"]];
+if(document.querySelector(".fx:not(.mfx)"))return;
+var O=window.TN_OL,sns=document.querySelector(".sns"),ft=document.querySelector(".ft")||document.querySelector("footer .sign");
+if(/^\/(town-notes)?$/.test(location.pathname)&&!sns)return;
+if(!sns&&!ft){var mm=document.querySelector("main");if(!mm)return;mm.insertAdjacentHTML("beforeend",'<div class="ft"></div>');ft=mm.lastElementChild;}
 var h='<div class="fx">';
 document.querySelectorAll(".sns a.co, .cos a.co").forEach(function(a){
  var en=a.getAttribute("data-en")||"";var t=(a.childNodes[0]&&a.childNodes[0].nodeValue||a.textContent).trim();
  var lab=en==="LISTING"?"お店・主催者の方へ：おでかけ掲載のご相談":t+"を見る";
  h+='<a class="fl" href="'+a.getAttribute("href")+'" rel="noopener" data-k="下｜'+lab+'">'+lab+' <span>→</span></a>';});
-h+='<div class="oh">ほかのリスト</div><div class="og">';
-L.forEach(function(x){if(x[0]===cur)return;
- h+='<a class="ot" style="--c:'+x[5]+'" href="'+x[4]+'" data-k="下の入口｜'+x[2]+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+I[x[0]]+'</svg><small>'+x[1]+'</small><b>'+x[2]+'</b><i>'+x[3]+'</i></a>';});
-h+='</div></div>';
+/* 11/9 オーナー「ちゃんと統一できてる？」→ FOLLOW の無いページ（イルミ・紅葉・泊まり・街ページなど）にも同じ下を出す */
+if(!sns&&O.cur==="od")h+='<a class="fl" href="https://ig.me/m/usagichan_ai_si" rel="noopener" data-k="下｜おでかけ掲載のご相談">お店・主催者の方へ：おでかけ掲載のご相談 <span>→</span></a>';
+h+='<div class="oh">ほかのリスト</div><div class="og">'+O.tiles("下の入口｜")+'</div></div>';
 document.querySelectorAll(".cos, .sns a.co").forEach(function(e){e.remove();});
 document.querySelectorAll("a.tnx").forEach(function(e){e.remove();});
-sns.insertAdjacentHTML("beforebegin",h);
-var ft=document.querySelector(".ft");var after=sns;if(ft&&sns.parentNode){sns.parentNode.insertBefore(ft,sns.nextSibling);after=ft;}
+if(!sns){ft.insertAdjacentHTML("beforebegin",h+'<div class="sns fsn"><h2>FOLLOW</h2><a href="https://www.instagram.com/usagichan_ai_si/" target="_blank" rel="noopener">Instagram<span>@usagichan_ai_si</span></a><a href="https://www.threads.com/@usagichan_ai_si" target="_blank" rel="noopener">Threads<span>@usagichan_ai_si</span></a><a href="https://x.com/ai_usagichan" target="_blank" rel="noopener">X<span>@ai_usagichan</span></a></div>');sns=document.querySelector(".fsn");}
+else sns.insertAdjacentHTML("beforebegin",h);
+var after=sns;if(ft&&sns.parentNode){sns.parentNode.insertBefore(ft,sns.nextSibling);after=ft;}
 document.querySelectorAll(".pr-note").forEach(function(n){after.parentNode.insertBefore(n,after.nextSibling);after=n;});
 }
 if(document.readyState!=="loading")run();else document.addEventListener("DOMContentLoaded",run);
