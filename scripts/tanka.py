@@ -152,8 +152,17 @@ def esc(s):
     return html.escape(str(s or ""), quote=True)
 
 
+# 11/9 夜#147：売り文句（クーポン・時刻・倍率）で商品名が切れて「米」「ジョージア 01:59まで コカ」になった → 切る前に外す
+PRE = [r"【[^】]*】", r"＼[^／]*／", r"\d+[%％]\s*OFF\S*", r"クーポン\S*", r"エントリーで\S*", r"全品\S*", r"ポイント(?:最大)?[\d.]+倍\S*",
+       r"P\d+倍\S*", r"\d+/\d+\S*", r"\d+月\d+日\S*", r"\d+日\d+:\d\d\S*", r"\d{1,2}:\d\d\S*", r"\S*限定[!！]*", r"ランキング\S*",
+       r"[★☆]", r"先着\S*", r"さらに\S*", r"[!！]+"]
+
+
 def short(name, n=46):
-    name = " ".join(str(name).replace("【", " ").replace("】", " ").split())
+    name = str(name)
+    for p in PRE:
+        name = re.sub(p, " ", name)
+    name = " ".join(name.replace("【", " ").replace("】", " ").split()).strip(" ｜|&＆・")
     return name if len(name) <= n else name[:n] + "…"
 
 

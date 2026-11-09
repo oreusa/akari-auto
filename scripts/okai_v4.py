@@ -58,7 +58,7 @@ PROMO = [r"【[^】]*】", r"\[[^\]]*\]", r"［[^］]*］", r"＼[^／]*／", r"
          r"ポイント(?:最大)?\d+(?:\.\d+)?倍", r"P\d+倍", r"エントリーで[^ 　]*", r"要エントリー", r"\d+%OFF\S*", r"\d+％OFF\S*", r"クーポン\S*",
          r"期間限定", r"数量限定", r"セール特別価格", r"送料無料\S*", r"送料込\S*", r"最安値\S*", r"楽天\S*1位\S*", r"ランキング\S*",
          r"\d+月\d+日\S*", r"\d+[/／]\d+\S*", r"…", r"\.\.\.", r"\d+日\d+時\S*", r"即納\S*", r"お買得！?", r"お得な", r"★", r"☆", r"◆[^◆]*◆", r"MA期間\S*",
-         r"マラソン限定\S*", r"訳あり", r"並行輸入品", r"公式", r"!+", r"！+", r"レビュー[\d,]+件\S*", r"当選確率\S*", r"\d等\S*", r"LINE追加\S*"]
+         r"マラソン限定\S*", r"訳あり", r"並行輸入品", r"公式", r"!+", r"！+", r"レビュー[\d,]+件\S*", r"当選確率\S*", r"\d等\S*", r"LINE追加\S*", r"\d{1,2}:\d\d\S*", r"\S*迄", r"先着\S*", r"^[＆&\s]+"]
 
 
 def clean(n):
@@ -66,8 +66,8 @@ def clean(n):
         n = re.sub(p, " ", n)
     n = re.sub(r"[｜|／/・]+\s*$", "", n)
     n = re.sub(r"\s+", " ", n).strip(" 　-〜~、,")
-    if len(n) > 30:
-        n = n[:30].rsplit(" ", 1)[0] if " " in n[:30] else n[:30]
+    if len(n) > 40:
+        n = n[:40].rsplit(" ", 1)[0] if " " in n[:40] else n[:40]
     return re.sub(r"[\s\d]+$", "", n) if n else ""
 
 
@@ -290,7 +290,7 @@ function upd(){var m=/(\d{4})-(\d\d)-(\d\d) (\d\d:\d\d)/.exec(AT||"");return m?(
 function list(c){return c.o.filter(function(o){return (!st.p||o.p<=st.p)&&st.c.every(function(t){return o.tg.indexOf(t)>=0;});});}
 function ctxt(){var a=st.c.slice();if(st.p)a.push("総額"+st.p.toLocaleString()+"円以下");return a;}
 function buyBtn(o){return '<a class="btn" href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="v4:'+esc(o.n.slice(0,20))+'">この商品を'+esc(o.w)+'で見る</a>';}
-function card(c,o,lab,why){return '<section><span class="lab '+(lab==="最安"?"c":"r")+'">'+lab+'<small>'+(lab==="最安"?"全部の中で・送料込み・"+unitTxt(c,o):"名の知れたメーカーの中で安い")+'</small></span>'+
+function card(c,o,lab,why){return '<section><span class="lab '+(lab==="最安"?"c":"r")+'">'+lab+'<small>'+(lab==="最安"?(st.c.length||st.p?"この条件の中で":"全部の中で")+"・送料込み・"+unitTxt(c,o):"名の知れたメーカーの中で安い")+'</small></span>'+
  '<div class="it">'+pic(o,84)+'<div><div class="nm">'+esc(o.n)+'</div>'+attrs(c,o)+'</div></div>'+
  '<div class="pp"><span><b class="big">'+yen(o.u)+'</b>円<span style="font-size:12px">／'+unitTxt(c,o).replace("あたり","")+'</span></span><span class="tot">総額 <b class="n">'+o.p.toLocaleString()+'</b>円（送料込み）<br>'+esc(o.s)+'・'+esc(o.w)+'</span></div>'+
  '<div class="why">'+why+'</div>'+buyBtn(o)+'</section>';}
@@ -341,7 +341,7 @@ function render(){
    (r2?'<div><span class="lab r" style="font-size:11px">おすすめ</span><br>'+esc(br.cnt>1?br.cnt+"個入り":br.a)+'＝<b>'+mtxt(r2)+'</b><br>1か月 <b class="n">'+Math.round(r2.per).toLocaleString()+'</b>円</div>':"")+
    '</div><div class="why">使う量はご自分で選んでください。1か月の値段は、1個あたりの値段×使う量の目安です。</div></section>';}
  var yN=c.o.filter(function(o){return o.w==="Yahoo!";}).length;
- h+='<dl class="ev"><dt>比べた物</dt><dd>楽天の送料込み'+c.seen.toLocaleString()+'件のうち、量が読めた'+c.read+'件から、条件に合う物をメーカー・お店ごとに選んだ'+c.o.filter(function(o){return o.w==="楽天";}).length+'件'+(yN?'と、Yahoo!の'+yN+'件':'')+'（この下に全部あります）</dd>'+
+ h+='<dl class="ev"><dt>比べた物</dt><dd>楽天の送料込み'+c.seen.toLocaleString()+'件のうち、量が読めた'+c.read+'件から、条件に合う物をメーカー・お店ごとに選んだ'+c.o.filter(function(o){return o.w==="楽天";}).length+'件'+(yN?'と、Yahoo!の'+yN+'件':'')+'。'+(ctxt().length?'いまは条件に合う'+L.length+'件だけを出しています':'この下に全部あります')+'</dd>'+
   '<dt>比べ方</dt><dd>送料込みの値段 ÷ 量（'+unitTxt(c)+'）</dd><dt>更新</dt><dd>'+esc(upd())+'（1日2回）</dd>'+
   '<dt>注意</dt><dd>北海道・沖縄・離島は送料が別にかかることがあります。量は商品名から読んでいるので、買う前にお店のページで確かめてください。<br><a href="/koe?q='+encodeURIComponent("値段のちがい："+c.nm+" ")+'">お店の値段とちがったら教えてください →</a></dd></dl>';
  h+='<button type="button" class="sv" id="v4s">'+(MY[c.k]?"★ いつもの物に入っています（外す）":"☆ いつもの物に入れる（次に来た時、値動きが分かります）")+'</button></div>';
@@ -360,8 +360,8 @@ function render(){
 function bind(){
  main.querySelectorAll("[data-t]").forEach(function(b){b.onclick=function(){var t=b.dataset.t,i=st.c.indexOf(t);if(i>=0)st.c.splice(i,1);else st.c.push(t);save();render();track("条件:"+t);var f=main.querySelector('[data-t="'+t+'"]');if(f)f.focus();};});
  main.querySelectorAll("[data-u]").forEach(function(b){b.onclick=function(){st.u=+b.dataset.u;save();render();var f=main.querySelector('[data-u="'+b.dataset.u+'"]');if(f)f.focus();};});
- ["v4x","v4x2"].forEach(function(id){var x=document.getElementById(id);if(x)x.onclick=function(){st.c=[];st.p=0;save();render();};});
- main.querySelectorAll("[data-p]").forEach(function(b){b.onclick=function(){st.p=0;save();render();};});
+ ["v4x","v4x2"].forEach(function(id){var x=document.getElementById(id);if(x)x.onclick=function(){st.c=[];st.p=0;rd.innerHTML="";qi.value="";save();render();};});
+ main.querySelectorAll("[data-p]").forEach(function(b){b.onclick=function(){st.p=0;rd.innerHTML="";save();render();};});
  var s=document.getElementById("v4s");if(s)s.onclick=function(){var c=C[st.k],L=list(c).slice().sort(function(a,b){return a.u-b.u;});
   if(MY[c.k])delete MY[c.k];else MY[c.k]={u:c.o.slice().sort(function(a,b){return a.u-b.u;})[0].u,d:AT};mysave();render();track("いつもの物:"+c.k);var f=document.getElementById("v4s");if(f)f.focus();};
 }
@@ -384,12 +384,21 @@ function ask(v){var raw=(v||"").normalize("NFKC"),lim=0,pm=/(\d[\d,]*)\s*円?\s*
  var q=nz(raw);if(!q&&!lim){rd.innerHTML="";return;}var hit="",rest=q;
  D.cats.forEach(function(c){var n=nz(c.nm);if(!hit&&q.indexOf(n)>=0){hit=c.k;rest=q.replace(n," ");}});
  if(!hit)Object.keys(SYN).sort(function(a,b){return b.length-a.length;}).forEach(function(w){var n=nz(w);if(!hit&&q.indexOf(n)>=0&&C[SYN[w]]){hit=SYN[w];rest=q.replace(n," ");}});
+ /* 11/9 夜#145：「ロイヤルカナン」など商品名・メーカー名でも探す。2つ以上の種類にあれば選んでもらう */
+ if(!hit){var bk=[];D.cats.forEach(function(c){var w=q.replace(/\d+(kg|g|l|ml|個|本|枚|袋)/g,"").replace(/[のでがをはにとも、。・]/g,"");if(w.length>=3&&c.o.some(function(o){return nz(o.n).indexOf(w)>=0;}))bk.push(c.k);});
+  if(bk.length===1){hit=bk[0];rest="";}
+  else if(bk.length>1){rd.innerHTML='「'+esc(v)+'」は、'+bk.map(function(k){return '<button type="button" class="v4bk" data-bk="'+k+'">'+esc(C[k].nm)+'</button>';}).join("・")+'にあります。どちらを見ますか？';main.innerHTML="";
+   rd.querySelectorAll("[data-bk]").forEach(function(b){b.onclick=function(){rd.innerHTML="";pick(b.dataset.bk,true);};});track("探す・名前:"+v);return;}}
  if(!hit&&st.k&&lim&&!q.replace(/[のでがをはにとも、。・]/g,""))hit=st.k;
- if(!hit){rd.innerHTML='「'+esc(v)+'」は、くらべている'+D.cats.length+'種類にありません。下の「すべての種類」から選べます。<a href="/koe?q='+encodeURIComponent("比べてほしい："+v)+'">比べてほしい物を送る →</a>';track("探す・なし:"+v);return;}
- st.k=hit;st.c=[];st.u=1;st.p=lim;var tg={};C[hit].o.forEach(function(o){o.tg.forEach(function(t){tg[t]=1;});});
+ if(!hit){rd.innerHTML='「'+esc(v)+'」は、くらべている'+D.cats.length+'種類にありません。下の「すべての種類」から選べます。<a href="/koe?q='+encodeURIComponent("比べてほしい："+v)+'">比べてほしい物を送る →</a>';main.innerHTML="";track("探す・なし:"+v);return;}
+ var prev={k:st.k,c:st.c.slice(),u:st.u,p:st.p};st.k=hit;st.c=[];st.u=1;st.p=lim;var tg={};C[hit].o.forEach(function(o){o.tg.forEach(function(t){tg[t]=1;});});
  PARTS.forEach(function(x){var n=x[0],re=n.length===1?new RegExp("(^|[^0-9a-z])"+n+"(?![a-z])"):null,i=re?rest.search(re):rest.indexOf(n);if(i<0)return;
   var t=x[1].filter(function(t){return tg[t];})[0]||x[1][0];if(st.c.indexOf(t)<0)st.c.push(t);rest=re?rest.replace(re,"$1 "):rest.replace(n," ");});
- var miss=rest.replace(/[のでがをはにとも、。・]/g," ").trim().split(/\s+/).filter(Boolean);
+ var miss=rest.trim().split(/\s+/).filter(function(w){w=w.replace(/^[のでがをはにとも、。・]+|[のでがをはにとも、。・]+$/g,"");return w&&!/^(安い|やすい|最安|おすすめ|買う|かう|ほしい|欲しい|激安|格安|まとめ買い|通販|商品|一番|いちばん|比較|くらべる|値段)$/.test(w);});
+ /* 11/9 夜#145：猫砂→キャットフード、単4→単3のように、読めない言葉を外して別の物を出さない。本人に選んでもらう */
+ if(miss.length){var want={k:st.k,c:st.c.slice(),p:st.p};st.k=prev.k;st.c=prev.c;st.u=prev.u;st.p=prev.p;
+  rd.innerHTML='「'+esc(v)+'」の「'+esc(miss.join(" "))+'」は、いまくらべている物にありません。<br>近い物：<button type="button" id="v4alt">'+esc(C[want.k].nm)+'を見る</button>　<a href="/koe?q='+encodeURIComponent("比べてほしい："+v)+'">比べてほしい物を送る →</a>';
+  main.innerHTML="";var al=document.getElementById("v4alt");if(al)al.onclick=function(){st.k=want.k;st.c=want.c;st.u=1;st.p=want.p;save(true);rd.innerHTML="";render();var hd=main.querySelector(".hd");if(hd)hd.scrollIntoView({block:"start"});};track("探す・読めない:"+v);return;}
  save(true);render();var cx=ctxt(),no=st.c.filter(function(t){return !tg[t];});
  rd.innerHTML='読み取った条件：種類＝<b>'+esc(C[hit].nm)+'</b>　条件＝'+(cx.length?esc(cx.join("・")):"なし")+(no.length?'<br>「'+esc(no.join("・"))+'」の'+esc(C[hit].nm)+'は、いま比べた中にありません':'')+(miss.length?'<br>「'+esc(miss.join(" "))+'」は読み取れなかったので外しました':'')+'　<button type="button" id="v4fx">直す</button>';
  var fx=document.getElementById("v4fx");if(fx)fx.onclick=function(){qi.focus();qi.select();};track("探す:"+v);
