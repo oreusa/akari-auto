@@ -1,5 +1,5 @@
 /* 11/9 色（見本4）を全ページに */
-(function(){try{if(document.getElementById("iro-css"))return;var l=document.createElement("link");l.id="iro-css";l.rel="stylesheet";l.href="/assets/iro.css?v=11";(document.head||document.documentElement).appendChild(l);}catch(e){}})();
+(function(){try{if(document.getElementById("iro-css"))return;var l=document.createElement("link");l.id="iro-css";l.rel="stylesheet";l.href="/assets/iro.css?v=12";(document.head||document.documentElement).appendChild(l);}catch(e){}})();
 /* 11/3 オーナー「下にスライドしたら、すぐ閉じちゃう」（アプリの中で開いたページが、下に引くとページごと閉じる）。
    ページが一番上にぴったり居ると、下に引く動きをアプリが「閉じる」に使う。指を置いた時・一番上に戻った時は 1px だけ下げておく（見た目は変わらない） */
 (function(){
@@ -55,10 +55,6 @@
   /* 11/9 オーナーOK（見本4）→ 11/9 12:54 オーナー「不動産だけメニューも色々ちがくない？」→ おでかけと同じ形（タイル6つ／ご相談・お問い合わせ／関連サイト）。関東はアフィリエイトだけなので申し込みは入れない */
   if(FU)L=[
     ["LIST","flist","/fudosan-list","関東不動産リスト","地価・人口・制度"],
-    ["SEARCH","fq","/fudosan-list?fq=q","街の名前で探す","市区町村の名前で"],
-    ["MAP","fmap","/fudosan-list?fq=map","地図で見る","上がった街を色で"],
-    ["RANKING","chika","/chika-kanto","地価ランキング","関東329の市区町村"],
-    ["SELL","uru","/uru.html","家を売りたい方へ","相場から順に"],
     ["BUY","fbuy","/sagasu","家を買いたい方へ","住む街の値段と物件"],
     ["-","CONTACT"],
     ["REQUEST","koe","/koe","リクエスト・感想","増やしてほしい・これがほしい・使ってみた感想"],

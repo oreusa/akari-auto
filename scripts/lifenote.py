@@ -16,7 +16,7 @@ S = os.path.join(R, "site")
 BASE = os.environ.get("LIFE_BASE") or "https://usagi-life-notes.pages.dev"
 OLD = "https://usagi-life-notes.pages.dev"
 # 全ページ共通の部品は、直したら番号を上げる（古い物が手元に残らないように）
-VER = {"menu.js": 33, "v2sub.js": 12, "v2.js": 8, "night.js": 16}  # 11/7 関東不動産リスト：menu.js（不動産のメニュー・メールの相談）・v2sub.js（不動産の下のバー）・night.js（街のページの夜）
+VER = {"menu.js": 34, "v2sub.js": 12, "v2.js": 8, "night.js": 16}  # 11/7 関東不動産リスト：menu.js（不動産のメニュー・メールの相談）・v2sub.js（不動産の下のバー）・night.js（街のページの夜）
 
 
 def rd(n):
