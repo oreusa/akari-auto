@@ -7,7 +7,7 @@ wf = sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(os.path.
 _d = json.load(open(wf))
 W = [(re.compile(rx), why) for rx, why in _d["words"]]
 ALLOW = _d.get("allow", [])  # 正しい言葉（イベント名など）はここに足す
-SKIP = re.compile(r"mihon|preview|_mihon|okaimono-live|otoku|/googl[^/]*\.html$")
+SKIP = re.compile(r"mihon|preview|-try\.html|_mihon|okaimono-live|otoku|/googl[^/]*\.html$")
 bad = []
 for f in sorted(glob.glob(os.path.join(root, "**", "*.html"), recursive=True)):
     if SKIP.search(f):
