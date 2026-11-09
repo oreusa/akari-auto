@@ -268,7 +268,7 @@ h2{font-family:"Shippori Mincho",serif;font-weight:600;font-size:18px;letter-spa
 .faq summary{font-weight:700;font-size:14px;line-height:1.6;cursor:pointer}.faq p{font-size:13px;line-height:1.9;color:#5E544D;margin:8px 0 0}
 .note{font-size:12px;line-height:1.9;color:#7A6E66;background:#F5F5F5;padding:14px 16px;margin-top:30px;word-break:break-all}.note a{color:#7A6E66}
 .jmp{display:flex;justify-content:space-between;align-items:center;margin:12px 0 0;padding:13px 16px;border:1px solid #E3E3E3;border-radius:14px;text-decoration:none;color:#2B2622;font-weight:700;font-size:14px;background:#fff}.jmp i{font-style:normal;font-family:Jost;color:#9C8775}.itt{scroll-margin-top:12px}
-.itt{margin:30px 0 6px;text-align:center}.itt .en2{font-family:Jost,sans-serif;font-size:11px;letter-spacing:.32em;color:#9C8775}.itt h2{margin:6px 0 14px;padding-left:0;border-left:0;font-size:20px}.itg{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left}.itc{display:flex;flex-direction:column;text-decoration:none;color:#2B2622;border:1px solid #E3E3E3;border-radius:18px;padding:16px 14px;background:#fff}.itc b{font-family:"Shippori Mincho",serif;font-size:17px;font-weight:700;letter-spacing:.06em}.itc span{font-size:12.5px;line-height:1.75;color:#6B6058;margin:8px 0 12px;flex:1}.itc i{font-style:normal;font-weight:700;font-size:13.5px;color:#B5735A}.itn{font-size:11.5px;color:#8C7B6E;text-align:left;margin:8px 2px 0}
+.itt{margin:30px 0 6px;text-align:center}.itt .en2{font-family:Jost,sans-serif;font-size:11px;letter-spacing:.32em;color:#9C8775}.itt h2{margin:6px 0 14px;padding-left:0;border-left:0;font-size:20px}.itg{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left}.itc{display:flex;flex-direction:column;text-decoration:none;color:#2B2622;border:1px solid #E3E3E3;border-radius:18px;padding:16px 14px;background:#fff}.itc b{font-family:"Shippori Mincho",serif;font-size:17px;font-weight:700;letter-spacing:.06em}.itc span{font-size:12.5px;line-height:1.75;color:#6B6058;margin:8px 0 12px;flex:1}.itc i{font-style:normal;font-weight:700;font-size:13.5px;color:#B5735A}.itc.buy{cursor:default}.itc.buy span{margin-bottom:8px}.itc .yl{display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:#2B2622;font-size:13.5px;font-weight:700;padding:9px 2px;border-top:1px solid #D9DCE1}.itc .yl i{color:#B5735A;font-size:13.5px}.itn{font-size:11.5px;color:#8C7B6E;text-align:left;margin:8px 2px 0}
 .uru{display:block;text-decoration:none;color:#2B2622;border:1px solid #2B2622;padding:16px;margin-top:30px;text-align:center}
 .uru .k{font-size:11px;letter-spacing:.2em;color:#8C7B6E}.uru .t{font-family:"Shippori Mincho",serif;font-weight:600;font-size:16px;letter-spacing:.08em;margin:6px 0 4px}.uru .m{font-size:12px;color:#6B6058;line-height:1.8}
 .uru.buy{position:relative;margin-top:18px;padding:16px 14px 6px}.uru .bx{display:block;text-decoration:none;color:#2B2622;border-top:1px solid #E4E5E8;padding:12px 2px;text-align:left}.uru .k+.ad+.bx{margin-top:10px}.uru .bx b{display:block;font-family:"Shippori Mincho",serif;font-size:15px;font-weight:600}.uru .bx b:after{content:" →";color:#B5735A}.uru .bx span{display:block;font-size:11.5px;color:#6B6058;line-height:1.7;margin-top:3px}.uru .ad{position:absolute;top:6px;right:8px;font-size:10px;color:#8C7B6E}
@@ -324,13 +324,28 @@ SUMAI_RE = "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3786665&pid=
 # 11/9 夜の試験：タウンライフ・住まいサーフィンは「無効の広告」ページに進む（ミス帳#134・#135）→ 使えると確かめるまで出さない（月）
 VC_EXTRA_ON = False
 
+# 11/9 オーナー「動線悪すぎ、Yahoo飛んでまた地名から調べるんだろ？」→ 街ごとの売り出し中の一覧へ直接（全国地方公共団体コード：jis_kanto.json、geolonia/japanese-addresses から作成）
+JIS = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "jis_kanto.json"), encoding="utf-8"))
+YKIND = [("中古マンション", "used/mansion"), ("中古の一戸建て", "used/house"), ("土地", "land")]
+
+
+def yahoo_town(p, n, path):
+    c = JIS.get(p + "|" + n)
+    u = f"https://realestate.yahoo.co.jp/{path}/search/03/{c[:2]}/{c}/" if c else "https://realestate.yahoo.co.jp/"
+    return YAHOO_RE.split("&vc_url=")[0] + "&vc_url=" + _q(u, safe="")
+
+
+def buy_card(p, n):
+    rows = "".join(f'<a class="yl" href="{E(yahoo_town(p, n, path))}" rel="nofollow sponsored" target="_blank" data-k="家を探す｜Yahoo!不動産｜{k}｜{E(n)}">{k}<i>→</i></a>' for k, path in YKIND)
+    return f'<div class="itc buy"><b>買いたい</b><span>{E(n)}でいま売り出し中の家（Yahoo!不動産）</span>{rows}</div>'
+
 
 # 11/9 オーナーOK（月の見本3と同じ）：街ページは「売りたい・買いたい」の2つだけ（売る前に・Yahoo!の箱はここにまとめた）
-def itt_box(n):
+def itt_box(n, p=""):
     return (f'<section class="itt" id="itt"><div class="en2">IN THIS TOWN</div><h2>{E(n)}で</h2><div class="itg">'
             f'<a class="itc" href="/uru.html" data-k="この街で｜売りたい｜{E(n)}"><b>売りたい</b><span>いくらで売れそうか、相場から順に（無料）</span><i>手順を見る →</i></a>'
-            f'<a class="itc" href="{E(YAHOO_RE)}" rel="nofollow sponsored" target="_blank" data-k="家を探す｜Yahoo!不動産｜{E(n)}"><b>買いたい</b><span>Yahoo!不動産で地域を選んで、売り出し中の家を見る</span><i>物件を探す →</i></a>'
-            f'</div><p class="itn">「物件を探す」は広告です（Yahoo!不動産のトップが開きます）。</p></section>')
+            f'' + buy_card(p, n) + f''
+            f'</div><p class="itn">「買いたい」の3つは広告です（Yahoo!不動産のこの街の一覧が開きます）。</p></section>')
 
 
 def buy_box(n):
@@ -411,7 +426,7 @@ def town_page(t):
 <div class="upd">2026年1月1日時点の数字（{TODAY} 作成）</div></div>
 {big}
 <div class="mp nofilt">{pref_svg(t["p"], n)}<p>{E(sc)}の中の{E(short(n) if sc != pfull else n)}</p></div>
-{itt_box(n)}
+{itt_box(n, t["p"])}
 {rel_h}
 {nb_h}
 <a class="back" href="/chika-kanto#{fn}" data-k="{E(pfull)}のランキング" style="margin-top:18px">{E(pfull)}の街をランキングで見る</a>
