@@ -52,7 +52,7 @@ export async function onRequest(ctx) {
   }
   // 11/2 LIFE NOTE：入口 / と、2つのリスト /odekake・/okaimono。リストは外から直に来た時だけ数える（入口から移った人を2回数えない）
   const ref = request.headers.get("referer") || "";
-  const own = /^https:\/\/(lifenote[^/]*|usagi-life-notes)\.pages\.dev\//.test(ref);
+  const own = /^https:\/\/(lifenote[^/]*|life-note|usagi-life-notes)\.pages\.dev\//.test(ref);
   const lp = url.pathname.replace(/\.html$/, "");
   // 11/7 関東不動産リスト /fudosan-list も、2つのリストと同じく外から直に来た時だけ数える
   const isView = lp === "/" || ((lp === "/odekake" || lp === "/okaimono" || lp === "/fudosan-list") && !own);
