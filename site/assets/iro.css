@@ -17,3 +17,17 @@ html.top2 .qk small{font-size:11px!important;color:#5E5650!important}
 /* 文字の後ろの丸を、文字にかからない所へ */
 html.top2 .head{background:radial-gradient(circle at 14% 22%,rgba(242,214,194,.55) 0 74px,transparent 75px),radial-gradient(circle at 92% 12%,rgba(205,224,236,.6) 0 54px,transparent 55px),radial-gradient(circle at 98% 100%,rgba(214,228,205,.6) 0 40px,transparent 41px),radial-gradient(circle at 2% 100%,rgba(240,214,218,.6) 0 26px,transparent 27px),#FFFFFF!important}
 html.top2 .qk b.ln{font-size:12.5px!important;letter-spacing:0!important}
+/* 11/9 オーナー「枠とか、分けられてるようで分けられてないから分かりにくい」→ おでかけ：「どこ・いつでしぼる」を1つの枠に、一覧とはっきり分ける */
+html.top2 .adn{font-size:10.5px!important;color:#8A827B!important;margin:0 0 10px!important;text-align:center}
+html.top2 .tn-top{background:#F4F4F6;border-radius:18px;padding:14px 12px 12px;margin:0 0 26px;box-shadow:inset 0 0 0 1px #ECECEF}
+html.top2 .tn-top::before{content:"どこへ？";display:block;font-size:12px;font-weight:700;letter-spacing:.08em;color:#3F3833;margin:0 0 2px 4px}
+html.top2 .tn-top .flt{background:transparent!important;border-bottom:1px solid #E2E2E6!important;margin:0 0 12px!important;padding-bottom:2px!important}
+html.top2 .tn-top .wn{margin:0!important;padding:0!important;border:0!important}
+html.top2 .tn-top .wl{font-size:12px!important;font-weight:700!important;letter-spacing:.08em;color:#3F3833!important;margin-left:4px}
+html.top2 .tn-top .wd button:not(.on){background:#fff!important}
+html.top2 .tn-top .wr{margin-bottom:0!important}
+html.top2 .wsec>h2,html.top2 .wsec>.wh{margin-top:0}
+/* 不動産：「街の名前で探す」を1つの枠に */
+.fhd .tql{background:#F4F4F6;border-radius:18px 18px 0 0;margin:22px -80px 0 0!important;padding:14px 16px 8px!important;font-size:12px!important;font-weight:700!important;letter-spacing:.08em;color:#3F3833!important;box-shadow:inset 1px 1px 0 #ECECEF,inset -1px 0 0 #ECECEF}
+.fhd .tqs{background:#F4F4F6;border-radius:0 0 18px 18px;padding:0 12px 14px!important;margin:0 -80px 6px 0!important;box-shadow:inset 1px -1px 0 #ECECEF,inset -1px 0 0 #ECECEF}
+.fhd .tqs input{background:#fff!important}
