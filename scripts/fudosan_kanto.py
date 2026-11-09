@@ -319,13 +319,15 @@ YAHOO_RE = "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3786665&pid=
 # 11/8 オーナー（月のスレッド）「アフェリエイト通った全部」→ タウンライフ不動産購入・住まいサーフィン（LIFE NOTE sid 3786665 の自由テキスト）
 TOWNLIFE_RE = "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3786665&pid=892742462"
 SUMAI_RE = "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3786665&pid=892742456"
+# 11/9 夜の試験：タウンライフ・住まいサーフィンは「無効の広告」ページに進む（ミス帳#134・#135）→ 使えると確かめるまで出さない（月）
+VC_EXTRA_ON = False
 
 
 def buy_box(n):
-    return (f'<div class="uru buy"><div class="k">この街で家を探している方へ</div><div class="ad">広告</div>'
-            f'<a class="bx" href="{E(TOWNLIFE_RE)}" rel="nofollow sponsored" target="_blank" data-k="家を探す｜タウンライフ｜{E(n)}"><b>希望を1回送って、物件を提案してもらう</b><span>タウンライフ不動産。予算や駅を送ると、何社かから物件のご提案が届きます（無料）</span></a>'
-            f'<a class="bx" href="{E(YAHOO_RE)}" rel="nofollow sponsored" target="_blank" data-k="家を探す｜Yahoo!不動産｜{E(n)}"><b>自分で物件を探す</b><span>Yahoo!不動産。中古マンション・一戸建て・新築を、駅や広さで</span></a>'
-            f'<a class="bx" href="{E(SUMAI_RE)}" rel="nofollow sponsored" target="_blank" data-k="家を探す｜住まいサーフィン｜{E(n)}"><b>新築マンションが割高か調べる</b><span>住まいサーフィン。値段が割高か割安かを、無料の会員登録で</span></a></div>')
+    return (f'<div class="uru buy"><div class="k">この街で家を探している方へ</div><div class="ad">広告</div>' +
+            f'<a class="bx" href="{E(TOWNLIFE_RE)}" rel="nofollow sponsored" target="_blank" data-k="家を探す｜タウンライフ｜{E(n)}"><b>希望を1回送って、物件を提案してもらう</b><span>タウンライフ不動産。予算や駅を送ると、何社かから物件のご提案が届きます（無料）</span></a>' * VC_EXTRA_ON +
+            f'<a class="bx" href="{E(YAHOO_RE)}" rel="nofollow sponsored" target="_blank" data-k="家を探す｜Yahoo!不動産｜{E(n)}"><b>自分で物件を探す</b><span>Yahoo!不動産。中古マンション・一戸建て・新築を、駅や広さで</span></a>' +
+            f'<a class="bx" href="{E(SUMAI_RE)}" rel="nofollow sponsored" target="_blank" data-k="家を探す｜住まいサーフィン｜{E(n)}"><b>新築マンションが割高か調べる</b><span>住まいサーフィン。値段が割高か割安かを、無料の会員登録で</span></a>' * VC_EXTRA_ON + '</div>')
 
 
 # ================= 街ごとのページ
