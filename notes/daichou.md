@@ -14,7 +14,7 @@
 | ASP | もしもアフィリエイト | 燈 | a_id 5877817（燈のおかいもの・値段くらべ、Yahoo!ショッピング p_id 1225） | 使用中（ページにリンク179本、11/9 月が数えた） | 11/9 |
 | ASP | レントラックス | — | — | **登録していない**（紹介制） | 11/9 |
 | ASP | ASPLAY | — | — | **申し込んでいない** | 11/9 |
-| Google | Search Console | アカウント「e」 | townnote.pages.dev / usagi-life-notes.pages.dev | 確認済み・サイトマップ送信済み（11/8） | 11/8 |
+| Google | Search Console | アカウント「e」 | townnote.pages.dev / usagi-life-notes.pages.dev（11/9 からLIFEは lifenote-kanto.pages.dev へ301で引っ越し。新しいアドレスの追加とアドレス変更の届けはオーナー待ち） | TOWN 確認済み・LIFE 新アドレス未登録 | 11/9 |
 | フォーム | FormSubmit | オーナーのメール | LIFE（11/9有効）/ TOWN（11/9 18:44有効） | 使用中 | 11/9 |
 | SNS予約 | Buffer | 月・燈 | 燈のAPIキーは2027-10-22期限 | 使用中 | 10/22 |
 | SNS | Meta アプリ 1400829015365892 | 月 | インスタ リール直投稿 | 使用中 | 10/29 |
@@ -60,3 +60,4 @@
 - 関西の反響は知り合いの業者さんに回す。問い合わせはオーナーのメール（11/9）。
 - 一括査定は関東だけ。関西は相談メールだけ（11/9）。
 - 関東LIFEはアフィリエイトだけ。相談・申し込みの言葉は使わない（11/9）。
+- LIFEのアドレス：11/9 から https://lifenote-kanto.pages.dev/（前の usagi-life-notes.pages.dev は全部301で転送。Cloudflareの使っていない life-note・lifenote の2つは空のまま）。
