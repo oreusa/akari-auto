@@ -146,7 +146,7 @@ ul{{list-style:none;margin:0;padding:0}}.it{{margin:0 0 10px}}
 .foot{{font-size:11.5px;line-height:1.9;color:var(--sub);border-top:1px solid var(--line2);margin-top:32px;padding-top:16px}}
 .back{{display:block;text-align:center;font:700 13px/1 var(--go);letter-spacing:.1em;border:1px solid var(--ink);border-radius:2px;padding:14px;margin:20px 0 0;background:#fff}}
 .sign{{text-align:center;font:400 11px/1 var(--en);letter-spacing:.3em;color:var(--brown);margin:24px 0 0}}
-</style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=28" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=8" defer></script></head>
+</style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=29" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script></head>
 <body><div class="wrap">
 <header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
 <p class="en">KAIMAWARI</p>

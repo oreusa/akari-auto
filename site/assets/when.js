@@ -121,7 +121,7 @@ function stateLine(o,dk,short){var R=D[dk].d.filter(function(d){return d>=T;}),o
 function cl(o,dk,short){var c=o.w.cloneNode(true);c.removeAttribute("id");
   /* 11/7 夜のミス帳 #120 #121：写したカードに「宿・券を付けた」印が残り、券と近くの宿が出なかった → 印を外して付け直してもらう */
   c.removeAttribute("data-yk");[].forEach.call(c.querySelectorAll("[data-yk]"),function(e){e.removeAttribute("data-yk");});c.style.removeProperty("display");c.classList.remove("cap");
-  var t=c.querySelector(".t"),s=stateLine(o,dk,short);if(t&&s){var x=document.createElement("span");x.className="wst";x.textContent="● "+s;t.parentNode.insertBefore(x,t.nextSibling);c.classList.add("wsl");}
+  var t=c.querySelector(".t"),s=dk==="all"?"":stateLine(o,dk,short);if(t&&s){var x=document.createElement("span");x.className="wst";x.textContent="● "+s;t.parentNode.insertBefore(x,t.nextSibling);c.classList.add("wsl");}else c.classList.add("wsl");
   if(o.href){var f=document.createElement("button");f.type="button";f.className="wfav"+(FAV[o.href]?" on":"");f.setAttribute("aria-label",(FAV[o.href]?"保存を外す":"行きたい所に保存"));f.textContent=FAV[o.href]?"★":"☆";f.dataset.h=o.href;c.appendChild(f);}
   return c;}
 function group(list,key,head,sub,dk,short){if(!list.length)return;var h=document.createElement("div");h.className="wh";h.innerHTML=head+' <b>'+list.length+'件</b><span>'+sub+'</span>';sec.appendChild(h);
@@ -129,8 +129,12 @@ function group(list,key,head,sub,dk,short){if(!list.length)return;var h=document
   if(list.length>5&&!more[key]){var m=document.createElement("button");m.type="button";m.className="wmore";m.dataset.k=key;m.textContent="もっと見る（あと"+(list.length-5)+"件）";sec.appendChild(m);}}
 function byE(a,b){var x=a.e||"9999",y=b.e||"9999";return x<y?-1:x>y?1:0;}
 function render(){setTimeout(function(){if(window.ykRun)window.ykRun();},0);var pf=curPref();btns();var wc=box.querySelector(".wc");
-  document.documentElement.classList.toggle("wmode",st.d!=="all");if(st.d!=="all")[].forEach.call(document.querySelectorAll("#v2bar button[data-t]"),function(b){b.classList.remove("cur");});sec.innerHTML="";sec.hidden=st.d==="all";
-  if(st.d==="all"){wc.textContent="";syncUrl();return;}
+  var LM=st.d!=="all"||!!st.f.fav;document.documentElement.classList.toggle("wmode",LM);if(LM)[].forEach.call(document.querySelectorAll("#v2bar button[data-t]"),function(b){b.classList.remove("cur");});sec.innerHTML="";sec.hidden=!LM;favBar();
+  if(!LM){wc.textContent="";syncUrl();return;}
+  /* 11/9 下のバー「行きたい」：☆で残した所を、日付で選ばずに全部見せる */
+  if(st.d==="all"){var LF=ALL.filter(function(o){return pass(o,"all",st.f,pf);}).sort(byE);wc.innerHTML="☆で残した所 <b>"+LF.length+"件</b>";
+   if(!LF.length){var z0=document.createElement("div");z0.className="wz";z0.innerHTML="<b>まだ☆で残した所はありません。</b><br>カードの右上の☆を押すと、ここに集まります。<button type=\"button\" data-zd=\"we\">この週末のおでかけを見る</button>";sec.appendChild(z0);syncUrl();return;}
+   group(LF,"f","☆で残した所","この端末に残っています。終わりが近い順","all",false);syncUrl();return;}
   var L=ALL.filter(function(o){return pass(o,st.d,st.f,pf);}),dd=D[st.d].d.filter(function(d){return d>=T;}).map(function(d,i,a){return i&&a[i-1].slice(5,7)===d.slice(5,7)?String(+d.slice(8)):md(d);}).join("・"),lab=D[st.d].l+"（"+dd+"）";
   var fl=Object.keys(st.f).map(function(k){return FL[k];});
   wc.innerHTML=(pf?pf+"で":"")+lab+"に行ける所"+(fl.length?"（"+fl.join("・")+"）":"")+" <b>"+L.length+"件</b>";
@@ -145,7 +149,7 @@ function render(){setTimeout(function(){if(window.ykRun)window.ykRun();},0);var 
   group(G,"g","長く開いている所","紅葉・イルミ・展覧会など。"+(D[st.d].d.length>1?"どちらの日でも行けます":"この日も開いています"),st.d,false);
   syncUrl();}
 box.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
-  if(b.dataset.d){st.d=st.d===b.dataset.d?"all":b.dataset.d;more={};render();try{c("日付："+D[b.dataset.d].l);}catch(x){}}
+  if(b.dataset.d){if(st.d==="all"&&st.f.fav)delete st.f.fav;st.d=st.d===b.dataset.d?"all":b.dataset.d;more={};render();try{c("日付："+D[b.dataset.d].l);}catch(x){}}
   else if(b.classList.contains("wsb")){sheetOpen=!sheetOpen;btns();render();}
   else if(b.dataset.f){if(st.f[b.dataset.f])delete st.f[b.dataset.f];else st.f[b.dataset.f]=1;if(st.d==="all")st.d="we";more={};render();try{c("しぼりこみ："+FL[b.dataset.f]);}catch(x){}}
   else if(b.classList.contains("wx")){st.f={};more={};render();}
@@ -153,11 +157,25 @@ box.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)
 sec.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
   if(b.classList.contains("wfav")){e.preventDefault();e.stopPropagation();var h=b.dataset.h;if(FAV[h])delete FAV[h];else FAV[h]=1;saveFav();
    [].forEach.call(sec.querySelectorAll('.wfav'),function(x){if(x.dataset.h===h){x.classList.toggle("on",!!FAV[h]);x.textContent=FAV[h]?"★":"☆";x.setAttribute("aria-label",FAV[h]?"保存を外す":"行きたい所に保存");}});
-   if(st.f.fav&&!FAV[h])render();else btns();return;}
+   favBar();if(st.f.fav&&!FAV[h])render();else btns();return;}
   if(b.classList.contains("wmore")){more[b.dataset.k]=1;render();return;}
-  if(b.dataset.zd){st.d=b.dataset.zd;render();}else if(b.dataset.zf){delete st.f[b.dataset.zf];render();}else if(b.dataset.zp){var a=F.querySelector("button");if(a)a.click();}});
+  if(b.dataset.zd){if(st.d==="all")delete st.f.fav;st.d=b.dataset.zd;render();}else if(b.dataset.zf){delete st.f[b.dataset.zf];render();}else if(b.dataset.zp){var a=F.querySelector("button");if(a)a.click();}});
 F.addEventListener("click",function(){setTimeout(function(){more={};render();},0);});
 /* 下のバーの「開催中」「これから」は、日付で選ばない一覧（タブ）にもどす */
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("#v2bar button[data-t]");if(b&&st.d!=="all"){st.d="all";render();}},true);
+/* 11/9 オーナーOK（見本⑤）：下のバーの「開催中」「これから」→「さがす」「行きたい（☆の数）」 */
+var IS='<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>',IF='<svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg>';
+function favBar(){var b=document.querySelector('#v2bar [data-a="fav"]');if(!b)return;var n=Object.keys(FAV).length,i=b.querySelector("b");if(!i){i=document.createElement("b");i.className="fvn";b.appendChild(i);}i.textContent=n;i.hidden=!n;b.classList.toggle("cur",!!st.f.fav&&st.d==="all");}
+function fixBar(){var bar=document.getElementById("v2bar");if(!bar)return false;if(bar.querySelector('[data-a="find"]'))return true;
+  var t=bar.querySelectorAll("button[data-t]");if(t.length<2)return true;
+  var f1=document.createElement("button");f1.type="button";f1.dataset.a="find";f1.innerHTML=IS+"<span>さがす</span>";
+  var f2=document.createElement("button");f2.type="button";f2.dataset.a="fav";f2.innerHTML=IF+"<span>行きたい</span>";
+  t[0].parentNode.replaceChild(f1,t[0]);t[1].parentNode.replaceChild(f2,t[1]);
+  var cs=document.createElement("style");cs.textContent='#v2bar [data-a=fav]{position:relative}#v2bar .fvn{position:absolute;top:4px;left:56%;font:500 9.5px Jost,sans-serif;background:#B0705A;color:#fff;border-radius:999px;padding:1px 5px;line-height:1.3}';document.head.appendChild(cs);
+  bar.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
+   if(b.dataset.a==="find"){e.stopImmediatePropagation();if(st.f.fav&&st.d==="all"){delete st.f.fav;st.d="we";render();}var y=F.getBoundingClientRect().top+scrollY-12;scrollTo({top:Math.max(0,y),behavior:"smooth"});try{c("下のバー：さがす");}catch(x){}}
+   else if(b.dataset.a==="fav"){e.stopImmediatePropagation();st.f={fav:1};st.d="all";sheetOpen=false;more={};render();var tp=box.closest(".tn-top"),y2=sec.getBoundingClientRect().top+scrollY-(tp?tp.offsetHeight:0)-8;scrollTo({top:Math.max(0,y2),behavior:"smooth"});try{c("下のバー：行きたい");}catch(x){}}},true);
+  favBar();return true;}
+if(!fixBar()){var tries=0,iv=setInterval(function(){if(fixBar()||++tries>40)clearInterval(iv);},150);}
 render();
 })();
