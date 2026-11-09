@@ -50,20 +50,18 @@
     ["KANTO REAL ESTATE","flist","/fudosan-list","関東不動産リスト","地価・人口・新しい施設・制度を、公式の数字で"],
     ["LIFE NOTE","tn","/","LIFE NOTE","関東のくらしのノート"]
   ];
+  /* 11/9 オーナーOK（月の見本4と同じ）：不動産のメニューは さがす／したいこと／ほかのリスト、下に小さい文字 */
   if(FU)L=[
-    ["LIST","flist","/fudosan-list","関東不動産リスト","地価・人口・新しい施設・制度を、公式の数字で"],
-    ["SEARCH","fq","/fudosan-list?fq=q","街で探す","市・区・町の名前で、その街の地価を"],
+    ["-","さがす"],
+    ["SEARCH","fq","/fudosan-list?fq=q","街の名前で探す","市・区・町の名前で、その街の地価を"],
     ["MAP","fmap","/fudosan-list?fq=map","地図で見る","上がった街・下がった街を、色で"],
-    ["RANKING","chika","/chika-kanto","関東 地価ランキング","7都県・329の市区町村の住宅地"],
-    ["NEW","fnew","/fudosan-list?fq=new","新着の数字","最近足した数字"],
-    ["-","CONTACT"],
-    ["BEFORE YOU SELL","uru","/uru.html","お家を売る前に大事なこと","ご相談の前に、ぜひご覧ください"],
-    ["FOR OWNERS","satei","#ml","お家の売却・査定のご相談","無料・メールだけ。売るか未定でも大丈夫です"],
-    ["REQUEST","koe","/koe","リクエスト・感想","増やしてほしい・これがほしい・使ってみた感想"],
-    ["-","関連サイト"],
-    ["KANTO ODEKAKE","list","/odekake","関東おでかけリスト","関東のイベント・新しいお店や施設"],
-    ["OKAIMONO LIST","okai","/okaimono","くらべたおかいものリスト","うさぎが数字で比べた物と、本当に安い物"],
-    ["LIFE NOTE","tn","/","LIFE NOTE","関東のくらしのノート"]
+    ["RANKING","chika","/chika-kanto","地価ランキング（関東7都県）","7都県・329の市区町村の住宅地"],
+    ["-","したいこと"],
+    ["SELL","uru","/uru.html","家を売りたい方へ","いくらで売れそうか、相場から順に"],
+    ["BUY","fbuy","/fudosan-list?fq=q","家を買いたい方へ","住む街を選ぶと、値段と売り出し中の物件へ"],
+    ["-","ほかのリスト"],
+    ["ODEKAKE","list","/odekake","関東おでかけリスト","関東のイベント・新しいお店や施設"],
+    ["OKAIMONO","okai","/okaimono","くらべたおかいものリスト","うさぎが数字で比べた物と、本当に安い物"]
   ];
   /* 入口は、3つのリストとご連絡だけ */
   if(here==="tn")L=[["-","LIFE NOTE"],
@@ -74,6 +72,8 @@
     ["REQUEST","koe","/koe","リクエスト・感想","増やしてほしい・これがほしい・使ってみた感想"],
     ["LISTING","listing","https://ig.me/m/ai_usagichan1","おでかけ掲載","新しいお店やイベントのご紹介"]];
   var css=
+  "#upan .fml{padding:4px 4px 0}#upan .fmt small{display:block;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.3em;color:#9C8775}#upan .fmt b{display:block;font-family:\"Shippori Mincho\",serif;font-size:22px;font-weight:600;letter-spacing:.12em;color:#2B2622;margin:2px 0 6px}#upan .fmg{font-size:12px;letter-spacing:.3em;color:#9C8775;margin:20px 0 0;padding-bottom:8px;border-bottom:1px solid #E6E6E6}#upan .fmr{display:block;text-decoration:none;color:#2B2622;padding:14px 6px;border-bottom:1px solid #EFEFEF}#upan .fmr small{display:block;font-family:Jost,sans-serif;font-size:10.5px;letter-spacing:.26em;color:#9C8775}#upan .fmr b{display:block;font-family:\"Shippori Mincho\",serif;font-size:17px;font-weight:700;letter-spacing:.06em;margin-top:3px}#upan .fmr.cur b:after{content:\"　いま\";font-family:sans-serif;font-size:11px;color:#B5735A;font-weight:400}html.night #upan .fmt b,html.night #upan .fmr b{color:#EDE6DF}html.night #upan .fmr,html.night #upan .fmg{border-color:#3A3430}"+
+  "#upan .ufx{margin:22px 4px 6px;padding-top:16px;border-top:1px solid #E6E6E6;font-size:12px;color:#9C8775;text-align:center;line-height:2}#upan .ufx a{color:#857A70;text-decoration:none;margin:0 6px}"+
   "#umenu{position:fixed;top:12px;right:12px;z-index:9990;width:42px;height:42px;border-radius:50%;border:1px solid #DADADA;background:rgba(255,255,255,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.07);-webkit-tap-highlight-color:transparent}"+
 "#utheme{position:fixed;top:12px;right:62px;z-index:9990;width:76px;height:42px;border-radius:99px;border:1px solid #DADADA;background:rgba(255,255,255,.94);padding:0;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.07);-webkit-tap-highlight-color:transparent;transition:opacity .25s,transform .25s}"+
   "#utheme .kn{position:absolute;top:4px;left:4px;width:32px;height:32px;border-radius:50%;background:#2B2622;transition:transform .35s cubic-bezier(.3,.7,.2,1)}"+
@@ -162,6 +162,7 @@
     listing:'<path d="M4 9l2-4.5h12L20 9"/><path d="M4 9a2 2 0 0 0 4 0a2 2 0 0 0 4 0a2 2 0 0 0 4 0a2 2 0 0 0 4 0"/><path d="M5.5 11v9h13v-9"/><path d="M9.5 20v-5h5v5"/>',
     flist:'<path d="M4 20V9l5-3v14M9 20V4l8 4v12M4 20h16"/><path d="M12 10h2M12 13h2M12 16h2"/>',
     tn:'<path d="M6 3h10a2 2 0 0 1 2 2v16l-3-2-3 2-3-2-3 2V5"/><path d="M9 8h6M9 11h6"/>',
+    fbuy:'<path d="M4 11l8-6 8 6v9H4z"/><circle cx="12" cy="14" r="2.5"/><path d="M13.8 15.8L16 18"/>',
     fq:'<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>',
     fmap:'<path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/>',
     chika:'<path d="M4 20V10M10 20V5M16 20v-7M22 20H2"/>',
@@ -182,23 +183,25 @@
   var SS={okai:"日用品の最安とおすすめ",tanka:"1Lあたり・1kgあたり",furusato:"寄付1万円あたりの量",nesage:"本当に値下がりした物",kaimawari:"1,000円ぽっきり",otoku:"AIに聞く・宿",list:"開催中・これから",map:"近くをさがす",ima:"近い順・きょう開く所",illumi:"日程・無料の所",koyo:"夜の時間・料金",tomari:"遠くのおでかけと宿",
     flist:"地価・人口・制度",fq:"市区町村の名前で",fmap:"上がった街を色で",chika:"関東329の街",chikao:"24区の上がり幅",fnew:"最近足した数字"};
   function item(x,tile){var cur=x[1]===here,ext=/^https?:/.test(x[2]);
-    return '<a class="ui '+(tile?"tl":"sm")+(cur?" cur":"")+'" data-k="'+x[1]+'" href="'+x[2]+'"'+(ext?' target="_blank" rel="noopener"':"")+(cur?' aria-current="page"':"")+'>'+(cur&&tile?'<u>いま</u>':'')+'<i><svg viewBox="0 0 24 24" aria-hidden="true">'+(IC[x[1]]||IC.list)+'</svg></i><span data-n="'+esc(x[3])+'">'+esc(ST[x[1]]||x[3])+'</span><em>'+esc(tile?(SS[x[1]]||x[4]):x[4])+'</em>'+(cur&&!tile?'<u>いま</u>':'')+'</a>';}
+    return '<a class="ui '+(tile?"tl":"sm")+(cur?" cur":"")+'" data-k="'+x[1]+'" href="'+x[2]+'"'+(ext?' target="_blank" rel="noopener"':"")+(cur?' aria-current="page"':"")+'>'+(cur&&tile?'<u>いま</u>':'')+'<i><svg viewBox="0 0 24 24" aria-hidden="true">'+(IC[x[1]]||IC.list)+'</svg></i><span data-n="'+esc(x[3])+'">'+esc((FU?0:ST[x[1]])||x[3])+'</span><em>'+esc(tile&&!FU?(SS[x[1]]||x[4]):x[4])+'</em>'+(cur&&!tile?'<u>いま</u>':'')+'</a>';}
   function build(){
     var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
     var btn=document.createElement("button");btn.id="umenu";btn.type="button";btn.setAttribute("aria-label","メニューを開く");btn.setAttribute("aria-expanded","false");btn.setAttribute("aria-controls","upan");btn.innerHTML="<i></i><i></i><i></i>";
     var mask=document.createElement("div");mask.id="umask";
     var pan=document.createElement("div");pan.id="upan";pan.setAttribute("role","dialog");pan.setAttribute("aria-modal","true");pan.setAttribute("aria-label","メニュー");pan.setAttribute("aria-hidden","true");
-    var h='<div class="uh"><a class="uhl" href="/" aria-label="LIFE NOTE の入口へ"><img src="'+(document.documentElement.classList.contains("night")?"/logo-s-night.png":"/logo-s.png")+'" alt=""><b>LIFE NOTE</b></a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+(here==="tn"?"":ug(FU?"KANTO REAL ESTATE":SH?"OKAIMONO LIST":"KANTO ODEKAKE"));
+    var h='<div class="uh"><a class="uhl" href="/" aria-label="LIFE NOTE の入口へ"><img src="'+(document.documentElement.classList.contains("night")?"/logo-s-night.png":"/logo-s.png")+'" alt=""><b>LIFE NOTE</b></a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+(here==="tn"?"":(FU?"":ug(SH?"OKAIMONO LIST":"KANTO ODEKAKE")));
     /* 最初のまとまり＝タイル、あとのまとまり＝小さいボタン */
     var tiled=false,openG="",rel=false;
+    if(FU){h+='<div class="fml"><div class="fmt"><small>MENU</small><b>関東不動産リスト</b></div>';L.forEach(function(x){if(x[0]==="-"){h+='<div class="fmg">'+esc(x[1])+'</div>';return;}var cur=x[1]===here;h+='<a class="fmr'+(cur?' cur':'')+'" data-k="'+x[1]+'" href="'+x[2]+'"'+(cur?' aria-current="page"':'')+'><small>'+esc(x[0])+'</small><b>'+esc(x[3])+'</b></a>';});h+='</div>';L=[];}
     L.forEach(function(x){
-      if(x[0]==="-"){if(openG){h+='</div>';openG="";}h+=ug(x[1]);rel=x[1]==="関連サイト";return;}
+      if(x[0]==="-"){if(openG){h+='</div>';openG="";}h+=ug(x[1]);rel=x[1]==="関連サイト"||x[1]==="ほかのリスト";return;}
       if(!openG){openG=tiled?"usm":"utg";tiled=true;h+='<div class="'+openG+(rel?" urel":"")+'">';}
       h+=item(x,openG==="utg");
     });
     if(openG)h+='</div>';
     /* 10/31 オーナー「夜の見た目？なにこれ」→ 切り替えは右上の太陽と月のマークだけ（月と同じ） */
     /* 11/4 オーナー「hp共有を入れよう アプリにしたら誰かに送れない」「cだけで良いかも」→ 11/4「もう少し分かりやすくても良かった、さっきの感じで下の方でよい」→ C の箱をメニューの下に */
+    if(FU)h+='<p class="ufx"><a href="/koe" data-k="koe">リクエスト・感想</a>／<a href="/privacy" data-k="privacy">プライバシー</a></p>';
     h+='</nav>'+
       '<div class="ush"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="M7.5 7.5L12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><div class="ust"><b>友だちに送る</b><small>このページを LINE などで送れます</small></div><div class="ub">'+(navigator.share?'<button type="button" data-s="share">送る</button>':'')+'<button type="button" class="nofilt" data-s="line">LINE</button><button type="button" data-s="copy">コピー</button></div></div>'+
       '<div class="us"><a href="https://www.instagram.com/ai_usagichan1/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@ai_usagichan1" target="_blank" rel="noopener">Threads</a><a href="https://x.com/ai_usagichan" target="_blank" rel="noopener">X</a></div>';
