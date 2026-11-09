@@ -168,7 +168,7 @@ def _page_spots(now, ended=None):
                     "day": f"{now.month}/{now.day}", "year": y, "bullets": [it.get("note", "")],
                     "url": _fix_url(it["url"]), "place": it.get("place", ""), "pref_fixed": it.get("pref", ""),
                     "free_fixed": bool(it.get("free")), "note": it.get("note", ""), "kind": "shop" if shop else "odekake",
-                    "open": it.get("open", ""), "days": it.get("days", ""), "page": True})
+                    "open": it.get("open", ""), "days": it.get("days", ""), "opennote": it.get("opennote", ""), "page": True})
     return out
 
 
@@ -726,6 +726,8 @@ def spot(e):
     span = _span(e)
     if span and e.get("kind") != "deal":
         when = span
+    if e.get("opennote"):  # 11/9 夜「月曜休館なのに今日行けると出る」→ 開く曜日をカードに出す
+        when += f"（{e['opennote']}）"
     free = _free(e)
     tag = f'<span class="tg">・{esc(free)}</span>' if free else ""
     now = _NOW[0] if _NOW else now_jst()
