@@ -136,11 +136,21 @@ jobs:
             printf 'name = "usagi-life-notes"\npages_build_output_dir = "site"\ncompatibility_date = "2024-09-23"\n\n[[kv_namespaces]]\nbinding = "CLICKS"\nid = "%s"\n' "$ns" > wrangler.toml
             echo "数える場所あり"
           else echo "数える場所が見つからない。公開だけする"; fi
-          $W pages deploy site --project-name=usagi-life-notes --branch=main --commit-dirty=true
+          # 11/9 新しいアドレスがある時は、前のアドレス usagi-life-notes.pages.dev は「引っ越しました」(301) だけを出す（Google の評価を新しい方へ移す）
+          if [ "$LIFE_PROJ" = "usagi-life-notes" ]; then
+            $W pages deploy site --project-name=usagi-life-notes --branch=main --commit-dirty=true
+          fi
           # 11/2 LIFE NOTE の新しいアドレスにも同じ物を出す（数える場所 KV も同じ。wrangler.toml の name だけ替える）
           if [ "$LIFE_PROJ" != "usagi-life-notes" ]; then
             [ -f wrangler.toml ] && sed -i "s/^name = \"usagi-life-notes\"/name = \"$LIFE_PROJ\"/" wrangler.toml
-            $W pages deploy site --project-name=$LIFE_PROJ --branch=main --commit-dirty=true || echo "$LIFE_PROJ に出せなかった"
+            if $W pages deploy site --project-name=$LIFE_PROJ --branch=main --commit-dirty=true; then
+              old=$(mktemp -d); printf '/* %s/:splat 301\n' "$LIFE_BASE" > "$old/_redirects"
+              (cd "$old" && $W pages deploy . --project-name=usagi-life-notes --branch=main --commit-dirty=true) || echo "前のアドレスの引っ越し案内を出せなかった"
+            else
+              echo "$LIFE_PROJ に出せなかった → 前のアドレスに全部出す"
+              [ -f wrangler.toml ] && sed -i "s/^name = \"$LIFE_PROJ\"/name = \"usagi-life-notes\"/" wrangler.toml
+              $W pages deploy site --project-name=usagi-life-notes --branch=main --commit-dirty=true
+            fi
           fi
           echo "NS=$ns" >> "$GITHUB_ENV"
       - name: 数えた数を読む（開いた数・押された数 → data/page-stats.json）

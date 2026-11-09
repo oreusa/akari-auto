@@ -1,6 +1,6 @@
 name: hp-reel（HPの紹介リールを作って置く・週1本）
 # 11/2 オーナー「29秒のリールで、HPの本物の画面を順番に見せる。最後は『プロフィールのリンクから』」「画面は毎週撮り直し」
-# 燈が reel-hp/D.json を保存すると動く。その時の本物のHP（usagi-life-notes.pages.dev）を撮って tools/hp_reel/make.py で動画にし、
+# 燈が reel-hp/D.json を保存すると動く。その時の本物のHP（lifenote-kanto.pages.dev）を撮って tools/hp_reel/make.py で動画にし、
 # Cloudflare Pages（akari-reels）に置いて URL を reel-hp/out/D.json に書く。予約は book.py（夕方 time にインスタのリール）。
 # 1回 約4分（週1回＝月約16分）。
 on:
