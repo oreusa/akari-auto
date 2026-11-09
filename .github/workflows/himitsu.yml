@@ -1,0 +1,17 @@
+name: himitsu（公開の記録に個人の連絡先が無いか）
+# 11/9 オーナー「GitHubだと他人に見られない？」→ このリポジトリは公開。notes/ docs/ にメール・携帯番号を書かない。
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: 公開の記録にメールアドレス・電話番号が無いか（11/9 オーナー「GitHubだと他人に見られない？」）
+        run: |
+          if grep -rnIE "[A-Za-z0-9._%+-]+@(gmail|yahoo|icloud|outlook|hotmail|privaterelay|docomo|ezweb|softbank)\.[a-z.]+|0[789]0-?[0-9]{4}-?[0-9]{4}" notes docs 2>/dev/null; then echo "公開の記録に個人の連絡先があります。消してください"; exit 1; fi
