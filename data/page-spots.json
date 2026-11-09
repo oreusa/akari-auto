@@ -2339,6 +2339,42 @@
       "note": "那須町｜コラボの展示とスタンプラリー。入園 大人1,600円",
       "url": "https://www.rindo.co.jp/event/134",
       "checked": "2026-11-08"
+    },
+    {
+      "title": "華厳滝ライトアップ",
+      "pref": "栃木",
+      "place": "華厳滝 県営無料観瀑台",
+      "when": "11/14〜11/23",
+      "start": "2026-11-14",
+      "ends": "2026-11-23T19:00",
+      "free": true,
+      "note": "日光市｜日没〜19:00。土日祝の夕方は華厳和太鼓",
+      "url": "https://www.nikko-kankou.org/event/1626",
+      "checked": "2026-11-09"
+    },
+    {
+      "title": "さのあかり まちなか寺社の光",
+      "pref": "栃木",
+      "place": "朝日森天満宮",
+      "when": "11/14〜11/22",
+      "start": "2026-11-14",
+      "ends": "2026-11-22T20:00",
+      "free": true,
+      "note": "佐野市｜朝日森天満宮は16:00〜20:00。佐野厄よけ大師は11/14・15・20〜22",
+      "url": "https://www.city.sano.lg.jp/miryokuhasshin/event/29076.html",
+      "checked": "2026-11-09"
+    },
+    {
+      "title": "志木駅東口駅前イルミネーション",
+      "pref": "埼玉",
+      "place": "志木駅",
+      "when": "11/14〜1/31",
+      "start": "2026-11-14",
+      "ends": "2027-01-31T21:00",
+      "free": true,
+      "note": "志木市｜16:30〜21:00。カパルの飾りも",
+      "url": "https://kanko-shiki.com/archives/5214",
+      "checked": "2026-11-09"
     }
   ]
 }
