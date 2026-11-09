@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - uses: actions/checkout@v4
+      - name: この枝の site を手元で見せる（見本用 http://localhost:8080/）
+        run: (cd site && nohup python3 -m http.server 8080 >/dev/null 2>&1 &) ; sleep 2
       - name: 撮る（昼・夜、上から4画面ずつ）
         env:
           URLS: ${{ inputs.urls }}
