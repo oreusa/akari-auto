@@ -467,3 +467,13 @@ var n=0;(function t(){run();if(!document.querySelector("#upan .nbk")&&++n<50)set
  var done={};function pf(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a||a.origin!==location.origin||a.target==="_blank")return;var u=a.pathname+a.search;if(done[u]||u===location.pathname||/^\/(c|moushikomi)/.test(u))return;done[u]=1;var l=document.createElement("link");l.rel="prefetch";l.href=u;document.head.appendChild(l);}
  document.addEventListener("touchstart",pf,{passive:true,capture:true});document.addEventListener("mouseover",pf,{passive:true,capture:true});
 }catch(e){}})();
+
+/* 11/10 オーナー・夜 #170「メニューを閉じてすぐ別の項目を押すと、閉じかけのメニューと暗い背景が次の画面に一瞬残る」→ ページを移る時と、戻ってきた時は、メニューを動きなしで閉じきる */
+(function(){try{
+var ss=document.createElement("style");ss.textContent="html.umenu-go #umask,html.umenu-go #upan{transition:none!important}";document.head.appendChild(ss);
+function shut(){var d=document.documentElement;d.classList.add("umenu-go");d.classList.remove("umenu-open");var m=document.getElementById("umask"),p=document.getElementById("upan");if(m)m.classList.remove("on");if(p){p.classList.remove("on");p.setAttribute("aria-hidden","true");}}
+function back(){document.documentElement.classList.remove("umenu-go");}
+document.addEventListener("click",function(e){if(e.defaultPrevented)return;var a=e.target.closest&&e.target.closest("a[href]");if(!a||a.target==="_blank"||a.origin!==location.origin)return;if(a.pathname===location.pathname&&a.search===location.search)return;shut();},false);
+addEventListener("pagehide",shut);
+addEventListener("pageshow",function(e){shut();requestAnimationFrame(function(){requestAnimationFrame(back)});});
+}catch(e){}})();
