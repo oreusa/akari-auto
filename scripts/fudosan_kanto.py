@@ -571,7 +571,7 @@ rep('<meta name="twitter:image" content="https://townnote.pages.dev/assets/ogp.p
 rep('<link rel="icon" href="assets/ogp.png"><link rel="apple-touch-icon" href="/assets/icon-180.png"><link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#FFFFFF">',
     '<link rel="icon" href="/logo.png">')
 rep('<title>関西不動産リスト｜地価・人口・新しい施設・制度を公式の数字で</title>', '<title>関東不動産リスト｜地価・人口・新しい施設・制度を公式の数字で</title>')
-rep('<script src="assets/night.js?v=22"></script><script src="assets/menu.js?v=44" defer></script>',
+rep('<script src="assets/night.js?v=22"></script><script src="assets/menu.js?v=45" defer></script>',
     f'<script src="/assets/night.js?v={VER["night.js"]}"></script><script src="/assets/menu.js?v={VER["menu.js"]}" defer></script>')
 rep('<link rel="stylesheet" href="assets/v2.css?v=6">', '<link rel="stylesheet" href="/assets/fv2.css?v=1">')
 rep('<script src="assets/v2sub.js?v=11" defer></script>', f'<script src="/assets/v2sub.js?v={VER["v2sub.js"]}" defer></script>')
@@ -695,7 +695,7 @@ J_CSS = """.jn{display:grid;grid-template-columns:1fr 1fr;gap:10px}.jn>div{backg
 .mk3{font-family:Jost,sans-serif;font-size:10.5px;letter-spacing:.3em;color:#9C8775;margin:30px 0 0}.jh{font-family:"Shippori Mincho",serif;font-weight:600;font-size:18px;letter-spacing:.1em;margin:4px 0 12px;padding:0;border:0}
 .st{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #ECECEC}.st:last-of-type{border-bottom:1px solid #ECECEC}.st i{font-style:normal;font-family:Jost,sans-serif;font-weight:300;font-size:20px;color:var(--pc);width:26px;flex:none;line-height:1.3}
 .st b{display:block;font-size:14.5px}.st p{margin:3px 0 0;font-size:13px;line-height:1.8;color:#4E453F}.st a{display:inline-block;font-size:11px;color:#8C7B6E;margin-top:4px}
-.jb{display:block;text-align:center;border-radius:12px;padding:14px 12px;font-size:14.5px;font-weight:700;margin-top:10px;text-decoration:none;color:#fff;background:#2B2622}.jb small{display:block;font-size:11px;font-weight:500;color:#D9D2CC;margin-top:2px}
+.jb{display:block;text-align:center;border-radius:12px;padding:14px 12px;font-size:14.5px;font-weight:700;margin-top:10px;text-decoration:none;color:#2B2622;border:1px solid #2B2622;background:#fff}.jb small{display:block;font-size:11px;font-weight:500;color:#857A70;margin-top:2px}.jb.b1{background:#2B2622;color:#fff;border-color:#2B2622}.jb.b1 small{color:#D9D2CC}
 .jp{font-size:11.5px;color:#8C7B6E;text-align:center;margin:8px 0 0;line-height:1.7}
 .jl{display:flex;justify-content:space-between;margin:14px 0 0;padding:12px 4px;border-top:1px solid #E6E6E6;border-bottom:1px solid #E6E6E6;text-decoration:none;color:#5E544D;font-size:13px}.jl i{font-style:normal;font-family:Jost;color:#9C8775}
 .flt{display:flex;flex-wrap:nowrap;justify-content:center;gap:0 13px;margin:24px 0 8px;padding:10px 0;border-top:1px solid #D4D4D4;border-bottom:1px solid #D4D4D4;overflow-x:auto}
@@ -730,8 +730,10 @@ def jikka_page(t):
 <p class="mk3" id="steps">STEPS</p><h2 class="jh">迷ったら、この順で</h2>
 {steps}
 <p class="mk3">NEXT</p><h2 class="jh">次にできること</h2>
-
-<p class="jp">売る・片付け・解体のサービスは、使えるものが決まりしだい、ここに足します。</p>
+<a class="jb b1" href="/moushikomi?machi={t["id"]}&amp;want={_q("相続した家のこと")}" data-k="実家｜売却の相談｜{E(n)}">この家の売却を相談する<small>無料・約1分</small></a>
+<a class="jb" href="/moushikomi?machi={t["id"]}&amp;want={_q("片付け・遺品整理の見積り")}" data-k="実家｜片付けの見積り｜{E(n)}">片付け・遺品整理の見積りを頼む<small>無料・約1分</small></a>
+<a class="jb" href="/moushikomi?machi={t["id"]}&amp;want={_q("解体の見積り")}" data-k="実家｜解体の見積り｜{E(n)}">解体費用の見積りを頼む<small>無料・約1分</small></a>
+<p class="jp">どれも同じお申し込みページです。内容を見て、メールでご連絡します。</p>
 <a class="jl" href="/jikka/#{fn}" data-k="実家｜一覧">ほかの街の実家・空き家ノート <i>→</i></a>
 <div class="ft">LIFE NOTE</div></div>
 {beacon("実家｜" + n)}</body></html>'''
@@ -752,11 +754,12 @@ _jl = head(f"関東の実家・空き家ノート｜{len(towns)}の街の地価�
 <h1>実家・空き家ノート<span>関東 {len(towns)}の街</span></h1>
 <p class="sub">親の家を相続した・空き家のままの方へ。<br>街を選ぶと、土地の値段と順番が見られます。</p>
 <div class="upd">2026年11月 更新</div></div>
-<nav class="flt">''' + "".join(f'<button data-p="{k}" style="--pc:{PI[pf][3]}"{" class=\"on\"" if i == 0 else ""}>{pf}</button>' for i, (k, pf, _) in enumerate(_jp)) + '</nav>' + \
+<style>.jq{{margin:24px 0 6px;padding:14px 16px 16px;background:#F5F4F2;border:1px solid #ECEAE6;border-radius:16px;text-align:center}}.jq b{{display:block;font-size:13px;letter-spacing:.08em;color:#2B2622;margin-bottom:10px}}.jq input{{width:100%;box-sizing:border-box;font:500 16px "Zen Kaku Gothic New",sans-serif;padding:12px 16px;border:1.5px solid #CFC6BC;border-radius:12px;background:#fff;color:#2B2622;-webkit-appearance:none;appearance:none}}.jq input:focus{{outline:none;border-color:#8C7B6E}}#jres{{display:none}}#jres.on{{display:block}}#jres p{{font-size:13px;color:#7A6E66;margin:14px 2px}}html.jq-on .flt,html.jq-on .pane{{display:none!important}}</style><div class="jq"><b>街の名前で探す</b><input id="jqi" type="search" placeholder="例：横浜市西区・川越市・柏市" enterkeyhint="search" autocomplete="off"></div><div id="jres"></div><nav class="flt">''' + "".join(f'<button data-p="{k}" style="--pc:{PI[pf][3]}"{" class=\"on\"" if i == 0 else ""}>{pf}</button>' for i, (k, pf, _) in enumerate(_jp)) + '</nav>' + \
     "".join(f'<section class="pane{" on" if i == 0 else ""}" id="{k}"><ul class="jli">' + "".join(f'<li><a href="/jikka/{t["id"]}" data-k="実家一覧｜{E(t["n"])}">{E(t["n"])}<small>住宅地 {pct(t["r8"])}</small></a></li>' for t in ts) + '</ul></section>' for i, (k, pf, ts) in enumerate(_jp)) + f'''
 <div class="ft">LIFE NOTE</div></div>
 <script>(function(){{function go(k){{var b=document.querySelector('.flt button[data-p="'+k+'"]');if(!b)return;document.querySelectorAll(".flt button,.pane").forEach(function(x){{x.classList.remove("on")}});b.classList.add("on");document.getElementById(k).classList.add("on");}}
 document.querySelectorAll(".flt button").forEach(function(b){{b.onclick=function(){{go(b.dataset.p);history.replaceState(null,"","#"+b.dataset.p);}}}});if(location.hash)go(location.hash.slice(1));}})();</script>
+<script>(function(){{var i=document.getElementById("jqi"),r=document.getElementById("jres"),all=[].slice.call(document.querySelectorAll(".pane .jli li")),tq;function n(s){{return s.replace(/\\s/g,"").replace(/[市区町村]$/,"")}}i.oninput=function(){{var q=n(i.value);r.innerHTML="";document.documentElement.classList.toggle("jq-on",!!q);r.classList.toggle("on",!!q);if(!q)return;var u=document.createElement("ul");u.className="jli";all.forEach(function(li){{if(li.querySelector("a").firstChild.textContent.replace(/\\s/g,"").indexOf(q)>=0)u.appendChild(li.cloneNode(true))}});if(u.children.length)r.appendChild(u);else r.innerHTML="<p>「"+i.value.trim()+"」は見つかりませんでした。府県から選んでください。</p>";clearTimeout(tq);tq=setTimeout(function(){{try{{var b=JSON.stringify({{k:"実家一覧｜検索："+i.value.trim()}});navigator.sendBeacon&&navigator.sendBeacon("/c",b)}}catch(e){{}}}},1500);}};}})();</script>
 {beacon("実家一覧")}</body></html>'''
 open(os.path.join(S, "jikka", "index.html"), "w", encoding="utf-8").write(_jl)
 
