@@ -16,7 +16,7 @@ S = os.path.join(R, "site")
 BASE = os.environ.get("LIFE_BASE") or "https://usagi-life-notes.pages.dev"
 OLD = "https://usagi-life-notes.pages.dev"
 # 全ページ共通の部品は、直したら番号を上げる（古い物が手元に残らないように）
-VER = {"menu.js": 42, "v2sub.js": 16, "v2.js": 9, "night.js": 18}  # 11/9 night 18（夜の灰色の丸）・menu 38（家を売る前に）・v2sub 15・v2 9（cardmark 12：紅葉の名所の絵）。上げ忘れると古い版が残る ／ 11/7 関東不動産リスト：menu.js（不動産のメニュー・メールの相談）・v2sub.js（不動産の下のバー）・night.js（街のページの夜）
+VER = {"menu.js": 43, "v2sub.js": 16, "v2.js": 9, "night.js": 18}  # 11/9 night 18（夜の灰色の丸）・menu 38（家を売る前に）・v2sub 15・v2 9（cardmark 12：紅葉の名所の絵）。上げ忘れると古い版が残る ／ 11/7 関東不動産リスト：menu.js（不動産のメニュー・メールの相談）・v2sub.js（不動産の下のバー）・night.js（街のページの夜）
 
 
 def rd(n):
@@ -197,4 +197,6 @@ if os.path.exists(sm):
 
 # ---------- 入口 ----------
 subprocess.run([sys.executable, os.path.join(R, "scripts", "lifenote_top.py")], check=True)
+# 11/10 表紙 v3（1つの地図で4つのノート。月の TOWN NOTE と同じ）
+subprocess.run([sys.executable, os.path.join(R, "scripts", "cover_kanto.py")])
 print("LIFE NOTE: / ・ /odekake", len(o), "・ /okaimono", len(k))
