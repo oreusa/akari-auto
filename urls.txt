@@ -1,0 +1,6 @@
+01 https://lifenote-kanto.pages.dev/jikka/
+02 https://lifenote-kanto.pages.dev/moushikomi
+03 https://lifenote-kanto.pages.dev/jikka/kanagawa-03
+04 https://lifenote-kanto.pages.dev/uru
+05 https://townnote.pages.dev/jikka/
+06 https://townnote.pages.dev/assets/menu.js?v=48
