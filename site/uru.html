@@ -84,12 +84,10 @@ body{padding-bottom:76px}
 <script>(function(){function go(){var T=[],q=document.getElementById("tq"),o=document.getElementById("tqo");if(!q)return;fetch("/assets/towns.json").then(function(r){return r.json()}).then(function(d){T=d.towns||d});q.addEventListener("input",function(){var v=q.value.trim();o.innerHTML="";if(!v)return;T.filter(function(t){return t.n.indexOf(v)>=0||(t.k||"").indexOf(v)>=0}).slice(0,8).forEach(function(t){var a=document.createElement("a");a.href="/machi/"+t.id;a.setAttribute("data-k","売る前に探す｜"+t.n);a.textContent=t.p+"　"+t.n;o.appendChild(a)})})}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();})();</script>
 </head><body><div class="wrap">
 <div class="s3h"><img src="/logo-s.png" width="52" height="52" alt="ロゴ"><div><div class="en">BEFORE YOU SELL</div><h1>家を売る前に</h1></div></div>
-<p class="s3l">この3つの順で進めると、迷いません。</p>
+<p class="s3l">この2つの順で進めると、迷いません。</p>
 <section class="s3"><div class="sn">STEP 01</div><h2>街の相場を見る</h2><p>あなたの街の地価の動き（国の地価公示）を見ます。</p>
 <div class="tqs"><input id="tq" type="search" placeholder="街の名前（例：川越市）" autocomplete="off" aria-label="街の名前で探す"><div id="tqo"></div></div></section>
-<section class="s3"><div class="sn">STEP 02</div><h2>近くの売り出し価格を見る</h2><p>同じ街で、いま売り出し中の家の値段を見ると、いくらくらいで出せそうかの目安になります。</p>
-<a class="b1" href="https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3786665&amp;pid=892742457&amp;vc_url=https%3A%2F%2Frealestate.yahoo.co.jp%2F" rel="nofollow sponsored" target="_blank" data-k="売る前に｜Yahoo!不動産">Yahoo!不動産で見る<small>広告</small></a></section>
-<section class="s3"><div class="sn">STEP 03</div><h2>大事なことを知っておく</h2>
+<section class="s3"><div class="sn">STEP 02</div><h2>大事なことを知っておく</h2>
 <div class="acc">
 <details><summary>査定の額で売れるとは限らない</summary><p>査定額は「この金額で売れます」というお約束ではありません。相場より高く売り出して売れ残り、値下げをくり返すと、「売れ残っている物件」と見られてしまうこともあります。</p></details>
 <details><summary>住んでいた家なら、税金が軽くなることも</summary><p>ご自身がお住まいだった家を売却されたときは、条件を満たせば、利益から最大3,000万円を差し引ける特例があります。ただし、確定申告が必要です（くわしくは国税庁・税務署にご確認ください）。</p></details>

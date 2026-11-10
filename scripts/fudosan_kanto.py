@@ -345,7 +345,7 @@ def itt_box(n, p="", tid=""):
     return (f'<section class="itt" id="itt"><div class="en2">IN THIS TOWN</div><h2>{E(n)}で</h2><div class="itg">'
             f'<a class="itc" href="/uru.html" data-k="この街で｜売りたい｜{E(n)}"><b>売りたい</b><span>いくらで売れそうか、相場から順に（無料）</span><i>手順を見る →</i></a>'
             f'' + buy_card(p, n) + f''
-            f'</div>' + (f'<a class="itg2" href="/jikka/{tid}" data-k="この街で｜実家・空き家｜{E(n)}">相続した実家・空き家なら（売る・片付け・解体） <i>→</i></a>' if tid else '') + f'<p class="itn">「買いたい」の3つは広告です（Yahoo!不動産のこの街の一覧が開きます）。</p></section>')
+            f'</div>' + f'<p class="itn">「買いたい」の3つは広告です（Yahoo!不動産のこの街の一覧が開きます）。</p></section>')
 
 
 def buy_box(n):
@@ -622,7 +622,7 @@ rep('<a class="co" data-en="BEFORE YOU SELL" href="uru.html">', '<a class="co" d
 rep('\n<a class="co" data-en="FOR AGENTS" href="gyosha.html">業者さまへ<span>物件のご紹介・ご相談はこちら</span></a>', '')
 # 11/9 オーナー「関東はアフェリエイトでいく。対応できないからだ」→ 売却・査定のご相談の箱は外す
 resub(r'\n<a class="co" data-en="FOR OWNERS" href="#ml">.*?</a>', '', re.S)
-rep('お家を売る前に大事なこと<span>ご相談の前に、ぜひご覧ください</span>', '家を売る前に<span>相場を見る・売り出し価格を見る・大事なことを知る</span>')
+rep('お家を売る前に大事なこと<span>ご相談の前に、ぜひご覧ください</span>', '家を売る前に<span>相場を見る・大事なことを知る</span>')
 rep('<div class="ft">ぴょんと街しらべ│調べた数字は、このページに残していきます<br><small style="font-size:10px;color:#A0A0A0">「前売り券」「近くの宿」のリンクは広告です（アソビュー・楽天トラベル）</small></div>',
     '<div class="ft">LIFE NOTE│調べた数字は、このページに残していきます</div>')
 rep('<a class="tnx" href="/odekake" data-k="下の入口｜関西おでかけリスト"><small>関連サイト</small><b>関西おでかけリスト<span>→</span></b><i>関西のイベント・新しいお店や施設を、公式ページつきで</i></a>',
@@ -664,8 +664,8 @@ rep('c("地図：府県 "+p);', 'c("地図：都県 "+p);')
 _m = re.search(r'<div class="sns"><h2>FOLLOW</h2>(.*?)<div class="cos">.*?</div>\s*</div>\s*(<div class="ft">.*?</div>)(<a class="tnx".*?</a>)', h, flags=re.S)
 assert _m, "下の欄が見つからない"
 _SELL = ('<section class="sell2"><small>BEFORE YOU SELL</small><h2>家を売る前に</h2>'
-         '<p>相場、いま売り出している家の値段、大事なことを、順番に見られます。</p>'
-         '<div class="b1"><a href="/uru.html" data-k="下｜売る前に読む">売る前に読む<span>相場・売り出し価格・大事なこと</span></a></div></section>')
+         '<p>相場と、売る前に知っておく大事なことを、順番に見られます。</p>'
+         '<div class="b1"><a href="/uru.html" data-k="下｜売る前に読む">売る前に読む<span>相場・大事なこと</span></a></div></section>')
 h = h[:_m.start()] + _SELL + _m.group(3) + '<div class="sns"><h2>FOLLOW</h2>' + _m.group(1) + '</div>' + _m.group(2) + h[_m.end():]
 h = h.replace("</style>", ".sell2{margin:40px 0 0;padding:26px 4px 0;border-top:1px solid #D6D9DE;text-align:center}.sell2 small{font-family:Jost,sans-serif;font-size:10px;letter-spacing:.32em;color:#9C8775}.sell2 h2{font-family:'Shippori Mincho',serif;font-weight:600;font-size:20px;letter-spacing:.1em;margin:6px 0 0;color:#2B2622}.sell2 p{font-size:12.5px;color:#6B6058;line-height:1.8;margin:8px 0 0}.sell2 .b1{margin:16px 0 0}.sell2 .b1 a{display:flex;flex-direction:column;justify-content:center;min-height:56px;text-decoration:none;font-weight:700;font-size:15px;color:#fff;background:#2B2622;border-radius:10px}.sell2 .b1 a span{font-weight:400;font-size:11px;color:#D9D2CC;margin-top:2px}.sell2+.tnx{margin-top:34px;border:0!important;border-top:1px solid #D6D9DE!important;border-radius:0!important;box-shadow:none!important}\n</style>", 1)
 for bad in ("関西", "府県", "大阪", "townnote.pages", "fudousan_ai", "fudosan_ai", "kansai", "TOWN NOTE", "ぴょん", "gyosha", "JSON.stringify({k"):
@@ -677,6 +677,7 @@ open(os.path.join(S, "fudosan-list.html"), "w", encoding="utf-8").write(h)
 
 # ================= 実家・空き家ノート（11/9 オーナー「つくれ」・月の関西版と同じ形）
 # 関東はアフィリエイトだけ（オーナー11/9）：相談・申し込みの言葉は使わない。売るは Yahoo!不動産の売却査定（VC）。片付け・解体は台帳に登録した広告ができてから足す
+# 11/10 オーナー「Yahooは資料請求が目的だろ？するかな売りたい人が」→ 売る人に Yahoo は出さない（A8 の査定が承認されたらそれを入れる）。実家ノートとの行き来も外す（完全別）
 J_SELL = YAHOO_RE.split("&vc_url=")[0] + "&vc_url=" + _q("https://realestate.yahoo.co.jp/sell/", safe="")
 J_SRC = [
     ("相続登記を確かめる", "2024年4月1日から、相続を知った日から3年以内の相続登記が義務になりました。それより前の相続も対象で、2027年3月31日までに登記が必要です。",
@@ -712,7 +713,7 @@ def jikka_page(t):
             "相続登記の義務、片付け、売るか解体するか、3,000万円の特別控除まで、公式の出典つきで順番に。")
     url = f"{BASE}/jikka/{t['id']}"
     ld = {"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "関東不動産リスト", "item": f"{BASE}/fudosan-list"},
+        {"@type": "ListItem", "position": 1, "name": "LIFE NOTE", "item": f"{BASE}/"},
         {"@type": "ListItem", "position": 2, "name": "実家・空き家ノート", "item": f"{BASE}/jikka/"},
         {"@type": "ListItem", "position": 3, "name": f"{n}の実家・空き家", "item": url}]}]}
     steps = "".join(f'<div class="st"><i>{i:02d}</i><div><b>{E(h)}</b><p>{E(p)}</p><a href="{E(u)}" target="_blank" rel="noopener" data-k="実家｜出典｜{i:02d}">出典：{E(sn)}</a></div></div>'
@@ -725,14 +726,13 @@ def jikka_page(t):
 <div class="upd">2026年11月 更新</div></div>
 <p class="mk3">LAND PRICE 2026</p><h2 class="jh">この街の土地の値段</h2>
 <div class="jn"><div><b>{pct(t["r8"])}</b><span>住宅地 1年の動き</span></div>{pr}</div>
-<p class="src">出典：令和8年地価公示（2026年1月1日時点）。{E(pfull)}{t["of"]}市区町村で{t["rank"]}位。<a href="/machi/{t["id"]}" data-k="実家｜街ページ">この街の数字をくわしく →</a></p>
-<p class="mk3">STEPS</p><h2 class="jh">迷ったら、この順で</h2>
+<p class="src">出典：令和8年地価公示（2026年1月1日時点）。{E(pfull)}{t["of"]}市区町村で{t["rank"]}位。</p>
+<p class="mk3" id="steps">STEPS</p><h2 class="jh">迷ったら、この順で</h2>
 {steps}
 <p class="mk3">NEXT</p><h2 class="jh">次にできること</h2>
-<a class="jb" href="{E(J_SELL)}" rel="nofollow sponsored" target="_blank" data-k="実家｜Yahoo!不動産 売却査定｜{E(n)}">いくらで売れるか、無料で査定を比べる<small>Yahoo!不動産の売却査定（広告）</small></a>
-<p class="jp">リンクは広告です。片付け・解体の見積りは、使えるサービスが決まりしだい足します。</p>
+
+<p class="jp">売る・片付け・解体のサービスは、使えるものが決まりしだい、ここに足します。</p>
 <a class="jl" href="/jikka/#{fn}" data-k="実家｜一覧">ほかの街の実家・空き家ノート <i>→</i></a>
-<a class="back" href="/fudosan-list" data-k="関東不動産リストへ">関東不動産リストを見る</a>
 <div class="ft">LIFE NOTE</div></div>
 {beacon("実家｜" + n)}</body></html>'''
     return head(title, desc, url, ld) + body
@@ -754,7 +754,6 @@ _jl = head(f"関東の実家・空き家ノート｜{len(towns)}の街の地価�
 <div class="upd">2026年11月 更新</div></div>
 <nav class="flt">''' + "".join(f'<button data-p="{k}" style="--pc:{PI[pf][3]}"{" class=\"on\"" if i == 0 else ""}>{pf}</button>' for i, (k, pf, _) in enumerate(_jp)) + '</nav>' + \
     "".join(f'<section class="pane{" on" if i == 0 else ""}" id="{k}"><ul class="jli">' + "".join(f'<li><a href="/jikka/{t["id"]}" data-k="実家一覧｜{E(t["n"])}">{E(t["n"])}<small>住宅地 {pct(t["r8"])}</small></a></li>' for t in ts) + '</ul></section>' for i, (k, pf, ts) in enumerate(_jp)) + f'''
-<a class="back" href="/fudosan-list" data-k="関東不動産リストへ">関東不動産リストを見る</a>
 <div class="ft">LIFE NOTE</div></div>
 <script>(function(){{function go(k){{var b=document.querySelector('.flt button[data-p="'+k+'"]');if(!b)return;document.querySelectorAll(".flt button,.pane").forEach(function(x){{x.classList.remove("on")}});b.classList.add("on");document.getElementById(k).classList.add("on");}}
 document.querySelectorAll(".flt button").forEach(function(b){{b.onclick=function(){{go(b.dataset.p);history.replaceState(null,"","#"+b.dataset.p);}}}});if(location.hash)go(location.hash.slice(1));}})();</script>
