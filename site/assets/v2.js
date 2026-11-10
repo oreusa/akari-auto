@@ -61,4 +61,4 @@ if(location.hash==="#kq")setTimeout(function(){var k=document.getElementById("kq
 (function(){if(document.querySelector('script[src*="cardmark.js"]'))return;var s=document.createElement("script");s.src="/assets/cardmark.js?v=14";s.defer=true;document.head.appendChild(s);})();
 
 /* 11/6 オーナーOK：日付4つ＋しぼりこむ（when.js。月と燈で同じ物） */
-(function(){if(document.querySelector('script[src*="when.js"]'))return;var s=document.createElement("script");s.src="/assets/when.js?v=5";document.head.appendChild(s);})();
+(function(){if(document.querySelector('script[src*="when.js"]'))return;var s=document.createElement("script");s.src="/assets/when.js?v=6";document.head.appendChild(s);})();

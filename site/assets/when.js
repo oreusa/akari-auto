@@ -87,6 +87,8 @@ var css=document.createElement("style");css.textContent=
 '.wn .wsh{margin-top:10px;padding:12px;border:1px solid #DADADA;border-radius:14px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.08)}'+
 '.wn .wsh .wf{display:flex;flex-wrap:wrap;gap:6px}.wn .wsh .wb{display:flex;justify-content:space-between;align-items:center;margin-top:10px}'+
 '.wn .wsh .wx{background:none;border:0;padding:6px 2px;text-decoration:underline;font-weight:500;font-size:12.5px}.wn .wsh .wok{background:#2B2622;color:#fff;border-color:#2B2622}'+
+'.wn .wr .wcl{flex:0 0 auto;order:9;margin-left:auto;border:1px solid #D9D9DE;border-radius:999px;padding:4px 12px;font:700 12px "Zen Kaku Gothic New",sans-serif;color:#2B2622;background:#fff;cursor:pointer}'+
+'.wn .wr .wx{background:none;border:0;padding:6px 2px;text-decoration:underline;font:500 12.5px "Zen Kaku Gothic New",sans-serif;color:#2B2622;cursor:pointer;flex:0 0 auto}'+
 '.wn .wsh .wnt{margin:8px 2px 0;font-size:11px;color:#6E6E6E;line-height:1.6}'+
 '.wsec{margin:0 0 8px}.wsec .wh{margin:18px 2px 8px;font:700 14px "Zen Kaku Gothic New",sans-serif;color:#2B2622}.wsec .wh b{font-size:15px}'+
 '.wsec .wh span{display:block;font-weight:500;font-size:11.5px;color:#6E6E6E;margin-top:2px}'+
@@ -110,6 +112,7 @@ var css=document.createElement("style");css.textContent=
 '.pr5 .n{font:400 20px/1 Jost,sans-serif;width:18px;text-align:center;color:#C0584A}.pr5 .ti{flex:0 0 40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--pc,#999) 14%,#fff)}'+
 '.pr5 .ti svg{width:22px;height:22px;fill:none;stroke:var(--pc,#777);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.pr5 .tx{flex:1;min-width:0}'+
 '.pr5 .tx b{display:block;font:700 13.5px "Zen Kaku Gothic New",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pr5 .tx span{font-size:11px;color:#6E6E6E}.pr5 .tx i{font-style:normal;font-weight:700;color:var(--pc,#777)}'+
+'.wfw>.fold1{display:none}.wfw.fold>*:not(.fold1){display:none!important}.wfw.fold>.fold1{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 4px;font-size:13px;color:#55505A;cursor:pointer}.wfw.fold .fold1 b{color:#2B2622}.wfw.fold .fold1 em{font-style:normal;font-family:Jost,sans-serif;font-size:16px;color:#2B2622;margin-left:4px}.wfw.fold .fold1 span:last-child{border:1px solid #D9D9DE;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;color:#2B2622;background:#fff}'+
 '.tn-top .fold1{display:none}.tn-top.fold>*:not(.fold1){display:none!important}.tn-top.fold .fold1{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 14px;font-size:13px;color:#55505A;cursor:pointer}'+
 '.tn-top.fold .fold1 b{color:#2B2622}.tn-top.fold .fold1 em{font-style:normal;font-family:Jost,sans-serif;font-size:16px;color:#2B2622;margin-left:4px}.tn-top.fold .fold1 span:last-child{border:1px solid #D9D9DE;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;color:#2B2622;background:#fff}'+
 'html.wmode .paper .blk.tb:not(:has(#wn)),html.wmode #none,html.wmode #odekake,html.wmode .v2tabs{display:none!important}'+
@@ -123,14 +126,10 @@ var sheetOpen=false,more={};
 function btns(){var pf=curPref(),h='<div class="wl">いつ行く？</div><div class="wd">';
   DS.forEach(function(k){var n=count(k,st.f,pf),d0=D[k].d[0],w=dw(d0),c=(k.charAt(0)==="d"?(w===6?"sa":(w===0||HOL[d0])?"su":""):"")+(k==="we"||k==="nwe"?" wk2":"")+(st.d===k?" on":(n?"":" z")),sm=D[k].d.map(md).join("・");
    h+='<button type="button" data-d="'+k+'" class="'+c+'" aria-pressed="'+(st.d===k)+'">'+(k.charAt(0)==="d"?W[w]:D[k].l)+'<small>'+sm+'</small></button>';});
-  h+='</div><div class="wkd"><button type="button" class="wff'+(st.f.free?' on':'')+'" data-f="free">無料</button><button type="button" class="wff'+(st.f.rain?' on':'')+'" data-f="rain">雨でもOK</button><span class="wks"></span><button type="button" data-k=""'+(st.k?'':' class="on"')+'>すべての種類</button>';
+  h+='</div><div class="wkd"><button type="button" class="wff'+(st.f.free?' on':'')+'" data-f="free">無料</button><button type="button" class="wff'+(st.f.rain?' on':'')+'" data-f="rain">雨でもOK</button><button type="button" class="wff'+(st.f.kid?' on':'')+'" data-f="kid">子どもと</button><span class="wks"></span><button type="button" data-k=""'+(st.k?'':' class="on"')+'>すべての種類</button>';
   var kc={},ki={};ALL.forEach(function(o){var x=kindOf(o);if(!x)return;var k0=st.k;st.k="";if(pass(o,st.d,st.f,pf))kc[x]=1;st.k=k0;if(!ki[x]){var sv=o.w.querySelector(".ib svg");if(sv)ki[x]=sv.innerHTML;}});
   KO.forEach(function(x){if(!kc[x]&&st.k!==x)return;h+='<button type="button" data-k="'+x+'"'+(st.k===x?' class="on"':'')+'><svg viewBox="0 0 24 24">'+(ki[x]||"")+'</svg>'+KN[x]+'</button>';});
-  h+='</div><div class="wr"><button type="button" class="wsb'+(nf()||sheetOpen?' on':'')+'" aria-expanded="'+sheetOpen+'">＋ しぼりこむ'+(nf()?'（'+nf()+'）':'')+'</button><span class="wc"></span></div>';
-  h+='<div class="wsh"'+(sheetOpen?'':' hidden')+'><div class="wl">しぼりこむ（いくつでも）</div><div class="wf">';
-  FK.forEach(function(k){var f2={};for(var x in st.f)f2[x]=1;f2[k]=1;var n=count(st.d,f2,pf);if(k==="fav"&&!Object.keys(FAV).length&&!st.f.fav)return;
-   h+='<button type="button" data-f="'+k+'"'+(st.f[k]?' class="on"':'')+' aria-pressed="'+!!st.f[k]+'">'+FL[k]+'<small>'+n+'</small></button>';});
-  h+='</div><p class="wnt">「子どもと」「雨でも（屋内）」は、公式ページを見て選んだ所です。☆はこの端末だけに残ります。</p><div class="wb"><button type="button" class="wx">外す</button><button type="button" class="wok">この条件で見る（'+count(st.d,st.f,pf)+'件）</button></div></div>';
+  h+='</div><div class="wr"><span class="wc"></span>'+(nf()||st.k?'<button type="button" class="wx">外す</button>':'')+'<button type="button" class="wcl">とじる ▴</button>'+'</div>';
   box.innerHTML=h;}
 function stateLine(o,dk,short){var R=D[dk].d.filter(function(d){return d>=T;}),od=R.filter(function(d){return openOn(o,d);});
   if(o.s&&o.s===o.e)return mdw(o.s)+"の1日だけ";
@@ -160,7 +159,7 @@ function render(){setTimeout(function(){if(window.ykRun)window.ykRun();},0);var 
    group(LF,"f","☆で残した所","この端末に残っています。終わりが近い順","all",false);syncUrl();return;}
   var L=ALL.filter(function(o){return pass(o,st.d,st.f,pf);}),dd=D[st.d].d.filter(function(d){return d>=T;}).map(function(d,i,a){return i&&a[i-1].slice(5,7)===d.slice(5,7)?String(+d.slice(8)):md(d);}).join("・"),lab=st.d.charAt(0)==="d"?D[st.d].l:D[st.d].l+"（"+dd+"）";
   var fl=Object.keys(st.f).map(function(k){return FL[k];});if(st.k)fl.unshift(KN[st.k]);
-  wc.innerHTML=(pf?pf+"で":"")+lab+"に行ける所"+(fl.length?"（"+fl.join("・")+"）":"")+" <b>"+L.length+"件</b>";
+  wc.innerHTML="<b>"+L.length+"件</b> 見つかりました";
   if(!L.length){var z=document.createElement("div");z.className="wz";var h='<b>この条件の所は、'+(pf?pf+"の":"")+lab+'にはありません。</b><br>押すと広がります：',any=0;
    DK.forEach(function(k){if(k===st.d)return;var n=count(k,st.f,pf);if(n){h+='<button type="button" data-zd="'+k+'">'+D[k].l+'にする（'+n+'件）</button>';any=1;}});
    Object.keys(st.f).forEach(function(k){var f2={};for(var x in st.f)if(x!==k)f2[x]=1;var n=count(st.d,f2,pf);if(n){h+='<button type="button" data-zf="'+k+'">「'+FL[k]+'」を外す（'+n+'件）</button>';any=1;}});
@@ -176,13 +175,14 @@ function render(){setTimeout(function(){if(window.ykRun)window.ykRun();},0);var 
   var S=L.filter(isShort).sort(byE),G=L.filter(function(o){return !isShort(o);}).sort(byE);
   group(S,"s","日にちの決まった催し",lab+"に開催。期間が短いので、先に見ておくと行きのがしません",st.d,true);
   group(G,"g","長く開いている所","紅葉・イルミ・展覧会など。"+(D[st.d].d.length>1?"どちらの日でも行けます":"この日も開いています"),st.d,false);
-  syncUrl();}
+  syncUrl();if(window.__wfold)window.__wfold();}
 box.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
   if(b.dataset.k!==undefined){st.k=b.dataset.k;if(st.d==="all")st.d="we";more={};render();up();try{c("種類："+(KN[st.k]||"すべて"));}catch(x){}}
   else if(b.dataset.d){if(st.d==="all"&&st.f.fav)delete st.f.fav;st.d=st.d===b.dataset.d?"all":b.dataset.d;more={};render();up();try{c("日付："+D[b.dataset.d].l);}catch(x){}}
   else if(b.classList.contains("wsb")){sheetOpen=!sheetOpen;btns();render();}
   else if(b.dataset.f){if(st.f[b.dataset.f])delete st.f[b.dataset.f];else st.f[b.dataset.f]=1;if(st.d==="all")st.d="we";more={};render();if(b.classList.contains("wff"))up();try{c("しぼりこみ："+FL[b.dataset.f]);}catch(x){}}
-  else if(b.classList.contains("wx")){st.f={};more={};render();}
+  else if(b.classList.contains("wcl")){if(window.__wfoldNow)window.__wfoldNow();}
+  else if(b.classList.contains("wx")){st.f={};st.k="";more={};render();}
   else if(b.classList.contains("wok")){sheetOpen=false;render();var y=sec.getBoundingClientRect().top+scrollY-90;scrollTo({top:Math.max(0,y),behavior:"smooth"});}});
 sec.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
   if(b.classList.contains("wfav")){e.preventDefault();e.stopPropagation();var h=b.dataset.h;if(FAV[h])delete FAV[h];else FAV[h]=1;saveFav();
@@ -194,10 +194,15 @@ F.addEventListener("click",function(e){var pb=e.target.closest&&e.target.closest
 function up(){var tp=box.closest(".tn-top"),y=sec.getBoundingClientRect().top+scrollY-(tp?tp.offsetHeight:0)-8;if(scrollY>y+4)scrollTo({top:Math.max(0,y),behavior:"smooth"});}
 try{var sp=localStorage.getItem("tn_pref"+(AK?"_k":""));if(sp&&sp!=="すべて")[].forEach.call(F.querySelectorAll("button"),function(b){if(b.textContent.trim()===sp&&!b.classList.contains("on"))setTimeout(function(){b.click();},0);});}catch(e){}
 window.addEventListener("load",function(){setTimeout(function(){if(!sheetOpen)render();},400);});
-(function(){var tp=box.closest(".tn-top");if(!tp)return;var f1=document.createElement("div");f1.className="fold1";tp.appendChild(f1);var ly=scrollY,t0=0;
- function lab(){var pf=curPref()||(AK?"関東":"関西"),c0=box.querySelector(".wc b");f1.innerHTML='<span><b>'+pf+'・'+(st.d==="all"?"☆":D[st.d].l)+(st.k?"・"+KN[st.k]:"")+'</b><em>'+(c0?c0.textContent:"")+'</em></span><span>えらび直す ▾</span>';}
- addEventListener("scroll",function(){var y=scrollY;if(!t0)t0=tp.getBoundingClientRect().top+y;if(y>t0+200&&y>ly+4){if(!tp.classList.contains("fold")){lab();tp.classList.add("fold");}}else if(y<ly-4||y<t0+200)tp.classList.remove("fold");ly=y;},{passive:true});
- f1.addEventListener("click",function(){tp.classList.remove("fold");});})();
+/* 11/10 オーナー「初めから出てるんじゃなくてスッキリ」：選ぶ欄は最初たたんで1行。押すと開く。開いた後も下に読むとまたたたむ */
+(function(){var tp=box.closest(".tn-top");if(!tp){tp=document.createElement("div");tp.className="wfw";box.parentNode.insertBefore(tp,box);tp.appendChild(box);}var f1=document.createElement("div");f1.className="fold1";tp.appendChild(f1);var ly=scrollY,oy=0;
+ function lab(){var pf=curPref()||(AK?"関東":"関西"),c0=box.querySelector(".wc b"),fl=Object.keys(st.f).map(function(k){return FL[k];});if(st.k)fl.unshift(KN[st.k]);
+  f1.innerHTML='<span><b>'+pf+'・'+(st.d==="all"?"☆":D[st.d].l)+(fl.length?"・"+fl.join("・"):"")+'</b><em>'+(c0?c0.textContent:"")+'</em></span><span>えらぶ ▾</span>';}
+ function fold(){lab();tp.classList.add("fold");}
+ window.__wfoldNow=fold;window.__wfold=function(){if(tp.classList.contains("fold"))lab();};
+ fold();
+ addEventListener("scroll",function(){var y=scrollY;if(!tp.classList.contains("fold")&&y>oy+240&&y>ly+4)fold();ly=y;},{passive:true});
+ f1.addEventListener("click",function(){tp.classList.remove("fold");oy=scrollY;});})();
 /* 下のバーの「開催中」「これから」は、日付で選ばない一覧（タブ）にもどす */
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("#v2bar button[data-t]");if(b&&st.d!=="all"){st.d="all";render();}},true);
 /* 11/9 オーナーOK（見本⑤）：下のバーの「開催中」「これから」→「さがす」「行きたい（☆の数）」 */
