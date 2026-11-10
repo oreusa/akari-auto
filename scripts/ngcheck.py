@@ -68,6 +68,19 @@ if _aspf:
             if key and key not in seen:
                 seen.add(key)
                 bad.append(key)
+# 11/10 オーナー「ライトのとこおかしい」: /sagasu の .mo（あと◯の街ボタン）が昼/夜ボタンの月(.mo)と同じ名前で、ボタンが二重に見えた
+# → menu.js を読むページで、昼/夜ボタンの中の名前（su/mo/kn/sp）をページ側の <style> で使っていたら赤にする。
+for f in sorted(glob.glob(os.path.join(root, "**", "*.html"), recursive=True)):
+    if SKIP.search(f):
+        continue
+    _t = open(f, errors="ignore").read()
+    if "menu.js" not in _t:
+        continue
+    _css = " ".join(re.findall(r"<style[^>]*>(.*?)</style>", _t, flags=re.S))
+    _css = re.sub(r"#utheme[^{]*\{[^}]*\}", " ", _css)
+    for m in re.finditer(r"(?:^|[},])\s*\.(su|mo|kn|sp)(?![\w-])", _css):
+        bad.append(f"{os.path.relpath(f, root)}：昼/夜ボタンと同じクラス名 .{m.group(1)}（名前を変える）")
+        break
 for b in bad[:80]:
     print("×", b)
 print(f"ngcheck: {len(bad)} 件" if bad else "ngcheck: なし")
