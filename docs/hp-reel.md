@@ -29,3 +29,4 @@
 | 日 | 見せた機能 | 画面の順 |
 |---|---|---|
 | 11/4 | HP全体をひと回り | / → /odekake → /tomari → /illumination → /furusato |
+| 11/11 | いまから行ける（/ima） | /ima → /ima（時間のボタン）→ /ima（日の入り・降水確率）→ /odekake |
