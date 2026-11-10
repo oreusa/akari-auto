@@ -2156,7 +2156,7 @@
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
   "at": "2026-11-10",
   "ok": false,
-  "sec": 15.3,
+  "sec": 15.4,
   "why": "<urlopen error timed out>"
  },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
@@ -7981,7 +7981,7 @@
  "https://www.haramuseum.or.jp/jp/arc/exhibition/2275/": {
   "at": "2026-11-10",
   "ok": false,
-  "sec": 1.0,
+  "sec": 0.6,
   "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate "
  },
  "https://www.hitachikaihin.jp/event/recommend-event/kaihanasotoasobi-2026.html": {
