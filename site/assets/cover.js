@@ -12,7 +12,9 @@ var td=document.getElementById("today");
 td.innerHTML="<div><b>"+(d.getMonth()+1)+"/"+d.getDate()+"（"+W[d.getDay()]+"）</b><span id='twx'></span></div><div>日の入り <b>"+sunset()+"</b><i>・</i><span id='tnow'>開催中 ―</span></div>";
 /* 前に押した府県：日付の下に「大阪のきょう ›」 */
 if(MY)td.insertAdjacentHTML("afterend",'<button class="mine" type="button">'+MY+'のきょう<span>›</span></button>');
-fetch("/wx?a="+(WX[MY]||WX[HOME])).then(function(r){return r.json()}).then(function(j){if(!j.w)return;var mx=0;(j.pops||[]).slice(0,4).forEach(function(x){mx=Math.max(mx,+x.v||0)});document.getElementById("twx").innerHTML="<i>・</i>"+(WX[MY]?MY:HOME)+" "+j.w.split(" ")[0].replace(/時々.*|のち.*/,"")+" <b>"+mx+"%</b>";}).catch(function(){});
+/* 11/10 オーナー「押した箇所で変えれるの？」→ 府県を押したら、その場で天気と「◯◯のきょう」も変える */
+function wxf(P){fetch("/wx?a="+(WX[P]||WX[HOME])).then(function(r){return r.json()}).then(function(j){if(!j.w)return;var mx=0;(j.pops||[]).slice(0,4).forEach(function(x){mx=Math.max(mx,+x.v||0)});document.getElementById("twx").innerHTML="<i>・</i>"+(WX[P]?P:HOME)+" "+j.w.split(" ")[0].replace(/時々.*|のち.*/,"")+" <b>"+mx+"%</b>";}).catch(function(){});}
+wxf(MY);
 var hint=document.createElement("p");hint.className="lhint";document.querySelector(".mapsec").appendChild(hint);
 var okp=document.createElement("div");okp.className="okp";okp.hidden=true;hint.after(okp);
 var labels={};svg.querySelectorAll("g[transform] text.jp").forEach(function(t){var g=t.parentNode,c=document.createElementNS("http://www.w3.org/2000/svg","text");c.setAttribute("class","cnt");c.setAttribute("y","40");g.appendChild(c);labels[t.textContent]=c;});
@@ -36,7 +38,8 @@ window.__openSheet=function(p){if(!C)return;var x=C.p[p],l=L==="ok"?"od":L;sh.st
  else if(l==="fu")h+='<div class="big"><div>平均の上がり幅<b>'+(x.avg>=0?"+":"")+x.avg.toFixed(1)+'%</b></div><div>上がった街<b>'+x.upT+'<small>／'+x.tw+'</small></b></div></div>'+li(x.top.map(function(t){return t.n+'　+'+t.r.toFixed(1)+'%'}))+'<a class="go" href="/chika-'+(KT?"kanto":"kansai")+'">'+p+'の街の地価を見る<span>→</span></a>';
  else if(KT)h+='<div class="big"><div>実家ノートの街<b>'+x.kN+'<small>街</small></b></div><div>住宅地 1年<b>'+(x.avg>=0?"+":"")+x.avg.toFixed(1)+'%</b></div></div><p class="sn">相続した家を売る・片付ける・解体する前に、街ごとの地価と4つの順番をまとめています。</p><a class="go" href="/jikka/">'+p+'の実家ノートを見る<span>→</span></a>';
  else h+='<div class="big"><div>戸建が売れた平均<b>'+man(x.kAvg)+'</b></div><div>売れた数<b>'+x.kN.toLocaleString()+'<small>件</small></b></div></div><p class="sn">相続した家を売る・片付ける・解体する前に、街ごとの4つの順番をまとめています。</p><a class="go" href="/jikka/">'+p+'の実家ノートを見る<span>→</span></a>';
- sh.innerHTML=h;sh.classList.add("on");sh.querySelector(".x").onclick=function(){sh.classList.remove("on")};try{localStorage.setItem("tn_pref",p)}catch(e){}};
+ sh.innerHTML=h;sh.classList.add("on");sh.querySelector(".x").onclick=function(){sh.classList.remove("on")};try{localStorage.setItem("tn_pref",p)}catch(e){}
+ if(WX[p]&&p!==MY){MY=p;wxf(p);var mb=document.querySelector("button.mine");if(mb)mb.innerHTML=p+"のきょう<span>›</span>";else{td.insertAdjacentHTML("afterend",'<button class="mine" type="button">'+p+'のきょう<span>›</span></button>');mb=document.querySelector("button.mine");if(mb&&window.__mineBind)window.__mineBind(mb);}}};
 /* 下へなでて閉じる */
 var sy=null;sh.addEventListener("touchstart",function(e){sy=e.touches[0].clientY},{passive:true});sh.addEventListener("touchend",function(e){if(sy!==null&&e.changedTouches[0].clientY-sy>60)sh.classList.remove("on");sy=null},{passive:true});
 svg.querySelectorAll(".pf path").forEach(function(el){el.addEventListener("click",function(){window.__openSheet(el.getAttribute("data-p"))})});
@@ -47,3 +50,11 @@ fetch("/assets/cover.json").then(function(r){return r.json()}).then(function(j){
 fetch("https://raw.githubusercontent.com/oreusa/akari-auto/main/data/nesage.json").then(function(r){return r.json()}).then(function(j){NS=j;paint()}).catch(function(){});
 document.addEventListener("usagi-theme",paint);
 })();
+
+/* 11/10 オーナーの画面「これとかミスある」→ おかいものカードの文字と矢印がはみ出す・商品名が長い・広告の行が1文字だけ次の行に */
+(function(){var pv=document.getElementById("kpv");
+function cl(){if(!pv)return;[].forEach.call(pv.querySelectorAll("div"),function(d){if(d.dataset.c)return;d.dataset.c=1;var i=d.querySelector("i"),t=d.textContent.slice(i?i.textContent.length:0),m=t.split("｜"),nm=m[0],pr=(m[1]||"").replace(/[\[【［(（][^\]】］)）]*[\]】］)）]/g," ").replace(/[\[【［(（].*$/,"").replace(/\s+/g," ").trim(),w=pr.split(" ").slice(0,3).join(" ");if(w.length>20)w=w.slice(0,20)+"…";
+ d.textContent="";if(i)d.appendChild(i);d.appendChild(document.createTextNode(nm+(w?"｜"+w:"")));});}
+if(pv){cl();new MutationObserver(cl).observe(pv,{childList:true});}
+[].forEach.call(document.querySelectorAll("p"),function(p){if(/広告（PR）があります/.test(p.textContent)&&p.closest("main,body")&&p.style.margin){p.style.margin="10px 16px 0";p.style.textWrap="balance";p.style.lineHeight="1.7";}});
+var cs=document.createElement("style");cs.textContent=".ls{grid-template-columns:44px minmax(0,1fr) auto!important;overflow:hidden}.ls{grid-template-areas:\"no en go\" \"no h3 h3\" \"no st st\" \"no pv pv\"!important}.ls .go{align-self:start!important}.ls h3{white-space:nowrap!important;min-width:0;overflow:hidden;text-overflow:ellipsis}";document.head.appendChild(cs);})();
