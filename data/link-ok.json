@@ -7966,6 +7966,12 @@
   "sec": 3.7,
   "why": ""
  },
+ "https://www.haramuseum.or.jp/jp/arc/exhibition/2275/": {
+  "at": "2026-11-10",
+  "ok": false,
+  "sec": 0.7,
+  "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate "
+ },
  "https://www.hitachikaihin.jp/event/recommend-event/kaihanasotoasobi-2026.html": {
   "at": "2026-11-07",
   "by": "browser",
