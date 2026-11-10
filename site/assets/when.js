@@ -225,5 +225,5 @@ function fixBar(){var bar=document.getElementById("v2bar");if(!bar)return false;
    else if(b.dataset.a==="fav"){e.stopImmediatePropagation();st.f={fav:1};st.d="all";sheetOpen=false;more={};render();var tp=box.closest(".tn-top"),y2=sec.getBoundingClientRect().top+scrollY-(tp?tp.offsetHeight:0)-8;scrollTo({top:Math.max(0,y2),behavior:"smooth"});try{c("下のバー：行きたい");}catch(x){}}},true);
   favBar();return true;}
 if(!fixBar()){var tries=0,iv=setInterval(function(){if(fixBar()||++tries>40)clearInterval(iv);},150);}
-render();
+render();try{document.documentElement.classList.add("whd")}catch(e){}
 })();
