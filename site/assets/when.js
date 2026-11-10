@@ -192,7 +192,9 @@ sec.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)
   if(b.dataset.zd){if(st.d==="all")delete st.f.fav;st.d=b.dataset.zd;render();}else if(b.dataset.zf){delete st.f[b.dataset.zf];render();}else if(b.dataset.zp){var a=F.querySelector("button");if(a)a.click();}});
 F.addEventListener("click",function(e){var pb=e.target.closest&&e.target.closest("button");setTimeout(function(){more={};render();if(pb){try{localStorage.setItem("tn_pref"+(AK?"_k":""),pb.textContent.trim());}catch(x){}up();}},0);});
 function up(){var tp=box.closest(".tn-top"),y=sec.getBoundingClientRect().top+scrollY-(tp?tp.offsetHeight:0)-8;if(scrollY>y+4)scrollTo({top:Math.max(0,y),behavior:"smooth"});}
-try{var sp=localStorage.getItem("tn_pref"+(AK?"_k":""));if(sp&&sp!=="すべて")[].forEach.call(F.querySelectorAll("button"),function(b){if(b.textContent.trim()===sp&&!b.classList.contains("on"))setTimeout(function(){b.click();},0);});}catch(e){}
+/* 11/10 #101 #165：地図から ?pref= で来たら、その府県を先に当てる（保存した府県より先） */
+var QP=q.get("pref")||"";if(QP){var qb=[].filter.call(F.querySelectorAll("button"),function(x){return x.textContent.trim()===QP||x.getAttribute("data-p")===QP;})[0];if(qb&&!qb.classList.contains("on"))setTimeout(function(){qb.click();},0);}
+try{var sp=localStorage.getItem("tn_pref"+(AK?"_k":""));var on0=F.querySelector("button.on");if(sp&&sp!=="すべて"&&!QP&&!(on0&&on0!==F.querySelector("button")))[].forEach.call(F.querySelectorAll("button"),function(b){if(b.textContent.trim()===sp&&!b.classList.contains("on"))setTimeout(function(){b.click();},0);});}catch(e){}
 window.addEventListener("load",function(){setTimeout(function(){if(!sheetOpen)render();},400);});
 /* 11/10 オーナー「初めから出てるんじゃなくてスッキリ」：選ぶ欄は最初たたんで1行。押すと開く。開いた後も下に読むとまたたたむ */
 (function(){var tp=box.closest(".tn-top");if(!tp){tp=document.createElement("div");tp.className="wfw";box.parentNode.insertBefore(tp,box);tp.appendChild(box);}var f1=document.createElement("div");f1.className="fold1";tp.appendChild(f1);var ly=scrollY,oy=0;
