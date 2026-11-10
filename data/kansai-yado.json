@@ -2763,36 +2763,36 @@
   },
   "日本遺産認定10周年記念「鯨とともに生きる」周遊スタンプラリー": {
     "v": 2,
-    "t": "2026-11-09",
+    "t": "2026-11-10",
     "ll": [
-      34.22611,
-      135.1675
+      33.7262,
+      135.9928
     ],
     "w": 1,
     "h": [
       {
-        "n": "GuesthouseRICO",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D151384",
-        "km": 1.3,
-        "r": 5.0,
-        "rc": 16,
-        "min": 3456
+        "n": "Sushi House",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184666",
+        "km": 1.2,
+        "r": 4.6,
+        "rc": 11,
+        "min": 4970
       },
       {
-        "n": "ビジネス旅館 みどり",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D107814",
-        "km": 2.1,
-        "r": 5.0,
-        "rc": 13,
-        "min": 3800
+        "n": "ホテルニューパレス",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D145482",
+        "km": 0.2,
+        "r": 4.11,
+        "rc": 638,
+        "min": 5500
       },
       {
-        "n": "ダイワロイネットホテル和歌山",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D31375",
-        "km": 0.7,
-        "r": 4.5,
-        "rc": 4574,
-        "min": 4972
+        "n": "ビジネスホテル美郷",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D20072",
+        "km": 0.2,
+        "r": 3.98,
+        "rc": 362,
+        "min": 4400
       }
     ]
   },
@@ -3347,36 +3347,36 @@
   },
   "浄厳院国際芸術祭2026": {
     "v": 2,
-    "t": "2026-11-04",
+    "t": "2026-11-10",
     "ll": [
-      35.10922,
-      135.97093
+      35.1325,
+      136.1305
     ],
     "w": 1,
     "h": [
       {
-        "n": "YANMAR SUNSET MARINA CLUBHOUSE&HOTEL",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188301",
-        "km": 2.6,
-        "r": 4.89,
-        "rc": 15,
-        "min": 33000
+        "n": "ホテルニューオウミ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D4679",
+        "km": 2.7,
+        "r": 4.34,
+        "rc": 1505,
+        "min": 5900
       },
       {
-        "n": "セトレ マリーナびわ湖",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D143373",
-        "km": 2.6,
-        "r": 4.47,
-        "rc": 512,
-        "min": 17000
+        "n": "グリーンホテルYES近江八幡",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D27974",
+        "km": 3.1,
+        "r": 4.18,
+        "rc": 1341,
+        "min": 6000
       },
       {
-        "n": "琵琶湖マリオットホテル",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D160835",
-        "km": 2.3,
-        "r": 4.25,
-        "rc": 659,
-        "min": 9210
+        "n": "ABホテル近江八幡",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D167698",
+        "km": 2.7,
+        "r": 4.08,
+        "rc": 1480,
+        "min": 3600
       }
     ]
   },
