@@ -83,7 +83,8 @@ def geo(now):
     """いまHPにあるカードだけ（ページを作るたびに取れなかった物は日付が今日になる。古い日付は消えたカード）"""
     g = load('data/townnotes-geo.json', {}) or {}
     recent = {(now.date() - dt.timedelta(days=i)).isoformat() for i in range(2)}
-    none = [k for k, v in g.items() if v and v[0] is None and (v + ['', '', '', ''])[3] in recent]
+    # 11/10 都県の無いカード（「いまが買い時の日用品のページ」などお店のページの案内）は場所ではないので数えない
+    none = [k for k, v in g.items() if v and v[0] is None and (v + ['', '', '', ''])[3] in recent and not k.startswith('｜')]
     return [f'地図のピンが出ないカード{len(none)}件：' + '、'.join(k.split('｜')[-1] for k in none[:8])] if none else []
 
 

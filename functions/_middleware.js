@@ -1,7 +1,7 @@
 // プロフィール用ページの数え係（Cloudflare Pages Functions）。
 // 数えるのは、ページの中でアフィリエイトのリンク（PR）が押された回数だけ（10/24 オーナー「あくまでアフィリエイトだけ」）。
 // /c?f=…&s=…&k=… を受けて、どの投稿から来た人が（f）、どの項目の（s）、どの物を（k）押したかを数える。リンク先はそのまま。
-// 開いた数（10/24 オーナー「HPも見られてるか足す」）は、1日の合計1つだけを数え、1日500で止める（押した数300と合わせてもKVの書き込み1日1,000回の無料枠に収まる）。
+// 開いた数（10/24 オーナー「HPも見られてるか足す」）は、1日の合計1つだけを数え、1日500で止める（押した数300・操作100と合わせてもKVの書き込み1日1,000回の無料枠に収まる）。
 // 呼ばれるのは / と /odekake と /okaimono と /fudosan-list と /c と /wx（site/_routes.json）。/wx は functions/wx.js。/ima と入口が /odekake を読むときは x-ima を付けるので開いた数に入れない。
 // 数は KV（CLICKS）のキーのメタデータ n に入れる。scripts/pagestats.py が読んで data/page-stats.json にする。
 const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|externalagent|buffer|embedly|whatsapp|discord|slack|telegram|curl|wget|python|headless/i;
@@ -14,10 +14,14 @@ function clean(v, max) {
   return String(v || "").replace(/[|\r\n\t]/g, "").slice(0, max);
 }
 
-async function bump(env, key) {
+// 11/10 おかいものの探す・条件・種類と、メニューの開け閉め（お金にならない操作）は別の枠。
+// 11/9 はこの2つが308のうち245で、買うボタン・宿の押された数を数える枠（300）を食べて止めた。
+const UI = new Set(["okaimono", "menu"]);
+
+async function bump(env, key, ui) {
   if (!env.CLICKS) return;
   // 無料枠（書き込み 1日1,000回・月と同じアカウント）を守る：数えた数が多い日は pagestats.py が「止め」を置く
-  if (await env.CLICKS.get(`${day()}|stop`)) return;
+  if (await env.CLICKS.get(`${day()}|${ui ? "stopui" : "stop"}`)) return;
   const got = await env.CLICKS.getWithMetadata(key);
   const n = ((got && got.metadata && got.metadata.n) || 0) + 1;
   await env.CLICKS.put(key, "", { metadata: { n }, expirationTtl: 60 * 60 * 24 * 180 });
@@ -64,7 +68,7 @@ export async function onRequest(ctx) {
       const f = clean(url.searchParams.get("f"), 24) || "direct";
       const s = clean(url.searchParams.get("s"), 16) || "x";
       const k = clean(url.searchParams.get("k"), 40) || "x";
-      ctx.waitUntil(bump(env, `${day()}|c|${f}|${s}|${k}`).catch(() => {}));
+      ctx.waitUntil(bump(env, `${day()}|c|${f}|${s}|${k}`, UI.has(f)).catch(() => {}));
     }
     return new Response(null, { status: 204 });
   }

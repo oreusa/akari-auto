@@ -14,7 +14,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import load_json, now_jst, path, save_json  # noqa: E402
 
 KEEP_DAYS = 30
-STOP_AT = 300  # 押された数が1日にこの数を超えたら、その日は数えるのをやめる（KVの書き込みは無料で1日1,000回。開いた数は _middleware.js が1日500で止める）
+UI_SRC = ("okaimono", "menu")  # 11/10 お金にならない操作（おかいものの探す・メニュー）。_middleware.js の UI と同じ
+UI_STOP_AT = 100  # 操作は1日100で止める（買うボタンの300の枠を食べないように）
+STOP_AT = 300  # 操作を除いた 押された数が1日にこの数を超えたら、その日は数えるのをやめる（KVの書き込みは無料で1日1,000回。開いた数は _middleware.js が1日500で止める）
 WRANGLER = ["npx", "-y", "wrangler@3.80.0"]
 
 
@@ -137,9 +139,14 @@ def main():
                             "元 x0715=Xの7:15の投稿・t0715=Threadsの7:15・direct=印なし。項目 buy-winter=冬じたくの欄のPR など",
                    "at": now.strftime("%m/%d %H:%M"), "days": days})
     t = days.get(now.date().isoformat(), {})
-    if t.get("clicks", 0) >= STOP_AT:
+    ui = sum(sum(t.get("click", {}).get(s, {}).values()) for s in UI_SRC)
+    money = t.get("clicks", 0) - ui
+    if money >= STOP_AT:
         _wr(["kv", "key", "put", f"--namespace-id={ns}", f"{now.date().isoformat()}|stop", "1", "--ttl=172800"])
         print(f"今日は {STOP_AT} を超えたので、数えるのを止めた（ページはそのまま）")
+    if ui >= UI_STOP_AT:
+        _wr(["kv", "key", "put", f"--namespace-id={ns}", f"{now.date().isoformat()}|stopui", "1", "--ttl=172800"])
+        print(f"今日の操作（おかいもの・メニュー）は {UI_STOP_AT} を超えたので止めた")
     print(f"今日 押された {t.get('clicks', 0)}")
     return 0
 
