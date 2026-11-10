@@ -21,6 +21,7 @@ from datetime import datetime, timedelta, timezone
 
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(R, "scripts"))
+import okai_home
 try:
     from tanka import BRAND, ALIAS
 except Exception:
@@ -214,7 +215,7 @@ def build():
         amz = [{"n": clean(a.get("name") or ""), "url": a.get("url") or (f"https://www.amazon.co.jp/dp/{a['asin']}" if a.get("asin") else "")}
                for a in c.get("amazon", []) if a.get("asin") or a.get("url")]
         cats.append({"k": k, "nm": NAME[k], "unit": c["unit"], "seen": c.get("seen", 0), "read": c.get("read", 0), "ok": c.get("ok", 0),
-                     "o": offers, "amz": amz, "use": USE.get(k)})
+                     "o": offers, "amz": amz, "use": USE.get(k), "avg": c.get("avg") or 0})
     return at, cats
 
 
@@ -386,12 +387,14 @@ function render(){
  document.querySelectorAll(".v4 [data-k2]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.k2===st.k?"true":"false");});
  /* 選んでいる種類を、横の列の見える所へ（ページは動かさない） */
  var kb=document.querySelector('.kat [aria-pressed="true"]');if(kb){var kt=kb.parentNode;kt.scrollLeft=Math.max(0,kb.offsetLeft-(kt.clientWidth-kb.offsetWidth)/2);}
- var c=C[st.k];if(!c){main.innerHTML='<p class="zero">上のボタンから、くらべたい物を選んでください。</p>';rd.innerHTML="";my();return;}
+ var c=C[st.k];if(!c){home();return;}document.documentElement.classList.remove("ok-home");
  var all=c.o,L=list(c).slice().sort(function(a,b){return a.u-b.u;}),tg={};
  /* 11/9 夜#148：1Lあたりと1kgあたりを同じ「安い順」にしない。多い方を先に出し、切りかえボタン */
  var UT={};L.forEach(function(o){if(o.ut)UT[o.ut]=(UT[o.ut]||0)+1;});var uts=Object.keys(UT).sort(function(a,b){return UT[b]-UT[a];});
  if(uts.length>1){if(uts.indexOf(st.ut)<0)st.ut=uts[0];L=L.filter(function(o){return o.ut===st.ut;});}all.forEach(function(o){o.tg.forEach(function(t){tg[t]=(tg[t]||0)+1;});});
- var h='<div class="hd"><h2>'+esc(c.nm)+'</h2><button type="button" class="st" id="v4s">'+(MY[c.k]?"★ いつもの物":"☆ いつもの物に入れる")+'</button></div>';
+ var h='<a class="ohb" href="'+location.pathname+'" data-home>‹ '+(ORDER.some(function(k){return MY[k]&&C[k];})?'いつもの物':'はじめの画面')+'</a><div class="hd"><h2>'+esc(c.nm)+'</h2><button type="button" class="st" id="v4s">'+(MY[c.k]?"★ いつもの物":"☆ いつもの物に入れる")+'</button></div>';
+ /* 11/10 いつもの物：種類の画面の上にも、しるし（値下がり中・お得）と平均の一言 */
+ var sv=sig(c);if(sv&&sv.cls)h+='<div class="ohv '+sv.cls+'"><i>'+sv.lab+'</i>いちばん安いのは '+yen(sv.o.u)+'円/'+esc(ohut(c,sv.o))+'。'+esc(sv.sub)+'。</div>';
  var keys=Object.keys(tg).filter(function(t){return tg[t]<all.length||st.c.indexOf(t)>=0;});
  if(keys.length){h+='<div class="chs" role="group" aria-label="条件">'+keys.map(function(t){var on=st.c.indexOf(t)>=0,n=list({o:all.filter(function(o){return o.tg.indexOf(t)>=0;})}).length;
   return '<button type="button" class="ch" data-t="'+esc(t)+'" aria-pressed="'+on+'"'+(!on&&!n?" disabled":"")+'>'+esc(t)+'<i>'+(on?(tg[t]||0):n)+'</i></button>';}).join("")+(st.p?'<button type="button" class="ch" data-p="1" aria-pressed="true">総額'+st.p.toLocaleString()+'円以下 ×</button>':"")+'</div>';}
@@ -443,6 +446,7 @@ function render(){
  if(MY[c.k]&&!MY[c.k].now){}
 }
 function bind(){
+ main.querySelectorAll("[data-home]").forEach(function(a){a.onclick=function(e){e.preventDefault();st.k="";st.c=[];st.n="";st.p=0;rd.innerHTML="";qi.value="";save(true);home();window.scrollTo(0,0);};});
  main.querySelectorAll("[data-t]").forEach(function(b){b.onclick=function(){var t=b.dataset.t,i=st.c.indexOf(t);if(i>=0)st.c.splice(i,1);else st.c.push(t);save();render();track("条件:"+t);var f=main.querySelector('[data-t="'+t+'"]');if(f)f.focus();};});
  main.querySelectorAll("[data-ut]").forEach(function(b){b.onclick=function(){st.ut=b.dataset.ut;render();};});
  main.querySelectorAll("[data-u]").forEach(function(b){b.onclick=function(){st.u=+b.dataset.u;save();render();var f=main.querySelector('[data-u="'+b.dataset.u+'"]');if(f)f.focus();};});
@@ -451,7 +455,7 @@ function bind(){
  var s=document.getElementById("v4s");if(s)s.onclick=function(){var c=C[st.k],L=list(c).slice().sort(function(a,b){return a.u-b.u;});
   if(MY[c.k])delete MY[c.k];else MY[c.k]={u:c.o.slice().sort(function(a,b){return a.u-b.u;})[0].u,d:AT};mysave();render();track("いつもの物:"+c.k);var f=document.getElementById("v4s");if(f)f.focus();};
 }
-function my(){var box=$("#v4my"),ks=Object.keys(MY).filter(function(k){return C[k];});if(!ks.length){box.hidden=true;$("#v4h").hidden=false;return;}
+function my(){var box=$("#v4my"),ks=Object.keys(MY).filter(function(k){return C[k];});/* 11/10 いつもの物ははじめの画面へ移した */if(true){box.hidden=true;$("#v4h").hidden=false;return;}
  box.hidden=false;$("#v4h").hidden=true;
  box.innerHTML='<div class="r1"><b>わが家のいつもの物</b><span class="mut">この端末だけに保存</span></div>'+ks.map(function(k){var c=C[k],m=c.o.slice().sort(function(a,b){return a.u-b.u;})[0],o=MY[k],bu=o.pu!=null?o.pu:o.u,df=bu-m.u,dd=/(\d{4})-(\d\d)-(\d\d)/.exec((o.pu!=null?o.pd:o.d)||"");
   var t=Math.abs(df)<0.05?'<span class="up mut">前に見た'+(dd?(+dd[2])+"/"+(+dd[3]):"時")+'から変わらず</span>':'<span class="up" style="color:'+(df>0?"var(--g,#1F7A4D)":"#B3261E")+'">前に見た'+(dd?(+dd[2])+"/"+(+dd[3]):"時")+'より'+yen(Math.abs(df))+'円'+(df>0?"安い":"高い")+'</span>';
@@ -492,14 +496,15 @@ function ask(v){var raw=(v||"").normalize("NFKC"),lim=0,pm=/(\d[\d,]*)\s*円?\s*
  var fx=document.getElementById("v4fx");if(fx)fx.onclick=function(){qi.focus();qi.select();};track("探す:"+v);
  var hd=main.querySelector(".hd");if(hd)hd.scrollIntoView({block:"start"});}
 $("#v4f").onsubmit=function(e){e.preventDefault();ask(qi.value);};
-window.addEventListener("popstate",function(){load();render();});
+__HOME_JS__
+window.addEventListener("popstate",function(){load();view();});
 load();var q0=new URLSearchParams(location.search).get("q");if(q0){qi.value=q0;setTimeout(function(){ask(q0);},0);}
-if(!st.k){var ks=Object.keys(MY).filter(function(k){return C[k];});st.k=ks[0]||"tissue";save();}render();
+view();
 })();
 """
 
 
-def page(at, cats, head):
+def page(at, cats, head, sale=None):
     data = {"at": at, "cats": cats, "syn": SYN}
     total = sum(c["seen"] for c in cats)
     have = {c["k"] for c in cats}
@@ -516,13 +521,14 @@ def page(at, cats, head):
 <div class="my" id="v4my" hidden></div>
 <form class="srch" id="v4f" role="search"><input id="v4q" type="search" placeholder="例：ダブルのトイレットペーパー" aria-label="くらべたい物を入れる（例：3000円以下のおむつ）" enterkeyhint="search"><button type="submit">くらべる</button></form>
 <p class="read" id="v4r" aria-live="polite"></p>
+<div id="okh"></div>
 <div class="chs kat" role="group" aria-label="くらべる種類">{pop}{rest}</div>
 <div id="v4m" aria-live="polite"></div>
 <p class="more">セール・ふるさと納税・宿の予約などのお得は <a href="/otoku">お得まとめ</a> にあります。</p>
 <script type="application/json" id="v4d">{json.dumps(data, ensure_ascii=False).replace("</", "<\\/")}</script>
 <noscript><p class="zero">このページは JavaScript を使います。<a href="/tanka">1個あたりの一覧</a>もご覧ください。</p></noscript>
 </main>"""
-    return f"""<!doctype html><html lang="ja"><head>{head}<style>{CSS}</style></head><body>{body}<script>{JS}</script></body></html>"""
+    return f"""<!doctype html><html lang="ja"><head>{head}<style>{CSS}{okai_home.CSS}</style></head><body>{body}<script>{JS.replace("__HOME_JS__", okai_home.js(sale))}</script></body></html>"""
 
 
 OTOKU_JS = r"""
@@ -601,7 +607,8 @@ def main():
             '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@400;500&display=swap">'
             + meta(r'<script src="/assets/night\.js[^"]*"></script>') + meta(r'<script src="/assets/menu\.js[^"]*"[^>]*></script>') +
             '<link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script>')
-    open(src, "w", encoding="utf-8").write(page(at, cats, head))
+    sale = okai_home.next_sale(os.path.join(R, "data", "sales.json"), datetime.now(JST))
+    open(src, "w", encoding="utf-8").write(page(at, cats, head, sale))
     open(os.path.join(SITE, "otoku.html"), "w", encoding="utf-8").write(otoku_page(old, head, cats))
     print("okai_v4:", len(cats), "種類", sum(len(c["o"]) for c in cats), "件")
 
