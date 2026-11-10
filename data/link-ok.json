@@ -2156,11 +2156,10 @@
   "why": ""
  },
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
-  "at": "2026-11-10",
-  "by": "browser",
+  "at": "2026-11-11",
   "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "sec": 15.2,
+  "why": "<urlopen error timed out>"
  },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
   "at": "2026-11-10",
@@ -3708,13 +3707,6 @@
   "ok": false,
   "sec": 1.2,
   "why": "503"
- },
- "https://hb.afl.rakuten.co.jp/hgc/g00pwdgo.m2lhf563.g00pwdgo.m2lhg30e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmatsuya%2Fus30-1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmatsuya%2Fi%2F10000095%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
-  "at": "2026-10-27",
-  "by": "browser",
-  "ok": true,
-  "sec": 5.5,
-  "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pwf8o.m2lhf313.g00pwf8o.m2lhgf0c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkyunan%2F742846%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkyunan%2Fi%2F10001074%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-10",
@@ -5697,7 +5689,7 @@
   "why": ""
  },
  "https://null2.nexus": {
-  "at": "2026-11-07",
+  "at": "2026-11-11",
   "ok": true,
   "sec": 1.4,
   "why": ""
@@ -5883,11 +5875,10 @@
   "why": ""
  },
  "https://tamaillumi.myportfolio.com/": {
-  "at": "2026-11-10",
-  "by": "browser",
-  "ok": false,
+  "at": "2026-11-11",
+  "ok": true,
   "sec": 0.1,
-  "why": "Page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://ta"
+  "why": "403"
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
   "at": "2026-11-10",
@@ -8089,13 +8080,6 @@
   "sec": 0.7,
   "why": ""
  },
- "https://www.kahaku.go.jp/": {
-  "at": "2026-10-27",
-  "by": "browser",
-  "ok": true,
-  "sec": 7.3,
-  "why": ""
- },
  "https://www.kanagawaparks.com/kurihama/news/2026100414204410478.html": {
   "at": "2026-11-10",
   "by": "browser",
@@ -8294,13 +8278,6 @@
   "by": "browser",
   "ok": true,
   "sec": 0.6,
-  "why": ""
- },
- "https://www.roppongihills.com/": {
-  "at": "2026-10-27",
-  "by": "browser",
-  "ok": true,
-  "sec": 4.2,
   "why": ""
  },
  "https://www.roppongihills.com/sp/christmashills/": {

@@ -4206,76 +4206,6 @@
       }
     ]
   },
-  "いろは坂": {
-    "v": 2,
-    "t": "2026-11-09",
-    "ll": [
-      36.74616,
-      139.51343
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "日光中禅寺湖温泉 ホテル花庵",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D54978",
-        "km": 1.6,
-        "r": 4.69,
-        "rc": 1310,
-        "min": 16400
-      },
-      {
-        "n": "Nikko Beans Hotel",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D192789",
-        "km": 2.4,
-        "r": 4.67,
-        "rc": 11,
-        "min": 8200
-      },
-      {
-        "n": "中禅寺ペンション",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D28461",
-        "km": 1.8,
-        "r": 4.65,
-        "rc": 318,
-        "min": 12650
-      }
-    ]
-  },
-  "華厳の滝": {
-    "v": 2,
-    "t": "2026-11-09",
-    "ll": [
-      36.73795,
-      139.50405
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "日光中禅寺湖温泉 ホテル花庵",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D54978",
-        "km": 0.6,
-        "r": 4.69,
-        "rc": 1310,
-        "min": 16400
-      },
-      {
-        "n": "Nikko Beans Hotel",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D192789",
-        "km": 1.2,
-        "r": 4.67,
-        "rc": 11,
-        "min": 8200
-      },
-      {
-        "n": "中禅寺ペンション",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D28461",
-        "km": 0.7,
-        "r": 4.65,
-        "rc": 318,
-        "min": 12650
-      }
-    ]
-  },
   "日光山内（神橋・東照宮のまわり）": {
     "v": 2,
     "t": "2026-11-09",
@@ -4357,41 +4287,6 @@
       }
     ]
   },
-  "吹割渓谷（吹割の滝）": {
-    "v": 2,
-    "t": "2026-11-10",
-    "ll": [
-      36.6839,
-      139.2739
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "老神温泉 天然湯 見晴荘",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D18983",
-        "km": 5.9,
-        "r": 4.6,
-        "rc": 156,
-        "min": 9900
-      },
-      {
-        "n": "老神温泉 源泉かけ流しの宿 金龍園",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D29972",
-        "km": 6.0,
-        "r": 4.47,
-        "rc": 251,
-        "min": 11550
-      },
-      {
-        "n": "老神温泉 伍楼閣",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D30761",
-        "km": 5.9,
-        "r": 4.42,
-        "rc": 849,
-        "min": 13450
-      }
-    ]
-  },
   "第10回うずまの竹あかり": {
     "v": 2,
     "t": "2026-11-10",
@@ -4424,6 +4319,25 @@
         "r": 4.24,
         "rc": 162,
         "min": 3600
+      }
+    ]
+  },
+  "多摩センターイルミネーション2026": {
+    "v": 2,
+    "t": "2026-11-10",
+    "ll": [
+      35.62394,
+      139.42426
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "LINK FOREST",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179467",
+        "km": 0.5,
+        "r": 4.5,
+        "rc": 647,
+        "min": 7840
       }
     ]
   }
