@@ -24,7 +24,7 @@ function paint(){if(!C)return;var mn=1e9,mx=-1e9;PREF.forEach(function(p){var v=
  /* 11/10 オーナー「色が濃いほどはやめよう 大阪と東京が多いのは当たり前」→ 濃さで差をつけない。地図はいつもの色、数字だけ変わる */
  svg.querySelectorAll(".pf path").forEach(function(el){el.style.removeProperty("fill-opacity");el.style.removeProperty("fill");});
  svg.classList.toggle("dim",L==="ok");
- PREF.forEach(function(p){var c=labels[p],x=C.p[p];if(!c)return;c.setAttribute("fill",document.documentElement.classList.contains("night")?{od:"#FFD39A",fu:"#A9CBFF",jk:"#AEE0B5",ok:"#F2B6C3"}[L]:({od:"#B8600F"}[L]||COL[L]));c.innerHTML=L==="od"?x.od+"<tspan>件</tspan>":L==="fu"?(x.avg>=0?"+":"")+x.avg.toFixed(1)+"<tspan>%</tspan>":L==="jk"?(KT?x.kN+"<tspan>街</tspan>":man(x.kAvg)):"";});
+ PREF.forEach(function(p){var c=labels[p],x=C.p[p];if(!c)return;c.setAttribute("fill",document.documentElement.classList.contains("night")?{od:"#FFD39A",fu:"#A9CBFF",jk:"#AEE0B5",ok:"#F2B6C3"}[L]:({od:"#231E1B"}[L]||COL[L]));c.innerHTML=L==="od"?x.od+"<tspan>件</tspan>":L==="fu"?(x.avg>=0?"+":"")+x.avg.toFixed(1)+"<tspan>%</tspan>":L==="jk"?(KT?x.kN+"<tspan>街</tspan>":man(x.kAvg)):"";});
  var tot=PREF.reduce(function(a,p){return a+C.p[p].od},0);document.getElementById("tnow").innerHTML="開催中 <b>"+tot+"</b>";
  var R=KT?"都県":"府県";
  hint.style.setProperty("--c",COL[L]);hint.innerHTML=L==="od"?R+"ごとの、いま開催中のおでかけの数":L==="fu"?R+"ごとの、住宅地の値段の1年の動き（平均）":L==="jk"?(KT?R+"ごとの、実家ノートでまとめた街の数":"戸建が売れた平均の値段（近畿レインズ）"):"きょう、ふだんより安くなっている物";
