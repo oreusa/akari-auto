@@ -898,18 +898,6 @@
       "checked": "2026-10-29"
     },
     {
-      "title": "里美かかし祭",
-      "pref": "茨城",
-      "place": "里美ふれあい館",
-      "when": "10/24〜11/21",
-      "start": "2026-10-24",
-      "ends": "2026-11-21T17:00",
-      "free": false,
-      "note": "常陸太田市｜手作りのかかしが里に並ぶ",
-      "url": "https://www.kanko-hitachiota.com/page/page002118.html",
-      "checked": "2026-10-30"
-    },
-    {
       "title": "海・花 そとあそび 2026",
       "pref": "茨城",
       "place": "国営ひたち海浜公園",
@@ -968,7 +956,7 @@
       "note": "前橋市｜街なかの会場をめぐる。水曜休み",
       "url": "https://maebashi-biennale.com/",
       "checked": "2026-11-09",
-      "days": "wd:012456h",
+      "days": "wd:012356",
       "opennote": "水曜休み（祝日は開場）"
     },
     {
@@ -1856,8 +1844,10 @@
       "ends": "2027-01-11T17:00",
       "free": false,
       "note": "月がテーマの秋冬展。一般1,800円・大学生と高校生1,000円・小中学生800円",
-      "url": "https://www.haramuseum.or.jp",
-      "checked": "2026-11-02"
+      "url": "https://www.haramuseum.or.jp/jp/arc/exhibition/2275/",
+      "checked": "2026-11-10",
+      "days": "wd:012356",
+      "opennote": "木曜休館・1/1休館"
     },
     {
       "title": "透明標本の世界 ―ガラスの中の骨格―",
