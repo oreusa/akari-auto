@@ -92,7 +92,11 @@ def tags(key, t):
     n = (t.get("name") or "") + " " + (t.get("amt") or "")
     out = []
     if key == "tissue":
-        out.append("ソフトパック" if ("ソフトパック" in n or "詰め替え" in n) else "箱")
+        # 11/10 夜#147：検索のための言葉（「箱ティッシュ」）だけで箱にしない。数に「箱」が付く時だけ箱、どちらも読めない時は付けない
+        if re.search(r"ソフトパック|ソフトティッシュ|詰め?替え?|つめかえ|\d+\s*(パック|袋|P)(?![a-z])", n):
+            out.append("ソフトパック")
+        elif re.search(r"\d+\s*(箱|BOX|ボックス)", t.get("name") or ""):
+            out.append("箱")
     elif key == "tp":
         if "ダブル" in n: out.append("ダブル")
         if "シングル" in n: out.append("シングル")
@@ -180,7 +184,7 @@ def build():
                     continue
                 o = {"n": clean(t.get("name") or "") or NAME[k], "p": int(t["price"]), "u": round(float(t["per"]), 1), "a": t.get("amt") or "",
                      "s": t.get("shop") or "", "w": site, "av": t.get("av") or 0, "rc": t.get("rc") or 0, "url": url,
-                     "img": t.get("img") or "", "bd": "", "og": origin(t.get("name") or "")}
+                     "img": t.get("img") or "", "bd": "", "og": origin(t.get("name") or ""), "sh": t.get("ship") or ""}
                 o["bd"] = brand(k, {**t, "bd": t.get("bd") or ""})
                 if o["bd"] and o["bd"] not in o["n"]:
                     o["n"] = (o["bd"] + " " + o["n"])[:34]
@@ -339,9 +343,9 @@ var $=function(s){return document.querySelector(s)},main=$("#v4m"),qi=$("#v4q"),
 function esc(x){return String(x==null?"":x).replace(/[<>&"']/g,function(c){return "&#"+c.charCodeAt(0)+";";});}
 function yen(v){return v>=100?Math.round(v).toLocaleString():(Math.round(v*10)/10).toString();}
 function nz(x){return (x||"").normalize("NFKC").toLowerCase().replace(/[\s　]/g,"").replace(/[ァ-ヶ]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96);});}
-var st={k:"",c:[],u:1,p:0};
-function load(){var p=new URLSearchParams(location.search);st.k=C[p.get("k")]?p.get("k"):"";st.c=(p.get("c")||"").split(",").filter(Boolean);st.u=+p.get("u")||1;st.p=+p.get("p")||0;}
-function save(push){var p=new URLSearchParams();if(st.k)p.set("k",st.k);if(st.c.length)p.set("c",st.c.join(","));if(st.u!==1)p.set("u",st.u);if(st.p)p.set("p",st.p);
+var st={k:"",c:[],u:1,p:0,n:""};
+function load(){var p=new URLSearchParams(location.search);st.k=C[p.get("k")]?p.get("k"):"";st.c=(p.get("c")||"").split(",").filter(Boolean);st.u=+p.get("u")||1;st.p=+p.get("p")||0;st.n=(p.get("n")||"").slice(0,40);}
+function save(push){var p=new URLSearchParams();if(st.k)p.set("k",st.k);if(st.c.length)p.set("c",st.c.join(","));if(st.u!==1)p.set("u",st.u);if(st.p)p.set("p",st.p);if(st.n)p.set("n",st.n);
  var u=location.pathname+(p.toString()?"?"+p.toString():"");try{history[push?"pushState":"replaceState"](null,"",u);}catch(e){}}
 function track(k){try{navigator.sendBeacon("/c?f=okaimono&s=v4&k="+encodeURIComponent(k));}catch(e){}}
 var MY={};try{MY=JSON.parse(localStorage.getItem("okai_my")||"{}");}catch(e){}
@@ -351,11 +355,15 @@ function mysave(){try{localStorage.setItem("okai_my",JSON.stringify(MY));}catch(
 function pic(o,s){return o.img?'<img src="'+esc(o.img)+'" alt="'+esc(o.n)+'" width="'+s+'" height="'+s+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'ph\'}))">':'<span class="ph" aria-hidden="true"></span>';}
 function attrs(c,o){var a=[];if(o.cnt>1){a.push("1個 "+o.one);a.push(o.cnt+"個入り");}else a.push(o.a);
  o.tg.forEach(function(t){if(t!=="名の知れたメーカー")a.push(t);});return '<div class="attr">'+a.map(function(x){return "<span>"+esc(x)+"</span>";}).join("")+"</div>";}
+/* 11/10 夜#130：発送の予定（すぐ届かない物）を一覧にも出す。読めなかった時は「お店で確かめて」と書く */
+function shp(o){return o.sh?'<p class="shp" style="margin:6px 0 0;font-size:12.5px;font-weight:700;color:#8F5E00">発送：'+esc(o.sh)+'</p>':'<p class="shp" style="margin:6px 0 0;font-size:11.5px;color:#6A6A6E">届く日は、お店のページで確かめてください</p>';}
 function rv(o){return +o.rc?'★'+o.av+'（レビュー'+(+o.rc).toLocaleString()+'件）':'レビューはまだありません';}
 function unitTxt(c,o){return c.unit==="1L・1kg"?(o&&o.ut?o.ut:"1L・1kgあたり（商品ごと）"):c.unit+"あたり";}
 function upd(){var m=/(\d{4})-(\d\d)-(\d\d) (\d\d:\d\d)/.exec(AT||"");return m?(+m[2])+"/"+(+m[3])+" "+m[4]:AT;}
-function list(c){return c.o.filter(function(o){return (!st.p||o.p<=st.p)&&st.c.every(function(t){return o.tg.indexOf(t)>=0;});});}
-function ctxt(){var a=st.c.slice();if(st.p)a.push("総額"+st.p.toLocaleString()+"円以下");return a;}
+/* 11/10 夜#145：商品名・容量で探した時は、その言葉を条件に残す（候補を押した後・戻る・再読込でも） */
+function nmok(o){if(!st.n)return true;var t=nz(o.n+" "+o.a);return st.n.split(" ").every(function(w){w=nz(w);return !w||t.indexOf(w)>=0;});}
+function list(c){return c.o.filter(function(o){return (!st.p||o.p<=st.p)&&nmok(o)&&st.c.every(function(t){return o.tg.indexOf(t)>=0;});});}
+function ctxt(){var a=st.c.slice();if(st.n)a.unshift(st.n);if(st.p)a.push("総額"+st.p.toLocaleString()+"円以下");return a;}
 function buyBtn(o){return '<a class="btn" href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="v4:'+esc(o.n.slice(0,20))+'">この商品を'+esc(o.w)+'で見る</a>';}
 function card(c,o,lab,why){return '<section><span class="lab '+(lab==="最安"?"c":"r")+'">'+lab+'<small>'+(lab==="最安"?(st.c.length||st.p?"この条件の中で":"全部の中で")+"・送料込み・"+unitTxt(c,o):"名の知れたメーカーの中で安い")+'</small></span>'+
  '<div class="it">'+pic(o,84)+'<div><div class="nm">'+esc(o.n)+'</div>'+attrs(c,o)+'</div></div>'+
@@ -404,8 +412,10 @@ function render(){
  var K='';
  if(c.use){var q=c.use,uu=q[1].indexOf(st.u)>=0?st.u:q[1][1];
   var r1=months(c,ch,uu),r2=br&&br!==ch?months(c,br,uu):null;
-  K+='<section class="mo"><b>1か月にいくら？</b><span class="mut" style="font-size:12px">　まとめ買いは何か月分か</span><div style="margin-top:6px"><span class="mut" style="font-size:12.5px">1か月に使う'+esc(q[0])+'　</span>'+
-   q[1].map(function(v){return '<button type="button" class="ch" data-u="'+v+'" aria-pressed="'+(v===uu)+'">'+v+esc(q[0]==="L・kg"?"L":q[0])+'</button>';}).join("")+'</div><div class="row2">'+
+  /* 11/10 夜#148：kgの物にLの量を掛けない。量の単位は、いちばん安い物の単位（L か kg）にそろえる */
+  var qu=q[0]==="L・kg"?(ch.ut==="1kgあたり"?"kg":"L"):q[0];if(r2&&q[0]==="L・kg"&&br.ut!==ch.ut)r2=null;
+  K+='<section class="mo"><b>1か月にいくら？</b><span class="mut" style="font-size:12px">　まとめ買いは何か月分か</span><div style="margin-top:6px"><span class="mut" style="font-size:12.5px">1か月に使う量（'+esc(qu)+'）　</span>'+
+   q[1].map(function(v){return '<button type="button" class="ch" data-u="'+v+'" aria-pressed="'+(v===uu)+'">'+v+esc(qu)+'</button>';}).join("")+'</div><div class="row2">'+
    '<div><span class="lab c" style="font-size:11px">最安</span><br>'+esc(ch.cnt>1?ch.cnt+"個入り":ch.a)+'＝<b>'+mtxt(r1)+'</b><br>1か月 <b class="n">'+Math.round(r1.per).toLocaleString()+'</b>円</div>'+
    (r2?'<div><span class="lab r" style="font-size:11px">おすすめ</span><br>'+esc(br.cnt>1?br.cnt+"個入り":br.a)+'＝<b>'+mtxt(r2)+'</b><br>1か月 <b class="n">'+Math.round(r2.per).toLocaleString()+'</b>円</div>':"")+
    '</div><div class="why">使う量はご自分で選んでください。1か月の値段は、1個あたりの値段×使う量の目安です。</div></section>';}
@@ -417,14 +427,14 @@ function render(){
  var ut=unitTxt(c,ch).replace("あたり","");
  if(uts.length>1)h+='<div class="chs" role="group" aria-label="量の単位">'+uts.map(function(u){return '<button type="button" class="ch" data-ut="'+esc(u)+'" aria-pressed="'+(u===st.ut)+'">'+esc(u.replace("あたり",""))+'あたりでくらべる<i>'+UT[u]+'</i></button>';}).join("")+'</div><p class="kij" style="margin-top:4px">液体（L）と粉・ジェル（kg）は、べつべつにくらべています。</p>';
  h+='<p class="kij">送料込みの値段 ÷ 量（'+esc(unitTxt(c))+'）でくらべています　'+esc(upd())+' 更新</p>';
- h+='<section class="hero"><span class="bd">'+(ctxt().length?'この条件でいちばん安い':'いちばん安い')+'</span><div class="hx">'+pic(ch,118)+'<div style="min-width:0"><div class="pz">'+yen(ch.u)+'<small>円／'+esc(ut)+'</small></div><div class="sub">総額 '+ch.p.toLocaleString()+'円（送料込み）<br>'+esc(ch.s)+'・'+esc(ch.w)+(+ch.rc?'　★'+ch.av:'')+'</div></div></div><div class="nm3">'+esc(ch.n)+'</div>'+attrs(c,ch)+
+ h+='<section class="hero"><span class="bd">'+(ctxt().length?'この条件でいちばん安い':'いちばん安い')+'</span><div class="hx">'+pic(ch,118)+'<div style="min-width:0"><div class="pz">'+yen(ch.u)+'<small>円／'+esc(ut)+'</small></div><div class="sub">総額 '+ch.p.toLocaleString()+'円（送料込み）<br>'+esc(ch.s)+'・'+esc(ch.w)+(+ch.rc?'　★'+ch.av:'')+'</div></div></div><div class="nm3">'+esc(ch.n)+'</div>'+attrs(c,ch)+shp(ch)+
   '<a class="buy" href="'+esc(ch.url)+'" rel="sponsored noopener" target="_blank" data-k="v4:'+esc(ch.n.slice(0,20))+'">'+esc(ch.w)+'で見る ›</a></section>';
  if(br&&br!==ch)h+='<a class="rec2" href="'+esc(br.url)+'" rel="sponsored noopener" target="_blank" data-k="v4r:'+esc(br.n.slice(0,20))+'">'+pic(br,72)+'<div style="min-width:0;flex:1"><span class="bd">おすすめ</span><span style="font-size:11px;color:#555;margin-left:6px">名の知れたメーカーでいちばん安い'+(L.indexOf(br)>0?'・安い順で'+(L.indexOf(br)+1)+'番目':'')+'</span><div style="font-size:12.5px;font-weight:700;margin-top:4px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+esc(br.n)+'</div><div><span class="pz">'+yen(br.u)+'</span>円／'+esc(unitTxt(c,br).replace("あたり",""))+'　<span style="font-size:11.5px;color:#555">'+esc(br.w)+'で見る ›</span></div></div></a>';
  else if(br===ch)h+='<p class="kij">いちばん安い物が、名の知れたメーカー（'+esc(ch.bd)+'）の物です。</p>';
  var R=L.filter(function(o){return o!==ch&&o!==br;});
  if(R.length){h+='<div class="gh">ほかの物も安い順に<small>'+R.length+'件</small></div><div class="grd">';
  R.forEach(function(o){var i=L.indexOf(o);var sm=o.same.map(function(j){return c.o[j];}).filter(function(x){return L.indexOf(x)>=0&&x.p<o.p;})[0];
-  h+='<a href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="v4l:'+esc(o.n.slice(0,20))+'"><span class="rk2">'+(i+1)+'</span>'+pic(o,160)+'<div class="nm4">'+esc(o.n)+'</div><div class="pz">'+yen(o.u)+'<small>円／'+esc(unitTxt(c,o).replace("あたり",""))+'</small></div><div class="sub">総額 '+o.p.toLocaleString()+'円・送料込み<br>'+esc(o.s)+'・'+esc(o.w)+(sm?'<br><b style="color:#B3261E">同じ物が'+esc(sm.w)+'で'+(o.p-sm.p).toLocaleString()+'円安い</b>':'')+'</div><div class="go2"><span>'+esc(o.w)+'で見る ›</span></div></a>';});
+  h+='<a href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="v4l:'+esc(o.n.slice(0,20))+'"><span class="rk2">'+(i+1)+'</span>'+pic(o,160)+'<div class="nm4">'+esc(o.n)+'</div><div class="pz">'+yen(o.u)+'<small>円／'+esc(unitTxt(c,o).replace("あたり",""))+'</small></div><div class="sub">総額 '+o.p.toLocaleString()+'円・送料込み<br>'+esc(o.s)+'・'+esc(o.w)+(o.sh?'<br><b style="color:#8F5E00">発送：'+esc(o.sh)+'</b>':'')+(sm?'<br><b style="color:#B3261E">同じ物が'+esc(sm.w)+'で'+(o.p-sm.p).toLocaleString()+'円安い</b>':'')+'</div><div class="go2"><span>'+esc(o.w)+'で見る ›</span></div></a>';});
  h+='</div>';}
  h+='<details class="kw"><summary><span>くわしく<br><small>'+(c.use?'1か月にいくら・':'')+'値段の動き・比べ方</small></span></summary>'+K+'</details>';
  h+='<div class="na"><b>順位に入れていない物</b><br>Amazon：送料込みの値段がお店のページでしか分からないため、順位に入れていません。'+(c.amz.length?'<br>'+c.amz.slice(0,2).map(function(a){return '<a href="'+esc(a.url)+'" rel="sponsored noopener" target="_blank">'+esc(a.n||c.nm)+'（Amazonで見る）</a>';}).join("<br>"):"")+'</div>';
@@ -436,7 +446,7 @@ function bind(){
  main.querySelectorAll("[data-t]").forEach(function(b){b.onclick=function(){var t=b.dataset.t,i=st.c.indexOf(t);if(i>=0)st.c.splice(i,1);else st.c.push(t);save();render();track("条件:"+t);var f=main.querySelector('[data-t="'+t+'"]');if(f)f.focus();};});
  main.querySelectorAll("[data-ut]").forEach(function(b){b.onclick=function(){st.ut=b.dataset.ut;render();};});
  main.querySelectorAll("[data-u]").forEach(function(b){b.onclick=function(){st.u=+b.dataset.u;save();render();var f=main.querySelector('[data-u="'+b.dataset.u+'"]');if(f)f.focus();};});
- ["v4x","v4x2"].forEach(function(id){var x=document.getElementById(id);if(x)x.onclick=function(){st.c=[];st.p=0;rd.innerHTML="";qi.value="";save();render();};});
+ ["v4x","v4x2"].forEach(function(id){var x=document.getElementById(id);if(x)x.onclick=function(){st.c=[];st.p=0;st.n="";rd.innerHTML="";qi.value="";save();render();};});
  main.querySelectorAll("[data-p]").forEach(function(b){b.onclick=function(){st.p=0;rd.innerHTML="";save();render();};});
  var s=document.getElementById("v4s");if(s)s.onclick=function(){var c=C[st.k],L=list(c).slice().sort(function(a,b){return a.u-b.u;});
   if(MY[c.k])delete MY[c.k];else MY[c.k]={u:c.o.slice().sort(function(a,b){return a.u-b.u;})[0].u,d:AT};mysave();render();track("いつもの物:"+c.k);var f=document.getElementById("v4s");if(f)f.focus();};
@@ -448,7 +458,7 @@ function my(){var box=$("#v4my"),ks=Object.keys(MY).filter(function(k){return C[
   return '<a href="?k='+k+'" data-my="'+k+'"><div style="flex:1"><b>'+esc(c.nm)+'</b><div class="mut" style="font-size:11.5px">いちばん安い物の'+unitTxt(c)+'</div></div><div style="text-align:right"><span class="n" style="font-size:16px">'+yen(m.u)+'</span>円<div>'+t+'</div></div></a>';}).join("")+
   '<div class="mut" style="font-size:11.5px;margin-top:6px">1日2回とった値段（送料込み）とくらべています</div>';
  box.querySelectorAll("[data-my]").forEach(function(a){a.onclick=function(e){e.preventDefault();pick(a.dataset.my,true);};});}
-function pick(k,push){st.k=k;st.c=[];st.u=1;st.p=0;save(push);render();var kb=document.querySelector('.kat [data-k2="'+k+'"]');if(kb){var kr=kb.closest(".kat"),a=kb.getBoundingClientRect(),b=kr.getBoundingClientRect();kr.scrollLeft+=a.left-b.left-(b.width-a.width)/2;}track("種類:"+k);}
+function pick(k,push,n){st.k=k;st.c=[];st.u=1;st.p=0;st.n=n||"";save(push);render();var kb=document.querySelector('.kat [data-k2="'+k+'"]');if(kb){var kr=kb.closest(".kat"),a=kb.getBoundingClientRect(),b=kr.getBoundingClientRect();kr.scrollLeft+=a.left-b.left-(b.width-a.width)/2;}track("種類:"+k);}
 document.querySelectorAll(".v4 [data-k2]").forEach(function(b){b.onclick=function(){pick(b.dataset.k2,true);var d=b.closest("details");if(d)d.open=false;};});
 /* 探す：種類の名前・言いかえを読み取り、残りの言葉は条件ボタンに合わせる。読み取った結果を見せる */
 var SYN=D.syn;
@@ -461,20 +471,22 @@ function ask(v){var raw=(v||"").normalize("NFKC"),lim=0,pm=/(\d[\d,]*)\s*円?\s*
  D.cats.forEach(function(c){var n=nz(c.nm);if(!hit&&q.indexOf(n)>=0){hit=c.k;rest=q.replace(n," ");}});
  if(!hit)Object.keys(SYN).sort(function(a,b){return b.length-a.length;}).forEach(function(w){var n=nz(w);if(!hit&&q.indexOf(n)>=0&&C[SYN[w]]){hit=SYN[w];rest=q.replace(n," ");}});
  /* 11/9 夜#145：「ロイヤルカナン」など商品名・メーカー名でも探す。2つ以上の種類にあれば選んでもらう */
- if(!hit){var bk=[];D.cats.forEach(function(c){var w=q.replace(/\d+(kg|g|l|ml|個|本|枚|袋)/g,"").replace(/[のでがをはにとも、。・]/g,"");if(w.length>=3&&c.o.some(function(o){return nz(o.n).indexOf(w)>=0;}))bk.push(c.k);});
+ var nw="";
+ if(!hit){var bk=[],cap=(q.match(/\d+(?:\.\d+)?(kg|g|l|ml|個|本|枚|袋|組|m)(?![a-z])/g)||[]);D.cats.forEach(function(c){var w=q.replace(/\d+(kg|g|l|ml|個|本|枚|袋)/g,"").replace(/[のでがをはにとも、。・]/g,"");if(w.length>=3&&c.o.some(function(o){return nz(o.n).indexOf(w)>=0;}))bk.push(c.k);});
+  nw=raw.replace(/[、。・]/g," ").replace(/\s+/g," ").trim().slice(0,40);
   if(bk.length===1){hit=bk[0];rest="";}
   else if(bk.length>1){rd.innerHTML='「'+esc(v)+'」は、'+bk.map(function(k){return '<button type="button" class="v4bk" data-bk="'+k+'">'+esc(C[k].nm)+'</button>';}).join("・")+'にあります。どちらを見ますか？';main.innerHTML="";
-   rd.querySelectorAll("[data-bk]").forEach(function(b){b.onclick=function(){rd.innerHTML="";pick(b.dataset.bk,true);};});track("探す・名前:"+v);return;}}
+   rd.querySelectorAll("[data-bk]").forEach(function(b){b.onclick=function(){rd.innerHTML="";pick(b.dataset.bk,true,nw);};});track("探す・名前:"+v);return;}}
  if(!hit&&st.k&&lim&&!q.replace(/[のでがをはにとも、。・]/g,""))hit=st.k;
  if(!hit){rd.innerHTML='「'+esc(v)+'」は、くらべている'+D.cats.length+'種類にありません。上の種類のボタンから選べます。<a href="/koe?q='+encodeURIComponent("比べてほしい："+v)+'">比べてほしい物を送る →</a>';main.innerHTML="";track("探す・なし:"+v);return;}
- var prev={k:st.k,c:st.c.slice(),u:st.u,p:st.p};st.k=hit;st.c=[];st.u=1;st.p=lim;var tg={};C[hit].o.forEach(function(o){o.tg.forEach(function(t){tg[t]=1;});});
+ var prev={k:st.k,c:st.c.slice(),u:st.u,p:st.p,n:st.n};st.k=hit;st.c=[];st.u=1;st.p=lim;st.n=nw;var tg={};C[hit].o.forEach(function(o){o.tg.forEach(function(t){tg[t]=1;});});
  PARTS.forEach(function(x){var n=x[0],re=n.length===1?new RegExp("(^|[^0-9a-z])"+n+"(?![a-z])"):null,i=re?rest.search(re):rest.indexOf(n);if(i<0)return;
   var t=x[1].filter(function(t){return tg[t];})[0]||x[1][0];if(st.c.indexOf(t)<0)st.c.push(t);rest=re?rest.replace(re,"$1 "):rest.replace(n," ");});
  var miss=rest.trim().split(/\s+/).filter(function(w){w=w.replace(/^[のでがをはにとも、。・]+|[のでがをはにとも、。・]+$/g,"");return w&&!/^(安い|やすい|最安|おすすめ|買う|かう|ほしい|欲しい|激安|格安|まとめ買い|通販|商品|一番|いちばん|比較|くらべる|値段)$/.test(w);});
  /* 11/9 夜#145：猫砂→キャットフード、単4→単3のように、読めない言葉を外して別の物を出さない。本人に選んでもらう */
- if(miss.length){var want={k:st.k,c:st.c.slice(),p:st.p};st.k=prev.k;st.c=prev.c;st.u=prev.u;st.p=prev.p;
+ if(miss.length){var want={k:st.k,c:st.c.slice(),p:st.p};st.k=prev.k;st.c=prev.c;st.u=prev.u;st.p=prev.p;st.n=prev.n;
   rd.innerHTML='「'+esc(v)+'」の「'+esc(miss.join(" "))+'」は、いまくらべている物にありません。<br>近い物：<button type="button" id="v4alt">'+esc(C[want.k].nm)+'を見る</button>　<a href="/koe?q='+encodeURIComponent("比べてほしい："+v)+'">比べてほしい物を送る →</a>';
-  main.innerHTML="";var al=document.getElementById("v4alt");if(al)al.onclick=function(){st.k=want.k;st.c=want.c;st.u=1;st.p=want.p;save(true);rd.innerHTML="";render();var hd=main.querySelector(".hd");if(hd)hd.scrollIntoView({block:"start"});};track("探す・読めない:"+v);return;}
+  main.innerHTML="";var al=document.getElementById("v4alt");if(al)al.onclick=function(){st.k=want.k;st.c=want.c;st.u=1;st.p=want.p;st.n=nw;save(true);rd.innerHTML="";render();var hd=main.querySelector(".hd");if(hd)hd.scrollIntoView({block:"start"});};track("探す・読めない:"+v);return;}
  save(true);render();var cx=ctxt(),no=st.c.filter(function(t){return !tg[t];});
  rd.innerHTML='読み取った条件：種類＝<b>'+esc(C[hit].nm)+'</b>　条件＝'+(cx.length?esc(cx.join("・")):"なし")+(no.length?'<br>「'+esc(no.join("・"))+'」の'+esc(C[hit].nm)+'は、いま比べた中にありません':'')+(miss.length?'<br>「'+esc(miss.join(" "))+'」は読み取れなかったので外しました':'')+'　<button type="button" id="v4fx">直す</button>';
  var fx=document.getElementById("v4fx");if(fx)fx.onclick=function(){qi.focus();qi.select();};track("探す:"+v);
