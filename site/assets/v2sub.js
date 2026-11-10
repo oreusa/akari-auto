@@ -19,8 +19,20 @@ bar.querySelector(".mn").onclick=function(){var m=document.getElementById("umenu
 document.body.appendChild(bar);bar.classList.add("on");document.documentElement.classList.add("v2bar-on");
 window.V2BAR=bar;
 }
+function goJ(){
+/* 11/10 オーナー「実家のやつは不動産リストと完全別に」→ 実家ノートだけの下のバー（月の v2sub.js goJ と同じ。LIFE は相談なし）：街をさがす・この順で・MENU */
+var J={q:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>',st:'<svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2"/><circle cx="4.5" cy="12" r="1.2"/><circle cx="4.5" cy="18" r="1.2"/></svg>'};
+var idx=/^\/jikka\/?(index(\.html)?)?$/.test(location.pathname);
+var ps=document.createElement("style");ps.textContent="body{padding-bottom:84px}";document.head.appendChild(ps);
+var bar=document.createElement("nav");bar.id="v2bar";bar.setAttribute("aria-label","すぐ移動");
+bar.innerHTML='<a data-h="/jikka/"'+(idx?' class="cur"':'')+'>'+J.q+'<span>街をさがす</span></a>'+(idx?'':'<a data-h="#steps">'+J.st+'<span>この順で</span></a>')+'<button class="mn" type="button"><i></i>MENU</button>';
+bar.querySelectorAll("a").forEach(function(a){a.href=a.dataset.h;a.setAttribute("data-k","下のバー｜実家｜"+a.textContent);});
+bar.querySelector(".mn").onclick=function(){var m=document.getElementById("umenu");if(m)m.click();};
+document.body.appendChild(bar);bar.classList.add("on");document.documentElement.classList.add("v2bar-on");
+}
 function go(){
-if(/^\/(fudosan-list|uru|sagasu|chika-|machi\/|jikka)/.test(location.pathname))return goF();
+if(/^\/jikka/.test(location.pathname))return goJ();
+if(/^\/(fudosan-list|uru|sagasu|chika-|machi\/)/.test(location.pathname))return goF();
 var inn=/\/tomari/.test(location.pathname),P=location.pathname.replace(/\.html$/,"");
 /* 11/2 LIFE NOTE：買い物のページ（くらべたおかいものリストとその仲間）は、買い物の下のボタン列。おでかけ側は /odekake へ */
 /* 11/2 くらべたおかいものリストのタブ4つ（くらべた物・1個あたり・値下がり・セール）へ。いまのページの仲間に下線 */
