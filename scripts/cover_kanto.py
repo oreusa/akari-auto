@@ -8,15 +8,32 @@ PREF = ["東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬"]
 SLUG = {"tokyo": "東京", "kanagawa": "神奈川", "saitama": "埼玉", "chiba": "千葉", "ibaraki": "茨城", "tochigi": "栃木", "gunma": "群馬"}
 V = "4"
 today = (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime("%Y-%m-%d")
+
+# 11/10 夜 #165：表紙の「きょう◯件」と一覧の「きょう」の件数がちがった（休館日を見ていなかった）→ when.js の openOn と同じ数え方
+HOL = {"2026-11-03", "2026-11-23", "2027-01-01", "2027-01-11", "2027-02-11", "2027-02-23", "2027-03-21", "2027-03-22"}
+def open_on(days, d):
+    if not days:
+        return True
+    w = (datetime.date.fromisoformat(d).weekday() + 1) % 7  # 0=日〜6=土
+    if days.startswith("wd:"):
+        return ("h" in days[3:] and d in HOL) or str(w) in days[3:]
+    if days == "sat":
+        return w == 6
+    if days == "sun":
+        return w == 0
+    if days == "we":
+        return w in (0, 6) or d in HOL
+    return d in days.split(",")
 P = {p: {"od": 0, "free": 0, "odL": [], "tw": 0, "upT": 0, "avg": 0.0, "top": [], "kN": 0, "kAvg": 0} for p in PREF}
 
 # おでかけ：「開催中」の段のカード（終わった物は数えない）
 try:
     s = open(os.path.join(S, "odekake.html"), encoding="utf-8").read()
     m = re.search(r'<div class="pane" data-t="now">(.*?)<div class="pane" data-t="', s, re.S)
-    for c in re.finditer(r'<div class="card it" data-pref="([^"]*)" data-free="(\d)"[^>]*?data-e="([^"]*)"[^>]*>(.*?)<div class="m">', m.group(1) if m else "", re.S):
-        p, fr, e, body = c.groups()
-        if p not in P or (e and e < today):
+    for c in re.finditer(r'<div class="card it" data-pref="([^"]*)" data-free="(\d)"([^>]*?)data-e="([^"]*)"([^>]*)>(.*?)<div class="m">', m.group(1) if m else "", re.S):
+        p, fr, a1, e, a2, body = c.groups()
+        dd = re.search(r'data-days="([^"]*)"', a1 + a2)
+        if p not in P or (e and e < today) or not open_on(dd.group(1) if dd else "", today):
             continue
         x = P[p]; x["od"] += 1; x["free"] += fr == "1"
         t = re.search(r'<div class="t">(.*?)</div>', body, re.S)
