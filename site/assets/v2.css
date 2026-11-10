@@ -51,3 +51,8 @@ html body .wrap>#odekake.blk,html body .wrap>#archive.blk{background:transparent
 /* 上にもどる丸は、下のボタン列と重なるので出さない（月にも無い） */
 html.v2bar-on #totop{display:none!important}
 .wrap>nav.flt[data-v=odekake]{margin:14px 0 12px}
+
+/* 11/10 オーナー「おでかけリスト押したら一瞬バグる」→ 古い並びが一瞬見えてから新しい形に変わっていた。when.js が形を作るまで一覧を隠し、ふわっと出す（1.5秒で必ず出す） */
+html:not(.whd) .paper:has(>#wkd){opacity:0;animation:tnIn 0s 1.5s forwards}
+html.whd .paper:has(>#wkd){animation:tnFade .18s ease-out}
+@keyframes tnIn{to{opacity:1}}@keyframes tnFade{from{opacity:0}to{opacity:1}}

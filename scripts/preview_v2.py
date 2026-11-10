@@ -3,7 +3,7 @@
 page.yml が page.py のあとに毎回動かす。site/index.html（本番）と site/preview-v2.html（見本・検索に出さない）。"""
 import os, re
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSS = '<link rel="stylesheet" href="/assets/v2.css?v=4">'
+CSS = '<link rel="stylesheet" href="/assets/v2.css?v=7">'
 JS = '<script src="/assets/v2.js?v=3"></script>'
 src = os.path.join(R, 'site/index.html')
 h = open(src, encoding='utf-8').read()
