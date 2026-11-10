@@ -363,25 +363,27 @@ if(document.readyState!=="loading")run();else document.addEventListener("DOMCont
 var O=window.TN_OL||{life:false},LF=O.life,P=location.pathname.replace(/^\/townnotes\//,"/").replace(/\.html$/,"");
 var A={site:LF?"関東":"関西",ig:LF?"usagichan_ai_si":"fudousan_ai_si",x:LF?"ai_usagichan":"fudosan_ai_si"};
 var NB=[
- {k:"od",t:"おでかけ",en:"ODEKAKE",c:"#E39B3A",lead:"週末どこ行く？を、日付と地図で。",rows:[
-  ["/odekake","おでかけリスト","開催中",/^\/(odekake|index)?$/],["/ima","いま行ける","近い順・きょう開く所",/^\/ima/],
+ {k:"od",t:"おでかけ",nm:A.site+"おでかけリスト",en:"ODEKAKE",c:"#E39B3A",lead:"週末どこ行く？を、日付と地図で。",rows:[
+  ["/odekake","おでかけリスト","開催中",/^\/odekake/],["/ima","いま行ける","近い順・きょう開く所",/^\/ima/],
   ["/illumination","イルミネーション","日程・無料の所",/^\/illumination/],["/koyo","紅葉ライトアップ","夜の時間・料金",/^\/koyo/],
   ["/tomari","泊まりで行く","遠くのおでかけと宿",/^\/tomari/]],
   sub:[["/koe","リクエスト・感想"],["https://ig.me/m/"+A.ig,"おでかけ掲載"]]},
- {k:"fu",t:"不動産",en:"REAL ESTATE",c:"#4F7BA8",lead:A.site+"の街の値段を、公式の数字で。",rows:[
+ {k:"fu",t:"不動産",nm:A.site+"不動産リスト",en:"REAL ESTATE",c:"#4F7BA8",lead:A.site+"の街の値段を、公式の数字で。",rows:[
   ["/fudosan-list","不動産リスト","地価・制度",/^\/fudosan-list/],["/uru","家を売りたい","相場と大事なこと",/^\/uru/],
   ["/sagasu","家を買いたい","住む街をさがす",/^\/sagasu/],[LF?"/chika-kanto":"/chika-kansai","地価ランキング",LF?"関東の街":"関西205の街",/^\/chika-/]]
   .concat(LF?[]:[["/gyosha","業者・士業の方","窓口",/^\/gyosha/]]),
   /* 11/10 オーナー「関東も問い合わせ…関西と同じで俺に問い合わせでいい」 */sub:[["/moushikomi","売却のお申し込み"],["/koe","リクエスト・感想"]]},
- {k:"jk",t:"実家",en:"JIKKA NOTE",c:"#5E9E6E",lead:"実家・空き家、何から始める？",nw:1,rows:[
+ {k:"jk",t:"実家",nm:"実家・空き家ノート",en:"JIKKA NOTE",c:"#5E9E6E",lead:"実家・空き家、何から始める？",nw:1,rows:[
   ["/jikka/","実家・空き家ノート","4ステップ",/^\/jikka/],["/moushikomi","売却・片付け・解体","ご相談",/^$/]],
   sub:[["/koe","リクエスト・感想"]]},
- {k:"ok",t:"おかいもの",en:"SHOPPING",c:"#C2727F",lead:"比べた最安と、今だけのお得。",rows:[
+ {k:"ok",t:"おかいもの",nm:"おかいものリスト",en:"SHOPPING",c:"#C2727F",lead:"比べた最安と、今だけのお得。",rows:[
   ["/okaimono","くらべる","日用品の最安とおすすめ",/^\/okaimono/],["/nesage","買い時","ふだんより安い物",/^\/nesage/],
   ["/kaimawari","セール","1,000円ぽっきり",/^\/kaimawari/],["/furusato","ふるさと納税","寄付1万円あたりの量",/^\/furusato/],
   ["/otoku","お得まとめ","セール・ふるさと・宿",/^\/otoku/]],sub:[["/koe","リクエスト・感想"]]}
 ].filter(function(n){return n.only!==false;});
-function side(){if(/^\/jikka/.test(P))return "jk";if(/^\/(fudosan|uru|moushikomi|gyosha|sagasu|chika-|machi\/)/.test(P))return "fu";if(/^\/(okaimono|otoku|tanka|nesage|furusato|kaimawari)/.test(P))return "ok";
+/* 11/10 オーナー「TOWN NOTEの表紙なのにおでかけNOWはおかしい」→ 表紙では、まとめた目次（各リストへ）から。名前は各ページの名前のまま（11/10 オーナー「そこはリストだろ」） */
+var COVER=(LF?/^\/(index)?$/:/^\/(town-notes)?$/).test(P);
+function side(){if(COVER)return "top";if(/^\/jikka/.test(P))return "jk";if(/^\/(fudosan|uru|moushikomi|gyosha|sagasu|chika-|machi\/)/.test(P))return "fu";if(/^\/(okaimono|otoku|tanka|nesage|furusato|kaimawari)/.test(P))return "ok";
  if(/^\/koe/.test(P)){try{var s=sessionStorage.getItem("tn_side");if(s)return s;}catch(e){}}return "od";}
 var HERE=side();try{if(!/^\/koe/.test(P))sessionStorage.setItem("tn_side",HERE);}catch(e){}
 /* 前回のつづき：ほかのページを見ていたら、目次の上に1行（この端末だけ） */
@@ -430,12 +432,13 @@ function run(){
  var bk=document.createElement("div");bk.className="nbk";var tb=document.createElement("div");tb.className="nbt";tb.setAttribute("role","tablist");tb.setAttribute("aria-label","ノート");
  nav.parentNode.insertBefore(bk,nav);bk.appendChild(tb);bk.appendChild(nav);
  var cur=HERE;
- function draw(){var n=NB.filter(function(x){return x.k===cur;})[0]||NB[0];
+ function draw(){var n=cur==="top"?{k:"top",c:"#8A8F98",sub:[["/koe","リクエスト・感想"]]}:(NB.filter(function(x){return x.k===cur;})[0]||NB[0]);
   tb.innerHTML=NB.map(function(x){return '<button type="button" role="tab" aria-selected="'+(x.k===n.k)+'" class="'+(x.k===n.k?"on":"")+(x.nw?" nw":"")+'" style="--c:'+x.c+'" data-t="'+x.k+'">'+(x.nw?"<i>NEW</i>":"")+esc(x.t)+'</button>';}).join("");
   nav.style.setProperty("--c",n.c);
-  var h='<div class="nen">'+n.en+'</div><div class="nh">'+esc(n.t)+'ノート</div><div class="nl">'+esc(n.lead)+'</div>';
+  var h=n.k==="top"?'<div class="nen">INDEX</div><div class="nh">'+(LF?"LIFE NOTE":"TOWN NOTE")+'</div><div class="nl">'+A.site+'の街のノート。</div>':'<div class="nen">'+n.en+'</div><div class="nh">'+esc(n.nm)+'</div><div class="nl">'+esc(n.lead)+'</div>';
   if(LAST&&n.k===HERE)h+='<a class="nlast" href="'+esc(LAST.u)+'" data-n="つづき"><small>前回のつづき</small><b>'+esc(LAST.t)+'</b><span>→</span></a>';
-  n.rows.forEach(function(r,i){var on=r[3].test(P);h+='<a class="nr" href="'+r[0]+'" data-n="'+esc(r[1])+'"'+(on?' aria-current="page"':'')+'><span class="no">0'+(i+1)+'</span><b>'+esc(r[1])+(on?'<u>NOW</u>':'')+'</b><span class="ld"></span><em>'+esc(r[2])+'</em></a>';});
+  if(n.k==="top")NB.forEach(function(x,i){h+='<a class="nr" href="'+x.rows[0][0]+'" data-n="目次 '+esc(x.t)+'" style="--c:'+x.c+'"><span class="no">0'+(i+1)+'</span><b>'+esc(x.nm)+'</b><span class="ld"></span><em>'+({od:"開催中",fu:"地価",jk:"4ステップ",ok:"最安"}[x.k]||"")+'</em></a>';});
+  else n.rows.forEach(function(r,i){var on=r[3].test(P);h+='<a class="nr" href="'+r[0]+'" data-n="'+esc(r[1])+'"'+(on?' aria-current="page"':'')+'><span class="no">0'+(i+1)+'</span><b>'+esc(r[1])+(on?'<u>NOW</u>':'')+'</b><span class="ld"></span><em>'+esc(r[2])+'</em></a>';});
   if(n.sub.length)h+='<div class="nsub">'+n.sub.map(function(s){var ex=/^https?:/.test(s[0]);return '<a href="'+s[0]+'" data-n="'+esc(s[1])+'"'+(ex?' target="_blank" rel="noopener"':'')+'>'+esc(s[1])+'</a>';}).join("")+'</div>';
   var mr=document.getElementById("umaprow");nav.innerHTML=h;if(mr&&n.k==="od")nav.appendChild(mr);nav.scrollTop=0;}
  draw();

@@ -6,7 +6,7 @@ R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = os.path.join(R, "site")
 PREF = ["東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬"]
 SLUG = {"tokyo": "東京", "kanagawa": "神奈川", "saitama": "埼玉", "chiba": "千葉", "ibaraki": "茨城", "tochigi": "栃木", "gunma": "群馬"}
-V = "4"
+V = "5"
 today = (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime("%Y-%m-%d")
 
 # 11/10 夜 #165：表紙の「きょう◯件」と一覧の「きょう」の件数がちがった（休館日を見ていなかった）→ when.js の openOn と同じ数え方
