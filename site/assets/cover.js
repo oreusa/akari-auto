@@ -19,12 +19,13 @@ var labels={};svg.querySelectorAll("g[transform] text.jp").forEach(function(t){v
 function man(v){return v>=10000?(v/10000).toFixed(2).replace(/0$/,"")+"億":v.toLocaleString()+"万"}
 function val(p){var x=C.p[p];return L==="od"?x.od:L==="fu"?x.avg:L==="jk"?(KT?x.kN:x.kAvg):0}
 function paint(){if(!C)return;var mn=1e9,mx=-1e9;PREF.forEach(function(p){var v=val(p);mn=Math.min(mn,v);mx=Math.max(mx,v)});
- svg.querySelectorAll(".pf path").forEach(function(el){var p=el.getAttribute("data-p"),r=mx>mn?(val(p)-mn)/(mx-mn):0;if(L==="ok")r=0;el.style.fillOpacity=L==="ok"?.25:(.3+.7*r).toFixed(2);var nt=document.documentElement.classList.contains("night");if(nt&&L!=="ok"){var A=[24,33,57],B=[58,84,140];el.style.setProperty("fill","rgb("+A.map(function(a,i){return Math.round(a+(B[i]-a)*r)}).join(",")+")","important");}else el.style.removeProperty("fill");});
+ /* 11/10 オーナー「色が濃いほどはやめよう 大阪と東京が多いのは当たり前」→ 濃さで差をつけない。地図はいつもの色、数字だけ変わる */
+ svg.querySelectorAll(".pf path").forEach(function(el){el.style.removeProperty("fill-opacity");el.style.removeProperty("fill");});
  svg.classList.toggle("dim",L==="ok");
  PREF.forEach(function(p){var c=labels[p],x=C.p[p];if(!c)return;c.setAttribute("fill",document.documentElement.classList.contains("night")?{od:"#FFD39A",fu:"#A9CBFF",jk:"#AEE0B5",ok:"#F2B6C3"}[L]:COL[L]);c.innerHTML=L==="od"?x.od+"<tspan>件</tspan>":L==="fu"?(x.avg>=0?"+":"")+x.avg.toFixed(1)+"<tspan>%</tspan>":L==="jk"?(KT?x.kN+"<tspan>街</tspan>":man(x.kAvg)):"";});
  var tot=PREF.reduce(function(a,p){return a+C.p[p].od},0);document.getElementById("tnow").innerHTML="開催中 <b>"+tot+"</b>";
- var w=document.documentElement.classList.contains("night")?"明るいほど":"色が濃いほど";
- hint.style.setProperty("--c",COL[L]);hint.innerHTML=L==="od"?w+"、いま開催中のおでかけが多い"+(KT?"都県":"府県"):L==="fu"?w+"、住宅地の値段が上がった"+(KT?"都県":"府県")+"（1年）":L==="jk"?(KT?"実家ノートでまとめた街の数。"+w+"多い":"戸建が売れた平均の値段（近畿レインズ）。"+w+"高い"):"きょう、ふだんより安くなっている物";
+ var R=KT?"都県":"府県";
+ hint.style.setProperty("--c",COL[L]);hint.innerHTML=L==="od"?R+"ごとの、いま開催中のおでかけの数":L==="fu"?R+"ごとの、住宅地の値段の1年の動き（平均）":L==="jk"?(KT?R+"ごとの、実家ノートでまとめた街の数":"戸建が売れた平均の値段（近畿レインズ）"):"きょう、ふだんより安くなっている物";
  okp.hidden=L!=="ok";if(L==="ok"&&NS)okp.innerHTML=NS.downs.slice(0,3).map(function(x,i){return'<a href="/nesage"><span>0'+(i+1)+'</span><b>'+x.title+'</b><em>'+x.price.toLocaleString()+'円</em><u>−'+x.pct+'%</u></a>'}).join("")+'<a class="all" href="/okaimono">日用品の最安をくらべる →</a>';}
 document.getElementById("lens").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;L=b.getAttribute("data-l");this.querySelectorAll("button").forEach(function(x){x.classList.toggle("on",x===b)});paint();});
 var sh=document.createElement("div");sh.id="tsheet";document.body.appendChild(sh);
