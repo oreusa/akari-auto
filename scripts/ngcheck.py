@@ -82,6 +82,27 @@ for f in sorted(glob.glob(os.path.join(root, "**", "*.html"), recursive=True)):
             continue
         bad.append(f"{os.path.relpath(f, root)}：昼/夜ボタンと同じクラス名 .{m.group(1)}（名前を変える）")
         break
+# 11/10 夜 #163：/ima にトーマス展が2枚 → おでかけのページで、同じ公式URL・同じ会場の催しが2つ以上あれば赤（町全体の案内ページを共有する別の催しは OK_SAME）
+OK_SAME = {"https://www.roppongihills.com/sp/christmashills/"}
+for f in [os.path.join(root, "odekake.html")]:
+    if not os.path.exists(f):
+        continue
+    _seen = {}
+    for _m in re.finditer(r'"@type": "Event", "name": "([^"]*)".*?"location": \{"@type": "Place", "name": "([^"]*)".*?"url": "([^"]*)"', open(f, errors="ignore").read()):
+        _n, _pl, _u = _m.groups()
+        if _u in OK_SAME:
+            continue
+        _k = (_u, _pl.split(" ")[0])
+        if _k in _seen and _seen[_k] != _n:
+            bad.append(f"{os.path.relpath(f, root)}：同じ催しが2枚（同じ公式URL・同じ会場）：{_seen[_k]} ／ {_n}")
+        _seen.setdefault(_k, _n)
+# 11/10 夜 #150：おでかけの場所が、書いてある市区町村・府県の形から外れていたら赤（geocheck.py）
+try:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import geocheck
+    bad += geocheck.check(root)
+except Exception as _ex:
+    print("geocheck skipped", _ex)
 for b in bad[:80]:
     print("×", b)
 print(f"ngcheck: {len(bad)} 件" if bad else "ngcheck: なし")

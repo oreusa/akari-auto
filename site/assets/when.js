@@ -139,6 +139,8 @@ function stateLine(o,dk,short){var R=D[dk].d.filter(function(d){return d>=T;}),o
   if(o.e&&R.indexOf(o.e)>=0)return W[dw(o.e)]+"曜（"+md(o.e)+"）で終わります";
   if(o.s&&o.s>T&&R.indexOf(o.s)>=0)return mdw(o.s)+"から";
   if(short&&R.length>1)return "土・日とも開催";
+  /* 11/10 夜 #162：休みの日のデータが無い所は「開いています」と言わない（休館日を知らないだけ）→ 公式で見てもらう */
+  if(!o.days)return "開館日は公式で";
   return "";}
 function cl(o,dk,short){var c=o.w.cloneNode(true);c.removeAttribute("id");
   /* 11/7 夜のミス帳 #120 #121：写したカードに「宿・券を付けた」印が残り、券と近くの宿が出なかった → 印を外して付け直してもらう */
@@ -176,7 +178,7 @@ function render(){setTimeout(function(){if(window.ykRun)window.ykRun();},0);var 
   var R0=D[st.d].d.filter(function(d){return d>=T;}),part=function(o){return R0.length>1&&R0.filter(function(d){return openOn(o,d);}).length<R0.length;},sh=function(o){return isShort(o)||part(o);};
   var S=L.filter(sh).sort(byE),G=L.filter(function(o){return !sh(o);}).sort(byE);
   group(S,"s","日にちの決まった催し",lab+"に開催。期間が短いので、先に見ておくと行きのがしません",st.d,true);
-  group(G,"g","長く開いている所","紅葉・イルミ・展覧会など。"+(D[st.d].d.length>1?"どちらの日でも行けます":"この日も開いています"),st.d,false);
+  group(G,"g","長く開いている所","紅葉・イルミ・展覧会など、期間の長い所です。休みの日はカードに書いています",st.d,false);
   syncUrl();if(window.__wfold)window.__wfold();}
 box.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
   if(b.dataset.k!==undefined){st.k=b.dataset.k;if(st.d==="all")st.d="we";more={};render();up();try{c("種類："+(KN[st.k]||"すべて"));}catch(x){}}
