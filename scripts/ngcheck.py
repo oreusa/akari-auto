@@ -79,6 +79,8 @@ for f in sorted(glob.glob(os.path.join(root, "**", "*.html"), recursive=True)):
     _css = " ".join(re.findall(r"<style[^>]*>(.*?)</style>", _t, flags=re.S))
     _css = re.sub(r"#utheme[^{]*\{[^}]*\}", " ", _css)
     for m in re.finditer(r"(?:^|[},])\s*\.(su|mo|kn|sp)(?![\w-])", _css):
+        if "#utheme" in _css[m.end():m.end() + 80].split("{")[0]:  # .mo:not(:where(#utheme *)) のように除けている物はOK
+            continue
         bad.append(f"{os.path.relpath(f, root)}：昼/夜ボタンと同じクラス名 .{m.group(1)}（名前を変える）")
         break
 for b in bad[:80]:
