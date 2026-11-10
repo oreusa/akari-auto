@@ -392,9 +392,10 @@ function render(){
  /* 11/9 夜#148：1Lあたりと1kgあたりを同じ「安い順」にしない。多い方を先に出し、切りかえボタン */
  var UT={};L.forEach(function(o){if(o.ut)UT[o.ut]=(UT[o.ut]||0)+1;});var uts=Object.keys(UT).sort(function(a,b){return UT[b]-UT[a];});
  if(uts.length>1){if(uts.indexOf(st.ut)<0)st.ut=uts[0];L=L.filter(function(o){return o.ut===st.ut;});}all.forEach(function(o){o.tg.forEach(function(t){tg[t]=(tg[t]||0)+1;});});
- var h='<a class="ohb" href="'+location.pathname+'" data-home>‹ '+(ORDER.some(function(k){return MY[k]&&C[k];})?'いつもの物':'はじめの画面')+'</a><div class="hd"><h2>'+esc(c.nm)+'</h2><button type="button" class="st" id="v4s">'+(MY[c.k]?"★ いつもの物":"☆ いつもの物に入れる")+'</button></div>';
+ var h='<a class="ohb" href="'+location.pathname+'" data-home>‹ '+(ORDER.some(function(k){return MY[k]&&C[k];})?'いつもの物':'はじめの画面')+'</a><div class="hd"><span class="kic">'+ic(c.k)+'</span><h2>'+esc(c.nm)+'</h2><button type="button" class="st" id="v4s">'+(MY[c.k]?"★ いつもの物":"☆ いつもの物")+'</button></div>';
  /* 11/10 いつもの物：種類の画面の上にも、しるし（値下がり中・お得）と平均の一言 */
- var sv=sig(c);if(sv&&sv.cls)h+='<div class="ohv '+sv.cls+'"><i>'+sv.lab+'</i>いちばん安いのは '+yen(sv.o.u)+'円/'+esc(ohut(c,sv.o))+'。'+esc(sv.sub)+'。</div>';
+ /* 11/10 見本の形：はじめに「答え」（しるし・平均）と、いちばん安い物の値段の動き */
+ var SZ0=["新生児","S","M","L","ビッグ"];if(L[0]&&!(c.k==="diaper"&&!st.c.some(function(t){return SZ0.indexOf(t)>=0;})))h+=verdict(c,L[0])+bigg(c,L[0]);
  var keys=Object.keys(tg).filter(function(t){return tg[t]<all.length||st.c.indexOf(t)>=0;});
  if(keys.length){h+='<div class="chs" role="group" aria-label="条件">'+keys.map(function(t){var on=st.c.indexOf(t)>=0,n=list({o:all.filter(function(o){return o.tg.indexOf(t)>=0;})}).length;
   return '<button type="button" class="ch" data-t="'+esc(t)+'" aria-pressed="'+on+'"'+(!on&&!n?" disabled":"")+'>'+esc(t)+'<i>'+(on?(tg[t]||0):n)+'</i></button>';}).join("")+(st.p?'<button type="button" class="ch" data-p="1" aria-pressed="true">総額'+st.p.toLocaleString()+'円以下 ×</button>':"")+'</div>';}
@@ -413,33 +414,30 @@ function render(){
    '</ol><div class="why">サイズを押すと、そのサイズだけで最安とおすすめを出します。</div></section></div>';
   main.innerHTML=h;bind();my();return;}
  var K='';
+ var yN=c.o.filter(function(o){return o.w==="Yahoo!";}).length;
+ K+='<dl class="ev"><dt>比べた物</dt><dd>楽天の送料込み'+c.seen.toLocaleString()+'件のうち、量が読めた'+c.read+'件から、条件に合う物をメーカー・お店ごとに選んだ'+c.o.filter(function(o){return o.w==="楽天";}).length+'件'+(yN?'と、Yahoo!の'+yN+'件':'')+'。'+(ctxt().length?'いまは条件に合う'+L.length+'件だけを出しています':'この上に全部あります')+'</dd>'+
+  '<dt>比べ方</dt><dd>送料込みの値段 ÷ 量（'+unitTxt(c)+'）</dd><dt>相場（平均）</dt><dd>しらべた物の1個あたりの平均です（量が読めた物だけ）</dd><dt>更新</dt><dd>'+esc(upd())+'（1日2回）</dd>'+
+  '<dt>注意</dt><dd>北海道・沖縄・離島は送料が別にかかることがあります。量は商品名から読んでいるので、買う前にお店のページで確かめてください。<br><a href="/koe?q='+encodeURIComponent("値段のちがい："+c.nm+" ")+'">お店の値段とちがったら教えてください →</a></dd></dl>';
+ if(uts.length>1)h+='<div class="chs" role="group" aria-label="量の単位">'+uts.map(function(u){return '<button type="button" class="ch" data-ut="'+esc(u)+'" aria-pressed="'+(u===st.ut)+'">'+esc(u.replace("あたり",""))+'あたりでくらべる<i>'+UT[u]+'</i></button>';}).join("")+'</div><p class="kij" style="margin-top:4px">液体（L）と粉・ジェル（kg）は、べつべつにくらべています。</p>';
+ h+='<p class="kij">送料込みの値段 ÷ 量（'+esc(unitTxt(c))+'）の安い順　'+esc(upd())+' 更新</p>';
+ /* 11/10 見本の形：写真つきの安い順の一覧（はじめは10件。おすすめが11番目より下なら、その1件も出す） */
+ var N0=10,SH=st.all?L:L.slice(0,N0),bi=L.indexOf(br);
+ function rrow(o){var i=L.indexOf(o),sm=o.same.map(function(j){return c.o[j];}).filter(function(x){return L.indexOf(x)>=0&&x.p<o.p;})[0],kk=o===ch?"v4:":o===br?"v4r:":"v4l:";
+  return '<li><a href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="'+kk+esc(o.n.slice(0,20))+'"><span class="no">'+(i+1)+'</span>'+pic(o,62)+'<div class="tx"><p class="nm">'+(o===br?'<span class="rb">おすすめ</span>':'')+esc(o.n)+'</p><p class="pz"><b>'+yen(o.u)+'</b>円/'+esc(unitTxt(c,o).replace("あたり",""))+'　<span>総額 '+o.p.toLocaleString()+'円</span></p><p class="sh">'+esc(o.s.slice(0,18))+'・'+esc(o.w)+(+o.rc?'・★'+o.av:'')+'</p>'+(o.sh?'<p class="sp">発送：'+esc(o.sh)+'</p>':'')+(sm?'<p class="sm">同じ物が'+esc(sm.w)+'で'+(o.p-sm.p).toLocaleString()+'円安い</p>':'')+'</div><span class="go">見る</span></a></li>';}
+ h+='<ol class="rkl">'+SH.map(rrow).join("")+(!st.all&&bi>=N0?'<li class="gap" aria-hidden="true">⋮</li>'+rrow(br):'')+'</ol>';
+ if(br&&br!==ch)h+='<p class="rbn"><span class="rb">おすすめ</span>は、名の知れたメーカーでいちばん安い物です。</p>';
+ if(!st.all&&L.length>N0)h+='<button type="button" class="rkm" id="v4all">残り'+(L.length-N0)+'件も見る</button>';
+ h+='<p class="rkn">届く日と送料は、お店のページで確かめてください。</p>';
  if(c.use){var q=c.use,uu=q[1].indexOf(st.u)>=0?st.u:q[1][1];
   var r1=months(c,ch,uu),r2=br&&br!==ch?months(c,br,uu):null;
   /* 11/10 夜#148：kgの物にLの量を掛けない。量の単位は、いちばん安い物の単位（L か kg）にそろえる */
   var qu=q[0]==="L・kg"?(ch.ut==="1kgあたり"?"kg":"L"):q[0];if(r2&&q[0]==="L・kg"&&br.ut!==ch.ut)r2=null;
-  K+='<section class="mo"><b>1か月にいくら？</b><span class="mut" style="font-size:12px">　まとめ買いは何か月分か</span><div style="margin-top:6px"><span class="mut" style="font-size:12.5px">1か月に使う量（'+esc(qu)+'）　</span>'+
-   q[1].map(function(v){return '<button type="button" class="ch" data-u="'+v+'" aria-pressed="'+(v===uu)+'">'+v+esc(qu)+'</button>';}).join("")+'</div><div class="row2">'+
-   '<div><span class="lab c" style="font-size:11px">最安</span><br>'+esc(ch.cnt>1?ch.cnt+"個入り":ch.a)+'＝<b>'+mtxt(r1)+'</b><br>1か月 <b class="n">'+Math.round(r1.per).toLocaleString()+'</b>円</div>'+
-   (r2?'<div><span class="lab r" style="font-size:11px">おすすめ</span><br>'+esc(br.cnt>1?br.cnt+"個入り":br.a)+'＝<b>'+mtxt(r2)+'</b><br>1か月 <b class="n">'+Math.round(r2.per).toLocaleString()+'</b>円</div>':"")+
-   '</div><div class="why">使う量はご自分で選んでください。1か月の値段は、1個あたりの値段×使う量の目安です。</div></section>';}
- K+=graph(c,br&&br.h?br:ch.h?ch:null);
- var yN=c.o.filter(function(o){return o.w==="Yahoo!";}).length;
- K+='<dl class="ev"><dt>比べた物</dt><dd>楽天の送料込み'+c.seen.toLocaleString()+'件のうち、量が読めた'+c.read+'件から、条件に合う物をメーカー・お店ごとに選んだ'+c.o.filter(function(o){return o.w==="楽天";}).length+'件'+(yN?'と、Yahoo!の'+yN+'件':'')+'。'+(ctxt().length?'いまは条件に合う'+L.length+'件だけを出しています':'この下に全部あります')+'</dd>'+
-  '<dt>比べ方</dt><dd>送料込みの値段 ÷ 量（'+unitTxt(c)+'）</dd><dt>更新</dt><dd>'+esc(upd())+'（1日2回）</dd>'+
-  '<dt>注意</dt><dd>北海道・沖縄・離島は送料が別にかかることがあります。量は商品名から読んでいるので、買う前にお店のページで確かめてください。<br><a href="/koe?q='+encodeURIComponent("値段のちがい："+c.nm+" ")+'">お店の値段とちがったら教えてください →</a></dd></dl>';
- var ut=unitTxt(c,ch).replace("あたり","");
- if(uts.length>1)h+='<div class="chs" role="group" aria-label="量の単位">'+uts.map(function(u){return '<button type="button" class="ch" data-ut="'+esc(u)+'" aria-pressed="'+(u===st.ut)+'">'+esc(u.replace("あたり",""))+'あたりでくらべる<i>'+UT[u]+'</i></button>';}).join("")+'</div><p class="kij" style="margin-top:4px">液体（L）と粉・ジェル（kg）は、べつべつにくらべています。</p>';
- h+='<p class="kij">送料込みの値段 ÷ 量（'+esc(unitTxt(c))+'）でくらべています　'+esc(upd())+' 更新</p>';
- h+='<section class="hero"><span class="bd">'+(ctxt().length?'この条件でいちばん安い':'いちばん安い')+'</span><div class="hx">'+pic(ch,118)+'<div style="min-width:0"><div class="pz">'+yen(ch.u)+'<small>円／'+esc(ut)+'</small></div><div class="sub">総額 '+ch.p.toLocaleString()+'円（送料込み）<br>'+esc(ch.s)+'・'+esc(ch.w)+(+ch.rc?'　★'+ch.av:'')+'</div></div></div><div class="nm3">'+esc(ch.n)+'</div>'+attrs(c,ch)+shp(ch)+
-  '<a class="buy" href="'+esc(ch.url)+'" rel="sponsored noopener" target="_blank" data-k="v4:'+esc(ch.n.slice(0,20))+'">'+esc(ch.w)+'で見る ›</a></section>';
- if(br&&br!==ch)h+='<a class="rec2" href="'+esc(br.url)+'" rel="sponsored noopener" target="_blank" data-k="v4r:'+esc(br.n.slice(0,20))+'">'+pic(br,72)+'<div style="min-width:0;flex:1"><span class="bd">おすすめ</span><span style="font-size:11px;color:#555;margin-left:6px">名の知れたメーカーでいちばん安い'+(L.indexOf(br)>0?'・安い順で'+(L.indexOf(br)+1)+'番目':'')+'</span><div style="font-size:12.5px;font-weight:700;margin-top:4px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+esc(br.n)+'</div><div><span class="pz">'+yen(br.u)+'</span>円／'+esc(unitTxt(c,br).replace("あたり",""))+'　<span style="font-size:11.5px;color:#555">'+esc(br.w)+'で見る ›</span></div></div></a>';
- else if(br===ch)h+='<p class="kij">いちばん安い物が、名の知れたメーカー（'+esc(ch.bd)+'）の物です。</p>';
- var R=L.filter(function(o){return o!==ch&&o!==br;});
- if(R.length){h+='<div class="gh">ほかの物も安い順に<small>'+R.length+'件</small></div><div class="grd">';
- R.forEach(function(o){var i=L.indexOf(o);var sm=o.same.map(function(j){return c.o[j];}).filter(function(x){return L.indexOf(x)>=0&&x.p<o.p;})[0];
-  h+='<a href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="v4l:'+esc(o.n.slice(0,20))+'"><span class="rk2">'+(i+1)+'</span>'+pic(o,160)+'<div class="nm4">'+esc(o.n)+'</div><div class="pz">'+yen(o.u)+'<small>円／'+esc(unitTxt(c,o).replace("あたり",""))+'</small></div><div class="sub">総額 '+o.p.toLocaleString()+'円・送料込み<br>'+esc(o.s)+'・'+esc(o.w)+(o.sh?'<br><b style="color:#8F5E00">発送：'+esc(o.sh)+'</b>':'')+(sm?'<br><b style="color:#B3261E">同じ物が'+esc(sm.w)+'で'+(o.p-sm.p).toLocaleString()+'円安い</b>':'')+'</div><div class="go2"><span>'+esc(o.w)+'で見る ›</span></div></a>';});
- h+='</div>';}
- h+='<details class="kw"><summary><span>くわしく<br><small>'+(c.use?'1か月にいくら・':'')+'値段の動き・比べ方</small></span></summary>'+K+'</details>';
+  h+='<section class="use mo"><p><b>うちは1か月に</b></p><div class="seg" role="group" aria-label="1か月に使う量">'+
+   q[1].map(function(v){return '<button type="button" class="ch" data-u="'+v+'" aria-pressed="'+(v===uu)+'">'+v+esc(qu)+'</button>';}).join("")+'</div>'+
+   '<p class="m">いちばん安い物（'+esc(ch.cnt>1?ch.cnt+"個入り":ch.a)+'）で <b>1か月 約'+Math.round(r1.per).toLocaleString()+'円</b>・1回買うと'+mtxt(r1)+'</p>'+
+   (r2?'<p class="m">おすすめ（'+esc(br.cnt>1?br.cnt+"個入り":br.a)+'）なら 1か月 約'+Math.round(r2.per).toLocaleString()+'円・1回買うと'+mtxt(r2)+'</p>':'')+
+   '<p class="w">使う量はご自分で選んでください（1個あたりの値段×使う量の目安）。</p></section>';}
+ h+='<details class="kw"><summary><span>くらべ方・注意<br><small>どこの何件をくらべたか・相場の出し方</small></span></summary>'+K+'</details>';
  h+='<div class="na"><b>順位に入れていない物</b><br>Amazon：送料込みの値段がお店のページでしか分からないため、順位に入れていません。'+(c.amz.length?'<br>'+c.amz.slice(0,2).map(function(a){return '<a href="'+esc(a.url)+'" rel="sponsored noopener" target="_blank">'+esc(a.n||c.nm)+'（Amazonで見る）</a>';}).join("<br>"):"")+'</div>';
  main.innerHTML=h;bind();my();
  /* 見た時の値段を覚える（いつもの物だけ。次に来た時の値動き用） */
@@ -448,6 +446,7 @@ function render(){
 function bind(){
  main.querySelectorAll("[data-home]").forEach(function(a){a.onclick=function(e){e.preventDefault();st.k="";st.c=[];st.n="";st.p=0;rd.innerHTML="";qi.value="";save(true);home();window.scrollTo(0,0);};});
  main.querySelectorAll("[data-t]").forEach(function(b){b.onclick=function(){var t=b.dataset.t,i=st.c.indexOf(t);if(i>=0)st.c.splice(i,1);else st.c.push(t);save();render();track("条件:"+t);var f=main.querySelector('[data-t="'+t+'"]');if(f)f.focus();};});
+ var va=document.getElementById("v4all");if(va)va.onclick=function(){st.all=1;render();track("全部見る:"+st.k);};
  main.querySelectorAll("[data-ut]").forEach(function(b){b.onclick=function(){st.ut=b.dataset.ut;render();};});
  main.querySelectorAll("[data-u]").forEach(function(b){b.onclick=function(){st.u=+b.dataset.u;save();render();var f=main.querySelector('[data-u="'+b.dataset.u+'"]');if(f)f.focus();};});
  ["v4x","v4x2"].forEach(function(id){var x=document.getElementById(id);if(x)x.onclick=function(){st.c=[];st.p=0;st.n="";rd.innerHTML="";qi.value="";save();render();};});
@@ -462,7 +461,7 @@ function my(){var box=$("#v4my"),ks=Object.keys(MY).filter(function(k){return C[
   return '<a href="?k='+k+'" data-my="'+k+'"><div style="flex:1"><b>'+esc(c.nm)+'</b><div class="mut" style="font-size:11.5px">いちばん安い物の'+unitTxt(c)+'</div></div><div style="text-align:right"><span class="n" style="font-size:16px">'+yen(m.u)+'</span>円<div>'+t+'</div></div></a>';}).join("")+
   '<div class="mut" style="font-size:11.5px;margin-top:6px">1日2回とった値段（送料込み）とくらべています</div>';
  box.querySelectorAll("[data-my]").forEach(function(a){a.onclick=function(e){e.preventDefault();pick(a.dataset.my,true);};});}
-function pick(k,push,n){st.k=k;st.c=[];st.u=1;st.p=0;st.n=n||"";save(push);render();var kb=document.querySelector('.kat [data-k2="'+k+'"]');if(kb){var kr=kb.closest(".kat"),a=kb.getBoundingClientRect(),b=kr.getBoundingClientRect();kr.scrollLeft+=a.left-b.left-(b.width-a.width)/2;}track("種類:"+k);}
+function pick(k,push,n){st.k=k;st.all=0;st.c=[];st.u=1;st.p=0;st.n=n||"";save(push);render();var kb=document.querySelector('.kat [data-k2="'+k+'"]');if(kb){var kr=kb.closest(".kat"),a=kb.getBoundingClientRect(),b=kr.getBoundingClientRect();kr.scrollLeft+=a.left-b.left-(b.width-a.width)/2;}track("種類:"+k);}
 document.querySelectorAll(".v4 [data-k2]").forEach(function(b){b.onclick=function(){pick(b.dataset.k2,true);var d=b.closest("details");if(d)d.open=false;};});
 /* 探す：種類の名前・言いかえを読み取り、残りの言葉は条件ボタンに合わせる。読み取った結果を見せる */
 var SYN=D.syn;

@@ -84,6 +84,37 @@ CSS = """
 #okh .oh-start[disabled]{background:#B8B8BC;box-shadow:none}
 #okh .oh-note{margin:16px 16px 0;font-size:11.5px;line-height:1.7;color:#8A8A8E}
 #okh .oh-date{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.v4 .hd .kic{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid #E6E6E8;display:flex;align-items:center;justify-content:center;align-self:center}
+.v4 .hd .kic svg{width:22px;height:22px;fill:none;stroke:#1C1C1C;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.v4 .hd h2{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:19px!important;letter-spacing:.04em}.v4 .hd .st{border:1px solid #1C1C1C!important;border-radius:99px;padding:6px 11px!important;color:#1C1C1C!important;font-weight:700;font-size:12px!important;flex:none}.v4 .hd{align-items:center!important}
+.v4 .vd{margin:12px 16px 0;padding:14px;border-radius:16px;background:#F4F4F6}
+.v4 .vd.buy{background:#EEF6F1}.v4 .vd.deal{background:#EEF2F9}
+.v4 .vd i{font-style:normal;font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;background:#fff;color:#4A4A4E}
+.v4 .vd.buy i{color:#1F7A4D}.v4 .vd.deal i{color:#2F5E9E}
+.v4 .vd p{margin:8px 0 0;font-size:13.5px;line-height:1.75}.v4 .vd b{font-family:Jost,sans-serif;font-size:19px;font-weight:500}
+.v4 .bgw{margin:12px 16px 0;padding:12px 10px 6px;border:1px solid #E6E6E8;border-radius:16px}
+.v4 .bgw .en{margin:0 4px;font:500 10px Jost,"Zen Kaku Gothic New",sans-serif;letter-spacing:.12em;color:#8A8A8E}
+.v4 .bgw .gn{margin:0 4px;font-size:10.5px;color:#8A8A8E;text-align:right}
+.v4 .bg{display:block;width:100%;height:auto;fill:none;stroke:#1F7A4D;stroke-width:1.6}.v4 .bg circle{fill:#fff;stroke-width:1.4}
+.v4 .bg text{stroke:none;fill:#8A8A8E;font:10px Jost,sans-serif;text-anchor:middle}.v4 .bg text.v{text-anchor:start;fill:#1C1C1C;font-size:11px}.v4 .bg text.e{text-anchor:end;fill:#1F7A4D;font-weight:600}
+.v4 .rkl{list-style:none;margin:8px 16px 0;padding:0;border-top:1px solid #E6E6E8}
+.v4 .rkl li{border-bottom:1px solid #E6E6E8}.v4 .rkl li.gap{text-align:center;color:#8A8A8E;padding:2px 0;font-size:12px}
+.v4 .rkl a{display:flex;align-items:center;gap:10px;padding:12px 0;color:inherit;text-decoration:none}
+.v4 .rkl .no{flex:none;width:20px;font:500 15px Jost,sans-serif;color:#8A8A8E;text-align:center}
+.v4 .rkl li:first-child .no{color:#1F7A4D}
+.v4 .rkl img,.v4 .rkl .ph{flex:none;width:62px;height:62px;object-fit:contain;border-radius:10px;border:1px solid #F0F0F2;background:#fff}
+.v4 .rkl .tx{flex:1;min-width:0}.v4 .rkl p{margin:0}
+.v4 .rkl .nm{font-size:12px;line-height:1.45;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.v4 .rkl .pz{margin-top:3px;font-size:11px}.v4 .rkl .pz b{font:500 19px Jost,sans-serif}.v4 .rkl .pz span{color:#6A6A6E}
+.v4 .rkl .sh{margin-top:1px;font-size:10.5px;color:#8A8A8E}
+.v4 .rkl .sp{font-size:10.5px;font-weight:700;color:#8F5E00}.v4 .rkl .sm{font-size:10.5px;font-weight:700;color:#B3261E}
+.v4 .rkl .go{flex:none;padding:9px 15px;border-radius:99px;background:#1C1C1C;color:#fff;font-size:12px;font-weight:700}
+.v4 .rb{display:inline-block;font-size:10px;font-weight:700;color:#A0522D;border:1px solid #E4C9B8;border-radius:99px;padding:0 6px;margin-right:4px;vertical-align:1px}
+.v4 .rbn,.v4 .rkn{margin:8px 16px 0;font-size:11.5px;color:#6A6A6E}
+.v4 .rkm{display:block;margin:12px 16px 0;width:calc(100% - 32px);padding:12px;border-radius:99px;border:1px solid #1C1C1C;background:#fff;font:700 13px "Zen Kaku Gothic New",sans-serif;color:#1C1C1C;cursor:pointer}
+.v4 .use{margin:16px 16px 0!important;padding:14px!important;border-radius:16px;background:#F4F4F6;border:0!important}
+.v4 .use p{margin:0;font-size:13.5px}.v4 .use .seg{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.v4 .use .m{font-size:12.5px;color:#4A4A4E;line-height:1.7}.v4 .use .w{font-size:11px;color:#8A8A8E;margin-top:6px}
 .v4 .ohb{display:inline-block;margin:10px 16px 0;font-size:13px;font-weight:700;color:#1C1C1C;text-decoration:none;border-bottom:1px solid #1C1C1C}
 .v4 .ohv{margin:10px 16px 0;padding:10px 12px;border-radius:12px;background:#F4F4F6;font-size:12.5px;line-height:1.6}
 .v4 .ohv.buy{background:#EEF6F1}.v4 .ohv.deal{background:#EEF2F9}
@@ -102,11 +133,27 @@ function oneUnit(c){var L=c.o.slice(),UT={};L.forEach(function(o){if(o.ut)UT[o.u
 function cheap(c){return oneUnit(c)[0];}
 function md(d){return (+d.slice(5,7))+"/"+(+d.slice(8,10));}
 /* しるし：値下がり中（しらべた日の中で今がいちばん安く、3%以上下がった）・お得（しらべた物の平均より25%以上安い） */
-function sig(c){var o=cheap(c);if(!o)return null;var r={o:o,cls:"",lab:"",sub:""};
+function sig(c){return sigOf(c,cheap(c));}
+function sigOf(c,o){if(!o)return null;var r={o:o,cls:"",lab:"",sub:""};
  if(o.h){var ds=Object.keys(o.h).sort();if(ds.length>=4){var vs=ds.map(function(d){return o.h[d];}),now=vs[vs.length-1],mn=Math.min.apply(null,vs),hi=Math.max.apply(null,vs);
   if(now<=mn&&hi>=now*1.03){var i=vs.length-1;while(i>0&&vs[i-1]===now)i--;r.cls="buy";r.lab="値下がり中";r.sub=md(ds[i])+"に"+Math.round((1-now/hi)*100)+"%下がった";return r;}}}
  if(c.avg&&c.unit!=="1L・1kg"&&o.u<=c.avg*0.75){r.cls="deal";r.lab="お得";r.sub="平均より"+Math.round((1-o.u/c.avg)*100)+"%安い";return r;}
  r.sub="平均なみ";return r;}
+/* 11/10 種類の画面：答えの箱（しるし・はじめの日の値段・相場）と、1個あたりの値段の動き */
+function perH(o){if(!o||!o.h||!o.p)return [];var f=o.u/o.p;return Object.keys(o.h).sort().map(function(d){return [d,o.h[d]*f];});}
+function verdict(c,o){var s=sigOf(c,o);if(!s)return "";var u=ohut(c,o),hs=perH(o),t='いちばん安いのは <b>'+yen(o.u)+'</b>円/'+esc(u)+'。';
+ if(s.cls)t+=esc(s.sub)+'。';
+ if(hs.length>=2&&Math.abs(hs[0][1]-o.u)>=0.05)t+='<br>同じ物が'+md(hs[0][0])+'は'+yen(hs[0][1])+'円でした。';
+ if(c.avg&&c.unit!=="1L・1kg")t+=(hs.length>=2&&Math.abs(hs[0][1]-o.u)>=0.05?'':'<br>')+'相場（平均）は'+yen(c.avg)+'円です。';
+ var lab=s.lab||(ctxt().length?'この条件で':'いまの値段');
+ return '<div class="vd '+s.cls+'"><i>'+esc(lab)+'</i><p>'+t+'</p></div>';}
+function bigg(c,o){var hs=perH(o);if(hs.length<2)return "";var W=340,H=112,ps=hs.map(function(x){return x[1];}),lo=Math.min.apply(null,ps),hi=Math.max.apply(null,ps);
+ if(hi-lo<hi*0.02){lo=lo*0.97;hi=hi*1.03;}else{var g=(hi-lo)*0.15;lo-=g;hi+=g;}
+ var d0=new Date(hs[0][0]),sp=Math.max(1,(new Date(hs[hs.length-1][0])-d0)/864e5),X=function(d){return 16+((new Date(d)-d0)/864e5)/sp*(W-32);},Y=function(v){return 16+(hi-v)/(hi-lo)*(H-44);};
+ var pts=hs.map(function(x){return X(x[0]).toFixed(1)+","+Y(x[1]).toFixed(1);}),n=hs.length,st2=Math.max(1,Math.ceil((n-1)/4)),s='';
+ s+='<polyline points="'+pts.join(" ")+'"/>';hs.forEach(function(x,i){s+='<circle cx="'+X(x[0]).toFixed(1)+'" cy="'+Y(x[1]).toFixed(1)+'" r="2.4"/>';if(i%st2===0||i===n-1)if(i===n-1||n-1-i>=st2/2)s+='<text x="'+X(x[0]).toFixed(0)+'" y="'+(H-6)+'">'+md(x[0])+'</text>';});
+ var f=hs[0],l=hs[n-1];s+='<text class="v" x="'+X(f[0]).toFixed(0)+'" y="'+(Y(f[1])-7).toFixed(0)+'">'+yen(f[1])+'円</text><text class="v e" x="'+X(l[0]).toFixed(0)+'" y="'+(Y(l[1])+(Y(l[1])>H-50?-7:17)).toFixed(0)+'">'+yen(l[1])+'円</text>';
+ return '<div class="bgw"><p class="en">PRICE / '+esc(ohut(c,o))+'　いちばん安い物の動き</p><svg class="bg" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(o.n.slice(0,30))+'の'+esc(ohut(c,o))+'あたりの値段 '+hs.map(function(x){return md(x[0])+" "+yen(x[1])+"円";}).join("、")+'">'+s+'</svg><p class="gn">送料込み・'+esc(o.w)+'・1日1点</p></div>';}
 function ohut(c,o){return (c.unit==="1L・1kg"?(o.ut||"1L"):c.unit).replace("あたり","");}
 function today(){var d=new Date(Date.now()+9*36e5);return d.toISOString().slice(0,10);}
 function daysLeft(c,k){var m=MY[k];if(!m||!m.b||!c.use)return null;var o=cheap(c);if(!o)return null;var q=c.use[1][1],r=months(c,o,q);if(!r)return null;
