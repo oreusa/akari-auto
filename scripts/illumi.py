@@ -222,7 +222,7 @@ html body .cw .cd .dt{{font-size:13px;font-weight:500;color:#6B6058}}
 html body .cw .cd .nm{{font:700 16.5px/1.5 var(--go);letter-spacing:0;color:#1C1C1C;margin:4px 0 6px}}
 html body .cw .cd .ar{{right:12px;top:auto;bottom:10px;transform:none;width:38px;height:38px;border-radius:50%;background:var(--pc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:300}}
 html body .cw .mp{{left:18px;bottom:21px;padding:0;border-bottom-color:#BFBFBF}}html body .cw>.yk{{left:72px;bottom:21px}}html body .cw>.yk a{{padding:0;border-bottom-color:#BFBFBF}}
-</style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=42" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script><script src="/assets/yado.js?v=3" defer></script></head>
+</style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=43" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script><script src="/assets/yado.js?v=3" defer></script></head>
 <body><div class="wrap">
 <header class="head">
 <img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">

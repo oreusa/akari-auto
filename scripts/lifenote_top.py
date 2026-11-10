@@ -76,7 +76,7 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 .find{{margin:14px 0 0!important;padding:14px 14px 12px!important}}.find h2{{font-size:16px!important}}.find h2 small{{display:none}}.find p{{margin:6px 0 10px!important}}
 .exl{{font-size:11.5px;color:#8C7B6E;margin:10px 2px 0}}
 /* 11/8 オーナー「地図は1番上だろ お洒落に見やすく」→ 月と同じ：地図を名前と1行のすぐ下、11/8 9:47 オーナー「枠いらない」→ 台紙・枠・MAP札なし */.head .mapsec{{margin:14px -80px 0 0;}}.mtag{{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#8C7B6E;margin:0 4px}}.mtag span{{font-family:Jost;font-weight:500;font-size:9.5px;letter-spacing:.32em;color:#fff;background:#2B2622;border-radius:99px;padding:3px 9px 3px 12px}}.head .kmap{{margin:4px 0 0}}.head .pp{{margin:4px 2px 8px;border-radius:12px}}
-</style><script src="/assets/night.js?v=15"></script><script src="/assets/menu.js?v=42" defer></script><script src="/assets/v2sub.js?v=11" defer></script></head><body id="lifenote-top"><div class="wrap">
+</style><script src="/assets/night.js?v=15"></script><script src="/assets/menu.js?v=43" defer></script><script src="/assets/v2sub.js?v=11" defer></script></head><body id="lifenote-top"><div class="wrap">
 <header class="head"><img src="/logo-s.png" width="74" height="74" alt="LIFE NOTE のロゴ">
 <h1>LIFE NOTE</h1><div class="kana">ライフノート</div>
 <p class="pur">関東の<b>おでかけ</b>・<b>街の地価</b>・<b>日用品の最安</b>を、<br>公式の情報でしらべるノート</p>

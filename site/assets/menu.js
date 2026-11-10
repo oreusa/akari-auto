@@ -458,3 +458,11 @@ function run(){
 }
 var n=0;(function t(){run();if(!document.querySelector("#upan .nbk")&&++n<50)setTimeout(t,100);})();
 })();
+/* 11/10 オーナー「見やすさと操作性と技術で勝負」→ 押す前にページを先に取っておく（押したらすぐ開く）。
+   ページの中身を先に「動かす」のではなく「取っておく」だけ（数える仕組みに影響しない）。Chrome は指を近づけた時、iPhone は触れた瞬間に。 */
+(function(){try{
+ if(HTMLScriptElement.supports&&HTMLScriptElement.supports("speculationrules")){var s=document.createElement("script");s.type="speculationrules";
+  s.textContent=JSON.stringify({prefetch:[{where:{and:[{href_matches:"/*"},{not:{href_matches:"/c*"}},{not:{href_matches:"/moushikomi*"}}]},eagerness:"moderate"}]});document.head.appendChild(s);return;}
+ var done={};function pf(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a||a.origin!==location.origin||a.target==="_blank")return;var u=a.pathname+a.search;if(done[u]||u===location.pathname||/^\/(c|moushikomi)/.test(u))return;done[u]=1;var l=document.createElement("link");l.rel="prefetch";l.href=u;document.head.appendChild(l);}
+ document.addEventListener("touchstart",pf,{passive:true,capture:true});document.addEventListener("mouseover",pf,{passive:true,capture:true});
+}catch(e){}})();
