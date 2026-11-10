@@ -13,7 +13,7 @@ var li=document.createElement("li");li.className="src";li.textContent="楽天ト
 b.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();if(!u.dataset.op)ck("宿を開く｜"+t.textContent.trim());u.dataset.op=u.dataset.op?"":"1";b.classList.toggle("op",!!u.dataset.op);sync();});
 if(w!==c){w.appendChild(d);w.insertAdjacentElement("afterend",u);u._c=c;}else{w.insertAdjacentElement("afterend",d);d.insertAdjacentElement("afterend",u);}}else w.insertAdjacentElement("afterend",d);});}
 function ck(k){try{if(localStorage.getItem("usagi_owner")==="1")return;}catch(e){}try{var b=JSON.stringify({k:k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true});}catch(e){}}
-function vis(e){for(;e&&e!==document.body;e=e.parentElement){if(e.hidden||getComputedStyle(e).display=="none")return false;}return true;}
+function vis(e){return !!(e&&e.isConnected&&e.getClientRects().length);}/* 11/10 押した時が重い→1回の計算で済ませる */
 function sync(){document.querySelectorAll(".yk,.ykl").forEach(function(x){if(x.className=="ykl"&&!x._c)x._c=x.previousElementSibling&&x.previousElementSibling._c;var on=x._c&&vis(x._c);x.hidden=!on||(x.className=="ykl"&&!x.dataset.op);});}
 var P=fetch("/kanto-yado.json").then(function(r){return r.ok?r.json():{}}).then(function(j){Y={};for(var k in (j||{}))Y[k.replace(/\s+/g,"")]=j[k];}).catch(function(){});
 window.addEventListener("load",function(){P.then(function(){run();sync();setTimeout(function(){run();sync();},800);});});
