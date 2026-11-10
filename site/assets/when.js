@@ -172,7 +172,9 @@ function render(){setTimeout(function(){if(window.ykRun)window.ykRun();},0);var 
    pk.forEach(function(o,i){var sv=o.w.querySelector(".ib svg"),dd=o.w.querySelector(".dd"),pc=(o.w.getAttribute("style")||"").match(/--pc:\s*([^;]+)/);
     hh+='<a href="'+o.href+'" target="_blank" rel="noopener"'+(pc?' style="--pc:'+pc[1]+'"':'')+'><span class="n">'+(i+1)+'</span><span class="ti">'+(sv?sv.outerHTML:"")+'</span><span class="tx"><b>'+title(o.w)+'</b><span><i>'+(o.pref||"")+'</i>・'+(dd?dd.textContent.trim():mdw(o.e||T))+'</span></span></a>';});
    bx.innerHTML=hh;sec.appendChild(bx);}
-  var S=L.filter(isShort).sort(byE),G=L.filter(function(o){return !isShort(o);}).sort(byE);
+  /* 11/10 夜 #83：選んだ日のうち片方しか開いていない所（決まった日曜だけ等）は「長く開いている所／どちらの日でも」に入れない */
+  var R0=D[st.d].d.filter(function(d){return d>=T;}),part=function(o){return R0.length>1&&R0.filter(function(d){return openOn(o,d);}).length<R0.length;},sh=function(o){return isShort(o)||part(o);};
+  var S=L.filter(sh).sort(byE),G=L.filter(function(o){return !sh(o);}).sort(byE);
   group(S,"s","日にちの決まった催し",lab+"に開催。期間が短いので、先に見ておくと行きのがしません",st.d,true);
   group(G,"g","長く開いている所","紅葉・イルミ・展覧会など。"+(D[st.d].d.length>1?"どちらの日でも行けます":"この日も開いています"),st.d,false);
   syncUrl();if(window.__wfold)window.__wfold();}
