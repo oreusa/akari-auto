@@ -6,7 +6,7 @@ R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = os.path.join(R, "site")
 PREF = ["東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬"]
 SLUG = {"tokyo": "東京", "kanagawa": "神奈川", "saitama": "埼玉", "chiba": "千葉", "ibaraki": "茨城", "tochigi": "栃木", "gunma": "群馬"}
-V = "2"
+V = "3"
 today = (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime("%Y-%m-%d")
 P = {p: {"od": 0, "free": 0, "odL": [], "tw": 0, "upT": 0, "avg": 0.0, "top": [], "kN": 0, "kAvg": 0} for p in PREF}
 
