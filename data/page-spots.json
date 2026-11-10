@@ -570,17 +570,6 @@
       "opennote": "月曜休館（祝日は開館）"
     },
     {
-      "title": "東京雲海×TOKYO MOON",
-      "pref": "東京",
-      "place": "ホテル椿山荘東京",
-      "when": "9/15〜11/9",
-      "start": "2026-09-15",
-      "ends": "2026-11-09T22:00",
-      "note": "文京区｜庭の演出は18:40・20:40・21:40",
-      "url": "https://hotel-chinzanso-tokyo.jp/7s/autumn/",
-      "checked": "2026-10-28"
-    },
-    {
       "title": "ルーヴル美術館展 ルネサンス",
       "pref": "東京",
       "place": "国立新美術館",
@@ -2435,6 +2424,53 @@
       "note": "志木市｜16:30〜21:00。カパルの飾りも",
       "url": "https://kanko-shiki.com/archives/5214",
       "checked": "2026-11-09"
+    },
+    {
+      "title": "2026さいたまるしぇ in さいたまクリテリウム",
+      "pref": "埼玉",
+      "place": "けやきひろば",
+      "when": "11/14〜11/15",
+      "start": "2026-11-14",
+      "ends": "2026-11-15T17:00",
+      "free": true,
+      "note": "さいたま市中央区｜さいたま新都心けやきひろば2階。11:00〜17:00",
+      "url": "https://visitsaitamacity.jp/events/5",
+      "checked": "2026-11-10"
+    },
+    {
+      "title": "第10回 うずまの竹あかり",
+      "pref": "栃木",
+      "place": "巴波川 常盤橋",
+      "when": "10/24〜2/28",
+      "start": "2026-10-24",
+      "ends": "2027-02-28T22:00",
+      "free": true,
+      "note": "栃木市｜巴波川の常盤橋〜巴波川橋。16:30〜22:00",
+      "url": "https://www.tochigi-kankou.or.jp/news/20057",
+      "checked": "2026-11-10"
+    },
+    {
+      "title": "大谷クリスマスマーケット",
+      "pref": "栃木",
+      "place": "大谷景観公園",
+      "when": "12/5〜12/6",
+      "start": "2026-12-05",
+      "ends": "2026-12-06T20:30",
+      "note": "宇都宮市｜12:30〜20:30。石窯ピザやクラフト体験、ランタンバルーンも",
+      "url": "https://www.utsunomiya-cvb.org/event/detail_30066.html",
+      "checked": "2026-11-10"
+    },
+    {
+      "title": "かわちイルミネーション2026",
+      "pref": "茨城",
+      "place": "かわち水と緑のふれあい公園",
+      "when": "11/3〜2/14",
+      "start": "2026-11-03",
+      "ends": "2027-02-14T21:30",
+      "free": true,
+      "note": "河内町｜1/12まで17:00〜21:00。駐車場は有料（平日300円・土日祝500円）",
+      "url": "https://kawachi-illumination.lanitech.jp/",
+      "checked": "2026-11-10"
     }
   ]
 }
