@@ -3091,7 +3091,7 @@
   },
   "ライドアラウンドin岸和田": {
     "v": 2,
-    "t": "2026-11-03",
+    "t": "2026-11-10",
     "ll": [
       34.4606,
       135.37086
@@ -3102,31 +3102,31 @@
         "n": "ホテルルートイン大阪岸和田ー東岸和田駅前/関西空港ー",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D177129",
         "km": 1.8,
-        "r": 4.41,
-        "rc": 580,
+        "r": 4.4,
+        "rc": 584,
         "min": 4200
       },
       {
         "n": "アパホテル〈関空岸和田〉(関西国際空港/KIX)",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D12668",
         "km": 0.6,
-        "r": 3.92,
-        "rc": 1262,
+        "r": 3.94,
+        "rc": 1275,
         "min": 4200
       },
       {
         "n": "ホテルサンライズイン",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D4953",
         "km": 1.9,
-        "r": 3.87,
-        "rc": 393,
+        "r": 3.85,
+        "rc": 396,
         "min": 3900
       }
     ]
   },
   "NARA COFFEE FES A CUP OF Brew": {
     "v": 2,
-    "t": "2026-11-03",
+    "t": "2026-11-10",
     "ll": [
       34.68191,
       135.81985
@@ -3154,14 +3154,14 @@
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D76939",
         "km": 0.1,
         "r": 4.53,
-        "rc": 7362,
-        "min": 6240
+        "rc": 7402,
+        "min": 5040
       }
     ]
   },
   "當麻寺中之坊 秋の寺宝展": {
     "v": 2,
-    "t": "2026-11-03",
+    "t": "2026-11-10",
     "ll": [
       34.51588,
       135.6957
@@ -3188,7 +3188,7 @@
   },
   "トナリマチドライブスタンプラリー": {
     "v": 2,
-    "t": "2026-11-03",
+    "t": "2026-11-10",
     "ll": [
       35.12943,
       136.24613
@@ -3199,15 +3199,15 @@
         "n": "クレフィール湖東",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106249",
         "km": 3.3,
-        "r": 4.19,
-        "rc": 390,
-        "min": 7800
+        "r": 4.21,
+        "rc": 393,
+        "min": 7300
       }
     ]
   },
   "川湯温泉 仙人風呂 湯けむり灯篭": {
     "v": 2,
-    "t": "2026-11-03",
+    "t": "2026-11-10",
     "ll": [
       33.81284,
       135.77437
@@ -3242,7 +3242,7 @@
   },
   "第38回 紀州漆器まつり": {
     "v": 2,
-    "t": "2026-11-03",
+    "t": "2026-11-10",
     "ll": [
       34.15753,
       135.23967
@@ -3254,7 +3254,7 @@
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191657",
         "km": 2.3,
         "r": 4.4,
-        "rc": 188,
+        "rc": 192,
         "min": 6150
       },
       {
@@ -3266,18 +3266,18 @@
         "min": 4500
       },
       {
-        "n": "SEA QUEEN KAINAN(シークィーン海南)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D139948",
-        "km": 2.8,
-        "r": 3.91,
-        "rc": 243,
-        "min": 5500
+        "n": "和歌山プリンスイン海南",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D67955",
+        "km": 2.7,
+        "r": 3.82,
+        "rc": 410,
+        "min": 5950
       }
     ]
   },
   "おもしろ科学まつり 和歌山大会": {
     "v": 2,
-    "t": "2026-11-03",
+    "t": "2026-11-10",
     "ll": [
       34.26583,
       135.15174
@@ -3293,20 +3293,20 @@
         "min": 3800
       },
       {
-        "n": "TSUKIJI HOSTEL Wakayama",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179632",
-        "km": 4.3,
-        "r": 5.0,
-        "rc": 25,
-        "min": 3200
-      },
-      {
         "n": "GuesthouseRICO",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D151384",
         "km": 4.5,
         "r": 5.0,
         "rc": 16,
-        "min": 3672
+        "min": 3456
+      },
+      {
+        "n": "TSUKIJI HOSTEL Wakayama",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179632",
+        "km": 4.3,
+        "r": 4.5,
+        "rc": 26,
+        "min": 3200
       }
     ]
   },
