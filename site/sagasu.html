@@ -6,7 +6,7 @@
 <style>
 body{margin:0;background:#fff;font-family:"Zen Kaku Gothic New";color:#2B2622;padding-bottom:90px}
 .wrap{max-width:440px;margin:0 auto;padding:0 16px 40px}
-.hero{padding:46px 0 0;text-align:center}.hero .en{font-family:Jost;font-size:10.5px;letter-spacing:.36em;color:#9C8775}
+.hero{padding:64px 0 0;text-align:center}.hero .en{font-family:Jost;font-size:10.5px;letter-spacing:.36em;color:#9C8775}
 .hero h1{font-family:"Shippori Mincho",serif;font-size:22px;font-weight:600;letter-spacing:.06em;margin:6px 0 4px;line-height:1.5}
 .usp{font-size:12.5px;line-height:1.7;color:#6B6058;margin:0 0 12px}.usp b{color:#2B2622}
 .bud{background:#F4F4F6;border-radius:18px;padding:14px}
@@ -23,7 +23,7 @@ body{margin:0;background:#fff;font-family:"Zen Kaku Gothic New";color:#2B2622;pa
 .rw .a{flex:1;min-width:0}.rw .a b{font-size:16px}.rw .a small{font-size:11px;color:#9C8775;margin-left:6px}.rw .a span{display:block;font-size:11.5px;color:#857A70;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rw .b{text-align:right}.rw .b b{display:block;font-family:Jost,"Zen Kaku Gothic New";font-size:17px;font-weight:600}.rw .b span{font-size:11px;color:#B5735A}
 .rw:after{content:"›";font:300 24px Jost,sans-serif;color:#9C8775;margin-left:2px}
-.mo{display:block;width:100%;margin:12px 0 0;font:inherit;font-size:14px;font-weight:700;padding:12px;border-radius:12px;border:1.5px solid #D6D6D6;background:#fff;color:#2B2622;cursor:pointer}
+.kmore{display:block;width:100%;margin:12px 0 0;font:inherit;font-size:14px;font-weight:700;padding:12px;border-radius:12px;border:1.5px solid #D6D6D6;background:#fff;color:#2B2622;cursor:pointer}
 .em{font-size:13px;color:#857A70;text-align:center;padding:24px 0;line-height:1.9}
 .nt{font-size:11px;color:#857A70;line-height:1.8;margin:16px 2px 0}
 </style><script src="/assets/night.js?v=18"></script><script src="/assets/menu.js?v=43" defer></script><script src="/assets/v2sub.js?v=16" defer></script></head><body><div class="wrap">
@@ -54,11 +54,11 @@ function draw(){
  document.getElementById("pf").innerHTML='<button type="button" data-p=""'+(st.p?'':' class="on"')+'>ぜんぶ<i>'+A.length+'</i></button>'+ORD.map(function(p){return '<button type="button" data-p="'+p+'" style="--c:'+COL[p]+'"'+(st.p===p?' class="on"':'')+'>'+p+'<i>'+(cnt[p]||0)+'</i></button>'}).join("");
  var L=A.filter(function(t){return !st.p||t.p===st.p});
  L.sort(st.s=="up"?function(a,b){return b.r-a.r}:st.s=="cheap"?function(a,b){return a[st.k]-b[st.k]}:function(a,b){return b.o.length-a.o.length||b.r-a.r});
- tl.innerHTML=L.length?L.slice(0,st.n).map(function(t){return '<a class="rw" style="--c:'+COL[t.p]+'" href="'+E(yu(t))+'" rel="nofollow sponsored" target="_blank" data-k="家を探す｜Yahoo!不動産｜'+E(t.n)+'"><div class="a"><b>'+E(t.n)+'</b><small>'+t.p+'</small>'+(t.o.length?'<span>いま開催：'+E(t.o[0][0])+(t.o.length>1?' ほか'+(t.o.length-1):'')+'</span>':'')+'</div><div class="b"><b>'+man(t[st.k])+'</b><span>地価 '+(t.r>0?"+":"")+t.r.toFixed(1)+'%'+(t.r>0?" ↑":"")+'</span></div></a>'}).join("")+(L.length>st.n?'<button type="button" class="mo" id="mo">あと'+(L.length-st.n)+'の街を見る</button>':''):'<p class="em">この予算では、まだ届く街がありません。<br>予算を少し上げてみてください。</p>'}
+ tl.innerHTML=L.length?L.slice(0,st.n).map(function(t){return '<a class="rw" style="--c:'+COL[t.p]+'" href="'+E(yu(t))+'" rel="nofollow sponsored" target="_blank" data-k="家を探す｜Yahoo!不動産｜'+E(t.n)+'"><div class="a"><b>'+E(t.n)+'</b><small>'+t.p+'</small>'+(t.o.length?'<span>いま開催：'+E(t.o[0][0])+(t.o.length>1?' ほか'+(t.o.length-1):'')+'</span>':'')+'</div><div class="b"><b>'+man(t[st.k])+'</b><span>地価 '+(t.r>0?"+":"")+t.r.toFixed(1)+'%'+(t.r>0?" ↑":"")+'</span></div></a>'}).join("")+(L.length>st.n?'<button type="button" class="kmore" id="kmore">あと'+(L.length-st.n)+'の街を見る</button>':''):'<p class="em">この予算では、まだ届く街がありません。<br>予算を少し上げてみてください。</p>'}
 bc.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;st.b=+b.dataset.b;st.n=30;c("家を買いたい｜予算｜"+st.b);draw()});
 document.getElementById("kd").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;st.k=b.dataset.k;st.y=b.dataset.y;[].forEach.call(this.children,function(x){x.classList.toggle("on",x===b)});draw()});
 document.getElementById("pf").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;st.p=b.dataset.p;st.n=30;draw()});
 document.getElementById("so").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;st.s=b.dataset.s;[].forEach.call(this.children,function(x){x.classList.toggle("on",x===b)});draw()});
-tl.addEventListener("click",function(e){if(e.target.id==="mo"){st.n+=60;draw();return}var a=e.target.closest("a.rw");if(a)c("クリック：住む街をさがす｜"+a.getAttribute("data-k"))});
+tl.addEventListener("click",function(e){if(e.target.id==="kmore"){st.n+=60;draw();return}var a=e.target.closest("a.rw");if(a)c("クリック：住む街をさがす｜"+a.getAttribute("data-k"))});
 draw();})();</script>
 </body></html>
