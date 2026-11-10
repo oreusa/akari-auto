@@ -386,7 +386,8 @@ function side(){if(/^\/jikka/.test(P))return "jk";if(/^\/(fudosan|uru|moushikomi
 var HERE=side();try{if(!/^\/koe/.test(P))sessionStorage.setItem("tn_side",HERE);}catch(e){}
 /* 前回のつづき：ほかのページを見ていたら、目次の上に1行（この端末だけ） */
 var LAST=null;try{LAST=JSON.parse(localStorage.getItem("tn_last")||"null");var tt=(document.title||"").split(/[｜|]/)[0].replace(/【[^】]*】/g,"").trim().slice(0,20);
- if(tt&&!/^\/(koe|moushikomi|privacy)/.test(P))var U=location.pathname.replace(/\.html$/,"");localStorage.setItem("tn_last",JSON.stringify({u:U,t:tt}));if(LAST&&LAST.u.replace(/\.html$/,"")===U)LAST=null;}catch(e){}
+ /* 11/10 夜 #164：括弧が無く、名前の無いページでも保存して「前回のつづき」が /undefined に飛んでいた */
+ var U=location.pathname.replace(/\.html$/,"");if(tt&&!/^\/(koe|moushikomi|privacy)/.test(P)){localStorage.setItem("tn_last",JSON.stringify({u:U,t:tt}));}if(LAST&&(!LAST.u||!LAST.t||String(LAST.u).indexOf("undefined")>=0||LAST.u.replace(/\.html$/,"")===U))LAST=null;}catch(e){}
 function ck(k){try{if(localStorage.getItem("usagi_owner")==="1")return;}catch(e){}try{var b=JSON.stringify({k:k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true});}catch(e){}}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 var css="#upan .nbk{flex:1;display:flex;min-height:0}"+
