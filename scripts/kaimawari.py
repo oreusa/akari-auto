@@ -92,7 +92,7 @@ def render(groups, now, sale):
         mu = sale.get("url") or "https://event.rakuten.co.jp/campaign/point-up/marathon/"
         eu = f"https://hb.afl.rakuten.co.jp/hgc/{aid}/?pc={urllib.parse.quote(mu, safe='')}&m={urllib.parse.quote(mu, safe='')}" if aid else mu
         head += (f'<a class="entry nofilt" href="{esc(eu)}" rel="sponsored noopener" target="_blank" data-k="エントリー">楽天でエントリーする →</a>'
-                 '<p class="note">買う前にエントリーが必要です（エントリーしたあとの買い物だけポイントが増えます）</p>')
+                 '<p class="note">エントリーを忘れずに（期間中にエントリーすれば、エントリー前の買い物も対象です）</p>')
         if sale.get("note"):
             head += f'<p class="note">{esc(sale["note"])}</p>'
     else:
