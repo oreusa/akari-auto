@@ -170,7 +170,7 @@ def main():
              if os.path.exists(_mj) else "")
     btns = '<button class="on" data-p="すべて">すべて</button>' + "".join(
         f'<button data-p="{p}" style="--pc:{PREF_COLOR[p]}">{p}</button>' for p in KANTO_ORDER if items[p])
-    dnote = "<br>「◯/◯（土）の空室」は、その日1泊・大人2人で開きます（日曜は今夜の1泊）。" if DATED_OK else ""
+    dnote = "<br>「◯/◯（土）の空室」は、その日1泊・大人2人で開きます（日曜は今夜の1泊）。<br>楽天で「空室が見つかりませんでした」と出たときは、その画面の上の日付を変えると、同じ宿の別の日の空室が出ます。" if DATED_OK else ""
     upd = f"{today.year}年{today.month}月{today.day}日"
     out = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>泊まりで行く関東のおでかけ｜近くの宿つき｜うさぎ│LIFE NOTES</title>
