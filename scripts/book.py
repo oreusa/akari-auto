@@ -91,6 +91,31 @@ def page_line(texts, url, due):
     return PAGE_LINE.format(url=url)
 
 
+PREF_SLUG = {"東京": "tokyo", "神奈川": "kanagawa", "埼玉": "saitama", "千葉": "chiba", "茨城": "ibaraki", "栃木": "tochigi", "群馬": "gunma"}
+
+
+def page_target(texts, due):
+    """投稿の中身に合うHPのページと、そこへ来る理由（11/11 月：7日・約160本で、HPへ来て押した人が8回。
+    行き先がいつも表紙で、投稿の続きが読めなかった → その催しのページ（地図・近くの宿・同じ都県のほかのおでかけ）へ直に。
+    その催しのページが無い時は都県のページ。どちらも分からなければ ("", "")＝今まで通り表紙。"""
+    if "#PR" in " ".join(texts) or not due:
+        return "", ""
+    try:
+        import hashlib
+        import page
+        e = page.spot_match(" ".join(texts), due)
+        if e and page.region(page._pref(e)) == "関東":
+            i = hashlib.md5(re.sub(r"\s+", "", e.get("name") or "").encode()).hexdigest()[:8]  # spot_pages.py と同じ作り方
+            if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site", "o", i + ".html")):
+                return "o/" + i, "地図・近くの宿・" + page._pref(e) + "のほかのおでかけ："
+        pf = page._pref({"title": " ".join(texts), "bullets": []})
+        if pf in PREF_SLUG:
+            return "odekake-" + PREF_SLUG[pf], pf + "のおでかけを、日付と地図で："
+    except Exception:
+        pass
+    return "", ""
+
+
 def with_page(texts, service, cfg, slot="", due=None):
     """2つ目（最後）の文の最後に、プロフィール用ページのURLを1行足す（10/24 オーナー「HPの宣伝、投稿のURLに一緒に付けとけ。一石二鳥」）。
     X・Threadsとも最後に足す（10/24 オーナー「せめて最後に入れろ」。PRや公式のリンクを先に見せる）。文字数を超えるなら前の短い1行、それも超えるなら足さない。"""
@@ -99,9 +124,12 @@ def with_page(texts, service, cfg, slot="", due=None):
     url = pg.get("url")
     if not url or not pg.get("promote", True) or len(texts) < 2 or any(url in t for t in texts):
         return list(texts)
+    path, lead = page_target(texts, due)
+    deep = url.rstrip("/") + "/" + path if path else ""
     if slot:  # どの投稿から来たか分かる印（x0715 = Xの7:15の投稿、t0715 = Threadsの7:15）
-        url = f"{url}?f={'x' if service == 'twitter' else 't'}{slot.replace(':', '')}"
-    for line in dict.fromkeys([page_line(texts, url, due), PAGE_LINE.format(url=url)]):
+        tag = f"?f={'x' if service == 'twitter' else 't'}{slot.replace(':', '')}"
+        url, deep = url + tag, (deep + tag if deep else "")
+    for line in dict.fromkeys(([lead + deep] if deep else []) + [page_line(texts, url, due), PAGE_LINE.format(url=url)]):
         new = texts[-1].rstrip() + "\n\n" + line
         fits = (x_weight(new) <= 280) if service == "twitter" else (threads_len(new) <= 500)
         if fits:
