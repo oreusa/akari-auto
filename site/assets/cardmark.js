@@ -131,3 +131,52 @@ try{document.dispatchEvent(new CustomEvent('cm-ready'))}catch(e){}
 window.addEventListener('load',go);
 try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
+/* 11/11 オーナー「ごちゃごちゃになってたら…見てもらう人に失礼」→ 長いページ（泊まり・紅葉・イルミ・いまから・地価ランキング）は、
+   最初は府県ごとに5件（いまからは10件・ランキングは20位）まで。残りは「残り◯を見る」で開く。見た目・並びは変えない。
+   府県や条件のボタンを押した時・地図から飛んだ時は、全部開く（しぼり込んだ結果を隠さない）。 */
+(function(){
+if(window.__fxfold)return;window.__fxfold=1;
+if(!/^\/(tomari|koyo|illumination|ima|chika-(kansai|kanto))(\.html)?\/?$/.test(location.pathname))return;
+var st=document.createElement("style");
+st.textContent=".fx-h{display:none!important}.fx-more{display:block;width:100%;box-sizing:border-box;margin:12px 0 6px;padding:13px 12px;font:700 14px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;color:#2B2622;background:#fff;border:1.5px solid #CFC6BD;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent}.fx-more:active{opacity:.6}";
+document.head.appendChild(st);
+var done=false;
+function vis(e){return !!e.offsetParent}
+function open(box){if(!box||!box.querySelectorAll)return;
+ [].forEach.call(box.querySelectorAll(".fx-h"),function(e){e.classList.remove("fx-h")});
+ [].forEach.call(box.querySelectorAll(".fx-more"),function(e){e.remove()});
+ if(box.__fxb){box.__fxb.remove();box.__fxb=null}}
+function openAll(){done=true;[].forEach.call(document.querySelectorAll(".fx-h"),function(e){e.classList.remove("fx-h")});
+ [].forEach.call(document.querySelectorAll(".fx-more"),function(e){e.remove()})}
+function fold(box,items,n,unit,outside){items=items.filter(vis);if(items.length<n+2)return;
+ items.slice(n).forEach(function(e){e.classList.add("fx-h")});
+ var b=document.createElement("button");b.type="button";b.className="fx-more";b.textContent="残り"+(items.length-n)+unit+"を見る ▾";
+ b.onclick=function(e){e.stopPropagation();open(box);try{navigator.sendBeacon&&localStorage.getItem("usagi_owner")!=="1"&&navigator.sendBeacon("/c",JSON.stringify({k:"もっと見る｜"+location.pathname}))}catch(x){}};
+ if(outside){box.parentNode.insertBefore(b,box.nextSibling);box.__fxb=b}else items[items.length-1].parentNode.insertBefore(b,items[items.length-1].nextSibling);}
+function kids(box,sel){return [].filter.call(box.children,function(c){return c.matches(sel)})}
+function run(){
+ var ps=[].filter.call(document.querySelectorAll("section.ps"),vis);
+ if(ps.length>=2){var all=[].concat.apply([],ps.map(function(s){return kids(s,".it").filter(vis)})),hh=0;all.slice(0,12).forEach(function(e){hh+=e.offsetHeight});
+  var n=(ps.length>8||(all.length&&hh/Math.min(12,all.length)>300))?3:5;ps.forEach(function(s){fold(s,kids(s,".it"),n,"か所")});}
+ [].forEach.call(document.querySelectorAll("ol"),function(ol){if(vis(ol)&&kids(ol,"li.r").length>40)fold(ol,kids(ol,"li.r"),20,"の街",true)});
+ var li=document.getElementById("list");
+ if(li&&/^\/ima/.test(location.pathname)){var again=function(){if(li.__fxb){li.__fxb.remove();li.__fxb=null}var its=kids(li,".it").filter(vis);if(its.length<12)return;
+   /* 10件目より後ろは、間の見出し（◯分以内）ごとたたむ */
+   var x=its[9].nextElementSibling;while(x){x.classList.add("fx-h");x=x.nextElementSibling}
+   var bt=document.createElement("button");bt.type="button";bt.className="fx-more";bt.textContent="残り"+(its.length-10)+"か所を見る ▾";bt.onclick=function(){open(li)};li.parentNode.insertBefore(bt,li.nextSibling);li.__fxb=bt};again();
+  try{new MutationObserver(function(m){for(var i=0;i<m.length;i++)if(m[i].addedNodes.length){again();return}}).observe(li,{childList:true})}catch(e){}}
+ if(!document.querySelector(".fx-h"))return;
+ /* しぼり込み・検索を使ったら全部開く */
+ document.addEventListener("click",function(e){if(done)return;var t=e.target.closest&&e.target.closest("button,select,summary,[role=tab]");
+  if(!t||t.classList.contains("fx-more")||t.closest(".it,#v2bar,#umenu,#utheme,#list")||/^\/ima/.test(location.pathname))return;
+  if(t.closest(".wrap,main"))openAll()},true);
+ document.addEventListener("input",function(e){if(!done&&e.target.closest&&e.target.closest(".wrap,main")&&!/^\/ima/.test(location.pathname))openAll()},true);
+ /* 地図やリンクから、たたまれたカードへ飛ぶ時は先に開く */
+ var sv=Element.prototype.scrollIntoView;
+ Element.prototype.scrollIntoView=function(){try{var h=this.closest&&this.closest(".fx-h");if(h)open(h.parentNode);else if(this.querySelector&&this.classList&&this.classList.contains("ps")){}}catch(x){}return sv.apply(this,arguments)};
+ function hash(){try{var id=decodeURIComponent(location.hash.slice(1));if(!id)return;var el=document.getElementById(id);var h=el&&el.closest(".fx-h");if(h){open(h.parentNode);el.scrollIntoView()}}catch(x){}}
+ window.addEventListener("hashchange",hash);hash();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(run,0)});else setTimeout(run,0);
+})();
