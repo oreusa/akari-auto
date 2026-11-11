@@ -21,7 +21,9 @@ export async function onRequestPost({ request, env }) {
     name: clean(b.name, 40), email: clean(b.email, 80), tel: clean(b.tel, 20), place: clean(b.place, 60),
     kind: clean(b.kind, 10), want: clean(b.want, 20), text: clean(b.text, 2400), page: clean(b.page, 60),
   };
-  if (!d.name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email) || !d.place) return res(C, false, "入力を確かめてください");
+  // 11/11 メールか電話のどちらかで受け付ける（メールを持たない方も送れるように）
+  const okM = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email), okT = d.tel.replace(/\D/g, "").length >= 10;
+  if (!d.name || !d.place || (d.email && !okM) || (!d.email && !okT)) return res(C, false, "入力を確かめてください");
   if (!env.CLICKS) return res(C, false, "いまは送れません");
   const cnt = `${day()}|mos-n`;
   const got = await env.CLICKS.getWithMetadata(cnt);

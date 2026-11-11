@@ -220,3 +220,6 @@ html.tk2:not(.night) .kmap.tk3d .lb .jp{fill:#231E1B!important}
 html.tk2 .kmap.tk3d .lb .cnt{font-size:21px;font-weight:600;transform:translate(0,-3px)}
 html.tk2 .kmap.tk3d .lb .cnt tspan{font-size:11px}
 html.tk2 .kmap.tk3d .tkcp{transform:translate(0,-5px) scale(1.08,1.12);transform-box:fill-box;transform-origin:50% 50%}
+
+/* 11/11 たたんである一覧（終わったおでかけ等の details）の中は、浮かび上がりをやめる。開いた直後に一部の行が見えないままになる事があった */
+html.tk details .tk-v,html.tk details :is(li,a,p){animation:none!important;opacity:1!important;transform:none!important;translate:none!important}
