@@ -735,6 +735,7 @@ def jikka_page(t):
 <a class="jb" href="/moushikomi?lite=1&amp;machi={t["id"]}&amp;want={_q("片付け・遺品整理の見積り")}" data-k="実家｜片付けの見積り｜{E(n)}">片付け・遺品整理の見積りを頼む<small>無料・約1分</small></a>
 <a class="jb" href="/moushikomi?lite=1&amp;machi={t["id"]}&amp;want={_q("解体の見積り")}" data-k="実家｜解体の見積り｜{E(n)}">解体費用の見積りを頼む<small>無料・約1分</small></a>
 <p class="jp">どれも同じお申し込みページです。内容を見て、メールでご連絡します。</p>
+<a class="jl" href="/kaitai" data-k="実家｜費用の目安">先に、解体・片付けの費用の目安を見る <i>→</i></a>
 <a class="jl" href="/jikka/#{fn}" data-k="実家｜一覧">ほかの街の実家・空き家ノート <i>→</i></a>
 <div class="ft">LIFE NOTE</div></div>
 {beacon("実家｜" + n)}</body></html>'''
@@ -768,7 +769,7 @@ open(os.path.join(S, "jikka", "index.html"), "w", encoding="utf-8").write(_jl)
 sm = os.path.join(S, "sitemap.xml")
 if LIVE and os.path.exists(sm):
     x = open(sm, encoding="utf-8").read()
-    add = "".join(f"<url><loc>{BASE}{p}</loc></url>" for p in ["/fudosan-list", "/chika-kanto", "/sagasu", "/jikka/"] + [f"/machi/{t['id']}" for t in towns] + [f"/jikka/{t['id']}" for t in towns] if f"{BASE}{p}<" not in x)
+    add = "".join(f"<url><loc>{BASE}{p}</loc></url>" for p in ["/fudosan-list", "/chika-kanto", "/sagasu", "/jikka/", "/kaitai"] + [f"/machi/{t['id']}" for t in towns] + [f"/jikka/{t['id']}" for t in towns] if f"{BASE}{p}<" not in x)
     if add:
         open(sm, "w", encoding="utf-8").write(x.replace("</urlset>", add + "</urlset>", 1))
 print("関東不動産リスト:", len(towns), "街のページ ・ /chika-kanto ・ /fudosan-list", len(FACTS), "件", "live" if LIVE else "noindex",

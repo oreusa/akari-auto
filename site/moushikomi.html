@@ -175,7 +175,7 @@ fetch("/assets/towns.json").then(function(r){return r.json()}).then(function(d){
 var h=document.querySelector(".s3h h1"),l=document.querySelector(".s3l");if(h)h.textContent=H[0]+"のお申し込み";document.title=H[0]+"のお申し込み｜LIFE NOTE";
 if(l&&l.firstChild&&l.firstChild.nodeType===3)l.firstChild.nodeValue=H[1];}catch(e){}})();</script>
 <script>/* 11/11 名前なしで聞ける入口（実家ノートから ?lite=1）：はじめての方は、こちらを信用する理由がまだ無い → 書く物を減らし、約束を先に書く */
-(function(){try{if(!/[?&]lite=1/.test(location.search))return;var P=new URLSearchParams(location.search),f=document.getElementById("mf");if(!f)return;
+(function(){try{if(!/[?&]lite=1/.test(location.search))return;var P=new URLSearchParams(location.search),f=document.getElementById("mf");if(!f)return;var bk=document.querySelector("a.back");if(bk){bk.href="/kaitai";bk.textContent=/\/kaitai/.test(document.referrer)?"費用の目安にもどる":"先に、費用の目安を見る";}
 document.documentElement.classList.add("lite");
 var O=false;try{O=localStorage.getItem("usagi_owner")==="1";}catch(e){}
 if(!O)try{navigator.sendBeacon&&navigator.sendBeacon("/c",JSON.stringify({k:"申し込み｜かんたん｜表示"}));}catch(e){}
