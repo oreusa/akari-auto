@@ -2198,11 +2198,10 @@
   "why": ""
  },
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
-  "at": "2026-11-11",
-  "by": "browser",
+  "at": "2026-11-12",
   "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "sec": 15.4,
+  "why": "<urlopen error timed out>"
  },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
   "at": "2026-11-11",
@@ -5270,13 +5269,6 @@
   "sec": 1.2,
   "why": "503"
  },
- "https://hb.afl.rakuten.co.jp/hgc/g00tzq9o.m2lhffb6.g00tzq9o.m2lhge25/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffurumiyashop%2Fcdb00p60%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ffurumiyashop%2Fi%2F10000146%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
-  "at": "2026-10-28",
-  "by": "browser",
-  "ok": true,
-  "sec": 10.5,
-  "why": ""
- },
  "https://hb.afl.rakuten.co.jp/hgc/g00u15no.m2lhf575.g00u15no.m2lhg649/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ff141305-kawasaki%2Ffy03%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ff141305-kawasaki%2Fi%2F10001190%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-11",
   "by": "browser",
@@ -5592,13 +5584,6 @@
   "sec": 13.0,
   "why": ""
  },
- "https://kannai-machi.com/": {
-  "at": "2026-10-28",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.3,
-  "why": "403"
- },
  "https://kawachi-illumination.lanitech.jp/": {
   "at": "2026-11-11",
   "by": "browser",
@@ -5892,9 +5877,9 @@
   "why": ""
  },
  "https://rekishikan-ibk.jp": {
-  "at": "2026-11-08",
+  "at": "2026-11-12",
   "ok": true,
-  "sec": 1.3,
+  "sec": 1.0,
   "why": ""
  },
  "https://rekishikan-ibk.jp/": {
@@ -5944,13 +5929,6 @@
   "by": "browser",
   "ok": true,
   "sec": 5.1,
-  "why": ""
- },
- "https://setusoku.com/sale/142006/": {
-  "at": "2026-10-28",
-  "by": "browser",
-  "ok": true,
-  "sec": 7.0,
   "why": ""
  },
  "https://shinagawa-kanko.or.jp/event/shinasuillc2026/": {
@@ -6009,11 +5987,10 @@
   "why": ""
  },
  "https://tamaillumi.myportfolio.com/": {
-  "at": "2026-11-11",
-  "by": "browser",
-  "ok": false,
-  "sec": 0.2,
-  "why": "Page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://ta"
+  "at": "2026-11-12",
+  "ok": true,
+  "sec": 0.1,
+  "why": "403"
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
   "at": "2026-11-11",
@@ -6122,13 +6099,6 @@
   "by": "browser",
   "ok": true,
   "sec": 0.2,
-  "why": ""
- },
- "https://www.amazon.co.jp/dp/B00F4S7IK8?tag=aiusagichan-22": {
-  "at": "2026-10-28",
-  "by": "browser",
-  "ok": true,
-  "sec": 0.1,
   "why": ""
  },
  "https://www.amazon.co.jp/dp/B085GDK3FH?tag=aiusagichan-22": {
@@ -8763,13 +8733,6 @@
   "by": "browser",
   "ok": true,
   "sec": 1.9,
-  "why": ""
- },
- "https://yakiimofes.jp/tokyo2026/": {
-  "at": "2026-10-28",
-  "by": "browser",
-  "ok": true,
-  "sec": 7.1,
   "why": ""
  },
  "https://yamatokuen.com": {
