@@ -43,6 +43,12 @@ def files(now):
                 out.append(f'おでかけリール reel/{d}.json が無い（docs/outing-reel.md）')
             elif not (load(f'reel/out/{d}.json') or {}).get('url') and (d != today or now.hour < 8):
                 out.append(f'おでかけリールの動画 reel/out/{d}.json に url が無い（outing-reel.yml を動かす）')
+    # 予備の4コマ（11/11。今日の絵が出せない日に代わりに出す、先に描いてある4コマ。docs/koma4-prompt.md ■必ず出す）
+    yb = [load(f) or {} for f in glob.glob('koma4/yobi-*.json')]
+    ready = sum(1 for y in yb if y.get('image_url') and not y.get('used'))
+    left = sum(1 for y in yb if not y.get('used'))
+    if ready < 2 and now.date().isoformat() >= '2026-11-15':  # 雫が描きためるまでの3日は数えない
+        out.append(f'予備の4コマ すぐ出せる物が{ready}本（2本より少ない。台本の残り{left}本）→ 残りが3本より少なければ夜の回で台本を2本足す（docs/nightly-prompt.md）')
     return out
 
 
