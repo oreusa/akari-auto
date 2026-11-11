@@ -209,7 +209,7 @@ tiles:function(pre){var o=this,h="";o.L.forEach(function(x){if(x[0]===o.cur)retu
     var btn=document.createElement("button");btn.id="umenu";btn.type="button";btn.setAttribute("aria-label","メニューを開く");btn.setAttribute("aria-expanded","false");btn.setAttribute("aria-controls","upan");btn.innerHTML="<i></i><i></i><i></i>";
     var mask=document.createElement("div");mask.id="umask";
     var pan=document.createElement("div");pan.id="upan";pan.setAttribute("role","dialog");pan.setAttribute("aria-modal","true");pan.setAttribute("aria-label","メニュー");pan.setAttribute("aria-hidden","true");
-    var h='<div class="uh"><a class="uhl" href="/" aria-label="LIFE NOTE の入口へ"><img src="'+(document.documentElement.classList.contains("night")?"/logo-s-night.png":"/logo-s.png")+'" alt=""><b>LIFE NOTE</b></a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+(here==="tn"?"":ug(FU?"KANTO REAL ESTATE":SH?"OKAIMONO LIST":"KANTO ODEKAKE"));
+    var h='<div class="uh"><a class="uhl" href="/" aria-label="LIFE NOTE の入口へ"><img src="'+(document.documentElement.classList.contains("night")?"/logo-s-night.png":"/logo-s.png")+'" alt=""><b>LIFE NOTE</b>'+(/^\/(town-notes|index)?$/.test(location.pathname.replace(/\.html$/,""))?'':'<small>入口へ →</small>')+'</a><button class="ux" type="button" aria-label="メニューを閉じる">×</button></div><nav>'+(here==="tn"?"":ug(FU?"KANTO REAL ESTATE":SH?"OKAIMONO LIST":"KANTO ODEKAKE"));
     /* 最初のまとまり＝タイル、あとのまとまり＝小さいボタン */
     var tiled=false,openG="",rel=false;
     L.forEach(function(x){
@@ -370,26 +370,31 @@ var O=window.TN_OL||{life:false},LF=O.life,P=location.pathname.replace(/^\/townn
 var A={site:LF?"関東":"関西",ig:LF?"usagichan_ai_si":"fudousan_ai_si",x:LF?"ai_usagichan":"fudosan_ai_si"};
 var NB=[
  {k:"od",t:"おでかけ",nm:A.site+"おでかけリスト",en:"ODEKAKE",c:"#E39B3A",lead:"週末どこ行く？を、日付と地図で。",rows:[
-  ["/odekake","おでかけリスト","開催中",/^\/odekake/],["/ima","いま行ける","近い順・きょう開く所",/^\/ima/],
-  ["/illumination","イルミネーション","日程・無料の所",/^\/illumination/],["/koyo","紅葉ライトアップ","夜の時間・料金",/^\/koyo/],
-  ["/tomari","泊まりで行く","遠くのおでかけと宿",/^\/tomari/]],
+  ["/odekake","おでかけリスト","開催中",/^\/odekake/],["/ima","いま行ける","近い順",/^\/ima/],
+  ["/illumination","イルミネーション","日程一覧",/^\/illumination/],["/koyo","紅葉ライトアップ","夜の時間",/^\/koyo/]]
+  .concat(LF?[]:[["/hatsumode","初詣","大晦日・三が日",/^\/hatsumode/]])
+  .concat([["/tomari","泊まりで行く","おでかけと宿",/^\/tomari/]]),
   sub:[["/koe","リクエスト・感想"],["https://ig.me/m/"+A.ig,"おでかけ掲載"]]},
  {k:"fu",t:"不動産",nm:A.site+"不動産リスト",en:"REAL ESTATE",c:"#4F7BA8",lead:A.site+"の街の値段を、公式の数字で。",rows:[
-  ["/fudosan-list","不動産リスト","地価・制度",/^\/fudosan-list/],["/uru","家を売りたい","相場と大事なこと",/^\/uru/],
-  ["/sagasu","家を買いたい","住む街をさがす",/^\/sagasu/],[LF?"/chika-kanto":"/chika-kansai","地価ランキング",LF?"関東の街":"関西205の街",/^\/chika-/]]
-  .concat(LF?[]:[["/gyosha","業者・士業の方","窓口",/^\/gyosha/]]),
+  ["/fudosan-list","不動産リスト","地価・制度",/^\/fudosan-list/],["/uru","家を売りたい","相場と手順",/^\/uru/],
+  ["/sagasu","家を買いたい","街をさがす",/^\/sagasu/]]
+  .concat(LF?[]:[["/kaitai","解体・片付け","費用の目安",/^\/kaitai/]])
+  .concat([[LF?"/chika-kanto":"/chika-kansai","地価ランキング",LF?"関東の街":"205の街",/^\/chika-/]])
+  .concat(LF?[]:[["/ranking","まちランキング","駅・人口",/^\/ranking/],["/gyosha","業者・士業の方","窓口",/^\/gyosha/]]),
   /* 11/10 オーナー「関東も問い合わせ…関西と同じで俺に問い合わせでいい」 */sub:[["/moushikomi","売却のお申し込み"],["/koe","リクエスト・感想"]]},
  {k:"jk",t:"実家",nm:"実家・空き家ノート",en:"JIKKA NOTE",c:"#5E9E6E",lead:"実家・空き家、何から始める？",nw:1,rows:[
-  ["/jikka/shindan/","3問診断","30秒・次にやること",/^\/jikka\/shindan/],["/jikka/","実家・空き家ノート","4ステップ",/^\/jikka\/(?!shindan)/],["/moushikomi","売却・片付け・解体","ご相談",/^$/]],
+  ["/jikka/shindan/","3問診断","次にやること",/^\/jikka\/shindan/],["/jikka/","実家・空き家ノート",LF?"手順":"相場",/^\/jikka\/(?!shindan)/]]
+  .concat(LF?[]:[["/kaitai","解体・片付け","費用の目安",/^$/]])
+  .concat([["/moushikomi","ご相談","売却・片付け・解体",/^$/]]),
   sub:[["/koe","リクエスト・感想"]]},
  {k:"ok",t:"おかいもの",nm:"おかいものリスト",en:"SHOPPING",c:"#C2727F",lead:"比べた最安と、今だけのお得。",rows:[
-  ["/okaimono","くらべる","日用品の最安とおすすめ",/^\/okaimono/],["/nesage","買い時","ふだんより安い物",/^\/nesage/],
-  ["/kaimawari","セール","1,000円ぽっきり",/^\/kaimawari/],["/furusato","ふるさと納税","寄付1万円あたりの量",/^\/furusato/],
-  ["/otoku","お得まとめ","セール・ふるさと・宿",/^\/otoku/]],sub:[["/koe","リクエスト・感想"]]}
+  ["/okaimono","くらべる","日用品の最安",/^\/okaimono/],["/nesage","買い時","ふだんより安い物",/^\/nesage/],
+  ["/kaimawari","セール","1,000円ぽっきり",/^\/kaimawari/],["/furusato","ふるさと納税","量でくらべる",/^\/furusato/],
+  ["/otoku","お得まとめ","セールと宿",/^\/otoku/]],sub:[["/koe","リクエスト・感想"]]}
 ].filter(function(n){return n.only!==false;});
 /* 11/10 オーナー「TOWN NOTEの表紙なのにおでかけNOWはおかしい」→ 表紙では、まとめた目次（各リストへ）から。名前は各ページの名前のまま（11/10 オーナー「そこはリストだろ」） */
 var COVER=(LF?/^\/(index)?$/:/^\/(town-notes)?$/).test(P);
-function side(){if(COVER)return "top";if(/^\/jikka/.test(P))return "jk";if(/^\/(fudosan|uru|moushikomi|gyosha|sagasu|chika-|machi\/)/.test(P))return "fu";if(/^\/(okaimono|otoku|tanka|nesage|furusato|kaimawari)/.test(P))return "ok";
+function side(){if(COVER)return "top";if(/^\/jikka/.test(P))return "jk";if(/^\/(fudosan|uru|moushikomi|gyosha|sagasu|chika-|ranking|kaitai|machi\/)/.test(P))return "fu";if(/^\/(okaimono|otoku|tanka|nesage|furusato|kaimawari)/.test(P))return "ok";
  if(/^\/koe/.test(P)){try{var s=sessionStorage.getItem("tn_side");if(s)return s;}catch(e){}}return "od";}
 var HERE=side();try{if(!/^\/koe/.test(P))sessionStorage.setItem("tn_side",HERE);}catch(e){}
 /* 前回のつづき：ほかのページを見ていたら、目次の上に1行（この端末だけ） */
@@ -414,6 +419,7 @@ var css="#upan .nbk{flex:1;display:flex;min-height:0}"+
 "#upan a.nr b{font-size:14.5px;font-weight:500;white-space:nowrap}"+
 "#upan a.nr .ld{flex:1;min-width:6px;height:0;border-bottom:1px dotted #cfd3d9;align-self:center;margin-top:4px}"+
 "#upan a.nr em{font-style:normal;font-size:10.5px;color:#7d756f;white-space:nowrap;flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}"+
+"#upan a.nr[aria-current] em{display:none}#upan .uh .uhl small{flex:none;font:500 10.5px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.06em;color:#6E625A;border:1px solid #DADDE2;border-radius:99px;padding:5px 11px;margin-right:6px}"+
 "#upan a.nr u{text-decoration:none;font:500 8.5px Jost,sans-serif;letter-spacing:.14em;color:#fff;background:var(--c);border-radius:3px;padding:1px 5px;margin-left:6px;vertical-align:2px}"+
 "#upan .nsub{margin-top:16px;font-size:12px;line-height:2.2}#upan .nsub a{color:#3c3532;text-decoration:none;border-bottom:1px solid #E3E5E9;margin-right:14px;white-space:nowrap}"+
 "#upan #umaprow{justify-content:flex-start!important;margin:14px 0 0!important}"+
@@ -443,7 +449,7 @@ function run(){
   nav.style.setProperty("--c",n.c);
   var h=n.k==="top"?'<div class="nen">INDEX</div><div class="nh">'+(LF?"LIFE NOTE":"TOWN NOTE")+'</div><div class="nl">'+A.site+'の街のノート。</div>':'<div class="nen">'+n.en+'</div><div class="nh">'+esc(n.nm)+'</div><div class="nl">'+esc(n.lead)+'</div>';
   if(LAST&&n.k===HERE)h+='<a class="nlast" href="'+esc(LAST.u)+'" data-n="つづき"><small>前回のつづき</small><b>'+esc(LAST.t)+'</b><span>→</span></a>';
-  if(n.k==="top")NB.forEach(function(x,i){h+='<a class="nr" href="'+x.rows[0][0]+'" data-n="目次 '+esc(x.t)+'" style="--c:'+x.c+'"><span class="no">0'+(i+1)+'</span><b>'+esc(x.nm)+'</b><span class="ld"></span><em>'+({od:"開催中",fu:"地価",jk:"4ステップ",ok:"最安"}[x.k]||"")+'</em></a>';});
+  if(n.k==="top")NB.forEach(function(x,i){h+='<a class="nr" href="'+x.rows[0][0]+'" data-n="目次 '+esc(x.t)+'" style="--c:'+x.c+'"><span class="no">0'+(i+1)+'</span><b>'+esc(x.nm)+'</b><span class="ld"></span><em>'+({od:"開催中",fu:"地価",jk:"診断",ok:"最安"}[x.k]||"")+'</em></a>';});
   else n.rows.forEach(function(r,i){var on=r[3].test(P);h+='<a class="nr" href="'+r[0]+'" data-n="'+esc(r[1])+'"'+(on?' aria-current="page"':'')+'><span class="no">0'+(i+1)+'</span><b>'+esc(r[1])+(on?'<u>NOW</u>':'')+'</b><span class="ld"></span><em>'+esc(r[2])+'</em></a>';});
   if(n.sub.length)h+='<div class="nsub">'+n.sub.map(function(s){var ex=/^https?:/.test(s[0]);return '<a href="'+s[0]+'" data-n="'+esc(s[1])+'"'+(ex?' target="_blank" rel="noopener"':'')+'>'+esc(s[1])+'</a>';}).join("")+'</div>';
   var mr=document.getElementById("umaprow");nav.innerHTML=h;if(mr&&n.k==="od")nav.appendChild(mr);nav.scrollTop=0;}
