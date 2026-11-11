@@ -91,6 +91,17 @@ item("money", "買い物・宿・ROOM", f"押された {n.get('buy', 0)}（前 {
 if not last or (today - date.fromisoformat(last["day"])).days > 8:
     order("燈の夜", "money", "月曜の汐の写し（楽天・A8・バリューコマースの成果、ROOM のクリックと売れた数）を data/seika.json の rows に {day, hassei, kakutei, nyukin, room, room_uri} で1行入れる。写しが無ければ「未確認」のまま、連絡帳に1行", "成果が未確認のまま")
 
+# 6b 売却の受け皿（ASP の案件。notes/daichou.md の表を機械が読む）
+_pr = []
+if os.path.exists(P("notes", "daichou.md")):
+    for _l in open(P("notes", "daichou.md"), encoding="utf-8"):
+        _c = [x.strip() for x in _l.strip().strip("|").split("|")]
+        if _l.startswith("| A8") or _l.startswith("| VC"):
+            if len(_c) >= 5: _pr.append((_c[1][:24], _c[3], _c[4]))
+_wait = [p for p in _pr if "審査中" in p[1]]; _ok = [p for p in _pr if "提携済み" in p[1] or "承認" in p[1]]; _ng = [p for p in _pr if "見送り" in p[1] or "否" in p[1]]
+item("asp", "売却・査定の案件（ASP）", f"提携済み {len(_ok)}・審査中 {len(_wait)}（" + "・".join(f"{n} {r}" for n, _, r in _wait[:4]) + f"）・見送り {len(_ng)}", "売りたい人の送り先が1つ以上 提携済み", "当たり" if any("査定" in n or "売却" in n or "仲介" in n for n, st, _ in _ok if "使わない" not in st) else "外れ", "セレスは 11/11 見送り。代わりは審査中の案件")
+if _wait: order("月", "asp", "月曜の汐の写しで、審査中の案件（" + "・".join(n for n, _, _ in _wait[:4]) + "）の状態を台帳 notes/daichou.md に入れる。提携済みになった物は、その日のうちに /uru の「売りたい」に付け、押された数を数える。2週たっても審査中の物は、汐にもう1件ずつ申請を足してもらう", "売りたい人の送り先がまだ無い")
+
 # 7b 市区ごとの解体補助ページ（11/11〜。data/page-stats.json の「表示：市の解体補助 <市区>」）
 _days = load(P("data", "page-stats.json"), {}).get("days", {}); _city = {}
 for _d, _v in _days.items():
