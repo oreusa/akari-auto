@@ -164,3 +164,16 @@
   addEventListener("pagereveal",function(e){try{var vt=e.viewTransition,a=window.navigation&&navigation.activation;if(vt&&vt.ready)vt.ready.catch(function(){});if(!vt||!a||a.navigationType!=="traverse"||!a.from||!a.entry||a.entry.index>=a.from.index)return;
     h.classList.add("tk-back");var off=function(){h.classList.remove("tk-back");};vt.finished.then(off,off);}catch(_){}});
 }catch(e){}})();
+
+/* 11/11 オーナー「動きがスムーズじゃない場面がある」→ 開いた直後、ページが4〜6回組み替わって見えていた
+   （素の形 → 飾り → カードの作り直し → 下のバー）。組み上がるまで中身を出さず、出来てから1回でふわっと出す。
+   出す合図：読み込みが終わって、作り替えが0.12秒止まった時。長くても読み込み後0.7秒・開いてから2.5秒で必ず出す。 */
+(function(){try{var d=document,h=d.documentElement;if(h.classList.contains("tk-boot")||d.readyState==="complete")return;
+ var st=d.createElement("style");st.textContent="html.tk-boot body{opacity:0!important}html.tk-in body{animation:tk-boot-in .22s ease-out both}@keyframes tk-boot-in{from{opacity:0}to{opacity:1}}@media (prefers-reduced-motion:reduce){html.tk-in body{animation:none}}";(d.head||h).appendChild(st);
+ h.classList.add("tk-boot");var done=0,q=null,mo=null;
+ function show(){if(done)return;done=1;try{if(mo)mo.disconnect();}catch(e){}clearTimeout(q);h.classList.add("tk-in");h.classList.remove("tk-boot");setTimeout(function(){h.classList.remove("tk-in");},400);}
+ function quiet(){clearTimeout(q);q=setTimeout(show,120);}
+ function ready(){try{mo=new MutationObserver(quiet);mo.observe(d.body||h,{childList:true,subtree:true});}catch(e){}quiet();setTimeout(show,700);}
+ if(d.readyState==="loading")d.addEventListener("DOMContentLoaded",ready);else ready();
+ setTimeout(show,2500);addEventListener("pageshow",function(e){if(e.persisted)show();});
+}catch(e){try{document.documentElement.classList.remove("tk-boot");}catch(x){}}})();

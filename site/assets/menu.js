@@ -1,3 +1,8 @@
+/* 11/11 オーナー「たまに一瞬メニューがでる」→ 下のバーが出るページでは、右上の丸いメニューボタンを、はじめから出さない
+   （今までは下のバーが出来るまでの0.2〜0.8秒だけ丸ボタンが見えて、昼夜の切り替えも横にずれていた）。下のバーが出来なかった時だけ4秒後に丸ボタンを戻す。 */
+(function(){try{var h=document.documentElement;if(h.classList.contains("v2bar-on")||!document.querySelector('script[src*="/v2sub.js"],script[src*="/v2.js"]'))return;
+var s=document.createElement("style");s.textContent="html.v2bar-on #umenu{display:none!important}html.v2bar-on #utheme{right:12px}";document.head.appendChild(s);
+h.classList.add("v2bar-on");setTimeout(function(){if(!document.getElementById("v2bar"))h.classList.remove("v2bar-on");},4000);}catch(e){}})();
 /* 11/9 ほかのリスト（ページの下とメニューで同じ名前・同じタイル）。cur＝いま見ているリスト（出さない） */
 window.TN_OL=(function(){var life=/usagi-life|lifenote|life-note/.test(location.host),p=location.pathname;
 return {life:life,cur:/^\/(koe|privacy)/.test(p)?"":/fudosan|machi|uru|sagasu|chika|gyosha|moushikomi|jikka/.test(p)?"fu":/okaimono|otoku|tanka|nesage|furusato|kaimawari/.test(p)?"ok":"od",
