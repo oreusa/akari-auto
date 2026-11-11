@@ -1,4 +1,32 @@
 {
+ "a8check:https://px.a8.net/svt/ejp?a8mat=4BEK9E+3PYLFM+4W8G+BWVTE": {
+  "at": "2026-11-11",
+  "by": "a8",
+  "ok": true,
+  "sec": 0.0,
+  "why": ""
+ },
+ "a8check:https://px.a8.net/svt/ejp?a8mat=4BEK9E+3R5GN6+3GBU+NTJWY": {
+  "at": "2026-11-11",
+  "by": "a8",
+  "ok": true,
+  "sec": 0.0,
+  "why": ""
+ },
+ "a8check:https://px.a8.net/svt/ejp?a8mat=4BEK9E+41V9J6+52F8+60OXE": {
+  "at": "2026-11-11",
+  "by": "a8",
+  "ok": true,
+  "sec": 0.0,
+  "why": ""
+ },
+ "a8check:https://px.a8.net/svt/ejp?a8mat=4BEK9E+448ZYA+Z9G+NZ4J6": {
+  "at": "2026-11-11",
+  "by": "a8",
+  "ok": true,
+  "sec": 0.0,
+  "why": ""
+ },
  "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Flohaco.yahoo.co.jp%2Fstore%2Fh-lohaco%2Fitem%2Faj49016%2F": {
   "at": "2026-11-05",
   "by": "browser",
@@ -2158,7 +2186,7 @@
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
   "at": "2026-11-11",
   "ok": false,
-  "sec": 15.2,
+  "sec": 15.3,
   "why": "<urlopen error timed out>"
  },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
