@@ -1,21 +1,9 @@
 {
-  "at": "2026-11-11 13:13",
+  "at": "2026-11-11 13:21",
   "since": "2026-11-01",
   "tracked": 260,
   "days": 10,
   "downs": [
-    {
-      "title": "加湿器",
-      "name": "4重除菌 4.5L LAViNO エアリファイ 2027 医師推奨 除菌加湿 大容量 静音 …",
-      "price": 12672,
-      "base": 17820.0,
-      "pct": 29,
-      "days": 10,
-      "rc": 742,
-      "av": 4.14,
-      "shop": "美顔器 美容家電 アイビビッド",
-      "plain": "https://item.rakuten.co.jp/aibeaute/10000907/"
-    },
     {
       "title": "コーヒー",
       "name": "コーヒー豆 お試しセット 15種類から選べる3種 飲み比べ 100g×3袋 浅煎り 中煎り …",
@@ -27,6 +15,18 @@
       "av": 4.6,
       "shop": "コーヒー&パン専門店DripTrip",
       "plain": "https://item.rakuten.co.jp/daisen-coffee/10001120/"
+    },
+    {
+      "title": "加湿器",
+      "name": "4重除菌 4.5L LAViNO エアリファイ 2027 医師推奨 除菌加湿 大容量 静音 …",
+      "price": 15840,
+      "base": 17820.0,
+      "pct": 11,
+      "days": 10,
+      "rc": 742,
+      "av": 4.14,
+      "shop": "美顔器 美容家電 アイビビッド",
+      "plain": "https://item.rakuten.co.jp/aibeaute/10000907/"
     },
     {
       "title": "プロテイン",
