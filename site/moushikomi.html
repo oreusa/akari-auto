@@ -152,7 +152,11 @@ f.addEventListener("submit",function(e){e.preventDefault();er.textContent="";
 (function(){var O=false;try{O=localStorage.getItem("usagi_owner")==="1";}catch(e){}
 function c(k){if(O)return;try{var b=JSON.stringify({k:k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true});}catch(e){}}
 c("表示：お申し込み"+(document.referrer&&!/lifenote-kanto.pages/.test(document.referrer)?"（外から）":""));
-var f=document.getElementById("mf"),st=false;if(f)f.addEventListener("focusin",function(){if(st)return;st=true;c("申し込み｜書きはじめ");});
+var f=document.getElementById("mf"),st=false;if(f){var go=function(){if(st)return;st=true;c("申し込み｜書きはじめ");};f.addEventListener("focusin",go);f.addEventListener("change",go); /* 11/11 iPhoneは丸ボタンを押してもfocusinが来ない → changeでも数える */
+ f.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest(".tknx"):null;if(b)c("申し込み｜次へ｜"+(+b.getAttribute("data-s")+1));});}
+/* 11/11 反響の種類はえらばない：買いたい・借りたい／片付け・解体 もご希望でえらべる */
+try{var w0=document.querySelectorAll('input[name="want"]'),W0=new URLSearchParams(location.search).get("want")||"";if(w0.length){var oth=w0[w0.length-1].parentNode,box=oth.parentNode,mk=function(v){for(var i=0;i<w0.length;i++)if(w0[i].value===v)return;var lb=document.createElement("label"),ip=document.createElement("input");ip.type="radio";ip.name="want";ip.value=v;lb.appendChild(ip);lb.appendChild(document.createTextNode(v));box.insertBefore(lb,oth);};
+ if(!/片付け|解体/.test(W0))mk("片付け・解体のこと");mk("買いたい・借りたい");}}catch(e){}
 /* 11/9 実家・空き家ノートから：?want= でご希望を先に選ぶ（片付け・解体の見積りは選んだ時だけ出す） */
 try{var W=new URLSearchParams(location.search).get("want")||"",XW=["片付け・遺品整理の見積り","解体の見積り"],rs=document.querySelectorAll('input[name="want"]'),hit=null;
  for(var j=0;j<rs.length;j++)if(rs[j].value===W)hit=rs[j];
