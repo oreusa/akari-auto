@@ -152,13 +152,13 @@
   if(v!=="1"&&v!=="2")return;h.classList.add("tk");if(v==="2")h.classList.add("tk2");
   /* ページからページへ：前のページがすっと引き、次のページが下から浮かび上がる（ここに直に書く。外のファイルを待つと最初の1枚に間に合わない） */
   var st=d.createElement("style");st.textContent="@view-transition{navigation:auto}"+
-    "@keyframes tk-vt-out{to{opacity:0;transform:translate3d(0,-12px,0) scale(.985)}}@keyframes tk-vt-in{from{opacity:0;transform:translate3d(0,30px,0)}}"+
+    "@keyframes tk-vt-out{to{opacity:0;filter:blur(7px);transform:translate3d(0,-12px,0) scale(.985)}}@keyframes tk-vt-in{from{opacity:0;filter:blur(5px);transform:translate3d(0,30px,0)}}"+
     "@keyframes tk-vt-out-b{to{opacity:0;transform:translate3d(0,18px,0)}}@keyframes tk-vt-in-b{from{opacity:0;transform:translate3d(0,-14px,0) scale(.985)}}"+
     "::view-transition-old(root){animation:tk-vt-out .2s cubic-bezier(.4,0,1,1) both}::view-transition-new(root){animation:tk-vt-in .46s cubic-bezier(.16,1,.3,1) both}"+
     "html.tk-back::view-transition-old(root){animation-name:tk-vt-out-b}html.tk-back::view-transition-new(root){animation-name:tk-vt-in-b}"+
     "@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}";(d.head||h).appendChild(st);
-  var l=d.createElement("link");l.rel="stylesheet";l.href="/assets/tech.css?v=1";l.setAttribute("blocking","render");(d.head||h).appendChild(l);
-  var s=d.createElement("script");s.src="/assets/tech.js?v=1";s.async=false;(d.head||h).appendChild(s);
+  var l=d.createElement("link");l.rel="stylesheet";l.href="/assets/tech.css?v=2";l.setAttribute("blocking","render");(d.head||h).appendChild(l);
+  var s=d.createElement("script");s.src="/assets/tech.js?v=2";s.async=false;(d.head||h).appendChild(s);
   /* もどる時は、動きの向きを逆にする */
   addEventListener("pagereveal",function(e){try{var vt=e.viewTransition,a=window.navigation&&navigation.activation;if(vt&&vt.ready)vt.ready.catch(function(){});if(!vt||!a||a.navigationType!=="traverse"||!a.from||!a.entry||a.entry.index>=a.from.index)return;
     h.classList.add("tk-back");var off=function(){h.classList.remove("tk-back");};vt.finished.then(off,off);}catch(_){}});

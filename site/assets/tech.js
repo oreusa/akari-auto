@@ -62,8 +62,22 @@
       var t=new Date(Date.now()+9*3600e3);ctx.nodeValue=two(t.getUTCHours())+":"+two(t.getUTCMinutes())+":"+two(t.getUTCSeconds());}catch(e){}};
     tk();setInterval(tk,1000);}catch(e){}}
 
+  /* tk2：表紙の切り替えの白い札が、押した所へすべる */
+  function pill(){try{if(!h.classList.contains("tk2"))return;var L=d.getElementById("lens");if(!L)return;
+    var set=function(){try{var on=L.querySelector("button.on");if(!on||!on.offsetWidth){if(L.classList.contains("tkp"))L.classList.remove("tkp");return;}
+      L.style.setProperty("--lx",on.offsetLeft+"px");L.style.setProperty("--lw",on.offsetWidth+"px");
+      var c=getComputedStyle(on).getPropertyValue("--c");if(c)L.style.setProperty("--lc",c.trim());if(!L.classList.contains("tkp"))L.classList.add("tkp");}catch(e){}}; /* 同じ札を付け直すと、見張りが自分を呼び続けて固まる。必ず「まだ無い時だけ」 */
+    set();if(L.__tkp)return;L.__tkp=1;
+    if(MO)new MutationObserver(set).observe(L,{attributes:true,attributeFilter:["class"],subtree:true,childList:true});
+    addEventListener("resize",set,{passive:true});try{if(d.fonts&&d.fonts.ready)d.fonts.ready.then(set);}catch(e){}
+  }catch(e){}}
+  /* tk2：地図の府県ごとに、細い輪が静かに広がる */
+  function pings(){try{if(!h.classList.contains("tk2"))return;var gs=d.querySelectorAll(".kmap .lb>g");for(var i=0;i<gs.length;i++){var g=gs[i];if(g.__tkp||g.querySelector(".tkping"))continue;g.__tkp=1;
+    var jp=g.querySelector("text.jp"),c=d.createElementNS("http://www.w3.org/2000/svg","circle");c.setAttribute("class","tkping");c.setAttribute("cx","0");c.setAttribute("cy","12");c.setAttribute("r","46");
+    c.setAttribute("stroke",(jp&&jp.getAttribute("fill"))||"#8C7B6E");c.style.animationDelay=(i*0.6)+"s";g.insertBefore(c,g.firstChild);}}catch(e){}}
+
   /* ページの部品は後から作られる物がある（一覧・帯・下のバー）ので、何度呼んでも同じ結果になる形で見回す */
-  var pend=0;function scan(){pend=0;bar();arm();carm();liveAll();clock();}
+  var pend=0;function scan(){pend=0;bar();arm();carm();liveAll();clock();pill();pings();}
   function later(){if(!pend)pend=setTimeout(scan,60);}
   function start(){scan();try{if(MO&&d.body)new MutationObserver(later).observe(d.body,{childList:true,subtree:true});}catch(e){}}
   if(d.readyState==="loading")d.addEventListener("DOMContentLoaded",start);else start();
