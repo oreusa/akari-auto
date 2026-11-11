@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-11 10:05",
+  "at": "2026-11-11 10:23",
   "since": "2026-11-01",
   "tracked": 259,
   "days": 10,
@@ -77,6 +77,18 @@
       "av": 4.46,
       "shop": "武内製薬 公式オンラインストア",
       "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000302/"
+    },
+    {
+      "title": "モバイルバッテリー",
+      "name": "Anker MagGo Power Bank (10000mAh, Slim) Qi2認証 …",
+      "price": 9990,
+      "base": 7490.0,
+      "pct": 33,
+      "days": 10,
+      "rc": 543,
+      "av": 4.53,
+      "shop": "アンカー・ダイレクト楽天市場店",
+      "plain": "https://item.rakuten.co.jp/anker/10002086/"
     },
     {
       "title": "プロテイン",
