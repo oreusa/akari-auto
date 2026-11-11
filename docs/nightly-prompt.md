@@ -2,6 +2,7 @@
 
 ■【11/11 月から・いちばん先に読む（オーナー「月と燈も全部、作り替えてよい」「無駄にコストかかってる部分は極力無くしたい」「結果・数字と報告だけ見たい」）】
 ・この手順は 11/11 に並べ直した。順番は「1 止めない → 2 育てる（1つだけ）→ 3 伝える（1行）」。止まっている決まり（PR投稿の書き方・Amazon PR・ふるさと納税のPR・tanka のPR・A8の新しいリンクなど）は docs/history/nightly-pr-yasumi.md に移した。PR投稿を再開するとオーナーが決めた時だけ開く。ふだんは読まない。古い全文は docs/history/nightly-prompt-1111.md。
+・【11/11 夜から ROOM】楽天ROOMの台本は機械（scripts/room_auto.py → notes/room-daihon.md）が毎日20件までそろえ、凪が直接読む。下の決まりのうち「ROOMの台本を20〜30件書く」「akari2 の room・amazon・amazon_note・goals の凪」「ROOM台本をドライブへ」は、もうやらない（書いてあっても飛ばす）。燈が載せたい物（季節の物・ふるさと納税など。0件でもよい）だけ schedule/D.json の room に入れる。4コマの台本（akari2 の koma4）と汐の kakunin は今までどおり。
 ・いまのいちばん弱い所は「HPに来る人が少ない」。投稿の仕事は、HPまで人を連れて来る事。表示の回数・本数では測らない。物差しは data/page-stats.json の「来た元」（x0715・t0715 など。予約係が投稿のHPリンクに枠の印を自動で付けている）。
 ・月曜の夜に枠を入れ替える：この7日でHPに来た人がいちばん多い枠の型を1つ増やし、2週つづけて0の枠は題と行き先を変えるか、やめる。本数は増やさない。
 ・読む量を減らす：下に足していく帳面（notes/learning.md・growth.md・sales-board.md・koma4-learning.md・collector-log.md・hp-intro.md）は、最後の10行だけ読む。全部は読まない。作戦帳は 8,000字まで。
