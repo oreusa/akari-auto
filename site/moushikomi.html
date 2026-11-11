@@ -96,8 +96,8 @@ body{padding-bottom:76px}
 <section class="s3">
 <form class="mf" id="mf" novalidate>
 <label class="fl" for="nm">お名前<em>必須</em></label><input type="text" id="nm" name="name" autocomplete="name" maxlength="40" required>
-<label class="fl" for="em">メールアドレス<em>必須</em></label><input type="email" id="em" name="email" autocomplete="email" maxlength="80" required>
-<label class="fl" for="tl">電話番号<em>任意・あるとご連絡が早くなります</em></label><input type="tel" id="tl" name="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="例）090-1234-5678">
+<label class="fl" for="em">メールアドレス<em>メールか電話のどちらか</em></label><input type="email" id="em" name="email" autocomplete="email" maxlength="80">
+<label class="fl" for="tl">電話番号<em>メールが無い方は、電話だけでも大丈夫です</em></label><input type="tel" id="tl" name="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="例）090-1234-5678">
 <label class="fl" for="pl">お家の場所（市区町村まで）<em>必須</em></label><input type="text" id="pl" name="place" maxlength="60" placeholder="例：神奈川県横浜市" required>
 <div class="fl" style="font-size:13px;font-weight:700;color:#5E544D;margin:16px 0 6px">お家の種類</div>
 <div class="ch"><label><input type="radio" name="kind" value="マンション">マンション</label><label><input type="radio" name="kind" value="一戸建て">一戸建て</label><label><input type="radio" name="kind" value="土地">土地</label><label><input type="radio" name="kind" value="その他">その他</label></div>
@@ -120,14 +120,18 @@ function v(n){var e=f.querySelector('[name="'+n+'"]:checked')||f.elements[n];ret
 f.addEventListener("submit",function(e){e.preventDefault();er.textContent="";
  var d={site:SITE,name:v("name"),email:v("email"),tel:v("tel"),place:v("place"),kind:v("kind"),want:v("want"),text:v("text"),hp:v("hp"),page:document.referrer.replace(/^https?:\/\/[^/]+/,"").slice(0,60)};
  if(!d.name){er.textContent="お名前を書いてください";return}
- if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)){er.textContent="メールアドレスを正しく書いてください";return}
+ /* 11/11 メールを持たない・書きたくない方も送れるように：メールか電話のどちらかで受け付ける */
+ var okM=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email),okT=d.tel.replace(/\D/g,"").length>=10;
+ if(!d.email&&!d.tel){er.textContent="メールアドレスか電話番号の、どちらかを書いてください";return}
+ if(d.email&&!okM){er.textContent="メールアドレスを正しく書いてください";return}
+ if(!d.email&&!okT){er.textContent="電話番号を正しく書いてください";return}
  if(!d.place){er.textContent="お家の場所を書いてください";return}
  if(!document.getElementById("ag").checked){er.textContent="プライバシーポリシーへの同意にチェックしてください";return}
  if(d.hp){f.style.display="none";document.getElementById("done").style.display="block";return}
  sb.disabled=true;sb.textContent="送っています…";
  var p1=fetch(KV,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(d)}).then(function(r){return r.ok}).catch(function(){return false});
  var jt=new Date(Date.now()+9*3600e3).toISOString().slice(0,16).replace("T"," ");
- var m={_subject:"【お申し込み】"+d.place+"・"+(d.kind||"種類未選択")+"・"+(d.want||"ご希望未選択")+"（"+d.name+" 様）",_template:"table",_captcha:"false",_replyto:d.email,
+ var m={_subject:"【お申し込み】"+d.place+"・"+(d.kind||"種類未選択")+"・"+(d.want||"ご希望未選択")+"（"+d.name+" 様）",_template:"table",_captcha:"false",_replyto:d.email||undefined,
  "◆ お知らせ":"LIFE NOTE（関東）から 売却・査定のお申し込みが届きました",
  "受付日時（日本時間）":jt,
  "① お名前":d.name+" 様",
@@ -136,8 +140,8 @@ f.addEventListener("submit",function(e){e.preventDefault();er.textContent="";
  "④ ご希望":d.want||"未選択",
  "⑤ 内容":d.text||"なし",
  "⑥ 電話":d.tel||"なし（メールで返信してください）",
- "⑦ メール":d.email,
- "◆ 次にすること":"このメールに「返信」すると、そのまま "+d.name+" 様に届きます（電話がある場合はお電話でも可）"};
+ "⑦ メール":d.email||"なし（お電話でご連絡ください）",
+ "◆ 次にすること":d.email?("このメールに「返信」すると、そのまま "+d.name+" 様に届きます（電話がある場合はお電話でも可）"):("メールアドレスの記入がありません。"+d.name+" 様へ、上の電話番号にお電話してください（このメールに返信しても届きません）")};
  var p2=fetch(MAIL,{method:"POST",headers:{"content-type":"application/json","accept":"application/json"},body:JSON.stringify(m)}).then(function(r){return r.json()}).then(function(j){return !!j&&String(j.success)==="true"}).catch(function(){return false});
  Promise.all([p1,p2]).then(function(a){
   if(a[0]||a[1]){f.style.display="none";document.getElementById("done").style.display="block";window.scrollTo(0,0);
