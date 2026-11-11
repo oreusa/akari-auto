@@ -623,7 +623,7 @@ var OPEN=false;
 var MINI=R.mini;
 mb.innerHTML='<span class="mm"><svg>'+Object.keys(MINI).map(function(k){return '<path d="'+MINI[k]+'" fill="'+DEEP[k]+'" stroke="#fff" stroke-width="1" vector-effect="non-scaling-stroke"/>'}).join("")+'</svg></span><span class="tx"><b class="t1">地図で見る</b><small class="t2"></small></span><i class="ar">›</i>';
 // ボタンの小さい文字：地図に出る件数（今のタブ・府県・無料だけに合い、場所が分かるカード。例：開催中の76か所を、関西の地図で）
-function mbUpd(){var a=items(),n=a.filter(function(i){return i.lat!=null}).length,t=curTab();/* 10/31 オーナー「数あってる？」：場所が1つに決まらないカード（3か所くらべ等）があるときは、全部の数も出す */var x=!n?R.name+"の地図で探す":n<a.length?t+a.length+"件のうち、"+n+"か所を地図で":t+"の"+n+"か所を、"+R.name+"の地図で",e=$(".t2",mb);if(e.textContent!==x)e.textContent=x}
+function mbUpd(){var a=items(),n=a.filter(function(i){return i.lat!=null}).length,t=curTab();if(/^\/koyo/.test(location.pathname))t="紅葉の名所・ライトアップ";/* 11/11 夜 #172：名所も入った合計を「紅葉ライトアップ84件」と呼んでいた *//* 10/31 オーナー「数あってる？」：場所が1つに決まらないカード（3か所くらべ等）があるときは、全部の数も出す */var x=!n?R.name+"の地図で探す":n<a.length?t+a.length+"件のうち、"+n+"か所を地図で":t+"の"+n+"か所を、"+R.name+"の地図で",e=$(".t2",mb);if(e.textContent!==x)e.textContent=x}
 // 開くと画面いっぱいの地図になる。閉じるとリストのいつもの場所にもどる
 function setOpen(v,fromPop){if(v===OPEN&&v)return;OPEN=v;FS=v;
  if(v){RET=document.activeElement;document.body.appendChild(box);box.classList.remove("shut");box.classList.add("fs");document.documentElement.style.overflow="hidden";box.setAttribute("role","dialog");box.setAttribute("aria-modal","true");box.setAttribute("aria-label",R.name+"の地図");setTimeout(function(){var f=$(".fsh .cl",box);if(f)f.focus({preventScroll:true})},60);
