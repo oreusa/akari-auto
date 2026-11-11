@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-10 17:44",
+  "at": "2026-11-11 09:31",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 46,
-      "ok": 16,
-      "avg": 161.4,
+      "read": 48,
+      "ok": 15,
+      "avg": 166.2,
       "rmin": 1000,
       "top": [
         {
@@ -72,7 +72,7 @@
           "price": 1360,
           "per": 75.6,
           "amt": "2000ml×9本",
-          "rc": 2084,
+          "rc": 2085,
           "av": 4.49,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10151238/",
@@ -82,28 +82,7 @@
           "ship": ""
         }
       ],
-      "amazon": [
-        {
-          "asin": "B08GZR18S3",
-          "name": "by Amazon 天然水ラベルレス 2L×9本",
-          "price": 1216,
-          "per": 67.6,
-          "amt": "2000ml×9本",
-          "rc": 51063,
-          "av": 4.3,
-          "url": "https://www.amazon.co.jp/dp/B08GZR18S3?tag=aiusagichan-22"
-        },
-        {
-          "asin": "B09G9YRX1P",
-          "name": "サントリー 天然水 ラベルレス 2L ×9本 南アルプス まとめ売り実施中",
-          "price": 0,
-          "per": 0,
-          "amt": "2000ml×9本",
-          "rc": 46495,
-          "av": 4.4,
-          "url": "https://www.amazon.co.jp/dp/B09G9YRX1P?tag=aiusagichan-22"
-        }
-      ],
+      "amazon": [],
       "yahoo": [
         {
           "name": "クリスタルガイザー 水 CRYSTAL GEYSER 500ml × 48本 天然水…",
@@ -237,7 +216,7 @@
       "rmin": 1000,
       "top": [
         {
-          "name": "MA期間 新米 10kg コシヒカリ 米10キロ こしひかり 令和8年産 福島県 会津産…",
+          "name": "新米 10kg コシヒカリ 米10キロ こしひかり 令和8年産 福島県 会津産 送料無料",
           "price": 5599,
           "per": 559.9,
           "amt": "10kg",
@@ -269,7 +248,7 @@
           "price": 3306,
           "per": 661.2,
           "amt": "5kg",
-          "rc": 1220,
+          "rc": 1221,
           "av": 4.73,
           "shop": "水菜土農園",
           "plain": "https://item.rakuten.co.jp/minatofarm/10000006/",
@@ -322,11 +301,11 @@
           "img": "https://item-shopping.c.yimg.jp/i/g/echigo-inahoya_tokusen10k"
         },
         {
-          "name": "米 10kg 送料無料 白米 安い 訳あり ブレンド米『国内産たんぼだより白米10kg』",
-          "price": 3680,
-          "per": 368.0,
+          "name": "セール 米 10kg 送料無料 白米 安い 訳あり…",
+          "price": 3580,
+          "per": 358.0,
           "amt": "10kg",
-          "rc": 5903,
+          "rc": 5904,
           "av": 4.25,
           "shop": "まんま屋",
           "bd": "",
@@ -364,7 +343,7 @@
           "price": 4980,
           "per": 61.0,
           "amt": "170m×48ロール",
-          "rc": 2056,
+          "rc": 2057,
           "av": 4.52,
           "shop": "暮らし健康ネット館",
           "plain": "https://item.rakuten.co.jp/kurashikenkou/10151090/",
@@ -389,16 +368,6 @@
         }
       ],
       "amazon": [
-        {
-          "asin": "B085GDK3FH",
-          "name": "トイレット ダブル 3倍長持ち 75m 12ロール スコッティフラワーパック",
-          "price": 1364,
-          "per": 151.6,
-          "amt": "75m×12ロール",
-          "rc": 10243,
-          "av": 4.4,
-          "url": "https://www.amazon.co.jp/dp/B085GDK3FH?tag=aiusagichan-22"
-        },
         {
           "asin": "B0088UKIHE",
           "name": "ネピア ネピネピ トイレットロール 50m(シングル) 無香料 12ロール",
@@ -428,7 +397,7 @@
           "price": 5480,
           "per": 67.2,
           "amt": "170m×48ロール",
-          "rc": 353,
+          "rc": 354,
           "av": 4.69,
           "shop": "メガストア Yahoo!店",
           "bd": "",
@@ -537,7 +506,7 @@
           "price": 4546,
           "per": 145.7,
           "amt": "650ml×48",
-          "rc": 466,
+          "rc": 467,
           "av": 4.81,
           "shop": "ドリンク屋 Yahoo!ショッピング店",
           "bd": "綾鷹",
@@ -660,9 +629,9 @@
       "title": "洗濯洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 119,
-      "read": 32,
+      "read": 31,
       "ok": 14,
-      "avg": 1263.0,
+      "avg": 1286.0,
       "rmin": 20,
       "top": [
         {
@@ -906,9 +875,9 @@
       "title": "シャンプー（詰め替え）",
       "unit": "1L・1kg",
       "seen": 150,
-      "read": 27,
+      "read": 26,
       "ok": 2,
-      "avg": 2635.9,
+      "avg": 2631.4,
       "rmin": 100,
       "top": [
         {
@@ -936,7 +905,7 @@
           "plain": "https://item.rakuten.co.jp/raffi-hair/10000204/",
           "bd": "",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00r4reo.m2lhf6f0.g00r4reo.m2lhge72/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fraffi-hair%2F10000008%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fraffi-hair%2Fi%2F10000204%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/raffi-hair/cabinet/tool108/20261103_144439/000/10000008.jpg?_ex=300x300",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/raffi-hair/cabinet/shinnsyouhinn/item_samune/samune02/2.jpg?_ex=300x300",
           "ship": ""
         }
       ],
@@ -1067,10 +1036,10 @@
       "key": "dish",
       "title": "食器用洗剤（詰め替え）",
       "unit": "1L・1kg",
-      "seen": 87,
-      "read": 29,
+      "seen": 88,
+      "read": 30,
       "ok": 12,
-      "avg": 823.3,
+      "avg": 835.2,
       "rmin": 20,
       "top": [
         {
@@ -1163,9 +1132,9 @@
       "title": "ティッシュ",
       "unit": "100組",
       "seen": 154,
-      "read": 19,
+      "read": 18,
       "ok": 12,
-      "avg": 98.8,
+      "avg": 101.5,
       "rmin": 50,
       "top": [
         {
@@ -1187,8 +1156,8 @@
           "price": 2980,
           "per": 33.1,
           "amt": "150組×60箱",
-          "rc": 268,
-          "av": 4.76,
+          "rc": 269,
+          "av": 4.75,
           "shop": "坪野谷紙業",
           "plain": "https://item.rakuten.co.jp/tsubonoya/10000023/",
           "bd": "",
@@ -1255,8 +1224,8 @@
         },
         {
           "name": "ティッシュ 150組 ティッシュペーパー 箱ティッシュ ボックスティッシュ…",
-          "price": 4170,
-          "per": 46.3,
+          "price": 3980,
+          "per": 44.2,
           "amt": "150組×60箱",
           "rc": 104,
           "av": 4.49,
@@ -1272,9 +1241,9 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 120,
-      "read": 47,
-      "ok": 47,
-      "avg": 63.3,
+      "read": 38,
+      "ok": 38,
+      "avg": 58.1,
       "rmin": 0,
       "top": [
         {
@@ -1348,20 +1317,6 @@
           "ship": ""
         },
         {
-          "name": "パンツ ビッグサイズ マミーポコ パンツ オムツ（12~22kg）162枚（54枚×3）トミ…",
-          "price": 6610,
-          "per": 40.8,
-          "amt": "162枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "nicobeststore",
-          "plain": "https://item.rakuten.co.jp/nicobest/10052804/",
-          "bd": "マミーポコ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00ut4po.m2lhf9ac.g00ut4po.m2lhgcdc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnicobest%2Fjs8d6846ebc4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnicobest%2Fi%2F10052804%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nicobest/cabinet/onesell077/js8d6846ebc4_0.jpg?_ex=300x300",
-          "ship": ""
-        },
-        {
           "name": "ユニチャーム マミーポコパンツ ドラえもん オムツ 54枚 ビッグサイズ ベビーおむつ",
           "price": 7180,
           "per": 44.3,
@@ -1373,6 +1328,20 @@
           "bd": "マミーポコ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00uv6ko.m2lhf536.g00uv6ko.m2lhg9ab/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashio-en2%2Fuc-mmpoko54b-tcs%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashio-en2%2Fi%2F10001410%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashio-en2/cabinet/gazo3/uc-mmpoko54b-tcs-1.jpg?_ex=300x300",
+          "ship": ""
+        },
+        {
+          "name": "メリーズ エアスルー テープ Sサイズ 62枚入り×4個 赤ちゃん おむつ 紙おむつ 花王…",
+          "price": 9670,
+          "per": 39.0,
+          "amt": "248枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "ダイユーエイト楽天市場店",
+          "plain": "https://item.rakuten.co.jp/daiyu8/10169391/",
+          "bd": "メリーズ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00tak5o.m2lhfddc.g00tak5o.m2lhg1ea/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdaiyu8%2F4901301437709-4set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdaiyu8%2Fi%2F10169391%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/daiyu8/cabinet/images258/4901301437709-4set_1.jpg?_ex=300x300",
           "ship": ""
         }
       ],
@@ -1409,9 +1378,9 @@
       "title": "おしりふき",
       "unit": "1枚",
       "seen": 140,
-      "read": 45,
+      "read": 46,
       "ok": 16,
-      "avg": 4.5,
+      "avg": 5.0,
       "rmin": 50,
       "top": [
         {
@@ -1493,9 +1462,9 @@
       "title": "ゴミ袋",
       "unit": "1枚",
       "seen": 142,
-      "read": 83,
+      "read": 86,
       "ok": 5,
-      "avg": 18.8,
+      "avg": 18.4,
       "rmin": 50,
       "top": [
         {
@@ -1574,9 +1543,9 @@
       "title": "乾電池（単3）",
       "unit": "1本",
       "seen": 60,
-      "read": 21,
-      "ok": 21,
-      "avg": 43.3,
+      "read": 20,
+      "ok": 20,
+      "avg": 43.8,
       "rmin": 50,
       "top": [
         {
@@ -1622,20 +1591,6 @@
           "ship": ""
         },
         {
-          "name": "送料無料 アルカリ 単3 電池 単三 防災 備えに 乾電池 おすすめ ゆうパケット発送…",
-          "price": 1000,
-          "per": 33.3,
-          "amt": "30本",
-          "rc": 54,
-          "av": 4.7,
-          "shop": "モノポケット楽天市場店",
-          "plain": "https://item.rakuten.co.jp/mono-pocket/10000869/",
-          "bd": "三菱",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00u5e4o.m2lhfed6.g00u5e4o.m2lhgbb6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmono-pocket%2F4902901605185-3%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmono-pocket%2Fi%2F10000869%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mono-pocket/cabinet/08705925/4902901605185-3.jpg?_ex=300x300",
-          "ship": ""
-        },
-        {
           "name": "MITSUBISHI 三菱 アルカリ電池 単3電池x10本 LR6N/10S…",
           "price": 1368,
           "per": 34.2,
@@ -1647,6 +1602,20 @@
           "bd": "三菱",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00tbz6o.m2lhfded.g00tbz6o.m2lhgac9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkenko-tokina%2F4902901605185-4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkenko-tokina%2Fi%2F10031419%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kenko-tokina/cabinet/others/others2/mitu3x4.jpg?_ex=300x300",
+          "ship": ""
+        },
+        {
+          "name": "TOSHIBA アルカリ乾電池 単3形 10本入 ×3個 （合計30本）…",
+          "price": 1103,
+          "per": 36.8,
+          "amt": "30本",
+          "rc": 31,
+          "av": 4.81,
+          "shop": "紀州和歌山てんこもり",
+          "plain": "https://item.rakuten.co.jp/segp-shop/10106549/",
+          "bd": "東芝",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00rjk6o.m2lhf6c0.g00rjk6o.m2lhg9c5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsegp-shop%2F4904530021909%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsegp-shop%2Fi%2F10106549%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/segp-shop/cabinet/nichiyouhinzakka3/4904530021909.jpg?_ex=300x300",
           "ship": ""
         }
       ],
@@ -1682,10 +1651,10 @@
       "key": "mask",
       "title": "マスク",
       "unit": "1枚",
-      "seen": 128,
-      "read": 50,
-      "ok": 42,
-      "avg": 38.6,
+      "seen": 126,
+      "read": 47,
+      "ok": 41,
+      "avg": 40.2,
       "rmin": 100,
       "top": [
         {
@@ -1792,9 +1761,9 @@
       "title": "パスタ",
       "unit": "1kg",
       "seen": 128,
-      "read": 82,
+      "read": 83,
       "ok": 24,
-      "avg": 684.2,
+      "avg": 680.6,
       "rmin": 50,
       "top": [
         {
@@ -1903,7 +1872,7 @@
       "seen": 127,
       "read": 60,
       "ok": 23,
-      "avg": 5089.0,
+      "avg": 5165.7,
       "rmin": 100,
       "top": [
         {
@@ -2062,7 +2031,7 @@
           "price": 6160,
           "per": 1232.0,
           "amt": "5kg",
-          "rc": 243,
+          "rc": 244,
           "av": 4.76,
           "shop": "ヒルズ ペットフード公式ショップ",
           "plain": "https://item.rakuten.co.jp/hills-pet/10000299/",
@@ -2119,9 +2088,9 @@
       "title": "キャットフード",
       "unit": "1kg",
       "seen": 112,
-      "read": 59,
-      "ok": 45,
-      "avg": 1531.6,
+      "read": 57,
+      "ok": 43,
+      "avg": 1530.5,
       "rmin": 100,
       "top": [
         {

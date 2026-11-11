@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-11 02:15",
+  "at": "2026-11-11 09:35",
   "since": "2026-11-01",
   "tracked": 259,
   "days": 10,
@@ -55,16 +55,40 @@
       "plain": "https://item.rakuten.co.jp/hagoogi/10000130/"
     },
     {
-      "title": "お米",
-      "name": "「 令和8年産 70％以上使用 国産 ブレンド米 極味精米 5kg 10kg 20kg ( …",
-      "price": 3900,
-      "base": 2420.0,
-      "pct": 61,
+      "title": "ドッグフード",
+      "name": "フィールドゲインズ ウルトラプレミアム 2kg (1kg×2袋) 初回限定 お試しドッグフー…",
+      "price": 1650,
+      "base": 1000.0,
+      "pct": 65,
       "days": 10,
-      "rc": 6649,
-      "av": 4.48,
-      "shop": "山川食糧オートミール研究所",
-      "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
+      "rc": 521,
+      "av": 4.32,
+      "shop": "フィールドゲインズ楽天市場店",
+      "plain": "https://item.rakuten.co.jp/fieldgaines/10000092/"
+    },
+    {
+      "title": "プロテイン",
+      "name": "カラダを大きくしたい方に！ウエイトゲイナー プロテイン 1kg / 3kg ザプロ ホエイ …",
+      "price": 3780,
+      "base": 2640.0,
+      "pct": 43,
+      "days": 10,
+      "rc": 595,
+      "av": 4.46,
+      "shop": "武内製薬 公式オンラインストア",
+      "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000302/"
+    },
+    {
+      "title": "プロテイン",
+      "name": "人工甘味料不使用 ジュニアプロテイン 1kg 無添加 子供 高校生 ザプロ 1kg 50食 …",
+      "price": 3780,
+      "base": 3400.0,
+      "pct": 11,
+      "days": 10,
+      "rc": 394,
+      "av": 4.67,
+      "shop": "武内製薬 公式オンラインストア",
+      "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000363/"
     }
   ]
 }
