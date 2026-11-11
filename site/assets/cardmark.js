@@ -137,7 +137,7 @@ try{new MutationObserver(later).observe(document.documentElement,{childList:true
    府県や条件のボタンを押した時・地図から飛んだ時は、全部開く（しぼり込んだ結果を隠さない）。 */
 (function(){
 if(window.__fxfold)return;window.__fxfold=1;
-if(!/^\/(tomari|koyo|illumination|ima|chika-(kansai|kanto))(\.html)?\/?$/.test(location.pathname))return;
+if(!/^\/(tomari|koyo|illumination|ima|kaimawari|chika-(kansai|kanto))(\.html)?\/?$/.test(location.pathname))return;
 var st=document.createElement("style");
 st.textContent=".fx-h{display:none!important}.fx-more{display:block;width:100%;box-sizing:border-box;margin:12px 0 6px;padding:13px 12px;font:700 14px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;color:#2B2622;background:#fff;border:1.5px solid #CFC6BD;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent}.fx-more:active{opacity:.6}";
 document.head.appendChild(st);
@@ -153,12 +153,12 @@ function fold(box,items,n,unit,outside){items=items.filter(vis);if(items.length<
  items.slice(n).forEach(function(e){e.classList.add("fx-h")});
  var b=document.createElement("button");b.type="button";b.className="fx-more";b.textContent="残り"+(items.length-n)+unit+"を見る ▾";
  b.onclick=function(e){e.stopPropagation();open(box);try{navigator.sendBeacon&&localStorage.getItem("usagi_owner")!=="1"&&navigator.sendBeacon("/c",JSON.stringify({k:"もっと見る｜"+location.pathname}))}catch(x){}};
- if(outside){box.parentNode.insertBefore(b,box.nextSibling);box.__fxb=b}else items[items.length-1].parentNode.insertBefore(b,items[items.length-1].nextSibling);}
-function kids(box,sel){return [].filter.call(box.children,function(c){return c.matches(sel)})}
+ if(outside){box.parentNode.insertBefore(b,box.nextSibling);box.__fxb=b}else{var last=items[items.length-1],par=last.parentNode;if(par.tagName==="UL"||par.tagName==="OL")par.parentNode.insertBefore(b,par.nextSibling);else par.insertBefore(b,last.nextSibling)}}
+function kids(box,sel){var r=[].filter.call(box.children,function(c){return c.matches(sel)});if(!r.length)[].forEach.call(box.children,function(u){if(u.tagName==="UL"||u.tagName==="OL")r=r.concat([].filter.call(u.children,function(c){return c.matches(sel)}))});return r}
 function run(){
  var ps=[].filter.call(document.querySelectorAll("section.ps"),vis);
  if(ps.length>=2){var all=[].concat.apply([],ps.map(function(s){return kids(s,".it").filter(vis)})),hh=0;all.slice(0,12).forEach(function(e){hh+=e.offsetHeight});
-  var n=(ps.length>8||(all.length&&hh/Math.min(12,all.length)>300))?3:5;ps.forEach(function(s){fold(s,kids(s,".it"),n,"か所")});}
+  var n=(ps.length>=7||(all.length&&hh/Math.min(12,all.length)>300))?3:5;ps.forEach(function(s){fold(s,kids(s,".it"),n,"か所")});}
  [].forEach.call(document.querySelectorAll("ol"),function(ol){if(vis(ol)&&kids(ol,"li.r").length>40)fold(ol,kids(ol,"li.r"),20,"の街",true)});
  var li=document.getElementById("list");
  if(li&&/^\/ima/.test(location.pathname)){var again=function(){if(li.__fxb){li.__fxb.remove();li.__fxb=null}var its=kids(li,".it").filter(vis);if(its.length<12)return;

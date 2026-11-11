@@ -93,8 +93,9 @@ def render(groups, now, sale):
         eu = f"https://hb.afl.rakuten.co.jp/hgc/{aid}/?pc={urllib.parse.quote(mu, safe='')}&m={urllib.parse.quote(mu, safe='')}" if aid else mu
         head += (f'<a class="entry nofilt" href="{esc(eu)}" rel="sponsored noopener" target="_blank" data-k="エントリー">楽天でエントリーする →</a>'
                  '<p class="note">エントリーを忘れずに（期間中にエントリーすれば、エントリー前の買い物も対象です）</p>')
+        # 11/11 sales.json の note は中の人のメモ（名前や段取りが入る）。お客さんのページには出さない。予定の時だけ決まった1行を出す
         if sale.get("note"):
-            head += f'<p class="note">{esc(sale["note"])}</p>'
+            head += '<p class="note">日程は予定です。始まる前に、楽天の公式ページでお確かめください。</p>'
     else:
         head = '<p class="sale">次のお買い物マラソンの日程が出たら、ここに書きます。</p>'
     n = sum(len(v) for _, v in groups)
