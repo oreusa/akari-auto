@@ -23,9 +23,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://usagi-life-notes.pages.dev"
 PAGE = "furusato"
 WEEK = "月火水木金土日"
-PAGES = 4
-TOP = 5
-MIN_RC, MIN_AV = 100, 4.0  # ふるさと納税はレビューが少なめなので100件以上・★4.0以上
+PAGES = 6
+TOP = 8
+MIN_RC, MIN_AV = 30, 4.0  # 11/12 100件以上だとお米2件・水1件しか残らず、比べた事にならなかった → 30件以上・★4.0以上
 NG_ALL = ("定期", "回お届け", "ヶ月", "か月", "カ月", "選べる", "えらべる", "お試し", "訳あり品の量", "頒布")
 # key, 見出し, 検索の言葉, 単位, 名前に必ずある言葉, 入れない言葉, 寄付1万円あたりのありえる量の幅
 CATS = [
@@ -121,7 +121,12 @@ def card(r, i, unit, avg):
             f'<span class="go">楽天ふるさと納税で見る →</span></span></a></li>')
 
 
-def render(cats, now):
+LEAD = '''<p class="lead">寄付額だけでは、どれがたくさんもらえるか分かりません。楽天のふるさと納税の返礼品を毎回取り直し、商品名の量（kg・ロール・m・ml・本）から「寄付1万円あたり」に直して比べました。量を選ぶ物・定期便のように量がひとつに決まらない物は、数字をまちがえないよう比べていません。</p>'''
+
+
+def render(cats, now, one=None, allc=None):
+    """one＝その物だけのページ（/furusato-<key>。11/12 検索から直に来られる入口。それまで /furusato は1度も押されていなかった）"""
+    allc = allc or cats
     upd = f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M} 楽天で確かめた寄付額"
     seen = sum(c["seen"] for c in cats)
     tabs = "".join(f'<button type="button" data-f="{c["key"]}">{esc(c["title"])}</button>' for c in cats)
@@ -135,6 +140,12 @@ def render(cats, now):
                  f'<ul>{lis}</ul></section>')
     names = "・".join(c["title"] for c in cats)
     title = f"ふるさと納税 寄付1万円あたりで比べた{names}｜うさぎ│LIFE NOTES"
+    path = PAGE
+    if one:
+        c0 = cats[0]; path = f"{PAGE}-{c0['key']}"
+        title = f"ふるさと納税の{c0['title']}、寄付1万円で何{c0['unit']}？多い順（{now.month}月{now.day}日更新）｜くらべたおかいものリスト"
+    more = "".join(f'<a href="/{PAGE}-{c["key"]}">ふるさと納税の{esc(c["title"])}</a>　' for c in allc if len(c["top"]) >= 3 and (not one or c["key"] != cats[0]["key"]))
+    more += "".join(f'<a href="/okaimono-{c["key"]}">ふつうに買う時の{esc(c["title"])}の最安</a>　' for c in cats) if one else ""
     desc = f"楽天のふるさと納税の返礼品{seen}件を、寄付1万円あたりの量（kg・m・L）に直して比べました。レビュー{MIN_RC}件以上・評価{MIN_AV:.1f}以上の中で多い順。毎日更新。"
     css = open(os.path.join(ROOT, "scripts", "kaimawari.py"), encoding="utf-8").read()
     css = css[css.index("<style>") + 7:css.index("</style>")].replace("{{", "{").replace("}}", "}")
@@ -142,10 +153,10 @@ def render(cats, now):
     return f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}">
-<link rel="canonical" href="{SITE}/{PAGE}">
+<link rel="canonical" href="{SITE}/{path}">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
-<meta property="og:image" content="{SITE}/og-v10.png"><meta property="og:url" content="{SITE}/{PAGE}"><meta name="twitter:card" content="summary">
-<link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png">
+<meta property="og:image" content="{SITE}/og-v10.png"><meta property="og:url" content="{SITE}/{path}"><meta name="twitter:card" content="summary">
+<link rel="icon" href="/logo.png"><link rel="apple-touch-icon" href="/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400&display=swap">
 <style>{css}
@@ -158,21 +169,22 @@ def render(cats, now):
 .note{{font-size:12px;line-height:1.85;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 14px;margin:14px 0 0}}
 </style><script src="/assets/night.js?v=14"></script><script src="/assets/menu.js?v=46" defer></script><link rel="stylesheet" href="/assets/sub.css?v=4"><script src="/assets/v2sub.js?v=11" defer></script></head>
 <body><div class="wrap">
-<header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
+<header class="head"><img src="/logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
 <p class="en">FURUSATO NOZEI</p>
-<h1>寄付1万円あたりで比べた<small>楽天のふるさと納税（{esc(names)}）</small></h1>
+<h1>{("ふるさと納税の" + esc(names) + "<small>寄付1万円で何" + cats[0]["unit"] + "もらえるか・多い順</small>") if one else ("寄付1万円あたりで比べた<small>楽天のふるさと納税（" + esc(names) + "）</small>")}</h1>
 <p class="up">{esc(upd)}</p>
 <div class="big"><div><b>{seen:,}件</b><span>比べた返礼品</span></div><div><b>あと{left}日</b><span>12/31の締め切りまで</span></div></div>
-<p class="lead">寄付額だけでは、どれがたくさんもらえるか分かりません。楽天のふるさと納税の返礼品を毎回取り直し、商品名の量（kg・ロール・m・ml・本）から「寄付1万円あたり」に直して比べました。量を選ぶ物・定期便のように量がひとつに決まらない物は、数字をまちがえないよう比べていません。</p>
+{"" if one else LEAD}
 </header>
-<nav class="tabs" aria-label="物"><button type="button" data-f="" class="on">すべて</button>{tabs}</nav>
+{"" if one else '<nav class="tabs" aria-label="物"><button type="button" data-f="" class="on">すべて</button>' + tabs + "</nav>"}
 <main>{secs}
 <p class="note">ふるさと納税は、自己負担2,000円をこえる分が税金から引かれます（控除の上限は収入や家族で変わります）。上限は総務省のふるさと納税ポータルサイトや楽天ふるさと納税のシミュレーションで確かめてから寄付してください。</p>
+<p class="note">ほかの物：{more}</p>
 </main>
 <footer class="foot">
 <p>寄付額・レビューは、このページを作った時に楽天で確かめた物です。量は商品名から読んでいるので、寄付する前にリンク先で内容量・届く時期を確かめてください。</p>
 <p>このページのリンクは楽天アフィリエイトの広告（PR）です。</p>
-<a class="back" href="./">関東おでかけリストを見る</a>
+<a class="back" href="/okaimono">くらべたおかいものリストを見る</a>
 <p class="sign">うさぎ│LIFE NOTES</p>
 </footer></div>
 <script>
@@ -207,7 +219,18 @@ def main():
     site = os.path.join(ROOT, "site")
     os.makedirs(site, exist_ok=True)
     open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(cats, now))
-    slim = [{k: c[k] for k in ("key", "title", "unit", "seen", "read", "ok", "avg")} |
+    made = []
+    for c in cats:  # 物ごとのページ（3件以上ある物だけ。薄いページは作らない）
+        if len(c["top"]) >= 3:
+            open(os.path.join(site, f"{PAGE}-{c['key']}.html"), "w", encoding="utf-8").write(render([c], now, one=True, allc=cats))
+            made.append(c["key"])
+    sm = os.path.join(site, "sitemap.xml")
+    if os.path.exists(sm):
+        x = open(sm, encoding="utf-8").read()
+        add = "".join(f"<url><loc>{SITE}/{PAGE}-{k}</loc></url>" for k in made if f"/{PAGE}-{k}<" not in x)
+        if add:
+            open(sm, "w", encoding="utf-8").write(x.replace("</urlset>", add + "</urlset>", 1))
+    slim = [{k: c[k] for k in ("key", "title", "unit", "seen", "read", "ok", "avg")} | {"page": c["key"] in made} |
             {"top": [{k: r[k] for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain")} for r in c["top"]]}
             for c in cats]
     lib.save_json(os.path.join(ROOT, "data", "furusato.json"), {"at": now.strftime("%Y-%m-%d %H:%M"), "cats": slim})

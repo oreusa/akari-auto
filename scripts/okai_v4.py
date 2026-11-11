@@ -609,6 +609,15 @@ def cat_pages(at, cats, head):
     up = f"{int(d.group(2))}月{int(d.group(3))}日" if d else ""
     out = SITE  # /okaimono-<種類>（下のバーとメニューが、買い物の物になるアドレス。11/12 オーナー「買い物の人は買い物しか見ない」）
     made = []
+    furu = {}  # ふるさと納税にも同じ物のページがあれば、1行でつなぐ（額が大きい・12/31 まで）
+    try:
+        for fc in json.load(open(os.path.join(R, "data", "furusato.json"), encoding="utf-8")).get("cats", []):
+            if fc.get("page") and fc.get("top"):
+                t0 = fc["top"][0]
+                furu[fc["key"]] = (f'<p style="margin:10px 16px 0"><a href="/furusato-{fc["key"]}" data-k="kp:ふるさと納税 {E(fc["title"])}" style="display:block;border:1px solid var(--line,#E2E2E2);border-radius:10px;padding:11px 14px;font-size:13.5px;color:inherit;text-decoration:none">'
+                                   f'<b>ふるさと納税でもらうなら</b><br>寄付1万円あたり {t0["per"]:g}{E(fc["unit"])}（いちばん多い物）を見る ›</a></p>')
+    except Exception:
+        pass
     for c in cats:
         L = sorted(c["o"], key=lambda o: o["u"])[:10]
         if len(L) < 3:
@@ -638,7 +647,7 @@ def cat_pages(at, cats, head):
 <p class="lead">楽天の送料込み<b class="n">{c["seen"]:,}</b>件から　<span class="n">{E(up)}</span> 更新（1日2回）</p>{save}
 <ol class="rkl">{rows}</ol>
 <p style="margin:14px 16px 0"><a class="btn" href="/okaimono?k={c["k"]}" data-k="kp:しぼる">メーカー・量でしぼって、全部の順位を見る</a></p>
-<p style="margin:10px 16px 0"><a href="https://www.amazon.co.jp/s?k={quote(nm)}&amp;tag={AMZ}" rel="sponsored noopener" target="_blank" data-k="kp:Amazon {E(nm)}" style="display:block;text-align:center;border:1px solid var(--ink,#222);border-radius:10px;padding:11px;font-weight:700;font-size:14px;color:inherit;text-decoration:none">Amazonでも{E(nm)}の値段を見る</a></p>
+{furu.get(c["k"], "")}<p style="margin:10px 16px 0"><a href="https://www.amazon.co.jp/s?k={quote(nm)}&amp;tag={AMZ}" rel="sponsored noopener" target="_blank" data-k="kp:Amazon {E(nm)}" style="display:block;text-align:center;border:1px solid var(--ink,#222);border-radius:10px;padding:11px;font-weight:700;font-size:14px;color:inherit;text-decoration:none">Amazonでも{E(nm)}の値段を見る</a></p>
 <p class="kij" style="margin:6px 16px 0">Amazonは、送料込みの値段がお店のページでしか分からないため、上の順位には入れていません。</p>
 <dl class="ev"><dt>比べ方</dt><dd>送料込みの値段 ÷ 量（{E(unit)}あたり）。名の知れたメーカーの物だけを、お店ごとに1つずつ。</dd><dt>注意</dt><dd>北海道・沖縄・離島は送料が別にかかることがあります。量は商品名から読んでいるので、買う前にお店のページで確かめてください。</dd></dl>
 <h3>ほかの種類</h3><div class="chs" style="flex-wrap:wrap">{others}</div>
