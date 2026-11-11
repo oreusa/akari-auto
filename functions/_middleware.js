@@ -68,7 +68,9 @@ export async function onRequest(ctx) {
   const own = /^https:\/\/(lifenote[^/]*|life-note|usagi-life-notes)\.pages\.dev\//.test(ref);
   const lp = url.pathname.replace(/\.html$/, "");
   // 11/7 関東不動産リスト /fudosan-list も、2つのリストと同じく外から直に来た時だけ数える
-  const isView = lp === "/" || ((lp === "/odekake" || lp === "/okaimono" || lp === "/fudosan-list") && !own);
+  // 11/11 投稿からのリンクを、その催しのページ・都県のページへ直に付けるようにした → 投稿の印（?f=x0715 等）つきで外から来た時は、どのページでも数える
+  const fq = url.searchParams.get("f") || "";
+  const isView = lp === "/" || ((lp === "/odekake" || lp === "/okaimono" || lp === "/fudosan-list") && !own) || (/^[xt]\d{4}$/.test(fq) && !own && !/\.[a-z0-9]+$/i.test(lp));
   if (isView && request.method === "GET" && !BOT.test(ua) && !request.headers.get("purpose") && !request.headers.get("sec-purpose") && !request.headers.get("x-ima")) {
     ctx.waitUntil(view(env, url.searchParams.get("f") || "").catch(() => {}));
   }

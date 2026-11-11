@@ -1,3 +1,4 @@
+import re
 """予約係の自己テスト（本物のBuffer・楽天にはつながない）。check.yml で毎回動く。"""
 import os
 import sys
@@ -196,7 +197,7 @@ with tempfile.TemporaryDirectory() as d:
     book.run(datetime(2026, 10, 25, 7, 40, tzinfo=lib.JST))
     xt = {c[0]: c[2] for c in kc[n0:] if c[0] != "instagram"}
     ok(set(xt) == {"twitter", "threads"} and all(len(t) == 2 and t[1].startswith("https://example.jp/event")
-                                                 and "usagi-life-notes.pages.dev/?f=" in t[1] for t in xt.values())
+                                                 and re.search(r"usagi-life-notes\.pages\.dev/(odekake-tokyo)?\?f=", t[1]) for t in xt.values())  # 11/11 都県が分かる投稿は都県のページへ
        and all(len(c[2]) == 1 for c in kc[n0:] if c[0] == "instagram"), f"おでかけ4コマの2つ目がおかしい: {kc[n0:]}")
     # 旅先4コマ（10/29〜 水・土の15:15）：2本目の漫画。予約できたら同じ時刻の文の投稿を消し、まだなら文の投稿を予約しない
     lib.save_json(os.path.join(d, "state", "booked.json"), {"2026-10-25 15:15": {"twitter": {"id": "TXT1", "at": "15:15"}}})
@@ -266,6 +267,9 @@ ok(book.with_page(["見出し", "あ" * 130], "twitter", pcfg)[1] == "あ" * 130
 ok("pages.dev/?f=x1345" in book.with_page(two, "twitter", pcfg, "13:45")[1], "Xの投稿の印（?f=x1345）が付かない")
 ok("pages.dev/?f=t0715" in book.with_page(two, "threads", pcfg, "07:15")[1], "Threadsの投稿の印（?f=t0715）が付かない")
 ok(book.with_page(["1つだけ"], "twitter", pcfg) == ["1つだけ"], "1つだけの投稿に足した")
+_due = datetime(2026, 11, 12, 12, 15, tzinfo=lib.JST)
+ok("pages.dev/odekake-tochigi?f=t1215" in book.with_page(["11/14、宇都宮で餃子の屋台30店", "公式です\nhttps://example.com/b"], "threads", pcfg, "12:15", _due)[1], "都県が分かる投稿のリンクが都県のページにならない（11/11）")
+ok(book.with_page(["知らない話", "公式です\nhttps://example.com/c"], "threads", pcfg, "12:15", _due)[1].endswith("pages.dev/?f=t1215"), "都県が分からない投稿は表紙のまま（11/11）")
 ok(book.with_page(two, "twitter", {"page": {"url": "https://usagi-life-notes.pages.dev/", "promote": False}}) == two, "promote false でも足した")
 
 # 予約し直し：ページのURLがない予約を、足した文で作り直し、古い方を消す（出る25分前を切った物は触らない）
