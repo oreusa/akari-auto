@@ -121,7 +121,10 @@ def hotel(c, h):
     u = dated(h["u"], d)
     lab = f"{d.month}/{d.day}（{WD[d.weekday()]}）の空室" if d and u != h["u"] else "空室を見る"
     return (f'<li><a href="{E(u)}" target="_blank" rel="noopener sponsored" data-y="宿｜{E(c["t"][:16])}｜{E(h["n"])}">'
-            f'<span class="hn">{E(h["n"])}</span><span class="hm"><b>{rv}</b>{rc}・{km}</span><span class="hp"><span class="hy">{pr}</span><span class="hv">{lab}</span></span></a></li>')
+            f'<span class="hn">{E(h["n"])}</span><span class="hm"><b>{rv}</b>{rc}・{km}</span><span class="hp"><span class="hy">{pr}</span><span class="hv">{lab}</span></span></a>'
+            # 11/11 売上の調査帳 11/10 B1：土曜の空室が満室だと、そこで止まっていた。同じ宿で別の日を選べる入口を添える
+            + (f'<a class="ho" href="{E(h["u"])}" target="_blank" rel="noopener sponsored" data-y="宿ほかの日｜{E(c["t"][:16])}｜{E(h["n"])}">満室なら、ほかの日を選ぶ ›</a>' if u != h["u"] else "")
+            + '</li>')
 
 
 def main():
@@ -221,6 +224,7 @@ h2 small{{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;color:#8C7
 .hy{{font-family:Jost,sans-serif;font-size:13px;color:#2B2622}}
 .hv{{font-size:11px;font-weight:700;color:#B5532F;border:1px solid #B5532F;border-radius:999px;padding:3px 10px;line-height:1.4}}
 .hv:after{{content:" →"}}
+.inn li a.ho{{display:block;min-height:0;padding:0 0 9px;font-size:11px;color:#6B6058;text-align:right;text-decoration:underline;text-underline-offset:2px}}
 .none{{display:none;text-align:center;font-size:13px;color:#8C7B6E;padding:40px 0}}
 .note{{font-size:12px;line-height:1.9;color:#7A6E66;background:#F1F1F1;padding:14px 16px;margin-top:30px}}
 .back{{display:block;width:max-content;margin:28px auto 0;color:#2B2622;text-decoration:none;font-size:13px;letter-spacing:.1em;border-bottom:1px solid #2B2622;padding-bottom:2px}}
