@@ -49,8 +49,18 @@ for p in now:
     if p["svc"] in ("threads", "twitter"): kinds.setdefault(p["kind"], []).append(p["v"])
 base = med(kinds.get("通常", []))
 for k, v in kinds.items():
-    if k != "通常" and len(v) >= 5 and med(v) * 3 < base:
+    if k not in ("通常", "4コマ") and len(v) >= 5 and med(v) * 3 < base:
         order("投稿", "post-kind", f"「{k}」の投稿（中央値 {med(v)}、通常は {base}）は、Threads と X では週2本までに減らし、空いた枠を通常の当たりの型に回す", "通常の3分の1より下が7日続いた")
+# 4コマ（雫＝GPTの絵）。11/12 owner「4コマなぁ、gpt使って欲しいんよなぁ、毎月お金かかってるし」→ やめない。見られる形を機械が探す
+_k4 = {sv: [p["v"] for p in now if p["svc"] == sv and p["kind"] == "4コマ"] for sv in ("twitter", "threads", "instagram")}
+_n4 = {sv: [p["v"] for p in now if p["svc"] == sv and p["kind"] == "通常"] for sv in ("twitter", "threads")}
+if any(_k4.values()):
+    _okx = bool(_k4["twitter"]) and med(_k4["twitter"]) >= med(_n4["twitter"]); _okt = bool(_k4["threads"]) and med(_k4["threads"]) >= med(_n4["threads"])
+    item("koma4", "4コマ（雫の絵）", f"X {med(_k4['twitter'])}（ふつうの投稿 {med(_n4['twitter'])}）・Threads {med(_k4['threads'])}（ふつう {med(_n4['threads'])}）・インスタ {med(_k4['instagram'])}", "X か Threads で、ふつうの投稿の中央値より上", "当たり" if (_okx or _okt) else "外れ", "GPT（雫）の毎日の仕事。見られる形にする")
+    _best = sorted([p for p in now if p["kind"] == "4コマ" and p["svc"] in ("twitter", "threads")], key=lambda x: -x["v"])[:1]
+    _hit = sorted([p for p in now if p["kind"] == "通常" and p["svc"] in ("twitter", "threads")], key=lambda x: -x["v"])[:1]
+    if not _okt and _hit: order("燈の夜", "koma4", f"4コマは続ける（オーナー 11/12）。Threads で 4コマ {med(_k4['threads'])}・ふつう {med(_n4['threads'])}。あすの4コマの題材を、この7日でいちばん見られた投稿「{_hit[0]['first'][:26]}」（{_hit[0]['v']}）と同じ種類（食べ物の催し・新しい店など）にし、投稿文の1行目をその投稿と同じ「日付、場所で名前」の形にする" + (f"。4コマでいちばん見られた回は「{_best[0]['first'][:22]}」（{_best[0]['v']}）" if _best else ""), "4コマが、ふつうの投稿より見られていない")
+    if _okx: order("燈の夜", "koma4", f"4コマは X で当たり（{med(_k4['twitter'])}、ふつう {med(_n4['twitter'])}）。X の4コマは今の形のまま。出す時刻を X の強い枠に合わせる", "X ではふつうより見られている")
 top = sorted([p for p in now if p["svc"] in ("threads", "twitter")], key=lambda x: -x["v"])[:3]
 if top and top[0]["v"] >= max(300, base * 3):
     order("投稿", "post-hit", "当たった3本の形（1行目の作り・題材）を、あす別の場所・別の日付で1本ずつ作る：" + "／".join(f"{p['first'][:28]}（{p['v']}）" for p in top), "中央値の3倍以上")
@@ -67,7 +77,7 @@ for p in now:
     if p["svc"] == "instagram": ig.setdefault(p["kind"], []).append(p["v"])
 item("ig", "インスタ", "・".join(f"{k} {len(v)}本 中央値{med(v)}" for k, v in ig.items()) or "未確認", "リールの中央値 100", "当たり" if med(ig.get("おでかけリール", [])) >= 100 else ("未確認" if not ig else "外れ"), "4コマとリールをくらべる")
 if ig.get("4コマ") and ig.get("おでかけリール") and med(ig["4コマ"]) * 5 < med(ig["おでかけリール"]):
-    order("リール", "ig", f"インスタの4コマ（中央値 {med(ig['4コマ'])}）は出すのをやめ、おでかけリール（中央値 {med(ig['おでかけリール'])}）を1日2本にする。うさぎちゃんの絵はリールの表紙に使う", "リールが4コマの5倍以上")
+    order("リール", "ig", f"インスタの4コマ（中央値 {med(ig['4コマ'])}）は続ける（オーナー 11/12「GPTを使ってほしい」）。インスタで増やすのは、おでかけリール（中央値 {med(ig['おでかけリール'])}）の方（1日2本）。雫の絵（うさぎちゃん）をおでかけリールの表紙に使う", "リールが4コマの5倍以上")
 
 # 5 担当（雫・汐・凪）— notes/gpt-runs.md の ○× を機械が数える
 runs = [l for l in open(P("notes", "gpt-runs.md"), encoding="utf-8").read().splitlines() if re.match(r"- 20\d\d-\d\d-\d\d", l) and l[2:12] > d7] if os.path.exists(P("notes", "gpt-runs.md")) else []
@@ -190,7 +200,7 @@ def _michi(root):
 _bad = _michi(os.path.join(ROOT, "site"))
 item("michi", "申し込みへの道", f"家のページで道が無い {len(_bad)}枚" + (f"（例 {_bad[0]}）" if _bad else ""), "合格の線：0枚", "当たり" if not _bad else "外れ", "家・土地のページは、どれも申し込みへ1回で行ける事")
 if _bad: order("月", "michi", f"申し込みへの道が無い家のページが {len(_bad)}枚（{'・'.join(_bad[:3])}）。そのページを作る機械に、街の名前入りの「いくらで売れるか無料で聞く」を足す", "見られても反響にならない")
-PRI = ["lead", "michi", "come", "city", "hp", "post-threads", "post-twitter", "post-kind", "post-hit", "ig", "money", "asp", "gpt"]
+PRI = ["lead", "michi", "come", "city", "hp", "post-threads", "post-twitter", "post-kind", "post-hit", "koma4", "ig", "money", "asp", "gpt"]
 _old = {(o["to"], o["item"], o["order"][:24]): o.get("days", 1) for o in prev.get("orders", [])}
 for o in orders:
     if any(w in o["order"] for w in ("data/seika.json", "gpt-runs.md", "台帳 notes/daichou.md")): o["kind"] = "数字"
