@@ -27,7 +27,7 @@ now = [p for p in posts if p["day"] > d7]; old = [p for p in posts if p["day"] <
 med = lambda xs: int(statistics.median(xs)) if xs else 0
 items, orders = [], []
 def item(id, name, num, line, ans, why): items.append({"id": id, "name": name, "num": num, "line": line, "ans": ans, "why": why})
-def order(to, id, text, why): orders.append({"to": to, "item": id, "order": text, "why": why})
+def order(to, id, text, why, kind="作る"): orders.append({"to": to, "item": id, "order": text, "why": why, "kind": kind})
 
 # 1 HP
 n, pv = sei.get("now", {}), sei.get("prev", {})
@@ -116,13 +116,68 @@ if _tot >= 20: order("月", "city", "関東の市区を1日2つ足す（凪の�
 else: order("月", "city", "関東の市区を1日1つ足す（公式ページで確かめた行だけ）。7日たっても見られた数が0なら、題を「◯◯市 解体 補助金 2026 いくら」の形に変える", "まだ数が無い")
 
 # 7 反響
-item("lead", "相談（反響）", f"申し込みを開いた {n.get('open', 0)}・送信 {n.get('sent', 0)}", "反響 月10件", "当たり" if n.get("sent", 0) >= 3 else "外れ", "関東も問い合わせはオーナーへ")
+def rung(now, ladder): return next((x for x in ladder if x > now), ladder[-1])
+hist = prev.get("hist", {})
+sent = n.get("sent", 0); _so = [v for d, v in hist.get("lead_sent", []) if d <= d7]
+item("lead", "相談（反響）", f"見られた {n.get('views', 0)}・相談や査定へ押した {n.get('ask', 0)}・申し込みを開いた {n.get('open', 0)}・送信 {sent}", f"次の段：送信 {rung(sent, [1, 3, 10])}件（その先 月10件）", "当たり" if sent >= 1 and sent > (_so[-1] if _so else 0) else "外れ", "関東も問い合わせはオーナーへ")
+# いちばん人が落ちている段を機械が選ぶ（お金にいちばん近いので、月あての1番）
+_st = [("見られた", n.get("views", 0)), ("申し込みを開いた", n.get("open", 0)), ("送信", sent)]
+_drop = None
+for (x, a_), (y, b_) in zip(_st, _st[1:]):
+    if a_ >= 10 and (_drop is None or b_ / a_ < _drop[4]): _drop = (x, a_, y, b_, b_ / a_)
+_FIX = {"申し込みを開いた": "見られた数が多いページ（成長の帳面の上位3つ）の最初の画面の中に、そのページの悩みに合わせた「相談する（無料）」への道を1つ置く。「相談や査定へ押した」人が外の査定サイトだけに流れていないか、押された先をくらべる",
+        "送信": "申し込みページの最初の画面を「選ぶだけの質問1つ」から始める（名前・電話は最後）。スマホ幅で、開く→送信の手前までを通しで確かめる"}
+if _drop: order("月", "lead", f"「{_drop[0]}」{_drop[1]} →「{_drop[2]}」{_drop[3]}（{_drop[4] * 100:.1f}%）が、いちばん人が落ちている段。" + _FIX[_drop[2]] + "。関西と同じ形に", "お金にいちばん近い段")
 
 pa = {i["id"]: i for i in prev.get("items", [])}
 for i in items:
     o = pa.get(i["id"])
     if o and o["ans"] != i["ans"] and i["ans"] not in ("未確認", "計測中"):
         manabi["rows"].append({"day": today.isoformat(), "item": i["name"], "from": o["ans"], "to": i["ans"], "num": i["num"], "did": [x["order"] for x in prev.get("orders", []) if x["item"] == i["id"]][:2]})
+# 数字の歩み（30日）と、やった手の答え合わせ（data/yatta.json に回が {day, item, what} を足す → 7日後に機械が答えを付ける）
+VAL = {"hp": n.get("views"), "come": n.get("come"), "money": n.get("buy"), "lead": sent * 100 + n.get("open", 0), "city": _tot, "lead_sent": sent}
+for it in items:
+    if it["id"].startswith("post-") and it["id"] in ("post-threads", "post-twitter"):
+        m_ = re.search(r"中央値 (\d+)", it["num"]); VAL[it["id"]] = int(m_.group(1)) if m_ else None
+    if it["id"] == "ig":
+        m_ = re.findall(r"中央値(\d+)", it["num"]); VAL["ig"] = max(map(int, m_)) if m_ else None
+for k, v in VAL.items():
+    if v is not None:
+        h = [x for x in hist.setdefault(k, []) if x[0] != today.isoformat()]; h.append([today.isoformat(), v]); hist[k] = h[-30:]
+yatta = load(P("data", "yatta.json"), {"about": "やった手の帳面。回が、指令をやったら {day, item, what} を1行足す（item は台帳の項目の id：hp・post-threads・post-twitter・come・ig・money・city・lead）。before・after・result は機械が入れる", "rows": []})
+name_of = {i["id"]: i["name"] for i in items}
+for y in yatta["rows"]:
+    if "before" not in y:
+        xs = [v for d, v in hist.get(y.get("item"), []) if d <= y.get("day", "")]
+        y["before"] = xs[-1] if xs else VAL.get(y.get("item"))
+    if "result" not in y and y.get("day", "9") <= (today - timedelta(days=7)).isoformat() and VAL.get(y.get("item")) is not None and y.get("before") is not None:
+        y["after"] = VAL[y["item"]]
+        y["result"] = "効いた" if y["after"] >= y["before"] * 1.2 and y["after"] - y["before"] >= 1 else "効かなかった"
+        manabi["rows"].append({"day": today.isoformat(), "item": name_of.get(y["item"], y["item"]), "id": y["item"], "kind": "手の答え", "what": y["what"], "before": y["before"], "after": y["after"], "result": y["result"]})
+ng, ok = {}, {}
+for m in manabi["rows"]:
+    if m.get("kind") == "手の答え": (ok if m["result"] == "効いた" else ng).setdefault(m["id"], []).append(m["what"])
+PRI = ["lead", "come", "city", "hp", "post-threads", "post-twitter", "post-kind", "post-hit", "ig", "money", "asp", "gpt"]
+_old = {(o["to"], o["item"], o["order"][:24]): o.get("days", 1) for o in prev.get("orders", [])}
+for o in orders:
+    if any(w in o["order"] for w in ("data/seika.json", "gpt-runs.md", "台帳 notes/daichou.md")): o["kind"] = "数字"
+    d = _old.get((o["to"], o["item"], o["order"][:24]))
+    o["days"] = (d if prev.get("day") == today.isoformat() else d + 1) if d else 1
+    if ng.get(o["item"]): o["ng"] = ng[o["item"]][-3:]
+    if ok.get(o["item"]): o["ok"] = ok[o["item"]][-3:]
+orders.sort(key=lambda o: (o["kind"] != "作る", PRI.index(o["item"]) if o["item"] in PRI else 99))
+for to in ("燈の夜", "月"):
+    f_ = next((o for o in orders if o["to"] == to and o["kind"] == "作る"), None)
+    if f_: f_["first"] = True
+def line(o):
+    t = ("【きょうの1つ】" if o.get("first") else ("【数字を入れる】" if o["kind"] == "数字" else "")) + o["order"] + f"（理由：{o['why']}）"
+    if o["days"] >= 3: t += f" ！{o['days']}日つづけて出ている＝まだやられていない"
+    if o.get("ng"): t += "／前に効かなかった手（くり返さない）：" + "・".join(o["ng"])
+    if o.get("ok"): t += "／前に効いた手（同じ型を増やす）：" + "・".join(o["ok"])
+    return "- " + t
+def mline(m):
+    if m.get("kind") == "手の答え": return f"- {m['day']} {m['item']}：やった手「{m['what']}」→ {m['result']}（{m['before']}→{m['after']}）"
+    return f"- {m['day']} {m['item']}：{m['from']}→{m['to']}（{m['num']}）。その前に出ていた指令：{'／'.join(m['did']) or '記録なし'}"
 MARK = {"当たり": "◎", "外れ": "×", "未確認": "？", "計測中": "…"}
 L = [f"# 関東の学習の台帳（{today.isoformat()} 朝）", "", "機械が毎朝作ります。燈の夜の回は、これを最初に読み、自分あての指令をそのままやります。数字が取れない物は「未確認」。", "",
      "| | 項目 | 機械が測った数字 | 合格の線 | 答え |", "|---|---|---|---|---|"]
@@ -130,10 +185,13 @@ L += [f"| {MARK.get(i['ans'], '')} | {i['name']} | {i['num']} | {i['line']} | {i
 L += ["", "## きょうの指令", ""]
 for to in ("燈の夜", "投稿", "リール", "月"):
     xs = [o for o in orders if o["to"] == to]
-    if xs: L += [f"### {to}"] + [f"- {o['order']}（理由：{o['why']}）" for o in xs] + [""]
-L += ["## 学び（答えが変わった日）", ""] + ([f"- {m['day']} {m['item']}：{m['from']}→{m['to']}（{m['num']}）。その前にやった事：{'／'.join(m['did']) or '記録なし'}" for m in manabi["rows"][-12:]] or ["- まだありません"]) + [""]
+    if xs: L += [f"### {to}"] + [line(o) for o in xs] + [""]
+_wait_y = [y for y in yatta["rows"] if "result" not in y]
+L += ["## 答え待ちの手（やってから7日で、機械が答えを付ける）", ""] + ([f"- {y['day']} {name_of.get(y['item'], y['item'])}：{y['what']}（やる前 {y.get('before')}）" for y in _wait_y] or ["- ありません（指令をやった回が data/yatta.json に1行足します）"]) + [""]
+L += ["## 学び（手の答え・答えが変わった日）", ""] + ([mline(m) for m in manabi["rows"][-12:]] or ["- まだありません"]) + [""]
 open(P("notes", "gakushu.md"), "w", encoding="utf-8").write("\n".join(L))
-json.dump({"day": today.isoformat(), "items": items, "orders": orders}, open(P("data", "gakushu.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-json.dump({"day": today.isoformat(), "orders": orders}, open(P("data", "shirei.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+json.dump(yatta, open(P("data", "yatta.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+json.dump({"day": today.isoformat(), "items": items, "orders": orders, "hist": hist}, open(P("data", "gakushu.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+json.dump({"day": today.isoformat(), "about": "to が自分の行を、動く前に読んでやる。やったら data/yatta.json の rows に {day, item, what} を1行足す（7日後に機械が効いた・効かなかったを付ける）。ng の手はくり返さない", "orders": orders}, open(P("data", "shirei.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 json.dump(manabi, open(P("data", "manabi.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("\n".join(L))
