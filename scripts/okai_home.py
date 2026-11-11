@@ -175,9 +175,10 @@ function tiles(sel){return '<div class="oh-tls">'+ORDER.filter(function(k){retur
 var deferred=null;window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();deferred=e;});
 function home(){document.documentElement.classList.add("ok-home");var ks=ORDER.filter(function(k){return MY[k]&&C[k];}),h=strip();
  if(!ks.length){var n=Object.keys(pend).length;
+  var dl=deals([],4);
+  if(dl.length)h+='<h2 class="oh-h2"><span class="en">TODAY</span>きょうお得な物<small>値下がり中・平均より安い順</small></h2><section class="oh-bd">'+dl.map(function(k){return row(k,false);}).join("")+'</section>';
   h+='<section class="oh-pk"><h2>いつも買う物を、<br>えらんでください</h2><p>えらんだ物だけ、いちばん安い1個あたりと買い時を、毎日2回しらべてお見せします。登録はいりません（この端末だけに残ります）。</p>'+tiles(pend)+
-   '<button type="button" class="oh-start" id="ohs"'+(n?'':' disabled')+'>'+(n?n+'つで始める':'えらぶと始められます')+'</button></section>'+
-   '<h2 class="oh-h2"><span class="en">TODAY</span>きょうお得な物<small>値下がり中・平均より安い順</small></h2><section class="oh-bd">'+deals([],4).map(function(k){return row(k,false);}).join("")+'</section>';}
+   '<button type="button" class="oh-start" id="ohs"'+(n?'':' disabled')+'>'+(n?n+'つで始める':'えらぶと始められます')+'</button></section>';}
  else{var tot=0,shops={},bl=[];ks.forEach(function(k){var o=cheap(C[k]);if(o){tot+=o.p;shops[o.s]=1;}if(MY[k].b)bl.push(k);});
   h+='<h2 class="oh-h2"><span class="en">MY LIST</span>いつもの物<small>'+ks.length+'つ</small><a href="#ohadd">＋足す・外す</a></h2><section class="oh-bd">'+ks.map(function(k){return row(k,true);}).join("")+'</section>'+
    '<div class="oh-sum"><b>'+ks.length+'つまとめて</b> いちばん安い物で 合計 '+tot.toLocaleString()+'円・'+Object.keys(shops).length+'店<small>送料込みの総額です。お店ごとに届きます。'+(bl.length?'':'「買った日を入れる」を押すと、なくなる日をカレンダーに入れられます。')+'</small>'+
