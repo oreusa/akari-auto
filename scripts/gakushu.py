@@ -129,6 +129,18 @@ _wait = [p for p in _pr if "審査中" in p[1]]; _ok = [p for p in _pr if "提�
 item("asp", "売却・査定の案件（ASP）", f"提携済み {len(_ok)}・審査中 {len(_wait)}（" + "・".join(f"{n} {r}" for n, _, r in _wait[:4]) + f"）・見送り {len(_ng)}", "売りたい人の送り先が1つ以上 提携済み", "当たり" if any("査定" in n or "売却" in n or "仲介" in n for n, st, _ in _ok if "使わない" not in st) else "外れ", "セレスは 11/11 見送り。代わりは審査中の案件")
 if _wait: order("月", "asp", "月曜の汐の写しで、審査中の案件（" + "・".join(n for n, _, _ in _wait[:4]) + "）の状態を台帳 notes/daichou.md に入れる。提携済みになった物は、その日のうちに /uru の「売りたい」に付け、押された数を数える。2週たっても審査中の物は、汐にもう1件ずつ申請を足してもらう", "売りたい人の送り先がまだ無い")
 
+# 6c くらべた話（11/12 オーナーがカードで「1日1本だけ7日ためす」。11/13〜11/19。見出しが「【くらべた｜」で始まる投稿を、通常の投稿とくらべる）
+_kb = [p for p in posts if (p.get("first") or "").startswith("【くらべた") and p["svc"] in ("threads", "twitter")]
+_kbt = [p["v"] for p in _kb if p["svc"] == "threads"]; _nt = [p["v"] for p in now if p["svc"] == "threads" and p["kind"] == "通常" and not (p.get("first") or "").startswith("【くらべた")]
+_kbuy = sum(_c for _d, _v in load(P("data", "page-stats.json"), {}).get("days", {}).items() if _d >= "2026-11-13" for _k, _c in ((_v.get("click") or {}).get("okaibuy") or {}).items())
+_kdays = len({p["day"] for p in _kb})
+item("kurabe", "くらべた話（7日の試し 11/13〜11/19）", f"{_kdays}日ぶん・Threads 中央値 {med(_kbt) if _kbt else '未確認'}（通常 {med(_nt)}）・HPの買うボタン {_kbuy}回（11/13から）", "通常の中央値より上、かつ買うボタンが1回でも押される", "計測中" if _kdays < 7 else ("当たり" if med(_kbt) >= med(_nt) and _kbuy > 0 else "外れ"), "オーナーが決めた試し。7日たつまで本数を変えない")
+if today.isoformat() <= "2026-11-19" and not any(p["day"] == today.isoformat() for p in _kb) and today.isoformat() >= "2026-11-12":
+    order("燈の夜", "kurabe", "あすの予定表に「くらべた話」を1本だけ入れる（12:15 か 13:45。見出しは「【くらべた｜物、単位あたりの最安は◯円】」。商品のリンクなし。2つ目に HP の /okaimono-<種類> を1つ。まだ出していない種類）。決まりは nightly-prompt の一番上", "オーナーが決めた7日の試し")
+if _kdays >= 7:
+    if med(_kbt) < med(_nt): order("月", "kurabe", f"くらべた話は7日の中央値 {med(_kbt)} で、通常 {med(_nt)} より下。やめる。オーナーに数字で報告する", "試しの答え：外れ")
+    else: order("月", "kurabe", f"くらべた話は7日の中央値 {med(_kbt)}（通常 {med(_nt)}）・買うボタン {_kbuy}回。続けるか・本数をオーナーに聞く", "試しの答え")
+
 # 7a おかいもの（11/12 オーナー「おかいものの方も工夫してくれ」）。開いた数（どこから）→ 探した・絞った → 買うボタン の3段を機械が測り、落ちている段を直す指令を出す
 _ok = {"open": {}, "ope": 0, "buy": 0, "top": {}, "none": {}}
 for _d, _v in load(P("data", "page-stats.json"), {}).get("days", {}).items():
@@ -220,7 +232,7 @@ def _michi(root):
 _bad = _michi(os.path.join(ROOT, "site"))
 item("michi", "申し込みへの道", f"家のページで道が無い {len(_bad)}枚" + (f"（例 {_bad[0]}）" if _bad else ""), "合格の線：0枚", "当たり" if not _bad else "外れ", "家・土地のページは、どれも申し込みへ1回で行ける事")
 if _bad: order("月", "michi", f"申し込みへの道が無い家のページが {len(_bad)}枚（{'・'.join(_bad[:3])}）。そのページを作る機械に、街の名前入りの「いくらで売れるか無料で聞く」を足す", "見られても反響にならない")
-PRI = ["lead", "michi", "come", "city", "hp", "post-threads", "post-twitter", "post-kind", "post-hit", "koma4", "ig", "okai", "money", "asp", "gpt"]
+PRI = ["lead", "michi", "come", "city", "hp", "post-threads", "post-twitter", "post-kind", "post-hit", "koma4", "ig", "kurabe", "okai", "money", "asp", "gpt"]
 _old = {(o["to"], o["item"], o["order"][:24]): o.get("days", 1) for o in prev.get("orders", [])}
 for o in orders:
     if any(w in o["order"] for w in ("data/seika.json", "gpt-runs.md", "台帳 notes/daichou.md")): o["kind"] = "数字"
