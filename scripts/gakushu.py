@@ -87,9 +87,26 @@ else:
 # 6 お金（買い物・宿が押された数は機械。成果は data/seika.json に汐の月曜の写しを入れる）
 sk = load(P("data", "seika.json"), {}).get("rows", [])
 last = sk[-1] if sk else None
-item("money", "買い物・宿・ROOM", f"押された {n.get('buy', 0)}（前 {pv.get('buy', 0)}）・成果 {last.get('hassei', '未確認') if last else '未確認'}・確定 {last.get('kakutei', '未確認') if last else '未確認'}・ROOMで売れた {last.get('room_uri', '未確認') if last else '未確認'}", "成果 月1件", ("当たり" if int(last.get("hassei") or 0) > 0 else "外れ") if last else "未確認", "クリックは売上ではない")
-if not last or (today - date.fromisoformat(last["day"])).days > 8:
-    order("燈の夜", "money", "月曜の汐の写し（楽天・A8・バリューコマースの成果、ROOM のクリックと売れた数）を data/seika.json の rows に {day, hassei, kakutei, nyukin, room, room_uri} で1行入れる。写しが無ければ「未確認」のまま、連絡帳に1行", "成果が未確認のまま")
+# 11/12 成果は、燈が毎朝 notes/sales-board.md に書く「M/D 朝：成果N…楽天クリックN」の行を機械が読む（人が写す手間を無くす）
+_sb = []
+try:
+    for l_ in open(P("notes", "sales-board.md"), encoding="utf-8"):
+        m_ = re.match(r"- (\d+)/(\d+) 朝：成果(\d+)", l_)
+        if m_:
+            dd = date(today.year, int(m_.group(1)), int(m_.group(2)))
+            if dd > today: dd = date(today.year - 1, dd.month, dd.day)
+            c_ = re.search(r"楽天クリック(\d+)", l_)
+            _sb.append((dd.isoformat(), int(m_.group(3)), int(c_.group(1)) if c_ else 0))
+except Exception: pass
+_sb7 = {d_: (s_, c_) for d_, s_, c_ in _sb if d_ > d7}
+if _sb7:
+    _s = sum(v[0] for v in _sb7.values()); _c = sum(v[1] for v in _sb7.values())
+    item("money", "買い物・宿・ROOM", f"HPで押された {n.get('buy', 0)}（前 {pv.get('buy', 0)}）・楽天で押された {_c}・成果 {_s}件（{len(_sb7)}日ぶん・燈の朝の写し）・ROOMで売れた {last.get('room_uri', '未確認') if last else '未確認'}", "成果 週1件", "当たり" if _s > 0 else "外れ", "クリックは売上ではない。成果は楽天の画面の数字だけ")
+    if _s == 0 and (n.get("buy", 0) >= 30 or _c >= 100): order("燈の夜", "money", f"楽天で {_c}回（機械がリンクを確かめた分も入る）・HPで {n.get('buy', 0)}回 押されたのに成果0。押された先の上位3つを notes/sales-board.md と data/page-stats.json で見て、買われやすい物（毎日使う消耗品・3,000円まで・レビュー4.3以上・送料込み）に1つ差し替える。セールの入口（エントリー）はそのまま", "押されているのに買われていない＝物が合っていない")
+    elif _s == 0: order("燈の夜", "money", "楽天で押された数が週100に届かない。おかいものの入口を、見られた数が多いおでかけページの下に1つ置く（そのおでかけに持って行く物）", "押される数がまだ少ない")
+else:
+    item("money", "買い物・宿・ROOM", f"押された {n.get('buy', 0)}（前 {pv.get('buy', 0)}）・成果 未確認", "成果 週1件", "未確認", "notes/sales-board.md に「M/D 朝：成果N」の行が無い")
+    order("燈の夜", "money", "notes/sales-board.md に、きょうの行を「- M/D 朝：成果N・楽天クリックN」の形で書く（機械が読む）", "成果が未確認のまま", "数字")
 
 # 6b 売却の受け皿（ASP の案件。notes/daichou.md の表を機械が読む）
 _pr = []
