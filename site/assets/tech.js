@@ -139,6 +139,8 @@
     /* 送信の時に、前の画面の欄（場所）で止まったら、その画面に戻す */
     new MutationObserver(function(){if(/場所/.test(er.textContent||"")&&cur!==1)show(1,1);}).observe(er,{childList:true,characterData:true,subtree:true});
     show(0,0);f.classList.add("tkw");
+    /* 11/12 台帳：開いた人の9割が書きはじめない → ご希望を選んで来た人（?want=）は、1つ目の画面を飛ばして「お家について」から。戻るで直せる */
+    var pre=function(){try{if(cur===0&&/[?&]want=/.test(location.search)&&cw.querySelector("input:checked"))show(1,0);}catch(e){}};pre();setTimeout(pre,80);setTimeout(pre,400);
   }catch(e){}}
   /* 長い説明文：最初は2行だけ。押すと全部出る（泊まりのページの上の説明） */
   function fold(){try{if(!h.classList.contains("tk2"))return;var q=d.querySelectorAll(".wrap>p.pr");for(var i=0;i<q.length;i++){var p=q[i];if(p.__tkf)continue;p.__tkf=1;

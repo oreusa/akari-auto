@@ -163,15 +163,19 @@ for o in orders:
     if any(w in o["order"] for w in ("data/seika.json", "gpt-runs.md", "台帳 notes/daichou.md")): o["kind"] = "数字"
     d = _old.get((o["to"], o["item"], o["order"][:24]))
     o["days"] = (d if prev.get("day") == today.isoformat() else d + 1) if d else 1
+    _w = [y["what"] for y in yatta["rows"] if "result" not in y and y.get("item") == o["item"]]
+    if _w: o["wait"] = _w[-3:]
     if ng.get(o["item"]): o["ng"] = ng[o["item"]][-3:]
     if ok.get(o["item"]): o["ok"] = ok[o["item"]][-3:]
 orders.sort(key=lambda o: (o["kind"] != "作る", PRI.index(o["item"]) if o["item"] in PRI else 99))
 for to in ("燈の夜", "月"):
-    f_ = next((o for o in orders if o["to"] == to and o["kind"] == "作る"), None)
+    _c = [o for o in orders if o["to"] == to and o["kind"] == "作る"]
+    f_ = next((o for o in _c if len(o.get("wait", [])) < 2), _c[0] if _c else None)
     if f_: f_["first"] = True
 def line(o):
     t = ("【きょうの1つ】" if o.get("first") else ("【数字を入れる】" if o["kind"] == "数字" else "")) + o["order"] + f"（理由：{o['why']}）"
     if o["days"] >= 3: t += f" ！{o['days']}日つづけて出ている＝まだやられていない"
+    if o.get("wait"): t += "／答え待ちの手（同じ所を重ねて変えない。足りない所だけ足す）：" + "・".join(o["wait"])
     if o.get("ng"): t += "／前に効かなかった手（くり返さない）：" + "・".join(o["ng"])
     if o.get("ok"): t += "／前に効いた手（同じ型を増やす）：" + "・".join(o["ok"])
     return "- " + t
