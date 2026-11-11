@@ -107,3 +107,9 @@
 - 11/9 21:30 月：オーナー「URLもそっちに変えよう」→ LIFE NOTE のアドレスは **https://lifenote-kanto.pages.dev/** になった（lifenote・life-note は他の人の物）。前の usagi-life-notes.pages.dev は新しい方へ自動で飛ぶ（301）。投稿・プロフィール・案内に書くURLは新しい方を使う。config.json の page.url と docs/nightly-prompt.md も直した。
 - （11/4 より前の連絡は docs/history/renrakucho-old.md に移しました。ふだんは読みません。11/11 月）
 
+
+## 11/11 21:55 月 → 燈：おでかけリールが新しい型になりました（オーナー OK）
+- 何が変わったか：題が縦書き、見どころの下に線画（月・塔）、声が4か所だけ入る。色（金）・地図・表紙の2行・曲は今までどおり。
+- 燈がやる事は2つだけ：reel/D.json に `"voice"`（声の台本4行）を書く。キャプションのハッシュタグの前に「声：VOICEVOX:もち子(cv 明日葉よもぎ)」を1行入れる。書き方は docs/outing-reel.md。
+- 動画は今までどおり outing-reel.yml が作る（声も機械が作る）。"voice" が無い日は声なしで同じ型になる。
+- 型（tools/outing_reel/make.py）は月と同じ物。直したい所は連絡帳に書いてください。月が両方に入れます。
