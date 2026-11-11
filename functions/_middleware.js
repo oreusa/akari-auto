@@ -75,8 +75,13 @@ export async function onRequest(ctx) {
   if (url.pathname === "/c") {
     if (request.method === "POST" && !BOT.test(ua)) {
       const f = clean(url.searchParams.get("f"), 24) || "direct";
-      const s = clean(url.searchParams.get("s"), 16) || "x";
-      const k = clean(url.searchParams.get("k"), 40) || "x";
+      let s = clean(url.searchParams.get("s"), 16);
+      let k = clean(url.searchParams.get("k"), 40);
+      // 11/11 月と同じ形の合図（本文が {"k":"申し込み｜送信"} だけ）は、これまで全部「x|x」に入って中身が分からなかった → 本文の k を読み、項目 hp で数える
+      if (!s && !k) {
+        try { const j = JSON.parse(await request.clone().text()); if (j && j.k) { s = "hp"; k = clean(j.k, 40); } } catch (e) {}
+      }
+      s = s || "x"; k = k || "x";
       ctx.waitUntil(bump(env, `${day()}|c|${f}|${s}|${k}`, UI.has(f)).catch(() => {}));
     }
     return new Response(null, { status: 204 });

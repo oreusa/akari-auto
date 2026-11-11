@@ -5,6 +5,8 @@
   "come": 0,
   "post": 8,
   "ask": 27,
+  "open": 0,
+  "sent": 0,
   "buy": 46,
   "days": 7
  },
@@ -13,6 +15,8 @@
   "come": 0,
   "post": 2,
   "ask": 0,
+  "open": 0,
+  "sent": 0,
   "buy": 0,
   "days": 7
  },

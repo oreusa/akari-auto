@@ -112,7 +112,7 @@
   /* ページの部品は後から作られる物がある（一覧・帯・下のバー）ので、何度呼んでも同じ結果になる形で見回す */
   /* 申し込み：1画面に少しずつ聞く（3つに分ける）。元の入力欄・送信の仕組みはそのまま、置き場所を分けるだけ。
      途中で失敗したら何も変えない（最後に tkw を付けた時だけ、分けた形になる）。 */
-  var formDone=0;function form(){try{if(formDone||!h.classList.contains("tk2"))return;var f=d.getElementById("mf");if(!f)return;formDone=1;
+  var formDone=0;function form(){try{if(formDone||!h.classList.contains("tk2")||/[?&]lite=1/.test(location.search))return;var f=d.getElementById("mf");if(!f)return;formDone=1;
     var q=function(sel){return f.querySelector(sel);},g=function(n){var r=f.querySelector('input[name="'+n+'"]');return r?r.closest(".ch"):null;};
     var ck=g("kind"),cw=g("want"),pl=q("#pl"),tx=q("#tx"),nm=q("#nm"),em=q("#em"),tl=q("#tl"),ag=q(".ag"),sb=q("#sb"),er=q("#er");
     if(!ck||!cw||!pl||!tx||!nm||!em||!tl||!ag||!sb||!er)return;
