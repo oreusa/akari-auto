@@ -146,7 +146,26 @@
     var op=function(ev){var el=ev.currentTarget;if(ev.type==="keydown"&&ev.key!=="Enter"&&ev.key!==" ")return;if(ev.target.closest&&ev.target.closest("a"))return;
       var o=el.classList.toggle("open");el.setAttribute("aria-expanded",o?"true":"false");};
     p.addEventListener("click",op);p.addEventListener("keydown",op);}}catch(e){}}
-  var pend=0;function scan(){pend=0;bar();arm();carm();liveAll();clock();pill();pings();auto();h1s();arm();sheet();form();fold();}
+  /* 表紙の地図を立体に（tk2）：下に厚みの層、上に光の面、件数は小さなガラスの札に。元の地図（押す所・色・名前）はそのまま。 */
+  var m3=0;function map3d(){try{if(m3||!h.classList.contains("tk2"))return;var sv=d.querySelector("svg.kmap"),pf=sv&&sv.querySelector("g.pf");if(!pf||pf.children.length<2)return;
+    var lb=sv.querySelector("g.lb");if(!lb||!lb.querySelector("text.cnt"))return;m3=1;
+    var NS="http://www.w3.org/2000/svg",mk=function(n){return d.createElementNS(NS,n);};
+    var defs=sv.querySelector("defs")||sv.insertBefore(mk("defs"),sv.firstChild);
+    var lg=mk("linearGradient");lg.id="tkgl";lg.setAttribute("x1","0");lg.setAttribute("y1","0");lg.setAttribute("x2","1");lg.setAttribute("y2","1");
+    lg.innerHTML='<stop offset="0" stop-color="#fff" stop-opacity=".62"/><stop offset=".42" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#28324f" stop-opacity=".13"/>';defs.appendChild(lg);
+    /* 厚みの層：同じ形を少し下に */
+    var g3=mk("g");g3.setAttribute("class","pf3");g3.setAttribute("aria-hidden","true");
+    var gs=mk("g");gs.setAttribute("class","pfg");gs.setAttribute("aria-hidden","true");
+    var ps=pf.querySelectorAll("path");for(var i=0;i<ps.length;i++){var c=mk("path");c.setAttribute("d",ps[i].getAttribute("d"));c.setAttribute("data-p",ps[i].getAttribute("data-p")||"");
+      c.style.setProperty("--c",ps[i].style.getPropertyValue("--c")||ps[i].getAttribute("fill")||"#ddd");g3.appendChild(c);
+      var o=mk("path");o.setAttribute("d",ps[i].getAttribute("d"));o.setAttribute("fill","url(#tkgl)");gs.appendChild(o);}
+    sv.insertBefore(g3,pf);if(pf.nextSibling)sv.insertBefore(gs,pf.nextSibling);else sv.appendChild(gs);
+    /* 件数の札 */
+    var cs=lb.querySelectorAll("text.cnt");for(i=0;i<cs.length;i++){var t=cs[i],y=parseFloat(t.getAttribute("y")||"0"),r=mk("rect");r.setAttribute("class","tkcp");
+      r.setAttribute("x","-31");r.setAttribute("y",String(y-19));r.setAttribute("width","62");r.setAttribute("height","26");r.setAttribute("rx","13");t.parentNode.insertBefore(r,t);}
+    sv.classList.add("tk3d");
+  }catch(e){}}
+  var pend=0;function scan(){pend=0;bar();arm();carm();liveAll();clock();pill();pings();auto();h1s();arm();sheet();form();fold();map3d();}
   function later(){if(!pend)pend=setTimeout(scan,60);}
   function start(){scan();try{if(MO&&d.body)new MutationObserver(later).observe(d.body,{childList:true,subtree:true});}catch(e){}}
   if(d.readyState==="loading")d.addEventListener("DOMContentLoaded",start);else start();
