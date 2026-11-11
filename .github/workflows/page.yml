@@ -103,6 +103,8 @@ jobs:
           python3 scripts/spot_pages.py || true
           # 11/7 オーナー「新しい燈の不動産hpは作りは全て月と同じ」→ 関東不動産リスト（/fudosan-list・/chika-kanto・/machi/ 329の街・/assets/towns.json）。月の関西不動産リストと同じ作り。pwa.py の前に作る（ホーム画面用の印を付けるため）
           python3 scripts/fudosan_kanto.py || true
+          # 11/11 関東の実家・空き家の3問診断（/jikka/shindan/）。fudosan_kanto.py の後
+          python3 scripts/shindan_kanto.py || true
           # 11/4 1件ページを LINE・X に貼った時の画像（地図つき。月と同じ）
           (pip install -q cairosvg pillow && python3 scripts/spot_og.py) || echo "og images skipped"
           # 11/2 オーナー「アプリできるようにできてるよな？」「town、LIFEどっちも必ず」→ ホーム画面に置ける（PWA）
