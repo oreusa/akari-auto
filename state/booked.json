@@ -8055,5 +8055,56 @@
       "svc": "instagram"
     },
     "url": "https://792edb00.akari-reels.pages.dev/2026-11-12-odekake-133446.mp4"
+  },
+  "2026-11-12 18:15": {
+    "twitter": {
+      "tries": 1,
+      "id": "lost-0722-restore",
+      "at": "18:15",
+      "seen": "予約OK（07:22の記録の保存がぶつかって消えた。Bufferの id 不明のため出たかは見ない・出し直さない。燈 4コマ係が手で戻した）"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "lost-0722-restore",
+      "at": "18:15",
+      "seen": "予約OK（07:22の記録の保存がぶつかって消えた。Bufferの id 不明のため出たかは見ない・出し直さない。燈 4コマ係が手で戻した）"
+    }
+  },
+  "2026-11-12 4コマ": {
+    "twitter": {
+      "tries": 1,
+      "id": "lost-0722-restore",
+      "at": "08:00",
+      "seen": "予約OK（07:22の記録の保存がぶつかって消えた。Bufferの id 不明のため出たかは見ない・出し直さない。燈 4コマ係が手で戻した）"
+    },
+    "threads": {
+      "tries": 1,
+      "id": "lost-0722-restore",
+      "at": "08:00",
+      "seen": "予約OK（07:22の記録の保存がぶつかって消えた。Bufferの id 不明のため出たかは見ない・出し直さない。燈 4コマ係が手で戻した）"
+    },
+    "instagram": {
+      "tries": 1,
+      "id": "lost-0722-restore",
+      "at": "08:00",
+      "seen": "予約OK（07:22の記録の保存がぶつかって消えた。Bufferの id 不明のため出たかは見ない・出し直さない。燈 4コマ係が手で戻した）"
+    },
+    "ig_story1": {
+      "tries": 1,
+      "id": "lost-0722-restore",
+      "at": "08:00",
+      "seen": "予約OK（07:22の記録の保存がぶつかって消えた。Bufferの id 不明のため出たかは見ない・出し直さない。燈 4コマ係が手で戻した）"
+    },
+    "ig_story2": {
+      "tries": 1,
+      "id": "lost-0722-restore",
+      "at": "08:00",
+      "seen": "予約OK（07:22の記録の保存がぶつかって消えた。Bufferの id 不明のため出たかは見ない・出し直さない。燈 4コマ係が手で戻した）"
+    },
+    "bgm_video": {
+      "src": "https://drive.google.com/uc?export=download&id=1KRw314BgYxR-lvbSuec3mBQqnqtOSCT-",
+      "url": "https://e287a16b.akari-reels.pages.dev/2026-11-12-bgm-36.mp4",
+      "error": null
+    }
   }
 }
