@@ -37,6 +37,9 @@ def parse(keys):
             item = f"{parts[3]}|{parts[4]}"
             c[item] = c.get(item, 0) + n
             d["clicks"] += n
+    for d in out.values():  # 11/11 合計 all がある日は、投稿の印ごとの数（x0715 など）を合計に足さない（all に入っている）
+        if "all" in d["view"]:
+            d["views"] = d["view"]["all"]
     return out
 
 

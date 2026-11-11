@@ -29,13 +29,22 @@ async function bump(env, key, ui) {
 
 const VIEW_MAX = 500;
 
-async function view(env) {
+// 11/11 投稿から来た人（?f=x0715・t0715 など、予約係が付ける印）は、合計とは別に「日付|v|印」でも数える（どの枠の投稿がHPに人を連れて来たかを見るため）。
+const POST_SRC = /^[xt]\d{4}$/;
+
+async function view(env, f) {
   if (!env.CLICKS) return;
   const key = `${day()}|v|all`;
   const got = await env.CLICKS.getWithMetadata(key);
   const n = (got && got.metadata && got.metadata.n) || 0;
   if (n >= VIEW_MAX) return;
   await env.CLICKS.put(key, "", { metadata: { n: n + 1 }, expirationTtl: 60 * 60 * 24 * 180 });
+  if (f && POST_SRC.test(f)) {
+    const k2 = `${day()}|v|${f}`;
+    const g2 = await env.CLICKS.getWithMetadata(k2);
+    const n2 = ((g2 && g2.metadata && g2.metadata.n) || 0) + 1;
+    await env.CLICKS.put(k2, "", { metadata: { n: n2 }, expirationTtl: 60 * 60 * 24 * 180 });
+  }
 }
 
 export async function onRequest(ctx) {
@@ -61,7 +70,7 @@ export async function onRequest(ctx) {
   // 11/7 関東不動産リスト /fudosan-list も、2つのリストと同じく外から直に来た時だけ数える
   const isView = lp === "/" || ((lp === "/odekake" || lp === "/okaimono" || lp === "/fudosan-list") && !own);
   if (isView && request.method === "GET" && !BOT.test(ua) && !request.headers.get("purpose") && !request.headers.get("sec-purpose") && !request.headers.get("x-ima")) {
-    ctx.waitUntil(view(env).catch(() => {}));
+    ctx.waitUntil(view(env, url.searchParams.get("f") || "").catch(() => {}));
   }
   if (url.pathname === "/c") {
     if (request.method === "POST" && !BOT.test(ua)) {
