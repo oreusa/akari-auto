@@ -108,8 +108,8 @@ def page(items, today, now):
                f'<p class="lead">東京・神奈川・埼玉・千葉・茨城・栃木・群馬の<br>紅葉の名所{nm}か所（昼）と、ライトアップ{n}か所（夜）をまとめました。</p>', h, count=1, flags=re.S)
     # 都県ごとのイルミのページへの欄は、紅葉では「イルミネーションも見る」1つに
     h = re.sub(r'<nav class="pn"[^>]*>.*?</nav>',
-               '<nav class="pn" aria-label="ほかのページ"><p class="pnh">あわせて見る</p><a href="illumination">関東のイルミネーション</a>'
-               '<a href="tomari">泊まりで行く所</a><a href="ima">今から行ける所</a></nav>', h, count=1, flags=re.S)
+               '<nav class="pn" aria-label="ほかのページ"><p class="pnh">あわせて見る</p><a href="illumination">関東のイルミネーション</a>' + ('<a href="hatsumode">関東の初詣</a>' if os.path.exists(os.path.join(ROOT, "data", "hatsumode.tsv")) else "")
+               + '<a href="tomari">泊まりで行く所</a><a href="ima">今から行ける所</a></nav>', h, count=1, flags=re.S)
     h = h.replace("イルミネーション2026-2027", "紅葉ライトアップ2026").replace("のイルミネーション", "の紅葉ライトアップ")
     h = h.replace("で無料で見られるイルミネーションは？", "で無料で見られる紅葉ライトアップは？").replace("のイルミネーションはいつから始まる？", "の紅葉ライトアップはいつから始まる？")
     h = h.replace("2026 - 2027", "2026").replace('"name": "関東イルミネーション2026-2027"', '"name": "関東の紅葉ライトアップ2026"')
