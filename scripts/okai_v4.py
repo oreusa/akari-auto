@@ -22,6 +22,8 @@ from datetime import datetime, timedelta, timezone
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(R, "scripts"))
 import okai_home
+from urllib.parse import quote
+AMZ = os.environ.get("AMAZON_TAG", "aiusagichan-22")
 try:
     from tanka import BRAND, ALIAS
 except Exception:
@@ -636,6 +638,8 @@ def cat_pages(at, cats, head):
 <p class="lead">楽天の送料込み<b class="n">{c["seen"]:,}</b>件から　<span class="n">{E(up)}</span> 更新（1日2回）</p>{save}
 <ol class="rkl">{rows}</ol>
 <p style="margin:14px 16px 0"><a class="btn" href="/okaimono?k={c["k"]}" data-k="kp:しぼる">メーカー・量でしぼって、全部の順位を見る</a></p>
+<p style="margin:10px 16px 0"><a href="https://www.amazon.co.jp/s?k={quote(nm)}&amp;tag={AMZ}" rel="sponsored noopener" target="_blank" data-k="kp:Amazon {E(nm)}" style="display:block;text-align:center;border:1px solid var(--ink,#222);border-radius:10px;padding:11px;font-weight:700;font-size:14px;color:inherit;text-decoration:none">Amazonでも{E(nm)}の値段を見る</a></p>
+<p class="kij" style="margin:6px 16px 0">Amazonは、送料込みの値段がお店のページでしか分からないため、上の順位には入れていません。</p>
 <dl class="ev"><dt>比べ方</dt><dd>送料込みの値段 ÷ 量（{E(unit)}あたり）。名の知れたメーカーの物だけを、お店ごとに1つずつ。</dd><dt>注意</dt><dd>北海道・沖縄・離島は送料が別にかかることがあります。量は商品名から読んでいるので、買う前にお店のページで確かめてください。</dd></dl>
 <h3>ほかの種類</h3><div class="chs" style="flex-wrap:wrap">{others}</div>
 <p class="pr" style="margin-top:18px">このページのリンクは広告（PR）です</p>
