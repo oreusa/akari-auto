@@ -1,0 +1,23 @@
+{
+ "about": "やった手の帳面。回が、指令をやったら {day, item, what} を1行足す（item は台帳の項目の id：hp・post-threads・post-twitter・come・ig・money・city・lead）。before・after・result は機械が入れる",
+ "rows": [
+  {
+   "day": "2026-11-11",
+   "item": "city",
+   "what": "関東の市区ごとの解体補助ページを4つ（横浜・川崎・八王子・千葉）つくった",
+   "before": 0
+  },
+  {
+   "day": "2026-11-12",
+   "item": "lead",
+   "what": "ご希望を選んで来た人は、1つ目の画面を飛ばして「お家について」から始まる形にした",
+   "before": 0
+  },
+  {
+   "day": "2026-11-12",
+   "item": "ig",
+   "what": "おでかけリールを声つきの新しい型に替えた",
+   "before": 108
+  }
+ ]
+}
