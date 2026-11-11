@@ -1,3 +1,4 @@
+/* 11/11 数は本物だけ：自分たち（?owner=1）と機械のブラウザは数えない */(function(){try{var q=new URLSearchParams(location.search).get("owner");if(q==="1"||navigator.webdriver)localStorage.setItem("usagi_owner","1");if(q==="0")localStorage.removeItem("usagi_owner");}catch(e){}})();
 /* 11/11 オーナー「たまに一瞬メニューがでる」→ 下のバーが出るページでは、右上の丸いメニューボタンを、はじめから出さない
    （今までは下のバーが出来るまでの0.2〜0.8秒だけ丸ボタンが見えて、昼夜の切り替えも横にずれていた）。下のバーが出来なかった時だけ4秒後に丸ボタンを戻す。 */
 (function(){try{var h=document.documentElement;if(h.classList.contains("v2bar-on")||!document.querySelector('script[src*="/v2sub.js"],script[src*="/v2.js"]'))return;
