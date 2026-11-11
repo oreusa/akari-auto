@@ -5,6 +5,9 @@
 (function(){
   var K="usagi_theme",d=document.documentElement;
   /* 10/31 オーナー「初めは昼にしといて」→ 時間では変えない。太陽と月のマークで選んだ時だけ夜 */
+  /* 11/11 ページの種類（頭の飾りを変える）と、満月の前後1日の印 */
+  try{var pn=location.pathname,pg=/^\/ranking/.test(pn)?"rank":/^\/(illumination|hatsumode)/.test(pn)?"hikari":/^\/(fudosan-list|machi\/|chika-|jikka|sagasu)/.test(pn)?"ie":"";if(pg)d.setAttribute("data-pg",pg);
+    var ag=((Date.now()-947182440000)/86400000)%29.530588853;if(Math.abs(ag-14.765)<1)d.classList.add("mfull");}catch(e){}
   function pick(){try{var v=localStorage.getItem(K);if(v==="day"||v==="night")return v;}catch(e){}return "day";}
   function set(v,save){d.classList.toggle("night",v==="night");if(save)try{localStorage.setItem(K,v);}catch(e){}
     document.dispatchEvent(new CustomEvent("usagi-theme",{detail:v}));}
@@ -17,7 +20,7 @@
     "html.night #v2bar,html.night #utheme,html.night #umenu{box-shadow:none!important}"+
     "html.night img,html.night video,html.night picture,html.night svg image,html.night .nofilt,html.night .tnbtn .mm{filter:invert(1) hue-rotate(180deg)}"+
     /* 11/2 オーナー「中のデザインだけ光らせたら？」→ 夜は丸い台をなくし、ロゴの線だけを光らせる */
-    "html.night .head img{background:none;border-radius:50%}"+
+    "html.night .head img,html.night .s3h img,html.night .sh img{background:none;border-radius:50%}"+
     /* 11/2 オーナー「夜もっと何とかならん」「夜のお洒落感」→ 真っ黒をやめて深い夜空の紺に。白い面も同じ紺になるよう、薄い青を全体に重ねる */
     "html.night body:after{content:'';position:fixed;inset:-50vh 0;background:#E9F0FF;mix-blend-mode:multiply;pointer-events:none;z-index:2147483646}"+
     /* 題名まわりの丸い飾りは、夜は星と月あかりに */
@@ -60,7 +63,11 @@
     ".nsky .k2{animation:tw 3.2s ease-in-out infinite}.nsky .k3{animation:tw 4.6s ease-in-out 1.4s infinite}.nsky .k4{animation:tw2 3.8s ease-in-out .6s infinite}"+
  /* 11/2 オーナー「月もうちょい明るく・星ももう少し綺麗に」→ 19:10「月すこーーーしだけ抑える／星は前の控えめな方がきれい／流れ星は色んな方向からたまーーーにの隠し要素」→ 月（ロゴの丸）をやわらかく光らせ、きらっと光る星と、ときどき流れ星。
     夜はページ全体を反転しているので、ここの色は「反転される前」の色（#000 が白、#3A2A00 があたたかい白に見える） */
-  "html.night .head img[src*='logo-s-night']{filter:brightness(1.18) contrast(1.03) invert(1) hue-rotate(180deg) drop-shadow(0 0 9px rgba(58,42,0,.82)) drop-shadow(0 0 24px rgba(58,42,0,.42))}"+
+  "html.night .head img[src*='logo-s-night'],html.night .s3h img[src*='logo-s-night'],html.night .sh img[src*='logo-s-night']{filter:brightness(1.18) contrast(1.03) invert(1) hue-rotate(180deg) drop-shadow(0 0 9px rgba(58,42,0,.82)) drop-shadow(0 0 24px rgba(58,42,0,.42))}"+
+  /* 11/11 満月の前後1日だけ、月（ロゴ）が少し明るく光る */
+  "html.night.mfull .head img[src*='logo-s-night'],html.night.mfull .s3h img[src*='logo-s-night'],html.night.mfull .sh img[src*='logo-s-night']{filter:brightness(1.26) contrast(1.03) invert(1) hue-rotate(180deg) drop-shadow(0 0 12px rgba(58,42,0,.95)) drop-shadow(0 0 34px rgba(58,42,0,.6))}"+
+  /* 11/11 今夜やっている催しのカードだけ、金色にともる（色は反転される前の色） */
+  "html.night a.card:has(.tn8:not([hidden])){box-shadow:0 0 0 1px rgba(150,104,20,.55),0 0 22px rgba(150,104,20,.38)!important}html.night a.card:has(.tn8:not([hidden])) .tn8{background:#8a5f0e!important;color:#fff!important;border-color:#8a5f0e!important}"+
   ".nsky .ss{position:absolute;left:0;top:0;width:80px;height:1.5px;border-radius:2px;background:linear-gradient(90deg,#000,transparent);transform-origin:0 50%;opacity:0}"+
     "@media (prefers-reduced-motion:reduce){.nsky .ss{display:none}}"+
 
@@ -131,7 +138,7 @@
         out+='<circle cx="'+pt.x.toFixed(1)+'" cy="'+pt.y.toFixed(1)+'" r="'+(q<.1?2.2:q<.4?1.5:1).toFixed(1)+'"'+(q>.8?' class="t"':q>.62?' class="u"':'')+' opacity="'+(.55+r2()*.45).toFixed(2)+'"/>';}});
     g.innerHTML=out;var lb=m.querySelector(".lb");m.insertBefore(g,lb);}
   /* 燈のロゴは白い台つきの絵なので、夜は台のない絵に替える */
-  function logo(){var n=d.classList.contains("night"),im=document.querySelectorAll('.head img[src*="logo-s"],.uh img[src*="logo-s"]');
+  function logo(){var n=d.classList.contains("night"),im=document.querySelectorAll('.head img[src*="logo-s"],.uh img[src*="logo-s"],.s3h img[src*="logo-s"],.sh img[src*="logo-s"]');
     for(var i=0;i<im.length;i++){var s0=im[i].getAttribute("src");im[i].setAttribute("src",n?s0.replace(/logo-s(-night)?\.png/,"logo-s-night.png"):s0.replace("logo-s-night.png","logo-s.png"));}}
   function go(){logo();if(d.classList.contains("night"))deco();}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();
