@@ -212,7 +212,7 @@ L += ["## 答え待ちの手（やってから7日で、機械が答えを付け
 L += ["## 学び（手の答え・答えが変わった日）", ""] + ([mline(m) for m in manabi["rows"][-12:]] or ["- まだありません"]) + [""]
 open(P("notes", "gakushu.md"), "w", encoding="utf-8").write("\n".join(L))
 json.dump(yatta, open(P("data", "yatta.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-json.dump({"day": today.isoformat(), "items": items, "orders": orders, "hist": hist}, open(P("data", "gakushu.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+json.dump({"day": today.isoformat(), "items": items, "orders": orders, "sum": {"sent": sent, "seika": (_s if _sb7 else None)}, "hist": hist}, open(P("data", "gakushu.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 json.dump({"day": today.isoformat(), "about": "to が自分の行を、動く前に読んでやる。やったら data/yatta.json の rows に {day, item, what} を1行足す（7日後に機械が効いた・効かなかったを付ける）。ng の手はくり返さない", "orders": orders}, open(P("data", "shirei.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 json.dump(manabi, open(P("data", "manabi.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("\n".join(L))
