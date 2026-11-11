@@ -129,6 +129,26 @@ _wait = [p for p in _pr if "審査中" in p[1]]; _ok = [p for p in _pr if "提�
 item("asp", "売却・査定の案件（ASP）", f"提携済み {len(_ok)}・審査中 {len(_wait)}（" + "・".join(f"{n} {r}" for n, _, r in _wait[:4]) + f"）・見送り {len(_ng)}", "売りたい人の送り先が1つ以上 提携済み", "当たり" if any("査定" in n or "売却" in n or "仲介" in n for n, st, _ in _ok if "使わない" not in st) else "外れ", "セレスは 11/11 見送り。代わりは審査中の案件")
 if _wait: order("月", "asp", "月曜の汐の写しで、審査中の案件（" + "・".join(n for n, _, _ in _wait[:4]) + "）の状態を台帳 notes/daichou.md に入れる。提携済みになった物は、その日のうちに /uru の「売りたい」に付け、押された数を数える。2週たっても審査中の物は、汐にもう1件ずつ申請を足してもらう", "売りたい人の送り先がまだ無い")
 
+# 7a おかいもの（11/12 オーナー「おかいものの方も工夫してくれ」）。開いた数（どこから）→ 探した・絞った → 買うボタン の3段を機械が測り、落ちている段を直す指令を出す
+_ok = {"open": {}, "ope": 0, "buy": 0, "top": {}, "none": {}}
+for _d, _v in load(P("data", "page-stats.json"), {}).get("days", {}).items():
+    if _d <= d7: continue
+    for _k, _c in ((_v.get("click") or {}).get("okaimono") or {}).items():
+        _k = _k.split("|", 1)[-1]
+        if _k.startswith("表示:"): _ok["open"][_k[3:]] = _ok["open"].get(_k[3:], 0) + _c
+        else:
+            _ok["ope"] += _c
+            if _k.startswith("探す・なし:"): _ok["none"][_k[6:]] = _ok["none"].get(_k[6:], 0) + _c
+            if _k.startswith("種類:"): _ok["top"][_k[3:]] = _ok["top"].get(_k[3:], 0) + _c
+    for _k, _c in ((_v.get("click") or {}).get("okaibuy") or {}).items(): _ok["buy"] += _c
+_oo = sum(_ok["open"].values()); _top = sorted(_ok["top"].items(), key=lambda x: -x[1])[:3]; _none = sorted(_ok["none"].items(), key=lambda x: -x[1])[:3]
+item("okai", "おかいもの", (f"開いた {_oo}（" + "・".join(f"{k} {v}" for k, v in sorted(_ok["open"].items(), key=lambda x: -x[1])) + "）" if _oo else "開いた 計測中（11/12 から数える）") + f"・探した/絞った {_ok['ope']}・買うボタン {_ok['buy']}" + (f"・よく見られた種類 {'・'.join(f'{k} {v}' for k, v in _top)}" if _top else ""), "開いた人の1割が買うボタンを押す", "計測中" if _oo < 20 else ("当たり" if _ok["buy"] >= _oo * 0.1 else "外れ"), "買うボタンは 11/12 から数えている（その前は数えていなかった）")
+if _none: order("燈の夜", "okai", f"おかいもので探されたのに無かった物：{'・'.join(f'{k}（{v}回）' for k, v in _none)}。いちばん多い物を、くらべる種類に1つ足す（名の知れたメーカー・送料込みの1個あたり）", "探しに来た人が、何も見ずに帰っている")
+if _oo >= 20 and _ok["buy"] < _oo * 0.1:
+    if _ok["ope"] < _oo: order("燈の夜", "okai", "おかいものを開いた人の半分以上が、何も押さずに帰っている。最初の画面に、いちばん見られた種類（" + ("・".join(k for k, _ in _top) or "未確認") + "）の「いちばん安い1つ」と買うボタンを、選ばなくても見える形で3つ置く", f"開いた {_oo}・操作 {_ok['ope']}")
+    else: order("燈の夜", "okai", "おかいもので探す・絞るまではされているのに、買うボタンが押されない。順位の1位の行に「いつもの店より いくら安いか」を金額で出し、買うボタンを行の中の見える所へ上げる", f"操作 {_ok['ope']}・買う {_ok['buy']}")
+elif _top and _oo >= 20: order("燈の夜", "okai", f"おかいもので買うボタンが押された。いちばん見られた種類「{_top[0][0]}」と同じ形で、近い種類を1つ足し、投稿の2本目を1本そこへ向ける", "当たった型を増やす")
+
 # 7b 市区ごとの解体補助ページ（11/11〜。data/page-stats.json の「表示：市の解体補助 <市区>」）
 _days = load(P("data", "page-stats.json"), {}).get("days", {}); _city = {}
 for _d, _v in _days.items():
@@ -200,7 +220,7 @@ def _michi(root):
 _bad = _michi(os.path.join(ROOT, "site"))
 item("michi", "申し込みへの道", f"家のページで道が無い {len(_bad)}枚" + (f"（例 {_bad[0]}）" if _bad else ""), "合格の線：0枚", "当たり" if not _bad else "外れ", "家・土地のページは、どれも申し込みへ1回で行ける事")
 if _bad: order("月", "michi", f"申し込みへの道が無い家のページが {len(_bad)}枚（{'・'.join(_bad[:3])}）。そのページを作る機械に、街の名前入りの「いくらで売れるか無料で聞く」を足す", "見られても反響にならない")
-PRI = ["lead", "michi", "come", "city", "hp", "post-threads", "post-twitter", "post-kind", "post-hit", "koma4", "ig", "money", "asp", "gpt"]
+PRI = ["lead", "michi", "come", "city", "hp", "post-threads", "post-twitter", "post-kind", "post-hit", "koma4", "ig", "okai", "money", "asp", "gpt"]
 _old = {(o["to"], o["item"], o["order"][:24]): o.get("days", 1) for o in prev.get("orders", [])}
 for o in orders:
     if any(w in o["order"] for w in ("data/seika.json", "gpt-runs.md", "台帳 notes/daichou.md")): o["kind"] = "数字"

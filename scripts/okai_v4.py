@@ -349,6 +349,11 @@ function load(){var p=new URLSearchParams(location.search);st.k=C[p.get("k")]?p.
 function save(push){var p=new URLSearchParams();if(st.k)p.set("k",st.k);if(st.c.length)p.set("c",st.c.join(","));if(st.u!==1)p.set("u",st.u);if(st.p)p.set("p",st.p);if(st.n)p.set("n",st.n);
  var u=location.pathname+(p.toString()?"?"+p.toString():"");try{history[push?"pushState":"replaceState"](null,"",u);}catch(e){}}
 function track(k){try{navigator.sendBeacon("/c?f=okaimono&s=v4&k="+encodeURIComponent(k));}catch(e){}}
+/* 11/12 オーナー「おかいもの来た人は何人？」→ 開いた数（どこから来たか）と、買うボタンが押された数を数える。それまでは探す・絞るの操作しか数えていなかった */
+(function(){var r=document.referrer||"",w=/townnote/.test(r)?"関西TOWNから":/lifenote|life-note|usagi-life/.test(r)?"関東LIFEから":r?"外から":"直に";
+ try{if(!sessionStorage.getItem("okai_v")){sessionStorage.setItem("okai_v","1");track("表示:"+w);}}catch(e){track("表示:"+w);}
+ document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[rel~="sponsored"]');if(!a)return;
+  try{navigator.sendBeacon("/c?f=okaibuy&s=v4&k="+encodeURIComponent((a.getAttribute("data-k")||a.textContent.trim()).slice(0,36)));}catch(x){}},true);})();
 var MY={};try{MY=JSON.parse(localStorage.getItem("okai_my")||"{}");}catch(e){}
 function mysave(){try{localStorage.setItem("okai_my",JSON.stringify(MY));}catch(e){}}
 /* 前に来た時の値段を「前に見た」にして、いまの値段を覚え直す（次に来た時は、今日からの値動き） */
@@ -581,6 +586,72 @@ def otoku_page(old, head, cats):
     js = OTOKU_JS % json.dumps({c["k"]: c["nm"] for c in cats}, ensure_ascii=False)
     return f"""<!doctype html><html lang="ja"><head>{h}<style>{CSS}{css}</style></head><body>{body}<script>{js}</script></body></html>"""
 
+BEACON_JS = """(function(){function t(f,k){try{navigator.sendBeacon("/c?f="+f+"&s=v4&k="+encodeURIComponent(k));}catch(e){}}
+var r=document.referrer||"",w=/townnote/.test(r)?"関西TOWNから":/lifenote|life-note|usagi-life/.test(r)?"関東LIFEから":r?"外から":"直に";
+try{if(!sessionStorage.getItem("okai_v")){sessionStorage.setItem("okai_v","1");t("okaimono","表示:"+w);}}catch(e){}
+t("okaimono","種類ページ:"+document.body.getAttribute("data-nm"));
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[rel~="sponsored"]');if(!a)return;t("okaibuy",(a.getAttribute("data-k")||"").slice(0,36));},true);})();"""
+
+
+def _yen(u):
+    return f"{u:,.1f}" if u < 100 else f"{u:,.0f}"
+
+
+def cat_pages(at, cats, head):
+    """11/12 オーナー「おかいもの少なすぎる、改善してくれ」→ 検索から直に来られる入口を作る。
+    それまで おかいものは /okaimono の1枚だけ（中身は押してから出る）で、「トイレットペーパー 最安」などで探す人が来る道が無かった。
+    種類ごとに /okaimono-<種類> を作り、開いてすぐ安い順の10件が見える形にする（しぼる・全部見るは /okaimono?k= へ）。"""
+    m = re.search(r'<link rel="canonical" href="(https://[^/"]+)', head)
+    base = m.group(1) if m else "https://lifenote-kanto.pages.dev"
+    d = re.match(r"(\d{4})-(\d\d)-(\d\d) (\d\d:\d\d)", at or "")
+    up = f"{int(d.group(2))}月{int(d.group(3))}日" if d else ""
+    out = SITE  # /okaimono-<種類>（下のバーとメニューが、買い物の物になるアドレス。11/12 オーナー「買い物の人は買い物しか見ない」）
+    made = []
+    for c in cats:
+        L = sorted(c["o"], key=lambda o: o["u"])[:10]
+        if len(L) < 3:
+            continue
+        unit = c["unit"]; nm = c["nm"]; top = L[0]
+        title = f"{nm}の最安はどれ？送料込み・{unit}あたりの安い順（{up}更新）｜くらべたおかいものリスト"
+        desc = f"{nm}を、楽天の送料込み{c['seen']:,}件から{unit}あたりの値段でくらべました。いまの最安は{_yen(top['u'])}円/{unit}（{top['n'][:24]}）。名の知れたメーカーだけ・1日2回更新。広告（PR）を含みます。"
+        h = re.sub(r"<title>.*?</title>", f"<title>{E(title)}</title>", head, flags=re.S)
+        h = re.sub(r'<meta name="description"[^>]*>', f'<meta name="description" content="{E(desc)}">', h)
+        h = re.sub(r'<link rel="canonical"[^>]*>', f'<link rel="canonical" href="{base}/okaimono-{c["k"]}">', h)
+        h = re.sub(r'<meta property="og:url"[^>]*>', f'<meta property="og:url" content="{base}/okaimono-{c["k"]}">', h)
+        h = re.sub(r'<meta property="og:title"[^>]*>', f'<meta property="og:title" content="{E(title)}">', h)
+        h = h.replace('href="logo.png"', 'href="/logo.png"')
+        rows = "".join(
+            f'<li><a href="{E(o["url"])}" rel="sponsored noopener" target="_blank" data-k="kp:{E(nm)}{i + 1}位">'
+            f'<span class="no">{i + 1}</span>' + (f'<img src="{E(o["img"])}" alt="" width="62" height="62" loading="lazy" style="border-radius:8px;flex:none">' if o.get("img") else "")
+            + f'<div class="tx"><p class="nm">{E(o["n"])}</p><p class="pz"><b>{_yen(o["u"])}</b>円/{E(unit)}　<span>総額 {o["p"]:,}円</span></p>'
+            f'<p class="sh">{E(o["s"][:18])}・{E(o["w"])}' + (f'・★{o["av"]}' if o.get("rc") else "") + '</p></div><span class="go">見る</span></a></li>' for i, o in enumerate(L))
+        avg = c.get("avg")
+        save = f'<p class="lead">しらべた物の平均は <b class="n">{_yen(avg)}</b>円/{E(unit)}。1位は平均より <b class="n">{round((1 - top["u"] / avg) * 100)}</b>% 安いです。</p>' if avg and top["u"] < avg else ""
+        others = "".join(f'<a class="ch" href="/okaimono-{x["k"]}" style="text-decoration:none;display:inline-block">{E(x["nm"])}</a>' for x in cats if x["k"] != c["k"] and len(x["o"]) >= 3)
+        ld = json.dumps({"@context": "https://schema.org", "@type": "ItemList", "name": title, "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": o["n"]} for i, o in enumerate(L)]}, ensure_ascii=False).replace("</", "<\\/")
+        body = f"""<header class="v4top"><a href="/" class="en">LIFE NOTE</a><b>くらべたおかいものリスト</b></header>
+<main class="v4" role="main"><p class="pr">リンクは広告（PR）です</p>
+<a class="ohb" href="/okaimono">‹ ほかの種類もくらべる</a>
+<h1>{E(nm)}の最安<br>送料込み・{E(unit)}あたりの安い順</h1>
+<p class="lead">楽天の送料込み<b class="n">{c["seen"]:,}</b>件から　<span class="n">{E(up)}</span> 更新（1日2回）</p>{save}
+<ol class="rkl">{rows}</ol>
+<p style="margin:14px 16px 0"><a class="btn" href="/okaimono?k={c["k"]}" data-k="kp:しぼる">メーカー・量でしぼって、全部の順位を見る</a></p>
+<dl class="ev"><dt>比べ方</dt><dd>送料込みの値段 ÷ 量（{E(unit)}あたり）。名の知れたメーカーの物だけを、お店ごとに1つずつ。</dd><dt>注意</dt><dd>北海道・沖縄・離島は送料が別にかかることがあります。量は商品名から読んでいるので、買う前にお店のページで確かめてください。</dd></dl>
+<h3>ほかの種類</h3><div class="chs" style="flex-wrap:wrap">{others}</div>
+<p class="pr" style="margin-top:18px">このページのリンクは広告（PR）です</p>
+</main><script type="application/ld+json">{ld}</script>"""
+        open(os.path.join(out, "okaimono-" + c["k"] + ".html"), "w", encoding="utf-8").write(
+            f'<!doctype html><html lang="ja"><head>{h}<style>{CSS}{okai_home.CSS}</style></head><body data-nm="{E(nm)}">{body}<script>{BEACON_JS}</script></body></html>')
+        made.append(c["k"])
+    sm = os.path.join(SITE, "sitemap.xml")
+    if os.path.exists(sm):
+        x = open(sm, encoding="utf-8").read()
+        add = "".join(f"<url><loc>{base}/okaimono-{k}</loc></url>" for k in made if f"/okaimono-{k}<" not in x)
+        if add:
+            open(sm, "w", encoding="utf-8").write(x.replace("</urlset>", add + "</urlset>", 1))
+    print("okai_v4: 種類ごとのページ /okaimono-", len(made))
+    return made
+
 
 def main():
     at, cats = build()
@@ -609,6 +680,15 @@ def main():
     sale = okai_home.next_sale(os.path.join(R, "data", "sales.json"), datetime.now(JST))
     open(src, "w", encoding="utf-8").write(page(at, cats, head, sale))
     open(os.path.join(SITE, "otoku.html"), "w", encoding="utf-8").write(otoku_page(old, head, cats))
+    try:
+        made = cat_pages(at, cats, head)
+        # /okaimono から種類ごとのページへ、押さなくても辿れる道（検索の機械用。見た目は小さな1行ずつ）
+        nm = {c["k"]: c["nm"] for c in cats}
+        links = '<p class="more">種類ごとの最安：' + "・".join(f'<a href="/okaimono-{k}">{E(nm[k])}</a>' for k in made) + "</p>"
+        x = open(src, encoding="utf-8").read()
+        open(src, "w", encoding="utf-8").write(x.replace('<script type="application/json" id="v4d">', links + '<script type="application/json" id="v4d">', 1))
+    except Exception as e:
+        print("okai_v4: 種類ごとのページは作れず", e)
     print("okai_v4:", len(cats), "種類", sum(len(c["o"]) for c in cats), "件")
 
 
