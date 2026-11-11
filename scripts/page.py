@@ -404,6 +404,34 @@ A8_NOTE = {  # 広告主ごとの一言（A8の案内に書いてある事だけ
 }
 
 
+def _a8_ok(url, host):
+    """A8の入口は、開くたびにA8の「クリック」に数えられる（11/2〜11/8 の554クリックは、4つのリンクを
+    HPを作るたびに開いた分とほぼ同じ数だった）。だから確かめるのは7日に1回だけにして、結果を data/link-ok.json に覚える。
+    ×だった物は次の日にもう1回だけ確かめる。"""
+    from lib import a8_link
+    fp = path("data", "link-ok.json")
+    book = load_json(fp, {}) or {}
+    today = datetime.now(JST).date()
+    key = "a8check:" + url  # リンクそのものの行は gate と linkcheck が書き換えるので、別の名前で覚える
+    held = book.get(key, {})
+    if held.get("by") == "a8" and held.get("at"):
+        try:
+            age = (today - datetime.fromisoformat(held["at"]).date()).days
+        except Exception:
+            age = 99
+        if age < (7 if held.get("ok") else 1):
+            return bool(held.get("ok"))
+    try:
+        r = a8_link(url, host)
+    except Exception as e:
+        r = {"ok": False, "why": str(e)[:60]}
+    book = load_json(fp, {}) or {}
+    book[key] = {"ok": bool(r.get("ok")), "why": r.get("why", ""), "sec": 0.0, "by": "a8", "at": today.isoformat()}
+    with open(fp, "w", encoding="utf-8") as fh:
+        json.dump(book, fh, ensure_ascii=False, indent=1, sort_keys=True)
+    return bool(r.get("ok"))
+
+
 def _a8_items():
     """汐がリンク帳に書いた「A8ページ」のリンク（このページのサイトで取った物）。夜の回が data/a8-page.json に写す。
     開いて広告主のページに着いた物だけ載せる。"""
@@ -413,11 +441,7 @@ def _a8_items():
         if not url:
             continue
         if os.environ.get("RAKUTEN_APP_ID"):  # 機械の上だけで確かめる（手元の見本はそのまま）
-            from lib import a8_link
-            try:
-                if not a8_link(url, host).get("ok"):
-                    continue
-            except Exception:
+            if not _a8_ok(url, host):
                 continue
         raw = it.get("name", "")
         m = re.search(r"【([^】]+)】", raw)
