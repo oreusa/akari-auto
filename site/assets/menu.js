@@ -35,7 +35,7 @@ tiles:function(pre){var o=this,h="";o.L.forEach(function(x){if(x[0]===o.cur)retu
     /^\/sagasu/.test(P)?"fbuy":/^\/fudosan-list/.test(P)?"flist":/^\/chika-/.test(P)?"chika":/^\/uru/.test(P)?"uru":/^\/(index)?$/.test(P)?"tn":/^\/odekake/.test(P)?"list":/^\/okaimono/.test(P)?"okai":/^\/otoku/.test(P)?"otoku":/^\/illumination/.test(P)?"illumi":/^\/koyo/.test(P)?"koyo":/^\/koe/.test(P)?"koe":/^\/tomari/.test(P)?"tomari":/^\/ima/.test(P)?"ima":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":/^\/nesage/.test(P)?"nesage":"";
   var SH=/^(\/okaimono|\/nesage|\/tanka|\/furusato|\/kaimawari|\/otoku)/.test(P);
   /* 11/7 関東不動産リスト（月の関西不動産リストと同じ）：不動産のページは不動産だけのメニュー */
-  var FU=/^\/(fudosan-list|uru|sagasu|chika-|machi\/)/.test(P);
+  var FU=/^\/(fudosan-list|uru|sagasu|chika-|kaitai|machi\/)/.test(P);
   /* 11/6 夜「おかいものからリクエストへ行くと、下のバーがおでかけ側に変わって戻れない」→ どちらのリストから来たかを覚えて、リクエストのページもそちら側にする */
   try{if(SH)sessionStorage.setItem("usagi_side","okai");else if(here&&here!=="koe")sessionStorage.setItem("usagi_side","list");if(here==="koe"&&sessionStorage.getItem("usagi_side")==="okai")SH=true;}catch(e){}
   /* 11/2 オーナー「もっとまとめろよ。TOWNNOTEこんなんじゃないだろ」→ 月と同じく、リストごとに自分の項目だけ＋関連サイト */
@@ -378,13 +378,13 @@ var NB=[
  {k:"fu",t:"不動産",nm:A.site+"不動産リスト",en:"REAL ESTATE",c:"#4F7BA8",lead:A.site+"の街の値段を、公式の数字で。",rows:[
   ["/fudosan-list","不動産リスト","地価・制度",/^\/fudosan-list/],["/uru","家を売りたい","相場と手順",/^\/uru/],
   ["/sagasu","家を買いたい","街をさがす",/^\/sagasu/]]
-  .concat(LF?[]:[["/kaitai","解体・片付け","費用の目安",/^\/kaitai/]])
+  .concat([["/kaitai","解体・片付け","費用の目安",/^\/kaitai/]])
   .concat([[LF?"/chika-kanto":"/chika-kansai","地価ランキング",LF?"関東の街":"205の街",/^\/chika-/]])
   .concat(LF?[]:[["/ranking","まちランキング","駅・人口",/^\/ranking/],["/gyosha","業者・士業の方","窓口",/^\/gyosha/]]),
   /* 11/10 オーナー「関東も問い合わせ…関西と同じで俺に問い合わせでいい」 */sub:[["/moushikomi","売却のお申し込み"],["/koe","リクエスト・感想"]]},
  {k:"jk",t:"実家",nm:"実家・空き家ノート",en:"JIKKA NOTE",c:"#5E9E6E",lead:"実家・空き家、何から始める？",nw:1,rows:[
   ["/jikka/shindan/","3問診断","次にやること",/^\/jikka\/shindan/],["/jikka/","実家・空き家ノート",LF?"手順":"相場",/^\/jikka\/(?!shindan)/]]
-  .concat(LF?[]:[["/kaitai","解体・片付け","費用の目安",/^$/]])
+  .concat([["/kaitai","解体・片付け","費用の目安",/^$/]])
   .concat([["/moushikomi","ご相談","売却・片付け・解体",/^$/]]),
   sub:[["/koe","リクエスト・感想"]]},
  {k:"ok",t:"おかいもの",nm:"おかいものリスト",en:"SHOPPING",c:"#C2727F",lead:"比べた最安と、今だけのお得。",rows:[

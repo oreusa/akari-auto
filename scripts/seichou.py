@@ -17,7 +17,7 @@ SKIP_SRC = ("okaimono", "menu", "x")  # 操作と試しの分
 
 def week(a, b):
     """a < 日 <= b の合計"""
-    o = {"views": 0, "come": 0, "open": 0, "sent": 0, "post": 0, "ask": 0, "buy": 0, "slots": {}, "days": 0}
+    o = {"views": 0, "come": 0, "cost": 0, "open": 0, "sent": 0, "post": 0, "ask": 0, "buy": 0, "slots": {}, "days": 0}
     for d, v in days.items():
         if not (a.isoformat() < d <= b.isoformat()):
             continue
@@ -36,6 +36,8 @@ def week(a, b):
             for k, c in items.items():
                 if any(w in k for w in ASK):
                     o["ask"] += c
+                if k.startswith("表示：解体・片付けの費用"):
+                    o["cost"] += c
                 if k.endswith("表示：お申し込み"):
                     o["open"] += c
                 if k.endswith("申し込み｜送信"):
@@ -54,8 +56,8 @@ elif now["come"] < 50:
     weak, nxt = "投稿からHPに来る人が少ない", "投稿の2つ目の行き先を、その話の答えが出るページ（街・費用・地図）に替える"
 else:
     weak, nxt = "来た人が相談・査定まで行かない", "いちばん見られた入口の上に、次に押す所を1つだけ置く"
-out = {"date": today.isoformat(), "now": {k: now[k] for k in ("views", "come", "post", "ask", "open", "sent", "buy", "days")},
-       "prev": {k: prev[k] for k in ("views", "come", "post", "ask", "open", "sent", "buy", "days")},
+out = {"date": today.isoformat(), "now": {k: now[k] for k in ("views", "come", "post", "ask", "cost", "open", "sent", "buy", "days")},
+       "prev": {k: prev[k] for k in ("views", "come", "post", "ask", "cost", "open", "sent", "buy", "days")},
        "slots": [{"name": k, "n": n} for k, n in slots], "weak": weak, "next": nxt}
 json.dump(out, open(os.path.join(ROOT, "data", "seichou.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 L = [f"# 関東の成長の帳面（{today.isoformat()} 朝）", "",
@@ -65,6 +67,7 @@ L = [f"# 関東の成長の帳面（{today.isoformat()} 朝）", "",
      f"| 投稿からHPに来た数（11/11 夜から数え始め） | {now['come']} | {prev['come']} |",
      f"| 投稿から来て押した数 | {now['post']} | {prev['post']} |",
      f"| 相談・査定へ押された数 | {now['ask']} | {prev['ask']} |",
+     f"| 解体・片付けの費用ページを見た数（11/11 夜に公開） | {now['cost']} | {prev['cost']} |",
      f"| 申し込みページを開いた数（11/11 夜から数え始め） | {now['open']} | {prev['open']} |",
      f"| 送信された相談（反響。11/11 夜から数え始め） | {now['sent']} | {prev['sent']} |",
      f"| 買い物・宿のリンクが押された数 | {now['buy']} | {prev['buy']} |", "",

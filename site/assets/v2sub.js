@@ -33,7 +33,7 @@ document.body.appendChild(bar);bar.classList.add("on");document.documentElement.
 }
 function go(){
 if(/^\/jikka/.test(location.pathname))return goJ();
-if(/^\/(fudosan-list|uru|moushikomi|sagasu|chika-|machi\/)/.test(location.pathname))return goF();
+if(/^\/(fudosan-list|uru|moushikomi|sagasu|chika-|kaitai|machi\/)/.test(location.pathname))return goF();
 var inn=/\/tomari/.test(location.pathname),P=location.pathname.replace(/\.html$/,"");
 /* 11/2 LIFE NOTE：買い物のページ（くらべたおかいものリストとその仲間）は、買い物の下のボタン列。おでかけ側は /odekake へ */
 /* 11/2 くらべたおかいものリストのタブ4つ（くらべた物・1個あたり・値下がり・セール）へ。いまのページの仲間に下線 */
