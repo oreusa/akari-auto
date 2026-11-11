@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-11 14:10",
+  "at": "2026-11-11 14:28",
   "since": "2026-11-01",
   "tracked": 260,
   "days": 10,
@@ -92,15 +92,15 @@
     },
     {
       "title": "モバイルバッテリー",
-      "name": "Anker MagGo Power Bank (10000mAh, Slim) Qi2認証 …",
-      "price": 9990,
-      "base": 7490.0,
-      "pct": 33,
-      "days": 10,
-      "rc": 543,
-      "av": 4.53,
-      "shop": "アンカー・ダイレクト楽天市場店",
-      "plain": "https://item.rakuten.co.jp/anker/10002086/"
+      "name": "MOTTERU (モッテル) 発火リスクほぼゼロ モバイルバッテリー 準固体モバイルバッテリ…",
+      "price": 7980,
+      "base": 5780.0,
+      "pct": 38,
+      "days": 4,
+      "rc": 390,
+      "av": 4.79,
+      "shop": "MOTTERU ダイレクト 楽天市場店",
+      "plain": "https://item.rakuten.co.jp/motteru/10000176/"
     }
   ]
 }

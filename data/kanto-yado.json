@@ -4340,5 +4340,234 @@
         "min": 7840
       }
     ]
+  },
+  "超ニョロニョロフェスタ": {
+    "v": 2,
+    "t": "2026-11-11",
+    "ll": [
+      35.87198,
+      139.32583
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテル・ヘリテイジ飯能sta.",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D139833",
+        "km": 2.4,
+        "r": 3.97,
+        "rc": 973,
+        "min": 4750
+      },
+      {
+        "n": "奥むさし旅館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D54628",
+        "km": 2.3,
+        "r": 3.78,
+        "rc": 324,
+        "min": 6000
+      },
+      {
+        "n": "マロウドイン飯能",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D1819",
+        "km": 1.9,
+        "r": 3.75,
+        "rc": 1236,
+        "min": 7000
+      }
+    ]
+  },
+  "企画展瀬田貞二のおもかげ": {
+    "v": 2,
+    "t": "2026-11-11",
+    "ll": [
+      35.99611,
+      139.56059
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルルートイン上尾",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D13453",
+        "km": 0.6,
+        "r": 3.88,
+        "rc": 544,
+        "min": 7000
+      },
+      {
+        "n": "ホテルメイツ上尾",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D17742",
+        "km": 3.9,
+        "r": 3.75,
+        "rc": 633,
+        "min": 3200
+      },
+      {
+        "n": "アパホテル〈埼玉上尾駅前〉(2026年6月リブランドオープン)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D162804",
+        "km": 3.8,
+        "r": 3.68,
+        "rc": 446,
+        "min": 4300
+      }
+    ]
+  },
+  "大洗秋まつり商工感謝祭＆大洗あんこう祭": {
+    "v": 2,
+    "t": "2026-11-11",
+    "ll": [
+      36.31038,
+      140.57074
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "里海邸 -金波楼本邸-",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136101",
+        "km": 1.7,
+        "r": 4.88,
+        "rc": 51,
+        "min": 27610
+      },
+      {
+        "n": "民宿浜野屋",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D140850",
+        "km": 0.6,
+        "r": 4.64,
+        "rc": 54,
+        "min": 7000
+      },
+      {
+        "n": "大洗ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D5950",
+        "km": 1.4,
+        "r": 4.57,
+        "rc": 2956,
+        "min": 23000
+      }
+    ]
+  },
+  "ちいさなマルシェめでる～秋の実り～": {
+    "v": 2,
+    "t": "2026-11-11",
+    "ll": [
+      36.37248,
+      140.26118
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテル イオ アルフェラッツ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D140995",
+        "km": 0.5,
+        "r": 3.97,
+        "rc": 319,
+        "min": 5300
+      },
+      {
+        "n": "割烹旅館 城山",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D29364",
+        "km": 1.8,
+        "r": 3.95,
+        "rc": 85,
+        "min": 10000
+      },
+      {
+        "n": "秘湯 ぶんぶくの湯",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D39630",
+        "km": 3.4,
+        "r": 3.56,
+        "rc": 122,
+        "min": 5400
+      }
+    ]
+  },
+  "第6回川口花火大会": {
+    "v": 2,
+    "t": "2026-11-11",
+    "ll": [
+      36.13656,
+      139.38082
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ネビュラ K",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D173991",
+        "km": 0.7,
+        "r": 4.57,
+        "rc": 91,
+        "min": 4060
+      },
+      {
+        "n": "ホテルルートイン熊谷",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D161022",
+        "km": 2.5,
+        "r": 4.32,
+        "rc": 394,
+        "min": 5350
+      },
+      {
+        "n": "アパホテル〈熊谷駅前北〉(2026年6月OPEN)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198893",
+        "km": 1.1,
+        "r": 4.24,
+        "rc": 371,
+        "min": 3420
+      }
+    ]
+  },
+  "大子町花火大会": {
+    "v": 2,
+    "t": "2026-11-11",
+    "ll": [
+      36.77087,
+      140.35067
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "大子温泉 やみぞ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D142195",
+        "km": 2.4,
+        "r": 4.33,
+        "rc": 395,
+        "min": 16500
+      },
+      {
+        "n": "Daigo Kujigawa Base Hotel",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D192673",
+        "km": 0.8,
+        "r": 4.25,
+        "rc": 12,
+        "min": 5500
+      },
+      {
+        "n": "丘の上のゲストハウス「Daigo house」",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D158450",
+        "km": 1.0,
+        "r": 4.22,
+        "rc": 36,
+        "min": 4180
+      }
+    ]
+  },
+  "梵天祭り": {
+    "v": 2,
+    "t": "2026-11-11",
+    "ll": [
+      36.70846,
+      139.88073
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "サンヒルズホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D68489",
+        "km": 6.4,
+        "r": 4.85,
+        "rc": 83,
+        "min": 6500
+      }
+    ]
   }
 }

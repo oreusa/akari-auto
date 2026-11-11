@@ -27,6 +27,12 @@
   "sec": 0.0,
   "why": ""
  },
+ "https://1110hanabi.com/": {
+  "at": "2026-11-11",
+  "ok": true,
+  "sec": 3.1,
+  "why": ""
+ },
  "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Flohaco.yahoo.co.jp%2Fstore%2Fh-lohaco%2Fitem%2Faj49016%2F": {
   "at": "2026-11-05",
   "by": "browser",
@@ -2132,6 +2138,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.0,
+  "why": ""
+ },
+ "https://bookkasama.com/": {
+  "at": "2026-11-11",
+  "ok": true,
+  "sec": 0.5,
   "why": ""
  },
  "https://brand.sarutahiko.jp/shop/the_east_gardens_of_the_imperial_palace": {
@@ -5556,6 +5568,12 @@
   "sec": 1.3,
   "why": ""
  },
+ "https://koreafes-mindan.com/grandprix.html": {
+  "at": "2026-11-11",
+  "ok": true,
+  "sec": 0.5,
+  "why": ""
+ },
  "https://koto.goguynet.jp/2026/10/27/ariakegarden_illumination2026/": {
   "at": "2026-10-30",
   "by": "browser",
@@ -5688,11 +5706,23 @@
   "sec": 0.9,
   "why": ""
  },
+ "https://metsa-hanno.com/event/47804/": {
+  "at": "2026-11-11",
+  "ok": true,
+  "sec": 0.8,
+  "why": ""
+ },
  "https://metsa-hanno.com/news/press_release/47261/": {
   "at": "2026-11-10",
   "by": "browser",
   "ok": true,
   "sec": 2.1,
+  "why": ""
+ },
+ "https://minatomirai.vintage-artisan-market.com/": {
+  "at": "2026-11-11",
+  "ok": true,
+  "sec": 1.3,
   "why": ""
  },
  "https://mitsui-shopping-park.com/urban/legend-research/": {
@@ -5824,6 +5854,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.5,
+  "why": ""
+ },
+ "https://sakanabunka.com/yokohama/": {
+  "at": "2026-11-11",
+  "ok": true,
+  "sec": 1.0,
   "why": ""
  },
  "https://sakura-navi.net/event/kitsuregawa-hanabi-festival/": {
@@ -7837,6 +7873,12 @@
   "sec": 2.1,
   "why": ""
  },
+ "https://www.city.hitachiomiya.lg.jp/kankou_guide/news/page012282.html": {
+  "at": "2026-11-11",
+  "ok": true,
+  "sec": 2.5,
+  "why": ""
+ },
  "https://www.city.kanuma.tochigi.jp/0761/info-0000011621-0.html": {
   "at": "2026-11-10",
   "by": "browser",
@@ -7919,6 +7961,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.2,
+  "why": ""
+ },
+ "https://www.daigo-kanko.jp/news/news-19551": {
+  "at": "2026-11-11",
+  "ok": true,
+  "sec": 0.7,
   "why": ""
  },
  "https://www.deutschlandfest.com/": {
@@ -8274,6 +8322,12 @@
   "sec": 2.7,
   "why": ""
  },
+ "https://www.oarai-info.jp/news/postid_8902/": {
+  "at": "2026-11-11",
+  "ok": true,
+  "sec": 1.5,
+  "why": ""
+ },
  "https://www.omochaoukoku.com/karuizawa/event/ezy_roller/": {
   "at": "2026-11-10",
   "by": "browser",
@@ -8320,6 +8374,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.7,
+  "why": ""
+ },
+ "https://www.saitama-bungaku.jp/event/39634/": {
+  "at": "2026-11-11",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.seaparadise.co.jp/en/event/akipara2026autumn/index.html": {
@@ -8516,6 +8576,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.6,
+  "why": ""
+ },
+ "https://www.utsunomiya-cvb.org/event/detail_20001.html": {
+  "at": "2026-11-11",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.utsunomiya-cvb.org/event/detail_20003.html": {
