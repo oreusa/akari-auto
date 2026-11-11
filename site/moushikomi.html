@@ -118,7 +118,9 @@ var SITE="LIFE NOTE",KV="https://lifenote-kanto.pages.dev/moushikomi-send",MAIL=
 var f=document.getElementById("mf"),er=document.getElementById("er"),sb=document.getElementById("sb");
 function v(n){var e=f.querySelector('[name="'+n+'"]:checked')||f.elements[n];return e&&e.value?String(e.value).trim():""}
 f.addEventListener("submit",function(e){e.preventDefault();er.textContent="";
+ var LT=/[?&]lite=1/.test(location.search);
  var d={site:SITE,name:v("name"),email:v("email"),tel:v("tel"),place:v("place"),kind:v("kind"),want:v("want"),text:v("text"),hp:v("hp"),page:document.referrer.replace(/^https?:\/\/[^/]+/,"").slice(0,60)};
+ if(LT){if(!d.name)d.name="お客";var tm=v("ttime");d.text="［名前なしのかんたん相談］"+(d.text?"\n"+d.text:"")+(d.tel&&tm?"\n［お電話の都合のよい時間帯："+tm+"］":"");}
  if(!d.name){er.textContent="お名前を書いてください";return}
  /* 11/11 メールを持たない・書きたくない方も送れるように：メールか電話のどちらかで受け付ける */
  var okM=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email),okT=d.tel.replace(/\D/g,"").length>=10;
@@ -145,7 +147,7 @@ f.addEventListener("submit",function(e){e.preventDefault();er.textContent="";
  var p2=fetch(MAIL,{method:"POST",headers:{"content-type":"application/json","accept":"application/json"},body:JSON.stringify(m)}).then(function(r){return r.json()}).then(function(j){return !!j&&String(j.success)==="true"}).catch(function(){return false});
  Promise.all([p1,p2]).then(function(a){
   if(a[0]||a[1]){f.style.display="none";document.getElementById("done").style.display="block";window.scrollTo(0,0);
-   try{if(localStorage.getItem("usagi_owner")!=="1"){var b=JSON.stringify({k:"申し込み｜送信"});navigator.sendBeacon&&navigator.sendBeacon("/c",b)}}catch(x){}}
+   try{if(localStorage.getItem("usagi_owner")!=="1"){var b=JSON.stringify({k:"申し込み｜送信"});navigator.sendBeacon&&navigator.sendBeacon("/c",b);if(LT)navigator.sendBeacon&&navigator.sendBeacon("/c",JSON.stringify({k:"申し込み｜かんたん｜送信"}))}}catch(x){}}
   else{sb.disabled=false;sb.textContent="送信する";er.textContent="送れませんでした。時間をおいて、もう一度お試しください"}});
 });})();</script>
 <script>/* 11/9 お申し込みページ：来た数・書きはじめた数を数える（送信は上で数える）／見た街を「お家の場所」に先に入れる */
@@ -172,4 +174,30 @@ fetch("/assets/towns.json").then(function(r){return r.json()}).then(function(d){
 (function(){try{var W=new URLSearchParams(location.search).get("want")||"",H={"片付け・遺品整理の見積り":["片付け・遺品整理の見積り","無料です。見積りだけでも大丈夫です。"],"解体の見積り":["解体費用の見積り","無料です。見積りだけでも大丈夫です。"],"相続した家のこと":["相続した家のご相談","無料です。売るか決めていなくても大丈夫です。"]}[W];if(!H)return;
 var h=document.querySelector(".s3h h1"),l=document.querySelector(".s3l");if(h)h.textContent=H[0]+"のお申し込み";document.title=H[0]+"のお申し込み｜LIFE NOTE";
 if(l&&l.firstChild&&l.firstChild.nodeType===3)l.firstChild.nodeValue=H[1];}catch(e){}})();</script>
+<script>/* 11/11 名前なしで聞ける入口（実家ノートから ?lite=1）：はじめての方は、こちらを信用する理由がまだ無い → 書く物を減らし、約束を先に書く */
+(function(){try{if(!/[?&]lite=1/.test(location.search))return;var P=new URLSearchParams(location.search),f=document.getElementById("mf");if(!f)return;
+document.documentElement.classList.add("lite");
+var O=false;try{O=localStorage.getItem("usagi_owner")==="1";}catch(e){}
+if(!O)try{navigator.sendBeacon&&navigator.sendBeacon("/c",JSON.stringify({k:"申し込み｜かんたん｜表示"}));}catch(e){}
+var $=function(i){return document.getElementById(i)},hide=function(el){if(el)el.style.display="none";},lab=function(el){return el?el.previousElementSibling:null;};
+var nm=$("nm");nm.required=false;hide(nm);hide(lab(nm));
+["kind","want"].forEach(function(n){var r=f.querySelector('input[name="'+n+'"]');if(r){var c=r.closest(".ch");hide(c);hide(lab(c));}});
+var W=P.get("want")||"",kt=/片付け/.test(W)?"片付け":"解体";
+var h=document.querySelector(".s3h h1"),l=document.querySelector(".s3l"),m=document.querySelector(".s3m");
+if(h)h.textContent="うちの場合の概算を聞く";document.title=kt+"の費用を聞く｜LIFE NOTE";
+if(l)l.innerHTML="お名前は要りません。書くのは3つだけです。<br><small style=\"font-size:12.5px;color:#857A70\">関東（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）のお家が対象です。</small>";
+if(m)m.innerHTML="<b style=\"display:block;font-size:13.5px;color:#231E1B\">お約束</b>・お返事は、メールかお電話、ご希望の方で。2営業日以内にお返事します。<br>・会社のご紹介は、お話をうかがって、ご希望があった時だけです。<br>・見積りだけで終わっても、費用はかかりません。";
+/* 並び：場所 → 聞きたいこと → 連絡先 */
+var pl=$("pl"),tx=$("tx"),em=$("em"),tl=$("tl"),first=f.firstElementChild;
+[lab(pl),pl,lab(tx),tx].forEach(function(el){if(el)f.insertBefore(el,first);});
+var lt=lab(tx);if(lt)lt.innerHTML="聞きたいこと<em>ひとことで大丈夫です</em>";tx.placeholder="例）木造2階建て、30坪くらい。家の中に荷物が残っています";tx.style.minHeight="88px";
+var memo=(P.get("memo")||"").slice(0,80);if(memo&&!tx.value)tx.value="目安で見た内容："+memo+"\n";
+var le=lab(em);if(le)le.innerHTML="メールアドレス<em>メールかお電話の、どちらかだけ</em>";
+var ll=lab(tl);if(ll)ll.innerHTML="電話番号<em>お電話でのお返事をご希望の方</em>";
+var tt=document.createElement("div");tt.id="ttw";tt.hidden=true;tt.innerHTML='<div class="fl" style="font-size:13px;font-weight:700;color:#5E544D;margin:16px 0 6px">お電話の都合のよい時間帯</div><div class="ch">'+["午前","午後","夕方以降","いつでも"].map(function(x){return '<label><input type="radio" name="ttime" value="'+x+'">'+x+'</label>';}).join("")+'</div><p style="font-size:12px;color:#7A6E66;line-height:1.7;margin:8px 0 0">知らない番号からのお電話になります。えらんだ時間帯におかけします。</p>';
+tl.parentNode.insertBefore(tt,tl.nextSibling);tl.addEventListener("input",function(){tt.hidden=tl.value.replace(/\D/g,"").length<4;});
+var ag=f.querySelector(".ag span");if(ag)ag.innerHTML='<a href="/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>を読み、同意します（会社へのご紹介は、ご希望があった時だけです）';
+$("sb").textContent="この内容で聞く（無料）";
+var dn=$("done");if(dn){var b=dn.querySelector("b"),p=dn.querySelector("p");if(b)b.textContent="受け付けました";if(p)p.innerHTML="2営業日以内に、メールかお電話でお返事します。<br>しばらくお待ちください。";}
+}catch(e){}})();</script>
 </body></html>
