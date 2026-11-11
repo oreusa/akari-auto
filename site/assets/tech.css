@@ -211,3 +211,12 @@ html.night.tk2 .kmap.tk3d .pf3 path{fill:#0B1020;stroke:#0B1020}
 html.night.tk2 .kmap.tk3d .pf3{filter:drop-shadow(0 18px 16px rgba(0,0,0,.55))}
 html.night.tk2 .kmap.tk3d .pfg{opacity:.16}
 html.night.tk2 .kmap.tk3d .tkcp{fill:#1B2440;fill-opacity:.9;stroke:rgba(255,255,255,.14);filter:none}
+
+/* 11/11 オーナー「背景てんてん変える？」「文字や表示もかえていい」→ 候補A（立体）：点々なし、名前を大きく濃く、英字なし、件数は札 */
+html.tk2 .mapsec::before{background-image:none;-webkit-mask-image:none;mask-image:none}
+html.tk2 .kmap.tk3d .lb .en{display:none}
+html.tk2 .kmap.tk3d .lb .jp{font-size:31px;letter-spacing:.06em}
+html.tk2:not(.night) .kmap.tk3d .lb .jp{fill:#231E1B!important}
+html.tk2 .kmap.tk3d .lb .cnt{font-size:21px;font-weight:600;transform:translate(0,-3px)}
+html.tk2 .kmap.tk3d .lb .cnt tspan{font-size:11px}
+html.tk2 .kmap.tk3d .tkcp{transform:translate(0,-5px) scale(1.08,1.12);transform-box:fill-box;transform-origin:50% 50%}

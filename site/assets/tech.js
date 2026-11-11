@@ -162,7 +162,12 @@
     sv.insertBefore(g3,pf);if(pf.nextSibling)sv.insertBefore(gs,pf.nextSibling);else sv.appendChild(gs);
     /* 件数の札 */
     var cs=lb.querySelectorAll("text.cnt");for(i=0;i<cs.length;i++){var t=cs[i],y=parseFloat(t.getAttribute("y")||"0"),r=mk("rect");r.setAttribute("class","tkcp");
-      r.setAttribute("x","-31");r.setAttribute("y",String(y-19));r.setAttribute("width","62");r.setAttribute("height","26");r.setAttribute("rx","13");t.parentNode.insertBefore(r,t);}
+      r.setAttribute("y",String(y-19));r.setAttribute("height","26");r.setAttribute("rx","13");t.parentNode.insertBefore(r,t);
+      /* 札の幅は中の文字に合わせる。文字が無い時（おかいもの等）は札を出さない */
+      (function(t,r){var fit=function(){try{var tx=(t.textContent||"").replace(/\s/g,"");if(!tx){if(r.style.display!=="none")r.style.display="none";return;}
+          var w=Math.max(54,Math.ceil(t.getBBox().width)+26),cw=String(w),cx=String(-w/2);if(r.style.display==="none")r.style.display="";
+          if(r.getAttribute("width")!==cw){r.setAttribute("width",cw);r.setAttribute("x",cx);}}catch(e){}};
+        fit();new MutationObserver(fit).observe(t,{childList:true,characterData:true,subtree:true});})(t,r);}
     sv.classList.add("tk3d");
   }catch(e){}}
   var pend=0;function scan(){pend=0;bar();arm();carm();liveAll();clock();pill();pings();auto();h1s();arm();sheet();form();fold();map3d();}
