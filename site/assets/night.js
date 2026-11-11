@@ -143,3 +143,23 @@
 (function(){function mk(){document.querySelectorAll("svg.kmap").forEach(function(svg){if(svg.__clip)return;svg.__clip=1;var NS="http://www.w3.org/2000/svg",df=document.createElementNS(NS,"defs");svg.insertBefore(df,svg.firstChild);
  svg.querySelectorAll(".pf path").forEach(function(pa,i){var c=document.createElementNS(NS,"clipPath"),q=document.createElementNS(NS,"path");c.id="kc"+i;q.setAttribute("d",pa.getAttribute("d"));c.appendChild(q);df.appendChild(c);pa.classList.add("kcl");pa.style.setProperty("--kc","url(#kc"+i+")")});});}
  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",mk);else mk();})();
+
+/* 11/11 オーナー「hpを一掃テクノロジーっぽく」→ 見本の間は、合図のある端末だけに出す（ふつうのお客さんには何も変わらない）。
+   アドレスの後ろに ?tech=1（動きだけ）／?tech=2（動き＋デザイン）で入り、?tech=0 で元に戻る。選んだ方をその端末が覚える。
+   ページの頭で読むこと（次のページへ移る動きは、最初の1枚を描く前に決まる）。 */
+(function(){try{var d=document,h=d.documentElement,K="tn_tech",m=/[?&]tech=([012])(?:&|$)/.exec(location.search),v=null;
+  try{if(m){if(m[1]==="0")localStorage.removeItem(K);else localStorage.setItem(K,m[1]);}v=localStorage.getItem(K);}catch(e){v=m&&m[1]!=="0"?m[1]:null;}
+  if(v!=="1"&&v!=="2")return;h.classList.add("tk");if(v==="2")h.classList.add("tk2");
+  /* ページからページへ：前のページがすっと引き、次のページが下から浮かび上がる（ここに直に書く。外のファイルを待つと最初の1枚に間に合わない） */
+  var st=d.createElement("style");st.textContent="@view-transition{navigation:auto}"+
+    "@keyframes tk-vt-out{to{opacity:0;transform:translate3d(0,-12px,0) scale(.985)}}@keyframes tk-vt-in{from{opacity:0;transform:translate3d(0,30px,0)}}"+
+    "@keyframes tk-vt-out-b{to{opacity:0;transform:translate3d(0,18px,0)}}@keyframes tk-vt-in-b{from{opacity:0;transform:translate3d(0,-14px,0) scale(.985)}}"+
+    "::view-transition-old(root){animation:tk-vt-out .2s cubic-bezier(.4,0,1,1) both}::view-transition-new(root){animation:tk-vt-in .46s cubic-bezier(.16,1,.3,1) both}"+
+    "html.tk-back::view-transition-old(root){animation-name:tk-vt-out-b}html.tk-back::view-transition-new(root){animation-name:tk-vt-in-b}"+
+    "@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}";(d.head||h).appendChild(st);
+  var l=d.createElement("link");l.rel="stylesheet";l.href="/assets/tech.css?v=1";l.setAttribute("blocking","render");(d.head||h).appendChild(l);
+  var s=d.createElement("script");s.src="/assets/tech.js?v=1";s.async=false;(d.head||h).appendChild(s);
+  /* もどる時は、動きの向きを逆にする */
+  addEventListener("pagereveal",function(e){try{var vt=e.viewTransition,a=window.navigation&&navigation.activation;if(vt&&vt.ready)vt.ready.catch(function(){});if(!vt||!a||a.navigationType!=="traverse"||!a.from||!a.entry||a.entry.index>=a.from.index)return;
+    h.classList.add("tk-back");var off=function(){h.classList.remove("tk-back");};vt.finished.then(off,off);}catch(_){}});
+}catch(e){}})();
