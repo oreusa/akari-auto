@@ -533,7 +533,7 @@ rk = head(f"関東 地価ランキング2026｜{len(towns)}の市区町村の住
 </section>
 {URU}
 <p class="note">出典（価格時点 2026年1月1日）<br>{srcs}<br>数字は街の中の調査地点の平均の変動率で、1軒ずつの値段ではありません。</p>
-<a class="back" href="/fudosan-list" data-k="関東不動産リストへ">関東不動産リストを見る</a>
+<a class="back" href="/moushikomi?want=%E6%9F%BB%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%BB%E3%81%97%E3%81%84" data-k="地価ランキング｜いくらで売れるか聞く" style="display:block;background:#3A332E;color:#fff;border:0;border-radius:12px;padding:15px 16px;margin:18px 0 14px;text-align:center;text-decoration:none;font-weight:700;font-size:15px">お家がいくらで売れるか、無料で聞く</a><a class="back" href="/fudosan-list" data-k="関東不動産リストへ">関東不動産リストを見る</a>
 <div class="ft">LIFE NOTE</div></div>
 <script>(function(){{function go(k){{var b=document.querySelector('.flt button[data-p="'+k+'"]');if(!b)return;document.querySelectorAll(".flt button,.pane").forEach(function(x){{x.classList.remove("on")}});b.classList.add("on");document.getElementById(k).classList.add("on");}}
 document.querySelectorAll(".flt button").forEach(function(b){{b.onclick=function(){{go(b.dataset.p);history.replaceState(null,"","#"+b.dataset.p);}}}});if(location.hash)go(location.hash.slice(1));}})();</script>
@@ -670,8 +670,9 @@ rep('c("地図：府県 "+p);', 'c("地図：都県 "+p);')
 _m = re.search(r'<div class="sns"><h2>FOLLOW</h2>(.*?)<div class="cos">.*?</div>\s*</div>\s*(<div class="ft">.*?</div>)(<a class="tnx".*?</a>)', h, flags=re.S)
 assert _m, "下の欄が見つからない"
 _SELL = ('<section class="sell2"><small>BEFORE YOU SELL</small><h2>家を売る前に</h2>'
-         '<p>相場と、売る前に知っておく大事なことを、順番に見られます。</p>'
-         '<div class="b1"><a href="/uru.html" data-k="下｜売る前に読む">売る前に読む<span>相場・大事なこと</span></a></div></section>')
+         '<p>相場と、売る前に知っておく大事なことを、順番に見られます。迷ったらご相談ください。</p>'
+         '<div class="b1"><a href="/uru.html" data-k="下｜売る前に読む">売る前に読む<span>相場・大事なこと</span></a></div>'
+         '<div class="b1" style="margin-top:10px"><a href="/moushikomi?want=%E6%9F%BB%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%BB%E3%81%97%E3%81%84" data-k="下｜無料で聞く">いくらで売れるか、無料で聞く<span>売るか決めていなくても大丈夫・約1分</span></a></div></section>')
 h = h[:_m.start()] + _SELL + _m.group(3) + '<div class="sns"><h2>FOLLOW</h2>' + _m.group(1) + '</div>' + _m.group(2) + h[_m.end():]
 h = h.replace("</style>", ".sell2{margin:40px 0 0;padding:26px 4px 0;border-top:1px solid #D6D9DE;text-align:center}.sell2 small{font-family:Jost,sans-serif;font-size:10px;letter-spacing:.32em;color:#9C8775}.sell2 h2{font-family:'Shippori Mincho',serif;font-weight:600;font-size:20px;letter-spacing:.1em;margin:6px 0 0;color:#2B2622}.sell2 p{font-size:12.5px;color:#6B6058;line-height:1.8;margin:8px 0 0}.sell2 .b1{margin:16px 0 0}.sell2 .b1 a{display:flex;flex-direction:column;justify-content:center;min-height:56px;text-decoration:none;font-weight:700;font-size:15px;color:#fff;background:#2B2622;border-radius:10px}.sell2 .b1 a span{font-weight:400;font-size:11px;color:#D9D2CC;margin-top:2px}.sell2+.tnx{margin-top:34px;border:0!important;border-top:1px solid #D6D9DE!important;border-radius:0!important;box-shadow:none!important}\n</style>", 1)
 for bad in ("関西", "府県", "大阪", "townnote.pages", "fudousan_ai", "fudosan_ai", "kansai", "TOWN NOTE", "ぴょん", "gyosha", "JSON.stringify({k"):
