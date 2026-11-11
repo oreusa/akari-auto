@@ -100,6 +100,13 @@ css = """
 #tmj{font-size:34px;color:#6E625A;margin-top:26px}
 .row span em{font-style:normal;font-family:Jost;font-size:56px;letter-spacing:.02em;margin-right:6px}
 #sun{position:absolute;left:340px;top:440px;width:400px;height:200px}
+#s5>div:first-child{top:330px}
+#s5 .h.ln{position:absolute;top:150px;height:900px;writing-mode:vertical-rl;font-size:66px!important;letter-spacing:.14em;margin:0!important;text-align:left}
+#s5 .h.ln:nth-of-type(2){right:236px}#s5 .h.ln:nth-of-type(3){right:132px;padding-top:70px}
+#phone{left:96px;top:540px}
+#s6 #f0{margin-top:330px!important;width:120px!important}
+#s6 .h.ln{writing-mode:vertical-rl;height:800px;margin:50px auto 0!important;font-size:72px!important;letter-spacing:.14em;display:block;width:100px}
+#s6 #f2{margin-top:50px!important;letter-spacing:.12em}#s6 #f3{position:absolute;left:0;right:0;top:1700px;margin:0!important}
 """
 h = h.replace('</style>', css + '</style>')
 a = h.index('<!-- 2 date -->'); b = h.index('<!-- 5 list -->')
