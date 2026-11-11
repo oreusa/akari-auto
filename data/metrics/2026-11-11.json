@@ -1,0 +1,360 @@
+{
+  "day": "2026-11-11",
+  "fetchedAt": "2026-11-12T07:16+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【12/28まで　土浦市｜引っ越してきた人の家の直しに、最大30万円🏠】",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Dfk9LFSCZje",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.64,
+        "views": 61,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【12/28まで　土浦市｜引っ越してきた人の家の直しに、最大30万円🏠】",
+      "url": "https://x.com/1753799832798629888/status/2120279108852605175",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 16.67,
+        "reposts": 0,
+        "impressions": 6,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "11/11からみなとみらいでドラクエ×FFの冬の催し、今週始まる5つ🎄",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DflK6ullgbZ",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.13,
+        "views": 47,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "11/11からみなとみらいでドラクエ×FFの冬の催し、今週始まる5つ🎄",
+      "url": "https://x.com/1753799832798629888/status/2120309333095305663",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.82,
+        "reposts": 0,
+        "impressions": 243,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "11/14・15、鹿沼の花木センターでそば天国、10店のもりそば🍜",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Dflfh-elRJ-",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.21,
+        "views": 480,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "11/14・15、鹿沼の花木センターでそば天国、10店のもりそば🍜",
+      "url": "https://x.com/1753799832798629888/status/2120354614474117143",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 6.9,
+        "reposts": 0,
+        "impressions": 29,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【2027年2月予定　水戸駅北口｜駅前に20階の住まいと店🏙】",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Dflpy89DldQ",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.24,
+        "views": 413,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【2027年2月予定　水戸駅北口｜駅前に20階の住まいと店🏙】",
+      "url": "https://x.com/1753799832798629888/status/2120377232627490979",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 6.67,
+        "reposts": 0,
+        "impressions": 45,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "11/14・15、さいたま新都心でフランスにちなんだ食のマルシェ🥖",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Dfl0G23FcPO",
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 0.6,
+        "views": 336,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "11/14・15、さいたま新都心でフランスにちなんだ食のマルシェ🥖",
+      "url": "https://x.com/1753799832798629888/status/2120399910000550065",
+      "metrics": {
+        "reactions": 0,
+        "comments": 2,
+        "engagementRate": 8.7,
+        "reposts": 0,
+        "impressions": 23,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "【ひと駅しらべ　荒川沖駅｜乗る人が茨城のJRでいちばん伸びた🚉】",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DfmIt2clunp",
+      "metrics": {
+        "reactions": 3,
+        "comments": 4,
+        "engagementRate": 2.1,
+        "views": 334,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "【ひと駅しらべ　荒川沖駅｜乗る人が茨城のJRでいちばん伸びた🚉】",
+      "url": "https://x.com/1753799832798629888/status/2120445189944717520",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 50,
+        "reposts": 0,
+        "impressions": 4,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/14から　高崎・徳明園｜庭園の紅葉を週末に金のライトアップ🍁】",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DfmWdRyFFGF",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.33,
+        "views": 302,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "20:15",
+      "kind": "通常",
+      "first": "【11/14から　高崎・徳明園｜庭園の紅葉を週末に金のライトアップ🍁】",
+      "url": "https://x.com/1753799832798629888/status/2120475417563877567",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 16.67,
+        "reposts": 0,
+        "impressions": 6,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/13から　六本木ヒルズ｜66プラザと毛利庭園にも光がともる✨】",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Dfmb3k1ka0n",
+      "metrics": {
+        "reactions": 2,
+        "comments": 1,
+        "engagementRate": 1.73,
+        "views": 173,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:00",
+      "kind": "通常",
+      "first": "【11/13から　六本木ヒルズ｜66プラザと毛利庭園にも光がともる✨】",
+      "url": "https://x.com/1753799832798629888/status/2120487321732555229",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "HPのご紹介 その10｜都県のボタンと「地図」で、行く所が決まる🗺",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DfmkMyvlrbT",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.76,
+        "views": 21,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "22:15",
+      "kind": "通常",
+      "first": "HPのご紹介 その10｜都県のボタンと「地図」で、行く所が決まる🗺",
+      "url": "https://x.com/1753799832798629888/status/2120505652866888083",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/usagichan_ai_si/4027643188106269791",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "",
+      "url": "https://www.instagram.com/stories/usagichan_ai_si/4027638186709323221",
+      "metrics": {
+        "views": 0,
+        "reach": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reactions": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【今日11/11から　飯田橋・アイガーデンエア｜Crystal Gardenの光",
+      "url": "https://www.instagram.com/reel/DflCZUPBUSv/",
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 1,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.17,
+        "averageTimeWatched": 10,
+        "reach": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【今日11/11から　飯田橋・アイガーデンエア｜Crystal Gardenの光",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DflCXMslnFX",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 25,
+        "views": 4,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "4コマ",
+      "kind": "4コマ",
+      "first": "【今日11/11から　飯田橋・アイガーデンエア｜Crystal Gardenの光",
+      "url": "https://x.com/1753799832798629888/status/2120290505770590674",
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.13,
+        "reposts": 0,
+        "impressions": 32,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "HPリール",
+      "kind": "HPリール",
+      "first": "「いまから行ける」のページを、そのままご紹介します🗺",
+      "url": "https://www.instagram.com/reel/DfmHFZFI13Q/",
+      "metrics": {}
+    }
+  ]
+}
