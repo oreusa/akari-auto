@@ -228,5 +228,6 @@ html.tk2 .kmap.tk3d .tkcp{transform:translate(0,-5px) scale(1.08,1.12);transform
 html.tk details .tk-v,html.tk details :is(li,a,p){animation:none!important;opacity:1!important;transform:none!important;translate:none!important}
 
 /* 11/11 17:38 オーナー「大阪とか押した時に黒い四角が周りに一瞬映る」→ iPhone が押した物の周りに出す影（タップの印）を、地図と押せる部品では出さない */
-html.tk .kmap,html.tk .kmap *,html.tk [role=button],html.tk summary,html.tk label{-webkit-tap-highlight-color:transparent}
+/* 11/11 17:41 オーナー「そういう四角が出た時は他も見て。全部確認」→ 全ページを機械で調べたら、入力欄・えらぶ欄・たたむ見出しなどにも残っていた → もとから全部で出さない（押した手ごたえは各部品の色の変化で出す） */
+html.tk,html.tk *{-webkit-tap-highlight-color:transparent}
 html.tk .kmap path:focus:not(:focus-visible),html.tk .kmap g:focus:not(:focus-visible){outline:0}
