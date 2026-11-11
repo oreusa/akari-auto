@@ -148,14 +148,14 @@
   ④料金・時間などの数字を書くなら、並べた全部にそろえて書く（1か所だけ料金がある形にしない）
   ⑤読んだ人が次にすること（行く・買う・調べる）に必要なリンクがある
    読み直しの結果は、最後の1行に「読み直し：直した所 N件（どの枠の何）」と書く。
-1. JSON を作り、python で次を確かめる：json として読める／date が D／posts の slot が 07:15・09:15・12:15・13:45・15:15・18:15・20:15・21:00・22:15 の9つ／各投稿に topic・x・threads／PRに link・fallback／文字数。scripts/check.py の中身を get_file_contents で読み、同じ決まり（禁止のURL、#PR、{{LINK}}、文字数）を python で再現して確かめるとよい。
+1. JSON を作り、python で次を確かめる：json として読める／date が D／posts の slot が 07:15・09:15・12:15・13:45・15:15・18:15・20:15・21:00・22:15 の9つ（notes/gakushu.md の指令で枠を移した時は、その時刻。本数は9本のまま）／各投稿に topic・x・threads／PRに link・fallback／文字数。scripts/check.py の中身を get_file_contents で読み、同じ決まり（禁止のURL、#PR、{{LINK}}、文字数）を python で再現して確かめるとよい。
 2. mcp__github__create_or_update_file で owner=oreusa repo=akari-auto branch=main path=schedule/D.json に保存（commit message「燈：D の予定表」）。すでにあるときは get_file_contents で sha を取って上書き。
 3. 2〜3分待ってから mcp__github__actions_list（list_workflow_runs、resource_id=check.yml、perPage 1）で最新の check が success か確かめる。check は決まりに加えて、楽天に「PRとROOMの商品が販売中か・商品名に expect があるか・文の数字が商品説明にあるか・レビュー4.0以上か」を聞き、出どころのページが終わっていないかも見る。failure なら get_job_logs（failed_only）で×の行を読み、商品や数字を直して保存し直す（3回まで）。3回でも直らないPRは、link を外して通常の投稿にする（予定表が×のまま朝を迎えない）。
 4. notes/strategy.md を書き直す（上の「作戦帳」）。
 5. notes/learning.md の最後に1行足す（無ければ作る）：「T 夜：学び〜／明日試すこと〜」。前の行は消さない。
 
 ■2 育てる（毎晩1つだけ。11/11 月。前の「毎晩3つ成長・6つの案の会議」「全方向から学ぶ」「学ぶ（5分）」はこれに替えた。docs/keiei.md 8章と同じ）
-1. 数字を見る（この順で、要る所だけ）：notes/seichou.md（関東の成長の帳面。機械が毎朝作る。この7日と前の7日、投稿の枠ごとのHPに来た数、いちばん弱い所と次の一手）→ notes/scoreboard.md（枠・型ごとの閲覧の中央値）→ notes/sales-board.md の最後の3行。
+1. 【11/11〜 学習の台帳】notes/gakushu.md を読む（機械が毎朝作る1枚。HP・投稿の枠と型・投稿からHPへ・インスタ・担当・お金・反響の「数字・合格の線・答え」と「きょうの指令」と「学び」）。「燈の夜」「投稿」「リール」あての指令は、今夜の予定表・台本にそのまま入れる（枠を移す指令は slot の時刻を変える。型を減らす指令は本数を減らす）。学びにある「外れ」と同じ事はやらない。notes/seichou.md・notes/scoreboard.md・notes/sales-board.md は、指令の理由を確かめたい時だけ開く（毎晩は読まない）。指令をやらなかった時は、理由を notes/growth.md に1行。
 2. きのうの一手に○×を付ける：notes/growth.md の最後の行に、数字で○か×。○は続ける、×はやめる（2回×の型は使わない）。
 3. 今夜の一手を1つだけ決めて、今夜のうちに入れる（予定表・4コマ台本・HPのどれか）。選ぶ順：①HPに来る人を増やす（来た元が多い枠の型を明日もう1本／検索から来る入口ページの題と説明を直す）②来た人が押す所を直す ③見た目。思いつきで2つ3つ足さない。
 4. notes/growth.md に1行：「D｜一手：〜（どこに入れたか）｜物差し：〜｜きのうの○×（数字）」。

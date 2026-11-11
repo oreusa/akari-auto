@@ -166,9 +166,10 @@ jobs:
           if [ "${{ inputs.reset }}" = "true" ]; then python3 scripts/pagestats.py reset "$NS" || true; else python3 scripts/pagestats.py "$NS" || true; fi
           python3 scripts/koe.py "$NS" || true
           python3 scripts/seichou.py > /dev/null || true
+          python3 scripts/gakushu.py > /dev/null || true
           git config user.name "akari-auto"
           git config user.email "akari-auto@users.noreply.github.com"
-          git add notes/seichou.md data/seichou.json 2>/dev/null || true
+          git add notes/seichou.md data/seichou.json notes/gakushu.md data/gakushu.json data/shirei.json data/manabi.json 2>/dev/null || true
           git add notes/room-daihon.md data/room-log.json 2>/dev/null || true
           git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/townnotes-geo-checked.json data/kansai-yado.json data/kanto-yado.json data/tanka.json data/furusato.json data/price-history.json data/nesage.json data/okaimono_img.json data/koe.json data/note-history.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
