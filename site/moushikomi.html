@@ -199,5 +199,10 @@ tl.parentNode.insertBefore(tt,tl.nextSibling);tl.addEventListener("input",functi
 var ag=f.querySelector(".ag span");if(ag)ag.innerHTML='<a href="/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>を読み、同意します（会社へのご紹介は、ご希望があった時だけです）';
 $("sb").textContent="この内容で聞く（無料）";
 var dn=$("done");if(dn){var b=dn.querySelector("b"),p=dn.querySelector("p");if(b)b.textContent="受け付けました";if(p)p.innerHTML="2営業日以内に、メールかお電話でお返事します。<br>しばらくお待ちください。";}
+/* 11/12 街ページ・地価の「いくらで売れるか聞く」からも、名前なしの3つだけで聞ける（来てすぐ名前と連絡先の画面だと、書きはじめる人が1割に届かなかった） */
+if(/査定|売/.test(W)){if(h)h.textContent="いくらで売れそうか聞く";document.title="いくらで売れるか聞く｜LIFE NOTE";
+tx.placeholder="例）築30年くらいの一戸建て。売るかはまだ決めていません";
+if(m)m.innerHTML=m.innerHTML.replace("見積りだけで終わっても、費用はかかりません。","聞くだけで終わっても、費用はかかりません。売るかどうかは、あとで決められます。");
+var b2=document.querySelector("a.back");if(b2){b2.href="/uru";b2.textContent="先に、売る前に知っておくことを読む";}}
 }catch(e){}})();</script>
 </body></html>
