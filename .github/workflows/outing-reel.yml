@@ -1,6 +1,6 @@
 name: outing-reel（関東のおでかけリールを作って置く）
 # 10/29 オーナー「燈のインスタにも月と同じおでかけ動画」「リールは毎日2本。関東のおでかけリールの後に、同じおでかけ先で4コマリール」
-# 燈の夜の回が reel/D.json を保存すると動く。tools/outing_reel/make.py で約29秒の動画（オーナーのフリー音源つき）を作り、
+# 燈の夜の回が reel/D.json を保存すると動く。tools/outing_reel/make.py で約30秒の動画（11/11〜 月と同じ新しい型：縦書き・線画・声4か所。オーナーのフリー音源つき）を作り、
 # Cloudflare Pages（akari-reels）に置いて、URL を reel/out/D.json に書く。予約は book.py（07:30 にインスタのリール）。
 # 1回 約3分（非公開リポジトリの無料枠を使う。1日1回＝月約90分）。
 on:
@@ -20,8 +20,14 @@ concurrency:
 jobs:
   make:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
+    services:
+      vv:   # 声（11/11〜 reel/D.json の "voice" 4行を読む。tools/outing_reel/make.py が使う）
+        image: voicevox/voicevox_engine:cpu-latest
+        ports:
+          - 50021:50021
     env:
+      VOICE_URL: http://127.0.0.1:50021
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
       RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
