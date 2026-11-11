@@ -492,3 +492,23 @@ document.addEventListener("click",function(e){if(e.defaultPrevented)return;var a
 addEventListener("pagehide",shut);
 addEventListener("pageshow",function(e){shut();requestAnimationFrame(function(){requestAnimationFrame(back)});});
 }catch(e){}})();
+
+/* 11/12 オーナー「バー変、真ん中までついてくるバグ」→ iPhone で文字を打った後（キーボードを閉じた後）に、下のバーが画面の真ん中に残ることがある。
+   ①文字を打っている間はバーを下げる ②閉じたらバーを置き直す ③画面の下とズレていたら、その分だけ下へ戻す。見た目・並びは変えない。 */
+(function(){
+var st=document.createElement("style");st.textContent="#v2bar.kb{transform:translateY(160%)!important;pointer-events:none}";document.head.appendChild(st);
+function bar(){return document.getElementById("v2bar")}
+function typing(){var a=document.activeElement;if(!a)return false;var t=a.tagName;if(t==="TEXTAREA"||a.isContentEditable)return true;
+  return t==="INPUT"&&!/^(checkbox|radio|button|submit|range|file|color|hidden)$/i.test(a.type||"")}
+var raf=0;
+function fix(){raf=0;var b=bar();if(!b)return;var k=typing();b.classList.toggle("kb",k);
+  var vv=window.visualViewport,d=0;if(vv&&!k&&Math.abs((vv.scale||1)-1)<.01)d=Math.round(window.innerHeight-(vv.offsetTop+vv.height));
+  b.style.marginBottom=d<-20?d+"px":""}
+function ask(){if(!raf)raf=requestAnimationFrame(fix)}
+function reset(){var b=bar();if(!b)return;b.style.display="none";void b.offsetHeight;b.style.display="";fix()}
+document.addEventListener("focusin",ask,true);
+document.addEventListener("focusout",function(){ask();setTimeout(reset,350);setTimeout(fix,900)},true);
+if(window.visualViewport){visualViewport.addEventListener("resize",ask);visualViewport.addEventListener("scroll",ask)}
+window.addEventListener("resize",ask);window.addEventListener("orientationchange",function(){setTimeout(reset,400)});
+window.addEventListener("pageshow",function(){setTimeout(fix,60)});
+})();
