@@ -769,7 +769,7 @@ open(os.path.join(S, "jikka", "index.html"), "w", encoding="utf-8").write(_jl)
 sm = os.path.join(S, "sitemap.xml")
 if LIVE and os.path.exists(sm):
     x = open(sm, encoding="utf-8").read()
-    add = "".join(f"<url><loc>{BASE}{p}</loc></url>" for p in ["/fudosan-list", "/chika-kanto", "/sagasu", "/jikka/", "/kaitai"] + [f"/machi/{t['id']}" for t in towns] + [f"/jikka/{t['id']}" for t in towns] if f"{BASE}{p}<" not in x)
+    add = "".join(f"<url><loc>{BASE}{p}</loc></url>" for p in ["/fudosan-list", "/chika-kanto", "/sagasu", "/jikka/", "/kaitai"] + ["/" + f[:-5] for f in sorted(os.listdir(os.path.join(os.path.dirname(sm)))) if f.startswith("kaitai-") and f.endswith(".html")] + [f"/machi/{t['id']}" for t in towns] + [f"/jikka/{t['id']}" for t in towns] if f"{BASE}{p}<" not in x)
     if add:
         open(sm, "w", encoding="utf-8").write(x.replace("</urlset>", add + "</urlset>", 1))
 print("関東不動産リスト:", len(towns), "街のページ ・ /chika-kanto ・ /fudosan-list", len(FACTS), "件", "live" if LIVE else "noindex",
