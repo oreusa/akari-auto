@@ -345,7 +345,12 @@ def itt_box(n, p="", tid=""):
     return (f'<section class="itt" id="itt"><div class="en2">IN THIS TOWN</div><h2>{E(n)}で</h2><div class="itg">'
             f'<a class="itc" href="/uru.html" data-k="この街で｜売りたい｜{E(n)}"><b>売りたい</b><span>いくらで売れそうか、相場から順に（無料）</span><i>手順を見る →</i></a>'
             f'' + buy_card(p, n) + f''
-            f'</div>' + f'<p class="itn">「買いたい」の3つは広告です（Yahoo!不動産のこの街の一覧が開きます）。</p></section>')
+            f'</div>'
+            # 11/12 台帳：関東は7日で1195回見られて申し込みを開いた人0。街ページ329枚に申し込みへの道が1つも無かった → 街の名前入りで、申し込みの2つ目の画面（場所入り）へ直接
+            + (f'<a class="itg2 itq" href="/moushikomi?machi={tid}&amp;want={_q("査定してほしい")}" data-k="この街で｜いくらで売れるか聞く｜{E(n)}">{E(short(n))}の家、いくらで売れるか無料で聞く <i>→</i></a>'
+               f'<p class="itn" style="text-align:center;margin-top:6px">無料・売るか決めていなくても大丈夫です。メールかお電話、ご希望の方でお返事します。</p>'
+               f'<a class="itg2" href="/moushikomi?machi={tid}&amp;want={_q("相続した家のこと")}" data-k="この街で｜困りごとの相談｜{E(n)}">相続した家・古い家・再建築不可などのご相談 <i>→</i></a>' if tid else '')
+            + f'<p class="itn">「買いたい」の3つは広告です（Yahoo!不動産のこの街の一覧が開きます）。</p></section>')
 
 
 def buy_box(n):
@@ -356,7 +361,8 @@ def buy_box(n):
 
 
 # ================= 街ごとのページ
-TOWN_CSS = """.itg2{display:flex;justify-content:space-between;margin:10px 0 0;padding:11px 14px;border-top:1px solid #E6E6E6;border-bottom:1px solid #E6E6E6;text-decoration:none;color:#5E544D;font-size:13px;text-align:left}.itg2 i{font-style:normal;font-family:Jost;color:#9C8775}
+TOWN_CSS = """.itg2.itq{background:#3A332E;color:#fff;border:0;border-radius:12px;padding:15px 16px;font-size:15px;font-weight:700;margin-top:12px}.itg2.itq i{color:#fff}
+.itg2{display:flex;justify-content:space-between;margin:10px 0 0;padding:11px 14px;border-top:1px solid #E6E6E6;border-bottom:1px solid #E6E6E6;text-decoration:none;color:#5E544D;font-size:13px;text-align:left}.itg2 i{font-style:normal;font-family:Jost;color:#9C8775}
 .big{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 0}
 .big div{background:#F5F5F5;padding:12px 14px}.big b{display:block;font-family:Jost;font-size:24px;font-weight:500;color:var(--pc)}.big span{font-size:11px;color:#7A6E66;letter-spacing:.04em}
 .big .w{grid-column:1/3}.big .w b{font-size:15px;font-family:"Zen Kaku Gothic New";font-weight:700;color:#2B2622;line-height:1.7}
