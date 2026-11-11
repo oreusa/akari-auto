@@ -1,0 +1,218 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="canonical" href="https://townnote.pages.dev/jikka/shindan/">
+<meta property="og:title" content="実家・空き家の3問診断｜TOWN NOTE"><meta property="og:description" content="3つえらぶだけで、次にやることと、その街で売れた値段が分かります。無料・約30秒。"><meta property="og:image" content="https://townnote.pages.dev/assets/ogp.png">
+<meta name="description" content="親の家・空き家をどうするか。3つえらぶだけで、次にやることと、その街で売れた値段が分かります。無料・約30秒・名前は要りません。">
+<link rel="icon" href="/assets/ogp.png"><link rel="apple-touch-icon" href="/assets/icon-180.png"><link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#FFFFFF">
+<title>実家・空き家の3問診断｜TOWN NOTE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<script src="/assets/night.js?v=23"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#FFFFFF;font-family:"Zen Kaku Gothic New",sans-serif;color:#2B2622;-webkit-text-size-adjust:100%}
+.wrap{max-width:440px;margin:0 auto;padding:0 18px 120px}
+.sh{display:flex;align-items:center;gap:12px;padding:22px 92px 6px 0}
+.sh img{width:44px;height:44px}
+.sh .en{font-family:Jost;font-weight:400;font-size:10px;letter-spacing:.34em;color:#8C7B6E}
+.sh h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:19px;letter-spacing:.04em;margin:3px 0 0;white-space:nowrap;color:#231E1B;font-feature-settings:"palt"}
+.lead{font-size:14px;line-height:1.9;color:#5A4F47;margin:10px 0 0}
+.lead small{display:block;font-size:12.5px;color:#857A70}
+/* 進みぐあい */
+.pg{display:flex;gap:6px;margin:22px 0 0}
+.pg i{flex:1;height:4px;border-radius:4px;background:#E6E1DB;overflow:hidden;position:relative}
+.pg i::after{content:"";position:absolute;inset:0;background:#2F7D5B;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.pg i.on::after{transform:none}
+.pn{font-family:Jost;font-size:11px;letter-spacing:.22em;color:#8C7B6E;margin:10px 0 0}
+/* 質問 */
+.q{display:none}
+.q.on{display:block;animation:in .32s cubic-bezier(.2,.7,.2,1)}
+@keyframes in{from{opacity:0;transform:translate3d(0,10px,0)}}
+@media (prefers-reduced-motion:reduce){.q.on{animation:none}.pg i::after{transition:none}}
+.q h2{font-family:"Shippori Mincho",serif;font-weight:600;font-size:22px;line-height:1.55;letter-spacing:.04em;margin:8px 0 6px;color:#231E1B;font-feature-settings:"palt"}
+.q .hint{font-size:13px;color:#857A70;margin:0 0 16px;line-height:1.8}
+.op{display:block;width:100%;text-align:left;font:inherit;color:#2B2622;background:#fff;border:1.5px solid #CFC6BD;border-radius:14px;padding:16px 44px 16px 16px;margin:0 0 10px;font-size:16px;font-weight:700;line-height:1.5;position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .15s,background .15s,transform .15s}
+.op small{display:block;font-weight:500;font-size:12.5px;color:#857A70;margin-top:3px}
+.op::after{content:"";position:absolute;right:18px;top:50%;width:8px;height:8px;border-right:1.5px solid #9C8775;border-bottom:1.5px solid #9C8775;transform:translateY(-50%) rotate(-45deg)}
+.op:active{transform:scale(.985)}
+.op:hover,.op:focus-visible{border-color:#2F7D5B;outline:none}
+.op.sel{border-color:#2F7D5B;background:#F1F7F3}
+.bk{font:inherit;font-size:13px;color:#6B6058;background:none;border:0;border-bottom:1px solid #A89C91;padding:0 0 2px;margin:14px 0 0;cursor:pointer}
+/* 街えらび */
+.pf{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}
+.pf button{font:inherit;font-size:15px;font-weight:700;color:#2B2622;background:#fff;border:1.5px solid #CFC6BD;border-radius:12px;padding:12px 0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pf button.sel{background:#231E1B;color:#fff;border-color:#231E1B}
+.sr{width:100%;font:inherit;font-size:16px;padding:13px 14px;border:1.5px solid #CFC6BD;border-radius:12px;background:#fff;color:#2B2622;margin:0 0 10px}
+.sr:focus{outline:none;border-color:#2F7D5B}
+.twl{display:flex;flex-wrap:wrap;gap:8px;max-height:46vh;overflow:auto;padding:2px 0 6px;overscroll-behavior:contain}
+.twl button{font:inherit;font-size:14.5px;color:#2B2622;background:#F6F4F1;border:1px solid transparent;border-radius:999px;padding:9px 14px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.twl button:hover,.twl button:focus-visible{border-color:#2F7D5B;outline:none}
+.twl p{font-size:13px;color:#857A70;margin:6px 2px}
+/* 結果 */
+.rs .tag{display:inline-block;font-size:12px;font-weight:700;color:#2F7D5B;background:#EAF4EE;border-radius:999px;padding:4px 12px;margin:10px 0 0}
+.rs h2{font-size:24px;margin:10px 0 8px;text-wrap:balance;word-break:auto-phrase}
+.rs .why{font-size:14.5px;line-height:1.95;color:#3D352F;margin:0}
+.pick{font-size:12.5px;color:#857A70;margin:14px 0 0;line-height:1.8}
+.mk{font-family:Jost;font-weight:500;font-size:10px;letter-spacing:.3em;color:#9C8775;margin:34px 0 0;display:flex;align-items:center;gap:12px}.mk::after{content:"";flex:1;height:1px;background:#E1DBD4}
+.rs h3{font-family:"Shippori Mincho",serif;font-weight:600;font-size:18px;letter-spacing:.05em;margin:8px 0 14px;color:#231E1B;line-height:1.6}
+.pr2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pr2 div{background:#F6F4F1;border-radius:14px;padding:14px 14px 12px}
+.pr2 span{display:block;font-size:12px;color:#6B6058;line-height:1.6}
+.pr2 b{display:block;font-family:Jost;font-weight:500;font-size:28px;letter-spacing:.01em;color:#231E1B;margin-top:4px;font-variant-numeric:tabular-nums}
+.pr2 b small{font-family:"Zen Kaku Gothic New";font-size:13px;font-weight:700;margin-left:2px}
+.pr2 em{display:block;font-style:normal;font-size:11.5px;color:#857A70;margin-top:2px}
+.pr2 p{font-size:12.5px;color:#857A70;margin:6px 0 0;line-height:1.7}
+.src{font-size:11.5px;line-height:1.8;color:#857A70;margin:10px 0 0}
+.st{display:flex;gap:14px;padding:16px 0;border-top:1px solid #EAE5DF}
+.st:first-of-type{border-top:0;padding-top:0}
+.st i{flex:0 0 30px;height:30px;border-radius:50%;background:#231E1B;color:#fff;font-style:normal;font-family:Jost;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.st b{display:block;font-size:15.5px;line-height:1.6;color:#231E1B}
+.st p{font-size:13.5px;line-height:1.9;color:#4A413A;margin:4px 0 0}
+.st a{display:inline-block;font-size:12px;color:#6B6058;margin-top:6px;text-underline-offset:3px}
+.cta{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:16px;border-radius:14px;padding:16px 12px;margin:0 0 10px;color:#231E1B;background:#fff;border:1.5px solid #CFC6BD}
+.cta small{display:block;font-weight:500;font-size:12px;margin-top:2px;opacity:.8}
+.cta.b1{background:#231E1B;color:#fff;border-color:#231E1B}
+.nt{font-size:12px;line-height:1.85;color:#857A70;margin:18px 0 0}
+.again{display:block;margin:22px auto 0}
+.ft{text-align:center;font-size:10px;letter-spacing:.04em;color:#8C7B6E;margin-top:40px}
+html:not(.sd-r) #v2bar a[data-h="#steps"]{display:none}
+.st b u{text-decoration:none;display:inline-block;font-size:11px;font-weight:700;color:#B5553A;border:1px solid #E3B9AB;border-radius:999px;padding:1px 8px;margin-left:8px;vertical-align:2px}
+.sharew{text-align:center;margin:18px 0 0}.share{font:inherit;font-size:14px;font-weight:700;color:#231E1B;background:#F6F4F1;border:0;border-radius:999px;padding:12px 20px;cursor:pointer}.share small{display:block;font-weight:500;font-size:11.5px;color:#857A70;margin-top:1px}
+.q h2:focus{outline:none}
+@media (min-width:860px){.sh{padding-right:0}.wrap{max-width:560px;padding-top:20px}.q h2{font-size:25px}.twl{max-height:none}}
+</style></head>
+<body><div class="wrap">
+<div class="sh"><img src="/assets/logo-s.png?v=2" width="44" height="44" alt="ロゴ"><div><div class="en">3 QUESTIONS</div><h1>実家・空き家の3問診断</h1></div></div>
+<p class="lead" id="lead">3つえらぶだけで、次にやることが分かります。<small>無料・約30秒・お名前は要りません。関西のお家が対象です。</small></p>
+<div class="pg" id="pg" aria-hidden="true"><i></i><i></i><i></i></div>
+<p class="pn" id="pn">1 / 3</p>
+
+<section class="q on" id="q1" aria-live="polite">
+<h2 tabindex="-1">お家は、どの街にありますか</h2>
+<p class="hint">府県をえらぶか、街の名前を入れてください（ひらがなでも探せます）。</p>
+<div class="pf" id="pf"></div>
+<input class="sr" id="sr" type="search" inputmode="search" enterkeyhint="search" placeholder="例：ひらかた、西宮" aria-label="街の名前で探す" autocomplete="off">
+<div class="twl" id="twl"></div>
+</section>
+
+<section class="q" id="q2">
+<h2 tabindex="-1">いま、だれが住んでいますか</h2>
+<p class="hint" id="h2"></p>
+<button class="op" data-v="A">空き家・相続した<small>だれも住んでいない（名義変更がまだの家も）</small></button>
+<button class="op" data-v="D">空き家・名義は親のまま<small>親は施設や別の家にいる</small></button>
+<button class="op" data-v="C">親が住んでいる<small>これからのために考えておきたい</small></button>
+<button class="op" data-v="B">自分や家族が住んでいる<small>親から相続した家に</small></button>
+<button class="bk" data-b="1">← 街をえらび直す</button>
+</section>
+
+<section class="q" id="q3">
+<h2 tabindex="-1">その家を、どうしたいですか</h2>
+<p class="hint">いまの気持ちに近いものをえらんでください。あとで変えられます。</p>
+<button class="op" data-v="1">早めに手放したい<small>1年くらいのうちに</small></button>
+<button class="op" data-v="2">まだ迷っている<small>売るか残すか決めていない</small></button>
+<button class="op" data-v="3">残しておきたい<small>思い出がある・いつか使うかもしれない</small></button>
+<button class="bk" data-b="2">← ひとつ戻る</button>
+</section>
+
+<section class="q rs" id="rs" aria-live="polite"></section>
+<div class="ft">TOWN NOTE</div></div>
+<script>(function(){
+var T=__DATA__;
+var PF=["大阪","京都","兵庫","奈良","滋賀","和歌山"];
+var S={t:null,w:null,d:null},pf=null;
+function $(i){return document.getElementById(i)}
+function E(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var O=false;try{O=localStorage.getItem("usagi_owner")==="1"}catch(e){}
+function cnt(k){if(O)return;try{var b=JSON.stringify({k:k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true})}catch(e){}}
+function hira(s){return s.replace(/[ァ-ヶ]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96)})}
+/* 出典つきの手順（実家ノートと同じ内容） */
+var ST={
+ touki:["相続登記を確かめる","2024年4月1日から、相続で家や土地を受け取ったと知った日から3年以内の相続登記が義務になりました。2024年3月より前の相続も対象で、期限は「2027年3月31日」か「受け取ったと知った日から3年」の、どちらか遅い方です。","https://www.moj.go.jp/MINJI/souzokutouki-gimuka/index.html","出典：法務省「相続登記の申請義務化」"],
+ kataduke:["家財を片付ける","片付け・遺品整理の見積りを先に取ると、売る時期を決めやすくなります。見積りは作業の中身と追加料金を確かめてから頼みましょう。","https://www.kokusen.go.jp/mimamori/mj_mailmag/mj-shinsen525.html","出典：国民生活センター「遺品整理を頼むときは、事業者選びは慎重に」"],
+ kanri:["手入れを続ける","手入れが足りず市から「管理不全空家」として勧告を受けると、土地の固定資産税の軽減（住宅用地特例）が外れます。草木・郵便物・雨もりを、定期的に見に行く人を決めましょう。","https://www.mlit.go.jp/jutakukentiku/house/content/001621960.pdf","出典：国土交通省「空家等対策の推進に関する特別措置法の一部を改正する法律」概要"],
+ kaitai:["そのまま売るか、解体するか","古い家は「そのまま売る」「更地にして売る」で値段も費用も変わります。手入れが足りず市から「管理不全空家」として勧告を受けると、土地の固定資産税の軽減（住宅用地特例）が外れます。","https://www.mlit.go.jp/jutakukentiku/house/content/001621960.pdf","出典：国土交通省「空家等対策の推進に関する特別措置法の一部を改正する法律」概要"],
+ zei:["税金の特例の期限を確かめる","相続した空き家（1981年5月31日以前に建てた家など）は、「相続から3年目の年の12月31日まで」かつ「2027年12月31日まで」に売ると、売ったもうけから最高3,000万円を差し引けます（相続人が3人以上なら1人2,000万円まで・条件あり）。くわしくは税務署・税理士へ。","https://www.nta.go.jp/taxes/shiraberu/taxanswer/joto/3306.htm","出典：国税庁 タックスアンサー No.3306"],
+ satei:["いまの値段を知る","上の数字は街ぜんたいの平均です。広さ・古さ・道の広さで、お家ごとに大きく変わります。査定は無料で、売ると決めていなくても頼めます。"],
+ souba:["相場だけ知っておく","上の数字が、この街で実際に売れた平均です。いざという時にあわてないよう、だいたいの値段だけ知っておくと安心です。"],
+ meigi:["名義がだれか確かめる","家と土地の名義は、法務局の登記事項証明書で分かります。亡くなった方の名義のままなら、相続登記の対象です（期限があります）。","https://www.moj.go.jp/MINJI/souzokutouki-gimuka/index.html","出典：法務省「相続登記の申請義務化」"],
+ honnin:["名義の方と話す","売る・貸すを決めて契約できるのは、名義の方ご本人です。まずご本人とご家族で、どうしたいかを話しておきましょう。"],
+ sukoshi:["片付けを少しずつ","いる物・いらない物を、元気なうちに一緒に分けておくと、あとの片付けがぐっと楽になります。"],
+ hanashi:["住んでいる方と話す","住んでいる方の次の住まいと、売る時期を先に決めましょう。相続人が何人かいる時は、全員の考えをそろえておくと後で止まりません。"],
+ tsukau:["使い道を決める","「貸す」「家族が使う」「手入れだけ続ける」のどれにするかで、かかるお金が変わります。貸せる家かどうかは、無料の相談でお答えできます。"]
+};
+/* だれが×どうしたい → 答え */
+var RS={
+ A1:{tag:"売る",h:"売る方向で、まず査定から",why:"空き家は、持っているだけで税金と手入れが続きます。早めに手放したいなら、いまの値段を知ることが最初の一歩です。",st:["touki","satei","zei"],c:["査定してほしい","片付け・遺品整理の見積り"]},
+ A2:{tag:"片付ける",h:"片付けながら、ゆっくり決める",why:"売るか残すかは、家の中が片付くと決めやすくなります。期限のある手続きだけ、先に確かめておきましょう。",st:["touki","kataduke","kaitai","zei"],c:["片付け・遺品整理の見積り","査定してほしい"]},
+ A3:{tag:"残す・貸す",h:"残すなら、手入れと使い道を決める",why:"残しておくことはできます。ただ、空き家のまま手入れが止まると、税金が上がることがあります。",st:["touki","kanri","tsukau"],c:["相続した家のこと","片付け・遺品整理の見積り"]},
+ B1:{tag:"売る",h:"住んでいる方と話してから、査定へ",why:"住んでいる方がいるので、急いで決めず、次の住まいと時期を先にそろえましょう。",st:["hanashi","touki","satei"],c:["査定してほしい","相続した家のこと"]},
+ B2:{tag:"そのまま",h:"そのままで大丈夫。名義だけ先に",why:"住んでいるなら、急いで決めることはありません。相続登記だけは期限があるので、先に確かめましょう。",st:["touki","souba"],c:["相続した家のこと"]},
+ B3:{tag:"そのまま",h:"そのままで大丈夫。名義だけ先に",why:"住み続けるなら、売る・貸すの手続きはいりません。相続登記だけは期限があるので、先に確かめましょう。",st:["touki","souba"],c:["相続した家のこと"]},
+ C1:{tag:"準備する",h:"いまの値段を知るところから",why:"売る・貸すを決められるのは、名義の方（親御さん）です。まず値段を知って、ご家族で話す材料にしましょう。",st:["honnin","satei","sukoshi"],c:["査定してほしい"]},
+ C2:{tag:"そのまま",h:"いまは、そのままで大丈夫",why:"親御さんが住んでいるうちは、急ぐことはありません。あとであわてないよう、3つだけ準備しておきましょう。",st:["souba","meigi","sukoshi"],c:[""]},
+ C3:{tag:"そのまま",h:"いまは、そのままで大丈夫",why:"残す気持ちが決まっているなら、急ぐことはありません。あとであわてないよう、3つだけ準備しておきましょう。",st:["meigi","sukoshi","souba"],c:[""]},
+ D1:{tag:"売る",h:"名義の方と一緒に、売る準備を",why:"空き家は、持っているだけで税金と手入れが続きます。名義は親御さんなので、ご本人と一緒に進めます。",st:["honnin","satei","kataduke"],c:["査定してほしい","片付け・遺品整理の見積り"]},
+ D2:{tag:"片付ける",h:"片付けながら、ゆっくり決める",why:"売るか残すかは、家の中が片付くと決めやすくなります。空き家のあいだの手入れだけ、止めないようにしましょう。",st:["honnin","kataduke","kanri"],c:["片付け・遺品整理の見積り","査定してほしい"]},
+ D3:{tag:"残す・貸す",h:"残すなら、手入れと使い道を決める",why:"残しておくことはできます。ただ、空き家のまま手入れが止まると、税金が上がることがあります。",st:["kanri","tsukau","sukoshi"],c:["査定してほしい","片付け・遺品整理の見積り"]}
+};
+var CT={"査定してほしい":"無料で査定を頼む","片付け・遺品整理の見積り":"片付けの見積りを頼む","解体の見積り":"解体の見積りを頼む","相続した家のこと":"相続した家のことを相談する","":"相談だけしてみる"};
+var WL={A:"相続した空き家",D:"親の名義の空き家",C:"親が住んでいる家",B:"相続して住んでいる家"},DL={1:"早めに手放したい",2:"まだ迷っている",3:"残しておきたい"};
+
+var LIM={touki:1,zei:1,meigi:1};
+function step(n){["q1","q2","q3","rs"].forEach(function(id,i){$(id).classList.toggle("on",i===n-1)});
+ var b=$("pg").children;for(var i=0;i<3;i++)b[i].classList.toggle("on",i<n-1);
+ $("pn").textContent=n>3?"結果":n+" / 3";$("lead").style.display=n===1?"":"none";
+ document.documentElement.classList.toggle("sd-r",n>3);
+ window.scrollTo(0,0);var h=$(["q1","q2","q3","rs"][n-1]).querySelector("h2");if(h&&n>1)try{h.focus({preventScroll:true})}catch(e){}}
+function url(){var q=[];if(S.t)q.push("machi="+S.t.i);if(S.t&&S.w)q.push("w="+S.w);if(S.t&&S.w&&S.d)q.push("d="+S.d);return location.pathname+(q.length?"?"+q.join("&"):"")}
+function read(){var q=location.search,m=(q.match(/[?&]machi=([a-z]+-\d+)/)||[])[1],w=(q.match(/[?&]w=([ABCD])/)||[])[1],d=(q.match(/[?&]d=([123])/)||[])[1];
+ S.t=m?T.filter(function(t){return t.i===m})[0]||null:null;S.w=S.t&&w||null;S.d=S.w&&d||null}
+function go(push){var n=!S.t?1:!S.w?2:!S.d?3:4;
+ if(S.t)$("h2").textContent=S.t.p+" "+S.t.n+" のお家について";
+ [].forEach.call(document.querySelectorAll("#q2 .op"),function(x){x.classList.toggle("sel",x.getAttribute("data-v")===S.w)});
+ [].forEach.call(document.querySelectorAll("#q3 .op"),function(x){x.classList.toggle("sel",x.getAttribute("data-v")===S.d)});
+ if(n===4)result();step(n);if(push)try{history.pushState(null,"",url())}catch(e){}}
+window.addEventListener("popstate",function(){read();go(false)});
+/* 1 街 */
+function list(){var v=hira($("sr").value.trim()),o=$("twl"),a;o.innerHTML="";
+ if(v)a=T.filter(function(t){return t.n.indexOf(v)>=0||t.k.indexOf(v)>=0||t.n.indexOf($("sr").value.trim())>=0}).slice(0,30);
+ else if(pf)a=T.filter(function(t){return t.p===pf});
+ else{o.innerHTML="";return}
+ if(!a.length){o.innerHTML="<p>見つかりませんでした。府県のボタンからえらんでみてください。</p>";return}
+ a.forEach(function(t){var b=document.createElement("button");b.type="button";b.textContent=(v?t.p+"　":"")+t.n;b.onclick=function(){S.t=t;S.w=S.d=null;cnt("診断｜街｜"+t.n);go(true)};o.appendChild(b)});}
+PF.forEach(function(p){var b=document.createElement("button");b.type="button";b.textContent=p;b.onclick=function(){pf=pf===p?null:p;$("sr").value="";[].forEach.call($("pf").children,function(x){x.classList.toggle("sel",x.textContent===pf)});list()};$("pf").appendChild(b)});
+$("sr").addEventListener("input",function(){if($("sr").value&&pf){pf=null;[].forEach.call($("pf").children,function(x){x.classList.remove("sel")})}list()});
+/* 2・3 */
+function ops(id,key,next){[].forEach.call($(id).querySelectorAll(".op"),function(b){b.onclick=function(){S[key]=b.getAttribute("data-v");[].forEach.call($(id).querySelectorAll(".op"),function(x){x.classList.toggle("sel",x===b)});setTimeout(next,140)}})}
+ops("q2","w",function(){S.d=null;go(true)});ops("q3","d",function(){cnt("診断｜結果｜"+RS[S.w+S.d].tag);go(true)});
+[].forEach.call(document.querySelectorAll(".bk[data-b]"),function(b){b.onclick=function(){if(b.getAttribute("data-b")==="1")S.t=null;S.w=S.d=null;go(true)}});
+/* 結果 */
+function man(a){return a[0].toLocaleString("ja-JP")}
+function price(t){var h="";
+ function cell(l,a){return "<div><span>"+l+"</span>"+(a?"<b>"+man(a)+"<small>万円</small></b><em>"+a[1]+"件の平均"+(a[1]<10?"（少ないので目安）":"")+"</em>":"<p>2025年度は、売れた記録がありません。</p>")+"</div>"}
+ if(!t.h&&!t.m)return "<p class='src'>この街は、2025年度に売れた記録が少なく、平均を出せません。査定でお家ごとの値段をお調べできます。</p>";
+ h="<div class='pr2'>"+cell("中古一戸建て",t.h)+cell("中古マンション",t.m)+"</div><p class='src'>出典：近畿レインズ 2025年度（2025年4月〜2026年3月）市区町村別の成約（平均）。お家ごとの値段は、広さ・古さで変わります。</p>";return h}
+function result(){var t=S.t,r=RS[S.w+S.d],h="",n=0;
+ h+="<span class='tag'>診断の結果："+E(r.tag)+"</span><h2>"+E(r.h)+"</h2><p class='why'>"+E(r.why)+"</p>";
+ h+="<p class='pick'>"+E(t.p+" "+t.n)+"／"+WL[S.w]+"／"+DL[S.d]+"</p>";
+ h+="<p class='mk'>SOLD</p><h3>"+E(t.n)+"で、売れた値段</h3>"+price(t);
+ h+="<p class='mk'>STEPS</p><h3>次にやること（この順で）</h3>";
+ r.st.forEach(function(k){var s=ST[k];n++;h+="<div class='st'"+(n===1?" id='steps'":"")+"><i>"+n+"</i><div><b>"+s[0]+(LIM[k]?"<u>期限あり</u>":"")+"</b><p>"+s[1]+"</p>"+(s[2]?"<a href='"+s[2]+"' target='_blank' rel='noopener' data-k='診断｜出典｜"+k+"'>"+s[3]+"</a>":"")+"</div></div>"});
+ h+="<p class='mk'>NEXT</p><h3>ここから頼めます</h3>";
+ r.c.forEach(function(w,i){h+="<a class='cta"+(i?"":" b1")+"' href='/moushikomi?machi="+t.i+(w?"&amp;want="+encodeURIComponent(w):"")+"' data-k='診断｜"+(w||"相談")+"｜"+E(t.n)+"'>"+CT[w]+"<small>無料・約1分</small></a>"});
+ h+="<a class='cta' href='/jikka/"+t.i+"' data-k='診断｜街の実家ノート｜"+E(t.n)+"'>"+E(t.n)+"の補助・くわしい手順を見る</a>";
+ h+="<p class='nt'>この診断は、えらんだ内容から一般的な順番をお伝えするものです。税金・登記は、お家ごとに条件が変わります。決める前に、税務署・法務局や専門家にご確認ください。</p>";
+ h+="<div class='sharew'><button class='share' id='shr' type='button'>この結果を家族に送る<small>お名前などは入りません</small></button></div><button class='bk again' id='ag'>はじめからやり直す</button>";
+ $("rs").innerHTML=h;
+ $("ag").onclick=function(){S={t:null,w:null,d:null};go(true)};
+ $("shr").onclick=function(){var u=location.origin+url(),b=this,tx="実家・空き家の3問診断（"+t.n+"）";cnt("診断｜家族に送る");
+  function ok(){b.firstChild.nodeValue="リンクをコピーしました"}
+  if(navigator.share){navigator.share({title:tx,text:tx,url:u}).catch(function(){})}
+  else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(ok,function(){prompt("このリンクを送ってください",u)})}
+  else prompt("このリンクを送ってください",u)};}
+/* 街ページなどから来た時（?machi=）は街をえらんだ所から */
+read();if(S.t)go(false);
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-k]");if(a&&$("rs").contains(a))cnt("クリック："+a.getAttribute("data-k"))});
+cnt("表示：診断");
+})();</script>
+<script src="/assets/menu.js?v=49" defer></script>
+<script src="/assets/v2sub.js?v=12" defer></script>
+</body></html>
