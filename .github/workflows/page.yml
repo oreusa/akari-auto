@@ -75,6 +75,8 @@ jobs:
         run: python3 scripts/illumi.py || true
       - name: 関東の紅葉ライトアップ（/koyo とイルミのページの紅葉の段。11/2 オーナー「燈のは紅葉作らないのか？」）
         run: python3 scripts/koyo.py || true
+      - name: 関東の初詣（/hatsumode。紅葉ページの形を借りるので koyo.py のあと。失敗してもHPは出す）
+        run: python3 scripts/hatsumode.py || true
       - name: 買いまわりの1,000円ぽっきり（11/1 オーナー「いつになったら売上作るんだ」。楽天の検索で毎回作る。失敗してもHPは出す）
         run: python3 scripts/kaimawari.py || true
       - name: 1個あたりで比べたページ（11/1 オーナー「すごいって思わせないと買われない」。楽天の送料込みを毎回100件以上比べる。失敗してもHPは出す）
