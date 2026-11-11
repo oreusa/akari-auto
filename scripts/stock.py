@@ -147,16 +147,9 @@ def report(now, check_links=True):
     lines.append(f"| 新しい施設（関東全体） | もうすぐ{ns}・できた{nn} | {'○' if ns + nn >= NEED_SHOP else '×'} | 合わせて{NEED_SHOP} |")
     if ns + nn < NEED_SHOP:
         short.append(f"新しい施設（もうすぐ・できた）が関東であと{NEED_SHOP - ns - nn}件")
-    total = sum(gc.values())
-    lines += ["", "## 商品の置き場（data/page-goods.json）", "", "| 項目 | 数 | 目標 |", "|---|---|---|"]
-    for k, name in keys:
-        n = gc.get(k, 0)
-        lines.append(f"| {name} | {n} {'○' if n >= NEED_GOODS_CAT else '×'} | {NEED_GOODS_CAT}件 |")
-        if n < NEED_GOODS_CAT:
-            short.append(f"商品の「{name}」があと{NEED_GOODS_CAT - n}件")
-    lines.append(f"| 合計 | {total} {'○' if total >= NEED_GOODS_TOTAL else '×'} | {NEED_GOODS_TOTAL}件 |")
-    if total < NEED_GOODS_TOTAL:
-        short.append(f"商品が合計であと{NEED_GOODS_TOTAL - total}件")
+    # 11/11 月：商品の置き場（data/page-goods.json）は数えない。11/6 に /okaimono を「機械が毎日楽天から作る比べ」に作り替えてから、
+    # 手で選んだ商品はどのページにも出ていなかった（本番で確かめた：/okaimono・/otoku・/odekake に0件）。足す仕事をやめる。
+    lines += ["", "## 商品", "", "- おかいもの（/okaimono）は機械が毎日 data/tanka.json から作る。手で商品を足す仕事は無い（11/11）。"]
     # これから終わる物（3日以内）：代わりを先に探す
     soon_end = sorted({e["title"] for r in PREFS for e in t[r]["now"]
                        if page._dt(e.get("ends")) and page._dt(e["ends"]) < now + timedelta(days=3)})
