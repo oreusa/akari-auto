@@ -91,6 +91,19 @@ item("money", "買い物・宿・ROOM", f"押された {n.get('buy', 0)}（前 {
 if not last or (today - date.fromisoformat(last["day"])).days > 8:
     order("燈の夜", "money", "月曜の汐の写し（楽天・A8・バリューコマースの成果、ROOM のクリックと売れた数）を data/seika.json の rows に {day, hassei, kakutei, nyukin, room, room_uri} で1行入れる。写しが無ければ「未確認」のまま、連絡帳に1行", "成果が未確認のまま")
 
+# 7b 市区ごとの解体補助ページ（11/11〜。data/page-stats.json の「表示：市の解体補助 <市区>」）
+_days = load(P("data", "page-stats.json"), {}).get("days", {}); _city = {}
+for _d, _v in _days.items():
+    if _d <= d7: continue
+    for _src, _it in (_v.get("click") or {}).items():
+        for _k, _c in _it.items():
+            _m = re.search(r"表示：市の解体補助 ([^（｜]+)", _k)
+            if _m: _city[_m.group(1)] = _city.get(_m.group(1), 0) + _c
+_n = len(glob.glob(P("site", "kaitai-*.html"))); _tot = sum(_city.values())
+item("city", "市区ごとの解体補助ページ", f"{_n}市区・見られた {_tot}・上位 " + ("・".join(f"{c} {v}" for c, v in sorted(_city.items(), key=lambda x: -x[1])[:3]) or "まだ無し"), "見られた 週20", "当たり" if _tot >= 20 else ("計測中" if not _tot else "外れ"), "検索から来る入口。市区を足すほど入口が増える")
+if _tot >= 20: order("月", "city", "関東の市区を1日2つ足す（凪の帳面の順に、公式ページで確かめて usagi tools/kaitai/kanto_hojo.tsv と city_life.py の SLUG へ）", "当たり：入口が効いている")
+else: order("月", "city", "関東の市区を1日1つ足す（公式ページで確かめた行だけ）。7日たっても見られた数が0なら、題を「◯◯市 解体 補助金 2026 いくら」の形に変える", "まだ数が無い")
+
 # 7 反響
 item("lead", "相談（反響）", f"申し込みを開いた {n.get('open', 0)}・送信 {n.get('sent', 0)}", "反響 月10件", "当たり" if n.get("sent", 0) >= 3 else "外れ", "関東も問い合わせはオーナーへ")
 
