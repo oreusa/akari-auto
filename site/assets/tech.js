@@ -110,7 +110,43 @@
     if(c&&+c[0]<70&&+c[1]<70&&+c[2]<70&&!e.querySelector("*"))e.classList.add("tk-h1");}catch(e){}}
 
   /* ページの部品は後から作られる物がある（一覧・帯・下のバー）ので、何度呼んでも同じ結果になる形で見回す */
-  var pend=0;function scan(){pend=0;bar();arm();carm();liveAll();clock();pill();pings();auto();h1s();arm();sheet();}
+  /* 申し込み：1画面に少しずつ聞く（3つに分ける）。元の入力欄・送信の仕組みはそのまま、置き場所を分けるだけ。
+     途中で失敗したら何も変えない（最後に tkw を付けた時だけ、分けた形になる）。 */
+  var formDone=0;function form(){try{if(formDone||!h.classList.contains("tk2"))return;var f=d.getElementById("mf");if(!f)return;formDone=1;
+    var q=function(sel){return f.querySelector(sel);},g=function(n){var r=f.querySelector('input[name="'+n+'"]');return r?r.closest(".ch"):null;};
+    var ck=g("kind"),cw=g("want"),pl=q("#pl"),tx=q("#tx"),nm=q("#nm"),em=q("#em"),tl=q("#tl"),ag=q(".ag"),sb=q("#sb"),er=q("#er");
+    if(!ck||!cw||!pl||!tx||!nm||!em||!tl||!ag||!sb||!er)return;
+    var lab=function(el){var p=el.previousElementSibling;return p&&/(^|\s)fl(\s|$)/.test(p.className)?p:null;};
+    var G=[[lab(cw),cw,lab(ck),ck],[lab(pl),pl,lab(tx),tx],[lab(nm),nm,lab(em),em,lab(tl),tl,q(".hp"),ag,sb,er]];
+    for(var i=0;i<G.length;i++)for(var j=0;j<G[i].length;j++)if(!G[i][j])return;
+    var T=["どんなご相談ですか","お家について","ご連絡先"],S=[],cur=0;
+    var top=d.createElement("div");top.className="tkst";top.setAttribute("aria-live","polite");top.innerHTML='<div class="tkst-n"><b>1</b><i>/ 3</i><span></span></div><div class="tkst-b"><u></u></div>';
+    f.insertBefore(top,f.firstChild);
+    for(i=0;i<3;i++){var s=d.createElement("div");s.className="tks";f.appendChild(s);S.push(s);}
+    for(i=0;i<3;i++){for(j=0;j<G[i].length;j++)S[i].appendChild(G[i][j]);
+      if(i<2){var e2=d.createElement("p");e2.className="er tke";e2.setAttribute("role","alert");S[i].appendChild(e2);
+        var nx=d.createElement("button");nx.type="button";nx.className="tknx";nx.textContent="次へ";nx.setAttribute("data-s",i);S[i].appendChild(nx);}
+      if(i>0){var bk=d.createElement("button");bk.type="button";bk.className="tkbk";bk.textContent="← 戻る";S[i].appendChild(bk);}}
+    var show=function(n,mv){cur=n;for(var k=0;k<3;k++){if(k===n)S[k].classList.add("on");else S[k].classList.remove("on");}
+      top.querySelector("b").textContent=String(n+1);top.querySelector("span").textContent=T[n];top.querySelector("u").style.transform="scaleX("+((n+1)/3)+")";
+      if(mv){try{var y=f.getBoundingClientRect().top+scrollY-90;scrollTo({top:Math.max(0,y),behavior:"smooth"});}catch(e){}}};
+    f.addEventListener("click",function(ev){var t=ev.target;if(!t||!t.classList)return;
+      if(t.classList.contains("tknx")){var e3=S[cur].querySelector(".tke");if(e3)e3.textContent="";
+        if(cur===1&&!String(pl.value||"").trim()){if(e3)e3.textContent="お家の場所を書いてください";try{pl.focus();}catch(e){}return;}
+        show(cur+1,1);}
+      else if(t.classList.contains("tkbk")){show(cur-1,1);}});
+    f.addEventListener("input",function(){var e4=S[cur].querySelector(".tke");if(e4&&e4.textContent)e4.textContent="";});
+    /* 送信の時に、前の画面の欄（場所）で止まったら、その画面に戻す */
+    new MutationObserver(function(){if(/場所/.test(er.textContent||"")&&cur!==1)show(1,1);}).observe(er,{childList:true,characterData:true,subtree:true});
+    show(0,0);f.classList.add("tkw");
+  }catch(e){}}
+  /* 長い説明文：最初は2行だけ。押すと全部出る（泊まりのページの上の説明） */
+  function fold(){try{if(!h.classList.contains("tk2"))return;var q=d.querySelectorAll(".wrap>p.pr");for(var i=0;i<q.length;i++){var p=q[i];if(p.__tkf)continue;p.__tkf=1;
+    if(p.getBoundingClientRect().height<70)continue;p.classList.add("tkfd");p.setAttribute("role","button");p.setAttribute("tabindex","0");p.setAttribute("aria-expanded","false");
+    var op=function(ev){var el=ev.currentTarget;if(ev.type==="keydown"&&ev.key!=="Enter"&&ev.key!==" ")return;if(ev.target.closest&&ev.target.closest("a"))return;
+      var o=el.classList.toggle("open");el.setAttribute("aria-expanded",o?"true":"false");};
+    p.addEventListener("click",op);p.addEventListener("keydown",op);}}catch(e){}}
+  var pend=0;function scan(){pend=0;bar();arm();carm();liveAll();clock();pill();pings();auto();h1s();arm();sheet();form();fold();}
   function later(){if(!pend)pend=setTimeout(scan,60);}
   function start(){scan();try{if(MO&&d.body)new MutationObserver(later).observe(d.body,{childList:true,subtree:true});}catch(e){}}
   if(d.readyState==="loading")d.addEventListener("DOMContentLoaded",start);else start();
@@ -123,4 +159,16 @@
     /* 下の b.click() は busy の間なので、この関数を素通りして元の切り替えに届く */
     try{d.startViewTransition(function(){b.click();}).finished.then(done,done);}catch(e){b.click();done();}
   },true);}}catch(e){}
+  /* 次のページを先に読む：指が触れた時（PCは乗せた時）に読み始めるので、開くのが速い。
+     同じサイトの中のページだけ。外へ出るリンク・数えるためのリンク（/c）は読まない。 */
+  try{var NO=/^\/c(\/|$)/,ok=function(a){try{if(!a||!a.href||a.target==="_blank"||a.hasAttribute("download"))return null;var u=new URL(a.href,location.href);
+      if(u.origin!==location.origin||NO.test(u.pathname)||u.pathname===location.pathname)return null;return u;}catch(e){return null;}};
+    var sr=false;try{sr=HTMLScriptElement.supports&&HTMLScriptElement.supports("speculationrules");}catch(e){}
+    /* 対応しているブラウザは menu.js の先読みが働くので、ここでは何もしない。iPhone など対応していない物だけ下で読む */
+    if(!sr){var seen={},n=0,warm=function(ev){var a=ev.target.closest&&ev.target.closest("a[href]"),u=ok(a);if(!u||seen[u.pathname]||n>=6)return;
+        try{if(navigator.connection&&navigator.connection.saveData)return;}catch(e){}
+        seen[u.pathname]=1;n++;var l=d.createElement("link");l.rel="prefetch";l.href=u.href;l.as="document";d.head.appendChild(l);
+        try{fetch(u.href,{credentials:"same-origin",priority:"low"}).catch(function(){});}catch(e){}};
+      d.addEventListener("touchstart",warm,{passive:true});d.addEventListener("mouseover",warm,{passive:true});}
+  }catch(e){}
 })();
