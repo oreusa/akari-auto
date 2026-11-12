@@ -20,7 +20,7 @@ concurrency:
 jobs:
   make:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 50
     services:
       vv:   # 声（11/11〜 reel/D.json の "voice" 4行を読む。tools/outing_reel/make.py が使う）
         image: voicevox/voicevox_engine:cpu-latest
@@ -64,7 +64,15 @@ jobs:
           mkdir -p reel/out
           for d in $TODO; do
             sha=$(sha1sum "reel/$d.json" | cut -c1-12)
-            if ! python3 tools/outing_reel/make.py "reel/$d.json" "/tmp/$d.mp4"; then
+            kata=$(python3 -c "import json,sys;print(json.load(open(f'reel/{sys.argv[1]}.json')).get('kata',''))" "$d")
+            ok=1
+            if [ "$kata" = "ehon" ]; then   # 11/12〜 絵本を開く型。作る道具は月の所（usagi-fudosan-media の tools/outing_reel/ehon.py）を借りる。台本の書き方もそこの README.md
+              [ -d /tmp/usagi ] || git clone -q --depth 1 https://github.com/oreusa/usagi-fudosan-media /tmp/usagi
+              WORK=/tmp/reel-$d python3 /tmp/usagi/tools/outing_reel/ehon.py "reel/$d.json" "/tmp/$d.mp4" || ok=0
+            else
+              python3 tools/outing_reel/make.py "reel/$d.json" "/tmp/$d.mp4" || ok=0
+            fi
+            if [ "$ok" = "0" ]; then
               python3 -c "import json,sys;json.dump({'date':sys.argv[1],'error':'動画を作れない','spec_sha':sys.argv[2]},open(f'reel/out/{sys.argv[1]}.json','w'),ensure_ascii=False)" "$d" "$sha"; continue
             fi
             python3 - "$d" "$sha" <<'PY'
