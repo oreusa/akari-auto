@@ -26,6 +26,15 @@ def slot_of(state, post_id):
     return None, None
 
 
+def img_of(state, post_id):
+    """絵つきか（1＝付けた・0＝付けられたが付けなかった・None＝合う絵なし）。book.py の post_image が残す印。"""
+    for rec in state.values():
+        for r in rec.values():
+            if isinstance(r, dict) and r.get("id") == post_id:
+                return r.get("img")
+    return None
+
+
 def fetch_day(cfg, state, day):
     start = datetime.fromisoformat(f"{day}T00:00").replace(tzinfo=JST).astimezone(timezone.utc)
     end = start + timedelta(days=1)
@@ -44,6 +53,7 @@ def fetch_day(cfg, state, day):
                 "kind": kind or "手動",
                 "first": ((n["text"] or "").splitlines() or [""])[0][:40],
                 "url": n.get("externalLink"),
+                "img": img_of(state, n["id"]),
                 "metrics": {m["type"]: m["value"] for m in (n.get("metrics") or [])},
             })
         if not d["pageInfo"]["hasNextPage"]:

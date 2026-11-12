@@ -116,6 +116,34 @@ def page_target(texts, due):
     return "", ""
 
 
+def post_image(texts, day, slot):
+    """投稿に付ける絵（11/12 オーナー「PR投稿はおかいもののHPの写真がある」「写真も効果ありならちょこちょこ入れる」）。
+    投稿の中のHPのページと同じ絵が data/postimg.json（scripts/post_img.js が公開のたびに作る）にあれば、それを返す。
+    返す物：(絵のURL か None, 印)。印 1＝付けた・0＝付けられたが付けなかった（くらべる相手）・None＝合う絵が無い。
+    ・「【くらべた」で始まる投稿（PR）は、必ず付ける。
+    ・ほかは data/postimg-rule.json の mode（gakushu.py が数字で決める）：half＝1日おき（同じ枠で絵あり・なしをくらべる）／all＝全部／pr＝PRだけ。"""
+    try:
+        idx = (load_json(path("data", "postimg.json"), {}) or {}).get("items") or {}
+        hit = None
+        for t in texts:
+            for m in re.finditer(r"pages\.dev/((?:o/)?[a-z0-9-]+)", t):
+                hit = idx.get("/" + m.group(1)) or hit
+        if not hit:
+            return None, None
+        if not texts[0].startswith("【くらべた"):
+            mode = (load_json(path("data", "postimg-rule.json"), {}) or {}).get("mode", "half")
+            on = mode == "all" or (mode == "half" and (datetime.fromisoformat(day).toordinal() + int(slot[:2])) % 2 == 0)
+            if not on:
+                return None, 0
+        import urllib.request
+        with urllib.request.urlopen(urllib.request.Request(hit["url"], method="HEAD", headers={"User-Agent": "Mozilla/5.0"}), timeout=12) as r:
+            if r.status != 200 or "image" not in (r.headers.get("content-type") or ""):
+                return None, None
+        return hit["url"], 1
+    except Exception:
+        return None, None
+
+
 def with_page(texts, service, cfg, slot="", due=None):
     """2つ目（最後）の文の最後に、プロフィール用ページのURLを1行足す（10/24 オーナー「HPの宣伝、投稿のURLに一緒に付けとけ。一石二鳥」）。
     X・Threadsとも最後に足す（10/24 オーナー「せめて最後に入れろ」。PRや公式のリンクを先に見せる）。文字数を超えるなら前の短い1行、それも超えるなら足さない。"""
@@ -413,13 +441,25 @@ def run(now=None):
             when = due if mins >= 15 else now + timedelta(minutes=15)
             due_utc = when.astimezone(timezone.utc)
             due_iso = due_utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+            img, img_mark = post_image(with_page(ths, "threads", cfg, slot, due), day, slot)  # X と Threads で同じ絵（どちらにも付けるか、どちらにも付けない）
             for s in todo:
                 texts = with_page(xs if s == "twitter" else ths, s, cfg, slot, due)
                 r = rec.setdefault(s, {"tries": 0})
                 r["tries"] = r.get("tries", 0) + 1
                 try:
-                    p = buffer_create(cfg["channels"][s], s, texts, due_iso,
-                                      topic=topic if s == "threads" else None)
+                    try:
+                        p = buffer_create(cfg["channels"][s], s, texts, due_iso,
+                                          topic=topic if s == "threads" else None,
+                                          image=img, alt="HPの画面：" + texts[0].splitlines()[0][:60], ai=False)
+                        if img_mark is not None:
+                            r["img"] = img_mark
+                    except BufferError as e_img:
+                        if not img:
+                            raise
+                        # 絵のせいで予約できない時は、絵なしで出す（投稿を落とさない）
+                        append_log(day, f"{slot} {s} 絵つきの予約×→絵なしで出す：{str(e_img)[:100]}")
+                        p = buffer_create(cfg["channels"][s], s, texts, due_iso,
+                                          topic=topic if s == "threads" else None)
                     r.update({"id": p["id"], "kind": kind, "at": when.strftime("%H:%M"),
                               "texts": texts, "topic": topic})
                     r.pop("error", None)

@@ -90,7 +90,7 @@ ok(book.choose(exp, "2026-10-24", None)[3] == "代わり", "期限切れで代�
 # 予約の流れ（Bufferはまね）
 calls = []
 book.buffer_posts = lambda cfg, st, a, b, channel_ids=None: []
-book.buffer_create = lambda ch, s, texts, due, topic=None, draft=False: calls.append((s, due, texts)) or {"id": f"p{len(calls)}", "status": "scheduled"}
+book.buffer_create = lambda ch, s, texts, due, topic=None, draft=False, **kw: calls.append((s, due, texts)) or {"id": f"p{len(calls)}", "status": "scheduled"}
 with tempfile.TemporaryDirectory() as d:
     lib.ROOT = d
     book.path = lambda *a: os.path.join(d, *a)
@@ -146,7 +146,7 @@ with tempfile.TemporaryDirectory() as d:
     book.run(now)
     st = lib.load_json(os.path.join(d, "state", "booked.json"))
     ok(st["2026-10-24 18:15"]["threads"].get("id", "").startswith("R"), f"文を直しても予約し直さない: {st.get('2026-10-24 18:15')}")
-    book.buffer_create = lambda ch, s, texts, due, topic=None, draft=False: calls.append((s, due, texts)) or {"id": f"p{len(calls)}", "status": "scheduled"}
+    book.buffer_create = lambda ch, s, texts, due, topic=None, draft=False, **kw: calls.append((s, due, texts)) or {"id": f"p{len(calls)}", "status": "scheduled"}
 
     # 4コマ：絵のURLがあれば X・Threads は画像、Instagram は動画があるときだけリール
     kc = []

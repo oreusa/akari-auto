@@ -22,7 +22,7 @@ for f in sorted(glob.glob(P("data", "metrics", "*.json"))):
     if day > d14:
         for p in load(f, {}).get("posts", []):
             m = p.get("metrics") or {}
-            posts.append({"day": day, "svc": p.get("service"), "slot": p.get("slot", ""), "kind": p.get("kind", ""), "v": int(m.get("views", m.get("impressions")) or 0), "first": p.get("first", "")})
+            posts.append({"day": day, "svc": p.get("service"), "slot": p.get("slot", ""), "kind": p.get("kind", ""), "v": int(m.get("views", m.get("impressions")) or 0), "first": p.get("first", ""), "img": p.get("img")})
 now = [p for p in posts if p["day"] > d7]; old = [p for p in posts if p["day"] <= d7]
 med = lambda xs: int(statistics.median(xs)) if xs else 0
 items, orders = [], []
@@ -124,6 +124,14 @@ if os.path.exists(P("notes", "daichou.md")):
 _wait = [p for p in _pr if "審査中" in p[1]]; _ok = [p for p in _pr if "提携済み" in p[1] or "承認" in p[1]]; _ng = [p for p in _pr if "見送り" in p[1] or "否" in p[1]]
 item("asp", "売却・査定の案件（ASP）", f"提携済み {len(_ok)}・審査中 {len(_wait)}（" + "・".join(f"{n} {r}" for n, _, r in _wait[:4]) + f"）・見送り {len(_ng)}", "売りたい人の送り先が1つ以上 提携済み", "当たり" if any("査定" in n or "売却" in n or "仲介" in n for n, st, _ in _ok if "使わない" not in st) else "外れ", "セレスは 11/11 見送り。代わりは審査中の案件")
 if _wait: order("月", "asp", "月曜の汐の写しで、審査中の案件（" + "・".join(n for n, _, _ in _wait[:4]) + "）の状態を台帳 notes/daichou.md に入れる。提携済みになった物は、その日のうちに /uru の「売りたい」に付け、押された数を数える。2週たっても審査中の物は、汐にもう1件ずつ申請を足してもらう", "売りたい人の送り先がまだ無い")
+
+# 6b' 絵つきの投稿（11/12 オーナー「写真も効果ありならちょこちょこ入れる」）。HPの画面の絵を、同じ枠で1日おきに付けてくらべる。
+# 答えは data/postimg-rule.json に書き、book.py がそれで動く（all＝全部に付ける・pr＝PRだけ・half＝1日おきでくらべ続ける）。PR（くらべた話）はいつも付ける。
+_ia = [p["v"] for p in now if p["svc"] == "threads" and p.get("img") == 1 and not (p.get("first") or "").startswith("【くらべた")]
+_ib = [p["v"] for p in now if p["svc"] == "threads" and p.get("img") == 0]
+_imode = "half" if min(len(_ia), len(_ib)) < 8 else ("all" if med(_ia) >= med(_ib) * 1.15 else ("pr" if med(_ia) <= med(_ib) * 0.85 else "half"))
+json.dump({"about": "投稿に絵を付ける決まり。gakushu.py が数字で決め、book.py が読む", "mode": _imode, "day": today.isoformat(), "img": [len(_ia), med(_ia)], "noimg": [len(_ib), med(_ib)]}, open(P("data", "postimg-rule.json"), "w", encoding="utf-8"), ensure_ascii=False)
+item("post-img", "絵つきの投稿（HPの画面）", f"Threads 絵あり {len(_ia)}本 中央値 {med(_ia) if _ia else '未確認'}・絵なし {len(_ib)}本 中央値 {med(_ib) if _ib else '未確認'}", "絵ありが絵なしの1.15倍より上", "計測中" if min(len(_ia), len(_ib)) < 8 else {"all": "当たり", "pr": "外れ", "half": "計測中"}[_imode], {"all": "当たり → 合う絵がある投稿の全部に付ける", "pr": "外れ → PR（くらべた話）だけに付ける", "half": "同じ枠で1日おきに付けてくらべている（8本ずつたまるまで）"}[_imode])
 
 # 6c くらべた話（11/12 オーナーがカードで「1日1本だけ7日ためす」。11/13〜11/19。見出しが「【くらべた｜」で始まる投稿を、通常の投稿とくらべる）
 _kb = [p for p in posts if (p.get("first") or "").startswith("【くらべた") and p["svc"] in ("threads", "twitter")]

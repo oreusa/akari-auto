@@ -179,7 +179,7 @@ mutation($input: CreatePostInput!) {
 
 
 def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False, image=None, video=None, alt="",
-                  images=None, ig_type=None):
+                  images=None, ig_type=None, ai=True):
     """thread = [文1, 文2, ...]。1つ目がそのまま投稿、2つ目以降は続き（スレッド）。
 
     image / video は誰でも開けるURL（Bufferが取りに行く）。付けたときは「AIで作った」の表示もONにする。
@@ -199,7 +199,7 @@ def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False,
     elif service == "instagram":
         t = ig_type or ("reel" if video else "post")
         meta["instagram"] = {"type": t, "shouldShareToFeed": t != "story", "isAiGenerated": True}
-    if (image or video or images) and service == "twitter":
+    if (image or video or images) and service == "twitter" and ai:  # HPの画面を撮った絵（ai=False）には「AIで作った」を付けない
         meta["twitter"]["isAiGenerated"] = True
     inp = {
         "channelId": channel_id,
@@ -215,7 +215,7 @@ def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False,
     elif images:
         inp["assets"] = [{"image": {"url": u, "metadata": {"altText": alt or "4コマ漫画"}}} for u in images]
     elif image:
-        inp["assets"] = [{"image": {"url": image, "metadata": {"altText": alt or "4コマ漫画"}}}]
+        inp["assets"] = [{"image": {"url": image, "metadata": {"altText": alt or "画像"}}}]
     # 続き投稿（thread）があるときは、画像を1つ目にも付ける（10/25 付けないとXとThreadsで画像が落ちた）
     if inp.get("assets") and service in ("twitter", "threads") and len(items) > 1:
         items[0]["assets"] = inp["assets"]
