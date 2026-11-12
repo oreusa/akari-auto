@@ -32,11 +32,13 @@ const CARD=`<!doctype html><meta charset="utf-8"><link href="https://fonts.googl
  const d=new Date(Date.now()+9*3600e3);const today=d.toISOString().slice(0,10);
  await p.clock.setFixedTime(new Date(today+'T03:00:00Z')); // 昼の見た目で撮る（夜は色が変わる）
  const c=await b.newPage({viewport:{width:1080,height:1350}});await c.setContent(CARD,{waitUntil:'networkidle'});await c.evaluate(()=>document.fonts.ready);
- await p.route('**/*',r=>{const u=r.request().url();(u.startsWith('http://127.0.0.1')||u.includes('fonts.g'))?r.continue():r.abort()}); // 数える合図・外の絵は呼ばない
+ await p.route('**/*',r=>{const u=r.request().url();(u.startsWith('http://127.0.0.1')||u.includes('fonts.g')||r.request().resourceType()==='image')?r.continue():r.abort()}); // 数える合図は呼ばない。商品の写真（外の絵）は呼ぶ（11/12 写真が割れた絵になった）
  let made=0,fail=[];const T=targets();
  const t0=Date.now();const LIMIT=(+process.env.POSTIMG_SEC||420)*1000; // 時間の上限（おかいもの→おでかけの順に撮り、時間が来たら残りは次の回）
  for(const t of T){if(Date.now()-t0>LIMIT){fail.push('時間切れ '+t.name+' から先');break}
   try{await p.goto(`http://127.0.0.1:${port}${t.page}`,{waitUntil:'load',timeout:20000});await p.waitForTimeout(120);
+   if(/okaimono|furusato|nesage/.test(t.name)){await p.waitForLoadState('networkidle',{timeout:5000}).catch(()=>{});
+     await p.evaluate(()=>{for(const i of document.images)if(i.complete&&!i.naturalWidth)i.style.visibility='hidden'})} // 写真を待つ。読めなかった写真は割れた印を出さず空白に
    await p.evaluate(()=>{for(const e of document.querySelectorAll('*')){const s=getComputedStyle(e);if((s.position==='fixed'||s.position==='sticky')&&e.tagName!=='BODY')e.style.display='none'}});
    await p.addStyleTag({content:'*{opacity:1!important;transition:none!important;animation:none!important}.tk-v{transform:none!important}'});
    await p.evaluate(()=>document.fonts.ready);await p.waitForTimeout(80);
