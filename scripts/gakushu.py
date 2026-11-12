@@ -142,7 +142,8 @@ if _wait: order("月", "asp", "月曜の汐の写しで、審査中の案件（"
 # 答えは data/postimg-rule.json に書き、book.py がそれで動く（all＝全部に付ける・pr＝PRだけ・half＝1日おきでくらべ続ける）。PR（くらべた話）はいつも付ける。
 _ia = [p["v"] for p in now if p["svc"] == "threads" and p.get("img") == 1 and not (p.get("first") or "").startswith("【くらべた")]
 _ib = [p["v"] for p in now if p["svc"] == "threads" and p.get("img") == 0]
-_imode = "half" if min(len(_ia), len(_ib)) < 8 else ("all" if med(_ia) >= med(_ib) * 1.15 else ("pr" if med(_ia) <= med(_ib) * 0.85 else "half"))
+_imode = "all" if min(len(_ia), len(_ib)) < 8 else (  # 11/12 月：数がそろうまでは全部に付ける（関西で絵つきが文字だけの1.7倍だった。オーナー「関東の方も画像付きにした？」）
+    "all" if med(_ia) >= med(_ib) * 1.15 else ("pr" if med(_ia) <= med(_ib) * 0.85 else "half"))
 json.dump({"about": "投稿に絵を付ける決まり。gakushu.py が数字で決め、book.py が読む", "mode": _imode, "day": today.isoformat(), "img": [len(_ia), med(_ia)], "noimg": [len(_ib), med(_ib)]}, open(P("data", "postimg-rule.json"), "w", encoding="utf-8"), ensure_ascii=False)
 item("post-img", "絵つきの投稿（HPの画面）", f"Threads 絵あり {len(_ia)}本 中央値 {med(_ia) if _ia else '未確認'}・絵なし {len(_ib)}本 中央値 {med(_ib) if _ib else '未確認'}", "絵ありが絵なしの1.15倍より上", "計測中" if min(len(_ia), len(_ib)) < 8 else {"all": "当たり", "pr": "外れ", "half": "計測中"}[_imode], {"all": "当たり → 合う絵がある投稿の全部に付ける", "pr": "外れ → PR（くらべた話）だけに付ける", "half": "同じ枠で1日おきに付けてくらべている（8本ずつたまるまで）"}[_imode])
 
