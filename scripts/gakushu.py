@@ -246,14 +246,31 @@ for o in orders:
     if _w: o["wait"] = _w[-3:]
     if ng.get(o["item"]): o["ng"] = ng[o["item"]][-3:]
     if ok.get(o["item"]): o["ok"] = ok[o["item"]][-3:]
+# 指令をやったかの見張り（11/12 オーナー「一つ一つ完璧な仕組みにしろ」）。指令が出ているのに、その項目に手（data/yatta.json の行）が無い日数を数える。
+# 同じ項目に指令が2つ以上ある時は、行の order（指令の最初の24字）が合う手だけを数える（order の無い古い行は、その項目の1つ目の指令の手とみなす）
+from datetime import timedelta as _td
+def _last(o):
+    sib = [x for x in orders if x["item"] == o["item"] and x["to"] == o["to"]]
+    return max([y.get("day", "") for y in yatta["rows"] if y.get("item") == o["item"] and (len(sib) < 2 or y.get("order", "")[:24] == o["order"][:24] or ("order" not in y and sib[0] is o))] or [""])
+for o in orders:
+    lt = _last(o); st = (today - _td(days=o["days"] - 1)).isoformat()
+    o["idle"] = o["days"] if lt < st else max(0, (today - date.fromisoformat(lt)).days)
 orders.sort(key=lambda o: (o["kind"] != "作る", PRI.index(o["item"]) if o["item"] in PRI else 99))
 for to in ("燈の夜", "月"):
     _c = [o for o in orders if o["to"] == to and o["kind"] == "作る"]
     f_ = next((o for o in _c if len(o.get("wait", [])) < 2), _c[0] if _c else None)
     if f_: f_["first"] = True
+_firsts = {o["to"]: o["item"] for o in orders if o.get("first")}
+for _i, to in enumerate(("燈の夜", "月")):
+    _m = [o for o in orders if o["to"] == to]; _late = [o for o in _m if o.get("idle", 0) >= 3]
+    _pf = (prev.get("first_items") or {}).get(to); _pd = prev.get("day", "")
+    _did = (not _pf) or _pd == today.isoformat() or any(y.get("item") == _pf and y.get("day", "") >= _pd for y in yatta["rows"])
+    items.insert(_i, {"id": "jikkou-" + ("akari" if to == "燈の夜" else "tsuki"), "name": f"指令をやったか（{to}）", "num": f"{to}あての指令 {len(_m)}本・3日以上 手が無い {len(_late)}本" + (f"（{'・'.join(sorted(set(o['item'] for o in _late)))}）" if _late else "") + f"・きのうの【きょうの1つ】{'やった' if _did else 'やっていない'}",
+                       "line": "きのうの1つをやった・3日以上 手が無い指令 0本", "ans": "当たり" if _did and not _late else "外れ", "why": "仕組みを作っても、指令どおりに動かなければ意味がない（11/12 オーナー）"})
 def line(o):
     t = ("【きょうの1つ】" if o.get("first") else ("【数字を入れる】" if o["kind"] == "数字" else "")) + o["order"] + f"（理由：{o['why']}）"
-    if o["days"] >= 3: t += f" ！{o['days']}日つづけて出ている＝まだやられていない"
+    if o.get("idle", 0) >= 3: t += f" ！{o['idle']}日 手が無い＝まだやられていない（やったら data/yatta.json に1行）"
+    elif o["days"] >= 3: t += f"（{o['days']}日目。手は打ってある）"
     if o.get("wait"): t += "／答え待ちの手（同じ所を重ねて変えない。足りない所だけ足す）：" + "・".join(o["wait"])
     if o.get("ng"): t += "／前に効かなかった手（くり返さない）：" + "・".join(o["ng"])
     if o.get("ok"): t += "／前に効いた手（同じ型を増やす）：" + "・".join(o["ok"])
@@ -274,7 +291,7 @@ L += ["## 答え待ちの手（やってから7日で、機械が答えを付け
 L += ["## 学び（手の答え・答えが変わった日）", ""] + ([mline(m) for m in manabi["rows"][-12:]] or ["- まだありません"]) + [""]
 open(P("notes", "gakushu.md"), "w", encoding="utf-8").write("\n".join(L))
 json.dump(yatta, open(P("data", "yatta.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-json.dump({"day": today.isoformat(), "items": items, "orders": orders, "sum": {"sent": sent, "seika": (_s if _sb7 else None)}, "hist": hist}, open(P("data", "gakushu.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-json.dump({"day": today.isoformat(), "about": "to が自分の行を、動く前に読んでやる。やったら data/yatta.json の rows に {day, item, what} を1行足す（7日後に機械が効いた・効かなかったを付ける）。ng の手はくり返さない", "orders": orders}, open(P("data", "shirei.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+json.dump({"day": today.isoformat(), "first_items": _firsts, "items": items, "orders": orders, "sum": {"sent": sent, "seika": (_s if _sb7 else None)}, "hist": hist}, open(P("data", "gakushu.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+json.dump({"day": today.isoformat(), "about": "to が自分の行を、動く前に読んでやる。やったら data/yatta.json の rows に {day, item, what} を1行足す（同じ item の指令が2つ以上ある時は order に指令の最初の24字も書く。書かないと「手が無い」と数えられる）（7日後に機械が効いた・効かなかったを付ける）。ng の手はくり返さない", "orders": orders}, open(P("data", "shirei.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 json.dump(manabi, open(P("data", "manabi.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("\n".join(L))
