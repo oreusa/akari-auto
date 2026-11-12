@@ -119,6 +119,9 @@ jobs:
         run: |
           cp site/sitemap.xml site/sitemap-all.xml || true
           grep -q "sitemap-all.xml" site/robots.txt || echo "Sitemap: https://usagi-life-notes.pages.dev/sitemap-all.xml" >> site/robots.txt
+          # 11/12 強いページだけの一覧（入口・ランキング・市区の補助が先。街・実家・スポット1件ずつは全部入りの方に残す）
+          python3 scripts/sitemap_main.py site/sitemap.xml site/sitemap-main.xml machi/ jikka/ o/ machi- chika- || true
+          grep -q "sitemap-main.xml" site/robots.txt || echo "Sitemap: https://usagi-life-notes.pages.dev/sitemap-main.xml" >> site/robots.txt
       - name: 新しいアドレスにそろえる（ページの中の usagi-life-notes.pages.dev を LIFE_BASE に。canonical・sitemap・OG もここで新しい方になる）
         run: |
           if [ "$LIFE_BASE" != "https://usagi-life-notes.pages.dev" ]; then
