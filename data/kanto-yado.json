@@ -3411,7 +3411,7 @@
   },
   "EzyRoller（軽井沢おもちゃ王国）": {
     "v": 2,
-    "t": "2026-11-05",
+    "t": "2026-11-12",
     "ll": [
       36.47312,
       138.54255
@@ -3422,16 +3422,16 @@
         "n": "ビラ秀琳",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106131",
         "km": 1.0,
-        "r": 4.5,
-        "rc": 55,
+        "r": 4.54,
+        "rc": 56,
         "min": 4000
       },
       {
         "n": "奥軽井沢温泉 ホテルグリーンプラザ軽井沢",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D11009",
         "km": 0.4,
-        "r": 4.25,
-        "rc": 2628,
+        "r": 4.21,
+        "rc": 2646,
         "min": 11716
       }
     ]
@@ -4567,6 +4567,76 @@
         "r": 4.5,
         "rc": 647,
         "min": 7840
+      }
+    ]
+  },
+  "さがみはら星空探査隊": {
+    "v": 2,
+    "t": "2026-11-12",
+    "ll": [
+      35.57139,
+      139.37334
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "橋本パークホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D4618",
+        "km": 3.4,
+        "r": 4.16,
+        "rc": 2387,
+        "min": 4100
+      },
+      {
+        "n": "東横INN京王線橋本駅北口",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108626",
+        "km": 3.4,
+        "r": 4.15,
+        "rc": 1109,
+        "min": 4410
+      },
+      {
+        "n": "アパホテル〈相模原橋本駅東〉",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D171895",
+        "km": 3.4,
+        "r": 4.14,
+        "rc": 538,
+        "min": 5100
+      }
+    ]
+  },
+  "FlytotheMoon:月をめぐる5つの物語": {
+    "v": 2,
+    "t": "2026-11-12",
+    "ll": [
+      36.48945,
+      139.00056
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "HOTEL R9 The Yard 渋川",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D197407",
+        "km": 1.2,
+        "r": 4.39,
+        "rc": 156,
+        "min": 3600
+      },
+      {
+        "n": "渋川天然温泉 ハナホテル&スパ 伊香保インター",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182808",
+        "km": 2.9,
+        "r": 4.33,
+        "rc": 2243,
+        "min": 6500
+      },
+      {
+        "n": "ホテルルートイン渋川",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D78153",
+        "km": 1.3,
+        "r": 4.14,
+        "rc": 920,
+        "min": 6200
       }
     ]
   }
