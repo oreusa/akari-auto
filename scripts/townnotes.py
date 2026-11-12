@@ -210,6 +210,13 @@ def main():
                 if ll:
                     got = [round(ll[0], 5), round(ll[1], 5), kind]
                     break
+            # 11/12 燈：施設の名前つきでは3つの地図のどれにも出ない物が43件残った（JR上尾駅・北上尾駅周辺 上尾市 など）
+            # → 最後に、場所に書いた市区町村だけで国土地理院を引き、その市区町村の役所あたりにピンを立てる（kind は 'town'）
+            if not got and muni():
+                for t in town_of(place or name, pref)[:1]:
+                    ll = next((x for x in gsi(FULL.get(pref, '') + t) if inside(pref, x)), None)
+                    if ll and verify(pref, place or name, ll) is not False:
+                        got = [round(ll[0], 5), round(ll[1], 5), 'town']
             cache[ck] = got or [None, None, 'none', today]
             new += 1
             print(ck, cache[ck])
