@@ -173,7 +173,7 @@
     "html.tk-back::view-transition-old(root){animation-name:tk-vt-out-b}html.tk-back::view-transition-new(root){animation-name:tk-vt-in-b}"+
     "@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}";(d.head||h).appendChild(st);
   var l=d.createElement("link");l.rel="stylesheet";l.href="/assets/tech.css?v=10";l.setAttribute("blocking","render");(d.head||h).appendChild(l);
-  var s=d.createElement("script");s.src="/assets/tech.js?v=8";s.async=false;(d.head||h).appendChild(s);
+  var s=d.createElement("script");s.src="/assets/tech.js?v=9";s.async=false;(d.head||h).appendChild(s);
   /* もどる時は、動きの向きを逆にする */
   addEventListener("pagereveal",function(e){try{var vt=e.viewTransition,a=window.navigation&&navigation.activation;if(vt&&vt.ready)vt.ready.catch(function(){});if(!vt||!a||a.navigationType!=="traverse"||!a.from||!a.entry||a.entry.index>=a.from.index)return;
     h.classList.add("tk-back");var off=function(){h.classList.remove("tk-back");};vt.finished.then(off,off);}catch(_){}});

@@ -119,6 +119,8 @@
     var lab=function(el){var p=el.previousElementSibling;return p&&/(^|\s)fl(\s|$)/.test(p.className)?p:null;};
     var G=[[lab(cw),cw,lab(ck),ck],[lab(pl),pl,lab(tx),tx],[lab(nm),nm,lab(em),em,lab(tl),tl,q(".hp"),ag,sb,er]];
     for(var i=0;i<G.length;i++)for(var j=0;j<G[i].length;j++)if(!G[i][j])return;
+    /* 11/12 足した欄：お家のこと（任意）は「お家について」の画面へ、電話の時間帯は電話番号のすぐ下へ */
+    var kw=q("#kw"),tw=q("#ttw");if(kw){G[1].push(kw);kw.open=false}if(tw)G[2].splice(G[2].indexOf(tl)+1,0,tw);
     var T=["どんなご相談ですか","お家について","ご連絡先"],S=[],cur=0;
     var top=d.createElement("div");top.className="tkst";top.setAttribute("aria-live","polite");top.innerHTML='<div class="tkst-n"><b>1</b><i>/ 3</i><span></span></div><div class="tkst-b"><u></u></div>';
     f.insertBefore(top,f.firstChild);
