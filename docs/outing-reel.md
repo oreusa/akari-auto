@@ -1,5 +1,18 @@
 # 関東のおでかけリール（10/30〜）
 
+## 【11/12〜 いまの型】絵本を開く型（オーナー「リールは絵本を開く型」）
+reel/D.json に次を足すと、機械（outing-reel.yml）が絵本の型で作る。作る道具と書き方の全文は月の所：
+https://github.com/oreusa/usagi-fudosan-media/blob/main/tools/outing_reel/README.md の「絵本の型」
+- `"kata": "ehon"`, `"brand": "kanto"`
+- `"voice"`: 声の台本 **6行**（①場所の話 ②季節 ③いつまで ④夜・見どころ ⑤行き方や時間 ⑥「ほかのおでかけも、日付と地図からさがせます。プロフィールのリンクからどうぞ。」）
+- `"voice_yomi"`: その6行の正しい読みを、行ごとに全部ひらがなで（数字もひらがな）。機械が声の読みとくらべ、違えば動画を作らずに止まる（reel/out/D.json に error）。
+  11/12 は「山の神社」を「やまのかみしゃ」と読んだまま出した。読みが2通りある言葉は voice の中でひらがなにする。
+- `text.ehon1`・`ehon2`・`ehon4`（縦書き3行ずつ：場所・季節・夜）、`text.ehon_night`（例 `["17:00", "", "から", "夜8時まで"]`）
+- `text.motif`: `shrine`（神社と鳥居）／`temple`（お堂）／`tou5`・`tou13`（塔）／`tahoto`（多宝塔）／`yama`（建物なし）。`text.peaks: 1` で遠くに2つの峰、`text.seal` は判子の2文字
+- 手本：https://github.com/oreusa/usagi-fudosan-media/blob/main/tools/outing_reel/ehon-spec/kanto-2026-11-12.json （ehon_brand は書かなくてよい。brand: kanto で入る）
+- 朝に出た物を出し直す時だけ：`"again": [{"key": "名前", "time": "10:15", "url": 動画のURL}]`
+
+
 10/29 オーナー：「燈のインスタにも月と同じおでかけ動画をつくる」「同じおでかけ先で漫画も作らせる」「リールは毎日2本。月の関西おでかけリールの関東の版の後に、同じおでかけ先で4コマリール」「音楽は燈が今使ってるフリー音源。どちらのリールもそれでいい」。
 
 ## 1日の流れ
