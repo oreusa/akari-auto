@@ -158,11 +158,33 @@ PRE = [r"【[^】]*】", r"＼[^／]*／", r"\d+[%％]\s*OFF\S*", r"クーポン
        r"[★☆]", r"先着\S*", r"さらに\S*", r"[!！]+"]
 
 
+_KK = {"(": ")", "（": "）", "[": "]", "<": ">", "＜": "＞", "「": "」", "『": "』"}
+
+
+def _kakko(name):
+    """11/12 売り文句を外したあとに残る、空のかっこ「< >」と、相手のいないかっこ「[ 水」「）キリン」を消す。"""
+    for _ in range(3):
+        name = re.sub(r"[(（\[<＜「『]\s*[)）\]>＞」』]", " ", name)
+    out, st = list(name), []
+    cl = {v: k for k, v in _KK.items()}
+    for i, ch in enumerate(name):
+        if ch in _KK:
+            st.append(i)
+        elif ch in cl:
+            if st and name[st[-1]] == cl[ch]:
+                st.pop()
+            else:
+                out[i] = " "
+    for i in st:
+        out[i] = " "
+    return " ".join("".join(out).split())
+
+
 def short(name, n=46):
     name = str(name)
     for p in PRE:
         name = re.sub(p, " ", name)
-    name = " ".join(name.replace("【", " ").replace("】", " ").split()).strip(" ｜|&＆・")
+    name = _kakko(" ".join(name.replace("【", " ").replace("】", " ").split())).strip(" ｜|&＆・")
     if len(name) <= n:
         return name
     # 11/9 全文点検：「…60個 バ」のように言葉の途中で切れていた → 言葉の切れ目で切る
