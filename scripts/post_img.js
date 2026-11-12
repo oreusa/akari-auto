@@ -20,21 +20,21 @@ function targets(){const T=[];const L=fs.readdirSync(SITE);
 const CARD=`<!doctype html><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Shippori+Mincho:wght@600&family=Zen+Kaku+Gothic+New:wght@500&display=swap" rel="stylesheet">
 <style>*{margin:0;box-sizing:border-box}body{width:1080px;height:1350px;background:#F6F3EE;position:relative;overflow:hidden;font-family:"Zen Kaku Gothic New",sans-serif;color:#3A332E}
 .fr{position:absolute;inset:26px;border:1px solid #CDBFAF}
-.hd{position:absolute;left:70px;right:70px;top:62px;display:flex;justify-content:space-between;align-items:baseline}
-.hd b{font:600 40px "Shippori Mincho",serif;letter-spacing:.06em}.hd b.s{font-size:31px}.hd i{font:500 22px Jost,sans-serif;letter-spacing:.3em;color:#B08A6E;font-style:normal;white-space:nowrap}
-.ph{position:absolute;left:150px;top:150px;width:780px;height:1070px;border-radius:38px;overflow:hidden;background:#fff;box-shadow:0 24px 60px rgba(90,70,50,.18),0 0 0 1px #E4DACD}
-.ph img{width:780px;display:block}.ph:after{content:"";position:absolute;left:0;right:0;bottom:0;height:150px;background:linear-gradient(rgba(255,255,255,0),#fff)}
-.ft{position:absolute;left:0;right:0;bottom:58px;text-align:center;font-size:26px;letter-spacing:.1em;color:#6B5F55}</style>
-<div class="fr"></div><div class="hd"><b id="lb"></b><i>LIFE NOTE</i></div><div class="ph"><img id="im"></div><div class="ft" id="ft"></div>`;
+.hd{position:absolute;left:56px;right:56px;top:70px;display:flex;justify-content:space-between;align-items:baseline}
+.hd b{font:600 52px "Shippori Mincho",serif;letter-spacing:.06em}.hd b.s{font-size:40px}.hd i{font:500 22px Jost,sans-serif;letter-spacing:.3em;color:#B08A6E;font-style:normal;white-space:nowrap}
+.ph{position:absolute;left:40px;top:168px;width:1000px;height:1026px;border-radius:44px;overflow:hidden;background:#fff;box-shadow:0 24px 60px rgba(90,70,50,.18),0 0 0 1px #E4DACD}
+.ph img{width:1040px;display:block}.ph:after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(rgba(255,255,255,0),#fff)}
+.ft{position:absolute;left:0;right:0;bottom:62px;text-align:center;font-size:34px;letter-spacing:.1em;color:#6B5F55}</style>
+<div class="hd"><b id="lb"></b><i>LIFE NOTE</i></div><div class="ph"><img id="im"></div><div class="ft" id="ft"></div>`;
 (async()=>{fs.mkdirSync(OUT,{recursive:true});const idx={};
  await new Promise(r=>srv.listen(0,r));const port=srv.address().port;const b=await chromium.launch();
- const ctx=await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,timezoneId:'Asia/Tokyo',colorScheme:'light'});const p=await ctx.newPage();
+ const ctx=await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:3,timezoneId:'Asia/Tokyo',colorScheme:'light'});const p=await ctx.newPage();
  const d=new Date(Date.now()+9*3600e3);const today=d.toISOString().slice(0,10);
  await p.clock.setFixedTime(new Date(today+'T03:00:00Z')); // 昼の見た目で撮る（夜は色が変わる）
  const c=await b.newPage({viewport:{width:1080,height:1350}});await c.setContent(CARD,{waitUntil:'networkidle'});await c.evaluate(()=>document.fonts.ready);
  await p.route('**/*',r=>{const u=r.request().url();(u.startsWith('http://127.0.0.1')||u.includes('fonts.g')||r.request().resourceType()==='image')?r.continue():r.abort()}); // 数える合図は呼ばない。商品の写真（外の絵）は呼ぶ（11/12 写真が割れた絵になった）
  let made=0,fail=[];const T=targets();
- const t0=Date.now();const LIMIT=(+process.env.POSTIMG_SEC||420)*1000; // 時間の上限（おかいもの→おでかけの順に撮り、時間が来たら残りは次の回）
+ const t0=Date.now();const LIMIT=(+process.env.POSTIMG_SEC||540)*1000; // 時間の上限（おかいもの→おでかけの順に撮り、時間が来たら残りは次の回）
  for(const t of T){if(Date.now()-t0>LIMIT){fail.push('時間切れ '+t.name+' から先');break}
   try{await p.goto(`http://127.0.0.1:${port}${t.page}`,{waitUntil:'load',timeout:20000});await p.waitForTimeout(120);
    if(/okaimono|furusato|nesage/.test(t.name)){await p.waitForLoadState('networkidle',{timeout:5000}).catch(()=>{});
@@ -45,7 +45,7 @@ const CARD=`<!doctype html><meta charset="utf-8"><link href="https://fonts.googl
    // 撮る所：ページに data-shot があればそこ、無ければ h1 の少し上から
    const y=await p.evaluate(()=>{const e=document.querySelector('[data-shot]')||document.querySelector('h1');if(!e)return 0;return Math.max(0,e.getBoundingClientRect().top+scrollY-(e.hasAttribute('data-shot')?8:70))});
    const txt=await p.evaluate(()=>document.body.innerText.slice(0,3000));const h=crypto.createHash('sha1').update(txt).digest('hex').slice(0,10);
-   const shot=await p.screenshot({clip:{x:0,y:y,width:390,height:560},fullPage:true,type:'png'});
+   const shot=await p.screenshot({clip:{x:0,y:y,width:390,height:400},fullPage:true,type:'png'});
    if(process.env.DBG)fs.writeFileSync(path.join(process.env.DBG,'shot-'+t.name+'.png'),shot);
    await c.evaluate(async([img,label,ft])=>{const l=document.getElementById('lb');l.textContent=label;l.className=label.length>14?'s':'';document.getElementById('ft').textContent=ft;const i=document.getElementById('im');i.src=img;await i.decode()},
      ['data:image/png;base64,'+shot.toString('base64'),t.label,'つづきは '+HOST.replace('https://','')+(t.page.startsWith('/o/')?'':t.page)]);
