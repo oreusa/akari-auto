@@ -280,9 +280,24 @@ for o in orders:
     o["idle"] = o["days"] if lt < st else max(0, (today - date.fromisoformat(lt)).days)
 orders.sort(key=lambda o: (o["kind"] != "作る", PRI.index(o["item"]) if o["item"] in PRI else 99))
 # 11/12 月の作り替え（オーナー「無駄な仕組みになってないか」）：指令は回ごとに1日3本まで。残りは控え（hikae）。関西の台帳（usagi tools/seichou/gakushu.py）と同じ決まり
+# 11/12 段（関西の台帳と同じ）：載る（Google に100枚）→ 来る（見られた 週1500）→ 申し込む（送信 週1件）→ お金。2つ先の段の指令は出さない（控えへ）
+def _idx_kanto():
+    try:
+        import urllib.request
+        r = json.loads(urllib.request.urlopen("https://raw.githubusercontent.com/oreusa/usagi-fudosan-media/main/stats/kensaku.json", timeout=8).read().decode("utf-8"))
+        k = [x for x in r.get("rows", []) if x.get("site") == "kanto" and x.get("idx") is not None]
+        return sorted(k, key=lambda x: x.get("day", ""))[-1]["idx"] if k else None
+    except Exception: return None
+IDX = _idx_kanto()
+DAN_N = ["載る", "来る", "申し込む", "お金"]
+DAN_L = ["Google に関東100枚", "見られた 週1500", "送信 週1件", "成果 月1件"]
+dan = 0 if (IDX is not None and IDX < 100) else (1 if n.get("views", 0) < 1500 else (2 if sent < 1 else 3))
+DS = {"city": 0, "hp": 0, "michi": 0, "come": 1, "post-threads": 1, "post-twitter": 1, "post-kind": 1, "post-hit": 1, "koma4": 1, "ig": 1, "reel-ehon": 1, "kurabe": 1, "asp": 1, "gpt": 0,
+      "lead": 2, "okai": 2, "money": 3}
 _nn = {}; hikae = []; _act = []
 for o in orders:
-    if _nn.get(o["to"], 0) >= 3: o["hold"] = "1日3本まで"; hikae.append(o)
+    if DS.get(o["item"], 0) > dan + 1: o["hold"] = f"いまの段は「{DAN_N[dan]}」。この指令は「{DAN_N[min(3, DS[o['item']])]}」の段の物"; hikae.append(o)
+    elif _nn.get(o["to"], 0) >= 3: o["hold"] = "1日3本まで"; hikae.append(o)
     else: _act.append(o); _nn[o["to"]] = _nn.get(o["to"], 0) + 1
 orders = _act
 for to in ("燈の夜", "月"):
@@ -309,7 +324,7 @@ def mline(m):
     return f"- {m['day']} {m['item']}：{m['from']}→{m['to']}（{m['num']}）。その前に出ていた指令：{'／'.join(m['did']) or '記録なし'}"
 MARK = {"当たり": "◎", "外れ": "×", "未確認": "？", "計測中": "…"}
 L = [f"# 関東の学習の台帳（{today.isoformat()} 朝）", "", "機械が毎朝作ります。燈の夜の回は、これを最初に読み、自分あての指令をそのままやります。数字が取れない物は「未確認」。", "",
-     "## いちばん上の2つ（この2つが動かなければ、ほかが当たりでも進んでいない）", "", f"- 投稿からHPに来た人（7日）：**{n.get('come', 0)}**（線 週50）", f"- 反響（送信・7日）：**{sent}**（線 週1件）", "", "指令は回ごとに1日3本まで。Google に載った枚数は関西の台帳（usagi stats/gakushu.md）の一番上。", "",
+     "## いちばん上の3つ（この3つが動かなければ、ほかが当たりでも進んでいない）", "", f"- 投稿からHPに来た人（7日）：**{n.get('come', 0)}**（線 週50）", f"- 反響（送信・7日）：**{sent}**（線 週1件）", f"- Google に載った枚数（関東）：**{'未確認' if IDX is None else IDX}**（線 100枚）", "", f"いまの段：**{DAN_N[dan]}**（越える線：{DAN_L[dan]}）。段は 載る → 来る → 申し込む → お金。2つ先の段の指令は出しません（控え {len(hikae)}本）。指令は回ごとに1日3本まで。", "",
      "## 項目ごと", "", "| | 項目 | 機械が測った数字 | 合格の線 | 答え |", "|---|---|---|---|---|"]
 L += [f"| {MARK.get(i['ans'], '')} | {i['name']} | {i['num']} | {i['line']} | {i['ans']} |" for i in items]
 L += ["", "## きょうの指令", ""]
