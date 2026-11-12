@@ -5035,5 +5035,94 @@
         "min": 3000
       }
     ]
+  },
+  "イオンモール小山アクアリウム": {
+    "v": 2,
+    "t": "2026-11-12",
+    "ll": [
+      36.32157,
+      139.84034
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテル サンロイヤル小山",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D8310",
+        "km": 3.0,
+        "r": 4.13,
+        "rc": 2293,
+        "min": 4650
+      },
+      {
+        "n": "ホテルルートイン小山",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D68170",
+        "km": 3.1,
+        "r": 4.13,
+        "rc": 762,
+        "min": 6000
+      },
+      {
+        "n": "東横INN小山駅東口2",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D183957",
+        "km": 2.9,
+        "r": 4.01,
+        "rc": 194,
+        "min": 5408
+      }
+    ]
+  },
+  "第43回我孫子市農業まつり": {
+    "v": 2,
+    "t": "2026-11-12",
+    "ll": [
+      35.86166,
+      140.02759
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルマークワンアビコ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D80473",
+        "km": 1.8,
+        "r": 4.28,
+        "rc": 1248,
+        "min": 4180
+      }
+    ]
+  },
+  "キングオブパスタ2026": {
+    "v": 2,
+    "t": "2026-11-12",
+    "ll": [
+      36.32196,
+      139.00328
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "エールハウス",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182405",
+        "km": 1.2,
+        "r": 5.0,
+        "rc": 13,
+        "min": 9923
+      },
+      {
+        "n": "メゾン・ド・エール",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D177534",
+        "km": 1.4,
+        "r": 4.67,
+        "rc": 28,
+        "min": 9618
+      },
+      {
+        "n": "ホテルココ・グラン高崎",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136287",
+        "km": 1.0,
+        "r": 4.61,
+        "rc": 2200,
+        "min": 8250
+      }
+    ]
   }
 }
