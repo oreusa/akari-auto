@@ -187,5 +187,12 @@ jobs:
           git commit -m "ページの数とリンクの確かめを記録"
           # 公開用に書き換えた site/ のページ（ima.html など）は戻す（戻さないと pull できない）
           git checkout -- site 2>/dev/null || true
-          for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done
+          for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; git rebase --abort 2>/dev/null || true; sleep $((i*5)); done
+          # 11/12 保存の穴：回の途中で main に同じ帳面（data/yatta.json）の行が足されると、ぶつかって保存が丸ごと失敗していた。
+          # ぶつかった時は、main を正として取り直し、機械が作ったファイルだけを上に置く（やった手の帳面は main の行を残す。答えは次の回が付け直す）
+          T=$(mktemp -d); git diff --name-only HEAD~1 HEAD > "$T/list"
+          while read -r f; do [ "$f" = "data/yatta.json" ] && continue; mkdir -p "$T/f/$(dirname "$f")"; cp "$f" "$T/f/$f"; done < "$T/list"
+          git fetch -q origin main && git reset -q --hard origin/main
+          cp -r "$T/f/." . && git add -A . && git commit -q -m "ページの数とリンクの確かめを記録（取り直し）" || true
+          for i in 1 2 3; do git push -q origin HEAD:main && exit 0; git pull --rebase -q origin main || git rebase --abort 2>/dev/null || true; sleep $((i*5)); done
           exit 1
