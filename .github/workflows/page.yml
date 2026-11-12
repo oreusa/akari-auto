@@ -115,6 +115,10 @@ jobs:
           python3 scripts/pwa.py || true
           # 11/2 リクエスト・感想（/koe）：オーナーがOKした声だけを載せる
           cp data/koe_public.json site/koe-public.json || true
+      - name: サイトマップの写し（11/12 月：Search Console で /sitemap.xml が「取得できませんでした」のまま。別の名前でも出して、送り直せるようにする）
+        run: |
+          cp site/sitemap.xml site/sitemap-all.xml || true
+          grep -q "sitemap-all.xml" site/robots.txt || echo "Sitemap: https://usagi-life-notes.pages.dev/sitemap-all.xml" >> site/robots.txt
       - name: 新しいアドレスにそろえる（ページの中の usagi-life-notes.pages.dev を LIFE_BASE に。canonical・sitemap・OG もここで新しい方になる）
         run: |
           if [ "$LIFE_BASE" != "https://usagi-life-notes.pages.dev" ]; then
