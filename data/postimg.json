@@ -91,19 +91,19 @@
    "label": "くらべたおかいものリスト"
   },
   "/furusato-rice": {
-   "url": "https://lifenote-kanto.pages.dev/postimg/furusato-rice.jpg?v=824a03a059",
+   "url": "https://lifenote-kanto.pages.dev/postimg/furusato-rice.jpg?v=2045ee1d31",
    "label": "ふるさと納税を1万円あたりでくらべた"
   },
   "/furusato-tp": {
-   "url": "https://lifenote-kanto.pages.dev/postimg/furusato-tp.jpg?v=cc9d9687f6",
+   "url": "https://lifenote-kanto.pages.dev/postimg/furusato-tp.jpg?v=c6f2a64000",
    "label": "ふるさと納税を1万円あたりでくらべた"
   },
   "/furusato": {
-   "url": "https://lifenote-kanto.pages.dev/postimg/furusato.jpg?v=984b8bc574",
+   "url": "https://lifenote-kanto.pages.dev/postimg/furusato.jpg?v=5c9256d925",
    "label": "ふるさと納税を1万円あたりでくらべた"
   },
   "/nesage": {
-   "url": "https://lifenote-kanto.pages.dev/postimg/nesage.jpg?v=6a25c4a188",
+   "url": "https://lifenote-kanto.pages.dev/postimg/nesage.jpg?v=14a6cda2c8",
    "label": "本当に値下がりした物"
   },
   "/odekake-chiba": {
@@ -150,24 +150,36 @@
    "url": "https://lifenote-kanto.pages.dev/postimg/tomari.jpg?v=661a94d612",
    "label": "関東おでかけリスト"
   },
+  "/kaitai-adachi": {
+   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai-adachi.jpg?v=3cd18d3c64",
+   "label": "解体・片付けの費用の目安"
+  },
   "/kaitai-chiba": {
-   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai-chiba.jpg?v=9c50ee56e7",
+   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai-chiba.jpg?v=5558ce74b3",
    "label": "解体・片付けの費用の目安"
   },
   "/kaitai-hachioji": {
-   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai-hachioji.jpg?v=8ec540e4fb",
+   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai-hachioji.jpg?v=2412794c76",
+   "label": "解体・片付けの費用の目安"
+  },
+  "/kaitai-katsushika": {
+   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai-katsushika.jpg?v=dff67cd188",
    "label": "解体・片付けの費用の目安"
   },
   "/kaitai-kawasaki": {
-   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai-kawasaki.jpg?v=d3d030cf68",
+   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai-kawasaki.jpg?v=ff2c43ff60",
+   "label": "解体・片付けの費用の目安"
+  },
+  "/kaitai-machida": {
+   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai-machida.jpg?v=ab54763d98",
    "label": "解体・片付けの費用の目安"
   },
   "/kaitai-yokohama": {
-   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai-yokohama.jpg?v=ff1e8d53fa",
+   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai-yokohama.jpg?v=cc2737c792",
    "label": "解体・片付けの費用の目安"
   },
   "/kaitai": {
-   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai.jpg?v=8b3567bd53",
+   "url": "https://lifenote-kanto.pages.dev/postimg/kaitai.jpg?v=ab9377e8d4",
    "label": "解体・片付けの費用の目安"
   },
   "/o/048ee96e": {
