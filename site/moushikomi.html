@@ -74,7 +74,7 @@ details p a{color:#2B2622}
 .fix.on{display:block}
 .fix a{display:block;max-width:520px;margin:0 auto;text-align:center;text-decoration:none;background:#8C6A55;color:#fff;padding:13px 0;border-radius:2px;font-family:"Shippori Mincho",serif;font-size:15px;font-weight:600;letter-spacing:.12em}
 body{padding-bottom:76px}
-</style><script src="/assets/night.js?v=18"></script><script src="/assets/menu.js?v=46" defer></script><script src="/assets/v2sub.js?v=17" defer></script><style>.s3h{display:flex;align-items:center;gap:12px;padding:26px 0 0}.s3h .en{font-family:Jost,sans-serif;font-size:11.5px;letter-spacing:.32em;color:#9C8775}.s3h h1{font-family:"Shippori Mincho",serif;font-size:26px;font-weight:600;letter-spacing:.12em;margin:2px 0 0;color:#2B2622}
+</style><script src="/assets/night.js?v=19"></script><script src="/assets/menu.js?v=46" defer></script><script src="/assets/v2sub.js?v=17" defer></script><style>.s3h{display:flex;align-items:center;gap:12px;padding:26px 0 0}.s3h .en{font-family:Jost,sans-serif;font-size:11.5px;letter-spacing:.32em;color:#9C8775}.s3h h1{font-family:"Shippori Mincho",serif;font-size:26px;font-weight:600;letter-spacing:.12em;margin:2px 0 0;color:#2B2622}
 .s3l{font-family:"Shippori Mincho",serif;font-size:15.5px;color:#2B2622;margin:16px 0 18px}
 .s3{border:1px solid #E3E3E3;border-radius:22px;padding:20px 18px 18px;margin:0 0 16px;background:#fff}.s3 .sn{font-family:Jost,sans-serif;font-size:11.5px;letter-spacing:.3em;color:#9C8775}.s3 h2{font-family:"Shippori Mincho",serif;font-size:20px;font-weight:700;margin:8px 0 6px;color:#2B2622;text-align:left}.s3>p{font-size:14px;line-height:1.8;color:#5E544D;margin:0 0 12px}
 .s3 .tqs{position:relative}.s3 #tq{width:100%;box-sizing:border-box;font-size:16px;padding:14px 16px;border:1.5px solid #CFC6BD;border-radius:14px;background:#fff;color:#2B2622}#tqo{position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid #ddd;border-radius:10px;z-index:9}#tqo a{display:block;padding:11px 14px;color:#2B2622;text-decoration:none;border-bottom:1px solid #eee;font-size:14px}#tqo:empty{display:none}
@@ -97,7 +97,7 @@ body{padding-bottom:76px}
 <form class="mf" id="mf" novalidate>
 <label class="fl" for="nm">お名前<em>必須</em></label><input type="text" id="nm" name="name" autocomplete="name" maxlength="40" required>
 <label class="fl" for="em">メールアドレス<em>メールか電話のどちらか</em></label><input type="email" id="em" name="email" autocomplete="email" maxlength="80">
-<label class="fl" for="tl">電話番号<em>メールが無い方は、電話だけでも大丈夫です</em></label><input type="tel" id="tl" name="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="例）090-1234-5678">
+<label class="fl" for="tl">電話番号<em>メールが無い方は、電話だけでも大丈夫です</em></label><input type="tel" id="tl" name="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="例）090-1234-5678"><div id="ttw" hidden><div class="fl" style="font-size:13px;font-weight:700;color:#5E544D;margin:16px 0 6px">お電話の都合のよい時間帯</div><div class="ch"><label><input type="radio" name="ttime" value="午前">午前</label><label><input type="radio" name="ttime" value="午後">午後</label><label><input type="radio" name="ttime" value="夕方以降">夕方以降</label><label><input type="radio" name="ttime" value="いつでも">いつでも</label></div><p style="font-size:12px;color:#7A6E66;line-height:1.7;margin:8px 0 0">知らない番号からのお電話になります。えらんだ時間帯におかけします。</p></div>
 <label class="fl" for="pl">お家の場所（市区町村まで）<em>必須</em></label><input type="text" id="pl" name="place" maxlength="60" placeholder="例：神奈川県横浜市" required>
 <div class="fl" style="font-size:13px;font-weight:700;color:#5E544D;margin:16px 0 6px">お家の種類</div>
 <div class="ch"><label><input type="radio" name="kind" value="マンション">マンション</label><label><input type="radio" name="kind" value="一戸建て">一戸建て</label><label><input type="radio" name="kind" value="土地">土地</label><label><input type="radio" name="kind" value="その他">その他</label></div>
@@ -120,20 +120,22 @@ body{padding-bottom:76px}
 <button type="submit" id="sb">送信する</button>
 <p class="er" id="er" role="alert"></p>
 </form>
-<div class="done" id="done"><div class="sn">THANK YOU</div><b>お申し込みを受け付けました</b><p>内容を確かめて、ご連絡いたします。<br>しばらくお待ちください。</p></div>
+<div class="done" id="done"><div class="sn">THANK YOU</div><b>お申し込みを受け付けました</b><p>2営業日以内に、書いていただいたメールかお電話へご連絡します。<br>お電話は、知らない番号からになります。<br>会社のご紹介は、お話をうかがってからです。</p></div>
 </section>
 <a class="back" href="uru.html">家を売る前に（3つの手順）へ</a>
 <div class="ft">LIFE NOTE</div></div>
 <script>(function(){
 var SITE="LIFE NOTE",KV="https://lifenote-kanto.pages.dev/moushikomi-send",MAIL="https://formsubmit.co/ajax/"+["Infinity.daikoku","gmail.com"].join("@");
 var f=document.getElementById("mf"),er=document.getElementById("er"),sb=document.getElementById("sb");
+(function(){var tl=document.getElementById("tl"),tt=document.getElementById("ttw");if(tl&&tt)tl.addEventListener("input",function(){tt.hidden=tl.value.replace(/\D/g,"").length<4;});})();
 function v(n){var e=f.querySelector('[name="'+n+'"]:checked')||f.elements[n];return e&&e.value?String(e.value).trim():""}
 f.addEventListener("submit",function(e){e.preventDefault();er.textContent="";
  var LT=/[?&]lite=1/.test(location.search);
  var d={site:SITE,name:v("name"),email:v("email"),tel:v("tel"),place:v("place"),kind:v("kind"),want:v("want"),text:v("text"),hp:v("hp"),page:document.referrer.replace(/^https?:\/\/[^/]+/,"").slice(0,60)};
  var KQ=[["k_fu","フリガナ"],["k_ad","くわしい住所"],["k_yr","建てた年"],["k_md","間取り"],["k_bd","建物の広さ"],["k_ld","土地の広さ"],["k_rel","お家とのご関係"],["k_st","いまの状況"],["k_pr","大事にしたいこと"],["k_age","ご年代"]],kx=[];
  for(var q=0;q<KQ.length;q++){var kv=v(KQ[q][0]);if(kv)kx.push(KQ[q][1]+"："+kv);}
- if(LT){var tm=v("ttime");d.text="［かんたん相談］"+(d.text?"\n"+d.text:"")+(d.tel&&tm?"\n［お電話の都合のよい時間帯："+tm+"］":"");}
+ var tm=v("ttime");if(LT)d.text="［かんたん相談］"+(d.text?"\n"+d.text:"");
+ if(d.tel&&tm)d.text=(d.text?d.text+"\n":"")+"［お電話の都合のよい時間帯："+tm+"］";
  if(kx.length)d.text=(d.text?d.text+"\n":"")+"［お家のこと］\n"+kx.join("\n");
  if(!d.name){er.textContent="お名前を書いてください";return}
  /* 11/11 メールを持たない・書きたくない方も送れるように：メールか電話のどちらかで受け付ける */
@@ -208,8 +210,7 @@ var lt=lab(tx);if(lt)lt.innerHTML="聞きたいこと<em>ひとことで大丈�
 var memo=(P.get("memo")||"").slice(0,80);if(memo&&!tx.value)tx.value="目安で見た内容："+memo+"\n";
 var le=lab(em);if(le)le.innerHTML="メールアドレス<em>メールかお電話の、どちらかだけ</em>";
 var ll=lab(tl);if(ll)ll.innerHTML="電話番号<em>お電話でのお返事をご希望の方</em>";
-var tt=document.createElement("div");tt.id="ttw";tt.hidden=true;tt.innerHTML='<div class="fl" style="font-size:13px;font-weight:700;color:#5E544D;margin:16px 0 6px">お電話の都合のよい時間帯</div><div class="ch">'+["午前","午後","夕方以降","いつでも"].map(function(x){return '<label><input type="radio" name="ttime" value="'+x+'">'+x+'</label>';}).join("")+'</div><p style="font-size:12px;color:#7A6E66;line-height:1.7;margin:8px 0 0">知らない番号からのお電話になります。えらんだ時間帯におかけします。</p>';
-tl.parentNode.insertBefore(tt,tl.nextSibling);tl.addEventListener("input",function(){tt.hidden=tl.value.replace(/\D/g,"").length<4;});
+var tt=$("ttw");
 var ag=f.querySelector(".ag span");if(ag)ag.innerHTML='<a href="/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>を読み、同意します（会社へのご紹介は、ご希望があった時だけです）';
 $("sb").textContent="この内容で聞く（無料）";
 var dn=$("done");if(dn){var b=dn.querySelector("b"),p=dn.querySelector("p");if(b)b.textContent="受け付けました";if(p)p.innerHTML="2営業日以内に、メールかお電話でお返事します。<br>しばらくお待ちください。";}
