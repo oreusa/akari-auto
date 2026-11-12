@@ -68,7 +68,7 @@
   "html.night.mfull .head img[src*='logo-s-night'],html.night.mfull .s3h img[src*='logo-s-night'],html.night.mfull .sh img[src*='logo-s-night']{filter:brightness(1.26) contrast(1.03) invert(1) hue-rotate(180deg) drop-shadow(0 0 12px rgba(58,42,0,.95)) drop-shadow(0 0 34px rgba(58,42,0,.6))}"+
   /* 11/11 今夜やっている催しのカードだけ、金色にともる（色は反転される前の色） */
   "html.night a.card:has(.tn8:not([hidden])){box-shadow:0 0 0 1px rgba(150,104,20,.55),0 0 22px rgba(150,104,20,.38)!important}html.night a.card:has(.tn8:not([hidden])) .tn8{background:#8a5f0e!important;color:#fff!important;border-color:#8a5f0e!important}"+
-  ".nsky .ss{position:absolute;left:0;top:0;width:80px;height:1.5px;border-radius:2px;background:linear-gradient(90deg,#000,transparent);transform-origin:0 50%;opacity:0}"+
+  ".nsky .ss{position:absolute;left:0;top:0;width:110px;height:1.6px;border-radius:2px;background:linear-gradient(90deg,#000,transparent);transform-origin:0 50%;opacity:0}"+
     "@media (prefers-reduced-motion:reduce){.nsky .ss{display:none}}"+
 
     ".kmap .lt{pointer-events:none;filter:drop-shadow(0 0 2px rgba(255,214,140,.9))}"+
@@ -92,7 +92,7 @@
     "html.night .card div.go,html.night .it div.go,html.night .it span.ar,html.night .card.it:after{background:transparent!important;box-shadow:inset 0 0 0 1px #372100!important;color:#372100!important}"+
     /* 入口の地図で府県に data-p が無いもの（燈の関東）も、夜は紺の陸地＋府県の色の光る線に（色は昼の塗りの色を使う） */
     "html.night .kmap .pf path{fill:#182139!important;fill-opacity:1!important;filter:drop-shadow(0 0 2.5px var(--c,rgba(200,215,255,.6)))}html.night .kmap .pf path:not([data-p]){stroke:var(--c,#8FB6EA);stroke-width:3.2px}html.night .kmap .pf path.kcl{clip-path:var(--kc)}"+
-    "html.night .nsky.pg{position:fixed;inset:0;z-index:-1;opacity:.6}"+
+    "html.night .nsky.pg{position:fixed;inset:0;z-index:-1;opacity:.82}"+
     "@media (prefers-reduced-motion:reduce){.nsky i,.kmap .lt circle{animation:none!important}}";
   var st=document.createElement("style");st.textContent=css;(document.head||d).appendChild(st);
   set(pick());
@@ -104,7 +104,7 @@
   /* 流れ星（隠し要素）：夜の見た目で、40〜120秒に1回だけ、毎回ちがう場所・向きから1本流れる */
   function shoot(d){var el=d.querySelector(".ss");if(!el||!el.animate)return;
     if(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches)return;
-    function later(){setTimeout(go,40000+Math.random()*80000);}
+    function later(){setTimeout(go,12000+Math.random()*20000);} /* 11/12 オーナー「もっと星と流れ星欲しい。やり過ぎは良くないけど今が少なすぎる」→ 12〜32秒に1本 */
     function go(){if(document.hidden||!document.documentElement.classList.contains("night")||!d.isConnected)return later();
       var W=d.offsetWidth||320,H=d.offsetHeight||240,x=W*(.1+Math.random()*.8),y=H*(.05+Math.random()*.4),
           dir=Math.random()<.5?-1:1,a=(15+Math.random()*35)*Math.PI/180,len=120+Math.random()*90,
@@ -112,20 +112,20 @@
           t0="translate("+x+"px,"+y+"px) rotate("+rot+"deg)",t1="translate("+(x+dx)+"px,"+(y+dy)+"px) rotate("+rot+"deg)";
       el.animate([{transform:t0,opacity:0},{transform:t0,opacity:1,offset:.08},{transform:t1,opacity:0}],{duration:800+Math.random()*500,easing:"ease-out"});
       later();}
-    setTimeout(go,15000+Math.random()*45000);}
+    setTimeout(go,3500+Math.random()*4000);}
   function deco(){
     var r=rnd(7),hs=document.querySelectorAll(".head");
     for(var k=0;k<hs.length;k++){var h=hs[k];if(h.querySelector(".nsky"))continue;
       var w=Math.max(h.offsetWidth,320),ht=Math.max(h.offsetHeight,240),L=["","","",""];
-      for(var j=0;j<66;j++){var x=Math.round(r()*w),y=Math.round(r()*ht*.92),z=r(),sz=z<.12?2:z<.45?1.4:1,c=r()<.18?"#2A2410":"#000";
-        var g=j<54?j%3:3;L[g]+=(L[g]?",":"")+x+"px "+y+"px 0 "+(sz-1)/2+"px "+c;}
+      for(var j=0;j<104;j++){var x=Math.round(r()*w),y=Math.round(r()*ht*.92),z=r(),sz=z<.12?2:z<.45?1.4:1,c=r()<.18?"#2A2410":"#000";
+        var g=j<86?j%3:3;L[g]+=(L[g]?",":"")+x+"px "+y+"px 0 "+(sz-1)/2+"px "+c;}
       var d2=document.createElement("div");d2.className="nsky";d2.setAttribute("aria-hidden","true");
       d2.innerHTML='<i style="box-shadow:'+L[0]+'"></i><i class="k2" style="box-shadow:'+L[1]+'"></i><i class="k3" style="box-shadow:'+L[2]+'"></i><i class="k4" style="box-shadow:'+L[3]+'"></i>';
       h.insertBefore(d2,h.firstChild);}
     /* 11/2 21:12 オーナー「ここ星いらん？流れ星流れたら嬉しくない？」→ ページ全体の後ろにも、うすい星（カードのすき間から見える）。
        流れ星はこの層で、画面のどこにでも、たまーに1本 */
     if(!document.querySelector(".nsky.pg")){var r3=rnd(23),W=Math.max(innerWidth,320),H=Math.max(innerHeight,560),P=["","",""];
-      for(var q=0;q<48;q++){var z2=r3();P[q%3]+=(P[q%3]?",":"")+Math.round(r3()*W)+"px "+Math.round(r3()*H)+"px 0 "+(z2<.15?.4:0)+"px #000";}
+      for(var q=0;q<120;q++){var z2=r3();P[q%3]+=(P[q%3]?",":"")+Math.round(r3()*W)+"px "+Math.round(r3()*H)+"px 0 "+(z2<.07?.7:z2<.3?.35:0)+"px "+(z2>.86?"#2A2410":"#000");}
       var pg=document.createElement("div");pg.className="nsky pg";pg.setAttribute("aria-hidden","true");
       pg.innerHTML='<i style="box-shadow:'+P[0]+'"></i><i class="k2" style="box-shadow:'+P[1]+'"></i><i class="k3" style="box-shadow:'+P[2]+'"></i><em class="ss"></em>';
       document.body.insertBefore(pg,document.body.firstChild);shoot(pg);}
