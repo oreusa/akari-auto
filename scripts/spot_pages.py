@@ -154,9 +154,10 @@ for p, fu in FU.items():
     es = sorted([o for o in spots if o["pref"] == p], key=lambda o: (o["en"] or "9999", o["st"]))
     if not es: continue
     pc = es[0]["pc"]; nowc = sum(1 for o in es if not o["st"] or o["st"] <= TODAY); free = sum(1 for o in es if o["free"])
-    title = f"{p}のおでかけ・イベント一覧｜開催中・今週末・これから（{fu}）｜LIFE NOTE"
+    # 11/12 燈：検索で多い「栃木 イベント 11月」「今週末」の言葉を題の前に（台帳の指令 hp）
+    title = f"{p}のイベント{D0.month}月・今週末｜開催中{nowc}件・無料{free}件のおでかけ一覧（{fu}）｜LIFE NOTE"
     names = "、".join(o["name"] for o in es[:4])
-    desc = f"{fu}で開催中・これからのイベントとおでかけ先{len(es)}件（入場無料{free}件）を、日程・場所・公式ページつきで一覧にしました。{names}など。{UPD}更新。"
+    desc = f"{fu}の{D0.month}月のイベント・今週末のおでかけ。開催中・これからの{len(es)}件（入場無料{free}件）を、日程・場所・公式ページつきで一覧にしました。{names}など。{UPD}更新。"
     canon = f"{BASE}/odekake-{SLUG[p]}"
     ld = {"@context": "https://schema.org", "@type": "ItemList", "name": f"{p}のおでかけリスト",
           "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{BASE}/o/{o['id']}", "name": o["name"]} for i, o in enumerate(es)]}
