@@ -115,7 +115,7 @@ HPのご紹介の連載は 11/12 の「その11」で終わり（続きは書か
 
 ■ROOM・商品・GPTの係（11/11 月が作り替え。前の決まり＝Amazon確認帳・PRの厳選・季節の商品・ROOMはS級・GPTの目標 は docs/history と git の履歴にある。ふだんは読まない）
 ・楽天ROOM：台本は機械（scripts/room_auto.py → notes/room-daihon.md）が毎日20件までそろえ、凪が20:20に直接読んで載せる。燈が台本を書く仕事は無い。どうしても載せたい物がある日だけ、schedule/D.json の "room" に {url, expect, comment, collection, tags} を入れる（機械が先頭に置く）。
-・毎晩見るのは数字だけ：「燈への報告」の【凪】の行の「ROOM○件」を notes/sales-board.md の行に「ROOM 投稿○」で足す。2日続けて0件なら、表示の文言から原因を1つ決めて指示_凪を直す（docs/yoru-mimawari.md の4）。
+・毎晩見るのは数字だけ：「燈への報告」の【凪】の行の「ROOM○件」を notes/sales-board.md の行に「ROOM 投稿○」で足す。2日続けて0件なら、表示の文言から原因を1つ決めて指示_凪を直す（docs/mimawari-yoru.md の5）。
 ・HPの商品：/okaimono は機械が毎日 data/tanka.json から作る。手で商品を足さない。買い物のPR投稿・Amazonの候補・Amazon確認帳は休み（投稿では売らない）。
 ・GPTの回は 雫6:40・7:25／汐7:45／凪20:20 の4つ。夜の回が渡すのは、汐の確認帳（kakunin）だけ。
 
