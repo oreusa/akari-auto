@@ -33,7 +33,7 @@ def files(now):
             n = len(s.get('posts', []))
             if n < 9:  # 8:00 の4コマは koma4 にあるので、予定表は9本
                 out.append(f'予定表 {d} の投稿が{n}本（決まりは4コマと合わせて10本＝予定表9本）')
-        if not os.path.exists(f'koma4/{d}.json'):
+        if d < '2026-11-13' and not os.path.exists(f'koma4/{d}.json'):  # 11/13 から4コマはやめた（オーナー 11/12）
             out.append(f'4コマ koma4/{d}.json が無い')
         if d >= '2026-10-30':  # 07:30 の関東おでかけリール（10/30から）
             if os.path.exists(f'reel-hp/{d}.json'):  # 11/2 HPリールの日は、おでかけリールを翌週に回す
@@ -47,7 +47,7 @@ def files(now):
     yb = [load(f) or {} for f in glob.glob('koma4/yobi-*.json')]
     ready = sum(1 for y in yb if y.get('image_url') and not y.get('used'))
     left = sum(1 for y in yb if not y.get('used'))
-    if ready < 2 and now.date().isoformat() >= '2026-11-15':  # 雫が描きためるまでの3日は数えない
+    if False and ready < 2 and now.date().isoformat() >= '2026-11-15':  # 予備の4コマも要らない（11/12 4コマをやめた）  # 雫が描きためるまでの3日は数えない
         out.append(f'予備の4コマ すぐ出せる物が{ready}本（2本より少ない。台本の残り{left}本）→ 残りが3本より少なければ夜の回で台本を2本足す（docs/nightly-prompt.md）')
     return out
 

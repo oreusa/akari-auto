@@ -604,7 +604,12 @@ def media_problem(url, kind):
 KOMA_FILES = (("", "4コマ"), ("-tabi", "旅4コマ"))
 
 
+KOMA4_STOP = "2026-11-13"   # 11/12 オーナー「関東4コマ辞める」。この日から4コマ・旅先4コマ・予備は予約しない
+
+
 def book_koma4(cfg, state, now):
+    if now.date().isoformat() >= KOMA4_STOP:
+        return False
     changed = False
     for suffix, label in KOMA_FILES:
         changed |= _book_koma(cfg, state, now, suffix, label)

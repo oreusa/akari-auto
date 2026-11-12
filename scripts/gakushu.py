@@ -51,16 +51,12 @@ base = med(kinds.get("通常", []))
 for k, v in kinds.items():
     if k not in ("通常", "4コマ") and len(v) >= 5 and med(v) * 3 < base:
         order("投稿", "post-kind", f"「{k}」の投稿（中央値 {med(v)}、通常は {base}）は、Threads と X では週2本までに減らし、空いた枠を通常の当たりの型に回す", "通常の3分の1より下が7日続いた")
-# 4コマ（雫＝GPTの絵）。11/12 owner「4コマなぁ、gpt使って欲しいんよなぁ、毎月お金かかってるし」→ やめない。見られる形を機械が探す
+# 4コマ（雫＝GPTの絵）。11/12 09:04 owner「関東4コマ辞める。その代わり違う仕事を」「GPTに絵をかくのはやめる」→ 11/13 からやめた。雫は朝の楽天ROOMとコメント返信に替えた（指示_雫）。
+# 下は、やめる前の数字を残すだけ（指令は出さない）。
 _k4 = {sv: [p["v"] for p in now if p["svc"] == sv and p["kind"] == "4コマ"] for sv in ("twitter", "threads", "instagram")}
 _n4 = {sv: [p["v"] for p in now if p["svc"] == sv and p["kind"] == "通常"] for sv in ("twitter", "threads")}
 if any(_k4.values()):
-    _okx = bool(_k4["twitter"]) and med(_k4["twitter"]) >= med(_n4["twitter"]); _okt = bool(_k4["threads"]) and med(_k4["threads"]) >= med(_n4["threads"])
-    item("koma4", "4コマ（雫の絵）", f"X {med(_k4['twitter'])}（ふつうの投稿 {med(_n4['twitter'])}）・Threads {med(_k4['threads'])}（ふつう {med(_n4['threads'])}）・インスタ {med(_k4['instagram'])}", "X か Threads で、ふつうの投稿の中央値より上", "当たり" if (_okx or _okt) else "外れ", "GPT（雫）の毎日の仕事。見られる形にする")
-    _best = sorted([p for p in now if p["kind"] == "4コマ" and p["svc"] in ("twitter", "threads")], key=lambda x: -x["v"])[:1]
-    _hit = sorted([p for p in now if p["kind"] == "通常" and p["svc"] in ("twitter", "threads")], key=lambda x: -x["v"])[:1]
-    if not _okt and _hit: order("燈の夜", "koma4", f"4コマは続ける（オーナー 11/12）。Threads で 4コマ {med(_k4['threads'])}・ふつう {med(_n4['threads'])}。あすの4コマの題材を、この7日でいちばん見られた投稿「{_hit[0]['first'][:26]}」（{_hit[0]['v']}）と同じ種類（食べ物の催し・新しい店など）にし、投稿文の1行目をその投稿と同じ「日付、場所で名前」の形にする" + (f"。4コマでいちばん見られた回は「{_best[0]['first'][:22]}」（{_best[0]['v']}）" if _best else ""), "4コマが、ふつうの投稿より見られていない")
-    if _okx: order("燈の夜", "koma4", f"4コマは X で当たり（{med(_k4['twitter'])}、ふつう {med(_n4['twitter'])}）。X の4コマは今の形のまま。出す時刻を X の強い枠に合わせる", "X ではふつうより見られている")
+    item("koma4", "4コマ（11/13 からやめた。前の数字）", f"X {med(_k4['twitter'])}（ふつうの投稿 {med(_n4['twitter'])}）・Threads {med(_k4['threads'])}（ふつう {med(_n4['threads'])}）・インスタ {med(_k4['instagram'])}", "―", "やめた", "オーナーが 11/12 に決めた。GPT（雫）は朝の楽天ROOMとコメント返信へ")
 top = sorted([p for p in now if p["svc"] in ("threads", "twitter")], key=lambda x: -x["v"])[:3]
 if top and top[0]["v"] >= max(300, base * 3):
     order("投稿", "post-hit", "当たった3本の形（1行目の作り・題材）を、あす別の場所・別の日付で1本ずつ作る：" + "／".join(f"{p['first'][:28]}（{p['v']}）" for p in top), "中央値の3倍以上")
