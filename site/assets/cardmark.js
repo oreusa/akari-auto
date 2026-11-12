@@ -60,7 +60,7 @@ var css=
 '.cmb .dd small{font-family:Jost,sans-serif;font-size:8px;font-weight:500;letter-spacing:.14em;color:var(--pc,#8a8f98)}'+
 '.cmb .dd small.ddw{font-family:"Zen Kaku Gothic New",sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.02em}'+
 '.cmb .dd.tx b{font-family:"Zen Kaku Gothic New",sans-serif;font-size:10px;font-weight:700;letter-spacing:.04em}'+
-'.cmb .cdn{display:inline-block;margin-top:5px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:9.5px;color:var(--pc,#8a8f98);letter-spacing:.06em;white-space:nowrap}'+
+'.cmb .cdn{display:inline-block;margin-top:5px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:11px;color:var(--pc,#8a8f98);letter-spacing:.06em;white-space:nowrap}'+
 '.cmb .cdn.hot{background:var(--pc,#8a8f98);color:#fff;border-radius:999px;padding:3px 7px 2px}'+
 /* 11/4 オーナー「夜可愛くない 反転だけしたよう」「左上は太陽か？」→ 夜は反転を打ち消して、夜専用の色で描く。
    夜空の紺のタイルに府県の色がにじむツヤ、絵は光る線、左上の丸は小さくまたたく星に */
