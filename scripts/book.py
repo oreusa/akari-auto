@@ -498,6 +498,7 @@ def run(now=None):
         append_log(now.date().isoformat(), f"4コマ 予約×：{str(e)[:150]}")
     try:
         changed |= book_outing_reel(cfg, state, now)
+        changed |= book_reel_again(cfg, state, now)
         changed |= book_hp_reel(cfg, state, now)
     except BufferError as e:
         append_log(now.date().isoformat(), f"おでかけリール 予約×：{str(e)[:150]}")
@@ -864,6 +865,46 @@ def book_outing_reel(cfg, state, now):
         rec["error"] = str(e)[:200]
         append_log(day, f"おでかけリール instagram 予約×（{rec['tries']}回目）：{str(e)[:150]}")
     return True
+
+
+def book_reel_again(cfg, state, now):
+    """おでかけリールの出し直し（11/12 オーナー「今までの消したから」「2つとも今すぐ今日の分投稿」）。
+    reel/D.json に "again": [{"key": "絵本", "time": "10:20", "url": 誰でも開ける動画のURL}] を置くと、
+    同じ文（朝に出した時の文）で、その動画をインスタのリールにもう一度予約する。key ごとに1回だけ。"""
+    day = now.date().isoformat()
+    spec = load_json(path("reel", f"{day}.json"))
+    if not spec or "instagram" not in cfg["channels"]:
+        return False
+    changed = False
+    for a in spec.get("again") or []:
+        if not a.get("url") or not a.get("time") or not a.get("key"):
+            continue
+        due = datetime.fromisoformat(f"{day}T{a['time']}").replace(tzinfo=JST)
+        mins = (due - now).total_seconds() / 60
+        if mins > LEAD_MIN or mins < -4 * 60:
+            continue
+        top = state.setdefault(f"{day} おでかけリール {a['key']}", {})
+        rec = top.setdefault("instagram", {"tries": 0})
+        if rec.get("id") or rec.get("tries", 0) >= MAX_TRIES:
+            continue
+        first = (state.get(f"{day} おでかけリール", {}).get("instagram", {}).get("texts") or [""])[0]
+        cap = (a.get("caption") or first or "").strip()
+        if not cap:
+            continue
+        top["url"] = a["url"]
+        when = due if mins >= 3 else now + timedelta(minutes=3)
+        rec["tries"] = rec.get("tries", 0) + 1
+        try:
+            p = buffer_create(cfg["channels"]["instagram"], "instagram", [cap], when.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                              video=a["url"], ig_type="reel", alt=f"関東おでかけリール {spec.get('text', {}).get('place', '')}")
+            rec.update({"id": p["id"], "kind": "おでかけリール", "at": when.strftime("%H:%M"), "texts": [cap], "svc": "instagram"})
+            rec.pop("error", None)
+            append_log(day, f"おでかけリール（{a['key']}） instagram 予約OK（{when.strftime('%H:%M')}）")
+        except BufferError as e:
+            rec["error"] = str(e)[:200]
+            append_log(day, f"おでかけリール（{a['key']}） instagram 予約×（{rec['tries']}回目）：{str(e)[:150]}")
+        changed = True
+    return changed
 
 
 def book_hp_reel(cfg, state, now):

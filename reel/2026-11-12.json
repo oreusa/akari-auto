@@ -66,5 +66,12 @@
   "#関東おでかけ",
   "#茨城おでかけ",
   "#筑波山"
+ ],
+ "again": [
+  {
+   "key": "絵本",
+   "time": "10:15",
+   "url": "https://oreusa.github.io/usagi-fudosan-media/media/reels/2026-11-12-ehon-kanto-v1.mp4"
+  }
  ]
 }
