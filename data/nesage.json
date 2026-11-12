@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-12 11:01",
+  "at": "2026-11-12 12:18",
   "since": "2026-11-01",
   "tracked": 260,
   "days": 11,
@@ -17,13 +17,25 @@
       "plain": "https://item.rakuten.co.jp/tripleshop/10000191/"
     },
     {
+      "title": "加湿器",
+      "name": "4重除菌 4.5L LAViNO エアリファイ 2027 医師推奨 除菌加湿 大容量 静音 …",
+      "price": 12672,
+      "base": 15840,
+      "pct": 20,
+      "days": 11,
+      "rc": 743,
+      "av": 4.14,
+      "shop": "美顔器 美容家電 アイビビッド",
+      "plain": "https://item.rakuten.co.jp/aibeaute/10000907/"
+    },
+    {
       "title": "コーヒー",
       "name": "コーヒー豆 お試しセット 15種類から選べる3種 飲み比べ 100g×3袋 浅煎り 中煎り …",
       "price": 1480,
       "base": 1690,
       "pct": 12,
       "days": 11,
-      "rc": 425,
+      "rc": 426,
       "av": 4.6,
       "shop": "コーヒー&パン専門店DripTrip",
       "plain": "https://item.rakuten.co.jp/daisen-coffee/10001120/"
@@ -73,7 +85,7 @@
       "base": 2420,
       "pct": 61,
       "days": 11,
-      "rc": 6655,
+      "rc": 6657,
       "av": 4.48,
       "shop": "山川食糧オートミール研究所",
       "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
@@ -85,7 +97,7 @@
       "base": 2640,
       "pct": 43,
       "days": 11,
-      "rc": 597,
+      "rc": 598,
       "av": 4.46,
       "shop": "武内製薬 公式オンラインストア",
       "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000302/"
@@ -97,7 +109,7 @@
       "base": 5780,
       "pct": 38,
       "days": 5,
-      "rc": 392,
+      "rc": 394,
       "av": 4.79,
       "shop": "MOTTERU ダイレクト 楽天市場店",
       "plain": "https://item.rakuten.co.jp/motteru/10000176/"
