@@ -129,6 +129,12 @@ jobs:
           print("新しいアドレスにしたファイル", n)
           PY
           fi
+      - name: 投稿に付ける画像（公開する site/ をスマホ幅で撮って site/postimg/ に。11/12 オーナー「PR投稿はおかいもののHPの写真がある」。一覧は data/postimg.json。失敗してもHPは出す）
+        run: |
+          (mkdir -p /tmp/pw && cd /tmp/pw && npm init -y -q >/dev/null && npm i -q playwright@1.47.2 && npx playwright install chromium >/dev/null) || true
+          NODE_PATH=/tmp/pw/node_modules timeout 720 node scripts/post_img.js || true
+          # 見本（月が見た目を確かめる用）。無い時だけ置く
+          [ -f notes/postimg-sample.jpg ] || cp site/postimg/okaimono-tp.jpg notes/postimg-sample.jpg 2>/dev/null || true
       - name: お客さんに見せてはいけない言葉が無いか（11/9 オーナー「燈？」「なんか対策ないの」→ 中の名前・変な言い方・作りかけの言葉が1つでもあれば、ここで止めて公開しない。言葉は scripts/ngwords.json）
         run: python3 scripts/ngcheck.py site
       - name: 公開する（Cloudflare Pages。鍵があるときだけ。アドレス lifenote.pages.dev と、前の usagi-life-notes.pages.dev にも同じ物）
@@ -171,6 +177,7 @@ jobs:
           git config user.email "akari-auto@users.noreply.github.com"
           git add notes/seichou.md data/seichou.json notes/gakushu.md data/gakushu.json data/shirei.json data/manabi.json data/yatta.json 2>/dev/null || true
           git add notes/room-daihon.md data/room-log.json 2>/dev/null || true
+          git add data/postimg.json data/postimg-rule.json notes/postimg-sample.jpg 2>/dev/null || true
           git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/townnotes-geo-checked.json data/kansai-yado.json data/kanto-yado.json data/tanka.json data/furusato.json data/price-history.json data/nesage.json data/okaimono_img.json data/koe.json data/note-history.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "ページの数とリンクの確かめを記録"
