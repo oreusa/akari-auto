@@ -269,6 +269,12 @@ for o in orders:
     lt = _last(o); st = (today - _td(days=o["days"] - 1)).isoformat()
     o["idle"] = o["days"] if lt < st else max(0, (today - date.fromisoformat(lt)).days)
 orders.sort(key=lambda o: (o["kind"] != "作る", PRI.index(o["item"]) if o["item"] in PRI else 99))
+# 11/12 月の作り替え（オーナー「無駄な仕組みになってないか」）：指令は回ごとに1日3本まで。残りは控え（hikae）。関西の台帳（usagi tools/seichou/gakushu.py）と同じ決まり
+_nn = {}; hikae = []; _act = []
+for o in orders:
+    if _nn.get(o["to"], 0) >= 3: o["hold"] = "1日3本まで"; hikae.append(o)
+    else: _act.append(o); _nn[o["to"]] = _nn.get(o["to"], 0) + 1
+orders = _act
 for to in ("燈の夜", "月"):
     _c = [o for o in orders if o["to"] == to and o["kind"] == "作る"]
     f_ = next((o for o in _c if len(o.get("wait", [])) < 2), _c[0] if _c else None)
@@ -293,7 +299,8 @@ def mline(m):
     return f"- {m['day']} {m['item']}：{m['from']}→{m['to']}（{m['num']}）。その前に出ていた指令：{'／'.join(m['did']) or '記録なし'}"
 MARK = {"当たり": "◎", "外れ": "×", "未確認": "？", "計測中": "…"}
 L = [f"# 関東の学習の台帳（{today.isoformat()} 朝）", "", "機械が毎朝作ります。燈の夜の回は、これを最初に読み、自分あての指令をそのままやります。数字が取れない物は「未確認」。", "",
-     "| | 項目 | 機械が測った数字 | 合格の線 | 答え |", "|---|---|---|---|---|"]
+     "## いちばん上の2つ（この2つが動かなければ、ほかが当たりでも進んでいない）", "", f"- 投稿からHPに来た人（7日）：**{n.get('come', 0)}**（線 週50）", f"- 反響（送信・7日）：**{sent}**（線 週1件）", "", "指令は回ごとに1日3本まで。Google に載った枚数は関西の台帳（usagi stats/gakushu.md）の一番上。", "",
+     "## 項目ごと", "", "| | 項目 | 機械が測った数字 | 合格の線 | 答え |", "|---|---|---|---|---|"]
 L += [f"| {MARK.get(i['ans'], '')} | {i['name']} | {i['num']} | {i['line']} | {i['ans']} |" for i in items]
 L += ["", "## きょうの指令", ""]
 for to in ("燈の夜", "投稿", "リール", "月"):
@@ -304,7 +311,7 @@ L += ["## 答え待ちの手（やってから7日で、機械が答えを付け
 L += ["## 学び（手の答え・答えが変わった日）", ""] + ([mline(m) for m in manabi["rows"][-12:]] or ["- まだありません"]) + [""]
 open(P("notes", "gakushu.md"), "w", encoding="utf-8").write("\n".join(L))
 json.dump(yatta, open(P("data", "yatta.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-json.dump({"day": today.isoformat(), "first_items": _firsts, "items": items, "orders": orders, "sum": {"sent": sent, "seika": (_s if _sb7 else None)}, "hist": hist}, open(P("data", "gakushu.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+json.dump({"day": today.isoformat(), "first_items": _firsts, "items": items, "orders": orders, "hikae": hikae, "sum": {"sent": sent, "seika": (_s if _sb7 else None)}, "hist": hist}, open(P("data", "gakushu.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 json.dump({"day": today.isoformat(), "about": "to が自分の行を、動く前に読んでやる。やったら data/yatta.json の rows に {day, item, what} を1行足す（同じ item の指令が2つ以上ある時は order に指令の最初の24字も書く。書かないと「手が無い」と数えられる）（7日後に機械が効いた・効かなかったを付ける）。ng の手はくり返さない", "orders": orders}, open(P("data", "shirei.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 json.dump(manabi, open(P("data", "manabi.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("\n".join(L))
