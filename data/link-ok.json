@@ -2205,9 +2205,9 @@
  },
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
   "at": "2026-11-13",
-  "ok": false,
-  "sec": 15.4,
-  "why": "<urlopen error timed out>"
+  "ok": true,
+  "sec": 0.8,
+  "why": ""
  },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
   "at": "2026-11-11",
