@@ -96,6 +96,8 @@
     "@keyframes spk{0%,100%{opacity:.35;transform:scale(.7)}50%{opacity:1;transform:scale(1.1)}}@media (prefers-reduced-motion:reduce){.nsky .sp{animation:none}}"+
     ".nsky .ss:after{content:\"\";position:absolute;left:-1px;top:-1.2px;width:4px;height:4px;border-radius:50%;background:#000;box-shadow:0 0 6px 1px rgba(0,0,0,.7)}"+
     "html.night .nsky.pg{position:absolute;left:0;top:0;right:0;bottom:auto;z-index:-1;opacity:.82}"+
+    ".nsky.pg>i,.nsky.pg>.sp{translate:0 0;animation-name:tw,drift;animation-duration:3.2s,150s;animation-timing-function:ease-in-out,linear;animation-iteration-count:infinite,infinite;animation-direction:normal,alternate}.nsky.pg>i:first-child{animation-name:drift;animation-duration:150s;animation-timing-function:linear;animation-direction:alternate}.nsky.pg>.k3{animation-duration:4.6s,190s}.nsky.pg>.sp{animation-name:spk,drift;animation-duration:6s,170s}"+
+    "@keyframes drift{from{translate:0 0}to{translate:-46px 22px}}@media (prefers-reduced-motion:reduce){.nsky.pg>i,.nsky.pg>.sp{animation:none!important}}"+
     "@media (prefers-reduced-motion:reduce){.nsky i,.kmap .lt circle{animation:none!important}}";
   var st=document.createElement("style");st.textContent=css;(document.head||d).appendChild(st);
   set(pick());
@@ -135,9 +137,9 @@
       pg.innerHTML='<i style="box-shadow:'+P[0]+'"></i><i class="k2" style="box-shadow:'+P[1]+'"></i><i class="k3" style="box-shadow:'+P[2]+'"></i>'+SP+'<em class="ss"></em>';
       document.body.insertBefore(pg,document.body.firstChild);shoot(pg);}
     var m=document.querySelector(".kmap");if(!m||m.querySelector(".lt"))return;
-    var N={"東京":90,"神奈川":70,"埼玉":55,"千葉":50,"茨城":30,"栃木":26,"群馬":26},g=document.createElementNS("http://www.w3.org/2000/svg","g"),out="",r2=rnd(11);
+    var N={"東京":45,"神奈川":35,"埼玉":28,"千葉":25,"茨城":15,"栃木":13,"群馬":13},g=document.createElementNS("http://www.w3.org/2000/svg","g"),out="",r2=rnd(11);
     g.setAttribute("class","lt");
-    [].forEach.call(m.querySelectorAll(".pf path"),function(pth){var n=N[pth.getAttribute("data-p")]||20,bb=pth.getBBox(),pt=m.createSVGPoint(),got=0,tries=0;
+    [].forEach.call(m.querySelectorAll(".pf path"),function(pth){var n=N[pth.getAttribute("data-p")]||11,bb=pth.getBBox(),pt=m.createSVGPoint(),got=0,tries=0;
       while(got<n&&tries<n*40){tries++;pt.x=bb.x+r2()*bb.width;pt.y=bb.y+r2()*bb.height;
         if(!pth.isPointInFill||!pth.isPointInFill(pt))continue;got++;var q=r2();
         out+='<circle cx="'+pt.x.toFixed(1)+'" cy="'+pt.y.toFixed(1)+'" r="'+(q<.1?2.2:q<.4?1.5:1).toFixed(1)+'"'+(q>.8?' class="t"':q>.62?' class="u"':'')+' opacity="'+(.55+r2()*.45).toFixed(2)+'"/>';}});
