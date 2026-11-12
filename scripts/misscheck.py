@@ -31,8 +31,9 @@ def files(now):
             out.append(f'予定表 schedule/{d}.json が無い')
         else:
             n = len(s.get('posts', []))
-            if n < 9:  # 8:00 の4コマは koma4 にあるので、予定表は9本
-                out.append(f'予定表 {d} の投稿が{n}本（決まりは4コマと合わせて10本＝予定表9本）')
+            need = 5 if d >= '2026-11-13' else 9  # 11/13 から1日5本（月の作り替え。docs/nightly-prompt.md「■書く」）
+            if n < need:
+                out.append(f'予定表 {d} の投稿が{n}本（決まりは{need}本）')
         if d < '2026-11-13' and not os.path.exists(f'koma4/{d}.json'):  # 11/13 から4コマはやめた（オーナー 11/12）
             out.append(f'4コマ koma4/{d}.json が無い')
         if d >= '2026-10-30':  # 07:30 の関東おでかけリール（10/30から）
