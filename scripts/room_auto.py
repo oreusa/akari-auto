@@ -48,7 +48,7 @@ def main():
         for i, t in enumerate(c.get("top", []), 1):
             u = (t.get("plain") or "").split("?")[0]
             bd = t.get("bd") or ""
-            if not u.startswith("https://item.rakuten.co.jp/") or not bd or bd not in t.get("name", "") or (t.get("av") or 0) < 4.0 or (t.get("rc") or 0) < 50 or not t.get("per"):
+            if not u.startswith("https://item.rakuten.co.jp/") or not bd or bd not in t.get("name", "") or (t.get("av") or 0) < 4.0 or (t.get("rc") or 0) < 20 or not t.get("per"):
                 continue
             cm = (f"選んだ理由：{c['title']}を{c.get('read', 0)}点、{c['unit']}あたりの値段にそろえて比べました。この{bd}は{c['unit']}あたり{yen(t['per'])}円"
                   f"（{t['amt']}で{t['price']:,}円・{today.month}/{today.day}時点）。レビューは{t['rc']:,}件で★{t['av']:.2f}です。\n"
@@ -64,6 +64,15 @@ def main():
     for u, x in sorted(cand.items(), key=lambda kv: (kv[1]["rank"], kv[1]["cat"])):
         if u not in used and u not in order:
             order.append(u)
+    # 11/12：まだ出していない物が20件に足りない日は、前に台本に出した物を古い順に足す（比べる物は30〜50点しか無く、14日出さない決まりだと3日目に0件になる。
+    # 台本に出ても、メンテや時間切れでROOMに載っていない物が多い。もう載っている物は GPT が「載せ済み」で飛ばす）
+    last = {}
+    for d in sorted(log):
+        if d != T:
+            for u in log[d]:
+                last[u] = d
+    for u in sorted((u for u in cand if u in used and u not in order), key=lambda u: (last.get(u, ""), cand[u]["rank"])):
+        order.append(u)
     hand_urls = [r["url"].split("?")[0] for r in hand]
     order = [u for u in order if u in cand and u not in hand_urls][:max(0, MAX - len(hand))]
     rows = []
@@ -73,8 +82,9 @@ def main():
         x = cand[u]
         rows.append((x["col"], x["name"], u, x["comment"], x["tag"]))
     log[T] = hand_urls + order
-    out = [f"ROOM台本（機械が毎日そろえる。凪はこのページだけを見て、上から順に載せる）", "", f"更新：{T}", f"件数：{len(rows)}件", "",
-           "・「更新：」の日付が今日の時だけ載せる。開くのは「探し方」のURLだけ。コメントとハッシュタグはそのまま貼る。",
+    out = [f"ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを見て、上から順に載せる）", "", f"更新：{T}", f"件数：{len(rows)}件", "",
+           "・「更新：」の日付が今日の時だけ載せる（朝の雫は、きのうの日付でも載せる）。開くのは「探し方」のURLだけ。コメントとハッシュタグはそのまま貼る。",
+           "・もうROOMに載っている商品は載せずに飛ばす（前の日に載せきれなかった物が、もう一度ここに出る）。",
            "・コレクションは、同じ名前があればそこへ。無ければ「新しく作る」の名前で作る（1日3つまで）。", "", "（ここから下に台本）", ""]
     for i, (col, nm, u, cm, tg) in enumerate(rows, 1):
         out += [f"{i}｜コレクション：{col}（無ければ 新しく作る：{col}）", f"商品：{nm}", f"探し方：{u}", "コメント：", cm, f"ハッシュタグ：{tg}", ""]
