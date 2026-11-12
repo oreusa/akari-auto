@@ -117,7 +117,8 @@
     var ck=g("kind"),cw=g("want"),pl=q("#pl"),tx=q("#tx"),nm=q("#nm"),em=q("#em"),tl=q("#tl"),ag=q(".ag"),sb=q("#sb"),er=q("#er");
     if(!ck||!cw||!pl||!tx||!nm||!em||!tl||!ag||!sb||!er)return;
     var lab=function(el){var p=el.previousElementSibling;return p&&/(^|\s)fl(\s|$)/.test(p.className)?p:null;};
-    var G=[[lab(cw),cw,lab(ck),ck],[lab(pl),pl,lab(tx),tx],[lab(nm),nm,lab(em),em,lab(tl),tl,q(".hp"),ag,sb,er]];
+    /* 11/12 台帳【きょうの1つ】開いた57人→書きはじめ7人：最初の画面は「ご希望」1問だけ。押すと自分で次へ進む。お家の種類は2つ目の画面へ */
+    var G=[[lab(cw),cw],[lab(ck),ck,lab(pl),pl,lab(tx),tx],[lab(nm),nm,lab(em),em,lab(tl),tl,q(".hp"),ag,sb,er]];
     for(var i=0;i<G.length;i++)for(var j=0;j<G[i].length;j++)if(!G[i][j])return;
     /* 11/12 足した欄：お家のこと（任意）は「お家について」の画面へ、電話の時間帯は電話番号のすぐ下へ */
     var kw=q("#kw"),tw=q("#ttw");if(kw){G[1].push(kw);kw.open=false}if(tw)G[2].splice(G[2].indexOf(tl)+1,0,tw);
@@ -140,6 +141,8 @@
     f.addEventListener("input",function(){var e4=S[cur].querySelector(".tke");if(e4&&e4.textContent)e4.textContent="";});
     /* 送信の時に、前の画面の欄（場所）で止まったら、その画面に戻す */
     new MutationObserver(function(){if(/場所/.test(er.textContent||"")&&cur!==1)show(1,1);}).observe(er,{childList:true,characterData:true,subtree:true});
+    var hint=d.createElement("p");hint.className="tkh";hint.textContent="あてはまる物を1つ押すと、次へ進みます。無料・約1分・名字だけで大丈夫です。";S[0].insertBefore(hint,S[0].firstChild);
+    f.addEventListener("change",function(ev){var t=ev.target;if(cur===0&&t&&t.name==="want"&&t.checked)setTimeout(function(){if(cur===0)show(1,1);},240);});
     show(0,0);f.classList.add("tkw");
     /* 11/12 台帳：開いた人の9割が書きはじめない → ご希望を選んで来た人（?want=）は、1つ目の画面を飛ばして「お家について」から。戻るで直せる */
     var pre=function(){try{if(cur===0&&/[?&]want=/.test(location.search)&&cw.querySelector("input:checked"))show(1,0);}catch(e){}};pre();setTimeout(pre,80);setTimeout(pre,400);
