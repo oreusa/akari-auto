@@ -82,6 +82,12 @@ item("reel-ehon", "絵本を開く型のリール（11/12〜）", f"絵本 {len(
 if len(_eh) >= 6 and med(_eh) > med(_bf): order("リール", "reel-ehon", f"絵本の型が前の型より上（{med(_bf)}→{med(_eh)}）。いちばん見られた回の題材と1枚目の言葉を、次の3本でまねる", "当たり：型が効いた")
 elif len(_eh) >= 6: order("リール", "reel-ehon", f"絵本の型が前の型より下（{med(_bf)}→{med(_eh)}）。型は残し、1枚目の題を「場所＋日付＋無料か」に、声の1行目を問いかけにして3本試す。1つずつ変える", "外れ：1枚目で止まっていない")
 
+# 4c 夜の手順の長さ（毎晩ぜんぶ読む物。長いほど費用がかかり、古い決まりが残るほど間違える）
+_np = open(P("docs", "nightly-prompt.md"), encoding="utf-8").read(); _kb = len(_np.encode()) // 1024
+_dead = [w for w in ("koma4/D.json", "凪の明日の目標", "旅先4コマ", "ROOM台本を", "Amazon確認帳に書いた物だけ") if w in _np]
+item("tejun", "夜の手順の長さ", f"{_kb}KB・やめた仕事の言葉 {len(_dead)}" + (f"（{'・'.join(_dead)}）" if _dead else ""), "46KB より短い・やめた仕事の言葉 0", "当たり" if _kb <= 46 and not _dead else "外れ", "毎晩ぜんぶ読む。やめた決まりが残ると、上と下でぶつかる")
+if _kb > 46 or _dead: order("月", "tejun", f"夜の手順（docs/nightly-prompt.md）が {_kb}KB" + (f"・やめた仕事の言葉が残っている（{'・'.join(_dead)}）" if _dead else "") + "。足した決まりと同じ数だけ、古い決まりを docs/history へ移す", "足すだけだと毎晩の費用が増え、ぶつかる決まりで間違える")
+
 # 5 担当（雫・汐・凪）— notes/gpt-runs.md の ○× を機械が数える
 runs = [l for l in open(P("notes", "gpt-runs.md"), encoding="utf-8").read().splitlines() if re.match(r"- 20\d\d-\d\d-\d\d", l) and l[2:12] > d7] if os.path.exists(P("notes", "gpt-runs.md")) else []
 if runs:
