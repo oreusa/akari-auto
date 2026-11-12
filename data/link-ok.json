@@ -2204,9 +2204,9 @@
   "why": ""
  },
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
-  "at": "2026-11-12",
+  "at": "2026-11-13",
   "ok": false,
-  "sec": 15.5,
+  "sec": 15.2,
   "why": "<urlopen error timed out>"
  },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
@@ -5992,9 +5992,9 @@
   "why": ""
  },
  "https://tachikawaillumination.com": {
-  "at": "2026-11-09",
+  "at": "2026-11-13",
   "ok": true,
-  "sec": 1.6,
+  "sec": 1.2,
   "why": ""
  },
  "https://tachikawaillumination.com/": {
