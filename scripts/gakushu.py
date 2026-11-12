@@ -273,6 +273,8 @@ from datetime import timedelta as _td
 def _last(o):
     sib = [x for x in orders if x["item"] == o["item"] and x["to"] == o["to"]]
     return max([y.get("day", "") for y in yatta["rows"] if y.get("item") == o["item"] and (len(sib) < 2 or y.get("order", "")[:24] == o["order"][:24] or ("order" not in y and sib[0] is o))] or [""])
+# 11/12 待つしかない指令（月曜の汐の写し待ち）は「手が無い」に数えない。足す時は、何を待つかを指令の文に書く
+MACHI = {"asp"}
 for o in orders:
     lt = _last(o); st = (today - _td(days=o["days"] - 1)).isoformat()
     o["idle"] = o["days"] if lt < st else max(0, (today - date.fromisoformat(lt)).days)
@@ -289,14 +291,14 @@ for to in ("燈の夜", "月"):
     if f_: f_["first"] = True
 _firsts = {o["to"]: o["item"] for o in orders if o.get("first")}
 for _i, to in enumerate(("燈の夜", "月")):
-    _m = [o for o in orders if o["to"] == to]; _late = [o for o in _m if o.get("idle", 0) >= 3]
+    _m = [o for o in orders if o["to"] == to]; _late = [o for o in _m if o.get("idle", 0) >= 3 and o["item"] not in MACHI]
     _pf = (prev.get("first_items") or {}).get(to); _pd = prev.get("day", "")
     _did = (not _pf) or _pd == today.isoformat() or any(y.get("item") == _pf and y.get("day", "") >= _pd for y in yatta["rows"])
     items.insert(_i, {"id": "jikkou-" + ("akari" if to == "燈の夜" else "tsuki"), "name": f"指令をやったか（{to}）", "num": f"{to}あての指令 {len(_m)}本・3日以上 手が無い {len(_late)}本" + (f"（{'・'.join(sorted(set(o['item'] for o in _late)))}）" if _late else "") + f"・きのうの【きょうの1つ】{'やった' if _did else 'やっていない'}",
                        "line": "きのうの1つをやった・3日以上 手が無い指令 0本", "ans": "当たり" if _did and not _late else "外れ", "why": "仕組みを作っても、指令どおりに動かなければ意味がない（11/12 オーナー）"})
 def line(o):
     t = ("【きょうの1つ】" if o.get("first") else ("【数字を入れる】" if o["kind"] == "数字" else "")) + o["order"] + f"（理由：{o['why']}）"
-    if o.get("idle", 0) >= 3: t += f" ！{o['idle']}日 手が無い＝まだやられていない（やったら data/yatta.json に1行）"
+    if o.get("idle", 0) >= 3 and o["item"] not in MACHI: t += f" ！{o['idle']}日 手が無い＝まだやられていない（やったら data/yatta.json に1行）"
     elif o["days"] >= 3: t += f"（{o['days']}日目。手は打ってある）"
     if o.get("wait"): t += "／答え待ちの手（同じ所を重ねて変えない。足りない所だけ足す）：" + "・".join(o["wait"])
     if o.get("ng"): t += "／前に効かなかった手（くり返さない）：" + "・".join(o["ng"])
