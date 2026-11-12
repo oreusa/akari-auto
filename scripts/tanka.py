@@ -193,6 +193,18 @@ def short(name, n=46):
     return _kakko(cut.rsplit(" ", 1)[0] if " " in cut[n // 2:] else cut) + "…"  # 切ったあとに閉じのないかっこが残らないように
 
 
+def _clean_names(o):
+    """data/tanka.json の中の name を、かっこの掃除（_kakko）に通し直す。"""
+    if isinstance(o, dict):
+        for k, v in o.items():
+            if k == "name" and isinstance(v, str):
+                t = v.endswith("…"); o[k] = _kakko(v[:-1] if t else v).strip() + ("…" if t else "")
+            else:
+                _clean_names(v)
+    elif isinstance(o, list):
+        for v in o: _clean_names(v)
+
+
 def z2h(s):
     t = str(s).translate(str.maketrans("０１２３４５６７８９．，ｍｌＭＬｋｇＫＧｘＸ＊*", "0123456789.,mlMLkgKG××××"))
     t = re.sub(r"(?<=\d),(?=\d{3}(?!\d))", "", t)  # 2,580g → 2580g
@@ -687,6 +699,7 @@ def main():
     # 定時の 7:30・18:30 は11時間あくので、毎回取り直す。TANKA_FRESH=1 でいつも取り直す。
     try:
         d = json.load(open(os.path.join(ROOT, "data", "tanka.json"), encoding="utf-8"))
+        _clean_names(d)  # 11/12 前の回の名前にも、かっこの掃除をかける（直しが次の取り直しまで本番に出なかった）
         at = datetime.strptime(d["at"], "%Y-%m-%d %H:%M").replace(tzinfo=JST)
         cached = d["cats"] if (now - at).total_seconds() < 10 * 3600 and not os.environ.get("TANKA_FRESH") else None
     except Exception:
