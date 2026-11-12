@@ -7,6 +7,13 @@
 数字が取れない項目は「未確認」。計画を実績と書かない。使い方：python3 scripts/gakushu.py [YYYY-MM-DD]"""
 import glob, json, os, re, statistics, sys
 from datetime import date, timedelta
+
+# 11/12 調べ役やテストが打った言葉（あいうえお・xyz999・セール 等）が「探されたのに無かった物」の指令になっていた → 品物の名前らしくない物は外す
+def _tameshi(k):
+    k = str(k).strip()
+    return (len(k) < 2 or re.fullmatch(r"[a-zA-Z0-9]+", k) is not None or k in ("あいうえお", "テスト", "test", "セール", "おすすめ", "安い", "最安", "送料無料")
+            or re.fullmatch(r"(.)\1+", k) is not None)
+
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 P = lambda *p: os.path.join(ROOT, *p)
 today = date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 else date.today()
@@ -171,7 +178,7 @@ for _d, _v in load(P("data", "page-stats.json"), {}).get("days", {}).items():
             if _k.startswith("探す・なし:"): _ok["none"][_k[6:]] = _ok["none"].get(_k[6:], 0) + _c
             if _k.startswith("種類:"): _ok["top"][_k[3:]] = _ok["top"].get(_k[3:], 0) + _c
     for _k, _c in ((_v.get("click") or {}).get("okaibuy") or {}).items(): _ok["buy"] += _c
-_oo = sum(_ok["open"].values()); _top = sorted(_ok["top"].items(), key=lambda x: -x[1])[:3]; _none = sorted(_ok["none"].items(), key=lambda x: -x[1])[:3]
+_oo = sum(_ok["open"].values()); _top = sorted(_ok["top"].items(), key=lambda x: -x[1])[:3]; _none = sorted(((k, v) for k, v in _ok["none"].items() if not _tameshi(k)), key=lambda x: -x[1])[:3]
 item("okai", "おかいもの", (f"開いた {_oo}（" + "・".join(f"{k} {v}" for k, v in sorted(_ok["open"].items(), key=lambda x: -x[1])) + "）" if _oo else "開いた 計測中（11/12 から数える）") + f"・探した/絞った {_ok['ope']}・買うボタン {_ok['buy']}" + (f"・よく見られた種類 {'・'.join(f'{k} {v}' for k, v in _top)}" if _top else ""), "開いた人の1割が買うボタンを押す", "計測中" if _oo < 20 else ("当たり" if _ok["buy"] >= _oo * 0.1 else "外れ"), "買うボタンは 11/12 から数えている（その前は数えていなかった）")
 if _none: order("燈の夜", "okai", f"おかいもので探されたのに無かった物：{'・'.join(f'{k}（{v}回）' for k, v in _none)}。いちばん多い物を、くらべる種類に1つ足す（名の知れたメーカー・送料込みの1個あたり）", "探しに来た人が、何も見ずに帰っている")
 if _oo >= 20 and _ok["buy"] < _oo * 0.1:
