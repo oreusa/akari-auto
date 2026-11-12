@@ -75,6 +75,13 @@ item("ig", "インスタ", "・".join(f"{k} {len(v)}本 中央値{med(v)}" for k
 if ig.get("4コマ") and ig.get("おでかけリール") and med(ig["4コマ"]) * 5 < med(ig["おでかけリール"]):
     order("リール", "ig", f"インスタの4コマ（中央値 {med(ig['4コマ'])}）は 11/13 からやめた（オーナー 11/12）。インスタは、おでかけリール（中央値 {med(ig['おでかけリール'])}）だけを1日2本。表紙の1枚目に題とロゴを出す（プロフィールの一覧に並ぶため）。GPTに絵は描かせない", "リールが4コマの5倍以上")
 
+# 4b 絵本を開く型のリール（11/12 から。その前のリールとくらべる。6本で答え）
+_eh = [p["v"] for p in posts if p["svc"] == "instagram" and p["kind"] == "おでかけリール" and p["day"] >= "2026-11-12"]
+_bf = [p["v"] for p in posts if p["svc"] == "instagram" and p["kind"] == "おでかけリール" and p["day"] < "2026-11-12"]
+item("reel-ehon", "絵本を開く型のリール（11/12〜）", f"絵本 {len(_eh)}本 中央値 {med(_eh)}・その前 {len(_bf)}本 中央値 {med(_bf)}", "6本で、前の型の中央値を越える", "計測中" if len(_eh) < 6 else ("当たり" if med(_eh) > med(_bf) else "外れ"), "型を替えた答えを、同じ物差し（見られた数）で出す")
+if len(_eh) >= 6 and med(_eh) > med(_bf): order("リール", "reel-ehon", f"絵本の型が前の型より上（{med(_bf)}→{med(_eh)}）。いちばん見られた回の題材と1枚目の言葉を、次の3本でまねる", "当たり：型が効いた")
+elif len(_eh) >= 6: order("リール", "reel-ehon", f"絵本の型が前の型より下（{med(_bf)}→{med(_eh)}）。型は残し、1枚目の題を「場所＋日付＋無料か」に、声の1行目を問いかけにして3本試す。1つずつ変える", "外れ：1枚目で止まっていない")
+
 # 5 担当（雫・汐・凪）— notes/gpt-runs.md の ○× を機械が数える
 runs = [l for l in open(P("notes", "gpt-runs.md"), encoding="utf-8").read().splitlines() if re.match(r"- 20\d\d-\d\d-\d\d", l) and l[2:12] > d7] if os.path.exists(P("notes", "gpt-runs.md")) else []
 if runs:
@@ -236,7 +243,7 @@ def _michi(root):
 _bad = _michi(os.path.join(ROOT, "site"))
 item("michi", "申し込みへの道", f"家のページで道が無い {len(_bad)}枚" + (f"（例 {_bad[0]}）" if _bad else ""), "合格の線：0枚", "当たり" if not _bad else "外れ", "家・土地のページは、どれも申し込みへ1回で行ける事")
 if _bad: order("月", "michi", f"申し込みへの道が無い家のページが {len(_bad)}枚（{'・'.join(_bad[:3])}）。そのページを作る機械に、街の名前入りの「いくらで売れるか無料で聞く」を足す", "見られても反響にならない")
-PRI = ["lead", "michi", "come", "city", "hp", "post-threads", "post-twitter", "post-kind", "post-hit", "koma4", "ig", "kurabe", "okai", "money", "asp", "gpt"]
+PRI = ["lead", "michi", "come", "city", "hp", "post-threads", "post-twitter", "post-kind", "post-hit", "koma4", "ig", "reel-ehon", "kurabe", "okai", "money", "asp", "gpt"]
 _old = {(o["to"], o["item"], o["order"][:24]): o.get("days", 1) for o in prev.get("orders", [])}
 for o in orders:
     if any(w in o["order"] for w in ("data/seika.json", "gpt-runs.md", "台帳 notes/daichou.md")): o["kind"] = "数字"
