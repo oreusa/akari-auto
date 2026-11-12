@@ -9,7 +9,7 @@ urls = re.findall(r"<url>.*?</url>", s, flags=re.S)
 def path(u):
     m = re.search(r"<loc>https?://[^/]+/([^<]*)</loc>", u)
     return m.group(1) if m else ""
-keep = [u for u in urls if not path(u).startswith(skip)]
+keep = [u for u in urls if path(u) in skip or not path(u).startswith(skip)]  # まとめの入口（machi/ など）は残す
 # 並び：入口 → ランキング → 市の補助 → そのほか
 def rank(u):
     p = path(u)
