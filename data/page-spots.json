@@ -2584,6 +2584,72 @@
       "note": "日高市｜日高市民まつりの中。11:00から先着約300名が試食して投票",
       "url": "https://koreafes-mindan.com/grandprix.html",
       "checked": "2026-11-11"
+    },
+    {
+      "title": "目白庭園 秋の庭園ライトアップ TERASU2026",
+      "pref": "東京",
+      "place": "目白庭園",
+      "when": "11/21〜12/6",
+      "start": "2026-11-21",
+      "ends": "2026-12-06T21:00",
+      "note": "豊島区｜17:30〜21:00。大人500円・小学生300円・未就学児無料（日時指定券）",
+      "url": "https://sites.google.com/mejirogarden.com/parkmanegement/%E7%B4%85%E8%91%89%E3%83%A9%E3%82%A4%E3%83%88%E3%82%A2%E3%83%83%E3%83%972026?authuser=0",
+      "checked": "2026-11-12"
+    },
+    {
+      "title": "わたしをすくう エッセイマンガの処方箋展",
+      "pref": "埼玉",
+      "place": "角川武蔵野ミュージアム",
+      "when": "9/18〜1/11",
+      "start": "2026-09-18",
+      "ends": "2027-01-11T18:00",
+      "note": "所沢市｜一般1,400円・小学生1,000円・未就学児無料。火曜休館",
+      "url": "https://kadcul.com/event/276",
+      "checked": "2026-11-12"
+    },
+    {
+      "title": "第43回 我孫子市農業まつり",
+      "pref": "千葉",
+      "place": "手賀沼親水広場",
+      "when": "11/14",
+      "start": "2026-11-14",
+      "ends": "2026-11-14T14:30",
+      "note": "我孫子市｜10:00〜14:30。秋野菜の収穫体験（500円）や餅つき",
+      "url": "https://www.city.abiko.chiba.jp/event/event_moyooshi/nougyou_event/dai43nogyo.html",
+      "checked": "2026-11-12"
+    },
+    {
+      "title": "ごかラーメン＆スイーツフェス",
+      "pref": "茨城",
+      "place": "道の駅ごか",
+      "when": "12/5〜12/6",
+      "start": "2026-12-05",
+      "ends": "2026-12-06T16:00",
+      "note": "五霞町｜9:00〜16:00。ラーメンとスイーツのお店が道の駅に集まる",
+      "url": "https://www.town.goka.lg.jp/kurashi-machi-shigoto/gokanabi/event/page006617.html",
+      "checked": "2026-11-12"
+    },
+    {
+      "title": "キングオブパスタ2026",
+      "pref": "群馬",
+      "place": "高崎市 もてなし広場",
+      "when": "11/15",
+      "start": "2026-11-15",
+      "ends": "2026-11-15T15:30",
+      "note": "高崎市｜10:00〜15:30。高崎のお店のパスタを食べ比べて投票",
+      "url": "https://www.kingofpasta.jp/",
+      "checked": "2026-11-12"
+    },
+    {
+      "title": "イオンモール小山 アクアリウム",
+      "pref": "栃木",
+      "place": "イオンモール小山",
+      "when": "9/12〜12/12",
+      "start": "2026-09-12",
+      "ends": "2026-12-12T15:00",
+      "note": "小山市｜700円（2歳未満無料）。平日11:00〜18:00",
+      "url": "https://aqua-kingyo.jp/",
+      "checked": "2026-11-12"
     }
   ]
 }
