@@ -73,7 +73,7 @@ for p in now:
     if p["svc"] == "instagram": ig.setdefault(p["kind"], []).append(p["v"])
 item("ig", "インスタ", "・".join(f"{k} {len(v)}本 中央値{med(v)}" for k, v in ig.items()) or "未確認", "リールの中央値 100", "当たり" if med(ig.get("おでかけリール", [])) >= 100 else ("未確認" if not ig else "外れ"), "4コマとリールをくらべる")
 if ig.get("4コマ") and ig.get("おでかけリール") and med(ig["4コマ"]) * 5 < med(ig["おでかけリール"]):
-    order("リール", "ig", f"インスタの4コマ（中央値 {med(ig['4コマ'])}）は続ける（オーナー 11/12「GPTを使ってほしい」）。インスタで増やすのは、おでかけリール（中央値 {med(ig['おでかけリール'])}）の方（1日2本）。雫の絵（うさぎちゃん）をおでかけリールの表紙に使う", "リールが4コマの5倍以上")
+    order("リール", "ig", f"インスタの4コマ（中央値 {med(ig['4コマ'])}）は 11/13 からやめた（オーナー 11/12）。インスタは、おでかけリール（中央値 {med(ig['おでかけリール'])}）だけを1日2本。表紙の1枚目に題とロゴを出す（プロフィールの一覧に並ぶため）。GPTに絵は描かせない", "リールが4コマの5倍以上")
 
 # 5 担当（雫・汐・凪）— notes/gpt-runs.md の ○× を機械が数える
 runs = [l for l in open(P("notes", "gpt-runs.md"), encoding="utf-8").read().splitlines() if re.match(r"- 20\d\d-\d\d-\d\d", l) and l[2:12] > d7] if os.path.exists(P("notes", "gpt-runs.md")) else []
