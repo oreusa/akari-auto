@@ -104,6 +104,17 @@ body{padding-bottom:76px}
 <div class="fl" style="font-size:13px;font-weight:700;color:#5E544D;margin:16px 0 6px">ご希望</div>
 <div class="ch"><label><input type="radio" name="want" value="査定してほしい">査定してほしい</label><label><input type="radio" name="want" value="売るか迷っている">売るか迷っている</label><label><input type="radio" name="want" value="相続した家のこと">相続した家のこと</label><label><input type="radio" name="want" value="その他">その他</label></div>
 <label class="fl" for="tx">ご相談の内容<em>あれば</em></label><textarea id="tx" name="text" maxlength="2000" placeholder="広さ・築年数・いつごろ売りたいか など"></textarea>
+<details class="kw" id="kw" open><summary>お家のこと<em>分かる範囲で。書かなくても送れます</em></summary>
+<label class="fl" for="k_fu">お名前のフリガナ</label><input type="text" id="k_fu" name="k_fu" maxlength="40" placeholder="例）ヤマダ">
+<label class="fl" for="k_ad">くわしい住所（町名・番地）<em>査定をご希望の方</em></label><input type="text" id="k_ad" name="k_ad" maxlength="60" autocomplete="off" placeholder="例）〇〇町1丁目2-3">
+<div class="kw2"><div><label class="fl" for="k_yr">建てた年</label><input type="text" id="k_yr" name="k_yr" maxlength="12" inputmode="numeric" placeholder="例）2003年ごろ"></div><div><label class="fl" for="k_md">間取り</label><input type="text" id="k_md" name="k_md" maxlength="12" placeholder="例）4LDK"></div></div>
+<div class="kw2"><div><label class="fl" for="k_bd">建物の広さ</label><input type="text" id="k_bd" name="k_bd" maxlength="12" placeholder="例）75㎡"></div><div><label class="fl" for="k_ld">土地の広さ</label><input type="text" id="k_ld" name="k_ld" maxlength="12" placeholder="例）63㎡"></div></div>
+<div class="fl kwh">お家とのご関係</div><div class="ch"><label><input type="radio" name="k_rel" value="名義人ご本人">名義人ご本人</label><label><input type="radio" name="k_rel" value="ご家族">ご家族</label><label><input type="radio" name="k_rel" value="その他">その他</label></div>
+<div class="fl kwh">いまの状況</div><div class="ch"><label><input type="radio" name="k_st" value="住んでいる">住んでいる</label><label><input type="radio" name="k_st" value="空き家">空き家</label><label><input type="radio" name="k_st" value="貸している">貸している</label></div>
+<div class="fl kwh">大事にしたいこと</div><div class="ch"><label><input type="radio" name="k_pr" value="なるべく高く">なるべく高く</label><label><input type="radio" name="k_pr" value="安くても早く">安くても早く</label><label><input type="radio" name="k_pr" value="まだ決めていない">まだ決めていない</label></div>
+<div class="fl kwh">ご年代</div><div class="ch"><label><input type="radio" name="k_age" value="〜30代">〜30代</label><label><input type="radio" name="k_age" value="40代">40代</label><label><input type="radio" name="k_age" value="50代">50代</label><label><input type="radio" name="k_age" value="60代">60代</label><label><input type="radio" name="k_age" value="70代〜">70代〜</label></div>
+</details>
+<style>.kw{margin:18px 0 0;border:1px solid #E4DCD2;border-radius:12px;padding:0 14px 14px;background:#FCFAF7}.kw summary{cursor:pointer;font-size:13.5px;font-weight:700;color:#231E1B;padding:13px 0 4px;list-style:none}.kw summary::-webkit-details-marker{display:none}.kw summary:after{content:"＋";float:right;color:#9A8E84}.kw[open] summary:after{content:"－"}.kw summary em{display:block;font-style:normal;font-weight:400;font-size:12px;color:#857A70;margin-top:2px}.kw2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.kw2 input{width:100%;box-sizing:border-box}.kw .kwh{font-size:13px;font-weight:700;color:#5E544D;margin:16px 0 6px}</style>
 <div class="hp" aria-hidden="true"><input type="text" name="hp" id="hp" tabindex="-1" autocomplete="off"></div>
 <label class="ag"><input type="checkbox" id="ag"><span><a href="/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>を読み、ご相談内容を提携する不動産会社・解体や片付けの会社にお伝えすることに同意します</span></label>
 <button type="submit" id="sb">送信する</button>
@@ -120,7 +131,10 @@ function v(n){var e=f.querySelector('[name="'+n+'"]:checked')||f.elements[n];ret
 f.addEventListener("submit",function(e){e.preventDefault();er.textContent="";
  var LT=/[?&]lite=1/.test(location.search);
  var d={site:SITE,name:v("name"),email:v("email"),tel:v("tel"),place:v("place"),kind:v("kind"),want:v("want"),text:v("text"),hp:v("hp"),page:document.referrer.replace(/^https?:\/\/[^/]+/,"").slice(0,60)};
- if(LT){if(!d.name)d.name="お客";var tm=v("ttime");d.text="［名前なしのかんたん相談］"+(d.text?"\n"+d.text:"")+(d.tel&&tm?"\n［お電話の都合のよい時間帯："+tm+"］":"");}
+ var KQ=[["k_fu","フリガナ"],["k_ad","くわしい住所"],["k_yr","建てた年"],["k_md","間取り"],["k_bd","建物の広さ"],["k_ld","土地の広さ"],["k_rel","お家とのご関係"],["k_st","いまの状況"],["k_pr","大事にしたいこと"],["k_age","ご年代"]],kx=[];
+ for(var q=0;q<KQ.length;q++){var kv=v(KQ[q][0]);if(kv)kx.push(KQ[q][1]+"："+kv);}
+ if(LT){var tm=v("ttime");d.text="［かんたん相談］"+(d.text?"\n"+d.text:"")+(d.tel&&tm?"\n［お電話の都合のよい時間帯："+tm+"］":"");}
+ if(kx.length)d.text=(d.text?d.text+"\n":"")+"［お家のこと］\n"+kx.join("\n");
  if(!d.name){er.textContent="お名前を書いてください";return}
  /* 11/11 メールを持たない・書きたくない方も送れるように：メールか電話のどちらかで受け付ける */
  var okM=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email),okT=d.tel.replace(/\D/g,"").length>=10;
@@ -180,14 +194,14 @@ document.documentElement.classList.add("lite");
 var O=false;try{O=localStorage.getItem("usagi_owner")==="1";}catch(e){}
 if(!O)try{navigator.sendBeacon&&navigator.sendBeacon("/c",JSON.stringify({k:"申し込み｜かんたん｜表示"}));}catch(e){}
 var $=function(i){return document.getElementById(i)},hide=function(el){if(el)el.style.display="none";},lab=function(el){return el?el.previousElementSibling:null;};
-var nm=$("nm");nm.required=false;hide(nm);hide(lab(nm));
+var nm=$("nm"),ln=lab(nm);if(ln)ln.innerHTML="お名前<em>名字だけでも大丈夫です</em>";nm.placeholder="例）山田";var kw=$("kw");if(kw)kw.open=false;
 ["kind","want"].forEach(function(n){var r=f.querySelector('input[name="'+n+'"]');if(r){var c=r.closest(".ch");hide(c);hide(lab(c));}});
 var W=P.get("want")||"",kt=/片付け/.test(W)?"片付け":"解体";
 var h=document.querySelector(".s3h h1"),l=document.querySelector(".s3l"),m=document.querySelector(".s3m");
 if(h)h.textContent="うちの場合の概算を聞く";document.title=kt+"の費用を聞く｜LIFE NOTE";
-if(l)l.innerHTML="お名前は要りません。書くのは3つだけです。<br><small style=\"font-size:12.5px;color:#857A70\">関東（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）のお家が対象です。</small>";
+if(l)l.innerHTML="書くのは4つだけです。お名前は名字だけでも大丈夫です。<br><small style=\"font-size:12.5px;color:#857A70\">関東（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）のお家が対象です。</small>";
 if(m)m.innerHTML="<b style=\"display:block;font-size:13.5px;color:#231E1B\">お約束</b>・お返事は、メールかお電話、ご希望の方で。2営業日以内にお返事します。<br>・会社のご紹介は、お話をうかがって、ご希望があった時だけです。<br>・見積りだけで終わっても、費用はかかりません。";
-/* 並び：場所 → 聞きたいこと → 連絡先 */
+/* 並び：場所 → 聞きたいこと → お名前 → 連絡先 */
 var pl=$("pl"),tx=$("tx"),em=$("em"),tl=$("tl"),first=f.firstElementChild;
 [lab(pl),pl,lab(tx),tx].forEach(function(el){if(el)f.insertBefore(el,first);});
 var lt=lab(tx);if(lt)lt.innerHTML="聞きたいこと<em>ひとことで大丈夫です</em>";tx.placeholder="例）木造2階建て、30坪くらい。家の中に荷物が残っています";tx.style.minHeight="88px";
