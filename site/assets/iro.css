@@ -4,6 +4,7 @@ html:not(.night) .sub,html:not(.night) .adn,html:not(.night) .m,html:not(.night)
 .sub,.m,.d,.v2d,.spc,.lk,.wc,.wnt,.t2{font-size:13.5px!important;line-height:1.75}
 /* 11/9 オーナー「この3つもオシャレに」→ 入口の PAGE 01〜03 と同じ「細い線・明朝・小さな英字」。色の箱はやめて、色は線と英字だけ */
 .wdy .wr:nth-of-type(1),.qk a:nth-child(1){--g:#B0705A}.wdy .wr:nth-of-type(2),.qk a:nth-child(2){--g:#52688A}.wdy .wr:nth-of-type(3),.qk a:nth-child(3){--g:#B5883F}
+.wr:nth-of-type(4){--g:#5E8A63}
 html.top2 .qk{gap:10px!important}
 html.top2 .qk a{background:#fff!important;border:1px solid #E6E6E6!important;border-radius:4px!important;padding:14px 4px 13px!important;gap:5px!important;position:relative}
 html.top2 .qk a::before{content:"";display:block;font-family:Jost,sans-serif;font-size:9px;font-weight:500;letter-spacing:.3em;color:var(--g);margin-bottom:2px}
