@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-13 20:36",
+  "at": "2026-11-13 22:32",
   "cats": [
     {
       "key": "rice",
@@ -16,7 +16,7 @@
           "price": 22500,
           "per": 8.9,
           "amt": "5kg×4",
-          "rc": 342,
+          "rc": 343,
           "av": 4.25,
           "shop": "熊本県甲佐町",
           "plain": "https://item.rakuten.co.jp/f434442-kosa/10000561/"
@@ -169,8 +169,8 @@
       "key": "water",
       "title": "水",
       "unit": "L",
-      "seen": 177,
-      "read": 31,
+      "seen": 178,
+      "read": 29,
       "ok": 1,
       "avg": 14.6,
       "page": false,

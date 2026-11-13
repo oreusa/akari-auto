@@ -10,9 +10,10 @@
    "kind": "作る",
    "days": 1,
    "wait": [
-    "11/13 の5本とも、2つ目にHPのページ（/o/・/odekake-神奈川・/okaimono-tp・/kaitai-ranking）を入れた"
+    "11/13 の5本とも、2つ目にHPのページ（/o/・/odekake-神奈川・/okaimono-tp・/kaitai-ranking）を入れた",
+    "11/14 の路線ランキングを2本（07:15 小田急・13:15 京王）にし、3本に表紙の絵（予定表の image・PR #832）"
    ],
-   "idle": 1
+   "idle": 0
   },
   {
    "to": "月",
@@ -79,14 +80,15 @@
    "kind": "作る",
    "days": 2,
    "wait": [
-    "11/13 13:45 に「くらべた話」1本目（トイレットペーパー、100mあたり66.7円・/okaimono-tp）"
+    "11/13 13:45 に「くらべた話」1本目（トイレットペーパー、100mあたり66.7円・/okaimono-tp）",
+    "11/14 13:45 くらべた話2本目（お米、1kgあたり398円・/okaimono-rice・/furusato-rice）"
    ],
-   "idle": 1
+   "idle": 0
   },
   {
    "to": "月",
    "item": "tejun",
-   "order": "夜の手順（docs/nightly-prompt.md）が 47KB。足した決まりと同じ数だけ、古い決まりを docs/history へ移す",
+   "order": "夜の手順（docs/nightly-prompt.md）が 48KB。足した決まりと同じ数だけ、古い決まりを docs/history へ移す",
    "why": "足すだけだと毎晩の費用が増え、ぶつかる決まりで間違える",
    "kind": "作る",
    "days": 1,

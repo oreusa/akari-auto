@@ -1414,41 +1414,6 @@
       }
     ]
   },
-  "栃木県立美術館松本哲男展": {
-    "v": 2,
-    "t": "2026-11-07",
-    "ll": [
-      36.56744,
-      139.86607
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "リッチモンドホテル宇都宮駅前アネックス",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108189",
-        "km": 2.9,
-        "r": 4.54,
-        "rc": 3043,
-        "min": 4550
-      },
-      {
-        "n": "コンセーレ",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D27714",
-        "km": 1.2,
-        "r": 4.42,
-        "rc": 95,
-        "min": 4700
-      },
-      {
-        "n": "ザ ノット 宇都宮",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198048",
-        "km": 2.9,
-        "r": 4.4,
-        "rc": 609,
-        "min": 3782
-      }
-    ]
-  },
   "2026たちかわイルミネーション": {
     "v": 2,
     "t": "2026-11-07",

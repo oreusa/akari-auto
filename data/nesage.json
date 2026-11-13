@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-13 20:36",
+  "at": "2026-11-13 22:32",
   "since": "2026-11-01",
   "tracked": 262,
   "days": 12,
@@ -11,7 +11,7 @@
       "base": 3960.0,
       "pct": 37,
       "days": 12,
-      "rc": 991,
+      "rc": 992,
       "av": 4.55,
       "shop": "triple shop",
       "plain": "https://item.rakuten.co.jp/tripleshop/10000191/"
@@ -35,7 +35,7 @@
       "base": 3490.0,
       "pct": 9,
       "days": 12,
-      "rc": 999,
+      "rc": 1001,
       "av": 4.6,
       "shop": "シープウィング",
       "plain": "https://item.rakuten.co.jp/auc-sheepwing/10001894/"
@@ -73,7 +73,7 @@
       "base": 2420.0,
       "pct": 61,
       "days": 12,
-      "rc": 6665,
+      "rc": 6668,
       "av": 4.48,
       "shop": "山川食糧オートミール研究所",
       "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
