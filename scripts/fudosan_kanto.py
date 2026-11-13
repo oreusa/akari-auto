@@ -754,6 +754,8 @@ def jikka_page(t):
     tc, tp = tk_of(t)
     if tc.get("vr") is not None:
         desc = desc.replace("相続登記の義務、", f"空き家は{int(tc['a23']):,}戸（住宅の{tc['vr']:.1f}%・2023年）。相続登記の義務、")
+    if tc.get("vr") is not None:  # 11/13 「◯◯市 空き家率」で探す人に、題で答えが見えるように
+        title = title.replace("｜売る・", f"｜空き家率{tc['vr']:.1f}%・売る・", 1)
     tk_h = MT.jikka_block(n, pfull, tc, tp, TK_RV.get((t["p"], n)), "/akiya-ranking#" + fn)
     jn = sorted([a for a in towns if a is not t], key=lambda a: (a["lat"] - t["lat"]) ** 2 + ((a["lon"] - t["lon"]) * 0.82) ** 2)[:6]
     jn_h = '<p class="mk3">NEAR</p><h2 class="jh">近くの街の実家・空き家ノート</h2>' + "".join(

@@ -30,6 +30,7 @@ def calc(d):
     o20, o25 = _r(d, "o20"), _r(d, "o25")
     c = {"p20": p20, "p25": p25, "h20": h20, "h25": h25, "o20": o20, "o25": o25, "a18": a18, "a23": a23, "j18": j18, "j23": j23}
     c["pg"] = round((p25 - p20) / p20 * 100, 1) if p20 and p25 else None
+    c["pge"] = (p25 - p20) / p20 * 100 if p20 and p25 else None  # 比べる時は丸める前の値で
     c["pd"] = int(p25 - p20) if p20 and p25 else None
     c["pph"] = round(p25 / h25, 2) if p25 and h25 else None
     c["hg"] = int(h25 - h20) if h20 and h25 else None
@@ -66,19 +67,29 @@ def _pct(v):
     return f"+{v:.1f}%" if v > 0 else f"{v:.1f}%" if v < 0 else "±0%"
 
 
+def _pg(c):
+    """人口の増減率。0.1%より小さい動きは「±0%」と書かず、小数2けたで出す（+30人なのに±0% と見えないように）"""
+    if c.get("p20") and c.get("p25"):
+        g = (c["p25"] - c["p20"]) / c["p20"] * 100
+        if c["p25"] != c["p20"] and abs(g) < 0.05:
+            return f"{'+' if g > 0 else ''}{g:.2f}%"
+    return _pct(c["pg"])
+
+
 def sentences(n, pfull, c, pc, rk_p=None, rk_v=None):
     """街だけの文。c＝その街、pc＝府県全体。言えることだけを書く"""
     s = []
     if c.get("p25"):
         t = f"{n}の人口は{_yen(c['p25'])}人（2025年10月1日の国勢調査）。"
         if c.get("pg") is not None:
-            t += f"2020年の{_yen(c['p20'])}人から{_pm(c['pd'], '人')}（{_pct(c['pg'])}）で、5年で{'増えました' if c['pd'] > 0 else '減りました' if c['pd'] < 0 else '変わっていません'}。"
+            t += f"2020年の{_yen(c['p20'])}人から{_pm(c['pd'], '人')}（{_pg(c)}）で、5年で{'増えました' if c['pd'] > 0 else '減りました' if c['pd'] < 0 else '変わっていません'}。"
             if pc.get("pg") is not None:
-                g, pg = c["pg"], pc["pg"]
+                g, pg = c["pge"], pc["pge"]
                 if abs(g - pg) < 0.05:
                     t += f"{pfull}全体（{_pct(pg)}）とほぼ同じ動きです。"
                 elif g > pg:
-                    t += (f"{pfull}全体（{_pct(pg)}）が減る中で、人が増えている街です。" if g > 0 and pg < 0 else
+                    pg_s = _pct(pc["pg"])
+                    t += (f"{pfull}全体（{pg_s}）が減る中で、人が増えている街です。" if g > 0 and pg < 0 else
                           f"{pfull}全体（{_pct(pg)}）より増え方が大きい街です。" if g > 0 else
                           f"{pfull}全体（{_pct(pg)}）より減り方が小さい街です。")
                 else:
@@ -120,7 +131,7 @@ def machi_block(n, short_n, pfull, c, pc, rk_p=None, rk_v=None, rk_href=""):
         return ""
     cells = [("人口（2025年）", f'{_yen(c["p25"])}<small style="font-size:13px">人</small>')]
     if c.get("pg") is not None:
-        cells.append(("5年の人口の増減", _pct(c["pg"])))
+        cells.append(("5年の人口の増減", _pg(c)))
     if c.get("o25") is not None:
         cells.append(("65歳以上の割合", f'{c["o25"]:.1f}<small style="font-size:13px">%</small>'))
     if c.get("vr") is not None:
@@ -165,7 +176,7 @@ def jikka_block(n, pfull, c, pc, rk_v=None, rk_href=""):
 def faq(n, pfull, c, pc):
     out = []
     if c.get("pg") is not None:
-        a = f"2025年の国勢調査で{n}の人口は{_yen(c['p25'])}人、2020年から{_pm(c['pd'], '人')}（{_pct(c['pg'])}）でした。"
+        a = f"2025年の国勢調査で{n}の人口は{_yen(c['p25'])}人、2020年から{_pm(c['pd'], '人')}（{_pg(c)}）でした。"
         if pc.get("pg") is not None:
             a += f"{pfull}全体は{_pct(pc['pg'])}です。"
         out.append((f"{n}の人口は増えていますか？", a))
@@ -181,7 +192,7 @@ def faq(n, pfull, c, pc):
 def desc_add(n, c):
     if c.get("pg") is None:
         return ""
-    t = f"人口{_yen(c['p25'])}人（5年で{_pct(c['pg'])}）"
+    t = f"人口{_yen(c['p25'])}人（5年で{_pg(c)}）"
     if c.get("vr") is not None:
         t += f"・空き家の割合{c['vr']:.1f}%"
     return t + "。"
