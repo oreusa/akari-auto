@@ -35,6 +35,13 @@ def room_search(nm):
     return "https://room.rakuten.co.jp/search/item?keyword=" + quote(" ".join(ws[:3]) or nm.strip()[:12])
 
 
+def other(cm):
+    """11/13：ROOMの中の検索では、台本と同じ店の商品が出ない事が多い（10件中6件）。同じ商品を別の店から載せる時は、店ごとに違う値段・レビューの数を抜いた文にする（違う数字を書かない）。"""
+    m = re.search(r"この(.+?)は(.+?)あたり[\d,]+円（.+?時点）。レビューは[\d,]+件で★[\d.]+です。\n", cm)
+    if not m: return ""
+    return (cm[:m.start()] + f"この{m.group(1)}は、{m.group(2)}あたりの値段が安い方でした（比べたのは別のお店の値段です）。\n" + cm[m.end():]).replace("ただし、値段と在庫は日によって", "ただし、値段と在庫はお店と日によって")
+
+
 def load(p, d):
     try:
         return json.load(open(p, encoding="utf-8"))
@@ -66,7 +73,7 @@ def main():
             cm = (f"選んだ理由：{c['title']}を{c.get('read', 0)}点、{c['unit']}あたりの値段にそろえて比べました。この{bd}は{c['unit']}あたり{yen(t['per'])}円"
                   f"（{t['amt']}で{t['price']:,}円・{today.month}/{today.day}時点）。レビューは{t['rc']:,}件で★{t['av']:.2f}です。\n"
                   f"ただし、値段と在庫は日によって変わります。送料はお店のページでご確認ください。\n{FOR.get(c['key'], 'まとめて買っておきたい家')}に向いています。")
-            cand[u] = {"url": u, "name": t["name"][:60], "expect": bd, "comment": cm, "col": col, "tag": f"#{c['title'].split('（')[0]} #まとめ買い #1個あたりで比べた", "rank": i, "cat": c["key"]}
+            cand[u] = {"url": u, "name": t["name"][:60] + f"（量：{t['amt']}）", "expect": bd, "comment": cm, "col": col, "tag": f"#{c['title'].split('（')[0]} #まとめ買い #1個あたりで比べた", "rank": i, "cat": c["key"]}
     sch = load(P("schedule", T + ".json"), {})
     hand = [r for r in (sch.get("room") or []) if isinstance(r, dict) and str(r.get("url", "")).startswith("https://item.rakuten.co.jp/") and r.get("comment")]
     if T in log:   # 同じ日の2回目：朝と同じ並びを保つ（無くなった物だけ落とす）
@@ -97,11 +104,13 @@ def main():
     log[T] = hand_urls + order
     out = [f"ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを見て、上から順に載せる）", "", f"更新：{T}", f"件数：{len(rows)}件", "",
            "・「更新：」の日付が今日の時だけ載せる（朝の雫は、きのうの日付でも載せる）。開くのは「探し方」のURLだけ。コメントとハッシュタグはそのまま貼る。",
-           "・「探し方」のURLは、ROOMの中の検索です（楽天市場の商品ページは開かない）。出てきた中で、商品名が「商品：」の行と同じ物（最初の10字ほどが同じ）の「コレ！」を押して載せる。同じ物が無ければ、似た物に替えずに飛ばす（報告に 飛ばした：番号）。",
+           "・「探し方」のURLは、ROOMの中の検索です（楽天市場の商品ページは開かない）。出てきた商品を上から20個まで見て、「商品：」の行と同じ商品（メーカー・商品の種類・1つの量・入っている数が同じ）の「コレ！」を押して載せる。",
+           "・店の名前まで同じかは見なくてよい。同じ商品で店が違う時（店が分からない時も）は、コメントに「別の店の時のコメント：」の下の文を貼る。「訳あり」「中古」「お試し」と書いてある物は選ばない。",
+           "・量や入っている数が違う物・別の商品しか無ければ、載せずに飛ばす（報告に 飛ばした：番号）。",
            "・もうROOMに載っている商品は載せずに飛ばす（前の日に載せきれなかった物が、もう一度ここに出る）。",
            "・コレクションは、同じ名前があればそこへ。無ければ「新しく作る」の名前で作る（1日3つまで）。", "", "（ここから下に台本）", ""]
     for i, (col, nm, u, cm, tg) in enumerate(rows, 1):
-        out += [f"{i}｜コレクション：{col}（無ければ 新しく作る：{col}）", f"商品：{nm}", f"探し方：{room_search(nm)}", "コメント：", cm, f"ハッシュタグ：{tg}", ""]
+        out += [f"{i}｜コレクション：{col}（無ければ 新しく作る：{col}）", f"商品：{nm}", f"探し方：{room_search(nm)}", "コメント：", cm, f"ハッシュタグ：{tg}"] + (["別の店の時のコメント：", other(cm)] if other(cm) else []) + [f"（{i}番 ここまで）", ""]
     out.append("（ROOM台本 ここまで）")
     open(P("notes", "room-daihon.md"), "w", encoding="utf-8").write("\n".join(out) + "\n")
     json.dump(log, open(P("data", "room-log.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=0)
