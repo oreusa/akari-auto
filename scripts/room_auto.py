@@ -26,13 +26,14 @@ FOR = {"water": "毎日飲む水を、重い買い物なしで届けてほしい
 STOP = ("送料無料", "ケース販売", "新米", "まとめ買い", "あす楽", "公式", "ポイント", "クーポン", "セット")
 
 
-def room_search(nm):
+def room_search(nm, n=3):
     """11/13：GPTの画面では楽天市場の商品ページが「緊急メンテナンス」で開かない（夜が実物で確かめた）。ROOMの中の検索は開くので、探し方をそちらのURLにする。
     言葉は商品名の最初の3語（宣伝の言葉・【】・[]・数字だけの語は外す）。長いと出ない。"""
     nm = re.sub(r"【[^】]*】|\[[^\]]*\]|\([^)]*\)|（[^）]*）|[…●★☆]", " ", nm)
     ws = [w for w in nm.split() if w and not any(x in w for x in STOP) and not re.fullmatch(r"[\d.,xX×]+\S{0,3}", w)]
     ws = list(dict.fromkeys(ws))
-    return "https://room.rakuten.co.jp/search/item?keyword=" + quote(" ".join(ws[:3]) or nm.strip()[:12])
+    if n < 3 and len(ws) <= n: return ""  # 11/13：短い方の探し方は、言葉が3つ以上ある時だけ（同じURLを2回書かない）
+    return "https://room.rakuten.co.jp/search/item?keyword=" + quote(" ".join(ws[:n]) or nm.strip()[:12])
 
 
 def other(cm):
@@ -106,11 +107,12 @@ def main():
            "・「更新：」の日付が今日の時だけ載せる（朝の雫は、きのうの日付でも載せる）。開くのは「探し方」のURLだけ。コメントとハッシュタグはそのまま貼る。",
            "・「探し方」のURLは、ROOMの中の検索です（楽天市場の商品ページは開かない）。出てきた商品を上から20個まで見て、「商品：」の行と同じ商品（メーカー・商品の種類・1つの量・入っている数が同じ）の「コレ！」を押して載せる。",
            "・店の名前まで同じかは見なくてよい。同じ商品で店が違う時（店が分からない時も）は、コメントに「別の店の時のコメント：」の下の文を貼る。「訳あり」「中古」「お試し」と書いてある物は選ばない。",
+           "・「探し方」で「該当する商品はありません」と出た時・同じ商品が20個の中に無い時は、「出ない時の探し方：」のURLを1回だけ開いて、同じように探す（その行が無い商品は、そのまま飛ばす）。",
            "・量や入っている数が違う物・別の商品しか無ければ、載せずに飛ばす（報告に 飛ばした：番号）。",
            "・もうROOMに載っている商品は載せずに飛ばす（前の日に載せきれなかった物が、もう一度ここに出る）。",
            "・コレクションは、同じ名前があればそこへ。無ければ「新しく作る」の名前で作る（1日3つまで）。", "", "（ここから下に台本）", ""]
     for i, (col, nm, u, cm, tg) in enumerate(rows, 1):
-        out += [f"{i}｜コレクション：{col}（無ければ 新しく作る：{col}）", f"商品：{nm}", f"探し方：{room_search(nm)}", "コメント：", cm, f"ハッシュタグ：{tg}"] + (["別の店の時のコメント：", other(cm)] if other(cm) else []) + [f"（{i}番 ここまで）", ""]
+        out += [f"{i}｜コレクション：{col}（無ければ 新しく作る：{col}）", f"商品：{nm}", f"探し方：{room_search(nm)}", *([f"出ない時の探し方：{room_search(nm, 2)}"] if room_search(nm, 2) else []), "コメント：", cm, f"ハッシュタグ：{tg}"] + (["別の店の時のコメント：", other(cm)] if other(cm) else []) + [f"（{i}番 ここまで）", ""]
     out.append("（ROOM台本 ここまで）")
     open(P("notes", "room-daihon.md"), "w", encoding="utf-8").write("\n".join(out) + "\n")
     json.dump(log, open(P("data", "room-log.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=0)
