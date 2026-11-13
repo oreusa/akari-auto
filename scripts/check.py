@@ -263,6 +263,12 @@ def headlink_problems(p, where=""):
             if rx.search(head) and links and not any(u.startswith(ok) for u in links):
                 out.append(f"{where}{ch}：見出しは{what}なのに、HPのリンク先が {', '.join(links)}（{' / '.join(ok)} のどれかへ）")
                 break
+        # 11/13 owner「訳分からん投稿」：「下のリンク・こちら」と書いたのに、その本にも次の本にもリンクが無い（関西と同じ）
+        for i, t in enumerate(texts):
+            if re.search(r"下のリンク|リンクで見られ|リンクから見られ|は、こちら。", t):
+                nxt = texts[i + 1] if i + 1 < len(texts) else ""
+                if not re.search(r"https?://", t + nxt):
+                    out.append(f"{where}{ch}：{i + 1}本目に「下のリンク・こちら」と書いたのにリンクが無い")
         for t in texts:
             for w in NAME_NG:
                 if w in t:
