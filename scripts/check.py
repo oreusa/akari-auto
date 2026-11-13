@@ -223,6 +223,7 @@ def post_problems(p):
                 if LINK in t and "#PR" not in t:
                     out.append(f"{ch} {i}つ目：リンクがある投稿に #PR がない")
     out += _same_head(p)
+    out += headlink_problems(p)
     out += comment_problems(p)
     if not p.get("topic"):
         out.append("topic（Threadsのトピック）がない")
@@ -234,6 +235,38 @@ def post_problems(p):
             out += ["fallback " + s for s in _texts_problems(fb.get("x"), "x", False)]
             out += ["fallback " + s for s in _texts_problems(fb.get("threads"), "threads", False)]
             out += _same_head(fb, "fallback ")
+            out += headlink_problems(fb, "fallback ")
+    return out
+
+
+# 11/13 関西で「見出しは店の開業なのにリンクは土地相場」「売れた値段の話なのに絵は解体」が出た。関東も同じ物を止める（usagi tools/allcheck/postlink.py と同じ考え）
+HEAD_WORDS = [
+    (re.compile(r"開業|オープン|店舗|売り場|商業施設|新店|初出店"), ("/odekake", "/ima", "/o/"), "店・施設の開業の話"),
+    (re.compile(r"売れた|成約|中古一戸建て|平均は"), ("/jikka", "/machi/"), "売れた値段の話"),
+    (re.compile(r"紅葉|もみじ"), ("/koyo", "/odekake", "/o/"), "紅葉の話"),
+    (re.compile(r"イルミ|ライトアップ"), ("/illumination", "/koyo", "/odekake", "/o/"), "イルミ・ライトアップの話"),
+    (re.compile(r"解体|補助金|空き家"), ("/kaitai", "/hojo", "/jikka"), "解体・補助の話"),
+]
+LIFE_RE = re.compile(r"https://lifenote-kanto\.pages\.dev(/[^\s?#）)」]*)")
+NAME_NG = ("名前なしでも", "お名前は要りません", "名前は要りません")
+
+
+def headlink_problems(p, where=""):
+    out = []
+    for ch in ("x", "threads"):
+        texts = [t for t in (p.get(ch) or []) if isinstance(t, str)]
+        if not texts:
+            continue
+        head = texts[0].strip().splitlines()[0] if texts[0].strip() else ""
+        links = [u or "/" for t in texts for u in LIFE_RE.findall(t)]
+        for rx, ok, what in HEAD_WORDS:
+            if rx.search(head) and links and not any(u.startswith(ok) for u in links):
+                out.append(f"{where}{ch}：見出しは{what}なのに、HPのリンク先が {', '.join(links)}（{' / '.join(ok)} のどれかへ）")
+                break
+        for t in texts:
+            for w in NAME_NG:
+                if w in t:
+                    out.append(f"{where}{ch}：使わない言葉「{w}」（11/12 オーナー：申し込みは必ずお名前をもらう）")
     return out
 
 
