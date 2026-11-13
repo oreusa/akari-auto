@@ -6,6 +6,7 @@
   ・同じ日に2回動いても同じ台本（朝7:30 と 夕18:30 の page.yml）
 凪（GPT）は https://raw.githubusercontent.com/oreusa/akari-auto/main/notes/room-daihon.md を読む。"""
 import json, os, re
+from urllib.parse import quote
 from datetime import datetime, timezone, timedelta, date
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
@@ -20,6 +21,18 @@ FOR = {"water": "毎日飲む水を、重い買い物なしで届けてほしい
        "shampoo": "シャンプーを詰め替えで続けたい家", "bodysoap": "ボディソープを家族で使う家", "dish": "食器用洗剤をまとめて置きたい家", "tissue": "ティッシュを箱で置いておきたい家",
        "trash": "ゴミ袋をまとめて買っておきたい家", "pasta": "パスタをよく作る家", "beans": "コーヒー豆を毎日ひく家", "diaper": "おむつを毎日たくさん使う家", "wipes": "おしりふきをまとめて置きたい家",
        "dogfood": "犬のごはんを切らしたくない家", "catfood": "猫のごはんを切らしたくない家", "battery": "乾電池をそなえておきたい家", "mask": "マスクを箱で置いておきたい家"}
+
+
+STOP = ("送料無料", "ケース販売", "新米", "まとめ買い", "あす楽", "公式", "ポイント", "クーポン", "セット")
+
+
+def room_search(nm):
+    """11/13：GPTの画面では楽天市場の商品ページが「緊急メンテナンス」で開かない（夜が実物で確かめた）。ROOMの中の検索は開くので、探し方をそちらのURLにする。
+    言葉は商品名の最初の3語（宣伝の言葉・【】・[]・数字だけの語は外す）。長いと出ない。"""
+    nm = re.sub(r"【[^】]*】|\[[^\]]*\]|\([^)]*\)|（[^）]*）|[…●★☆]", " ", nm)
+    ws = [w for w in nm.split() if w and not any(x in w for x in STOP) and not re.fullmatch(r"[\d.,xX×]+\S{0,3}", w)]
+    ws = list(dict.fromkeys(ws))
+    return "https://room.rakuten.co.jp/search/item?keyword=" + quote(" ".join(ws[:3]) or nm.strip()[:12])
 
 
 def load(p, d):
@@ -84,10 +97,11 @@ def main():
     log[T] = hand_urls + order
     out = [f"ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを見て、上から順に載せる）", "", f"更新：{T}", f"件数：{len(rows)}件", "",
            "・「更新：」の日付が今日の時だけ載せる（朝の雫は、きのうの日付でも載せる）。開くのは「探し方」のURLだけ。コメントとハッシュタグはそのまま貼る。",
+           "・「探し方」のURLは、ROOMの中の検索です（楽天市場の商品ページは開かない）。出てきた中で、商品名が「商品：」の行と同じ物（最初の10字ほどが同じ）の「コレ！」を押して載せる。同じ物が無ければ、似た物に替えずに飛ばす（報告に 飛ばした：番号）。",
            "・もうROOMに載っている商品は載せずに飛ばす（前の日に載せきれなかった物が、もう一度ここに出る）。",
            "・コレクションは、同じ名前があればそこへ。無ければ「新しく作る」の名前で作る（1日3つまで）。", "", "（ここから下に台本）", ""]
     for i, (col, nm, u, cm, tg) in enumerate(rows, 1):
-        out += [f"{i}｜コレクション：{col}（無ければ 新しく作る：{col}）", f"商品：{nm}", f"探し方：{u}", "コメント：", cm, f"ハッシュタグ：{tg}", ""]
+        out += [f"{i}｜コレクション：{col}（無ければ 新しく作る：{col}）", f"商品：{nm}", f"探し方：{room_search(nm)}", "コメント：", cm, f"ハッシュタグ：{tg}", ""]
     out.append("（ROOM台本 ここまで）")
     open(P("notes", "room-daihon.md"), "w", encoding="utf-8").write("\n".join(out) + "\n")
     json.dump(log, open(P("data", "room-log.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=0)
