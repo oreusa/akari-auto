@@ -169,6 +169,12 @@ f.addEventListener("submit",function(e){e.preventDefault();er.textContent="";
 <script>/* 11/9 お申し込みページ：来た数・書きはじめた数を数える（送信は上で数える）／見た街を「お家の場所」に先に入れる */
 (function(){var O=false;try{O=localStorage.getItem("usagi_owner")==="1";}catch(e){}
 function c(k){if(O)return;try{var b=JSON.stringify({k:k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true});}catch(e){}}
+/* 11/13 開いた65人→書きはじめ9→送信0：どの欄で止まるかを測る（欄ごとに1回・足りない欄・最後に触った欄で離れた） */
+try{var SEEN={},LAST="",SENT=false,F=document.querySelector("form");
+ document.addEventListener("focusin",function(e){var n=e.target&&e.target.name;if(!n||!/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;LAST=n;if(!SEEN[n]){SEEN[n]=1;c("申し込み｜欄｜"+n)}},true);
+ var ER=document.getElementById("er"),EP="";if(ER&&window.MutationObserver)new MutationObserver(function(){var t=(ER.textContent||"").slice(0,30);if(t&&t!==EP)c("申し込み｜止まった｜"+t);EP=t}).observe(ER,{childList:true,characterData:true,subtree:true});
+ if(F)F.addEventListener("submit",function(){SENT=true;c("申し込み｜送信を押した")},true);
+ window.addEventListener("pagehide",function(){if(!SENT&&LAST)c("申し込み｜離れた｜"+LAST)});}catch(e){}
 c("表示：お申し込み"+(document.referrer&&!/lifenote-kanto.pages/.test(document.referrer)?"（外から）":""));
 var f=document.getElementById("mf"),st=false;if(f){var go=function(){if(st)return;st=true;c("申し込み｜書きはじめ");};f.addEventListener("focusin",go);f.addEventListener("change",go); /* 11/11 iPhoneは丸ボタンを押してもfocusinが来ない → changeでも数える */
  f.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest(".tknx"):null;if(b)c("申し込み｜次へ｜"+(+b.getAttribute("data-s")+1));});}
