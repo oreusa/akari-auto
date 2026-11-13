@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-13 05:56",
+  "at": "2026-11-13 16:12",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 47,
-      "ok": 16,
-      "avg": 162.1,
+      "read": 51,
+      "ok": 17,
+      "avg": 165.6,
       "rmin": 1000,
       "top": [
         {
@@ -72,7 +72,7 @@
           "price": 1360,
           "per": 75.6,
           "amt": "2000ml×9本",
-          "rc": 2087,
+          "rc": 2089,
           "av": 4.49,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10151238/",
@@ -115,9 +115,9 @@
       "title": "炭酸水",
       "unit": "1L",
       "seen": 171,
-      "read": 47,
+      "read": 48,
       "ok": 12,
-      "avg": 180.2,
+      "avg": 181.4,
       "rmin": 1000,
       "top": [
         {
@@ -234,7 +234,7 @@
           "price": 6780,
           "per": 678.0,
           "amt": "10kg",
-          "rc": 1932,
+          "rc": 1933,
           "av": 4.84,
           "shop": "市川農場 楽天市場店",
           "plain": "https://item.rakuten.co.jp/yukihikari/10000073/",
@@ -262,7 +262,7 @@
           "price": 7998,
           "per": 799.8,
           "amt": "10kg",
-          "rc": 1258,
+          "rc": 1259,
           "av": 4.69,
           "shop": "農家からの贈り物 楽天市場店",
           "plain": "https://item.rakuten.co.jp/komenouka/10000014/",
@@ -321,7 +321,7 @@
       "seen": 216,
       "read": 28,
       "ok": 3,
-      "avg": 113.0,
+      "avg": 112.6,
       "rmin": 1000,
       "top": [
         {
@@ -357,7 +357,7 @@
           "price": 4972,
           "per": 69.1,
           "amt": "150m×48ロール",
-          "rc": 8105,
+          "rc": 8106,
           "av": 4.59,
           "shop": "よろずやマルシェ",
           "plain": "https://item.rakuten.co.jp/onestep/10052052/",
@@ -380,18 +380,6 @@
           "bd": "スコッティ",
           "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Ftanomail%2F7666919.html",
           "img": "https://item-shopping.c.yimg.jp/i/g/tanomail_7666919"
-        },
-        {
-          "name": "トイレットペーパー 芯なし シングル 3倍 48ロール 6ロール×8パックセット 170m…",
-          "price": 5480,
-          "per": 67.2,
-          "amt": "170m×48ロール",
-          "rc": 354,
-          "av": 4.69,
-          "shop": "メガストア Yahoo!店",
-          "bd": "",
-          "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Fpetkan%2F7270428.html",
-          "img": "https://item-shopping.c.yimg.jp/i/g/petkan_7270428"
         }
       ]
     },
@@ -511,7 +499,7 @@
       "seen": 60,
       "read": 45,
       "ok": 18,
-      "avg": 353.7,
+      "avg": 365.5,
       "rmin": 50,
       "top": [
         {
@@ -618,9 +606,9 @@
       "title": "洗濯洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 119,
-      "read": 31,
-      "ok": 14,
-      "avg": 1263.5,
+      "read": 28,
+      "ok": 12,
+      "avg": 1178.9,
       "rmin": 20,
       "top": [
         {
@@ -755,9 +743,9 @@
       "title": "柔軟剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 90,
-      "read": 24,
+      "read": 23,
       "ok": 9,
-      "avg": 1066.3,
+      "avg": 1070.5,
       "rmin": 20,
       "top": [
         {
@@ -864,9 +852,9 @@
       "title": "シャンプー（詰め替え）",
       "unit": "1L・1kg",
       "seen": 150,
-      "read": 28,
+      "read": 27,
       "ok": 2,
-      "avg": 2565.0,
+      "avg": 2611.0,
       "rmin": 100,
       "top": [
         {
@@ -931,9 +919,9 @@
       "title": "ボディソープ（詰め替え）",
       "unit": "1L・1kg",
       "seen": 88,
-      "read": 19,
+      "read": 20,
       "ok": 6,
-      "avg": 1062.8,
+      "avg": 1076.6,
       "rmin": 20,
       "top": [
         {
@@ -1232,7 +1220,7 @@
       "seen": 120,
       "read": 43,
       "ok": 43,
-      "avg": 53.6,
+      "avg": 59.2,
       "rmin": 0,
       "top": [
         {
@@ -1247,6 +1235,20 @@
           "bd": "メリーズ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00s0vmo.m2lhf5d9.g00s0vmo.m2lhge2f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbeisia%2F4901301437693x4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbeisia%2Fi%2F10126180%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/beisia/cabinet/09476807/4901301437693.jpg?_ex=300x300",
+          "ship": ""
+        },
+        {
+          "name": "ムーニー マシュマロ肌ごこち モレ安心 オムツ（お誕生~5000gまで）304枚 76枚×4…",
+          "price": 7833,
+          "per": 25.8,
+          "amt": "304枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "Rafinagift楽天市場店",
+          "plain": "https://item.rakuten.co.jp/rafinagift/10008629/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uq6jo.m2lhf5f0.g00uq6jo.m2lhgb59/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frafinagift%2Fhadb5c856024%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frafinagift%2Fi%2F10008629%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/rafinagift/cabinet/onesell043/hadb5c856024_0.jpg?_ex=300x300",
           "ship": ""
         },
         {
@@ -1292,20 +1294,6 @@
           "ship": ""
         },
         {
-          "name": "グ〜ンゆるうんちモレ0へ S 62枚×4袋入り 21001889 大王製紙 │ グーン…",
-          "price": 8250,
-          "per": 33.3,
-          "amt": "248枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "Pandora+",
-          "plain": "https://item.rakuten.co.jp/pandoraplus/10009861/",
-          "bd": "グーン",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uopxo.m2lhf1b3.g00uopxo.m2lhgd66/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpandoraplus%2F545187%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpandoraplus%2Fi%2F10009861%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/pandoraplus/cabinet/0003/545187.jpg?_ex=300x300",
-          "ship": ""
-        },
-        {
           "name": "P&G パンパース XLサイズ ビッグ パンツ XL 156枚 52枚x3セット 紙おむつ…",
           "price": 7478,
           "per": 47.9,
@@ -1317,6 +1305,20 @@
           "bd": "パンパース",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00u65wo.m2lhf3c0.g00u65wo.m2lhgf2a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftry3-2%2F4987176155818%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftry3-2%2Fi%2F10009322%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/try3-2/cabinet/12383927/4987176386311.jpg?_ex=300x300",
+          "ship": ""
+        },
+        {
+          "name": "メリーズ エアスルー テープ Sサイズ 62枚入り×4個 赤ちゃん おむつ 紙おむつ 花王…",
+          "price": 9670,
+          "per": 39.0,
+          "amt": "248枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "ダイユーエイト楽天市場店",
+          "plain": "https://item.rakuten.co.jp/daiyu8/10169391/",
+          "bd": "メリーズ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00tak5o.m2lhfddc.g00tak5o.m2lhg1ea/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdaiyu8%2F4901301437709-4set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdaiyu8%2Fi%2F10169391%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/daiyu8/cabinet/images258/4901301437709-4set_1.jpg?_ex=300x300",
           "ship": ""
         }
       ],
@@ -1423,9 +1425,9 @@
       "title": "ゴミ袋",
       "unit": "1枚",
       "seen": 142,
-      "read": 88,
+      "read": 82,
       "ok": 5,
-      "avg": 18.5,
+      "avg": 18.8,
       "rmin": 50,
       "top": [
         {
@@ -1721,10 +1723,10 @@
       "key": "pasta",
       "title": "パスタ",
       "unit": "1kg",
-      "seen": 129,
-      "read": 84,
-      "ok": 24,
-      "avg": 682.7,
+      "seen": 127,
+      "read": 81,
+      "ok": 22,
+      "avg": 682.4,
       "rmin": 50,
       "top": [
         {
@@ -1813,7 +1815,7 @@
           "img": "https://item-shopping.c.yimg.jp/i/g/kilat_s01195"
         },
         {
-          "name": "パスタ 5kg 麺 乾麺 バリラ No.5 太さ 1.8mm 少し太め 大容量 業務用…",
+          "name": "パスタ 5kg 麺 乾麺 バリラ No.5 太さ 1.8mm 少し太め 大容量 スパゲティ…",
           "price": 2380,
           "per": 476.0,
           "amt": "5kg",
@@ -2049,9 +2051,9 @@
       "title": "キャットフード",
       "unit": "1kg",
       "seen": 112,
-      "read": 62,
-      "ok": 48,
-      "avg": 1550.7,
+      "read": 61,
+      "ok": 47,
+      "avg": 1552.3,
       "rmin": 100,
       "top": [
         {
@@ -2111,17 +2113,17 @@
           "ship": ""
         },
         {
-          "name": "ヒルズ 猫用 サイエンスダイエット 1.4kg キャットフード ドライ 子猫 キトン 成猫…",
-          "price": 2030,
-          "per": 1450.0,
-          "amt": "1.4kg",
-          "rc": 14,
-          "av": 4.29,
-          "shop": "Pet館〜ペット館〜",
-          "plain": "https://item.rakuten.co.jp/dog-kan/10196545/",
-          "bd": "ヒルズ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00pr3zo.m2lhf6dd.g00pr3zo.m2lhg773/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdog-kan%2F7262104%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdog-kan%2Fi%2F10196545%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/dog-kan/cabinet/hills/7262104main.jpg?_ex=300x300",
+          "name": "ロイヤルカナン インドア プレミアムフード ドライ ドライフード 猫 室内で生活する成猫用…",
+          "price": 15656,
+          "per": 1565.6,
+          "amt": "10kg",
+          "rc": 748,
+          "av": 4.51,
+          "shop": "キャットランド",
+          "plain": "https://item.rakuten.co.jp/cat-land/10000608/",
+          "bd": "ロイヤルカナン",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qr6oo.m2lhfac7.g00qr6oo.m2lhg872/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcat-land%2F9214407%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcat-land%2Fi%2F10000608%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cat-land/cabinet/logo/9214407.jpg?_ex=300x300",
           "ship": ""
         }
       ],

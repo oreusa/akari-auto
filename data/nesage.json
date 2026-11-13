@@ -1,7 +1,7 @@
 {
-  "at": "2026-11-13 14:20",
+  "at": "2026-11-13 16:16",
   "since": "2026-11-01",
-  "tracked": 261,
+  "tracked": 262,
   "days": 12,
   "downs": [
     {
@@ -11,8 +11,8 @@
       "base": 3960.0,
       "pct": 37,
       "days": 12,
-      "rc": 989,
-      "av": 4.54,
+      "rc": 991,
+      "av": 4.55,
       "shop": "triple shop",
       "plain": "https://item.rakuten.co.jp/tripleshop/10000191/"
     },
@@ -49,7 +49,7 @@
       "base": 3640.0,
       "pct": 100,
       "days": 12,
-      "rc": 691,
+      "rc": 692,
       "av": 4.55,
       "shop": "Hagoogi公式 楽天市場店",
       "plain": "https://item.rakuten.co.jp/hagoogi/10000130/"
@@ -85,7 +85,7 @@
       "base": 2640.0,
       "pct": 43,
       "days": 12,
-      "rc": 598,
+      "rc": 599,
       "av": 4.46,
       "shop": "武内製薬 公式オンラインストア",
       "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000302/"
@@ -97,7 +97,7 @@
       "base": 5780.0,
       "pct": 38,
       "days": 6,
-      "rc": 397,
+      "rc": 398,
       "av": 4.79,
       "shop": "MOTTERU ダイレクト 楽天市場店",
       "plain": "https://item.rakuten.co.jp/motteru/10000176/"

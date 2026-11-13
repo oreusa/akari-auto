@@ -2209,6 +2209,12 @@
   "sec": 0.8,
   "why": ""
  },
+ "https://ehonnooka.com/?p=11240": {
+  "at": "2026-11-13",
+  "ok": true,
+  "sec": 1.3,
+  "why": ""
+ },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
   "at": "2026-11-11",
   "by": "browser",
@@ -6112,6 +6118,12 @@
   "sec": 1.5,
   "why": ""
  },
+ "https://www.akachan.jp/topics/CotoToki_bellmall": {
+  "at": "2026-11-13",
+  "ok": true,
+  "sec": 1.3,
+  "why": ""
+ },
  "https://www.amazon.co.jp/dp/B000FQN97A?tag=aiusagichan-22": {
   "at": "2026-11-03",
   "by": "browser",
@@ -8312,6 +8324,12 @@
   "sec": 3.6,
   "why": ""
  },
+ "https://www.motherfarm.co.jp/information/illumination2026/": {
+  "at": "2026-11-13",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
  "https://www.motherfarm.co.jp/information/news/detail.php?CN=432299": {
   "at": "2026-11-11",
   "by": "browser",
@@ -8400,6 +8418,12 @@
   "by": "browser",
   "ok": true,
   "sec": 3.2,
+  "why": ""
+ },
+ "https://www.ohtawara.info/spot.html?spot-type=1": {
+  "at": "2026-11-13",
+  "ok": true,
+  "sec": 0.6,
   "why": ""
  },
  "https://www.omochaoukoku.com/karuizawa/event/ezy_roller/": {
@@ -8672,6 +8696,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.3,
+  "why": ""
+ },
+ "https://www.utsunomiya-cvb.org/event/detail_20062.html": {
+  "at": "2026-11-13",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.utsunomiya-cvb.org/event/detail_30068.html": {
