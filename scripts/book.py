@@ -427,6 +427,8 @@ def run(now=None):
             todo = [s for s in SERVICES if s in cfg["channels"]
                     and not rec.get(s, {}).get("id") and rec.get(s, {}).get("tries", 0) < MAX_TRIES
                     and not tabi_replaced(state, day, slot, s)]
+            if post.get("x_off"):  # 11/13 オーナー「関西と一緒で」：X は関西と同じ枠だけ。予定表で "x_off": true の枠は Threads だけ出す
+                todo = [s for s in todo if s != "twitter"]
             if not todo:
                 continue
             xs, ths, topic, kind, why = choose(post, day, now)
