@@ -588,3 +588,31 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 （40番 ここまで）
 
 （ROOM台本 ここまで）
+
+■台本が終わって時間が残ったら（11/13〜・1回30件まで）
+・下の言葉の「探し方」のURL（ROOMの中の検索）を上から開き、出てきた商品のうち、★4.0以上・レビュー100件以上・ふだん使う物だけを、1つの言葉で3件まで載せる。お酒・たばこ・薬・健康食品・美容の効き目をうたう物・大人向けの物は載せない。
+・コメントは次の形だけ（使った感想・「おすすめ」「最高」「買ってよかった」は書かない。見た数字だけ）：
+　「{商品の名前の短い形}。{月}/{日}に見た時点で{値段}円、レビューは{件数}件で★{点数}でした。値段と在庫は変わるので、お店のページでご確認ください。」
+・ハッシュタグ：#{言葉} #日用品 #まとめ買い　コレクション：「毎日なくなる物」（無ければ選ばずに載せる）
+・もうROOMに載っている商品は飛ばす。報告の行に「人気から○件（言葉）」を足す。
+・トイレットペーパー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%88%E3%82%A4%E3%83%AC%E3%83%83%E3%83%88%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC
+・ティッシュ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%86%E3%82%A3%E3%83%83%E3%82%B7%E3%83%A5
+・洗濯洗剤：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%B4%97%E6%BF%AF%E6%B4%97%E5%89%A4
+・食器用洗剤：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%A3%9F%E5%99%A8%E7%94%A8%E6%B4%97%E5%89%A4
+・キッチンペーパー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AD%E3%83%83%E3%83%81%E3%83%B3%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC
+・ゴミ袋：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B4%E3%83%9F%E8%A2%8B
+・お米 10kg：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%8A%E7%B1%B3
+・水 2L：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%B0%B4
+・炭酸水：探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%82%AD%E9%85%B8%E6%B0%B4
+・コーヒー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC
+・おむつ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%8A%E3%82%80%E3%81%A4
+・猫砂：探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%8C%AB%E7%A0%82
+・ドッグフード：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%89%E3%83%83%E3%82%B0%E3%83%95%E3%83%BC%E3%83%89
+・カイロ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AB%E3%82%A4%E3%83%AD
+・加湿器：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%8A%A0%E6%B9%BF%E5%99%A8
+・毛布：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%AF%9B%E5%B8%83
+・鍋：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%8D%8B
+・年賀状：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%B9%B4%E8%B3%80%E7%8A%B6
+・大掃除：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%A4%A7%E6%8E%83%E9%99%A4
+・ブラックフライデー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%83%95%E3%83%A9%E3%82%A4%E3%83%87%E3%83%BC
+（追加 ここまで）
