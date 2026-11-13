@@ -1,20 +1,20 @@
 {
- "date": "2026-11-12",
+ "date": "2026-11-13",
  "now": {
-  "views": 1231,
-  "come": 4,
-  "post": 8,
-  "ask": 32,
+  "views": 1250,
+  "come": 12,
+  "post": 7,
+  "ask": 45,
   "cost": 0,
-  "open": 0,
+  "open": 3,
   "sent": 0,
-  "buy": 45,
+  "buy": 47,
   "days": 7
  },
  "prev": {
-  "views": 601,
+  "views": 709,
   "come": 0,
-  "post": 2,
+  "post": 3,
   "ask": 0,
   "cost": 0,
   "open": 0,
@@ -25,14 +25,22 @@
  "slots": [
   {
    "name": "x2100",
-   "n": 2
+   "n": 3
   },
   {
    "name": "x1215",
-   "n": 1
+   "n": 2
+  },
+  {
+   "name": "x0915",
+   "n": 2
   },
   {
    "name": "x2015",
+   "n": 1
+  },
+  {
+   "name": "x0715",
    "n": 1
   }
  ],

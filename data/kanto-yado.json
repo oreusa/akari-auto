@@ -3438,7 +3438,7 @@
   },
   "棚田のあかり大山千枚田": {
     "v": 2,
-    "t": "2026-11-06",
+    "t": "2026-11-13",
     "ll": [
       35.12996,
       139.97496
@@ -3448,7 +3448,7 @@
   },
   "没後150年藤枝太郎英義の刀剣美": {
     "v": 2,
-    "t": "2026-11-06",
+    "t": "2026-11-13",
     "ll": [
       36.30559,
       139.12218
@@ -3459,8 +3459,8 @@
         "n": "未来ホテル",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198046",
         "km": 4.8,
-        "r": 4.53,
-        "rc": 47,
+        "r": 4.51,
+        "rc": 49,
         "min": 3200
       },
       {
@@ -3468,22 +3468,22 @@
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184707",
         "km": 5.4,
         "r": 4.22,
-        "rc": 1197,
+        "rc": 1218,
         "min": 3300
       },
       {
-        "n": "トレイルイン前橋駒形インター(Trail inn 前橋駒形インター)",
+        "n": "トレイルイン前橋駒形インター",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D195970",
         "km": 4.5,
-        "r": 4.19,
-        "rc": 114,
-        "min": 3200
+        "r": 4.18,
+        "rc": 113,
+        "min": 3500
       }
     ]
   },
   "徳明園秋の紅葉金のライトアップ": {
     "v": 2,
-    "t": "2026-11-06",
+    "t": "2026-11-13",
     "ll": [
       36.30484,
       138.98793
@@ -3503,22 +3503,22 @@
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136287",
         "km": 3.1,
         "r": 4.61,
-        "rc": 2198,
+        "rc": 2200,
         "min": 8250
       },
       {
         "n": "ホテル グランビュー高崎",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D165867",
         "km": 3.0,
-        "r": 4.59,
-        "rc": 1021,
+        "r": 4.6,
+        "rc": 1029,
         "min": 6050
       }
     ]
   },
   "八王子いちょう祭り": {
     "v": 2,
-    "t": "2026-11-06",
+    "t": "2026-11-13",
     "ll": [
       35.64968,
       139.29078
@@ -3529,15 +3529,15 @@
         "n": "タカオネ",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182499",
         "km": 2.7,
-        "r": 4.52,
-        "rc": 232,
+        "r": 4.53,
+        "rc": 235,
         "min": 6750
       }
     ]
   },
   "湯畑ツリー＆イルミネーション2026": {
     "v": 2,
-    "t": "2026-11-06",
+    "t": "2026-11-13",
     "ll": [
       36.62056,
       138.59611
@@ -3548,7 +3548,7 @@
         "n": "草津温泉 草津舘",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106048",
         "km": 0.2,
-        "r": 4.8,
+        "r": 4.79,
         "rc": 895,
         "min": 12100
       },
@@ -3558,7 +3558,7 @@
         "km": 0.2,
         "r": 4.78,
         "rc": 32,
-        "min": 14300
+        "min": 13200
       },
       {
         "n": "うり房旅館",
@@ -3566,7 +3566,7 @@
         "km": 0.2,
         "r": 4.74,
         "rc": 61,
-        "min": 12100
+        "min": 11000
       }
     ]
   },
