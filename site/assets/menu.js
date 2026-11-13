@@ -395,7 +395,7 @@ var NB=[
 ].filter(function(n){return n.only!==false;});
 /* 11/10 オーナー「TOWN NOTEの表紙なのにおでかけNOWはおかしい」→ 表紙では、まとめた目次（各リストへ）から。名前は各ページの名前のまま（11/10 オーナー「そこはリストだろ」） */
 var COVER=(LF?/^\/(index)?$/:/^\/(town-notes)?$/).test(P);
-function side(){if(COVER)return "top";if(/^\/jikka/.test(P))return "jk";if(/^\/(fudosan|uru|moushikomi|gyosha|sagasu|chika-|ranking|kaitai|machi\/)/.test(P))return "fu";if(/^\/(okaimono|otoku|tanka|nesage|furusato|kaimawari)/.test(P))return "ok";
+function side(){if(COVER)return "top";if(/^\/jikka/.test(P))return "jk";if(/^\/(fudosan|uru|ikura|moushikomi|gyosha|sagasu|chika-|ranking|kaitai|machi\/)/.test(P))return "fu";if(/^\/(okaimono|otoku|tanka|nesage|furusato|kaimawari)/.test(P))return "ok";
  if(/^\/koe/.test(P)){try{var s=sessionStorage.getItem("tn_side");if(s)return s;}catch(e){}}return "od";}
 var HERE=side();try{if(!/^\/koe/.test(P))sessionStorage.setItem("tn_side",HERE);}catch(e){}
 /* 前回のつづき：ほかのページを見ていたら、目次の上に1行（この端末だけ） */
