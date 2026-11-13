@@ -40,6 +40,15 @@ for f in ("night.js", "menu.js", "v2sub.js"):
     m = re.search(r'/assets/' + re.escape(f) + r'\?v=(\d+)', jl)
     if m:
         h = re.sub(r'/assets/' + re.escape(f) + r'\?v=\d+', f"/assets/{f}?v={m.group(1)}", h)
+# 11/13 関東はアフィリエイトが本来（オーナー 11/9）。A8 の提携済み2つ（汐 11/13）：査定＝ざっくりAI査定＋、片付け＝ぽいみつ。ほかは申し込みのまま。
+rep("<a class='cta\"+(i?\"\":\" b1\")+\"' href='/moushikomi?\"+(/片付け|解体/.test(w)?\"lite=1&amp;\":\"\")+\"machi=\"+t.i+(w?\"&amp;want=\"+encodeURIComponent(w):\"\")+\"' data-k=",
+    "<a class='cta\"+(i?\"\":\" b1\")+\"' href='\"+(AF[w]?\"https://px.a8.net/svt/ejp?a8mat=\"+AF[w][0]+\"' rel='nofollow sponsored noopener' target='_blank\":\"/moushikomi?\"+(/片付け|解体/.test(w)?\"lite=1&amp;\":\"\")+\"machi=\"+t.i+(w?\"&amp;want=\"+encodeURIComponent(w):\"\"))+\"' data-k=")
+rep("function result(){", 'var AF={"査定してほしい":["4BGH3I+E2NY4I+5Y9M+5YJRM","www14"],"片付け・遺品整理の見積り":["4BGK80+84BWCI+5Y1K+5YZ76","www16"]};function result(){', 1)
+rep('"査定してほしい":"無料で査定を頼む"', '"査定してほしい":"いくらで売れそうか、AIで見る（ざっくりAI査定＋）"')
+rep('"片付け・遺品整理の見積り":"片付けの見積りを頼む"', '"片付け・遺品整理の見積り":"片付け・不用品回収の見積りをくらべる（ぽいみつ）"')
+rep("1社に決めていない窓口です。内容に合わせて複数の会社をご紹介でき、見積りをくらべてから決められます。", "どれも無料です。見積りや査定をくらべてから決められます。")
+rep("<h1>実家・空き家の3問診断</h1>", "<h1>実家・空き家の3問診断</h1><p style='font-size:11px;color:#8C7B6E;margin:4px 0 0'>このページには広告（PR）を含みます</p>")
+rep("<p class='nt'>この診断は、", "<p class='nt'>このページのリンクの一部は広告（PR）です。この診断は、")
 assert "売れた" not in h and "関西" not in h and "townnote" not in h and "レインズ" not in h, "関西の言葉が残っている"
 h = h.replace("__DATA__", json.dumps(D, ensure_ascii=False, separators=(",", ":")))
 os.makedirs(os.path.join(S, "jikka", "shindan"), exist_ok=True)
