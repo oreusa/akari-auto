@@ -2205,11 +2205,10 @@
   "why": ""
  },
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
-  "at": "2026-11-13",
-  "by": "browser",
+  "at": "2026-11-14",
   "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "sec": 15.2,
+  "why": "<urlopen error timed out>"
  },
  "https://ehonnooka.com/?p=11240": {
   "at": "2026-11-13",
@@ -2279,13 +2278,6 @@
   "by": "browser",
   "ok": true,
   "sec": 6.0,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fevent.rakuten.co.jp%2Fcard%2Fpointday%2F&m=https%3A%2F%2Fevent.rakuten.co.jp%2Fcard%2Fpointday%2F": {
-  "at": "2026-10-30",
-  "by": "browser",
-  "ok": true,
-  "sec": 5.4,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D104555": {
@@ -3798,13 +3790,6 @@
   "by": "browser",
   "ok": true,
   "sec": 1.5,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F25128%2F&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F25128%2F": {
-  "at": "2026-10-30",
-  "by": "browser",
-  "ok": true,
-  "sec": 3.0,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F4904%2F&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F4904%2F": {
@@ -5830,13 +5815,6 @@
   "sec": 1.3,
   "why": ""
  },
- "https://koto.goguynet.jp/2026/10/27/ariakegarden_illumination2026/": {
-  "at": "2026-10-30",
-  "by": "browser",
-  "ok": true,
-  "sec": 7.0,
-  "why": ""
- },
  "https://lightup-nikko.jp/": {
   "at": "2026-11-08",
   "by": "browser",
@@ -6198,11 +6176,10 @@
   "why": ""
  },
  "https://tamaillumi.myportfolio.com/": {
-  "at": "2026-11-13",
-  "by": "browser",
-  "ok": false,
-  "sec": 0.0,
-  "why": "Page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://ta"
+  "at": "2026-11-14",
+  "ok": true,
+  "sec": 0.1,
+  "why": "403"
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
   "at": "2026-11-13",
@@ -6226,11 +6203,10 @@
   "why": ""
  },
  "https://tokyo-sg.com/news/3963": {
-  "at": "2026-11-13",
-  "by": "browser",
-  "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "at": "2026-11-14",
+  "ok": true,
+  "sec": 2.1,
+  "why": ""
  },
  "https://tokyoatlas.jp/": {
   "at": "2026-11-13",
@@ -8473,13 +8449,6 @@
   "sec": 2.4,
   "why": ""
  },
- "https://www.kosho.or.jp/wppost/plg_WpPost_post.php?postid=28822": {
-  "at": "2026-10-30",
-  "by": "browser",
-  "ok": true,
-  "sec": 2.7,
-  "why": ""
- },
  "https://www.kusatsu-onsen.ne.jp/event/1685.php": {
   "at": "2026-11-13",
   "by": "browser",
@@ -8633,11 +8602,10 @@
   "why": ""
  },
  "https://www.pref.tochigi.lg.jp/c10/kouhou/kouhou/202610-12artm-kikaku.html": {
-  "at": "2026-11-13",
-  "by": "browser",
+  "at": "2026-11-14",
   "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "sec": 15.2,
+  "why": "The read operation timed out"
  },
  "https://www.railway-museum.jp/event/exhibition.html": {
   "at": "2026-11-08",
@@ -8815,11 +8783,10 @@
   "why": ""
  },
  "https://www.tokyo-park.or.jp/event_search/9_2_2.html": {
-  "at": "2026-11-13",
-  "by": "browser",
-  "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "at": "2026-11-14",
+  "ok": true,
+  "sec": 1.4,
+  "why": ""
  },
  "https://www.tokyo-park.or.jp/park/kyu-furukawa/news/2026/10_10_11_6.html": {
   "at": "2026-11-05",
@@ -8905,13 +8872,6 @@
   "sec": 1.7,
   "why": ""
  },
- "https://www.waterras.com/": {
-  "at": "2026-10-30",
-  "by": "browser",
-  "ok": true,
-  "sec": 4.4,
-  "why": ""
- },
  "https://www.waterras.com/event/archives/event/35570/": {
   "at": "2026-11-13",
   "by": "browser",
@@ -8990,9 +8950,9 @@
   "why": ""
  },
  "https://yamatokuen.com": {
-  "at": "2026-11-10",
+  "at": "2026-11-14",
   "ok": true,
-  "sec": 1.0,
+  "sec": 1.3,
   "why": ""
  },
  "https://yamatokuen.com/": {
