@@ -715,12 +715,12 @@ J_CSS = """.jn{display:grid;grid-template-columns:1fr 1fr;gap:10px}.jn>div{backg
 
 # 11/13 A8 の提携済み（汐）。関東はアフィリエイトが本来（オーナー 11/9）。人に聞く道は下に小さく残す。
 A8_ZAKU = "4BGH3I+E2NY4I+5Y9M+5YJRM"   # ざっくりAI査定＋（新規WEB査定申込 3,400円）
-A8_POI = ""                            # ぽいみつ（不用品回収の一括見積り 5,000円）。コードが届いたら入れる
+A8_POI = "4BGK80+84BWCI+5Y1K+5YZ76"   # ぽいみつ（不用品回収の一括見積り 5,000円・11/13 提携）。1pxの画像は www16
 
 
-def _a8(mat, k, label, sm, cls="jb"):
+def _a8(mat, k, label, sm, cls="jb", px="www14"):
     return (f'<a class="{cls}" href="https://px.a8.net/svt/ejp?a8mat={mat}" rel="nofollow sponsored noopener" target="_blank" data-k="{k}">{label}<small>{sm}</small></a>'
-            f'<img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat={mat}" alt="" style="position:absolute;width:1px;height:1px;opacity:0">')
+            f'<img border="0" width="1" height="1" src="https://{px}.a8.net/0.gif?a8mat={mat}" alt="" style="position:absolute;width:1px;height:1px;opacity:0">')
 
 
 def jikka_page(t):
@@ -738,7 +738,7 @@ def jikka_page(t):
                     for i, (h, p, sn, u) in enumerate(J_SRC, 1))
     pr = f'<div><b>{t["price"] / 10000:.1f}<small>万円</small></b><span>住宅地の平均価格（1㎡）</span></div>' if t["price"] else f'<div><b>{t["rank"]}<small>位／{t["of"]}</small></b><span>{E(pfull)}での順位（上がり幅）</span></div>'
     JB_SELL = _a8(A8_ZAKU, f"実家｜AI査定｜{E(n)}", "この家がいくらで売れそうか、AIで見る", "無料・電話ラッシュなし（ざっくりAI査定＋）", "jb b1")
-    JB_KATA = (_a8(A8_POI, f"実家｜片付けの一括見積り｜{E(n)}", "片付け・不用品回収の見積りをくらべる", "無料・まとめて見積り（ぽいみつ）") if A8_POI else
+    JB_KATA = (_a8(A8_POI, f"実家｜片付けの一括見積り｜{E(n)}", "片付け・不用品回収の見積りをくらべる", "無料・まとめて見積り（ぽいみつ）", "jb", "www16") if A8_POI else
               f'<a class="jb" href="/moushikomi?lite=1&amp;machi={t["id"]}&amp;want={_q("片付け・遺品整理の見積り")}" data-k="実家｜片付けの見積り｜{E(n)}">片付け・遺品整理の見積りを頼む<small>無料・約1分</small></a>')
     JB_NOTE = (f'<p class="jp">人に相談したい方は <a href="/moushikomi?machi={t["id"]}&amp;want={_q("相続した家のこと")}" data-k="実家｜売却の相談｜{E(n)}">こちら（無料・約1分）</a>。このページのリンクの一部は広告（PR）です。</p>')
     body = f'''<style>{HEAD_CSS}{J_CSS}</style>{SCRIPTS}</head><body style="--pc:{col}"><div class="wrap">
