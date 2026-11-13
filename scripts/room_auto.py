@@ -11,7 +11,7 @@ from datetime import datetime, timezone, timedelta, date
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 P = lambda *a: os.path.join(ROOT, *a)
-MAX = 20
+MAX = 40  # 11/13 オーナー「gptまじ勿体ないからお金稼げるようにして」「月が使い込んでいいから」→ 1日20→40件。雫の3回と凪で上から続きを載せる
 KEEP = 14
 COL = {"毎日なくなる物": ("water", "soda", "rice", "tp", "tea", "coffee", "detergent", "softener", "shampoo", "bodysoap", "dish", "tissue", "trash", "pasta", "beans"),
        "赤ちゃん・ペットの毎日": ("diaper", "wipes", "dogfood", "catfood"),
