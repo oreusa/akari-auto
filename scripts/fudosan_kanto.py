@@ -713,6 +713,16 @@ J_CSS = """.jn{display:grid;grid-template-columns:1fr 1fr;gap:10px}.jn>div{backg
 .jli a small{font-size:11.5px;color:#7A6E66;font-weight:500;text-align:right}"""
 
 
+# 11/13 A8 の提携済み（汐）。関東はアフィリエイトが本来（オーナー 11/9）。人に聞く道は下に小さく残す。
+A8_ZAKU = "4BGH3I+E2NY4I+5Y9M+5YJRM"   # ざっくりAI査定＋（新規WEB査定申込 3,400円）
+A8_POI = ""                            # ぽいみつ（不用品回収の一括見積り 5,000円）。コードが届いたら入れる
+
+
+def _a8(mat, k, label, sm, cls="jb"):
+    return (f'<a class="{cls}" href="https://px.a8.net/svt/ejp?a8mat={mat}" rel="nofollow sponsored noopener" target="_blank" data-k="{k}">{label}<small>{sm}</small></a>'
+            f'<img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat={mat}" alt="" style="position:absolute;width:1px;height:1px;opacity:0">')
+
+
 def jikka_page(t):
     pf, fn, en, col, sname, surl, pfull, s = PI[t["p"]]
     n = t["n"]
@@ -727,11 +737,15 @@ def jikka_page(t):
     steps = "".join(f'<div class="st"><i>{i:02d}</i><div><b>{E(h)}</b><p>{E(p)}</p><a href="{E(u)}" target="_blank" rel="noopener" data-k="実家｜出典｜{i:02d}">出典：{E(sn)}</a></div></div>'
                     for i, (h, p, sn, u) in enumerate(J_SRC, 1))
     pr = f'<div><b>{t["price"] / 10000:.1f}<small>万円</small></b><span>住宅地の平均価格（1㎡）</span></div>' if t["price"] else f'<div><b>{t["rank"]}<small>位／{t["of"]}</small></b><span>{E(pfull)}での順位（上がり幅）</span></div>'
+    JB_SELL = _a8(A8_ZAKU, f"実家｜AI査定｜{E(n)}", "この家がいくらで売れそうか、AIで見る", "無料・電話ラッシュなし（ざっくりAI査定＋）", "jb b1")
+    JB_KATA = (_a8(A8_POI, f"実家｜片付けの一括見積り｜{E(n)}", "片付け・不用品回収の見積りをくらべる", "無料・まとめて見積り（ぽいみつ）") if A8_POI else
+              f'<a class="jb" href="/moushikomi?lite=1&amp;machi={t["id"]}&amp;want={_q("片付け・遺品整理の見積り")}" data-k="実家｜片付けの見積り｜{E(n)}">片付け・遺品整理の見積りを頼む<small>無料・約1分</small></a>')
+    JB_NOTE = (f'<p class="jp">人に相談したい方は <a href="/moushikomi?machi={t["id"]}&amp;want={_q("相続した家のこと")}" data-k="実家｜売却の相談｜{E(n)}">こちら（無料・約1分）</a>。このページのリンクの一部は広告（PR）です。</p>')
     body = f'''<style>{HEAD_CSS}{J_CSS}</style>{SCRIPTS}</head><body style="--pc:{col}"><div class="wrap">
 <div class="head"><img src="/logo-s.png" width="60" height="60" alt="LIFE NOTE のロゴ"><div class="en">{en} ─ JIKKA NOTE</div>
 <h1>{E(n)}の実家・空き家ノート<span>売る・片付ける・解体する前に</span></h1>
 <p class="sub">親の家を相続した・空き家のままになっている。<br>この街で決めるための数字と順番です。</p>
-<div class="upd">2026年11月 更新</div></div>
+<div class="upd">2026年11月 更新・広告（PR）を含みます</div></div>
 <p class="mk3">LAND PRICE 2026</p><h2 class="jh">この街の土地の値段</h2>
 <div class="jn"><div><b>{pct(t["r8"])}</b><span>住宅地 1年の動き</span></div>{pr}</div>
 <p class="src">出典：令和8年地価公示（2026年1月1日時点）。{E(pfull)}{t["of"]}市区町村で{t["rank"]}位。</p>
@@ -739,10 +753,10 @@ def jikka_page(t):
 <p class="mk3" id="steps">STEPS</p><h2 class="jh">迷ったら、この順で</h2>
 {steps}
 <p class="mk3">NEXT</p><h2 class="jh">次にできること</h2>
-<a class="jb b1" href="/moushikomi?machi={t["id"]}&amp;want={_q("相続した家のこと")}" data-k="実家｜売却の相談｜{E(n)}">この家の売却を相談する<small>無料・約1分</small></a>
-<a class="jb" href="/moushikomi?lite=1&amp;machi={t["id"]}&amp;want={_q("片付け・遺品整理の見積り")}" data-k="実家｜片付けの見積り｜{E(n)}">片付け・遺品整理の見積りを頼む<small>無料・約1分</small></a>
+{JB_SELL}
+{JB_KATA}
 <a class="jb" href="/moushikomi?lite=1&amp;machi={t["id"]}&amp;want={_q("解体の見積り")}" data-k="実家｜解体の見積り｜{E(n)}">解体費用の見積りを頼む<small>無料・約1分</small></a>
-<p class="jp">どれも同じお申し込みページです。内容を見て、メールでご連絡します。</p>
+{JB_NOTE}
 <a class="jl" href="/kaitai" data-k="実家｜費用の目安">先に、解体・片付けの費用の目安を見る <i>→</i></a>
 <a class="jl" href="/jikka/#{fn}" data-k="実家｜一覧">ほかの街の実家・空き家ノート <i>→</i></a>
 <div class="ft">LIFE NOTE</div></div>
