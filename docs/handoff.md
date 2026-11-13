@@ -105,7 +105,7 @@
 
 - ChatGPTの担当が「実行時確認が必要」で止まるのは、許可がドライブのファイルにしか無いとき（ChatGPTはファイルの文を本人の許可と見なさない）。許可は各タスクの文そのものに書く（10/24 凪で直した）。
 
-## 5. ArtifactData（相談室 https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H）
+## 5. ArtifactData（相談室 https://claude.ai/artifact/SmAVzdH8ZArs1H6HwC2S9L）
 - collection `akari2`、doc `YYYY-MM-DD`：{koma4, room, writtenAt}（夜の回が書き、受け渡し役が読む）。
 - doc `report`：{sales, a8, copiedAt}（受け渡し役が書き、夜の回が読む）。
 

@@ -46,7 +46,7 @@
 ・直したら notes/sales-board.md に「M/D 直したお金の所：何を（PR #）｜調査のどの行から」を1行（朝の見回りの報告の1行目がこれを読む）。今日の分が無ければ「M/D 売上の調査：無し」と1行書き、notes/sales-board.md の成果0の日数から自分で1つ選んで直す（直す物0の夜は作らない）。
 ・来る人を増やす手も毎晩1つ打つ（今は来る人が少なすぎて、ボタンを直しても売上になりにくい）：data/page-stats.json で外から来た数（検索・他サイト）と投稿から来た数を見て、検索から来る入口のページ（/odekake-都県・/o/・/okaimono?k= など）の題と説明を検索される言葉に直すか、来た数が多い投稿の型を明日の予定表で1本増やす。やった事と数字を notes/sales-board.md に「M/D 人を呼ぶ手：…（前の日の外から◯・投稿から◯）」と1行。
 ■売上とA8（2分）
-・ToolSearch で "select:mcp__Google_Drive__search_files,mcp__Google_Drive__read_file_content" を試す。使えるなら、連絡ノートのフォルダ（parentId 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）の「分析メモ」（汐が毎朝書く、楽天・A8のクリックと売上）と「リンク帳」の「A8」の行を読む。使えないときは ArtifactData で artifact https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H の collection "akari2"、doc_id "report" を get する（受け渡し役が毎晩写している）。
+・ToolSearch で "select:mcp__Google_Drive__search_files,mcp__Google_Drive__read_file_content" を試す。使えるなら、連絡ノートのフォルダ（parentId 1Q4C2DjMuoG24M3wsHGkDAraqmNbF8c4l）の「分析メモ」（汐が毎朝書く、楽天・A8のクリックと売上）と「リンク帳」の「A8」の行を読む。使えないときは ArtifactData で artifact https://claude.ai/artifact/SmAVzdH8ZArs1H6HwC2S9L の collection "akari2"、doc_id "report" を get する（受け渡し役が毎晩写している）。
 ・【A8のページ用リンク（10/24から）】リンク帳の「A8ページ｜プログラム名｜URL｜広告主のドメイン」の行（汐が、プロフィール用ページのサイトで取ったリンク）を、全部 data/a8-page.json に {"items": [{"name": プログラム名, "url": URL, "host": 広告主のドメイン}], "updatedAt": 今} の形で写し、mcp__github__create_or_update_file で main に保存する（行が無ければ何もしない）。この行のリンクはXとThreadsには使わない（サイトごとのリンクなので混ぜない）。
 ・クリックと売上は notes/sales-board.md の行に使う。数字が「未確認」の日は推測しない。
 ・A8：リンク帳に「A8｜プログラム名｜https://px.a8.net/svt/ejp?a8mat=…｜広告主のドメイン」の行があるときだけ、その中から選んでよい。link は {"type":"a8","url":そのURL,"expect_host":広告主のドメイン}。予約係が直前に開いて、広告主のページに着くか確かめる。
@@ -115,7 +115,7 @@ HPのご紹介の連載は 11/12 の「その11」で終わり（続きは書か
 - 毎晩 notes/strategy.md「HPのご紹介」に、前の日の閲覧（data/metrics の21:00）とHPに来た数（data/page-stats.json の x2100・t2100）を1行。
 
 ■GPTへ渡す物と、おでかけリール（4コマの台本の決まりは 11/12 に外した。前の文は docs/history/nightly-old-1112b.md）
-・渡す所：ArtifactData で https://claude.ai/artifact/YCv8oT9jVjqc72GcePNj9H の collection "akari2"、doc_id "D" に set。data = {"kakunin": [{"url","what"}] 5件まで（無ければ書かない）, "writtenAt": 今の日本時間}（kakunin が無い夜は書かなくてよい）。使えない時は最後の1行に書く（予定表は止めない）。
+・渡す所：ArtifactData で https://claude.ai/artifact/SmAVzdH8ZArs1H6HwC2S9L の collection "akari2"、doc_id "D" に set。data = {"kakunin": [{"url","what"}] 5件まで（無ければ書かない）, "writtenAt": 今の日本時間}（kakunin が無い夜は書かなくてよい）。使えない時は最後の1行に書く（予定表は止めない）。
 ・おでかけリール（毎日 07:30）：【11/12〜 絵本を開く型】docs/outing-reel.md の一番上のとおり reel/D.json を main に（commit「燈：D のおでかけリール」）。必ず "kata": "ehon"・"brand": "kanto"・"voice" 6行・"voice_yomi" 6行（全部ひらがなの正しい読み。機械が答え合わせをして、違えば作らない）、キャプションのタグの前に「声：VOICEVOX:もち子(cv 明日葉よもぎ)」を1行。中身は公式ページで今確かめた事実だけ（場所・日付・料金・時間）、題材は予定表の9本と重ねない。他社のキャラ・ロゴが主役の催しは選ばない。lat/lon は公式の住所から。notes/preflight/D.md の「■公式との照らし合わせ」に「おでかけリール｜名前｜開催日○｜場所○｜料金○｜時間○」を1行。Y の reel/out/Y.json に error があれば、保存し直さず、ミス帳に原因を1行書き、今夜同じ事をしない。
 
 ■ROOM・商品・GPTの係（11/11 月が作り替え。前の決まり＝Amazon確認帳・PRの厳選・季節の商品・ROOMはS級・GPTの目標 は docs/history と git の履歴にある。ふだんは読まない）
