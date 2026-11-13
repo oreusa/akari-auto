@@ -429,6 +429,8 @@ def run(now=None):
                     and not tabi_replaced(state, day, slot, s)]
             if post.get("x_off"):  # 11/13 オーナー「関西と一緒で」：X は関西と同じ枠だけ。予定表で "x_off": true の枠は Threads だけ出す
                 todo = [s for s in todo if s != "twitter"]
+            if post.get("threads_off"):  # 11/13 X だけの速報の枠（x07〜x21）。予定表で "threads_off": true の枠は X だけ出す
+                todo = [s for s in todo if s != "threads"]
             if not todo:
                 continue
             xs, ths, topic, kind, why = choose(post, day, now)
