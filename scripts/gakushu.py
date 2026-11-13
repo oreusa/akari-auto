@@ -161,7 +161,7 @@ _kbuy = sum(_c for _d, _v in load(P("data", "page-stats.json"), {}).get("days", 
 _kdays = len({p["day"] for p in _kb})
 item("kurabe", "くらべた話（7日の試し 11/13〜11/19）", f"{_kdays}日ぶん・Threads 中央値 {med(_kbt) if _kbt else '未確認'}（通常 {med(_nt)}）・HPの買うボタン {_kbuy}回（11/13から）", "通常の中央値より上、かつ買うボタンが1回でも押される", "計測中" if _kdays < 7 else ("当たり" if med(_kbt) >= med(_nt) and _kbuy > 0 else "外れ"), "オーナーが決めた試し。7日たつまで本数を変えない")
 if today.isoformat() <= "2026-11-19" and not any(p["day"] == today.isoformat() for p in _kb) and today.isoformat() >= "2026-11-12":
-    order("燈の夜", "kurabe", "あすの予定表に「くらべた話」を1本だけ入れる（12:15 か 13:45。見出しは「【くらべた｜物、単位あたりの最安は◯円】」。商品のリンクなし。2つ目に HP の /okaimono-<種類> を1つ。まだ出していない種類）。決まりは nightly-prompt の一番上", "オーナーが決めた7日の試し")
+    order("燈の夜", "kurabe", "あすの予定表に「くらべた話」を1本だけ入れる（13:45。見出しは「【くらべた｜物、単位あたりの最安は◯円】」。商品のリンクなし。2つ目に HP の /okaimono-<種類> を1つ。まだ出していない種類）。決まりは nightly-prompt の一番上", "オーナーが決めた7日の試し")
 if _kdays >= 7:
     if med(_kbt) < med(_nt): order("月", "kurabe", f"くらべた話は7日の中央値 {med(_kbt)} で、通常 {med(_nt)} より下。やめる。オーナーに数字で報告する", "試しの答え：外れ")
     else: order("月", "kurabe", f"くらべた話は7日の中央値 {med(_kbt)}（通常 {med(_nt)}）・買うボタン {_kbuy}回。続けるか・本数をオーナーに聞く", "試しの答え")
