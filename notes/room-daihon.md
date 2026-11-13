@@ -1,7 +1,7 @@
 ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを見て、上から順に載せる）
 
 更新：2026-11-13
-件数：40件
+件数：44件
 
 ・「更新：」の日付が今日の時だけ載せる（朝の雫は、きのうの日付でも載せる）。開くのは「探し方」のURLだけ。コメントとハッシュタグはそのまま貼る。
 ・「探し方」のURLは、ROOMの中の検索です（楽天市場の商品ページは開かない）。出てきた商品を上から20個まで見て、「商品：」の行と同じ商品（メーカー・商品の種類・1つの量・入っている数が同じ）の「コレ！」を押して載せる。
@@ -707,10 +707,82 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 量・値段・在庫はお店と日によって変わるので、お店のページでご確認ください。
 （40番 ここまで）
 
+41｜コレクション：赤ちゃん・ペットの毎日（無ければ：毎日なくなる物）
+商品：ロイヤルカナン インドア プレミアムフード ドライ ドライフード 猫 室内で生活する成猫用…（量：10kg）
+探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%A4%E3%83%B3%E3%83%89%E3%82%A2%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%95%E3%83%BC%E3%83%89
+出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%A4%E3%83%B3%E3%83%89%E3%82%A2
+コメント：
+選んだ理由：キャットフードを61点、1kgあたりの値段にそろえて比べました。このロイヤルカナンは1kgあたり1,566円（10kgで15,656円・11/13時点）。レビューは748件で★4.51です。
+ただし、値段と在庫は日によって変わります。送料はお店のページでご確認ください。
+猫のごはんを切らしたくない家に向いています。
+ハッシュタグ：#キャットフード #まとめ買い #1個あたりで比べた
+別の店の時のコメント：
+選んだ理由：キャットフードを61点、1kgあたりの値段にそろえて比べました。このロイヤルカナンは、1kgあたりの値段が安い方でした（比べたのは別のお店の値段です）。
+ただし、値段と在庫はお店と日によって変わります。送料はお店のページでご確認ください。
+猫のごはんを切らしたくない家に向いています。
+量が違う時のコメント：
+毎日使う物なので、まとめ買いの候補に入れています。
+量・値段・在庫はお店と日によって変わるので、お店のページでご確認ください。
+（41番 ここまで）
+
+42｜コレクション：赤ちゃん・ペットの毎日（無ければ：毎日なくなる物）
+商品：ロイヤルカナン ゴールデンレトリバー 成犬〜高齢犬用 12kg / ゴールデンレトリバー…（量：12kg）
+探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%B4%E3%83%BC%E3%83%AB%E3%83%87%E3%83%B3%E3%83%AC%E3%83%88%E3%83%AA%E3%83%90%E3%83%BC%20%E6%88%90%E7%8A%AC%E3%80%9C%E9%AB%98%E9%BD%A2%E7%8A%AC%E7%94%A8
+出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%B4%E3%83%BC%E3%83%AB%E3%83%87%E3%83%B3%E3%83%AC%E3%83%88%E3%83%AA%E3%83%90%E3%83%BC
+コメント：
+選んだ理由：ドッグフードを87点、1kgあたりの値段にそろえて比べました。このロイヤルカナンは1kgあたり1,125円（12kgで13,499円・11/13時点）。レビューは114件で★4.59です。
+ただし、値段と在庫は日によって変わります。送料はお店のページでご確認ください。
+犬のごはんを切らしたくない家に向いています。
+ハッシュタグ：#ドッグフード #まとめ買い #1個あたりで比べた
+別の店の時のコメント：
+選んだ理由：ドッグフードを87点、1kgあたりの値段にそろえて比べました。このロイヤルカナンは、1kgあたりの値段が安い方でした（比べたのは別のお店の値段です）。
+ただし、値段と在庫はお店と日によって変わります。送料はお店のページでご確認ください。
+犬のごはんを切らしたくない家に向いています。
+量が違う時のコメント：
+毎日使う物なので、まとめ買いの候補に入れています。
+量・値段・在庫はお店と日によって変わるので、お店のページでご確認ください。
+（42番 ここまで）
+
+43｜コレクション：赤ちゃん・ペットの毎日（無ければ：毎日なくなる物）
+商品：ロイヤルカナン センシブル 15kg / 食が細くやせ気味な成猫用…（量：15kg）
+探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%BB%E3%83%B3%E3%82%B7%E3%83%96%E3%83%AB%20/
+出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%BB%E3%83%B3%E3%82%B7%E3%83%96%E3%83%AB
+コメント：
+選んだ理由：キャットフードを61点、1kgあたりの値段にそろえて比べました。このロイヤルカナンは1kgあたり1,243円（15kgで18,649円・11/13時点）。レビューは759件で★4.64です。
+ただし、値段と在庫は日によって変わります。送料はお店のページでご確認ください。
+猫のごはんを切らしたくない家に向いています。
+ハッシュタグ：#キャットフード #まとめ買い #1個あたりで比べた
+別の店の時のコメント：
+選んだ理由：キャットフードを61点、1kgあたりの値段にそろえて比べました。このロイヤルカナンは、1kgあたりの値段が安い方でした（比べたのは別のお店の値段です）。
+ただし、値段と在庫はお店と日によって変わります。送料はお店のページでご確認ください。
+猫のごはんを切らしたくない家に向いています。
+量が違う時のコメント：
+毎日使う物なので、まとめ買いの候補に入れています。
+量・値段・在庫はお店と日によって変わるので、お店のページでご確認ください。
+（43番 ここまで）
+
+44｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
+商品：コカ・コーラ お茶 綾鷹 濃い緑茶 650ml ペットボトル 24本入り×2ケース（量：650ml×48）
+探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%AB%E3%83%BB%E3%82%B3%E3%83%BC%E3%83%A9%20%E3%81%8A%E8%8C%B6%20%E7%B6%BE%E9%B7%B9
+出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%AB%E3%83%BB%E3%82%B3%E3%83%BC%E3%83%A9%20%E3%81%8A%E8%8C%B6
+コメント：
+選んだ理由：お茶（ペットボトル）を25点、1Lあたりの値段にそろえて比べました。この綾鷹は1Lあたり147円（650ml×48で4,580円・11/13時点）。レビューは381件で★4.72です。
+ただし、値段と在庫は日によって変わります。送料はお店のページでご確認ください。
+お茶を箱で置いておきたい家に向いています。
+ハッシュタグ：#お茶 #まとめ買い #1個あたりで比べた
+別の店の時のコメント：
+選んだ理由：お茶（ペットボトル）を25点、1Lあたりの値段にそろえて比べました。この綾鷹は、1Lあたりの値段が安い方でした（比べたのは別のお店の値段です）。
+ただし、値段と在庫はお店と日によって変わります。送料はお店のページでご確認ください。
+お茶を箱で置いておきたい家に向いています。
+量が違う時のコメント：
+毎日使う物なので、まとめ買いの候補に入れています。
+量・値段・在庫はお店と日によって変わるので、お店のページでご確認ください。
+（44番 ここまで）
+
 （ROOM台本 ここまで）
 
-■台本が終わって時間が残ったら（11/13〜・1回30件まで）
-・下の言葉の「探し方」のURL（ROOMの中の検索）を上から開き、出てきた商品のうち、ふだん使う物を、1つの言葉で3件まで載せる。★とレビューの数が見える時は★4.0以上・レビュー100件以上の物。見えない時は、検索の上から順に選んでよい（11/13 17:30 の雫は、数字が確かめられず0件だった）。お酒・たばこ・薬・健康食品・美容の効き目をうたう物・大人向けの物は載せない。
+■台本が終わって時間が残ったら（11/13〜・1回100件まで。11/13 19:35 オーナー「100倍やれ」）
+・下の言葉の「探し方」のURL（ROOMの中の検索）を上から開き、出てきた商品のうち、ふだん使う物を、1つの言葉で5件まで載せる。★とレビューの数が見える時は★4.0以上・レビュー100件以上の物。見えない時は、検索の上から順に選んでよい（11/13 17:30 の雫は、数字が確かめられず0件だった）。お酒・たばこ・薬・健康食品・美容の効き目をうたう物・大人向けの物は載せない。
 ・コメントは次の形だけ（使った感想・「おすすめ」「最高」「買ってよかった」は書かない。見た数字だけ）：
 　数字が見えた時：「{商品の名前の短い形}。{月}/{日}に見た時点で{値段}円、レビューは{件数}件で★{点数}でした。値段と在庫は変わるので、お店のページでご確認ください。」
 　数字が見えない時：「{商品の名前の短い形}。毎日使う物なので、まとめ買いの候補に入れています。値段と在庫は変わるので、お店のページでご確認ください。」
@@ -719,21 +791,81 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 ・トイレットペーパー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%88%E3%82%A4%E3%83%AC%E3%83%83%E3%83%88%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC
 ・ティッシュ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%86%E3%82%A3%E3%83%83%E3%82%B7%E3%83%A5
 ・洗濯洗剤：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%B4%97%E6%BF%AF%E6%B4%97%E5%89%A4
+・柔軟剤：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%9F%94%E8%BB%9F%E5%89%A4
 ・食器用洗剤：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%A3%9F%E5%99%A8%E7%94%A8%E6%B4%97%E5%89%A4
 ・キッチンペーパー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AD%E3%83%83%E3%83%81%E3%83%B3%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC
+・ラップ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%A9%E3%83%83%E3%83%97
 ・ゴミ袋：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B4%E3%83%9F%E8%A2%8B
+・ハンドソープ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%8F%E3%83%B3%E3%83%89%E3%82%BD%E3%83%BC%E3%83%97
+・シャンプー 詰め替え：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B7%E3%83%A3%E3%83%B3%E3%83%97%E3%83%BC%20%E8%A9%B0%E3%82%81%E6%9B%BF%E3%81%88
+・ボディソープ 詰め替え：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%9C%E3%83%87%E3%82%A3%E3%82%BD%E3%83%BC%E3%83%97%20%E8%A9%B0%E3%82%81%E6%9B%BF%E3%81%88
+・歯ブラシ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%AD%AF%E3%83%96%E3%83%A9%E3%82%B7
+・歯磨き粉：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%AD%AF%E7%A3%A8%E3%81%8D%E7%B2%89
+・マスク：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%9E%E3%82%B9%E3%82%AF
+・除菌シート：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%99%A4%E8%8F%8C%E3%82%B7%E3%83%BC%E3%83%88
+・おしりふき：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%8A%E3%81%97%E3%82%8A%E3%81%B5%E3%81%8D
+・おむつ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%8A%E3%82%80%E3%81%A4
+・生理用品：探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%94%9F%E7%90%86%E7%94%A8%E5%93%81
 ・お米 10kg：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%8A%E7%B1%B3
+・お米 5kg：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%8A%E7%B1%B3
 ・水 2L：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%B0%B4
 ・炭酸水：探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%82%AD%E9%85%B8%E6%B0%B4
+・お茶 ペットボトル：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%8A%E8%8C%B6%20%E3%83%9A%E3%83%83%E3%83%88%E3%83%9C%E3%83%88%E3%83%AB
 ・コーヒー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC
-・おむつ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%8A%E3%82%80%E3%81%A4
+・ドリップコーヒー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%89%E3%83%AA%E3%83%83%E3%83%97%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC
+・紅茶：探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%B4%85%E8%8C%B6
+・カップラーメン：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AB%E3%83%83%E3%83%97%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3
+・パスタ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%91%E3%82%B9%E3%82%BF
+・レトルトカレー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AC%E3%83%88%E3%83%AB%E3%83%88%E3%82%AB%E3%83%AC%E3%83%BC
+・味噌汁 フリーズドライ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%91%B3%E5%99%8C%E6%B1%81%20%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%83%89%E3%83%A9%E3%82%A4
+・納豆：探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%B4%8D%E8%B1%86
+・卵：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%8D%B5
+・冷凍 餃子：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%86%B7%E5%87%8D%20%E9%A4%83%E5%AD%90
+・冷凍 うどん：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%86%B7%E5%87%8D%20%E3%81%86%E3%81%A9%E3%82%93
+・ナッツ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%8A%E3%83%83%E3%83%84
+・プロテイン：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%97%E3%83%AD%E3%83%86%E3%82%A4%E3%83%B3
+・スープ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B9%E3%83%BC%E3%83%97
+・ふりかけ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%B5%E3%82%8A%E3%81%8B%E3%81%91
 ・猫砂：探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%8C%AB%E7%A0%82
+・キャットフード：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AD%E3%83%A3%E3%83%83%E3%83%88%E3%83%95%E3%83%BC%E3%83%89
 ・ドッグフード：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%89%E3%83%83%E3%82%B0%E3%83%95%E3%83%BC%E3%83%89
+・ペットシーツ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%9A%E3%83%83%E3%83%88%E3%82%B7%E3%83%BC%E3%83%84
 ・カイロ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AB%E3%82%A4%E3%83%AD
 ・加湿器：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%8A%A0%E6%B9%BF%E5%99%A8
+・電気毛布：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%9B%BB%E6%B0%97%E6%AF%9B%E5%B8%83
 ・毛布：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%AF%9B%E5%B8%83
+・こたつ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%93%E3%81%9F%E3%81%A4
+・ヒーター：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%92%E3%83%BC%E3%82%BF%E3%83%BC
+・湯たんぽ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%B9%AF%E3%81%9F%E3%82%93%E3%81%BD
+・靴下 冬：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%9D%B4%E4%B8%8B%20%E5%86%AC
+・手袋：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%89%8B%E8%A2%8B
+・マフラー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%9E%E3%83%95%E3%83%A9%E3%83%BC
 ・鍋：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%8D%8B
+・鍋スープ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%8D%8B%E3%82%B9%E3%83%BC%E3%83%97
+・土鍋：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%9C%9F%E9%8D%8B
+・おせち：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%8A%E3%81%9B%E3%81%A1
 ・年賀状：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%B9%B4%E8%B3%80%E7%8A%B6
+・カレンダー 2027：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC
+・手帳 2027：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%89%8B%E5%B8%B3
 ・大掃除：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%A4%A7%E6%8E%83%E9%99%A4
+・重曹：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%87%8D%E6%9B%B9
+・クエン酸：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AF%E3%82%A8%E3%83%B3%E9%85%B8
+・窓 掃除：探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%AA%93%20%E6%8E%83%E9%99%A4
+・排水口 掃除：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%8E%92%E6%B0%B4%E5%8F%A3%20%E6%8E%83%E9%99%A4
+・カビ取り：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AB%E3%83%93%E5%8F%96%E3%82%8A
+・収納ケース：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%8F%8E%E7%B4%8D%E3%82%B1%E3%83%BC%E3%82%B9
+・ハンガー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%8F%E3%83%B3%E3%82%AC%E3%83%BC
+・布団乾燥機：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%B8%83%E5%9B%A3%E4%B9%BE%E7%87%A5%E6%A9%9F
+・ふるさと納税：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%B5%E3%82%8B%E3%81%95%E3%81%A8%E7%B4%8D%E7%A8%8E
 ・ブラックフライデー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%83%95%E3%83%A9%E3%82%A4%E3%83%87%E3%83%BC
+・クリスマス お菓子：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%20%E3%81%8A%E8%8F%93%E5%AD%90
+・お歳暮：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%8A%E6%AD%B3%E6%9A%AE
+・モバイルバッテリー：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E3%83%90%E3%83%83%E3%83%86%E3%83%AA%E3%83%BC
+・充電器：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%85%85%E9%9B%BB%E5%99%A8
+・電池：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%9B%BB%E6%B1%A0
+・LED電球：探し方：https://room.rakuten.co.jp/search/item?keyword=LED%E9%9B%BB%E7%90%83
+・延長コード：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%BB%B6%E9%95%B7%E3%82%B3%E3%83%BC%E3%83%89
+・防災 保存水：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%98%B2%E7%81%BD%20%E4%BF%9D%E5%AD%98%E6%B0%B4
+・非常食：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%9D%9E%E5%B8%B8%E9%A3%9F
+・懐中電灯：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%87%90%E4%B8%AD%E9%9B%BB%E7%81%AF
 （追加 ここまで）

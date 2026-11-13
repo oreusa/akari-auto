@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-13 17:13",
+  "at": "2026-11-13 19:48",
   "since": "2026-11-01",
   "tracked": 262,
   "days": 12,
@@ -79,6 +79,18 @@
       "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
     },
     {
+      "title": "モバイルバッテリー",
+      "name": "★50％OFF 充電式カイロ 10000mAh大容量 モバイルバッテリー PSE認証済 電気…",
+      "price": 5980,
+      "base": 3980.0,
+      "pct": 50,
+      "days": 12,
+      "rc": 386,
+      "av": 4.35,
+      "shop": "ComfyStore",
+      "plain": "https://item.rakuten.co.jp/comfystore/10000038/"
+    },
+    {
       "title": "プロテイン",
       "name": "カラダを大きくしたい方に！ウエイトゲイナー プロテイン 1kg / 3kg ザプロ ホエイ …",
       "price": 3780,
@@ -89,18 +101,6 @@
       "av": 4.46,
       "shop": "武内製薬 公式オンラインストア",
       "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000302/"
-    },
-    {
-      "title": "モバイルバッテリー",
-      "name": "MOTTERU (モッテル) 発火リスクほぼゼロ モバイルバッテリー 準固体モバイルバッテリ…",
-      "price": 7980,
-      "base": 5780.0,
-      "pct": 38,
-      "days": 6,
-      "rc": 398,
-      "av": 4.79,
-      "shop": "MOTTERU ダイレクト 楽天市場店",
-      "plain": "https://item.rakuten.co.jp/motteru/10000176/"
     }
   ]
 }
