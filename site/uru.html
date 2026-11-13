@@ -84,11 +84,11 @@ body{padding-bottom:76px}
 <script>(function(){function go(){var T=[],q=document.getElementById("tq"),o=document.getElementById("tqo");if(!q)return;fetch("/assets/towns.json").then(function(r){return r.json()}).then(function(d){T=d.towns||d});q.addEventListener("input",function(){var v=q.value.trim();o.innerHTML="";if(!v)return;T.filter(function(t){return t.n.indexOf(v)>=0||(t.k||"").indexOf(v)>=0}).slice(0,8).forEach(function(t){var a=document.createElement("a");a.href="/machi/"+t.id;a.setAttribute("data-k","売る前に探す｜"+t.n);a.textContent=t.p+"　"+t.n;o.appendChild(a)})})}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();})();</script>
 </head><body><div class="wrap">
 <div class="s3h"><img src="/logo-s.png" width="52" height="52" alt="ロゴ"><div><div class="en">BEFORE YOU SELL</div><h1>家を売る前に</h1></div></div>
-<p class="s3l">この3つの順で進めると、迷いません。</p>
+<p class="s3l">この3つの順で進めると、迷いません。</p><p style="font-size:11px;color:#8C7B6E;margin-top:6px">このページには広告（PR）を含みます</p>
 <section class="s3"><div class="sn">STEP 01</div><h2>街の相場を見る</h2><p>あなたの街の地価の動き（国の地価公示）を見ます。</p>
 <div class="tqs"><input id="tq" type="search" placeholder="街の名前（例：川越市）" autocomplete="off" aria-label="街の名前で探す"><div id="tqo"></div></div></section>
-<section class="s3"><div class="sn">STEP 02</div><h2>値段を聞く（無料）</h2><p>「いくらで売れそうか」を、このサイトから聞けます。売るか決めていなくても大丈夫です。</p>
-<a class="b1" href="/moushikomi?lite=1&amp;want=%E6%9F%BB%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%BB%E3%81%97%E3%81%84" data-k="売る前に｜申し込む">いくらで売れそうか聞く<small>無料・名字だけでOK・約1分</small></a></section>
+<section class="s3"><div class="sn">STEP 02</div><h2>値段を聞く（無料）</h2><p>「いくらで売れそうか」を、無料のAI査定で見られます。売るか決めていなくても大丈夫です。</p>
+<a class="b1" href="https://px.a8.net/svt/ejp?a8mat=4BGH3I+E2NY4I+5Y9M+5YJRM" rel="nofollow sponsored noopener" target="_blank" data-k="売る前に｜AI査定">いくらで売れそうか、AIで見る<small>無料・電話ラッシュなし（ざっくりAI査定＋）</small></a><img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=4BGH3I+E2NY4I+5Y9M+5YJRM" alt="" style="position:absolute;width:1px;height:1px;opacity:0"><p style="font-size:12px;color:#6B6058;margin-top:10px">人に聞きたい方は <a href="/moushikomi?lite=1&amp;want=%E6%9F%BB%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%BB%E3%81%97%E3%81%84" data-k="売る前に｜申し込む">こちら（名字だけでOK）</a></p></section>
 <section class="s3"><div class="sn">STEP 03</div><h2>大事なことを知っておく</h2>
 <div class="acc">
 <details><summary>査定の額で売れるとは限らない</summary><p>査定額は「この金額で売れます」というお約束ではありません。相場より高く売り出して売れ残り、値下げをくり返すと、「売れ残っている物件」と見られてしまうこともあります。</p></details>
@@ -111,6 +111,6 @@ body{padding-bottom:76px}
 <details><summary>古い家は、解体してから売るほうがよいですか？</summary><p>家の状態と場所によります。更地にすると買い手が見つかりやすいことがある一方で、解体の費用がかかり、土地の固定資産税の軽減が外れることがあります。市区によっては、古い家の解体に補助金が出ます。先に <a href="/kaitai-ranking" data-k="売る前に｜解体の補助金ランキング" style="color:inherit;font-weight:700">関東の解体の補助金 上限ランキング</a> で、お住まいの市区の額と受付の状況をご確認ください。解体する前に、まずそのままの状態での査定をおすすめします。</p></details>
 <details><summary>住宅ローンが残っていても売れますか？</summary><p>はい。売却代金でローンを返済し、抵当権を抹消して引き渡す形が一般的です。売却額がローン残高に届かない場合は、借りている金融機関に相談します。</p></details></details>
 </div></section>
-<a class="back" href="/fudosan-list">関東不動産リストへ戻る</a>
+<p style="font-size:11px;color:#8C7B6E;margin:18px 0">このページのリンクの一部は広告（PR）です</p><a class="back" href="/fudosan-list">関東不動産リストへ戻る</a>
 <div class="ft">LIFE NOTE</div>
 <script>(function(){var F="direct";try{F=sessionStorage.getItem("f")||"direct";}catch(e){}function s(k){try{navigator.sendBeacon("/c?f="+encodeURIComponent(F)+"&s=fudosan&k="+encodeURIComponent(String(k).slice(0,40)));}catch(e){}}document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(!a)return;var t=a.querySelector(".t"),n=t?t.textContent:(a.childNodes[0]&&a.childNodes[0].textContent)||a.textContent;s("売る前に｜"+n);},true);})();</script></body></html>
