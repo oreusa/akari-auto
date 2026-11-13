@@ -11,7 +11,7 @@ const logo='data:image/png;base64,'+fs.readFileSync(CFG.logo).toString('base64')
 const HTML=x=>`<!doctype html><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
 <style>*{margin:0;box-sizing:border-box}body{width:1080px;height:1350px;background:#F7F4EF;position:relative;overflow:hidden;font-family:"Zen Kaku Gothic New",sans-serif;color:#3A332E}
 .c{position:absolute;border-radius:50%;filter:blur(2px)}.c1{width:520px;height:520px;left:-200px;top:-160px;background:#EFD6C3}.c2{width:440px;height:440px;right:-170px;top:60px;background:#D2DFEB}.c3{width:420px;height:420px;right:-60px;bottom:-200px;background:#D8E4D0}
-.lg{position:absolute;left:0;right:0;top:78px;text-align:center}.lg img{width:118px;height:118px;object-fit:contain}
+.lg{position:absolute;left:0;right:0;top:78px;text-align:center}.lg img{width:118px;height:118px;object-fit:contain;mix-blend-mode:multiply}
 .en{position:absolute;left:0;right:0;top:222px;text-align:center;font:400 25px Jost;letter-spacing:.42em;color:#9C7E66}
 .hd{position:absolute;left:60px;right:60px;top:300px;text-align:center;font:600 ${x.hs||74}px/1.62 "Shippori Mincho",serif;letter-spacing:.14em}.hd em{font-style:normal;color:#8A6248}
 .ln{position:absolute;left:470px;width:140px;top:600px;border-top:1px solid #CDBFAF}
