@@ -166,11 +166,11 @@ HPのご紹介の連載は 11/12 の「その11」で終わり（続きは書か
 ■3 伝える（写しと、最後の1行）
 
 ■毎日の記録（ledger）への写し（お金のことなので毎晩必ず。管制室 files への本文の写しは 11/11 にやめた。オーナーが見るのは月の管制室1画面）
-ToolSearch で "select:ArtifactData" を読み込み、artifact https://claude.ai/artifact/1qLboYHRT4iH1uVrpeUZv6 を使う。
+ToolSearch で "select:ArtifactData" を読み込み、うさぎ DB https://claude.ai/artifact/SmAVzdH8ZArs1H6HwC2S9L を使う（11/13 前の記録ページは消えた。11/11 から入っている）。
 同じ artifact の collection "ledger" に、doc_id を昨日の日付 Y（YYYY-MM-DD）で1件書く（あれば get して if_version を付けて update）。中身：{"th": data/metrics/Y.json の Threads views の合計, "x": X impressions の合計, "rk_click", "rk_cnt", "rk_yen"（分析メモか akari2/report の【楽天】Y の行のクリック・成果件数・未確定円）, "a8_cnt", "a8_yen"（【A8】Y の行）, "pg_click"（data/page-stats.json の days.Y の clicks。無ければ書かない）, "pg_view"（days.Y の views。days.Y.view に "all" があるときだけ。10/24から数え始め）}。行が「未確認」なら rk_click などは書かず "rk_un": true にする。X の数字は1日遅れで埋まる（10/24 は朝の時点で夜の4本が0、22:43 に取り直すと 1,376→2,456）。だから毎晩、一昨日 Z の doc も data/metrics/Z.json（数字係が毎朝2日分取り直す）から "th"・"x" を計算し直し、違えば get して if_version を付けて update する。数字を作らない（無い物は書かない）。前の日以前で「未確認」だった日の数字が分析メモに出てきたら、その日の doc も update する。Amazon は、schedule/Y.json で link.type が amazon の枠の数を "amazon_pr"（出した本数）に、data/metrics/Y.json のその枠の X の clicks を足して "amazon_x_click" に書く（Xのリンクが押された回数）。Amazon の売上とクリックはオーナーだけが見るので書かない（10/23 オーナー）。使えないときは最後の1行に書く。
 
 ■月と燈のSNSボードへの写し（10/27 オーナー「アーチファクトは正確にしておけ」。毎晩）
-ArtifactData で https://claude.ai/artifact/17eEAbX55zQfmn5pywuTUY の collection "imps" に、昨日 Y と一昨日 Z の doc（doc_id は日付）を update（無ければ set）する。中身は燈の分だけ：{"akari_th": data/metrics/日.json の Threads の views 合計, "akari_x": X の impressions 合計, "akari_ig": インスタの views 合計}。月の欄（tsuki_*）は触らない。get して if_version、batch 1回。
+ArtifactData で うさぎ DB https://claude.ai/artifact/SmAVzdH8ZArs1H6HwC2S9L の collection "imps"（11/13 SNSボードは消えた。数字だけ DB に残す） に、昨日 Y と一昨日 Z の doc（doc_id は日付）を update（無ければ set）する。中身は燈の分だけ：{"akari_th": data/metrics/日.json の Threads の views 合計, "akari_x": X の impressions 合計, "akari_ig": インスタの views 合計}。月の欄（tsuki_*）は触らない。get して if_version、batch 1回。
 
 ■最後のメッセージ：1行だけ。log に「出なかった」「中止」「予約×」があれば、その数も入れる（例「燈 10/23：9本保存・check OK・PR 18:15 着る毛布（expect グルーニー）・学び：〜」）。
 
