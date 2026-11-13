@@ -6,7 +6,7 @@
 - data/manabi.json  学びの帳面（答えが変わった日に機械が1行足す。同じ外れをくり返さない）
 数字が取れない項目は「未確認」。計画を実績と書かない。使い方：python3 scripts/gakushu.py [YYYY-MM-DD]"""
 import glob, json, os, re, statistics, sys
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 
 # 11/12 調べ役やテストが打った言葉（あいうえお・xyz999・セール 等）が「探されたのに無かった物」の指令になっていた → 品物の名前らしくない物は外す
 def _tameshi(k):
@@ -16,7 +16,7 @@ def _tameshi(k):
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 P = lambda *p: os.path.join(ROOT, *p)
-today = date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 else date.today()
+today = date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 else (datetime.now(timezone.utc) + timedelta(hours=9)).date()  # 日本の日付（朝7:30の回が前の日にならないように）
 def load(p, d):
     try: return json.load(open(p, encoding="utf-8"))
     except Exception: return d

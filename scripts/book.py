@@ -1066,19 +1066,7 @@ def after_check(cfg, state, now):
                         append_log(day, f"{slot} {s} 出なかった（{why}）。出し直しも×：{str(e)[:100]}")
                 else:
                     append_log(day, f"{slot} {s} 出なかった（{why}）")
-    # 雫の4コマ（8:00）が出たか
-    day = now.date().isoformat()
-    k = f"koma4 {day}".replace(" ", ":")
-    if now.hour >= 8 and now.minute >= 30 or now.hour >= 9:
-        if not state.get(k) and not state.get(f"{day} 4コマ") and now.hour < 12:
-            ours = {r.get("id") for key, rec in state.items() if " " in key for r in rec.values() if isinstance(r, dict)}
-            t0 = now.replace(hour=7, minute=30, second=0, microsecond=0)
-            t1 = now.replace(hour=8, minute=45, second=0, microsecond=0)
-            found = [p for p in buffer_posts(cfg, ["sent"], t0, t1) if p["id"] not in ours]
-            svc = sorted({p["channelService"] for p in found})
-            state[k] = {"found": svc}
-            append_log(day, "4コマ（雫）出た：" + "・".join(svc) if svc else "4コマ（雫）が8:45までに出ていない")
-            changed = True
+    # 雫の4コマの見張りは 11/13 に外した（4コマをやめたため）
     return changed
 
 
