@@ -446,6 +446,8 @@ def run(now=None):
             due_utc = when.astimezone(timezone.utc)
             due_iso = due_utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
             img, img_mark = post_image(with_page(ths, "threads", cfg, slot, due), day, slot)  # X と Threads で同じ絵（どちらにも付けるか、どちらにも付けない）
+            if str(post.get("image", "")).startswith("https://lifenote-kanto.pages.dev/card/"):  # 11/13 月「表紙の1枚」：予定表の image（post_card.js が作った絵）を先に使う。予約できない時は下で絵なしに落ちる
+                img, img_mark = post["image"], 1
             for s in todo:
                 texts = with_page(xs if s == "twitter" else ths, s, cfg, slot, due)
                 r = rec.setdefault(s, {"tries": 0})

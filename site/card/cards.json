@@ -1,0 +1,17 @@
+{
+ "about": "投稿の表紙の絵（card.js が作る）。投稿の image_url に url を使う",
+ "items": {
+  "card-1114-odakyu": {
+   "url": "https://lifenote-kanto.pages.dev/card/card-1114-odakyu.jpg?v=mwf0edwz",
+   "made": "2026-11-13"
+  },
+  "card-1114-keio": {
+   "url": "https://lifenote-kanto.pages.dev/card/card-1114-keio.jpg?v=mwf0eesx",
+   "made": "2026-11-13"
+  },
+  "card-1114-takasaki": {
+   "url": "https://lifenote-kanto.pages.dev/card/card-1114-takasaki.jpg?v=mwf0elou",
+   "made": "2026-11-13"
+  }
+ }
+}
