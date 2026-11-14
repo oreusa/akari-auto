@@ -1143,8 +1143,8 @@
     "v": 2,
     "t": "2026-11-14",
     "ll": [
-      35.64856,
-      140.04169
+      35.6484,
+      140.042
     ],
     "w": 1,
     "h": [
@@ -4443,41 +4443,6 @@
       }
     ]
   },
-  "第6回川口花火大会": {
-    "v": 2,
-    "t": "2026-11-11",
-    "ll": [
-      36.13656,
-      139.38082
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ネビュラ K",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D173991",
-        "km": 0.7,
-        "r": 4.57,
-        "rc": 91,
-        "min": 4060
-      },
-      {
-        "n": "ホテルルートイン熊谷",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D161022",
-        "km": 2.5,
-        "r": 4.32,
-        "rc": 394,
-        "min": 5350
-      },
-      {
-        "n": "アパホテル〈熊谷駅前北〉(2026年6月OPEN)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198893",
-        "km": 1.1,
-        "r": 4.24,
-        "rc": 371,
-        "min": 3420
-      }
-    ]
-  },
   "大子町花火大会": {
     "v": 2,
     "t": "2026-11-11",
@@ -5052,25 +5017,6 @@
       }
     ]
   },
-  "第43回我孫子市農業まつり": {
-    "v": 2,
-    "t": "2026-11-12",
-    "ll": [
-      35.86166,
-      140.02759
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ホテルマークワンアビコ",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D80473",
-        "km": 1.8,
-        "r": 4.28,
-        "rc": 1248,
-        "min": 4180
-      }
-    ]
-  },
   "キングオブパスタ2026": {
     "v": 2,
     "t": "2026-11-12",
@@ -5230,52 +5176,6 @@
       }
     ]
   },
-  "第29回やまがた宿芋煮会": {
-    "v": 2,
-    "t": "2026-11-13",
-    "ll": [
-      36.5425,
-      140.41084
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "HOTEL KAMEYA",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178355",
-        "km": 1.1,
-        "r": 4.14,
-        "rc": 97,
-        "min": 6050
-      },
-      {
-        "n": "トレイルイン常陸大宮(Trail inn 常陸大宮)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182705",
-        "km": 1.9,
-        "r": 3.88,
-        "rc": 85,
-        "min": 6900
-      }
-    ]
-  },
-  "2026年宇都宮市農林業祭": {
-    "v": 2,
-    "t": "2026-11-13",
-    "ll": [
-      36.63268,
-      139.83246
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "フェアフィールド・バイ・マリオット・栃木宇都宮",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D180500",
-        "km": 0.4,
-        "r": 4.55,
-        "rc": 141,
-        "min": 6353
-      }
-    ]
-  },
   "第9回全国キムチグランプリ": {
     "v": 2,
     "t": "2026-11-13",
@@ -5343,6 +5243,111 @@
         "r": 4.45,
         "rc": 2429,
         "min": 5700
+      }
+    ]
+  },
+  "佐久山御殿山紅葉まつり": {
+    "v": 2,
+    "t": "2026-11-14",
+    "ll": [
+      36.80331,
+      140.00728
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "HOTEL R9 The Yard 大田原",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196190",
+        "km": 5.9,
+        "r": 4.24,
+        "rc": 166,
+        "min": 3600
+      },
+      {
+        "n": "ホテルウェリィスミヨシ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D53422",
+        "km": 6.7,
+        "r": 4.16,
+        "rc": 423,
+        "min": 5400
+      },
+      {
+        "n": "HOTEL R9 The Yard 矢板",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179247",
+        "km": 5.7,
+        "r": 3.88,
+        "rc": 306,
+        "min": 3500
+      }
+    ]
+  },
+  "企画展「創立100周年上毛電気鉄道のあゆみ」": {
+    "v": 2,
+    "t": "2026-11-14",
+    "ll": [
+      36.46743,
+      139.26445
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "サウナの森水沼ヴィレッジ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D192753",
+        "km": 3.5,
+        "r": 4.84,
+        "rc": 271,
+        "min": 18540
+      },
+      {
+        "n": "赤城高原温泉 山屋蒼月",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D29836",
+        "km": 6.4,
+        "r": 4.51,
+        "rc": 174,
+        "min": 22880
+      },
+      {
+        "n": "梨木温泉 梨木館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D12550",
+        "km": 4.4,
+        "r": 4.0,
+        "rc": 290,
+        "min": 22850
+      }
+    ]
+  },
+  "栃木県立美術館松本哲男展": {
+    "v": 2,
+    "t": "2026-11-14",
+    "ll": [
+      36.56744,
+      139.86607
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "リッチモンドホテル宇都宮駅前アネックス",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108189",
+        "km": 2.9,
+        "r": 4.55,
+        "rc": 3056,
+        "min": 4400
+      },
+      {
+        "n": "コンセーレ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D27714",
+        "km": 1.2,
+        "r": 4.42,
+        "rc": 95,
+        "min": 4700
+      },
+      {
+        "n": "ザ ノット 宇都宮",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198048",
+        "km": 2.9,
+        "r": 4.39,
+        "rc": 629,
+        "min": 3540
       }
     ]
   }
