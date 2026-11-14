@@ -14,6 +14,7 @@ P = lambda *a: os.path.join(ROOT, *a)
 MAX = 100  # 11/13 19:35 オーナー「夜にももっと100倍楽天roomやれ」→ 40→100。比べた候補（tanka.json）が尽きたら前に出した物を古い順に足す。
 # 前： 11/13 オーナー「gptまじ勿体ないからお金稼げるようにして」「月が使い込んでいいから」→ 1日20→40件。雫の3回と凪で上から続きを載せる
 KEEP = 14
+URE = 15  # 11/14 売れ筋から1日15件まで
 COL = {"毎日なくなる物": ("water", "soda", "rice", "tp", "tea", "coffee", "detergent", "softener", "shampoo", "bodysoap", "dish", "tissue", "trash", "pasta", "beans"),
        "赤ちゃん・ペットの毎日": ("diaper", "wipes", "dogfood", "catfood"),
        "そなえ": ("battery", "mask")}
@@ -98,6 +99,16 @@ def main():
                 last[u] = d
     for u in sorted((u for u in cand if u in used and u not in order), key=lambda u: (last.get(u, ""), cand[u]["rank"])):
         order.append(u)
+    # 11/14 オーナー「楽天roomはガチでやらせろ・何が売れるか真剣に」→ 夜の【夜 ROOM売れ筋】から月が選んだ物（data/room-urekan.json）を先頭に。
+    # 1日 URE 件まで・調べた日から7日まで・前の14日に出した物は出さない。コメントに値段を書かないので、サイズ・量はどれでもよい。
+    ure = []
+    for x in load(P("data", "room-urekan.json"), {}).get("items", []):
+        u = x.get("url", "")
+        if u.startswith("https://item.rakuten.co.jp/") and (today - date.fromisoformat(x.get("seen", T))).days <= 7 and (u not in used or u in log.get(T, [])):
+            cand[u] = {"url": u, "name": x["name"] + f"（量：{x.get('amt', '')}・サイズと量はどれでもよい）", "expect": x["name"], "comment": x["comment"], "col": x["col"], "tag": x["tag"], "rank": 0, "cat": "ure"}
+            ure.append(u)
+    ure = ure[:URE]
+    order = ure + [u for u in order if u not in ure]
     hand_urls = [r["url"].split("?")[0] for r in hand]
     order = [u for u in order if u in cand and u not in hand_urls][:max(0, MAX - len(hand))]
     rows = []
@@ -123,7 +134,7 @@ def main():
            "・もうROOMに載っている商品は載せずに飛ばす（前の日に載せきれなかった物が、もう一度ここに出る）。",
            "・コレクションは、同じ名前があればそこへ。無ければ、新しく作らずに「毎日なくなる物」へ入れる。それも選べなければ、コレクションを選ばずに載せる（コレクションが無い・作れないことを理由に、載せるのをやめない）。", "", "（ここから下に台本）", ""]
     for i, (col, nm, u, cm, tg) in enumerate(rows, 1):
-        out += [f"{i}｜コレクション：{col}（無ければ：毎日なくなる物）", f"商品：{nm}", f"探し方：{room_search(nm)}", *([f"出ない時の探し方：{room_search(nm, 2)}"] if room_search(nm, 2) else []), "コメント：", cm, f"ハッシュタグ：{tg}"] + (["別の店の時のコメント：", other(cm)] if other(cm) else []) + ["量が違う時のコメント：", RYOU] + [f"（{i}番 ここまで）", ""]
+        out += [f"{i}｜コレクション：{col}（無ければ：毎日なくなる物）", f"商品：{nm}", f"探し方：{room_search(nm)}", *([f"出ない時の探し方：{room_search(nm, 2)}"] if room_search(nm, 2) else []), "コメント：", cm, f"ハッシュタグ：{tg}"] + (["別の店の時のコメント：", other(cm)] if other(cm) else []) + ([] if "楽天ランキング" in cm else ["量が違う時のコメント：", RYOU]) + [f"（{i}番 ここまで）", ""]
     out.append("（ROOM台本 ここまで）")
     # 11/13 オーナー「gptまじで使え」「楽天roomも本気でやらせろ」「もったいないぞ」→ 台本が終わって時間が残ったら、ROOMの中の検索で人気の物を足す（1回30件まで）
     out += ["", "■台本が終わって時間が残ったら（11/14〜 1回の回で台本と合わせて25件まで。11/14 オーナー「規約違反にならないように」。上の■規約を守る載せ方 を先に読む）",
