@@ -2207,7 +2207,7 @@
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
   "at": "2026-11-14",
   "ok": false,
-  "sec": 15.2,
+  "sec": 15.3,
   "why": "<urlopen error timed out>"
  },
  "https://ehonnooka.com/?p=11240": {
@@ -8604,8 +8604,8 @@
  "https://www.pref.tochigi.lg.jp/c10/kouhou/kouhou/202610-12artm-kikaku.html": {
   "at": "2026-11-14",
   "ok": false,
-  "sec": 15.2,
-  "why": "The read operation timed out"
+  "sec": 1.7,
+  "why": "503"
  },
  "https://www.railway-museum.jp/event/exhibition.html": {
   "at": "2026-11-08",
