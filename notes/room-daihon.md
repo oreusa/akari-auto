@@ -11,7 +11,8 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 ・コメント返信も、相手の文に合わせて1件ずつ書く（同じ文を使い回さない）。
 
 ・「更新：」の日付が今日の時だけ載せる（朝の雫は、きのうの日付でも載せる）。開くのは「探し方」のURLだけ。コメントとハッシュタグはそのまま貼る。
-・「探し方」のURLは、ROOMの中の検索です（楽天市場の商品ページは開かない）。出てきた商品を上から20個まで見て、「商品：」の行と同じ商品（メーカー・商品の種類・1つの量・入っている数が同じ）の「コレ！」を押して載せる。
+・載せ方の順（11/14 オーナー「オリジナル投稿の方が売れるんじゃないの？誰かがコレしてくれる・アカウントが広まる」）：まず「元の商品」のURL（楽天市場の商品ページ）を開き、ページの「ROOMに投稿」（ROOMのマーク）から載せる＝うさぎのオリジナル投稿。開けない・ボタンが無い・メンテナンスの時だけ、下の「探し方」（ROOMの中の検索）で載せる。報告に「オリジナル○件・検索から○件」を書く。
+・「探し方」のURLは、ROOMの中の検索です。出てきた商品を上から20個まで見て、「商品：」の行と同じ商品（メーカー・商品の種類・1つの量・入っている数が同じ）の「コレ！」を押して載せる。
 ・店の名前まで同じかは見なくてよい。同じ商品で店が違う時（店が分からない時も）は、コメントに「別の店の時のコメント：」の下の文を貼る。「訳あり」「中古」「お試し」と書いてある物は選ばない。
 ・「探し方」で「該当する商品はありません」と出た時・同じ商品が20個の中に無い時は、「出ない時の探し方：」のURLを1回だけ開いて、同じように探す（その行が無い商品は、そのまま飛ばす）。
 ・同じ商品が無く、同じメーカーの同じ種類で量や入っている数だけが違う物があれば、それを載せる（11/13 17:30 の雫は、これで15件を飛ばしていた）。その時のコメントは「量が違う時のコメント：」の下の文を貼る（値段の話を書かない）。別の種類の商品しか無ければ、載せずに飛ばす（報告に 飛ばした：番号）。
@@ -58,7 +59,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 1｜コレクション：そなえ（無ければ：毎日なくなる物）
 商品：PYKES PEAK 簡易トイレ（量：60回・120回等の選択式（60回プレミアムは凝固剤60、袋72、手袋60組）・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/pykespeak/p0244/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/pykespeak/p0244/
 探し方：https://room.rakuten.co.jp/search/item?keyword=PYKES%20PEAK%20%E7%B0%A1%E6%98%93%E3%83%88%E3%82%A4%E3%83%AC
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=PYKES%20PEAK
 コメント：
@@ -70,7 +71,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 2｜コレクション：そなえ（無ければ：毎日なくなる物）
 商品：ONESTEP 簡易トイレ（量：20回・60回等の選択式、20回は凝固剤20・袋20・防臭袋5・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/h2brothers/portabletoilet01/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/h2brothers/portabletoilet01/
 探し方：https://room.rakuten.co.jp/search/item?keyword=ONESTEP%20%E7%B0%A1%E6%98%93%E3%83%88%E3%82%A4%E3%83%AC
 コメント：
 断水や災害の時のトイレが心配な家に。ONESTEP 簡易トイレは、楽天ランキング「日用品雑貨・文房具・手芸」で5位（11/12集計）、レビュー10,804件で★4.56でした（11/14に調べた時点）。
@@ -81,7 +82,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 3｜コレクション：そなえ（無ければ：毎日なくなる物）
 商品：RONE 簡易トイレ（量：20・60・100・120・180・300・600回の選択式、60回は凝固剤60・袋60・防臭袋5・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/r1-shop/csd-2/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/r1-shop/csd-2/
 探し方：https://room.rakuten.co.jp/search/item?keyword=RONE%20%E7%B0%A1%E6%98%93%E3%83%88%E3%82%A4%E3%83%AC
 コメント：
 家族の人数分、災害用トイレをそなえたい家に。RONE 簡易トイレは、楽天ランキング「日用品雑貨・文房具・手芸」で8位（11/12集計）、レビュー7,732件で★4.50でした（11/14に調べた時点）。
@@ -92,7 +93,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 4｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：TRINITY ニトリル手袋（量：100〜4,000枚の選択式・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/trinity-cosme/san350532x1/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/trinity-cosme/san350532x1/
 探し方：https://room.rakuten.co.jp/search/item?keyword=TRINITY%20%E3%83%8B%E3%83%88%E3%83%AA%E3%83%AB%E6%89%8B%E8%A2%8B
 コメント：
 料理や掃除で手袋を毎日使う家に。TRINITY ニトリル手袋は、楽天ランキング「日用品雑貨・文房具・手芸」で9位（11/12集計）、レビュー1,585件で★4.70でした（11/14に調べた時点）。
@@ -103,7 +104,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 5｜コレクション：そなえ（無ければ：毎日なくなる物）
 商品：Hiromi 簡易トイレ（量：20〜500回の選択式、凝固剤10g表記・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/hiromifashionhouse/mkhrm60f/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/hiromifashionhouse/mkhrm60f/
 探し方：https://room.rakuten.co.jp/search/item?keyword=Hiromi%20%E7%B0%A1%E6%98%93%E3%83%88%E3%82%A4%E3%83%AC
 コメント：
 車や災害の時のトイレをそなえたい家に。Hiromi 簡易トイレは、楽天ランキング「日用品雑貨・文房具・手芸」で10位（11/12集計）、レビュー7,312件で★4.51でした（11/14に調べた時点）。
@@ -114,7 +115,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 6｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：エプソムソルト（量：10kg、計量スプーン1個・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/auc-epsomsalt/esc-10kg/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/auc-epsomsalt/esc-10kg/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%A8%E3%83%97%E3%82%BD%E3%83%A0%E3%82%BD%E3%83%AB%E3%83%88
 コメント：
 お風呂の時間を楽しみたい人に。エプソムソルトは、楽天ランキング「日用品雑貨・文房具・手芸」で11位（11/12集計）、レビュー1,986件で★4.78でした（11/14に調べた時点）。
@@ -125,7 +126,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 7｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：テンカ ニトリル手袋（量：100〜4,000枚の選択式、100枚は50枚×2箱または100枚×1箱等の包装差あり・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/tenkapas/glove001/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/tenkapas/glove001/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%86%E3%83%B3%E3%82%AB%20%E3%83%8B%E3%83%88%E3%83%AA%E3%83%AB%E6%89%8B%E8%A2%8B
 コメント：
 料理や掃除で手袋を毎日使う家に。テンカ ニトリル手袋は、楽天ランキング「日用品雑貨・文房具・手芸」で15位（11/12集計）、レビュー3,851件で★4.57でした（11/14に調べた時点）。
@@ -136,7 +137,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 8｜コレクション：そなえ（無ければ：毎日なくなる物）
 商品：BOS 非常用トイレ（量：100回分（凝固剤100・汚物袋100・便器カバー5、防臭袋の枚数は今回未確認）・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/bos-shop/bos-1353/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/bos-shop/bos-1353/
 探し方：https://room.rakuten.co.jp/search/item?keyword=BOS%20%E9%9D%9E%E5%B8%B8%E7%94%A8%E3%83%88%E3%82%A4%E3%83%AC
 コメント：
 ニオイが漏れにくい災害用トイレがほしい家に。BOS 非常用トイレは、楽天ランキング「日用品雑貨・文房具・手芸」で17位（11/12集計）、レビュー546件で★4.71でした（11/14に調べた時点）。
@@ -147,7 +148,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 9｜コレクション：台所（無ければ：毎日なくなる物）
 商品：アラビア ルノ ティーカップ フロストベリー（量：280mlのカップ、ソーサー別売・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/scope/ar65/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/scope/ar65/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%A2%E3%83%A9%E3%83%93%E3%82%A2%20%E3%83%AB%E3%83%8E%20%E3%83%86%E3%82%A3%E3%83%BC%E3%82%AB%E3%83%83%E3%83%97
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%A2%E3%83%A9%E3%83%93%E3%82%A2%20%E3%83%AB%E3%83%8E
 コメント：
@@ -159,7 +160,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 10｜コレクション：台所（無ければ：毎日なくなる物）
 商品：アラビア ルノ プレート フロストベリー（量：直径16.5cmの皿・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/scope/ar67/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/scope/ar67/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%A2%E3%83%A9%E3%83%93%E3%82%A2%20%E3%83%AB%E3%83%8E%20%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%A2%E3%83%A9%E3%83%93%E3%82%A2%20%E3%83%AB%E3%83%8E
 コメント：
@@ -171,7 +172,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 11｜コレクション：台所（無ければ：毎日なくなる物）
 商品：スターフィルター スターターセット（量：強力マグネット＋交換フィルター3枚・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/starfilter/sfsetm03/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/starfilter/sfsetm03/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC
 コメント：
 換気扇の油汚れの掃除を減らしたい家に。スターフィルター スターターセットは、楽天ランキング「キッチン用品・食器・調理器具」で7位（11/12集計）、レビュー4,586件で★4.57でした（11/14に調べた時点）。
@@ -182,7 +183,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 12｜コレクション：台所（無ければ：毎日なくなる物）
 商品：Nextオンライン 透明キッチンマット（量：厚さ1.5mm、120×45〜270×60cm等の選択式・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/next-online/10000304/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/next-online/10000304/
 探し方：https://room.rakuten.co.jp/search/item?keyword=Next%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%20%E9%80%8F%E6%98%8E%E3%82%AD%E3%83%83%E3%83%81%E3%83%B3%E3%83%9E%E3%83%83%E3%83%88
 コメント：
 キッチンの床の汚れが気になる家に。Nextオンライン 透明キッチンマットは、楽天ランキング「キッチン用品・食器・調理器具」で9位（11/12集計）、レビュー5,041件で★4.61でした（11/14に調べた時点）。
@@ -193,7 +194,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 13｜コレクション：台所（無ければ：毎日なくなる物）
 商品：OoBLE 真空米びつ（量：ノーマル13L／ミニ6.5L、5kg・10kg対応の選択式・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/ooble/ricestocker/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/ooble/ricestocker/
 探し方：https://room.rakuten.co.jp/search/item?keyword=OoBLE%20%E7%9C%9F%E7%A9%BA%E7%B1%B3%E3%81%B3%E3%81%A4
 コメント：
 お米を虫や湿気から守りたい家に。OoBLE 真空米びつは、楽天ランキング「キッチン用品・食器・調理器具」で11位（11/12集計）、レビュー1,249件で★4.58でした（11/14に調べた時点）。
@@ -204,7 +205,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 14｜コレクション：台所（無ければ：毎日なくなる物）
 商品：PP食パン袋 半斤用（量：300枚（100枚×3束）・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/superpack/pp000002123/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/superpack/pp000002123/
 探し方：https://room.rakuten.co.jp/search/item?keyword=PP%E9%A3%9F%E3%83%91%E3%83%B3%E8%A2%8B%20%E5%8D%8A%E6%96%A4%E7%94%A8
 コメント：
 パンを手作りする家・小分けにしたい家に。PP食パン袋 半斤用は、楽天ランキング「キッチン用品・食器・調理器具」で18位（11/12集計）、レビュー3,446件で★4.76でした（11/14に調べた時点）。
@@ -215,7 +216,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 15｜コレクション：冬のそなえ（無ければ：毎日なくなる物）
 商品：NERUS ふわとろ毛布 Air/AirPremium（量：サイズ選択あり70×100〜200×200cm・サイズと量はどれでもよい）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/t-interior/htc50/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/t-interior/htc50/
 探し方：https://room.rakuten.co.jp/search/item?keyword=NERUS%20%E3%81%B5%E3%82%8F%E3%81%A8%E3%82%8D%E6%AF%9B%E5%B8%83%20Air/AirPremium
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=NERUS%20%E3%81%B5%E3%82%8F%E3%81%A8%E3%82%8D%E6%AF%9B%E5%B8%83
 コメント：
@@ -227,7 +228,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 16｜コレクション：赤ちゃん・ペットの毎日（無ければ：毎日なくなる物）
 商品：ロイヤルカナン BHN プードル 成犬用 1.5kg (52902061)…（量：1.5kg）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/familypet/10001183/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/familypet/10001183/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20BHN%20%E3%83%97%E3%83%BC%E3%83%89%E3%83%AB
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20BHN
 コメント：
@@ -246,7 +247,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 17｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：サントリー 天然水 2L 2000ml ペットボトル 6本 1ケース ミネラルウォーター…（量：2000ml×6本）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/felicity-wine/10008164/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/felicity-wine/10008164/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%20%E5%A4%A9%E7%84%B6%E6%B0%B4%20%E3%83%9A%E3%83%83%E3%83%88%E3%83%9C%E3%83%88%E3%83%AB
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%20%E5%A4%A9%E7%84%B6%E6%B0%B4
 コメント：
@@ -265,7 +266,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 18｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：ウィルキンソン タンサン(500ml×32本入) [32本入 炭酸水 炭酸]（量：500ml×32本）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/kenkocom/12196145/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/kenkocom/12196145/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%A6%E3%82%A3%E3%83%AB%E3%82%AD%E3%83%B3%E3%82%BD%E3%83%B3%20%E3%82%BF%E3%83%B3%E3%82%B5%E3%83%B3
 コメント：
 選んだ理由：炭酸水を48点、1Lあたりの値段にそろえて比べました。このウィルキンソンは1Lあたり156円（500ml×32本で2,500円・11/14時点）。レビューは234件で★4.66です。
@@ -283,7 +284,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 19｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：新米 10kg コシヒカリ 米10キロ こしひかり 令和8年産 福島県 会津産 送料無料（量：10kg）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/daisukiaizu/10000207/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/daisukiaizu/10000207/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%B7%E3%83%92%E3%82%AB%E3%83%AA%20%E7%B1%B310%E3%82%AD%E3%83%AD%20%E3%81%93%E3%81%97%E3%81%B2%E3%81%8B%E3%82%8A
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%B7%E3%83%92%E3%82%AB%E3%83%AA%20%E7%B1%B310%E3%82%AD%E3%83%AD
 コメント：
@@ -302,7 +303,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 20｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：スコッティ トイレットペーパー フラワーパック 2倍長持ち…（量：100m×48ロール）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/e-kurashi/10020157/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/e-kurashi/10020157/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B9%E3%82%B3%E3%83%83%E3%83%86%E3%82%A3%20%E3%83%88%E3%82%A4%E3%83%AC%E3%83%83%E3%83%88%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC%20%E3%83%95%E3%83%A9%E3%83%AF%E3%83%BC%E3%83%91%E3%83%83%E3%82%AF
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B9%E3%82%B3%E3%83%83%E3%83%86%E3%82%A3%20%E3%83%88%E3%82%A4%E3%83%AC%E3%83%83%E3%83%88%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC
 コメント：
@@ -321,7 +322,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 21｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：サントリー 緑茶 伊右衛門 2L ペットボトル 1セット（18本：9本×2ケース）（量：2L×18）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/p-tano/10557565/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/p-tano/10557565/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%20%E7%B7%91%E8%8C%B6%20%E4%BC%8A%E5%8F%B3%E8%A1%9B%E9%96%80
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%20%E7%B7%91%E8%8C%B6
 コメント：
@@ -340,7 +341,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 22｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：コカ・コーラ コーヒー ジョージア 深み焙煎贅沢ブラック 無糖 950ml ペットボトル…（量：950ml×24）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/drink-partner/10000376/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/drink-partner/10000376/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%AB%E3%83%BB%E3%82%B3%E3%83%BC%E3%83%A9%20%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC%20%E3%82%B8%E3%83%A7%E3%83%BC%E3%82%B8%E3%82%A2
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%AB%E3%83%BB%E3%82%B3%E3%83%BC%E3%83%A9%20%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC
 コメント：
@@ -359,7 +360,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 23｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：アタック 抗菌EX 部屋干し 洗剤 洗濯洗剤 詰め替え 超特大 ゾンビ臭 液体 じめじめ…（量：2.77kg×4）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/shopypp22/10000545/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/shopypp22/10000545/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%A2%E3%82%BF%E3%83%83%E3%82%AF%20%E6%8A%97%E8%8F%8CEX%20%E9%83%A8%E5%B1%8B%E5%B9%B2%E3%81%97
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%A2%E3%82%BF%E3%83%83%E3%82%AF%20%E6%8A%97%E8%8F%8CEX
 コメント：
@@ -378,7 +379,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 24｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：ハミング消臭実感 ローズ＆フローラルの香り 6.8倍 2600ml 柔軟剤 詰替 超特大（量：2.6L×4）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/emecosme/10000531/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/emecosme/10000531/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%8F%E3%83%9F%E3%83%B3%E3%82%B0%E6%B6%88%E8%87%AD%E5%AE%9F%E6%84%9F%20%E3%83%AD%E3%83%BC%E3%82%BA%EF%BC%86%E3%83%95%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%AB%E3%81%AE%E9%A6%99%E3%82%8A%20%E6%9F%94%E8%BB%9F%E5%89%A4
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%8F%E3%83%9F%E3%83%B3%E3%82%B0%E6%B6%88%E8%87%AD%E5%AE%9F%E6%84%9F%20%E3%83%AD%E3%83%BC%E3%82%BA%EF%BC%86%E3%83%95%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%AB%E3%81%AE%E9%A6%99%E3%82%8A
 コメント：
@@ -397,7 +398,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 25｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：食器用洗剤 JOY キッチン用洗剤 プロフェッショナル 除菌ジョイコンパクト 業務用 4L…（量：4L）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/k-home/10092406/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/k-home/10092406/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%A3%9F%E5%99%A8%E7%94%A8%E6%B4%97%E5%89%A4%20JOY%20%E3%82%AD%E3%83%83%E3%83%81%E3%83%B3%E7%94%A8%E6%B4%97%E5%89%A4
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%A3%9F%E5%99%A8%E7%94%A8%E6%B4%97%E5%89%A4%20JOY
 コメント：
@@ -416,7 +417,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 26｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：スコッティ カシミヤ ティッシュペーパー 220組 20箱 まとめ買い 送料無料 00121（量：220組×20箱）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/kyoto23/10000506/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/kyoto23/10000506/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B9%E3%82%B3%E3%83%83%E3%83%86%E3%82%A3%20%E3%82%AB%E3%82%B7%E3%83%9F%E3%83%A4%20%E3%83%86%E3%82%A3%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B9%E3%82%B3%E3%83%83%E3%83%86%E3%82%A3%20%E3%82%AB%E3%82%B7%E3%83%9F%E3%83%A4
 コメント：
@@ -435,7 +436,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 27｜コレクション：赤ちゃん・ペットの毎日（無ければ：毎日なくなる物）
 商品：花王 メリーズ エアスルー テープ 新生児用5000g まで 68枚入り×4個入 紙おむつ…（量：272枚）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/beisia/10126180/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/beisia/10126180/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E8%8A%B1%E7%8E%8B%20%E3%83%A1%E3%83%AA%E3%83%BC%E3%82%BA%20%E3%82%A8%E3%82%A2%E3%82%B9%E3%83%AB%E3%83%BC
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E8%8A%B1%E7%8E%8B%20%E3%83%A1%E3%83%AA%E3%83%BC%E3%82%BA
 コメント：
@@ -450,7 +451,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 28｜コレクション：赤ちゃん・ペットの毎日（無ければ：毎日なくなる物）
 商品：ネピア おしりセレブ WET 詰替え 60枚 × 10袋 お尻セレブ おしりセレブウェット…（量：600枚）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/keyroom-hida/10000021/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/keyroom-hida/10000021/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%8D%E3%83%94%E3%82%A2%20%E3%81%8A%E3%81%97%E3%82%8A%E3%82%BB%E3%83%AC%E3%83%96%20WET
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%8D%E3%83%94%E3%82%A2%20%E3%81%8A%E3%81%97%E3%82%8A%E3%82%BB%E3%83%AC%E3%83%96
 コメント：
@@ -465,7 +466,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 29｜コレクション：そなえ（無ければ：毎日なくなる物）
 商品：40本セット 単3電池 電池 単3 アルカリ 三菱電機 アルカリ乾電池 単3形 乾電池単3…（量：40本）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/watch-me/10006181/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/watch-me/10006181/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%8D%983%E9%9B%BB%E6%B1%A0%20%E9%9B%BB%E6%B1%A0%20%E5%8D%983
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%8D%983%E9%9B%BB%E6%B1%A0%20%E9%9B%BB%E6%B1%A0
 コメント：
@@ -480,7 +481,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 30｜コレクション：そなえ（無ければ：毎日なくなる物）
 商品：マスク アイリスオーヤマ 不織布 大容量 ふんわりやさしい ふつう 小さめ 100枚入…（量：100枚）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/irisplaza-r/10134480/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/irisplaza-r/10134480/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%9E%E3%82%B9%E3%82%AF%20%E3%82%A2%E3%82%A4%E3%83%AA%E3%82%B9%E3%82%AA%E3%83%BC%E3%83%A4%E3%83%9E%20%E4%B8%8D%E7%B9%94%E5%B8%83
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%9E%E3%82%B9%E3%82%AF%20%E3%82%A2%E3%82%A4%E3%83%AA%E3%82%B9%E3%82%AA%E3%83%BC%E3%83%A4%E3%83%9E
 コメント：
@@ -495,7 +496,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 31｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：バリラ No.5 5kg 3袋 業務用 パスタ スパゲティ 約1.8mm…（量：5kg×3）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/onestep/10086608/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/onestep/10086608/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%90%E3%83%AA%E3%83%A9%20No.5%20%E6%A5%AD%E5%8B%99%E7%94%A8
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%90%E3%83%AA%E3%83%A9%20No.5
 コメント：
@@ -514,7 +515,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 32｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：クリスタルガイザー [CRYSTAL GEYSER] 500ml×48本…（量：500ml×48本）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/kaisenshop/10002807/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/kaisenshop/10002807/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AF%E3%83%AA%E3%82%B9%E3%82%BF%E3%83%AB%E3%82%AC%E3%82%A4%E3%82%B6%E3%83%BC%20500ml%C3%9748%E6%9C%AC
 コメント：
 選んだ理由：水（ミネラルウォーター）を51点、1Lあたりの値段にそろえて比べました。このクリスタルガイザーは1Lあたり145円（500ml×48本で3,480円・11/14時点）。レビューは231件で★4.53です。
@@ -532,7 +533,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 33｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：ウィルキンソン タンサン ラベルレスボトル(500ml×24本入) [炭酸水 炭酸]（量：500ml×24本）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/rakuten24/11109860/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/rakuten24/11109860/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%A6%E3%82%A3%E3%83%AB%E3%82%AD%E3%83%B3%E3%82%BD%E3%83%B3%20%E3%82%BF%E3%83%B3%E3%82%B5%E3%83%B3%20%E3%83%A9%E3%83%99%E3%83%AB%E3%83%AC%E3%82%B9%E3%83%9C%E3%83%88%E3%83%AB
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%A6%E3%82%A3%E3%83%AB%E3%82%AD%E3%83%B3%E3%82%BD%E3%83%B3%20%E3%82%BF%E3%83%B3%E3%82%B5%E3%83%B3
 コメント：
@@ -551,7 +552,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 34｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：特別栽培米 ゆめぴりか 10kg 送料無料 北海道米 農場直送 令和8年産 北海道旭川産…（量：10kg）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/yukihikari/10000073/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/yukihikari/10000073/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%89%B9%E5%88%A5%E6%A0%BD%E5%9F%B9%E7%B1%B3%20%E3%82%86%E3%82%81%E3%81%B4%E3%82%8A%E3%81%8B%20%E5%8C%97%E6%B5%B7%E9%81%93%E7%B1%B3
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%89%B9%E5%88%A5%E6%A0%BD%E5%9F%B9%E7%B1%B3%20%E3%82%86%E3%82%81%E3%81%B4%E3%82%8A%E3%81%8B
 コメント：
@@ -570,7 +571,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 35｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：コカ・コーラ 綾鷹 濃い緑茶 2000ml ペットボトル 6本入り×2ケース（量：2L×12）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/good-luckbin/10000462/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/good-luckbin/10000462/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%AB%E3%83%BB%E3%82%B3%E3%83%BC%E3%83%A9%20%E7%B6%BE%E9%B7%B9%20%E6%BF%83%E3%81%84%E7%B7%91%E8%8C%B6
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%AB%E3%83%BB%E3%82%B3%E3%83%BC%E3%83%A9%20%E7%B6%BE%E9%B7%B9
 コメント：
@@ -589,7 +590,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 36｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：コカ・コーラ ジョージア 深み焙煎贅沢ブラック 無糖 950mL ペットボトル…（量：950ml×24）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/p-tano/10426684/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/p-tano/10426684/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%AB%E3%83%BB%E3%82%B3%E3%83%BC%E3%83%A9%20%E3%82%B8%E3%83%A7%E3%83%BC%E3%82%B8%E3%82%A2%20%E6%B7%B1%E3%81%BF%E7%84%99%E7%85%8E%E8%B4%85%E6%B2%A2%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%AB%E3%83%BB%E3%82%B3%E3%83%BC%E3%83%A9%20%E3%82%B8%E3%83%A7%E3%83%BC%E3%82%B8%E3%82%A2
 コメント：
@@ -608,7 +609,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 37｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：ファーファ(FaFa) 柔軟剤 ファインフレグランス(FINE FRAGRANCE)…（量：1.4L×6）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/cosmebox/10047463/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/cosmebox/10047463/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%95%E3%82%A1%E3%83%BC%E3%83%95%E3%82%A1%20%E6%9F%94%E8%BB%9F%E5%89%A4%20%E3%83%95%E3%82%A1%E3%82%A4%E3%83%B3%E3%83%95%E3%83%AC%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B9
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%95%E3%82%A1%E3%83%BC%E3%83%95%E3%82%A1%20%E6%9F%94%E8%BB%9F%E5%89%A4
 コメント：
@@ -627,7 +628,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 38｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：花王 キュキュット 4.5L×1本 業務用 食器用 詰め替え 食器用洗剤 食器洗剤 大容量（量：4.5L）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/k-relight/10000736/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/k-relight/10000736/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E8%8A%B1%E7%8E%8B%20%E3%82%AD%E3%83%A5%E3%82%AD%E3%83%A5%E3%83%83%E3%83%88%204.5L%C3%971%E6%9C%AC
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E8%8A%B1%E7%8E%8B%20%E3%82%AD%E3%83%A5%E3%82%AD%E3%83%A5%E3%83%83%E3%83%88
 コメント：
@@ -646,7 +647,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 39｜コレクション：そなえ（無ければ：毎日なくなる物）
 商品：[ 単3 ×40本セット ] 送料無料 単3 三菱電機 アルカリ 乾電池 10本パック…（量：40本）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/r-mart-plus/10025566/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/r-mart-plus/10025566/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%8D%983%20%E4%B8%89%E8%8F%B1%E9%9B%BB%E6%A9%9F%20%E3%82%A2%E3%83%AB%E3%82%AB%E3%83%AA
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%8D%983%20%E4%B8%89%E8%8F%B1%E9%9B%BB%E6%A9%9F
 コメント：
@@ -661,7 +662,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 40｜コレクション：そなえ（無ければ：毎日なくなる物）
 商品：ユニ・チャーム 超快適 超立体マスク スタンダード 小さめサイズ 30枚入×4点セット…（量：120枚）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/at-life/11993969/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/at-life/11993969/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%A6%E3%83%8B%E3%83%BB%E3%83%81%E3%83%A3%E3%83%BC%E3%83%A0%20%E8%B6%85%E5%BF%AB%E9%81%A9%20%E8%B6%85%E7%AB%8B%E4%BD%93%E3%83%9E%E3%82%B9%E3%82%AF
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%A6%E3%83%8B%E3%83%BB%E3%83%81%E3%83%A3%E3%83%BC%E3%83%A0%20%E8%B6%85%E5%BF%AB%E9%81%A9
 コメント：
@@ -680,7 +681,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 41｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：クリスタルガイザー 500ml×48本 ＜並行輸入品＞ ミネラルウォーター 水 天然水…（量：500ml×48本）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/sonique/10000279/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/sonique/10000279/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AF%E3%83%AA%E3%82%B9%E3%82%BF%E3%83%AB%E3%82%AC%E3%82%A4%E3%82%B6%E3%83%BC%20500ml%C3%9748%E6%9C%AC%20%EF%BC%9C%E4%B8%A6%E8%A1%8C%E8%BC%B8%E5%85%A5%E5%93%81%EF%BC%9E
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AF%E3%83%AA%E3%82%B9%E3%82%BF%E3%83%AB%E3%82%AC%E3%82%A4%E3%82%B6%E3%83%BC%20500ml%C3%9748%E6%9C%AC
 コメント：
@@ -699,7 +700,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 42｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：新米 秋田県産 あきたこまち 精米 5kg 令和8年産 古代米30gお試し袋付き（量：5kg）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/minatofarm/10000006/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/minatofarm/10000006/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%A7%8B%E7%94%B0%E7%9C%8C%E7%94%A3%20%E3%81%82%E3%81%8D%E3%81%9F%E3%81%93%E3%81%BE%E3%81%A1%20%E7%B2%BE%E7%B1%B3
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E7%A7%8B%E7%94%B0%E7%9C%8C%E7%94%A3%20%E3%81%82%E3%81%8D%E3%81%9F%E3%81%93%E3%81%BE%E3%81%A1
 コメント：
@@ -718,7 +719,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 43｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：キリン 生茶 2L 9本入 1ケース 送料無料 お茶 緑茶 ペットボトル PET…（量：2L×9）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/likaman/10032937/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/likaman/10032937/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AD%E3%83%AA%E3%83%B3%20%E7%94%9F%E8%8C%B6%20%E3%81%8A%E8%8C%B6
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AD%E3%83%AA%E3%83%B3%20%E7%94%9F%E8%8C%B6
 コメント：
@@ -737,7 +738,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 44｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：ジョージア 深み焙煎贅沢ブラック 無糖 950ml ペット 12本入り ● 1ケース…（量：950ml×12）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/naire-donya/10001751/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/naire-donya/10001751/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B8%E3%83%A7%E3%83%BC%E3%82%B8%E3%82%A2%20%E6%B7%B1%E3%81%BF%E7%84%99%E7%85%8E%E8%B4%85%E6%B2%A2%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%20%E7%84%A1%E7%B3%96
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B8%E3%83%A7%E3%83%BC%E3%82%B8%E3%82%A2%20%E6%B7%B1%E3%81%BF%E7%84%99%E7%85%8E%E8%B4%85%E6%B2%A2%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF
 コメント：
@@ -756,7 +757,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 45｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：送料無料 ケース販売 ファーファ フリー＆濃縮柔軟剤 無香料 エコパック 詰替…（量：1.5L×6）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/nissansoap/10001930/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/nissansoap/10001930/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%95%E3%82%A1%E3%83%BC%E3%83%95%E3%82%A1%20%E3%83%95%E3%83%AA%E3%83%BC%EF%BC%86%E6%BF%83%E7%B8%AE%E6%9F%94%E8%BB%9F%E5%89%A4%20%E7%84%A1%E9%A6%99%E6%96%99
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%95%E3%82%A1%E3%83%BC%E3%83%95%E3%82%A1%20%E3%83%95%E3%83%AA%E3%83%BC%EF%BC%86%E6%BF%83%E7%B8%AE%E6%9F%94%E8%BB%9F%E5%89%A4
 コメント：
@@ -775,7 +776,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 46｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：ダヴ プレミアム モイスチャーケア ボディウォッシュ 6kg 詰め替え用 ボディソープ…（量：3kg×2）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/try3/10034136/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/try3/10034136/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%80%E3%83%B4%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%20%E3%83%A2%E3%82%A4%E3%82%B9%E3%83%81%E3%83%A3%E3%83%BC%E3%82%B1%E3%82%A2
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%80%E3%83%B4%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0
 コメント：
@@ -794,7 +795,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 47｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：パスタ 業務用 15kg (5kg×3袋) バリラ No.5 太さ 1.8mm 少し太め…（量：5kg×3）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/kurashikenkou/10023957/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/kurashikenkou/10023957/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%91%E3%82%B9%E3%82%BF%20%E6%A5%AD%E5%8B%99%E7%94%A8%20%E3%83%90%E3%83%AA%E3%83%A9
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%91%E3%82%B9%E3%82%BF%20%E6%A5%AD%E5%8B%99%E7%94%A8
 コメント：
@@ -813,7 +814,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 48｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：澤井珈琲｜送料無料 冬の珈琲120杯分福袋 コーヒー コーヒー豆 コーヒー粉 珈琲豆…（量：1.2kg）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/sawaicoffee-tea/10000121/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/sawaicoffee-tea/10000121/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%86%AC%E3%81%AE%E7%8F%88%E7%90%B2120%E6%9D%AF%E5%88%86%E7%A6%8F%E8%A2%8B%20%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC%20%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC%E8%B1%86
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%86%AC%E3%81%AE%E7%8F%88%E7%90%B2120%E6%9D%AF%E5%88%86%E7%A6%8F%E8%A2%8B%20%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC
 コメント：
@@ -832,7 +833,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 49｜コレクション：赤ちゃん・ペットの毎日（無ければ：毎日なくなる物）
 商品：ロイヤルカナン ゴールデンレトリバー 成犬〜高齢犬用 12kg / ゴールデンレトリバー…（量：12kg）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/1096dog/10003358/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/1096dog/10003358/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%B4%E3%83%BC%E3%83%AB%E3%83%87%E3%83%B3%E3%83%AC%E3%83%88%E3%83%AA%E3%83%90%E3%83%BC%20%E6%88%90%E7%8A%AC%E3%80%9C%E9%AB%98%E9%BD%A2%E7%8A%AC%E7%94%A8
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%B4%E3%83%BC%E3%83%AB%E3%83%87%E3%83%B3%E3%83%AC%E3%83%88%E3%83%AA%E3%83%90%E3%83%BC
 コメント：
@@ -851,7 +852,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 50｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：キリンビバレッジ キリンのやわらか天然水 310mlペットボトル（30本入り1ケース）ミネラ…（量：310ml×30本）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/aburajin/10012710/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/aburajin/10012710/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AD%E3%83%AA%E3%83%B3%E3%83%93%E3%83%90%E3%83%AC%E3%83%83%E3%82%B8%20%E3%82%AD%E3%83%AA%E3%83%B3%E3%81%AE%E3%82%84%E3%82%8F%E3%82%89%E3%81%8B%E5%A4%A9%E7%84%B6%E6%B0%B4%20310ml%E3%83%9A%E3%83%83%E3%83%88%E3%83%9C%E3%83%88%E3%83%AB
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AD%E3%83%AA%E3%83%B3%E3%83%93%E3%83%90%E3%83%AC%E3%83%83%E3%82%B8%20%E3%82%AD%E3%83%AA%E3%83%B3%E3%81%AE%E3%82%84%E3%82%8F%E3%82%89%E3%81%8B%E5%A4%A9%E7%84%B6%E6%B0%B4
 コメント：
@@ -870,7 +871,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 51｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：新米 令和8年 コシヒカリ10kg 「 別格 」 新潟県 魚沼産 お米 白米 10キロ…（量：10kg）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/komenouka/10000014/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/komenouka/10000014/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E4%BB%A4%E5%92%8C8%E5%B9%B4%20%E3%82%B3%E3%82%B7%E3%83%92%E3%82%AB%E3%83%AA10kg%20%E3%80%8C
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E4%BB%A4%E5%92%8C8%E5%B9%B4%20%E3%82%B3%E3%82%B7%E3%83%92%E3%82%AB%E3%83%AA10kg
 コメント：
@@ -889,7 +890,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 52｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：キリンビバレッジ 生茶 2Lペットボトル 6本入り1ケース 日本茶 緑茶 2000ml（量：2L×6）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/aburajin/10008693/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/aburajin/10008693/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AD%E3%83%AA%E3%83%B3%E3%83%93%E3%83%90%E3%83%AC%E3%83%83%E3%82%B8%20%E7%94%9F%E8%8C%B6%202L%E3%83%9A%E3%83%83%E3%83%88%E3%83%9C%E3%83%88%E3%83%AB
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AD%E3%83%AA%E3%83%B3%E3%83%93%E3%83%90%E3%83%AC%E3%83%83%E3%82%B8%20%E7%94%9F%E8%8C%B6
 コメント：
@@ -908,7 +909,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 53｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：ネスレ ネスカフェ エクセラ ボトルコーヒー 無糖 900ml ペットボトル 12本…（量：900ml×12）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/felicity-wine/10010787/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/felicity-wine/10010787/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%8D%E3%82%B9%E3%83%AC%20%E3%83%8D%E3%82%B9%E3%82%AB%E3%83%95%E3%82%A7%20%E3%82%A8%E3%82%AF%E3%82%BB%E3%83%A9
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%8D%E3%82%B9%E3%83%AC%20%E3%83%8D%E3%82%B9%E3%82%AB%E3%83%95%E3%82%A7
 コメント：
@@ -927,7 +928,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 54｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：フレアフレグランス iroka イロカ ネイキッドリリーの香り 洗濯柔軟剤 詰替用 大容量…（量：1.2L×6）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/speedy-street/10000543/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/speedy-street/10000543/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%95%E3%83%AC%E3%82%A2%E3%83%95%E3%83%AC%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B9%20iroka%20%E3%82%A4%E3%83%AD%E3%82%AB
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%95%E3%83%AC%E3%82%A2%E3%83%95%E3%83%AC%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B9%20iroka
 コメント：
@@ -946,7 +947,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 55｜コレクション：赤ちゃん・ペットの毎日（無ければ：毎日なくなる物）
 商品：ロイヤルカナン センシブル 15kg / 食が細くやせ気味な成猫用…（量：15kg）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/1096dog/10013227/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/1096dog/10013227/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%BB%E3%83%B3%E3%82%B7%E3%83%96%E3%83%AB%20/
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%BB%E3%83%B3%E3%82%B7%E3%83%96%E3%83%AB
 コメント：
@@ -965,7 +966,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 56｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：コカ・コーラ お茶 綾鷹 濃い緑茶 650ml ペットボトル 24本入り×2ケース（量：650ml×48）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/d-rink-hokkaido/10000032/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/d-rink-hokkaido/10000032/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%AB%E3%83%BB%E3%82%B3%E3%83%BC%E3%83%A9%20%E3%81%8A%E8%8C%B6%20%E7%B6%BE%E9%B7%B9
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%B3%E3%82%AB%E3%83%BB%E3%82%B3%E3%83%BC%E3%83%A9%20%E3%81%8A%E8%8C%B6
 コメント：
@@ -984,7 +985,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 57｜コレクション：そなえ（無ければ：毎日なくなる物）
 商品：MITSUBISHI 三菱 アルカリ電池 単3電池x10本 LR6N/10S…（量：40本）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/kenko-tokina/10031419/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/kenko-tokina/10031419/
 探し方：https://room.rakuten.co.jp/search/item?keyword=MITSUBISHI%20%E4%B8%89%E8%8F%B1%20%E3%82%A2%E3%83%AB%E3%82%AB%E3%83%AA%E9%9B%BB%E6%B1%A0
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=MITSUBISHI%20%E4%B8%89%E8%8F%B1
 コメント：
@@ -999,7 +1000,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 58｜コレクション：毎日なくなる物（無ければ：毎日なくなる物）
 商品：パスタ 業務用 15kg 5kg 3個セット パスタ バリラ No.5(1.8mm)…（量：5kg×3）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/irisplaza-r/10107000/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/irisplaza-r/10107000/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%91%E3%82%B9%E3%82%BF%20%E6%A5%AD%E5%8B%99%E7%94%A8%20%E3%83%90%E3%83%AA%E3%83%A9
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%91%E3%82%B9%E3%82%BF%20%E6%A5%AD%E5%8B%99%E7%94%A8
 コメント：
@@ -1018,7 +1019,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 
 59｜コレクション：赤ちゃん・ペットの毎日（無ければ：毎日なくなる物）
 商品：ロイヤルカナン インドア プレミアムフード ドライ ドライフード 猫 室内で生活する成猫用…（量：10kg）
-元の商品（確かめ用・開けない時は見なくてよい）：https://item.rakuten.co.jp/cat-land/10000608/
+元の商品（まずここから「ROOMに投稿」で載せる）：https://item.rakuten.co.jp/cat-land/10000608/
 探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%A4%E3%83%B3%E3%83%89%E3%82%A2%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%95%E3%83%BC%E3%83%89
 出ない時の探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%82%AB%E3%83%8A%E3%83%B3%20%E3%82%A4%E3%83%B3%E3%83%89%E3%82%A2
 コメント：
