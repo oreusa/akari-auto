@@ -19,6 +19,41 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 ・もうROOMに載っている商品は載せずに飛ばす（前の日に載せきれなかった物が、もう一度ここに出る）。
 ・コレクションは、同じ名前があればそこへ。無ければ、新しく作らずに「毎日なくなる物」へ入れる。それも選べなければ、コレクションを選ばずに載せる（コレクションが無い・作れないことを理由に、載せるのをやめない）。
 
+
+■直す物（夜が見つけた、もう載っている物の間違い。台本の前に、この順で直す。新しく載せる物より先）
+・URL を開き、自分の投稿の「編集」でコメントだけを直して保存する。直したら報告に「直した：番号」。編集が出ない・開けない時は「直せない：番号｜表示の文言」（消さない）。
+直す1｜はちみつ1kg｜https://room.rakuten.co.jp/ai_usagichan/1700399251279196
+直し方：コメントの最後に1行足す
+入れる文：
+はちみつは1歳未満のお子さまには与えないでください（飲み物や料理に混ぜた時・加熱した時も同じです）。
+（直す1 ここまで）
+直す2｜ONESTEP 簡易トイレ｜https://room.rakuten.co.jp/ai_usagichan/1700399122196209
+直し方：コメントの中の値段と防臭袋の数の文を消して、この1行に変える
+入れる文：
+防臭袋の数は、お店のページの中で表示が分かれています。買う前に、回数と袋の数・値段をお店のページで確かめてください。
+（直す2 ここまで）
+直す3｜ふきん｜https://room.rakuten.co.jp/ai_usagichan/1700401013474280
+直し方：コメントの中の枚数と値段の文を、この1行に変える
+入れる文：
+11/14に見た時は、3枚で999円・5枚で1,199円でした。枚数で値段が違うので、お店のページでご確認ください。
+（直す3 ここまで）
+直す4｜iwaki 保存容器｜https://room.rakuten.co.jp/ai_usagichan/1700398870954409
+直し方：「蓋も食洗機対応」の文を、この1行に変える
+入れる文：
+お店のページでは、蓋も食洗機に使えるのはグレージュ・ストーングレー・ウォームアイボリーの3色です。色ごとにお確かめください。
+（直す4 ここまで）
+直す5｜D型まな板｜https://room.rakuten.co.jp/ai_usagichan/1700398999494155
+直し方：「フチ付きのD型」の文を、この1行に変える
+入れる文：
+お店では「D型」と「フチ付き」は別の形として選べます。買う時に形を選んでください。
+（直す5 ここまで）
+直す6｜生茶 2L×6本｜https://room.rakuten.co.jp/ai_usagichan/1700400968363389
+直し方：コメントの最後に1行足す
+入れる文：
+送料は値段とは別で、地域で変わります（お店の送料表をご確認ください）。
+（直す6 ここまで）
+（直す物 ここまで）
+
 （ここから下に台本）
 
 1｜コレクション：そなえ（無ければ：毎日なくなる物）
@@ -1052,11 +1087,7 @@ ROOM台本（機械が毎日そろえる。凪と雫はこのページだけを�
 ・ドッグフード：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%89%E3%83%83%E3%82%B0%E3%83%95%E3%83%BC%E3%83%89
 ・ペットシーツ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%9A%E3%83%83%E3%83%88%E3%82%B7%E3%83%BC%E3%83%84
 ・カイロ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%82%AB%E3%82%A4%E3%83%AD
-・加湿器：探し方：https://room.rakuten.co.jp/search/item?keyword=%E5%8A%A0%E6%B9%BF%E5%99%A8
-・電気毛布：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%9B%BB%E6%B0%97%E6%AF%9B%E5%B8%83
 ・毛布：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%AF%9B%E5%B8%83
-・こたつ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%81%93%E3%81%9F%E3%81%A4
-・ヒーター：探し方：https://room.rakuten.co.jp/search/item?keyword=%E3%83%92%E3%83%BC%E3%82%BF%E3%83%BC
 ・湯たんぽ：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%B9%AF%E3%81%9F%E3%82%93%E3%81%BD
 ・靴下 冬：探し方：https://room.rakuten.co.jp/search/item?keyword=%E9%9D%B4%E4%B8%8B%20%E5%86%AC
 ・手袋：探し方：https://room.rakuten.co.jp/search/item?keyword=%E6%89%8B%E8%A2%8B
