@@ -1,6 +1,6 @@
 {
   "day": "2026-11-13",
-  "fetchedAt": "2026-11-14T06:39+09:00",
+  "fetchedAt": "2026-11-15T05:05+09:00",
   "posts": [
     {
       "service": "threads",
@@ -12,8 +12,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.92,
-        "views": 52,
+        "engagementRate": 1.64,
+        "views": 61,
         "quotes": 0,
         "reposts": 0
       }
@@ -28,9 +28,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 6.45,
+        "engagementRate": 4.65,
         "reposts": 0,
-        "impressions": 31,
+        "impressions": 43,
         "clicks": 0
       }
     },
@@ -42,10 +42,10 @@
       "url": "https://www.threads.com/@usagichan_ai_si/post/DfqpHl7ADDZ",
       "img": 1,
       "metrics": {
-        "reactions": 0,
+        "reactions": 1,
         "comments": 1,
-        "engagementRate": 0.4,
-        "views": 251,
+        "engagementRate": 0.71,
+        "views": 280,
         "quotes": 0,
         "reposts": 0
       }
@@ -60,9 +60,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.58,
+        "engagementRate": 3.25,
         "reposts": 0,
-        "impressions": 155,
+        "impressions": 308,
         "clicks": 0
       }
     },
@@ -76,8 +76,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.17,
-        "views": 24,
+        "engagementRate": 4,
+        "views": 25,
         "quotes": 0,
         "reposts": 0
       }
@@ -92,9 +92,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 6.67,
+        "engagementRate": 5.56,
         "reposts": 0,
-        "impressions": 15,
+        "impressions": 18,
         "clicks": 0
       }
     },
@@ -108,8 +108,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 2.35,
-        "views": 85,
+        "engagementRate": 2.2,
+        "views": 91,
         "quotes": 0,
         "reposts": 0
       }
@@ -124,9 +124,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 9.09,
+        "engagementRate": 4.13,
         "reposts": 0,
-        "impressions": 11,
+        "impressions": 121,
         "clicks": 0
       }
     },
@@ -140,8 +140,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.37,
-        "views": 270,
+        "engagementRate": 0.35,
+        "views": 289,
         "quotes": 0,
         "reposts": 0
       }
@@ -156,8 +156,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.9,
-        "views": 111,
+        "engagementRate": 0.74,
+        "views": 136,
         "quotes": 0,
         "reposts": 0
       }
@@ -171,10 +171,10 @@
       "img": 1,
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 10.53,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 19,
         "clicks": 0
       }
     },
@@ -188,8 +188,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.26,
-        "views": 389,
+        "engagementRate": 0.14,
+        "views": 722,
         "quotes": 0,
         "reposts": 0
       }
@@ -205,12 +205,12 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 1,
+        "views": 11,
         "shares": 0,
         "saves": 0,
-        "totalTimeWatched": 1.27,
-        "averageTimeWatched": 25.44,
-        "reach": 1
+        "totalTimeWatched": 1.38,
+        "averageTimeWatched": 6.91,
+        "reach": 10
       }
     }
   ]
