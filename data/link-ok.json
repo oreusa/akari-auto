@@ -2206,9 +2206,9 @@
  },
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
   "at": "2026-11-15",
-  "ok": false,
-  "sec": 15.2,
-  "why": "<urlopen error timed out>"
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
  },
  "https://ehonnooka.com/?p=11240": {
   "at": "2026-11-14",
@@ -5872,7 +5872,7 @@
  "https://maruchiba.jp/event/detail_10897.html": {
   "at": "2026-11-15",
   "ok": false,
-  "sec": 0.8,
+  "sec": 0.9,
   "why": "404"
  },
  "https://maruchiba.jp/event/detail_13095.html": {
