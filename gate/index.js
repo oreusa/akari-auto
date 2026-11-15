@@ -1,6 +1,6 @@
 // 11/15 townnote.app の入口（Worker）。DNS の鍵が無いので、Worker のカスタムドメインで3つのアドレスを受けて、今の Pages へそのまま取り次ぐ。
 // kansai.townnote.app → townnote.pages.dev（関西 TOWN NOTE）／kanto.townnote.app → lifenote-kanto.pages.dev（関東 LIFE NOTE）／townnote.app → 入口のページ
-const VERIFY = ['google89ea47473ae57497.html']; // 汐が報告した確認ファイルの名前（11/16 朝に月が入れる）
+const VERIFY = ['google89ea47473ae57497.html']; // 汐が報告した確認ファイルの名前（関西・関東とも同じ名前）
 const MAP = { 'kansai.townnote.app': 'townnote.pages.dev', 'kanto.townnote.app': 'lifenote-kanto.pages.dev' };
 const TOP = `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TOWN NOTE｜関西・関東</title>
 <meta name="description" content="関西の TOWN NOTE と、関東の LIFE NOTE。日付と地図でさがせる、おでかけと暮らしのノートです。">
@@ -17,6 +17,7 @@ export default {
     // 11/15 Search Console の所有確認（HTMLファイル）。VERIFY に書いた名前だけ返す（どんな名前でも返すと Google が「ハッキングの恐れ」で確認を断る 11/15）
     const gv = u.pathname.match(/^\/(google[0-9a-f]{8,32}\.html)$/);
     if (gv && VERIFY.includes(gv[1])) return new Response('google-site-verification: ' + gv[1], { headers: { 'content-type': 'text/html; charset=utf-8' } });
+    if (gv) return new Response('Not Found', { status: 404 }); // ほかの名前は必ず 404（Google が確かめに来る）
     const up = MAP[u.hostname];
     if (!up) {
       if (u.pathname === '/' || u.pathname === '/index.html') return new Response(TOP, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=600' } });
