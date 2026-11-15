@@ -23,8 +23,8 @@ def rep(x, y, n=None):
     global h
     assert x in h, x
     h = h.replace(x, y) if n is None else h.replace(x, y, n)
-rep("https://townnote.pages.dev/assets/ogp.png", BASE + "/og-v10.png")
-rep("https://townnote.pages.dev", BASE)
+rep("https://kansai.townnote.app/assets/ogp.png", BASE + "/og-v10.png")
+rep("https://kansai.townnote.app", BASE)
 rep("TOWN NOTE", "LIFE NOTE")
 rep('<link rel="icon" href="/assets/ogp.png"><link rel="apple-touch-icon" href="/assets/icon-180.png">', '<link rel="icon" href="/logo.png"><link rel="apple-touch-icon" href="/assets/icon-180.png">')
 rep('/assets/logo-s.png?v=2', '/logo-s.png')

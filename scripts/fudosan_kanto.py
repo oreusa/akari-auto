@@ -581,13 +581,13 @@ PJS = json.dumps(ORDER, ensure_ascii=False)
 # ---- head
 rep('<meta name="google-site-verification" content="VdNVMVF15cEGulZ_syxp2iotl_CHYHhzys9rJ4hjkOk">', '')  # 月のサイトの印は外す（燈の印 19Vt8… は残す）
 resub(r'<meta name="description"[^>]*><meta name="robots" content="noindex">', f'<meta name="description" content="{LDESC}">' + ('' if LIVE else '<meta name="robots" content="noindex">'))
-rep('content="https://townnote.pages.dev/fudosan-list"><link rel="canonical" href="https://townnote.pages.dev/fudosan-list">',
+rep('content="https://kansai.townnote.app/fudosan-list"><link rel="canonical" href="https://kansai.townnote.app/fudosan-list">',
     f'content="{URL}">' + (f'<link rel="canonical" href="{URL}">' if LIVE else ''))
 rep('<meta property="og:title" content="関西不動産リスト">', '<meta property="og:title" content="関東不動産リスト">')
 resub(r'<meta property="og:description"[^>]*>', f'<meta property="og:description" content="{LDESC}">')
-rep('<meta property="og:image" content="https://townnote.pages.dev/assets/ogp.png"><meta property="og:image:width" content="600"><meta property="og:image:height" content="600">',
+rep('<meta property="og:image" content="https://kansai.townnote.app/assets/ogp.png"><meta property="og:image:width" content="600"><meta property="og:image:height" content="600">',
     f'<meta property="og:image" content="{BASE}/og-v10.png">')
-rep('<meta name="twitter:image" content="https://townnote.pages.dev/assets/ogp.png">', f'<meta name="twitter:image" content="{BASE}/og-v10.png">')
+rep('<meta name="twitter:image" content="https://kansai.townnote.app/assets/ogp.png">', f'<meta name="twitter:image" content="{BASE}/og-v10.png">')
 # アイコン・ホーム画面は燈の物（manifest と sw.js は pwa.py が足す）
 rep('<link rel="icon" href="assets/ogp.png"><link rel="apple-touch-icon" href="/assets/icon-180.png"><link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#FFFFFF">',
     '<link rel="icon" href="/logo.png">')

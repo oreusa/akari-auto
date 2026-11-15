@@ -7,7 +7,7 @@ from datetime import datetime, timezone, timedelta
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 SITE = os.path.join(ROOT, "site")
-BASE = "https://lifenote-kanto.pages.dev/"
+BASE = "https://kanto.townnote.app/"
 PREFS = ["東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬"]
 E = html.escape
 fu = lambda p: p + ("都" if p == "東京" else "県")
