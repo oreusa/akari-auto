@@ -114,6 +114,12 @@
    "item": "city",
    "what": "関東の市区の列を公式で確かめた（熊谷市・上尾市・平塚市は解体の補助なし＝ページは作らない。usagi tools/kaitai/retsu.json の done に記録）。11/13〜15 も毎朝続けていたが、ここに書いていなかった",
    "before": null
+  },
+  {
+   "day": "2026-11-16",
+   "item": "toukou",
+   "what": "21:15 ひと駅しらべ（豊島区・空き家の割合が都で1位）の行き先を /machi でなく /jikka/tokyo-16 にした",
+   "before": null
   }
  ]
 }
