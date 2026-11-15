@@ -5,7 +5,7 @@ on:
       urls:
         description: "撮るページ（スペース区切り）"
         required: true
-        default: "https://lifenote-kanto.pages.dev/okaimono https://townnote.pages.dev/okaimono"
+        default: "https://kanto.townnote.app/okaimono https://kansai.townnote.app/okaimono"
 permissions:
   contents: write
 jobs:

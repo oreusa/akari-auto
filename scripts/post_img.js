@@ -4,7 +4,7 @@
 // 作りは月（関西）の tools/post_img/make.js と同じ。使い方：node scripts/post_img.js [名前の先頭で絞る]
 const {chromium}=require('playwright');const fs=require('fs');const path=require('path');const http=require('http');const crypto=require('crypto');
 const ROOT=path.join(__dirname,'..');const SITE=path.join(ROOT,'site');const OUT=path.join(SITE,'postimg');
-const HOST=(process.env.LIFE_BASE||'https://lifenote-kanto.pages.dev').replace(/\/$/,'');const BASE=HOST+'/postimg/';
+const HOST=(process.env.LIFE_BASE||'https://kanto.townnote.app').replace(/\/$/,'');const BASE=HOST+'/postimg/';
 const only=process.argv[2]||'';
 const MIME={'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.webp':'image/webp','.webmanifest':'application/json'};
 const srv=http.createServer((q,s)=>{let u=decodeURIComponent(q.url.split('?')[0]);if(u.endsWith('/'))u+='index.html';let f=path.join(SITE,u);

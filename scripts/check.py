@@ -247,7 +247,7 @@ HEAD_WORDS = [
     (re.compile(r"イルミ|ライトアップ"), ("/illumination", "/koyo", "/odekake", "/o/"), "イルミ・ライトアップの話"),
     (re.compile(r"解体|補助金|空き家"), ("/kaitai", "/hojo", "/jikka"), "解体・補助の話"),
 ]
-LIFE_RE = re.compile(r"https://lifenote-kanto\.pages\.dev(/[^\s?#）)」]*)")
+LIFE_RE = re.compile(r"https://kanto\.townnote\.app(/[^\s?#）)」]*)")
 NAME_NG = ("名前なしでも", "お名前は要りません", "名前は要りません")
 
 
