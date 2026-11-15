@@ -183,10 +183,10 @@ function ritual(r,done){
   document.body.append(ov);document.body.style.overflow='hidden';
   const txt=say.lastChild;const tm=[];
   tm.push(setTimeout(()=>{txt.textContent='五枚のカードを伏せました。'},RM?0:1300));
-  tm.push(setTimeout(()=>{txt.textContent='あなたの指が選ぶ一枚が、あなたの星です。'},RM?0:2600));
+  tm.push(setTimeout(()=>{txt.textContent='あなたの指が選ぶ一枚が、あなたの星です。';tap.textContent='気になる一枚に、ふれてください';tap.classList.add('on')},RM?0:2600));
   let picked=false;
   btns.forEach((b,i)=>b.addEventListener('click',()=>{
-    if(picked)return;picked=true;tm.forEach(clearTimeout);
+    if(picked)return;picked=true;tm.forEach(clearTimeout);tap.classList.remove('on');tap.textContent='もう一度ふれると、結果へ進みます';
     btns.forEach((x,j)=>{if(j!==i)x.classList.add('gone')});
     b.style.transform='rotate(0deg) translateY(-24px) scale(1.06)';
     setTimeout(()=>{

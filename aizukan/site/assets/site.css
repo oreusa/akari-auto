@@ -98,7 +98,7 @@ main{flex:1}
 .tcard.rev img{transform:rotate(180deg)}
 .tcard.sm .num{font-size:10px;top:9px}.tcard.sm .nm{bottom:8px}.tcard.sm .nm b{font-size:12px}.tcard.sm .nm small{font-size:9px}.tcard.sm::before{inset:4px}
 .tcard.lg .nm b{font-size:24px}.tcard.lg .nm small{font-size:13px}.tcard.lg .num{font-size:16px;top:18px}.tcard.lg::before{inset:10px}
-.back{aspect-ratio:2/3;border-radius:12px;border:1px solid var(--gold3);background:
+.back{display:block;width:100%;aspect-ratio:2/3;border-radius:12px;border:1px solid var(--gold3);background:
   radial-gradient(circle at 50% 50%,transparent 26%,#D6B06818 27%,transparent 28%),
   radial-gradient(circle at 50% 50%,transparent 38%,#D6B06812 39%,transparent 40%),
   repeating-conic-gradient(from 0deg at 50% 50%,#D6B06810 0 4deg,transparent 4deg 15deg),
@@ -310,13 +310,13 @@ textarea:focus,input:focus{outline:none;border-color:var(--gold3);box-shadow:0 0
 @media (max-width:560px){.q-box{padding:26px 18px}.scale .s1 i,.scale .s5 i{width:42px;height:42px}.scale .s2 i,.scale .s4 i{width:34px;height:34px}.scale .s3 i{width:28px;height:28px}}
 
 /* ===================== 儀式 ===================== */
-.ritual{position:fixed;inset:0;z-index:100;background:radial-gradient(80% 60% at 50% 40%,#1B1840f2,#05050Bfa);display:grid;place-items:center;padding:24px max(20px,env(safe-area-inset-left,0px)) calc(24px + env(safe-area-inset-bottom,0px));animation:fade .4s}
+.ritual{position:fixed;inset:0;z-index:100;background:radial-gradient(80% 60% at 50% 40%,#1B1840,#05050B);display:grid;place-items:center;padding:24px max(20px,env(safe-area-inset-left,0px)) calc(24px + env(safe-area-inset-bottom,0px));animation:fade .4s}
 @keyframes fade{from{opacity:0}}
 .r-in{display:grid;justify-items:center;gap:28px;width:100%;max-width:520px}
 .r-say{text-align:center;font-family:var(--f-min);font-size:clamp(17px,2.6vw,21px);font-weight:700;min-height:4.4em;display:grid;gap:6px;align-content:end}
 .r-say small{font-family:var(--f-lat);font-size:11px;letter-spacing:.3em;color:var(--gold);font-weight:500}
 .r-fan{display:flex;justify-content:center;height:min(300px,52vw)}
-.r-fan button{border:0;background:none;padding:0;width:min(130px,23vw);margin:0 calc(min(130px,23vw)*-.22);transform-origin:50% 120%;transition:transform .5s,opacity .4s}
+.r-fan button{display:block;flex:none;border:0;background:none;padding:0;width:min(130px,21vw);margin:0 calc(min(130px,21vw)*-.28);transform-origin:50% 120%;transition:transform .5s,opacity .4s}
 .r-fan button:hover{filter:brightness(1.2)}
 .r-fan button.gone{opacity:0;pointer-events:none}
 .r-big{width:min(280px,64vw);perspective:1200px}
