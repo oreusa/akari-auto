@@ -1,6 +1,6 @@
 {
   "day": "2026-11-14",
-  "fetchedAt": "2026-11-15T05:05+09:00",
+  "fetchedAt": "2026-11-16T05:35+09:00",
   "posts": [
     {
       "service": "threads",
@@ -12,8 +12,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.54,
-        "views": 186,
+        "engagementRate": 0.5,
+        "views": 201,
         "quotes": 0,
         "reposts": 0
       }
@@ -28,9 +28,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.94,
+        "engagementRate": 1.85,
         "reposts": 0,
-        "impressions": 34,
+        "impressions": 54,
         "clicks": 0
       }
     },
@@ -44,8 +44,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.63,
-        "views": 38,
+        "engagementRate": 2.56,
+        "views": 39,
         "quotes": 0,
         "reposts": 0
       }
@@ -60,8 +60,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.94,
-        "views": 34,
+        "engagementRate": 2.63,
+        "views": 38,
         "quotes": 0,
         "reposts": 0
       }
@@ -76,9 +76,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 5.71,
+        "engagementRate": 3.85,
         "reposts": 0,
-        "impressions": 35,
+        "impressions": 52,
         "clicks": 0
       }
     },
@@ -92,8 +92,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.81,
-        "views": 124,
+        "engagementRate": 0.79,
+        "views": 126,
         "quotes": 0,
         "reposts": 0
       }
@@ -108,9 +108,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.23,
+        "engagementRate": 2.48,
         "reposts": 0,
-        "impressions": 71,
+        "impressions": 242,
         "clicks": 0
       }
     },
@@ -124,8 +124,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.34,
-        "views": 293,
+        "engagementRate": 0.33,
+        "views": 299,
         "quotes": 0,
         "reposts": 0
       }
@@ -140,8 +140,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.59,
-        "views": 63,
+        "engagementRate": 1.52,
+        "views": 66,
         "quotes": 0,
         "reposts": 0
       }
@@ -156,9 +156,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4,
+        "engagementRate": 6.06,
         "reposts": 0,
-        "impressions": 25,
+        "impressions": 33,
         "clicks": 0
       }
     },
@@ -172,8 +172,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.51,
-        "views": 195,
+        "engagementRate": 0.47,
+        "views": 215,
         "quotes": 0,
         "reposts": 0
       }
@@ -187,10 +187,10 @@
       "img": null,
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 0.96,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 104,
         "clicks": 0
       }
     },
@@ -204,8 +204,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.67,
-        "views": 149,
+        "engagementRate": 0.47,
+        "views": 211,
         "quotes": 0,
         "reposts": 0
       }
@@ -219,10 +219,10 @@
       "img": 1,
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
+        "comments": 1,
+        "engagementRate": 3.92,
         "reposts": 0,
-        "impressions": 0,
+        "impressions": 51,
         "clicks": 0
       }
     },
@@ -240,7 +240,7 @@
         "views": 11,
         "shares": 0,
         "saves": 0,
-        "totalTimeWatched": 0.15,
+        "totalTimeWatched": 0.18,
         "averageTimeWatched": 0.84,
         "reach": 11
       }

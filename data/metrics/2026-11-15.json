@@ -1,0 +1,249 @@
+{
+  "day": "2026-11-15",
+  "fetchedAt": "2026-11-16T05:35+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【東武東上線｜埼玉の沿線14市町で、地価がいちばん上がった街】🚃",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DfvQWC3GYd7",
+      "img": null,
+      "metrics": {
+        "reactions": 5,
+        "comments": 1,
+        "engagementRate": 0.4,
+        "views": 1490,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:16",
+      "kind": "通常",
+      "first": "【11/19開店　秋葉原｜ゴンチャ 秋葉原UDX店】🧋",
+      "url": "https://x.com/1753799832798629888/status/2121728884752220205",
+      "img": null,
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 4.84,
+        "reposts": 0,
+        "impressions": 62,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "08:15",
+      "kind": "通常",
+      "first": "【12/11まで　町田市｜古い木造の家の解体に、上限50万円】🏠",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DfvXNqimXQj",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.37,
+        "views": 73,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "【11/20から　横浜公園｜入場無料のボールパーククリスマス】🎄",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DfveFGzG16g",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.48,
+        "views": 210,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:16",
+      "kind": "通常",
+      "first": "【27年6/20開業予定　横浜・戸塚｜戸塚駅西口に4階建ての商業施設】🏬",
+      "url": "https://x.com/1753799832798629888/status/2121759089688551506",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.53,
+        "reposts": 0,
+        "impressions": 79,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【12/1開店　高井戸｜オリンピックが、MEGAドン・キホーテに】🛒",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Dfvyr_NDjNu",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1,
+        "views": 100,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:16",
+      "kind": "通常",
+      "first": "【11/20開店　蒲田｜Zoff 東急プラザ蒲田2階店】👓",
+      "url": "https://x.com/1753799832798629888/status/2121804387831906798",
+      "img": null,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.38,
+        "reposts": 0,
+        "impressions": 42,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【くらべた｜水、1Lあたりの最安は75.6円】💧",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Dfv8-uRkUSd",
+      "img": 1,
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 5.88,
+        "views": 34,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【11/23まで　前橋｜10万輪の花と光のNight Bloom】🌙",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DfwHRrkDvlI",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.87,
+        "views": 115,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "15:16",
+      "kind": "通常",
+      "first": "【27年6〜7月開業予定　群馬｜薬王堂が3店】💊",
+      "url": "https://x.com/1753799832798629888/status/2121849684750680190",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 10.53,
+        "reposts": 0,
+        "impressions": 19,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "【11/26開店　新宿｜韓国コスメと食品のリアコ、都内で初めての常設店】💄",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Dfwb47IFpsp",
+      "img": null,
+      "metrics": {
+        "reactions": 2,
+        "comments": 1,
+        "engagementRate": 0.88,
+        "views": 341,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:16",
+      "kind": "通常",
+      "first": "【11/14開店　大田原｜建て替えた生鮮市場TOP！】🥬",
+      "url": "https://x.com/1753799832798629888/status/2121894982470570131",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:15",
+      "kind": "通常",
+      "first": "【柏市｜千葉県全体が減る中で、5年で8,834人増えた街】🏙",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Dfwwe-lFtCU",
+      "img": null,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.37,
+        "views": 271,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:16",
+      "kind": "通常",
+      "first": "【27年6/8開業予定　さくら市｜薬王堂 さくら氏家店】💊",
+      "url": "https://x.com/1753799832798629888/status/2121940277925409219",
+      "img": null,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DfvSEePuwPG/",
+      "img": null,
+      "metrics": {
+        "reactions": 1,
+        "comments": 0,
+        "engagementRate": 0.96,
+        "views": 109,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 2.46,
+        "averageTimeWatched": 1.41,
+        "reach": 104
+      }
+    }
+  ]
+}
