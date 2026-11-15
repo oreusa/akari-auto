@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-15 01:02",
+  "at": "2026-11-15 09:30",
   "since": "2026-11-01",
   "tracked": 262,
   "days": 14,
@@ -43,6 +43,18 @@
       "plain": "https://item.rakuten.co.jp/hagoogi/10000130/"
     },
     {
+      "title": "キャットフード",
+      "name": "ロイヤルカナン 猫 ユリナリー 成猫用 ケア 2kg まとめ買い アダルト 尿路結石 下部尿…",
+      "price": 7880,
+      "base": 4202.0,
+      "pct": 88,
+      "days": 14,
+      "rc": 479,
+      "av": 4.7,
+      "shop": "キャットランド",
+      "plain": "https://item.rakuten.co.jp/cat-land/10060141/"
+    },
+    {
       "title": "ドッグフード",
       "name": "フィールドゲインズ ウルトラプレミアム 2kg (1kg×2袋) 初回限定 お試しドッグフー…",
       "price": 1650,
@@ -53,18 +65,6 @@
       "av": 4.32,
       "shop": "フィールドゲインズ楽天市場店",
       "plain": "https://item.rakuten.co.jp/fieldgaines/10000092/"
-    },
-    {
-      "title": "お米",
-      "name": "「2026年 楽天上半期ランキング1位」 令和8年産 70％以上使用 国産 ブレンド米 極味…",
-      "price": 3900,
-      "base": 2420.0,
-      "pct": 61,
-      "days": 14,
-      "rc": 6677,
-      "av": 4.48,
-      "shop": "山川食糧オートミール研究所",
-      "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
     },
     {
       "title": "モバイルバッテリー",
@@ -79,16 +79,16 @@
       "plain": "https://item.rakuten.co.jp/comfystore/10000038/"
     },
     {
-      "title": "プロテイン",
-      "name": "カラダを大きくしたい方に！ウエイトゲイナー プロテイン 1kg / 3kg ザプロ ホエイ …",
-      "price": 3780,
-      "base": 2640.0,
-      "pct": 43,
+      "title": "お米",
+      "name": "「2026年 楽天上半期ランキング1位」 令和8年産 70％以上使用 国産 ブレンド米 極味…",
+      "price": 3580,
+      "base": 2420.0,
+      "pct": 48,
       "days": 14,
-      "rc": 601,
-      "av": 4.46,
-      "shop": "武内製薬 公式オンラインストア",
-      "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000302/"
+      "rc": 6678,
+      "av": 4.48,
+      "shop": "山川食糧オートミール研究所",
+      "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
     }
   ]
 }
