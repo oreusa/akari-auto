@@ -68,6 +68,8 @@ jobs:
               if [ "$d" = "$n.pages.dev" ]; then base="https://$d"; proj="$n"; break; fi
             done
           fi
+          # 11/15 独自ドメイン townnote.app を買った（オーナー）。関東は kanto.townnote.app（入口の Worker が lifenote-kanto へ取り次ぐ）
+          if [ "$proj" = "lifenote-kanto" ]; then base="https://kanto.townnote.app"; fi
           echo "LIFE_BASE=$base" >> "$GITHUB_ENV"; echo "LIFE_PROJ=$proj" >> "$GITHUB_ENV"; echo "アドレス: $base（$proj）"
       - name: ページを作る（載せる前に、おでかけ・お得のリンクを開いて確かめる）
         run: LINK_GATE=1 python3 scripts/page.py
@@ -131,8 +133,9 @@ jobs:
           for f in pathlib.Path("site").rglob("*"):
               if f.suffix in (".html", ".xml", ".txt", ".json", ".webmanifest", ".js") and f.is_file():
                   t = f.read_text(encoding="utf-8", errors="ignore")
-                  if "https://usagi-life-notes.pages.dev" in t:
-                      f.write_text(t.replace("https://usagi-life-notes.pages.dev", new), encoding="utf-8"); n += 1
+                  t2 = t.replace("https://usagi-life-notes.pages.dev", new).replace("https://lifenote-kanto.pages.dev", new).replace("https://townnote.pages.dev", "https://kansai.townnote.app")
+                  if t2 != t:
+                      f.write_text(t2, encoding="utf-8"); n += 1
           print("新しいアドレスにしたファイル", n)
           PY
           fi
