@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       do:
-        description: status / perm / gate
+        description: status / perm / gate / check
         default: status
 jobs:
   run:
@@ -29,3 +29,14 @@ jobs:
           for h in kansai.townnote.app kanto.townnote.app townnote.app; do echo "$h $(curl -s -o /dev/null -w '%{http_code}' https://$h/ || true)"; done
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - name: 開通の確かめ（新しいアドレスの中身・古いアドレスの引っ越し）
+        if: ${{ github.event.inputs.do == 'check' }}
+        run: |
+          for u in https://townnote.app/ https://kansai.townnote.app/ https://kansai.townnote.app/moushikomi https://kanto.townnote.app/ https://kanto.townnote.app/odekake https://townnote.pages.dev/ranking?f=x https://lifenote-kanto.pages.dev/odekake https://usagi-life-notes.pages.dev/; do
+            echo "$u → $(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "$u")"
+          done
+          for u in https://kansai.townnote.app/ https://kanto.townnote.app/; do
+            echo "$u canonical: $(curl -s "$u" | grep -o '<link rel="canonical"[^>]*>' | head -1)"
+            echo "$u pages.dev の残り: $(curl -s "$u" | grep -o '[a-z-]*\.pages\.dev' | sort | uniq -c | tr '\n' ' ')"
+          done
+          curl -s -o /dev/null -w "申し込みの送り先（関西の入口から） %{http_code}\n" -X OPTIONS -H "Origin: https://kansai.townnote.app" https://kanto.townnote.app/moushikomi-send
