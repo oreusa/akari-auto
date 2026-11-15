@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AIに占ってもらう｜AIタイプ図鑑</title>
+<meta name="description" content="呪文を写して、いつものAIに送り、答えを貼るだけ。AIがあなたを占い、六十枚のカードから一枚と、主の位が決まります。">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://ai-type-zukan.pages.dev/uranai/">
+<meta name="theme-color" content="#07070F">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AIタイプ図鑑">
+<meta property="og:title" content="AIに占ってもらう">
+<meta property="og:description" content="呪文を写して、いつものAIに送り、答えを貼るだけ。AIがあなたを占い、六十枚のカードから一枚と、主の位が決まります。">
+<meta property="og:url" content="https://ai-type-zukan.pages.dev/uranai/">
+<meta property="og:image" content="https://ai-type-zukan.pages.dev/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho+B1:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=46229013">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AIタイプ図鑑","item":"https://ai-type-zukan.pages.dev/"},{"@type":"ListItem","position":2,"name":"占う"}]}</script>
+</head>
+<body data-page="uranai">
+<canvas id="sky" aria-hidden="true"></canvas>
+<a class="sr" href="#main">本文へ</a>
+<header class="hdr"><div class="wrap">
+<a class="logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#D6B068" stroke-width="1.2"/><circle cx="16" cy="16" r="10.5" fill="none" stroke="#D6B06866" stroke-width=".8"/><path d="M16 3.5 18 14 28.5 16 18 18 16 28.5 14 18 3.5 16 14 14Z" fill="#F0DCAA"/><path d="M16 9.5 17 15 22.5 16 17 17 16 22.5 15 17 9.5 16 15 15Z" fill="#07070F"/></svg><span>AIタイプ図鑑<small>AI TYPE TAROT</small></span></a>
+<nav class="nav" aria-label="メニュー"><a href="/uranai/" aria-current="page">占う</a><a href="/hoshi/">十二の星</a><a href="/kurai/">主の位</a><a href="/en/">縁</a><a href="/zukan/">図鑑</a><a class="only-sp" href="/uranai/">無料で占う</a></nav>
+<a class="btn sm cta" href="/uranai/">無料で占う</a>
+<button class="menu-btn" type="button" aria-label="メニュー" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="#EEE8DA" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div></header>
+<main id="main">
+<div class="wrap"><nav class="crumbs" aria-label="現在地"><a href="/">トップ</a><span aria-hidden="true">/</span><span aria-current="page">占う</span></nav></div>
+<div class="wrap">
+<header class="page-h"><span class="eyebrow">DIVINATION</span><h1>AIに占ってもらう</h1><p class="lead">呪文を写して、いつものAIに送り、返ってきた答えを貼るだけ。約3分です。</p></header>
+<div class="flow">
+<ol class="steps">
+<li class="step now" id="s1"><div class="step-n"><span>1</span></div><div class="step-b">
+<h2>呪文を写す</h2>
+<p>AIへの質問の文です。下のボタンで、まるごと写せます。</p>
+<button class="btn lg" id="copyPrompt" type="button">呪文を写す</button>
+<p class="ok" id="copyOk" hidden>写しました。次は、いつものAIに貼って送ってください。</p>
+<p class="err" id="copyNg" hidden>うまく写せませんでした。下の文が選ばれているので、長押し（右クリック）で「コピー」してください。</p>
+<details class="pv"><summary>呪文の中身を見る（<span id="promptChars">―</span>文字）</summary><pre id="promptText" tabindex="0"></pre></details>
+</div></li>
+<li class="step" id="s2"><div class="step-n"><span>2</span></div><div class="step-b">
+<h2>いつものAIに送る</h2>
+<p>いつも使っているアカウントで、新しいチャットを開いて貼り、送ってください。あなたとのやり取りを覚えているAIほど、よく当たります。</p>
+<div class="ai-links"><a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT<span aria-hidden="true">↗</span></a><a href="https://claude.ai/new" target="_blank" rel="noopener">Claude<span aria-hidden="true">↗</span></a><a href="https://gemini.google.com/app" target="_blank" rel="noopener">Gemini<span aria-hidden="true">↗</span></a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener">Copilot<span aria-hidden="true">↗</span></a></div>
+<p class="note">ほかのAIでも占えます。答えが「【AIタイプ図鑑】」の形で返ってくればだいじょうぶです。</p>
+</div></li>
+<li class="step" id="s3"><div class="step-n"><span>3</span></div><div class="step-b">
+<h2>答えを貼って、カードを引く</h2>
+<p>AIの答えを、「【AIタイプ図鑑】」の行から最後まで、まるごと貼ってください。</p>
+<label class="sr" for="answer">AIの答え</label>
+<textarea id="answer" rows="8" placeholder="【AIタイプ図鑑】&#10;AI：ChatGPT&#10;記憶：多い&#10;答え：4,3,2,…" spellcheck="false" autocomplete="off"></textarea>
+<p class="err" id="err" hidden role="alert"></p>
+<button class="btn lg" id="judge" type="button">カードを引く</button>
+<p class="note">貼った答えは、このブラウザの中で読み取ります。どこにも送りません。</p>
+</div></li>
+</ol>
+<aside class="side">
+<div class="panel"><span class="eyebrow">TIPS</span><h2 class="side-h">よく当たる占い方</h2>
+<ul class="tips"><li><b>いつものアカウントで</b>メモリーや履歴が入っているほど、AIはあなたを正直に答えます。</li><li><b>新しいチャットで</b>ほかの話の途中に貼ると、その話に引っぱられます。</li><li><b>答えを直さない</b>数字を書きかえると、位も星もずれます。</li><li><b>形がちがう時は</b>AIに「最後の形だけで、もう一度」と送ってください。</li></ul></div>
+<div class="panel alt"><h2 class="side-h">AIを使わずに占う</h2><p class="note">36の問いに、あなたが自分で答えます。約5分。</p><a class="btn ghost" href="/uranai/jibun/">自分で答える</a></div>
+</aside>
+</div>
+</div>
+</main>
+<footer class="ftr"><div class="wrap">
+<div class="cols">
+<div><a class="logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#D6B068" stroke-width="1.2"/><circle cx="16" cy="16" r="10.5" fill="none" stroke="#D6B06866" stroke-width=".8"/><path d="M16 3.5 18 14 28.5 16 18 18 16 28.5 14 18 3.5 16 14 14Z" fill="#F0DCAA"/><path d="M16 9.5 17 15 22.5 16 17 17 16 22.5 15 17 9.5 16 15 15Z" fill="#07070F"/></svg><span>AIタイプ図鑑<small>AI TYPE TAROT</small></span></a><p class="note">いつものAIに呪文を一つ送ると、AIがあなたとのやり取りを思い出して、六十枚のカードから一枚を引きます。登録なし・無料。</p></div>
+<div><h3>占う</h3><ul><li><a href="/uranai/">AIに占ってもらう</a></li><li><a href="/uranai/jibun/">自分で答える（36問）</a></li><li><a href="/en/">縁を占う</a></li></ul></div>
+<div><h3>読む</h3><ul><li><a href="/hoshi/">十二の星と六十枚</a></li><li><a href="/kurai/">主の位・癖・ミス</a></li><li><a href="/zukan/">わたしの図鑑</a></li></ul></div>
+<div><h3>このサイト</h3><ul><li><a href="/about/">このサイトについて</a></li><li><a href="/privacy/">プライバシー</a></li><li><a href="/kiyaku/">利用規約</a></li></ul></div>
+</div>
+<div class="copy"><span>© 2026 AIタイプ図鑑</span><span>ChatGPT・Claude・Gemini・Copilot は各社の商標です。本サイトは各社とは関係ありません。</span></div>
+</div></footer>
+<script src="/assets/data.js?v=46229013"></script>
+<script src="/assets/app.js?v=46229013"></script>
+</body>
+</html>
