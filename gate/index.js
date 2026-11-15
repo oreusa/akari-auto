@@ -1,5 +1,6 @@
 // 11/15 townnote.app の入口（Worker）。DNS の鍵が無いので、Worker のカスタムドメインで3つのアドレスを受けて、今の Pages へそのまま取り次ぐ。
 // kansai.townnote.app → townnote.pages.dev（関西 TOWN NOTE）／kanto.townnote.app → lifenote-kanto.pages.dev（関東 LIFE NOTE）／townnote.app → 入口のページ
+const VERIFY = []; // 汐が報告した確認ファイルの名前（11/16 朝に月が入れる）
 const MAP = { 'kansai.townnote.app': 'townnote.pages.dev', 'kanto.townnote.app': 'lifenote-kanto.pages.dev' };
 const TOP = `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TOWN NOTE｜関西・関東</title>
 <meta name="description" content="関西の TOWN NOTE と、関東の LIFE NOTE。日付と地図でさがせる、おでかけと暮らしのノートです。">
@@ -13,6 +14,9 @@ a b{display:block;font-size:24px;letter-spacing:.08em}a span{font-size:14px;colo
 export default {
   async fetch(req) {
     const u = new URL(req.url);
+    // 11/15 Search Console の所有確認（HTMLファイル）。汐が新しいプロパティを足す 11/16 13:00 JST まで、google〜.html を正しい中身で返す。そのあとは VERIFY に書いた名前だけ
+    const gv = u.pathname.match(/^\/(google[0-9a-f]{8,32}\.html)$/);
+    if (gv && (VERIFY.includes(gv[1]) || Date.now() < Date.parse('2026-11-16T04:00:00Z'))) return new Response('google-site-verification: ' + gv[1], { headers: { 'content-type': 'text/html; charset=utf-8' } });
     const up = MAP[u.hostname];
     if (!up) {
       if (u.pathname === '/' || u.pathname === '/index.html') return new Response(TOP, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=600' } });
