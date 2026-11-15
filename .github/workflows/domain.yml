@@ -1,0 +1,17 @@
+name: domain
+# 11/15 独自ドメイン townnote.app を Pages につなぐ・状態を見る（scripts/domain.py）
+on:
+  workflow_dispatch:
+    inputs:
+      do:
+        description: status か add
+        default: status
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/domain.py
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          DO: ${{ github.event.inputs.do }}
