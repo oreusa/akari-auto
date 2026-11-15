@@ -29,6 +29,9 @@ A = acc['result'][0]['id']
 z = api('/zones?name=' + ZONE)
 zid = z['result'][0]['id'] if z.get('success') and z.get('result') else ''
 print('ゾーン', ZONE, '見える' if zid else '見えない（鍵にゾーンの権限がない）', (z['result'][0].get('status') if zid else err(z)))
+if DO == 'perm':
+    for path in ['/user/tokens/verify', f'/accounts/{A}/workers/scripts', f'/accounts/{A}/workers/domains', f'/zones/{zid}/workers/routes', f'/zones/{zid}/settings/ssl']:
+        j = api(path); print('権限', path.replace(A, 'A').replace(zid or 'x', 'Z'), 'OK' if j.get('success') else err(j))
 for host, proj in MAP:
     p = api(f'/accounts/{A}/pages/projects/{proj}')
     print('Pages', proj, 'ある' if p.get('success') else 'ない：' + err(p))
