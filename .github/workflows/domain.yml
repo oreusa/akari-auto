@@ -39,4 +39,5 @@ jobs:
             echo "$u canonical: $(curl -s "$u" | grep -o '<link rel="canonical"[^>]*>' | head -1)"
             echo "$u pages.dev の残り: $(curl -s "$u" | grep -o '[a-z-]*\.pages\.dev' | sort | uniq -c | tr '\n' ' ')"
           done
+          for h in kansai.townnote.app kanto.townnote.app; do echo "$h 確認ファイル: $(curl -s https://$h/google89ea47473ae57497.html) ／ ほかの名前: $(curl -s -o /dev/null -w '%{http_code}' https://$h/google0123456789abcdef.html)"; done
           curl -s -o /dev/null -w "申し込みの送り先（関西の入口から） %{http_code}\n" -X OPTIONS -H "Origin: https://kansai.townnote.app" https://kanto.townnote.app/moushikomi-send
