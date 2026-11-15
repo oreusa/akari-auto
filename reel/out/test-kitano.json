@@ -1,1 +1,6 @@
-{"date": "test-kitano", "error": "動画を作れない", "spec_sha": "19cbd5a3956c"}
+{
+ "date": "test-kitano",
+ "spec_sha": "19cbd5a3956c",
+ "at": "2026-11-15T21:37:32Z",
+ "url": "https://b88ecc83.akari-reels.pages.dev/test-kitano-odekake-213715.mp4"
+}
