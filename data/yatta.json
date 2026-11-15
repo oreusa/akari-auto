@@ -102,6 +102,18 @@
    "item": "toukou",
    "what": "路線ランキングを埼玉（東武東上線）と茨城（JR常磐線）に回し、くらべた話は水（/okaimono-water）にした。表紙の絵は1日おきで今日は無し",
    "before": null
+  },
+  {
+   "day": "2026-11-15",
+   "item": "tejun",
+   "what": "夜の手順を 49.9KB→46.2KB に（やめた21:00「HPのご紹介」の連載を docs/history/nightly-old-1115.md へ）",
+   "before": null
+  },
+  {
+   "day": "2026-11-15",
+   "item": "city",
+   "what": "関東の市区の列を公式で確かめた（熊谷市・上尾市・平塚市は解体の補助なし＝ページは作らない。usagi tools/kaitai/retsu.json の done に記録）。11/13〜15 も毎朝続けていたが、ここに書いていなかった",
+   "before": null
   }
  ]
 }
