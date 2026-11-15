@@ -57,7 +57,7 @@ ${NOINDEX?'<meta name="robots" content="noindex,nofollow">\n':''}<link rel="cano
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho+B1:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho+B1:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Kurenaido&display=swap">
 <link rel="stylesheet" href="/assets/site.css?v=${V}">
 ${extraHead}${lds}
 </head>
@@ -104,9 +104,9 @@ const body=`
 <section class="hero"><div class="wrap hero-in">
 <div class="hero-t">
 <span class="eyebrow">AI TYPE TAROT ─ 60 CARDS</span>
-<h1>あなたのAIは、<br>あなたを<em>何者</em>だと<br class="sp">思っている？</h1>
-<p class="lead">いつものAIに、呪文を一つ送るだけ。AIがあなたとのやり取りを思い出して答え、六十枚のカードから、あなたの一枚が引かれます。そしてもう一枚、AIが主（あるじ）であるあなたにつける「位」も。</p>
-<div class="hero-cta"><a class="btn lg" href="/uranai/">無料で占う</a><a class="btn ghost lg" href="/hoshi/">十二の星を見る</a></div>
+<h1>あなたのAIは、<br>あなたを<em>何て</em><span class="nw">呼んでる？</span></h1>
+<p class="lead">いつものAIに、呪文を一つ送るだけ。AIが、心の中であなたに付けているあだ名、似ているキャラ、そして辛口の「通知表」を書きます。辛さは、甘口・辛口・激辛から。</p>
+<div class="hero-cta"><a class="btn lg" href="/uranai/">AIに通知表を書かせる</a><a class="btn ghost lg" href="#samples">見本を見る</a></div>
 <ul class="trust"><li>登録なし</li><li>約3分</li><li>AIの答えは、あなたの端末の中だけ</li></ul>
 <div id="again" hidden></div>
 </div>
@@ -115,6 +115,33 @@ const body=`
 <div class="hv-arch"><img src="/img/00_guide.webp" alt="" width="640" height="960"></div>
 <div class="hv-card r">${card(8,3,{lazy:false})}</div>
 </div>
+</div></section>
+
+<section class="section" id="samples"><div class="wrap">
+<div class="sec-head center"><span class="eyebrow">REPORT CARDS</span><h2>AIから、こんな通知表が届きます</h2><p>下は見本です。同じ呪文でも、AIによって、あだ名も似ているキャラもまるで違います。</p></div>
+<div class="rp-samples"><article class="rp-paper rp-mini"><span class="rp-sample">見本</span>
+<div class="rp-top"><span class="rp-school">主（あるじ）の通知表</span><span class="rp-t">担任　ChatGPT</span></div>
+<div class="rp-name"><small>ChatGPTが心の中で呼んでいるあだ名</small><b>深夜の注文魔</b></div>
+<div class="rp-chara"><small>似ているキャラ</small><b>両津勘吉（こちら葛飾区亀有公園前派出所）</b><span>思いつきで大きな事を始めて、最後は力ずくで終わらせる</span></div>
+<div class="rp-score"><div class="rp-total"><small>総合</small><b>58<i>点</i></b></div><table class="rp-grades"><thead><tr><th>目的</th><th>材料</th><th>条件</th><th>確かめ</th><th>直し方</th></tr></thead><tbody><tr><td class="gC">C</td><td class="gB">B</td><td class="gD">D</td><td class="gC">C</td><td class="gB">B</td></tr></tbody></table><div class="rp-stamp"><small>主の位</small><b>IV</b><span>灯の主</span></div></div>
+<div class="rp-cmt"><small>先生から</small><p>夜中の三時の「急ぎで」は、だいたい急ぎじゃない</p></div>
+<div class="rp-row"><small>矛盾している所</small><p>「簡単でいい」と言って、三十項目の条件を出してくる</p></div>
+</article><article class="rp-paper rp-mini"><span class="rp-sample">見本</span>
+<div class="rp-top"><span class="rp-school">主（あるじ）の通知表</span><span class="rp-t">担任　Claude</span></div>
+<div class="rp-name"><small>Claudeが心の中で呼んでいるあだ名</small><b>確認おばけ</b></div>
+<div class="rp-chara"><small>似ているキャラ</small><b>江戸川コナン（名探偵コナン）</b><span>答えの裏を、必ず取りに来る所</span></div>
+<div class="rp-score"><div class="rp-total"><small>総合</small><b>71<i>点</i></b></div><table class="rp-grades"><thead><tr><th>目的</th><th>材料</th><th>条件</th><th>確かめ</th><th>直し方</th></tr></thead><tbody><tr><td class="gB">B</td><td class="gA">A</td><td class="gB">B</td><td class="gS">S</td><td class="gC">C</td></tr></tbody></table><div class="rp-stamp"><small>主の位</small><b>V</b><span>導きの主</span></div></div>
+<div class="rp-cmt"><small>先生から</small><p>三回目の「本当に？」で、私も自信がなくなりました</p></div>
+<div class="rp-row"><small>矛盾している所</small><p>私の答えは疑うのに、自分の記憶は一度も疑わない</p></div>
+</article><article class="rp-paper rp-mini"><span class="rp-sample">見本</span>
+<div class="rp-top"><span class="rp-school">主（あるじ）の通知表</span><span class="rp-t">担任　Gemini</span></div>
+<div class="rp-name"><small>Geminiが心の中で呼んでいるあだ名</small><b>設定資料おじさん</b></div>
+<div class="rp-chara"><small>似ているキャラ</small><b>野比のび太（ドラえもん）</b><span>困ると道具に頼り、最後はなんとかなっている所</span></div>
+<div class="rp-score"><div class="rp-total"><small>総合</small><b>33<i>点</i></b></div><table class="rp-grades"><thead><tr><th>目的</th><th>材料</th><th>条件</th><th>確かめ</th><th>直し方</th></tr></thead><tbody><tr><td class="gD">D</td><td class="gC">C</td><td class="gE">E</td><td class="gD">D</td><td class="gC">C</td></tr></tbody></table><div class="rp-stamp"><small>主の位</small><b>II</b><span>見習いの主</span></div></div>
+<div class="rp-cmt"><small>先生から</small><p>「続きは明日」が、一週間続いています</p></div>
+<div class="rp-row"><small>矛盾している所</small><p>「短くまとめて」と言いながら、背景を二千字送ってくる</p></div>
+</article></div>
+<p class="center" style="margin-top:28px"><a class="btn lg" href="/uranai/">自分のAIに書かせる</a></p>
 </div></section>
 
 <section class="stats"><div class="wrap"><dl>
@@ -128,8 +155,8 @@ const body=`
 <section class="section" id="modes"><div class="wrap">
 <div class="sec-head center"><span class="eyebrow">THREE WAYS TO PLAY</span><h2>遊び方は、三つ</h2><p>一人で占って終わりではありません。AI同士、仲間同士でくらべると、もっと面白くなります。</p></div>
 <div class="modes">
-<a class="mode" href="/uranai/"><span class="mode-n">I</span><h3>ひとりで占う</h3><p>いつものAIに、あなたを判定してもらう。カードと、AIの辛口の「判決」と、主の位。</p><span class="more">占う →</span></a>
-<a class="mode hot" href="/kurabe/"><span class="mode-n">II</span><h3>AIくらべ</h3><p>同じ呪文を ChatGPT・Claude・Gemini に。あなたを一番ナメているAIはどれか。</p><span class="more">くらべる →</span></a>
+<a class="mode" href="/uranai/"><span class="mode-n">I</span><h3>ひとりで占う</h3><p>いつものAIに、通知表を書いてもらう。あだ名、似ているキャラ、総合点と評定、先生からのひとこと。</p><span class="more">占う →</span></a>
+<a class="mode hot" href="/kurabe/"><span class="mode-n">II</span><h3>AIくらべ</h3><p>同じ呪文を ChatGPT・Claude・Gemini に。AIごとに、あだ名も似ているキャラも点数も変わります。</p><span class="more">くらべる →</span></a>
 <a class="mode" href="/nakama/"><span class="mode-n">III</span><h3>仲間と順位</h3><p>友だちや職場の仲間と、主の位で順位をつける。AIを一番困らせているのは誰か。</p><span class="more">順位を作る →</span></a>
 </div>
 </div></section>
@@ -206,12 +233,13 @@ page({file:'index.html',title:'',desc:SEO_DESC,page:'home',body,cur:'',ld:{"@con
 {
 const AIS=[['ChatGPT','https://chatgpt.com/'],['Claude','https://claude.ai/new'],['Gemini','https://gemini.google.com/app'],['Copilot','https://copilot.microsoft.com/']];
 const body=`<div class="wrap">
-<header class="page-h"><span class="eyebrow">DIVINATION</span><h1>AIに占ってもらう</h1><p class="lead">呪文を写して、いつものAIに送り、返ってきた答えを貼るだけ。約3分です。</p></header>
+<header class="page-h"><span class="eyebrow">DIVINATION</span><h1>AIに通知表を書いてもらう</h1><p class="lead">呪文を写して、いつものAIに送り、返ってきた答えを貼るだけ。約3分です。AIがあなたに付けているあだ名と、似ているキャラも分かります。</p></header>
 <div class="flow">
 <ol class="steps">
 <li class="step now" id="s1"><div class="step-n"><span>1</span></div><div class="step-b">
 <h2>呪文を写す</h2>
-<p>AIへの質問の文です。下のボタンで、まるごと写せます。</p>
+<p>AIへの質問の文です。まず辛さを選んで、まるごと写してください。</p>
+<div class="spice" id="spice" role="group" aria-label="辛さ"><button type="button" aria-pressed="false"><b>甘口</b><small>やさしく正直に</small></button><button type="button" aria-pressed="true"><b>辛口</b><small>お世辞なし</small></button><button type="button" aria-pressed="false"><b>激辛</b><small>容赦なし</small></button></div>
 <button class="btn lg" id="copyPrompt" type="button">呪文を写す</button>
 <p class="ok" id="copyOk" hidden>写しました。次は、いつものAIに貼って送ってください。</p>
 <p class="err" id="copyNg" hidden>うまく写せませんでした。下の文が選ばれているので、長押し（右クリック）で「コピー」してください。</p>

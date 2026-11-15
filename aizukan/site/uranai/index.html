@@ -22,8 +22,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho+B1:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="/assets/site.css?v=49693219">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho+B1:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Kurenaido&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=75679307">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AIタイプ図鑑","item":"https://ai-type-zukan.pages.dev/"},{"@type":"ListItem","position":2,"name":"占う"}]}</script>
 </head>
 <body data-page="uranai">
@@ -38,12 +38,13 @@
 <main id="main">
 <div class="wrap"><nav class="crumbs" aria-label="現在地"><a href="/">トップ</a><span aria-hidden="true">/</span><span aria-current="page">占う</span></nav></div>
 <div class="wrap">
-<header class="page-h"><span class="eyebrow">DIVINATION</span><h1>AIに占ってもらう</h1><p class="lead">呪文を写して、いつものAIに送り、返ってきた答えを貼るだけ。約3分です。</p></header>
+<header class="page-h"><span class="eyebrow">DIVINATION</span><h1>AIに通知表を書いてもらう</h1><p class="lead">呪文を写して、いつものAIに送り、返ってきた答えを貼るだけ。約3分です。AIがあなたに付けているあだ名と、似ているキャラも分かります。</p></header>
 <div class="flow">
 <ol class="steps">
 <li class="step now" id="s1"><div class="step-n"><span>1</span></div><div class="step-b">
 <h2>呪文を写す</h2>
-<p>AIへの質問の文です。下のボタンで、まるごと写せます。</p>
+<p>AIへの質問の文です。まず辛さを選んで、まるごと写してください。</p>
+<div class="spice" id="spice" role="group" aria-label="辛さ"><button type="button" aria-pressed="false"><b>甘口</b><small>やさしく正直に</small></button><button type="button" aria-pressed="true"><b>辛口</b><small>お世辞なし</small></button><button type="button" aria-pressed="false"><b>激辛</b><small>容赦なし</small></button></div>
 <button class="btn lg" id="copyPrompt" type="button">呪文を写す</button>
 <p class="ok" id="copyOk" hidden>写しました。次は、いつものAIに貼って送ってください。</p>
 <p class="err" id="copyNg" hidden>うまく写せませんでした。下の文が選ばれているので、長押し（右クリック）で「コピー」してください。</p>
@@ -82,7 +83,7 @@
 </div>
 <div class="copy"><span>© 2026 AIタイプ図鑑</span><span>ChatGPT・Claude・Gemini・Copilot は各社の商標です。本サイトは各社とは関係ありません。</span></div>
 </div></footer>
-<script src="/assets/data.js?v=49693219"></script>
-<script src="/assets/app.js?v=49693219"></script>
+<script src="/assets/data.js?v=75679307"></script>
+<script src="/assets/app.js?v=75679307"></script>
 </body>
 </html>

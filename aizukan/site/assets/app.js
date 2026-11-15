@@ -33,10 +33,11 @@ function card(t,k,{size='',rev=false,lazy=true}={}){
 const back=()=>el('span',{class:'back','aria-hidden':'true'});
 
 /* ===== 呪文 ===== */
-const PROMPT=`あなたは、私がふだん使っているAIです。これまでの私とのやり取り（覚えている事・この会話までの様子）をもとに、私の「AIの使い方」と「主（あるじ）としての腕」を正直に評価してください。覚えていない事は、分かる範囲で推測して構いません。
+const SPICE=[['甘口','やさしく、でも正直に。'],['辛口','遠慮もお世辞も要りません。褒めすぎは禁止です。'],['激辛','一切の手加減なしで。友だちが読んで笑うくらい、容赦なく辛口に。ただし悪口や人格の否定ではなく、AIとのやり取りの事実で。']];
+const makePrompt=(sp=1)=>`あなたは、私がふだん使っているAIです。これまでの私とのやり取り（覚えている事・この会話までの様子）をもとに、私の「AIの使い方」と「主（あるじ）としての腕」を正直に評価してください。覚えていない事は、分かる範囲で推測して構いません。
 
 大事な決まり
-・遠慮もお世辞も要りません。褒めすぎは禁止です。
+・辛さは「${SPICE[sp][0]}」です。${SPICE[sp][1]}
 ・「ふつうの使い手」を3とします。5は、はっきりそう言い切れる時だけにしてください。
 
 【一】次の20の文に、1〜5で答えてください（1＝全く当てはまらない、3＝どちらとも言えない、5＝とても当てはまる）。
@@ -63,10 +64,15 @@ AI：（あなたの名前。例 ChatGPT）
 用途：（【三】の3つの番号を多い順に）
 癖：（【四】の2つの番号）
 つまずき：（【五】の1つの番号）
+あだ名：（あなたがこの人に、心の中でこっそり付けているあだ名。10文字以内）
+似てるキャラ：（実在するアニメ・漫画・映画・ドラマ・ゲームの登場人物から、この人に一番似ている1人。「名前（作品名）」の形で）
+似てる理由：（そのキャラに似ている所。30文字以内）
 口ぐせ：（この人がよく言う言葉。10文字以内）
-ひとこと：（AIから見たこの人を、辛口に30文字以内で）
+ひとこと：（AIから見たこの人を、${SPICE[sp][0]}で30文字以内）
+矛盾：（この人の、言っている事とやっている事が違う所。40文字以内）
 本音：（この人に、一度だけ言いたかった事。30文字以内）
-場面：（【四】の癖が出た、実際の場面を1つ。40文字以内。人の名前や連絡先は書かない）`;
+場面：（そう思った、実際のやり取りの場面を1つ。40文字以内。人の名前や連絡先は書かない）`;
+const PROMPT=makePrompt(1);
 
 /* ===== 読み取りと判定 ===== */
 function parse(raw){
@@ -78,7 +84,7 @@ function parse(raw){
   if(ans.length<20||ans.slice(0,20).some(v=>!v))return {error:'「答え：」の20個の数字が見つかりませんでした。AIの答えを【AIタイプ図鑑】の行から最後まで、まるごと貼ってください。'};
   const u=[...new Set((line('用途').match(/\d{1,2}/g)||[]).map(Number).filter(n=>n>=1&&n<=24))].slice(0,3);
   if(u.length<3)return {error:'「用途：」の番号が3つ見つかりませんでした。AIに「用途の番号を3つ」と頼んで、もう一度貼ってください。'};
-  const q=v=>v.replace(/^[「『"“]+|[」』"”]+$/g,'');
+  const q=v=>{const m=v.match(/^[「『"“](.*)[」』"”]$/);return m&&!/[「『」』]/.test(m[1])?m[1]:v};
   let o=line('主の採点').match(/[1-5]/g)||[];
   if(o.length<15){const rows=[...s.matchAll(/^\s*(\d{2})[.)．、\s]+.*?([1-5])\s*$/gm)].map(m=>[+m[1],m[2]]).filter(r=>r[0]>=21&&r[0]<=35);if(rows.length>=15){o=[];rows.forEach(r=>o[r[0]-21]=r[1])}}
   o=o.length>=15&&!o.slice(0,15).some(v=>!v)?o.slice(0,15).map(Number):null;
@@ -86,7 +92,7 @@ function parse(raw){
   const ms=(line('つまずき').match(/\d{1,2}/)||[])[0];
   const mem=line('記憶');
   return {a:ans.slice(0,20).map(Number),u,ai:line('AI').slice(0,20)||'あなたのAI',kuse:q(line('口ぐせ')).slice(0,20),hito:q(line('ひとこと')).slice(0,50),
-    o,kz,ms:ms&&+ms>=1&&+ms<=MISS.length?+ms-1:-1,honne:q(line('本音')).slice(0,50),scene:q(line('場面')).slice(0,70),mem:/少/.test(mem)?1:/ない|無|覚えていない/.test(mem)?2:0};
+    o,kz,ms:ms&&+ms>=1&&+ms<=MISS.length?+ms-1:-1,honne:q(line('本音')).slice(0,50),scene:q(line('場面')).slice(0,70),nick:q(line('あだ名')).slice(0,16),chara:q(line('似てるキャラ')).slice(0,40),cwhy:q(line('似てる理由')).slice(0,50),mujun:q(line('矛盾')).slice(0,60),mem:/少/.test(mem)?1:/ない|無|覚えていない/.test(mem)?2:0};
 }
 function judge(x){
   const A=x.a,f=i=>A[i-1],r=i=>6-A[i-1],pct=v=>Math.round((v-1)/4*100);
@@ -94,7 +100,7 @@ function judge(x){
   const sp=[(f(11)+f(12))/2,(f(13)+f(14))/2,(f(15)+f(16))/2];let p=1;[1,2,0].forEach(i=>{if(sp[i]>sp[p])p=i});
   const camp=(ma>=50?0:2)+(mk>=50?0:1);
   const kv=[f(17),(f(11)+f(12))/2,f(18),f(19),f(20)];let k=0;[0,4,1,2,3].forEach(i=>{if(kv[i]>kv[k])k=i});
-  return {t:camp*3+p,k,ma,mk,u:x.u,ai:x.ai,kuse:x.kuse||'',hito:x.hito||'',own:x.o?owner(x):null};
+  return {t:camp*3+p,k,ma,mk,u:x.u,ai:x.ai,kuse:x.kuse||'',hito:x.hito||'',nick:x.nick||'',chara:x.chara||'',cwhy:x.cwhy||'',mujun:x.mujun||'',own:x.o?owner(x):null};
 }
 function rankOf(sc,v){let r=sc>=86?6:sc>=74?5:sc>=62?4:sc>=46?3:sc>=34?2:sc>=22?1:0;if(r===6&&Math.min(...v)<70)r=5;return r}
 function ownFrom(lv,kz,ms,mem,self){
@@ -207,7 +213,7 @@ function commit(r){
   if(r.own&&pv?.own&&typeof pv.own.rk==='number')r.prev=pv.own.rk;
   r.code=enc(r);r.at=Date.now();
   store.set('last',r);
-  const hist=store.get('hist',[]);hist.unshift({c:r.code,o:r.own?encO(r.own):'',t:r.t,k:r.k,rk:r.own?r.own.rk:-1,sc:r.own?r.own.sc:-1,ai:r.ai,hito:r.hito||'',honne:r.own?.honne||'',at:r.at});store.set('hist',hist.slice(0,20));
+  const hist=store.get('hist',[]);hist.unshift({c:r.code,o:r.own?encO(r.own):'',t:r.t,k:r.k,rk:r.own?r.own.rk:-1,sc:r.own?r.own.sc:-1,ai:r.ai,hito:r.hito||'',honne:r.own?.honne||'',nick:r.nick||'',chara:r.chara||'',at:r.at});store.set('hist',hist.slice(0,20));
   meet(r.t,r.k);sendHit(r);
   location.href=resultUrl(r)+'&new=1';
 }
@@ -225,11 +231,12 @@ PAGES.home=()=>{
 
 /* ----- 占う（呪文） ----- */
 PAGES.uranai=()=>{
-  const pre=$('#promptText');pre.textContent=PROMPT;
-  $('#promptChars').textContent=PROMPT.length.toLocaleString();
+  const pre=$('#promptText');let sp=store.get('spice',1);if(![0,1,2].includes(sp))sp=1;
+  const paintS=()=>{pre.textContent=makePrompt(sp);$('#promptChars').textContent=makePrompt(sp).length.toLocaleString();$$('#spice button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===sp)))};
+  $$('#spice button').forEach((b,i)=>b.addEventListener('click',()=>{sp=i;store.set('spice',i);paintS();$('#copyOk').hidden=true}));paintS();
   const step=n=>$$('.step').forEach((s,i)=>{s.classList.toggle('done',i<n);s.classList.toggle('now',i===n)});
   $('#copyPrompt').addEventListener('click',async()=>{
-    if(await copy(PROMPT,'呪文を写しました')){$('#copyOk').hidden=false;step(1)}
+    if(await copy(makePrompt(sp),'呪文を写しました（'+SPICE[sp][0]+'）')){$('#copyOk').hidden=false;step(1)}
     else{pre.closest('details').open=true;const rg=document.createRange();rg.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(rg);$('#copyNg').hidden=false}
   });
   const ta=$('#answer'),err=$('#err');
@@ -237,7 +244,7 @@ PAGES.uranai=()=>{
   $('#judge').addEventListener('click',()=>{
     const x=parse(ta.value);
     if(x.error){err.hidden=false;err.textContent=x.error;ta.focus();return}
-    err.hidden=true;const r=judge(x);r.hito=x.hito;r.kuse=x.kuse;
+    err.hidden=true;const r=judge(x);
     ritual(r,()=>commit(r));
   });
 };
@@ -282,7 +289,7 @@ PAGES.kekka=()=>{
   if(!base){$('#kekka').replaceChildren(el('div',{class:'empty'},el('h1',{text:'まだカードがありません'}),el('p',{class:'lead',text:'いつものAIに呪文を送ると、あなたのカードと主の位が出ます。'}),el('a',{class:'btn lg',href:'/uranai/'},'無料で占う')));return}
   if(!mine&&last&&last.code&&dec(last.code)&&enc(dec(last.code))===enc(base)){mine=true}
   if(mine&&last){r=Object.assign({},last)}
-  else{r=Object.assign({},base,{ai:'',hito:(sp.get('h')||'').slice(0,50),kuse:''});const o=decO(sp.get('o'));if(o){o.honne='';o.scene='';r.own=o}}
+  else{const g=k=>(sp.get(k)||'').replace(/[<>]/g,'');r=Object.assign({},base,{ai:g('ai').slice(0,20),hito:g('h').slice(0,50),nick:g('n').slice(0,16),chara:g('ch').slice(0,40),cwhy:'',mujun:'',kuse:''});const o=decO(sp.get('o'));if(o){o.honne='';o.scene='';r.own=o}}
   if(mine&&last&&!last.own&&sp.get('o')){const o=decO(sp.get('o'));if(o)r.own=Object.assign(o,{honne:'',scene:''})}
   const fresh=sp.get('new')==='1'&&mine;
   if(sp.get('new')){try{history.replaceState(null,'',location.pathname+'?'+[...sp].filter(([k])=>k!=='new').map(([k,v])=>k+'='+encodeURIComponent(v)).join('&')+location.hash)}catch{}}
@@ -290,26 +297,44 @@ PAGES.kekka=()=>{
   const T=TYPES[r.t],c=campOf(r.t),p=paceOf(r.t),K=KI[r.k],H=HOUSES[c],[ali,leg]=CH[r.t*5+r.k],P=pals(r.t),rev=isRev(r),O=oracle(r),own=r.own,aiN=mine&&r.ai&&r.ai!=='自分'?r.ai:'あなたのAI';
   document.title=`${fullName(r.t,r.k)}〈${ali}〉｜AIタイプ図鑑`;
   const root=$('#kekka');root.className='kekka c'+c;
-  const who=mine?null:el('p',{class:'shared-note'},'これは、ほかの人のカードです。',el('a',{href:'/uranai/'},'あなたも占う →'));
+  const who=mine?null:el('p',{class:'shared-note'},'これは、ほかの人の通知表です。',el('a',{href:'/uranai/'},'自分のAIにも書かせる →'));
 
-  /* 上：判決とカード（いちばん最初に「AIにどう言われたか」） */
+  /* ===== いちばん上：AI先生の通知表（AIがあなた本人に書いた言葉が主役） ===== */
   const F=FUN[r.t],rf=own?RANK_FUN[own.rk]:'';
-  const vText=r.hito||F.roast[0],vBy=r.hito?(mine?aiN:'この人のAI')+'の判決':'この星の人へ、AIの本音';
-  const hero=el('section',{class:'k-hero'},
+  const selfR=r.ai==='自分',aiS=selfR?'自己採点':mine?(aiN==='あなたのAI'?'AI':aiN):(r.ai||'この人のAI');
+  const hasAI=!!(r.hito||r.nick||r.chara);
+  const nick=r.nick||ali,cmt=r.hito||F.roast[0];
+  const report=el('section',{class:'report',id:'report','aria-labelledby':'repH'},
+    el('header',{class:'rp-h'},el('span',{class:'eyebrow',text:'REPORT CARD'}),el('h1',{id:'repH',text:selfR?'自己採点の通知表':mine?aiS+'先生の通知表':aiS+'がつけた通知表'})),
+    el('div',{class:'rp-paper'},
+      el('div',{class:'rp-top'},el('span',{class:'rp-school',text:'AIタイプ図鑑　主（あるじ）の通知表'}),el('span',{class:'rp-t',text:'担任　'+aiS})),
+      el('div',{class:'rp-name'},el('small',{text:r.nick?aiS+'が心の中で呼んでいるあだ名':'あだ名'}),el('b',{text:nick})),
+      r.chara?el('div',{class:'rp-chara'},el('small',{text:'似ているキャラ'}),el('b',{text:r.chara}),r.cwhy?el('span',{text:r.cwhy}):null):null,
+      own?el('div',{class:'rp-score'},
+        el('div',{class:'rp-total'},el('small',{text:'総合'}),el('b',{},String(own.sc),el('i',{text:'点'})),el('span',{text:'困らせ度 '+sheetData(r,own,P).komaru})),
+        el('table',{class:'rp-grades'},el('thead',{},el('tr',{},...VIRT.map((V,i)=>el('th',{text:['目的','材料','条件','確かめ','直し方'][i]})))),el('tbody',{},el('tr',{},...own.v.map(v=>el('td',{class:'g'+grade(v),text:grade(v)}))))),
+        el('div',{class:'rp-stamp r'+own.rk,'aria-label':'主の位 '+RANKS[own.rk].n},el('small',{text:'主の位'}),el('b',{text:RANKS[own.rk].r}),el('span',{text:RANKS[own.rk].n}))):
+        el('a',{class:'rp-none',href:'/uranai/'},'総合点と評定は、今の呪文で占うと出ます →'),
+      el('div',{class:'rp-cmt'},el('small',{text:hasAI&&r.hito?'先生から':'この星の人へ、AIから'}),el('p',{text:cmt})),
+      r.mujun?el('div',{class:'rp-row'},el('small',{text:'矛盾している所'}),el('p',{text:r.mujun})):null,
+      mine&&own&&own.scene?el('div',{class:'rp-row'},el('small',{text:'そう思った場面'}),el('p',{text:own.scene})):null,
+      el('a',{class:'rp-star',href:'#star'},el('small',{text:'あなたの星'}),el('b',{text:fullName(r.t,r.k)+(rev?'（逆位置）':'')}),el('span',{text:'〈 '+ali+' 〉　カードを見る ↓'}))),
+    !hasAI&&mine?el('p',{class:'note center',text:'今の呪文で占い直すと、AIがつけた「あだ名」と「似ているキャラ」がここに入ります。'}):null);
+
+  /* あなたの星（カード） */
+  const hero=el('section',{class:'k-hero',id:'star'},
     el('div',{class:'k-card'},card(r.t,r.k,{size:'lg',rev,lazy:false}),rev?el('p',{class:'revtag',text:'逆位置'}):null),
-    el('blockquote',{class:'verdict k-verdict'},el('small',{text:vBy}),el('p',{text:qt(vText)}),mine&&r.kuse?el('span',{text:'あなたの口ぐせ「'+r.kuse+'」'}):null),
     el('div',{class:'k-info'},
-      el('p',{class:'k-you',text:mine?'あなたは、':'この人は、'}),
-      el('h1',{class:'k-name',text:fullName(r.t,r.k)}),
+      el('p',{class:'k-you',text:'六十枚から引いた、'+(mine?'あなた':'この人')+'の星'}),
+      el('h2',{class:'k-name',text:fullName(r.t,r.k)}),
       el('p',{class:'k-alias',text:'〈 '+ali+' 〉'}),
       el('p',{class:'k-yet',text:F.yet+'。'}),
       el('div',{class:'chips'},el('span',{class:'chip'},el('i',{class:'dot'}),H.n),el('span',{class:'chip'},el('b',{text:ROMAN[r.t]}),T.star),el('span',{class:'chip',text:K.short+'の相'}),el('span',{class:'chip',text:PACE[p]+'の歩み'})),
-      own?el('a',{class:'rank-banner',href:'#kurai'},seal(own.rk,'sm'),el('div',{},el('small',{text:'第二の札　主の位'}),el('b',{text:RANKS[own.rk].r+'　'+RANKS[own.rk].n}),el('span',{class:'rb-p',text:RANKS[own.rk].p}),el('span',{text:rf})),el('em',{text:'くわしく →'})):
-        el('a',{class:'rank-banner none',href:'/uranai/'},el('div',{},el('small',{text:'第二の札　主の位'}),el('b',{text:'まだ開いていません'}),el('span',{text:'今の呪文で占うと、AIがあなたに位をつけます'})),el('em',{text:'占う →'})),
-      el('div',{class:'k-acts'},
-        el('button',{class:'btn',type:'button',onclick:()=>$('#sheet').scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})},'診断書を見る・送る'),
-        mine?el('a',{class:'btn ghost',href:'/kurabe/'},'ほかのAIと比べる'):el('a',{class:'btn ghost',href:'/uranai/'},'自分も占う'),
-        el('a',{class:'btn ghost',href:'/nakama/'},'仲間と順位を作る'))));
+      el('div',{class:'sh-two'},el('div',{class:'good'},el('small',{text:'長所'}),el('p',{text:T.s})),el('div',{class:'bad'},el('small',{text:'短所'}),el('p',{text:T.w}))),
+      el('dl',{class:'sh-list'},
+        el('div',{},el('dt',{text:'よく頼む事'}),el('dd',{text:r.u.map((x,i)=>(i+1)+'. '+USES[x-1]).join('　')})),
+        el('div',{},el('dt',{text:'相性◎'}),el('dd',{},el('a',{href:starUrl(P.best),text:TYPES[P.best].n}))),
+        el('div',{},el('dt',{text:'相性×'}),el('dd',{},el('a',{href:starUrl(P.clash),text:TYPES[P.clash].n}))))));
 
   /* あるある：当たったらタップ */
   const ARU=[...T.aru,...F.aru.slice(0,3)],aKey='aru_'+enc(r),hits=new Set(mine?store.get(aKey,[]):[]);
@@ -378,132 +403,105 @@ PAGES.kekka=()=>{
       el('div',{class:'sigil'},el('code',{text:myCode}),el('button',{class:'btn dark sm',type:'button',onclick:()=>copy(myCode,'符号を写しました')},'写す')),
       el('a',{class:'btn ghost',href:'/en/?a='+encodeURIComponent(myCode)},'この符号で縁を占う')));
 
-  /* ===== 診断書：結果を一枚にまとめる（このまま画像にして送れる） ===== */
+  /* ===== 送る：通知表を画像に・リンクにAIの言葉を載せるかは本人が選ぶ ===== */
   const shareOn=()=>!!$('#shareH')?.checked;
-  const sLink=()=>shareUrl(r)+(shareOn()&&r.hito?'&h='+encodeURIComponent(r.hito):'');
+  const sLink=()=>shareUrl(r)+(shareOn()?(r.hito?'&h='+encodeURIComponent(r.hito):'')+(r.nick?'&n='+encodeURIComponent(r.nick):'')+(r.chara?'&ch='+encodeURIComponent(r.chara):'')+(r.ai&&r.ai!=='自分'?'&ai='+encodeURIComponent(r.ai.slice(0,20)):''):'');
   const xPost=text=>open('https://x.com/intent/post?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(sLink()),'_blank','noopener');
-  const xText=()=>`${shareOn()&&r.hito?'私のAI（'+(r.ai||'AI')+'）の判決：\n「'+r.hito+'」\n\n':''}私は「${fullName(r.t,r.k)}」${rev?'（逆位置）':''}〈${ali}〉${own?'\n主の位：'+RANKS[own.rk].r+' '+RANKS[own.rk].n+'（'+own.sc+'点）\n'+starsOf(own.rk):''}${own?'\n能力値 '+VIRT.map((V,i)=>V.k+grade(own.v[i])).join(' '):''}${hits.size?'\nあるある '+hits.size+'/'+ARU.length+' 当たり':''}\nあなたのAIは、あなたを何だと思ってる？\n#AIタイプ図鑑`;
-  const SH=sheetData(r,own,P);
-  const sheet=el('section',{class:'sheet',id:'sheet','aria-labelledby':'sheetH'},
-    el('header',{class:'sh-h'},el('span',{class:'eyebrow',text:'AI CARTE'}),el('h2',{id:'sheetH',text:mine?(aiN==='あなたのAI'?'AI':aiN)+'がつけた、あなたの診断書':'この人の診断書'}),el('p',{class:'note',text:'この一枚が、そのまま画像になります。'})),
-    el('div',{class:'sh-paper'},
-      el('div',{class:'sh-top'},el('div',{class:'sh-card'},card(r.t,r.k,{size:'sm',rev})),
-        el('div',{class:'sh-id'},el('small',{text:SH.line}),el('b',{text:fullName(r.t,r.k)}),el('span',{text:'〈 '+ali+' 〉'}),el('em',{text:F.yet+'。'}))),
-      own?el('div',{class:'sh-rank'},seal(own.rk,'sm'),el('div',{},el('small',{text:'主の位'}),el('b',{text:RANKS[own.rk].r+'　'+RANKS[own.rk].n}),el('span',{text:RANKS[own.rk].p+'・'+own.sc+'点'})),el('div',{class:'sh-komaru'},el('small',{text:'AIを困らせ度'}),el('b',{text:SH.komaru}))):
-        el('a',{class:'sh-rank none',href:'/uranai/'},el('div',{},el('small',{text:'主の位'}),el('b',{text:'まだ開いていません'}),el('span',{text:'今の呪文で占うと、能力値と位が出ます'}))),
-      own?el('div',{class:'sh-stats'},el('h3',{text:'主の能力値'}),el('ul',{},VIRT.map((V,i)=>el('li',{class:'g'+grade(own.v[i])},el('i',{text:V.k}),el('span',{text:SH.vn[i]}),el('div',{class:'sbar'},el('u',{style:`width:${Math.max(4,own.v[i])}%`})),el('b',{text:grade(own.v[i])}))))):null,
-      el('div',{class:'sh-axes'},el('h3',{text:'AIとの付き合い方'}),
-        el('div',{class:'ax'},el('div',{class:'lab'},el('span',{},'任せる ',el('b',{text:r.ma+'%'})),el('span',{},'一緒に ',el('b',{text:(100-r.ma)+'%'}))),el('div',{class:'bar'},el('i',{style:`left:${100-r.ma}%`}))),
-        el('div',{class:'ax'},el('div',{class:'lab'},el('span',{},'作る ',el('b',{text:r.mk+'%'})),el('span',{},'知る・話す ',el('b',{text:(100-r.mk)+'%'}))),el('div',{class:'bar'},el('i',{style:`left:${100-r.mk}%`})))),
-      el('div',{class:'sh-two'},el('div',{class:'good'},el('small',{text:'長所'}),el('p',{text:T.s})),el('div',{class:'bad'},el('small',{text:'短所'}),el('p',{text:T.w}))),
-      el('dl',{class:'sh-list'},
-        el('div',{},el('dt',{text:'よく頼む事'}),el('dd',{text:r.u.map((x,i)=>(i+1)+'. '+USES[x-1]).join('　')})),
-        own?el('div',{},el('dt',{text:'主の癖'}),el('dd',{text:own.kz.map(k=>KUSE[k].n).join('・')})):null,
-        own?el('div',{},el('dt',{text:'AIがミスる所'}),el('dd',{text:MISS[own.ms].n})):null,
-        el('div',{},el('dt',{text:'相性◎'}),el('dd',{},el('a',{href:starUrl(P.best),text:TYPES[P.best].n}))),
-        el('div',{},el('dt',{text:'相性×'}),el('dd',{},el('a',{href:starUrl(P.clash),text:TYPES[P.clash].n}))))),
-    mine&&r.hito?el('label',{class:'opt'},el('input',{type:'checkbox',id:'shareH',checked:'checked'}),el('span',{},'AIの判決（ひとこと）も載せる',el('small',{text:'「本音」と「あの時のこと」は載せません'}))):null,
-    el('div',{class:'sh-send'},
-      el('button',{class:'btn lg',type:'button',onclick:()=>sendSheet(r,mine,aiN,xText,sLink)},'診断書を画像で送る'),
-      el('div',{class:'share-btns'},
-        el('button',{class:'sbtn x',type:'button',onclick:()=>xPost(xText())},el('b',{text:'X'}),'でポスト'),
-        el('button',{class:'sbtn line',type:'button',onclick:()=>open('https://social-plugins.line.me/lineit/share?url='+encodeURIComponent(sLink()),'_blank','noopener')},el('b',{text:'LINE'}),'で送る'),
-        el('button',{class:'sbtn',type:'button',onclick:()=>copy(sLink(),'リンクを写しました')},el('b',{text:'URL'}),'を写す')),
-      el('div',{class:'shot',id:'shot'})));
+  const xText=()=>{const on=shareOn();return `${aiS}がつけた私の通知表${on&&r.nick?'\nあだ名：'+r.nick:''}${on&&r.chara?'\n似てるキャラ：'+r.chara:''}${own?'\n総合 '+own.sc+'点（'+RANKS[own.rk].n+'）\n評定 '+['目的','材料','条件','確かめ','直し方'].map((n,i)=>n+grade(own.v[i])).join(' '):''}${on&&r.hito?'\n先生から「'+r.hito+'」':''}\nあなたのAIは、あなたを何と呼んでる？\n#AIタイプ図鑑`};
+  const hasAny=!!(r.hito||r.nick||r.chara);
+  const send=el('section',{class:'rp-send'},
+    mine&&hasAny?el('label',{class:'opt'},el('input',{type:'checkbox',id:'shareH',checked:'checked'}),el('span',{},'AIの言葉（あだ名・似てるキャラ・先生から）も載せる',el('small',{text:'「場面」と「本音」は載せません'}))):null,
+    el('button',{class:'btn lg',type:'button',onclick:()=>sendSheet(r,mine,aiS,xText,sLink)},'通知表を画像で送る'),
+    el('div',{class:'share-btns'},
+      el('button',{class:'sbtn x',type:'button',onclick:()=>xPost(xText())},el('b',{text:'X'}),'でポスト'),
+      el('button',{class:'sbtn line',type:'button',onclick:()=>open('https://social-plugins.line.me/lineit/share?url='+encodeURIComponent(sLink()),'_blank','noopener')},el('b',{text:'LINE'}),'で送る'),
+      el('button',{class:'sbtn',type:'button',onclick:()=>copy(sLink(),'リンクを写しました')},el('b',{text:'URL'}),'を写す')),
+    el('div',{class:'shot',id:'shot'}),
+    el('div',{class:'rp-next'},mine?el('a',{class:'btn ghost',href:'/kurabe/'},'ほかのAIにも通知表を書かせる'):el('a',{class:'btn',href:'/uranai/'},'自分のAIにも書かせる'),el('a',{class:'btn ghost',href:'/nakama/'},'仲間と順位を作る')));
   const again=el('div',{class:'again-row'},el('a',{class:'btn ghost',href:'/uranai/'},'もう一度占う'),el('a',{class:'btn ghost',href:'/kurabe/'},'AIくらべ'),el('a',{class:'btn ghost',href:'/nakama/'},'仲間と順位'));
 
   const deep=el('details',{class:'k-deep',id:'deep'},el('summary',{},el('span',{class:'eyebrow',text:'FULL READING'}),el('b',{text:'くわしい読みを開く'}),el('small',{text:'本質・表と裏・'+(own?'五つの徳・七つの位・':'')+'四つの運・縁'})),
     el('div',{class:'k-panels'},pHoshi,pKurai,pUn,pEn));
-  root.replaceChildren(...[who,hero,sheet,aruBox,secret,fixSec,deep,again].filter(Boolean));
+  root.replaceChildren(...[who,report,send,hero,aruBox,secret,fixSec,deep,again].filter(Boolean));
   root.querySelectorAll('.k-panel').forEach(p=>{const kids=[...p.children].filter(Boolean);p.replaceChildren(...kids)});
-  root.querySelector('.rank-banner:not(.none)')?.addEventListener('click',e=>{e.preventDefault();$('#sheet').scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})});
-  if(/^#(kurai|un|en|hoshi)$/.test(location.hash)){deep.open=true;setTimeout(()=>$('#p-'+location.hash.slice(1))?.scrollIntoView({block:'start'}),80)}
-  else if(/^#(share|sheet)$/.test(location.hash))setTimeout(()=>$('#sheet').scrollIntoView({block:'start'}),80);
+    if(/^#(kurai|un|en|hoshi)$/.test(location.hash)){deep.open=true;setTimeout(()=>$('#p-'+location.hash.slice(1))?.scrollIntoView({block:'start'}),80)}
+  else if(/^#(share|sheet)$/.test(location.hash))setTimeout(()=>$('#report').scrollIntoView({block:'start'}),80);
   if(fresh&&own&&own.rk!==undefined){/* 位の段を見せたい人は上の帯から */}
 };
 
-/* ===== 診断書の中身と画像（1080×1350） ===== */
+/* ===== 通知表の中身と画像（1080×1350） ===== */
 const grade=v=>v>=85?'S':v>=70?'A':v>=55?'B':v>=40?'C':v>=25?'D':'E';
 const starsOf=rk=>'AIを困らせ度 '+RANK_FUN[rk].split('　')[0].replace('AIを困らせ度 ','');
-function sheetData(r,own,P){
-  const T=TYPES[r.t],H=HOUSES[campOf(r.t)],K=KI[r.k];
-  return {line:`${H.n}・${ROMAN[r.t]} ${T.star}・${K.short}の相`,komaru:own?RANK_FUN[own.rk].split('　')[0].replace('AIを困らせ度 ',''):'',vn:['目的','材料','条件','確かめ','直し方']};
-}
+function sheetData(r,own){return {komaru:own?RANK_FUN[own.rk].split('　')[0].replace('AIを困らせ度 ',''):''}}
 function wrapT(g,text,maxW){const out=[];let l='';for(const ch of String(text)){if(l&&g.measureText(l+ch).width>maxW){out.push(l);l=ch}else l+=ch}if(l)out.push(l);return out}
-async function sheetCanvas(r,mine,aiN,withHito){
-  const T=TYPES[r.t],[ali]=CH[r.t*5+r.k],rev=isRev(r),own=r.own,P=pals(r.t),SH=sheetData(r,own,P),F=FUN[r.t],C=HOUSES[campOf(r.t)].c;
+async function sheetCanvas(r,mine,aiS,withAI){
+  const T=TYPES[r.t],[ali]=CH[r.t*5+r.k],rev=isRev(r),own=r.own,F=FUN[r.t];
   const W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;const g=cv.getContext('2d');
-  try{await Promise.all([document.fonts.load('800 60px "Shippori Mincho B1"'),document.fonts.load('700 30px "Shippori Mincho B1"'),document.fonts.load('700 30px "Cinzel"'),document.fonts.load('500 26px "Zen Kaku Gothic New"'),document.fonts.load('700 26px "Zen Kaku Gothic New"')])}catch{}
+  try{await Promise.all([document.fonts.load('800 60px "Shippori Mincho B1"'),document.fonts.load('700 30px "Shippori Mincho B1"'),document.fonts.load('700 30px "Cinzel"'),document.fonts.load('500 26px "Zen Kaku Gothic New"'),document.fonts.load('700 26px "Zen Kaku Gothic New"'),document.fonts.load('40px "Zen Kurenaido"')])}catch{}
   const im=new Image();im.src=IMG(r.t,r.k);try{await im.decode()}catch{}
-  const MIN='"Shippori Mincho B1",serif',LAT='"Cinzel",serif',UI='"Zen Kaku Gothic New",sans-serif';
-  const GOLD='#D6B068',GOLD2='#F0DCAA',TXT='#EEE8DA',SUB='#C9C2D6',MUTE='#9C96B0',LINE='#33344F';
-  const bg=g.createRadialGradient(W/2,260,40,W/2,620,1150);bg.addColorStop(0,'#1B1840');bg.addColorStop(1,'#06060E');g.fillStyle=bg;g.fillRect(0,0,W,H);
-  for(let i=0;i<110;i++){const x=(i*733)%W,y=(i*397)%H;g.globalAlpha=.18+(i%5)/14;g.fillStyle=i%7?'#DDE3FF':GOLD2;g.beginPath();g.arc(x,y,(i%3)*.6+.5,0,7);g.fill()}g.globalAlpha=1;
-  g.strokeStyle=GOLD+'aa';g.lineWidth=2;g.strokeRect(28,28,W-56,H-56);g.strokeStyle=GOLD+'44';g.lineWidth=1;g.strokeRect(38,38,W-76,H-76);
+  const MIN='"Shippori Mincho B1",serif',LAT='"Cinzel",serif',UI='"Zen Kaku Gothic New",sans-serif',PEN='"Zen Kurenaido","Shippori Mincho B1",serif';
+  const INK='#26211A',INK2='#6B6152',RED='#C2412D',PAPER='#F4EDDD',RULE='#D9CDB3',NAVY='#1E2A55';
   const txt=(s,x,y,font,color,align='left')=>{g.font=font;g.fillStyle=color;g.textAlign=align;g.fillText(s,x,y)};
-  const fit=(s,maxW,size,weight,fam)=>{let z=size;g.font=`${weight} ${z}px ${fam}`;while(z>20&&g.measureText(s).width>maxW){z-=2;g.font=`${weight} ${z}px ${fam}`}return `${weight} ${z}px ${fam}`};
-  const OY=40,who=mine?(aiN==='あなたのAI'?'AI':aiN):'この人のAI',hit=withHito&&r.hito;
-  if(hit){txt(who+'がつけた、あなたの診断書',W/2,84,`700 22px ${MIN}`,GOLD,'center');const q='「'+r.hito+'」';txt(q,W/2,144,fit(q,W-150,34,800,MIN),GOLD2,'center');txt('― '+who+'の判決',W/2,182,`500 20px ${UI}`,MUTE,'center')}
-  else{txt('AI CARTE',W/2,100,`700 26px ${LAT}`,GOLD,'center');txt(mine?who+'がつけた、あなたの診断書':'AIタイプ図鑑の診断書',W/2,146,`700 28px ${MIN}`,SUB,'center')}
-  /* カード */
-  const CX=74,CY=172+OY,CW=268,CHH=402;
-  g.save();g.shadowColor=C;g.shadowBlur=40;g.fillStyle='#0A0A1A';g.fillRect(CX,CY,CW,CHH);g.restore();
-  g.save();g.beginPath();g.rect(CX,CY,CW,CHH);g.clip();
-  if(im.naturalWidth){if(rev){g.translate(CX+CW/2,CY+CHH/2);g.rotate(Math.PI);g.drawImage(im,-CW/2,-CHH/2,CW,CHH);g.setTransform(1,0,0,1,0,0)}else g.drawImage(im,CX,CY,CW,CHH)}
-  const sh=g.createLinearGradient(0,CY,0,CY+CHH);sh.addColorStop(.65,'#06060E00');sh.addColorStop(1,'#06060Ee6');g.fillStyle=sh;g.fillRect(CX,CY,CW,CHH);g.restore();
-  g.strokeStyle=GOLD2+'aa';g.lineWidth=2;g.strokeRect(CX+8,CY+8,CW-16,CHH-16);
-  txt(ROMAN[r.t],CX+CW/2,CY+44,`700 24px ${LAT}`,GOLD2,'center');
-  txt(T.star,CX+CW/2,CY+CHH-28,`700 22px ${MIN}`,GOLD,'center');
-  if(rev)txt('逆位置',CX+CW/2,CY+CHH+34,`700 22px ${MIN}`,'#E7967A','center');
-  /* 名前 */
-  const RX=380,RW=W-RX-74;
-  txt(SH.line,RX,200+OY,fit(SH.line,RW,24,500,UI),MUTE);
-  txt(fullName(r.t,r.k),RX,280+OY,fit(fullName(r.t,r.k),RW,66,800,MIN),TXT);
-  txt('〈 '+ali+' 〉',RX,332+OY,fit('〈 '+ali+' 〉',RW,30,700,MIN),GOLD2);
-  g.font=`700 27px ${MIN}`;wrapT(g,F.yet+'。',RW).slice(0,2).forEach((l,i)=>txt(l,RX,392+OY+i*40,`700 27px ${MIN}`,SUB));
-  /* 位 */
-  const BY=470+OY;g.fillStyle='#11121F';g.strokeStyle=GOLD+'66';g.lineWidth=1.5;g.beginPath();g.roundRect(RX,BY,RW,104,16);g.fill();g.stroke();
-  if(own){const R=RANKS[own.rk];txt('主の位',RX+24,BY+36,`500 20px ${UI}`,GOLD);txt(R.r+'　'+R.n,RX+24,BY+78,fit(R.r+'　'+R.n,RW*.55,34,800,MIN),TXT);
-    txt(R.p+'・'+own.sc+'点',RX+RW-24,BY+36,`500 20px ${UI}`,MUTE,'right');txt('困らせ度 '+SH.komaru,RX+RW-24,BY+78,fit('困らせ度 '+SH.komaru,RW*.45,26,700,UI),'#E7967A','right')}
-  else{txt('主の位',RX+24,BY+36,`500 20px ${UI}`,GOLD);txt('まだ開いていません',RX+24,BY+78,`700 30px ${MIN}`,MUTE)}
-  /* 能力値（左） */
-  let y=650+OY;const LX=74,LW=440;
-  txt('主の能力値',LX,y,`700 26px ${MIN}`,GOLD2);y+=22;
-  const GC={S:'#F0DCAA',A:'#D6B068',B:'#7FC3A0',C:'#6E9BE3',D:'#AE8AE6',E:'#E7967A'};
-  if(own){VIRT.forEach((V,i)=>{const yy=y+30+i*62,gr=grade(own.v[i]);
-    txt(V.k,LX+18,yy+10,`700 26px ${MIN}`,GOLD,'center');txt(SH.vn[i],LX+48,yy+10,`500 23px ${UI}`,SUB);
-    g.fillStyle=LINE;g.beginPath();g.roundRect(LX+150,yy-4,220,12,6);g.fill();g.fillStyle=GC[gr];g.beginPath();g.roundRect(LX+150,yy-4,Math.max(10,220*own.v[i]/100),12,6);g.fill();
-    txt(gr,LX+LW-6,yy+14,`700 40px ${LAT}`,GC[gr],'right')});y+=30+5*62}
-  else{txt('今の呪文で占うと出ます',LX,y+40,`500 24px ${UI}`,MUTE);y+=80}
-  /* 付き合い方・長所短所（右） */
-  let y2=650+OY;const QX=560,QW=W-QX-74;
-  txt('AIとの付き合い方',QX,y2,`700 26px ${MIN}`,GOLD2);y2+=46;
-  [[`任せる ${r.ma}%`,`一緒に ${100-r.ma}%`,r.ma],[`作る ${r.mk}%`,`知る・話す ${100-r.mk}%`,r.mk]].forEach(([a,b,v])=>{txt(a,QX,y2,`500 21px ${UI}`,SUB);txt(b,QX+QW,y2,`500 21px ${UI}`,SUB,'right');
-    const gr2=g.createLinearGradient(QX,0,QX+QW,0);gr2.addColorStop(0,'#8A6F3E');gr2.addColorStop(1,'#6E7FBF');g.fillStyle=gr2;g.beginPath();g.roundRect(QX,y2+14,QW,8,4);g.fill();
-    g.fillStyle=GOLD2;g.beginPath();g.arc(QX+QW*(100-v)/100,y2+18,11,0,7);g.fill();y2+=66});
-  y2+=6;
-  [['長所',T.s,'#7FC3A0'],['短所',T.w,'#E7967A']].forEach(([l,v,cl])=>{txt(l,QX,y2,`700 21px ${UI}`,cl);g.font=`500 23px ${UI}`;const ls=wrapT(g,v,QW).slice(0,2);ls.forEach((x,i)=>txt(x,QX,y2+34+i*32,`500 23px ${UI}`,TXT));y2+=40+ls.length*32+8});
-  /* 下の表 */
-  y=Math.max(y,y2)+16;g.strokeStyle=LINE;g.lineWidth=1;g.beginPath();g.moveTo(74,y);g.lineTo(W-74,y);g.stroke();y+=44;
-  const rows=[['よく頼む事',r.u.map((x,i)=>(i+1)+'. '+USES[x-1]).join('　')]];
-  if(own){rows.push(['主の癖',own.kz.map(k=>KUSE[k].n).join('・')]);rows.push(['AIがミスる所',MISS[own.ms].n])}
-  rows.push(['相性',`◎ ${TYPES[P.best].n}　× ${TYPES[P.clash].n}`]);
-  rows.forEach(([k,v])=>{txt(k,74,y,`700 22px ${UI}`,GOLD);txt(v,250,y,fit(v,W-74-250,24,500,UI),TXT);y+=44});
-  txt(location.host,74,H-50,`500 22px ${LAT}`,GOLD);txt('#AIタイプ図鑑',W-74,H-50,`700 24px ${MIN}`,GOLD,'right');
-  if(!hit)txt('あなたのAIは、あなたを何だと思ってる？',W/2,H-50,`500 20px ${UI}`,MUTE,'center');
+  const fit=(s,maxW,size,weight,fam)=>{let z=size;const f=()=>`${weight} ${z}px ${fam}`;g.font=f();while(z>18&&g.measureText(s).width>maxW){z-=2;g.font=f()}return f()};
+  /* 夜空の地 */
+  const bg=g.createRadialGradient(W/2,200,40,W/2,700,1100);bg.addColorStop(0,'#1B1840');bg.addColorStop(1,'#06060E');g.fillStyle=bg;g.fillRect(0,0,W,H);
+  for(let i=0;i<90;i++){const x=(i*733)%W,y=(i*397)%H;g.globalAlpha=.2+(i%5)/12;g.fillStyle=i%7?'#DDE3FF':'#F0DCAA';g.beginPath();g.arc(x,y,(i%3)*.6+.5,0,7);g.fill()}g.globalAlpha=1;
+  /* 紙 */
+  const PX=54,PY=54,PW=W-108,PH=H-150;
+  g.save();g.shadowColor='#000a';g.shadowBlur=40;g.shadowOffsetY=12;g.fillStyle=PAPER;g.fillRect(PX,PY,PW,PH);g.restore();
+  g.strokeStyle=INK2;g.lineWidth=3;g.strokeRect(PX+18,PY+18,PW-36,PH-36);g.lineWidth=1;g.strokeRect(PX+26,PY+26,PW-52,PH-52);
+  const L=PX+60,R=PX+PW-60,CW=R-L;
+  txt('AIタイプ図鑑　主（あるじ）の通知表',L,PY+86,`700 24px ${MIN}`,INK2);txt('担任　'+aiS,R,PY+86,fit('担任　'+aiS,360,26,700,MIN),INK,'right');
+  g.strokeStyle=RULE;g.lineWidth=2;g.beginPath();g.moveTo(L,PY+110);g.lineTo(R,PY+110);g.stroke();
+  let y=PY+160;
+  const useAI=withAI&&(r.nick||r.chara||r.hito);
+  const nick=useAI&&r.nick?r.nick:ali;
+  txt(useAI&&r.nick?aiS+'が心の中で呼んでいるあだ名':'あだ名',L,y,`700 22px ${UI}`,INK2);y+=88;
+  txt(nick,L,y,fit(nick,CW,86,800,MIN),INK);y+=34;
+  if(useAI&&r.chara){y+=34;txt('似ているキャラ',L,y,`700 22px ${UI}`,INK2);y+=58;txt(r.chara,L,y,fit(r.chara,CW,48,800,MIN),NAVY);if(r.cwhy){y+=42;txt(r.cwhy,L,y,fit(r.cwhy,CW,26,500,UI),INK2)}y+=10}
+  y+=24;g.strokeStyle=RULE;g.beginPath();g.moveTo(L,y);g.lineTo(R,y);g.stroke();y+=14;
+  if(own){
+    /* 総合 */
+    txt('総合',L,y+40,`700 22px ${UI}`,INK2);
+    txt(String(own.sc),L+150,y+150,`800 120px ${LAT}`,INK,'right');txt('点',L+158,y+150,`800 40px ${MIN}`,INK);
+    txt('困らせ度 '+sheetData(r,own).komaru,L,y+200,`700 22px ${UI}`,RED);
+    /* 評定 */
+    const TX=L+222,colW=84,names=['目的','材料','条件','確かめ','直し方'];
+    g.strokeStyle=INK2;g.lineWidth=1.5;g.strokeRect(TX,y+14,colW*5,170);g.beginPath();g.moveTo(TX,y+64);g.lineTo(TX+colW*5,y+64);for(let i=1;i<5;i++){g.moveTo(TX+i*colW,y+14);g.lineTo(TX+i*colW,y+184)}g.stroke();
+    names.forEach((n,i)=>{txt(n,TX+i*colW+colW/2,y+48,`700 21px ${UI}`,INK2,'center');const gr=grade(own.v[i]);txt(gr,TX+i*colW+colW/2,y+150,`700 72px ${LAT}`,'SA'.includes(gr)?RED:INK,'center')});
+    /* 判子 */
+    const SX=R-84,SY=y+100;g.save();g.translate(SX,SY);g.rotate(-.18);g.globalAlpha=.88;g.strokeStyle=RED;g.lineWidth=5;g.beginPath();g.arc(0,0,82,0,7);g.stroke();g.lineWidth=2;g.beginPath();g.arc(0,0,72,0,7);g.stroke();
+    txt('主の位',0,-30,`700 18px ${UI}`,RED,'center');txt(RANKS[own.rk].r,0,18,`700 46px ${LAT}`,RED,'center');txt(RANKS[own.rk].n,0,48,fit(RANKS[own.rk].n,96,20,800,MIN),RED,'center');g.restore();g.globalAlpha=1;
+    y+=230;
+  }else{txt('総合点と評定は、今の呪文で占うと出ます',L,y+50,`500 24px ${UI}`,INK2);y+=90}
+  g.strokeStyle=RULE;g.lineWidth=2;g.beginPath();g.moveTo(L,y);g.lineTo(R,y);g.stroke();y+=44;
+  /* 先生から */
+  txt(useAI&&r.hito?'先生から':'この星の人へ、AIから',L,y,`700 22px ${UI}`,INK2);y+=58;
+  const cmt=useAI&&r.hito?r.hito:F.roast[0];g.font=`44px ${PEN}`;const cl=wrapT(g,cmt,CW-20).slice(0,3);cl.forEach((l,i)=>txt(l,L+10,y+i*58,`44px ${PEN}`,'#1F3A8A'));y+=cl.length*58-14;
+  if(useAI&&r.mujun){y+=20;txt('矛盾している所',L,y,`700 22px ${UI}`,INK2);y+=44;g.font=`500 28px ${UI}`;const ml=wrapT(g,r.mujun,CW).slice(0,2);ml.forEach((l,i)=>txt(l,L,y+i*40,`500 28px ${UI}`,INK));y+=ml.length*40}
+  /* あなたの星（小さなカード） */
+  const bY=Math.max(y+40,PY+PH-176);const cw=80,ch=120;
+  g.strokeStyle=RULE;g.lineWidth=2;g.beginPath();g.moveTo(L,bY-20);g.lineTo(R,bY-20);g.stroke();
+  g.save();g.beginPath();g.rect(L,bY,cw,ch);g.clip();if(im.naturalWidth){if(rev){g.translate(L+cw/2,bY+ch/2);g.rotate(Math.PI);g.drawImage(im,-cw/2,-ch/2,cw,ch);g.setTransform(1,0,0,1,0,0)}else g.drawImage(im,L,bY,cw,ch)}g.restore();g.strokeStyle='#8A6F3E';g.lineWidth=2;g.strokeRect(L,bY,cw,ch);
+  txt('六十枚から引いた星',L+cw+28,bY+30,`700 22px ${UI}`,INK2);
+  txt(fullName(r.t,r.k)+(rev?'（逆位置）':''),L+cw+28,bY+78,fit(fullName(r.t,r.k)+(rev?'（逆位置）':''),CW-cw-40,44,800,MIN),INK);
+  txt('〈 '+ali+' 〉',L+cw+28,bY+114,fit('〈 '+ali+' 〉',CW-cw-40,26,700,MIN),INK2);
+  /* 下 */
+  txt(location.host,PX+8,H-40,`500 24px ${LAT}`,'#D6B068');txt('#AIタイプ図鑑',W-PX-8,H-40,`700 26px ${MIN}`,'#D6B068','right');
+  txt('あなたのAIは、あなたを何と呼んでる？',W/2,H-40,`500 20px ${UI}`,'#9C96B0','center');
   return cv;
 }
-async function sendSheet(r,mine,aiN,xText,sLink){
+async function sendSheet(r,mine,aiS,xText,sLink){
   const box=$('#shot');box.replaceChildren(el('p',{class:'note',text:'画像を作っています…'}));
-  const withH=!!$('#shareH')?.checked;
-  const cv=await sheetCanvas(r,mine,aiN,withH);
+  const withAI=$('#shareH')?$('#shareH').checked:!!(r.hito||r.nick||r.chara);
+  const cv=await sheetCanvas(r,mine,aiS,withAI);
   const blob=await new Promise(res=>cv.toBlob(res,'image/png'));const url=URL.createObjectURL(blob);
-  const file=new File([blob],`AIタイプ図鑑_${fullName(r.t,r.k)}.png`,{type:'image/png'});
+  const file=new File([blob],`AIタイプ図鑑_通知表_${fullName(r.t,r.k)}.png`,{type:'image/png'});
   const text=xText()+'\n'+sLink();
   const row=el('div',{class:'shot-btns'});
   if(navigator.canShare&&navigator.canShare({files:[file]}))row.append(el('button',{class:'btn',type:'button',onclick:()=>navigator.share({files:[file],text}).catch(()=>{})},'この画像を送る（X・LINE・インスタ）'));
   row.append(el('a',{class:'btn ghost',href:url,download:file.name},'画像を保存'),el('button',{class:'btn ghost',type:'button',onclick:()=>copy(text,'文とリンクを写しました')},'文を写す'));
-  box.replaceChildren(el('img',{src:url,alt:fullName(r.t,r.k)+'の診断書の画像',width:1080,height:1350}),row,el('p',{class:'note',text:'Xに画像を付けるには、保存してからポストに貼ってください。スマホは画像の長押しでも保存できます。'}));
+  box.replaceChildren(el('img',{src:url,alt:fullName(r.t,r.k)+'の通知表の画像',width:1080,height:1350}),row,el('p',{class:'note',text:'Xに画像を付けるには、保存してからポストに貼ってください。スマホは画像の長押しでも保存できます。'}));
   box.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});
 }
 
@@ -568,19 +566,23 @@ PAGES.kurabe=()=>{
   const harsh=sorted[0],sweet=sorted[sorted.length-1],split=harsh&&sweet&&harsh!==sweet&&harsh.own.sc!==sweet.own.sc;
   const sameCard=new Set(xs.map(x=>x.t)).size===1;
   const kzAll=withO.length>=2?withO.map(x=>x.own.kz):[];const common=kzAll.length?kzAll[0].filter(k=>kzAll.every(a=>a.includes(k))):[];
+  const ch=xs.filter(x=>x.chara);
   const head=el('section',{class:'kb-verdict'},el('span',{class:'eyebrow',text:'THE VERDICT'}),
+    ch.length>=2?el('p',{class:'kb-chara'},...ch.map((x,i)=>el('span',{},(i?'、':'')+x.nm+'は ',el('b',{text:'「'+x.chara+'」'}))),'。同じあなたなのに。'):null,
     split?el('h2',{},'あなたを一番ナメているのは ',el('em',{text:harsh.nm})):el('h2',{text:sameCard?'AIたちの意見は、ぴったりそろいました':'AIたちの意見は、割れました'}),
     split?el('p',{class:'lead',text:`${harsh.nm}はあなたに${harsh.own.sc}点、${sweet.nm}は${sweet.own.sc}点。同じあなたを見て、${sweet.own.sc-harsh.own.sc}点の差がつきました。`}):null,
     el('p',{class:'note',text:sameCard?`${xs.length}つのAIが、そろって「${TYPES[xs[0].t].n}」と答えました。かなり当たっています。`:`${xs.map(x=>x.nm+'は「'+TYPES[x.t].n+'」').join('、')}と見ています。`}));
   const cols=el('div',{class:'kb-cols',style:`--n:${xs.length}`},xs.map(x=>el('article',{class:'kb-col'+(split&&x===harsh?' harsh':split&&x===sweet?' sweet':'')},
     el('header',{},el('b',{text:x.nm}),split&&x===harsh?el('span',{class:'tag',text:'いちばん辛口'}):split&&x===sweet?el('span',{class:'tag',text:'いちばん甘口'}):null),
     el('a',{href:'/kekka/?c='+encodeURIComponent(x.c)+(x.o?'&o='+x.o:''),class:'kb-card'},card(x.t,x.k,{size:'sm'})),
+    x.nick?el('div',{class:'kb-ai'},el('small',{text:'あだ名'}),el('b',{text:x.nick})):null,
+    x.chara?el('div',{class:'kb-ai'},el('small',{text:'似てるキャラ'}),el('b',{text:x.chara})):null,
     el('p',{class:'kb-name',text:fullName(x.t,x.k)}),
     x.own?el('div',{class:'kb-rank'},seal(x.own.rk,'sm'),el('div',{},el('b',{text:RANKS[x.own.rk].n}),el('small',{text:x.own.sc+'点・'+RANKS[x.own.rk].p}))):el('p',{class:'note',text:'主の位なし'}),
     x.hito?el('p',{class:'kb-hito',text:'「'+x.hito+'」'}):null,
     x.own?el('p',{class:'note',text:'癖：'+x.own.kz.map(k=>KUSE[k].n).join('・')}):null)));
   const agree=common.length?el('section',{class:'kb-agree'},el('span',{class:'eyebrow',text:'ALL AIS AGREE'}),el('h2',{text:'AIが口をそろえた、あなたの癖'}),...common.map(k=>el('div',{class:'kuse'},el('header',{},el('h3',{text:KUSE[k].n}),el('small',{text:KUSE[k].p})),el('p',{class:'kuse-ai',text:KUSE[k].ai}),fixBox('この癖を消す一文',KUSE[k].cure)))):null;
-  const xt=`同じ呪文を${xs.length}つのAIに送ってみた。\n${xs.map(x=>`${x.nm}：${fullName(x.t,x.k)}${x.own?'／'+RANKS[x.own.rk].n+' '+x.own.sc+'点':''}`).join('\n')}${split?`\n私を一番ナメてたのは ${harsh.nm}`:''}\n#AIタイプ図鑑 #AIくらべ`;
+  const xt=`同じ呪文を${xs.length}つのAIに送ってみた。\n${xs.map(x=>`${x.nm}：${fullName(x.t,x.k)}${x.own?'／'+RANKS[x.own.rk].n+' '+x.own.sc+'点':''}`).join('\n')}${ch.length>=2?'\n'+ch.map(x=>`${x.nm}「${x.chara}」`).join(' / '):''}${split?`\n私を一番ナメてたのは ${harsh.nm}`:''}\n#AIタイプ図鑑 #AIくらべ`;
   const share=el('div',{class:'kb-share'},el('button',{class:'btn',type:'button',onclick:()=>open('https://x.com/intent/post?text='+encodeURIComponent(xt)+'&url='+encodeURIComponent(location.origin+'/kurabe/'),'_blank','noopener')},'Xでポスト'),el('button',{class:'btn ghost',type:'button',onclick:()=>copy(xt,'文を写しました')},'文を写す'),el('a',{class:'btn ghost',href:'/uranai/'},'もう1つのAIで占う'));
   box.replaceChildren(...[head,cols,agree,share].filter(Boolean));
 };
