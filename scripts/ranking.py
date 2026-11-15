@@ -86,6 +86,7 @@ def main():
            "夜の回はPR・HP・ROOMの商品をまずここの◎（レビュー1,000件以上・★4.0以上・1,000〜5,000円）から選ぶ。"
            "○は条件を満たすが値段帯の外。×は使わない。順位が高い＝いま人が買っている。", ""]
     seen = set()
+    rows = []  # 11/16 ROOM の台本が毎日新しい商品を取れるように、同じ物を data/room-rank.json にも書く（scripts/room_auto.py が読む）
     for name, gid in GENRES:
         items, src, err = fetch(gid)
         out.append(f"## {name}（{src or '取れなかった'}）")
@@ -100,6 +101,10 @@ def main():
             code = it.get("itemCode", url)
             dup = "（上と同じ）" if code in seen else ""
             seen.add(code)
+            if src == "ランキング" and not dup:
+                rows.append({"genre": name, "rank": int(it.get("rank") or n), "name": (it.get("itemName") or "").replace("\n", " ")[:120],
+                             "price": int(it.get("itemPrice") or 0), "rc": int(it.get("reviewCount") or 0), "av": float(it.get("reviewAverage") or 0),
+                             "url": url, "shop": it.get("shopName") or ""})
             nm = (it.get("itemName") or "").replace("｜", " ").replace("\n", " ")[:45]
             out.append(f"{it.get('rank') or n}｜{mark(it)}｜{nm}{dup}｜{int(it.get('itemPrice') or 0):,}円｜"
                        f"{int(it.get('reviewCount') or 0):,}｜{float(it.get('reviewAverage') or 0):.2f}｜{url}")
@@ -107,6 +112,9 @@ def main():
     p = lib.path("notes", "ranking.md")
     with open(p, "w", encoding="utf-8") as f:
         f.write("\n".join(out) + "\n")
+    if rows:
+        json.dump({"day": f"{now:%Y-%m-%d}", "about": "楽天ランキング（scripts/ranking.py が毎晩）。room_auto.py が ROOM の台本の新しい商品に使う", "items": rows},
+                  open(lib.path("data", "room-rank.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     print("\n".join(out[:40]))
 
 

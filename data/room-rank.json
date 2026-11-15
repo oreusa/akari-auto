@@ -1,0 +1,3196 @@
+{
+"day": "2026-11-16",
+"about": "楽天ランキング（scripts/ranking.py が毎晩）。room_auto.py が ROOM の台本の新しい商品に使う（11/16 は notes/ranking.md から月が写した）",
+"items": [
+{
+"genre": "総合",
+"rank": 1,
+"name": "15日23:59まで 60%OFF 【サプライズデー】 公式 Roomba Plus 41",
+"price": 47800,
+"rc": 161,
+"av": 4.6,
+"url": "https://item.rakuten.co.jp/irobotstore/g285060/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 2,
+"name": "【週末限定★福袋ポイント5倍】1.25万円以上相当！解凍不要「千賀屋の冷蔵おせち福袋」福袋",
+"price": 11155,
+"rc": 289,
+"av": 4.54,
+"url": "https://item.rakuten.co.jp/omosan/7347/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 3,
+"name": "【24H限定：3,980→1,999！】【楽天一位】デニム風ニット パンツ ワイドパンツ ",
+"price": 1999,
+"rc": 49886,
+"av": 4.14,
+"url": "https://item.rakuten.co.jp/darkangel/pa2010-2536/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 4,
+"name": "15日23:59まで 50%OFF 【サプライズデー】 公式 Roomba 205 Dus",
+"price": 29800,
+"rc": 890,
+"av": 4.33,
+"url": "https://item.rakuten.co.jp/irobotstore/l12/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 5,
+"name": "50%OFF【期間限定：11,980円→5,990円！】 ファーブルゾン レディース フェ",
+"price": 5990,
+"rc": 2,
+"av": 4.5,
+"url": "https://item.rakuten.co.jp/darkangel/ot2410-4509/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 6,
+"name": "P必ず2倍ッ★福袋おせち 2027 3〜4人前以上保証 高級おせちを含む56種から1種をお",
+"price": 12345,
+"rc": 51816,
+"av": 4.42,
+"url": "https://item.rakuten.co.jp/kanidokoro/428/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 7,
+"name": "【楽天ブックス限定先着特典】【クレジットカード決済限定】STAR （通常盤2枚）【イベント",
+"price": 7480,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/book/18885394/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 8,
+"name": "15日23:59まで 55%OFF 【サプライズデー】 8/21 新発売 公式 Roomb",
+"price": 79800,
+"rc": 49,
+"av": 4.37,
+"url": "https://item.rakuten.co.jp/irobotstore/v184060/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 9,
+"name": "【40%OFFクーポン】＼楽天月間1位／ルームウェア 部屋着 セットアップ リブモールニッ",
+"price": 5830,
+"rc": 2435,
+"av": 4.61,
+"url": "https://item.rakuten.co.jp/sockkobe/810379/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 10,
+"name": "【楽天ブックス限定先着特典】【クレジットカード決済限定】STAR （通常盤2枚）【イベント",
+"price": 7480,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/book/18885395/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 11,
+"name": "【楽天ブックス限定先着特典】【クレジットカード決済限定】STAR （通常盤2枚）【イベント",
+"price": 7480,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/book/18885396/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 12,
+"name": "70%OFF!【11/14 10時〜24H限定：6,690円→1,970円！】 即納 パン",
+"price": 1970,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/darkangel/pa2010-2548/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 13,
+"name": "収納ボックス 56L 51.5*36*30CM 3個セット フタ付き 折りたたみ 災害用 ",
+"price": 7880,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t86700204/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 14,
+"name": "コロ脚 中が透けない 壁付き チェスト スリム/ワイド 幅34/54 奥行41.5/41.",
+"price": 4999,
+"rc": 7024,
+"av": 4.42,
+"url": "https://item.rakuten.co.jp/e-kurashi/s1u57/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 15,
+"name": "【楽天ブックス限定先着特典】【クレジットカード決済限定】STAR （通常盤2枚）【イベント",
+"price": 7480,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/book/18885389/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 16,
+"name": "【楽天ブックス限定先着特典】【クレジットカード決済限定】STAR （通常盤2枚）【イベント",
+"price": 7480,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/book/18885390/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 17,
+"name": "コンタクトレンズ ワンデー コンタクト   ワンデーアキュビュー オアシス 90枚パック ",
+"price": 14780,
+"rc": 869,
+"av": 4.76,
+"url": "https://item.rakuten.co.jp/pricon/k_jj_oa90z0_02_h/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 18,
+"name": "本日23:59までP5倍以上！値上げ前に年末早割★6000円OFFクーポンで8960円〜送",
+"price": 14960,
+"rc": 46765,
+"av": 4.32,
+"url": "https://item.rakuten.co.jp/masuyone/130007/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 19,
+"name": "コンタクトレンズ ワンデー 近視 遠視 選べる【2箱4箱】 TeAmo CLEAR 1DA",
+"price": 1986,
+"rc": 15207,
+"av": 4.56,
+"url": "https://item.rakuten.co.jp/teamo/pure_clear_1/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 20,
+"name": "今夜23:59まで楽天カードでP10倍以上★値上げ前に！【年末早得】3箱で1箱タダ★5,4",
+"price": 5400,
+"rc": 22015,
+"av": 4.36,
+"url": "https://item.rakuten.co.jp/kouragumi/100005/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 21,
+"name": "舞台『刀剣乱舞』出演キャスト/舞台『刀剣乱舞』10周年記念コンプリートアルバム [ V.A",
+"price": 7392,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/book/18895719/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 22,
+"name": "40%OFF【24H限定：1,990〜2,790！】 パンツ 元祖裏起毛 裏起毛 ニット ",
+"price": 1990,
+"rc": 4332,
+"av": 4.15,
+"url": "https://item.rakuten.co.jp/darkangel/pa2311-3843/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 23,
+"name": "【楽天ブックス限定先着特典】【クレジットカード決済限定】STAR （通常盤1枚＋初回限定盤",
+"price": 13090,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/book/18885442/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 24,
+"name": "【楽天ブックス限定先着特典】【クレジットカード決済限定】STAR （通常盤1枚＋初回限定盤",
+"price": 13090,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/book/18885441/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 25,
+"name": "【部分即納】ファーコート レディース ボアコート フェイクファーコート フェイクファー パ",
+"price": 5680,
+"rc": 21,
+"av": 3.95,
+"url": "https://item.rakuten.co.jp/hanakosshop/t58700095/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 26,
+"name": "|【Zoff 福袋2027 】〈12月上旬頃から順次発送〉ゾフ店舗で使える10,000円の",
+"price": 6600,
+"rc": 1059,
+"av": 4.39,
+"url": "https://item.rakuten.co.jp/zoff/lucky_bag_ec/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 27,
+"name": "75%OFF！【24H限定：999〜1,699！】 【年間ランキング4位】ルームウェア レ",
+"price": 999,
+"rc": 21044,
+"av": 4.28,
+"url": "https://item.rakuten.co.jp/darkangel/to2305-1114/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 28,
+"name": "カラコン ワンデー【もれなく1箱無料】1箱あたり1,144円 ReVIA 1day COL",
+"price": 3432,
+"rc": 30898,
+"av": 4.72,
+"url": "https://item.rakuten.co.jp/candymagic/rv-100/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 29,
+"name": "＼クーポン利用で20％OFF／ 敷きパッド 毛布 ブランケット 大判 モコモコ おしゃれ ",
+"price": 6980,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hugria/collabo01/",
+"shop": ""
+},
+{
+"genre": "総合",
+"rank": 30,
+"name": "店長大暴走★1,000円OFFクーポンで3,999円⇒送料無料2,999円！楽天ランキング",
+"price": 3999,
+"rc": 19952,
+"av": 4.64,
+"url": "https://item.rakuten.co.jp/kouragumi/200002/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 1,
+"name": "ランドセルラック キャスター付き 収納棚 サイドワゴン ファイルワゴン 大容量 教科書 文",
+"price": 4800,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t02700274/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 2,
+"name": "【全品10％OFFクーポン！15日限定】＼総合ランキング1位獲得／ 簡易トイレ 非常用トイ",
+"price": 3980,
+"rc": 1376,
+"av": 4.44,
+"url": "https://item.rakuten.co.jp/pykespeak/p0244/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 3,
+"name": "【正規品 入荷済 】サンスター文具 ボンボンドロップシール ドラえもん クレヨンしんちゃん",
+"price": 550,
+"rc": 55,
+"av": 4.65,
+"url": "https://item.rakuten.co.jp/cliffhangar/335-798042/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 4,
+"name": "【1種類を選べる】アタック 抗菌EX 洗濯洗剤 詰替 超特大サイズ 梱販売用(6袋入)【ア",
+"price": 6171,
+"rc": 4310,
+"av": 4.68,
+"url": "https://item.rakuten.co.jp/rakuten24/404889/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 5,
+"name": "【高吸収だから少量で固まる】 防災グッズ 非常用 簡易トイレ 携帯トイレ スープ 凝固剤 ",
+"price": 6980,
+"rc": 305,
+"av": 4.56,
+"url": "https://item.rakuten.co.jp/prime-brain/01altl_sutaro/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 6,
+"name": "業務用マルチクリーナー 500ml 掃除用 洗剤 清掃 キッチン 台所 油汚れ カーペット",
+"price": 1690,
+"rc": 107,
+"av": 4.34,
+"url": "https://item.rakuten.co.jp/orbtech/a002/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 7,
+"name": "【全回数25％OFFクーポン】楽天総合1位 簡易トイレ 非常用トイレセット 防災トイレ 防",
+"price": 1580,
+"rc": 7314,
+"av": 4.5,
+"url": "https://item.rakuten.co.jp/hiromifashionhouse/mkhrm60f/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 8,
+"name": "【BOS-SHOP限定】【うんちが臭わないトイレ】BOS非常用臭わない袋トイレセット(4点",
+"price": 8690,
+"rc": 548,
+"av": 4.72,
+"url": "https://item.rakuten.co.jp/bos-shop/bos-1353/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 9,
+"name": "「楽天総合1位」「半永久保存 防災士監修」簡易トイレ 非常用トイレセット 防災用品 防災グ",
+"price": 3680,
+"rc": 7736,
+"av": 4.5,
+"url": "https://item.rakuten.co.jp/r1-shop/csd-2/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 10,
+"name": "ワイドハイター EXパワー 漂白剤 詰め替え 大サイズ 梱販売用(820ml*15袋入)【",
+"price": 7305,
+"rc": 1113,
+"av": 4.81,
+"url": "https://item.rakuten.co.jp/rakuten24/4901301422477/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 11,
+"name": "【最新版】デカ暖III イワタニ カセットガス9本付き 小型 軽量 防災用品 防災グッズ ",
+"price": 24800,
+"rc": 258,
+"av": 4.41,
+"url": "https://item.rakuten.co.jp/cococimo/dmt/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 12,
+"name": "アタック抗菌EX つめかえ用(1590g×6個)【アタック】",
+"price": 6171,
+"rc": 92,
+"av": 4.85,
+"url": "https://item.rakuten.co.jp/rakuten24/4901301458117/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 13,
+"name": "【20周年SALE 979円→特価890円】 【12月より価格改定】 日本製 ホテルスタイ",
+"price": 890,
+"rc": 118221,
+"av": 4.49,
+"url": "https://item.rakuten.co.jp/toucher-home/10000264/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 14,
+"name": "★2026年最新型番★ 火災報知器 パナソニック 電池 けむり当番 SHK484551 S",
+"price": 2640,
+"rc": 3317,
+"av": 4.76,
+"url": "https://item.rakuten.co.jp/fuji-store-mie/compass1707101421/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 15,
+"name": "【楽天ランキング入賞】シヤチハタ キャップレス9 印鑑 ネーム印 はんこ 全26色 名前入",
+"price": 1200,
+"rc": 28713,
+"av": 4.73,
+"url": "https://item.rakuten.co.jp/ogawahan/10002465/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 16,
+"name": "ほうき ちりとり セット 掃除セット 自立式 立て式 屋外 室内 玄関 ベランダ 庭 掃除",
+"price": 2880,
+"rc": 5,
+"av": 3.8,
+"url": "https://item.rakuten.co.jp/hanakosshop/t155070005ft0/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 17,
+"name": "【毎日ずっと1位】 ニトリル手袋 100枚 200枚 300枚 400枚 500枚 100",
+"price": 890,
+"rc": 3855,
+"av": 4.58,
+"url": "https://item.rakuten.co.jp/tenkapas/glove001/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 18,
+"name": "＼まとめ買いクーポン／【レビュー特典あり】【 パラコード 】難易度別編み方動画付き♪ まさ",
+"price": 488,
+"rc": 4412,
+"av": 4.83,
+"url": "https://item.rakuten.co.jp/greenocean/28213-g/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 19,
+"name": "最安値に挑戦!! ☆再生紙トイレット12RW☆108mm幅トイレットペーパー ダブル1ロー",
+"price": 3200,
+"rc": 3733,
+"av": 4.59,
+"url": "https://item.rakuten.co.jp/coming/jun1kyuhinrolls-recycle12rw/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 20,
+"name": "FSX 使い捨て 紙おしぼり 抗ウイルス抗菌 平型 SILKY シルキー Lサイズ ホワイ",
+"price": 8811,
+"rc": 410,
+"av": 4.62,
+"url": "https://item.rakuten.co.jp/fujinami/100001201/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 21,
+"name": "【★レビュー高評価★楽天1位★】HaLotus すべらない ハンガー かたくずれ防止ハンガ",
+"price": 1680,
+"rc": 4588,
+"av": 4.69,
+"url": "https://item.rakuten.co.jp/lotus01/hoqa800085/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 22,
+"name": "【ReFa 公式】リファ シャワーヘッド ファインバブル U プレゼント ギフト ReFa",
+"price": 30000,
+"rc": 1579,
+"av": 4.61,
+"url": "https://item.rakuten.co.jp/mtgec-beauty/1579320101/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 23,
+"name": "【最大40%オフクーポン★ブラックフライデー】キッチンたわし ステンレスたわし ステンレス",
+"price": 1780,
+"rc": 8,
+"av": 4.75,
+"url": "https://item.rakuten.co.jp/angelingg/ag-r-00190/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 24,
+"name": "【1種類を選べる】アリエール 洗濯洗剤 液体 詰め替え(1950g×6セット)【アリエール",
+"price": 8602,
+"rc": 582,
+"av": 4.79,
+"url": "https://item.rakuten.co.jp/rakuten24/405025/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 25,
+"name": "猫犬 うんち処理袋 ペット用 処理袋 200枚入り 臭わない 消臭袋 犬用 可愛い袋 マナ",
+"price": 1880,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/ddy005ne/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 26,
+"name": "【最大40%オフクーポン★ブラックフライデー】水切りワイパー スクイージー ガラスワイパー",
+"price": 1000,
+"rc": 188,
+"av": 3.95,
+"url": "https://item.rakuten.co.jp/angelingg/ag-r-00175/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 27,
+"name": "【FULNG 洗面台 ヘアキャッチャー】洗面台 排水口 排水溝 ゴミ受け 髪の毛ホコリ除去",
+"price": 1040,
+"rc": 5294,
+"av": 4.64,
+"url": "https://item.rakuten.co.jp/kiroran/dl-xmt/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 28,
+"name": "【ネコポス送料無料】シヤチハタ ネーム9 直径9.5mm ネーム印 印鑑 はんこ シャチハ",
+"price": 1680,
+"rc": 17071,
+"av": 4.81,
+"url": "https://item.rakuten.co.jp/ogawahan/10002596/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 29,
+"name": "単色 パラコード 4mm ハンドメイド用 選べる長さ5m/30m 全44色 ポリプロピレン",
+"price": 280,
+"rc": 1114,
+"av": 4.74,
+"url": "https://item.rakuten.co.jp/handmadedokobo/para01/",
+"shop": ""
+},
+{
+"genre": "日用品雑貨",
+"rank": 30,
+"name": "【マラソン 最大2,000円off】 トイレ用手すり 高齢者用 妊娠 障害者 用立ち上がり",
+"price": 6880,
+"rc": 2,
+"av": 4.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t58700686/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 6,
+"name": "今夜23:59まで楽天カードでP5倍以上★お試し送料無料2,490円～ 骨取りサバ切身 1",
+"price": 2490,
+"rc": 20504,
+"av": 4.51,
+"url": "https://item.rakuten.co.jp/kouragumi/201175/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 7,
+"name": "S【衝撃の25％OFF！5,200→3,900円！】 リンガーハット 長崎ちゃんぽん 8食",
+"price": 3900,
+"rc": 3998,
+"av": 4.72,
+"url": "https://item.rakuten.co.jp/ringerhut/c128/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 8,
+"name": "＼早割特価／【楽天総合1位】特大タラバ蟹1kg 2kg 3kg 5kg 独自のワンフローズ",
+"price": 10800,
+"rc": 24419,
+"av": 4.24,
+"url": "https://item.rakuten.co.jp/sfd-ymt/869808/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 9,
+"name": "今夜23:59まで楽天カードでP5倍以上★値上げ前に★赤字覚悟のお試し送料無料4,999円",
+"price": 4999,
+"rc": 15133,
+"av": 4.55,
+"url": "https://item.rakuten.co.jp/kouragumi/200240/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 10,
+"name": "今夜23:59まで楽天カードでP5倍以上★【年末早割】送料無料11,999円！メガ盛り3k",
+"price": 11999,
+"rc": 4950,
+"av": 4.11,
+"url": "https://item.rakuten.co.jp/kouragumi/100075/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 11,
+"name": "＼ただいまP15倍／ かに ポーション 1kg ずわい蟹 ポーション ズワイガニ ポーショ",
+"price": 5680,
+"rc": 4865,
+"av": 4.51,
+"url": "https://item.rakuten.co.jp/morigen/zuwai-02/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 12,
+"name": "おせち 早割 博多久松 2027 4〜5人前 おせち料理 おせちランキング 累計313週以",
+"price": 16500,
+"rc": 22991,
+"av": 4.45,
+"url": "https://item.rakuten.co.jp/hisamatsu/2009hakata/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 13,
+"name": "「2026年 楽天上半期ランキング1位」 令和8年産 70％以上使用 国産 ブレンド米 極",
+"price": 3900,
+"rc": 6677,
+"av": 4.48,
+"url": "https://item.rakuten.co.jp/yama-oatmeal-institute/kiwamiseimai10/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 14,
+"name": "お試し送料無料2,990円～「有塩or無塩」「骨ありor骨なし」が選べる！【骨取り有塩・無",
+"price": 2990,
+"rc": 5724,
+"av": 4.64,
+"url": "https://item.rakuten.co.jp/kouragumi/210069/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 15,
+"name": "【必ずP7倍！15日限定】クーポン有ッ★【かに福袋】最大13,600円以上お得♪ 生・ボイ",
+"price": 8888,
+"rc": 26143,
+"av": 4.37,
+"url": "https://item.rakuten.co.jp/kanidokoro/628/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 16,
+"name": "【11月限定★抽選で最大10万Pが当たる】おせち 早割 2027 予約 冷蔵 千賀屋謹製 ",
+"price": 16880,
+"rc": 3795,
+"av": 4.42,
+"url": "https://item.rakuten.co.jp/omosan/7006/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 17,
+"name": "【2点購入ならクーポンで500円OFF！】みかん 訳あり 1.2kg 送料無料 甘熟みかん",
+"price": 999,
+"rc": 4039,
+"av": 4.23,
+"url": "https://item.rakuten.co.jp/kumamoto-food/10003935/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 18,
+"name": "[200円OFFクーポン/超トク]＼5kgあたり約2,427円〜！☆彡／【令和8年産100",
+"price": 4980,
+"rc": 9511,
+"av": 4.71,
+"url": "https://item.rakuten.co.jp/irisplaza-r/113800/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 19,
+"name": "【日テレ情報番組で紹介！】 【単品合計より3806円お得】 秋のやまもり福袋 本格！タイの",
+"price": 10000,
+"rc": 161,
+"av": 4.88,
+"url": "https://item.rakuten.co.jp/yamamorishop/202505/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 20,
+"name": "S【衝撃の25％OFF！5,200→3,900円！】 ＼TVで紹介されました！／ リンガー",
+"price": 3900,
+"rc": 1188,
+"av": 4.61,
+"url": "https://item.rakuten.co.jp/ringerhut/pvsales_c14/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 21,
+"name": "【11月限定★抽選で最大10万Pが当たる】おせち 早割 2027 予約 冷蔵 千賀屋謹製 ",
+"price": 10500,
+"rc": 5466,
+"av": 4.44,
+"url": "https://item.rakuten.co.jp/omosan/7005/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 22,
+"name": "P必ず2倍ッ★お正月 2027年 お節料理 盛付済み 冷蔵 | 6寸三段 和風おせち 35",
+"price": 8888,
+"rc": 1438,
+"av": 4.54,
+"url": "https://item.rakuten.co.jp/kanidokoro/702/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 23,
+"name": "おせち 早割 2027 予約『板前魂の七福神ジャパン』しちふくじん 和洋中 和風 洋風 中",
+"price": 19930,
+"rc": 79,
+"av": 4.67,
+"url": "https://item.rakuten.co.jp/2-itamae/125400/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 24,
+"name": "令和8年 新米 コシヒカリ ヒノヒカリ など 選べる 各県こだわりの 銘柄米 5kg ～ ",
+"price": 2580,
+"rc": 818,
+"av": 4.57,
+"url": "https://item.rakuten.co.jp/yama-oatmeal-institute/yumesizuku10-5kgx2/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 25,
+"name": "＼エントリーでP5倍／【 プレミアム ズワイガニ 太脚棒肉のみ100% 500g〜1.5k",
+"price": 5980,
+"rc": 927,
+"av": 4.5,
+"url": "https://item.rakuten.co.jp/sorekani/item-04-3/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 26,
+"name": "2027 おせち 福袋 博多久松 2026年12月28日〜31日お届け 新年会 成人式 お",
+"price": 13500,
+"rc": 638,
+"av": 4.48,
+"url": "https://item.rakuten.co.jp/hisamatsu/fuku-osechi/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 27,
+"name": "今夜23:59まで楽天カードでP5倍以上★お試し送料無料2,999円！背ワタ無し♪希少な特",
+"price": 2999,
+"rc": 8209,
+"av": 4.69,
+"url": "https://item.rakuten.co.jp/kouragumi/200109/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 28,
+"name": "＼エントリーでポイント10倍／ 最大50,000円相当の おせち が届く!? 「40周年お",
+"price": 12000,
+"rc": 69,
+"av": 4.93,
+"url": "https://item.rakuten.co.jp/kyousaiminomura/osechifukubukuro/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 29,
+"name": "【早割10%OFF】おせち 2027 おせち料理 和洋中おせち 絢爛鳳凰 (けんらんほうお",
+"price": 15980,
+"rc": 1417,
+"av": 4.39,
+"url": "https://item.rakuten.co.jp/tokatsu-foods/yorokobi2013/",
+"shop": ""
+},
+{
+"genre": "食品",
+"rank": 30,
+"name": "クーポンで10,500円～！ おせち 福袋 2027 選べる3コース おせち料理 お節 お",
+"price": 12500,
+"rc": 2559,
+"av": 4.22,
+"url": "https://item.rakuten.co.jp/date-hyakumangoku/monitor-osechi/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 1,
+"name": "【500円OFFクーポンあり※2個以上購入必須】炭酸水 500ml 48本 (24本×2ケ",
+"price": 2550,
+"rc": 18392,
+"av": 4.65,
+"url": "https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 2,
+"name": "[200円OFFクーポン/超トク]＼1本約49.2円〜／【公式】水 500ml 48本 送",
+"price": 2360,
+"rc": 6465,
+"av": 4.63,
+"url": "https://item.rakuten.co.jp/irisplaza-r/310999-cp/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 3,
+"name": "＼1本当たり49.2円〜！／水 天然水 500ml 48本 ラベルレス 備蓄水 お茶 緑茶",
+"price": 2360,
+"rc": 9505,
+"av": 4.5,
+"url": "https://item.rakuten.co.jp/kurashikenkou/310999/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 4,
+"name": "【クーポン利用＆2個購入で実質979円〜】炭酸水 500ml 24本 送料無料※一部地域除",
+"price": 1429,
+"rc": 53114,
+"av": 4.68,
+"url": "https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 5,
+"name": "＼15日限定キャンペーン／澤井珈琲 送料無料 コーヒー コーヒー豆 コーヒー粉 珈琲豆 豆",
+"price": 2788,
+"rc": 50482,
+"av": 4.7,
+"url": "https://item.rakuten.co.jp/sawaicoffee-tea/ac-sale-1960/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 6,
+"name": "【※12月末賞味期限※1,099円】炭酸水 500ml 24本 送料無料 強炭酸 炭酸 無",
+"price": 1099,
+"rc": 61,
+"av": 4.8,
+"url": "https://item.rakuten.co.jp/lifedrinkcompany/ozasodaex-500/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 7,
+"name": "い・ろ・は・す 天然水 PET ラベルレス(2000ml*8本入)【いろはす(I LOHA",
+"price": 1529,
+"rc": 1257,
+"av": 4.76,
+"url": "https://item.rakuten.co.jp/kenkocom/4902102151719/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 8,
+"name": "ウィルキンソン タンサン ラベルレスボトル(500ml×24本入)【ウィルキンソン】[炭酸",
+"price": 1999,
+"rc": 778,
+"av": 4.74,
+"url": "https://item.rakuten.co.jp/kenkocom/4514603420906/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 9,
+"name": "【365日最短翌日お届け】BIYOUDO 水 シリカ水 500ml×42本 350ml×4",
+"price": 2380,
+"rc": 56263,
+"av": 4.81,
+"url": "https://item.rakuten.co.jp/biyoudou/10000164/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 10,
+"name": "い・ろ・は・す 天然水 PET ラベルレス(1箱24本入(1本560ml))【いろはす(I",
+"price": 1998,
+"rc": 1016,
+"av": 4.76,
+"url": "https://item.rakuten.co.jp/kenkocom/4902102139410/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 11,
+"name": "【365日最短当日出荷！】国産 天然水 500ml 42本 水 送料無料 ナチュラルミネラ",
+"price": 2280,
+"rc": 25968,
+"av": 4.82,
+"url": "https://item.rakuten.co.jp/mizuomoi/4571461293004/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 12,
+"name": "【500円OFFクーポンあり※2個以上購入必須】水 ミネラルウォーター 彩水-あやみず- ",
+"price": 2370,
+"rc": 4095,
+"av": 4.68,
+"url": "https://item.rakuten.co.jp/lifedrinkcompany/ayamizu-500-48/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 13,
+"name": "＼訳あり焙じ茶が激熱価格！／お茶 緑茶 ほうじ茶 ペットボトル 500ml 24本 48本",
+"price": 1280,
+"rc": 7549,
+"av": 4.74,
+"url": "https://item.rakuten.co.jp/kurashikenkou/312068/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 14,
+"name": "[エントリーで最大ポイント10倍/スタンプラリー]【24本/48本】お茶 緑茶 ほうじ茶 ",
+"price": 1280,
+"rc": 3456,
+"av": 4.75,
+"url": "https://item.rakuten.co.jp/irisplaza-r/312068/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 15,
+"name": "【楽天オリジナル】炭酸水 500ml×24本 [プレーン ソーダ ラベルレス 割り材 炭酸",
+"price": 1450,
+"rc": 2502,
+"av": 4.61,
+"url": "https://item.rakuten.co.jp/rakutenoriginal-daily/ro-b-002/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 16,
+"name": "【楽天オリジナル】水 500ml×24本 天然水 ラベルレス ミネラルウォーター 飲料水 ",
+"price": 1310,
+"rc": 2505,
+"av": 4.69,
+"url": "https://item.rakuten.co.jp/rakutenoriginal-daily/ro-b-001/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 17,
+"name": "【ヤマト運輸配送】温泉水99 1.9Lペットボトル×2箱（12本）★送料無料★SOC 温泉",
+"price": 4632,
+"rc": 4099,
+"av": 4.86,
+"url": "https://item.rakuten.co.jp/onsensui99/2lx12_cook/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 18,
+"name": "[エントリーで最大ポイント10倍/スタンプラリー]【公式】水 2リットル 9本 天然水 ミ",
+"price": 1360,
+"rc": 2089,
+"av": 4.49,
+"url": "https://item.rakuten.co.jp/irisplaza-r/311139/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 19,
+"name": "アサヒ おいしい水 天然水 ラベルレスボトル( 600ml×24本入)【おいしい水】[ミネ",
+"price": 1999,
+"rc": 456,
+"av": 4.62,
+"url": "https://item.rakuten.co.jp/kenkocom/4514603369106/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 20,
+"name": "【500円OFFクーポンあり※2個以上購入必須】緑茶 彩茶 - あやちゃ - 500ml×",
+"price": 1499,
+"rc": 9196,
+"av": 4.74,
+"url": "https://item.rakuten.co.jp/lifedrinkcompany/ayacha-500/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 21,
+"name": "クリスタルガイザー 水( 500ml×48本入)【2shdrk】【クリスタルガイザー(Cr",
+"price": 2850,
+"rc": 31125,
+"av": 4.44,
+"url": "https://item.rakuten.co.jp/soukaidrink/9000009984074/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 22,
+"name": "【500円OFFクーポンあり※2個以上購入必須】国産ミネラルウォーター 彩水-あやみず- ",
+"price": 1370,
+"rc": 3793,
+"av": 4.72,
+"url": "https://item.rakuten.co.jp/lifedrinkcompany/ayamizu-500/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 23,
+"name": "【店内全品ポイント5倍中(要エントリー)】(12/01 09:59迄)2kg最安値に挑戦!",
+"price": 2530,
+"rc": 627,
+"av": 4.45,
+"url": "https://item.rakuten.co.jp/dripcoffee/house-500-4/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 24,
+"name": "【送料無料※一部地域除く】【48本】 水 500ml 蛍の郷の天然水 ミネラルウォーター ",
+"price": 2188,
+"rc": 1403,
+"av": 4.55,
+"url": "https://item.rakuten.co.jp/yytakuhaibin/83004166/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 25,
+"name": "＼9本セットが1本当たり151.2円！／水 2リットル 12本 9本 6本 アイリスオーヤ",
+"price": 1080,
+"rc": 1676,
+"av": 4.47,
+"url": "https://item.rakuten.co.jp/kurashikenkou/1908794/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 26,
+"name": "アサヒ おいしい水 天然水 ラベルレスボトル 2L×9本入 【おいしい水】 ミネラルウォー",
+"price": 1070,
+"rc": 31,
+"av": 4.81,
+"url": "https://item.rakuten.co.jp/rakutensokuhaimart/4514603380606/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 27,
+"name": "【ヤマト運輸配送】温泉水99 500ml ペットボトル×30本★送料無料★SOC 飲む 温",
+"price": 5666,
+"rc": 1153,
+"av": 4.85,
+"url": "https://item.rakuten.co.jp/onsensui99/500mlx24_cook/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 28,
+"name": "【中村獅童さん愛飲】【のむシリカ】シリカ含有量世界トップクラス シリカ水 500ml 24",
+"price": 3840,
+"rc": 1840,
+"av": 4.64,
+"url": "https://item.rakuten.co.jp/skull-club/nomusilica/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 29,
+"name": "カゴメ トマトジュース 食塩無添加( 200ml×48本セット)【トマトジュース 紙】[リ",
+"price": 4979,
+"rc": 522,
+"av": 4.75,
+"url": "https://item.rakuten.co.jp/kenkocom/e442578h/",
+"shop": ""
+},
+{
+"genre": "水・ソフトドリンク",
+"rank": 30,
+"name": "再入荷お得な45％OFFクーポン【24時間限定】 コーヒー豆 コーヒー粉 香り 2kg/1",
+"price": 4560,
+"rc": 69,
+"av": 4.14,
+"url": "https://item.rakuten.co.jp/blueritual/kh001/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 1,
+"name": "sanrio house クリアタンブラー サンリオ ハウス 食器・調理器具・キッチン用品",
+"price": 1980,
+"rc": 26,
+"av": 4.65,
+"url": "https://item.rakuten.co.jp/stylife/rr6197/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 2,
+"name": "【500セット限定、15,000円購入につき東屋ノベルティ対象】東屋 姫フォークと姫スプー",
+"price": 1980,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/scope/azc28a11111/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 3,
+"name": "sanrio house クリアタンブラー サンリオ ハウス 食器・調理器具・キッチン用品",
+"price": 1980,
+"rc": 2,
+"av": 5.0,
+"url": "https://item.rakuten.co.jp/stylife/se5809/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 4,
+"name": "【数量限定 予約販売】イッタラ福袋 10点セット 福袋 2027 イッタラ IITTALA",
+"price": 22000,
+"rc": 5,
+"av": 5.0,
+"url": "https://item.rakuten.co.jp/kakuchi/set-1078120/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 5,
+"name": "【オトクなクーポン配布中】 スターフィルター 換気扇フィルター レンジフードフィルター レ",
+"price": 3080,
+"rc": 4587,
+"av": 4.57,
+"url": "https://item.rakuten.co.jp/starfilter/sfsetm03/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 6,
+"name": "お弁当袋 ランチバッグ お弁当バッグ お弁当 保冷 バッグ 男性 女性 おしゃれ 巾着型 ",
+"price": 1980,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/fbdoa5ak11n/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 7,
+"name": "【5の付く日！ 最大20%OFFクーポン】【公式】VAKUEN 真空保存容器 電動 強力密",
+"price": 3980,
+"rc": 6585,
+"av": 4.73,
+"url": "https://item.rakuten.co.jp/kitchenavi/2498-001010/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 8,
+"name": "＼楽天1位受賞／15日限定【20%OFFクーポン＆P10倍で実質2,146円】オイルスプレ",
+"price": 2980,
+"rc": 390,
+"av": 4.58,
+"url": "https://item.rakuten.co.jp/shinra-life/202606002r1/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 9,
+"name": "【数量限定 予約販売】イッタラ福袋 5点セット 福袋 2027 イッタラ IITTALA ",
+"price": 11000,
+"rc": 13,
+"av": 4.46,
+"url": "https://item.rakuten.co.jp/kakuchi/set-1078110/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 10,
+"name": "＼全サイズ入荷しました！／ 透明 撥水 拭ける キッチンマット 厚さ1.5mm 防カビ 防",
+"price": 1980,
+"rc": 5049,
+"av": 4.61,
+"url": "https://item.rakuten.co.jp/next-online/10000304/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 11,
+"name": "【本日限定！12点が10780円⇒9080円だけ！】CAROTE カローテ フライパン セ",
+"price": 3680,
+"rc": 667,
+"av": 4.43,
+"url": "https://item.rakuten.co.jp/cookware-carote/j08886/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 12,
+"name": "【直火用】ギャル曽根プロデュース！スルッと長持ち万能フライパン鍋4点セット 内径26cm ",
+"price": 8980,
+"rc": 41,
+"av": 3.54,
+"url": "https://item.rakuten.co.jp/ropping/999-112090/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 13,
+"name": "＼56％OFFクーポン！11/20限定！先着500枚！／sakuraku キッチンマット ",
+"price": 6980,
+"rc": 5584,
+"av": 4.53,
+"url": "https://item.rakuten.co.jp/kurashi-zakka/ktn-101/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 14,
+"name": "イッタラ ティーマ プレート12cm [ Iittala Teema ]",
+"price": 2750,
+"rc": 875,
+"av": 4.85,
+"url": "https://item.rakuten.co.jp/scope/iitteep12/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 15,
+"name": "【12月11日9:59まで期間限定価格】アラビア ルノ ティーカップ フロストベリー [ ",
+"price": 4400,
+"rc": 604,
+"av": 4.9,
+"url": "https://item.rakuten.co.jp/scope/ar65/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 16,
+"name": "イッタラ ティーマ プレート17cm [ Iittala Teema ]",
+"price": 3300,
+"rc": 511,
+"av": 4.89,
+"url": "https://item.rakuten.co.jp/scope/661482/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 17,
+"name": "sanrio house ハローキティ シルエットラメタンブラー サンリオ ハウス 食器・",
+"price": 4290,
+"rc": 24,
+"av": 4.96,
+"url": "https://item.rakuten.co.jp/stylife/se9477/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 18,
+"name": "【20％OFFクーポン 11/18 23:59迄】 ＼再入荷／ エアフライヤー レシピ 付",
+"price": 14800,
+"rc": 74,
+"av": 4.38,
+"url": "https://item.rakuten.co.jp/auc-risecreation/r0876/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 19,
+"name": "【楽天1位連続511冠】SUKIZUKI テーブルマット オーダーカット ビニール 透明 ",
+"price": 980,
+"rc": 1520,
+"av": 4.46,
+"url": "https://item.rakuten.co.jp/sukizuki/lyn-jj-010/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 20,
+"name": "【ワケあり】 アラビア ムーミン マグ 0.3L ギフト オブ ラブ ＋ caniスプーン",
+"price": 4200,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/scope/ara77b1111z/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 21,
+"name": "水筒 カップ 保温 キャンペーン 大好評 キャンペーン 1リットル 直飲み 洗いやすい 漏",
+"price": 1980,
+"rc": 7,
+"av": 4.14,
+"url": "https://item.rakuten.co.jp/hanakosshop/t36700015/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 22,
+"name": "キッチンスパッター KS-203キッチンバサミ 調理用はさみ 鳥部製作所 TORIBE S",
+"price": 5940,
+"rc": 35,
+"av": 4.77,
+"url": "https://item.rakuten.co.jp/toribe/ks-203/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 23,
+"name": "[楽天1位/本日10倍の超お得デー♪]正規品 STTOKE ストーク こぼれない タンブラ",
+"price": 5500,
+"rc": 2249,
+"av": 4.57,
+"url": "https://item.rakuten.co.jp/juntakushop/10000040/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 24,
+"name": "【特別セット】アラビア ムーミン マグ 0.3L ウィンター ナイト グロー ＋ cani",
+"price": 5280,
+"rc": 73,
+"av": 5.0,
+"url": "https://item.rakuten.co.jp/scope/ara77c11111/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 25,
+"name": "★＼当店が3年連続年間ランキング入賞／★PP食パン袋　半斤用　300枚（100枚×3束）　",
+"price": 1130,
+"rc": 3449,
+"av": 4.76,
+"url": "https://item.rakuten.co.jp/superpack/pp000002123/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 26,
+"name": "ジョージ ジェンセン ダマスク エジプト ティータオル [ Georg Jensen Da",
+"price": 1900,
+"rc": 8409,
+"av": 4.73,
+"url": "https://item.rakuten.co.jp/scope/gj-410400/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 27,
+"name": "＼52％OFFクーポン！11/20限定！先着1000枚！／「sakuraku 水切りラック",
+"price": 9900,
+"rc": 1663,
+"av": 4.5,
+"url": "https://item.rakuten.co.jp/kurashi-zakka/srn-502/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 28,
+"name": "＼55％OFFクーポン！12/1限定！先着1000枚！／累計販売数100000台突破【sa",
+"price": 5990,
+"rc": 7495,
+"av": 4.67,
+"url": "https://item.rakuten.co.jp/kurashi-zakka/srn-403-413/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 29,
+"name": "【別注カラー・限定セットあり！】iwaki イワキ 26年新色 耐熱ガラス保存容器 7点セ",
+"price": 3899,
+"rc": 1459,
+"av": 4.79,
+"url": "https://item.rakuten.co.jp/rcmdki/nf-pc-prn7/",
+"shop": ""
+},
+{
+"genre": "キッチン用品",
+"rank": 30,
+"name": "＼18冠受賞★／ まな板 Ra Le-Na （ラレーナ） 抗菌 食洗機対応 軽い 傷がつき",
+"price": 5980,
+"rc": 2040,
+"av": 4.61,
+"url": "https://item.rakuten.co.jp/rale-na/ralena-m01/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 4,
+"name": "毛布 シングル ブランケット 冬用 発熱 掛け毛布 100x150cm 150×200cm",
+"price": 4580,
+"rc": 1,
+"av": 5.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t11700091/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 5,
+"name": "昇降式デスク 上下昇降 無段階 高さ調節 パソコンデスク 家庭用学習デスク 手動昇降机 省",
+"price": 12980,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t89700269/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 6,
+"name": "収納ボックス 1個セット 77L 収納ケース 衣類衣装収納 フタ付き コンテナボックス 折",
+"price": 6480,
+"rc": 1,
+"av": 4.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t887000420/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 7,
+"name": "[11月15日]10%OFFクーポン NERUS ふわとろ毛布 Air AirPremiu",
+"price": 2980,
+"rc": 4543,
+"av": 4.73,
+"url": "https://item.rakuten.co.jp/t-interior/htc50/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 8,
+"name": "天板 水に強い 耐荷重10kg ズレない 板 中が透けない 壁付き チェスト 専用 チェス",
+"price": 2299,
+"rc": 1895,
+"av": 4.51,
+"url": "https://item.rakuten.co.jp/e-kurashi/s1y43/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 9,
+"name": "【24h★最大5%OFF】ラグ 洗える シエロ ラグマット キルトラグ 北欧 累計15.5",
+"price": 2990,
+"rc": 7041,
+"av": 4.76,
+"url": "https://item.rakuten.co.jp/apoloce/sielo-185/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 10,
+"name": "【最大半額クーポン♪11月16日10時迄】＼上半期ランキング2025受賞／掛け布団 洗える",
+"price": 2480,
+"rc": 5750,
+"av": 4.37,
+"url": "https://item.rakuten.co.jp/rack-kan/536260/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 11,
+"name": "最強配送 毛布 シングル セミダブル ダブル おしゃれ ブランケット 大判 秋冬用 暖かい",
+"price": 3580,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t24700076/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 12,
+"name": "【部分即納】 掛け布団カバー 北欧 母の日 プレゼント冬用 フリース マイクロファイバー ",
+"price": 3680,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t19507000p4h0/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 13,
+"name": "【TENTIAL公式】BAKUNE 掛け布団 ウォーム 冬用掛け布団 テンシャル バクネ ",
+"price": 31900,
+"rc": 393,
+"av": 4.6,
+"url": "https://item.rakuten.co.jp/tential/bakune-comforter-warm/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 14,
+"name": "【24H限定 P10倍！エントリー必須＆最大1,000円OFFクーポン+30日間トライアル",
+"price": 15800,
+"rc": 7781,
+"av": 4.52,
+"url": "https://item.rakuten.co.jp/33taiyo/hitsuji/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 15,
+"name": "【1380円〜】 ラグ 洗える 1畳 1.5畳 2畳 3畳 4畳 洗えるラグ おしゃれ 北",
+"price": 1380,
+"rc": 28971,
+"av": 4.42,
+"url": "https://item.rakuten.co.jp/auc-kaei-trading/microrg-l/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 16,
+"name": "一部即納 布団収納カバー 衣類収納 大容量 折りたたみ式 スチールフレーム付き 開口付き ",
+"price": 1980,
+"rc": 1,
+"av": 5.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t02700110/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 17,
+"name": "新作 毛布 シングル セミダブル ダブル おしゃれ ブランケット 大判 秋冬用 発熱 掛け",
+"price": 2980,
+"rc": 2,
+"av": 5.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t17700210/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 18,
+"name": "【日本No.1受賞】ハグモッチ 正規品【より改善】【医師の92%推奨】30万人の眠りをサポ",
+"price": 9980,
+"rc": 16078,
+"av": 4.54,
+"url": "https://item.rakuten.co.jp/luckyspread/10000001/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 19,
+"name": "【本日5%引クーポン】 楽天1位 高反発 ラグ 厚手 【防音＆クッション性UP】 極厚 2",
+"price": 3499,
+"rc": 3741,
+"av": 4.63,
+"url": "https://item.rakuten.co.jp/tansu/65010003/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 20,
+"name": "【50％OFFクーポン】即納 収納ボックス 木製天板 目隠しホワイト 収納ケース チェスト",
+"price": 2680,
+"rc": 4674,
+"av": 4.56,
+"url": "https://item.rakuten.co.jp/auc-kaei-trading/zk-snb02-all/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 21,
+"name": "【クーポンで81％OFF】もこもこ毛布 ふわとろ ブランケット フランネル生地 洗濯機対応",
+"price": 7889,
+"rc": 900,
+"av": 4.48,
+"url": "https://item.rakuten.co.jp/eunicedress/euni-123/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 22,
+"name": "【76％OFFクーポン配布中！】【AirホワイトW特価！クーポン利用で4,032円】【Ai",
+"price": 4980,
+"rc": 758,
+"av": 4.61,
+"url": "https://item.rakuten.co.jp/decori/y-593/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 23,
+"name": "【5％OFFクーポンあり★楽天1位 ★口コミ高評価】マットレス 高級 極厚 21cm プレ",
+"price": 7980,
+"rc": 3951,
+"av": 4.67,
+"url": "https://item.rakuten.co.jp/itsube-souken/thcd/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 24,
+"name": "【本日5%引クーポン】 確かな品質で6年連続No.1 マットレス ｢純｣ 高反発(R) 全",
+"price": 5555,
+"rc": 19755,
+"av": 4.43,
+"url": "https://item.rakuten.co.jp/tansu/13810084/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 25,
+"name": "[P10倍／17日まで] [即日出荷] [レビュー2900件超／高評価4.72点] 敷きパ",
+"price": 1980,
+"rc": 3016,
+"av": 4.71,
+"url": "https://item.rakuten.co.jp/dondon/zsk01-s/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 26,
+"name": "【15日限定★P4倍】ロールスクリーン ロールカーテン 遮熱 断熱 遮光 つっぱり オーダ",
+"price": 1900,
+"rc": 2764,
+"av": 4.41,
+"url": "https://item.rakuten.co.jp/diydiy/screen-023/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 27,
+"name": "【楽天1位常連】シーリングライト4.5畳 6畳 8畳 10畳12畳 14畳 調光調色 LE",
+"price": 1080,
+"rc": 8269,
+"av": 4.59,
+"url": "https://item.rakuten.co.jp/meikou-corp/sl24/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 28,
+"name": "《500円OFFクーポン！17日14時迄》ラグ 洗える 厚手 1.5畳 2畳 3畳 北欧 ",
+"price": 2780,
+"rc": 426,
+"av": 4.53,
+"url": "https://item.rakuten.co.jp/kaguin/7258781/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 29,
+"name": "★【期間限定】最大50%OFF!クーポン★ ふわり 掛け布団カバー 冬 布団カバー あった",
+"price": 2980,
+"rc": 1067,
+"av": 4.53,
+"url": "https://item.rakuten.co.jp/kaiminya/20203150/",
+"shop": ""
+},
+{
+"genre": "インテリア・寝具・収納",
+"rank": 30,
+"name": "[本日P6倍] [即日出荷] マットレス 高反発 シングル 三つ折りマットレス 敷布団 敷",
+"price": 3780,
+"rc": 11818,
+"av": 4.56,
+"url": "https://item.rakuten.co.jp/dondon/md-004-s/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 4,
+"name": "【QUADS公式】[1月上旬発送] スチーム加湿器 GLASS グラス ガラスポッド式 大",
+"price": 19800,
+"rc": 550,
+"av": 4.57,
+"url": "https://item.rakuten.co.jp/quads/qs549/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 5,
+"name": "【2,600円クーポン】COSORI DCモーター搭載 ノンフライヤー 6L 大容量 95",
+"price": 19980,
+"rc": 875,
+"av": 4.76,
+"url": "https://item.rakuten.co.jp/vesync/kaapafcsnjp0106y/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 6,
+"name": "【クーポンで最安5780円】「楽天1位」加湿器 ハイブリッド加湿器 大容量 5L 超音波式",
+"price": 6780,
+"rc": 11629,
+"av": 4.29,
+"url": "https://item.rakuten.co.jp/liberesta/aqua-m1/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 7,
+"name": "【楽天1位】 1時間たった0.6円 電気毛布 掛け敷き 洗える ふわとろ毛布 電気ひざ掛け",
+"price": 8900,
+"rc": 3512,
+"av": 4.63,
+"url": "https://item.rakuten.co.jp/mpowjapan/gfeb013000/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 8,
+"name": "●楽天1位 【豪華レシピ2冊付き】 正規品 レコルト 自動調理ポット ラージ RSY-3 ",
+"price": 19800,
+"rc": 541,
+"av": 4.74,
+"url": "https://item.rakuten.co.jp/plywood/20149424/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 9,
+"name": "【クーポンで最安5805円】「楽天1位」ふわとろ毛布 電気毛布 掛け敷き モコモコブランケ",
+"price": 12900,
+"rc": 3852,
+"av": 4.56,
+"url": "https://item.rakuten.co.jp/hitidear/cozywave-g1/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 10,
+"name": "イワタニ カセットガスストーブ「デカ暖III」カセットガス3本付き 岩谷 デカ3 Iwat",
+"price": 19800,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/mediaprice/0712774/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 11,
+"name": "【公式・正規品】 ポット型浄水器用カートリッジ マクストラプロ ピュアパフォーマンス 8個",
+"price": 8630,
+"rc": 27062,
+"av": 4.78,
+"url": "https://item.rakuten.co.jp/brita/maxtraplus-8/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 12,
+"name": "【特典＋36種類レシピ付】レコルト スープメーカー 豆乳メーカー スープ 全自動 豆乳機 ",
+"price": 19800,
+"rc": 701,
+"av": 4.72,
+"url": "https://item.rakuten.co.jp/roomy/win26feb09a01/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 13,
+"name": "★楽天1位【30レシピ+選べる2特典】レコルト 自動調理ポット RSY-2 自動調理 正規",
+"price": 13200,
+"rc": 9471,
+"av": 4.71,
+"url": "https://item.rakuten.co.jp/plywood/20149238/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 14,
+"name": "QUADS クワッズ ガラススチーム加湿器 GLASS （グラス） QS629 1個",
+"price": 15400,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/sankeins/a11273/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 15,
+"name": "【1,700円クーポン】COSORI ノンフライヤー CAF-L501 4.7L大容量 エ",
+"price": 13980,
+"rc": 1283,
+"av": 4.68,
+"url": "https://item.rakuten.co.jp/vesync/kaapafcsnjp0062/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 16,
+"name": "【楽天1位/正規店】recolte レコルト 自動調理ポット ラージ クリームホワイト/ナ",
+"price": 19800,
+"rc": 297,
+"av": 4.74,
+"url": "https://item.rakuten.co.jp/beautypark2017/recolte-pot-l/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 17,
+"name": "クーポンで1点7,605円～即納【連続週間1位★SNS話題沸騰】 加湿器 大容量 加湿器 ",
+"price": 16900,
+"rc": 4730,
+"av": 4.45,
+"url": "https://item.rakuten.co.jp/delishop/b2210b/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 18,
+"name": "【レビュー投稿で交換カートリッジプレゼント】 空気清浄機 シャープ KC-T50-W ホワ",
+"price": 21100,
+"rc": 4383,
+"av": 4.61,
+"url": "https://item.rakuten.co.jp/a-price/4974019102863/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 19,
+"name": "掃除機 コードレス【楽天12連冠達成！吸引力完全進化110Kpa超強力!革新版グリーンLE",
+"price": 12980,
+"rc": 5401,
+"av": 4.59,
+"url": "https://item.rakuten.co.jp/nene777/compass1747365900/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 20,
+"name": "本日はポイント5倍+限定ミラー！【35%OFFクーポンで69,800円 → 45,370円",
+"price": 69800,
+"rc": 8342,
+"av": 4.47,
+"url": "https://item.rakuten.co.jp/ulike-store/air10-ui20/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 21,
+"name": "クーポンで最安2,777円！楽天1位 セラミックヒーター ファンヒーター 2秒速暖 人感セ",
+"price": 3277,
+"rc": 6880,
+"av": 4.35,
+"url": "https://item.rakuten.co.jp/enterb/hw-g1-1/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 22,
+"name": "◆楽天1位◆スープメーカー【豪華選べる特典】自動調理ポット【30レシピ付】レコルト rec",
+"price": 13200,
+"rc": 17464,
+"av": 4.69,
+"url": "https://item.rakuten.co.jp/hotch-potch/00014257_cooking_pot/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 23,
+"name": "高評価★4.55【最高クラスの吸引力】SHOJIKI®正規品【強力吸引x1.8kgの軽量性",
+"price": 19800,
+"rc": 1960,
+"av": 4.56,
+"url": "https://item.rakuten.co.jp/shojiki-official/sh-j001/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 24,
+"name": "タンクを持ち運べる楽給水加湿器(HM07NR)　ニトリ",
+"price": 4990,
+"rc": 6,
+"av": 4.67,
+"url": "https://item.rakuten.co.jp/nitori/2113400069169s/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 25,
+"name": "楽天ランキング1位 【軽量ダメージレス】リファ ストレートアイロン プロ STRAIGHT",
+"price": 23000,
+"rc": 2285,
+"av": 4.6,
+"url": "https://item.rakuten.co.jp/mtgec-beauty/3891620108/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 26,
+"name": "＼楽天1位獲得／ セラミックヒーター 速暖 人感センサー 大風量 省エネ 小型 軽量 コン",
+"price": 5478,
+"rc": 283,
+"av": 4.22,
+"url": "https://item.rakuten.co.jp/irisplaza-r/288678/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 27,
+"name": "＼★楽天1位★／【選べるラグセット】 ホットカーペット 2畳 3畳 1畳 1.5畳 本体 ",
+"price": 3980,
+"rc": 268,
+"av": 4.26,
+"url": "https://item.rakuten.co.jp/irisplaza-r/7252045/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 28,
+"name": "＼レビュー1,700件突破／ ホットカーペット 1畳 1.5畳 2畳 3畳 本体 ラグ セ",
+"price": 3980,
+"rc": 1812,
+"av": 4.34,
+"url": "https://item.rakuten.co.jp/enetroom/7039812/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 29,
+"name": "【本気で最安値挑戦中・なくなり次第終了】【1年保証付】＼楽天ランキング入賞／キヌージョ ス",
+"price": 9300,
+"rc": 436,
+"av": 4.64,
+"url": "https://item.rakuten.co.jp/mycosmeticbox/wrinkle/",
+"shop": ""
+},
+{
+"genre": "家電",
+"rank": 30,
+"name": "【森香澄さんアンバサダー】LINKA スリークオン コンパクト ヒートブラシ ストレート ",
+"price": 7700,
+"rc": 825,
+"av": 4.44,
+"url": "https://item.rakuten.co.jp/aibeaute/321/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 1,
+"name": "【1時間で10000個突破】N organic Basic 福袋2027 60%OFF 豪",
+"price": 11000,
+"rc": 2930,
+"av": 4.47,
+"url": "https://item.rakuten.co.jp/norganic/nr-luckybag2022/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 2,
+"name": "★45％OFFクーポン配布★【SPICARE正規品】SPICARE V3 ファンデーション",
+"price": 7700,
+"rc": 109,
+"av": 4.47,
+"url": "https://item.rakuten.co.jp/supernice-store/spicare-v3/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 3,
+"name": "【正規販売店/楽天1位】ロアザオイル LOA THE OIL 30ml / 100ml ブ",
+"price": 3520,
+"rc": 4697,
+"av": 4.64,
+"url": "https://item.rakuten.co.jp/beautypark2017/loaoil/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 4,
+"name": "＜今なら19,800円相当！＞ ラヴィットで紹介 ELEKI LIFT 【公式】美顔器 リ",
+"price": 58000,
+"rc": 806,
+"av": 4.17,
+"url": "https://item.rakuten.co.jp/brighte-onlineshop/brt-fl170/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 5,
+"name": "【送料無料】乳液 セラミド 高保湿 さらさら 乾燥 敏感 インナードライ 楽天ベストコスメ",
+"price": 3610,
+"rc": 3739,
+"av": 4.59,
+"url": "https://item.rakuten.co.jp/tvert/972273/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 6,
+"name": "【ポイント10倍！11月19日20:00〜11月25日23:59】 大容量 スキンクリア ",
+"price": 3630,
+"rc": 50376,
+"av": 4.8,
+"url": "https://item.rakuten.co.jp/attenir/166013/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 7,
+"name": "【 楽天ランキング1位 】 まつ毛美容液 アイラッシュセラム まつげ美容液 公式 ビオルチ",
+"price": 3980,
+"rc": 4908,
+"av": 4.45,
+"url": "https://item.rakuten.co.jp/biolucia/biolucia-eyelashserum_1-r/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 8,
+"name": "【公式】フェイシャルトリートメント エッセンス コフレ2026 ホリデーコレクション  S",
+"price": 29150,
+"rc": 18,
+"av": 4.56,
+"url": "https://item.rakuten.co.jp/sk-ii/set-ftec-holiday2026/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 9,
+"name": "＼楽天ブラシランキング1位／リファエールブラシ クリスマス プレゼント ブラシ ヘアブラシ",
+"price": 3800,
+"rc": 2956,
+"av": 4.61,
+"url": "https://item.rakuten.co.jp/mtgec-beauty/1201310101/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 10,
+"name": "【公式】アルティム8∞ ベストセラーキット / ブライト クレンジングオイル キット | ",
+"price": 13200,
+"rc": 36059,
+"av": 4.84,
+"url": "https://item.rakuten.co.jp/shuuemura/shu30001jp/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 11,
+"name": "ラッシュアディクト アイラッシュ コンディショニング セラム アドバンス 5ml まつ毛美",
+"price": 11000,
+"rc": 810,
+"av": 4.29,
+"url": "https://item.rakuten.co.jp/bjc-onlinestore/lashaddict01a/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 12,
+"name": "【ポイント5倍】モイスチャーセラムクレンジング【MEGUMI開発】Aurelie (オレリ",
+"price": 3960,
+"rc": 299,
+"av": 4.17,
+"url": "https://item.rakuten.co.jp/aurelie-tokyo/alcl02/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 13,
+"name": "＼ギフトにおすすめ／リファハートコーム アイラ クリスマス プレゼント ヘアコーム くし ",
+"price": 2970,
+"rc": 3338,
+"av": 4.51,
+"url": "https://item.rakuten.co.jp/mtgec-beauty/1186210101/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 14,
+"name": "【公式】ニューモV 育毛剤 医薬部外品 送料無料 養毛剤 薄毛 増毛 促進 薄毛対策 抜け",
+"price": 7970,
+"rc": 509,
+"av": 4.53,
+"url": "https://item.rakuten.co.jp/tamago-kichi/newmo_v01/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 15,
+"name": "【公式】SK-II フェイシャルトリートメントエッセンス75mL、160mL、230mL ",
+"price": 12650,
+"rc": 606,
+"av": 4.46,
+"url": "https://item.rakuten.co.jp/sk-ii/fte_230-sgl/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 16,
+"name": "【公式】VALANROSE バランローズ KUROクリームシャンプー 150g/400g ",
+"price": 2640,
+"rc": 8666,
+"av": 4.38,
+"url": "https://item.rakuten.co.jp/sakurap/10008554/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 17,
+"name": "15日限定！P10倍★売上第1位※★ エシエンス ダーマインショット 生ビタミンC 針美容",
+"price": 3980,
+"rc": 2036,
+"av": 4.57,
+"url": "https://item.rakuten.co.jp/hugkumi/r_esience_ds200/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 18,
+"name": "【国内正規品】コスメデコルテ フェイスパウダー #80 20g ルース パウダー #00 ",
+"price": 3585,
+"rc": 2143,
+"av": 4.69,
+"url": "https://item.rakuten.co.jp/arianakosume/4953923307878-fukubukuro/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 19,
+"name": "【送料無料】【最安値挑戦中】【 15時までのご注文は当日出荷・土日祝も配送】公式 正規品 ",
+"price": 4843,
+"rc": 14,
+"av": 4.57,
+"url": "https://item.rakuten.co.jp/kelly-s/rashadict-1-n/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 20,
+"name": "2026ホリデー ヘアオイル ユイル クロノロジスト◆ミニサイズ30mL/本体75mLセッ",
+"price": 3960,
+"rc": 8119,
+"av": 4.75,
+"url": "https://item.rakuten.co.jp/kerastase-varie/ch-huilc_120/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 21,
+"name": "track 【公式】trackオイル アールグレイ 90mL トラック ヘアケア スタイリ",
+"price": 4620,
+"rc": 38,
+"av": 4.53,
+"url": "https://item.rakuten.co.jp/stylife/qh8424/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 22,
+"name": "【公式】楽天限定★トーンアップUV サンプル3点付きセット / 30mL/ ローズ＋ / ",
+"price": 4070,
+"rc": 11809,
+"av": 4.69,
+"url": "https://item.rakuten.co.jp/larocheposay/l00332ropenkit/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 23,
+"name": "【即納】パーフェクトダイアリー PERFECT DIARY アイシャドウ アイシャドウステ",
+"price": 2200,
+"rc": 8,
+"av": 4.0,
+"url": "https://item.rakuten.co.jp/perfectdiary/10000048/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 24,
+"name": "タカミスキンピール◆送料無料│2本～購入で特典付き◆角質美容水 美容皮膚発想 スキンケア ",
+"price": 5720,
+"rc": 6610,
+"av": 4.69,
+"url": "https://item.rakuten.co.jp/takami-labo/r-s009/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 25,
+"name": "「1本でパウダーまで終わるファンデーション」HACKTICK 5.6g スティック ファン",
+"price": 4980,
+"rc": 1520,
+"av": 4.3,
+"url": "https://item.rakuten.co.jp/origotou/hack-tick2/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 26,
+"name": "★ポイント10倍 11/15(日)まで★【楽天1位獲得】ビーリス b.ris ラリッチスカ",
+"price": 6650,
+"rc": 1475,
+"av": 4.18,
+"url": "https://item.rakuten.co.jp/b-ris-shop/r_larich_001/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 27,
+"name": "【遂に発売開始】N organic Vie 福袋2027 58%OFF 豪華9点セット 数",
+"price": 15400,
+"rc": 769,
+"av": 4.45,
+"url": "https://item.rakuten.co.jp/norganic/np-luckybag2024/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 28,
+"name": "[Stamp series] スタンプネイル スタンパー スタンピング",
+"price": 400,
+"rc": 8,
+"av": 4.5,
+"url": "https://item.rakuten.co.jp/annuum/deco330/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 29,
+"name": "★P20倍 15日23:59マデ★【送料無料】Yunth 生ビタミンC 美白美容液 1ml",
+"price": 3960,
+"rc": 45454,
+"av": 4.69,
+"url": "https://item.rakuten.co.jp/yunth/10000000/",
+"shop": ""
+},
+{
+"genre": "美容・コスメ",
+"rank": 30,
+"name": "＼クーポンで最大、58%OFF 11/30 23:59まで！／【TIRTIR公式】2027",
+"price": 4446,
+"rc": 23,
+"av": 4.52,
+"url": "https://item.rakuten.co.jp/tirtir/tirtir_rakuten_select_set2/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 1,
+"name": "プロテイン WPC エクスプロージョン 3kg ミルクチョコレート味 ホエイプロテイン 3",
+"price": 13790,
+"rc": 2449,
+"av": 4.44,
+"url": "https://item.rakuten.co.jp/x-plosion/10000019/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 2,
+"name": "［最大1000円OFF他クーポン配布］エクエル パウチ 120粒 3個セット【正規品】送料",
+"price": 11129,
+"rc": 6841,
+"av": 4.69,
+"url": "https://item.rakuten.co.jp/shimin2/4987035545613-3a-m/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 3,
+"name": "【 Lypo-C 公式 】リポ カプセル ビタミンC (28包入) ×1箱 リポソーム ビ",
+"price": 7776,
+"rc": 2224,
+"av": 4.65,
+"url": "https://item.rakuten.co.jp/lypoc/lypo-c28/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 4,
+"name": "[エントリー最大P23倍+最大10%オフクーポンアリ15日23:59マデ]【公式】Teaf",
+"price": 2376,
+"rc": 5100,
+"av": 4.48,
+"url": "https://item.rakuten.co.jp/endeavour/tfx001/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 5,
+"name": "＼口臭予防1位／【公式】医薬部外品 メディカルブレス 口臭除去タブレット 口臭ケア サプリ",
+"price": 2280,
+"rc": 672,
+"av": 4.51,
+"url": "https://item.rakuten.co.jp/medicalbreathshop/mbtb001/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 6,
+"name": "【限定クーポン】 VITAS バイタス ホエイ プロテイン 100 WPCプロテイン 10",
+"price": 5480,
+"rc": 5509,
+"av": 4.77,
+"url": "https://item.rakuten.co.jp/toyomarket/vitas006/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 7,
+"name": "【12日20時から5%OFF！】プロテイン ホエイプロテイン ウィンゾーン パーフェクトチ",
+"price": 5491,
+"rc": 12903,
+"av": 4.64,
+"url": "https://item.rakuten.co.jp/nippon-shinyaku-shop/4510e/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 8,
+"name": "＼累計5000万食突破／ 美容専門プロテイン 女性 タンパクオトメ 送料無料 女性用 国内",
+"price": 3480,
+"rc": 15743,
+"av": 4.31,
+"url": "https://item.rakuten.co.jp/kyunan/beauty-protein-tanpakuotome/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 9,
+"name": "エクスプロージョン ミセルミックスプロテイン MXP 100% MICELLAR CASE",
+"price": 7399,
+"rc": 33,
+"av": 4.39,
+"url": "https://item.rakuten.co.jp/x-plosion/mxpfl-ch/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 10,
+"name": "【 Lypo-C 公式 】リポ カプセル ビタミンC+D (28包入) ×1箱 リポソーム",
+"price": 8964,
+"rc": 1094,
+"av": 4.62,
+"url": "https://item.rakuten.co.jp/lypoc/lypo-c-cd28/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 11,
+"name": "【U-ni】【楽天1位】【SNSで話題】 カタツムリカッサ かたつむり かっさ なめくじ ",
+"price": 1078,
+"rc": 378,
+"av": 4.61,
+"url": "https://item.rakuten.co.jp/gjapan-beauty/100000373/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 12,
+"name": "[1000円 200円 150円OFFクーポン配布中] エクエル パウチ 120粒 3個セ",
+"price": 11127,
+"rc": 2387,
+"av": 4.69,
+"url": "https://item.rakuten.co.jp/pycno/4018-016/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 13,
+"name": "【特価×クーポン】 VITAS マルチビタミン サプリ 120粒 30日分 ビタミンC マ",
+"price": 2108,
+"rc": 3506,
+"av": 4.71,
+"url": "https://item.rakuten.co.jp/toyomarket/vitas001/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 14,
+"name": "プロテイン 女性 完全栄養食 marinessプロテイン 人工甘味料不使用 女性向け 国産",
+"price": 3980,
+"rc": 6499,
+"av": 4.59,
+"url": "https://item.rakuten.co.jp/mariness/s0000155551/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 15,
+"name": "DHA&EPA＋セサミンEX オメガ脂肪酸 サントリー公式 DHA EPA オリザプラス ",
+"price": 6633,
+"rc": 1069,
+"av": 4.56,
+"url": "https://item.rakuten.co.jp/suntorywellness/43320/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 16,
+"name": "【公式】倖田來未 開発 キラーバーナードロップ 機能性表示食品 ダイエットサプリ 1袋45",
+"price": 3980,
+"rc": 45,
+"av": 4.09,
+"url": "https://item.rakuten.co.jp/trustline/killer-burner-drop/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 17,
+"name": "【楽天ランキング1位！】【公式】セノッピー（ぶどう味）2袋 30日分 栄養 グミ 身長サポ",
+"price": 7538,
+"rc": 28,
+"av": 4.11,
+"url": "https://item.rakuten.co.jp/senoppy/7497/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 18,
+"name": "【特価×クーポン】 嫁にもろてプロテインマグケーキ チョコ 塩キャラメル 抹茶 レモンチー",
+"price": 3184,
+"rc": 2979,
+"av": 4.59,
+"url": "https://item.rakuten.co.jp/toyomarket/yomemoro/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 19,
+"name": "葉酸サプリ 妊活サプリ ミタス葉酸 mitas 時期別 妊婦 産後 授乳 マタニティ ママ",
+"price": 5940,
+"rc": 2134,
+"av": 4.47,
+"url": "https://item.rakuten.co.jp/beauteq/mitas-r02/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 20,
+"name": "ライオン チェックアップ スタンダード 歯磨きペースト 135g 3本セット",
+"price": 3680,
+"rc": 142,
+"av": 4.92,
+"url": "https://item.rakuten.co.jp/hano-senmonten/4903301329770-3/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 21,
+"name": "ロコモア ひざ サプリ 機能性表示食品 サントリー公式 筋肉成分 軟骨成分 グルコサミン ",
+"price": 6634,
+"rc": 1162,
+"av": 4.43,
+"url": "https://item.rakuten.co.jp/suntorywellness/43345/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 22,
+"name": "［最大1000円OFF他クーポン配布中］エクエル パウチ 120粒 4袋セット【正規品】送",
+"price": 14790,
+"rc": 161,
+"av": 4.73,
+"url": "https://item.rakuten.co.jp/shimin2/4987035545613-4/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 23,
+"name": "【楽天No1】高純度99.9% クレアチン モノハイドレート ハルクファクター 国内充填 ",
+"price": 1726,
+"rc": 574,
+"av": 4.52,
+"url": "https://item.rakuten.co.jp/cscjp/6000hu10101/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 24,
+"name": "【15日P2倍】 30種類のフレーバーから楽しめる！プロテイン ホエイ 1kg ザプロ ホ",
+"price": 5980,
+"rc": 13718,
+"av": 4.58,
+"url": "https://item.rakuten.co.jp/takeuchi-labo/ta-the-pr/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 25,
+"name": "【特価×クーポン】 EAA マンゴー キウイ みかん ライチ 梅シトラス VITAS 52",
+"price": 3132,
+"rc": 2857,
+"av": 4.75,
+"url": "https://item.rakuten.co.jp/toyomarket/vitas002_a/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 26,
+"name": "［楽天ジャンル賞連続入賞］エクエル パウチ 120粒 【正規品】送料無料 大塚製薬 エクエ",
+"price": 3848,
+"rc": 3836,
+"av": 4.51,
+"url": "https://item.rakuten.co.jp/shimin2/4987035545613/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 27,
+"name": "【公式店P10倍】【2026楽天ランキング入賞】限定カラー コラントッテ ネックレス AL",
+"price": 10450,
+"rc": 1531,
+"av": 4.59,
+"url": "https://item.rakuten.co.jp/colantotte-official/abara/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 28,
+"name": "終了間近＼P5倍／ プロテイン 女性 ダイエット 栄養機能食品 ソイプロテイン 250g ",
+"price": 2998,
+"rc": 42831,
+"av": 4.52,
+"url": "https://item.rakuten.co.jp/bambi-water/bambidietshake/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 29,
+"name": "みくたま PICK 5+1箱セットさらに1食追加プレゼント（31食分）クランティン ザクザ",
+"price": 12199,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/cruntin-official/cruntin_10/",
+"shop": ""
+},
+{
+"genre": "ダイエット・健康",
+"rank": 30,
+"name": "【飲むビタミン美容ケア】【ELLISS公式】エルリス ビタミンC リポソームビタミンC リ",
+"price": 3480,
+"rc": 1874,
+"av": 4.68,
+"url": "https://item.rakuten.co.jp/bosii/els-vck/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 1,
+"name": "【1種類を選べる】マミーポコパンツ 大きめで長〜く使える オムツ M L BIG(3個)【",
+"price": 5577,
+"rc": 8936,
+"av": 4.79,
+"url": "https://item.rakuten.co.jp/netbaby/404272/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 2,
+"name": "【楽天ランキング1位】 スリーパー フランネル ボア or ガーゼ 選べる 袖あり 袖なし",
+"price": 2490,
+"rc": 1374,
+"av": 4.66,
+"url": "https://item.rakuten.co.jp/ponopono/303005/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 3,
+"name": "72%OFF！【期間限定：1,590円〜！】 キッズ パジャマ 長袖 冬 ルームウェア 上",
+"price": 1590,
+"rc": 49,
+"av": 4.37,
+"url": "https://item.rakuten.co.jp/darkangel/st2606-5552/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 4,
+"name": "【1種類を選べる】メリーズ エアスルー パンツ 梱販販売用(3袋入×1箱)【メリーズ】[お",
+"price": 6460,
+"rc": 4133,
+"av": 4.83,
+"url": "https://item.rakuten.co.jp/netbaby/404758/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 5,
+"name": "パンパース 肌へのいちばん オムツ パンツ(4袋入)【パンパース】",
+"price": 8959,
+"rc": 618,
+"av": 4.87,
+"url": "https://item.rakuten.co.jp/netbaby/406536/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 6,
+"name": "【1種類を選べる】パンパース オムツ はじめての肌へのいちばん テープ(3個)【パンパース",
+"price": 6890,
+"rc": 7146,
+"av": 4.8,
+"url": "https://item.rakuten.co.jp/netbaby/a62067xxx/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 7,
+"name": "パンパース パンツ さらさらケア オムツ(3個入×2セット)【パンパース】",
+"price": 18759,
+"rc": 67,
+"av": 4.87,
+"url": "https://item.rakuten.co.jp/netbaby/407047/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 8,
+"name": "【 公式】ユニースリープ 1位獲得 新生児～24か月 絶壁予防 ベビー枕 赤ちゃん枕 寝返",
+"price": 11900,
+"rc": 2731,
+"av": 4.51,
+"url": "https://item.rakuten.co.jp/kanseikukan/yuunysleep01/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 9,
+"name": "BabySmile 電動鼻水吸引器 メルシーポット S-505 | 電動鼻水吸引器 鼻水吸",
+"price": 7980,
+"rc": 8713,
+"av": 4.66,
+"url": "https://item.rakuten.co.jp/seastar/0000002336/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 10,
+"name": "【1種類を選べる】パンパース オムツ さらさらケア パンツ(1セット)【パンパース】[さら",
+"price": 4950,
+"rc": 9286,
+"av": 4.82,
+"url": "https://item.rakuten.co.jp/netbaby/404313/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 11,
+"name": "【1種類を選べる】ムーニーマン パンツ 男女 L・BIGサイズ 大容量(4袋セット)【ムー",
+"price": 9196,
+"rc": 1554,
+"av": 4.73,
+"url": "https://item.rakuten.co.jp/netbaby/404937/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 12,
+"name": "ルームシューズ スリッパ 冬 レディース メンズ 室内履き あったか 暖かい ふわふわ も",
+"price": 2680,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/c07000571/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 13,
+"name": "ベッドガード 赤ちゃん クッション 転落防止 ベッドフェンス 子供 子ども 添い寝 寝返り",
+"price": 4890,
+"rc": 1,
+"av": 5.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t26700050/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 14,
+"name": "楽天連続1位【まとめ割5%OFFクーポンあり】 ベビーゲート 階段上 突っ張り 階段 キッ",
+"price": 1640,
+"rc": 10823,
+"av": 4.55,
+"url": "https://item.rakuten.co.jp/high-high/baby-gate-003/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 15,
+"name": "ベビー枕 ジオピロー 【公式】 新生児 から使える 絶壁防止 ドーナツ枕 出産祝い シルク",
+"price": 7980,
+"rc": 13194,
+"av": 4.51,
+"url": "https://item.rakuten.co.jp/sanho-store/giopillow/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 16,
+"name": "電動鼻吸い器　シュポット | 0ヵ月頃〜 風邪予防・体温計・衛生商品 ピジョン 鼻水 吸引",
+"price": 13585,
+"rc": 2532,
+"av": 4.7,
+"url": "https://item.rakuten.co.jp/pigeon-shop/1032018/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 17,
+"name": "【最大400円OFF】布にアイロン無しで貼れる！ 布用 お名前シール ノンアイロン 名前シ",
+"price": 1750,
+"rc": 17397,
+"av": 4.59,
+"url": "https://item.rakuten.co.jp/naireseisakusho/nuno-nonironseal1/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 18,
+"name": "【5と0のつく日限定10％OFFクーポン】葉酸サプリ エレビット 葉酸800μg 無添加 ",
+"price": 4980,
+"rc": 2278,
+"av": 4.56,
+"url": "https://item.rakuten.co.jp/bayeryakuhin/85130056-1/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 19,
+"name": "【1種類を選べる】グーン ぐんぐん吸収パンツ ディズニー・プリンセス おむつ(3個)【mm",
+"price": 4755,
+"rc": 7142,
+"av": 4.67,
+"url": "https://item.rakuten.co.jp/netbaby/404196/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 20,
+"name": "【新規購入クーポン有り!!17日23:59まで】★楽天1位★子育てベストアイテム大賞他多数",
+"price": 11900,
+"rc": 5578,
+"av": 4.56,
+"url": "https://item.rakuten.co.jp/realize-store2020/pomulu/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 21,
+"name": "ママ&キッズ (Mama&Kids)【公式】 ベビー ミルキーローション お得用サイズ 3",
+"price": 5170,
+"rc": 3822,
+"av": 4.77,
+"url": "https://item.rakuten.co.jp/naturavie/4530025008096/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 22,
+"name": "【公式】エスメラルダ 1位獲得 新生児 から使える ベビー枕 赤ちゃん枕 ドーナツ枕 絶壁",
+"price": 9985,
+"rc": 12771,
+"av": 4.52,
+"url": "https://item.rakuten.co.jp/baby-alice/esm-makura09/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 23,
+"name": "ルームシューズ スリッパ 冬 レディース メンズ 室内履き あったか 暖かい ふわふわ も",
+"price": 1680,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t58700059/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 24,
+"name": "★楽天1位 61冠★おしりふき 80枚×12パック 厚手で水分たっぷりのおしりふき 厚手 ",
+"price": 4350,
+"rc": 1613,
+"av": 4.8,
+"url": "https://item.rakuten.co.jp/babycareshop/bc20230001/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 25,
+"name": "NOVUS ノウス ベビーハイチェア キッズ ベビー 赤ちゃん 子供 キッズチェア テーブ",
+"price": 14999,
+"rc": 8024,
+"av": 4.57,
+"url": "https://item.rakuten.co.jp/babytown/hc-cc/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 26,
+"name": "森永 はぐくみ エコらくパック つめかえ用(2袋入×6セット(1袋400g))【はぐくみ】",
+"price": 14360,
+"rc": 2585,
+"av": 4.84,
+"url": "https://item.rakuten.co.jp/netbaby/a62938xxx/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 27,
+"name": "口コミ6800件!!TVで紹介★芸能人愛用＜レビュー特典＞楽天1位16冠！モバイルミルクウ",
+"price": 5980,
+"rc": 6934,
+"av": 4.6,
+"url": "https://item.rakuten.co.jp/larutan/n026m/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 28,
+"name": "【19日20時よりMAX20%OFF】アロベビー ミルクローション 大容量サイズ 380m",
+"price": 5280,
+"rc": 1552,
+"av": 4.54,
+"url": "https://item.rakuten.co.jp/babycresco/alobaby_09/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 29,
+"name": "【1種類を選べる】メリーズ おむつ パンツ ファーストプレミアム 梱販売用 M L BIG",
+"price": 6985,
+"rc": 1013,
+"av": 4.84,
+"url": "https://item.rakuten.co.jp/netbaby/404698/",
+"shop": ""
+},
+{
+"genre": "キッズ・ベビー",
+"rank": 30,
+"name": "【クーポン使用で2108円～ 11/18 23:59迄】 スリーパー ガーゼ 6重 夏 夏",
+"price": 2480,
+"rc": 286,
+"av": 4.71,
+"url": "https://item.rakuten.co.jp/auc-risecreation/r0676/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 1,
+"name": "ロイヤルカナン 猫用 ユリナリー S／O オルファクトリー ライト(フィッシュテイスト)(",
+"price": 9198,
+"rc": 2900,
+"av": 4.66,
+"url": "https://item.rakuten.co.jp/wwpc/3182550901215/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 2,
+"name": "ロイヤルカナン 猫用 消化器サポート 可溶性繊維 ドライ(4kg)【2shwwpc】【ロイ",
+"price": 9199,
+"rc": 2052,
+"av": 4.65,
+"url": "https://item.rakuten.co.jp/wwpc/10006755/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 3,
+"name": "[11/16 8:59までSALE価格] 超薄型 ペットシーツ レギュラー 1200枚（3",
+"price": 4980,
+"rc": 20798,
+"av": 4.52,
+"url": "https://item.rakuten.co.jp/styleplus/10000000tw/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 4,
+"name": "＼マラソン最大2,000円OFF＋P10倍／ ペットカート犬 バギー 多頭 上下2段式 小",
+"price": 21680,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t20700199/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 5,
+"name": "ロイヤルカナン 犬用 アミノペプチド フォーミュラ ドライ(3kg)【ロイヤルカナン療法食",
+"price": 9179,
+"rc": 1178,
+"av": 4.51,
+"url": "https://item.rakuten.co.jp/wwpc/7878/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 6,
+"name": "ロイヤルカナン 食事療法食 猫用 ユリナリー S／O(チキンテイスト)(4kg)【ロイヤル",
+"price": 9199,
+"rc": 1247,
+"av": 4.66,
+"url": "https://item.rakuten.co.jp/wwpc/3182550901062/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 7,
+"name": "ロイヤルカナン 犬用 消化器サポート 低脂肪 ドライ(3kg)【2shwwpc】【ロイヤル",
+"price": 7606,
+"rc": 2883,
+"av": 4.62,
+"url": "https://item.rakuten.co.jp/wwpc/528023/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 8,
+"name": "ロイヤルカナン 猫用 消化器サポート 可溶性繊維 ドライ(2kg)【ロイヤルカナン療法食】",
+"price": 5996,
+"rc": 1231,
+"av": 4.68,
+"url": "https://item.rakuten.co.jp/wwpc/10006754/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 9,
+"name": "LION ライオンペット ニオイをとる砂 5L×4個 | ニオイをとる砂 猫砂 ベントナイ",
+"price": 3240,
+"rc": 1071,
+"av": 4.68,
+"url": "https://item.rakuten.co.jp/beisia/4903351011250/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 10,
+"name": "犬用ペット ペットベッド 犬猫兼用 用 3way マット クッション付き 北欧風 ソファ ",
+"price": 2990,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/ddef05cx1q/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 11,
+"name": "ロイヤルカナン 猫用 ユリナリー S／O オルファクトリー(フィッシュテイスト)(4kg)",
+"price": 9199,
+"rc": 1391,
+"av": 4.65,
+"url": "https://item.rakuten.co.jp/wwpc/3182550901154/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 12,
+"name": "ロイヤルカナン 犬用 満腹感サポート 小型犬用 S(3kg)【ロイヤルカナン療法食】",
+"price": 8384,
+"rc": 1162,
+"av": 4.6,
+"url": "https://item.rakuten.co.jp/wwpc/3182550910057/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 13,
+"name": "ペットシーツ 犬 猫 トイレシート 薄型 ペットシート 使い捨て おしっこシート 吸水 防",
+"price": 2200,
+"rc": 0,
+"av": 0.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/ddxa05cm/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 14,
+"name": "■生活応援キャンペーン実施中■ロイヤルカナン FHN インドア 室内で生活する成猫用 生後",
+"price": 6476,
+"rc": 4571,
+"av": 4.82,
+"url": "https://item.rakuten.co.jp/sweet-pet/77687275/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 15,
+"name": "＼楽天1位／ペットシーツ 薄型 犬 トイレ シート シーツ シート 猫 レギュラー800枚",
+"price": 4480,
+"rc": 45613,
+"av": 4.49,
+"url": "https://item.rakuten.co.jp/dog-kan/886730/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 16,
+"name": "■生活応援キャンペーン実施中■ロイヤルカナン SHN ミニ インドア アダルト 室内で生活",
+"price": 5964,
+"rc": 1730,
+"av": 4.79,
+"url": "https://item.rakuten.co.jp/sweet-pet/91596840/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 17,
+"name": "【公式】 アンチノール プラス ペット サプリ サプリメント 犬用 ペット用 関節 健康 ",
+"price": 4342,
+"rc": 1443,
+"av": 4.68,
+"url": "https://item.rakuten.co.jp/vetzpetz/v_43447442374805/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 18,
+"name": "◆令和8年度産新刈り◆【送料無料】牧草市場 スーパープレミアム チモシー 1番刈り 牧草 ",
+"price": 4198,
+"rc": 17408,
+"av": 4.71,
+"url": "https://item.rakuten.co.jp/mapet/s-4/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 19,
+"name": "ニュートロ シュプレモ 小型犬用 成犬用 3kg ドッグフード(3kg)【d_nutro】",
+"price": 5864,
+"rc": 1057,
+"av": 4.72,
+"url": "https://item.rakuten.co.jp/nyanzaq/4562358781780/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 20,
+"name": "ロイヤルカナン 療法食 犬用 消化器サポート 低脂肪 ドライ 8kg",
+"price": 17425,
+"rc": 1120,
+"av": 4.67,
+"url": "https://item.rakuten.co.jp/petdr-x/10000002/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 21,
+"name": "【1種類を選べる】サイエンスダイエット(10.5kg or 12kg)【ヒルズ サイエンス",
+"price": 10400,
+"rc": 2298,
+"av": 4.73,
+"url": "https://item.rakuten.co.jp/nyanzaq/mtm0472/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 22,
+"name": "【スピード吸収×W消臭】Famy ペットシーツ ファミー JPPMA認証 うす型 薄型 1",
+"price": 4480,
+"rc": 15083,
+"av": 4.56,
+"url": "https://item.rakuten.co.jp/ryouhin-monogatari/10000024/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 23,
+"name": "ロイヤルカナン 犬用 消化器サポート 低脂肪 ドライ(8kg)【2shwwpc】【ロイヤル",
+"price": 17435,
+"rc": 2199,
+"av": 4.7,
+"url": "https://item.rakuten.co.jp/wwpc/528024/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 24,
+"name": "ロイヤルカナン 療法食 猫用 ユリナリーS/O ドライ 4kg",
+"price": 9204,
+"rc": 477,
+"av": 4.66,
+"url": "https://item.rakuten.co.jp/petdr-x/10000134-5/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 25,
+"name": "ロイヤルカナン 猫用 ユリナリー S／O オルファクトリー ライト(フィッシュテイスト)(",
+"price": 5996,
+"rc": 371,
+"av": 4.71,
+"url": "https://item.rakuten.co.jp/wwpc/3182550901208/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 26,
+"name": "ロイヤルカナン 猫用 ユリナリーS／O ライト(チキンテイスト)(4kg)【ロイヤルカナン",
+"price": 9199,
+"rc": 743,
+"av": 4.61,
+"url": "https://item.rakuten.co.jp/wwpc/3182550901178/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 27,
+"name": "ロイヤルカナン 療法食 猫用 ユリナリーS/O オルファクトリー ライト ドライ 4kg",
+"price": 9204,
+"rc": 1225,
+"av": 4.73,
+"url": "https://item.rakuten.co.jp/petdr-x/10000139-4/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 28,
+"name": "腸内バイオーム 繊維＆消化ケア 小粒 チキン 犬用特別療法食 ドライ(3kg)【ヒルズ プ",
+"price": 8514,
+"rc": 127,
+"av": 4.76,
+"url": "https://item.rakuten.co.jp/nyanzaq/406873/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 29,
+"name": "ニュートロ シュプレモ 超小型犬〜小型犬用 体重管理用 3kg 成犬用 ドッグフード(3k",
+"price": 6079,
+"rc": 943,
+"av": 4.74,
+"url": "https://item.rakuten.co.jp/nyanzaq/4562358781865/",
+"shop": ""
+},
+{
+"genre": "ペット",
+"rank": 30,
+"name": "ペットベッド 猫 犬 ドームハウス ドーム型 ペットテント クッション付き 洗える 寒さ対",
+"price": 2974,
+"rc": 1,
+"av": 4.0,
+"url": "https://item.rakuten.co.jp/hanakosshop/t63700148/",
+"shop": ""
+}
+]
+}
