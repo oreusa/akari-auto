@@ -2205,11 +2205,10 @@
   "why": ""
  },
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
-  "at": "2026-11-15",
-  "by": "browser",
+  "at": "2026-11-16",
   "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "sec": 15.2,
+  "why": "<urlopen error timed out>"
  },
  "https://ehonnooka.com/?p=11240": {
   "at": "2026-11-15",
@@ -2279,13 +2278,6 @@
   "by": "browser",
   "ok": true,
   "sec": 3.6,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fevent.rakuten.co.jp%2Fcampaign%2Fpoint-up%2Fmarathon%2F&m=https%3A%2F%2Fevent.rakuten.co.jp%2Fcampaign%2Fpoint-up%2Fmarathon%2F": {
-  "at": "2026-11-01",
-  "by": "browser",
-  "ok": true,
-  "sec": 6.0,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D104555": {
@@ -3840,20 +3832,6 @@
   "by": "browser",
   "ok": true,
   "sec": 1.5,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F4904%2F&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F4904%2F": {
-  "at": "2026-11-01",
-  "by": "browser",
-  "ok": true,
-  "sec": 4.2,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F8643%2F&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F8643%2F": {
-  "at": "2026-11-01",
-  "by": "browser",
-  "ok": true,
-  "sec": 3.4,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00nsjno.m2lhfc1a.g00nsjno.m2lhg4fb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frabbit%2Freimen5p%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frabbit%2Fi%2F10006577%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -6087,17 +6065,10 @@
   "sec": 0.0,
   "why": ""
  },
- "https://ra-fes.com/": {
-  "at": "2026-11-01",
-  "by": "browser",
-  "ok": true,
-  "sec": 2.9,
-  "why": ""
- },
  "https://rekishikan-ibk.jp": {
-  "at": "2026-11-12",
+  "at": "2026-11-16",
   "ok": true,
-  "sec": 1.0,
+  "sec": 1.3,
   "why": ""
  },
  "https://rekishikan-ibk.jp/": {
@@ -6156,13 +6127,6 @@
   "sec": 1.0,
   "why": ""
  },
- "https://sites.google.com/view/ramenfesta-archives/2026ramenfesta-akinojin/kasukabe2026": {
-  "at": "2026-11-01",
-  "by": "browser",
-  "ok": true,
-  "sec": 2.9,
-  "why": ""
- },
  "https://skeletonics.com/the-robot-park-odaiba/": {
   "at": "2026-11-13",
   "by": "browser",
@@ -6205,11 +6169,10 @@
   "why": ""
  },
  "https://tamaillumi.myportfolio.com/": {
-  "at": "2026-11-15",
-  "by": "browser",
-  "ok": false,
+  "at": "2026-11-16",
+  "ok": true,
   "sec": 0.1,
-  "why": "Page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://ta"
+  "why": "403"
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
   "at": "2026-11-15",
@@ -6329,13 +6292,6 @@
  },
  "https://www.amazon.co.jp/dp/B0CQX67KTW?tag=aiusagichan-22": {
   "at": "2026-11-03",
-  "by": "browser",
-  "ok": true,
-  "sec": 0.1,
-  "why": ""
- },
- "https://www.amazon.co.jp/dp/B0DNM2P7GK?tag=aiusagichan-22": {
-  "at": "2026-11-01",
   "by": "browser",
   "ok": true,
   "sec": 0.1,
@@ -8119,13 +8075,6 @@
   "sec": 2.9,
   "why": ""
  },
- "https://www.city.chiba.jp/keizainosei/keizai/kanko/r8_tairyoumatsuri.html": {
-  "at": "2026-11-01",
-  "by": "browser",
-  "ok": true,
-  "sec": 5.5,
-  "why": ""
- },
  "https://www.city.chuo.lg.jp/a0016/bunkakankou/kankoujouhou/event/kankousyougyoumaturi.html": {
   "at": "2026-11-15",
   "by": "browser",
@@ -8292,13 +8241,6 @@
   "by": "browser",
   "ok": true,
   "sec": 2.0,
-  "why": ""
- },
- "https://www.furusatofair.com/": {
-  "at": "2026-11-01",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.7,
   "why": ""
  },
  "https://www.gotokyo.org/jp/spot/ev132/index.html": {
@@ -8536,13 +8478,6 @@
   "sec": 1.5,
   "why": ""
  },
- "https://www.muji.com/jp/ja/special-feature/ryohinweek": {
-  "at": "2026-11-01",
-  "by": "browser",
-  "ok": true,
-  "sec": 6.4,
-  "why": ""
- },
  "https://www.nact.jp/artcommons/user/detail/80797": {
   "at": "2026-11-15",
   "by": "browser",
@@ -8749,13 +8684,6 @@
   "by": "browser",
   "ok": true,
   "sec": 2.4,
-  "why": ""
- },
- "https://www.tnm.jp/modules/r_free_page/index.php?id=113": {
-  "at": "2026-11-01",
-  "by": "browser",
-  "ok": true,
-  "sec": 5.0,
   "why": ""
  },
  "https://www.tnm.jp/modules/r_free_page/index.php?id=2759": {
