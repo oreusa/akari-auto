@@ -1,10 +1,10 @@
 name: domain
-# 11/15 独自ドメイン townnote.app を Pages につなぐ・状態を見る（scripts/domain.py）
+# 11/15 独自ドメイン townnote.app（scripts/domain.py・gate/）。do=status 状態／gate Worker の入口を出す
 on:
   workflow_dispatch:
     inputs:
       do:
-        description: status か add
+        description: status / perm / gate
         default: status
 jobs:
   run:
@@ -15,3 +15,17 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           DO: ${{ github.event.inputs.do }}
+      - name: Worker の入口を出す（kansai./kanto./townnote.app）
+        if: ${{ github.event.inputs.do == 'gate' }}
+        working-directory: gate
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx -y wrangler@3.80.0 deploy
+      - name: 出した後の状態
+        if: ${{ github.event.inputs.do == 'gate' }}
+        run: |
+          sleep 20
+          DO=status python3 scripts/domain.py
+          for h in kansai.townnote.app kanto.townnote.app townnote.app; do echo "$h $(curl -s -o /dev/null -w '%{http_code}' https://$h/ || true)"; done
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

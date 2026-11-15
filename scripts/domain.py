@@ -36,6 +36,10 @@ for host, proj in MAP:
     p = api(f'/accounts/{A}/pages/projects/{proj}')
     print('Pages', proj, 'ある' if p.get('success') else 'ない：' + err(p))
     if not p.get('success'): continue
+    if DO == 'gate':  # Pages に足したドメインは DNS が書けず止まるので外す（Worker の入口に替える）
+        for x in (api(f'/accounts/{A}/pages/projects/{proj}/domains').get('result') or []):
+            if x.get('name') == host:
+                r = api(f'/accounts/{A}/pages/projects/{proj}/domains/{host}', 'DELETE'); print('  Pages から外す', host, 'OK' if r.get('success') else err(r))
     if DO == 'add':
         r = api(f'/accounts/{A}/pages/projects/{proj}/domains', 'POST', {'name': host})
         print('  追加', host, 'OK' if r.get('success') else err(r))
@@ -49,3 +53,8 @@ for host, proj in MAP:
         if DO == 'add' and not have:
             c = api(f'/zones/{zid}/dns_records', 'POST', {'type': 'CNAME', 'name': host, 'content': proj + '.pages.dev', 'proxied': True, 'ttl': 1})
             print('  DNS 作成', 'OK' if c.get('success') else err(c))
+
+if DO in ('gate', 'status', 'perm'):
+    w = api(f'/accounts/{A}/workers/domains')
+    for x in w.get('result') or []:
+        print('Worker の入口', x.get('hostname'), x.get('service'))
