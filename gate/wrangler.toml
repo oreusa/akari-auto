@@ -1,0 +1,9 @@
+name = "townnote-gate"
+main = "index.js"
+compatibility_date = "2024-09-23"
+workers_dev = false
+routes = [
+  { pattern = "kansai.townnote.app", custom_domain = true },
+  { pattern = "kanto.townnote.app", custom_domain = true },
+  { pattern = "townnote.app", custom_domain = true },
+]
