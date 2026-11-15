@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-15 11:08",
+  "at": "2026-11-15 21:19",
   "cats": [
     {
       "key": "rice",
@@ -26,8 +26,8 @@
           "price": 14000,
           "per": 7.1,
           "amt": "10kg",
-          "rc": 81,
-          "av": 4.47,
+          "rc": 82,
+          "av": 4.48,
           "shop": "茨城県稲敷市",
           "plain": "https://item.rakuten.co.jp/f082295-inashiki/10000195/"
         },
@@ -169,10 +169,10 @@
       "key": "water",
       "title": "水",
       "unit": "L",
-      "seen": 178,
+      "seen": 179,
       "read": 30,
       "ok": 1,
-      "avg": 14.3,
+      "avg": 14.6,
       "page": false,
       "top": [
         {
