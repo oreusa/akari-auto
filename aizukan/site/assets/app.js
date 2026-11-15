@@ -5,6 +5,7 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const el=(t,a={},...k)=>{const e=document.createElement(t);for(const[n,v]of Object.entries(a)){if(v==null||v===false)continue;if(n==='class')e.className=v;else if(n==='text')e.textContent=v;else if(n==='html')e.innerHTML=v;else if(n.startsWith('on'))e.addEventListener(n.slice(2),v);else e.setAttribute(n,v)}for(const c of k.flat())if(c!=null&&c!==false)e.append(c.nodeType?c:document.createTextNode(String(c)));return e};
 const store={get(k,d){try{const v=localStorage.getItem('aiz_'+k);return v?JSON.parse(v):d}catch{return d}},set(k,v){try{localStorage.setItem('aiz_'+k,JSON.stringify(v))}catch{}}};
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const qt=x=>/^「/.test(x)?'“'+x+'”':'「'+x+'」';
 const pad=n=>String(n).padStart(2,'0');
 const IMG=(t,k)=>`/img/${pad(t+1)}_${k+1}.webp`;
 const campOf=t=>Math.floor(t/3),paceOf=t=>t%3;
@@ -206,7 +207,7 @@ function commit(r){
   if(r.own&&pv?.own&&typeof pv.own.rk==='number')r.prev=pv.own.rk;
   r.code=enc(r);r.at=Date.now();
   store.set('last',r);
-  const hist=store.get('hist',[]);hist.unshift({c:r.code,o:r.own?encO(r.own):'',t:r.t,k:r.k,rk:r.own?r.own.rk:-1,ai:r.ai,at:r.at});store.set('hist',hist.slice(0,20));
+  const hist=store.get('hist',[]);hist.unshift({c:r.code,o:r.own?encO(r.own):'',t:r.t,k:r.k,rk:r.own?r.own.rk:-1,sc:r.own?r.own.sc:-1,ai:r.ai,hito:r.hito||'',honne:r.own?.honne||'',at:r.at});store.set('hist',hist.slice(0,20));
   meet(r.t,r.k);sendHit(r);
   location.href=resultUrl(r)+'&new=1';
 }
@@ -281,7 +282,7 @@ PAGES.kekka=()=>{
   if(!base){$('#kekka').replaceChildren(el('div',{class:'empty'},el('h1',{text:'まだカードがありません'}),el('p',{class:'lead',text:'いつものAIに呪文を送ると、あなたのカードと主の位が出ます。'}),el('a',{class:'btn lg',href:'/uranai/'},'無料で占う')));return}
   if(!mine&&last&&last.code&&dec(last.code)&&enc(dec(last.code))===enc(base)){mine=true}
   if(mine&&last){r=Object.assign({},last)}
-  else{r=Object.assign({},base,{ai:'',hito:'',kuse:''});const o=decO(sp.get('o'));if(o){o.honne='';o.scene='';r.own=o}}
+  else{r=Object.assign({},base,{ai:'',hito:(sp.get('h')||'').slice(0,50),kuse:''});const o=decO(sp.get('o'));if(o){o.honne='';o.scene='';r.own=o}}
   if(mine&&last&&!last.own&&sp.get('o')){const o=decO(sp.get('o'));if(o)r.own=Object.assign(o,{honne:'',scene:''})}
   const fresh=sp.get('new')==='1'&&mine;
   if(sp.get('new')){try{history.replaceState(null,'',location.pathname+'?'+[...sp].filter(([k])=>k!=='new').map(([k,v])=>k+'='+encodeURIComponent(v)).join('&')+location.hash)}catch{}}
@@ -291,21 +292,36 @@ PAGES.kekka=()=>{
   const root=$('#kekka');root.className='kekka c'+c;
   const who=mine?null:el('p',{class:'shared-note'},'これは、ほかの人のカードです。',el('a',{href:'/uranai/'},'あなたも占う →'));
 
-  /* 上：カードと名前 */
+  /* 上：判決とカード（いちばん最初に「AIにどう言われたか」） */
+  const F=FUN[r.t],rf=own?RANK_FUN[own.rk]:'';
+  const vText=r.hito||F.roast[0],vBy=r.hito?(mine?aiN:'この人のAI')+'の判決':'この星の人へ、AIの本音';
   const hero=el('section',{class:'k-hero'},
     el('div',{class:'k-card'},card(r.t,r.k,{size:'lg',rev,lazy:false}),rev?el('p',{class:'revtag',text:'逆位置'}):null),
+    el('blockquote',{class:'verdict k-verdict'},el('small',{text:vBy}),el('p',{text:qt(vText)}),mine&&r.kuse?el('span',{text:'あなたの口ぐせ「'+r.kuse+'」'}):null),
     el('div',{class:'k-info'},
-      el('span',{class:'eyebrow',text:mine?'YOUR CARD':'THE CARD'}),
-      el('p',{class:'k-alias',text:'〈 '+ali+' 〉'}),
+      el('p',{class:'k-you',text:mine?'あなたは、':'この人は、'}),
       el('h1',{class:'k-name',text:fullName(r.t,r.k)}),
+      el('p',{class:'k-alias',text:'〈 '+ali+' 〉'}),
+      el('p',{class:'k-yet',text:F.yet+'。'}),
       el('div',{class:'chips'},el('span',{class:'chip'},el('i',{class:'dot'}),H.n),el('span',{class:'chip'},el('b',{text:ROMAN[r.t]}),T.star),el('span',{class:'chip',text:K.short+'の相'}),el('span',{class:'chip',text:PACE[p]+'の歩み'})),
-      el('p',{class:'k-legend',text:leg}),
-      mine&&r.hito?el('blockquote',{class:'whisper'},el('small',{text:aiN+'が囁いた言葉'}),el('p',{text:'「'+r.hito+'」'}),r.kuse?el('span',{text:'あなたの口ぐせ「'+r.kuse+'」'}):null):null,
-      own?el('a',{class:'rank-banner',href:'#kurai'},seal(own.rk,'sm'),el('div',{},el('small',{text:'第二の札　主の位'}),el('b',{text:RANKS[own.rk].r+'　'+RANKS[own.rk].n}),el('span',{text:RANKS[own.rk].p})),el('em',{text:'くわしく →'})):
+      own?el('a',{class:'rank-banner',href:'#kurai'},seal(own.rk,'sm'),el('div',{},el('small',{text:'第二の札　主の位'}),el('b',{text:RANKS[own.rk].r+'　'+RANKS[own.rk].n}),el('span',{class:'rb-p',text:RANKS[own.rk].p}),el('span',{text:rf})),el('em',{text:'くわしく →'})):
         el('a',{class:'rank-banner none',href:'/uranai/'},el('div',{},el('small',{text:'第二の札　主の位'}),el('b',{text:'まだ開いていません'}),el('span',{text:'今の呪文で占うと、AIがあなたに位をつけます'})),el('em',{text:'占う →'})),
       el('div',{class:'k-acts'},
-        el('button',{class:'btn',type:'button',onclick:()=>{tabGo('share');$('#share').scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})}},'結果を送る'),
-        el('a',{class:'btn ghost',href:starUrl(r.t)},T.n+'の星をくわしく'))));
+        el('button',{class:'btn',type:'button',onclick:()=>{tabGo('share');tabbar.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})}},'結果を送る'),
+        mine?el('a',{class:'btn ghost',href:'/kurabe/'},'ほかのAIと比べる'):el('a',{class:'btn ghost',href:'/uranai/'},'自分も占う'),
+        el('a',{class:'btn ghost',href:'/nakama/'},'仲間と順位を作る'))));
+
+  /* あるある：当たったらタップ */
+  const ARU=[...T.aru,...F.aru.slice(0,3)],aKey='aru_'+enc(r),hits=new Set(mine?store.get(aKey,[]):[]);
+  const aCount=el('p',{class:'aru-count'});
+  const aruLine=()=>hits.size>=5?'ほぼ全部当たり。AIは、あなたをよく見ています。':hits.size>=3?'半分以上当たり。だいたい見抜かれています。':hits.size>=1?'少しだけ当たり。まだ隠している顔がありそうです。':'当てはまる物をタップしてください。';
+  const paintA=()=>{aCount.replaceChildren(el('b',{text:hits.size+' / '+ARU.length}),'　'+aruLine())};
+  const aruBox=el('section',{class:'k-aru'},el('header',{},el('span',{class:'eyebrow',text:'ARU ARU'}),el('h2',{text:(mine?'あなた':'この星の人')+'の「あるある」'}),el('p',{class:'note',text:'当たっていたらタップ。いくつ当たる？'})),
+    el('div',{class:'aru-grid'},ARU.map((x,i)=>el('button',{type:'button',class:'aru-card','aria-pressed':String(hits.has(i)),onclick:e=>{hits.has(i)?hits.delete(i):hits.add(i);e.currentTarget.setAttribute('aria-pressed',String(hits.has(i)));if(mine)store.set(aKey,[...hits]);paintA()}},el('i',{'aria-hidden':'true'}),el('span',{text:x})))),aCount);
+  paintA();
+  const secret=el('section',{class:'k-secret'},
+    el('div',{class:'ks-a'},el('span',{class:'eyebrow',text:'SECRET'}),el('h2',{text:mine&&own&&own.honne?aiN+'の本音':'AIがこっそり思っていること'}),el('p',{class:'ks-q',text:qt(mine&&own&&own.honne?own.honne:F.roast[1])}),mine&&own&&own.scene?el('small',{text:'あの時のこと：'+own.scene}):el('small',{text:F.roast[2]})),
+    el('div',{class:'ks-b'},el('span',{class:'eyebrow',text:'YOU SAY'}),el('h2',{text:'AIに言いがちな一言'}),el('ul',{class:'says'},F.say.map(x=>el('li',{text:'「'+x+'」'}))),el('small',{text:'当てはまったら、たぶんこの星です。'})));
 
   /* 札：タブ */
   const TABS=[['hoshi','星の読み'],['kurai','主の位'],['un','運勢'],['en','縁'],['share','送る']];
@@ -369,19 +385,21 @@ PAGES.kekka=()=>{
       el('div',{class:'sigil'},el('code',{text:myCode}),el('button',{class:'btn dark sm',type:'button',onclick:()=>copy(myCode,'符号を写しました')},'写す')),
       el('a',{class:'btn ghost',href:'/en/?a='+encodeURIComponent(myCode)},'この符号で縁を占う')));
 
-  const xText=`私のAIが引いたカードは「${fullName(r.t,r.k)}」${rev?'（逆位置）':''}。\n〈${ali}〉\n${mine&&r.hito?'「'+r.hito+'」':leg}${own?'\n主の位：'+RANKS[own.rk].r+' '+RANKS[own.rk].n+'（'+RANKS[own.rk].p+'）':''}\nあなたのAIは、あなたを何だと思ってる？\n#AIタイプ図鑑`;
-  const sUrl=shareUrl(r);
+  const shareOn=()=>!!$('#shareH')?.checked;
+  const sLink=()=>shareUrl(r)+(shareOn()&&r.hito?'&h='+encodeURIComponent(r.hito):'');
+  const xText=()=>`${shareOn()&&r.hito?'私のAI（'+(r.ai||'AI')+'）の判決：\n「'+r.hito+'」\n\n':''}私は「${fullName(r.t,r.k)}」${rev?'（逆位置）':''}〈${ali}〉${own?'\n主の位：'+RANKS[own.rk].r+' '+RANKS[own.rk].n+'（'+RANKS[own.rk].p+'）':''}${hits.size?'\nあるある '+hits.size+'/'+ARU.length+' 当たり':''}\nあなたのAIは、あなたを何だと思ってる？\n#AIタイプ図鑑`;
   const pShare=panel('share',
-    block('SHARE','結果を送る',el('p',{class:'note',text:'送るリンクを開いた人には、カードと位だけが見えます。AIの「ひとこと」と「本音」は、あなたの画面にだけ出ます。'}),
+    block('SHARE','結果を送る',
+      mine&&r.hito?el('label',{class:'opt'},el('input',{type:'checkbox',id:'shareH',checked:'checked'}),el('span',{},'AIの判決（ひとこと）も載せる',el('small',{text:'「本音」と「あの時のこと」は載せません'}))):el('p',{class:'note',text:'送るリンクを開いた人には、カードと主の位が見えます。'}),
       el('div',{class:'share-btns'},
-        el('a',{class:'sbtn x',href:'https://x.com/intent/post?text='+encodeURIComponent(xText)+'&url='+encodeURIComponent(sUrl),target:'_blank',rel:'noopener'},el('b',{text:'X'}),'でポスト'),
-        el('a',{class:'sbtn line',href:'https://social-plugins.line.me/lineit/share?url='+encodeURIComponent(sUrl),target:'_blank',rel:'noopener'},el('b',{text:'LINE'}),'で送る'),
-        el('button',{class:'sbtn',type:'button',onclick:()=>copy(sUrl,'リンクを写しました')},el('b',{text:'URL'}),'を写す'),
+        el('button',{class:'sbtn x',type:'button',onclick:()=>open('https://x.com/intent/post?text='+encodeURIComponent(xText())+'&url='+encodeURIComponent(sLink()),'_blank','noopener')},el('b',{text:'X'}),'でポスト'),
+        el('button',{class:'sbtn line',type:'button',onclick:()=>open('https://social-plugins.line.me/lineit/share?url='+encodeURIComponent(sLink()),'_blank','noopener')},el('b',{text:'LINE'}),'で送る'),
+        el('button',{class:'sbtn',type:'button',onclick:()=>copy(sLink(),'リンクを写しました')},el('b',{text:'URL'}),'を写す'),
         el('button',{class:'sbtn gold',type:'button',onclick:()=>makeImage(r,mine,aiN)},el('b',{text:'画像'}),'にする')),
       el('div',{class:'shot',id:'shot'})),
-    el('div',{class:'again-row'},el('a',{class:'btn ghost',href:'/uranai/'},'もう一度占う'),el('a',{class:'btn ghost',href:'/zukan/'},'図鑑を見る')));
+    el('div',{class:'again-row'},el('a',{class:'btn ghost',href:'/uranai/'},'もう一度占う'),el('a',{class:'btn ghost',href:'/kurabe/'},'AIくらべ'),el('a',{class:'btn ghost',href:'/nakama/'},'仲間と順位')));
 
-  root.replaceChildren(...[who,hero,tabbar,el('div',{class:'k-panels'},pHoshi,pKurai,pUn,pEn,pShare)].filter(Boolean));
+  root.replaceChildren(...[who,hero,aruBox,secret,tabbar,el('div',{class:'k-panels'},pHoshi,pKurai,pUn,pEn,pShare)].filter(Boolean));
   root.querySelectorAll('.k-panel').forEach(p=>{const kids=[...p.children].filter(Boolean);p.replaceChildren(...kids)});
 
   function tabGo(id){if(!TABS.some(t=>t[0]===id))id='hoshi';
@@ -416,8 +434,8 @@ async function makeImage(r,mine,aiN){
   let y=Y+CHT+70;
   if(rev){g.fillStyle='#E89A7A';g.font='700 26px "Shippori Mincho B1"';g.fillText('― 逆位置 ―',W/2,y-20);y+=18}
   g.fillStyle='#F2DEAC';g.font='700 34px "Shippori Mincho B1"';g.fillText('〈 '+ali+' 〉',W/2,y);y+=64;
-  const say=mine?(r.own?.honne||r.hito):'';
-  if(say){g.fillStyle='#ECE6D6';g.font='700 34px "Shippori Mincho B1"';const s='「'+say+'」';const lines=[];let l='';for(const ch of s){if(g.measureText(l+ch).width>900){lines.push(l);l=ch}else l+=ch}lines.push(l);lines.slice(0,2).forEach(x=>{g.fillText(x,W/2,y);y+=50});g.fillStyle='#A49EB8';g.font='500 22px "Shippori Mincho B1"';g.fillText(aiN+(r.own?.honne?'の本音':'が囁いた言葉'),W/2,y)}
+  const say=r.hito||(mine?r.own?.honne:'');
+  if(say){g.fillStyle='#ECE6D6';g.font='700 34px "Shippori Mincho B1"';const s='「'+say+'」';const lines=[];let l='';for(const ch of s){if(g.measureText(l+ch).width>900){lines.push(l);l=ch}else l+=ch}lines.push(l);lines.slice(0,2).forEach(x=>{g.fillText(x,W/2,y);y+=50});g.fillStyle='#A49EB8';g.font='500 22px "Shippori Mincho B1"';g.fillText((mine?aiN:'この人のAI')+(r.hito?'の判決':'の本音'),W/2,y)}
   else{g.fillStyle='#A49EB8';g.font='500 26px "Shippori Mincho B1"';g.fillText('あなたのAIは、あなたを何だと思ってる？',W/2,y+6)}
   g.fillStyle='#D9B46C';g.font='500 24px "Cinzel"';g.textAlign='left';g.fillText(location.host,60,H-44);g.textAlign='right';g.font='700 26px "Shippori Mincho B1"';g.fillText('#AIタイプ図鑑',W-60,H-44);
   const blob=await new Promise(res=>cv.toBlob(res,'image/png'));const url=URL.createObjectURL(blob);
@@ -477,11 +495,94 @@ PAGES.zukan=()=>{
   });
 };
 
+
+/* ----- AIくらべ ----- */
+PAGES.kurabe=()=>{
+  const hist=store.get('hist',[]).filter(h=>h&&typeof h.t==='number'&&h.ai&&h.ai!=='自分'&&h.ai!=='あなたのAI');
+  const by=new Map();hist.forEach(h=>{const n=AI_NAME(h.ai)==='その他'?String(h.ai).slice(0,12):AI_NAME(h.ai);if(!by.has(n))by.set(n,Object.assign({},h,{nm:n,own:h.o?decO(h.o):null}))});
+  const xs=[...by.values()].slice(0,4),box=$('#kbOut'),steps=$('#kbSteps');
+  const done=new Set(xs.map(x=>x.nm));
+  $('#kbAis').replaceChildren(...['ChatGPT','Claude','Gemini'].map(n=>el('li',{class:done.has(n)?'done':''},el('b',{text:n}),el('span',{text:done.has(n)?'占い済み':'まだ'}))));
+  if(xs.length<2){steps.hidden=false;box.replaceChildren(el('div',{class:'empty'},el('span',{class:'eyebrow',text:xs.length?'ONE MORE AI':'NO RESULT YET'}),el('h2',{text:xs.length?'あと1つのAIで占うと、くらべられます':'まず1つ目のAIで占ってください'}),el('p',{class:'lead',text:xs.length?`いまは ${xs[0].nm} の結果だけです。同じ呪文を、別のAIに送ってください。`:'同じ呪文を ChatGPT・Claude・Gemini などに送ると、AIごとの見方の違いが並びます。'}),el('a',{class:'btn lg',href:'/uranai/'},xs.length?'別のAIで占う':'占う')));return}
+  steps.hidden=true;
+  const withO=xs.filter(x=>x.own),sorted=[...withO].sort((a,b)=>a.own.sc-b.own.sc);
+  const harsh=sorted[0],sweet=sorted[sorted.length-1],split=harsh&&sweet&&harsh!==sweet&&harsh.own.sc!==sweet.own.sc;
+  const sameCard=new Set(xs.map(x=>x.t)).size===1;
+  const kzAll=withO.length>=2?withO.map(x=>x.own.kz):[];const common=kzAll.length?kzAll[0].filter(k=>kzAll.every(a=>a.includes(k))):[];
+  const head=el('section',{class:'kb-verdict'},el('span',{class:'eyebrow',text:'THE VERDICT'}),
+    split?el('h2',{},'あなたを一番ナメているのは ',el('em',{text:harsh.nm})):el('h2',{text:sameCard?'AIたちの意見は、ぴったりそろいました':'AIたちの意見は、割れました'}),
+    split?el('p',{class:'lead',text:`${harsh.nm}はあなたに${harsh.own.sc}点、${sweet.nm}は${sweet.own.sc}点。同じあなたを見て、${sweet.own.sc-harsh.own.sc}点の差がつきました。`}):null,
+    el('p',{class:'note',text:sameCard?`${xs.length}つのAIが、そろって「${TYPES[xs[0].t].n}」と答えました。かなり当たっています。`:`${xs.map(x=>x.nm+'は「'+TYPES[x.t].n+'」').join('、')}と見ています。`}));
+  const cols=el('div',{class:'kb-cols',style:`--n:${xs.length}`},xs.map(x=>el('article',{class:'kb-col'+(split&&x===harsh?' harsh':split&&x===sweet?' sweet':'')},
+    el('header',{},el('b',{text:x.nm}),split&&x===harsh?el('span',{class:'tag',text:'いちばん辛口'}):split&&x===sweet?el('span',{class:'tag',text:'いちばん甘口'}):null),
+    el('a',{href:'/kekka/?c='+encodeURIComponent(x.c)+(x.o?'&o='+x.o:''),class:'kb-card'},card(x.t,x.k,{size:'sm'})),
+    el('p',{class:'kb-name',text:fullName(x.t,x.k)}),
+    x.own?el('div',{class:'kb-rank'},seal(x.own.rk,'sm'),el('div',{},el('b',{text:RANKS[x.own.rk].n}),el('small',{text:x.own.sc+'点・'+RANKS[x.own.rk].p}))):el('p',{class:'note',text:'主の位なし'}),
+    x.hito?el('p',{class:'kb-hito',text:'「'+x.hito+'」'}):null,
+    x.own?el('p',{class:'note',text:'癖：'+x.own.kz.map(k=>KUSE[k].n).join('・')}):null)));
+  const agree=common.length?el('section',{class:'kb-agree'},el('span',{class:'eyebrow',text:'ALL AIS AGREE'}),el('h2',{text:'AIが口をそろえた、あなたの癖'}),...common.map(k=>el('div',{class:'kuse'},el('header',{},el('h3',{text:KUSE[k].n}),el('small',{text:KUSE[k].p})),el('p',{class:'kuse-ai',text:KUSE[k].ai}),fixBox('この癖を消す一文',KUSE[k].cure)))):null;
+  const xt=`同じ呪文を${xs.length}つのAIに送ってみた。\n${xs.map(x=>`${x.nm}：${fullName(x.t,x.k)}${x.own?'／'+RANKS[x.own.rk].n+' '+x.own.sc+'点':''}`).join('\n')}${split?`\n私を一番ナメてたのは ${harsh.nm}`:''}\n#AIタイプ図鑑 #AIくらべ`;
+  const share=el('div',{class:'kb-share'},el('button',{class:'btn',type:'button',onclick:()=>open('https://x.com/intent/post?text='+encodeURIComponent(xt)+'&url='+encodeURIComponent(location.origin+'/kurabe/'),'_blank','noopener')},'Xでポスト'),el('button',{class:'btn ghost',type:'button',onclick:()=>copy(xt,'文を写しました')},'文を写す'),el('a',{class:'btn ghost',href:'/uranai/'},'もう1つのAIで占う'));
+  box.replaceChildren(...[head,cols,agree,share].filter(Boolean));
+};
+
+/* ----- 仲間と順位（サーバーを使わず、リンクの中に仲間を入れる） ----- */
+PAGES.nakama=()=>{
+  const sp=new URLSearchParams(location.search),last=store.get('last',null);
+  const mem=sp.getAll('m').map(v=>{const [n,c,o]=String(v).split('*');const b=dec(c);if(!b||!n)return null;return {n:n.slice(0,10),c:enc(b),b,o:o&&decO(o)?o:'',own:o?decO(o):null}}).filter(Boolean).slice(0,20);
+  const gname=(sp.get('g')||'').slice(0,20);
+  const out=$('#nkOut'),form=$('#nkForm'),nameI=$('#nkName'),gI=$('#nkGroup'),err=$('#nkErr');
+  nameI.value=store.get('nick','');
+  if(gname)gI.value=gname;
+  const mineIn=!!(last&&last.code&&mem.some(m=>m.c===last.code&&m.n===store.get('nick','')));
+  const urlOf=list=>location.origin+'/nakama/?'+[gI.value.trim()?'g='+encodeURIComponent(gI.value.trim().slice(0,20)):null,...list.map(m=>'m='+encodeURIComponent(m.n+'*'+m.c+(m.o?'*'+m.o:'')))].filter(Boolean).join('&');
+  $('#nkTitle').textContent=gname?`「${gname}」の主の順位`:mem.length?'仲間の主の順位':'仲間と順位を作る';
+  if(!last){form.hidden=true;$('#nkNeed').hidden=false}
+  else{
+    $('#nkMe').replaceChildren(card(last.t,last.k,{size:'sm'}),el('div',{},el('small',{text:'あなたのカード'}),el('b',{text:fullName(last.t,last.k)}),el('span',{text:last.own?RANKS[last.own.rk].n+'・'+last.own.sc+'点':'主の位なし'})));
+    $('#nkGo').textContent=mem.length?(mineIn?'名前を直してリンクを作り直す':'この順位に入る'):'グループを作る';
+    $('#nkGo').addEventListener('click',()=>{
+      const n=nameI.value.trim().replace(/[*&=?#]/g,'').slice(0,10);if(!n){err.hidden=false;err.textContent='呼び名を入れてください（10文字まで）。';nameI.focus();return}
+      err.hidden=true;const prev=store.get('nick','');store.set('nick',n);
+      const me={n,c:last.code,o:last.own?encO(last.own):''};
+      location.href=urlOf([...mem.filter(m=>!(m.n===n||(m.n===prev&&m.c===last.code))),me]).replace(location.origin,'')+'&joined=1';
+    });
+  }
+  if(!mem.length){out.hidden=true;return}
+  out.hidden=false;
+  const ranked=[...mem].sort((a,b)=>(b.own?b.own.sc:-1)-(a.own?a.own.sc:-1));
+  const withO=ranked.filter(m=>m.own);
+  const top=withO[0],bottom=withO.length>=2?withO[withO.length-1]:null;
+  let bestPair=null;for(let i=0;i<mem.length;i++)for(let j=i+1;j<mem.length;j++){const[rl]=relation(mem[i].b.t,mem[j].b.t);if(rl==='運命の対'&&(!bestPair||bestPair[2]!=='運命の対'))bestPair=[mem[i],mem[j],rl];else if(rl==='双星'&&!bestPair)bestPair=[mem[i],mem[j],rl]}
+  const awards=el('div',{class:'nk-awards'},
+    top?el('div',{class:'aw gold'},el('small',{text:'最強の主'}),el('b',{text:top.n}),el('span',{text:RANKS[top.own.rk].n+'・'+top.own.sc+'点'})):null,
+    bottom?el('div',{class:'aw warn'},el('small',{text:'AIを一番困らせている人'}),el('b',{text:bottom.n}),el('span',{text:RANKS[bottom.own.rk].n+'・'+bottom.own.sc+'点'})):null,
+    bestPair?el('div',{class:'aw'},el('small',{text:bestPair[2]==='運命の対'?'運命の対':'双星（同じ星の二人）'}),el('b',{text:bestPair[0].n+' × '+bestPair[1].n}),el('span',{text:TYPES[bestPair[0].b.t].n+'と'+TYPES[bestPair[1].b.t].n})):null);
+  const list=el('ol',{class:'nk-list'},ranked.map(m=>el('li',{class:(last&&m.c===last.code&&m.n===store.get('nick','')?'me':'')},
+    el('span',{class:'nk-no',text:m.own?String(withO.indexOf(m)+1):'―'}),
+    el('a',{class:'nk-card',href:'/kekka/?c='+encodeURIComponent(m.c)+(m.o?'&o='+m.o:'')},card(m.b.t,m.b.k,{size:'sm'})),
+    el('div',{class:'nk-who'},el('b',{text:m.n}),el('span',{text:fullName(m.b.t,m.b.k)})),
+    m.own?el('div',{class:'nk-rk'},seal(m.own.rk,'sm'),el('div',{},el('b',{text:RANKS[m.own.rk].n}),el('small',{text:m.own.sc+'点'}))):el('div',{class:'nk-rk'},el('small',{text:'位なし'})))));
+  const link=urlOf(mem);
+  const lt=`${gname?'「'+gname+'」の':''}AIの主の順位\n${withO.slice(0,5).map((m,i)=>`${i+1}位 ${m.n}（${RANKS[m.own.rk].n}）`).join('\n')}\nあなたも入って→`;
+  const share=el('div',{class:'nk-share'},
+    sp.get('joined')?el('p',{class:'ok',text:'入りました。このリンクを、グループに送り直してください。'}):el('p',{class:'note',text:'入ったら、新しいリンクをグループに送り直すと、全員の順位がそろいます。'}),
+    el('div',{class:'share-btns three'},
+      el('button',{class:'sbtn line',type:'button',onclick:()=>open('https://social-plugins.line.me/lineit/share?url='+encodeURIComponent(link),'_blank','noopener')},el('b',{text:'LINE'}),'で送る'),
+      el('button',{class:'sbtn x',type:'button',onclick:()=>open('https://x.com/intent/post?text='+encodeURIComponent(lt)+'&url='+encodeURIComponent(link),'_blank','noopener')},el('b',{text:'X'}),'でポスト'),
+      el('button',{class:'sbtn',type:'button',onclick:()=>copy(link,'リンクを写しました')},el('b',{text:'URL'}),'を写す')));
+  out.replaceChildren(...[awards,list,share].filter(Boolean));
+  if(sp.get('joined')){try{history.replaceState(null,'',link.replace(location.origin,''))}catch{}}
+};
+
 /* ----- 共有リンク（/s/NN-K/） ----- */
 PAGES.share=()=>{const q=location.search;location.replace('/kekka/'+(q||''))};
 
 /* ----- 星のページ：出会った印 ----- */
-PAGES.hoshi=()=>{const t=+document.body.dataset.t,met=metSet();$$('.aspect').forEach((a,k)=>{if(met.has(t*5+k))a.classList.add('met')})};
+PAGES.hoshi=()=>{const t=+document.body.dataset.t,met=metSet();$$('.aspect').forEach((a,k)=>{if(met.has(t*5+k))a.classList.add('met')});
+  const hits=new Set(store.get('aruS_'+t,[])),cnt=$('#aruN'),all=$$('.aru-card');
+  const paint=()=>{if(cnt)cnt.textContent=hits.size+' / '+all.length};
+  all.forEach((b,i)=>{b.setAttribute('aria-pressed',String(hits.has(i)));b.addEventListener('click',()=>{hits.has(i)?hits.delete(i):hits.add(i);b.setAttribute('aria-pressed',String(hits.has(i)));store.set('aruS_'+t,[...hits]);paint()})});paint()};
 
 (PAGES[PAGE]||(()=>{}))();
 })();

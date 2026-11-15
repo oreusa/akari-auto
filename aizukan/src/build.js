@@ -4,10 +4,11 @@ const fs=require('fs'),path=require('path');
 const ROOT=path.join(__dirname,'..'),OUT=path.join(ROOT,'site');
 const SITE=(process.env.SITE_URL||'https://ai-type-zukan.pages.dev').replace(/\/$/,'');
 const NOINDEX=process.env.NOINDEX!=='0';
-const src=fs.readFileSync(path.join(__dirname,'data.js'),'utf8');
-const D=new Function(src+';return {HOUSES,PACE,PACE_D,ROMAN,TYPES,KI,CH,ORACLE,USES,QS,OQS,VIRT,RANKS,KUSE,MISS,MISS_OF_V}')();
+const src=fs.readFileSync(path.join(__dirname,'data.js'),'utf8')+'\n'+fs.readFileSync(path.join(__dirname,'fun.js'),'utf8');
+const D=new Function(src+';return {HOUSES,PACE,PACE_D,ROMAN,TYPES,KI,CH,ORACLE,USES,QS,OQS,VIRT,RANKS,KUSE,MISS,MISS_OF_V,FUN,RANK_FUN}')();
+const {FUN,RANK_FUN}=D;
 const {HOUSES,PACE,PACE_D,ROMAN,TYPES,KI,CH,USES,VIRT,RANKS,KUSE,MISS}=D;
-fs.copyFileSync(path.join(__dirname,'data.js'),path.join(OUT,'assets','data.js'));
+fs.writeFileSync(path.join(OUT,'assets','data.js'),src);
 const V=String(Date.now()).slice(-8);// 読み直しの印
 
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -15,12 +16,13 @@ const pad=n=>String(n).padStart(2,'0');
 const IMG=(t,k)=>`/img/${pad(t+1)}_${k+1}.webp`;
 const full=(t,k)=>KI[k].n+TYPES[t].n;
 const camp=t=>Math.floor(t/3),pace=t=>t%3;
+const qt=x=>/^「/.test(x)?'“'+x+'”':'「'+x+'」';
 const first=s=>String(s).split('。')[0]+'。';
 const diag=c=>3-c,flipAsk=c=>(c+2)%4;
 const pals=t=>{const c=camp(t),p=pace(t);return {best:diag(c)*3+p,learn:c*3+[2,0,1][p],clash:flipAsk(c)*3+[2,0,0][p]}};
 
 const LOGO=`<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#D6B068" stroke-width="1.2"/><circle cx="16" cy="16" r="10.5" fill="none" stroke="#D6B06866" stroke-width=".8"/><path d="M16 3.5 18 14 28.5 16 18 18 16 28.5 14 18 3.5 16 14 14Z" fill="#F0DCAA"/><path d="M16 9.5 17 15 22.5 16 17 17 16 22.5 15 17 9.5 16 15 15Z" fill="#07070F"/></svg>`;
-const NAV=[['/uranai/','占う','uranai'],['/hoshi/','十二の星','hoshi'],['/kurai/','主の位','kurai'],['/en/','縁','en'],['/zukan/','図鑑','zukan']];
+const NAV=[['/uranai/','占う','uranai'],['/kurabe/','AIくらべ','kurabe'],['/nakama/','仲間と順位','nakama'],['/hoshi/','十二の星','hoshi'],['/kurai/','主の位','kurai'],['/zukan/','図鑑','zukan']];
 
 function card(t,k,{size='',lazy=true,rev=false}={}){
   return `<div class="tcard c${camp(t)}${size?' '+size:''}${rev?' rev':''}"><img src="${IMG(t,k)}" alt="${esc(full(t,k))}のカード" width="640" height="960"${lazy?' loading="lazy"':''}><span class="num">${ROMAN[t]}</span><span class="nm"><small>${esc(TYPES[t].star)}</small><b>${esc(full(t,k))}</b></span></div>`;
@@ -85,7 +87,7 @@ ${funnel?'':FOOTER}
 const FOOTER=`<footer class="ftr"><div class="wrap">
 <div class="cols">
 <div><a class="logo" href="/">${LOGO}<span>AIタイプ図鑑<small>AI TYPE TAROT</small></span></a><p class="note">いつものAIに呪文を一つ送ると、AIがあなたとのやり取りを思い出して、六十枚のカードから一枚を引きます。登録なし・無料。</p></div>
-<div><h3>占う</h3><ul><li><a href="/uranai/">AIに占ってもらう</a></li><li><a href="/uranai/jibun/">自分で答える（36問）</a></li><li><a href="/en/">縁を占う</a></li></ul></div>
+<div><h3>占う</h3><ul><li><a href="/uranai/">AIに占ってもらう</a></li><li><a href="/uranai/jibun/">自分で答える（36問）</a></li><li><a href="/kurabe/">AIくらべ</a></li><li><a href="/nakama/">仲間と順位</a></li><li><a href="/en/">縁を占う</a></li></ul></div>
 <div><h3>読む</h3><ul><li><a href="/hoshi/">十二の星と六十枚</a></li><li><a href="/kurai/">主の位・癖・ミス</a></li><li><a href="/zukan/">わたしの図鑑</a></li></ul></div>
 <div><h3>このサイト</h3><ul><li><a href="/about/">このサイトについて</a></li><li><a href="/privacy/">プライバシー</a></li><li><a href="/kiyaku/">利用規約</a></li></ul></div>
 </div>
@@ -122,6 +124,20 @@ const body=`
 <div><dt>主の癖</dt><dd>16<small>種</small></dd></div>
 <div><dt>占った人</dt><dd><span data-count>―</span><small>人</small></dd></div>
 </dl></div></section>
+
+<section class="section" id="modes"><div class="wrap">
+<div class="sec-head center"><span class="eyebrow">THREE WAYS TO PLAY</span><h2>遊び方は、三つ</h2><p>一人で占って終わりではありません。AI同士、仲間同士でくらべると、もっと面白くなります。</p></div>
+<div class="modes">
+<a class="mode" href="/uranai/"><span class="mode-n">I</span><h3>ひとりで占う</h3><p>いつものAIに、あなたを判定してもらう。カードと、AIの辛口の「判決」と、主の位。</p><span class="more">占う →</span></a>
+<a class="mode hot" href="/kurabe/"><span class="mode-n">II</span><h3>AIくらべ</h3><p>同じ呪文を ChatGPT・Claude・Gemini に。あなたを一番ナメているAIはどれか。</p><span class="more">くらべる →</span></a>
+<a class="mode" href="/nakama/"><span class="mode-n">III</span><h3>仲間と順位</h3><p>友だちや職場の仲間と、主の位で順位をつける。AIを一番困らせているのは誰か。</p><span class="more">順位を作る →</span></a>
+</div>
+</div></section>
+
+<section class="section" id="voices"><div class="wrap">
+<div class="sec-head center"><span class="eyebrow">WHAT AI REALLY THINKS</span><h2>AIたちの、言えなかった本音</h2><p>十二の星の人へ、AIがこっそり思っていること。あなたの星は、どれ？</p></div>
+<div class="voices">${TYPES.map((T,t)=>`<a class="voice c${camp(t)}" href="/hoshi/${pad(t+1)}/"><p>${esc(qt(FUN[t].roast[0]))}</p><span><i class="dot"></i>${esc(T.n)}の人へ</span></a>`).join('')}</div>
+</div></section>
 
 <section class="section" id="how"><div class="wrap">
 <div class="sec-head center"><span class="eyebrow">HOW IT WORKS</span><h2>占い方は、三つだけ</h2><p>質問に答えるのは、あなたではなくAIです。あなたをいちばん近くで見てきたAIが、遠慮なく答えます。</p></div>
@@ -262,11 +278,16 @@ TYPES.forEach((T,t)=>{
 <p class="st-star">${esc(T.star)}</p>
 <h1>${esc(T.n)}<small>${esc(T.r)}</small></h1>
 <p class="k-alias">〈 ${esc(T.alias)} 〉</p>
+<p class="k-yet">${esc(FUN[t].yet)}。</p>
 <dl class="facts"><div><dt>宮</dt><dd><i class="dot"></i>${H.n}（${H.d}）</dd></div><div><dt>歩み</dt><dd>${PACE[p]}（${PACE_D[p]}）</dd></div><div><dt>象徴</dt><dd>${esc(T.sym)}</dd></div><div><dt>口ぐせ</dt><dd>「${esc(T.q)}」</dd></div></dl>
 <div class="k-acts"><a class="btn" href="/uranai/">自分の星を占う</a><a class="btn ghost" href="#aspects">五つの相を見る</a></div>
 </div>
 </section>
 <div class="st-body">
+<section class="k-aru"><header><span class="eyebrow">ARU ARU</span><h2>${esc(T.n)}の「あるある」</h2><p class="note">当てはまったらタップ。<b id="aruN">0 / 10</b> 当たり</p></header>
+<div class="aru-grid">${[...T.aru,...FUN[t].aru].map(x=>`<button type="button" class="aru-card" aria-pressed="false"><i aria-hidden="true"></i><span>${esc(x)}</span></button>`).join('')}</div></section>
+<section class="rblock"><header class="rb-h"><span class="eyebrow">WHAT AI REALLY THINKS</span><h2>AIの本音（${esc(T.n)}の人へ）</h2></header><div class="roasts">${FUN[t].roast.map(x=>`<blockquote class="verdict sm"><p>${esc(qt(x))}</p></blockquote>`).join('')}</div></section>
+<section class="rblock"><header class="rb-h"><span class="eyebrow">YOU SAY</span><h2>AIに言いがちな一言</h2></header><ul class="says">${FUN[t].say.map(x=>`<li>「${esc(x)}」</li>`).join('')}</ul></section>
 <section class="rblock"><header class="rb-h"><span class="eyebrow">ESSENCE</span><h2>本質</h2></header><p class="prose">${esc(T.core)}</p></section>
 <section class="rblock"><header class="rb-h"><span class="eyebrow">IN THE EYES OF AI</span><h2>AIから見た${esc(T.n)}</h2></header><p class="prose">${esc(T.ai)}</p></section>
 <section class="rblock"><header class="rb-h"><span class="eyebrow">TWO FACES</span><h2>表と裏</h2></header><div class="pair"><div><small>表の顔</small><p>${esc(T.omote)}</p></div><div><small>裏の顔</small><p>${esc(T.ura)}</p></div></div></section>
@@ -300,6 +321,29 @@ const body=`<div class="wrap">
 </div>`;
 page({file:'kurai/index.html',title:'主の位・五つの徳・十六の癖',desc:'AIがあなたの頼み方を採点する「主の位」。七つの位、指示の五つの徳、十六の癖、AIがミスる十二の場所と直し方。',page:'kurai',body,cur:'kurai',crumbs:[[null,'主の位']]});
 }
+
+/* ===== AIくらべ ===== */
+page({file:'kurabe/index.html',title:'AIくらべ',desc:'同じ呪文を ChatGPT・Claude・Gemini に送って、あなたを一番ナメているAIを決めます。',page:'kurabe',cur:'kurabe',crumbs:[[null,'AIくらべ']],body:`<div class="wrap">
+<header class="page-h"><span class="eyebrow">AI VS AI</span><h1>AIくらべ</h1><p class="lead">同じ呪文を、ちがうAIに送ってください。同じあなたを見て、AIごとに星も位も変わります。あなたを一番ナメているのは、どのAI？</p></header>
+<ol class="kb-ais" id="kbAis"></ol>
+<div id="kbOut" aria-live="polite"></div>
+<section class="panel kb-steps" id="kbSteps" hidden><h2 class="side-h">くらべ方</h2><ol class="tips"><li><b>1つ目のAIで占う</b>ふだん使っているAIで、まず1回占います。</li><li><b>同じ呪文を別のAIへ</b>占うページで、もう一度「呪文を写す」を押して、別のAIに送ります。</li><li><b>答えを貼る</b>2つ目の結果が出たら、ここに並びます。3つまでくらべられます。</li></ol></section>
+</div>`});
+
+/* ===== 仲間と順位 ===== */
+page({file:'nakama/index.html',title:'仲間と順位',desc:'友だちや仲間と、AIがつけた「主の位」で順位をつけます。登録なし、リンクを送り合うだけ。',page:'nakama',cur:'nakama',crumbs:[[null,'仲間と順位']],body:`<div class="wrap narrow">
+<header class="page-h"><span class="eyebrow">YOUR CIRCLE</span><h1 id="nkTitle">仲間と順位を作る</h1><p class="lead">リンクを送り合うだけで、仲間の「主の位」の順位ができます。登録もアプリもいりません。</p></header>
+<div id="nkOut" hidden aria-live="polite"></div>
+<section class="panel nk-form" id="nkForm">
+<div class="nk-me" id="nkMe"></div>
+<label for="nkName">あなたの呼び名（10文字まで）</label><input id="nkName" maxlength="10" autocomplete="nickname" placeholder="例：みー">
+<label for="nkGroup">グループの名前（なくてもよい）</label><input id="nkGroup" maxlength="20" placeholder="例：営業部">
+<p class="err" id="nkErr" hidden role="alert"></p>
+<button class="btn lg" id="nkGo" type="button">グループを作る</button>
+<p class="note">順位に出るのは、呼び名・カード・主の位と点だけです。AIの「ひとこと」や「本音」は出ません。</p>
+</section>
+<section class="panel" id="nkNeed" hidden><h2 class="side-h">まず占ってください</h2><p class="note">順位に入るには、あなたのカードが必要です。占い終わったら、もう一度このリンクを開いてください。</p><a class="btn" href="/uranai/">占う</a></section>
+</div>`});
 
 /* ===== 縁 ===== */
 page({file:'en/index.html',title:'縁を占う',desc:'ふたりの星の符号を入れると、AIの使い方から見たふたりの縁が分かります。',page:'en',cur:'en',crumbs:[[null,'縁']],body:`<div class="wrap narrow">
@@ -369,7 +413,7 @@ for(let t=0;t<12;t++)for(let k=0;k<5;k++){
 page({file:'404.html',title:'ページが見つかりません',desc:'ページが見つかりません。',page:'404',body:`<div class="wrap narrow center nf"><span class="eyebrow">404 · LOST STAR</span><h1>この星は、まだ見つかっていません</h1><p class="lead">ページが動いたか、アドレスがちがうようです。</p><p class="center-btn"><a class="btn" href="/">トップへ</a><a class="btn ghost" href="/hoshi/">十二の星を見る</a></p></div>`});
 
 /* ===== sitemap・robots・headers ===== */
-const urls=['','uranai/','uranai/jibun/','hoshi/',...TYPES.map((_,t)=>`hoshi/${pad(t+1)}/`),'kurai/','en/','zukan/','about/','privacy/','kiyaku/'];
+const urls=['','uranai/','uranai/jibun/','hoshi/',...TYPES.map((_,t)=>`hoshi/${pad(t+1)}/`),'kurai/','kurabe/','nakama/','en/','zukan/','about/','privacy/','kiyaku/'];
 fs.writeFileSync(path.join(OUT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u=>`<url><loc>${SITE}/${u}</loc></url>`).join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(OUT,'robots.txt'),NOINDEX?`User-agent: *\nDisallow: /\n`:`User-agent: *\nDisallow: /kekka/\nDisallow: /s/\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.writeFileSync(path.join(OUT,'_headers'),`/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n${NOINDEX?'  X-Robots-Tag: noindex\n':''}\n/assets/*\n  Cache-Control: public, max-age=86400\n/img/*\n  Cache-Control: public, max-age=2592000, immutable\n/og/*\n  Cache-Control: public, max-age=604800\n`);
