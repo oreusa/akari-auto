@@ -51,6 +51,10 @@ export async function onRequest(ctx) {
   const { request, env } = ctx;
   const url = new URL(request.url);
   const ua = request.headers.get("user-agent") || "";
+  // 11/15 独自ドメイン：lifenote-kanto.pages.dev に直に来た人は kanto.townnote.app へ引っ越し（301）。townnote.app の入口（Worker）から来た分は x-tn-host が付くので飛ばさない
+  if (url.hostname === "lifenote-kanto.pages.dev" && !request.headers.get("x-tn-host") && (request.method === "GET" || request.method === "HEAD")) {
+    return Response.redirect("https://kanto.townnote.app" + url.pathname + url.search, 301);
+  }
   // オーナーの分は数えない（10/25 オーナー「ホームページと楽天クリックは俺らじゃないのか？」）。
   // /?me=on を1回開くと、その端末に印（クッキー me=1、1年）が付き、以後その端末の開いた数・押した数は数えない。/?me=off で外す。
   const me = url.searchParams.get("me");
@@ -65,7 +69,7 @@ export async function onRequest(ctx) {
   }
   // 11/2 LIFE NOTE：入口 / と、2つのリスト /odekake・/okaimono。リストは外から直に来た時だけ数える（入口から移った人を2回数えない）
   const ref = request.headers.get("referer") || "";
-  const own = /^https:\/\/(lifenote[^/]*|life-note|usagi-life-notes)\.pages\.dev\//.test(ref);
+  const own = /^https:\/\/((lifenote[^/]*|life-note|usagi-life-notes)\.pages\.dev|kanto\.townnote\.app)\//.test(ref);
   const lp = url.pathname.replace(/\.html$/, "");
   // 11/7 関東不動産リスト /fudosan-list も、2つのリストと同じく外から直に来た時だけ数える
   // 11/11 投稿からのリンクを、その催しのページ・都県のページへ直に付けるようにした → 投稿の印（?f=x0715 等）つきで外から来た時は、どのページでも数える
