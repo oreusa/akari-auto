@@ -30,9 +30,10 @@ ICON = {
  "beans": '<ellipse cx="12" cy="12" rx="5.5" ry="7.5" transform="rotate(35 12 12)"/><path d="M8.2 16.5c3-2 1.5-6.5 7.6-9"/>',
  "dogfood": '<path d="M8.6 8.6l6.8 6.8"/><circle cx="6.6" cy="8.4" r="2"/><circle cx="8.4" cy="6.6" r="2"/><circle cx="15.6" cy="17.4" r="2"/><circle cx="17.4" cy="15.6" r="2"/>',
  "catfood": '<path d="M4.5 13.5a7.5 5 0 0 0 15 0z"/><path d="M8 13.5l1-5 2 1.8h2l2-1.8 1 5"/>',
+ "greentea": '<path d="M12 20c-4-3-6.5-6.5-6-11 3.5-.5 6.5 1.5 6 5.5"/><path d="M12 20c4-3 6.5-6.5 6-11-3.5-.5-6.5 1.5-6 5.5"/><path d="M12 20V10"/>',
 }
 ORDER = ["water", "soda", "rice", "tp", "tea", "coffee", "detergent", "softener", "shampoo", "bodysoap", "dish",
-         "tissue", "diaper", "wipes", "trash", "battery", "mask", "pasta", "beans", "dogfood", "catfood"]
+         "tissue", "diaper", "wipes", "trash", "battery", "mask", "pasta", "beans", "greentea", "dogfood", "catfood"]
 
 CSS = """
 #okh{max-width:520px;margin:0 auto 10px;color:#1C1C1C}
