@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-15 21:16",
+  "at": "2026-11-16 11:22",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 51,
-      "ok": 17,
-      "avg": 165.6,
+      "read": 49,
+      "ok": 16,
+      "avg": 167.2,
       "rmin": 1000,
       "top": [
         {
@@ -97,16 +97,16 @@
           "img": "https://item-shopping.c.yimg.jp/i/g/drinkya_001-0010-001-spu1712"
         },
         {
-          "name": "コカ・コーラ い・ろ・は・す ラベルレス 560ml 1セット（48本）",
-          "price": 4872,
-          "per": 181.2,
-          "amt": "560ml×48本",
-          "rc": 952,
-          "av": 4.81,
-          "shop": "LOHACO by アスクル",
-          "bd": "いろはす",
-          "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Flohaco.yahoo.co.jp%2Fstore%2Fh-lohaco%2Fitem%2Fu474532%2F",
-          "img": "https://item-shopping.c.yimg.jp/i/g/rd-lohaco_u474532"
+          "name": "クリスタルガイザー 水 CRYSTAL GEYSER 500ml × 48本 天然水…",
+          "price": 3240,
+          "per": 135.0,
+          "amt": "500ml×48本",
+          "rc": 578,
+          "av": 4.4,
+          "shop": "めしや Yahoo!ショッピング店",
+          "bd": "クリスタルガイザー",
+          "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Fmeshiya%2F001-0010-001-spu1712.html",
+          "img": "https://item-shopping.c.yimg.jp/i/g/meshiya_001-0010-001-spu1712"
         }
       ]
     },
@@ -216,7 +216,7 @@
       "rmin": 1000,
       "top": [
         {
-          "name": "15日 新米 10kg コシヒカリ 米10キロ こしひかり 令和8年産 福島県 会津産…",
+          "name": "新米 10kg コシヒカリ 米10キロ こしひかり 令和8年産 福島県 会津産 送料無料",
           "price": 5599,
           "per": 559.9,
           "amt": "10kg",
@@ -234,7 +234,7 @@
           "price": 6780,
           "per": 678.0,
           "amt": "10kg",
-          "rc": 1935,
+          "rc": 1936,
           "av": 4.84,
           "shop": "市川農場 楽天市場店",
           "plain": "https://item.rakuten.co.jp/yukihikari/10000073/",
@@ -499,7 +499,7 @@
       "seen": 60,
       "read": 45,
       "ok": 18,
-      "avg": 365.5,
+      "avg": 365.9,
       "rmin": 50,
       "top": [
         {
@@ -535,7 +535,7 @@
           "price": 1980,
           "per": 173.7,
           "amt": "950ml×12",
-          "rc": 33,
+          "rc": 34,
           "av": 4.88,
           "shop": "MARUCHUU",
           "plain": "https://item.rakuten.co.jp/naire-donya/10001751/",
@@ -608,7 +608,7 @@
       "seen": 119,
       "read": 27,
       "ok": 12,
-      "avg": 1177.4,
+      "avg": 1226.1,
       "rmin": 20,
       "top": [
         {
@@ -852,9 +852,9 @@
       "title": "シャンプー（詰め替え）",
       "unit": "1L・1kg",
       "seen": 150,
-      "read": 25,
+      "read": 31,
       "ok": 2,
-      "avg": 2571.0,
+      "avg": 2344.9,
       "rmin": 100,
       "top": [
         {
@@ -1133,8 +1133,8 @@
           "price": 2980,
           "per": 33.1,
           "amt": "150組×60箱",
-          "rc": 272,
-          "av": 4.75,
+          "rc": 273,
+          "av": 4.74,
           "shop": "坪野谷紙業",
           "plain": "https://item.rakuten.co.jp/tsubonoya/10000023/",
           "bd": "",
@@ -1161,7 +1161,7 @@
           "price": 2580,
           "per": 43.0,
           "amt": "150組×40箱",
-          "rc": 509,
+          "rc": 510,
           "av": 4.57,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10156163/",
@@ -1218,9 +1218,9 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 120,
-      "read": 43,
-      "ok": 43,
-      "avg": 58.8,
+      "read": 46,
+      "ok": 46,
+      "avg": 60.3,
       "rmin": 0,
       "top": [
         {
@@ -1235,6 +1235,20 @@
           "bd": "メリーズ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00s0vmo.m2lhf5d9.g00s0vmo.m2lhge2f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbeisia%2F4901301437693x4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbeisia%2Fi%2F10126180%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/beisia/cabinet/09476807/4901301437693.jpg?_ex=300x300",
+          "ship": ""
+        },
+        {
+          "name": "ユニ・チャーム ムーニー マシュマロ肌ごこち モレ安心 新生児用 お誕生〜3000gまで…",
+          "price": 5128,
+          "per": 26.7,
+          "amt": "192枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "NSC-Shop",
+          "plain": "https://item.rakuten.co.jp/nsc-kj/10002019/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00rjmjo.m2lhf065.g00rjmjo.m2lhg733/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnsc-kj%2F4903111210947-3set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnsc-kj%2Fi%2F10002019%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nsc-kj/cabinet/shohin03/4903111210947-3p.jpg?_ex=300x300",
           "ship": ""
         },
         {
@@ -1266,31 +1280,17 @@
           "ship": ""
         },
         {
-          "name": "メリーズ オムツ さら さらエアスルー (お誕生~5000g) 164枚 (82枚×2)…",
-          "price": 5204,
-          "per": 31.7,
-          "amt": "164枚",
+          "name": "ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70枚×4）…",
+          "price": 8758,
+          "per": 31.3,
+          "amt": "280枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "Homey Store 楽天市場店",
-          "plain": "https://item.rakuten.co.jp/homeystore/10118455/",
-          "bd": "メリーズ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00ua2zo.m2lhfc4a.g00ua2zo.m2lhgcdc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhomeystore%2F20250325175149_19%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhomeystore%2Fi%2F10118455%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/homeystore/cabinet/r_2022100518/20250325175149_19_1.jpg?_ex=300x300",
-          "ship": ""
-        },
-        {
-          "name": "パンパース Pampers おむつ 紙おむつ テープ ふかふか ウルトラジャンボパック…",
-          "price": 5080,
-          "per": 35.3,
-          "amt": "144枚",
-          "rc": 5,
-          "av": 5.0,
-          "shop": "ひょっとこマーケット",
-          "plain": "https://item.rakuten.co.jp/auc-hyottokomrkt/10003912/",
-          "bd": "パンパース",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00qrr5o.m2lhfc90.g00qrr5o.m2lhgdfc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fauc-hyottokomrkt%2F57542%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fauc-hyottokomrkt%2Fi%2F10003912%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/auc-hyottokomrkt/cabinet/costco/2026/12978976/pp-1.jpg?_ex=300x300",
+          "shop": "Ciel de neige",
+          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uoo1o.m2lhf537.g00uoo1o.m2lhg030/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcieldeneige%2Fcl91611ab260%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcieldeneige%2Fi%2F10011999%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cieldeneige/cabinet/onesell117/cl91611ab260.jpg?_ex=300x300",
           "ship": ""
         },
         {
@@ -1309,8 +1309,8 @@
         },
         {
           "name": "マミーポコ ビッグ サンリオ マミーポコ サンリオ マミーポコ パンツ…",
-          "price": 7215,
-          "per": 44.5,
+          "price": 7305,
+          "per": 45.1,
           "amt": "162枚",
           "rc": 1,
           "av": 5.0,
@@ -1319,6 +1319,20 @@
           "bd": "マミーポコ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00tvu9o.m2lhfdfd.g00tvu9o.m2lhgc42/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhanamaruryohin%2F20260708145926_240%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhanamaruryohin%2Fi%2F10075183%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/hanamaruryohin/cabinet/r_2026070838/20260708145926_240_1.jpg?_ex=300x300",
+          "ship": ""
+        },
+        {
+          "name": "メリーズ エアスルー テープ Sサイズ 62枚入り×4個 赤ちゃん おむつ 紙おむつ 花王…",
+          "price": 9670,
+          "per": 39.0,
+          "amt": "248枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "ダイユーエイト楽天市場店",
+          "plain": "https://item.rakuten.co.jp/daiyu8/10169391/",
+          "bd": "メリーズ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00tak5o.m2lhfddc.g00tak5o.m2lhg1ea/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdaiyu8%2F4901301437709-4set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdaiyu8%2Fi%2F10169391%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/daiyu8/cabinet/images258/4901301437709-4set_1.jpg?_ex=300x300",
           "ship": ""
         }
       ],
@@ -1425,7 +1439,7 @@
       "title": "ゴミ袋",
       "unit": "1枚",
       "seen": 142,
-      "read": 85,
+      "read": 88,
       "ok": 5,
       "avg": 18.8,
       "rmin": 50,
@@ -1477,8 +1491,8 @@
       "yahoo": [
         {
           "name": "ゴミ袋 45L 半透明 65x80cm 0.015mm厚 10枚x100冊 KN-53…",
-          "price": 7500,
-          "per": 7.5,
+          "price": 6975,
+          "per": 7.0,
           "amt": "1000枚",
           "rc": 93,
           "av": 4.61,
@@ -1694,18 +1708,6 @@
       "amazon": [],
       "yahoo": [
         {
-          "name": "マスク 不織布 カラーマスク アイリスオーヤマ 60枚 不織布マスク 小さめ ふつう…",
-          "price": 598,
-          "per": 10.0,
-          "amt": "60枚",
-          "rc": 4337,
-          "av": 4.46,
-          "shop": "メガストア Yahoo!店",
-          "bd": "アイリスオーヤマ",
-          "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Fpetkan%2F290557.html",
-          "img": "https://item-shopping.c.yimg.jp/i/g/petkan_290557"
-        },
-        {
           "name": "マスク 不織布 小さめ ふつう 大きめ おしゃれ 不織布マスク 子供 使い捨てマスク…",
           "price": 1280,
           "per": 10.7,
@@ -1716,6 +1718,18 @@
           "bd": "アイリスオーヤマ",
           "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Ftakuhaibin%2F288368.html",
           "img": "https://item-shopping.c.yimg.jp/i/g/takuhaibin_288368"
+        },
+        {
+          "name": "マスク 不織布 カラーマスク アイリスオーヤマ 60枚 不織布マスク 小さめ ふつう…",
+          "price": 698,
+          "per": 11.6,
+          "amt": "60枚",
+          "rc": 4337,
+          "av": 4.46,
+          "shop": "メガストア Yahoo!店",
+          "bd": "アイリスオーヤマ",
+          "url": "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Fpetkan%2F290557.html",
+          "img": "https://item-shopping.c.yimg.jp/i/g/petkan_290557"
         }
       ]
     },
@@ -1726,7 +1740,7 @@
       "seen": 127,
       "read": 81,
       "ok": 22,
-      "avg": 682.6,
+      "avg": 682.4,
       "rmin": 50,
       "top": [
         {
@@ -1833,9 +1847,9 @@
       "title": "コーヒー豆",
       "unit": "1kg",
       "seen": 127,
-      "read": 58,
-      "ok": 19,
-      "avg": 5174.2,
+      "read": 59,
+      "ok": 22,
+      "avg": 5097.3,
       "rmin": 100,
       "top": [
         {
@@ -1867,17 +1881,17 @@
           "ship": ""
         },
         {
-          "name": "コーヒー豆 コーヒー粉 送料無料 珈琲豆 おからクッキー付き 秋味グルメ福袋 1.6kg…",
-          "price": 6110,
-          "per": 3818.8,
-          "amt": "1.6kg",
-          "rc": 17541,
-          "av": 4.73,
+          "name": "澤井珈琲｜送料無料 冬の珈琲120杯分福袋 コーヒー コーヒー豆 コーヒー粉 珈琲豆…",
+          "price": 4498,
+          "per": 3748.3,
+          "amt": "1.2kg",
+          "rc": 558,
+          "av": 4.72,
           "shop": "澤井珈琲Beans&Leaf",
-          "plain": "https://item.rakuten.co.jp/sawaicoffee-tea/10000079/",
+          "plain": "https://item.rakuten.co.jp/sawaicoffee-tea/10000121/",
           "bd": "澤井珈琲",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00powbo.m2lhfbe3.g00powbo.m2lhg98e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsawaicoffee-tea%2Fac-gurume04%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsawaicoffee-tea%2Fi%2F10000079%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/sawaicoffee-tea/cabinet/thum/thum4/akiazi160_t.jpg?_ex=300x300",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00powbo.m2lhfbe3.g00powbo.m2lhg98e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsawaicoffee-tea%2Fac-gurume0909%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsawaicoffee-tea%2Fi%2F10000121%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/sawaicoffee-tea/cabinet/thum/thum5/fuyuhuwa120_2_t_rak.jpg?_ex=300x300",
           "ship": ""
         },
         {
@@ -1885,8 +1899,8 @@
           "price": 1850,
           "per": 5441.2,
           "amt": "340g",
-          "rc": 10,
-          "av": 4.6,
+          "rc": 11,
+          "av": 4.55,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10136109/",
           "bd": "キーコーヒー",
@@ -1944,7 +1958,7 @@
       "seen": 129,
       "read": 88,
       "ok": 60,
-      "avg": 1700.4,
+      "avg": 1699.4,
       "rmin": 100,
       "top": [
         {
@@ -1976,7 +1990,7 @@
           "ship": ""
         },
         {
-          "name": "当選確率2分の1 1等最大100％ ドッグフード サイエンスダイエット シニアライト…",
+          "name": "ドッグフード サイエンスダイエット シニアライト 7歳以上 小粒 肥満傾向の高齢犬用…",
           "price": 11952,
           "per": 996.0,
           "amt": "12kg",
@@ -2053,11 +2067,11 @@
       "seen": 112,
       "read": 60,
       "ok": 46,
-      "avg": 1553.4,
+      "avg": 1553.3,
       "rmin": 100,
       "top": [
         {
-          "name": "当選確率2分の1 1等最大100％ キャットフード サイエンスダイエット アダルト…",
+          "name": "キャットフード サイエンスダイエット アダルト 1〜6歳 成猫用 チキン 2．8kg×4袋…",
           "price": 12078,
           "per": 1078.4,
           "amt": "2.8kg×4",

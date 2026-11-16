@@ -1,7 +1,7 @@
 {
-  "at": "2026-11-16 01:33",
+  "at": "2026-11-16 11:26",
   "since": "2026-11-01",
-  "tracked": 263,
+  "tracked": 264,
   "days": 15,
   "downs": [
     {
@@ -23,37 +23,13 @@
       "base": 1690.0,
       "pct": 12,
       "days": 14,
-      "rc": 428,
+      "rc": 429,
       "av": 4.61,
       "shop": "コーヒー&パン専門店DripTrip",
       "plain": "https://item.rakuten.co.jp/daisen-coffee/10001120/"
     }
   ],
   "ups": [
-    {
-      "title": "モバイルバッテリー",
-      "name": "hagoogi 充電式カイロ 大容量 電気カイロ 軽量 分離式 10000mah 最高55℃…",
-      "price": 7280,
-      "base": 3640.0,
-      "pct": 100,
-      "days": 14,
-      "rc": 694,
-      "av": 4.55,
-      "shop": "Hagoogi公式 楽天市場店",
-      "plain": "https://item.rakuten.co.jp/hagoogi/10000130/"
-    },
-    {
-      "title": "キャットフード",
-      "name": "ロイヤルカナン 猫 ユリナリー 成猫用 ケア 2kg まとめ買い アダルト 尿路結石 下部尿…",
-      "price": 7880,
-      "base": 4202.0,
-      "pct": 88,
-      "days": 14,
-      "rc": 479,
-      "av": 4.7,
-      "shop": "キャットランド",
-      "plain": "https://item.rakuten.co.jp/cat-land/10060141/"
-    },
     {
       "title": "ドッグフード",
       "name": "フィールドゲインズ ウルトラプレミアム 2kg (1kg×2袋) 初回限定 お試しドッグフー…",
@@ -89,6 +65,30 @@
       "av": 4.48,
       "shop": "山川食糧オートミール研究所",
       "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
+    },
+    {
+      "title": "プロテイン",
+      "name": "カラダを大きくしたい方に！ウエイトゲイナー プロテイン 1kg / 3kg ザプロ ホエイ …",
+      "price": 3780,
+      "base": 2640.0,
+      "pct": 43,
+      "days": 14,
+      "rc": 602,
+      "av": 4.46,
+      "shop": "武内製薬 公式オンラインストア",
+      "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000302/"
+    },
+    {
+      "title": "モバイルバッテリー",
+      "name": "MOTTERU (モッテル) 発火リスクほぼゼロ モバイルバッテリー 準固体モバイルバッテリ…",
+      "price": 7980,
+      "base": 5780,
+      "pct": 38,
+      "days": 9,
+      "rc": 407,
+      "av": 4.79,
+      "shop": "MOTTERU ダイレクト 楽天市場店",
+      "plain": "https://item.rakuten.co.jp/motteru/10000176/"
     }
   ]
 }

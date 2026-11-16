@@ -1,25 +1,25 @@
 {
- "date": "2026-11-15",
+ "date": "2026-11-16",
  "now": {
-  "views": 1123,
-  "come": 18,
+  "views": 1163,
+  "come": 23,
   "post": 4,
-  "ask": 66,
+  "ask": 74,
   "cost": 0,
-  "open": 9,
+  "open": 11,
   "sent": 0,
-  "buy": 17,
+  "buy": 11,
   "days": 7
  },
  "prev": {
-  "views": 876,
+  "views": 946,
   "come": 0,
   "post": 6,
   "ask": 5,
   "cost": 0,
   "open": 0,
   "sent": 0,
-  "buy": 37,
+  "buy": 43,
   "days": 7
  },
  "slots": [
