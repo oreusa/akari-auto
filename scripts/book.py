@@ -17,7 +17,7 @@ from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check import LINK, SLOT_RE, post_problems  # noqa: E402
-from lib import (JST, URL_RE, BufferError, a8_link, buffer_gql, amazon_link, append_log, buffer_create, buffer_posts,  # noqa: E402
+from lib import (JST, URL_RE, BufferError, a8_link, buffer_gql, amazon_link, append_log, buffer_create, buffer_posts, buffer_errors,  # noqa: E402
                  about_item, item_code_from_url, load_json, missing_specs, now_jst, page_check, path,
                  rakuten_item, rakuten_travel_link, save_json, http_raw, fetch_image, koma4_instagram_media,
                  story_local, image_diff, story_boxes, STORY_DIFF_MAX)
@@ -1043,6 +1043,7 @@ def after_check(cfg, state, now):
         got = buffer_posts(cfg, ["sent", "error"], start - timedelta(hours=1), end)
         sent = {p["id"] for p in got if (p.get("status") or "sent").lower() == "sent"}
         errs = {p["id"] for p in got if (p.get("status") or "").lower() == "error"}
+        emsg = buffer_errors(cfg, start - timedelta(hours=1), end) if errs else {}
         for key, s, r, due in waiting:
             day, slot = key.split(" ", 1)  # 1回だけの投稿は「日付 1回 名前」で空白が多い
             if r["id"] in sent:
@@ -1051,6 +1052,8 @@ def after_check(cfg, state, now):
                 changed = True
             elif r["id"] in errs or now - due > timedelta(minutes=60):
                 why = "Bufferでエラー" if r["id"] in errs else "時刻を60分過ぎても出ていない"
+                if r["id"] in errs and (emsg.get(r["id"]) or emsg.get("_")):
+                    why += "：" + (emsg.get(r["id"]) or emsg.get("_"))[:150]
                 r["seen"] = "出ない：" + why
                 changed = True
                 ig = r.get("svc", s).startswith("ig") or r.get("svc", s) == "instagram"
