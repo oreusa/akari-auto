@@ -2205,11 +2205,10 @@
   "why": ""
  },
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
-  "at": "2026-11-16",
-  "by": "browser",
-  "ok": false,
-  "sec": 15.0,
-  "why": "Page.goto: Timeout 15000ms exceeded."
+  "at": "2026-11-17",
+  "ok": true,
+  "sec": 0.8,
+  "why": ""
  },
  "https://ehonnooka.com/?p=11240": {
   "at": "2026-11-16",
@@ -5830,6 +5829,12 @@
   "sec": 1.3,
   "why": ""
  },
+ "https://l-tike.com/ntvzero/event/tvconanten-30th_yokohama.html": {
+  "at": "2026-11-17",
+  "ok": false,
+  "sec": 15.1,
+  "why": "The read operation timed out"
+ },
  "https://lightup-nikko.jp/": {
   "at": "2026-11-08",
   "by": "browser",
@@ -5974,6 +5979,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.5,
+  "why": ""
+ },
+ "https://mitsui-shopping-park.com/lalaport/kashiwa/cp/20thanniversary/": {
+  "at": "2026-11-17",
+  "ok": true,
+  "sec": 0.7,
   "why": ""
  },
  "https://mitsui-shopping-park.com/urban/legend-research/": {
@@ -6157,9 +6168,9 @@
   "why": ""
  },
  "https://tachikawaillumination.com": {
-  "at": "2026-11-13",
+  "at": "2026-11-17",
   "ok": true,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": ""
  },
  "https://tachikawaillumination.com/": {
@@ -6170,11 +6181,10 @@
   "why": ""
  },
  "https://tamaillumi.myportfolio.com/": {
-  "at": "2026-11-16",
-  "by": "browser",
-  "ok": false,
+  "at": "2026-11-17",
+  "ok": true,
   "sec": 0.2,
-  "why": "Page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://ta"
+  "why": ""
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
   "at": "2026-11-16",
@@ -6209,12 +6219,6 @@
   "by": "browser",
   "ok": true,
   "sec": 0.9,
-  "why": ""
- },
- "https://tokyonominoichi.com/2026_autumn/": {
-  "at": "2026-11-02",
-  "ok": true,
-  "sec": 1.2,
   "why": ""
  },
  "https://ttca.jp/autumn-leaves-info2026/": {
@@ -8307,12 +8311,6 @@
   "sec": 2.8,
   "why": ""
  },
- "https://www.honjo-kanko.jp/topics/none/20261014_10704/": {
-  "at": "2026-11-02",
-  "ok": true,
-  "sec": 1.6,
-  "why": ""
- },
  "https://www.houtokuji.jp/reflection-autumn.html": {
   "at": "2026-11-16",
   "by": "browser",
@@ -8402,12 +8400,6 @@
   "by": "browser",
   "ok": true,
   "sec": 1.0,
-  "why": ""
- },
- "https://www.kasumigaura-kankou.jp/page/page000986.html": {
-  "at": "2026-11-02",
-  "ok": true,
-  "sec": 0.3,
   "why": ""
  },
  "https://www.keiseirose.co.jp/garden/": {
@@ -8561,12 +8553,6 @@
   "by": "browser",
   "ok": true,
   "sec": 4.2,
-  "why": ""
- },
- "https://www.pref.saitama.lg.jp/spo-navi/event/higashimatsuyama/3-day-march-49r.html": {
-  "at": "2026-11-02",
-  "ok": true,
-  "sec": 1.5,
   "why": ""
  },
  "https://www.pref.tochigi.lg.jp/c10/kouhou/kouhou/202610-12artm-kikaku.html": {

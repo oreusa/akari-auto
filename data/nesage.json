@@ -1,9 +1,21 @@
 {
-  "at": "2026-11-16 11:26",
+  "at": "2026-11-17 04:51",
   "since": "2026-11-01",
   "tracked": 264,
-  "days": 15,
+  "days": 16,
   "downs": [
+    {
+      "title": "ドッグフード",
+      "name": "ドッグフード 国産 無添加 シニア 成犬 銀座ダックスダックス スーパーコンディション 1k…",
+      "price": 4070,
+      "base": 11880.0,
+      "pct": 66,
+      "days": 14,
+      "rc": 640,
+      "av": 4.78,
+      "shop": "ナチュラルペットフード shop",
+      "plain": "https://item.rakuten.co.jp/petnext/10001928/"
+    },
     {
       "title": "モバイルバッテリー",
       "name": "カイロ 充電式カイロ 大容量 充電カイロ 電気カイロ 軽量 10000mah ハンドウォーマ…",
@@ -11,22 +23,70 @@
       "base": 3960.0,
       "pct": 37,
       "days": 14,
-      "rc": 997,
-      "av": 4.54,
+      "rc": 1000,
+      "av": 4.55,
       "shop": "triple shop",
       "plain": "https://item.rakuten.co.jp/tripleshop/10000191/"
+    },
+    {
+      "title": "電気毛布",
+      "name": "［BLACK FRIDAY★限定セール］電気毛布 日本製 電気毛布 敷き 電気毛布 掛け敷き…",
+      "price": 2790,
+      "base": 3100.0,
+      "pct": 10,
+      "days": 14,
+      "rc": 2322,
+      "av": 4.52,
+      "shop": "ライフジョイ工房",
+      "plain": "https://item.rakuten.co.jp/lifejoy-shop/10000044/"
+    },
+    {
+      "title": "電気毛布",
+      "name": "［BLACK FRIDAY★限定セール］電気毛布 電気ひざ掛け ひざ掛け 電気ブランケット …",
+      "price": 3990,
+      "base": 4433.0,
+      "pct": 10,
+      "days": 14,
+      "rc": 1015,
+      "av": 4.59,
+      "shop": "ライフジョイ工房",
+      "plain": "https://item.rakuten.co.jp/lifejoy-shop/10000093/"
+    },
+    {
+      "title": "電気毛布",
+      "name": "［BLACK FRIDAY★限定セール］電気毛布 掛け敷き 電気ひざ掛け ひざ掛け 電気敷き…",
+      "price": 3990,
+      "base": 4433.0,
+      "pct": 10,
+      "days": 14,
+      "rc": 983,
+      "av": 4.2,
+      "shop": "ライフジョイ工房",
+      "plain": "https://item.rakuten.co.jp/lifejoy-shop/10000040/"
     },
     {
       "title": "コーヒー",
       "name": "コーヒー豆 お試しセット 15種類から選べる3種 飲み比べ 100g×3袋 浅煎り 中煎り …",
       "price": 1480,
-      "base": 1690.0,
-      "pct": 12,
+      "base": 1585.0,
+      "pct": 7,
       "days": 14,
-      "rc": 429,
-      "av": 4.61,
+      "rc": 430,
+      "av": 4.6,
       "shop": "コーヒー&パン専門店DripTrip",
       "plain": "https://item.rakuten.co.jp/daisen-coffee/10001120/"
+    },
+    {
+      "title": "お米",
+      "name": "「2026年 楽天上半期ランキング1位」 令和8年産 70％以上使用 国産 ブレンド米 極味…",
+      "price": 2280,
+      "base": 2420.0,
+      "pct": 6,
+      "days": 14,
+      "rc": 6697,
+      "av": 4.48,
+      "shop": "山川食糧オートミール研究所",
+      "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
     }
   ],
   "ups": [
@@ -37,8 +97,8 @@
       "base": 1000.0,
       "pct": 65,
       "days": 14,
-      "rc": 522,
-      "av": 4.32,
+      "rc": 523,
+      "av": 4.33,
       "shop": "フィールドゲインズ楽天市場店",
       "plain": "https://item.rakuten.co.jp/fieldgaines/10000092/"
     },
@@ -55,18 +115,6 @@
       "plain": "https://item.rakuten.co.jp/comfystore/10000038/"
     },
     {
-      "title": "お米",
-      "name": "「2026年 楽天上半期ランキング1位」 令和8年産 70％以上使用 国産 ブレンド米 極味…",
-      "price": 3580,
-      "base": 2420.0,
-      "pct": 48,
-      "days": 14,
-      "rc": 6687,
-      "av": 4.48,
-      "shop": "山川食糧オートミール研究所",
-      "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
-    },
-    {
       "title": "プロテイン",
       "name": "カラダを大きくしたい方に！ウエイトゲイナー プロテイン 1kg / 3kg ザプロ ホエイ …",
       "price": 3780,
@@ -80,15 +128,27 @@
     },
     {
       "title": "モバイルバッテリー",
-      "name": "MOTTERU (モッテル) 発火リスクほぼゼロ モバイルバッテリー 準固体モバイルバッテリ…",
-      "price": 7980,
-      "base": 5780,
-      "pct": 38,
-      "days": 9,
-      "rc": 407,
-      "av": 4.79,
-      "shop": "MOTTERU ダイレクト 楽天市場店",
-      "plain": "https://item.rakuten.co.jp/motteru/10000176/"
+      "name": "Anker MagGo Power Bank (10000mAh, Slim) Qi2認証 …",
+      "price": 9990,
+      "base": 7490.0,
+      "pct": 33,
+      "days": 14,
+      "rc": 544,
+      "av": 4.53,
+      "shop": "アンカー・ダイレクト楽天市場店",
+      "plain": "https://item.rakuten.co.jp/anker/10002086/"
+    },
+    {
+      "title": "プロテイン",
+      "name": "MyLOHAS マイロハス グラスフェッド ホエイプロテイン チョコ 抹茶 バニラ 苺 1k…",
+      "price": 8980,
+      "base": 7480.0,
+      "pct": 20,
+      "days": 14,
+      "rc": 1705,
+      "av": 4.53,
+      "shop": "MyLOHAS公式ストア",
+      "plain": "https://item.rakuten.co.jp/lohas-s/10000382/"
     }
   ]
 }
