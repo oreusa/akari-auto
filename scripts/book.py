@@ -830,9 +830,20 @@ def book_outing_reel(cfg, state, now):
         return False
     top = state.setdefault(f"{day} おでかけリール", {})
     rec = top.setdefault("instagram", {"tries": 0})  # ほかの投稿と同じ形（state[日 枠][媒体]）にして、出たかの確認・数字にも乗せる
+    made = load_json(path("reel", "out", f"{day}.json")) or {}  # outing-reel.yml が動画を作って置いた URL
+    # 11/17 オーナー「改善点いれて今日の分から差し替え」「間違って改善前ののせないように」：予約の後に動画を作り直したら
+    # （reel/out の url が予約した url と違う）、出る10分より前なら古い予約を消して新しい動画で予約し直す。消せない時は予約し直さない（2本出さない）。
+    if rec.get("id") and not rec.get("seen") and made.get("url") and top.get("url") and made["url"] != top["url"] and mins > 10:
+        try:
+            delete_post(rec["id"])
+        except Exception as e:
+            append_log(day, f"おでかけリール 古い予約を消せない（作り直した動画に替えられない）：{str(e)[:150]}")
+            return False
+        append_log(day, f"おでかけリール 作り直した動画に差し替え：古い予約 {rec['id']} を消した")
+        top["url"] = made["url"]
+        rec = top["instagram"] = {"tries": 0}
     if rec.get("id") or rec.get("tries", 0) >= MAX_TRIES:
         return False
-    made = load_json(path("reel", "out", f"{day}.json")) or {}  # outing-reel.yml が動画を作って置いた URL
     if made.get("url") and not top.get("url"):
         top["url"] = made["url"]
     mp4 = path("reel", f"{day}.mp4")
