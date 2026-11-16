@@ -12,6 +12,9 @@ on:
       date:
         description: "作り直す日（YYYY-MM-DD。空なら明日と今日の、まだ作っていない分）"
         required: false
+      uref:
+        description: "月の道具（usagi-fudosan-media）のブランチ。見本を作る時だけ。空なら main"
+        required: false
 permissions:
   contents: write
 concurrency:
@@ -33,6 +36,7 @@ jobs:
       RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
       RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
       ONLY: ${{ github.event.inputs.date }}
+      UREF: ${{ github.event.inputs.uref }}
     steps:
       - uses: actions/checkout@v4
       - name: 作る日を決める
@@ -67,7 +71,7 @@ jobs:
             kata=$(python3 -c "import json,sys;print(json.load(open(f'reel/{sys.argv[1]}.json')).get('kata',''))" "$d")
             ok=1
             if [ "$kata" = "ehon" ]; then   # 11/12〜 絵本を開く型。作る道具は月の所（usagi-fudosan-media の tools/outing_reel/ehon.py）を借りる。台本の書き方もそこの README.md
-              [ -d /tmp/usagi ] || git clone -q --depth 1 https://github.com/oreusa/usagi-fudosan-media /tmp/usagi
+              [ -d /tmp/usagi ] || git clone -q --depth 1 -b "${UREF:-main}" https://github.com/oreusa/usagi-fudosan-media /tmp/usagi
               WORK=/tmp/reel-$d python3 /tmp/usagi/tools/outing_reel/ehon.py "reel/$d.json" "/tmp/$d.mp4" || ok=0
             else
               python3 tools/outing_reel/make.py "reel/$d.json" "/tmp/$d.mp4" || ok=0
