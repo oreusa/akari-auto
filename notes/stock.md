@@ -1,4 +1,4 @@
-# HPの在庫（11/16 05:35 機械が数えた）
+# HPの在庫（11/17 08:51 機械が数えた）
 
 判定：× 東京のこれからがあと5件、神奈川のこれからがあと2件、埼玉のこれからがあと5件、千葉のこれからがあと5件、茨城のこれからがあと4件、栃木のこれからがあと3件
 
@@ -9,9 +9,9 @@
 | 都県 | 開催中 | これから | 最低限（上限なし） |
 |---|---|---|---|
 | 東京 | 42 ○ | 5 × | 開催中25以上・これから10以上 |
-| 神奈川 | 16 ○ | 3 × | 開催中12以上・これから5以上 |
+| 神奈川 | 17 ○ | 3 × | 開催中12以上・これから5以上 |
 | 埼玉 | 18 ○ | 0 × | 開催中12以上・これから5以上 |
-| 千葉 | 15 ○ | 0 × | 開催中12以上・これから5以上 |
+| 千葉 | 16 ○ | 0 × | 開催中12以上・これから5以上 |
 | 茨城 | 14 ○ | 1 × | 開催中10以上・これから5以上 |
 | 栃木 | 13 ○ | 2 × | 開催中10以上・これから5以上 |
 | 群馬 | 12 ○ | 1 × | 開催中10以上・これから5以上 |
@@ -20,6 +20,7 @@
 ## 商品
 
 - おかいもの（/okaimono）は機械が毎日 data/tanka.json から作る。手で商品を足す仕事は無い（11/11）。
+- 聞かれたのに種類に無い言葉（30日）：冬じたく・おもちゃ・お菓子・お茶っぱ・食べ物・飲み物
 
 ## 足りない物
 
@@ -31,6 +32,7 @@
 - × 栃木のこれからがあと3件
 - × 群馬のこれからがあと4件
 - × 新しい施設（もうすぐ・できた）が関東であと16件
+- × おかいものの種類：聞かれたのに無い言葉5つ（冬じたく・おもちゃ・お菓子）→ 夜の回が tanka.py の CATS に1晩1〜2つ足す
 
 ## 3日以内に終わる（代わりを先に探す）
 
@@ -38,13 +40,13 @@
 
 ## 開けないリンク（直すか消す）
 
-- 第19回かすみがうら祭：https://www.kasumigaura-kankou.jp/page/page000986.html（404）
-- くりはま花の国 コスモスまつり2026：https://www.kanagawaparks.com/kurihama/news/2026100414204410478.html（TimeoutError）
 - Fly to the Moon: 月をめぐる5つの物語：https://www.haramuseum.or.jp/jp/arc/exhibition/2275/（URLError）
 - さがみはら星空探査隊：https://www.city.sagamihara.kanagawa.jp/kankou/1026674/hayabusa2/1035623.html（404）
+- Crystal Garden 2026-2027（アイガーデンエア）：https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html（URLError）
+- 志木駅東口駅前イルミネーション：https://kanko-shiki.com/archives/5214（TimeoutError）
 - 大洗秋まつり 商工感謝祭＆大洗あんこう祭：https://www.oarai-info.jp/news/postid_8902/（404）
 - 第29回やまがた宿芋煮会：https://www.city.hitachiomiya.lg.jp/kankou_guide/news/page012282.html（404）
-- イオンモール小山 アクアリウム：https://aqua-kingyo.jp/（TimeoutError）
+- 放送30周年記念TVアニメ「名探偵コナン」展 横浜会場：https://l-tike.com/ntvzero/event/tvconanten-30th_yokohama.html（TimeoutError）
 
 ## 同じ物が2つ（1つ消す）
 

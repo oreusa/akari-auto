@@ -177,14 +177,14 @@
 | 11-14 | 48 | 50 | direct 31、okaimono 7、tomari 6、yado 5、okaibuy 1 |
 | 11-15 | 138 | 61 | direct 52、okaimono 6、tomari 3 |
 | 11-16 | 103 | 63 | direct 46、okaimono 10、tomari 5、kaimawari 1、okaibuy 1 |
-| 11-17 | 9 | 1 | direct 1 |
+| 11-17 | 15 | 7 | direct 7 |
 
 ## HPで押されたカード（7日の合計、多い順に15）
 | 欄｜名前 | 回数 |
 |---|---|
 | src|直接・アプリ | 49 |
+| src|ほか（www.facebook.com） | 22 |
 | src|X | 20 |
-| src|ほか（www.facebook.com） | 20 |
 | x|x | 19 |
 | menu|メニュー｜開く | 13 |
 | v4|表示:直に | 13 |
@@ -193,21 +193,21 @@
 | hp|申し込み｜かんたん｜表示 | 9 |
 | tomari|表示 | 9 |
 | hp|申し込み｜ご希望を入れた｜解体の見積り | 8 |
-| src|ほか（m.facebook.com） | 7 |
+| src|ほか（m.facebook.com） | 8 |
 | tomari|この週末 | 6 |
 | v4|表示:外から | 6 |
-| src|Bing | 5 |
+| top|入口｜入口｜実家・空き家ノート | 5 |
 
 ## HPで押された欄（7日の合計）
 | 欄 | 回数 |
 |---|---|
-| src | 117 |
-| hp | 67 |
+| src | 120 |
+| hp | 68 |
 | v4 | 57 |
-| fudosan | 37 |
+| fudosan | 38 |
 | tomari | 22 |
 | x | 19 |
-| top | 17 |
+| top | 18 |
 | menu | 14 |
 | yado | 8 |
 | koyo | 1 |
