@@ -176,8 +176,8 @@ def main():
     dnote = "<br>「◯/◯（土）の空室」は、その日1泊・大人2人で開きます（日曜は今夜の1泊）。<br>楽天で「空室が見つかりませんでした」と出たときは、その画面の上の日付を変えると、同じ宿の別の日の空室が出ます。" if DATED_OK else ""
     upd = f"{today.year}年{today.month}月{today.day}日"
     out = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>泊まりで行く関東のおでかけ｜近くの宿つき｜うさぎ│LIFE NOTES</title>
-<meta name="description" content="関東の少し遠いおでかけ{n_all}か所と、近くの評価の高い宿をまとめました。東京・神奈川・埼玉・千葉・茨城・栃木・群馬。">
+<title>関東 1泊2日のおでかけ{today.month}月｜イベントの近くの宿{n_all}か所（温泉・イルミネーション・紅葉）｜LIFE NOTE</title>
+<meta name="description" content="関東の1泊2日で行くおでかけ{n_all}か所と、近くの評価の高い宿を{today.month}月の日程でまとめました。温泉・イルミネーション・紅葉の近くの宿を、東京・神奈川・埼玉・千葉・茨城・栃木・群馬ごとに。{upd}更新。">
 <link rel="canonical" href="{BASE}/tomari"><meta property="og:title" content="泊まりで行く関東のおでかけ"><meta property="og:image" content="{BASE}/logo.png">
 <link rel="icon" href="/logo-s.png"><link rel="apple-touch-icon" href="/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
