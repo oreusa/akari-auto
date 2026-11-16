@@ -35,10 +35,10 @@ SITE = os.path.join(R, "site")
 NAME = {"water": "水", "soda": "炭酸水", "rice": "お米", "tp": "トイレットペーパー", "tea": "お茶", "coffee": "コーヒー",
         "detergent": "洗濯洗剤", "softener": "柔軟剤", "shampoo": "シャンプー", "bodysoap": "ボディソープ", "dish": "食器用洗剤",
         "tissue": "ティッシュ", "diaper": "おむつ", "wipes": "おしりふき", "trash": "ゴミ袋", "battery": "乾電池", "mask": "マスク",
-        "pasta": "パスタ", "beans": "コーヒー豆", "dogfood": "ドッグフード", "catfood": "キャットフード"}
+        "pasta": "パスタ", "beans": "コーヒー豆", "dogfood": "ドッグフード", "catfood": "キャットフード", "greentea": "緑茶の茶葉"}
 GROUPS = [("赤ちゃん", ["diaper", "wipes"]), ("紙・日用品", ["tp", "tissue", "trash", "mask", "battery"]),
           ("洗濯・お風呂・台所", ["detergent", "softener", "shampoo", "bodysoap", "dish"]),
-          ("飲み物・食べ物", ["water", "tea", "soda", "coffee", "beans", "rice", "pasta"]), ("ペット", ["dogfood", "catfood"])]
+          ("飲み物・食べ物", ["water", "tea", "greentea", "soda", "coffee", "beans", "rice", "pasta"]), ("ペット", ["dogfood", "catfood"])]
 POP = ["tissue", "tp", "diaper", "water", "detergent", "softener", "rice", "catfood"]
 # 探す言葉（ひらがな・言いかえ）→ 種類
 SYN = {"といれっとぺーぱー": "tp", "といぺ": "tp", "とイレ": "tp", "てぃっしゅ": "tissue", "はなかみ": "tissue", "おむつ": "diaper", "オムツ": "diaper",
@@ -48,7 +48,7 @@ SYN = {"といれっとぺーぱー": "tp", "といぺ": "tp", "とイレ": "tp"
        "洗濯": "detergent", "じゅうなん": "softener", "柔軟": "softener", "しゃんぷー": "shampoo", "ぼでぃそーぷ": "bodysoap",
        "ボディ": "bodysoap", "しょっき": "dish", "食器": "dish", "台所": "dish", "ごみ": "trash", "ゴミ": "trash", "ごみぶくろ": "trash",
        "でんち": "battery", "電池": "battery", "ますく": "mask", "ぱすた": "pasta", "スパゲッティ": "pasta", "ドッグ": "dogfood", "犬": "dogfood",
-       "いぬ": "dogfood", "キャット": "catfood", "猫": "catfood", "ねこ": "catfood"}
+       "いぬ": "dogfood", "茶葉": "greentea", "お茶っぱ": "greentea", "おちゃっぱ": "greentea", "煎茶": "greentea", "キャット": "catfood", "猫": "catfood", "ねこ": "catfood"}
 # 1か月に使う量のボタン（その人が選ぶ。燈が決めつけない）。count=何個入りで数える物
 USE = {"tissue": ("箱", [2, 5, 10], "count"), "tp": ("ロール", [4, 8, 16], "count"), "diaper": ("枚", [150, 210, 300], "q"),
        "wipes": ("枚", [200, 400, 800], "q"), "trash": ("枚", [30, 60, 120], "q"), "battery": ("本", [2, 4, 8], "q"),
@@ -56,7 +56,7 @@ USE = {"tissue": ("箱", [2, 5, 10], "count"), "tp": ("ロール", [4, 8, 16], "
        "tea": ("L", [10, 20, 40], "q"), "coffee": ("L", [5, 10, 20], "q"), "beans": ("kg", [0.3, 0.5, 1], "q"),
        "rice": ("kg", [5, 10, 15], "q"), "pasta": ("kg", [1, 2, 3], "q"), "detergent": ("L・kg", [0.5, 1, 2], "q"),
        "softener": ("L・kg", [0.5, 1, 2], "q"), "shampoo": ("L・kg", [0.2, 0.4, 0.8], "q"), "bodysoap": ("L・kg", [0.3, 0.6, 1.2], "q"),
-       "dish": ("L・kg", [0.2, 0.4, 0.8], "q"), "dogfood": ("kg", [2, 4, 8], "q"), "catfood": ("kg", [1, 2, 4], "q")}
+       "dish": ("L・kg", [0.2, 0.4, 0.8], "q"), "dogfood": ("kg", [2, 4, 8], "q"), "catfood": ("kg", [1, 2, 4], "q"), "greentea": ("kg", [0.1, 0.2, 0.4], "q")}
 PROMO = [r"【[^】]*】", r"\[[^\]]*\]", r"［[^］]*］", r"＼[^／]*／", r"《[^》]*》", r"『[^』]*』", r"\([^)]*(?:送料|地域|限定|倍|OFF|クーポン)[^)]*\)",
          r"ポイント(?:最大)?\d+(?:\.\d+)?倍", r"P\d+倍", r"エントリーで[^ 　]*", r"要エントリー", r"\d+%OFF\S*", r"\d+％OFF\S*", r"クーポン\S*",
          r"期間限定", r"数量限定", r"セール特別価格", r"送料無料\S*", r"送料込\S*", r"最安値\S*", r"楽天\S*1位\S*", r"ランキング\S*",

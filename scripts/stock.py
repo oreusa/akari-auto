@@ -150,6 +150,25 @@ def report(now, check_links=True):
     # 11/11 月：商品の置き場（data/page-goods.json）は数えない。11/6 に /okaimono を「機械が毎日楽天から作る比べ」に作り替えてから、
     # 手で選んだ商品はどのページにも出ていなかった（本番で確かめた：/okaimono・/otoku・/odekake に0件）。足す仕事をやめる。
     lines += ["", "## 商品", "", "- おかいもの（/okaimono）は機械が毎日 data/tanka.json から作る。手で商品を足す仕事は無い（11/11）。"]
+    # 11/16 オーナー「お買い物は？仕組みできてる？」→ 種類は 21 のまま増えていなかった（夜の回の「聞かれた物を足す」が動いていない）。
+    # 30日で聞かれて無かった言葉のうち、まだ種類に無い物を×にする（夜の回が scripts/tanka.py の CATS に足すと消える）。
+    try:
+        import tanka
+        names = " ".join(f"{c[1]} {c[2]}" for c in tanka.CATS)
+        ps = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/page-stats.json"), encoding="utf-8"))
+        ask = Counter()
+        for d, v in ps.get("days", {}).items():
+            if d >= (now - timedelta(days=30)).strftime("%Y-%m-%d"):
+                for src in v.get("click", {}).values():
+                    for k, n in src.items():
+                        if k.startswith("okai-ask|無｜"):
+                            ask[k.split("｜", 1)[1]] += n
+        miss = [w for w, n in ask.most_common() if "test" not in w and not any(x and x in names for x in re.split(r"[\s・　]+", re.sub(r"\d+円以下|以下|の", " ", w)) if len(x) >= 2)]
+        lines += [f"- 聞かれたのに種類に無い言葉（30日）：{'・'.join(miss[:10]) or 'なし'}"]
+        if miss:
+            short.append(f"おかいものの種類：聞かれたのに無い言葉{len(miss)}つ（{'・'.join(miss[:3])}）→ 夜の回が tanka.py の CATS に1晩1〜2つ足す")
+    except Exception as e:  # 数えられない日は止めない
+        lines += [f"- 聞かれた言葉：数えられない（{type(e).__name__}）"]
     # これから終わる物（3日以内）：代わりを先に探す
     soon_end = sorted({e["title"] for r in PREFS for e in t[r]["now"]
                        if page._dt(e.get("ends")) and page._dt(e["ends"]) < now + timedelta(days=3)})
