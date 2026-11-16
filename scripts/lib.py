@@ -568,6 +568,24 @@ SENT_Q = """query($o: OrganizationId!, $ch: [ChannelId!], $s: DateTime, $e: Date
     edges { node { id channelService dueAt status text } } } }"""
 
 
+ERR_Q = """query($o: OrganizationId!, $ch: [ChannelId!], $s: DateTime, $e: DateTime) {
+  posts(first: 50, input: {organizationId: $o,
+        filter: {channelIds: $ch, status: [error], dueAt: {start: $s, end: $e}}}) {
+    edges { node { id error { message } } } } }"""
+
+
+def buffer_errors(cfg, start, end):
+    """11/16 Threads が1日1本ほど「Bufferでエラー」で出ない。理由を記録に残すため、エラーの文を聞く。
+    聞けなくても（項目の名前が違う等）投稿の見張りは止めない＝空で返す。"""
+    try:
+        d = buffer_gql(ERR_Q, {"o": cfg["organizationId"], "ch": list(cfg["channels"].values()),
+                               "s": start.astimezone(timezone.utc).isoformat().replace("+00:00", "Z"),
+                               "e": end.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")})
+        return {e["node"]["id"]: ((e["node"].get("error") or {}).get("message") or "") for e in (d["posts"]["edges"] or [])}
+    except Exception as ex:  # noqa: BLE001
+        return {"_": f"エラーの文を聞けなかった：{str(ex)[:120]}"}
+
+
 def buffer_posts(cfg, statuses, start, end, channel_ids=None):
     q = SENT_Q.replace("STATUSES", ", ".join(statuses))
     d = buffer_gql(q, {"o": cfg["organizationId"], "ch": channel_ids or list(cfg["channels"].values()),
