@@ -1,6 +1,6 @@
 # 楽天の売れ筋（毎晩 scripts/ranking.py が作る）
 
-取った時刻：2026-11-17 07:25（日本時間）
+取った時刻：2026-11-17 08:34（日本時間）
 夜の回はPR・HP・ROOMの商品をまずここの◎（レビュー1,000件以上・★4.0以上・1,000〜5,000円）から選ぶ。○は条件を満たすが値段帯の外。×は使わない。順位が高い＝いま人が買っている。
 
 ## 総合（ランキング）
@@ -41,7 +41,7 @@
 
 順位｜印｜商品名｜税込｜レビュー｜★｜URL
 1｜×｜ランドセルラック キャスター付き 収納棚 サイドワゴン ファイルワゴン 大容量 教科書 文（上と同じ）｜4,800円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/t02700274/
-2｜◎｜＼総合ランキング1位獲得／ 簡易トイレ 非常用トイレ 災害用 携帯トイレ 防災 防災グッズ｜1,480円｜1,382｜4.44｜https://item.rakuten.co.jp/pykespeak/p0244/
+2｜◎｜＼総合ランキング1位獲得／ 簡易トイレ 非常用トイレ 災害用 携帯トイレ 防災 防災グッズ（上と同じ）｜1,480円｜1,382｜4.44｜https://item.rakuten.co.jp/pykespeak/p0244/
 3｜×｜猫犬 うんち処理袋 ペット用 処理袋 200枚入り 臭わない 消臭袋 犬用 可愛い袋 マナ｜1,880円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/ddy005ne/
 4｜○｜【1種類を選べる】アタック 抗菌EX 洗濯洗剤 詰替 超特大サイズ 梱販売用(6袋入)【ア｜6,171円｜4,312｜4.68｜https://item.rakuten.co.jp/rakuten24/404889/
 5｜◎｜【20周年SALE 3916円→特価3500円】 【12月より価格改定】 日本製 ホテルス｜3,500円｜18,430｜4.52｜https://item.rakuten.co.jp/toucher-home/925619/
@@ -78,24 +78,24 @@
 3｜○｜値上げ前に！【年末早得】3箱で1箱タダ★5,400円OFFクーポンで総重量2.4kg送料無（上と同じ）｜5,400円｜22,019｜4.36｜https://item.rakuten.co.jp/kouragumi/100005/
 4｜○｜本日23:59までP5倍以上★最大10倍！値上げ前に年末早割★6000円OFFクーポンで8（上と同じ）｜14,960円｜46,771｜4.32｜https://item.rakuten.co.jp/masuyone/130007/
 5｜◎｜お試し送料無料2,490円～ 骨取りサバ切身 1kg 無塩or有塩が選べる♪骨とり 骨なし（上と同じ）｜2,490円｜20,531｜4.51｜https://item.rakuten.co.jp/kouragumi/201175/
-6｜○｜【必ずP7倍！15日限定】クーポン有ッ★【かに福袋】最大13,600円以上お得♪ 生・ボイ｜8,888円｜26,148｜4.37｜https://item.rakuten.co.jp/kanidokoro/628/
-7｜◎｜「2026年 楽天上半期ランキング1位」 令和8年産 70％以上使用 国産 ブレンド米 極｜3,580円｜6,687｜4.48｜https://item.rakuten.co.jp/yama-oatmeal-institute/kiwamiseimai10/
-8｜○｜かに ポーション 1kg ずわい蟹 ポーション ズワイガニ ポーション 太脚100% プレ｜5,680円｜4,866｜4.51｜https://item.rakuten.co.jp/morigen/zuwai-02/
-9｜◎｜店長大暴走★1,000円OFFクーポンで3,999円⇒送料無料2,999円！楽天ランキング｜3,999円｜19,955｜4.64｜https://item.rakuten.co.jp/kouragumi/200002/
-10｜◎｜値上げ前に★赤字覚悟のお試し送料無料4,999円！北海道産の【訳あり】割れ/不揃い/小サイ｜4,999円｜15,142｜4.55｜https://item.rakuten.co.jp/kouragumi/200240/
-11｜○｜おせち 早割 博多久松 2027 4〜5人前 おせち料理 おせちランキング 累計313週以｜16,500円｜22,991｜4.45｜https://item.rakuten.co.jp/hisamatsu/2009hakata/
-12｜◎｜S【衝撃の25％OFF！5,200→3,900円！】 リンガーハット 長崎ちゃんぽん 8食｜3,900円｜4,002｜4.72｜https://item.rakuten.co.jp/ringerhut/c128/
-13｜◎｜お試し送料無料2,990円～「有塩or無塩」「骨ありor骨なし」が選べる！【骨取り有塩・無｜2,990円｜5,732｜4.64｜https://item.rakuten.co.jp/kouragumi/210069/
-14｜×｜「大感謝セール中！」令和8年 新米 コシヒカリ ヒノヒカリ など 選べる 各県こだわりの ｜2,380円｜821｜4.57｜https://item.rakuten.co.jp/yama-oatmeal-institute/yumesizuku10-5kgx2/
-15｜○｜＼早割特価／【楽天総合1位】特大タラバ蟹1kg 2kg 3kg 5kg 独自のワンフローズ｜10,800円｜24,419｜4.24｜https://item.rakuten.co.jp/sfd-ymt/869808/
-16｜×｜おせち 早割 2027 予約『板前魂の七福神ジャパン』しちふくじん 和洋中 和風 洋風 中｜19,930円｜79｜4.67｜https://item.rakuten.co.jp/2-itamae/125400/
-17｜○｜【11月限定★抽選で最大10万Pが当たる】おせち 早割 2027 予約 冷蔵 千賀屋謹製 ｜16,880円｜3,795｜4.42｜https://item.rakuten.co.jp/omosan/7006/
-18｜◎｜ポイント5倍 11/15(日)0：00～23：59まで 8年産米100％使用 きらっとごは｜2,799円｜9,237｜4.79｜https://item.rakuten.co.jp/jcrops/4562129938344-2/
-19｜○｜【2点購入ならクーポンで500円OFF！】みかん 訳あり 1.2kg 送料無料 甘熟みかん｜999円｜4,084｜4.23｜https://item.rakuten.co.jp/kumamoto-food/10003935/
-20｜○｜おせち 早割 2027 予約『板前魂の花籠』おせち 和洋風 和風 洋風 3段重［34品 3｜9,730円｜14,389｜4.30｜https://item.rakuten.co.jp/2-itamae/sandannp/
-21｜◎｜[200円OFFクーポン/超トク]＼5kgあたり約2,427円〜！☆彡／【令和8年産100｜4,980円｜9,538｜4.72｜https://item.rakuten.co.jp/irisplaza-r/113800/
-22｜×｜＼エントリーでP5倍／【 プレミアム ズワイガニ 太脚棒肉のみ100% 500g〜1.5k｜5,980円｜927｜4.50｜https://item.rakuten.co.jp/sorekani/item-04-3/
-23｜○｜【年末早割】送料無料11,999円！メガ盛り3kgボイルずわいがに足（約14肩）※大型サイ｜11,999円｜4,950｜4.11｜https://item.rakuten.co.jp/kouragumi/100075/
+6｜○｜【必ずP7倍！15日限定】クーポン有ッ★【かに福袋】最大13,600円以上お得♪ 生・ボイ（上と同じ）｜8,888円｜26,148｜4.37｜https://item.rakuten.co.jp/kanidokoro/628/
+7｜◎｜「2026年 楽天上半期ランキング1位」 令和8年産 70％以上使用 国産 ブレンド米 極（上と同じ）｜3,580円｜6,687｜4.48｜https://item.rakuten.co.jp/yama-oatmeal-institute/kiwamiseimai10/
+8｜○｜かに ポーション 1kg ずわい蟹 ポーション ズワイガニ ポーション 太脚100% プレ（上と同じ）｜5,680円｜4,866｜4.51｜https://item.rakuten.co.jp/morigen/zuwai-02/
+9｜◎｜店長大暴走★1,000円OFFクーポンで3,999円⇒送料無料2,999円！楽天ランキング（上と同じ）｜3,999円｜19,955｜4.64｜https://item.rakuten.co.jp/kouragumi/200002/
+10｜◎｜値上げ前に★赤字覚悟のお試し送料無料4,999円！北海道産の【訳あり】割れ/不揃い/小サイ（上と同じ）｜4,999円｜15,142｜4.55｜https://item.rakuten.co.jp/kouragumi/200240/
+11｜○｜おせち 早割 博多久松 2027 4〜5人前 おせち料理 おせちランキング 累計313週以（上と同じ）｜16,500円｜22,991｜4.45｜https://item.rakuten.co.jp/hisamatsu/2009hakata/
+12｜◎｜S【衝撃の25％OFF！5,200→3,900円！】 リンガーハット 長崎ちゃんぽん 8食（上と同じ）｜3,900円｜4,002｜4.72｜https://item.rakuten.co.jp/ringerhut/c128/
+13｜◎｜お試し送料無料2,990円～「有塩or無塩」「骨ありor骨なし」が選べる！【骨取り有塩・無（上と同じ）｜2,990円｜5,732｜4.64｜https://item.rakuten.co.jp/kouragumi/210069/
+14｜×｜「大感謝セール中！」令和8年 新米 コシヒカリ ヒノヒカリ など 選べる 各県こだわりの （上と同じ）｜2,380円｜821｜4.57｜https://item.rakuten.co.jp/yama-oatmeal-institute/yumesizuku10-5kgx2/
+15｜○｜＼早割特価／【楽天総合1位】特大タラバ蟹1kg 2kg 3kg 5kg 独自のワンフローズ（上と同じ）｜10,800円｜24,419｜4.24｜https://item.rakuten.co.jp/sfd-ymt/869808/
+16｜×｜おせち 早割 2027 予約『板前魂の七福神ジャパン』しちふくじん 和洋中 和風 洋風 中（上と同じ）｜19,930円｜79｜4.67｜https://item.rakuten.co.jp/2-itamae/125400/
+17｜○｜【11月限定★抽選で最大10万Pが当たる】おせち 早割 2027 予約 冷蔵 千賀屋謹製 （上と同じ）｜16,880円｜3,795｜4.42｜https://item.rakuten.co.jp/omosan/7006/
+18｜◎｜ポイント5倍 11/15(日)0：00～23：59まで 8年産米100％使用 きらっとごは（上と同じ）｜2,799円｜9,237｜4.79｜https://item.rakuten.co.jp/jcrops/4562129938344-2/
+19｜○｜【2点購入ならクーポンで500円OFF！】みかん 訳あり 1.2kg 送料無料 甘熟みかん（上と同じ）｜999円｜4,084｜4.23｜https://item.rakuten.co.jp/kumamoto-food/10003935/
+20｜○｜おせち 早割 2027 予約『板前魂の花籠』おせち 和洋風 和風 洋風 3段重［34品 3（上と同じ）｜9,730円｜14,389｜4.30｜https://item.rakuten.co.jp/2-itamae/sandannp/
+21｜◎｜[200円OFFクーポン/超トク]＼5kgあたり約2,427円〜！☆彡／【令和8年産100（上と同じ）｜4,980円｜9,538｜4.72｜https://item.rakuten.co.jp/irisplaza-r/113800/
+22｜×｜＼エントリーでP5倍／【 プレミアム ズワイガニ 太脚棒肉のみ100% 500g〜1.5k（上と同じ）｜5,980円｜927｜4.50｜https://item.rakuten.co.jp/sorekani/item-04-3/
+23｜○｜【年末早割】送料無料11,999円！メガ盛り3kgボイルずわいがに足（約14肩）※大型サイ（上と同じ）｜11,999円｜4,950｜4.11｜https://item.rakuten.co.jp/kouragumi/100075/
 24｜◎｜★早い者勝ち2箱注文で500円OFF・割引クーポン付★10年連続年間ランキング受賞★みかん｜1,680円｜18,720｜4.09｜https://item.rakuten.co.jp/misaki-kajuen/mikan601/
 25｜◎｜S【衝撃の58％OFF！1食208円~！】 牛めしの具（プレミアム仕様）135g 30食 ｜2,740円｜14,215｜4.63｜https://item.rakuten.co.jp/matsuya/us30/
 26｜○｜【早割10%OFF】おせち 2027 おせち料理 和洋中おせち 絢爛鳳凰 (けんらんほうお｜15,980円｜1,417｜4.39｜https://item.rakuten.co.jp/tokatsu-foods/yorokobi2013/
@@ -108,11 +108,11 @@
 
 順位｜印｜商品名｜税込｜レビュー｜★｜URL
 1｜◎｜【500円OFFクーポンあり※2個以上購入必須】炭酸水 500ml 48本 (24本×2ケ（上と同じ）｜2,550円｜18,410｜4.65｜https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/
-2｜◎｜＼15日限定キャンペーン／澤井珈琲 送料無料 コーヒー コーヒー豆 コーヒー粉 珈琲豆 豆｜2,788円｜50,492｜4.70｜https://item.rakuten.co.jp/sawaicoffee-tea/ac-sale-1960/
-3｜◎｜【2個購入で実質979円〜※クーポンあり】炭酸水 500ml 24本 送料無料※一部地域除｜1,429円｜53,127｜4.68｜https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500/
-4｜◎｜[200円OFFクーポン/超トク]＼1本約49.2円〜／【公式】水 500ml 48本 送｜2,360円｜6,479｜4.63｜https://item.rakuten.co.jp/irisplaza-r/310999-cp/
-5｜◎｜＼1本当たり49.2円〜！／水 天然水 500ml 48本 ラベルレス 備蓄水 お茶 緑茶｜2,360円｜9,510｜4.50｜https://item.rakuten.co.jp/kurashikenkou/310999/
-6｜◎｜【365日最短翌日お届け】BIYOUDO 水 シリカ水 500ml×42本 350ml×4｜2,380円｜56,278｜4.81｜https://item.rakuten.co.jp/biyoudou/10000164/
+2｜◎｜＼15日限定キャンペーン／澤井珈琲 送料無料 コーヒー コーヒー豆 コーヒー粉 珈琲豆 豆（上と同じ）｜2,788円｜50,492｜4.70｜https://item.rakuten.co.jp/sawaicoffee-tea/ac-sale-1960/
+3｜◎｜【2個購入で実質979円〜※クーポンあり】炭酸水 500ml 24本 送料無料※一部地域除（上と同じ）｜1,429円｜53,127｜4.68｜https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500/
+4｜◎｜[200円OFFクーポン/超トク]＼1本約49.2円〜／【公式】水 500ml 48本 送（上と同じ）｜2,360円｜6,479｜4.63｜https://item.rakuten.co.jp/irisplaza-r/310999-cp/
+5｜◎｜＼1本当たり49.2円〜！／水 天然水 500ml 48本 ラベルレス 備蓄水 お茶 緑茶（上と同じ）｜2,360円｜9,510｜4.50｜https://item.rakuten.co.jp/kurashikenkou/310999/
+6｜◎｜【365日最短翌日お届け】BIYOUDO 水 シリカ水 500ml×42本 350ml×4（上と同じ）｜2,380円｜56,278｜4.81｜https://item.rakuten.co.jp/biyoudou/10000164/
 7｜◎｜【500円OFFクーポンあり※2個以上購入必須】水 ミネラルウォーター 彩水-あやみず- ｜2,370円｜4,102｜4.68｜https://item.rakuten.co.jp/lifedrinkcompany/ayamizu-500-48/
 8｜○｜タイプ11(R)スペシャルティ珈琲大入り福袋（Kタン・クリス・ラデュ・ベモス/各500g）｜5,506円｜1,671｜4.70｜https://item.rakuten.co.jp/gourmetcoffee/2669/
 9｜×｜＼11/18まで！先行販売／ 初売り 福袋 2027 澤井珈琲 鮮度抜群 ドリップコーヒー｜10,000円｜256｜4.84｜https://item.rakuten.co.jp/sawaicoffee-tea/osechi-500set/
@@ -176,12 +176,12 @@
 順位｜印｜商品名｜税込｜レビュー｜★｜URL
 1｜×｜収納ボックス 56L 51.5*36*30CM 3個セット フタ付き 折りたたみ 災害用 （上と同じ）｜7,880円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/t86700204/
 2｜×｜毛布 シングル ブランケット 冬用 発熱 掛け毛布 100x150cm 150×200cm（上と同じ）｜4,580円｜1｜5.00｜https://item.rakuten.co.jp/hanakosshop/t11700091/
-3｜◎｜NERUS ふわとろ毛布 Air AirPremium 【正規品】 毛布 ブランケット も｜2,980円｜4,591｜4.73｜https://item.rakuten.co.jp/t-interior/htc50/
-4｜◎｜コロ脚 中が透けない 壁付き チェスト スリム/ワイド 幅34/54 奥行41.5/41.｜4,999円｜7,032｜4.42｜https://item.rakuten.co.jp/e-kurashi/s1u57/
-5｜×｜【部分即納】 掛け布団カバー 北欧 母の日 プレゼント冬用 フリース マイクロファイバー ｜3,680円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/t19507000p4h0/
-6｜×｜【特典付き】掛け時計 壁掛け時計 北欧 おしゃれ 3D立体数字 ウォールクロック クロック｜2,880円｜1｜3.00｜https://item.rakuten.co.jp/hoshinoweb/mt1359-ss/
-7｜◎｜楽天1位 高反発 ラグ 厚手 【防音＆クッション性UP】 極厚 25mm フランネル 防音｜3,499円｜3,746｜4.63｜https://item.rakuten.co.jp/tansu/65010003/
-8｜◎｜【最大半額クーポン♪11月16日10時迄】＼上半期ランキング2025受賞／掛け布団 洗える｜2,981円｜5,756｜4.37｜https://item.rakuten.co.jp/rack-kan/536260/
+3｜◎｜NERUS ふわとろ毛布 Air AirPremium 【正規品】 毛布 ブランケット も（上と同じ）｜2,980円｜4,591｜4.73｜https://item.rakuten.co.jp/t-interior/htc50/
+4｜◎｜コロ脚 中が透けない 壁付き チェスト スリム/ワイド 幅34/54 奥行41.5/41.（上と同じ）｜4,999円｜7,032｜4.42｜https://item.rakuten.co.jp/e-kurashi/s1u57/
+5｜×｜【部分即納】 掛け布団カバー 北欧 母の日 プレゼント冬用 フリース マイクロファイバー （上と同じ）｜3,680円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/t19507000p4h0/
+6｜×｜【特典付き】掛け時計 壁掛け時計 北欧 おしゃれ 3D立体数字 ウォールクロック クロック（上と同じ）｜2,880円｜1｜3.00｜https://item.rakuten.co.jp/hoshinoweb/mt1359-ss/
+7｜◎｜楽天1位 高反発 ラグ 厚手 【防音＆クッション性UP】 極厚 25mm フランネル 防音（上と同じ）｜3,499円｜3,746｜4.63｜https://item.rakuten.co.jp/tansu/65010003/
+8｜◎｜【最大半額クーポン♪11月16日10時迄】＼上半期ランキング2025受賞／掛け布団 洗える（上と同じ）｜2,981円｜5,756｜4.37｜https://item.rakuten.co.jp/rack-kan/536260/
 9｜○｜【最大1,000円OFFクーポン+30日間トライアル】 ヒツジのいらない枕 枕 枕カバー ｜15,800円｜7,784｜4.52｜https://item.rakuten.co.jp/33taiyo/hitsuji/
 10｜○｜確かな品質で6年連続No.1 マットレス ｢純｣ 高反発(R) 全部洗える 10cm厚 3｜5,555円｜19,757｜4.43｜https://item.rakuten.co.jp/tansu/13810084/
 11｜◎｜【72h★ポイント3倍】ラグ 洗える シエロ ラグマット キルトラグ 北欧 累計15.5万｜2,990円｜7,056｜4.76｜https://item.rakuten.co.jp/apoloce/sielo-185/
@@ -211,9 +211,9 @@
 1｜×｜15日23:59まで 60%OFF +P5倍 【サプライズデー】 さらにエントリーでポイン（上と同じ）｜47,800円｜161｜4.60｜https://item.rakuten.co.jp/irobotstore/g285060/
 2｜×｜15日23:59まで 55%OFF +P5倍 【サプライズデー】 さらにエントリーでポイン（上と同じ）｜79,800円｜49｜4.37｜https://item.rakuten.co.jp/irobotstore/v184060/
 3｜×｜【 完売 】15日23:59まで 50%OFF 【サプライズデー】 公式 Roomba 2（上と同じ）｜29,800円｜890｜4.33｜https://item.rakuten.co.jp/irobotstore/l12/
-4｜×｜【QUADS公式】[1月上旬発送] スチーム加湿器 GLASS グラス ガラスポッド式 大｜19,800円｜550｜4.57｜https://item.rakuten.co.jp/quads/qs549/
-5｜○｜【公式・正規品】 ポット型浄水器用カートリッジ マクストラプロ ピュアパフォーマンス 8個｜8,630円｜27,073｜4.78｜https://item.rakuten.co.jp/brita/maxtraplus-8/
-6｜×｜【特典＋36種類レシピ付】レコルト スープメーカー 豆乳メーカー スープ 全自動 豆乳機 ｜19,800円｜705｜4.72｜https://item.rakuten.co.jp/roomy/win26feb09a01/
+4｜×｜【QUADS公式】[1月上旬発送] スチーム加湿器 GLASS グラス ガラスポッド式 大（上と同じ）｜19,800円｜550｜4.57｜https://item.rakuten.co.jp/quads/qs549/
+5｜○｜【公式・正規品】 ポット型浄水器用カートリッジ マクストラプロ ピュアパフォーマンス 8個（上と同じ）｜8,630円｜27,073｜4.78｜https://item.rakuten.co.jp/brita/maxtraplus-8/
+6｜×｜【特典＋36種類レシピ付】レコルト スープメーカー 豆乳メーカー スープ 全自動 豆乳機 （上と同じ）｜19,800円｜705｜4.72｜https://item.rakuten.co.jp/roomy/win26feb09a01/
 7｜×｜【2,600円クーポン】COSORI DCモーター搭載 ノンフライヤー 6L 大容量 95｜19,980円｜877｜4.76｜https://item.rakuten.co.jp/vesync/kaapafcsnjp0106y/
 8｜○｜【楽天1位】 1時間たった0.6円 電気毛布 掛け敷き 洗える ふわとろ毛布 電気ひざ掛け｜8,900円｜3,518｜4.63｜https://item.rakuten.co.jp/mpowjapan/gfeb013000/
 9｜×｜●楽天1位 【豪華レシピ2冊付き】 正規品 レコルト 自動調理ポット ラージ RSY-3 ｜19,800円｜544｜4.74｜https://item.rakuten.co.jp/plywood/20149424/
@@ -240,10 +240,10 @@
 ## 美容・コスメ（ランキング）
 
 順位｜印｜商品名｜税込｜レビュー｜★｜URL
-1｜○｜【1時間で10000個突破】N organic Basic 福袋2027 60%OFF 豪｜11,000円｜2,942｜4.46｜https://item.rakuten.co.jp/norganic/nr-luckybag2022/
-2｜◎｜【ポイント10倍！11月19日20:00〜11月25日23:59】 大容量 スキンクリア ｜3,630円｜50,403｜4.80｜https://item.rakuten.co.jp/attenir/166013/
-3｜×｜★45％OFFクーポン配布★【SPICARE正規品】SPICARE V3 ファンデーション｜7,700円｜112｜4.46｜https://item.rakuten.co.jp/supernice-store/spicare-v3/
-4｜×｜＜今なら19,800円相当！＞ ラヴィットで紹介 ELEKI LIFT 【公式】美顔器 リ｜58,000円｜811｜4.18｜https://item.rakuten.co.jp/brighte-onlineshop/brt-fl170/
+1｜○｜【1時間で10000個突破】N organic Basic 福袋2027 60%OFF 豪（上と同じ）｜11,000円｜2,942｜4.46｜https://item.rakuten.co.jp/norganic/nr-luckybag2022/
+2｜◎｜【ポイント10倍！11月19日20:00〜11月25日23:59】 大容量 スキンクリア （上と同じ）｜3,630円｜50,403｜4.80｜https://item.rakuten.co.jp/attenir/166013/
+3｜×｜★45％OFFクーポン配布★【SPICARE正規品】SPICARE V3 ファンデーション（上と同じ）｜7,700円｜112｜4.46｜https://item.rakuten.co.jp/supernice-store/spicare-v3/
+4｜×｜＜今なら19,800円相当！＞ ラヴィットで紹介 ELEKI LIFT 【公式】美顔器 リ（上と同じ）｜58,000円｜811｜4.18｜https://item.rakuten.co.jp/brighte-onlineshop/brt-fl170/
 5｜×｜【公式20%OFF】 ラッシュアディクト ※模造品にご注意ください アイラッシュ コンディ｜11,000円｜810｜4.29｜https://item.rakuten.co.jp/bjc-onlinestore/lashaddict01a/
 6｜◎｜【送料無料】Yunth 生ビタミンC 美白美容液 1ml×28包 | 美容液 ビタミンC ｜3,960円｜45,460｜4.69｜https://item.rakuten.co.jp/yunth/10000000/
 7｜○｜春の新色追加【全品半額coupon事前配布中】まるでセラミック 超微粒 5ミクロン マグネ｜777円｜2,682｜4.52｜https://item.rakuten.co.jp/nail-koubouu/zirconia-jewely2023-256/
@@ -274,7 +274,7 @@
 ## ダイエット・健康（ランキング）
 
 順位｜印｜商品名｜税込｜レビュー｜★｜URL
-1｜○｜プロテイン WPC エクスプロージョン 3kg ミルクチョコレート味 ホエイプロテイン 3｜13,790円｜2,451｜4.44｜https://item.rakuten.co.jp/x-plosion/10000019/
+1｜○｜プロテイン WPC エクスプロージョン 3kg ミルクチョコレート味 ホエイプロテイン 3（上と同じ）｜13,790円｜2,451｜4.44｜https://item.rakuten.co.jp/x-plosion/10000019/
 2｜○｜［最大1000円OFF他クーポン配布］エクエル パウチ 120粒 3個セット【正規品】送料｜11,129円｜6,844｜4.69｜https://item.rakuten.co.jp/shimin2/4987035545613-3a-m/
 3｜◎｜[P10倍17日23:59マデ]【公式】Teaflex ティーフレックス グリーンティー ｜2,376円｜5,115｜4.48｜https://item.rakuten.co.jp/endeavour/tfx001/
 4｜○｜【限定クーポン】 VITAS バイタス ホエイ プロテイン 100 WPCプロテイン 10｜5,480円｜5,511｜4.77｜https://item.rakuten.co.jp/toyomarket/vitas006/
@@ -309,14 +309,14 @@
 
 順位｜印｜商品名｜税込｜レビュー｜★｜URL
 1｜○｜【1種類を選べる】マミーポコパンツ 大きめで長〜く使える オムツ M L BIG(3個)【（上と同じ）｜5,577円｜8,941｜4.79｜https://item.rakuten.co.jp/netbaby/404272/
-2｜○｜【1種類を選べる】メリーズ エアスルー パンツ 梱販販売用(3袋入×1箱)【メリーズ】[お｜6,460円｜4,135｜4.83｜https://item.rakuten.co.jp/netbaby/404758/
-3｜◎｜【1種類を選べる】パンパース オムツ さらさらケア パンツ(1セット)【パンパース】[さら｜4,950円｜9,291｜4.82｜https://item.rakuten.co.jp/netbaby/404313/
-4｜○｜【1種類を選べる】ムーニーマン パンツ 男女 L・BIGサイズ 大容量(4袋セット)【ムー｜9,196円｜1,556｜4.73｜https://item.rakuten.co.jp/netbaby/404937/
-5｜×｜ルームシューズ スリッパ 冬 レディース メンズ 室内履き あったか 暖かい ふわふわ も｜2,680円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/c07000571/
-6｜×｜パンパース パンツ さらさらケア オムツ(3個入×2セット)【パンパース】｜18,759円｜70｜4.87｜https://item.rakuten.co.jp/netbaby/407047/
-7｜○｜【1種類を選べる】パンパース オムツ はじめての肌へのいちばん テープ(3個)【パンパース｜6,890円｜7,158｜4.80｜https://item.rakuten.co.jp/netbaby/a62067xxx/
-8｜×｜パンパース 肌へのいちばん オムツ パンツ(4袋入)【パンパース】｜8,959円｜620｜4.87｜https://item.rakuten.co.jp/netbaby/406536/
-9｜◎｜【1種類を選べる】グーン ぐんぐん吸収パンツ ディズニー・プリンセス おむつ(3個)【mm｜4,755円｜7,147｜4.67｜https://item.rakuten.co.jp/netbaby/404196/
+2｜○｜【1種類を選べる】メリーズ エアスルー パンツ 梱販販売用(3袋入×1箱)【メリーズ】[お（上と同じ）｜6,460円｜4,135｜4.83｜https://item.rakuten.co.jp/netbaby/404758/
+3｜◎｜【1種類を選べる】パンパース オムツ さらさらケア パンツ(1セット)【パンパース】[さら（上と同じ）｜4,950円｜9,291｜4.82｜https://item.rakuten.co.jp/netbaby/404313/
+4｜○｜【1種類を選べる】ムーニーマン パンツ 男女 L・BIGサイズ 大容量(4袋セット)【ムー（上と同じ）｜9,196円｜1,556｜4.73｜https://item.rakuten.co.jp/netbaby/404937/
+5｜×｜ルームシューズ スリッパ 冬 レディース メンズ 室内履き あったか 暖かい ふわふわ も（上と同じ）｜2,680円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/c07000571/
+6｜×｜パンパース パンツ さらさらケア オムツ(3個入×2セット)【パンパース】（上と同じ）｜18,759円｜70｜4.87｜https://item.rakuten.co.jp/netbaby/407047/
+7｜○｜【1種類を選べる】パンパース オムツ はじめての肌へのいちばん テープ(3個)【パンパース（上と同じ）｜6,890円｜7,158｜4.80｜https://item.rakuten.co.jp/netbaby/a62067xxx/
+8｜×｜パンパース 肌へのいちばん オムツ パンツ(4袋入)【パンパース】（上と同じ）｜8,959円｜620｜4.87｜https://item.rakuten.co.jp/netbaby/406536/
+9｜◎｜【1種類を選べる】グーン ぐんぐん吸収パンツ ディズニー・プリンセス おむつ(3個)【mm（上と同じ）｜4,755円｜7,147｜4.67｜https://item.rakuten.co.jp/netbaby/404196/
 10｜◎｜【楽天ランキング1位】 スリーパー フランネル ボア or ガーゼ 選べる 袖あり 袖なし｜2,490円｜1,380｜4.67｜https://item.rakuten.co.jp/ponopono/303005/
 11｜×｜ルームシューズ スリッパ 冬 レディース メンズ 室内履き あったか 暖かい ふわふわ も｜1,680円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/t58700059/
 12｜×｜72%OFF！【期間限定：1,590円〜！】 キッズ パジャマ 長袖 冬 ルームウェア 上｜1,590円｜49｜4.37｜https://item.rakuten.co.jp/darkangel/st2606-5552/
@@ -342,9 +342,9 @@
 ## ペット（ランキング）
 
 順位｜印｜商品名｜税込｜レビュー｜★｜URL
-1｜○｜ロイヤルカナン 猫用 ユリナリー S／O オルファクトリー ライト(フィッシュテイスト)(｜9,198円｜2,905｜4.66｜https://item.rakuten.co.jp/wwpc/3182550901215/
-2｜×｜犬用ペット ペットベッド 犬猫兼用 用 3way マット クッション付き 北欧風 ソファ ｜2,990円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/ddef05cx1q/
-3｜×｜ペットシーツ 犬 猫 トイレシート 薄型 ペットシート 使い捨て おしっこシート 吸水 防｜2,200円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/ddxa05cm/
+1｜○｜ロイヤルカナン 猫用 ユリナリー S／O オルファクトリー ライト(フィッシュテイスト)(（上と同じ）｜9,198円｜2,905｜4.66｜https://item.rakuten.co.jp/wwpc/3182550901215/
+2｜×｜犬用ペット ペットベッド 犬猫兼用 用 3way マット クッション付き 北欧風 ソファ （上と同じ）｜2,990円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/ddef05cx1q/
+3｜×｜ペットシーツ 犬 猫 トイレシート 薄型 ペットシート 使い捨て おしっこシート 吸水 防（上と同じ）｜2,200円｜0｜0.00｜https://item.rakuten.co.jp/hanakosshop/ddxa05cm/
 4｜◎｜[11/16 8:59までSALE価格] 超薄型 ペットシーツ レギュラー 1200枚（3｜4,980円｜20,806｜4.52｜https://item.rakuten.co.jp/styleplus/10000000tw/
 5｜○｜ロイヤルカナン 食事療法食 猫用 ユリナリー S／O(チキンテイスト)(4kg)【ロイヤル｜9,199円｜1,247｜4.66｜https://item.rakuten.co.jp/wwpc/3182550901062/
 6｜○｜ロイヤルカナン 猫用 消化器サポート 可溶性繊維 ドライ(4kg)【2shwwpc】【ロイ｜9,199円｜2,052｜4.65｜https://item.rakuten.co.jp/wwpc/10006755/
