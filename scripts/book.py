@@ -819,6 +819,8 @@ def book_outing_reel(cfg, state, now):
     spec = load_json(path("reel", f"{day}.json"))
     if not spec or "instagram" not in cfg["channels"]:
         return False
+    if os.path.exists(path("reel", "STOP")):  # 11/16 21:41 オーナー「関西も関東も止める」＝絵の基盤ができるまでおでかけリールを出さない
+        return False
     if os.path.exists(path("reel-hp", f"{day}.json")):  # 11/2 HPリールの日はおでかけリールを出さない（翌週に回す）
         return False
     slot = spec.get("time") or "07:30"
