@@ -2667,6 +2667,30 @@
       "note": "横浜市中区｜観覧・ワークショップ無料。15日は11:30〜17:30",
       "url": "https://arcship.jp/hotchpotch/",
       "checked": "2026-11-15"
+    },
+    {
+      "title": "放送30周年記念TVアニメ「名探偵コナン」展 横浜会場",
+      "pref": "神奈川",
+      "place": "横浜赤レンガ倉庫1号館",
+      "when": "11/14〜12/6",
+      "start": "2026-11-14",
+      "ends": "2026-12-06T18:30",
+      "free": false,
+      "note": "横浜市中区｜前売一般2,000円・未就学児無料。10:00〜18:30",
+      "url": "https://l-tike.com/ntvzero/event/tvconanten-30th_yokohama.html",
+      "checked": "2026-11-16"
+    },
+    {
+      "title": "ららぽーと柏の葉 20th Anniversary with セサミストリート",
+      "pref": "千葉",
+      "place": "ららぽーと柏の葉",
+      "when": "11/1〜11/29",
+      "start": "2026-11-01",
+      "ends": "2026-11-29T20:00",
+      "free": true,
+      "note": "柏市｜館内3か所のクイズスタンプラリー。11/29はエルモとクッキーモンスターのグリーティング",
+      "url": "https://mitsui-shopping-park.com/lalaport/kashiwa/cp/20thanniversary/",
+      "checked": "2026-11-16"
     }
   ]
 }
