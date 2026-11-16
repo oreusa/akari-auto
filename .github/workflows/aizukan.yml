@@ -1,65 +1,35 @@
-name: aizukan（AIタイプ図鑑のサイトを作って公開）
-# 11/15 オーナー「ガチのページでやれよ」→ AIタイプ図鑑を Cloudflare Pages の独立したサイトにした。うさぎ・燈のサイトとは別。
-# aizukan/ の中を変えて push した時だけ動く（GitHub の分を食べないように）。公開の範囲は aizukan/kokai.txt（noindex＝検索に出さない／public＝出す）
+name: aizukan（AIタイプ図鑑を消す・1回だけ）
+# 11/16 22:40 オーナー「それはもうやらない消せ」→ Cloudflare Pages の ai-type-zukan と KV「aizukan-stats」を消す。
+# 消えたのを確かめたら、このファイルも消す。
 on:
   push:
-    branches: [claude/project-thread-xat8xv, main]
-    paths: ['aizukan/**', '.github/workflows/aizukan.yml']
-  workflow_dispatch:
-concurrency:
-  group: aizukan
-  cancel-in-progress: true
+    branches: [claude/project-thread-xat8xv]
+    paths: ['.github/workflows/aizukan.yml']
 permissions:
   contents: read
 jobs:
-  deploy:
+  teardown:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      PROJ: ai-type-zukan
-    defaults:
-      run:
-        working-directory: aizukan
+      CI: "true"
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: 公開先と数える場所（KV）を用意する
+      - name: Pages の公開先を消す
         run: |
-          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then echo "Cloudflareの鍵がない"; exit 1; fi
           W="npx -y wrangler@3.80.0"
-          $W pages project create $PROJ --production-branch=main >/dev/null 2>&1 || true
-          dom=$($W pages project list 2>/dev/null | grep -E "(^|[^a-z0-9-])$PROJ([^a-z0-9-]|$)" | grep -oE "[a-z0-9-]+\.pages\.dev" | head -1 || true)
-          [ -n "$dom" ] || dom="$PROJ.pages.dev"
-          echo "SITE_URL=https://$dom" >> "$GITHUB_ENV"
-          echo "公開先 https://$dom"
-          ns=$($W kv namespace list 2>/dev/null | python3 -c 'import sys,json,re;t=sys.stdin.read();i=t.find("[");a=json.loads(t[i:]) if i>=0 else [];print(next((x["id"] for x in a if x.get("title","").endswith("aizukan-stats")),""))' || true)
-          if [ -z "$ns" ]; then
-            $W kv namespace create aizukan-stats >/dev/null 2>&1 || true
-            ns=$($W kv namespace list 2>/dev/null | python3 -c 'import sys,json,re;t=sys.stdin.read();i=t.find("[");a=json.loads(t[i:]) if i>=0 else [];print(next((x["id"] for x in a if x.get("title","").endswith("aizukan-stats")),""))' || true)
-          fi
-          if [ -n "$ns" ]; then
-            printf 'name = "%s"\npages_build_output_dir = "site"\ncompatibility_date = "2024-09-23"\n\n[[kv_namespaces]]\nbinding = "AIZ"\nid = "%s"\n' "$PROJ" "$ns" > wrangler.toml
-            echo "数える場所あり"
-          else
-            printf 'name = "%s"\npages_build_output_dir = "site"\ncompatibility_date = "2024-09-23"\n' "$PROJ" > wrangler.toml
-            echo "数える場所が作れなかった（数は「―」のまま、ほかは動く）"
-          fi
-      - name: ページを作る
+          $W pages project delete ai-type-zukan --yes 2>&1 | tail -5 || true
+          echo "--- 残っている Pages"
+          $W pages project list 2>&1 | grep -c ai-type-zukan || true
+      - name: 数える場所（KV aizukan-stats だけ）を消す
         run: |
-          mode=$(tr -d '[:space:]' < kokai.txt 2>/dev/null || echo noindex)
-          if [ "$mode" = "public" ]; then export NOINDEX=0; fi
-          node src/build.js
-      - name: 公開する
-        run: npx -y wrangler@3.80.0 pages deploy site --project-name=$PROJ --branch=main --commit-dirty=true
-      - name: 本番で確かめる
+          W="npx -y wrangler@3.80.0"
+          ns=$($W kv namespace list 2>/dev/null | python3 -c 'import sys,json;t=sys.stdin.read();i=t.find("[");a=json.loads(t[i:]) if i>=0 else [];print(next((x["id"] for x in a if x.get("title","").endswith("aizukan-stats")),""))' || true)
+          if [ -n "$ns" ]; then $W kv namespace delete --namespace-id "$ns" 2>&1 | tail -3 || true; else echo "KV なし"; fi
+          echo "--- 残っている aizukan の KV"
+          $W kv namespace list 2>/dev/null | grep -c aizukan-stats || true
+      - name: 本番が消えたか確かめる
         run: |
-          sleep 15
-          fail=0
-          for p in / /uranai/ /uranai/jibun/ /kekka/ /hoshi/ /hoshi/01/ /hoshi/12/ /kurai/ /en/ /zukan/ /about/ /privacy/ /kiyaku/ /s/01-1/ /og/01-1.jpg /img/01_1.webp /assets/app.js /assets/data.js /assets/site.css /api/stats; do
-            c=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL$p"); echo "$c $p"; [ "$c" = "200" ] || fail=1
-          done
-          curl -s "$SITE_URL/api/stats" | head -c 300; echo
-          exit $fail
+          sleep 20
+          code=$(curl -s -o /dev/null -w '%{http_code}' https://ai-type-zukan.pages.dev/ || true)
+          echo "https://ai-type-zukan.pages.dev/ → $code"
