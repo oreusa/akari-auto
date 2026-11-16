@@ -253,7 +253,7 @@ def last_num(t):
 # 11/2 もしもアフィリエイト（Yahoo!ショッピング・審査なしで提携済み）。同じ品を Yahoo! でも探せるボタン。
 # a_id はオーナーの もしも の「LIFE NOTE」用の番号（公開リンクに出る物なので秘密ではない）。Amazon は審査が通ったら足す。
 COPY = "買う前に、AIに聞いてみる。"  # 11/3 ページ一番上の一言（オーナーが選ぶ）
-MOSHIMO_YAHOO = "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url="
+MOSHIMO_YAHOO = ""  # 11/16 もしもアフィリエイトが LIFE NOTE のメディア登録を消した（報酬が付かない）→ Yahoo! はふつうのリンク。owner「もしもいらないだろ」
 
 
 def shop_q(title):
@@ -271,7 +271,8 @@ def shop_q(title):
 
 def yahoo_url(title):
     from urllib.parse import quote
-    return MOSHIMO_YAHOO + quote("https://shopping.yahoo.co.jp/search?p=" + quote(shop_q(title)), safe="")
+    u = "https://shopping.yahoo.co.jp/search?p=" + quote(shop_q(title))
+    return MOSHIMO_YAHOO + quote(u, safe="") if MOSHIMO_YAHOO else u
 
 
 # 11/2 オーナー「Amazonは元々登録してる」→ アソシエイトに直接（lib.AMAZON_TAG）。商品名で探した結果へ
@@ -291,7 +292,7 @@ def others(c, shop):
         return ""
     return ('<span class="kot">'
             f'<a class="kyh" href="{E(amazon_url(name))}" rel="sponsored noopener" target="_blank">Amazon<i>›</i></a>'
-            f'<a class="kyh" href="{E(yahoo_url(name))}" rel="sponsored noopener" target="_blank">Yahoo!<i>›</i></a></span>')
+            f'<a class="kyh" href="{E(yahoo_url(name))}" rel="{"sponsored " if MOSHIMO_YAHOO else ""}noopener" target="_blank">Yahoo!<i>›</i></a></span>')
 
 
 def card_html(c, col, i=0):
@@ -775,6 +776,6 @@ def build(od, ix):
           '})();</script>')
     h = h.replace('<body class="', '<body data-bar="okai" class="', 1)
     h = h.replace("c.hidden=!ok||(!op&&k>5);", "c.hidden=!ok||(!op&&k>8);").replace('m.dataset.l+(k-5)+"件）";m.hidden=op||k<=5;', 'm.dataset.l+(k-8)+"件）";m.hidden=op||k<=8;')
-    js += '<script src="/assets/kq.js?v=7" defer></script><script src="/assets/okv.js?v=4" defer></script>'
+    js += '<script src="/assets/kq.js?v=8" defer></script><script src="/assets/okv.js?v=4" defer></script>'
     i = h.rfind("</body>")
     return h[:i] + js + h[i:]

@@ -100,7 +100,7 @@
       var e=encodeURIComponent(v.slice(0,40)),n=document.createElement("div");n.className="kqn";
       n.innerHTML="「"+sh+"」は、まだ比べていません。<br>聞かれた物は記録して、うさぎが近いうちに比べてここに足します。<br>"
         +(AMZ?'<a href="https://www.amazon.co.jp/s?k='+e+'&tag='+encodeURIComponent(AMZ)+'" rel="sponsored noopener" target="_blank">Amazonで探す ›</a>':"")
-        +(YH?'<a href="'+YH+encodeURIComponent("https://shopping.yahoo.co.jp/search?p="+e)+'" rel="sponsored noopener" target="_blank">Yahoo!で探す ›</a>':"");
+        +(YH?'<a href="'+YH+encodeURIComponent("https://shopping.yahoo.co.jp/search?p="+e)+'" rel="sponsored noopener" target="_blank">Yahoo!で探す ›</a>':'<a href="https://shopping.yahoo.co.jp/search?p='+e+'" rel="noopener" target="_blank">Yahoo!で探す ›</a>');
       qr.appendChild(n);
     }
     var x=document.createElement("button");x.type="button";x.className="kqx";x.textContent="はじめの画面にもどる";
