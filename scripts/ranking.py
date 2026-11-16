@@ -109,6 +109,23 @@ def main():
             out.append(f"{it.get('rank') or n}｜{mark(it)}｜{nm}{dup}｜{int(it.get('itemPrice') or 0):,}円｜"
                        f"{int(it.get('reviewCount') or 0):,}｜{float(it.get('reviewAverage') or 0):.2f}｜{url}")
         out.append("")
+        # 11/17 ROOM の台本が1日80件の予定なのに53件（新しいランキング物 10件）しか作れなかった：1ページ30件×11ジャンルを
+        # 前14日で出し切った。ROOM 用だけ 2〜4ページ目（31〜120位）も取る（notes/ranking.md はそのまま上位30）。
+        if src == "ランキング":
+            for pg in (2, 3, 4):
+                more = []
+                for u in RANKING_URLS:
+                    more, _ = call(u, {"genreId": gid, "page": pg})
+                    if more:
+                        break
+                for n, it in enumerate(more or [], (pg - 1) * 30 + 1):
+                    code = it.get("itemCode") or plain(it)
+                    if code in seen:
+                        continue
+                    seen.add(code)
+                    rows.append({"genre": name, "rank": int(it.get("rank") or n), "name": (it.get("itemName") or "").replace("\n", " ")[:120],
+                                 "price": int(it.get("itemPrice") or 0), "rc": int(it.get("reviewCount") or 0), "av": float(it.get("reviewAverage") or 0),
+                                 "url": plain(it), "shop": it.get("shopName") or ""})
     p = lib.path("notes", "ranking.md")
     with open(p, "w", encoding="utf-8") as f:
         f.write("\n".join(out) + "\n")
