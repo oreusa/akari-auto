@@ -110,11 +110,15 @@ def rank_cands(today, used, posted):
     by = {}
     for u, c in out.items():
         by.setdefault(c["g"], []).append(u)
+    # 11/16 owner「まじでいまから稼ぐぞ。あとは学習」→ 売れたジャンル（data/room-sold.json。月が毎朝、汐の楽天の帳と ROOM の売上確認から足す）を先に・1回りで2件ずつ
+    sold = [x.get("genre", "") for x in load(P("data", "room-sold.json"), {}).get("items", [])]
+    hot = [g for g in dict.fromkeys(sold) if g in by]
     order = []
     while any(by.values()):
-        for g in list(by):
-            if by[g]:
-                order.append(by[g].pop(0))
+        for g in hot + [g for g in by if g not in hot]:
+            for _ in range(2 if g in hot else 1):
+                if by[g]:
+                    order.append(by[g].pop(0))
     return {u: out[u] for u in order[:RANK]}, ""
 
 
