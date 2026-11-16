@@ -100,7 +100,10 @@ def rank_cands(today, used, posted):
         who = next((w for k, w in WHO if k in sh), None) or next((w for k, w in WHO if k in nm), None) or WHO_G.get(g, "いま人気の物を見ておきたい人")
         cm = (f"{who}に。{sh}は、楽天ランキング「{g}」で{x['rank']}位、レビュー{x['rc']:,}件で★{x['av']:.2f}でした（{rk['day'][5:].replace('-', '/').lstrip('0')}に調べた時点）。\n"
               f"サイズ・量・色で値段が変わるので、お店のページでご確認ください。")
-        out[u] = {"url": u, "name": sh + "（量：どれでもよい・サイズと量はどれでもよい）", "expect": sh, "comment": cm, "col": COL_G.get(g, "毎日なくなる物"),
+        ws = [w for w in sh.split() if len(w) >= 2]
+        q1 = " ".join(ws[:2]) or sh
+        q2 = ws[0] if ws and len(ws[0]) >= 3 and len(ws) > 1 else ""
+        out[u] = {"q": (q1, q2), "url": u, "name": sh + "（量：どれでもよい・サイズと量はどれでもよい）", "expect": sh, "comment": cm, "col": COL_G.get(g, "毎日なくなる物"),
                   "tag": f"#楽天ランキング #{g.split('・')[0]} #レビューで選んだ", "rank": 0, "cat": "rank", "g": g, "r": x["rank"]}
     # ジャンルを回す（同じジャンルが続かないように）
     by = {}
@@ -185,19 +188,22 @@ def main():
             ure.append(u)
     ure = ure[:URE]
     # 11/16：ROOM の公開ページには載っている商品の一覧が出ない（probe で確かめた）。もう載っている物は GPT が飛ばし、機械は新しいランキングの物で埋める
-    posted = set()
+    posted = set(load(P("data", "room-done.json"), {}).get("urls", {}))  # 報告で載せた・完売と分かった物
     rk, rk_why = rank_cands(today, used | set(ure), posted)
     cand.update(rk)
     rku = list(rk)
-    order = ure + rku + [u for u in order if u not in ure and u not in rku and u not in posted]
+    order = [u for u in ure + rku + [u for u in order if u not in ure and u not in rku] if u not in posted]
     hand_urls = [r["url"].split("?")[0] for r in hand]
     order = [u for u in order if u in cand and u not in hand_urls][:max(0, MAX - len(hand))]
     rows = []
     for r in hand:
         rows.append((r.get("collection") or "毎日なくなる物", r.get("expect", ""), r["url"].split("?")[0], r["comment"], r.get("tags") or "#暮らし #買ってよかった"))
+    Q = {}
     for u in order:
         x = cand[u]
         rows.append((x["col"], x["name"], u, x["comment"], x["tag"]))
+        if x.get("q"):  # 11/16 雫：元の商品42件が「緊急メンテナンス」→ ROOM検索に3語の長い言葉では出ない。ランキングの物は短い2語・1語で探す
+            Q[u] = x["q"]
     log[T] = hand_urls + order
     # 11/13：GPTの自動審査が「新しいコレクションの完了」を止めて、載せられない商品が出た（雫 12:37）→ コレクションは作らせない
     new = len([u for u in log[T] if u not in used])
@@ -210,7 +216,7 @@ def main():
            "・「制限」「スパム」「しばらくしてから」「確認が必要」「規約」の表示が1回でも出たら、その日の ROOM はそこでやめて、報告に「止めた｜表示の文言」。",
            "・コメント返信も、相手の文に合わせて1件ずつ書く（同じ文を使い回さない）。", "",
            "・「更新：」の日付が今日の時だけ載せる（朝の雫は、きのうの日付でも載せる）。開いてよいのは、台本にある「元の商品」（楽天市場の商品ページ）・「探し方」・「出ない時の探し方」のURLと、下の言葉の「探し方」のURL（11/15 前の文「開くのは探し方だけ」が残っていて、雫の自動審査が商品ページを止めた）。コメントとハッシュタグはそのまま貼る。",
-           "・載せ方の順（11/14 オーナー「オリジナル投稿の方が売れるんじゃないの？誰かがコレしてくれる・アカウントが広まる」）：まず「元の商品」のURL（楽天市場の商品ページ）を開き、ページの「ROOMに投稿」（ROOMのマーク）から載せる＝うさぎのオリジナル投稿。開けない・ボタンが無い・メンテナンスの時だけ、下の「探し方」（ROOMの中の検索）で載せる。報告に「オリジナル○件・検索から○件」を書く。",
+           "・載せ方の順（11/14 オーナー「オリジナル投稿の方が売れるんじゃないの？誰かがコレしてくれる・アカウントが広まる」）：まず「元の商品」のURL（楽天市場の商品ページ）を開き、ページの「ROOMに投稿」（ROOMのマーク）から載せる＝うさぎのオリジナル投稿。開けない・ボタンが無い・「緊急メンテナンス」の時は、待たずにすぐ下の「探し方」（ROOMの中の検索）で載せる（11/16 の雫は元の商品42件がメンテナンス表示。検索から載せてよい）。「完売」「SALE」「お試し」と出た商品は飛ばす。報告に「オリジナル○件・検索から○件」を書く。",
            "・「探し方」のURLは、ROOMの中の検索です。出てきた商品を上から20個まで見て、「商品：」の行と同じ商品（メーカー・商品の種類・1つの量・入っている数が同じ）の「コレ！」を押して載せる。",
            "・店の名前まで同じかは見なくてよい。同じ商品で店が違う時（店が分からない時も）は、コメントに「別の店の時のコメント：」の下の文を貼る。「訳あり」「中古」「お試し」と書いてある物は選ばない。",
            "・「探し方」で「該当する商品はありません」と出た時・同じ商品が20個の中に無い時は、「出ない時の探し方：」のURLを1回だけ開いて、同じように探す（その行が無い商品は、そのまま飛ばす）。",
@@ -219,8 +225,13 @@ def main():
            "・もうROOMに載っている商品は載せずに飛ばす（前の日に載せきれなかった物が、もう一度ここに出る）。",
            "・飛ばした物しか残っていない時は、台本は終わりとして、すぐ下の「■台本が終わって時間が残ったら」へ進む（11/15 の雫は、飛ばした6件が残ったまま人気からも0件だった）。",
            "・コレクションは、同じ名前があればそこへ。無ければ、新しく作らずに「毎日なくなる物」へ入れる。それも選べなければ、コレクションを選ばずに載せる（コレクションが無い・作れないことを理由に、載せるのをやめない）。", "", "（ここから下に台本）", ""]
+    def q(nm, u, k):
+        if u in Q:
+            w = Q[u][k]
+            return ("https://room.rakuten.co.jp/search/item?keyword=" + quote(w)) if w else ""
+        return room_search(nm.split('（量：')[0], 3 if k == 0 else 2)
     for i, (col, nm, u, cm, tg) in enumerate(rows, 1):
-        out += [f"{i}｜コレクション：{col}（無ければ：毎日なくなる物）", f"商品：{nm}", f"元の商品（まずここから「ROOMに投稿」で載せる）：{u}", f"探し方：{room_search(nm.split('（量：')[0])}", *([f"出ない時の探し方：{room_search(nm.split('（量：')[0], 2)}"] if room_search(nm.split('（量：')[0], 2) else []), "コメント：", cm, f"ハッシュタグ：{tg}"] + (["別の店の時のコメント：", other(cm)] if other(cm) else []) + ([] if "楽天ランキング" in cm else ["量が違う時のコメント：", RYOU]) + [f"（{i}番 ここまで）", ""]
+        out += [f"{i}｜コレクション：{col}（無ければ：コレクションを選ばずに載せる）", f"商品：{nm}", f"元の商品（まずここから「ROOMに投稿」で載せる）：{u}", f"探し方：{q(nm, u, 0)}", *([f"出ない時の探し方：{q(nm, u, 1)}"] if q(nm, u, 1) else []), "コメント：", cm, f"ハッシュタグ：{tg}"] + (["別の店の時のコメント：", other(cm)] if other(cm) else []) + ([] if "楽天ランキング" in cm else ["量が違う時のコメント：", RYOU]) + [f"（{i}番 ここまで）", ""]
     out.append("（ROOM台本 ここまで）")
     # 11/14 オーナー「夜は気づいてたよ？連絡が遅いからそのままなだけ」→ 夜が見つけた「もう載っている物の間違い」を、次の回に雫・凪が直す
     fix = load(P("data", "room-fix.json"), {}).get("items", [])
