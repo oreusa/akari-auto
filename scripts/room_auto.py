@@ -113,10 +113,14 @@ def rank_cands(today, used, posted):
     # 11/16 owner「まじでいまから稼ぐぞ。あとは学習」→ 売れたジャンル（data/room-sold.json。月が毎朝、汐の楽天の帳と ROOM の売上確認から足す）を先に・1回りで2件ずつ
     sold = [x.get("genre", "") for x in load(P("data", "room-sold.json"), {}).get("items", [])]
     hot = [g for g in dict.fromkeys(sold) if g in by]
+    # 11/16 owner「売れる秘訣を探し求めるんだ」→ ROOM の料率（楽天公式 Mama's Life 2026/05：食品・ファッション・コスメ4%／キッチン・日用品・おもちゃ3%／家電・ゲーム2%）。
+    # 4%のジャンルを1周に2件・2%は後ろへ。※ROOM はクリックした人が別の商品を買っても成果になる（同じ記事）＝人が来る物（ランキング上位）が先なのは同じ
+    RATE = {"食品": 4, "水・ソフトドリンク": 4, "家電": 2}
+    rest = sorted([g for g in by if g not in hot], key=lambda g: -RATE.get(g, 3))
     order = []
     while any(by.values()):
-        for g in hot + [g for g in by if g not in hot]:
-            for _ in range(2 if g in hot else 1):
+        for g in hot + rest:
+            for _ in range(2 if g in hot or RATE.get(g, 3) == 4 else 1):
                 if by[g]:
                     order.append(by[g].pop(0))
     return {u: out[u] for u in order[:RANK]}, ""
