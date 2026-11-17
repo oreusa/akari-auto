@@ -12,7 +12,7 @@
   kansai → tools/kaiten/kansai.json（usagi）、kanto → data/kaiten.json（akari に同じ物を置く）に足す。
   見た発表は seen.json（14日）に残して、2回開かない。1回に開く発表は60件まで（相手のサイトに負担をかけない。1.2秒あける）。
 """
-import datetime, html, json, os, re, sys, time, urllib.request
+import datetime, html, json, os, re, sys, time, urllib.parse, urllib.request
 
 REGION = sys.argv[1] if len(sys.argv) > 1 else "kansai"
 TODAY = datetime.date.fromisoformat(sys.argv[2]) if len(sys.argv) > 2 else (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).date()
@@ -222,6 +222,90 @@ def daiso(have):
                      **({"sub": "リニューアル"} if mm.group(6) == "改装" else {})})
     return adds
 
+# 11/17 夜 オーナー「改善点ないか？」→ 数を増やす。チェーンの新店のお知らせ（全国）を読み、お店のページの「住所・所在地」で関西/関東だけ残す。
+# (名前, 一覧のURL, 1件の正規表現（url, 発表日, 題）, 名前の頭, ジャンル)
+ALLP = r"北海道|東京都|京都府|大阪府|(?:青森|岩手|宮城|秋田|山形|福島|茨城|栃木|群馬|埼玉|千葉|神奈川|新潟|富山|石川|福井|山梨|長野|岐阜|静岡|愛知|三重|滋賀|兵庫|奈良|和歌山|鳥取|島根|岡山|広島|山口|徳島|香川|愛媛|高知|福岡|佐賀|長崎|熊本|大分|宮崎|鹿児島|沖縄)県"
+CHAINS = [
+    ("cando", "https://www.cando-web.co.jp/news/", r'<li data-year="\d+" data-date="(\d{8})"[^>]*data-category="store_(?:new|renewal)store[^"]*"><a href="([^"]+)">.*?<span class="ttl-inn">(.*?)</span>', "キャンドゥ ", "100円ショップ", "dut"),
+    ("tsuruha", "https://www.tsuruha.co.jp/news/open/", r'href="(https://shop\.tsuruha-g\.com/[^"]+)"><div[^>]*><span[^>]*>新店</span><time[^>]*>(\d{4}\.\d\d\.\d\d)</time></div><p[^>]*>(.*?)</p>', "", "ドラッグ・薬", "udt"),
+    ("sundrug", "https://www.sundrug.co.jp/news/category/estate", r'<li><a href="([^"]+)"[^>]*>\s*<div class="entry_wrap">\s*<time class="date"[^>]*>(\d{4}\.\d\d\.\d\d)</time>.*?<p class="title">([^<]*?オープン[^<]*)</p>', "", "ドラッグ・薬", "udt"),
+    ("sushiro", "https://www.akindo-sushiro.co.jp/news/?category=3", r'<a class="commonNews" href="([^"]+)"\s*>\s*<div class="commonNews__head">\s*<span class="commonNewsDate">(\d{4}\.\d\d\.\d\d)</span>.*?<div class="commonNews__text">([^<]*?(?:オープン|閉店)[^<]*)</div>', "スシロー ", "ごはん", "udt"),
+    ("mandai", "https://www.mandai-net.co.jp/news/", r'<a href="(/news/[^"]+)">\s*<div class="c-news__list__item__head">\s*<time datetime="(\d{4}-\d\d-\d\d)[^"]*"[^>]*>[^<]*</time>\s*<div[^>]*is-store">[^<]*</div>.*?__title__text">([^<]*?オープン[^<]*)</span>', "万代 ", "スーパー", "udt"),
+    ("kurasushi", "https://www.kurasushi.co.jp/news/", r'<span class="topics-list-date">(\d{4}\.\d\d\.\d\d)</span><span class="topics-list-category">店舗情報</span></div>\s*<div class="topics-list-body">\s*<a href="([^"]+)"[^>]*>\s*([^<]*?オープン[^<]*?)\s*</a>', "くら寿司 ", "ごはん", "dut"),
+    ("saizeriya", "https://www.saizeriya.co.jp/shop-news/", r'<span class="news-cat">STORE</span><span class="news-date">(\d{4}/\d\d/\d\d)</span></div><div class="titleArea"><h4>([^<]*?OPEN[^<]*)</h4><a href="([^"]+)"', "", "ごはん", "dtu"),
+]
+
+
+def addr_of(h):
+    """お店のページの「住所・所在地」の後ろの住所（本社の住所をつかまないよう、言葉のある所だけ）。"""
+    t = z2h(re.sub(r"[ \t]+", " ", text(h)))
+    for m in re.finditer(r"(?:(?:住所|所在地|アドレス|ADDRESS|Address)[\s|:：]*(?:〒?\s*\d{3}-?\d{4}\s*)?|〒\s*\d{3}-\d{4}\s*)(" + ALLP + r")\s*([^\n|※]{2,50})", t):
+        rest = m.group(2).strip()
+        if re.search(r"\d|丁目|番地", rest) and not re.search(r"代表|本社|運営|株式会社", rest):
+            return m.group(1), re.sub(r"\s*(TEL|電話|ＴＥＬ).*$", "", rest)[:60]
+    return "", ""
+
+
+def open_day(t, pub):
+    t = z2h(t)
+    m = re.search(r"(\d{1,2})[./](\d{1,2})\s*[(（]?[月火水木金土日]?", t)
+    if m and 1 <= int(m.group(1)) <= 12 and 1 <= int(m.group(2)) <= 31:
+        d = datetime.date(pub.year, int(m.group(1)), int(m.group(2)))
+        if d < pub - datetime.timedelta(days=60):
+            d = d.replace(year=pub.year + 1)
+        return d
+    ds = find_date(t, pub)
+    return ds[0] if ds else None
+
+
+def chains(have):
+    adds = []
+    for key, lu, rx, head, g, order in CHAINS:
+        try:
+            h = get(lu)
+        except Exception as e:
+            print("ERR", key, str(e)[:100]); continue
+        n_open = 0
+        for m in re.finditer(rx, h, re.S):
+            v = dict(zip(order, m.groups()))
+            u = urllib.parse.urljoin(lu, html.unescape(v["u"]))
+            pub = datetime.date.fromisoformat(re.sub(r"[./]", "-", v["d"]) if "-" in v["d"] or "." in v["d"] or "/" in v["d"] else f'{v["d"][:4]}-{v["d"][4:6]}-{v["d"][6:]}')
+            title = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", v["t"]))).strip()
+            if (TODAY - pub).days > 45 or NOT.search(title) or re.search(r"営業時間|電話|臨時|休業", title):
+                continue
+            pt = re.search(r"[（(](" + ALLP + r")", title)
+            if pt and pt.group(1) not in PREFS:
+                continue
+            if n_open >= 15:
+                break
+            try:
+                dh = get(u); n_open += 1; time.sleep(1.0)
+            except Exception as e:
+                print("ERR", key, u, str(e)[:80]); continue
+            p, ad = addr_of(dh)
+            if not p and pt:
+                p = pt.group(1)
+            if p not in PREFS:
+                continue
+            d = open_day(title, pub) or (find_date(text(dh)[:3000], pub) or [pub])[0]
+            nm = re.sub(r"[（(].*?[)）]|オープン.*$|OPEN.*$|が\d.*$|\d{1,2}[./]\d{1,2}\s*[(（][月火水木金土日][)）]|【.*?】|！|!", "", title).strip(" 　・")
+            if head and not nm.startswith(head.strip()):
+                nm = head + nm
+            if not nm.endswith("店") and "店" in nm:
+                nm = nm[:nm.rfind("店") + 1]
+            if (u, nm) in have or not nm:
+                continue
+            k = kind_of(title)
+            adds.append({"d": d.isoformat(), "k": k, "p": SHORT[p], "n": nm,
+                         "pt": ("リニューアルして新しくなります" if re.search(r"リニューアル|改装", title) else "新しいお店") + f"（{key_name(key)}のお知らせより）。",
+                         "pl": ad, "tm": "", "u": u, "added": TODAY.isoformat(), "src": key, "auto": 1, "g": g,
+                         **({"sub": "リニューアル"} if re.search(r"リニューアル|改装", title) else {})})
+    return adds
+
+
+def key_name(k):
+    return {"cando": "キャンドゥ", "tsuruha": "ツルハ", "sundrug": "サンドラッグ", "sushiro": "スシロー", "mandai": "万代", "kurasushi": "くら寿司", "saizeriya": "サイゼリヤ"}.get(k, k)
+
 
 def main():
     data = json.load(open(DATA, encoding="utf-8"))
@@ -231,7 +315,7 @@ def main():
     if os.path.exists(SEEN):
         seen = {k: v for k, v in json.load(open(SEEN, encoding="utf-8")).items() if (TODAY - datetime.date.fromisoformat(v)).days <= 14}
     got = {}
-    for nm, fn in (("prtimes", lambda: prtimes(seen, have)), ("lawson", lambda: lawson(have)), ("daiso", lambda: daiso(have))):
+    for nm, fn in (("prtimes", lambda: prtimes(seen, have)), ("lawson", lambda: lawson(have)), ("daiso", lambda: daiso(have)), ("chains", lambda: chains(have))):
         try:
             a = fn()
         except Exception as e:
