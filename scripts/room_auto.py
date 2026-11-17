@@ -196,6 +196,30 @@ def main():
             cand[u] = {"url": u, "name": x["name"] + f"（量：{x.get('amt', '')}・サイズと量はどれでもよい）", "expect": x["name"], "comment": x["comment"], "col": x["col"], "tag": x["tag"], "rank": 0, "cat": "ure"}
             ure.append(u)
     ure = ure[:URE]
+    # 11/17 月：大きなセール（data/sales.json）の3日前から終わりまで、/kaimawari の1,000円ぽっきり（送料込み・レビュー1,000件以上・★4.0以上）を10件まで、売れ筋の次に。
+    # 買いまわりの「あと1店」を探す人が ROOM でも探す（BF 11/19〜25）。数字は kaimawari.py が楽天で確かめた日の物
+    km = []
+    try:
+        sal = [x for x in load(P("data", "sales.json"), {}).get("sales", [])
+               if date.fromisoformat(x["start"][:10]) - timedelta(days=3) <= today <= date.fromisoformat(x["end"][:10])]
+    except Exception:
+        sal = []
+    kd = load(P("data", "kaimawari.json"), {})
+    if sal and kd.get("date") and (today - date.fromisoformat(kd["date"])).days <= 1:
+        ev = sal[0]["name"]
+        for x in kd.get("items", []):
+            u = x.get("plain", "")
+            if not u.startswith("https://item.rakuten.co.jp/") or u in cand or (u in used and u not in log.get(T, [])):
+                continue
+            d0 = date.fromisoformat(kd["date"])
+            cm = (f"{ev}の買いまわりで「あと1店」を足したい時に。{x['name']}です。{d0.month}/{d0.day}に楽天で見た時点で{x['price']:,}円（送料込み）、"
+                  f"レビューは{x['rc']:,}件で★{x['av']:.2f}でした。\n1店で1,000円以上の買い物が1店に数えられます（クーポンで999円以下になると数えられません）。\n値段と在庫は変わるので、お店のページでご確認ください。")
+            cand[u] = {"url": u, "name": x["name"], "expect": x["name"], "comment": cm, "col": "買いまわりの1,000円ぽっきり",
+                       "tag": f"#{ev} #買いまわり #1000円ぽっきり", "rank": 0, "cat": "kaim"}
+            km.append(u)
+            if len(km) >= 10:
+                break
+    ure = ure + km
     # 11/16：ROOM の公開ページには載っている商品の一覧が出ない（probe で確かめた）。もう載っている物は GPT が飛ばし、機械は新しいランキングの物で埋める
     posted = set(load(P("data", "room-done.json"), {}).get("urls", {}))  # 報告で載せた・完売と分かった物
     rk, rk_why = rank_cands(today, used | set(ure), posted)
