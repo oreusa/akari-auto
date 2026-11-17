@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-17 13:44",
+  "at": "2026-11-17 19:13",
   "since": "2026-11-01",
   "tracked": 264,
   "days": 16,
@@ -35,7 +35,7 @@
       "base": 3100.0,
       "pct": 10,
       "days": 14,
-      "rc": 2323,
+      "rc": 2324,
       "av": 4.52,
       "shop": "ライフジョイ工房",
       "plain": "https://item.rakuten.co.jp/lifejoy-shop/10000044/"
@@ -51,6 +51,18 @@
       "av": 4.59,
       "shop": "ライフジョイ工房",
       "plain": "https://item.rakuten.co.jp/lifejoy-shop/10000093/"
+    },
+    {
+      "title": "電気毛布",
+      "name": "［ブラックフライデー★限定SALE］電気毛布 敷き 電気敷き毛布 洗える タイマー 起毛 薄…",
+      "price": 2690,
+      "base": 2989.0,
+      "pct": 10,
+      "days": 14,
+      "rc": 1008,
+      "av": 4.5,
+      "shop": "生活家電のフリーダム 楽天市場店",
+      "plain": "https://item.rakuten.co.jp/frdm/10000042/"
     },
     {
       "title": "電気毛布",
@@ -83,7 +95,7 @@
       "base": 2420.0,
       "pct": 6,
       "days": 14,
-      "rc": 6697,
+      "rc": 6701,
       "av": 4.48,
       "shop": "山川食糧オートミール研究所",
       "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"

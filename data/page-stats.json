@@ -1,6 +1,6 @@
 {
   "about": "プロフィール用ページで押されたアフィリエイトのリンク(click)。元 x0715=Xの7:15の投稿・t0715=Threadsの7:15・direct=印なし。項目 buy-winter=冬じたくの欄のPR など",
-  "at": "11/17 13:49",
+  "at": "11/17 19:19",
   "days": {
     "2026-10-24": {
       "views": 66,
@@ -1178,23 +1178,24 @@
       }
     },
     "2026-11-17": {
-      "views": 30,
-      "clicks": 23,
+      "views": 69,
+      "clicks": 32,
       "view": {
-        "all": 30,
+        "all": 69,
         "x0716": 2,
         "x0916": 2,
         "x1216": 2,
-        "x1516": 1
+        "x1516": 2,
+        "x1816": 1
       },
       "click": {
         "direct": {
           "fudosan|実家一覧｜下のバー｜実家｜相談する": 1,
           "hp|表示：市の解体補助 葛飾区（外から）": 1,
           "src|Threads": 1,
-          "src|ほか（m.facebook.com）": 2,
-          "src|ほか（www.facebook.com）": 5,
-          "src|直接・アプリ": 3,
+          "src|ほか（m.facebook.com）": 3,
+          "src|ほか（www.facebook.com）": 6,
+          "src|直接・アプリ": 10,
           "top|入口｜入口｜実家・空き家ノート": 1
         },
         "okaimono": {
