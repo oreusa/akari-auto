@@ -12,7 +12,7 @@
   kansai → tools/kaiten/kansai.json（usagi）、kanto → data/kaiten.json（akari に同じ物を置く）に足す。
   見た発表は seen.json（14日）に残して、2回開かない。1回に開く発表は60件まで（相手のサイトに負担をかけない。1.2秒あける）。
 """
-import datetime, html, json, os, re, sys, time, urllib.parse, urllib.request
+import datetime, html, json, os, re, sys, time, unicodedata, urllib.parse, urllib.request
 
 REGION = sys.argv[1] if len(sys.argv) > 1 else "kansai"
 TODAY = datetime.date.fromisoformat(sys.argv[2]) if len(sys.argv) > 2 else (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).date()
@@ -312,6 +312,71 @@ def chains(have):
     return adds
 
 
+# 11/17 夜 商業施設：ららぽーとの「オープン・リニューアル」（三井ショッピングパーク公式。施設ごとに1ページ、住所もそのページの〒の後ろ）
+LALA = ["tokyo-bay", "kashiwa", "toyosu", "tachikawa", "yokohama", "ebina", "hiratsuka", "shinmisato", "fujimi",
+        "koshien", "izumi", "expocity", "sakai", "kadoma"]
+LALA_RE = re.compile(r'<a href="(/lalaport/[^"]+/openrenewal/\d+\.html)">.*?md-col4_04__box__text--small">[^|<]*\|\s*<span class="label">\s*(.*?)\s*</span>'
+                     r'.*?md-col4_04__box__title">([^<]*)</p>.*?<span class="label ?">([^<]*)</span>', re.S)
+
+
+def md_date(t):
+    m = re.search(r"(\d{1,2})\s*/\s*(\d{1,2})", z2h(t))
+    if not m:
+        return None
+    try:
+        d = datetime.date(TODAY.year, int(m.group(1)), int(m.group(2)))
+    except ValueError:
+        return None
+    return d.replace(year=d.year + 1) if d < TODAY - datetime.timedelta(days=120) else d
+
+
+def lalaport(have):
+    out = []
+    for slug in LALA:
+        try:
+            h = get(f"https://mitsui-shopping-park.com/lalaport/{slug}/openrenewal/")
+        except Exception as e:
+            print("ERR lalaport", slug, str(e)[:80]); continue
+        time.sleep(1)
+        fac = html.unescape((re.search(r"<title>[^|<]*\|\s*([^<]+)</title>", h) or [None, ""])[1]).strip()
+        ad = re.search(r"〒\s*\d{3}-\d{4}\s*(?:<[^>]+>\s*)*(" + ALLP + r")\s*([^<\n]{2,40})", h)
+        if not fac or not ad or ad.group(1) not in PREFS:
+            continue
+        p, street = ad.group(1), ad.group(2).strip()
+        for path, shop, ttl, lab in LALA_RE.findall(h):
+            ttl, shop, lab = html.unescape(ttl).strip(), html.unescape(re.sub(r"\s+", " ", shop)).strip(), lab.strip()
+            if re.search(r"休業のお知らせ", ttl) and "オープン" not in ttl:
+                continue
+            d = md_date(ttl)
+            if not d:
+                continue
+            closing = lab == "クローズ" or (re.search(r"営業終了", ttl) and not re.search(r"リニューアルオープン|移転", ttl))
+            k = "close" if closing else ("pop" if "期間限定" in lab + ttl else "open")
+            if re.search(r"営業終了.*リニューアルオープン|リニューアルオープン", ttl):
+                d2 = [md_date(x) for x in re.findall(r"\d{1,2}\s*/\s*\d{1,2}", z2h(ttl))]
+                d = [x for x in d2 if x][-1] if any(d2) else d
+            if (k == "close" and d < TODAY) or (k != "close" and (TODAY - d).days > 30) or (d - TODAY).days > 200:
+                continue
+            # 名前は題の「」の中を先に（11/17 堺：題は「1PIU1UGUALE3 RELAX」なのに、ラベルは別のお店だった）。日付の【】は使わない
+            br = [b for b in re.findall(r"[「【]([^」】]{2,30})[」】]", ttl) if not re.match(r"^\s*\d{1,2}\s*[/／月(（]|^\s*\d\s*F|^[東西南北]館", z2h(b)) and "フロア" not in b]
+            n = unicodedata.normalize("NFKC", (br[0] if br else shop)).strip()
+            if not n:
+                continue
+            u = "https://mitsui-shopping-park.com" + path
+            if (u, n) in have:
+                continue
+            fl = (re.search(r"((?:[東西南北]館|フード\S{0,6})?\s*\d\s*F|[0-9０-９]\s*[FＦ]\S{0,10})", z2h(ttl)) or [None, ""])[1].replace(" ", "")
+            at = fac + (("の" + fl) if fl else "")
+            pt = {"close": f"{at}のお店。この日で営業を終えます。", "pop": f"{at}に、期間限定で出るお店。",
+                  "open": f"{at}で、リニューアルオープン。" if "リニューアル" in ttl else f"{at}に、新しく出るお店。"}[k]
+            x = {"d": d.isoformat(), "k": k, "p": SHORT[p], "n": n, "pt": pt,
+                 "pl": (street + "（" + fac + "）")[:70], "tm": "", "u": u, "added": TODAY.isoformat(), "src": "lalaport", "auto": 1}
+            if k == "open" and "リニューアル" in ttl:
+                x["sub"] = "リニューアル"
+            out.append(x); have.add((u, n))
+    return out
+
+
 def key_name(k):
     return {"cando": "キャンドゥ", "tsuruha": "ツルハ", "sundrug": "サンドラッグ", "sushiro": "スシロー", "mandai": "万代", "kurasushi": "くら寿司", "saizeriya": "サイゼリヤ"}.get(k, k)
 
@@ -324,7 +389,7 @@ def main():
     if os.path.exists(SEEN):
         seen = {k: v for k, v in json.load(open(SEEN, encoding="utf-8")).items() if (TODAY - datetime.date.fromisoformat(v)).days <= 14}
     got = {}
-    for nm, fn in (("prtimes", lambda: prtimes(seen, have)), ("lawson", lambda: lawson(have)), ("daiso", lambda: daiso(have)), ("chains", lambda: chains(have))):
+    for nm, fn in (("prtimes", lambda: prtimes(seen, have)), ("lawson", lambda: lawson(have)), ("daiso", lambda: daiso(have)), ("chains", lambda: chains(have)), ("lalaport", lambda: lalaport(have))):
         try:
             a = fn()
         except Exception as e:
