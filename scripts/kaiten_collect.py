@@ -78,7 +78,8 @@ def find_date(s, pub):
 def name_of(title):
     t = title.replace("『", "「").replace("』", "」")
     # 「A」「B」が…オープン → A・B（主語のかぎかっこ）
-    m = re.search(r"((?:「[^」]{1,40}」[、・と\s]*)+)(?:が|を|は|、が|の\d)", t)
+    # 「を」は「…をオープン」の時だけ（11/17「こだわりの「だし」を承継」を店の名前にしていた）
+    m = re.search(r"((?:「[^」]{1,40}」[、・と\s]*)+)(?:が|を(?=[^、。]{0,8}(?:オープン|OPEN|開店|開業|出店))|は|、が|の\d)", t)
     if m:
         ns = [x for x in re.findall(r"「([^」]{1,40})」", m.group(1)) if not re.search(r"楽しさ|体感|^初$|^新$", x)]
         if ns:
@@ -90,6 +91,11 @@ def name_of(title):
         # 「大日店」だけの時は、前のかぎかっこ（お店の名前）とつなぐ
         if len(n) <= 7 and n.endswith("店") and len(m) > 1:
             n = m[-2].group(1) + " " + n
+        elif len(n) <= 7 and n.endswith("店"):
+            # 11/17「ラーメン魁力屋「東久留米店」」→ かぎかっこの前のお店の名前とつなぐ
+            pre = re.split(r"[！!？?。、】\]）)]", t[:m[-1].start()])[-1].strip()
+            if 2 <= len(pre) <= 24:
+                n = pre + " " + n
         return n
     for a, b in (("「", "」"), ("『", "』"), ("“", "”")):
         for m in re.finditer(re.escape(a) + r"(.{2,40}?)" + re.escape(b), title):
@@ -155,6 +161,9 @@ def from_release(u, t, pub, h):
         if pref_of(a) or (shops and re.match(r"\S+?[市区町村]", a)):
             addr = a
             break
+    oa = re.match(ALLP, addr)
+    if oa and oa.group(0) not in PREFS:
+        return None  # 11/17 住所がほかの地方（広島のお店が「位置情報」の別の店で大阪に入った）
     p = pref_of(addr) or (pref_of(shops[0]) if shops else "")
     if not p:
         return None  # この地方のお店ではない／お店の場所が書いていない
@@ -179,7 +188,7 @@ def from_release(u, t, pub, h):
     n = name_of(t)
     if not n:
         return None
-    pt = re.sub(r"【[^】]*】|\s+", " ", t).strip()
+    pt = re.sub(r"【[^】]*】|\[[^\]]{1,12}\]|［[^］]{1,12}］|\s+", " ", t).strip()
     pt = pt if len(pt) <= 80 else pt[:79] + "…"
     x = {"d": ds[0].isoformat(), "k": k, "p": SHORT[p], "n": n, "pt": pt, "pl": (pl + ("・" + st if st and st not in pl else ""))[:70],
          "tm": tm, "u": u, "added": TODAY.isoformat(), "src": "prtimes", "auto": 1}
