@@ -53,7 +53,8 @@ def fetch(genre, seen=None):
             continue
         seen.add(shop)  # 同じ店が並ぶと買いまわりの店数が増えないので、1店1つ
         out.append({"name": short(it.get("itemName")), "price": int(it.get("itemPrice") or 0), "rc": rc, "av": av,
-                    "shop": it.get("shopName") or "", "url": aff, "img": lib._item_image(it)})
+                    "shop": it.get("shopName") or "", "url": aff, "img": lib._item_image(it),
+                    "plain": (it.get("itemUrl") or "").split("?")[0]})
         if len(out) >= PER:
             break
     return out, ""
@@ -309,6 +310,9 @@ def main():
     site = os.path.join(ROOT, "site")
     os.makedirs(site, exist_ok=True)
     open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(groups, now, sale_now(now)))
+    # 11/17 月：ROOM の台本（room_auto.py）がセールの間に「買いまわりのあと1店」として先頭近くに使う
+    lib.save_json(os.path.join(ROOT, "data", "kaimawari.json"), {"date": now.date().isoformat(), "sale": (sale_now(now) or {}).get("name", ""),
+                  "items": [dict(e, genre=g) for g, v in groups for e in v if e.get("plain", "").startswith("https://item.rakuten.co.jp/")]})
     print(json.dumps({"kaimawari": n, "by": {g: len(v) for g, v in groups}, "errs": errs}, ensure_ascii=False))
 
 
