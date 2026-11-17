@@ -80,7 +80,7 @@ jobs:
       - name: 関東の初詣（/hatsumode。紅葉ページの形を借りるので koyo.py のあと。失敗してもHPは出す）
         run: python3 scripts/hatsumode.py || true
       - name: 関東の開店・閉店ニュース（/kaiten。11/17 月：HP の新しい要素の1つめ。紅葉ページの頭を借りるので koyo.py のあと。失敗してもHPは出す）
-        run: python3 scripts/kaiten.py || true
+        run: python3 scripts/kaiten_collect.py kanto || true; python3 scripts/kaiten.py || true
       - name: 買いまわりの1,000円ぽっきり（11/1 オーナー「いつになったら売上作るんだ」。楽天の検索で毎回作る。失敗してもHPは出す）
         run: python3 scripts/kaimawari.py || true
       - name: 1個あたりで比べたページ（11/1 オーナー「すごいって思わせないと買われない」。楽天の送料込みを毎回100件以上比べる。失敗してもHPは出す）
@@ -190,7 +190,7 @@ jobs:
           git add notes/seichou.md data/seichou.json notes/gakushu.md data/gakushu.json data/shirei.json data/manabi.json data/yatta.json 2>/dev/null || true
           git add notes/room-daihon.md data/room-log.json data/room-today.json 2>/dev/null || true
           git add data/postimg.json data/postimg-rule.json notes/postimg-sample.jpg 2>/dev/null || true
-          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/townnotes-geo-checked.json data/kansai-yado.json data/kanto-yado.json data/tanka.json data/kaimawari.json data/furusato.json data/price-history.json data/nesage.json data/okaimono_img.json data/koe.json data/note-history.json 2>/dev/null || true
+          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/townnotes-geo-checked.json data/kansai-yado.json data/kanto-yado.json data/tanka.json data/kaiten.json data/kaiten-seen-kanto.json data/kaimawari.json data/furusato.json data/price-history.json data/nesage.json data/okaimono_img.json data/koe.json data/note-history.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "ページの数とリンクの確かめを記録"
           # 公開用に書き換えた site/ のページ（ima.html など）は戻す（戻さないと pull できない）
