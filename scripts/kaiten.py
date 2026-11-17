@@ -46,10 +46,10 @@ def bucket(x, t=TODAY):
 
 
 def card(x):
-    q = urllib.parse.quote(re.sub(r"（.*?）|「|」", " ", x["n"]) + " " + x["pl"].split("・")[0])
+    q = urllib.parse.quote(re.sub(r"（.*?）|「|」", " ", x["n"]) + " " + (x["pl"].split("・")[0] or x["p"]))
     end = f' data-end="{x["end"]}"' if x.get("end") else ""
     return (f'<article class="it" data-d="{x["d"]}" data-k="{x["k"]}" data-p="{x["p"]}"{end}><span class="tag {x["k"]}">{KL[x["k"]]}</span>'
-            f'<h3 class="nm">{E(x["n"])}</h3><p class="pt">{E(x["pt"])}</p><dl><dt>場所</dt><dd>{E(x["p"])}・{E(x["pl"])}</dd>'
+            f'<h3 class="nm">{E(x["n"])}</h3><p class="pt">{E(x["pt"])}</p><dl><dt>場所</dt><dd>{E(x["p"])}{"・" + E(x["pl"]) if x.get("pl") else ""}</dd>'
             + (f'<dt>時間</dt><dd>{E(x["tm"])}</dd>' if x.get("tm") else "") + "</dl>"
             f'<div class="ln"><a class="src" href="{E(x["u"])}" target="_blank" rel="noopener" data-k="公式の発表｜{E(x["n"])}">公式の発表 ↗</a>'
             f'<a href="https://www.google.com/maps/search/?api=1&amp;query={q}" target="_blank" rel="noopener" data-k="地図｜{E(x["n"])}">地図</a></div></article>')
