@@ -543,7 +543,7 @@
   },
   "高尾山もみじまつり2026": {
     "v": 2,
-    "t": "2026-11-10",
+    "t": "2026-11-17",
     "ll": [
       35.6322,
       139.2714
@@ -554,9 +554,17 @@
         "n": "タカオネ",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182499",
         "km": 0.1,
-        "r": 4.53,
-        "rc": 235,
+        "r": 4.5,
+        "rc": 236,
         "min": 6750
+      },
+      {
+        "n": "Mt.TAKAO BASE CAMP",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D177916",
+        "km": 0.3,
+        "r": 4.31,
+        "rc": 57,
+        "min": 3850
       }
     ]
   },
@@ -826,7 +834,7 @@
   },
   "長瀞紅葉まつり2026": {
     "v": 2,
-    "t": "2026-11-10",
+    "t": "2026-11-17",
     "ll": [
       36.11468,
       139.10965
@@ -838,7 +846,7 @@
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D68504",
         "km": 1.1,
         "r": 5.0,
-        "rc": 178,
+        "rc": 179,
         "min": 33500
       },
       {
@@ -846,16 +854,16 @@
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178289",
         "km": 0.8,
         "r": 4.64,
-        "rc": 454,
+        "rc": 458,
         "min": 20200
       },
       {
-        "n": "kieto 秩父",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D193371",
-        "km": 3.4,
-        "r": 4.5,
-        "rc": 38,
-        "min": 6400
+        "n": "長瀞温泉 花のおもてなし 長生館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D9485",
+        "km": 2.2,
+        "r": 4.45,
+        "rc": 1338,
+        "min": 11500
       }
     ]
   },
@@ -3491,7 +3499,7 @@
   },
   "高尾山": {
     "v": 2,
-    "t": "2026-11-10",
+    "t": "2026-11-17",
     "ll": [
       35.6322,
       139.2714
@@ -3502,9 +3510,17 @@
         "n": "タカオネ",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182499",
         "km": 0.1,
-        "r": 4.53,
-        "rc": 235,
+        "r": 4.5,
+        "rc": 236,
         "min": 6750
+      },
+      {
+        "n": "Mt.TAKAO BASE CAMP",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D177916",
+        "km": 0.3,
+        "r": 4.31,
+        "rc": 57,
+        "min": 3850
       }
     ]
   },
@@ -3963,7 +3979,7 @@
   },
   "第10回うずまの竹あかり": {
     "v": 2,
-    "t": "2026-11-10",
+    "t": "2026-11-17",
     "ll": [
       36.34159,
       139.74301
@@ -3982,16 +3998,16 @@
         "n": "かな半旅館",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D41393",
         "km": 4.4,
-        "r": 4.61,
-        "rc": 132,
+        "r": 4.62,
+        "rc": 133,
         "min": 5600
       },
       {
         "n": "HOTEL R9 The Yard 栃木大平",
         "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196823",
         "km": 3.3,
-        "r": 4.24,
-        "rc": 162,
+        "r": 4.23,
+        "rc": 163,
         "min": 3600
       }
     ]
