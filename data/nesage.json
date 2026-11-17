@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-17 19:13",
+  "at": "2026-11-17 21:32",
   "since": "2026-11-01",
   "tracked": 264,
   "days": 16,
@@ -23,7 +23,7 @@
       "base": 3960.0,
       "pct": 37,
       "days": 14,
-      "rc": 1001,
+      "rc": 1003,
       "av": 4.55,
       "shop": "triple shop",
       "plain": "https://item.rakuten.co.jp/tripleshop/10000191/"
@@ -35,7 +35,7 @@
       "base": 3100.0,
       "pct": 10,
       "days": 14,
-      "rc": 2324,
+      "rc": 2325,
       "av": 4.52,
       "shop": "ライフジョイ工房",
       "plain": "https://item.rakuten.co.jp/lifejoy-shop/10000044/"
@@ -47,7 +47,7 @@
       "base": 4433.0,
       "pct": 10,
       "days": 14,
-      "rc": 1015,
+      "rc": 1016,
       "av": 4.59,
       "shop": "ライフジョイ工房",
       "plain": "https://item.rakuten.co.jp/lifejoy-shop/10000093/"
