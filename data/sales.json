@@ -10,7 +10,14 @@
    "name": "楽天ブラックフライデー",
    "start": "2026-11-19T20:00",
    "end": "2026-11-25T01:59",
-   "url": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+   "url": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+   "entry_start": "2026-11-12T10:00",
+   "coupon_end": "2026-11-19T21:59",
+   "coupon_url": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/20261119jfpze/specialcoupon/",
+   "coupon_name": "店内全品最大50%OFFクーポン（対象ショップ限定）",
+   "points_day": "12月15日ごろ",
+   "checked": "2026-11-17",
+   "faq_note": "11/17 月が楽天の公式ページ（blackfriday/・specialcoupon/・guide/）で確かめた。数字を変える時は公式を読み直す。"
   }
  ]
 }

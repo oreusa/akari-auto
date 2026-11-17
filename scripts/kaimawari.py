@@ -74,6 +74,79 @@ def when(s):
     return f"{a.month}/{a.day}（{WEEK[a.weekday()]}）{a:%H:%M} 〜 {b.month}/{b.day}（{WEEK[b.weekday()]}）{b:%H:%M}"
 
 
+def aff(u):
+    """楽天のページへのリンクを、紹介の印つきに（ID が無い時はそのまま）。"""
+    import urllib.parse
+    aid = os.environ.get("RAKUTEN_AFFILIATE_ID")
+    q = urllib.parse.quote(u, safe="")
+    return f"https://hb.afl.rakuten.co.jp/hgc/{aid}/?pc={q}&m={q}" if aid else u
+
+
+def md(iso):
+    a = datetime.fromisoformat(iso)
+    return f"{a.month}/{a.day}（{WEEK[a.weekday()]}）{a:%H:%M}"
+
+
+def set10(groups):
+    """11/17 月：10店で10倍。ジャンルを順に回って、別々のお店の物を10個えらぶ（ページの中の物だけ）。"""
+    out, i = [], 0
+    while len(out) < 10:
+        added = False
+        for g, v in groups:
+            if i < len(v) and len(out) < 10:
+                out.append((g, v[i]))
+                added = True
+        if not added:
+            break
+        i += 1
+    return out
+
+
+def plan(sale, groups):
+    """買う前の段取り・10店の組み立て・よくある質問（数字は sales.json＝公式で確かめた物だけ）。"""
+    if not sale:
+        return "", ""
+    st, en = sale["start"], sale["end"]
+    ev = sale["name"]
+    steps = []
+    es = sale.get("entry_start")
+    steps.append(("エントリーする", (f"{md(es)}からできます。" if es else "") + "期間中にエントリーすれば、エントリー前の買い物も対象です。押し忘れがいちばん多い失敗です。"))
+    if sale.get("coupon_end"):
+        steps.append(("クーポンを先に取っておく", f"{esc(sale.get('coupon_name') or 'クーポン')}は、使えるのが<b>{md(st)}〜{md(sale['coupon_end'])}の2時間だけ</b>です。取れるのは始まる前から。条件や回数はお店ごとにちがいます。"))
+    steps.append(("買う物をカートに入れておく", "1店で1,000円（税込・送料は入らない）以上が1店に数えられます。同じ店でいくつ買っても1店です。クーポンを使って999円以下になると数えられないので、1,000円ちょうどの物にクーポンを使う時は気をつけてください。下の10店の例やジャンルから選べます。"))
+    steps.append(("始まったら買う", f"{md(st)}から{md(en)}まで。2店で2倍、10店で10倍（11店からも10倍）。買う順番は関係ありません。"))
+    steps.append(("ポイントを待つ", f"買いまわりで増える分は上限7,000ポイント（期間限定）。" + (f"もらえるのは{esc(sale['points_day'])}です。" if sale.get("points_day") else "")))
+    li = "".join(f'<li><b>{i}. {t}</b><span>{d}</span></li>' for i, (t, d) in enumerate(steps, 1))
+    links = f'<a class="entry nofilt" href="{esc(aff(sale.get("url") or ""))}" rel="sponsored noopener" target="_blank" data-k="エントリー2">楽天でエントリーする →</a>'
+    if sale.get("coupon_url"):
+        links += f'<a class="cpn nofilt" href="{esc(aff(sale["coupon_url"]))}" rel="sponsored noopener" target="_blank" data-k="クーポン">開始2時間のクーポンを取る →</a>'
+    box = f'<section class="pl"><h2>{esc(ev)}の回り方</h2><ol>{li}</ol>{links}</section>'
+    s10 = set10(groups)
+    if len(s10) >= 2:
+        tot = sum(e["price"] for _, e in s10)
+        n = len(s10)
+        pt = min(7000, tot * (n - 1) // 100)
+        rows = "".join(f'<li><a class="r" href="{esc(e["url"])}" rel="sponsored noopener" target="_blank" data-k="10店｜{esc(e["name"][:24])}"><i>{k}</i><span>{esc(e["name"])}<small>{esc(g)}・{esc(e["shop"])}</small></span><b>{e["price"]:,}円</b></a></li>'
+                       for k, (g, e) in enumerate(s10, 1))
+        box += (f'<section class="pl s10"><h2>{n}店で{n}倍にする例</h2><p class="sm">下のジャンルから、別々のお店の物を{n}個えらびました。毎日なくなる物だけです。</p><ol>{rows}</ol>'
+                f'<p class="tot">合計 <b>{tot:,}円</b>（送料込み） → 買いまわりで増える分 <b>{pt:,}</b>ポイントの目安</p>'
+                '<p class="sm">ポイントは通常の1倍とほかのキャンペーンを入れない目安です。値段は変わることがあります。</p></section>')
+    faq = [
+        (f"{ev}はいつ？", f"{when(sale)}です（楽天の公式ページより）。"),
+        ("エントリーは必要？", "必要です。" + (f"{md(es)}から" if es else "") + "期間中にエントリーすれば、エントリー前の買い物も対象になります。"),
+        ("何店で何倍？", "1店で1,000円（税込）以上買ったお店の数で、2店で2倍、10店で10倍です。11店以上も10倍です。"),
+        ("ポイントの上限は？", "買いまわりで増える分は7,000ポイントまで（期間限定ポイント）です。"),
+    ]
+    if sale.get("coupon_end"):
+        faq.append(("最大50%OFFのクーポンはいつ使える？", f"{md(st)}〜{md(sale['coupon_end'])}の2時間だけです。対象のお店だけで、条件はお店ごとにちがいます。"))
+    fq = "".join(f'<details><summary>{esc(q)}</summary><p>{a}</p></details>' for q, a in faq)
+    box += f'<section class="pl fq"><h2>よくある質問</h2>{fq}<p class="sm">{esc(sale.get("checked","").replace("-","/")[5:])} に楽天の公式ページで確かめました。条件は必ず公式ページでも確かめてください。</p></section>'
+    import re as _re
+    ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": _re.sub(r"<[^>]+>", "", a)}} for q, a in faq]}
+    return box, '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False) + "</script>"
+
+
 def card(e):
     img = f'<img src="{esc(e["img"])}" alt="" width="84" height="84" loading="lazy" onerror="this.remove()">' if e["img"] else ""
     return (f'<li class="it"><a class="cd" href="{esc(e["url"])}" rel="sponsored noopener" target="_blank" data-k="{esc(e["name"][:30])}">'
@@ -85,7 +158,8 @@ def card(e):
 def render(groups, now, sale):
     upd = f"{now.month}/{now.day}（{WEEK[now.weekday()]}）{now:%H:%M} 楽天で確かめた値段"
     if sale:
-        head = f'<p class="sale"><b>{esc(sale["name"])}</b><br>{when(sale)}</p>'
+        head = (f'<p class="sale"><b>{esc(sale["name"])}</b><br>{when(sale)}'
+                f'<span class="st" id="st" data-s="{esc(sale["start"])}" data-e="{esc(sale["end"])}" data-c="{esc(sale.get("coupon_end") or "")}"></span></p>')
         # 11/1 月：買う前に要るエントリーの入口（楽天は押してから24時間の買い物が紹介料の対象）
         import urllib.parse
         aid = os.environ.get("RAKUTEN_AFFILIATE_ID")
@@ -99,6 +173,7 @@ def render(groups, now, sale):
     else:
         head = '<p class="sale">次のお買い物マラソンの日程が出たら、ここに書きます。</p>'
     n = sum(len(v) for _, v in groups)
+    pbox, pld = plan(sale, groups)
     tabs = "".join(f'<button type="button" data-f="{esc(g)}">{esc(g)}</button>' for g, v in groups if v)
     secs = "".join(f'<section class="ps" data-p="{esc(g)}"><h2>{esc(g)}<span class="c">{len(v)}件</span></h2><ul>{"".join(card(e) for e in v)}</ul></section>'
                    for g, v in groups if v)
@@ -111,7 +186,7 @@ def render(groups, now, sale):
 <link rel="canonical" href="{SITE}/{PAGE}">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
 <meta property="og:image" content="{SITE}/og-v10.png"><meta property="og:url" content="{SITE}/{PAGE}"><meta name="twitter:card" content="summary">
-<link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png">
+{pld}<link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400&display=swap">
 <style>.entry{{display:block;background:#BF0000;color:#fff;text-align:center;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.06em;padding:14px 10px;border-radius:6px;margin:12px 0 4px}}
@@ -146,6 +221,18 @@ ul{{list-style:none;margin:0;padding:0}}.it{{margin:0 0 10px}}
 .tx{{display:flex;flex-direction:column;gap:3px;min-width:0}}
 .nm{{font:600 13.5px/1.55 var(--go)}}.mt{{font-size:12px;color:var(--sub)}}.mt b{{font-size:14px;color:var(--ink)}}
 .sh{{font-size:11px;color:var(--mute)}}.go{{font-size:12px;color:var(--brown);margin-top:2px}}
+.st{{display:block;font-weight:700;color:var(--red);margin-top:4px}}
+.pl{{background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;margin:18px 0 0}}
+.pl h2{{font:600 15px/1.4 var(--min);letter-spacing:.1em;margin:0 0 10px}}
+.pl ol{{list-style:none;margin:0;padding:0}}.pl li{{margin:0 0 10px;font-size:12.5px;line-height:1.8;color:var(--sub)}}
+.pl li>b{{display:block;font-size:13.5px;color:var(--ink)}}.pl li span b{{color:var(--red)}}
+.cpn{{display:block;text-align:center;font-weight:700;font-size:14px;letter-spacing:.04em;padding:12px 10px;border-radius:6px;margin:8px 0 0;border:1.5px solid #BF0000;color:#BF0000;background:#fff}}
+.s10 li{{margin:0;border-top:1px solid var(--line)}}.s10 .r{{display:flex;gap:10px;align-items:center;padding:9px 0}}
+.s10 .r i{{flex:none;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font:700 11px/22px var(--go);text-align:center;font-style:normal}}
+.s10 .r span{{flex:1;min-width:0;font-size:12.5px;line-height:1.5;color:var(--ink)}}.s10 .r small{{display:block;font-size:10.5px;color:var(--mute)}}
+.s10 .r>b{{flex:none;font-size:13px}}.tot{{font-size:13px;margin:10px 0 0;border-top:1px solid var(--line2);padding-top:10px}}.tot b{{color:var(--red);font-size:16px}}
+.pl .sm{{font-size:11px;color:var(--mute);margin:6px 0 0}}
+.fq details{{border-top:1px solid var(--line);padding:10px 0}}.fq summary{{font-weight:700;font-size:13px;cursor:pointer}}.fq details p{{font-size:12.5px;color:var(--sub);margin:6px 0 0}}
 .foot{{font-size:11.5px;line-height:1.9;color:var(--sub);border-top:1px solid var(--line2);margin-top:32px;padding-top:16px}}
 .back{{display:block;text-align:center;font:700 13px/1 var(--go);letter-spacing:.1em;border:1px solid var(--ink);border-radius:2px;padding:14px;margin:20px 0 0;background:#fff}}
 .sign{{text-align:center;font:400 11px/1 var(--en);letter-spacing:.3em;color:var(--brown);margin:24px 0 0}}
@@ -158,6 +245,7 @@ ul{{list-style:none;margin:0;padding:0}}.it{{margin:0 0 10px}}
 {head}
 <p class="lead">{esc(ev)}は、1店で1,000円以上の買い物をしたお店の数だけ、ポイントが上がります（最大10倍）。あと1店を足したい時のために、1,000〜1,199円で送料込み、レビュー1,000件以上・評価4.0以上の物だけを、楽天で確かめて{n}件集めました。同じお店は1つだけにしています。</p>
 </header>
+{pbox}
 <div class="calc"><h2>ポイントの計算</h2>
 <label>買ったお店の数<input id="kn" type="number" inputmode="numeric" min="1" max="10" value="5"></label>
 <label>買い物の合計（円）<input id="ky" type="number" inputmode="numeric" min="0" step="100" value="10000"></label>
@@ -180,12 +268,22 @@ ul{{list-style:none;margin:0;padding:0}}.it{{margin:0 0 10px}}
     if(m0<0)nt+='金額はマイナスにできないので、0円で計算しています。';
     var p=Math.min(7000,Math.floor(m*(s-1)/100));
     r.innerHTML=s+'店で、買いまわりの分は <b>'+p.toLocaleString()+'</b> ポイント'+(s<10?'<br>あと1店（1,000円）足すと、+'+Math.min(7000-p,Math.floor((m+1000)*s/100)-p).toLocaleString()+'ポイント':'')+(nt?'<br><small style="color:#A8432F">'+nt+'</small>':'');}}
+  var st=document.getElementById('st');
+  if(st){{var S=new Date(st.dataset.s+':00+09:00'),E=new Date(st.dataset.e+':00+09:00'),C=st.dataset.c?new Date(st.dataset.c+':00+09:00'):null;
+    function lf(ms){{var m=Math.max(0,Math.floor(ms/6e4)),d=Math.floor(m/1440),h=Math.floor(m%1440/60),mi=m%60;return (d?d+'日':'')+(d||h?h+'時間':'')+(d?'':mi+'分');}}
+    function tick(){{var t=new Date(),x='';
+      if(t<S)x='始まるまで あと'+lf(S-t)+'（先にエントリーとクーポン）';
+      else if(C&&t<=C)x='開催中・最大50%OFFクーポンは あと'+lf(C-t);
+      else if(t<=E)x='開催中・終わりまで あと'+lf(E-t);
+      else x='終わりました';
+      st.textContent=x;}}
+    tick();setInterval(tick,30000);}}
   n.addEventListener('input',calc);y.addEventListener('input',calc);calc();
   var bs=document.querySelectorAll('.tabs button');
   bs.forEach(function(b){{b.addEventListener('click',function(){{var f=b.dataset.f;
     document.querySelectorAll('.ps').forEach(function(s){{s.hidden=!!f&&s.dataset.p!==f}});
     bs.forEach(function(x){{x.classList.toggle('on',x===b)}});}})}});
-  document.querySelectorAll('.cd').forEach(function(a){{a.addEventListener('click',function(){{
+  document.querySelectorAll('.cd,.s10 .r,.cpn,.pl .entry').forEach(function(a){{a.addEventListener('click',function(){{
     try{{navigator.sendBeacon("/c?f=kaimawari&s=kaimawari&k="+encodeURIComponent(a.dataset.k||''))}}catch(e){{}}}})}});
 }})();
 </script></body></html>

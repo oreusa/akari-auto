@@ -156,6 +156,22 @@ for n in os.listdir(S):
     if h2 != h:
         wr(n, h2)
 # ---------- 検索用：1ページに1つ、探される言葉を題と説明に（11/2 オーナー OK「どのページもヒットさせたい」。見た目は変えない）
+def _kaim_title():
+    """11/17 月：今のセールの名前と始まりの日時を題に（「楽天ブラックフライデー いつ」で探す人へ）。data/sales.json＝公式で確かめた物。"""
+    import json as _j
+    from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+    now = _dt.now(_tz(_td(hours=9))).replace(tzinfo=None)
+    try:
+        for x in _j.load(open(os.path.join(R, "data", "sales.json"), encoding="utf-8")).get("sales", []):
+            a, b = _dt.fromisoformat(x["start"]), _dt.fromisoformat(x["end"])
+            if b >= now:
+                return (f"{x['name']}{a.year}はいつ？{a.month}/{a.day}({'月火水木金土日'[a.weekday()]}){a.hour}:{a:%M}〜{b.month}/{b.day}({'月火水木金土日'[b.weekday()]}){b.hour}:{b:%M}｜回り方と買いまわり1,000円ぽっきり（送料込み）｜LIFE NOTE")
+    except Exception:
+        pass
+    return "楽天お買い物マラソン 買いまわり1,000円ぽっきり おすすめ（送料込み・レビュー1,000件以上）｜LIFE NOTE"
+
+
+KT = _kaim_title()
 SEO = {
     "ima.html": ("今から行ける関東のおでかけ｜近い順・今日開いている所と天気", None, "/ima"),
     "tomari.html": ("泊まりで行く関東のおでかけ｜イベント会場の近くの宿｜LIFE NOTE", None, "/tomari"),
@@ -163,7 +179,7 @@ SEO = {
     "furusato.html": ("ふるさと納税 お米1万円で何kg？トイレットペーパー・水も寄付1万円あたりで比較｜LIFE NOTE", None, "/furusato"),
     "tanka.html": ("トイレットペーパー・水・お米 1個あたりいちばん安いのは？楽天を送料込みで比較｜LIFE NOTE", None, "/tanka"),
     # 11/17 月：ブラックフライデー（11/19〜25）も同じ買いまわり。両方の言葉で出るように
-    "kaimawari.html": ("楽天ブラックフライデー・お買い物マラソン 買いまわり1,000円ぽっきり おすすめ（送料込み・レビュー1,000件以上）｜LIFE NOTE", None, "/kaimawari"),
+    "kaimawari.html": (KT, None, "/kaimawari"),
     "nesage.html": ("いまが買い時の日用品｜毎日の値段を記録して比較｜LIFE NOTE",
                     "楽天のよく買われる毎日の物の値段を毎日記録して、ふだんの値段より安くなった物だけを並べます。お買い物マラソン・ブラックフライデーの前に。", "/nesage"),
 }
