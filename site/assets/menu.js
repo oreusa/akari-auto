@@ -373,6 +373,7 @@ var NB=[
  {k:"od",t:"おでかけ",nm:A.site+"おでかけリスト",en:"ODEKAKE",c:"#E39B3A",lead:"週末どこ行く？を、日付と地図で。",rows:[
   ["/odekake","おでかけリスト","開催中",/^\/odekake/],["/ima","いま行ける","近い順",/^\/ima/],
   ["/illumination","イルミネーション","日程一覧",/^\/illumination/],["/koyo","紅葉ライトアップ","夜の時間",/^\/koyo/]]
+  .concat([["/kaiten","開店・閉店ニュース","新しいお店",/^\/kaiten/]])
   .concat(LF?[]:[["/hatsumode","初詣","大晦日・三が日",/^\/hatsumode/]])
   .concat([["/tomari","泊まりで行く","おでかけと宿",/^\/tomari/]]),
   sub:[["/koe","リクエスト・感想"],["https://ig.me/m/"+A.ig,"おでかけ掲載"]]},
