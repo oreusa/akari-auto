@@ -2691,6 +2691,114 @@
       "note": "柏市｜館内3か所のクイズスタンプラリー。11/29はエルモとクッキーモンスターのグリーティング",
       "url": "https://mitsui-shopping-park.com/lalaport/kashiwa/cp/20thanniversary/",
       "checked": "2026-11-16"
+    },
+    {
+      "title": "ティム・バートンのラビリンス",
+      "pref": "東京",
+      "place": "CREVIA BASE Tokyo",
+      "when": "11/25〜2/21",
+      "start": "2026-11-25",
+      "ends": "2027-02-21T20:00",
+      "free": false,
+      "note": "江東区｜豊洲の体験型展示。3歳以下無料、1/1・1/2休み",
+      "url": "https://tokyo.timburtonexhibition.com/",
+      "checked": "2026-11-17"
+    },
+    {
+      "title": "第15回 世界キャラクターさみっとin羽生",
+      "pref": "埼玉",
+      "place": "羽生市役所",
+      "when": "11/21〜11/22",
+      "start": "2026-11-21",
+      "ends": "2026-11-22T15:00",
+      "free": true,
+      "note": "羽生市｜全国のご当地キャラが集まる。10:00〜15:00",
+      "url": "https://gotouchi-chara.jp/hanyu2026/",
+      "checked": "2026-11-17"
+    },
+    {
+      "title": "KURKKU FIELDS 7TH ANNIVERSARY MARKET",
+      "pref": "千葉",
+      "place": "KURKKU FIELDS",
+      "when": "11/22〜11/23",
+      "start": "2026-11-22",
+      "ends": "2026-11-23T17:00",
+      "free": false,
+      "note": "木更津市｜7周年のマーケット。10:00〜17:00",
+      "url": "https://kurkkufields.jp/topic/7th-anniversary/",
+      "checked": "2026-11-17"
+    },
+    {
+      "title": "第20回 長沼コミュニティまつり",
+      "pref": "千葉",
+      "place": "長沼コミュニティセンター",
+      "when": "11/22",
+      "start": "2026-11-22",
+      "ends": "2026-11-22T15:00",
+      "free": true,
+      "note": "千葉市稲毛区｜入場無料。9:30〜15:00",
+      "url": "https://naganumacc.jp/",
+      "checked": "2026-11-17"
+    },
+    {
+      "title": "2026日本ローカルヒーロー祭",
+      "pref": "千葉",
+      "place": "フェスティバルウォーク蘇我",
+      "when": "11/21〜11/22",
+      "start": "2026-11-21",
+      "ends": "2026-11-22T18:00",
+      "free": false,
+      "note": "千葉市中央区｜21日はアリオ蘇我で観覧無料、22日は有料（大人前売1,500円・子ども500円）",
+      "url": "https://yatsutama.com/localherojp/",
+      "checked": "2026-11-17"
+    },
+    {
+      "title": "第2回 常総新花火2026 X'mas",
+      "pref": "茨城",
+      "place": "鬼怒川堤防決壊の碑",
+      "when": "12/12",
+      "start": "2026-12-12",
+      "ends": "2026-12-12T19:20",
+      "free": false,
+      "note": "常総市｜若手花火師の選手権。全席有料、17:00〜",
+      "url": "https://shin-hanabi.com/",
+      "checked": "2026-11-17"
+    },
+    {
+      "title": "第23回 土浦カレーフェスティバル",
+      "pref": "茨城",
+      "place": "J:COMフィールド土浦",
+      "when": "11/21〜11/22",
+      "start": "2026-11-21",
+      "ends": "2026-11-22T15:00",
+      "free": true,
+      "note": "土浦市｜入場無料。10:00〜15:00",
+      "url": "https://www.city.tsuchiura.lg.jp/kanko-bunka-sports/kanko-matsuri-event/news/page022212.html",
+      "checked": "2026-11-17"
+    },
+    {
+      "title": "とちぎ アグリフェスタ2026",
+      "pref": "栃木",
+      "place": "大平運動公園",
+      "when": "11/21・12/5",
+      "start": "2026-11-21",
+      "ends": "2026-12-05T14:00",
+      "free": true,
+      "note": "栃木市｜入場無料。11/21は大平運動公園、12/5は栃木市総合運動公園。9:00〜14:00",
+      "url": "https://www.tochigi-kankou.or.jp/news/20445",
+      "checked": "2026-11-17"
+    },
+    {
+      "title": "白井屋ホテル アートイルミネーション2026",
+      "pref": "群馬",
+      "place": "白井屋ホテル",
+      "when": "9/19〜1/12",
+      "start": "2026-09-19",
+      "ends": "2027-01-12T23:00",
+      "free": true,
+      "note": "前橋市｜ミロコマチコの作品。鑑賞無料、点灯17:00〜23:00",
+      "url": "https://www.shiroiya.com/news/news-topics/20260608-2/",
+      "checked": "2026-11-17"
     }
   ]
 }
