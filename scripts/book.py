@@ -126,7 +126,8 @@ def post_image(texts, day, slot):
         idx = (load_json(path("data", "postimg.json"), {}) or {}).get("items") or {}
         hit = None
         for t in texts:
-            for m in re.finditer(r"pages\.dev/((?:o/)?[a-z0-9-]+)", t):
+            # 11/17 関東のアドレスが kanto.townnote.app に変わった（11/15）のに pages.dev だけを見ていて、11/15 夕方から絵が1枚も付かなかった
+            for m in re.finditer(r"(?:pages\.dev|townnote\.app)/((?:o/)?[a-z0-9-]+)", t):
                 hit = idx.get("/" + m.group(1)) or hit
         if not hit:
             return None, None
