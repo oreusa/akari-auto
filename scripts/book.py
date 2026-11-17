@@ -129,6 +129,10 @@ def post_image(texts, day, slot):
             # 11/17 関東のアドレスが kanto.townnote.app に変わった（11/15）のに pages.dev だけを見ていて、11/15 夕方から絵が1枚も付かなかった
             for m in re.finditer(r"(?:pages\.dev|townnote\.app)/((?:o/)?[a-z0-9-]+)", t):
                 hit = idx.get("/" + m.group(1)) or hit
+            # 見張り（11/17）：アドレスがまた変わっても気づけるように、上で拾えなかったURLが絵の表にある道なら知らせる
+            for m in re.finditer(r"https://([a-z0-9.-]+)/((?:o/)?[a-z0-9-]+)", t):
+                if not re.search(r"(?:pages\.dev|townnote\.app)$", m.group(1)) and idx.get("/" + m.group(2)):
+                    print(f"::warning::投稿の絵：{m.group(1)} は絵を探す対象に入っていない（アドレスが変わった？ book.py post_image の正規表現を直す）")
         if not hit:
             return None, None
         if not texts[0].startswith("【くらべた"):
