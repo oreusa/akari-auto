@@ -210,7 +210,7 @@ def buffer_create(channel_id, service, thread, due_utc, topic=None, draft=False,
         "metadata": {k: v for k, v in meta.items() if v} or None,
         "source": "akari-auto",
     }
-    if video and service == "instagram":
+    if video and service in ("instagram", "twitter", "threads"):  # 11/17 リールの動画を X・Threads にも
         inp["assets"] = [{"video": {"url": video}}]
     elif images:
         inp["assets"] = [{"image": {"url": u, "metadata": {"altText": alt or "4コマ漫画"}}} for u in images]
