@@ -98,9 +98,10 @@ page = f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name
 <p>3つ以上を数字で比べて選んだ、暮らしの物。<br>いまが買い時の物と、お得な日も。</p>
 <div class="st"><div><span>比べた物</span><b id="k1">―</b></div><div><span>今だけのお得</span><b id="k2">―</b></div><div><span>比べた種類</span><b>{NKIND}<small style="font-size:12px">種類</small></b></div></div>
 <div class="pv" id="kpv"></div><div class="go">おかいものリストを開く<span>→</span></div></a>
-<p style="font-size:10.5px;color:#8C7B6E;text-align:center;margin:-6px 0 0">おかいものリストのリンクには広告（PR）があります</p></section>
+</section>
+<p style="font-size:10.5px;color:#8C7B6E;text-align:center;margin:-6px 0 0">おでかけの券・宿と、おかいものリストのリンクには広告（PR）があります</p>
 
-<section class="prom"><h2>NOTE RULES　─　書きかたの約束</h2><ol><li><b>公式だけ</b>おでかけは<br>公式ページだけ</li><li><b>数字で比べる</b>買い物は<br>3つ以上を比べて</li><li><b>7都県</b>どの都県も<br>同じように</li></ol></section>
+<section class="prom"><h2>NOTE RULES　─　書きかたの約束</h2><ol><li><b>公式だけ</b>公式ページ・<br>公式の数字だけ</li><li><b>7都県</b>どの都県も<br>同じように</li><li><b>毎日ふえる</b>見つけたら、<br>その日に足します</li></ol></section>
 
 <nav class="cos"><a href="https://ig.me/m/usagichan_ai_si" data-k="入口｜おでかけ掲載"><small>LISTING</small><b>おでかけ掲載</b><span>新しいお店や、毎年のイベントのご紹介</span></a><a href="https://room.rakuten.co.jp/ai_usagichan/items" data-k="入口｜楽天ROOM"><small>RAKUTEN ROOM</small><b>楽天ROOM</b><span>うさぎが比べて選んだ物を、まとめて置いています</span></a></nav>
 <div class="sns"><h2>FOLLOW</h2><a href="https://www.instagram.com/usagichan_ai_si/">Instagram</a><a href="https://www.threads.com/@usagichan_ai_si">Threads</a><a href="https://x.com/ai_usagichan">X</a></div>
