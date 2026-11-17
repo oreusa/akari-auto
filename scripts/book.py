@@ -504,6 +504,7 @@ def run(now=None):
         append_log(now.date().isoformat(), f"4コマ 予約×：{str(e)[:150]}")
     try:
         changed |= book_outing_reel(cfg, state, now)
+        changed |= book_reel_sns(cfg, state, now)
         changed |= book_reel_again(cfg, state, now)
         changed |= book_hp_reel(cfg, state, now)
     except BufferError as e:
@@ -884,6 +885,82 @@ def book_outing_reel(cfg, state, now):
         rec["error"] = str(e)[:200]
         append_log(day, f"おでかけリール instagram 予約×（{rec['tries']}回目）：{str(e)[:150]}")
     return True
+
+
+# 11/17 オーナー「リール動画をxにも投稿、朝2つアカウントに」「Threadsはどうする？動画載せる？」「これからそうしよう、フォロワー集め」
+# インスタに予約したおでかけリールと同じ動画を、X はリールと同じ時刻、Threads は 10:30 に出す。
+# インスタの予約ができてから（同じ動画の URL を使う）。インスタが作り直しで差し替わったら、出る10分より前なら X・Threads も入れ直す。
+REEL_SNS = (("twitter", None), ("threads", "10:30"))
+
+
+def reel_sns_texts(spec, svc):
+    from lib import x_weight
+    tx = spec.get("text") or {}
+    place = (tx.get("place") or "").split("｜")
+    name = place[0].strip()
+    city = place[1].strip() if len(place) > 1 else ""
+    head = f"{name}（{city}）" if city else name
+    title = "。".join(t for t in (tx.get("title") or []) if t)
+    info = [f"・{a} {b}" for a, b in (tx.get("info") or []) if a and b]
+    note = "出かける前に、公式ページで確かめてください。"
+    if svc == "twitter":
+        tags = "#関東おでかけ #" + name.replace(" ", "").replace("　", "")
+        rows = list(info)
+        while True:
+            t = "\n".join([head, title, ""] + rows + ["", note, "", tags])
+            if x_weight(t) <= 280 or not rows:
+                return [t] if x_weight(t) <= 280 else []
+            rows.pop()
+    body = "\n".join([head, title, ""] + ([tx["map_caption"]] if tx.get("map_caption") else []) + info + ["", note]).strip()
+    return [body, "日付と地図でさがせる、関東おでかけリスト"]
+
+
+def book_reel_sns(cfg, state, now):
+    day = now.date().isoformat()
+    spec = load_json(path("reel", f"{day}.json"))
+    top = state.get(f"{day} おでかけリール") or {}
+    ig = top.get("instagram") or {}
+    if not spec or not ig.get("id") or not top.get("url") or os.path.exists(path("reel", "STOP")):
+        return False
+    changed = False
+    for svc, hhmm in REEL_SNS:
+        if svc not in cfg["channels"]:
+            continue
+        slot = hhmm or spec.get("time") or "07:30"
+        due = datetime.fromisoformat(f"{day}T{slot}").replace(tzinfo=JST)
+        mins = (due - now).total_seconds() / 60
+        rec = top.setdefault(svc, {"tries": 0})
+        if rec.get("id") and not rec.get("seen") and rec.get("url") != top["url"] and mins > 10:
+            try:
+                delete_post(rec["id"])
+            except Exception as e:
+                append_log(day, f"おでかけリール {svc} 古い予約を消せない：{str(e)[:150]}")
+                continue
+            append_log(day, f"おでかけリール {svc} 作り直した動画に差し替え：古い予約 {rec['id']} を消した")
+            rec = top[svc] = {"tries": 0}
+            changed = True
+        if rec.get("id") or rec.get("tries", 0) >= MAX_TRIES or not (5 < mins <= LEAD_MIN):
+            continue
+        texts = reel_sns_texts(spec, svc)
+        if svc == "threads":
+            texts = with_page(texts, svc, cfg, f"r{slot}", due)
+        if not texts:
+            rec["tries"] = MAX_TRIES
+            append_log(day, f"おでかけリール {svc} 文が280に入らない")
+            changed = True
+            continue
+        rec["tries"] = rec.get("tries", 0) + 1
+        try:
+            p = buffer_create(cfg["channels"][svc], svc, texts, due.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                              topic=spec.get("tab") if svc == "threads" else None, video=top["url"])
+            rec.update({"id": p["id"], "kind": "おでかけリール", "at": slot, "texts": texts, "svc": svc, "url": top["url"]})
+            rec.pop("error", None)
+            append_log(day, f"おでかけリール {svc} 予約OK（{slot}）")
+        except BufferError as e:
+            rec["error"] = str(e)[:200]
+            append_log(day, f"おでかけリール {svc} 予約×（{rec['tries']}回目）：{str(e)[:150]}")
+        changed = True
+    return changed
 
 
 def book_reel_again(cfg, state, now):
