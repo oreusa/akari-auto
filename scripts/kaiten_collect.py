@@ -30,7 +30,7 @@ MAXOPEN = 60
 WANT = re.compile(r"オープン|ＯＰＥＮ|OPEN|開店|閉店|出店|新店|移転|開業|グランドオープン|リニューアル")
 NOT = re.compile(r"オンライン|ＥＣ|EC|Amazon|楽天市場|TikTok|アプリ|サイト|チャンネル|ウェビナー|セミナー|説明会|募集|求人|採用|大会|"
                  r"出店者|催事|販売開始|発売|予約開始|配信|放送|連載|ラボ|オープンイノベーション|オープンハウス|オープンキャンパス|"
-                 r"オープンソース|オープンデータ|オープンAPI|特許|株式|決算|資金調達|提携|受賞|ランキング|調査|アンケート")
+                 r"オープンソース|オープンデータ|オープンAPI|記念|周年|特許|株式|決算|資金調達|提携|受賞|ランキング|調査|アンケート")
 SHOPLOC = re.compile(r"店舗・民間施設")
 
 
@@ -86,7 +86,11 @@ def name_of(title):
     # オープン等の直前のかぎかっこ
     m = list(re.finditer(r"「([^」]{2,40})」", t[:max((t.find(w) for w in ("オープン", "OPEN", "開店", "閉店", "出店", "開業") if w in t), default=len(t))]))
     if m:
-        return m[-1].group(1)
+        n = m[-1].group(1)
+        # 「大日店」だけの時は、前のかぎかっこ（お店の名前）とつなぐ
+        if len(n) <= 7 and n.endswith("店") and len(m) > 1:
+            n = m[-2].group(1) + " " + n
+        return n
     for a, b in (("「", "」"), ("『", "』"), ("“", "”")):
         for m in re.finditer(re.escape(a) + r"(.{2,40}?)" + re.escape(b), title):
             n = m.group(1).strip()
@@ -144,7 +148,7 @@ def from_release(u, t, pub, h):
     body = re.split(r"【?会社概要】?|■会社概要|＜会社概要＞|会社情報\n|本件に関する(?:お)?問い?合わせ|報道関係者", body)[0]
     addr = ""
     for m in re.finditer(r"(?:住所|所在地|場所|店舗所在地)\s*[:：]?\s*(?:〒?\s*\d{3}-?\d{4}\s*)?([^\n]{6,60})", body):
-        a = re.split(r"[:：][^\s:：]{2,8}[:：]", z2h(m.group(1)))[0].strip(" ・:：")
+        a = re.split(r"[:：][^\s:：\d]{2,8}[:：]", z2h(m.group(1)))[0].strip(" ・:：")
         if re.search(r"代表|運営|は、|が運営|本社", a) or not re.search(r"\d|丁目|番地", a):
             continue
         a = re.split(r"[)）](?!.*[（(])", a)[0] if a.count(")") + a.count("）") > a.count("(") + a.count("（") else a
@@ -164,7 +168,7 @@ def from_release(u, t, pub, h):
     tm = ""
     m = re.search(r"営業時間\s*[:：]?\s*([^\n]{3,50})", z2h(body))
     if m:
-        tm = re.split(r"※|（L\.?O|\(L\.?O|[:：][^\s:：]{2,8}[:：]", m.group(1))[0].strip(" ・:：")[:40]
+        tm = re.split(r"※|（L\.?O|\(L\.?O|[:：][^\s:：\d]{2,8}[:：]", m.group(1))[0].strip(" ・:：")[:40]
     k = kind_of(t)
     ds = [d for d in find_date(t, pub) if pub - datetime.timedelta(days=45) <= d <= pub + datetime.timedelta(days=400)]
     if not ds:
