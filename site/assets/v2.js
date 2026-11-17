@@ -36,7 +36,7 @@ I.ai='<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4
 if(OK){var tb=tabs?[].slice.call(tabs.querySelectorAll("button")):[];
   /* 11/5 オーナー「AIで調べる項目、バーにいれたり」→ 左に「AIに聞く」（上の聞く欄へ） */
   bar.innerHTML='<button data-a="ai">'+I.ai+'<span>AIに聞く</span></button>'+tb.map(function(b,i){var t=b.dataset.t,l=b.childNodes[1]?b.childNodes[1].textContent:"";return '<button data-t="'+t+'"'+(b.classList.contains("on")?' class="cur"':'')+'>'+(I[t]||"")+'<span>'+l+'</span></button>';}).join("")+'<button class="mn" data-a="menu"><i></i>MENU</button>';}
-else bar.innerHTML='<button data-a="town">'+I.ai+'<span>街で探す</span></button><button data-t="now" class="cur">'+I.now+'<span>開催中</span></button><button data-t="up">'+I.up+'<span>これから</span></button><button data-a="map">'+I.map+'<span>地図</span></button><button data-a="inn">'+I.inn+'<span>泊まり</span></button><button class="mn" data-a="menu"><i></i>MENU</button>';
+else bar.innerHTML=/* 11/17 関西と同じ4つ＋MENU（「街で探す」を外す） */'<button data-t="now" class="cur">'+I.now+'<span>開催中</span></button><button data-t="up">'+I.up+'<span>これから</span></button><button data-a="map">'+I.map+'<span>地図</span></button><button data-a="inn">'+I.inn+'<span>泊まり</span></button><button class="mn" data-a="menu"><i></i>MENU</button>';
 document.body.appendChild(bar);
 function syncBar(){var on=tabs&&tabs.querySelector("button.on");bar.querySelectorAll("button[data-t]").forEach(function(b){b.classList.toggle("cur",!!on&&b.dataset.t===on.dataset.t)});}
 bar.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
