@@ -102,8 +102,9 @@ def render(groups, now, sale):
     tabs = "".join(f'<button type="button" data-f="{esc(g)}">{esc(g)}</button>' for g, v in groups if v)
     secs = "".join(f'<section class="ps" data-p="{esc(g)}"><h2>{esc(g)}<span class="c">{len(v)}件</span></h2><ul>{"".join(card(e) for e in v)}</ul></section>'
                    for g, v in groups if v)
-    title = "楽天お買い物マラソン 買いまわり 1,000円ぽっきり（送料込み）まとめ｜うさぎ│LIFE NOTES"
-    desc = "楽天お買い物マラソンの買いまわり用に、1,000〜1,199円・送料込み・レビュー1,000件以上・評価4.0以上の物だけを、ジャンルごとに集めました。ポイントの計算つき。"
+    ev = sale["name"].replace("楽天", "") if sale else "お買い物マラソン"  # 11/17 月：ブラックフライデーも同じ買いまわり（公式で確かめた）。題をその時のセールの名前に
+    title = f"楽天{ev} 買いまわり 1,000円ぽっきり（送料込み）まとめ｜うさぎ│LIFE NOTES"
+    desc = f"楽天{ev}の買いまわり用に、1,000〜1,199円・送料込み・レビュー1,000件以上・評価4.0以上の物だけを、ジャンルごとに集めました。ポイントの計算つき。"
     return f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}">
@@ -152,10 +153,10 @@ ul{{list-style:none;margin:0;padding:0}}.it{{margin:0 0 10px}}
 <body><div class="wrap">
 <header class="head"><img src="logo-s.png" alt="うさぎ│LIFE NOTES のロゴ" width="64" height="64">
 <p class="en">KAIMAWARI</p>
-<h1>買いまわりの1,000円ぽっきり<small>楽天お買い物マラソン</small></h1>
+<h1>買いまわりの1,000円ぽっきり<small>楽天{esc(ev)}</small></h1>
 <p class="up">{esc(upd)}</p>
 {head}
-<p class="lead">お買い物マラソンは、1店で1,000円以上の買い物をしたお店の数だけ、ポイントが上がります（最大10倍）。あと1店を足したい時のために、1,000〜1,199円で送料込み、レビュー1,000件以上・評価4.0以上の物だけを、楽天で確かめて{n}件集めました。同じお店は1つだけにしています。</p>
+<p class="lead">{esc(ev)}は、1店で1,000円以上の買い物をしたお店の数だけ、ポイントが上がります（最大10倍）。あと1店を足したい時のために、1,000〜1,199円で送料込み、レビュー1,000件以上・評価4.0以上の物だけを、楽天で確かめて{n}件集めました。同じお店は1つだけにしています。</p>
 </header>
 <div class="calc"><h2>ポイントの計算</h2>
 <label>買ったお店の数<input id="kn" type="number" inputmode="numeric" min="1" max="10" value="5"></label>
