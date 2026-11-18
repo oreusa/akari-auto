@@ -191,3 +191,6 @@
  if(d.readyState==="loading")d.addEventListener("DOMContentLoaded",ready);else ready();
  setTimeout(show,2500);addEventListener("pageshow",function(e){if(e.persisted)show();});
 }catch(e){try{document.documentElement.classList.remove("tk-boot");}catch(x){}}})();
+/* 11/18 見本（関東）：?mihon=1 を付けた人だけ mihon.js を読む（月と同じ）。?mihon=0 で消える。普通のお客さんには何も出ない */
+(function(){try{var m=location.search.match(/[?&]mihon=([01])/);if(m){if(m[1]==="1")localStorage.setItem("tn_mihon","1");else localStorage.removeItem("tn_mihon");}
+if(localStorage.getItem("tn_mihon")==="1"&&!/^\/(machi|jikka)\//.test(location.pathname)){var s=document.createElement("script");s.src="/assets/mihon.js?v=1";s.defer=true;document.head.appendChild(s);}}catch(e){}})();
