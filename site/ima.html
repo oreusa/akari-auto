@@ -139,7 +139,7 @@ else if(h>=18){e.textContent="いまは"+h+"時台です。昼だけの所はも
 <div class="note">かかる時間は、直線距離から出した目安です（電車と歩きを合わせたおおよその時間）。本当の行き方と時間は、各カードの「行き方」から Google マップでご確認ください。<br>日の入りはこのページで計算した時刻、降水確率は気象庁の府県の予報です。開いている時間や休みの日は、出かける前に必ず公式ページで確かめてください。</div>
 <a class="back" href="/odekake">関東おでかけリストへ戻る</a><p class="rel" style="text-align:center;font-size:12px;line-height:2;color:#8C7B6E;margin:16px 0 0;padding:0;background:none;border:0">あわせて見る<br><a href="/illumination" style="color:inherit;white-space:nowrap;margin:0 8px">イルミネーション</a><a href="/koyo" style="color:inherit;white-space:nowrap;margin:0 8px">紅葉ライトアップ</a><a href="/tomari" style="color:inherit;white-space:nowrap;margin:0 8px">泊まりで行く所</a></p>
 <div class="ft">LIFE NOTE　関東おでかけリスト</div></div>
-<script>(function(){
+<script>/* 11/18 夕方（17時から）は、同じ時間の帯の中でイルミ・夜の催しを先に（月と同じ） */var EVN=new Date(Date.now()+9*36e5).getUTCHours()>=17,BN=function(m){var B=[15,30,45,60,90,120,180,1e9],i=0;while(m>B[i])i++;return i},NT=function(x){return /イルミ|ライトアップ|夜|ナイト|光|ルミナ|ランタン|花火/.test((x.t||'')+' '+(x.m||''))?1:0};(function(){
 var PC={"東京":"#4F86C6","神奈川":"#3FA3B5","埼玉":"#E09A3E","千葉":"#D9775A","茨城":"#5FA06A","栃木":"#D2697E","群馬":"#9C7BB8"};
 var JMA={"東京":"130000","神奈川":"140000","埼玉":"110000","千葉":"120000","茨城":"080000","栃木":"090000","群馬":"100000"};
 /* 出発の駅（だいたいの位置） */
@@ -240,7 +240,7 @@ function load(){Promise.all([
 document.addEventListener("cm-ready",function(){try{draw()}catch(e){}});
 function draw(){if(!O||!ITEMS.length)return;
   ITEMS.forEach(function(x){x.k=km(O.la,O.lo,x.la,x.lo);x.min=mins(x.k);x.b=brg(O.la,O.lo,x.la,x.lo);});
-  var L=ITEMS.slice().sort(function(a,b){return (RAIN?(b.inside-a.inside):0)||a.min-b.min||a.k-b.k}),show=L.filter(function(x){return x.min<=MAXM});
+  var L=ITEMS.slice().sort(function(a,b){return (RAIN?(b.inside-a.inside):0)||(EVN?(BN(a.min)-BN(b.min))||(NT(b)-NT(a)):0)||a.min-b.min||a.k-b.k}),show=L.filter(function(x){return x.min<=MAXM});
   document.getElementById("nNear").textContent=ITEMS.filter(function(x){return x.min<=60}).length;
   document.getElementById("lh").textContent=RAIN?"雨の予報：屋内らしい所を先に":"近い順";
   document.getElementById("ls").textContent=(O.g?"いまいる場所":O.n)+"から　"+show.length+"か所";
@@ -271,7 +271,7 @@ function draw(){if(!O||!ITEMS.length)return;
     var st=x.e&&x.e===T?'<span class="ls">きょうまで</span>':(x.e&&dd(T,x.e)<=3?'<span class="ls">あと'+dd(T,x.e)+'日</span>':(x.e?'<span class="on">開催中</span>':""));
     var dt=x.e?fd(x.e)+" まで":(x.d.replace(/\s+/g," ").trim());
     /* 11/6 夜#44：朝早い・夜おそい時は、カードにも書く（月と同じ） */
-    var hh=jst().getUTCHours(),nt=/イルミ|ライトアップ|夜|ナイト|光|ルミナ|ランタン|花火/.test(x.t+" "+x.m),tw=hh<9?'<span class="tw">着くころ開く前かも</span>':(hh>=17&&!nt?'<span class="tw">着くころ閉まっているかも</span>':"");
+    var hh=jst().getUTCHours(),nt=/イルミ|ライトアップ|夜|ナイト|光|ルミナ|ランタン|花火/.test(x.t+" "+x.m),tw=hh<9?'<span class="tw">開く前かも</span>':(hh>=17&&!nt?'<span class="tw">閉館後かも</span>':"");
     var route="https://www.google.com/maps/dir/?api=1&origin="+encodeURIComponent(dir)+"&destination="+x.la+","+x.lo+"&travelmode=transit";
     h+='<article class="it" id="i-'+esc(x.t)+'" style="--pc:'+PC[x.p]+'"><a class="card" href="'+esc(x.href)+'" target="_blank" rel="noopener" data-k="公式｜'+esc(x.t)+'"><div class="v2c"><span class="p">'+x.p+'</span>'+st+(x.free?'<span class="f">無料</span>':"")+tw+'</div><div class="v2d">'+esc(dt)+'</div><div class="t">'+esc(x.t)+'</div><div class="m">'+esc(x.place+(x.m?"｜"+x.m:""))+'</div><div class="tt"><small>約</small>'+tmin(x.min)+'<i>'+(x.k<10?x.k.toFixed(1):Math.round(x.k))+' km</i></div><div class="go">→</div></a><div class="rt"><a href="'+route+'" target="_blank" rel="noopener" data-k="行き方｜'+esc(x.t)+'">行き方</a></div></article>';});
   document.getElementById("list").innerHTML=h;document.getElementById("none").style.display=show.length?"none":"block";}
