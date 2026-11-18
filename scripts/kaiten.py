@@ -123,6 +123,33 @@ def is_chain(x):
     return x.get("src") in ("lawson", "daiso", "cando") or x.get("g") in ("コンビニ", "100円ショップ")
 
 
+# 11/19 関西（usagi tools/kaiten/build.py）と同じ：お店の入る建物・場所の写真（data/venue_photos.json・目で選んだ物）。
+# 合う物だけ付ける（チェーン・場所の分からない店は付けない＝違う写真を出さない）。足す時は data/kaiten_venue_match.json に1行［正規表現・写真の名前・札］。
+VPH = json.load(open(os.path.join(ROOT, "data", "venue_photos.json"), encoding="utf-8"))
+VMATCH = [(re.compile(a), b, c) for a, b, c in json.load(open(os.path.join(ROOT, "data", "kaiten_venue_match.json"), encoding="utf-8"))]
+
+
+def vphoto(x):
+    if is_chain(x):
+        return None
+    t = (x.get("pl") or "") + " " + x["n"]
+    for rx, k, lab in VMATCH:
+        if rx.search(t) and k in VPH:
+            v = VPH[k]
+            return {"img": v["img"], "cr": v["cr"], "page": v.get("page", ""), "lab": lab}
+    return None
+
+
+def sp_fig(x):
+    ph = vphoto(x)
+    if not ph:
+        return ""
+    cr = E(ph["cr"])
+    cr = f'<a href="{E(ph["page"])}" target="_blank" rel="noopener">{cr}</a>' if ph["page"] else cr
+    return (f'<figure class="sp-ph"><img src="/assets/ph/{ph["img"]}" alt="{E(ph["lab"])}" width="1200" height="675" decoding="async">'
+            f'<i>場所：{E(ph["lab"])}</i><figcaption>場所（{E(ph["lab"])}）の写真：{cr}。お店の写真ではありません。</figcaption></figure>')
+
+
 def slug(x):
     return x["d"].replace("-", "") + "-" + hashlib.sha1((x["n"] + "|" + x["u"]).encode()).hexdigest()[:6]
 
@@ -146,9 +173,12 @@ def card(x):
     h1 = hatsu(x)
     aid = "k" + str(abs(hash(key)) % 10**8) if False else "k-" + re.sub(r"[^0-9A-Za-z]", "", urllib.parse.quote(key))[-16:]
     place = E(x["p"]) + (("・" + E(pl.strip("・ "))) if pl.strip("・ ") else "")
-    return (f'<article class="it k-{x["k"]}" id="{aid}" data-d="{x["d"]}" data-k="{x["k"]}" data-p="{x["p"]}" data-g="{g}" data-id="{E(key)}"{end}'
+    ph = vphoto(x)
+    fig = (f'<figure class="kph"><img src="/assets/ph/s/{ph["img"]}" alt="" loading="lazy" decoding="async" width="480" height="270">'
+           f'<i>場所：{E(ph["lab"])}</i><small>{E(re.sub(r"（.*$", "", ph["cr"]))}</small></figure>') if ph else ""
+    return (f'<article class="it k-{x["k"]}{" hp" if ph else ""}" id="{aid}" data-d="{x["d"]}" data-k="{x["k"]}" data-p="{x["p"]}" data-g="{g}" data-id="{E(key)}"{end}'
             + (' data-ch="1"' if ch else "") + (' data-h="1"' if h1 else "") +
-            f' data-s="{E((x["n"] + " " + x["pl"] + " " + x["p"] + " " + g).lower())}">'
+            f' data-s="{E((x["n"] + " " + x["pl"] + " " + x["p"] + " " + g).lower())}">' + fig +
             # 11/17 オーナー「おでかけ先の横にロゴつけてたけど開店閉店はなし？」→ おでかけと同じ絵のタイル（下に FOOD などの英字）＋日付の札＋あと何日
             f'<div class="dc cmb" style="--pc:{PCM.get(x["p"], "#8a8f98")}"><div class="ib"><svg viewBox="0 0 24 24">{ICON[ic]}</svg><span class="lb">{LBL.get(g, "SHOP")}</span></div>'
             f'<div class="dd{" tx" if fz else ""}"><b>{E(md)}</b>' + (f'<small class="ddw">{wd}</small>' if wd else "") + '</div><span class="cdn left"></span></div>'
@@ -239,6 +269,12 @@ NCSS = ("<style>"
        # 閉まるお店は静かに（赤は使わない）
        ".k-close .nm,.k-close .pt{color:#6B6058}.k-close .dc .ib{filter:grayscale(.7);opacity:.75}"
        ".it[hidden],.wk[hidden]{display:none}"
+       # 11/19 お店の入る建物・場所の写真（関西と同じ・カードの上に横いっぱい・16:9）。夜は写真の枠ごと反転を戻す
+       ".it.hp .kph{grid-column:1/-1;position:relative;margin:0 0 10px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#EFEAE4}"
+       ".kph img{width:100%;height:100%;object-fit:cover;display:block}"
+       ".kph i{position:absolute;left:8px;top:8px;font:700 10.5px 'Zen Kaku Gothic New',sans-serif;font-style:normal;color:#fff;background:rgba(30,24,20,.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border-radius:99px;padding:4px 9px;max-width:75%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}"
+       ".kph small{position:absolute;right:8px;bottom:6px;font-size:9px;color:#fff;opacity:.85;text-shadow:0 1px 2px rgba(0,0,0,.6);max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}"
+       "html.night .kph{filter:invert(1) hue-rotate(180deg)}html.night .kph img{filter:none!important}"
        ".more{display:block;width:100%;margin:14px 0 0;font:700 13px 'Zen Kaku Gothic New',sans-serif;color:#2B2622;background:#fff;border:1px solid #2B2622;border-radius:2px;padding:13px;cursor:pointer}"
        ".kempty{font-size:13px;line-height:1.9;color:#6B6058;text-align:center;padding:36px 0;display:none}.kempty button{margin-top:10px;font:700 12.5px 'Zen Kaku Gothic New',sans-serif;border:1px solid #2B2622;background:#fff;border-radius:99px;padding:8px 14px;cursor:pointer}"
        ".kfol{margin-top:18px;text-align:center}.kfol p{font-size:13px;line-height:1.9;color:#6B6058;margin:0 0 10px}"
@@ -314,6 +350,10 @@ JS = ('<script>(function(){var O=false;try{O=localStorage.getItem("usagi_owner")
 # 写真は使わない（報道発表の画像は報道の目的だけ）。コンビニ・100円ショップは中身が薄いので作らない（一覧から公式へ）。
 JWD = "月火水木金土日"
 SCSS = ("<style>"
+        ".sp-ph{position:relative;margin:14px 0 4px}.sp-ph img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:14px;display:block;background:#EFEAE4}"
+        ".sp-ph i{position:absolute;left:10px;top:10px;font:700 11px 'Zen Kaku Gothic New',sans-serif;font-style:normal;color:#fff;background:rgba(30,24,20,.62);border-radius:99px;padding:5px 10px}"
+        ".sp-ph figcaption{font-size:10.5px;color:#A2958A;margin-top:6px;line-height:1.6}.sp-ph figcaption a{color:inherit}"
+        "html.night .sp-ph img,html.night .sp-ph i{filter:invert(1) hue-rotate(180deg)}"
         ".sp-bc{font-size:11.5px;color:#8C7B6E;margin:14px 0 0;padding-right:96px;line-height:1.7}.sp-bc a{color:#6B6058;text-decoration:none}.sp-bc a:hover{text-decoration:underline}"
         ".sp-hero{display:grid;grid-template-columns:88px 1fr;gap:0 14px;align-items:center;margin:16px 0 0}"
         "html body .sp-hero .dc.cmb{position:static;width:auto;text-align:center}"
@@ -379,6 +419,7 @@ def store_page(x, shell, near):
             f'<div><div class="tp"><span class="gn">{svg(ic)}{E(g)}</span><span class="tag {x["k"]}">{E(x.get("sub") or lab)}</span>'
             + (f'<span class="hs">{E(hatsu(x))}</span>' if hatsu(x) else "") + f'</div><h1>{E(x["n"])}</h1></div></div>'
             f'<div class="sp-when" data-d="{x["d"]}" data-k="{x["k"]}"><b>{E(fz or f"{d.month}/{d.day}")}<small>{"" if fz else "（" + JWD[d.weekday()] + "）"}{E(verb)}</small></b><span class="cd" id="cd"></span></div>'
+            + sp_fig(x) +
             f'<p class="sp-pt">{E(x["pt"])}</p>'
             '<dl class="sp-dl">' + "".join(f"<dt>{a}</dt><dd>{b}</dd>" for a, b in rows) + "</dl>"
             '<div class="sp-btn">'
