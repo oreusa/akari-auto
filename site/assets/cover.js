@@ -9,7 +9,7 @@ var d=new Date(),W="日月火水木金土",WX=KT?{"東京":"130000","神奈川":
 var MY="";try{MY=localStorage.getItem("tn_pref")||""}catch(e){}
 function sunset(){var rad=Math.PI/180,lat=KT?35.68:34.69,lng=KT?139.69:135.5,n=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5),g=2*Math.PI/365*(n-1),eq=229.18*(.000075+.001868*Math.cos(g)-.032077*Math.sin(g)-.014615*Math.cos(2*g)-.040849*Math.sin(2*g)),de=.006918-.399912*Math.cos(g)+.070257*Math.sin(g)-.006758*Math.cos(2*g)+.000907*Math.sin(2*g)-.002697*Math.cos(3*g)+.00148*Math.sin(3*g),ha=Math.acos(Math.cos(90.833*rad)/(Math.cos(lat*rad)*Math.cos(de))-Math.tan(lat*rad)*Math.tan(de))/rad,m=720-4*(lng-ha)-eq+540;return Math.floor(m/60)+":"+("0"+Math.round(m%60)).slice(-2);}
 var td=document.getElementById("today");
-td.innerHTML="<div><b>"+(d.getMonth()+1)+"/"+d.getDate()+"（"+W[d.getDay()]+"）</b><span id='twx'></span></div><div>日の入り <b>"+sunset()+"</b><i>・</i><span id='tnow'>開催中 ―</span></div>";
+td.innerHTML="<div><b>"+(d.getMonth()+1)+"/"+d.getDate()+"（"+W[d.getDay()]+"）</b><span id='twx'></span></div><div>日の入り <b>"+sunset()+"</b><i>・</i><span id='tnow'>きょう開いている ―</span></div>";
 /* 前に押した府県：日付の下に「大阪のきょう ›」 */
 if(MY)td.insertAdjacentHTML("afterend",'<button class="mine" type="button">'+MY+'のきょう<span>›</span></button>');
 /* 11/10 オーナー「押した箇所で変えれるの？」→ 府県を押したら、その場で天気と「◯◯のきょう」も変える */
@@ -25,7 +25,7 @@ function paint(){if(!C)return;var mn=1e9,mx=-1e9;PREF.forEach(function(p){var v=
  svg.querySelectorAll(".pf path").forEach(function(el){el.style.removeProperty("fill-opacity");el.style.removeProperty("fill");});
  svg.classList.toggle("dim",L==="ok");
  PREF.forEach(function(p){var c=labels[p],x=C.p[p];if(!c)return;c.setAttribute("fill",document.documentElement.classList.contains("night")?{od:"#FFD39A",fu:"#A9CBFF",jk:"#AEE0B5",ok:"#F2B6C3"}[L]:({od:"#231E1B"}[L]||COL[L]));c.innerHTML=L==="od"?x.od+"<tspan>件</tspan>":L==="fu"?(x.avg>=0?"+":"")+x.avg.toFixed(1)+"<tspan>%</tspan>":L==="jk"?(KT?x.kN+"<tspan>街</tspan>":man(x.kAvg)):"";});
- var tot=PREF.reduce(function(a,p){return a+C.p[p].od},0);document.getElementById("tnow").innerHTML="開催中 <b>"+tot+"</b>";
+ var tot=PREF.reduce(function(a,p){return a+C.p[p].od},0);document.getElementById("tnow").innerHTML="きょう開いている <b>"+tot+"</b>";
  var R=KT?"都県":"府県";
  hint.style.setProperty("--c",COL[L]);hint.innerHTML=L==="od"?R+"ごとの、いま開催中のおでかけの数":L==="fu"?R+"ごとの、住宅地の値段の1年の動き（平均）":L==="jk"?(KT?R+"ごとの、実家ノートでまとめた街の数":"戸建が売れた平均の値段（近畿レインズ）"):"きょう、ふだんより安くなっている物";
  okp.hidden=L!=="ok";if(L==="ok"&&NS)okp.innerHTML=NS.downs.slice(0,3).map(function(x,i){return'<a href="/nesage"><span>0'+(i+1)+'</span><b>'+x.title+'</b><em>'+x.price.toLocaleString()+'円</em><u>−'+x.pct+'%</u></a>'}).join("")+'<a class="all" href="/okaimono">日用品の最安をくらべる →</a>';}
