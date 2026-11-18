@@ -14,7 +14,7 @@ var PC={"大阪":"#B97A62","京都":"#8A7495","兵庫":"#4F6681","奈良":"#6F8C
 var PFO=KANTO?['東京','神奈川','埼玉','千葉','茨城','栃木','群馬']:['大阪','京都','兵庫','奈良','滋賀','和歌山'];
 var D=[],ID={},PHH={},W='日月火水木金土';
 /* lucide.dev のアイコン（ISC） */
-var IC={search:'<path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/>',x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+var IC={heart:'<path d="M2 9.5a5.5 5.5 0 0 1 9.59-3.68.56.56 0 0 0 .82 0A5.5 5.5 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.49 5.32a2 2 0 0 1-3 .02L5 15c-1.5-1.5-3-3.2-3-5.5"/>',cards:'<rect x="4" y="6" width="12" height="15" rx="2"/><path d="M8 3h10a2 2 0 0 1 2 2v13"/>',cal:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',ext:'<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',search:'<path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/>',x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
 pin:'<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
 star:'<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>',
 share:'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>',
@@ -33,7 +33,7 @@ function closed(o,d){var t=ymd(d),w=d.getUTCDay();if(o.cl){if(o.cl.indexOf('-'+t
 /* いま開いてる？（mihon.js と同じ決まり） */
 function now(o){if(!o||!o.h)return null;var d=jst(),t=ymd(d);if(!(o.s<=t&&o.e>=t)||closed(o,d))return null;
   var m=d.getUTCHours()*60+d.getUTCMinutes(),x=o.h.split('-').map(function(v){var a=v.split(':');return a[0]*60+ +a[1]});if(x.length<2)return null;
-  var nt=x[0]>=15*60;if(m>=x[0]&&m<x[1]){var l=x[1]-m;return{on:1,t:l<=60?'あと'+l+'分で終わり':nt?'いまライトアップ中':'いま開いています'}}
+  var nt=x[0]>=15*60;if(m>=x[0]&&m<x[1]){var l=x[1]-m;return{on:1,l:l,t:l<=60?'あと'+l+'分で終わり':(nt?'ライトアップ中・':'開いてる・')+'あと'+Math.floor(l/60)+'時間'+(l%60?l%60+'分':'')}}
   if(m<x[0]&&x[0]-m<=180)return{on:0,t:(nt?'今夜':'きょう')+o.h.split('-')[0]+'から'};return null}
 function stat(o){var t=ymd(jst());if(!o.s)return'見頃';if(o.s>t)return md(o.s)+'から';if(o.e&&o.e<t)return'終わりました';var l=o.e?dd(t,o.e):99;return l===0?'きょうまで':l<=7?'あと'+l+'日':'開催中'}
 function per(o){return o.s?(md(o.s)+(o.e&&o.e!==o.s?'〜'+md(o.e):'')):''}
@@ -160,6 +160,60 @@ var css=
 /* 1件ページ：写真を押すと大きく */
 '.mph-o img,.sp-ph img{cursor:zoom-in}'+
 '.pswp{--pswp-bg:#0b0a09}html.night .pswp{filter:invert(1) hue-rotate(180deg)}'+
+/* 1件ページ：写真いっぱい・下に固定のボタン・近くのストーリー */
+'html.hxo .hxis{display:none!important}'+
+'.mph-o.hxhero{display:block;position:relative;margin:0 -16px 16px!important;border-radius:0 0 28px 28px;overflow:hidden;background:#111}'+
+'.mph-o.hxhero img{width:100%!important;height:min(62vh,520px)!important;object-fit:cover;border-radius:0!important;transform-origin:50% 30%;will-change:transform}'+
+'.mph-o.hxhero .h-ov{position:absolute;left:0;right:0;bottom:0;padding:60px 18px 16px;background:linear-gradient(transparent,rgba(8,7,6,.78));color:#fff;pointer-events:none}'+
+'.mph-o.hxhero .h-ov .h-tg{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}'+
+'.mph-o.hxhero .h-ov .h-tg span{font:700 11.5px "Zen Kaku Gothic New",sans-serif;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}'+
+'.mph-o.hxhero .h-ov .h-tg span.h-pf{background:var(--pc,#B97A62)}.mph-o.hxhero .h-ov .h-tg span.h-on{background:#1F8A50}'+
+'.mph-o.hxhero .h-ov .h-bar{height:4px;border-radius:4px;background:rgba(255,255,255,.22);overflow:hidden}.mph-o.hxhero .h-ov .h-bar i{display:block;height:100%;width:var(--f,0%);background:linear-gradient(90deg,#F6C35B,#fff);border-radius:4px;transition:width 1.2s '+EO+'}'+
+'.mph-o.hxhero .h-ov .h-dt{display:flex;justify-content:space-between;font:500 11px Jost,sans-serif;letter-spacing:.06em;opacity:.85;margin-top:6px}'+
+'.mph-o.hxhero figcaption{position:absolute;top:10px;right:12px;margin:0!important;font-size:10px!important;color:rgba(255,255,255,.8)!important;background:rgba(0,0,0,.32);padding:2px 8px;border-radius:99px;max-width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
+'html.night .mph-o.hxhero{filter:invert(1) hue-rotate(180deg)}html.night .mph-o.hxhero img{filter:none!important}'+
+'.hxdk{position:fixed;left:12px;right:12px;bottom:calc(92px + env(safe-area-inset-bottom));z-index:2147481000;display:flex;gap:6px;padding:6px;border-radius:22px;background:rgba(14,12,11,.9);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 14px 36px -14px rgba(0,0,0,.6);transform:translateY(calc(100% + 130px));opacity:0;visibility:hidden;transition:transform .5s '+EO+',opacity .3s,visibility 0s .5s;max-width:520px;margin:0 auto}'+
+'.hxdk.h-sh{transform:none;opacity:1;visibility:visible;transition:transform .5s '+EO+',opacity .3s}'+
+'.hxdk a,.hxdk button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:50px;border:0;border-radius:16px;background:transparent;color:#fff;font:700 10.5px "Zen Kaku Gothic New",sans-serif;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent}'+
+'.hxdk svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}'+
+'.hxdk .h-of{flex:1.6;background:var(--pc,#B97A62);flex-direction:row;gap:6px;font-size:13px}.hxdk button[aria-pressed=true]{color:#F6C35B}.hxdk button[aria-pressed=true] svg{fill:#F6C35B}'+
+'.hxdk a:active,.hxdk button:active{transform:scale(.94)}'+
+'html.night .hxdk{filter:invert(1) hue-rotate(180deg)}'+
+'.hxnb{margin:26px 0 8px}.hxnb>p{font:700 13px "Zen Kaku Gothic New",sans-serif;margin:0 0 4px;letter-spacing:.04em}.hxnb>p small{font-weight:500;color:#8a7f77;margin-left:6px}'+
+/* 入口の4つの切り替え：押した所へ白い玉が滑る */
+'.lens.hxln button{position:relative;z-index:1;transition:color .3s}.lens.hxln button.on{background:transparent!important;box-shadow:none!important}'+
+'.lens.hxln .h-lp{position:absolute;top:3px;bottom:3px;left:0;width:0;border-radius:999px;background:#fff;box-shadow:0 2px 10px -2px rgba(0,0,0,.16),inset 0 -2px 0 var(--c,#E39B3A);transition:transform .55s '+EO+',width .55s '+EO+',box-shadow .3s;pointer-events:none;z-index:0}'+
+'@supports (transition-timing-function:linear(0,1)){.lens.hxln .h-lp{transition:transform .6s '+SP+',width .6s '+SP+',box-shadow .3s}}'+
+'html.night .lens.hxln .h-lp{background:#ebeeff}'+
+'html.hxnod .hxst,html.hxnod .hxq{display:none!important}'+
+/* MENU：スマホは下から引き出す板（指で下へ払うと閉じる） */
+'@media (max-width:760px){html.hxmn #upan{top:auto!important;left:0!important;right:0!important;bottom:0!important;width:100%!important;height:min(86vh,720px)!important;border-radius:28px 28px 0 0;transform:translateY(104%)!important;box-shadow:0 -18px 50px -12px rgba(0,0,0,.28)!important;transition:transform .5s '+EO+'!important;overflow:hidden}'+
+'html.hxmn #upan.on{transform:translateY(var(--dy,0px))!important}html.hxmn #upan.h-drag{transition:none!important}'+
+'html.hxmn #upan .hxgr{flex:none;height:22px;display:flex;align-items:center;justify-content:center;cursor:grab;touch-action:none}html.hxmn #upan .hxgr::before{content:"";width:42px;height:5px;border-radius:5px;background:rgba(0,0,0,.18)}'+
+'html.hxmn #umask{-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);transition:opacity .35s!important}}'+
+'html.hxmn .hxgr{display:none}@media (max-width:760px){html.hxmn .hxgr{display:flex}}'+
+/* スワイプで週末を決める */
+'.hxst button.h-dk .h-rg{background:conic-gradient(from 200deg,#F6C35B,#E0533D,#8A4FD8,#3B82F6,#F6C35B)!important}.hxst button.h-dk .h-rg i{display:flex!important;align-items:center;justify-content:center;background:#141110!important;color:#F6C35B}.hxst button.h-dk svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}'+
+'.hxdc{position:fixed;inset:0;z-index:2147483100;background:radial-gradient(120% 80% at 50% 0%,#2a2320,#0b0a09 70%);color:#fff;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s;touch-action:none;user-select:none;-webkit-user-select:none;font-family:"Zen Kaku Gothic New",sans-serif}'+
+'.hxdc.on{opacity:1;visibility:visible;transition:opacity .3s}html.night .hxdc{filter:invert(1) hue-rotate(180deg)}html.night .hxdc img{filter:none!important}'+
+'.hxdc .h-hd{display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top)) 16px 8px}.hxdc .h-hd b{font-size:16px;letter-spacing:.04em}.hxdc .h-hd small{opacity:.6;font:500 12px Jost,sans-serif;margin-left:auto}'+
+'.hxdc .h-x{width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center}.hxdc .h-x svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}'+
+'.hxdc .h-st{position:relative;flex:1;margin:6px 22px 34px;min-height:0}'+
+'.hxdc .h-cd{position:absolute;inset:0;border-radius:26px;overflow:hidden;background:#222;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);transform-origin:50% 110%;will-change:transform;transition:transform .45s '+EO+',opacity .3s}'+
+'.hxdc .h-cd img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}'+
+'.hxdc .h-cd .h-sh{position:absolute;left:0;right:0;bottom:0;padding:90px 18px 18px;background:linear-gradient(transparent,rgba(0,0,0,.86))}'+
+'.hxdc .h-cd .h-sh i{font-style:normal;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--pc);margin-right:6px}.hxdc .h-cd .h-sh em{font-style:normal;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.18)}'+
+'.hxdc .h-cd .h-sh b{display:block;font-size:22px;line-height:1.35;margin:10px 0 4px;text-wrap:balance}.hxdc .h-cd .h-sh p{margin:0;font-size:12.5px;opacity:.8}'+
+'.hxdc .h-cd .h-lk,.hxdc .h-cd .h-ps{position:absolute;top:26px;padding:6px 14px;border:3px solid;border-radius:12px;font:800 22px "Zen Kaku Gothic New",sans-serif;opacity:0;letter-spacing:.06em}'+
+'.hxdc .h-cd .h-lk{left:20px;color:#5BE38C;transform:rotate(-12deg)}.hxdc .h-cd .h-ps{right:20px;color:#FF6B6B;transform:rotate(12deg)}'+
+'.hxdc .h-bt{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 0 calc(18px + env(safe-area-inset-bottom))}'+
+'.hxdc .h-bt button{width:62px;height:62px;border-radius:50%;border:0;display:flex;align-items:center;justify-content:center;background:#fff;box-shadow:0 10px 26px -10px rgba(0,0,0,.6);transition:transform .15s}.hxdc .h-bt button:active{transform:scale(.9)}'+
+'.hxdc .h-bt button svg{width:28px;height:28px;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}.hxdc .h-bt .h-no svg{stroke:#E0533D}.hxdc .h-bt .h-ok svg{stroke:#E8A23B;fill:#F6C35B}.hxdc .h-bt .h-dn{width:auto;padding:0 20px;border-radius:31px;font:700 13px "Zen Kaku Gothic New",sans-serif;color:#1a1715}'+
+'.hxdc .h-pl{flex:1;overflow:auto;padding:4px 16px 20px;touch-action:pan-y}.hxdc .h-pl h3{font-size:13px;letter-spacing:.12em;margin:18px 0 8px;opacity:.7;font-family:Jost,"Zen Kaku Gothic New",sans-serif}'+
+'.hxdc .h-pl a{display:flex;gap:12px;align-items:center;padding:10px;border-radius:18px;background:rgba(255,255,255,.07);margin-bottom:8px;color:#fff;text-decoration:none;animation:hxpi .5s '+EO+' both}'+
+'.hxdc .h-pl a img{width:64px;height:64px;border-radius:14px;object-fit:cover;flex:none}.hxdc .h-pl a b{display:block;font-size:14px;line-height:1.4}.hxdc .h-pl a small{opacity:.7;font-size:11.5px}.hxdc .h-pl a time{font:600 13px Jost,sans-serif;color:#F6C35B;flex:none;width:44px}'+
+'.hxdc .h-pl .h-em{opacity:.7;text-align:center;margin-top:40px;line-height:1.9}'+
+'@keyframes hxpi{from{opacity:0;transform:translateY(14px)}}'+
 '@media (prefers-reduced-motion:reduce){.hxsv,.hxsh,.hxis{transition:none!important}.hxsv .h-im img.h-in,.hxsv .h-go,.hxsr .h-it{animation:none!important;opacity:1!important;transform:none!important}}';
 var stl=DOC.createElement('style');stl.textContent=css;DOC.head.appendChild(stl);
 var pl=DOC.createElement('link');pl.rel='stylesheet';pl.href='/assets/pswp/photoswipe.css';DOC.head.appendChild(pl);
@@ -182,9 +236,9 @@ function rail(){var hostQ=DOC.querySelector('.wrap>.qk'),cover=/^\/(town-notes(\
   if(DOC.querySelector('.hxst'))return;var hd=!hostQ&&!ms&&/^\/(odekake|illumination|koyo|ima)/.test(location.pathname)&&DOC.querySelector('.wrap>header.head,.wrap>.head'),at=hostQ||ms||(hd&&hd.nextElementSibling);if(!at)return;
   var S=sets();if(!S.length)return;window.__hxS=S;var sn=seen(),t=ymd(jst());
   var h='';S.forEach(function(s,i){var o=s.a[0],nOn=s.lv?s.a.length:0;h+='<button type="button" data-i="'+i+'" class="'+(sn[s.k]===t?'h-seen':'')+'" style="--pc:'+(s.pc||(PC[o.p]||'#B97A62'))+'" aria-label="'+esc(s.t)+'のストーリー（'+s.a.length+'件）"><span class="h-rg"><i><img src="'+ph(o,'t')+'" alt="" decoding="async"'+(i>5?' loading="lazy"':'')+'></i>'+(s.lv?'<b class="h-lv">'+nOn+'</b>':'')+'</span>'+esc(s.t)+'</button>'});
-  var w=DOC.createElement('div');w.className='hxst';w.setAttribute('role','list');w.innerHTML=h;
+  h='<button type="button" class="h-dk" aria-label="スワイプで週末を決める"><span class="h-rg"><i>'+ic('cards')+'</i></span>週末を決める</button>'+h;var w=DOC.createElement('div');w.className='hxst';w.setAttribute('role','list');w.innerHTML=h;
   at.parentNode.insertBefore(w,at);
-  w.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;story(+b.dataset.i,0)});
+  w.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.classList.contains('h-dk'))return deck();window.__hxS=S;story(+b.dataset.i,0)});
   if(!DOC.querySelector('.hxq')&&(cover||!DOC.querySelector('#v2bar [data-a=find]'))){var q=DOC.createElement('button');q.type='button';q.className='hxq';q.innerHTML=ic('search')+'<span>行きたい所・駅で探す</span><kbd>'+D.length+'件</kbd>';w.parentNode.insertBefore(q,w.nextSibling);q.onclick=function(){search('')};
     /* 入口の頭は左右の余白が広いので、輪は画面いっぱい・さがすは地図と同じ幅に合わせる */
     if(!cover){q.style.margin='4px 0 6px';return}var fit=function(){w.style.margin='12px 0 4px';q.style.margin='12px 0 2px';q.style.width='';var r=w.getBoundingClientRect(),m=ms.getBoundingClientRect(),r2=q.getBoundingClientRect();w.style.marginLeft=(-r.left)+'px';w.style.marginRight=(r.right-DOC.documentElement.clientWidth)+'px';var pd=Math.max(16,m.left)+'px';w.style.setProperty('padding',('10px '+pd+' 6px'),'important');q.style.marginLeft=(m.left-r2.left)+'px';q.style.width=m.width+'px'};fit();addEventListener('resize',fit)}}
@@ -244,7 +298,7 @@ function island(){if(IS||!D.length)return;IS=DOC.createElement('div');IS.classNa
     IS.innerHTML='<div class="h-c"><i'+(on.length?'':' class="h-s"')+'></i>'+lab+'<time>'+tm+'</time></div><div class="h-x">'+top.map(function(o){var n=now(o);return '<a href="/o/'+o.id+'" data-hx="'+o.id+'"><img src="'+ph(o,'t')+'" alt=""><span><b>'+esc(o.n)+'</b><small>'+esc(n?n.t:stat(o))+'</small></span></a>'}).join('')+'<button type="button">ストーリーで全部見る</button></div>';
     IS.style.setProperty('--h',(52+top.length*61+56)+'px')}
   fill();setInterval(fill,30000);
-  var shown=0;function chk(){var y=scrollY>(innerHeight*.55);if(y!==!!shown){shown=y;IS.classList.toggle('h-sh',y);if(!y)IS.classList.remove('h-op')}}
+  var shown=0,LY=scrollY;function chk(){var c=scrollY,up=c<LY-2,dn=c>LY+2;LY=c;if(!up&&!dn&&shown)return;var y=c>(innerHeight*.55)&&(up||(!dn&&!!shown)||IS.classList.contains('h-op'));if(y!==!!shown){shown=y;IS.classList.toggle('h-sh',y);if(!y)IS.classList.remove('h-op')}}
   addEventListener('scroll',chk,{passive:true});chk();
   IS.addEventListener('click',function(e){var a=e.target.closest('a[data-hx]');if(a){e.preventDefault();go(ID[a.dataset.hx]);return}
     if(e.target.closest('button')){IS.classList.remove('h-op');var S=window.__hxS||(window.__hxS=sets());story(0,0);return}vib();IS.classList.toggle('h-op')});
@@ -257,7 +311,7 @@ function hi(s,q){if(!q)return esc(s);var f=fold(s),i=f.indexOf(q);if(i<0||f.leng
 function row(o,q,k){var n=now(o),pc=PC[o.p]||'#B97A62',tb=thb(o);return '<a class="h-it" href="/o/'+o.id+'" data-hx="'+o.id+'" style="--pc:'+pc+';animation-delay:'+Math.min(k*28,300)+'ms"><span class="h-th" style="'+(tb?'background-image:url('+tb+')':'')+'"><img src="'+ph(o,'t')+'" alt="" loading="lazy" decoding="async"></span><span><b>'+hi(o.n,q)+'</b><small><i>'+esc(o.p)+'</i>'+(n&&n.on?'<em>● '+esc(n.t)+'</em>':esc(stat(o)))+(o.vn?'・'+esc(o.vn):'')+'</small></span></a>'}
 function search(q0){if(!D.length)return;vib();
   if(!SR){SR=DOC.createElement('div');SR.className='hxsr';SR.setAttribute('role','dialog');SR.setAttribute('aria-modal','true');SR.setAttribute('aria-label','さがす');
-    var ch=['いま開いてる','今週末','もうすぐ終わる','これから'].concat(PFO.filter(function(p){return D.some(function(o){return o.p===p})}));
+    var ch=['今から間に合う','今週末','もうすぐ終わる','これから'].concat(PFO.filter(function(p){return D.some(function(o){return o.p===p})}));
     SR.innerHTML='<div class="h-bx"><label>'+ic('search')+'<input type="search" enterkeyhint="search" placeholder="行きたい所・駅・したいこと" aria-label="さがす言葉"></label><button type="button" class="h-cn">閉じる</button></div>'+
       '<div class="h-ch">'+ch.map(function(c){return '<button type="button" aria-pressed="false">'+c+'</button>'}).join('')+'</div><div class="h-rs" aria-live="polite"></div>';
     DOC.body.appendChild(SR);var inp=SR.querySelector('input'),tq=null;
@@ -271,7 +325,7 @@ function search(q0){if(!D.length)return;vib();
   requestAnimationFrame(function(){SR.classList.add('on')});setTimeout(function(){inp.focus()},40);try{history.pushState({hxr:1},'')}catch(e){}}
 function rec(q){q=(q||'').trim();if(!q)return;try{var r=JSON.parse(localStorage.getItem('hx_rq')||'[]').filter(function(x){return x!==q});r.unshift(q);localStorage.setItem('hx_rq',JSON.stringify(r.slice(0,6)))}catch(e){}}
 function flt(o){var t=ymd(jst());if(o.e&&o.e<t)return false;if(!FL)return true;var n;
-  if(FL==='いま開いてる'){n=now(o);return n&&n.on}
+  if(FL==='今から間に合う'){n=now(o);return n&&n.on&&n.l>=30}
   if(FL==='今週末'){var d=jst(),w=d.getUTCDay(),sa=new Date(d.getTime()+((6-w+7)%7)*864e5),su=new Date(sa.getTime()+864e5);if(w===0)sa=new Date(d.getTime()-864e5),su=d;return (!o.s||o.s<=ymd(su))&&(!o.e||o.e>=ymd(sa))}
   if(FL==='もうすぐ終わる')return o.s&&o.s<=t&&o.e&&dd(t,o.e)<=7;
   if(FL==='これから')return o.s&&o.s>t;return o.p===FL}
@@ -327,7 +381,7 @@ function bindSH(){BD.onclick=function(){closeSH()};
   SH.addEventListener('touchmove',function(e){if(!act)return;dy=e.touches[0].clientY-y0;if(dy<=0){SH.classList.remove('h-drag');SH.style.transform='';return}if(e.cancelable)e.preventDefault();SH.classList.add('h-drag');SH.style.transform='translateY('+dy+'px)'},{passive:false});
   SH.addEventListener('touchend',function(){if(!act)return;act=0;SH.classList.remove('h-drag');var v=dy/Math.max(1,Date.now()-t0);if(dy>130||(dy>40&&v>.6))closeSH();else SH.style.transform=''})}
 /* カード・ニュース・おすすめ5 を押すと板（☆・地図・近くの宿・ボタンはそのまま） */
-addEventListener('click',function(e){if(e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||!D.length)return;var t=e.target.closest&&e.target.closest('.card[data-mo],.pr5 a[data-mo],a.mnsl');if(!t)return;
+addEventListener('click',function(e){if(e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||!D.length)return;var t=e.target.closest&&e.target.closest('.card[data-mo],.pr5 a[data-mo],a.mnsl,a.fc[href^="/o/"]');if(!t)return;
   if(e.target.closest('.wfav,button,.wfv,.ilk,.mpr,a.mp,.inn'))return;var id=t.dataset.mo||(t.getAttribute('href')||'').replace(/^\/o\//,'');var o=ID[id];if(!o)return;
   if(t.closest('.hxemc')&&Date.now()-DRG<250){e.preventDefault();e.stopImmediatePropagation();return}
   e.preventDefault();e.stopImmediatePropagation();sheet(o)},true);
@@ -356,8 +410,85 @@ var AA=[];function anim(){if(!window.HX||RM)return;var ps=[];DOC.querySelectorAl
 var BX=0,BXT='h1,h2,h3,.mhh,.mntx b,.t,.mhk,.mhk-o,.nm,.pt,.sp-pt';function bx(){if(BX===1||(window.CSS&&CSS.supports&&CSS.supports('word-break','auto-phrase')))return;
   if(!window.HXB){if(!BX){BX=2;load('/assets/hx-bx.js',bx)}return}DOC.querySelectorAll(BXT).forEach(function(e){if(e.dataset.hxb||e.children.length>2)return;e.dataset.hxb=1;try{HXB.applyToElement(e);e.classList.add('hxbx')}catch(x){}})}
 
+/* ---------- 1件ページ（/o/xxxxxxxx）：写真いっぱい・下に固定のボタン・近くのおでかけをストーリーで ---------- */
+var OD=0;
+function odet(){if(OD)return;var m=location.pathname.match(/^\/o\/([0-9a-f]{8})/);if(!m)return;var o=ID[m[1]];if(!o)return;
+  var hd=DOC.querySelector('.wrap>.head'),f=DOC.querySelector('.mph-o')||DOC.querySelector('.mph-k');if(!hd&&!f)return;OD=1;if(f&&f.classList.contains('mph-k')){f.hidden=false;f.style.margin='';if(hd)hd.insertAdjacentElement('afterend',f);f.classList.add('mph-o')}if(!f&&o.im&&hd){f=DOC.createElement('figure');f.className='mph-o';f.innerHTML='<img src="'+ph(o)+'" alt="'+esc(o.vn||o.n)+'" width="1200" height="800" decoding="async">'+(o.cr?'<figcaption>写真：'+(o.cu?'<a href="'+esc(o.cu)+'" target="_blank" rel="noopener">'+esc(o.cr)+'</a>':esc(o.cr))+'</figcaption>':'');hd.insertAdjacentElement('afterend',f)}H.classList.add('hxo');var t=ymd(jst()),pc=PC[o.p]||'#B97A62';
+  if(f&&!f.classList.contains('hxhero')){f.classList.add('hxhero');f.style.setProperty('--pc',pc);var n=now(o),st=stat(o),fr=0;
+    if(o.s&&o.e&&o.s<=t){var a=new Date(o.s+'T00:00:00Z'),b=new Date(o.e+'T00:00:00Z'),c=new Date(t+'T00:00:00Z');fr=Math.max(.03,Math.min(1,(c-a)/Math.max(1,b-a)))}
+    var ov=DOC.createElement('div');ov.className='h-ov';ov.innerHTML='<div class="h-tg"><span class="h-pf">'+esc(o.p||'')+'</span><span class="'+(n&&n.on?'h-on':'')+'">'+esc(n&&n.on?'いま開いてる':st)+'</span>'+(n&&n.t&&!n.on?'<span>'+esc(n.t)+'</span>':'')+'</div>'+(o.s&&o.e?'<div class="h-bar"><i></i></div><div class="h-dt"><span>'+md(o.s)+'</span><span>'+md(o.e)+'</span></div>':'');
+    f.appendChild(ov);requestAnimationFrame(function(){setTimeout(function(){f.style.setProperty('--f',Math.round(fr*100)+'%')},250)});
+    var im=f.querySelector('img');if(im&&!RM){var tk=0;var px=function(){tk=0;var r=f.getBoundingClientRect();if(r.bottom<0)return;var y=Math.max(0,-r.top);im.style.transform='translate3d(0,'+(y*.35).toFixed(1)+'px,0) scale('+(1.04+y/2400).toFixed(4)+')'};addEventListener('scroll',function(){if(!tk){tk=1;requestAnimationFrame(px)}},{passive:true});px()}}
+  /* 下に固定のボタン（公式・行きたい・送る・地図） */
+  var act=DOC.querySelector('.act'),of=act&&act.querySelector('a.o'),mp=act&&act.querySelector('a.g');
+  if(!DOC.querySelector('.hxdk')){var dk=DOC.createElement('div');dk.className='hxdk';dk.style.setProperty('--pc',pc);var fv=favs().indexOf(o.u)>=0;
+    dk.innerHTML='<button type="button" class="h-fv" aria-pressed="'+fv+'">'+ic('star')+'<span>'+(fv?'行きたい済み':'行きたい')+'</span></button><button type="button" class="h-sr">'+ic('share')+'<span>送る</span></button>'+(mp?'<a class="h-mp" href="'+esc(mp.href)+'" target="_blank" rel="noopener">'+ic('pin')+'<span>地図</span></a>':'')+(of?'<a class="h-of" href="'+esc(of.href)+'" target="_blank" rel="noopener">公式ページ'+ic('ext')+'</a>':'');
+    DOC.body.appendChild(dk);
+    dk.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;vib();
+      if(b.classList.contains('h-fv')){var L=favs(),i=L.indexOf(o.u);if(i>=0)L.splice(i,1);else L.push(o.u);try{localStorage.setItem('tn_fav',JSON.stringify(L))}catch(x){}var y=i<0;b.setAttribute('aria-pressed',y);b.querySelector('span').textContent=y?'行きたい済み':'行きたい';try{dispatchEvent(new Event('storage'))}catch(x){}}
+      else{var u=location.origin+'/o/'+o.id;if(navigator.share)navigator.share({title:o.n,url:u}).catch(function(){});else{try{navigator.clipboard.writeText(u);b.querySelector('span').textContent='コピーしました'}catch(x){}}}});
+    var chk=function(){var r=act?act.getBoundingClientRect():null,vis=r&&r.top<innerHeight&&r.bottom>0;dk.classList.toggle('h-sh',scrollY>innerHeight*.45&&!vis)};addEventListener('scroll',chk,{passive:true});chk()}
+  /* 近くのおでかけをストーリーで（同じ府県・写真のある物） */
+  var h2=null;DOC.querySelectorAll('.wrap>h2').forEach(function(x){if(!h2&&/ほかのおでかけ/.test(x.textContent))h2=x});
+  if(h2&&!DOC.querySelector('.hxnb')){var ids=[];DOC.querySelectorAll('a.fc[href^="/o/"]').forEach(function(a){var q=ID[a.getAttribute('href').slice(3,11)];if(q&&q.im&&ids.indexOf(q)<0)ids.push(q)});
+    D.forEach(function(q){if(ids.length<12&&q!==o&&q.p===o.p&&q.im&&q.id&&(!q.e||q.e>=t)&&ids.indexOf(q)<0)ids.push(q)});
+    if(ids.length>=3){var S=window.__hxS=[{k:'nb'+o.p,t:(o.p||'')+'のおでかけ',a:ids,pc:pc}];var sn=seen();
+      var w=DOC.createElement('div');w.className='hxnb';w.innerHTML='<p>'+esc(o.p||'')+'のおでかけ<small>押すとストーリーで流れます</small></p><div class="hxst" role="list">'+ids.map(function(q,i){return '<button type="button" data-i="'+i+'" style="--pc:'+pc+'" aria-label="'+esc(q.n)+'"><span class="h-rg"><i><img src="'+ph(q,'t')+'" alt="" decoding="async" loading="lazy"></i></span>'+esc(q.n.length>7?q.n.slice(0,7)+'…':q.n)+'</button>'}).join('')+'</div>';
+      h2.parentNode.insertBefore(w,h2);w.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;story(0,+b.dataset.i)})}}}
+
+/* ---------- 入口の4つの切り替え（滑る玉） ---------- */
+function lens(){var l=DOC.getElementById('lens');if(!l||l.dataset.hx)return;l.dataset.hx=1;l.classList.add('hxln');var p=DOC.createElement('i');p.className='h-lp';p.setAttribute('aria-hidden','true');l.insertBefore(p,l.firstChild);
+  function mv(an){var b=l.querySelector('button.on');if(!b)return;var r=b.getBoundingClientRect(),q=l.getBoundingClientRect(),bl=parseFloat(getComputedStyle(l).borderLeftWidth)||0;if(!an)p.style.transition='none';p.style.width=r.width+'px';p.style.transform='translateX('+(r.left-q.left-bl)+'px)';var c=getComputedStyle(b).getPropertyValue('--c');if(c)p.style.setProperty('--c',c.trim());if(!an){p.offsetWidth;p.style.transition=''}H.classList.toggle('hxnod',b.getAttribute('data-l')!=='od')}
+  l.addEventListener('click',function(e){if(e.target.closest('button')){vib();setTimeout(function(){mv(1)},0)}});addEventListener('resize',function(){mv(0)});mv(0);setTimeout(function(){mv(0)},400);
+  /* 地図を左右に払っても切り替わる */
+  var mp=DOC.querySelector('.kmap');if(mp){var x0=0,y0=0;mp.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+    mp.addEventListener('touchend',function(e){var t=e.changedTouches[0],dx=t.clientX-x0,dy=t.clientY-y0;if(Math.abs(dx)<60||Math.abs(dy)>Math.abs(dx)*.6)return;var bs=[].slice.call(l.querySelectorAll('button')),i=bs.indexOf(l.querySelector('button.on')),j=i+(dx<0?1:-1);if(j<0||j>=bs.length)return;bs[j].click()},{passive:true})}}
+/* ---------- MENU を下から引き出す板に ---------- */
+function menu(){var p=DOC.getElementById('upan'),m=DOC.getElementById('umask');if(!p||!m||p.dataset.hx)return;p.dataset.hx=1;H.classList.add('hxmn');
+  var g=DOC.createElement('div');g.className='hxgr';g.setAttribute('aria-hidden','true');p.insertBefore(g,p.firstChild);
+  var y0=0,dy=0,t0=0,act=0;function nav(){return p.querySelector('nav')}
+  p.addEventListener('touchstart',function(e){if(innerWidth>760)return;var n=nav();if(!e.target.closest('.hxgr')&&n&&n.scrollTop>0)return;y0=e.touches[0].clientY;dy=0;t0=Date.now();act=1},{passive:true});
+  p.addEventListener('touchmove',function(e){if(!act)return;dy=e.touches[0].clientY-y0;if(dy<=0){p.classList.remove('h-drag');p.style.setProperty('--dy','0px');return}if(e.cancelable)e.preventDefault();p.classList.add('h-drag');p.style.setProperty('--dy',dy+'px');m.style.opacity=String(Math.max(0,1-dy/500))},{passive:false});
+  p.addEventListener('touchend',function(){if(!act)return;act=0;p.classList.remove('h-drag');var v=dy/Math.max(1,Date.now()-t0);m.style.opacity='';if(dy>120||(dy>40&&v>.6)){m.click();setTimeout(function(){p.style.setProperty('--dy','0px')},520)}else p.style.setProperty('--dy','0px')})}
+
+/* ---------- スワイプで週末を決める → 週末プラン ---------- */
+var DC=null,DQ=[],DI=0,DL=[];
+function wkend(){var d=jst(),w=d.getUTCDay(),sa=new Date(d.getTime()+((6-w+7)%7)*864e5);if(w===0)sa=new Date(d.getTime()-864e5);var su=new Date(sa.getTime()+864e5);return [ymd(sa),ymd(su)]}
+function onDay(o,t){return (!o.s||o.s<=t)&&(!o.e||o.e>=t)&&!closed(o,new Date(t+'T12:00:00Z'))}
+function deck(){if(!D.length)return;vib();var W2=wkend();
+  DQ=D.filter(function(o){return o.im&&o.id&&(onDay(o,W2[0])||onDay(o,W2[1]))}).sort(function(a,b){var va=a.vn&&a.n.indexOf(a.vn)<0?1:0,vb=b.vn&&b.n.indexOf(b.vn)<0?1:0;return va-vb||((a.e||'9')<(b.e||'9')?-1:1)}).slice(0,20);DI=0;DL=[];
+  if(!DC){DC=DOC.createElement('div');DC.className='hxdc';DC.setAttribute('role','dialog');DC.setAttribute('aria-modal','true');DC.setAttribute('aria-label','スワイプで週末を決める');DOC.body.appendChild(DC);
+    DC.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.classList.contains('h-x'))return closeDC();if(b.classList.contains('h-no'))return fly(-1);if(b.classList.contains('h-ok'))return fly(1);if(b.classList.contains('h-dn'))return plan();if(b.classList.contains('h-sd'))return sendPlan();if(b.classList.contains('h-ic'))return icsPlan();if(b.classList.contains('h-ag'))return deck()})}
+  DC.innerHTML='<div class="h-hd"><button type="button" class="h-x" aria-label="閉じる">'+ic('x')+'</button><b>週末を決める</b><small>'+md(W2[0])+'・'+md(W2[1])+'</small></div><div class="h-st"></div><div class="h-bt"><button type="button" class="h-no" aria-label="パス">'+ic('x')+'</button><button type="button" class="h-dn">プランを見る</button><button type="button" class="h-ok" aria-label="行きたい">'+ic('heart')+'</button></div>';
+  paintDC();DOC.body.style.overflow='hidden';requestAnimationFrame(function(){DC.classList.add('on')});try{history.pushState({hxd:1},'')}catch(e){}}
+function cardH(o,k){var pc=PC[o.p]||'#B97A62',n=now(o);return '<div class="h-cd" data-k="'+k+'" style="--pc:'+pc+';z-index:'+(50-k)+';transform:translateY('+(k*14)+'px) scale('+(1-k*.05)+');'+(k>2?'opacity:0':'')+'"><img src="'+ph(o)+'" alt="'+esc(o.vn||o.n)+'" decoding="async"><span class="h-lk">行きたい</span><span class="h-ps">パス</span><div class="h-sh"><i>'+esc(o.p)+'</i><em>'+esc(n&&n.on?n.t:stat(o))+'</em><b>'+esc(o.n)+'</b><p>'+esc((o.vn?o.vn+'・':'')+per(o)+(o.h?'・'+o.h.replace('-','〜'):''))+'</p></div></div>'}
+function paintDC(){var st=DC.querySelector('.h-st');if(DI>=DQ.length){plan();return}var h='';for(var k=Math.min(DQ.length-DI,3)-1;k>=0;k--)h+=cardH(DQ[DI+k],k);st.innerHTML=h;DC.querySelector('.h-hd small').textContent=(DI+1)+' / '+DQ.length;bindTop()}
+function bindTop(){var c=DC.querySelector('.h-cd[data-k="0"]');if(!c)return;var x0=0,y0=0,dx=0,dy=0,on=0,lk=c.querySelector('.h-lk'),ps=c.querySelector('.h-ps');
+  c.addEventListener('pointerdown',function(e){on=1;x0=e.clientX;y0=e.clientY;dx=dy=0;c.style.transition='none';try{c.setPointerCapture(e.pointerId)}catch(x){}});
+  c.addEventListener('pointermove',function(e){if(!on)return;dx=e.clientX-x0;dy=e.clientY-y0;c.style.transform='translate('+dx+'px,'+dy*.4+'px) rotate('+dx/18+'deg)';lk.style.opacity=Math.max(0,Math.min(1,dx/90));ps.style.opacity=Math.max(0,Math.min(1,-dx/90))});
+  var up=function(){if(!on)return;on=0;c.style.transition='';if(Math.abs(dx)>100)fly(dx>0?1:-1,dx,dy);else if(Math.abs(dx)<6&&Math.abs(dy)<6){var o=DQ[DI];c.style.transform='';closeDC(1);setTimeout(function(){sheet(o)},60)}else{c.style.transform='';lk.style.opacity=ps.style.opacity=0}};
+  c.addEventListener('pointerup',up);c.addEventListener('pointercancel',up)}
+function fly(dir,dx,dy){var c=DC.querySelector('.h-cd[data-k="0"]');if(!c)return;vib();var o=DQ[DI];if(dir>0){DL.push(o);var f=favs();if(f.indexOf(o.u)<0){f.push(o.u);try{localStorage.setItem('tn_fav',JSON.stringify(f))}catch(x){}}}
+  c.querySelector(dir>0?'.h-lk':'.h-ps').style.opacity=1;c.style.transform='translate('+(dir*innerWidth*1.3)+'px,'+((dy||0)*.4-40)+'px) rotate('+(dir*28)+'deg)';c.style.opacity='0';
+  DOC.querySelectorAll('.hxdc .h-cd').forEach(function(x){var k=+x.dataset.k;if(k>0){x.style.transform='translateY('+((k-1)*14)+'px) scale('+(1-(k-1)*.05)+')';x.style.opacity=''}});
+  DI++;setTimeout(paintDC,300)}
+function hr(o){return o.h?o.h.split('-')[0]:''}
+function plan(){var W2=wkend(),st=DC.querySelector('.h-st'),bt=DC.querySelector('.h-bt');DC.querySelector('.h-hd b').textContent='週末プラン';DC.querySelector('.h-hd small').textContent=DL.length+'か所';
+  var used={},h='';if(!DL.length)h='<p class="h-em">まだ「行きたい」がありません。<br>右に払うと、ここに並びます。</p>';
+  else [['土',W2[0]],['日',W2[1]]].forEach(function(d){var L=DL.filter(function(o){return !used[o.id]&&onDay(o,d[1])});if(d[0]==='土')L=L.filter(function(o,i){return i<Math.ceil(DL.length/2)||!onDay(o,W2[1])});L.sort(function(a,b){return hr(a)<hr(b)?-1:1});if(!L.length)return;L.forEach(function(o){used[o.id]=1});
+    h+='<h3>'+md(d[1])+'（'+d[0]+'）</h3>'+L.map(function(o,i){return '<a href="/o/'+o.id+'" style="animation-delay:'+(i*70)+'ms"><time>'+esc(hr(o)||'—')+'</time><img src="'+ph(o,'t')+'" alt=""><span><b>'+esc(o.n)+'</b><small>'+esc(o.p+(o.vn?'・'+o.vn:'')+(o.h?'・'+o.h.replace('-','〜'):''))+'</small></span></a>'}).join('')});
+  var pl=DOC.createElement('div');pl.className='h-pl';pl.innerHTML=h;st.replaceWith(pl);
+  bt.innerHTML='<button type="button" class="h-dn h-ag">やり直す</button>'+(DL.length?'<button type="button" class="h-dn h-ic">'+'カレンダーに入れる</button><button type="button" class="h-dn h-sd">送る</button>':'');vib()}
+function sendPlan(){var W2=wkend(),t='週末プラン（'+md(W2[0])+'・'+md(W2[1])+'）\n'+DL.map(function(o){return '・'+o.n+(o.h?'（'+o.h.replace('-','〜')+'）':'')+'\n  '+location.origin+'/o/'+o.id}).join('\n');
+  if(navigator.share)navigator.share({title:'週末プラン',text:t}).catch(function(){});else{try{navigator.clipboard.writeText(t);DC.querySelector('.h-sd').textContent='コピーしました'}catch(e){}}}
+function icsPlan(){var W2=wkend(),L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//townnote//plan//JA'];DL.forEach(function(o,i){var d=(onDay(o,W2[0])?W2[0]:W2[1]).replace(/-/g,''),h=o.h?o.h.split('-'):null;
+    L.push('BEGIN:VEVENT','UID:'+o.id+'-'+d+'@townnote','DTSTAMP:'+d+'T000000Z',h?'DTSTART;TZID=Asia/Tokyo:'+d+'T'+('0'+h[0].replace(':','')).slice(-4)+'00':'DTSTART;VALUE=DATE:'+d,'SUMMARY:'+o.n.replace(/[,;]/g,' '),'LOCATION:'+(o.vn||o.p||'').replace(/[,;]/g,' '),'URL:'+location.origin+'/o/'+o.id,'END:VEVENT')});
+  L.push('END:VCALENDAR');var a=DOC.createElement('a');a.href=URL.createObjectURL(new Blob([L.join('\r\n')],{type:'text/calendar'}));a.download='weekend.ics';DOC.body.appendChild(a);a.click();setTimeout(function(){a.remove()},500)}
+function closeDC(nb){if(!DC)return;DC.classList.remove('on');DOC.body.style.overflow='';if(!nb)try{if(history.state&&history.state.hxd)history.back()}catch(e){}}
+addEventListener('popstate',function(){if(DC&&DC.classList.contains('on'))closeDC(1)});
+
 /* ---------- 動かす ---------- */
-var RQ=null;function run(){clearTimeout(RQ);RQ=setTimeout(function(){try{rail()}catch(e){}try{island()}catch(e){}try{embla()}catch(e){}try{th()}catch(e){}try{anim()}catch(e){}try{bx()}catch(e){}},120)}
+var RQ=null;function run(){clearTimeout(RQ);RQ=setTimeout(function(){try{odet()}catch(e){}try{lens()}catch(e){}try{menu()}catch(e){}try{rail()}catch(e){}try{island()}catch(e){}try{embla()}catch(e){}try{th()}catch(e){}try{anim()}catch(e){}try{bx()}catch(e){}},120)}
 load('/assets/hx-lib.js?v=1',run);
 fetch('/assets/phh.json?v=1').then(function(r){return r.json()}).then(function(j){PHH=j;run()}).catch(function(){});
 fetch('/assets/mihon.json?v='+(window.__mhv||3)).then(function(r){return r.json()}).then(function(j){for(var x in j){var o=j[x];if(o.id&&!ID[o.id]){ID[o.id]=o;D.push(o)}}run();
