@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-18 10:13",
+  "at": "2026-11-18 21:46",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 45,
+      "read": 44,
       "ok": 16,
-      "avg": 160.1,
+      "avg": 161.6,
       "rmin": 1000,
       "top": [
         {
@@ -58,7 +58,7 @@
           "price": 1360,
           "per": 75.6,
           "amt": "2000ml×9本",
-          "rc": 2100,
+          "rc": 2110,
           "av": 4.49,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10151238/",
@@ -97,16 +97,16 @@
           "img": "https://item-shopping.c.yimg.jp/i/g/drinkya_001-0010-001-spu1712"
         },
         {
-          "name": "クリスタルガイザー 水 CRYSTAL GEYSER 500ml × 48本 天然水…",
-          "price": 3240,
-          "per": 135.0,
-          "amt": "500ml×48本",
-          "rc": 578,
-          "av": 4.4,
-          "shop": "めしや Yahoo!ショッピング店",
-          "bd": "クリスタルガイザー",
-          "url": "https://store.shopping.yahoo.co.jp/meshiya/001-0010-001-spu1712.html",
-          "img": "https://item-shopping.c.yimg.jp/i/g/meshiya_001-0010-001-spu1712"
+          "name": "コカ・コーラ い・ろ・は・す ラベルレス 560ml 1セット（48本）",
+          "price": 4872,
+          "per": 181.2,
+          "amt": "560ml×48本",
+          "rc": 952,
+          "av": 4.81,
+          "shop": "LOHACO by アスクル",
+          "bd": "いろはす",
+          "url": "https://lohaco.yahoo.co.jp/store/h-lohaco/item/u474532/",
+          "img": "https://item-shopping.c.yimg.jp/i/g/rd-lohaco_u474532"
         }
       ]
     },
@@ -262,7 +262,7 @@
           "price": 7998,
           "per": 799.8,
           "amt": "10kg",
-          "rc": 1262,
+          "rc": 1263,
           "av": 4.69,
           "shop": "農家からの贈り物 楽天市場店",
           "plain": "https://item.rakuten.co.jp/komenouka/10000014/",
@@ -282,7 +282,7 @@
           "plain": "https://item.rakuten.co.jp/rice-smile/10000005/",
           "bd": "",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00srvuo.m2lhf962.g00srvuo.m2lhgdac/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frice-smile%2Fsc-s2810%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frice-smile%2Fi%2F10000005%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/rice-smile/cabinet/kome_okome_1/2026_sc_newrice01.jpg?_ex=300x300",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/rice-smile/cabinet/kome_okome_1/2026_sc_ricecoupon.jpg?_ex=300x300",
           "ship": "予約・取り寄せ（届く日はリンク先で）"
         }
       ],
@@ -293,7 +293,7 @@
           "price": 3399,
           "per": 339.9,
           "amt": "10kg",
-          "rc": 2310,
+          "rc": 2311,
           "av": 4.21,
           "shop": "会津CROPS",
           "bd": "",
@@ -305,7 +305,7 @@
           "price": 3480,
           "per": 348.0,
           "amt": "10kg",
-          "rc": 5915,
+          "rc": 5916,
           "av": 4.25,
           "shop": "まんま屋",
           "bd": "",
@@ -318,10 +318,10 @@
       "key": "tp",
       "title": "トイレットペーパー",
       "unit": "100m",
-      "seen": 216,
-      "read": 27,
+      "seen": 215,
+      "read": 26,
       "ok": 3,
-      "avg": 110.1,
+      "avg": 108.5,
       "rmin": 1000,
       "top": [
         {
@@ -357,7 +357,7 @@
           "price": 4972,
           "per": 69.1,
           "amt": "150m×48ロール",
-          "rc": 8109,
+          "rc": 8110,
           "av": 4.59,
           "shop": "よろずやマルシェ",
           "plain": "https://item.rakuten.co.jp/onestep/10052052/",
@@ -454,7 +454,7 @@
           "price": 4580,
           "per": 146.8,
           "amt": "650ml×48",
-          "rc": 386,
+          "rc": 387,
           "av": 4.72,
           "shop": "D-rink 北海道",
           "plain": "https://item.rakuten.co.jp/d-rink-hokkaido/10000032/",
@@ -483,7 +483,7 @@
           "price": 4546,
           "per": 145.7,
           "amt": "650ml×48",
-          "rc": 467,
+          "rc": 468,
           "av": 4.81,
           "shop": "ドリンク屋 Yahoo!ショッピング店",
           "bd": "綾鷹",
@@ -499,7 +499,7 @@
       "seen": 60,
       "read": 45,
       "ok": 18,
-      "avg": 365.9,
+      "avg": 363.9,
       "rmin": 50,
       "top": [
         {
@@ -700,8 +700,8 @@
           "price": 4356,
           "per": 968.0,
           "amt": "4.5kg",
-          "rc": 317,
-          "av": 4.72,
+          "rc": 318,
+          "av": 4.71,
           "shop": "柔軟剤の通販ファーファオンライン",
           "plain": "https://item.rakuten.co.jp/nissansoap/10001799/",
           "bd": "",
@@ -743,9 +743,9 @@
       "title": "柔軟剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 90,
-      "read": 26,
+      "read": 25,
       "ok": 9,
-      "avg": 1100.0,
+      "avg": 1089.7,
       "rmin": 20,
       "top": [
         {
@@ -854,7 +854,7 @@
       "seen": 150,
       "read": 27,
       "ok": 2,
-      "avg": 2715.5,
+      "avg": 2570.0,
       "rmin": 100,
       "top": [
         {
@@ -1014,9 +1014,9 @@
       "title": "食器用洗剤（詰め替え）",
       "unit": "1L・1kg",
       "seen": 87,
-      "read": 30,
+      "read": 29,
       "ok": 12,
-      "avg": 823.2,
+      "avg": 831.9,
       "rmin": 20,
       "top": [
         {
@@ -1109,9 +1109,9 @@
       "title": "ティッシュ",
       "unit": "100組",
       "seen": 154,
-      "read": 18,
-      "ok": 12,
-      "avg": 93.9,
+      "read": 20,
+      "ok": 14,
+      "avg": 89.9,
       "rmin": 50,
       "top": [
         {
@@ -1161,7 +1161,7 @@
           "price": 2580,
           "per": 43.0,
           "amt": "150組×40箱",
-          "rc": 511,
+          "rc": 512,
           "av": 4.57,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10156163/",
@@ -1218,9 +1218,9 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 120,
-      "read": 45,
-      "ok": 45,
-      "avg": 55.9,
+      "read": 43,
+      "ok": 43,
+      "avg": 59.5,
       "rmin": 0,
       "top": [
         {
@@ -1235,6 +1235,20 @@
           "bd": "メリーズ",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00s0vmo.m2lhf5d9.g00s0vmo.m2lhge2f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbeisia%2F4901301437693x4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbeisia%2Fi%2F10126180%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/beisia/cabinet/09476807/4901301437693.jpg?_ex=300x300",
+          "ship": ""
+        },
+        {
+          "name": "ユニ・チャーム ムーニー マシュマロ肌ごこち モレ安心 新生児用 お誕生〜3000gまで…",
+          "price": 5128,
+          "per": 26.7,
+          "amt": "192枚",
+          "rc": 0,
+          "av": 0.0,
+          "shop": "NSC-Shop",
+          "plain": "https://item.rakuten.co.jp/nsc-kj/10002019/",
+          "bd": "ムーニー",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00rjmjo.m2lhf065.g00rjmjo.m2lhg733/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnsc-kj%2F4903111210947-3set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnsc-kj%2Fi%2F10002019%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nsc-kj/cabinet/shohin03/4903111210947-3p.jpg?_ex=300x300",
           "ship": ""
         },
         {
@@ -1266,31 +1280,31 @@
           "ship": ""
         },
         {
-          "name": "ムーニー マシュマロ肌ごこち モレ安心 オムツ（4~8kg）280枚（70枚×4）…",
-          "price": 8758,
-          "per": 31.3,
-          "amt": "280枚",
+          "name": "マミーポコ パンツ ドラえもん オムツ（6~13kg）144枚（48枚×3）［ケース品］",
+          "price": 4729,
+          "per": 32.8,
+          "amt": "144枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "Ciel de neige",
-          "plain": "https://item.rakuten.co.jp/cieldeneige/10011999/",
-          "bd": "ムーニー",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uoo1o.m2lhf537.g00uoo1o.m2lhg030/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcieldeneige%2Fcl91611ab260%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcieldeneige%2Fi%2F10011999%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cieldeneige/cabinet/onesell117/cl91611ab260.jpg?_ex=300x300",
+          "shop": "actonlineshop",
+          "plain": "https://item.rakuten.co.jp/actonlineshop/10025244/",
+          "bd": "マミーポコ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uq9uo.m2lhfa3d.g00uq9uo.m2lhg7fc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Factonlineshop%2Facton2687cebc142b%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Factonlineshop%2Fi%2F10025244%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/actonlineshop/cabinet/onesell027/acton2687cebc142b_0.jpg?_ex=300x300",
           "ship": ""
         },
         {
-          "name": "メリーズ オムツ さら さらエアスルー (お誕生~5000g) 164枚 (82枚×2)…",
-          "price": 5204,
-          "per": 31.7,
-          "amt": "164枚",
+          "name": "ユニチャーム マミーポコパンツ ドラえもん オムツ 54枚 ビッグサイズ ベビーおむつ",
+          "price": 7180,
+          "per": 44.3,
+          "amt": "162枚",
           "rc": 0,
           "av": 0.0,
-          "shop": "Homey Store 楽天市場店",
-          "plain": "https://item.rakuten.co.jp/homeystore/10118455/",
-          "bd": "メリーズ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00ua2zo.m2lhfc4a.g00ua2zo.m2lhgcdc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhomeystore%2F20250325175149_19%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhomeystore%2Fi%2F10118455%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/homeystore/cabinet/r_2022100518/20250325175149_19_1.jpg?_ex=300x300",
+          "shop": "まとめ買い応援本舗 楽天市場店",
+          "plain": "https://item.rakuten.co.jp/kurashio-en2/10001410/",
+          "bd": "マミーポコ",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uv6ko.m2lhf536.g00uv6ko.m2lhg9ab/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashio-en2%2Fuc-mmpoko54b-tcs%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashio-en2%2Fi%2F10001410%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashio-en2/cabinet/gazo3/uc-mmpoko54b-tcs-1.jpg?_ex=300x300",
           "ship": ""
         },
         {
@@ -1305,20 +1319,6 @@
           "bd": "パンパース",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00u65wo.m2lhf3c0.g00u65wo.m2lhgf2a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftry3-2%2F4987176155818%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftry3-2%2Fi%2F10009322%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/try3-2/cabinet/12383927/4987176386311.jpg?_ex=300x300",
-          "ship": ""
-        },
-        {
-          "name": "ユニチャーム マミーポコパンツ ドラえもん オムツ 36枚 ビッグより大きいサイズ…",
-          "price": 7180,
-          "per": 66.5,
-          "amt": "108枚",
-          "rc": 0,
-          "av": 0.0,
-          "shop": "まとめ買い応援本舗 楽天市場店",
-          "plain": "https://item.rakuten.co.jp/kurashio-en2/10001409/",
-          "bd": "マミーポコ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00uv6ko.m2lhf536.g00uv6ko.m2lhg9ab/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashio-en2%2Fuc-mmpoko36bb-tcs%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashio-en2%2Fi%2F10001409%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashio-en2/cabinet/gazo3/uc-mmpoko36bb-tcs-1.jpg?_ex=300x300",
           "ship": ""
         }
       ],
@@ -1379,7 +1379,7 @@
           "price": 2052,
           "per": 1.3,
           "amt": "1600枚",
-          "rc": 9306,
+          "rc": 9308,
           "av": 4.49,
           "shop": "レックダイレクト 楽天市場店",
           "plain": "https://item.rakuten.co.jp/lecdirect/10001749/",
@@ -1424,8 +1424,8 @@
       "key": "trash",
       "title": "ゴミ袋",
       "unit": "1枚",
-      "seen": 142,
-      "read": 82,
+      "seen": 145,
+      "read": 84,
       "ok": 5,
       "avg": 18.6,
       "rmin": 50,
@@ -1724,9 +1724,9 @@
       "title": "パスタ",
       "unit": "1kg",
       "seen": 127,
-      "read": 80,
-      "ok": 23,
-      "avg": 683.5,
+      "read": 81,
+      "ok": 24,
+      "avg": 679.6,
       "rmin": 50,
       "top": [
         {
@@ -1786,17 +1786,17 @@
           "ship": ""
         },
         {
-          "name": "パスタ 5kg no.5 5kg 3袋 バリラ 送料無料 スパゲッティ スパゲティ…",
+          "name": "パスタ バリラ no.3 スパゲッティ スパゲッティー 大容量 5kg×3個 15kg…",
           "price": 5380,
           "per": 358.7,
           "amt": "5kg×3",
           "rc": 10,
-          "av": 4.0,
-          "shop": "メガストア",
-          "plain": "https://item.rakuten.co.jp/enetkome/10006443/",
+          "av": 5.0,
+          "shop": "快適ホームライフ",
+          "plain": "https://item.rakuten.co.jp/k-home/10086955/",
           "bd": "バリラ",
-          "url": "https://hb.afl.rakuten.co.jp/hgc/g00rxoqo.m2lhf9a0.g00rxoqo.m2lhgacd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fenetkome%2F9432664%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fenetkome%2Fi%2F10006443%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/enetkome/cabinet/tasya103/9432664_00.jpg?_ex=300x300",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00rqlbo.m2lhfc93.g00rqlbo.m2lhg098/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fk-home%2F7049289%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fk-home%2Fi%2F10086955%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/k-home/cabinet/06135991/09344783/7049289_khome.jpg?_ex=300x300",
           "ship": ""
         }
       ],
@@ -1835,7 +1835,7 @@
       "seen": 127,
       "read": 58,
       "ok": 19,
-      "avg": 5168.6,
+      "avg": 5169.3,
       "rmin": 100,
       "top": [
         {
@@ -1942,9 +1942,9 @@
       "title": "ドッグフード",
       "unit": "1kg",
       "seen": 60,
-      "read": 27,
-      "ok": 27,
-      "avg": 2240.9,
+      "read": 26,
+      "ok": 26,
+      "avg": 2283.4,
       "rmin": 100,
       "top": [
         {
@@ -2051,9 +2051,9 @@
       "title": "キャットフード",
       "unit": "1kg",
       "seen": 112,
-      "read": 62,
-      "ok": 47,
-      "avg": 1553.1,
+      "read": 59,
+      "ok": 44,
+      "avg": 1541.1,
       "rmin": 100,
       "top": [
         {
