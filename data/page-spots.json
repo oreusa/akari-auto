@@ -2731,7 +2731,7 @@
     {
       "title": "第20回 長沼コミュニティまつり",
       "pref": "千葉",
-      "place": "長沼コミュニティセンター",
+      "place": "千葉市長沼コミュニティセンター 千葉市稲毛区",
       "when": "11/22",
       "start": "2026-11-22",
       "ends": "2026-11-22T15:00",
@@ -2767,7 +2767,7 @@
     {
       "title": "第23回 土浦カレーフェスティバル",
       "pref": "茨城",
-      "place": "J:COMフィールド土浦",
+      "place": "川口運動公園 土浦市",
       "when": "11/21〜11/22",
       "start": "2026-11-21",
       "ends": "2026-11-22T15:00",
@@ -2799,6 +2799,102 @@
       "note": "前橋市｜ミロコマチコの作品。鑑賞無料、点灯17:00〜23:00",
       "url": "https://www.shiroiya.com/news/news-topics/20260608-2/",
       "checked": "2026-11-17"
+    },
+    {
+      "title": "星の王子さま 大切なものを探しに空の旅へ",
+      "pref": "東京",
+      "place": "東京シティビュー",
+      "when": "11/13〜2/14",
+      "start": "2026-11-13",
+      "ends": "2027-02-14T22:00",
+      "free": false,
+      "note": "港区｜六本木ヒルズ森タワー52階。一般2,400円・4歳〜中学生1,100円、10:00〜22:00",
+      "url": "https://tcv.roppongihills.com/jp/exhibitions/hoshinooujisama/index.html",
+      "checked": "2026-11-18"
+    },
+    {
+      "title": "あーすフェスタかながわ2026",
+      "pref": "神奈川",
+      "place": "地球市民かながわプラザ",
+      "when": "11/28・11/29",
+      "start": "2026-11-28",
+      "ends": "2026-11-29T16:00",
+      "free": true,
+      "note": "横浜市栄区｜世界の音楽・屋台・ワークショップ。入場無料、10:00〜16:00",
+      "url": "https://www.earthplaza.jp/earthfestakanagawa/",
+      "checked": "2026-11-18"
+    },
+    {
+      "title": "大宮けいりん チャリフェス",
+      "pref": "埼玉",
+      "place": "大宮競輪場",
+      "when": "11/23",
+      "start": "2026-11-23",
+      "ends": "2026-11-23T15:00",
+      "free": true,
+      "note": "さいたま市大宮区｜キッズバイク・ふわふわ遊具。入場無料、10:00〜15:00",
+      "url": "https://www.keirin-saitama.jp/omiya/topics/20261123/",
+      "checked": "2026-11-18"
+    },
+    {
+      "title": "Maple festa 秋の収穫祭",
+      "pref": "埼玉",
+      "place": "北本水辺プラザ公園",
+      "when": "11/23",
+      "start": "2026-11-23",
+      "ends": "2026-11-23T16:00",
+      "free": true,
+      "note": "北本市｜音楽・食べ物・子どもブース。入場無料、10:00〜16:00",
+      "url": "https://maple-festa.com/",
+      "checked": "2026-11-18"
+    },
+    {
+      "title": "東京ランタンフェスティバル2026",
+      "pref": "千葉",
+      "place": "東京ドイツ村",
+      "when": "10/31〜4/4",
+      "start": "2026-10-31",
+      "ends": "2027-04-04T20:00",
+      "free": false,
+      "note": "袖ケ浦市｜レイクエリアのランタン。入園大人1,500円、日没〜20:00",
+      "url": "https://t-doitsumura.co.jp/lantern2026/",
+      "checked": "2026-11-18"
+    },
+    {
+      "title": "Bouquet BOTANICA COFFEE FES",
+      "pref": "千葉",
+      "place": "BOTANICA MUSEUM 稲毛海浜公園",
+      "when": "11/21",
+      "start": "2026-11-21",
+      "ends": "2026-11-21T19:00",
+      "free": true,
+      "note": "千葉市美浜区｜県内約18のコーヒー店とマーケット。入場無料、11:00〜19:00",
+      "url": "https://sunsetbeachpark.jp/%e3%80%9011%e6%9c%8821%e6%97%a5%e3%80%91bouquet-botanica-coffee-fes/2026/10/04/",
+      "checked": "2026-11-18"
+    },
+    {
+      "title": "いきいきフェスタTAKO2026",
+      "pref": "千葉",
+      "place": "多古町コミュニティセンター",
+      "when": "11/23",
+      "start": "2026-11-23",
+      "ends": "2026-11-23T15:30",
+      "free": true,
+      "note": "多古町｜新米・野菜の販売、ステージ、もちまき。入場無料、9:00〜15:30",
+      "url": "https://tako-kankou.or.jp/ikiiki-event/",
+      "checked": "2026-11-18"
+    },
+    {
+      "title": "Bamboo Winter Lights 2026",
+      "pref": "栃木",
+      "place": "若竹の杜 若山農場",
+      "when": "11/28〜2/28",
+      "start": "2026-11-28",
+      "ends": "2027-02-28T20:00",
+      "free": false,
+      "note": "宇都宮市｜竹林のライトアップ（土日祝）。大人1,500円、日没〜20:00",
+      "url": "https://www.utsunomiya-cvb.org/event/detail_30131.html",
+      "checked": "2026-11-18"
     }
   ]
 }
