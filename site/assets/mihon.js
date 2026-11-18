@@ -136,7 +136,7 @@ function now(o){if(!o||!o.h)return null;var d=jst(),t=ymd(d);if(!(o.s<=t&&o.e>=t
   if(m>=x[0]&&m<x[1]){var l=x[1]-m;if(l<=60)return{c:'',t:'あと'+l+'分で終わり'};return{c:'',t:night?'いまライトアップ中':'いま開いています'}}
   if(m<x[0]&&x[0]-m<=180)return{c:'soon',t:(night?'今夜':'きょう')+o.h.split('-')[0]+'から'};return null}
 function nowPill(host,o,cls){var n=now(o),p=host.querySelector('.mnow');if(!n){if(p)p.remove();return}
-  if(!p){p=document.createElement('span');host.appendChild(p)}p.className='mnow '+(n.c||'')+(cls?' '+cls:'');p.textContent=n.t}
+  if(!p){p=document.createElement('span');host.appendChild(p)}var nc='mnow '+(n.c||'')+(cls?' '+cls:'');if(p.className!==nc)p.className=nc;if(p.textContent!==n.t)p.textContent=n.t}
 function photo(box,o,big){if(box.classList.contains('mph'))return;box.classList.add('mph');var i=document.createElement('img');i.alt='';i.loading='lazy';i.decoding='async';i.className='mfade';i.src='/assets/ph/'+(big?'':'t/')+o.im;box.insertBefore(i,box.firstChild)}
 /* カード（一覧・府県・イルミ・紅葉・泊まり・いまから・1件ページの「ほかのおでかけ」） */
 function slim(){if(/^\/hatsumode/.test(location.pathname))return;/* 初詣は時間・交通規制がページの中身なので隠さない */document.querySelectorAll(':is(.card,a.cd) .kv:not(.mk)').forEach(function(v){v.classList.add('mk');var l=(v.querySelector('span')||{}).textContent||'';if(!/見頃|開く日/.test(l))v.classList.add('mkh')})}
