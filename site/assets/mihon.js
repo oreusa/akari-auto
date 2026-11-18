@@ -95,6 +95,8 @@ var css=
 'html body .oh{color:#767B82!important}html body button[data-t][role=tab]:not([aria-selected=true]){color:#6E655E!important}html body button[data-t][role=tab] i{color:#467A54!important}html body .nft small{color:#6E655E!important}html body .mctab>span{color:#2B2622!important}'+
 'html body .kicker,html body .lists a.ls .en{color:#7C6A5A!important}html body .prom h2,html body div.sns h2,html body .ft,html body .uhl b,html body .wrap>p,html body a[href$="privacy"]{color:#76685D!important}'+
 'html body .sns a.co:not(.mcta1) span{color:#76685D}.mctab small{color:#6E655E}'+
+/* 11/18 日本語の改行：言葉の途中で切らない（「山陽高／砂駅」→「山陽／高砂駅」）・見出しの最後の1文字だけの行をなくす */
+'html[lang=ja] body :is(h1,h2,h3,.t,.m,.nm,.pl,.hk,.ds,.mhh,.mhn,.big b,figcaption,.card p,li a){word-break:auto-phrase;text-wrap:pretty}html[lang=ja] body :is(h1,h2,h3,.t,.nm,.mhh){text-wrap:balance}'+
 /* 11/18 入口：今週の1件（画面いっぱいの写真・ゆっくりズーム） */
 '.mhero{margin:6px -16px 0;position:relative}'+
 '.mhero .mhl{position:relative;display:block;height:min(78svh,620px);min-height:440px;overflow:hidden;color:#fff;text-decoration:none;background:#2b2622;-webkit-tap-highlight-color:transparent}'+
