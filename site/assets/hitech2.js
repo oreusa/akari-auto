@@ -214,6 +214,59 @@ var css=
 '.hxdc .h-pl a img{width:64px;height:64px;border-radius:14px;object-fit:cover;flex:none}.hxdc .h-pl a b{display:block;font-size:14px;line-height:1.4}.hxdc .h-pl a small{opacity:.7;font-size:11.5px}.hxdc .h-pl a time{font:600 13px Jost,sans-serif;color:#F6C35B;flex:none;width:44px}'+
 '.hxdc .h-pl .h-em{opacity:.7;text-align:center;margin-top:40px;line-height:1.9}'+
 '@keyframes hxpi{from{opacity:0;transform:translateY(14px)}}'+
+/* 暮らし側（不動産）：数字とグラフが主役 */
+'.hxkd{position:relative;margin:20px 0 6px;padding:18px 16px 16px;border-radius:24px;background:radial-gradient(120% 90% at 100% 0%,#1d3557 0%,#0d1726 60%);color:#e8eef7;overflow:hidden;font-family:"Zen Kaku Gothic New",sans-serif;box-shadow:0 24px 50px -24px rgba(13,23,38,.7)}'+
+'.hxkd::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(#000,transparent 85%);-webkit-mask-image:linear-gradient(#000,transparent 85%);pointer-events:none}'+
+'html.night .hxkd,html.night .hxkb,html.night .hxtq{filter:invert(1) hue-rotate(180deg)}'+
+'.hxkd .hxi{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}.hxkd .h-yy span{white-space:nowrap}'+
+'.hxkd .h-en{font:600 10.5px Jost,sans-serif;letter-spacing:.28em;color:#7fb2ff;opacity:.9}'+
+'.hxkd .h-top{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:6px;position:relative}'+
+'.hxkd .h-pct{font:500 54px/1 Jost,sans-serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:#fff}.hxkd .h-pct small{font-size:24px;margin-left:2px;opacity:.8}'+
+'.hxkd .h-ar{display:inline-flex;align-items:center;gap:4px;font:700 12px "Zen Kaku Gothic New",sans-serif;padding:4px 10px;border-radius:99px;margin-bottom:8px}.hxkd .h-up{background:rgba(74,222,128,.16);color:#6ee7a0}.hxkd .h-dn{background:rgba(248,113,113,.16);color:#fca5a5}'+
+'.hxkd .h-rk{position:relative;width:92px;height:92px;flex:none}.hxkd .h-rk svg{width:100%;height:100%;transform:rotate(-90deg)}.hxkd .h-rk circle{fill:none;stroke-width:8}.hxkd .h-rk .h-b{stroke:rgba(255,255,255,.1)}.hxkd .h-rk .h-f{stroke:url(#hxkg);stroke-linecap:round;transition:stroke-dashoffset 1.4s '+EO+'}'+
+'.hxkd .h-rk div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font:500 24px/1 Jost,sans-serif}.hxkd .h-rk div small{font:500 10px "Zen Kaku Gothic New",sans-serif;opacity:.7;margin-top:3px}'+
+'.hxkd .h-lb{font-size:12px;opacity:.75;margin-top:4px}'+
+'.hxkd .h-yy{display:grid;grid-template-columns:auto 1fr auto;gap:8px 10px;align-items:center;margin-top:16px;font-size:11.5px}.hxkd .h-yy i{display:block;height:10px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}.hxkd .h-yy i b{display:block;height:100%;width:0;border-radius:6px;transition:width 1.2s '+EO+'}.hxkd .h-yy em{font:500 13px Jost,sans-serif;font-style:normal;text-align:right;min-width:48px}'+
+'.hxkd .h-dist{margin-top:18px}.hxkd .h-dist p{font-size:11.5px;opacity:.75;margin:0 0 6px}.hxkd .h-dist .h-st2{position:relative;height:46px;border-bottom:1px solid rgba(255,255,255,.18)}'+
+'.hxkd .h-dist .h-st2 span{position:absolute;bottom:0;width:6px;margin-left:-3px;border-radius:3px 3px 0 0;background:rgba(127,178,255,.35);transform-origin:bottom;transform:scaleY(0);transition:transform .8s '+EO+'}.hxkd .h-dist .h-st2 span.h-me{background:#F6C35B;width:8px;margin-left:-4px;box-shadow:0 0 12px #F6C35B}'+
+'.hxkd .h-dist .h-ax{display:flex;justify-content:space-between;font:500 10px Jost,sans-serif;opacity:.6;margin-top:4px}'+
+'.hxkd.h-in .h-dist .h-st2 span{transform:scaleY(1)}'+
+'.hxkd .h-nb{display:flex;gap:6px;overflow-x:auto;margin:16px -16px -2px;padding:0 16px 2px;scrollbar-width:none}.hxkd .h-nb::-webkit-scrollbar{display:none}.hxkd .h-nb a{flex:none;padding:7px 12px;border-radius:12px;background:rgba(255,255,255,.07);color:#e8eef7;text-decoration:none;font-size:12px;white-space:nowrap}.hxkd .h-nb a b{font:500 12.5px Jost,sans-serif;margin-left:6px}'+
+'.hxkb{margin:12px 0 4px;padding:12px;border-radius:18px;background:#0d1726;color:#e8eef7;font-size:11.5px}.hxkb p{margin:0 0 8px;opacity:.75}.hxkb .h-r{display:grid;grid-template-columns:1fr auto;gap:3px 8px;align-items:center;margin:8px 0}.hxkb .h-r span{grid-column:1/3;font-size:11px;opacity:.8}.hxkb .h-r i{display:block;height:12px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}.hxkb .h-r i b{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,#3b82f6,#7fb2ff);transition:width 1.2s '+EO+'}.hxkb .h-r.h-me i b{background:linear-gradient(90deg,#F6C35B,#ffd98a)}.hxkb .h-r em{font:500 13px Jost,sans-serif;font-style:normal;white-space:nowrap}.hxkb .h-r em small{font-size:10px;margin-left:1px}'+
+'.hxkc{position:fixed;left:12px;right:12px;bottom:calc(92px + env(safe-area-inset-bottom));z-index:2147481000;max-width:520px;margin:0 auto;transform:translateY(calc(100% + 130px));opacity:0;visibility:hidden;transition:transform .5s '+EO+',opacity .3s,visibility 0s .5s}.hxkc.h-sh{transform:none;opacity:1;visibility:visible;transition:transform .5s '+EO+',opacity .3s}'+
+'.hxkc a{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;height:56px;border-radius:18px;background:linear-gradient(135deg,#1d4ed8,#0d1726);color:#fff;text-decoration:none;font:700 14.5px "Zen Kaku Gothic New",sans-serif;overflow:hidden;box-shadow:0 16px 36px -14px rgba(29,78,216,.75)}'+
+'.hxkc a::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-100%);animation:hxsn 3.2s ease-in-out 1.2s 3}'+
+'.hxkc a small{font-weight:500;font-size:11px;opacity:.8;padding:2px 8px;border-radius:99px;background:rgba(255,255,255,.14)}.hxkc svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}'+
+'html.night .hxkc{filter:invert(1) hue-rotate(180deg)}html.hxk .hxis{display:none!important}'+
+'@keyframes hxsn{to{transform:translateX(100%)}}'+
+'.hxtq{position:fixed;inset:0;z-index:2147483000;background:#0b1320;color:#e8eef7;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s;font-family:"Zen Kaku Gothic New",sans-serif}.hxtq.on{opacity:1;visibility:visible;transition:opacity .25s}'+
+'.hxtq .h-bx{display:flex;gap:8px;align-items:center;padding:calc(12px + env(safe-area-inset-top)) 14px 10px}.hxtq label{flex:1;display:flex;align-items:center;gap:8px;height:46px;padding:0 14px;border-radius:14px;background:rgba(255,255,255,.08)}.hxtq label svg{width:18px;height:18px;stroke:#7fb2ff;fill:none;stroke-width:2}'+
+'.hxtq input{flex:1;border:0;background:none;color:#fff;font:500 16px "Zen Kaku Gothic New",sans-serif;outline:none;min-width:0}.hxtq .h-cn{border:0;background:none;color:#7fb2ff;font:700 14px "Zen Kaku Gothic New",sans-serif}'+
+'.hxtq .h-ch{display:flex;gap:6px;overflow-x:auto;padding:2px 14px 10px;scrollbar-width:none}.hxtq .h-ch button{flex:none;border:1px solid rgba(255,255,255,.14);background:none;color:#e8eef7;border-radius:99px;padding:7px 13px;font:600 12.5px "Zen Kaku Gothic New",sans-serif}.hxtq .h-ch button[aria-pressed=true]{background:#e8eef7;color:#0b1320}'+
+'.hxtq .h-rs{flex:1;overflow:auto;padding:0 14px 30px}.hxtq .h-rs a{display:grid;grid-template-columns:28px 1fr 92px 58px;gap:10px;align-items:center;padding:11px 4px;border-bottom:1px solid rgba(255,255,255,.07);color:#e8eef7;text-decoration:none;animation:hxpi .4s '+EO+' both}'+
+'.hxtq .h-rs a>i{font:500 12px Jost,sans-serif;opacity:.5;font-style:normal;text-align:right}.hxtq .h-rs b{font-size:14.5px;font-weight:700}.hxtq .h-rs small{display:block;font-size:11px;opacity:.6}.hxtq .h-rs mark{background:none;color:#F6C35B}'+
+'.hxtq .h-rs u{display:block;height:8px;border-radius:4px;background:rgba(255,255,255,.07);position:relative;overflow:hidden}.hxtq .h-rs u s{position:absolute;top:0;bottom:0;left:50%;border-radius:4px}.hxtq .h-rs em{font:500 15px Jost,sans-serif;font-style:normal;text-align:right}'+
+'.hxtq .h-p{color:#6ee7a0}.hxtq .h-m{color:#fca5a5}'+
+/* おかいもの：値段のティッカー・安さのメーター・グラフが描かれる */
+'.hxtk{position:relative;margin:10px -16px 6px;overflow:hidden;background:#0d1726;color:#e8eef7;height:38px;display:flex;align-items:center;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}'+
+'.hxtk .h-tr{display:flex;gap:26px;white-space:nowrap;padding-left:16px;animation:hxmq 38s linear infinite;will-change:transform}.hxtk:active .h-tr{animation-play-state:paused}'+
+'.hxtk a{color:#e8eef7;text-decoration:none;font:600 12.5px "Zen Kaku Gothic New",sans-serif;display:inline-flex;align-items:center;gap:6px}.hxtk a b{font:500 13.5px Jost,sans-serif}.hxtk a em{font:600 12px Jost,sans-serif;font-style:normal;color:#6ee7a0}.hxtk a i{width:6px;height:6px;border-radius:50%;background:#6ee7a0;box-shadow:0 0 8px #6ee7a0}'+
+'@keyframes hxmq{to{transform:translateX(-50%)}}html.night .hxtk{filter:invert(1) hue-rotate(180deg)}'+
+'.hxsv2{display:block;height:5px;border-radius:5px;background:rgba(31,138,80,.12);margin:5px 0 2px;overflow:hidden;max-width:200px}.hxsv2 b{display:block;height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,#34C76F,#9be15d);box-shadow:0 0 8px rgba(52,199,111,.6);transition:width 1.3s '+EO+'}'+
+'.oh-go.hxsh2{position:relative;overflow:hidden}.oh-go.hxsh2::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-100%);animation:hxsn 1.6s ease-in-out .3s 1}'+
+'.bgw svg.bg polyline.hxdr{transition:stroke-dashoffset 1.6s '+EO+'}'+
+'@media (prefers-reduced-motion:reduce){.hxtk .h-tr{animation:none}}'+
+/* 下のバー：黒いガラスの板・今いる所に光る玉（夜は今の紺のまま） */
+'html:not(.night) #v2bar{background:rgba(22,19,17,.86)!important;-webkit-backdrop-filter:saturate(1.6) blur(18px)!important;backdrop-filter:saturate(1.6) blur(18px)!important;box-shadow:0 18px 40px -14px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.07)!important}'+
+'html.hxk:not(.night) #v2bar{background:rgba(13,23,38,.9)!important}'+
+'#v2bar{border-radius:24px!important;left:12px!important;right:12px!important}'+
+'html:not(.night) #v2bar>a,html:not(.night) #v2bar>button:not(.mn){color:rgba(255,255,255,.66)!important}html:not(.night) #v2bar>.cur{color:#fff!important}'+
+'#v2bar>a,#v2bar>button{position:relative}#v2bar>.cur span{border-bottom:0!important}'+
+'#v2bar>.cur::before{content:"";position:absolute;top:5px;left:50%;width:46px;height:30px;margin-left:-23px;border-radius:15px;background:rgba(255,255,255,.14);z-index:-1}'+
+'html.night #v2bar>.cur::before{background:rgba(0,0,0,.08)}'+
+'#v2bar>.cur::after{content:"";position:absolute;bottom:4px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:currentColor}'+
+'#v2bar>a,#v2bar>button{isolation:isolate}'+
+'#v2bar button.mn{margin:5px;border-radius:19px!important;flex-basis:66px!important;background:linear-gradient(145deg,var(--acc,#2B2622),#1a1513)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}'+
 '@media (prefers-reduced-motion:reduce){.hxsv,.hxsh,.hxis{transition:none!important}.hxsv .h-im img.h-in,.hxsv .h-go,.hxsr .h-it{animation:none!important;opacity:1!important;transform:none!important}}';
 var stl=DOC.createElement('style');stl.textContent=css;DOC.head.appendChild(stl);
 var pl=DOC.createElement('link');pl.rel='stylesheet';pl.href='/assets/pswp/photoswipe.css';DOC.head.appendChild(pl);
@@ -344,7 +397,7 @@ function res(q){var rs=SR.querySelector('.h-rs'),f=fold(q),t=ymd(jst()),Q=qs2(f)
   rs.innerHTML=h;rs.scrollTop=0}
 function closeSR(fromPop){if(!SR||!SR.classList.contains('on'))return;SR.classList.remove('on');DOC.body.style.overflow='';SR.querySelector('input').blur();if(!fromPop)try{history.back()}catch(e){}}
 /* 下のバーの「さがす」・パソコンの / キー */
-DOC.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#v2bar [data-a=find]');if(!b||!D.length)return;e.preventDefault();e.stopImmediatePropagation();search('')},true);
+DOC.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#v2bar [data-a=find]');if(!b||!D.length||KUR)return;e.preventDefault();e.stopImmediatePropagation();search('')},true);
 addEventListener('keydown',function(e){if((e.key==='/'||(e.key==='k'&&(e.metaKey||e.ctrlKey)))&&!/INPUT|TEXTAREA/.test((e.target.tagName||''))&&D.length){e.preventDefault();search('')}});
 
 /* ---------- 下から出る板 ---------- */
@@ -487,8 +540,74 @@ function icsPlan(){var W2=wkend(),L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//
 function closeDC(nb){if(!DC)return;DC.classList.remove('on');DOC.body.style.overflow='';if(!nb)try{if(history.state&&history.state.hxd)history.back()}catch(e){}}
 addEventListener('popstate',function(){if(DC&&DC.classList.contains('on'))closeDC(1)});
 
+/* ---------- 暮らし側（不動産）：数字とグラフが主役・街を探す・いくらで売れるか ---------- */
+var TW=null,KUR=/^\/(machi\/|fudosan|chika|sagasu|uru|akiya|kaitai|moushikomi|shindan|ikura|gyosha|jikka)/.test(location.pathname);
+function towns(cb){if(TW)return cb(TW);fetch('/assets/towns.json').then(function(r){return r.json()}).then(function(d){TW=d.towns||d;cb(TW)}).catch(function(){})}
+function sg(v){return (v>0?'+':v<0?'−':'±')+Math.abs(v).toFixed(1)}
+function cnt(el,to,dec,pre){if(RM){el.textContent=pre(to);return}var t0=performance.now(),D0=1300;function f(t){var k=Math.min(1,(t-t0)/D0),e=1-Math.pow(1-k,4);el.textContent=pre(to*e);if(k<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+var KD=0;
+function kur(){if(!KUR||KD)return;KD=1;H.classList.add('hxk');
+  /* 下に固定：いくらで売れるか無料で聞く（光が流れるボタン） */
+  var cta=DOC.querySelector('a.itq')||DOC.querySelector('a[href*="moushikomi"]');
+  if(cta&&!/moushikomi/.test(location.pathname)&&!DOC.querySelector('.hxkc')){var kc=DOC.createElement('div');kc.className='hxkc';var tx=/売れ|査定|いくら/.test(cta.textContent)?'いくらで売れるか、無料で聞く':cta.textContent.replace(/[→\s]+$/,'').slice(0,22);
+    kc.innerHTML='<a href="'+esc(cta.getAttribute('href'))+'" data-k="激変版｜下の固定ボタン">'+esc(tx)+'<small>約1分</small>'+ic('ext')+'</a>';DOC.body.appendChild(kc);
+    var ck=function(){var r=cta.getBoundingClientRect(),vis=r.top<innerHeight&&r.bottom>0;kc.classList.toggle('h-sh',scrollY>innerHeight*.6&&!vis)};addEventListener('scroll',ck,{passive:true});ck()}
+  /* 街の名前で探す＝全画面 */
+  var tq=DOC.getElementById('tq');if(tq){tq.addEventListener('focus',function(e){tq.blur();tsearch(tq.value)});}
+  DOC.addEventListener('click',function(e){var b=e.target.closest('#v2bar [data-a=find],#v2bar [data-m=q],[data-hx-town]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();tsearch('')},true);
+  var m=location.pathname.match(/^\/machi\/([a-z]+-\d+)/);if(m)towns(function(T){machi(T,m[1])});else towns(kmk)}
+function machi(T,id){var t=null;T.forEach(function(x){if(x.id===id)t=x});var bg=DOC.querySelector('.wrap>.big');if(!t||!bg||DOC.querySelector('.hxkd'))return;
+  var P=T.filter(function(x){return x.p===t.p&&typeof x.r8==='number'}),mn=Math.min.apply(null,P.map(function(x){return x.r8})),mx=Math.max.apply(null,P.map(function(x){return x.r8}));if(mx===mn)mx=mn+1;
+  var up=t.r8>=0,fr=1-(t.rk-1)/Math.max(1,t.of-1),C=2*Math.PI*40,mxa=Math.max(Math.abs(t.r7||0),Math.abs(t.r8),.1);
+  var near=T.filter(function(x){return x.id!==t.id&&x.la}).map(function(x){var dy=x.la-t.la,dx=(x.lo-t.lo)*Math.cos(t.la*Math.PI/180);return [dx*dx+dy*dy,x]}).sort(function(a,b){return a[0]-b[0]}).slice(0,8).map(function(a){return a[1]});
+  var k=DOC.createElement('section');k.className='hxkd';k.setAttribute('aria-label',t.n+'の地価の数字');
+  k.innerHTML='<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="hxkg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fb2ff"/><stop offset="1" stop-color="#F6C35B"/></linearGradient></defs></svg>'+
+    '<div class="h-en">LAND PRICE ─ '+esc(t.s||t.n)+'</div><div class="h-top"><div><span class="h-ar '+(up?'h-up':'h-dn')+'">'+(up?'▲ 上がった':'▼ 下がった')+'</span><div class="h-pct"><span class="h-v">0.0</span><small>%</small></div><div class="h-lb">住宅地の1年の動き（2026年1月1日）</div></div>'+
+    '<div class="h-rk"><svg viewBox="0 0 100 100"><circle class="h-b" cx="50" cy="50" r="40"/><circle class="h-f" cx="50" cy="50" r="40" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+C.toFixed(1)+'"/></svg><div>'+t.rk+'<small>位／'+t.of+'</small></div></div></div>'+
+    '<div class="h-yy"><span>前の年</span><i><b style="background:#64748b" data-w="'+(Math.abs(t.r7||0)/mxa*100).toFixed(0)+'"></b></i><em>'+(t.r7!=null?sg(t.r7)+'%':'—')+'</em><span>ことし</span><i><b style="background:linear-gradient(90deg,#3b82f6,'+(up?'#6ee7a0':'#fca5a5')+')" data-w="'+(Math.abs(t.r8)/mxa*100).toFixed(0)+'"></b></i><em>'+sg(t.r8)+'%</em></div>'+
+    '<div class="h-dist"><p>'+esc(t.p)+'の'+P.length+'の街の中で、ここ（黄色）</p><div class="h-st2">'+P.map(function(x,i){var h=10+((x.r8-mn)/(mx-mn))*90;return '<span class="'+(x.id===t.id?'h-me':'')+'" style="left:'+(((x.r8-mn)/(mx-mn))*94+3).toFixed(1)+'%;height:'+h.toFixed(0)+'%;transition-delay:'+(i*12)+'ms"></span>'}).join('')+'</div><div class="h-ax"><span>'+sg(mn)+'%</span><span>'+sg(mx)+'%</span></div></div>'+
+    '<div class="h-nb">'+near.map(function(x){return '<a href="/machi/'+x.id+'">'+esc(x.s||x.n)+'<b class="'+(x.r8>=0?'h-p':'h-m')+'" style="color:'+(x.r8>=0?'#6ee7a0':'#fca5a5')+'">'+sg(x.r8)+'%</b></a>'}).join('')+'</div>';
+  bg.parentNode.insertBefore(k,bg);bg.style.display='none';
+  var go1=function(){k.classList.add('h-in');cnt(k.querySelector('.h-v'),t.r8,1,function(v){return sg(v)});k.querySelector('.h-f').style.strokeDashoffset=(C*(1-fr)).toFixed(1);k.querySelectorAll('.h-yy b').forEach(function(b){b.style.width=b.dataset.w+'%'})};
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();setTimeout(go1,150)}},{threshold:.3});io.observe(k)}else go1();
+  /* 売れた家の値段：この街と府県の平均を棒で */
+  DOC.querySelectorAll('.sold>div').forEach(function(c){var tx=c.textContent,a=c.querySelector('b'),mm=tx.match(/平均（([\d,]+)万円）/);if(!a||!mm||c.querySelector('.hxkb'))return;var me=+a.textContent.replace(/[^\d]/g,''),pv=+mm[1].replace(/,/g,'');if(!me||!pv)return;var mxx=Math.max(me,pv);
+    var d=DOC.createElement('div');d.className='hxkb';d.innerHTML='<p>'+esc((t.s||t.n))+'と'+esc(t.p)+'の平均</p><div class="h-r h-me"><span>'+esc(t.s||t.n)+'</span><i><b data-w="'+(me/mxx*100).toFixed(0)+'"></b></i><em>'+me.toLocaleString()+'<small>万</small></em></div><div class="h-r"><span>'+esc(t.p)+'の平均</span><i><b data-w="'+(pv/mxx*100).toFixed(0)+'"></b></i><em>'+pv.toLocaleString()+'<small>万</small></em></div>';
+    c.appendChild(d);var io2=new IntersectionObserver(function(es){if(es[0].isIntersecting){io2.disconnect();d.querySelectorAll('b[data-w]').forEach(function(b){b.style.width=b.dataset.w+'%'})}},{threshold:.4});io2.observe(d)})}
+function kmk(T){if(DOC.querySelector('.hxkd')||!/^\/(fudosan-list|sagasu|chika)/.test(location.pathname))return;var hd=DOC.querySelector('.wrap>.head');if(!hd)return;
+  var L=T.filter(function(x){return typeof x.r8==='number'}),up=L.filter(function(x){return x.r8>0}).length,av=L.reduce(function(a,x){return a+x.r8},0)/L.length,top=L.slice().sort(function(a,b){return b.r8-a.r8}).slice(0,5),mx=top[0].r8||1;
+  var k=DOC.createElement('section');k.className='hxkd';k.setAttribute('aria-label','街の値段の今');
+  k.innerHTML='<div class="h-en">MARKET ─ '+(KANTO?'KANTO':'KANSAI')+' '+L.length+' TOWNS</div><div class="h-top"><div><span class="h-ar h-up">▲ '+up+'の街で上がった</span><div class="h-pct"><span class="h-v">0.0</span><small>%</small></div><div class="h-lb">'+L.length+'の街の、住宅地の1年の動きの平均</div></div></div>'+
+    '<div class="h-yy" style="grid-template-columns:auto 1fr auto">'+top.map(function(x){return '<span><a href="/machi/'+x.id+'" style="color:#e8eef7;text-decoration:none">'+esc(x.s||x.n)+'</a></span><i><b style="background:linear-gradient(90deg,#3b82f6,#6ee7a0)" data-w="'+(x.r8/mx*100).toFixed(0)+'"></b></i><em>'+sg(x.r8)+'%</em>'}).join('')+'</div>'+
+    '<button type="button" data-hx-town style="margin-top:16px;width:100%;height:48px;border:0;border-radius:14px;background:#e8eef7;color:#0d1726;font:700 14px \'Zen Kaku Gothic New\',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px">'+ic('search')+'街の名前で探す（'+L.length+'の街）</button>';
+  (hd.querySelector('.pur')||hd).insertAdjacentElement('afterend',k);var go1=function(){cnt(k.querySelector('.h-v'),av,1,function(v){return sg(v)});k.querySelectorAll('.h-yy b').forEach(function(b){b.style.width=b.dataset.w+'%'})};setTimeout(go1,300)}
+var TQ=null,TF='';
+function tsearch(q0){vib();towns(function(T){
+  if(!TQ){TQ=DOC.createElement('div');TQ.className='hxtq';TQ.setAttribute('role','dialog');TQ.setAttribute('aria-modal','true');TQ.setAttribute('aria-label','街を探す');var ps=[];T.forEach(function(x){if(ps.indexOf(x.p)<0)ps.push(x.p)});
+    TQ.innerHTML='<div class="h-bx"><label>'+ic('search')+'<input type="search" enterkeyhint="search" placeholder="街の名前（ひらがなでも）" aria-label="街の名前"></label><button type="button" class="h-cn">閉じる</button></div><div class="h-ch"><button type="button" aria-pressed="true" data-f="up">上がった順</button><button type="button" aria-pressed="false" data-f="dn">下がった順</button>'+ps.map(function(p){return '<button type="button" aria-pressed="false" data-f="'+esc(p)+'">'+esc(p)+'</button>'}).join('')+'</div><div class="h-rs"></div>';
+    DOC.body.appendChild(TQ);TF='up';var inp=TQ.querySelector('input');inp.addEventListener('input',function(){tres(inp.value)});TQ.querySelector('.h-cn').onclick=closeTQ;
+    TQ.querySelector('.h-ch').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;TQ.querySelectorAll('.h-ch button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});TF=b.dataset.f;vib();tres(inp.value)});
+    TQ.querySelector('.h-rs').addEventListener('touchstart',function(){inp.blur()},{passive:true})}
+  var inp=TQ.querySelector('input');inp.value=q0||'';tres(inp.value);DOC.body.style.overflow='hidden';requestAnimationFrame(function(){TQ.classList.add('on')});setTimeout(function(){inp.focus()},40);try{history.pushState({hxt:1},'')}catch(e){}})}
+function tres(q){var f=fold(q),L=TW.filter(function(x){return typeof x.r8==='number'&&(!f||fold(x.n).indexOf(f)>=0||fold(x.k||'').indexOf(f)>=0)});
+  if(TF==='dn')L.sort(function(a,b){return a.r8-b.r8});else{L.sort(function(a,b){return b.r8-a.r8});if(TF!=='up')L=L.filter(function(x){return x.p===TF})}
+  var mx=Math.max.apply(null,TW.map(function(x){return Math.abs(x.r8||0)}))||1;
+  TQ.querySelector('.h-rs').innerHTML=L.slice(0,80).map(function(x,i){var w=Math.abs(x.r8)/mx*50;return '<a href="/machi/'+x.id+'" style="animation-delay:'+Math.min(i*22,300)+'ms"><i>'+(i+1)+'</i><span><b>'+hi(x.s||x.n,f)+'</b><small>'+esc(x.p+'・'+x.n)+'</small></span><u><s style="'+(x.r8>=0?'left:50%;width:'+w+'%;background:#6ee7a0':'right:50%;left:auto;width:'+w+'%;background:#fca5a5')+'"></s></u><em class="'+(x.r8>=0?'h-p':'h-m')+'">'+sg(x.r8)+'%</em></a>'}).join('')||'<p style="opacity:.7;text-align:center;margin-top:40px">見つかりませんでした</p>'}
+function closeTQ(nb){if(!TQ)return;TQ.classList.remove('on');DOC.body.style.overflow='';if(nb!==1)try{if(history.state&&history.state.hxt)history.back()}catch(e){}}
+addEventListener('popstate',function(){if(TQ&&TQ.classList.contains('on'))closeTQ(1)});
+
+/* ---------- おかいもの：値段のティッカー・安さのメーター・値段のグラフが描かれる ---------- */
+var OIO=null;function oview(el,f){if(!('IntersectionObserver' in window))return f();if(!OIO)OIO=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){OIO.unobserve(e.target);var g=e.target.__hxf;if(g)g()}})},{threshold:.35});el.__hxf=f;OIO.observe(el)}
+function oka(){if(!/^\/(okaimono|kaimawari|nesage|otoku|furusato)/.test(location.pathname))return;H.classList.add('hxk');
+  var its=[].slice.call(DOC.querySelectorAll('article.oh-it:not([data-hx])'));
+  its.forEach(function(a){a.dataset.hx=1;var sm=a.querySelector('.oh-pz small'),m=sm&&sm.textContent.match(/(\d+)%安い/);if(m){var bar=DOC.createElement('span');bar.className='hxsv2';bar.setAttribute('aria-hidden','true');bar.innerHTML='<b></b>';sm.parentNode.insertBefore(bar,sm);oview(a,function(){bar.firstChild.style.width=Math.min(100,+m[1])+'%';var g=a.querySelector('.oh-go');if(g)g.classList.add('hxsh2')})}});
+  var st=DOC.querySelector('.oh-st');if(st&&!DOC.querySelector('.hxtk')){var L=[].slice.call(DOC.querySelectorAll('article.oh-it')).map(function(a){var b=a.querySelector('.oh-t b'),pz=a.querySelector('.oh-pz'),sm=pz&&pz.querySelector('small'),m=sm&&sm.textContent.match(/(\d+)%安い/);if(!b||!pz)return null;var pr=pz.querySelector('b');return {a:a,n:b.textContent,p:pr?pr.textContent:'',u:(pz.childNodes[1]&&pz.childNodes[1].textContent||'').trim(),d:m?m[1]:''}}).filter(Boolean).slice(0,12);
+    if(L.length>=3){var tk=DOC.createElement('div');tk.className='hxtk';tk.setAttribute('aria-label','きょう安い物');var one=L.map(function(x,i){return '<a href="#" data-i="'+i+'"><i></i>'+esc(x.n)+' <b>'+esc(x.p)+'</b>'+esc(x.u)+(x.d?' <em>−'+x.d+'%</em>':'')+'</a>'}).join('');tk.innerHTML='<div class="h-tr">'+one+one+'</div>';st.insertAdjacentElement('afterend',tk);
+      tk.addEventListener('click',function(e){var a=e.target.closest('a[data-i]');if(!a)return;e.preventDefault();var t=L[+a.dataset.i];if(t){vib();t.a.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'});t.a.animate&&t.a.animate([{boxShadow:'0 0 0 0 rgba(52,199,111,.0)'},{boxShadow:'0 0 0 6px rgba(52,199,111,.45)'},{boxShadow:'0 0 0 0 rgba(52,199,111,0)'}],{duration:1400})}})}}
+  DOC.querySelectorAll('.bgw svg.bg polyline:not(.hxdr)').forEach(function(pl){try{var L2=pl.getTotalLength();pl.classList.add('hxdr');pl.style.strokeDasharray=L2;pl.style.strokeDashoffset=L2;oview(pl.closest('.bgw'),function(){pl.style.strokeDashoffset=0})}catch(e){}})}
+
 /* ---------- 動かす ---------- */
-var RQ=null;function run(){clearTimeout(RQ);RQ=setTimeout(function(){try{odet()}catch(e){}try{lens()}catch(e){}try{menu()}catch(e){}try{rail()}catch(e){}try{island()}catch(e){}try{embla()}catch(e){}try{th()}catch(e){}try{anim()}catch(e){}try{bx()}catch(e){}},120)}
+var RQ=null;function run(){clearTimeout(RQ);RQ=setTimeout(function(){try{odet()}catch(e){}try{kur()}catch(e){}try{oka()}catch(e){}try{lens()}catch(e){}try{menu()}catch(e){}try{rail()}catch(e){}try{island()}catch(e){}try{embla()}catch(e){}try{th()}catch(e){}try{anim()}catch(e){}try{bx()}catch(e){}},120)}
 load('/assets/hx-lib.js?v=1',run);
 fetch('/assets/phh.json?v=1').then(function(r){return r.json()}).then(function(j){PHH=j;run()}).catch(function(){});
 fetch('/assets/mihon.json?v='+(window.__mhv||3)).then(function(r){return r.json()}).then(function(j){for(var x in j){var o=j[x];if(o.id&&!ID[o.id]){ID[o.id]=o;D.push(o)}}run();
