@@ -7,6 +7,45 @@ wf = sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(os.path.
 _d = json.load(open(wf))
 W = [(re.compile(rx), why) for rx, why in _d["words"]]
 ALLOW = _d.get("allow", [])  # 正しい言葉（イベント名など）はここに足す
+
+# 11/18 開店ニュースの店名「茶と食 雫香」が中の名前「雫」に当たり、関東の公開が丸ごと止まった（オーナー「そんなミスダメだろ」）。
+# → 外から来た固有の名前（お店・催し・会場の名前）は「中の名前」の点検だけから外す。外すのはその名前の文字列そのものだけで、
+#   うちが書いた文（説明・見出し・案内）は今までどおり全部調べる。名前は、ページの JSON-LD（Event・Place・お店など）と
+#   集めたデータ（開店ニュース・おでかけ）から機械で取る。ALLOW に毎回手で足さなくてよくなる。
+_LD_SKIP = {"WebPage", "WebSite", "Organization", "BreadcrumbList", "ListItem", "Article", "NewsArticle", "ItemList", "FAQPage", "Question", "Answer", "Person", "Offer", "AggregateOffer", "ImageObject", "SiteNavigationElement", "CollectionPage"}
+_NAME_KEYS = ("n", "name", "title", "venue", "place", "pl")
+EXT = set()
+def _walk_ld(o):
+    if isinstance(o, list):
+        for x in o: _walk_ld(x)
+    elif isinstance(o, dict):
+        ty = o.get("@type"); ty = ty if isinstance(ty, list) else [ty]
+        if not (set(t for t in ty if t) & _LD_SKIP) and isinstance(o.get("name"), str):
+            EXT.add(o["name"])
+        for v in o.values(): _walk_ld(v)
+def _walk_data(o):
+    if isinstance(o, list):
+        for x in o: _walk_data(x)
+    elif isinstance(o, dict):
+        for k, v in o.items():
+            if k in _NAME_KEYS and isinstance(v, str): EXT.add(v)
+            else: _walk_data(v)
+_repo = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+for _rel in _d.get("external_data", []):
+    for _p in (os.path.join(_repo, _rel), os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), _rel)):
+        if os.path.exists(_p):
+            try: _walk_data(json.load(open(_p, encoding="utf-8")))
+            except Exception: pass
+            break
+for _f in glob.glob(os.path.join(root, "**", "*.html"), recursive=True):
+    for _m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', open(_f, errors="ignore").read(), re.S):
+        try: _walk_ld(json.loads(_m.group(1)))
+        except Exception: pass
+EXT = sorted((e for e in EXT if len(e) >= 2), key=len, reverse=True)
+def _ext_off(text):
+    for e in EXT:
+        text = text.replace(e, " ")
+    return text
 SKIP = re.compile(r"mihon|preview|-try\.html|_mihon|okaimono-live|otoku|/googl[^/]*\.html$")
 bad = []
 for f in sorted(glob.glob(os.path.join(root, "**", "*.html"), recursive=True)):
@@ -20,9 +59,11 @@ for f in sorted(glob.glob(os.path.join(root, "**", "*.html"), recursive=True)):
     text = re.sub(r"<[^>]+>", " ", t) + " " + attrs
     for a in ALLOW:
         text = text.replace(a, "")
+    text_ext = _ext_off(text)
     for rx, why in W:
-        for m in rx.finditer(text):
-            s = text[max(0, m.start() - 20):m.end() + 20].replace("\n", " ").strip()
+        src = text_ext if "中の名前" in why else text
+        for m in rx.finditer(src):
+            s = src[max(0, m.start() - 20):m.end() + 20].replace("\n", " ").strip()
             bad.append(f"{os.path.relpath(f, root)}：{why}：…{s}…")
             break
 # 11/9 メニューの「本当に値下がりした物」は JS の中の文だった → JS の文字（"…"・'…'）も調べる
