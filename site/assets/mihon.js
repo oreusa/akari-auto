@@ -241,7 +241,7 @@ var SPR='linear(0,0.009,0.035 2.1%,0.141 4.4%,0.723 12.9%,0.938 16.7%,1.017 19.4
 function hitech(){if(window.__ht)return;var svg=document.querySelector('svg.kmap');if(!svg||!/^\/(town-notes(\.html)?|index(\.html)?)?$/.test(location.pathname))return;window.__ht=1;
   var st=document.createElement('style');st.textContent=
    '.mapsec .nofilt{perspective:1000px;perspective-origin:50% 0}'+
-   'svg.kmap.m3{transform-origin:50% 62%;transform:rotateX(var(--rx,22deg)) rotateY(var(--ry,0deg)) rotateZ(var(--rz,-2deg));filter:drop-shadow(0 1.5px 0 rgba(150,120,90,.35)) drop-shadow(0 3px 0 rgba(150,120,90,.25)) drop-shadow(0 22px 26px rgba(70,45,20,.2));will-change:transform}'+
+   'svg.kmap.m3{transform-origin:50% 62%;transform:rotateX(var(--rx,22deg)) rotateY(var(--ry,0deg)) rotateZ(var(--rz,-2deg));}'+
    'svg.kmap.m3 .pf path{transform-box:fill-box;transform-origin:50% 100%}'+
    'svg.kmap .mb{cursor:pointer}svg.kmap .mb>g{transform-box:fill-box;transform-origin:50% 100%}'+
    'svg.kmap .mb circle.r{fill:#fff}svg.kmap .mb .sh{fill:rgba(60,40,20,.22)}'+
@@ -263,15 +263,14 @@ function hitech(){if(window.__ht)return;var svg=document.querySelector('svg.kmap
     var go=function(e){e.stopPropagation();e.preventDefault();location.href='/o/'+o.id};g.addEventListener('click',go);g.addEventListener('keydown',function(e){if(e.key==='Enter')go(e)});
     lay.appendChild(g);var inner=g.lastChild;
     if(!RMq){inner.animate([{transform:'translateY(-30px) scale(0)'},{transform:'none'}],{duration:1000,delay:700+n*110,easing:SPR,fill:'backwards'});
-      inner.animate([{transform:'translateY(0)'},{transform:'translateY(-5px)'}],{duration:1600+n*170,delay:1800,direction:'alternate',iterations:Infinity,easing:'ease-in-out'})}});
-  // 傾き：指・マウス・スマホの傾きに、ばねでついてくる
-  if(!RMq){var tx=0,ty=0,cx=0,cy=0,vx=0,vy=0,T0=performance.now(),box=svg.closest('.mapsec')||svg;
-    box.addEventListener('pointermove',function(e){var r=svg.getBoundingClientRect();tx=((e.clientX-r.left)/r.width-.5)*2;ty=((e.clientY-r.top)/r.height-.5)*2});
-    box.addEventListener('pointerleave',function(){tx=ty=0});
-    window.addEventListener('deviceorientation',function(e){if(e.gamma==null)return;tx=Math.max(-1,Math.min(1,e.gamma/25));ty=Math.max(-1,Math.min(1,(e.beta-45)/25))});
-    (function loop(now){var s=(now-T0)/1000,ix=Math.sin(s*.45)*.35,iy=Math.cos(s*.33)*.2;vx+=((tx+ix)-cx)*.06;vy+=((ty+iy)-cy)*.06;vx*=.82;vy*=.82;cx+=vx;cy+=vy;
-      svg.style.setProperty('--ry',(cx*7).toFixed(2)+'deg');svg.style.setProperty('--rx',(22-cy*6).toFixed(2)+'deg');svg.style.setProperty('--rz',(-2+cx*1.2).toFixed(2)+'deg');
-      if(document.visibilityState==='visible')requestAnimationFrame(loop);else document.addEventListener('visibilitychange',function f(){document.removeEventListener('visibilitychange',f);requestAnimationFrame(loop)})})(T0)}
+}});
+  // 傾き：指・マウスにだけ、ばねでついてくる（11/18 iPhoneで落ちた：ずっと動かす・影の重ね掛けをやめた）
+  if(!RMq&&matchMedia('(hover:hover)').matches){var tx=0,ty=0,cx=0,cy=0,vx=0,vy=0,run=0,box=svg.closest('.mapsec')||svg;
+    function tick(){vx+=(tx-cx)*.06;vy+=(ty-cy)*.06;vx*=.82;vy*=.82;cx+=vx;cy+=vy;svg.style.setProperty('--ry',(cx*6).toFixed(2)+'deg');svg.style.setProperty('--rx',(22-cy*5).toFixed(2)+'deg');
+      if(Math.abs(tx-cx)+Math.abs(ty-cy)+Math.abs(vx)+Math.abs(vy)>.002)requestAnimationFrame(tick);else run=0}
+    function kick(){if(!run){run=1;requestAnimationFrame(tick)}}
+    box.addEventListener('pointermove',function(e){var r=svg.getBoundingClientRect();tx=((e.clientX-r.left)/r.width-.5)*2;ty=((e.clientY-r.top)/r.height-.5)*2;kick()});
+    box.addEventListener('pointerleave',function(){tx=ty=0;kick()})}
   gsapHero();}
 /* 今週の1件：スクロールで写真が奥へ・見出しが1文字ずつ（GSAP 3.13 の ScrollTrigger と SplitText。上の段だけで読む） */
 function gsapHero(){var h=document.querySelector('.mhero');if(!h){setTimeout(gsapHero,400);return}if(matchMedia('(prefers-reduced-motion: reduce)').matches||h.dataset.g)return;h.dataset.g=1;
