@@ -244,12 +244,14 @@ function hitech(){if(window.__ht)return;var svg=document.querySelector('svg.kmap
    'svg.kmap.m3{transform-origin:50% 62%;transform:rotateX(var(--rx,22deg)) rotateY(var(--ry,0deg)) rotateZ(var(--rz,-2deg));}'+
    'svg.kmap.m3 .pf path{transform-box:fill-box;transform-origin:50% 100%}'+
    'svg.kmap .mb{cursor:pointer}svg.kmap .mb>g{transform-box:fill-box;transform-origin:50% 100%}'+
+   'svg.kmap .mex path{fill:rgba(70,48,28,.26)!important;stroke:none!important;pointer-events:none}html.night svg.kmap .mex path{fill:rgba(0,0,0,.5)!important}'+'.mapsec{position:relative}.mtip{position:absolute;z-index:5;transform:translate(-50%,-100%);background:#fff;color:#2B2622;border-radius:14px;padding:10px 12px 10px 14px;box-shadow:0 14px 30px -10px rgba(40,25,10,.35);display:flex;align-items:center;gap:10px;max-width:250px;text-decoration:none;font:700 13px/1.4 "Zen Kaku Gothic New",sans-serif;opacity:0;scale:.9;transition:opacity .18s,scale .45s '+SPR+'}.mtip.on{opacity:1;scale:1}.mtip small{display:block;font-weight:500;font-size:11px;color:#6E655E;margin-top:2px}.mtip i{font-style:normal;flex:none;width:28px;height:28px;border-radius:50%;background:#2B2622;color:#fff;display:grid;place-items:center;font-size:14px}.mtip.dn{transform:translate(-50%,0)}.mtip.dn:after{bottom:auto;top:-6px}.mtip:after{content:"";position:absolute;left:50%;bottom:-6px;width:12px;height:12px;background:#fff;transform:translateX(-50%) rotate(45deg)}'+
    'svg.kmap .mb circle.r{fill:#fff}svg.kmap .mb .sh{fill:rgba(60,40,20,.22)}'+
    '@media (prefers-reduced-motion:reduce){svg.kmap.m3{transform:rotateX(14deg)}}'+
    'a.card,.mnews .mnsl,.pr5 .m1,a.fc,.mhl{transition:transform .55s '+SPR+'}a.card:active,.mnews .mnsl:active,.pr5 .m1:active,a.fc:active{transform:scale(.965);transition:transform .12s ease-out}';
   document.head.appendChild(st);svg.classList.add('m3');
   var RMq=matchMedia('(prefers-reduced-motion: reduce)').matches;
   // 府県がばねで立ち上がる
+  var pf=svg.querySelector('.pf');if(pf&&!svg.querySelector('.mex')){var ex=pf.cloneNode(true);ex.setAttribute('class','mex');ex.removeAttribute('stroke');ex.setAttribute('transform','translate(0,7)');ex.querySelectorAll('path').forEach(function(q){q.removeAttribute('data-p')});pf.parentNode.insertBefore(ex,pf)}
   var ps=svg.querySelectorAll('.pf path');if(!RMq)ps.forEach(function(p,i){p.animate([{transform:'translateY(-46px) scale(.96)',opacity:0},{transform:'none',opacity:1}],{duration:900,delay:120+i*70,easing:SPR,fill:'backwards'})});
   // 今週の写真のピン（府県ごとに1つ・押すと1件ページ）
   var NS='http://www.w3.org/2000/svg',t=ymd(jst()),t7=ymd(new Date(jst().getTime()+6*864e5)),best={};
@@ -260,7 +262,10 @@ function hitech(){if(window.__ht)return;var svg=document.querySelector('svg.kmap
     var cp=document.createElementNS(NS,'clipPath');cp.id=id;cp.innerHTML='<circle cx="'+x+'" cy="'+y+'" r="'+(R-3.5)+'"/>';defs.appendChild(cp);
     var g=document.createElementNS(NS,'g');g.setAttribute('class','mb');g.setAttribute('role','link');g.setAttribute('tabindex','0');g.setAttribute('aria-label',P+'：'+o.n);
     g.innerHTML='<ellipse class="sh" cx="'+x+'" cy="'+(y+R+26)+'" rx="13" ry="4"/><g><path d="M'+(x-9)+','+(y+R-6)+' L'+x+','+(y+R+12)+' L'+(x+9)+','+(y+R-6)+'Z" fill="#fff"/><circle class="r" cx="'+x+'" cy="'+y+'" r="'+R+'"/><image href="/assets/ph/t/'+o.im+'" x="'+(x-R)+'" y="'+(y-R)+'" width="'+(2*R)+'" height="'+(2*R)+'" preserveAspectRatio="xMidYMid slice" clip-path="url(#'+id+')"/></g>';
-    var go=function(e){e.stopPropagation();e.preventDefault();location.href='/o/'+o.id};g.addEventListener('click',go);g.addEventListener('keydown',function(e){if(e.key==='Enter')go(e)});
+    var go=function(e){e.stopPropagation();e.preventDefault();var sec=svg.closest('.mapsec')||svg.parentNode,tip=sec.querySelector('.mtip');if(tip&&tip.dataset.id===o.id&&tip.classList.contains('on')){location.href='/o/'+o.id;return}
+      if(!tip){tip=document.createElement('a');tip.className='mtip';sec.appendChild(tip);document.addEventListener('click',function(ev){if(!ev.target.closest('.mtip,.mb'))tip.classList.remove('on')})}
+      var rb=g.querySelector('circle.r').getBoundingClientRect(),rs=sec.getBoundingClientRect(),en=o.e?(+o.e.slice(5,7))+'/'+(+o.e.slice(8))+'まで':'';tip.href='/o/'+o.id;tip.dataset.id=o.id;
+      tip.innerHTML='<span>'+esc(o.n)+'<small>'+esc(P)+(en?'・'+en:'')+'</small></span><i>→</i>';tip.style.left=Math.max(130,Math.min(rs.width-130,rb.left+rb.width/2-rs.left))+'px';var up=rb.top>110;tip.classList.toggle('dn',!up);tip.style.top=(up?rb.top-rs.top-8:rb.bottom-rs.top+12)+'px';tip.classList.remove('on');void tip.offsetWidth;tip.classList.add('on')};g.addEventListener('click',go);g.addEventListener('keydown',function(e){if(e.key==='Enter')go(e)});
     lay.appendChild(g);var inner=g.lastChild;
     if(!RMq){inner.animate([{transform:'translateY(-30px) scale(0)'},{transform:'none'}],{duration:1000,delay:700+n*110,easing:SPR,fill:'backwards'});
 }});
@@ -274,6 +279,7 @@ function hitech(){if(window.__ht)return;var svg=document.querySelector('svg.kmap
   gsapHero();}
 /* 今週の1件：スクロールで写真が奥へ・見出しが1文字ずつ（GSAP 3.13 の ScrollTrigger と SplitText。上の段だけで読む） */
 function gsapHero(){var h=document.querySelector('.mhero');if(!h){setTimeout(gsapHero,400);return}if(matchMedia('(prefers-reduced-motion: reduce)').matches||h.dataset.g)return;h.dataset.g=1;
+  if('IntersectionObserver' in window&&!h.dataset.seen){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();h.dataset.seen=1;h.dataset.g='';gsapHero()}},{rootMargin:'400px 0px'});io.observe(h);return}
   var base='/assets/vendor/gsap/',L=function(f){return new Promise(function(ok,ng){var s=document.createElement('script');s.src=base+f;s.onload=ok;s.onerror=ng;document.head.appendChild(s)})};
   L('gsap.min.js').then(function(){return Promise.all([L('ScrollTrigger.min.js'),L('SplitText.min.js')])}).then(function(){var g=window.gsap;g.registerPlugin(ScrollTrigger,SplitText);
     var img=h.querySelector('img'),hh=h.querySelector('.mhh');
