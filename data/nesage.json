@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-18 10:16",
+  "at": "2026-11-18 11:04",
   "since": "2026-11-01",
   "tracked": 264,
   "days": 17,
@@ -15,6 +15,18 @@
       "av": 4.78,
       "shop": "ナチュラルペットフード shop",
       "plain": "https://item.rakuten.co.jp/petnext/10001928/"
+    },
+    {
+      "title": "プロテイン",
+      "name": "VALX ホエイプロテイン WPC 2kg (1kg×2袋) 選べる8種フレーバー 国内生産…",
+      "price": 12980,
+      "base": 16980.0,
+      "pct": 24,
+      "days": 14,
+      "rc": 2459,
+      "av": 4.69,
+      "shop": "VALX ONLINE STORE",
+      "plain": "https://item.rakuten.co.jp/valx/10000069/"
     },
     {
       "title": "モバイルバッテリー",
