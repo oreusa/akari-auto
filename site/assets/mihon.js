@@ -320,7 +320,15 @@ var CF=new WeakSet();function cfix(){
     if(!x){if(BE&&!BE.dataset.cf){BE.dataset.cf=1;var d=b.slice(0,3);for(var k=1;k<=12&&R(c,d)<need;k++)d=b.slice(0,3).map(function(v){return v*(1-k*.05)});BE.style.setProperty('background-color','rgb('+d.map(Math.round).join(',')+')','important')}continue}
     e.style.setProperty('color','rgb('+x.map(Math.round).join(',')+')','important')}
 }
-var q;function run(){clearTimeout(q);q=setTimeout(function(){if(!READY)return;cards();document.querySelectorAll('figure.mph-k[hidden]').forEach(function(f){f.hidden=false});fade();try{cfix()}catch(e){}},80)}
+/* 11/18 関東：写真の無い催しの1件ページに、主催者の公式インスタ（data/ig.json）を出す。写真は spot_pages.py が書くので、ここではインスタだけ */
+function igOnly(){var m=location.pathname.match(/^\/o\/([0-9a-f]{8})/);if(!m||document.body.dataset.mig)return;var o=ID[m[1]];if(!o||!((o.ig&&o.ig.length)||o.ia))return;
+  var at=document.querySelector('.act')||document.querySelector('.lead');if(!at)return;document.body.dataset.mig=1;var g=document.createElement('div');g.className='mig';
+  if(o.ig&&o.ig.length){var pl='https://www.instagram.com/'+o.ig[0]+'/';g.innerHTML='<span>主催者のインスタから</span><blockquote class="instagram-media" data-instgrm-permalink="'+pl+'?utm_source=ig_embed" data-instgrm-version="14"><a href="'+pl+'" target="_blank" rel="noopener">インスタで見る</a></blockquote>';
+    var lj=function(){if(window.instgrm){window.instgrm.Embeds.process();return}if(document.getElementById('migjs'))return;var sc=document.createElement('script');sc.id='migjs';sc.async=1;sc.src='https://www.instagram.com/embed.js';document.body.appendChild(sc)};
+    if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();lj()}},{rootMargin:'600px'});io.observe(g)}else lj()}
+  else{g.innerHTML='<a class="migl" href="https://www.instagram.com/'+esc(o.ia)+'/" target="_blank" rel="noopener"><i></i>主催者のインスタで写真を見る</a>'}
+  at.parentNode.insertBefore(g,at.nextSibling)}
+var q;function run(){clearTimeout(q);q=setTimeout(function(){if(!READY)return;cards();document.querySelectorAll('figure.mph-k[hidden]').forEach(function(f){f.hidden=false});fade();try{igOnly()}catch(e){}try{cfix()}catch(e){}},80)}
 fetch('/assets/mihon.json?v='+(window.__mhv||3)).then(function(r){return r.json()}).then(function(j){D={};for(var x in j){D[x]=j[x];if(j[x].id)ID[j[x].id]=j[x]}READY=1;run();
   try{new MutationObserver(run).observe(document.body,{childList:true,subtree:true})}catch(e){}
   setInterval(function(){document.querySelectorAll(':is(.card,a.cd) .v2c').forEach(function(r){var a=r.closest(':is(.card,a.cd)'),t=a&&a.querySelector('.t');if(t)nowPill(r,find(t.textContent))})},60000)}).catch(function(){});
