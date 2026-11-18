@@ -9,6 +9,7 @@ FU = ("東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬")
 lj = lambda p, d: json.load(open(p, encoding="utf-8")) if os.path.exists(p) else d
 VP = lj(os.path.join(R, "data", "venue_photos.json"), {})
 AL = lj(os.path.join(R, "data", "venue_alias.json"), {})
+IG = lj(os.path.join(R, "data", "ig.json"), {})  # 11/18 主催者の公式インスタ（公式ページから igfind.py で拾った物。写真の無い催しの1件ページに埋め込む）
 
 
 def txt(x): return html.unescape(re.sub("<[^>]+>", "", x)).strip()
@@ -48,6 +49,10 @@ def add(name, p, s, e, u, m, oid=""):
         v = VP[vn]; o.update(im=v["img"], cr=v["cr"], cu=v.get("page", ""), vn=re.sub(r"\s*\(.*\)$", "", vn))
         if re.search(r"駅$|市$|町$|村$|区$", o["vn"]): o["vk"] = 1
     else: o["vr"] = FULL if " " in FULL else vn   # 写真の無い会場（調べ用・画面では使わない）
+    g = IG.get(key)
+    if g:
+        if g.get("posts"): o["ig"] = g["posts"][:1]
+        if g.get("acc"): o["ia"] = g["acc"][0]
     out[key] = o
 
 
