@@ -267,6 +267,36 @@ var css=
 '#v2bar>.cur::after{content:"";position:absolute;bottom:4px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:currentColor}'+
 '#v2bar>a,#v2bar>button{isolation:isolate}'+
 '#v2bar button.mn{margin:5px;border-radius:19px!important;flex-basis:66px!important;background:linear-gradient(145deg,var(--acc,#2B2622),#1a1513)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}'+
+/* おでかけの一覧の頭：写真がゆっくり入れ替わる表紙 */
+'.hxcv{position:relative!important;margin:0 -16px 6px!important;padding:110px 22px 24px!important;min-height:min(60vh,520px);display:flex!important;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left!important;background:#141110!important;color:#fff;border-radius:0 0 30px 30px;overflow:hidden;box-sizing:border-box}'+
+'.hxcv{border-radius:0 0 30px 30px!important;clip-path:none!important;-webkit-mask:none!important;mask:none!important;background-image:none!important}.hxcv::before,.hxcv::after{display:none!important}'+
+'.hxcv>*:not(.hxbg){position:relative;z-index:2}.hxcv .blob,.hxcv>svg,.hxcv #yr{display:none!important}'+
+'.hxcv .hxbg{position:absolute;inset:0;z-index:0}.hxcv .hxbg img{border-radius:0!important;max-width:none!important;margin:0!important}'+
+'html .wrap .hxcv .sub,html .wrap .hxcv p,html .wrap .hxcv .en{color:rgba(255,255,255,.86)!important;-webkit-text-fill-color:rgba(255,255,255,.86)!important}.hxcv .hxbg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;transform:scale(1.08)}.hxcv .hxbg img.on{opacity:1;animation:hxkb 9s linear both}'+
+'@keyframes hxkb{from{transform:scale(1.14) translate3d(-1.5%,1%,0)}to{transform:scale(1.02) translate3d(1.5%,-1%,0)}}'+
+'.hxcv .hxbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.15) 50%,rgba(10,8,7,.88) 100%)}'+
+'.hxcv>img,.hxcv>a>img{position:absolute!important;top:calc(16px + env(safe-area-inset-top));left:18px;width:44px!important;height:44px!important;border-radius:50%;background:rgba(255,255,255,.9);padding:3px;box-sizing:border-box;z-index:3}'+
+'.hxcv h1,.hxcv .ttl,.hxcv h1 *{color:#fff!important;-webkit-text-fill-color:#fff!important;background:none!important;text-shadow:0 2px 18px rgba(0,0,0,.4);font-size:clamp(28px,8vw,40px)!important;line-height:1.25!important;margin:6px 0 8px!important;text-align:left!important;letter-spacing:.06em}'+
+'.hxcv .en,.hxcv .sub,.hxcv p,.hxcv .upd,.hxcv .en *{color:rgba(255,255,255,.86)!important;-webkit-text-fill-color:currentColor!important;text-align:left!important}.hxcv .en{font-size:11px!important;letter-spacing:.3em!important}'+
+'.hxcv .sea{background:rgba(255,255,255,.14)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:0!important;color:#fff!important;border-radius:99px!important;padding:5px 12px!important;margin:10px 0 0!important}.hxcv .sea *{color:#fff!important}'+
+'.hxcv .hxnow{display:flex;align-items:center;gap:8px;margin-top:14px;padding:8px 12px 8px 8px;border-radius:16px;background:rgba(255,255,255,.12);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;text-decoration:none;font:600 12px "Zen Kaku Gothic New",sans-serif;max-width:100%}'+
+'.hxcv .hxnow i{width:8px;height:8px;border-radius:50%;background:#34C76F;box-shadow:0 0 10px #34C76F;flex:none}.hxcv .hxnow b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hxcv .hxnow small{opacity:.7;flex:none}.hxcv .hxcr{position:absolute;right:12px;bottom:8px;font-size:9.5px;opacity:.6;z-index:2;max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
+'html.night .hxcv{filter:invert(1) hue-rotate(180deg)}html.night .hxcv img{filter:none!important}'+
+/* 3つの入口（いま行ける・地図・イルミ）：浮いたタイル */
+'.wrap>.qk a{border:0!important;border-radius:20px!important;background:linear-gradient(160deg,#fff,#f6f2ee)!important;box-shadow:0 10px 24px -14px rgba(60,40,20,.35),inset 0 0 0 1px rgba(0,0,0,.04)!important;padding:16px 4px 14px!important}'+
+'.wrap>.qk a svg{width:38px!important;height:38px!important;padding:9px;border-radius:50%;background:rgba(185,122,98,.1);box-sizing:border-box}'+
+'.wrap>.qk a:nth-child(2) svg{background:rgba(79,102,129,.1)}.wrap>.qk a:nth-child(3) svg{background:rgba(196,146,90,.12)}'+
+'.hxsg{position:relative!important}.hxsg>button{position:relative;z-index:1;transition:color .3s}.hxsg.h-rd>button{background:transparent!important;box-shadow:none!important}'+
+'.hxsg>.h-sp{position:absolute;top:0;left:0;width:0;height:0;border-radius:inherit;pointer-events:none;z-index:0;transition:transform .55s '+EO+',width .55s '+EO+',height .3s}'+
+'@supports (transition-timing-function:linear(0,1)){.hxsg>.h-sp{transition:transform .6s '+SP+',width .6s '+SP+',height .3s}}'+
+/* ページの頭：淡い丸の飾り → オーロラの光（おでかけ側）／紺の板（暮らし側） */
+'html:not(.hxk) .wrap>.head:not(.hxcv),html:not(.hxk) .wrap>header.head:not(.hxcv){background-color:transparent!important;background-image:radial-gradient(70% 55% at 8% 0%,rgba(246,195,91,.26),transparent 70%),radial-gradient(60% 55% at 100% 8%,rgba(138,79,216,.13),transparent 70%),radial-gradient(70% 50% at 55% 100%,rgba(59,130,246,.10),transparent 70%)!important;border-radius:0 0 28px 28px}'+
+'.wrap>.head:not(.hxcv)::before,.wrap>.head:not(.hxcv)::after,.wrap>header.head .blob{display:none!important}'+
+'html.hxk .wrap>.head{background:radial-gradient(120% 90% at 100% 0%,#1d3557 0%,#0d1726 65%)!important;border-radius:0 0 28px 28px;padding-bottom:22px!important;box-shadow:0 20px 40px -24px rgba(13,23,38,.6)}'+
+'html.hxk .wrap>.head:not(.fhd) h1,html.hxk .wrap>.head:not(.fhd) h1 *,html.hxk .wrap>.head:not(.fhd) .en,html.hxk .wrap>.head:not(.fhd) .sub,html.hxk .wrap>.head:not(.fhd) p,html.hxk .wrap>.head:not(.fhd) .upd,html.hxk .wrap>.head:not(.fhd) h2{color:#e8eef7!important;-webkit-text-fill-color:#e8eef7!important}'+
+'html.hxk .wrap>.head:not(.fhd)>.en{color:#7fb2ff!important;-webkit-text-fill-color:#7fb2ff!important}html.hxk .wrap>.head>img,html.hxk .wrap>.head .fr img{background:#fff;border-radius:50%;padding:3px}'+
+'html.hxk .wrap>.head.fhd{background:none!important;box-shadow:none!important}'+
+'html.night.hxk .wrap>.head:not(.fhd){filter:invert(1) hue-rotate(180deg)}html.night.hxk .wrap>.head:not(.fhd) img{filter:none!important}'+
 '@media (prefers-reduced-motion:reduce){.hxsv,.hxsh,.hxis{transition:none!important}.hxsv .h-im img.h-in,.hxsv .h-go,.hxsr .h-it{animation:none!important;opacity:1!important;transform:none!important}}';
 var stl=DOC.createElement('style');stl.textContent=css;DOC.head.appendChild(stl);
 var pl=DOC.createElement('link');pl.rel='stylesheet';pl.href='/assets/pswp/photoswipe.css';DOC.head.appendChild(pl);
@@ -606,8 +636,28 @@ function oka(){if(!/^\/(okaimono|kaimawari|nesage|otoku|furusato)/.test(location
       tk.addEventListener('click',function(e){var a=e.target.closest('a[data-i]');if(!a)return;e.preventDefault();var t=L[+a.dataset.i];if(t){vib();t.a.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'});t.a.animate&&t.a.animate([{boxShadow:'0 0 0 0 rgba(52,199,111,.0)'},{boxShadow:'0 0 0 6px rgba(52,199,111,.45)'},{boxShadow:'0 0 0 0 rgba(52,199,111,0)'}],{duration:1400})}})}}
   DOC.querySelectorAll('.bgw svg.bg polyline:not(.hxdr)').forEach(function(pl){try{var L2=pl.getTotalLength();pl.classList.add('hxdr');pl.style.strokeDasharray=L2;pl.style.strokeDashoffset=L2;oview(pl.closest('.bgw'),function(){pl.style.strokeDashoffset=0})}catch(e){}})}
 
+/* ---------- おでかけの一覧の頭：写真がゆっくり入れ替わる表紙（いま映っている催しを押せる） ---------- */
+var CV=0;
+function cover(){if(CV||!D.length)return;var pth=location.pathname;if(!/^\/(odekake|illumination|koyo|ima|index\.html$|$)/.test(pth)||/^\/(town-notes)?$/.test(pth)&&DOC.querySelector('section.mapsec'))return;
+  var h=DOC.querySelector('.wrap>.head,.wrap>header.head')||DOC.querySelector('header.head');if(!h||DOC.querySelector('section.mapsec'))return;CV=1;
+  var S=sets(),pk=/illumination/.test(pth)?'il':/koyo/.test(pth)?'ky':null,pf=null;PFO.forEach(function(p){var en={'大阪':'osaka','京都':'kyoto','兵庫':'hyogo','奈良':'nara','滋賀':'shiga','和歌山':'wakayama','東京':'tokyo','神奈川':'kanagawa','埼玉':'saitama','千葉':'chiba','茨城':'ibaraki','栃木':'tochigi','群馬':'gunma'}[p];if(en&&pth.indexOf(en)>=0)pf=p});
+  var L=[];S.forEach(function(x){if((pk&&x.k===pk)||(pf&&x.t===pf))L=L.concat(x.a)});if(!L.length)S.forEach(function(x){if(x.k==='on'||x.k==='il'||x.k==='ky')L=L.concat(x.a)});
+  var seen2={};L=L.filter(function(o){if(seen2[o.id])return false;seen2[o.id]=1;return true});var vp=function(o){return o.vn&&o.n.indexOf(o.vn)<0?1:0};L.sort(function(a,b){return vp(a)-vp(b)});L=L.slice(0,6);if(L.length<2)return;
+  h.classList.add('hxcv');var tp=h.getBoundingClientRect().top+scrollY;if(tp>0&&tp<80)h.style.setProperty('margin-top',(-tp)+'px','important');var bg=DOC.createElement('div');bg.className='hxbg';bg.setAttribute('aria-hidden','true');bg.innerHTML=L.map(function(o,i){return '<img src="'+ph(o)+'" alt="" decoding="async"'+(i?' loading="lazy"':' fetchpriority="high"')+'>'}).join('');h.insertBefore(bg,h.firstChild);
+  var nw=DOC.createElement('a');nw.className='hxnow';nw.href='/o/'+L[0].id;var cr=DOC.createElement('span');cr.className='hxcr';h.appendChild(nw);h.appendChild(cr);
+  nw.addEventListener('click',function(e){e.preventDefault();sheet(L[+nw.dataset.i||0])});
+  var I=0,ims=bg.querySelectorAll('img');function show(i){ims.forEach(function(m,k){m.classList.toggle('on',k===i)});var o=L[i],n=now(o);nw.dataset.i=i;nw.innerHTML='<i></i><b>'+esc(o.n)+'</b><small>'+esc(n&&n.on?n.t:stat(o))+' ›</small>';cr.textContent=o.cr?'写真：'+o.cr:''}
+  show(0);if(!RM)setInterval(function(){if(DOC.hidden||scrollY>innerHeight)return;I=(I+1)%L.length;show(I)},5200)}
+
+/* ---------- 切り替えのボタン（開店のこれから・開いた・閉まる など）：押した所へ玉が滑る ---------- */
+function segs(){DOC.querySelectorAll('.seg:not(.hxsg)').forEach(function(g){var bs=g.querySelectorAll(':scope>button');if(bs.length<2||bs.length>6)return;var on=g.querySelector(':scope>button[aria-pressed="true"]');if(!on)return;
+  var cs=getComputedStyle(on),bgc=cs.backgroundColor,sh=cs.boxShadow,rd=cs.borderRadius;if(!bgc||bgc==='rgba(0, 0, 0, 0)')return;g.classList.add('hxsg');
+  var sp=DOC.createElement('i');sp.className='h-sp';sp.setAttribute('aria-hidden','true');sp.style.background=bgc;sp.style.borderRadius=rd;if(sh&&sh!=='none')sp.style.boxShadow=sh;g.insertBefore(sp,g.firstChild);g.classList.add('h-rd');
+  function mv(an){var b=g.querySelector(':scope>button[aria-pressed="true"]');if(!b)return;if(!an)sp.style.transition='none';sp.style.width=b.offsetWidth+'px';sp.style.height=b.offsetHeight+'px';sp.style.transform='translate('+b.offsetLeft+'px,'+b.offsetTop+'px)';if(!an){sp.offsetWidth;sp.style.transition=''}}
+  mv(0);g.addEventListener('click',function(){vib();setTimeout(function(){mv(1)},0)});addEventListener('resize',function(){mv(0)});try{new MutationObserver(function(){mv(1)}).observe(g,{attributes:true,subtree:true,attributeFilter:['aria-pressed']})}catch(e){}})}
+
 /* ---------- 動かす ---------- */
-var RQ=null;function run(){clearTimeout(RQ);RQ=setTimeout(function(){try{odet()}catch(e){}try{kur()}catch(e){}try{oka()}catch(e){}try{lens()}catch(e){}try{menu()}catch(e){}try{rail()}catch(e){}try{island()}catch(e){}try{embla()}catch(e){}try{th()}catch(e){}try{anim()}catch(e){}try{bx()}catch(e){}},120)}
+var RQ=null;function run(){clearTimeout(RQ);RQ=setTimeout(function(){try{odet()}catch(e){}try{cover()}catch(e){}try{kur()}catch(e){}try{oka()}catch(e){}try{lens()}catch(e){}try{segs()}catch(e){}try{menu()}catch(e){}try{rail()}catch(e){}try{island()}catch(e){}try{embla()}catch(e){}try{th()}catch(e){}try{anim()}catch(e){}try{bx()}catch(e){}},120)}
 load('/assets/hx-lib.js?v=1',run);
 fetch('/assets/phh.json?v=1').then(function(r){return r.json()}).then(function(j){PHH=j;run()}).catch(function(){});
 fetch('/assets/mihon.json?v='+(window.__mhv||3)).then(function(r){return r.json()}).then(function(j){for(var x in j){var o=j[x];if(o.id&&!ID[o.id]){ID[o.id]=o;D.push(o)}}run();
