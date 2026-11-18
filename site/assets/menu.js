@@ -7,7 +7,7 @@ var s=document.createElement("style");s.textContent="html{scrollbar-gutter:stabl
 h.classList.add("v2bar-on");setTimeout(function(){if(!document.getElementById("v2bar"))h.classList.remove("v2bar-on");},4000);}catch(e){}})();
 /* 11/9 ほかのリスト（ページの下とメニューで同じ名前・同じタイル）。cur＝いま見ているリスト（出さない） */
 window.TN_OL=(function(){var life=/usagi-life|lifenote|life-note|kanto\.townnote/.test(location.host),p=location.pathname;
-return {life:life,cur:/^\/(koe|privacy)/.test(p)?"":/fudosan|machi|uru|sagasu|chika|gyosha|moushikomi|jikka/.test(p)?"fu":/okaimono|otoku|tanka|nesage|furusato|kaimawari/.test(p)?"ok":"od",
+return {life:life,cur:/^\/(koe|privacy)/.test(p)?"":/fudosan|machi|uru|sagasu|chika|gyosha|moushikomi|jikka/.test(p)||/^\/(kaitai|ikura|ranking|akiya)/.test(p)?"fu":/okaimono|otoku|tanka|nesage|furusato|kaimawari/.test(p)?"ok":"od",
 I:{od:'<path d="M12 21s-6-5.6-6-10.5A6 6 0 0 1 18 10.5C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/>',
 fu:'<path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/>',
 ok:'<path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 0 1 6 0"/>'},
@@ -36,7 +36,7 @@ tiles:function(pre){var o=this,h="";o.L.forEach(function(x){if(x[0]===o.cur)retu
     /^\/sagasu/.test(P)?"fbuy":/^\/fudosan-list/.test(P)?"flist":/^\/chika-/.test(P)?"chika":/^\/uru/.test(P)?"uru":/^\/(index)?$/.test(P)?"tn":/^\/odekake/.test(P)?"list":/^\/okaimono/.test(P)?"okai":/^\/otoku/.test(P)?"otoku":/^\/illumination/.test(P)?"illumi":/^\/koyo/.test(P)?"koyo":/^\/koe/.test(P)?"koe":/^\/tomari/.test(P)?"tomari":/^\/ima/.test(P)?"ima":/^\/kaimawari/.test(P)?"kaimawari":/^\/furusato/.test(P)?"furusato":/^\/tanka/.test(P)?"tanka":/^\/nesage/.test(P)?"nesage":"";
   var SH=/^(\/okaimono|\/nesage|\/tanka|\/furusato|\/kaimawari|\/otoku)/.test(P);
   /* 11/7 関東不動産リスト（月の関西不動産リストと同じ）：不動産のページは不動産だけのメニュー */
-  var FU=/^\/(fudosan-list|uru|sagasu|chika-|kaitai|machi\/)/.test(P);
+  var FU=/^\/(fudosan-list|uru|sagasu|chika-|kaitai|akiya|ikura|moushikomi|machi\/)/.test(P);
   /* 11/6 夜「おかいものからリクエストへ行くと、下のバーがおでかけ側に変わって戻れない」→ どちらのリストから来たかを覚えて、リクエストのページもそちら側にする */
   try{if(SH)sessionStorage.setItem("usagi_side","okai");else if(here&&here!=="koe")sessionStorage.setItem("usagi_side","list");if(here==="koe"&&sessionStorage.getItem("usagi_side")==="okai")SH=true;}catch(e){}
   /* 11/2 オーナー「もっとまとめろよ。TOWNNOTEこんなんじゃないだろ」→ 月と同じく、リストごとに自分の項目だけ＋関連サイト */
@@ -396,7 +396,7 @@ var NB=[
 ].filter(function(n){return n.only!==false;});
 /* 11/10 オーナー「TOWN NOTEの表紙なのにおでかけNOWはおかしい」→ 表紙では、まとめた目次（各リストへ）から。名前は各ページの名前のまま（11/10 オーナー「そこはリストだろ」） */
 var COVER=(LF?/^\/(index)?$/:/^\/(town-notes)?$/).test(P);
-function side(){if(COVER)return "top";if(/^\/jikka/.test(P))return "jk";if(/^\/(fudosan|uru|ikura|moushikomi|gyosha|sagasu|chika-|ranking|kaitai|machi\/)/.test(P))return "fu";if(/^\/(okaimono|otoku|tanka|nesage|furusato|kaimawari)/.test(P))return "ok";
+function side(){if(COVER)return "top";if(/^\/jikka/.test(P))return "jk";if(/^\/(fudosan|uru|ikura|moushikomi|gyosha|sagasu|chika-|ranking|kaitai|akiya|machi\/)/.test(P))return "fu";if(/^\/(okaimono|otoku|tanka|nesage|furusato|kaimawari)/.test(P))return "ok";
  if(/^\/koe/.test(P)){try{var s=sessionStorage.getItem("tn_side");if(s)return s;}catch(e){}}return "od";}
 var HERE=side();try{if(!/^\/koe/.test(P))sessionStorage.setItem("tn_side",HERE);}catch(e){}
 /* 前回のつづき：ほかのページを見ていたら、目次の上に1行（この端末だけ） */
