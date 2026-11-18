@@ -99,7 +99,7 @@ function nowPill(host,o,cls){var n=now(o),p=host.querySelector('.mnow');if(!n){i
   if(!p){p=document.createElement('span');host.appendChild(p)}p.className='mnow '+(n.c||'')+(cls?' '+cls:'');p.textContent=n.t}
 function photo(box,o,big){if(box.classList.contains('mph'))return;box.classList.add('mph');var i=document.createElement('img');i.alt='';i.loading='lazy';i.decoding='async';i.className='mfade';i.src='/assets/ph/'+(big?'':'t/')+o.im;box.insertBefore(i,box.firstChild)}
 /* カード（一覧・府県・イルミ・紅葉・泊まり・いまから・1件ページの「ほかのおでかけ」） */
-function slim(){document.querySelectorAll(':is(.card,a.cd) .kv:not(.mk)').forEach(function(v){v.classList.add('mk');var l=(v.querySelector('span')||{}).textContent||'';if(!/見頃|開く日/.test(l))v.classList.add('mkh')})}
+function slim(){if(/^\/hatsumode/.test(location.pathname))return;/* 初詣は時間・交通規制がページの中身なので隠さない */document.querySelectorAll(':is(.card,a.cd) .kv:not(.mk)').forEach(function(v){v.classList.add('mk');var l=(v.querySelector('span')||{}).textContent||'';if(!/見頃|開く日/.test(l))v.classList.add('mkh')})}
 function cards(){slim();
   document.querySelectorAll(':is(.card,a.cd),a.fc').forEach(function(a){
     var tt=a.querySelector(a.matches('a.fc')?'b':'.t,.nm');if(!tt)return;var o=find(tt.textContent);if(!o)return;
