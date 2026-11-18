@@ -140,7 +140,7 @@ function photo(box,o,big){if(box.classList.contains('mph'))return;box.classList.
 function slim(){if(/^\/hatsumode/.test(location.pathname))return;/* 初詣は時間・交通規制がページの中身なので隠さない */document.querySelectorAll(':is(.card,a.cd) .kv:not(.mk)').forEach(function(v){v.classList.add('mk');var l=(v.querySelector('span')||{}).textContent||'';if(!/見頃|開く日/.test(l))v.classList.add('mkh')})}
 function cards(){slim();
   document.querySelectorAll(':is(.card,a.cd),a.fc').forEach(function(a){
-    var tt=a.querySelector(a.matches('a.fc')?'b':'.t,.nm');if(!tt)return;var o=find(tt.textContent);if(!o)return;
+    var tt=a.querySelector(a.matches('a.fc')?':scope>b':'.t,.nm');if(!tt)return;var o=find(tt.textContent);if(!o)return;
     if(o.im){if(a.matches(':is(.card,a.cd)')&&!o.wk){if(!a.querySelector('.mbp')){var f=document.createElement('div');f.className='mbp';f.innerHTML='<img class="mfade" src="/assets/ph/s/'+o.im+'" alt="" loading="lazy" decoding="async"><small>'+esc(o.cr.replace(/（.*$/,''))+'</small>'+(o.vn&&o.n.indexOf(o.vn)<0?'<i class="mvn">'+(o.vk?'場所：':'会場：')+esc(o.vn)+'</i>':'');a.insertBefore(f,a.firstChild);a.classList.add('mbig');var go=a.querySelector(':scope>.go');if(go){var cs=getComputedStyle(go);if(cs.position==='absolute'&&parseFloat(cs.top)<60)go.style.top=(parseFloat(cs.top)+152)+'px'}}}
       else if(!a.querySelector('.mbp')){var ib=a.querySelector('.cmb .ib');if(ib)photo(ib,o)}}
     if(!a.dataset.mh){var h=hook(o);if(h){var s=document.createElement('span');s.className='mhk';s.textContent=h;tt.parentNode.insertBefore(s,tt)}a.dataset.mh=1}
