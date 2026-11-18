@@ -161,12 +161,6 @@
   "page": "https://commons.wikimedia.org/wiki/File:Motherfarm.jpg",
   "d": "2026-11-18"
  },
- "鉄道博物館": {
-  "img": "fb9fc0d9.webp",
-  "cr": "小父（CC BY-SA 4.0・Wikimedia Commons）",
-  "page": "https://commons.wikimedia.org/wiki/File:%E4%BA%AC%E9%83%BD%E9%89%84%E9%81%93%E5%8D%9A%E7%89%A9%E9%A4%A8.jpg",
-  "d": "2026-11-18"
- },
  "横浜赤レンガ倉庫": {
   "img": "67fca51a.webp",
   "cr": "Kakidai（CC BY-SA 3.0・Wikimedia Commons）",
@@ -371,12 +365,6 @@
   "page": "https://commons.wikimedia.org/wiki/File:Marunouchi_Central_Plaza_with_blue_sky,_Tokyo_station_and_Shin-Marunouchi_Building,_panoramic_view_from_JP_Tower,_Tokyo,_Japan.jpg",
   "d": "2026-11-18"
  },
- "三崎港": {
-  "img": "d838e2f0.webp",
-  "cr": "D700master（CC BY 3.0・Wikimedia Commons）",
-  "page": "https://commons.wikimedia.org/wiki/File:Ehime-Misakikou.JPG",
-  "d": "2026-11-18"
- },
  "千葉ニュータウン中央駅": {
   "img": "f875efee.webp",
   "cr": "Tablet107（CC BY-SA 3.0・Wikimedia Commons）",
@@ -563,12 +551,6 @@
   "page": "https://commons.wikimedia.org/wiki/File:Yomiuriland-20100411.jpg",
   "d": "2026-11-18"
  },
- "オリオンスクエア": {
-  "img": "017a5b34.webp",
-  "cr": "Miyuki Meinaka（CC BY-SA 4.0・Wikimedia Commons）",
-  "page": "https://commons.wikimedia.org/wiki/File:COVID-19_Monitoring_test_site_in_Orion_Square,_Apr._2021.jpg",
-  "d": "2026-11-18"
- },
  "東京ドームシティ": {
   "img": "6d5ad651.webp",
   "cr": "No machine-readable author provided. Fg2（Public domain・Wikimedia Commons）",
@@ -669,12 +651,6 @@
   "img": "859795e7.webp",
   "cr": "掬茶（CC BY-SA 3.0・Wikimedia Commons）",
   "page": "https://commons.wikimedia.org/wiki/File:Tokyo_Bay_Maihama_Hotel_Club_Resort.jpg",
-  "d": "2026-11-18"
- },
- "JR海浜幕張駅前": {
-  "img": "ab6f6fad.webp",
-  "cr": "RuinDig/Yuki Uchida（CC BY 4.0・Wikimedia Commons）",
-  "page": "https://commons.wikimedia.org/wiki/File:Tokyo-Game-Show-2023-Day3-2023-09-23_435.jpg",
   "d": "2026-11-18"
  },
  "松戸駅": {
@@ -1193,22 +1169,10 @@
   "page": "https://commons.wikimedia.org/wiki/File:2019_Otaguro_garden_in_autumn_4.jpg",
   "d": "2026-11-18"
  },
- "大山寺": {
-  "img": "29d570f4.webp",
-  "cr": "Reggaeman（CC BY-SA 3.0・Wikimedia Commons）",
-  "page": "https://commons.wikimedia.org/wiki/File:Daisenji_07.jpg",
-  "d": "2026-11-18"
- },
  "大雄山最乗寺": {
   "img": "92ce541e.webp",
   "cr": "Σ64（CC BY-SA 3.0・Wikimedia Commons）",
   "page": "https://commons.wikimedia.org/wiki/File:Daiyuzan_Saijoji_Temple_04.jpg",
-  "d": "2026-11-18"
- },
- "長谷寺": {
-  "img": "68e40bc3.webp",
-  "cr": "Bernard Gagnon（CC BY-SA 3.0・Wikimedia Commons）",
-  "page": "https://commons.wikimedia.org/wiki/File:Hase-dera.jpg",
   "d": "2026-11-18"
  },
  "養老渓谷": {
@@ -1263,6 +1227,78 @@
   "img": "94e68a63.webp",
   "cr": "先従隗始（CC0・Wikimedia Commons）",
   "page": "https://commons.wikimedia.org/wiki/File:Kajika_Bridge_20230314.jpg",
+  "d": "2026-11-18"
+ },
+ "HANEDA INNOVATION CITY": {
+  "img": "d93021ac.webp",
+  "cr": "Mr.Asylum（CC BY-SA 4.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:HANEDA_INNOVATION_CITY_01.jpg",
+  "d": "2026-11-18"
+ },
+ "JPタワー KITTE": {
+  "img": "2718a0d2.webp",
+  "cr": "Nankou Oronain (as36…（CC BY-SA 3.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:KITTE_(JP%E3%82%BF%E3%83%AF%E3%83%BC)_2015.1.04_-_panoramio.jpg",
+  "d": "2026-11-18"
+ },
+ "MARK IS みなとみらい": {
+  "img": "eb108499.webp",
+  "cr": "Thirteen-fri（CC BY-SA 3.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:MARK_IS_minatomirai_5.jpg",
+  "d": "2026-11-18"
+ },
+ "マクセル アクアパーク品川": {
+  "img": "2e049312.webp",
+  "cr": "Gant223（CC BY-SA 4.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Maxell_Aqua_park_shinagawa_Entrance_in_Shinagawa_Prince_Hotel%EF%BC%88Takanawa,_Tokyo).png",
+  "d": "2026-11-18"
+ },
+ "ラ チッタデッラ": {
+  "img": "def9581a.webp",
+  "cr": "NickeldimeC（CC BY-SA 4.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:La_Cittadella_20240908_(1).jpg",
+  "d": "2026-11-18"
+ },
+ "川崎市 藤子・F・不二雄ミュージアム": {
+  "img": "9072cde1.webp",
+  "cr": "珈琲牛乳（CC BY 3.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:%E8%97%A4%E5%AD%90%E3%83%BBF%E3%83%BB%E4%B8%8D%E4%BA%8C%E9%9B%84%E3%83%9F%E3%83%A5%E3%83%BC%E3%82%B8%E3%82%A2%E3%83%A0_-_panoramio.jpg",
+  "d": "2026-11-18"
+ },
+ "帝国ホテル 東京": {
+  "img": "6ada46d3.webp",
+  "cr": "Ons（CC BY-SA 3.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Imperial_Hotel,_Tokyo.jpg",
+  "d": "2026-11-18"
+ },
+ "恵比寿ガーデンプレイス": {
+  "img": "903aad09.webp",
+  "cr": "Syced（CC0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Lustre_Baccarat,_Yebisu_Garden_Place_-31374.jpeg",
+  "d": "2026-11-18"
+ },
+ "日本橋三井タワー": {
+  "img": "72b554fa.webp",
+  "cr": "Wpcpey（CC BY 4.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Nihonbashi_Mitsui_Tower_Lobby_2019.jpg",
+  "d": "2026-11-18"
+ },
+ "東京ガーデンテラス紀尾井町": {
+  "img": "8d2e6d4f.webp",
+  "cr": "Tatsuo Yamashita from Tokyo, Japan（CC BY 2.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:%E6%9D%B1%E4%BA%AC%E3%82%AC%E3%83%BC%E3%83%87%E3%83%B3%E3%83%86%E3%83%A9%E3%82%B9%E7%B4%80%E5%B0%BE%E4%BA%95%E7%94%BA_%E3%82%AF%E3%83%AA%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%84%E3%83%AA%E3%83%BC_2019_11_11_(49048327612).jpg",
+  "d": "2026-11-18"
+ },
+ "東京スクエアガーデン": {
+  "img": "cd1bfcbb.webp",
+  "cr": "Wpcpey（CC BY 4.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Tokyo_Square_Garden_Access_2019.jpg",
+  "d": "2026-11-18"
+ },
+ "東京ミッドタウン八重洲": {
+  "img": "0041def2.webp",
+  "cr": "しっかかもっかか（CC BY-SA 4.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Entrance_of_Tokyo_Midtown_Yaesu.jpg",
   "d": "2026-11-18"
  }
 }
