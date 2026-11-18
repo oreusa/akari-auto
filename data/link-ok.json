@@ -5353,6 +5353,12 @@
   "sec": 5.0,
   "why": ""
  },
+ "https://maple-festa.com/": {
+  "at": "2026-11-18",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
  "https://maruchiba.jp/event/detail_10812.html": {
   "at": "2026-11-17",
   "by": "browser",
@@ -5651,6 +5657,12 @@
   "sec": 2.9,
   "why": ""
  },
+ "https://sunsetbeachpark.jp/%e3%80%9011%e6%9c%8821%e6%97%a5%e3%80%91bouquet-botanica-coffee-fes/2026/10/04/": {
+  "at": "2026-11-18",
+  "ok": true,
+  "sec": 2.2,
+  "why": ""
+ },
  "https://t-doitsumura.co.jp/": {
   "at": "2026-11-17",
   "by": "browser",
@@ -5663,6 +5675,12 @@
   "by": "browser",
   "ok": true,
   "sec": 4.3,
+  "why": ""
+ },
+ "https://t-doitsumura.co.jp/lantern2026/": {
+  "at": "2026-11-18",
+  "ok": true,
+  "sec": 2.2,
   "why": ""
  },
  "https://tachikawaillumination.com": {
@@ -5678,10 +5696,22 @@
   "sec": 2.1,
   "why": ""
  },
+ "https://tako-kankou.or.jp/ikiiki-event/": {
+  "at": "2026-11-18",
+  "ok": true,
+  "sec": 1.7,
+  "why": ""
+ },
  "https://tamaillumi.myportfolio.com/": {
   "at": "2026-11-18",
   "ok": true,
   "sec": 0.1,
+  "why": ""
+ },
+ "https://tcv.roppongihills.com/jp/exhibitions/hoshinooujisama/index.html": {
+  "at": "2026-11-18",
+  "ok": true,
+  "sec": 0.7,
   "why": ""
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
@@ -7265,6 +7295,12 @@
   "sec": 6.5,
   "why": ""
  },
+ "https://www.earthplaza.jp/earthfestakanagawa/": {
+  "at": "2026-11-18",
+  "ok": true,
+  "sec": 1.4,
+  "why": ""
+ },
  "https://www.edo-tokyo-museum.or.jp/s-exhibition/toyotomi/": {
   "at": "2026-11-08",
   "by": "browser",
@@ -7431,6 +7467,12 @@
   "by": "browser",
   "ok": true,
   "sec": 0.4,
+  "why": ""
+ },
+ "https://www.keirin-saitama.jp/omiya/topics/20261123/": {
+  "at": "2026-11-18",
+  "ok": true,
+  "sec": 1.6,
   "why": ""
  },
  "https://www.keiseirose.co.jp/garden/": {
@@ -7863,6 +7905,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.8,
+  "why": ""
+ },
+ "https://www.utsunomiya-cvb.org/event/detail_30131.html": {
+  "at": "2026-11-18",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.waterras.com/event/archives/event/35570/": {

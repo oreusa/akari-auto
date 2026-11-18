@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-18 12:53",
+  "at": "2026-11-18 19:50",
   "since": "2026-11-01",
   "tracked": 264,
   "days": 17,
@@ -15,6 +15,18 @@
       "av": 4.78,
       "shop": "ナチュラルペットフード shop",
       "plain": "https://item.rakuten.co.jp/petnext/10001928/"
+    },
+    {
+      "title": "モバイルバッテリー",
+      "name": "Anker Zolo Power Bank (10000mAh, 30W, Built-In…",
+      "price": 2990,
+      "base": 3990.0,
+      "pct": 25,
+      "days": 14,
+      "rc": 481,
+      "av": 4.5,
+      "shop": "アンカー・ダイレクト楽天市場店",
+      "plain": "https://item.rakuten.co.jp/anker/10002310/"
     },
     {
       "title": "プロテイン",
@@ -35,7 +47,7 @@
       "base": 3225.0,
       "pct": 23,
       "days": 14,
-      "rc": 1003,
+      "rc": 1004,
       "av": 4.55,
       "shop": "triple shop",
       "plain": "https://item.rakuten.co.jp/tripleshop/10000191/"
@@ -90,12 +102,12 @@
     },
     {
       "title": "お米",
-      "name": "「2026年 楽天上半期ランキング1位」 令和8年産 70％以上使用 国産 ブレンド米 極味…",
+      "name": "「2026年 楽天年間ランキング1位」 令和8年産 70％以上使用 国産 ブレンド米 極味精…",
       "price": 2280,
       "base": 2420.0,
       "pct": 6,
       "days": 14,
-      "rc": 6706,
+      "rc": 6708,
       "av": 4.48,
       "shop": "山川食糧オートミール研究所",
       "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
@@ -109,7 +121,7 @@
       "base": 1000.0,
       "pct": 65,
       "days": 14,
-      "rc": 523,
+      "rc": 524,
       "av": 4.33,
       "shop": "フィールドゲインズ楽天市場店",
       "plain": "https://item.rakuten.co.jp/fieldgaines/10000092/"
@@ -139,16 +151,16 @@
       "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000302/"
     },
     {
-      "title": "モバイルバッテリー",
-      "name": "Anker MagGo Power Bank (10000mAh, Slim) Qi2認証 …",
-      "price": 9990,
-      "base": 7490.0,
-      "pct": 33,
+      "title": "加湿器",
+      "name": "4重除菌 4.5L LAViNO エアリファイ 2027 医師推奨 除菌加湿 大容量 静音 …",
+      "price": 19800,
+      "base": 15840.0,
+      "pct": 25,
       "days": 14,
-      "rc": 544,
-      "av": 4.53,
-      "shop": "アンカー・ダイレクト楽天市場店",
-      "plain": "https://item.rakuten.co.jp/anker/10002086/"
+      "rc": 745,
+      "av": 4.13,
+      "shop": "美顔器 美容家電 アイビビッド",
+      "plain": "https://item.rakuten.co.jp/aibeaute/10000907/"
     },
     {
       "title": "プロテイン",

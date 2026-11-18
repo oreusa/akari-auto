@@ -5054,5 +5054,202 @@
         "min": 8365
       }
     ]
+  },
+  "東京ランタンフェスティバル2026": {
+    "v": 2,
+    "t": "2026-11-18",
+    "ll": [
+      35.40673,
+      140.06252
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "まるのもり Glamping with dog",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188322",
+        "km": 5.0,
+        "r": 4.8,
+        "rc": 60,
+        "min": 11620
+      },
+      {
+        "n": "トレーテル市原牛久店",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191988",
+        "km": 6.9,
+        "r": 4.71,
+        "rc": 43,
+        "min": 5312
+      },
+      {
+        "n": "ETOWA KISARAZU(エトワ木更津)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187326",
+        "km": 6.3,
+        "r": 4.43,
+        "rc": 343,
+        "min": 11495
+      }
+    ]
+  },
+  "第23回土浦カレーフェスティバル": {
+    "v": 2,
+    "t": "2026-11-18",
+    "ll": [
+      36.08152,
+      140.21165
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "【JR土浦駅直結】 BEB5土浦 by 星野リゾート",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178358",
+        "km": 0.7,
+        "r": 4.5,
+        "rc": 412,
+        "min": 4510
+      },
+      {
+        "n": "湖北ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D31538",
+        "km": 0.5,
+        "r": 4.36,
+        "rc": 1026,
+        "min": 3041
+      },
+      {
+        "n": "ホテルフィット",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106074",
+        "km": 0.8,
+        "r": 4.34,
+        "rc": 2052,
+        "min": 4850
+      }
+    ]
+  },
+  "第20回長沼コミュニティまつり": {
+    "v": 2,
+    "t": "2026-11-18",
+    "ll": [
+      35.63625,
+      140.10722
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ベッセルイン千葉駅前|サウナ付大浴場(千葉・京成千葉・幕張)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D168546",
+        "km": 2.9,
+        "r": 4.58,
+        "rc": 2112,
+        "min": 3133
+      },
+      {
+        "n": "THE TSUBAKIMORI Hotel & Residence(椿森ホテル&レジデンス)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198773",
+        "km": 2.2,
+        "r": 4.56,
+        "rc": 55,
+        "min": 5000
+      },
+      {
+        "n": "ダイワロイネットホテル千葉駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D148926",
+        "km": 2.8,
+        "r": 4.44,
+        "rc": 1573,
+        "min": 5250
+      }
+    ]
+  },
+  "大宮けいりんチャリフェス": {
+    "v": 2,
+    "t": "2026-11-18",
+    "ll": [
+      35.9191,
+      139.6338
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルメトロポリタンさいたま新都心",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D161189",
+        "km": 2.8,
+        "r": 4.64,
+        "rc": 1523,
+        "min": 6950
+      },
+      {
+        "n": "レフ大宮 by ベッセルホテルズ|REF大宮|サウナ付大浴場(大宮駅東口)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179148",
+        "km": 1.6,
+        "r": 4.61,
+        "rc": 1372,
+        "min": 4973
+      },
+      {
+        "n": "ダイワロイネットホテル大宮西口",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188736",
+        "km": 2.1,
+        "r": 4.57,
+        "rc": 1521,
+        "min": 6930
+      }
+    ]
+  },
+  "Maplefesta秋の収穫祭": {
+    "v": 2,
+    "t": "2026-11-18",
+    "ll": [
+      36.02217,
+      139.50376
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ザ・セレクトン大宮快速・北本駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D172208",
+        "km": 2.9,
+        "r": 4.24,
+        "rc": 487,
+        "min": 3210
+      }
+    ]
+  },
+  "いきいきフェスタTAKO2026": {
+    "v": 2,
+    "t": "2026-11-18",
+    "ll": [
+      35.73555,
+      140.46779
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ますがたや旅館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D14723",
+        "km": 0.3,
+        "r": 4.5,
+        "rc": 32,
+        "min": 5500
+      }
+    ]
+  },
+  "BambooWinterLights2026": {
+    "v": 2,
+    "t": "2026-11-18",
+    "ll": [
+      36.61425,
+      139.85043
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "フェアフィールド・バイ・マリオット・栃木宇都宮",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D180500",
+        "km": 2.9,
+        "r": 4.55,
+        "rc": 144,
+        "min": 6353
+      }
+    ]
   }
 }
