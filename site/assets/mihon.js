@@ -91,6 +91,10 @@ var css=
 '.mctab b{color:#C0563C}.mctab small{font:500 11px Jost,"Zen Kaku Gothic New",sans-serif;color:#8C7B6E;border:1px solid #E3DCD5;border-radius:999px;padding:2px 8px}.mctab i{margin-left:auto;font-style:normal;font-family:Jost;font-size:18px;transition:transform .25s}'+
 '.mcta1:hover .mctab i,.mcta1:active .mctab i{transform:translateX(5px)}'+
 'html body div.sns h2{text-align:center!important}'+
+/* 11/18 見やすさの点検（axe-core）で薄すぎた小さな灰色の字：同じ色みのまま少しだけ濃く（白地で 4.5:1 以上） */
+'html body .oh{color:#767B82!important}html body button[data-t][role=tab]:not([aria-selected=true]){color:#6E655E!important}html body button[data-t][role=tab] i{color:#467A54!important}html body .nft small{color:#6E655E!important}html body .mctab>span{color:#2B2622!important}'+
+'html body .kicker,html body .lists a.ls .en{color:#7C6A5A!important}html body .prom h2,html body div.sns h2,html body .ft,html body .uhl b,html body .wrap>p,html body a[href$="privacy"]{color:#76685D!important}'+
+'html body .sns a.co:not(.mcta1) span{color:#76685D}.mctab small{color:#6E655E}'+
 /* 11/18 入口：今週の1件（画面いっぱいの写真・ゆっくりズーム） */
 '.mhero{margin:6px -16px 0;position:relative}'+
 '.mhero .mhl{position:relative;display:block;height:min(78svh,620px);min-height:440px;overflow:hidden;color:#fff;text-decoration:none;background:#2b2622;-webkit-tap-highlight-color:transparent}'+
