@@ -112,6 +112,8 @@ jobs:
           python3 scripts/spot_pages.py || true
           # 11/18 見本（?mihon=1 の人だけ）：カードと1件ページに会場の写真（data/venue_photos.json）→ /assets/mihon.json。spot_pages.py の後
           python3 scripts/mihon.py || true
+          # 11/19 激変版（?mihon=2）：写真が出る前のぼかし色（ThumbHash・関西 tools/hx/phh.py と同じ）
+          pip install -q thumbhash-python >/dev/null 2>&1 && python3 scripts/hx_phh.py site/assets || true
           # 11/7 オーナー「新しい燈の不動産hpは作りは全て月と同じ」→ 関東不動産リスト（/fudosan-list・/chika-kanto・/machi/ 329の街・/assets/towns.json）。月の関西不動産リストと同じ作り。pwa.py の前に作る（ホーム画面用の印を付けるため）
           python3 scripts/fudosan_kanto.py || true
           # 11/11 関東の実家・空き家の3問診断（/jikka/shindan/）。fudosan_kanto.py の後

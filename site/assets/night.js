@@ -192,5 +192,5 @@
  setTimeout(show,2500);addEventListener("pageshow",function(e){if(e.persisted)show();});
 }catch(e){try{document.documentElement.classList.remove("tk-boot");}catch(x){}}})();
 /* 11/18 見本（関東）：?mihon=1 を付けた人だけ mihon.js を読む（月と同じ）。?mihon=0 で消える。普通のお客さんには何も出ない */
-(function(){try{var m=location.search.match(/[?&]mihon=([01])/);if(m){if(m[1]==="1")localStorage.setItem("tn_mihon","1");else localStorage.removeItem("tn_mihon");}
-if(localStorage.getItem("tn_mihon")==="1"){var s=document.createElement("script");s.src="/assets/mihon.js?v=9";s.defer=true;document.head.appendChild(s);}}catch(e){}})();
+(function(){try{var m=location.search.match(/[?&]mihon=([012])/);if(m){if(m[1]!=="0")localStorage.setItem("tn_mihon",m[1]);else localStorage.removeItem("tn_mihon");}var MV=localStorage.getItem("tn_mihon");
+if(MV==="1"||MV==="2"){var s=document.createElement("script");s.src="/assets/mihon.js?v=9";s.defer=true;document.head.appendChild(s);/* 11/19 ?mihon=2 激変版（hitech2.js・関西と同じ物） */if(MV==="2"){var s2=document.createElement("script");s2.src="/assets/hitech2.js?v=1";s2.defer=true;document.head.appendChild(s2);}}}catch(e){}})();
