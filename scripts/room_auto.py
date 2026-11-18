@@ -228,13 +228,28 @@ def main():
     order = [u for u in ure + rku + [u for u in order if u not in ure and u not in rku] if u not in posted]
     hand_urls = [r["url"].split("?")[0] for r in hand]
     order = [u for u in order if u in cand and u not in hand_urls][:max(0, MAX - len(hand))]
+    # 11/18 21:23 owner「直前すぎたらマークしてくれる人がいなくなるぞ」→ 大きなセールの3日前から、全部のコメントの1行目にセールの日時を書く。
+    # 始まる前は「始まる前にコレ！」（見た人が先に印を付けて、始まったらすぐ買える）、始まったら「開催中・いつまで」。
+    # 切り替わりの 20:00 は page.yml の 11/19 20:01 の回で台本を作り直す（雫の 20:05・20:20 の回が読む）
+    now = datetime.now(timezone(timedelta(hours=9))).replace(tzinfo=None)
+    WD = "月火水木金土日"
+    def md(d): return f"{d.month}/{d.day}（{WD[d.weekday()]}）"
+    pre = ""
+    for x in sal:
+        st, en = datetime.fromisoformat(x["start"]), datetime.fromisoformat(x["end"])
+        if now < st:
+            when = f"今夜{st.hour}時から" if st.date() == today else f"{md(st)}{st.hour}時から"
+            pre = f"【{when} {x['name']}】セールで買う物は、始まる前にコレ！しておくと、始まってすぐ見つかります。\n"
+        elif now <= en:
+            pre = f"【{x['name']} 開催中・{md(en)}{en.hour}:{en.minute:02d}まで】\n"
+        break
     rows = []
     for r in hand:
-        rows.append((r.get("collection") or "毎日なくなる物", r.get("expect", ""), r["url"].split("?")[0], r["comment"], r.get("tags") or "#暮らし #買ってよかった"))
+        rows.append((r.get("collection") or "毎日なくなる物", r.get("expect", ""), r["url"].split("?")[0], pre + r["comment"], r.get("tags") or "#暮らし #買ってよかった"))
     Q = {}
     for u in order:
         x = cand[u]
-        rows.append((x["col"], x["name"], u, x["comment"], x["tag"]))
+        rows.append((x["col"], x["name"], u, pre + x["comment"], x["tag"]))
         if x.get("q"):  # 11/16 雫：元の商品42件が「緊急メンテナンス」→ ROOM検索に3語の長い言葉では出ない。ランキングの物は短い2語・1語で探す
             Q[u] = x["q"]
     log[T] = hand_urls + order
