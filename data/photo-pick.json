@@ -1,0 +1,145 @@
+{
+ "about": "写真の表紙に使う写真（月・燈が目で見て選んだ物だけ）。予定表のおでかけの1行目と place に all が全部・any が1つ入り、日付が from〜to の時に使う（scripts/photo_auto.py）。足す時は①催しそのもの②季節が合う③幅900px以上④cr あり、を見てから",
+ "items": [
+  {
+   "file": "site/card/ph/akarenga-xmas.jpg",
+   "cr": "Dick Thomas Johnson（CC BY 2.0・Wikimedia Commons）",
+   "all": [
+    "赤レンガ"
+   ],
+   "any": [
+    "クリスマス"
+   ],
+   "from": "11-15",
+   "to": "12-25",
+   "en": "CHRISTMAS MARKET",
+   "pos": "78% 50%",
+   "cap": "",
+   "what": "横浜赤レンガ倉庫 クリスマスマーケットのツリー（夜）"
+  },
+  {
+   "file": "site/card/ph/dome-city-night.jpg",
+   "cr": "掬茶（CC BY-SA 4.0・Wikimedia Commons）",
+   "all": [
+    "東京ドームシティ"
+   ],
+   "any": [
+    "イルミ",
+    "光",
+    "SNOW"
+   ],
+   "from": "11-01",
+   "to": "02-28",
+   "en": "WINTER ILLUMINATION",
+   "pos": "50% 50%",
+   "cap": "",
+   "what": "東京ドームシティ ラクーアの光のドーム（夜）"
+  },
+  {
+   "file": "site/card/ph/keyakizaka-illumi.jpg",
+   "cr": "Kakidai（CC BY-SA 4.0・Wikimedia Commons）",
+   "all": [
+    "六本木"
+   ],
+   "any": [
+    "けやき坂",
+    "イルミ",
+    "クリスマス"
+   ],
+   "from": "11-01",
+   "to": "12-25",
+   "en": "WINTER ILLUMINATION",
+   "pos": "50% 50%",
+   "cap": "",
+   "what": "六本木けやき坂のイルミネーション（夜・東京タワー）"
+  },
+  {
+   "file": "site/card/ph/marunouchi-illumi.jpg",
+   "cr": "Dick Thomas Johnson（CC BY 2.0・Wikimedia Commons）",
+   "all": [
+    "丸の内"
+   ],
+   "any": [
+    "イルミ",
+    "光"
+   ],
+   "from": "11-01",
+   "to": "02-28",
+   "en": "WINTER ILLUMINATION",
+   "pos": "50% 50%",
+   "cap": "",
+   "what": "丸の内仲通りのイルミネーション（夜）"
+  },
+  {
+   "file": "site/card/ph/ashikaga-castle.jpg",
+   "cr": "Miyuki Meinaka（CC BY-SA 4.0・Wikimedia Commons）",
+   "all": [
+    "フラワーパーク"
+   ],
+   "any": [
+    "光",
+    "イルミ"
+   ],
+   "from": "10-15",
+   "to": "02-15",
+   "en": "FLOWER FANTASY",
+   "pos": "50% 50%",
+   "cap": "",
+   "what": "あしかがフラワーパーク 光の城と光の花（夜）"
+  },
+  {
+   "file": "site/card/ph/showa-ginkgo.jpg",
+   "cr": "Kakidai（CC BY-SA 4.0・Wikimedia Commons）",
+   "all": [
+    "昭和記念公園"
+   ],
+   "any": [
+    "黄葉",
+    "イチョウ",
+    "いちょう",
+    "紅葉"
+   ],
+   "from": "10-25",
+   "to": "12-05",
+   "en": "AUTUMN LEAVES",
+   "pos": "50% 50%",
+   "cap": "",
+   "what": "国営昭和記念公園 カナールのイチョウ（昼・黄葉）"
+  },
+  {
+   "file": "site/card/ph/gaien-ginkgo.jpg",
+   "cr": "Dick Thomas Johnson（CC BY 2.0・Wikimedia Commons）",
+   "all": [
+    "外苑"
+   ],
+   "any": [
+    "いちょう",
+    "イチョウ",
+    "銀杏"
+   ],
+   "from": "11-01",
+   "to": "12-10",
+   "en": "GINKGO AVENUE",
+   "pos": "50% 50%",
+   "cap": "",
+   "what": "明治神宮外苑 いちょう並木（昼・黄葉）"
+  },
+  {
+   "file": "site/card/ph/takao-koyo.jpg",
+   "cr": "江戸村のとくぞう (Edomura no Tokuzo)（CC BY-SA 3.0・Wikimedia Commons）",
+   "all": [
+    "高尾"
+   ],
+   "any": [
+    "紅葉",
+    "もみじ"
+   ],
+   "from": "10-25",
+   "to": "12-05",
+   "en": "AUTUMN LEAVES",
+   "pos": "50% 50%",
+   "cap": "",
+   "what": "高尾山 ケーブル清滝駅前の紅葉（昼）"
+  }
+ ]
+}

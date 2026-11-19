@@ -22,7 +22,7 @@ const HTML=x=>`<!doctype html><meta charset="utf-8"><link href="https://fonts.go
 .cr{position:absolute;right:44px;top:56px;max-width:520px;text-align:right;font:400 19px "Zen Kaku Gothic New";letter-spacing:.04em;color:rgba(255,255,255,.88);text-shadow:0 1px 6px rgba(0,0,0,.6)}
 .bt{position:absolute;left:64px;right:64px;bottom:96px}
 .pl{display:inline-flex;align-items:center;gap:14px;background:rgba(255,253,249,.95);color:#3A332E;border-radius:999px;padding:12px 30px 12px 26px;font:700 29px "Zen Kaku Gothic New";letter-spacing:.06em}.pl:before{content:"";width:13px;height:13px;border-radius:50%;background:#C2643E}
-.hd{margin-top:30px;font:700 ${x.hs||72}px/1.42 "Shippori Mincho",serif;letter-spacing:.06em;text-shadow:0 2px 18px rgba(0,0,0,.35)}.hd em{font-style:normal;color:#F3C9A4}
+.hd{margin-top:30px;${x.nowrap?'white-space:nowrap;':''}font:700 ${x.hs||72}px/1.42 "Shippori Mincho",serif;letter-spacing:.06em;text-shadow:0 2px 18px rgba(0,0,0,.35)}.hd em{font-style:normal;color:#F3C9A4}
 .rw{margin-top:30px;display:flex;align-items:baseline;gap:26px;border-top:1px solid rgba(255,255,255,.22);padding-top:26px}
 .big{flex:none;white-space:nowrap;font:300 ${x.bs||118}px/1 Jost;letter-spacing:.01em}.big small{font:500 34px "Shippori Mincho",serif;margin-left:10px;color:rgba(255,255,255,.8)}
 .cap{flex:1;font:400 27px/1.5 "Zen Kaku Gothic New";letter-spacing:.08em;color:rgba(255,255,255,.82)}
@@ -42,6 +42,8 @@ ${x.big||x.cap?`<div class="rw">${x.big?`<div class="big">${esc(x.big)}${x.unit?
   // 見出しが写真の真ん中まで上がる（4行以上）時は止める
   const over=await p.evaluate(()=>document.querySelector('.bt').getBoundingClientRect().top<640);
   if(over){console.log('× 見出しが長すぎる：',x.name);process.exitCode=1;continue}
+  // nowrap（機械が作る時）：1行が横にはみ出す＝言葉の途中で折れる形は使わない
+  if(x.nowrap&&await p.evaluate(()=>{const h=document.querySelector('.hd');return h.scrollWidth>h.clientWidth+2})){console.log('× 見出しの1行が長い：',x.name);process.exitCode=1;continue}
   const f='card-'+x.name+'.jpg';await p.screenshot({path:path.join(out,f),type:'jpeg',quality:90});
   idx['card-'+x.name]={url:CFG.base+f+'?v='+Date.now().toString(36),made:new Date(Date.now()+9*3600e3).toISOString().slice(0,10),photo:x.im,cr:x.cr};n++}
  fs.writeFileSync(idxf,JSON.stringify({about:'投稿の表紙の絵（card.js・photo.js が作る）。投稿の image_url に url を使う',items:idx},null,1));
