@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-19 11:06",
+  "at": "2026-11-19 11:25",
   "since": "2026-11-01",
   "tracked": 264,
   "days": 18,
@@ -89,6 +89,18 @@
       "plain": "https://item.rakuten.co.jp/lifejoy-shop/10000040/"
     },
     {
+      "title": "トイレットペーパー",
+      "name": "トイレットペーパー 芯なし 3. 巻き スマートエール 170m トイレットロール シングル…",
+      "price": 4880,
+      "base": 5250.0,
+      "pct": 7,
+      "days": 4,
+      "rc": 301,
+      "av": 4.64,
+      "shop": "暮らし健康ネット館",
+      "plain": "https://item.rakuten.co.jp/kurashikenkou/10198603/"
+    },
+    {
       "title": "お米",
       "name": "「2026年 楽天年間ランキング1位」 令和8年産 70％以上使用 国産 ブレンド米 極味精…",
       "price": 2280,
@@ -111,18 +123,6 @@
       "av": 4.39,
       "shop": "くらしのeショップ",
       "plain": "https://item.rakuten.co.jp/e-kurashi/10006895/"
-    },
-    {
-      "title": "加湿器",
-      "name": "加湿器 スチーム式 スチーム式加湿器 上部給水 タンク容量 2.4L 木造約8.5畳・プレハ…",
-      "price": 8982,
-      "base": 9480.0,
-      "pct": 5,
-      "days": 14,
-      "rc": 353,
-      "av": 4.06,
-      "shop": "くらしのeショップ",
-      "plain": "https://item.rakuten.co.jp/e-kurashi/10036774/"
     }
   ],
   "ups": [
