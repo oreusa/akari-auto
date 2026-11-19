@@ -1,3 +1,9 @@
 /kansai-yado.json
   Access-Control-Allow-Origin: https://usagi-odekake.usagi-fudosan.workers.dev
   Cache-Control: public, max-age=3600
+
+# 11/19 無料の上限（1日10万回）で止まった→写真・部品は1時間ためて、ページを移るたびに取りに来ないようにする
+/assets/*
+  Cache-Control: public, max-age=3600
+/townnotes/*
+  Cache-Control: public, max-age=3600
