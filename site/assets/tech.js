@@ -59,7 +59,7 @@
   function clock(){try{if(!h.classList.contains("tk2")||ck||!d.getElementById("today"))return;ck=d.createElement("span");ck.className="tkclk";ck.setAttribute("aria-hidden","true");
     var lab=d.createElement("i");lab.textContent="JST";ck.appendChild(lab);var ctx=d.createTextNode("");ck.appendChild(ctx);
     var two=function(n){return(n<10?"0":"")+n;},tk=function(){try{var td=d.querySelector("#today>div");if(!td)return;if(ck.parentNode!==td)td.appendChild(ck); /* ページ側が行を書き直しても、付け直す */
-      var t=new Date(Date.now()+9*3600e3);ctx.nodeValue=two(t.getUTCHours())+":"+two(t.getUTCMinutes())+":"+two(t.getUTCSeconds());}catch(e){}};
+      var t=new Date(Date.now()+9*3600e3);var v=two(t.getUTCHours())+":"+two(t.getUTCMinutes())+(h.classList.contains("hx2")?"":":"+two(t.getUTCSeconds()));if(ctx.nodeValue!==v)ctx.nodeValue=v; /* 11/19 激変版：秒が動き続けると気が散る→時:分だけ */}catch(e){}};
     tk();setInterval(tk,1000);}catch(e){}}
 
   /* tk2：表紙の切り替えの白い札が、押した所へすべる */
