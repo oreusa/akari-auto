@@ -4,7 +4,7 @@
 写真：site/assets/mihon.json・phh.json。地図の場所：data/townnotes-geo.json。種類：site/assets/cardmark.js。
 出す所：site/index.html・site/odekake.html・site/odekake-<都県>.html を新しい形に書き替える（前の物は site/kyu/ に残す）。
 page.yml の最後の方（投稿の画像を撮った後・skin_bake の前）で動かす。python3 scripts/shin_kanto.py"""
-import os, re, json, html, hashlib, datetime, shutil
+import os, re, sys, json, html, hashlib, datetime, shutil
 
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = os.path.join(R, "site")
@@ -28,7 +28,8 @@ def proj(lon, lat): return ((lon - 138.4) * 81 + 10, (37.15 - lat) * 100 + 27)
 LBLL = {"群馬": (138.95, 36.62), "栃木": (139.75, 36.72), "茨城": (140.3, 36.3), "埼玉": (139.3, 36.02), "東京": (139.4, 35.72), "神奈川": (139.3, 35.43), "千葉": (140.2, 35.55)}
 LB = {p: [round(proj(*v)[0], 1), round(proj(*v)[1], 1)] for p, v in LBLL.items()}
 REG = {"n": "関東", "brand": "LIFE NOTE", "logo": "/logo-s.png", "logon": "/logo-s-night.png", "pref": PREF, "pfs": "東京・神奈川・埼玉・千葉・茨城・栃木・群馬",
-       "pc": PC, "fl": FL, "lb": LB, "sl": SLUG, "vb": "10 15 200 250"}
+       "pc": PC, "fl": FL, "lb": LB, "sl": SLUG, "vb": "10 15 200 250",
+       "org": [["東京駅", 35.6812, 139.7671], ["新宿", 35.6896, 139.7006], ["渋谷", 35.658, 139.7016], ["横浜", 35.4658, 139.6223], ["大宮", 35.9064, 139.6238], ["千葉駅", 35.613, 140.1135], ["水戸駅", 36.3708, 140.4763], ["宇都宮駅", 36.559, 139.8985], ["高崎駅", 36.3228, 139.0127]]}
 
 
 def path(geom):
@@ -58,6 +59,11 @@ def kind(*txt):
     return "spot"
 
 
+# 種類の名前と色（関西 tools/shin/lists.py の cfg_kinds と同じ）
+KG = {"art": ["アート・展示", "#3B5BA5"], "light": ["光・イルミ", "#B7862A"], "koyo": ["紅葉", "#C0532B"], "flower": ["花", "#C2557A"], "fes": ["まつり", "#B23A2E"],
+      "quest": ["謎とき", "#5B4B8A"], "play": ["あそぶ", "#2E8B6E"], "spot": ["スポット", "#2F7D9A"], "food": ["グルメ", "#C9702A"], "animal": ["いきもの", "#6F7F33"],
+      "xmas": ["クリスマス", "#2F7A4F"], "hallo": ["ハロウィン", "#B45F1F"], "shop": ["マーケット", "#8A6A3F"]}
+KINDS = lambda its: {k: v for k, v in KG.items() if any(x.get("k") == k for x in its)}
 norm = lambda s: re.sub(r"[\s　・／/「」『』]", "", s or "")
 
 
@@ -210,6 +216,78 @@ def main():
         write("koyo.html", "/koyo", "関東の紅葉2026｜見頃とライトアップ（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）｜LIFE NOTE", cfg("/koyo"),
               dict(data, items=ky, page={"h1": "関東の紅葉", "sub": f"見頃とライトアップ・{len(ky)}か所", "st": "pref"}), "odekake",
               f"関東の紅葉の名所と夜のライトアップ{len(ky)}か所を、見頃の時期・料金・時間つきでまとめています。地図と写真で探せて、毎日更新しています。")
+
+    # ---------- いまから行ける（関西 /ima と同じ形：いる場所から近い順・きょう開いている所） ----------
+    im, seen = [], set()
+    for src in (IT, il, ky):
+        for x in src:
+            if not x.get("xy") or x["s"] > TD or x["e"] < TD: continue
+            k = re.sub(r"\s+", "", x["t"])
+            if k in seen: continue
+            seen.add(k)
+            it = dict(x); it["ll"] = [round(37.15 - (x["xy"][1] - 27) / 100, 4), round((x["xy"][0] - 10) / 81 + 138.4, 4)]
+            im.append(it)
+    if len(im) >= 10:
+        c = cfg("/ima"); c["nav"] = [{"t": "近い順", "ic": "map", "a": "top", "cur": 1}, {"t": "おでかけ", "ic": "now", "href": "/odekake"}, {"t": "イルミ", "ic": "we", "href": "/illumination"}, {"t": "保存", "ic": "star", "a": "fav"}]
+        write("ima.html", "/ima", "いまから行ける関東のおでかけ｜近い順・きょう開いている所｜LIFE NOTE", c,
+              {"items": im, "icons": ICONS, "page": {"h1": "いまから行けるおでかけ", "sub": "きょう開いている所を、近い順に", "near": 1, "K": KINDS(im), "cnt": "か所", "seg": False,
+                                                     "none": "この時間で行ける所は見つかりませんでした。「1時間半」「すべて」でもう少し遠くまで探せます。",
+                                                     "note": "かかる時間は直線距離から出した目安です（電車と歩きを合わせたおおよその時間）。本当の行き方は「行き方」から Google マップで。開いている時間は出かける前に公式で確かめてください。"}},
+              "list", f"いる場所といまの時刻から、きょう開いている関東のおでかけ{len(im)}か所を近い順に並べます。30分・1時間・1時間半で行ける所がすぐ分かります。")
+
+    # ---------- 開店・閉店（scripts/kaiten.py の決まりをそのまま使う：ジャンル・初出店・場所の写真） ----------
+    try:
+        sys.path.insert(0, os.path.join(R, "scripts"))
+        import kaiten as K
+        GC = {"カフェ": "#8A5A3B", "パン・スイーツ": "#C2557A", "ごはん": "#C0532B", "スーパー・コンビニ": "#2E8B6E", "ドラッグ・薬": "#2F7D9A", "服・雑貨": "#5B4B8A",
+              "美容・からだ": "#B7862A", "遊び・体験": "#3B5BA5", "車・家電": "#4F6681", "施設": "#6F8C68", "その他": "#6E6E73"}
+        kt = []
+        for x in sorted([x for x in rd("data", "kaiten.json")["items"] if K.bucket(x)], key=lambda x: x["d"]):
+            b = K.bucket(x); g, _ = K.genre(x); h = K.hatsu(x); v = K.vphoto(x); d = datetime.date.fromisoformat(x["d"])
+            lab = {"open": "開店", "pop": "期間限定", "close": "閉店"}[x["k"]]
+            wd = "月火水木金土日"[d.weekday()]
+            it = {"t": x["n"], "p": x["p"], "a": x.get("pl") or "", "k": g, "w": b, "u": x["u"], "ub": "公式の発表を見る", "id": K.slug(x),
+                  "d": f"{d.month}/{d.day}（{wd}）{lab}", "hk": x.get("pt", ""),
+                  "bg": (h or lab) if b != "close" else "閉店", "bgc": "off" if b == "close" else ("pop" if not h else ""),
+                  "rows": [r for r in [["日", f"{d.month}月{d.day}日（{wd}）{lab}" + (f"〜{x['end']}" if x.get("end") else "")], ["場所", x.get("pl") or x["p"]], ["時間", x.get("tm") or ""]] if r[1]],
+                  "mq": (x.get("pl") or "") + " " + x["n"], "big": ("あと" + str((d - datetime.date.fromisoformat(TD)).days) + "日で" + lab if x["d"] > TD else ("きょう" + lab if x["d"] == TD else ""))}
+            if os.path.exists(os.path.join(S, "kaiten", it["id"] + ".html")): it["sp"] = "/kaiten/" + it["id"]
+            if v: it.update({"im": v["img"], "cr": v["cr"], "cu": v.get("page", "")})
+            kt.append(it)
+        kt.reverse()
+        if kt:
+            cn = {k: sum(1 for x in kt if x["w"] == k) for k in ("soon", "done", "close")}
+            c = cfg("/kaiten")
+            c["nav"] = [{"t": "これから", "ic": "now", "a": "w=soon"}, {"t": "開いた", "ic": "we", "a": "w=done"}, {"t": "閉まる", "ic": "down", "a": "w=close"}, {"t": "保存", "ic": "star", "a": "fav"}]
+            c["menu"] = {"k": "New Shops", "items": [["関東の開店・閉店", "/kaiten", 1], ["関西の開店・閉店", "https://kansai.townnote.app/kaiten"]]}
+            c["foot"] = "各社の公式の発表（プレスリリース・お店のお知らせ）から集めています。写真はお店の入る建物・場所の写真で、撮影者を各ページに書いています（ウィキメディア・コモンズ ほか）。"
+            write("kaiten.html", "/kaiten", "関東の開店・閉店ニュース｜新しいお店・閉まるお店を公式の発表で｜LIFE NOTE", c,
+                  {"items": kt, "icons": ICONS, "page": {"h1": "関東の開店・閉店", "sub": "新しいお店・閉まるお店を、公式の発表で", "view": "list", "fav": 1, "id": "kaiten",
+                                                         "K": {g: [g, GC[g]] for g in GC if any(x["k"] == g for x in kt)},
+                                                         "dl": f"毎日更新・<b>{len(kt)}</b>件", "tabs": [["soon", f"これから {cn['soon']}", "w", "soon"], ["done", f"開いた {cn['done']}", "w", "done"], ["close", f"閉まる {cn['close']}", "w", "close"]]}},
+                  "list", f"東京・神奈川・埼玉・千葉など関東の新しいお店・閉まるお店を、各社の公式の発表から毎日集めています。これから{cn['soon']}件・開いた{cn['done']}件・閉まる{cn['close']}件。")
+    except Exception as e:
+        print("shin_kanto: 開店・閉店は前のまま", repr(e))
+
+    # ---------- おかいもの（関西 /shin/kau と同じ形・値段は site/okai-shin.json） ----------
+    try:
+        d = json.load(open(os.path.join(S, "okai-shin.json"), encoding="utf-8"))
+        if len(d.get("cats", [])) >= 10:
+            from okai_home import ICON
+            GROUPS = [("赤ちゃん", ["diaper", "wipes"]), ("紙・日用品", ["tp", "tissue", "trash", "mask", "battery"]),
+                      ("洗濯・お風呂", ["detergent", "softener", "shampoo", "bodysoap", "dish"]),
+                      ("飲み物・食べ物", ["water", "tea", "soda", "coffee", "beans", "rice", "pasta"]), ("ペット", ["dogfood", "catfood"])]
+            have = {c_["k"] for c_ in d["cats"]}
+            d["ic"] = {k: v for k, v in ICON.items() if k in have}
+            d["groups"] = [[g, [k for k in ks if k in have]] for g, ks in GROUPS]
+            d["live"] = "/okai-shin.json"
+            c = {"nav": [{"t": "品物", "ic": "find", "a": "find"}, {"t": "値下がり", "ic": "down", "a": "drop"}, {"t": "いつもの物", "ic": "star", "a": "my"}, {"t": "ふるさと納税", "ic": "gift", "href": "/furusato"}],
+                 "menu": {"k": "Shopping", "items": [["日用品の値段くらべ", "/okaimono", 1], ["ふるさと納税", "/furusato"], ["値下がりした物の一覧", "/nesage"], ["今までのおかいものの画面", "/kyu/okaimono"]]},
+                 "foot": "値段：楽天市場・Yahoo!ショッピングで調べた送料込みの値段（調べた時のもの。お店で変わることがあります）。Amazonは値段を自動で調べられないため、押すとAmazonの検索が開きます。<br>このページのお店へのリンクは広告（PR）です。"}
+            write("okaimono.html", "/okaimono", "日用品の値段くらべ（楽天・Yahoo!・Amazon）｜LIFE NOTE", c, d, "kau",
+                  f"ティッシュ・トイレットペーパー・おむつ・洗剤・水・お米など{len(d['cats'])}種類を、楽天とYahoo!ショッピングの送料込みの値段で、1Lあたり・1枚あたりに直して比べています。Amazonも同じ画面から見られます。広告（PR）を含みます。")
+    except Exception as e:
+        print("shin_kanto: おかいものは前のまま", repr(e))
 
     # ---------- 表紙 ----------
     now = [x for x in IT if x["s"] <= TD <= x["e"]]

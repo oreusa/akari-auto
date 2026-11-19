@@ -15,7 +15,7 @@ var FK="ls_fav_"+(PG.id||location.pathname),FAV={};try{FAV=JSON.parse(localStora
 function favSave(){try{localStorage.setItem(FK,JSON.stringify(FAV))}catch(e){}}
 
 /* いまから行ける：出発する所と、そこから何分か（直線距離からの目安） */
-var ORG=[["梅田",34.7025,135.4959],["なんば",34.6666,135.5011],["京都駅",34.9858,135.7588],["三宮",34.6946,135.1955],["奈良駅",34.6809,135.8197],["大津駅",35.0031,135.8648],["和歌山駅",34.2325,135.1913]];
+var ORG=RG.org||[["梅田",34.7025,135.4959],["なんば",34.6666,135.5011],["京都駅",34.9858,135.7588],["三宮",34.6946,135.1955],["奈良駅",34.6809,135.8197],["大津駅",35.0031,135.8648],["和歌山駅",34.2325,135.1913]];
 var Q=new URLSearchParams(location.search),S={p:Q.get("p")||PG.p||"",k:Q.get("k")||"",w:Q.get("w")||(PG.tabs?PG.tabs[0][0]:""),n:24,o:null,m:+(Q.get("m")||(PG.near?60:0))};
 try{var so=JSON.parse(localStorage.getItem("ls_org")||"null");if(so&&so.length===3)S.o=so}catch(e){}
 if(!S.o)S.o=ORG[0];
