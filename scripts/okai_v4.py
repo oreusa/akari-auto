@@ -430,7 +430,7 @@ function render(){
  /* 11/10 見本の形：写真つきの安い順の一覧（はじめは10件。おすすめが11番目より下なら、その1件も出す） */
  var N0=10,SH=st.all?L:L.slice(0,N0),bi=L.indexOf(br);
  function rrow(o){var i=L.indexOf(o),sm=o.same.map(function(j){return c.o[j];}).filter(function(x){return L.indexOf(x)>=0&&x.p<o.p;})[0],kk=o===ch?"v4:":o===br?"v4r:":"v4l:";
-  return '<li><a href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="'+kk+esc(o.n.slice(0,20))+'"><span class="no">'+(i+1)+'</span>'+pic(o,62)+'<div class="tx"><p class="nm">'+(o===br?'<span class="rb">おすすめ</span>':'')+esc(o.n)+'</p><p class="pz"><b>'+yen(o.u)+'</b>円/'+esc(unitTxt(c,o).replace("あたり",""))+'　<span>総額 '+o.p.toLocaleString()+'円</span></p><p class="sh">'+esc(o.s.slice(0,18))+'・'+esc(o.w)+(+o.rc?'・★'+o.av:'')+'</p>'+(o.sh?'<p class="sp">発送：'+esc(o.sh)+'</p>':'')+(sm?'<p class="sm">同じ物が'+esc(sm.w)+'で'+(o.p-sm.p).toLocaleString()+'円安い</p>':'')+'</div><span class="go">見る</span></a></li>';}
+  return '<li><a href="'+esc(o.url)+'" rel="sponsored noopener" target="_blank" data-k="'+kk+esc(o.n.slice(0,20))+'"><span class="no">'+(i+1)+'</span>'+pic(o,62)+'<div class="tx"><p class="nm">'+(o===br?'<span class="rb">おすすめ</span>':'')+esc(o.n)+'</p><p class="pz"><b>'+yen(o.u)+'</b>円/'+esc(unitTxt(c,o).replace("あたり",""))+'　<span>総額 '+o.p.toLocaleString()+'円</span></p><p class="sh">'+esc(o.s.slice(0,18))+'・'+esc(o.w)+(+o.rc?'・★'+o.av+'（'+(+o.rc).toLocaleString()+'件）':'')+'</p>'+(o.sh?'<p class="sp">発送：'+esc(o.sh)+'</p>':'')+(sm?'<p class="sm">同じ物が'+esc(sm.w)+'で'+(o.p-sm.p).toLocaleString()+'円安い</p>':'')+'</div><span class="go">見る</span></a></li>';}
  h+='<ol class="rkl">'+SH.map(rrow).join("")+(!st.all&&bi>=N0?'<li class="gap" aria-hidden="true">⋮</li>'+rrow(br):'')+'</ol>';
  if(br&&br!==ch)h+='<p class="rbn"><span class="rb">おすすめ</span>は、名の知れたメーカーでいちばん安い物です。</p>';
  if(!st.all&&L.length>N0)h+='<button type="button" class="rkm" id="v4all">残り'+(L.length-N0)+'件も見る</button>';
@@ -635,7 +635,7 @@ def cat_pages(at, cats, head):
             f'<li><a href="{E(o["url"])}" rel="sponsored noopener" target="_blank" data-k="kp:{E(nm)}{i + 1}位">'
             f'<span class="no">{i + 1}</span>' + (f'<img src="{E(o["img"])}" alt="" width="62" height="62" loading="lazy" style="border-radius:8px;flex:none">' if o.get("img") else "")
             + f'<div class="tx"><p class="nm">{E(o["n"])}</p><p class="pz"><b>{_yen(o["u"])}</b>円/{E(unit)}　<span>総額 {o["p"]:,}円</span></p>'
-            f'<p class="sh">{E(o["s"][:18])}・{E(o["w"])}' + (f'・★{o["av"]}' if o.get("rc") else "") + '</p></div><span class="go">見る</span></a></li>' for i, o in enumerate(L))
+            f'<p class="sh">{E(o["s"][:18])}・{E(o["w"])}' + (f'・★{o["av"]}（{int(o["rc"]):,}件）' if o.get("rc") else "") + '</p></div><span class="go">見る</span></a></li>' for i, o in enumerate(L))
         avg = c.get("avg")
         save = f'<p class="lead">しらべた物の平均は <b class="n">{_yen(avg)}</b>円/{E(unit)}。1位は平均より <b class="n">{round((1 - top["u"] / avg) * 100)}</b>% 安いです。</p>' if avg and top["u"] < avg else ""
         others = "".join(f'<a class="ch" href="/okaimono-{x["k"]}" style="text-decoration:none;display:inline-block">{E(x["nm"])}</a>' for x in cats if x["k"] != c["k"] and len(x["o"]) >= 3)
