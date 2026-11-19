@@ -1,0 +1,109 @@
+/* 作り：tools/shin/build.py skin()。直す時は shin.css か tools/shin/skin.tail.css を直す */
+.skc{--bg:#FFFFFF;--ink:#111111;--sub:#625D58;--mut:#77716B;--line:#ECE9E5;--card:#FFFFFF;--chip:#F4F2EF;--chipt:#2A2623;--on:#111111;--ont:#FFFFFF;--glow:#E9C46A;--shadow:0 1px 0 rgba(0,0,0,.04);--serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP","Noto Serif CJK JP",serif;--sans:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Noto Sans CJK JP","Yu Gothic",sans-serif;--lat:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--safe:env(safe-area-inset-bottom,0px)}
+html.nt .skc{--bg:#0A0E18;--ink:#ECE8E1;--sub:#A3ABBA;--mut:#7D8697;--line:#1F2636;--card:#121826;--chip:#161D2C;--chipt:#D9DDE6;--on:#ECE8E1;--ont:#0A0E18;--glow:#9DB8FF}
+.skc #sky{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
+.skc #stars{position:absolute;left:0;top:0;width:100%;opacity:0;transition:opacity .8s}
+html.nt .skc #stars{opacity:1;animation:drift 150s linear infinite alternate}
+.skc .shoot{position:absolute;width:var(--l);height:1.2px;transform-origin:100% 50%;transform:rotate(calc(180deg - var(--a)));opacity:0;animation:shoot .7s cubic-bezier(.3,0,.6,1) forwards;pointer-events:none}
+.skc .shoot::before{content:"";position:absolute;inset:0;border-radius:2px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(210,225,255,.35) 60%,#fff)}
+.skc .shoot::after{content:"";position:absolute;right:-2px;top:50%;width:4px;height:4px;margin-top:-2px;border-radius:50%;background:#fff;box-shadow:0 0 6px 2px rgba(220,232,255,.9)}
+.skc .shoot.big{height:2px}
+.skc .shoot.big::after{width:6px;height:6px;margin-top:-3px;box-shadow:0 0 12px 4px rgba(255,236,200,.9)}
+.skc .tw{position:absolute;width:calc(var(--s) * 3);height:calc(var(--s) * 3);margin:calc(var(--s) * -1.5) 0 0 calc(var(--s) * -1.5);border-radius:50%;background:radial-gradient(circle,#fff 0,var(--c) 18%,transparent 62%);opacity:0;animation:twk 4s ease-in-out infinite;pointer-events:none}
+html:not(.nt) .skc .tw{display:none}
+.skc .top{display:flex;align-items:center;justify-content:space-between;padding:14px 0 6px}
+.skc .brand{display:flex;align-items:center;gap:10px}
+.skc .brand img{width:40px;height:40px}
+.skc .brand b{font:600 11px/1 var(--lat);letter-spacing:.28em;color:var(--ink)}
+.skc .tg{position:relative;width:76px;height:42px;border-radius:999px;border:1px solid #DADADA;background:rgba(255,255,255,.94);box-shadow:0 2px 10px rgba(0,0,0,.07);transition:background-color .4s,border-color .4s}
+.skc .tg .kn{position:absolute;top:4px;left:4px;width:32px;height:32px;border-radius:50%;background:#2B2622;transition:transform .35s cubic-bezier(.3,.7,.2,1),background-color .4s}
+html.nt .skc .tg{background:#121826;border-color:#2A3346;box-shadow:none}
+html.nt .skc .tg .kn{transform:translateX(34px);background:#ECE8E1}
+.skc .tg svg{position:absolute;top:11px;width:18px;height:18px;fill:none;stroke:#8C7B6E;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s,transform .5s}
+.skc .tg .su svg{left:11px}
+.skc .tg .mo svg{right:11px}
+.skc .tg .sp{stroke-width:1.2}
+html:not(.nt) .skc .tg .su svg{stroke:#fff;transform:rotate(90deg)}
+html.nt .skc .tg .mo svg{stroke:#0A0E18;transform:rotate(-15deg)}
+html.nt .skc .tg .su svg{stroke:#7D8697}
+.skc .nav{position:fixed;left:12px;right:12px;bottom:calc(12px + var(--safe));z-index:50;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:2px;height:62px;padding:6px;border-radius:24px;background:#16130F;box-shadow:0 14px 34px -12px rgba(0,0,0,.55);transition:transform .35s cubic-bezier(.2,.9,.25,1)}
+html.nt .skc .nav{background:#1A2132;box-shadow:0 14px 34px -12px rgba(0,0,0,.8),inset 0 0 0 1px rgba(255,255,255,.06)}
+.skc .nav.hide{transform:translateY(calc(100% + 24px))}
+.skc .nav a,.skc .nav button{position:relative;flex:1;height:50px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-radius:18px;color:rgba(255,255,255,.62);font-size:10px;font-weight:500;letter-spacing:.04em;overflow:hidden;transition:color .2s}
+.skc .nav svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.skc .nav .cur{color:#fff;background:rgba(255,255,255,.09)}
+.skc .nav .cur::before{content:"";position:absolute;top:5px;left:50%;width:18px;height:2px;margin-left:-9px;border-radius:2px;background:var(--glow);box-shadow:0 0 10px var(--glow)}
+.skc .nav .mn{flex:0 0 66px;color:#fff;background:#2A251F}
+html.nt .skc .nav .mn{background:#28324A}
+.skc .nav .mn::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ra,0deg),transparent 0 62%,var(--glow) 80%,#fff 86%,transparent 94%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ring 3.6s linear infinite}
+.skc .nav .mn em{display:block;width:18px;height:10px;border-top:1.6px solid #fff;border-bottom:1.6px solid #fff;position:relative}
+.skc .nav .mn em::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.6px;margin-top:-.8px;background:#fff}
+.skc .nav .tap svg{animation:pop .4s cubic-bezier(.3,1.6,.5,1)}
+.skc .mu{position:fixed;inset:0;z-index:65;visibility:hidden}
+.skc .mu.op{visibility:visible}
+.skc .mu .bk{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s}
+.skc .mu.op .bk{opacity:1}
+.skc .mu .pn{position:absolute;left:0;right:0;bottom:0;max-width:760px;margin:0 auto;border-radius:26px 26px 0 0;background:#14110E;color:#fff;padding:22px 20px calc(24px + var(--safe));transform:translate3d(0,100%,0);transition:transform .45s cubic-bezier(.2,.9,.25,1)}
+html.nt .skc .mu .pn{background:#121826}
+.skc .mu.op .pn{transform:none}
+.skc .mu .k{font:500 11px/1 var(--lat);letter-spacing:.3em;color:rgba(255,255,255,.5)}
+.skc .mu ol{list-style:none;margin:14px 0 0;padding:0}
+.skc .mu li a{display:flex;align-items:baseline;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:19px;font-weight:500;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s}
+.skc .mu.op li a{opacity:1;transform:none}
+.skc .mu li a small{font:italic 400 12px/1 var(--lat);color:rgba(255,255,255,.45);min-width:22px}
+.skc .mu li a.here{color:var(--glow)}
+.skc .mu .rel{display:flex;gap:8px;margin-top:18px}
+.skc .mu .rel a{flex:1;display:flex;align-items:center;justify-content:center;height:44px;border-radius:12px;background:rgba(255,255,255,.07);font-size:12.5px;font-weight:500;color:rgba(255,255,255,.8)}
+html.vtt::view-transition-old(root),html.vtt::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-group(ph){animation-duration:.5s;animation-timing-function:cubic-bezier(.2,.9,.25,1)}
+.skc{--serif:var(--sans);--lat:var(--sans);--line:#EBEBEB;--chip:#F5F5F5;--sub:#5E5E5E;--mut:#767676}
+html.nt .skc{--line:#222A3A}
+.skc{--ink:#1D1D1F;--sub:#6E6E73;--mut:#6E6E73;--on:#1D1D1F}
+.skc #tb{position:fixed;left:0;right:0;top:0;z-index:40;height:44px;padding:0 60px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);font:600 15px/1 var(--sans);color:var(--ink);letter-spacing:-.005em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transform:translateY(-100%);transition:opacity .25s,transform .35s cubic-bezier(.2,.9,.25,1);pointer-events:none}
+.skc #tb.on{opacity:1;transform:none;pointer-events:auto}
+html.nt .skc #tb{background:rgba(10,14,24,.96)}
+@keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-24px,-40px,0)}}
+@keyframes pop{40%{transform:scale(.82)}100%{transform:scale(1)}}
+@keyframes ring{to{--ra:360deg}}
+@keyframes shoot{0%{opacity:0;translate:0 0}12%{opacity:1}70%{opacity:1}100%{opacity:0;translate:calc(cos(var(--a)) * var(--d) * -1) calc(sin(var(--a)) * var(--d))}}
+@keyframes twk{0%,100%{opacity:.25}35%{opacity:.95}50%{opacity:.5}70%{opacity:.85}}
+/* skin.tail.css：新しい土台で作り直していない今までのページ（html.sk）を、新しい土台の文字・色・余白に寄せる。
+   build.py が shin.css の 頭・下のバー・MENU・夜空 の部分（.sk の中だけに効く形）の後ろにつなげて links/shin/skin.css にする。 */
+html.sk{--sans:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Noto Sans CJK JP","Yu Gothic",sans-serif;scrollbar-gutter:auto}
+html.sk body{font-family:var(--sans)!important;color:#1D1D1F;-webkit-font-smoothing:antialiased;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+html.sk body *:not(.skc *){font-family:var(--sans)!important}
+html.sk h1,html.sk h2,html.sk h3,html.sk h4{font-weight:600!important;letter-spacing:-.01em}
+html.sk b,html.sk strong{font-weight:600}
+/* 今までの頭（真ん中の大きいロゴ・英字の小見出し・色の形）→ 新しい土台の大きい題（左寄せ） */
+html.sk .head,html.sk .s3h{background:none!important;text-align:left!important;padding:8px 0 0!important;margin:0!important;display:block!important}
+html.sk .head>img,html.sk .s3h>img,html.sk .head>.en,html.sk .s3h .en{display:none!important}
+html.sk .head h1,html.sk .s3h h1{font-size:min(30px,7.2vw)!important;line-height:1.25!important;text-align:left!important;margin:14px 0 0!important;color:#1D1D1F}
+html.sk .head h1 span{display:block;font-size:14px!important;font-weight:400!important;color:#6E6E73!important;margin-top:8px;letter-spacing:0!important;line-height:1.5}
+html.sk .head .sub,html.sk .head .upd,html.sk .s3l{text-align:left!important}
+html.sk .head .sub{color:#6E6E73;font-size:14px;margin-top:8px}
+html.sk .head .upd{color:#6E6E73;font-size:12px}
+/* 今までの下のバー・丸いメニュー・昼夜ボタン・夜の飾りは、新しい物に入れ替えたので出さない */
+html.sk .nsky,html.sk #v2bar,html.sk #umenu,html.sk #utheme,html.sk #umask,html.sk #upan,html.sk #kc,html.sk .ft-nav{display:none!important}
+html.sk .skc .top{position:relative;z-index:5}
+html.sk #sk{position:static}
+html.sk #sky{position:fixed!important;inset:0;height:100vh;z-index:-1}
+html.sk #stars{position:absolute;left:0;top:0;width:100%}
+/* 夜：今までの夜（night.js）は画面全体を反転していた → 反転は中身だけにして、頭・下のバー・夜空は新しい土台の夜の色のまま */
+html.sk.night{filter:none!important;background:#0A0E18!important}
+html.sk.nt{background:#0A0E18!important}
+html.sk.sk.nt body{background:transparent!important}
+html.sk.night body>*:not(.skc):not(script):not(style){filter:invert(.95) hue-rotate(180deg)}
+html.sk .sk-tb{font-family:var(--sans)}
+html.sk .skc a{text-decoration:none!important}html.sk .skc .brand{color:var(--ink)}
+html.sk .skc .brand b{font-weight:600}
+html.sk.sk body{background:#FFFFFF!important}
+html.sk.sk.nt body{background:transparent!important}
+html.sk body::before,html.sk body::after{display:none!important}
+.skc a{color:inherit;text-decoration:none}
+/* 関東（LIFE NOTE）の頭の形 */
+html.sk .v4top{display:none!important}
+html.sk.sk .head.fhd,html.sk.sk .head{background:none!important;text-align:left!important}
+html.sk .fhd .fr{display:block!important;text-align:left!important}
+html.sk .fhd .fr img,html.sk .fhd .fr .en{display:none!important}
+html.sk .fhd h1{font-size:min(30px,7.2vw)!important;line-height:1.25!important;letter-spacing:-.01em!important;text-align:left!important;margin:14px 0 0!important}
+html.sk .fhd .pur{text-align:left!important;color:#6E6E73}
