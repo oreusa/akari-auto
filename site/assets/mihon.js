@@ -98,7 +98,7 @@ var css=
 /* 11/18 日本語の改行：言葉の途中で切らない（「山陽高／砂駅」→「山陽／高砂駅」）・見出しの最後の1文字だけの行をなくす */
 'html[lang=ja] body :is(h1,h2,h3,.t,.m,.nm,.pl,.hk,.ds,.mhh,.mhn,.big b,figcaption,.card p,li a){word-break:auto-phrase;text-wrap:pretty}html[lang=ja] body :is(h1,h2,h3,.t,.nm,.mhh){text-wrap:balance}'+
 /* 11/18 入口：今週の1件（画面いっぱいの写真・ゆっくりズーム） */
-'.mhero{margin:6px -16px 0;position:relative}'+
+'.mapsec .lhint{position:relative;z-index:3;background:linear-gradient(rgba(255,255,255,0),#fff 35%);padding-top:10px!important;margin-top:0!important}html.night .mapsec .lhint{background:none}.mhero{margin:6px -16px 0;position:relative}'+
 '.mhero .mhl{position:relative;display:block;height:min(78svh,620px);min-height:440px;overflow:hidden;color:#fff;text-decoration:none;background:#2b2622;-webkit-tap-highlight-color:transparent}'+
 '.mhero .mhl img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;border-radius:0}'+
 ''+
@@ -283,7 +283,7 @@ function gsapHero(){var h=document.querySelector('.mhero');if(!h){setTimeout(gsa
   var base='/assets/vendor/gsap/',L=function(f){return new Promise(function(ok,ng){var s=document.createElement('script');s.src=base+f;s.onload=ok;s.onerror=ng;document.head.appendChild(s)})};
   L('gsap.min.js').then(function(){return Promise.all([L('ScrollTrigger.min.js'),L('SplitText.min.js')])}).then(function(){var g=window.gsap;g.registerPlugin(ScrollTrigger,SplitText);
     var img=h.querySelector('img'),hh=h.querySelector('.mhh');
-    g.fromTo(img,{scale:1.18,yPercent:-4},{scale:1,yPercent:6,ease:'none',scrollTrigger:{trigger:h,start:'top bottom',end:'bottom top',scrub:true}});
+    /* 11/19 owner「画像変な動き」→ スクロールで写真を動かすのをやめた（文字だけ出す） */
     if(hh){var sp=new SplitText(hh,{type:'chars',charsClass:'mch'});g.from(sp.chars,{yPercent:110,opacity:0,rotate:6,duration:.9,ease:'back.out(1.6)',stagger:.035,onComplete:function(){sp.revert()},scrollTrigger:{trigger:h,start:'top 75%'}})}
   }).catch(function(){})}
 /* 11/18 全ページ点検（axe・小さい字・はみ出し）で出た物を見本で直す。月と燈の両方 */
