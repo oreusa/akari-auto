@@ -7271,6 +7271,12 @@
   "sec": 3.1,
   "why": ""
  },
+ "https://www.kuroyosa.com/": {
+  "at": "2026-11-19",
+  "ok": true,
+  "sec": 1.4,
+  "why": ""
+ },
  "https://www.kusatsu-onsen.ne.jp/event/1685.php": {
   "at": "2026-11-15",
   "by": "browser",
