@@ -3,7 +3,7 @@
    html[data-k=…] がページの種類（machi・o・jikka・kaiten・kaitai・rank・gyosha・moushikomi …）。 */
 html[data-k]{-webkit-text-size-adjust:100%;--kf:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Noto Sans CJK JP","Yu Gothic",sans-serif}
 html[data-k] body{margin:0;background:var(--bg,#fff);color:var(--ink,#1D1D1F);font:400 15px/1.7 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Noto Sans CJK JP","Yu Gothic",sans-serif;-webkit-font-smoothing:antialiased}
-html[data-k]{--bg:#FFFFFF;--ink:#1D1D1F;--sub:#6E6E73;--mut:#86868B;--line:#E5E5EA;--chip:#F5F5F7;--card:#FFFFFF;--pc2:var(--ink)}
+html[data-k]{--bg:#FFFFFF;--ink:#1D1D1F;--sub:#6E6E73;--mut:#737378;--line:#E5E5EA;--chip:#F5F5F7;--card:#FFFFFF;--pc2:var(--ink)}
 html.nt[data-k]{--bg:#0A0E18;--ink:#F5F5F7;--sub:#A1A1A6;--mut:#8E8E93;--line:#2A3142;--chip:rgba(255,255,255,.07);--card:rgba(255,255,255,.04)}
 html[data-k] .wrap{max-width:680px;margin:0 auto;padding:0 20px 130px;box-sizing:border-box;position:relative;z-index:1}
 html[data-k] *,html[data-k] *::before,html[data-k] *::after{box-sizing:border-box}
