@@ -374,6 +374,7 @@ def main():
 
     docs()
     furu()
+    ie_kanto()
     # ---------- 表紙 ----------
     now = [x for x in IT if x["s"] <= TD <= x["e"]]
     pc = {p: sum(1 for x in now if x["p"] == p) for p in PREF}
@@ -438,6 +439,50 @@ def main():
                   ["おかいもの", [["日用品の値段くらべ", "/okaimono"], ["開店・閉店ニュース", "/kaiten"], ["ふるさと納税", "/furusato"], ["値下がりした物", "/nesage"]]]],
            "sns": [["インスタ", "https://www.instagram.com/usagichan_ai_si/"], ["Threads", "https://www.threads.com/@usagichan_ai_si"], ["X", "https://x.com/ai_usagichan"]]},
           "cover2", "関東のくらしで見つけたことを、ノートにまとめています。開催中のおでかけ・イベント、街の家と土地の値段、日用品の値段くらべ、開店・閉店を、公式の発表と数字で。")
+
+
+def ie_kanto():
+    """家と土地の相場（関西 /shin/ie と同じ ie.js）。11/19 owner「その他も本気でやり直せ」→ 前の関東不動産リスト（古い形）をやめる。
+    数字：site/assets/towns.json（地価公示・順位・位置）＋ scripts/toukei_kanto.json（国勢調査・住宅土地統計）。関東は売れた値段（レインズ）がまだ無い。"""
+    try:
+        towns = json.load(open(os.path.join(S, "assets", "towns.json"), encoding="utf-8"))
+        tk = json.load(open(os.path.join(R, "scripts", "toukei_kanto.json"), encoding="utf-8"))
+        jis = json.load(open(os.path.join(R, "scripts", "jis_kanto.json"), encoding="utf-8"))
+        PF = {"東京": "東京都", "神奈川": "神奈川県", "埼玉": "埼玉県", "千葉": "千葉県", "茨城": "茨城県", "栃木": "栃木県", "群馬": "群馬県"}
+        PJ = {"東京": "13000", "神奈川": "14000", "埼玉": "11000", "千葉": "12000", "茨城": "08000", "栃木": "09000", "群馬": "10000"}
+        PA = {}
+        for p_ in PF:
+            s_ = tk.get(PJ[p_], {})
+            PA[p_] = {"m": None, "h": None, "t": None, "pop": round((s_["p25"] / s_["p20"] - 1) * 100, 1) if s_.get("p20") else None,
+                      "ak": round(s_["a23"] / s_["j23"] * 100, 1) if s_.get("j23") else None}
+        out = []
+        for t_ in towns:
+            x = {k: t_.get(k) for k in ("id", "p", "n", "s", "k", "r7", "r8", "rk", "of")}
+            s_ = tk.get(jis.get(t_["p"] + "|" + t_["n"]) or "", {})
+            if s_.get("p20"): x["pop"] = [s_["p25"], round((s_["p25"] / s_["p20"] - 1) * 100, 1)]
+            if s_.get("o25"): x["o"] = s_["o25"]
+            if s_.get("j23"): x["ak"] = round(s_["a23"] / s_["j23"] * 100, 1)
+            if t_.get("la"):
+                X, Y = proj(t_["lo"], t_["la"]); x["xy"] = [round(X, 2), round(Y, 2)]
+            pg = os.path.join(S, "machi", t_["id"] + ".html")
+            if os.path.exists(pg):
+                h_ = open(pg, encoding="utf-8").read()
+                buy = [html.unescape(u) for u in re.findall(r'<a [^>]*href="(https://ck\.jp\.ap\.valuecommerce[^"]+)"', h_)]
+                if buy: x["buy"] = buy[:3]
+                kt_ = re.search(r'href="(/kaitai-[a-z]+)"', h_)
+                if kt_: x["kt"] = kt_.group(1)
+            out.append(x)
+        if len(out) < 100:
+            return
+        c = {"nav": [{"t": "街をさがす", "ic": "find", "a": "find"}, {"t": "ランキング", "ic": "rank", "a": "rank"}, {"t": "売りたい", "ic": "sell", "href": "/uru"}, {"t": "いくら？", "ic": "yen", "href": "/ikura"}],
+             "menu": {"k": "Home & Land", "items": [["家と土地の相場", "/fudosan-list", 1], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["解体の費用と補助金", "/kaitai"], ["地価ランキング", "/chika-kanto"]]},
+             "foot": "地価：国土交通省・各都県「令和8年地価公示」。人口・空き家：総務省統計局（国勢調査・住宅・土地統計調査）。<br>どれも街の平均で、1軒ずつの値段ではありません。「買いたい」のリンクは広告です（Yahoo!不動産）。"}
+        write("fudosan-list.html", "/fudosan-list", f"関東の家と土地の相場｜{len(out)}の街の地価と人口｜LIFE NOTE", c,
+              {"towns": out, "pa": PA, "map": MAP, "pfull": PF, "pc": PC, "h1": "関東の家と土地の相場", "sub": f"{len(out)}の街の、地価の動きと人口・空き家",
+               "upd": "2026年の地価公示・国勢調査（2025年）の数字", "ph": "横浜、よこはま"}, "ie",
+              f"関東{len(out)}の市区町村の、住宅地の地価の動き（令和8年地価公示）と人口・空き家の割合を、街ごとにまとめました。都県の平均とも比べられます。")
+    except Exception as e:
+        print("shin_kanto: 家と土地は前のまま", repr(e))
 
 
 def furu():

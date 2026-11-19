@@ -755,3 +755,4 @@ html.nt .fcg{background:rgba(255,255,255,.08)}
 .fno h2{font:600 18px/1.4 var(--sans);margin:0 0 6px}
 .fno p{margin:8px 0 0;font-size:13px;line-height:1.8;color:var(--sub)}
 .fst{white-space:nowrap}
+.tiles:has(>button:nth-child(2):last-child){grid-template-columns:1fr 1fr}
