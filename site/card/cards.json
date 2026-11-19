@@ -1,5 +1,5 @@
 {
- "about": "投稿の表紙の絵（card.js・photo.js が作る）。投稿の image_url に url を使う",
+ "about": "投稿の表紙の絵（card.js が作る）。投稿の image_url に url を使う",
  "items": {
   "card-1114-odakyu": {
    "url": "https://kanto.townnote.app/card/card-1114-odakyu.jpg?v=mwf0edwz",
@@ -18,6 +18,10 @@
    "made": "2026-11-19",
    "photo": "site/card/ph/akarenga-xmas.jpg",
    "cr": "Dick Thomas Johnson（CC BY 2.0・Wikimedia Commons）"
+  },
+  "card-auto-1119-2115": {
+   "url": "https://kanto.townnote.app/card/card-auto-1119-2115.jpg?v=mwndlijr",
+   "made": "2026-11-19"
   }
  }
 }
