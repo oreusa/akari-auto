@@ -7,3 +7,8 @@
   Cache-Control: public, max-age=3600
 /townnotes/*
   Cache-Control: public, max-age=3600
+
+# 11/19 新しい土台のおかいもの（townnote /shin/kau）が値段の表を読む
+/okai-shin.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=600

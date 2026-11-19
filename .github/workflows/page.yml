@@ -110,6 +110,8 @@ jobs:
           python3 scripts/okai_v4.py || true
           # 11/19 オーナー「ブラックフライデー、全アフェリエイト本気で」→ 11/25 1:59 まで /okaimono と種類ページの上に「ブラックフライデーで安い物」（夜の行を月が data/bf-okaimono.json に入れる。期間の外は何もしない）
           python3 scripts/bf_okaimono.py || true
+          # 11/19 新しい土台のおかいもの（TOWN NOTE /shin/kau）が読む値段の表 site/okai-shin.json
+          python3 scripts/okai_shin.py || true
           # 11/4 オーナー「検索なんでも引っかかって欲しい」→ おでかけ1件ずつ（/o/）と都県ごと（/odekake-tokyo など）のページ
           python3 scripts/spot_pages.py || true
           # 11/18 見本（?mihon=1 の人だけ）：カードと1件ページに会場の写真（data/venue_photos.json）→ /assets/mihon.json。spot_pages.py の後
