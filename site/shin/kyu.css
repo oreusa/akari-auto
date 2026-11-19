@@ -446,3 +446,5 @@ html[data-k=kau] form.srch input{flex:1 1 auto!important;width:100%!important;ma
 html[data-k=kau] form.srch button{width:auto!important;min-width:0!important;margin:0!important}
 html[data-k=kau] .ps h2{border:0!important;padding:0!important;background:none!important}
 html[data-k=kau] .head::before,html[data-k=kau] .head::after,html[data-k=kau] .wrap::before,html[data-k=kau] .wrap::after,html[data-k=kau] body::before{display:none!important}
+/* 11/20 解体のページで表とチップの列が画面の外へ4pxはみ出していた（外枠の余白が20pxでないページがある） */
+html[data-k] .kt-w,html[data-k] .kt-f{margin-left:0;margin-right:0;padding-left:0;padding-right:0}
