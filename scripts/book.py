@@ -269,7 +269,7 @@ def refresh_page(cfg, state, now):
 
 def rebook_requests(cfg, state, now):
     """state/rebook.json に書いた予約の直し（1行目・Threadsのトピック）を、予約し直しで入れる（10/27 月の書き方を今日の分から）。
-    形：[{"day": "YYYY-MM-DD", "slot": "HH:MM", "svc": "threads"|"twitter", "first_line": "新しい1行目", "topic": "東京", "texts": ["全部入れ替える時の文", "…"]}]
+    形：[{"day": "YYYY-MM-DD", "slot": "HH:MM", "svc": "threads"|"twitter", "first_line": "新しい1行目", "topic": "東京", "texts": ["全部入れ替える時の文", "…"], "image": "https://kanto.townnote.app/card/…（絵だけ替える時）"}]
     新しい予約が作れてから古い方を消す。出る25分前を切った物・もう出た物・字数をこえる物には触らない。終わった行は消す。"""
     from lib import threads_len, x_weight
     reqs = load_json(path("state", "rebook.json"), [])
@@ -312,11 +312,13 @@ def rebook_requests(cfg, state, now):
         if s == "threads" and any(threads_len(t) > 500 for t in texts):
             append_log(day, f"{tag}：Threadsの字数をこえる（元のまま）")
             continue
-        if texts == r["texts"] and topic == r.get("topic"):
+        img = q.get("image") if str(q.get("image", "")).startswith("https://kanto.townnote.app/card/") else None  # 11/19 月：予約ずみの枠の絵を写真の表紙に替える
+        if texts == r["texts"] and topic == r.get("topic") and not img:
             continue
         due_iso = due.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
         try:
-            p = buffer_create(cfg["channels"][s], s, texts, due_iso, topic=topic if s == "threads" else None)
+            p = buffer_create(cfg["channels"][s], s, texts, due_iso, topic=topic if s == "threads" else None,
+                              image=img, alt=("写真の表紙：" + texts[0].splitlines()[0][:60]) if img else "", ai=False)
         except BufferError as e:
             append_log(day, f"{tag}×（元の予約のまま）：{str(e)[:120]}")
             continue
@@ -330,6 +332,8 @@ def rebook_requests(cfg, state, now):
                 append_log(day, f"{tag}：×2本予約のおそれ（{r['id']} と {p['id']}）。燈が片方を消す")
             continue
         r.update({"id": p["id"], "texts": texts, "topic": topic})
+        if img:
+            r.update({"img": 1, "image": img})
         append_log(day, f"{tag}OK" + (f"（1行目：{q['first_line'][:40]}）" if q.get("first_line") else "") + (f"（トピック：{topic}）" if q.get("topic") else ""))
     save_json(path("state", "rebook.json"), left)
     return True
