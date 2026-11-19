@@ -206,7 +206,7 @@ F.addEventListener("click",function(e){var pb=e.target.closest&&e.target.closest
 function up(){var tp=box.closest(".tn-top"),y=sec.getBoundingClientRect().top+scrollY-(tp?tp.offsetHeight:0)-8;if(scrollY>y+4)scrollTo({top:Math.max(0,y),behavior:"smooth"});}
 /* 11/10 #101 #165：地図から ?pref= で来たら、その府県を先に当てる（保存した府県より先） */
 var QP=q.get("pref")||"";if(QP){var qb=[].filter.call(F.querySelectorAll("button"),function(x){return x.textContent.trim()===QP||x.getAttribute("data-p")===QP;})[0];if(qb&&!qb.classList.contains("on"))setTimeout(function(){qb.click();},0);}
-try{var sp=localStorage.getItem("tn_pref"+(AK?"_k":""));var on0=F.querySelector("button.on");if(sp&&sp!=="すべて"&&!QP&&!(on0&&on0!==F.querySelector("button")))[].forEach.call(F.querySelectorAll("button"),function(b){if(b.textContent.trim()===sp&&!b.classList.contains("on"))setTimeout(function(){b.click();},0);});}catch(e){}
+try{var sp=localStorage.getItem("tn_pref"+(AK?"_k":""));var on0=F.querySelector("button.on");/* 11/19 owner「関西おでかけを押したら大阪になるのはなんで」→ 前の府県は覚えない。いつも「すべて」から */if(false&&sp&&sp!=="すべて"&&!QP&&!(on0&&on0!==F.querySelector("button")))[].forEach.call(F.querySelectorAll("button"),function(b){if(b.textContent.trim()===sp&&!b.classList.contains("on"))setTimeout(function(){b.click();},0);});}catch(e){}
 window.addEventListener("load",function(){setTimeout(function(){if(!sheetOpen)render();},400);});
 /* 11/10 オーナー「初めから出てるんじゃなくてスッキリ」：選ぶ欄は最初たたんで1行。押すと開く。開いた後も下に読むとまたたたむ */
 (function(){var tp=box.closest(".tn-top");if(!tp){tp=document.createElement("div");tp.className="wfw";box.parentNode.insertBefore(tp,box);tp.appendChild(box);}var f1=document.createElement("div");f1.className="fold1";tp.appendChild(f1);var ly=scrollY,oy=0;
