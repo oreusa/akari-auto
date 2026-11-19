@@ -266,7 +266,7 @@ var css=
 'html.night #v2bar>.cur::before{background:rgba(0,0,0,.08)}'+
 '#v2bar>.cur::after{content:"";position:absolute;bottom:4px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:currentColor}'+
 '#v2bar>a,#v2bar>button{isolation:isolate}'+
-'#v2bar button.mn{margin:5px;border-radius:19px!important;flex-basis:66px!important;background:linear-gradient(145deg,var(--acc,#2B2622),#1a1513)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}'+
+'html #v2bar .mn::before,html #v2bar .mn::after{display:none!important;animation:none!important}#v2bar>a:active,#v2bar>button:active{transform:scale(.94);transition:transform .12s}#v2bar button.mn{margin:5px;border-radius:19px!important;flex-basis:66px!important;background:linear-gradient(145deg,var(--acc,#2B2622),#1a1513)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}'+
 /* おでかけの一覧の頭：写真がゆっくり入れ替わる表紙 */
 '.hxcv{position:relative!important;margin:0 -16px 6px!important;padding:110px 22px 24px!important;min-height:min(60vh,520px);display:flex!important;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left!important;background:#141110!important;color:#fff;border-radius:0 0 30px 30px;overflow:hidden;box-sizing:border-box}'+
 '.hxcv{border-radius:0 0 30px 30px!important;clip-path:none!important;-webkit-mask:none!important;mask:none!important;background-image:none!important}.hxcv::before,.hxcv::after{display:none!important}'+
