@@ -77,6 +77,19 @@ def items():
         if "/shin/shin.css" not in src:
             live = {html.unescape(u) for u in re.findall(r'<a class="go" href="([^"]+)"', src)}
     opages = {f[:-5] for f in os.listdir(os.path.join(S, "o"))} if os.path.isdir(os.path.join(S, "o")) else set()
+    def enrich(it, name, pl):
+        v = byn.get(norm(name)) or byu.get(it.get("u")) or {}
+        for k in ("im", "cr", "cu", "hk"):
+            if v.get(k) and k not in it: it[k] = v[k]
+        if v.get("vn") and not it.get("v"): it["v"] = v["vn"]
+        if it.get("im") in phh: it["th"] = phh[it["im"]]
+        g = None
+        if pl:
+            g = geo.get(f"{it['p']}｜{pl} {it['p']}") or next((gv for gk, gv in geo.items() if gk.startswith(f"{it['p']}｜{pl}")), None)
+        if g and g[0] is not None:
+            X, Y = proj(g[1], g[0]); it["xy"] = [round(X, 2), round(Y, 2)]
+        return it
+    global ENRICH; ENRICH = enrich
     out, seen = [], set()
     for x in sp:
         p, t, u = x.get("pref"), (x.get("title") or "").strip(), x.get("url", "")
@@ -91,17 +104,9 @@ def items():
         if x.get("free"): it["f"] = 1
         if x.get("note"): it["ds"] = x["note"]
         if x.get("opennote"): it["h"] = x["opennote"]
-        v = byn.get(norm(t)) or byu.get(u) or {}
-        for k in ("im", "cr", "cu", "hk"):
-            if v.get(k): it[k] = v[k]
-        if v.get("vn"): it["v"] = v["vn"]
-        if it.get("im") in phh: it["th"] = phh[it["im"]]
+        enrich(it, t, x.get("place", ""))
         oid = hashlib.md5(key.encode()).hexdigest()[:8]
         if oid in opages: it["o"] = oid
-        pl = x.get("place", "")
-        g = geo.get(f"{p}｜{pl} {p}") or next((gv for gk, gv in geo.items() if gk.startswith(f"{p}｜{pl}")), None) if pl else None
-        if g and g[0] is not None:
-            X, Y = proj(g[1], g[0]); it["xy"] = [round(X, 2), round(Y, 2)]
         out.append(it)
     print("shin_kanto items", len(out), "photos", sum("im" in i for i in out), "map", sum("xy" in i for i in out), "live", len(live))
     return out
@@ -133,7 +138,7 @@ def main():
     if len(IT) < 10:
         print("shin_kanto: おでかけが少ないので書き替えない", len(IT)); return
     base = {"nav": [{"t": "開催中", "ic": "now", "a": "now"}, {"t": "今週末", "ic": "we", "a": "we"}, {"t": "地図", "ic": "map", "a": "map"}, {"t": "紅葉", "ic": "star", "href": "/koyo"}],
-            "menu": {"k": "Odekake", "items": [["関東おでかけ", "/odekake"], ["紅葉・イルミ", "/koyo"], ["いまから行ける", "/ima"], ["開店・閉店", "/kaiten"]]},
+            "menu": {"k": "Odekake", "items": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"], ["開店・閉店", "/kaiten"]]},
             "foot": "情報は各公式サイトで確かめてから出かけてください。写真の撮影者は各ページに書いています（ウィキメディア・コモンズ ほか）。<br>券・宿のリンクの一部は広告です。"}
     import copy
     def cfg(cur):
@@ -151,6 +156,61 @@ def main():
         d = dict(data); d["page"] = {"h1": f"{p}のおでかけ・イベント", "sub": f"{FULL[p]}・{n}件", "p": p}
         write(f"odekake-{SLUG[p]}.html", f"/odekake-{SLUG[p]}", f"{p}のおでかけ・イベント（{FULL[p]}）｜開催中・今週末｜LIFE NOTE", cfg("/odekake"), d, "odekake",
               f"{FULL[p]}のおでかけ・イベントを、開催中・今週末・まもなく終了に分けて、公式ページつきでまとめています。写真と地図で探せて、毎日更新しています。")
+    # ---------- イルミネーション・紅葉（関西と同じ形） ----------
+    il, ky = [], []
+    for x in rd("data", "illumi.json")["items"]:
+        e, s_ = (x.get("end") or "2027-03-31")[:10], (x.get("start") or "")[:10]
+        if x.get("pref") not in FULL or not s_ or e < TD: continue
+        it = {"t": x["name"], "u": x.get("url", ""), "p": x["pref"], "s": s_, "e": e, "a": x.get("city", ""), "v": x.get("venue", ""), "k": "light"}
+        if x.get("free"): it["f"] = 1
+        if x.get("hours"): it["h"] = x["hours"]
+        if x.get("fee"): it["fe"] = x["fee"]
+        il.append(ENRICH(it, x["name"], x.get("venue", "")))
+    for x in rd("data", "koyo.json")["items"]:
+        e, s_ = (x.get("end") or x.get("start") or "")[:10], (x.get("start") or "")[:10]
+        if x.get("pref") not in FULL or not s_ or e < TD: continue
+        it = {"t": x["name"], "u": x.get("url", ""), "p": x["pref"], "s": s_, "e": e, "a": x.get("city", ""), "v": x.get("venue", ""), "k": "koyo"}
+        if x.get("hours"): it["h"] = x["hours"]
+        if x.get("fee"): it["fe"] = x["fee"]
+        if x.get("free") or (x.get("fee") or "").startswith("無料"): it["f"] = 1
+        ky.append(ENRICH(it, x["name"], x.get("venue", "")))
+    def prange(t):
+        mm = re.findall(r"(\d+)月(上旬|初旬|中旬|下旬|末)", t or "")
+        if not mm: return None
+        today = datetime.date.fromisoformat(TD)
+        def d(mo, k, end):
+            mo = int(mo); y = today.year if mo >= 6 or today.month < 6 else today.year + 1
+            a, b = {"上旬": (1, 10), "初旬": (1, 10), "中旬": (11, 20), "下旬": (21, 0), "末": (21, 0)}[k]
+            if end and b == 0: return datetime.date(y + mo // 12, mo % 12 + 1, 1) - datetime.timedelta(days=1)
+            return datetime.date(y, mo, b if end else a)
+        return d(*mm[0], False), d(*mm[-1], True)
+    for x in rd("data", "meisho.json")["items"]:
+        r = prange(x.get("peak"))
+        if x.get("pref") not in FULL or not r or r[1].isoformat() < TD: continue
+        it = {"t": x["name"], "u": x.get("url", ""), "p": x["pref"], "s": r[0].isoformat(), "e": r[1].isoformat(), "a": x.get("city", ""), "v": "", "k": "koyo", "pk": x.get("peak", "")}
+        if x.get("fee"): it["fe"] = x["fee"]
+        if (x.get("fee") or "").startswith("無料"): it["f"] = 1
+        if x.get("note"): it["hk"] = x["note"]
+        ky.append(ENRICH(it, x["name"], x.get("city", "")))
+    print("illumination", len(il), "koyo", len(ky))
+    if il:
+        write("illumination.html", "/illumination", "関東イルミネーション2026-2027｜開催中・無料・今週末（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）｜LIFE NOTE", cfg("/illumination"),
+              dict(data, items=il, page={"h1": "関東のイルミネーション", "sub": f"2026-2027・{len(il)}か所", "st": "pref"}), "odekake",
+              f"関東のイルミネーション{len(il)}か所を、開催中・これから・無料に分けて、公式ページつきでまとめています。地図と写真で探せて、毎日更新しています。")
+        write("illumination-muryo.html", "/illumination-muryo", "関東の無料イルミネーション2026-2027｜LIFE NOTE", cfg("/illumination"),
+              dict(data, items=il, page={"h1": "関東の無料イルミネーション", "sub": f"2026-2027・{sum(1 for i in il if i.get('f'))}か所", "st": "pref", "free": 1}), "odekake",
+              "関東の無料で見られるイルミネーションを、開催中・これからに分けてまとめています。")
+        for p in PREF:
+            ni = sum(1 for i in il if i["p"] == p)
+            if not ni: continue
+            write(f"illumination-{SLUG[p]}.html", f"/illumination-{SLUG[p]}", f"{p}のイルミネーション2026-2027（{FULL[p]}）｜LIFE NOTE", cfg("/illumination"),
+                  dict(data, items=il, page={"h1": f"{p}のイルミネーション", "sub": f"2026-2027・{ni}か所", "p": p, "st": "pref"}), "odekake",
+                  f"{FULL[p]}のイルミネーション{ni}か所を、開催中・これから・無料に分けてまとめています。")
+    if ky:
+        write("koyo.html", "/koyo", "関東の紅葉2026｜見頃とライトアップ（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）｜LIFE NOTE", cfg("/koyo"),
+              dict(data, items=ky, page={"h1": "関東の紅葉", "sub": f"見頃とライトアップ・{len(ky)}か所", "st": "pref"}), "odekake",
+              f"関東の紅葉の名所と夜のライトアップ{len(ky)}か所を、見頃の時期・料金・時間つきでまとめています。地図と写真で探せて、毎日更新しています。")
+
     # ---------- 表紙 ----------
     now = [x for x in IT if x["s"] <= TD <= x["e"]]
     pc = {p: sum(1 for x in now if x["p"] == p) for p in PREF}
@@ -171,7 +231,7 @@ def main():
           {"t": "家と土地の相場", "s": f"{towns}の街の地価の動き" if towns else "街の地価の動き", "n": str(towns or ""), "nu": "街", "u": "/fudosan-list", "ic": "find"},
           {"t": "日用品の値段くらべ", "s": "楽天・Yahoo!を1つの画面で", "n": "", "nu": "", "u": "/okaimono", "ic": "yen"},
           {"t": "開店・閉店", "s": "新しいお店・閉まるお店", "n": "", "nu": "", "u": "/kaiten", "ic": "buy"}]
-    more = [["関東の紅葉・イルミネーション", "/koyo"], ["いまから行けるおでかけ", "/ima"], ["地価ランキング", "/chika-kanto"], ["空き家の割合ランキング", "/akiya-ranking"],
+    more = [["関東のイルミネーション", "/illumination"], ["関東の紅葉", "/koyo"], ["いまから行けるおでかけ", "/ima"], ["地価ランキング", "/chika-kanto"], ["空き家の割合ランキング", "/akiya-ranking"],
             ["予算で街さがし", "/sagasu"], ["家を売る前に", "/uru"], ["ふるさと納税", "/furusato"], ["値下がりした日用品", "/nesage"]]
     c = copy.deepcopy(base)
     c["nav"] = [{"t": "おでかけ", "ic": "now", "href": "/odekake"}, {"t": "家と土地", "ic": "find", "href": "/fudosan-list"}, {"t": "おかいもの", "ic": "yen", "href": "/okaimono"}, {"t": "地図", "ic": "map", "a": "map"}]
