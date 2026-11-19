@@ -1,0 +1,588 @@
+/* 新しいHP（11/19）。昼と夜の2つ。夜は反転ではなく、夜の色を持つ（まぶしい白を出さない）。
+   決まり：普通の役目＋こだわり1つ。動かすのは transform と opacity だけ。ぼかしは使わない。 */
+:root{
+  --bg:#FFFFFF;--ink:#111111;--sub:#625D58;--mut:#77716B;--line:#ECE9E5;--card:#FFFFFF;--chip:#F4F2EF;--chipt:#2A2623;
+  --on:#111111;--ont:#FFFFFF;--glow:#E9C46A;--shadow:0 1px 0 rgba(0,0,0,.04);
+  --serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP","Noto Serif CJK JP",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Noto Sans CJK JP","Yu Gothic",sans-serif;
+  --lat:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --safe:env(safe-area-inset-bottom,0px);
+}
+html.nt{
+  --bg:#0A0E18;--ink:#ECE8E1;--sub:#A3ABBA;--mut:#7D8697;--line:#1F2636;--card:#121826;--chip:#161D2C;--chipt:#D9DDE6;
+  --on:#ECE8E1;--ont:#0A0E18;--glow:#9DB8FF;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg);color-scheme:light}
+html.nt{color-scheme:dark}
+body{position:relative;margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip;transition:background-color .5s,color .5s}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+img{display:block;max-width:100%}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* ===== 空：昼は日差し、夜は星 ===== */
+#sky{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
+#stars{position:absolute;left:0;top:0;width:100%;opacity:0;transition:opacity .8s}
+html.nt #stars{opacity:1;animation:drift 150s linear infinite alternate}
+@keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-24px,-40px,0)}}
+/* 昼：朝の空の色が溶け合って、ゆっくり動く（メッシュの光）＋細かい粒。上だけ・下は白へ消える */
+#sky .au{position:absolute;border-radius:50%;opacity:.9;transition:opacity .8s;will-change:transform}
+#sky .a1{left:-30%;top:-260px;width:520px;height:520px;background:radial-gradient(closest-side,rgba(200,186,255,.75),rgba(200,186,255,0));animation:au1 18s ease-in-out infinite alternate}
+#sky .a2{right:-35%;top:-200px;width:560px;height:560px;background:radial-gradient(closest-side,rgba(255,206,178,.72),rgba(255,206,178,0));animation:au2 22s ease-in-out infinite alternate}
+#sky .a3{left:10%;top:60px;width:460px;height:460px;background:radial-gradient(closest-side,rgba(176,232,214,.62),rgba(176,232,214,0));animation:au3 26s ease-in-out infinite alternate}
+#sky .a4{right:-10%;top:180px;width:380px;height:380px;background:radial-gradient(closest-side,rgba(182,214,255,.55),rgba(182,214,255,0));animation:au1 30s ease-in-out -8s infinite alternate}
+@keyframes au1{to{transform:translate3d(90px,60px,0) scale(1.15)}}
+@keyframes au2{to{transform:translate3d(-110px,90px,0) scale(.9)}}
+@keyframes au3{to{transform:translate3d(70px,-50px,0) scale(1.2)}}
+#sky .gr{position:absolute;left:0;top:0;width:100%;height:760px;background:url(/townnotes/grain.png);opacity:.07;mix-blend-mode:multiply;-webkit-mask:linear-gradient(#000 40%,transparent);mask:linear-gradient(#000 40%,transparent)}
+#sky .fade{position:absolute;left:0;right:0;top:420px;height:360px;background:linear-gradient(rgba(255,255,255,0),var(--bg))}
+#sky .fade2{position:absolute;left:0;right:0;top:780px;bottom:0;background:var(--bg)}
+html.nt #sky .au,html.nt #sky .gr,html.nt #sky .fade,html.nt #sky .fade2{opacity:0}
+/* 11/19 流れ星：一瞬・頭が光り尾は細く・向きと長さは毎回ちがう（--a 角度・--l 尾の長さ・--d 進む長さ） */
+.shoot{position:absolute;width:var(--l);height:1.2px;transform-origin:100% 50%;transform:rotate(calc(180deg - var(--a)));opacity:0;animation:shoot .7s cubic-bezier(.3,0,.6,1) forwards;pointer-events:none}
+.shoot::before{content:"";position:absolute;inset:0;border-radius:2px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(210,225,255,.35) 60%,#fff)}
+.shoot::after{content:"";position:absolute;right:-2px;top:50%;width:4px;height:4px;margin-top:-2px;border-radius:50%;background:#fff;box-shadow:0 0 6px 2px rgba(220,232,255,.9)}
+.shoot.big{height:2px}.shoot.big::after{width:6px;height:6px;margin-top:-3px;box-shadow:0 0 12px 4px rgba(255,236,200,.9)}
+@keyframes shoot{0%{opacity:0;translate:0 0}12%{opacity:1}70%{opacity:1}100%{opacity:0;translate:calc(cos(var(--a)) * var(--d) * -1) calc(sin(var(--a)) * var(--d))}}
+/* 明るい星だけ静かにまたたく */
+.tw{position:absolute;width:calc(var(--s) * 3);height:calc(var(--s) * 3);margin:calc(var(--s) * -1.5) 0 0 calc(var(--s) * -1.5);border-radius:50%;background:radial-gradient(circle,#fff 0,var(--c) 18%,transparent 62%);opacity:0;animation:twk 4s ease-in-out infinite;pointer-events:none}
+html:not(.nt) .tw{display:none}
+@keyframes twk{0%,100%{opacity:.25}35%{opacity:.95}50%{opacity:.5}70%{opacity:.85}}
+
+#app{position:relative;z-index:1;padding-bottom:calc(110px + var(--safe))}
+
+/* ===== 頭 ===== */
+.top{display:flex;align-items:center;justify-content:space-between;padding:14px 0 6px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{width:40px;height:40px}
+.brand b{font:600 11px/1 var(--lat);letter-spacing:.28em;color:var(--ink)}
+/* 昼夜のスイッチ（前の形を進化：中が小さな空。昼は光、夜は星がまたたいて玉が月になる） */
+/* 昼夜スイッチ：11/19 owner「前のがオシャレ」→ 前の形（白い枠に黒い玉が滑る・太陽と月の線）に戻す */
+.tg{position:relative;width:76px;height:42px;border-radius:999px;border:1px solid #DADADA;background:rgba(255,255,255,.94);box-shadow:0 2px 10px rgba(0,0,0,.07);transition:background-color .4s,border-color .4s}
+.tg .kn{position:absolute;top:4px;left:4px;width:32px;height:32px;border-radius:50%;background:#2B2622;transition:transform .35s cubic-bezier(.3,.7,.2,1),background-color .4s}
+html.nt .tg{background:#121826;border-color:#2A3346;box-shadow:none}
+html.nt .tg .kn{transform:translateX(34px);background:#ECE8E1}
+.tg svg{position:absolute;top:11px;width:18px;height:18px;fill:none;stroke:#8C7B6E;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s,transform .5s}
+.tg .su svg{left:11px}.tg .mo svg{right:11px}.tg .sp{stroke-width:1.2}
+html:not(.nt) .tg .su svg{stroke:#fff;transform:rotate(90deg)}
+html.nt .tg .mo svg{stroke:#0A0E18;transform:rotate(-15deg)}
+html.nt .tg .su svg{stroke:#7D8697}
+.hero{padding:22px 0 8px}
+.kick{font:500 11px/1 var(--lat);letter-spacing:.32em;color:var(--mut);text-transform:uppercase}
+.h1{margin:12px 0 0;font:600 34px/1.22 var(--serif);letter-spacing:.02em}
+.h1 em{display:block;font-style:normal;color:var(--sub);font-weight:400}
+/* ページの名前（何のページか一目で） */
+.h1t{margin:6px 0 0;font:500 26px/1.35 var(--serif);letter-spacing:.04em}
+.h1p{margin:6px 0 0;font-size:12px;font-weight:500;color:var(--sub);letter-spacing:.06em}
+.mast .dw span{font-size:13px;color:var(--sub)}
+.mast .dw em{font:500 20px/1 var(--sans);font-style:normal;color:var(--ink);margin:0 2px;font-variant-numeric:tabular-nums}
+/* 頭：毎日かわる「きょうの関西」（日付の大きな数字＋きょうの数） */
+.mast{display:flex;align-items:flex-end;gap:14px;margin-top:18px}
+.mast .dn{font:italic 400 76px/0.9 var(--lat);letter-spacing:-.02em;color:var(--ink)}
+.mast .dw{display:flex;flex-direction:column;gap:4px;padding-bottom:8px;font-size:12px;font-weight:500;color:var(--sub)}
+.mast .dw b{font:600 11px/1 var(--lat);letter-spacing:.3em;color:var(--ink)}
+.h1s{margin:16px 0 0;font:500 21px/1.55 var(--serif);letter-spacing:.02em}
+.h1s b{font:500 30px/1 var(--sans);font-variant-numeric:tabular-nums;margin:0 3px;color:var(--ink)}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:18px}
+.tiles button{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:12px 10px 10px;border-radius:16px;background:rgba(255,255,255,.72);border:1px solid rgba(0,0,0,.06);text-align:left;box-shadow:0 8px 20px -16px rgba(40,40,80,.5);transition:transform .2s}
+html.nt .tiles button{background:#121826;border-color:#1F2636}
+.tiles button:active{transform:scale(.97)}
+.tiles small{font-size:10.5px;font-weight:500;color:var(--sub);line-height:1.3}
+.tiles b{font:500 28px/1 var(--sans);font-variant-numeric:tabular-nums}
+.tiles button[data-w=td] b{color:#C23B2A}html.nt .tiles button[data-w=td] b{color:#FF9C8C}.tiles button[data-w=new] b{color:#137A4B}html.nt .tiles button[data-w=new] b{color:#8FE0B5}
+.tiles i{position:absolute;right:10px;bottom:10px;font-style:normal;font-size:12px;color:var(--mut)}
+.upd{display:flex;align-items:center;gap:7px;margin:14px 0 0;font-size:11.5px;color:var(--mut)}
+.upd .dot{width:7px;height:7px;border-radius:50%;background:#1E9E62;animation:pulse 2.4s ease-out infinite}
+.live{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:13px;color:var(--sub)}
+.live .dot{width:7px;height:7px;border-radius:50%;background:#1E9E62;box-shadow:0 0 0 0 rgba(30,158,98,.5);animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(30,158,98,.45)}70%{box-shadow:0 0 0 8px rgba(30,158,98,0)}100%{box-shadow:0 0 0 0 rgba(30,158,98,0)}}
+.live b{font:500 17px/1 var(--sans);color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* ===== ストーリー（虹色の輪・見ても色は変えない） ===== */
+.st{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;padding:18px 16px 6px;margin:0 -16px}
+.st::-webkit-scrollbar{display:none}
+.st button{flex:0 0 auto;width:68px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.rg{position:relative;width:66px;height:66px;border-radius:50%;padding:2.5px;background:conic-gradient(from 210deg,#F9CE34,#EE2A7B,#6228D7,#3FA3E0,#5BD18C,#F9CE34)}
+.rg::after{content:"";position:absolute;inset:2.5px;border-radius:50%;border:2.5px solid var(--bg)}
+.rg img,.rg .ph{width:100%;height:100%;border-radius:50%;object-fit:cover;background:var(--chip)}
+.st span{font-size:11px;line-height:1.25;font-weight:600;color:var(--ink);text-align:center;white-space:nowrap}
+
+/* ===== 今週の顔（扇のように重なるカード） ===== */
+.sec{display:flex;align-items:baseline;justify-content:space-between;margin:28px 0 12px}
+.sec h2{margin:0;font:600 20px/1.3 var(--serif)}
+.sec h2 i{font:italic 400 13px/1 var(--lat);color:var(--mut);margin-left:8px;letter-spacing:.06em}
+.sec small{font-size:12px;color:var(--mut)}
+.fan{position:relative;display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 auto;max-width:760px;padding:6px 0 18px;perspective:900px}
+.fan::-webkit-scrollbar{display:none}
+.fan .pad{flex:0 0 calc(50% - 27vw);max-width:none}
+.fc{flex:0 0 54vw;max-width:260px;scroll-snap-align:center;transform-style:preserve-3d;will-change:transform;transition:none}
+.fc .in{position:relative;display:block;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:var(--chip);box-shadow:0 18px 40px -18px rgba(20,16,10,.45)}
+.fc img{width:100%;height:100%;object-fit:cover}
+.fc .cap{position:absolute;left:0;right:0;bottom:0;padding:44px 14px 14px;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.66))}
+.fc .cap b{display:block;font:500 17px/1.35 var(--sans);text-wrap:balance}
+.fc .cap span{display:block;margin-top:4px;font-size:12px;opacity:.88}
+.fc .tag{position:absolute;left:12px;top:12px}
+
+/* ===== 絞り込み（上に貼り付く） ===== */
+.bar{position:sticky;top:0;z-index:20;margin:0 -16px;padding:10px 16px 10px;background:var(--bg);transition:box-shadow .3s,background-color .5s}
+.bar.stuck{box-shadow:0 1px 0 var(--line)}
+.seg{position:relative;display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--chip);overflow-x:auto;scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg button{position:relative;z-index:1;flex:1 0 auto;height:34px;padding:0 12px;border-radius:999px;font-size:13px;font-weight:500;color:var(--sub);white-space:nowrap;transition:color .25s}
+.seg button.on{color:var(--ont)}
+.seg .pill{position:absolute;z-index:0;top:4px;height:34px;border-radius:999px;background:var(--on);transition:transform .45s cubic-bezier(.3,1.3,.5,1),width .45s cubic-bezier(.3,1.3,.5,1)}
+/* 選んだ所の周りを光が回る（オーナーが気に入った技） */
+.seg .pill::before{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;background:conic-gradient(from var(--ra,0deg),transparent 0 70%,var(--glow) 82%,#fff 86%,transparent 92%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ring 3.2s linear infinite}
+@property --ra{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes ring{to{--ra:360deg}}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:10px -16px 0;padding:0 16px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;display:flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-size:12.5px;font-weight:500;color:var(--chipt);white-space:nowrap;transition:background-color .2s,color .2s,border-color .2s}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--c,#999)}
+.chip.on{background:var(--on);color:var(--ont);border-color:var(--on)}
+.chip.on i{box-shadow:0 0 0 2px var(--ont)}
+.cnt{display:flex;align-items:baseline;justify-content:space-between;margin:16px 0 10px}
+.cnt h3{margin:0;font-size:15px;font-weight:500}
+.cnt h3 b{font-variant-numeric:tabular-nums;font-size:18px;margin:0 2px}
+.cnt small{font-size:12px;color:var(--mut)}
+
+/* ===== カード（同じ形の2列） ===== */
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
+@media (min-width:720px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.cd{position:relative;display:block;content-visibility:auto;contain-intrinsic-size:auto 280px}
+.cd .im{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--chip) center/cover}
+.cd .im img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
+.cd .im img.ld{opacity:1}
+.cd .im::after{content:"";position:absolute;inset:0;background:radial-gradient(160px circle at var(--x,50%) var(--y,50%),rgba(255,248,230,.38),transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none}
+.cd.lit .im::after{opacity:1}
+html.nt .cd .im::after{background:radial-gradient(160px circle at var(--x,50%) var(--y,50%),rgba(160,190,255,.28),transparent 60%)}
+.tile{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:var(--gt);color:var(--gc)}
+.tile svg{width:38px;height:38px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.tile b{font:600 10px/1 var(--lat);letter-spacing:.24em}
+html.nt .tile{background:color-mix(in srgb,var(--gc) 16%,#121826)}
+.lb{display:flex;align-items:center;gap:6px;margin-top:9px;font-size:11px;font-weight:500;color:var(--sub);white-space:nowrap;overflow:hidden}
+.lb .g{color:var(--gc);letter-spacing:.06em}
+.lb .g::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-right:5px;vertical-align:1px}
+.lb .lt{margin-left:auto;padding:2px 7px;border-radius:999px;background:#FDECEA;color:#A92E1F}
+.lb .lt.now{background:#E7F5EE;color:#137A4B}
+html.nt .lb .lt{background:#3A1C1C;color:#FFB3A8}html.nt .lb .lt.now{background:#123024;color:#8FE0B5}
+.cd h4{margin:5px 0 0;font-size:14.5px;line-height:1.42;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-wrap:pretty}
+.cd .dt{margin-top:4px;font-size:12px;font-weight:500;color:#137A4B}
+html.nt .cd .dt{color:#8FE0B5}
+.cd .vn{margin-top:2px;font-size:11.5px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;background:rgba(255,255,255,.94);color:var(--gc);font:500 10px/1 var(--lat);letter-spacing:.16em}
+.more{display:block;width:100%;margin:26px 0 0;height:48px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:14px;font-weight:500}
+.none{padding:40px 0;text-align:center;color:var(--mut);font-size:13px}
+.ft{margin:44px 0 0;padding:22px 0 0;border-top:1px solid var(--line);font-size:11.5px;line-height:1.8;color:var(--mut)}
+.ft a{text-decoration:underline;text-underline-offset:2px}
+
+/* ===== 1件の板（下から出る） ===== */
+.sh{position:fixed;inset:0;z-index:60;visibility:hidden}
+.sh.op{visibility:visible}
+.sh .bk{position:absolute;inset:0;background:rgba(10,8,6,.45);opacity:0;transition:opacity .35s}
+.sh.op .bk{opacity:1}
+.sh .pn{position:absolute;left:0;right:0;bottom:0;max-height:92vh;max-width:760px;margin:0 auto;overflow-y:auto;overscroll-behavior:contain;border-radius:24px 24px 0 0;background:var(--bg);transform:translate3d(0,100%,0);transition:transform .5s cubic-bezier(.2,.9,.25,1);padding-bottom:calc(28px + var(--safe))}
+.sh.op .pn{transform:translate3d(0,0,0)}
+.sh .grab{position:sticky;top:0;z-index:2;height:22px;display:flex;justify-content:center;align-items:center}
+.sh .grab i{width:40px;height:5px;border-radius:9px;background:rgba(128,128,128,.45)}
+.sh .x{position:absolute;right:12px;top:12px;z-index:3;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.45);color:#fff;font-size:18px;line-height:34px;text-align:center}
+.sh .pim{position:relative;margin:-22px 0 0;aspect-ratio:4/3;background:var(--chip) center/cover;overflow:hidden}
+.sh .pim img{width:100%;height:100%;object-fit:cover}
+.sh .bd{padding:18px 18px 0}
+.sh h2{margin:8px 0 0;font:600 22px/1.4 var(--sans);text-wrap:balance}
+.sh .hk{margin:8px 0 0;font:500 15px/1.6 var(--serif);color:var(--sub)}
+.per{margin:20px 0 0;padding:14px;border-radius:16px;background:var(--chip)}
+.per .row{display:flex;justify-content:space-between;font-size:12px;font-weight:500;color:var(--sub)}
+.per .tr{position:relative;height:6px;margin:10px 0;border-radius:9px;background:var(--line)}
+.per .tr i{position:absolute;left:0;top:0;bottom:0;border-radius:9px;background:var(--gc);transform-origin:0 50%;transform:scaleX(0);transition:transform 1s cubic-bezier(.2,.9,.25,1) .25s}
+.per .tr b{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--bg);border:3px solid var(--gc)}
+.per .big{font-size:20px;font-weight:600;color:var(--ink)}
+.kv{margin:16px 0 0;display:grid;grid-template-columns:72px 1fr;gap:10px 12px;font-size:13.5px}
+.kv dt{color:var(--mut);font-weight:500}
+.kv dd{margin:0}
+.ds{margin:16px 0 0;font-size:14.5px;line-height:1.85}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0 0}
+.acts a,.acts button{display:flex;align-items:center;justify-content:center;height:50px;border-radius:14px;font-size:14px;font-weight:600;border:1px solid var(--line);background:var(--card)}
+.acts .pr{grid-column:1/-1;background:var(--on);color:var(--ont);border-color:var(--on)}
+.cr{margin:16px 0 0;font-size:10.5px;color:var(--mut)}
+
+/* ===== ストーリーを全画面で ===== */
+.sv{position:fixed;inset:0;z-index:70;background:#000;color:#fff;display:none}
+.sv.op{display:block}
+.sv .bars{position:absolute;left:10px;right:10px;top:calc(10px + env(safe-area-inset-top,0px));z-index:3;display:flex;gap:4px}
+.sv .bars i{flex:1;height:2.5px;border-radius:2px;background:rgba(255,255,255,.35);overflow:hidden}
+.sv .bars i b{display:block;height:100%;background:#fff;transform-origin:0 50%;transform:scaleX(0)}
+.sv .hd{position:absolute;left:14px;right:14px;top:calc(22px + env(safe-area-inset-top,0px));z-index:3;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500}
+.sv .hd img{width:30px;height:30px;border-radius:50%;background:#fff}
+.sv .hd button{margin-left:auto;font-size:26px;line-height:1;padding:4px 6px;color:#fff}
+.sv .fr{position:absolute;inset:0}
+.sv .fr img{width:100%;height:100%;object-fit:cover;animation:kb 6s ease-out forwards}
+@keyframes kb{from{transform:scale(1.08)}to{transform:scale(1)}}
+.sv .fr .tile{inset:0}
+.sv .tx{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:80px 20px calc(26px + var(--safe));background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.78))}
+.sv .tx .tag{margin-bottom:10px}
+.sv .tx h3{margin:0;font:600 24px/1.35 var(--sans);text-wrap:balance}
+.sv .tx p{margin:8px 0 0;font-size:14px;opacity:.9}
+.sv .tx button{margin-top:16px;height:46px;padding:0 20px;border-radius:999px;background:#fff;color:#111;font-size:14px;font-weight:600}
+.sv .tp{position:absolute;top:0;bottom:30%;z-index:1;width:35%}
+.sv .tp.l{left:0}.sv .tp.r{right:0;width:65%}
+
+/* ===== 下のバー（暗い色・選んだ所が光る・MENU の周りを光が回る） ===== */
+.nav{position:fixed;left:12px;right:12px;bottom:calc(12px + var(--safe));z-index:50;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:2px;height:62px;padding:6px;border-radius:24px;background:#16130F;box-shadow:0 14px 34px -12px rgba(0,0,0,.55);transition:transform .35s cubic-bezier(.2,.9,.25,1)}
+html.nt .nav{background:#1A2132;box-shadow:0 14px 34px -12px rgba(0,0,0,.8),inset 0 0 0 1px rgba(255,255,255,.06)}
+.nav.hide{transform:translateY(calc(100% + 24px))}
+.nav a,.nav button{position:relative;flex:1;height:50px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-radius:18px;color:rgba(255,255,255,.62);font-size:10px;font-weight:500;letter-spacing:.04em;overflow:hidden;transition:color .2s}
+.nav svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.nav .cur{color:#fff;background:rgba(255,255,255,.09)}
+.nav .cur::before{content:"";position:absolute;top:5px;left:50%;width:18px;height:2px;margin-left:-9px;border-radius:2px;background:var(--glow);box-shadow:0 0 10px var(--glow)}
+.nav .mn{flex:0 0 66px;color:#fff;background:#2A251F}
+html.nt .nav .mn{background:#28324A}
+.nav .mn::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ra,0deg),transparent 0 62%,var(--glow) 80%,#fff 86%,transparent 94%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ring 3.6s linear infinite}
+.nav .mn em{display:block;width:18px;height:10px;border-top:1.6px solid #fff;border-bottom:1.6px solid #fff;position:relative}
+.nav .mn em::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.6px;margin-top:-.8px;background:#fff}
+.rp{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);transform:scale(0);animation:rp .6s ease-out forwards;pointer-events:none}
+@keyframes rp{to{transform:scale(16);opacity:0}}
+.nav .tap svg{animation:pop .4s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{40%{transform:scale(.82)}100%{transform:scale(1)}}
+
+/* ===== MENU（このページの分野だけ。ほかは関連リンク） ===== */
+.mu{position:fixed;inset:0;z-index:65;visibility:hidden}
+.mu.op{visibility:visible}
+.mu .bk{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s}
+.mu.op .bk{opacity:1}
+.mu .pn{position:absolute;left:0;right:0;bottom:0;max-width:760px;margin:0 auto;border-radius:26px 26px 0 0;background:#14110E;color:#fff;padding:22px 20px calc(24px + var(--safe));transform:translate3d(0,100%,0);transition:transform .45s cubic-bezier(.2,.9,.25,1)}
+html.nt .mu .pn{background:#121826}
+.mu.op .pn{transform:none}
+.mu .k{font:500 11px/1 var(--lat);letter-spacing:.3em;color:rgba(255,255,255,.5)}
+.mu ol{list-style:none;margin:14px 0 0;padding:0}
+.mu li a{display:flex;align-items:baseline;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:19px;font-weight:500;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s}
+.mu.op li a{opacity:1;transform:none}
+.mu li a small{font:italic 400 12px/1 var(--lat);color:rgba(255,255,255,.45);min-width:22px}
+.mu li a.here{color:var(--glow)}
+.mu .rel{display:flex;gap:8px;margin-top:18px}
+.mu .rel a{flex:1;display:flex;align-items:center;justify-content:center;height:44px;border-radius:12px;background:rgba(255,255,255,.07);font-size:12.5px;font-weight:500;color:rgba(255,255,255,.8)}
+
+/* 昼⇄夜の切り替え（押した所から空が広がる） */
+html.vtt::view-transition-old(root),html.vtt::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-group(ph){animation-duration:.5s;animation-timing-function:cubic-bezier(.2,.9,.25,1)}
+.sh.nov .pn,.sh.nov .bk{transition:none}
+
+/* ===== 地図（全画面・府県の色はオーナーと決めた色） ===== */
+.mp{position:fixed;inset:0;z-index:45;display:none;flex-direction:column;background:var(--bg)}
+.mp.op{display:flex}
+.mph{display:flex;align-items:baseline;gap:10px;padding:calc(14px + env(safe-area-inset-top,0px)) 16px 8px}
+.mph b{font:600 19px/1.3 var(--serif)}
+.mph small{font-size:12px;color:var(--sub);font-weight:500}
+.mpx{margin-left:auto;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);font-size:20px;line-height:34px;text-align:center;background:var(--card)}
+#mps{flex:1 1 0;display:block;height:auto;width:100%;min-height:0;touch-action:none;background:#EEF3F7;cursor:grab}
+html.nt #mps{background:#0E1424}
+#mps .nb path{fill:#E4E8EC;stroke:#fff;stroke-width:.4}
+html.nt #mps .nb path{fill:#151C2C;stroke:#0E1424}
+#mps .pf{fill:var(--f);stroke:#fff;stroke-width:.7;stroke-linejoin:round;transition:opacity .4s}
+html.nt #mps .pf{fill:color-mix(in srgb,var(--c) 30%,#121826);stroke:#0E1424}
+#mps .pf.dim{opacity:.35}
+#mps .pl{font:600 9px var(--serif);letter-spacing:.2em;text-anchor:middle;pointer-events:none;opacity:.9}
+html.nt #mps .pl{fill:#D9DDE6!important}
+.pin{cursor:pointer}
+.pin .dt2{stroke:#fff;stroke-width:.8}
+.pin .ring{fill:none;stroke-width:.9;opacity:0}
+.pin.on .ring{opacity:1;animation:pring 1.6s ease-out infinite}
+@keyframes pring{from{r:2.4;opacity:1}to{r:8;opacity:0}}
+.mpz{position:absolute;right:12px;top:calc(70px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:8px}
+.mpz button{width:42px;height:42px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:16px;font-weight:500;box-shadow:0 4px 12px -6px rgba(0,0,0,.3)}
+.mpz button:last-child{font-size:11px}
+.mpc{position:relative;flex:none;display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:12px 16px calc(96px + var(--safe));background:var(--bg)}
+.mpc::-webkit-scrollbar{display:none}
+.mcd{flex:0 0 82%;max-width:420px;scroll-snap-align:center;display:flex;gap:12px;padding:10px;border-radius:16px;border:1px solid var(--line);background:var(--card)}
+.mim{position:relative;flex:0 0 92px;height:92px;border-radius:12px;overflow:hidden}
+.mim img{width:100%;height:100%;object-fit:cover}
+.mim .tile svg{width:28px;height:28px}
+.mtx{min-width:0;display:flex;flex-direction:column}
+.mtx b{margin-top:4px;font-size:14.5px;line-height:1.4;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mtx small{margin-top:auto;font-size:11.5px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ===== 家と土地 ===== */
+.fnd{position:relative;margin-top:18px}
+.fin{display:flex;align-items:center;gap:10px;height:54px;padding:0 16px;border-radius:16px;background:var(--card);border:1.5px solid var(--ink);box-shadow:0 10px 26px -18px rgba(20,20,60,.6)}
+.fin svg{width:20px;height:20px;flex:none;fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linecap:round}
+.fin input{flex:1;min-width:0;border:0;background:none;outline:none;font:600 16px var(--sans);color:var(--ink)}
+.fin input::placeholder{color:var(--mut);font-weight:500;font-size:14.5px}
+.sug{position:absolute;left:0;right:0;top:60px;z-index:30;border-radius:16px;background:var(--card);border:1px solid var(--line);box-shadow:0 20px 40px -20px rgba(0,0,0,.4);overflow:hidden;display:none}
+.sug.op{display:block}
+.sug button{display:flex;align-items:center;gap:8px;width:100%;padding:13px 16px;border-bottom:1px solid var(--line);text-align:left}
+.sug button b{font-size:15px}.sug button small{font-size:11.5px;color:var(--mut)}.sug button span{margin-left:auto;font-weight:600;color:#137A4B;font-variant-numeric:tabular-nums}
+.sug p{margin:0;padding:14px 16px;font-size:13px;color:var(--mut)}
+.geo{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:13px;font-weight:500;color:var(--sub)}
+.geo svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8}
+.geo.ld svg{animation:pulse 1.2s infinite}
+.tiles b u{text-decoration:none;font-size:11px;font-weight:500;color:var(--sub);margin-left:2px}
+.tiles button[data-o] b{font-size:22px}
+.rk{list-style:none;margin:0;padding:0}
+.rk li button{display:flex;align-items:center;gap:12px;width:100%;padding:13px 2px;border-bottom:1px solid var(--line);text-align:left}
+.rk em{flex:none;width:26px;font:italic 400 18px/1 var(--lat);color:var(--mut);text-align:center}
+.rk li:nth-child(-n+3) em{color:var(--pc);font-weight:600}
+.rk .tn{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.rk .tn b{font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk .tn small{font-size:11.5px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk .br{display:block;height:4px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:3px}
+.rk .br i{display:block;height:100%;border-radius:4px;background:var(--pc);transform-origin:0 50%;transform:scaleX(0);transition:transform .9s cubic-bezier(.2,.9,.25,1)}
+.rk .br.neg i{background:#9AA3B5}
+.rk strong{flex:none;font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
+.up{color:#137A4B}.dn{color:#B23A2E}
+html.nt .up{color:#8FE0B5}html.nt .dn{color:#FF9C8C}
+.tw h2{margin-top:6px}
+.hero2{display:flex;align-items:flex-end;gap:14px;margin:16px 0 0;padding:16px;border-radius:18px;background:var(--chip)}
+.hero2 small{display:block;font-size:11.5px;font-weight:500;color:var(--sub)}
+.hero2 b{display:block;margin-top:6px;font:600 40px/1 var(--sans);font-variant-numeric:tabular-nums}
+.hero2 p{margin:0;font-size:12.5px;line-height:1.6;color:var(--sub)}
+.pc{margin:22px 0 0}
+.pc h3{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0;font-size:15px;font-weight:600}
+.pc h3 small{font-size:11px;font-weight:600;color:var(--mut)}
+.pc .big{margin-top:8px;font:600 34px/1 var(--sans);font-variant-numeric:tabular-nums}
+.pc .big u{text-decoration:none;font-size:14px;margin-left:3px;color:var(--sub)}
+.four,.three{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.four li,.three li{padding:9px 8px;border-radius:12px;background:var(--chip);font-size:13px;font-weight:600;line-height:1.3}
+.four small,.three small{display:block;font-size:10px;font-weight:500;color:var(--mut);margin-bottom:3px}
+.three b{display:block;font-size:15px}.three span{display:block;font-size:10.5px;margin-top:3px;color:var(--mut)}
+.cmp{margin-top:12px}
+.cmp>div{display:grid;grid-template-columns:76px 1fr 82px;align-items:center;gap:8px;margin-top:6px;font-size:11.5px;color:var(--sub);font-weight:500}
+.cmp>div>i{display:block;height:10px;border-radius:6px;background:var(--line);overflow:hidden}
+.cmp>div>i>i{display:block;height:100%;border-radius:6px;background:#B9B3AC;transform-origin:0 50%;transform:scaleX(0);transition:transform 1s cubic-bezier(.2,.9,.25,1) .2s}
+.cmp>div b{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.cmp p{margin:8px 0 0;font-size:12.5px;font-weight:500}
+.tw .acts{grid-template-columns:1fr 1fr}
+.buy{grid-column:1/-1;padding:12px;border-radius:14px;border:1px solid var(--line)}
+.buy small{display:block;font-size:11.5px;color:var(--mut);font-weight:500}
+.buy div{display:flex;gap:6px;margin-top:8px}
+.buy a{flex:1;height:40px;font-size:13px}
+
+/* ===== おかいもの：いちばん安いお店が光る ===== */
+.kg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.kc{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:14px 12px 12px;border-radius:18px;border:1px solid var(--line);background:var(--card);text-align:left;min-width:0;transition:transform .2s}
+.kc:active{transform:scale(.98)}
+.ki{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--chip)}
+.ki svg{width:24px;height:24px;fill:none;stroke:var(--ink);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.kc .dr{position:absolute;top:12px;right:10px}
+.dr{display:inline-block;padding:2px 8px;border-radius:99px;background:#E6F3EC;color:#137A4B;font-size:10.5px;font-weight:600;font-style:normal}
+html.nt .dr{background:#12301F;color:#8FE0B5}
+.knm{font-size:15px;font-weight:600}
+.kp{display:flex;flex-direction:column}.kp small{font-size:10.5px;color:var(--mut);font-weight:500}
+.kp strong{font:600 24px/1.1 var(--sans);font-variant-numeric:tabular-nums}
+.ks{display:flex;flex-direction:column;gap:4px;width:100%;margin-top:2px}
+.ks>span{display:grid;grid-template-columns:42px 1fr;align-items:center;gap:6px;font-size:10px;font-weight:500;color:var(--mut)}
+.ks em{font-style:normal}
+.ks i{display:block;height:5px;border-radius:5px;background:var(--line);overflow:hidden}
+.ks i i{height:100%;background:#BDB7B0;transform-origin:0 50%;transform:scaleX(0);transition:transform .9s cubic-bezier(.2,.9,.25,1)}
+.ks .win{color:var(--ink)}
+.ks .win i i{background:linear-gradient(90deg,#E9B949,#F6DC8A,#E9B949);background-size:200% 100%;animation:shine 2.6s linear infinite}
+@keyframes shine{to{background-position:-200% 0}}
+.kcr{margin-top:14px}
+.bfx,.myx{margin-bottom:8px}
+.bfs{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.bfs::-webkit-scrollbar{display:none}
+.bfs a{flex:0 0 70%;max-width:280px;scroll-snap-align:start;display:flex;flex-direction:column;gap:4px;padding:12px;border-radius:16px;background:#111;color:#F4F1EA}
+.bfs b{font-size:13.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bfs small{font-size:11px;opacity:.75}.bfs strong{font-size:20px;font-weight:600;color:#F6DC8A}
+.bfs em{font-style:normal;font-size:11.5px;font-weight:500;color:#FFB4A8}.bfs i{font-style:normal;font-size:10.5px;opacity:.6}
+.sp{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--sub)}
+.sp:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sc)}
+.kw h2{display:flex;align-items:center;gap:10px}
+.cmpS{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.srow{position:relative;display:grid;grid-template-columns:62px 1fr auto;align-items:center;gap:10px;padding:12px;border-radius:14px;background:var(--chip);isolation:isolate}
+.srow .sn{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+.srow .sn:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sc,#999)}
+.sb{display:block;height:8px;border-radius:6px;background:var(--line);overflow:hidden}
+.sb i{display:block;height:100%;border-radius:6px;background:#BDB7B0;transform-origin:0 50%;transform:scaleX(0);transition:transform 1s cubic-bezier(.2,.9,.25,1) .15s}
+.srow .ssv{display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+.srow .ssv b{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
+.srow .ssv em{font-style:normal;font-size:10.5px;font-weight:500;color:var(--mut)}
+.srow.amz{grid-template-columns:62px 1fr}.srow.amz .ssv{align-items:flex-start;text-align:left}
+.srow.amz .lk{font-size:14px;color:#B36A00}html.nt .srow.amz .lk{color:#FFC266}
+.srow.no .ssv{grid-column:2/-1;align-items:flex-start;font-size:12px;color:var(--mut)}
+/* いちばん安いお店：金の光がまわる */
+.srow.win{background:var(--card)}
+.srow.win{overflow:hidden}
+.srow.win:before{content:"";position:absolute;left:50%;top:50%;width:200%;aspect-ratio:1;z-index:-2;margin:-50% 0 0 -50%;transform-origin:50% 50%;background:conic-gradient(#E9B949,#FFF1C2,#E9B949 25%,rgba(233,185,73,.15) 50%,#E9B949 75%,#FFF1C2,#E9B949);animation:srspin 4.5s linear infinite}
+.srow.win:after{content:"";position:absolute;inset:1.5px;z-index:-1;border-radius:12.5px;background:var(--card)}
+.srow.win .sb i{background:linear-gradient(90deg,#E9B949,#F6DC8A,#E9B949);background-size:200% 100%;animation:shine 2.6s linear infinite}
+.srow.win .ssv em{color:#9A6B00}html.nt .srow.win .ssv em{color:#F6DC8A}
+.best{margin:22px 0 0;padding:16px;border-radius:20px;border:1px solid var(--line);background:var(--card)}
+.bt{display:flex;align-items:center;justify-content:space-between}
+.cr2{padding:3px 10px;border-radius:99px;background:linear-gradient(90deg,#E9B949,#F6DC8A);color:#3A2A00;font-size:11px;font-weight:600}
+.bb{display:flex;gap:12px;margin-top:12px}
+.bb img{flex:none;width:88px;height:88px;object-fit:contain;border-radius:12px;background:#fff;border:1px solid var(--line)}
+.bb div{min-width:0;display:flex;flex-direction:column;gap:3px}.bb b{font-size:14px;line-height:1.45}.bb small{font-size:11.5px;color:var(--mut)}
+.bp{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.bp>div{padding:10px;border-radius:12px;background:var(--chip)}.bp small{display:block;font-size:10.5px;font-weight:500;color:var(--mut)}
+.bp strong{font:600 22px/1.2 var(--sans);font-variant-numeric:tabular-nums}
+.hs{margin-top:12px}.hs small{font-size:11px;color:var(--mut);font-weight:500}
+.spk{display:block;width:100%;height:36px;margin-top:4px}.spk polyline{fill:none;stroke:var(--ink);stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.go{display:flex;align-items:center;justify-content:center;height:50px;margin-top:14px;border-radius:14px;background:var(--on);color:var(--ont);font-size:15px;font-weight:600}
+.ofs{display:flex;flex-direction:column;margin-top:8px}
+.of{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.oi{flex:none;display:grid;place-items:center;width:56px;height:56px;border-radius:10px;background:#fff;border:1px solid var(--line);overflow:hidden}
+.oi img{width:100%;height:100%;object-fit:contain}.oi svg{width:24px;height:24px;fill:none;stroke:#111;stroke-width:1.3}
+.ot{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.ot b{font-size:13px;line-height:1.4;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ot small{font-size:11px;color:var(--mut)}.ot .dr{align-self:flex-start;margin-top:2px}
+.oprc{flex:none;display:flex;flex-direction:column;align-items:flex-end}
+.oprc strong{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}.oprc small{font-size:10.5px;color:var(--mut);white-space:nowrap}
+.lead2{margin:8px 0 0;font-size:13px;line-height:1.7;color:var(--sub)}
+.tiles button[data-a] b{font-size:22px}
+@keyframes srspin{to{transform:rotate(360deg)}}
+.srow{grid-template-columns:74px 1fr auto}.srow.amz{grid-template-columns:74px minmax(0,1fr)}
+.srow .sn:before{flex:none}
+.srow.amz .ssv em{display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ===== 11/19 19:30 オーナー「シンプルだけどお洒落」「なんか古い」→ 字はゴシック1つ・色は白と黒（色は写真に任せる）・影と箱をやめて細い線と余白 ===== */
+:root{--serif:var(--sans);--lat:var(--sans);--line:#EBEBEB;--chip:#F5F5F5;--sub:#5E5E5E;--mut:#767676}
+html.nt{--line:#222A3A}
+#sky .au,#sky .gr,#sky .fade,#sky .fade2{display:none}
+.hero{padding:28px 0 4px}
+.h1t{font:600 30px/1.25 var(--sans);letter-spacing:-.02em;text-wrap:balance}
+.h1p{font-weight:600;letter-spacing:0;font-size:12.5px}
+.dl{display:flex;align-items:baseline;gap:12px;margin:14px 0 0;font-size:13px;font-weight:500;color:var(--ink)}
+.dl span{color:var(--sub);font-weight:600}.dl b{color:var(--ink);font-size:15px;font-variant-numeric:tabular-nums}
+/* 数の並び：箱ではなく細い線で区切る */
+.tiles{gap:0;margin-top:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tiles button,html.nt .tiles button{padding:14px 12px 13px;border-radius:0;background:none;border:0;box-shadow:none;gap:4px}
+.tiles button+button{border-left:1px solid var(--line)}
+.tiles button:first-child{padding-left:0}
+.tiles small{font-size:11px;color:var(--sub)}
+.tiles b,.tiles button[data-o] b,.tiles button[data-a] b{font:600 24px/1 var(--sans);letter-spacing:-.02em}
+.tiles button[data-w=td] b,.tiles button[data-w=new] b,html.nt .tiles button[data-w=td] b,html.nt .tiles button[data-w=new] b{color:var(--ink)}
+.tiles i{right:10px;top:14px;bottom:auto}
+.upd{display:none}
+.sec{margin:34px 0 12px}
+.sec h2{font:600 19px/1.3 var(--sans);letter-spacing:-.01em}
+.sec small{font-variant-numeric:tabular-nums}
+.cnt h3{font-weight:600}
+/* 今週末のおすすめ：大きな写真を横にめくる（立体はやめる） */
+.fan{gap:12px;padding:0 16px 6px;perspective:none;scroll-padding:0 16px}
+.fan .pad{display:none}
+.fc{flex:0 0 84%;max-width:420px;scroll-snap-align:start;transform:none!important;opacity:1!important}
+.fc .in{border-radius:18px;box-shadow:none;aspect-ratio:4/5}
+.fc .cap{padding:60px 16px 16px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.62))}
+.fc .cap small{display:block;font-size:11.5px;font-weight:500;opacity:.9}
+.fc .cap b{font:600 21px/1.35 var(--sans);margin-top:4px;letter-spacing:-.01em}
+/* 絞り込み：色の点をやめる */
+.chip i{display:none}
+.chip{border-color:var(--line);font-weight:500}
+/* カード：色は写真だけ。字は黒と灰色 */
+.cd .im{border-radius:12px}
+.cd .im::after{display:none}
+.lb .g{color:var(--sub);letter-spacing:0}.lb .g::before{display:none}
+.lb span+span:not(.lt)::before{content:"・";margin-right:2px}
+.lb .lt,.lb .lt.now,html.nt .lb .lt,html.nt .lb .lt.now{background:none;padding:0;color:var(--ink);font-weight:600}
+.lb .lt.now{display:none}
+.cd h4{font-size:15px;letter-spacing:-.005em}
+.cd .dt,html.nt .cd .dt{color:var(--ink);font-weight:500}
+.bar.stuck{box-shadow:none;border-bottom:1px solid var(--line)}
+.tag{background:rgba(255,255,255,.95);color:#111;font:500 11px/1 var(--sans);letter-spacing:0}
+.tile{background:var(--chip)!important;color:var(--sub)!important}
+.tile svg{stroke:var(--sub)!important}
+.qk{margin-top:26px}
+.h1t{font-size:28px;text-wrap:wrap;word-break:keep-all}
+.tiles i{display:none}
+.lb span+span:not(.lt)::before{content:none}
+/* 11/19 20:06 owner「文字太いだけ？Appleの文字こんなん？」→ Apple の日本語ページに合わせる：見出しは 600（太すぎない）・本文 400・字の色は真っ黒でなく #1D1D1F、補足は #6E6E73。見出しは字の間を少し詰め、本文は 1.6 の行間 */
+:root{--ink:#1D1D1F;--sub:#6E6E73;--mut:#6E6E73;--on:#1D1D1F}
+.h1t{font:600 30px/1.22 var(--sans);letter-spacing:-.01em}
+.h1p{font-weight:400;color:var(--sub)}
+.sec h2{font:600 21px/1.3 var(--sans);letter-spacing:-.005em}
+.cd h4{font-weight:600;font-size:15px;line-height:1.45}
+.cd .dt{font-weight:400}
+.lb{font-weight:400}.lb .lt{font-weight:600!important}
+.tiles small,.four small,.three small,.kp small,.bp small{font-weight:400}
+.tiles b,.tiles button[data-o] b,.tiles button[data-a] b{font-weight:600;letter-spacing:-.01em}
+.chip,.seg button{font-weight:500}
+.dl{font-weight:500}.dl span{font-weight:400}
+.rk .tn b,.kn{font-weight:600}
+.sh h2{font-weight:600}
+.h1t{font-size:min(30px,7.2vw)}
+.cnt{flex-wrap:wrap;gap:2px 10px}
+.cnt h3{flex:1 1 auto;min-width:0}
+/* ===== 11/19 動きの工夫（Apple 型）：大きい題→上の帯・流れに合わせて静かに浮かぶ ===== */
+.h1t{transform-origin:0 100%;will-change:opacity,transform}
+#tb{position:fixed;left:0;right:0;top:0;z-index:40;height:44px;padding:0 60px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);font:600 15px/1 var(--sans);color:var(--ink);letter-spacing:-.005em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transform:translateY(-100%);transition:opacity .25s,transform .35s cubic-bezier(.2,.9,.25,1);pointer-events:none}
+#tb.on{opacity:1;transform:none;pointer-events:auto}
+html.nt #tb{background:rgba(10,14,24,.96)}
+.bar{top:44px}
+.bar.stuck{border-bottom:0}
+@keyframes rise{from{opacity:0;transform:translateY(26px) scale(.985)}to{opacity:1;transform:none}}
+@supports (animation-timeline:view()){
+ @media (prefers-reduced-motion:no-preference){
+  .cd,.kc,.rk li,.of,.sec h2,.pc{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+ }
+}
+/* 11/19 一覧の形（list.js：初詣・開店閉店・泊まり・いまから行ける・ランキング） */
+.lrs{border-top:1px solid var(--line)}
+.lr{display:flex;align-items:center;gap:14px;padding:14px 2px;border-bottom:1px solid var(--line);content-visibility:auto;contain-intrinsic-size:auto 86px}
+.lim{flex:0 0 64px;height:64px;border-radius:12px;overflow:hidden;background:var(--chip)}
+.lim img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}.lim img.ld{opacity:1}
+.lb2{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.lb2 b{font-size:15.5px;font-weight:600;line-height:1.4;letter-spacing:-.01em}
+.lb2 small{font-size:12.5px;color:var(--mut);line-height:1.5}
+.lb2 .hk1{color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lr .ch{font-style:normal;font-size:22px;color:var(--mut);opacity:.6}
+.lr .lb{margin:0}
+.lnote{font-size:12.5px;line-height:1.8;color:var(--mut);margin:18px 0 0}
+.lt.off{background:transparent;color:var(--mut);border:1px solid var(--line)}
+.lt.pop{background:color-mix(in srgb,var(--gc) 14%,transparent);color:var(--gc)}
+.bar .seg+.seg{margin-top:8px}
+.vn .mn{font-weight:600;color:var(--ink)}
+.also2{margin:44px 0 0;border-top:1px solid var(--line)}
+.also2 small{display:block;font-size:12px;color:var(--mut);margin:18px 0 6px}
+.also2 a{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;font-weight:500}
+.also2 a i{font-style:normal;color:var(--mut)}
+/* いまから行ける */
+.nr{margin:22px 0 0;border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--card)}
+.nrh{display:flex;align-items:baseline;gap:10px}.nrh small{font-size:12px;color:var(--mut)}.nrh b{font-size:20px;font-weight:600;flex:1}
+.nrh button{display:flex;align-items:center;gap:5px;height:34px;padding:0 12px;border-radius:999px;background:var(--on);color:var(--ont);font-size:12.5px;font-weight:600}
+.nrh button svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}.nrh button.wait{opacity:.5}
+.nro{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:12px -16px 0;padding:0 16px}.nro::-webkit-scrollbar{display:none}
+.nro .chip.on{background:var(--on);color:var(--ont);border-color:var(--on)}
+.nrt{display:grid;grid-template-columns:repeat(3,1fr);margin:14px 0 0;border-top:1px solid var(--line);padding-top:12px}
+.nrt div{display:flex;flex-direction:column;gap:2px}.nrt div+div{border-left:1px solid var(--line);padding-left:12px}
+.nrt small{font-size:11.5px;color:var(--mut)}.nrt b{font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.nrb{display:flex;align-items:baseline;gap:10px;margin:16px 0 0;padding:14px 16px;border-radius:14px;background:var(--chip)}.nrb b{font-size:22px;font-weight:600}.nrb span{font-size:12.5px;color:var(--mut)}
+/* 板の中 */
+.pim0{height:8px}
+.bdy{white-space:pre-wrap;font-size:14px;line-height:1.85;margin:16px 0 0;padding:16px;border-radius:14px;background:var(--chip)}
+.lks{margin:22px 0 0}.lks h3{font-size:13px;font-weight:600;color:var(--mut);margin:0 0 4px}
+.lks a{display:flex;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}
+.lks a span{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}.lks a b{font-size:14.5px;font-weight:600;line-height:1.4}.lks a small{font-size:12px;color:var(--mut)}
+.lks a em{font-style:normal;font-size:13.5px;font-weight:600;white-space:nowrap}.lks a i{font-style:normal;color:var(--mut);font-size:20px}
+.acts .fv{gap:6px}.acts .fv svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}.acts .fv.on svg{fill:currentColor}
+.chip svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8}
+/* 11/19 表紙（cover.js）：一番上に府県の地図（枠なし）・いま開催中・見る・季節 */
+.cmap{margin:10px -16px 0}
+.cmap svg{display:block;width:100%;max-width:520px;margin:0 auto;height:auto;aspect-ratio:200/250}
+.cmap .pf{fill:var(--f);stroke:#fff;stroke-width:.7;stroke-linejoin:round;transition:fill .25s}
+.cmap a:active .pf,.cmap a:hover .pf{fill:color-mix(in srgb,var(--c) 34%,#fff)}
+.cmap .nb path{fill:#EEF0F3;stroke:#fff;stroke-width:.4}
+.cmap .cl{pointer-events:none}
+.cmap .pl{font:600 9px var(--serif);letter-spacing:.14em;text-anchor:middle}
+.cmap .pn{font:600 7.5px var(--serif);text-anchor:middle;fill:#1D1D1F;font-variant-numeric:tabular-nums}
+html.nt .cmap .pf{fill:color-mix(in srgb,var(--c) 30%,#121826);stroke:#0E1424}
+html.nt .cmap .nb path{fill:#151C2C;stroke:#0E1424}
+html.nt .cmap .pl{fill:#D9DDE6!important}html.nt .cmap .pn{fill:#F5F5F7}
+.cmh{text-align:center;font-size:12px;color:var(--mut);margin:4px 0 0}
+.sec .sm{font-size:13px;font-weight:500;color:var(--sub)}
+.crow{display:grid;grid-auto-flow:column;grid-auto-columns:44%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -16px;padding:0 16px}
+.crow::-webkit-scrollbar{display:none}.crow .cd{scroll-snap-align:start}
+.cgo{border-top:1px solid var(--line)}
+.cgo a{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.cgo .ci{flex:0 0 40px;height:40px;border-radius:12px;background:var(--chip);display:flex;align-items:center;justify-content:center}
+.cgo .ci svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.6}
+.cgo .ct{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}.cgo .ct b{font-size:16px;font-weight:600}.cgo .ct small{font-size:12.5px;color:var(--mut)}
+.cgo .cn{text-align:right;display:flex;flex-direction:column;gap:2px}.cgo .cn b{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}.cgo .cn small{font-size:11px;color:var(--mut)}
+.cfl{margin:40px 0 0;text-align:center}.cfl small{font-size:12px;color:var(--mut)}
+.cfl div{display:flex;justify-content:center;gap:10px;margin:12px 0 0}
+.cfl a{height:38px;padding:0 16px;display:flex;align-items:center;border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:500}
+@media (min-width:700px){.crow{grid-auto-columns:30%}}
+.cmap{margin:6px 0 0}.cmap svg{width:88%;max-height:64vh}
+.crow .cd{content-visibility:visible}

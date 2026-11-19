@@ -55,6 +55,11 @@ export async function onRequest(ctx) {
   if (url.hostname === "lifenote-kanto.pages.dev" && !request.headers.get("x-tn-host") && (request.method === "GET" || request.method === "HEAD")) {
     return Response.redirect("https://kanto.townnote.app" + url.pathname + url.search, 301);
   }
+  // 11/19 /odekake は新しい土台になった（scripts/shin_kanto.py）。/ima の中の読み込み（x-ima）は前のカードの形を読むので、前の物（site/kyu/odekake.html）を返す
+  if (request.headers.get("x-ima") && url.pathname.replace(/\.html$/, "") === "/odekake") {
+    const u = new URL(request.url); u.pathname = "/kyu/odekake";
+    return env.ASSETS.fetch(new Request(u.toString(), request));
+  }
   // オーナーの分は数えない（10/25 オーナー「ホームページと楽天クリックは俺らじゃないのか？」）。
   // /?me=on を1回開くと、その端末に印（クッキー me=1、1年）が付き、以後その端末の開いた数・押した数は数えない。/?me=off で外す。
   const me = url.searchParams.get("me");
@@ -98,7 +103,11 @@ export async function onRequest(ctx) {
 // 11/19 owner「他ページもぜんぶ」→ 関西（TOWN NOTE）の新しい土台と同じ 頭・大きい題→上の帯・下のバー＋MENU・ゴシック・本物の夜空 を、関東の今までのページにもかぶせる。
 // site/shin/skin.css・skin.js は月の repo（usagi-fudosan-media links/shin）の写し。中身のページは何も変えていない。戻す時は skin() を通さず ctx.next() を返す。
 const SKIN = '<script>document.documentElement.classList.add("sk");try{if(localStorage.getItem("usagi_theme")==="night")document.documentElement.classList.add("nt")}catch(e){}</script><link rel="stylesheet" href="/shin/skin.css"><script src="/shin/skin.js" defer></script>';
+const NOSKIN = /^(|\/odekake|\/odekake-(tokyo|kanagawa|saitama|chiba|ibaraki|tochigi|gunma))$/;
 function skin(request, res) {
   if (request.method !== "GET" || !(res.headers.get("content-type") || "").includes("text/html")) return res;
+  // 11/19 表紙・おでかけ・都県のおでかけは新しい土台そのもの（scripts/shin_kanto.py）なので、かぶせない
+  const p = new URL(request.url).pathname.replace(/\.html$/, "").replace(/\/$/, "");
+  if (NOSKIN.test(p)) return res;
   return new HTMLRewriter().on("head", { element(e) { e.append(SKIN, { html: true }); } }).transform(res);
 }
