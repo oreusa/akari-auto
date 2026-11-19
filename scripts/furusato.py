@@ -231,7 +231,7 @@ def main():
         if add:
             open(sm, "w", encoding="utf-8").write(x.replace("</urlset>", add + "</urlset>", 1))
     slim = [{k: c[k] for k in ("key", "title", "unit", "seen", "read", "ok", "avg")} | {"page": c["key"] in made} |
-            {"top": [{k: r[k] for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain")} for r in c["top"]]}
+            {"top": [{k: r.get(k, "") for k in ("name", "price", "per", "amt", "rc", "av", "shop", "plain", "url", "img")} for r in c["top"]]}
             for c in cats]
     lib.save_json(os.path.join(ROOT, "data", "furusato.json"), {"at": now.strftime("%Y-%m-%d %H:%M"), "cats": slim})
 

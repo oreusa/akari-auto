@@ -373,6 +373,7 @@ def main():
         print("shin_kanto: おかいものは前のまま", repr(e))
 
     docs()
+    furu()
     # ---------- 表紙 ----------
     now = [x for x in IT if x["s"] <= TD <= x["e"]]
     pc = {p: sum(1 for x in now if x["p"] == p) for p in PREF}
@@ -399,10 +400,72 @@ def main():
     c["nav"] = [{"t": "おでかけ", "ic": "now", "href": "/odekake"}, {"t": "家と土地", "ic": "find", "href": "/fudosan-list"}, {"t": "おかいもの", "ic": "yen", "href": "/okaimono"}, {"t": "地図", "ic": "map", "a": "map"}]
     c["menu"] = {"k": "Life Note", "items": [["トップ", "/", 1], ["関東のおでかけ", "/odekake"], ["家と土地の相場", "/fudosan-list"], ["日用品の値段くらべ", "/okaimono"], ["開店・閉店", "/kaiten"], ["紅葉・イルミ", "/koyo"]]}
     c["foot"] = "おでかけの券・宿と、おかいもののリンクには広告（PR）があります。"
+    # 11/19 23:16 owner「表紙ほぼおでかけ」「Appleっぽくもない」→ 関西と同じ apple.com の形（cover2.js）。地図は表紙に置かない
+    RK = {"koyo": 0, "flower": 1, "spot": 2, "animal": 3, "play": 4}
+    def pick_ph(f, n):
+        r, u = [], set()
+        for x in sorted(now, key=lambda x: (RK.get(x.get("k"), 9), x["e"])):
+            if x.get("im") and f(x) and x["im"] not in u: r.append({k: x[k] for k in ("t", "p", "e", "im", "th", "o") if k in x}); u.add(x["im"])
+            if len(r) >= n: break
+        return r
+    tw = []
+    try:
+        ck = open(os.path.join(S, "chika-kanto.html"), encoding="utf-8").read()
+        for m in re.finditer(r'<a href="/machi/([\w-]+)"[^>]*><span class="no">\d+</span><span class="nm">([^<]+)<small>[^<]*</small></span>.*?<span class="v"[^>]*>\+?(-?[\d.]+)%', ck):
+            tw.append({"n": m.group(2), "r": float(m.group(3)), "id": m.group(1)})
+            if len(tw) >= 3: break
+    except Exception:
+        pass
+    ks = []
+    try:
+        od_ = json.load(open(os.path.join(S, "okai-shin.json"), encoding="utf-8")); from okai_home import ICON
+        KS = {c_["k"]: c_ for c_ in od_["cats"]}
+        ks = [{"k": k, "nm": KS[k]["nm"], "unit": KS[k]["unit"], "u": KS[k]["o"][0]["u"], "ic": ICON.get(k, "")} for k in ("rice", "water", "tissue") if k in KS and KS[k].get("o")]
+        nkau = len(od_["cats"])
+    except Exception:
+        nkau = 0
+    ktl = locals().get("kt") or []
+    ka = next(({k: x[k] for k in ("t", "a", "d", "im", "big", "sp", "p") if k in x} for x in reversed(ktl) if x["w"] == "soon" and x.get("im")), None)
+    hero = pick_ph(lambda x: True, 5)
+    ko = (pick_ph(lambda x: x.get("k") == "koyo" and x.get("im") not in {q["im"] for q in hero}, 1) or pick_ph(lambda x: x.get("k") == "koyo", 1) or [None])[0]
+    c["nav"] = [{"t": "おでかけ", "ic": "now", "href": "/odekake"}, {"t": "家と土地", "ic": "find", "href": "/fudosan-list"}, {"t": "おかいもの", "ic": "yen", "href": "/okaimono"}, {"t": "開店閉店", "ic": "buy", "href": "/kaiten"}]
+    c["menu"] = {"k": "Life Note", "items": [["トップ", "/", 1], ["関東のおでかけ", "/odekake"], ["家と土地の相場", "/fudosan-list"], ["日用品の値段くらべ", "/okaimono"], ["開店・閉店", "/kaiten"], ["ふるさと納税", "/furusato"]]}
     write("index.html", "/", "LIFE NOTE（ライフノート）｜関東のおでかけと、家と土地の値段", c,
-          {"h1": "関東のおでかけと、家と土地", "sub": "東京・神奈川・埼玉・千葉・茨城・栃木・群馬を、公式の発表と数字で", "pc": pc, "top": top, "go": [g for g in go], "more": more, "map": MAP,
+          {"od": {"n": len(now), "ph": hero}, "ie": {"n": towns, "tw": tw}, "kau": {"n": nkau, "ks": ks},
+           "kai": {"n": sum(1 for x in ktl if x["w"] == "soon"), "x": ka}, "ko": ko,
+           "ft": [["おでかけ", [["関東のおでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"]]],
+                  ["家と土地", [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["空き家の割合ランキング", "/akiya-ranking"], ["予算で街さがし", "/sagasu"], ["いくらで売れる？", "/ikura"], ["家を売る前に", "/uru"]]],
+                  ["おかいもの", [["日用品の値段くらべ", "/okaimono"], ["開店・閉店ニュース", "/kaiten"], ["ふるさと納税", "/furusato"], ["値下がりした物", "/nesage"]]]],
            "sns": [["インスタ", "https://www.instagram.com/usagichan_ai_si/"], ["Threads", "https://www.threads.com/@usagichan_ai_si"], ["X", "https://x.com/ai_usagichan"]]},
-          "cover", "関東のくらしで見つけたことを、ノートにまとめています。開催中のおでかけ・イベント、街の家と土地の値段、日用品の値段くらべ、開店・閉店を、公式の発表と数字で。")
+          "cover2", "関東のくらしで見つけたことを、ノートにまとめています。開催中のおでかけ・イベント、街の家と土地の値段、日用品の値段くらべ、開店・閉店を、公式の発表と数字で。")
+
+
+def furu():
+    """ふるさと納税・値下がりした物（関西と同じ furu.js）。11/19 owner「ふるさと押したら前のページ飛ぶ」"""
+    NAVR = lambda first: first + [{"t": "おかいもの", "ic": "yen", "href": "/okaimono"}]
+    MENU = lambda cur: {"k": "Shopping", "items": [[a, u] + ([1] if u == cur else []) for a, u in [["日用品の値段くらべ", "/okaimono"], ["ふるさと納税", "/furusato"], ["値下がりした物", "/nesage"], ["開店・閉店", "/kaiten"]]]}
+    FOOT = "値段は楽天市場で調べた時のものです（お店で変わることがあります）。このページの商品へのリンクは広告（PR）です。"
+    try:
+        f = json.load(open(os.path.join(R, "data", "furusato.json"), encoding="utf-8"))
+        cats = [c_ for c_ in f["cats"] if c_.get("top")]
+        if cats:
+            IC = {"rice": "gift", "tp": "find", "water": "star"}
+            write("furusato.html", "/furusato", "ふるさと納税 寄付1万円でもらえる量くらべ（お米・トイレットペーパー・水）｜LIFE NOTE",
+                  {"nav": NAVR([{"t": c_["title"] if len(c_["title"]) <= 5 else "トイレ", "ic": IC.get(c_["key"], "gift"), "a": c_["key"]} for c_ in cats][:3]), "menu": MENU("/furusato"), "foot": FOOT},
+                  {"kind": "furu", "h1": "ふるさと納税 1万円でもらえる量", "sub": "楽天ふるさと納税の返礼品を、寄付1万円あたりの量でくらべました。", "at": f["at"], "cats": cats}, "furu",
+                  "ふるさと納税の返礼品（お米・トイレットペーパー・水）を、寄付1万円でもらえる量でくらべました。楽天ふるさと納税を毎日しらべ直しています。")
+    except Exception as e:
+        print("shin_kanto: ふるさと納税は前のまま", repr(e))
+    try:
+        n = json.load(open(os.path.join(R, "data", "nesage.json"), encoding="utf-8"))
+        if n.get("downs"):
+            write("nesage.html", "/nesage", "値下がりした日用品｜ふだんより安い物（楽天市場を毎日しらべ）｜LIFE NOTE",
+                  {"nav": NAVR([{"t": "値下がり", "ic": "down", "a": "down"}, {"t": "値上がり", "ic": "rank", "a": "up"}, {"t": "ふるさと", "ic": "gift", "href": "/furusato"}]), "menu": MENU("/nesage"), "foot": FOOT},
+                  {"kind": "nesage", "h1": "値下がりした物", "sub": f"楽天市場の日用品{n.get('tracked', '')}品の値段を毎日しらべ、ふだんより安くなっている物を並べています。",
+                   "at": n["at"], "since": n.get("since"), "tracked": n.get("tracked"), "downs": n["downs"], "ups": n.get("ups", [])}, "furu",
+                  f"楽天市場の日用品{n.get('tracked', '')}品の値段を毎日しらべ、ふだんより安くなっている物を並べています。")
+    except Exception as e:
+        print("shin_kanto: 値下がりは前のまま", repr(e))
 
 
 if __name__ == "__main__":

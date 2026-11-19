@@ -230,10 +230,10 @@ def main():
     site = os.path.join(ROOT, "site")
     os.makedirs(site, exist_ok=True)
     open(os.path.join(site, f"{PAGE}.html"), "w", encoding="utf-8").write(render(downs, ups, len(codes), n_days, hist["since"], now))
-    slim = lambda r: {k: r[k] for k in ("title", "name", "price", "base", "pct", "days", "rc", "av", "shop", "plain")}
+    slim = lambda r: {k: r.get(k, "") for k in ("title", "name", "price", "base", "pct", "days", "rc", "av", "shop", "plain", "url", "img")}
     lib.save_json(os.path.join(ROOT, "data", "nesage.json"),
                   {"at": now.strftime("%Y-%m-%d %H:%M"), "since": hist["since"], "tracked": len(codes), "days": n_days,
-                   "downs": [slim(r) for r in downs[:10]], "ups": [slim(r) for r in ups[:5]]})
+                   "downs": [slim(r) for r in downs[:30]], "ups": [slim(r) for r in ups[:8]]})
     print(json.dumps({"nesage": {"rows": len(rows), "tracked": len(codes), "days": n_days, "downs": len(downs), "ups": len(ups)},
                       "errs": errs}, ensure_ascii=False))
 

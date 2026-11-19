@@ -131,7 +131,9 @@ addEventListener("load",function(){drawn=0;if(H.classList.contains("nt"))stars()
 
 window.SHIN={reg:REG,$:$,$$:$$,el:el,esc:esc,TD:TD,seed:seed,diff:diff,md:md,dd:dd,IC:IC,RM:RM,countUp:countUp,counts:counts,bars:bars,sheet:sheet,closeSheet:closeSheet,seg:seg,
   onNav:function(f){navFn=f},navCur:navCur,main:$("#main"),data:JSON.parse((document.getElementById("d")||{textContent:"{}"}).textContent),
-  ready:function(){apply(H.classList.contains("nt"));largeTitle()}};
+  ready:function(){apply(H.classList.contains("nt"));largeTitle();
+  /* 11/19 表紙のボタン（/odekake#we・/kaiten#w=close）：# の後ろを下のバーのボタンと同じ動きにする */
+  var hs=decodeURIComponent(location.hash.slice(1));if(hs&&navFn&&$('#nav [data-a="'+hs+'"]'))setTimeout(function(){navFn(hs);navCur(hs)},60)}};
 /* 11/19 iPhone の設定アプリの形：大きい題は下へ流すと薄れて、上の細い帯に小さく収まる。帯を押すと一番上へ */
 function largeTitle(){var h=$(".h1t");if(!h)return;var tb=document.createElement("button");tb.id="tb";tb.setAttribute("aria-label","一番上へ");tb.textContent=h.textContent;document.body.appendChild(tb);
   tb.onclick=function(){scrollTo({top:0,behavior:RM?"auto":"smooth"})};var q=0,on=false;
