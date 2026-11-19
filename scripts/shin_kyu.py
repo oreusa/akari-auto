@@ -48,6 +48,8 @@ def fam(rel, fn):
         return "kaitai"
     if b.endswith("-ranking") or b.startswith("chika"):
         return "rank"
+    if b.startswith(("okaimono-", "otoku", "tanka", "kaimawari", "furusato-")):
+        return "kau"
     if b.startswith("gyosha"):
         return "gyosha"
     return b
@@ -80,8 +82,8 @@ def main(root=SITE):
             dirs[:] = []
             continue
         for fn in files:
-            if not fn.endswith(".html") or fn.startswith(("okaimono-", "otoku", "tanka", "kaimawari", "furusato-", "index")):
-                continue  # おかいものの前の画面（品物ごと・お得）はまだ前の見た目のまま（新しい /okaimono に同じ物がある）
+            if not fn.endswith(".html") or fn.startswith("index"):
+                continue
             p = os.path.join(d, fn)
             h = open(p, encoding="utf-8", errors="ignore").read()
             if "/shin/shin.css" in h or "</head>" not in h or ("kyu.css?v=" + KYUV + '"') in h:

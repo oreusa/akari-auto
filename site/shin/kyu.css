@@ -376,3 +376,73 @@ html[data-k] .g1,html[data-k] .gq{display:block}
 html[data-k] .gq a,html[data-k] .g1 a{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line);text-decoration:none;font-size:15px;font-weight:500}
 html[data-k] .s3 h2{margin-top:40px}
 html[data-k] .gq i{font-style:normal;color:var(--mut);margin-right:12px;font-variant-numeric:tabular-nums}html[data-k] .gq a::after{content:"→";color:var(--sub)}
+/* 11/20 kau：関東のおかいものの前の画面（品物ごとの最安・お得まとめ・ふるさと納税の品物ごと） */
+html[data-k=kau] header.v4top{display:none}
+html[data-k=kau] main.v4{display:block;max-width:680px;margin:0 auto;padding:22px 20px 130px}
+html[data-k=kau] .pr{margin:0;font-size:12px;color:var(--mut)}
+html[data-k=kau] .ohb{display:inline-block;margin:14px 0 0;font-size:14px;color:var(--sub);text-decoration:none}
+html[data-k=kau] main.v4 h1{margin-top:14px}
+html[data-k=kau] h1 small{display:block;margin-top:8px;font:400 15px/1.5 var(--kf);color:var(--sub)}
+html[data-k=kau] .lead{margin-top:10px;font-size:15px;line-height:1.7;color:var(--sub)}
+html[data-k=kau] .lead .n{color:var(--ink);font-weight:600}
+html[data-k=kau] ol.rkl{list-style:none;margin:24px 0 0;padding:0;border-top:1px solid var(--line)}
+html[data-k=kau] ol.rkl li{border-bottom:1px solid var(--line)}
+html[data-k=kau] ol.rkl a{display:flex;align-items:center;gap:12px;padding:14px 0;text-decoration:none;color:var(--ink)}
+html[data-k=kau] ol.rkl .no{flex:none;width:20px;font:600 15px/1 var(--kf);color:var(--mut);text-align:center}
+html[data-k=kau] ol.rkl li:first-child .no{color:var(--ink)}
+html[data-k=kau] ol.rkl img{width:60px;height:60px;object-fit:cover;border-radius:12px!important;background:var(--chip)}
+html[data-k=kau] ol.rkl .tx{flex:1;min-width:0}
+html[data-k=kau] ol.rkl .nm{margin:0;font-size:14px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+html[data-k=kau] ol.rkl .pz{margin:4px 0 0;font-size:13px;color:var(--sub)}
+html[data-k=kau] ol.rkl .pz b{font:600 18px/1.2 var(--kf);color:var(--ink)}
+html[data-k=kau] ol.rkl .pz span{margin-left:6px}
+html[data-k=kau] ol.rkl .sh{margin:2px 0 0;font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[data-k=kau] ol.rkl .go{flex:none;padding:7px 13px;border-radius:999px;background:var(--ink);color:var(--bg);font:500 13px/1 var(--kf)}
+html[data-k=kau] main.v4>p[style]{margin:12px 0 0!important}
+html[data-k=kau] a.btn,html[data-k=kau] main.v4 a[style*="border:1px solid"]{display:flex!important;align-items:center;justify-content:center;min-height:48px;padding:0 20px!important;border-radius:999px!important;font:500 15px/1.3 var(--kf)!important;text-decoration:none;text-align:center}
+html[data-k=kau] a.btn{margin-top:24px;background:var(--ink);color:var(--bg);border:0}
+html[data-k=kau] main.v4 a[style*="border:1px solid"]{border:1px solid var(--ink)!important;color:var(--ink)}
+html[data-k=kau] .kij,html[data-k=kau] .read{margin:8px 0 0!important;font-size:12.5px;line-height:1.7;color:var(--mut)}
+html[data-k=kau] dl.ev{margin:36px 0 0;padding:16px 18px;border-radius:16px;background:var(--chip);font-size:13px;line-height:1.75}
+html[data-k=kau] dl.ev dt{font-weight:600;margin-top:8px}html[data-k=kau] dl.ev dt:first-child{margin-top:0}
+html[data-k=kau] dl.ev dd{margin:2px 0 0;color:var(--sub)}
+html[data-k=kau] h3 small{display:block;margin-top:2px;font:400 13px/1.5 var(--kf);color:var(--sub)}
+html[data-k=kau] .chs{display:flex;flex-wrap:wrap;gap:8px}
+html[data-k=kau] .chs .ch{padding:8px 14px;border-radius:999px;background:var(--chip);font-size:14px;line-height:1.2;color:var(--ink)}
+html[data-k=kau] main.v4>.pr:last-child{margin-top:28px!important}
+html[data-k=kau] form.srch{display:flex;gap:8px;margin-top:6px}
+html[data-k=kau] form.srch input{flex:1;min-width:0;height:48px;padding:0 16px;border:0;border-radius:12px;background:var(--chip);color:var(--ink);font:400 16px var(--kf)}
+html[data-k=kau] form.srch button{flex:none;height:48px;padding:0 20px;border:0;border-radius:12px;background:var(--ink);color:var(--bg);font:500 15px var(--kf)}
+html[data-k=kau] a.ok-c{display:grid;grid-template-columns:1fr auto;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+html[data-k=kau] a.ok-c b{font:600 16px/1.4 var(--kf)}
+html[data-k=kau] a.ok-c small{grid-column:1;font-size:13px;color:var(--sub)}
+html[data-k=kau] a.ok-c span{grid-row:1/3;grid-column:2;font-size:22px;color:var(--mut)}
+html[data-k=kau] .ok-cal{list-style:none;padding:0;margin:0}
+html[data-k=kau] .ok-cal li{padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+html[data-k=kau] .big{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+html[data-k=kau] .big>div{padding:14px 16px;border-radius:16px;background:var(--chip)}
+html[data-k=kau] .big b{display:block;font:600 24px/1.2 var(--kf)}
+html[data-k=kau] .big span{font-size:12.5px;color:var(--sub)}
+html[data-k=kau] .up{margin-top:10px;font-size:12.5px;color:var(--mut)}
+html[data-k=kau] .ps ul{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--line)}
+html[data-k=kau] .ps li.it{border-bottom:1px solid var(--line)}
+html[data-k=kau] .ps a.cd{display:flex;align-items:flex-start;gap:12px;padding:14px 0;text-decoration:none;color:var(--ink)}
+html[data-k=kau] .ps .rk{flex:none;width:20px;padding-top:4px;font:600 15px/1 var(--kf);color:var(--mut);text-align:center}
+html[data-k=kau] .ps a.cd img{flex:none;width:64px;height:64px;object-fit:cover;border-radius:12px;background:var(--chip)}
+html[data-k=kau] .ps .tx{display:flex;flex-direction:column;gap:3px;min-width:0}
+html[data-k=kau] .ps .nm{font-size:14px;line-height:1.45}
+html[data-k=kau] .ps .pu{font-size:13px;color:var(--sub)}html[data-k=kau] .ps .pu b{font:600 18px/1.2 var(--kf);color:var(--ink)}
+html[data-k=kau] .ps .df,html[data-k=kau] .ps .mt{font-size:12px;color:var(--mut)}
+html[data-k=kau] .ps .go{font-size:13px;font-weight:500}
+html[data-k=kau] .how{font-size:14px;color:var(--sub)}
+html[data-k=kau] footer.foot{margin-top:28px;font-size:12.5px;line-height:1.75;color:var(--mut)}
+html[data-k=kau] footer.foot .sign{display:none}
+html[data-k=kau] .fx:not(.mfx),html[data-k=kau] .sns.fsn{display:none}
+html[data-k=kau] .ps{margin:28px 0 0;padding:0;border:0;border-radius:0;background:none!important}
+html[data-k=kau] .ps h2{margin-top:0}
+html[data-k=kau] form.srch input{width:auto}
+html[data-k=kau] .ps li.it,html[data-k=kau] .ps a.cd{background:none!important;box-shadow:none!important;border-radius:0!important;margin:0!important}
+html[data-k=kau] form.srch input{flex:1 1 auto!important;width:100%!important;max-width:none!important}
+html[data-k=kau] form.srch button{width:auto!important;min-width:0!important;margin:0!important}
+html[data-k=kau] .ps h2{border:0!important;padding:0!important;background:none!important}
+html[data-k=kau] .head::before,html[data-k=kau] .head::after,html[data-k=kau] .wrap::before,html[data-k=kau] .wrap::after,html[data-k=kau] body::before{display:none!important}
