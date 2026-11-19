@@ -2895,6 +2895,66 @@
       "note": "宇都宮市｜竹林のライトアップ（土日祝）。大人1,500円、日没〜20:00",
       "url": "https://www.utsunomiya-cvb.org/event/detail_30131.html",
       "checked": "2026-11-18"
+    },
+    {
+      "title": "柏の葉街まるごとフェスティバル",
+      "pref": "千葉",
+      "place": "柏の葉キャンパス駅",
+      "when": "11/22",
+      "start": "2026-11-22",
+      "ends": "2026-11-22T18:00",
+      "free": true,
+      "note": "柏市｜駅周辺と柏の葉公園で街じゅうの催し。11:00〜18:00（一部16:00・19:00まで）",
+      "url": "https://www.city.kashiwa.lg.jp/hokubuseibi/kurashi/chiiki/event/kashiwanoha_marugoto_festival.html",
+      "checked": "2026-11-19"
+    },
+    {
+      "title": "第23回 黒潮よさこい祭り",
+      "pref": "千葉",
+      "place": "銚子市役所",
+      "when": "11/21〜22",
+      "start": "2026-11-21",
+      "ends": "2026-11-22T18:30",
+      "free": true,
+      "note": "銚子市｜11/21前夜祭（飯沼観音）、11/22本祭は9:30開会。観覧無料",
+      "url": "http://www.kuroyosa.com/",
+      "checked": "2026-11-19"
+    },
+    {
+      "title": "狭山スキー場 2026-27シーズン",
+      "pref": "埼玉",
+      "place": "狭山スキー場",
+      "when": "10/30〜3/28",
+      "start": "2026-10-30",
+      "ends": "2027-03-28T17:00",
+      "free": false,
+      "note": "所沢市｜都心から近い屋内スキー場。10:00〜21:00",
+      "url": "https://sayamaski.jp/",
+      "checked": "2026-11-19"
+    },
+    {
+      "title": "あけぼの山公園 日本庭園の紅葉",
+      "pref": "千葉",
+      "place": "あけぼの山農業公園",
+      "when": "11月中旬〜12月上旬",
+      "start": "2026-11-15",
+      "ends": "2026-12-06T17:00",
+      "free": true,
+      "note": "柏市｜日本庭園とさくら山が色づく。入園・駐車場無料、9:00〜17:00、月曜休み",
+      "url": "https://akebonoyama-nougyoukouen.jp/views/highlight/",
+      "checked": "2026-11-19"
+    },
+    {
+      "title": "活きな世界のグルメ横丁",
+      "pref": "群馬",
+      "place": "西小泉駅",
+      "when": "11/22",
+      "start": "2026-11-22",
+      "ends": "2026-11-22T16:00",
+      "free": true,
+      "note": "大泉町｜ブラジルなど世界の屋台が並ぶ、今年最後の回。11:00〜16:00",
+      "url": "https://www.oizumimachi-kankoukyoukai.jp/event/416",
+      "checked": "2026-11-19"
     }
   ]
 }
