@@ -92,5 +92,12 @@
   "cr": "",
   "head": "<em>くらべた</em><br>マスク<br>1枚あたりの最安は15.5円",
   "fallback": 1
+ },
+ "2026-11-20 15:15": {
+  "url": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-auto-1120-1515.jpg?v=5ab7b08",
+  "photo": "",
+  "cr": "",
+  "head": "<em>狭山の智光山公園</em><br>カピバラの温泉が先に始まります",
+  "fallback": 1
  }
 }
