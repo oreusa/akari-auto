@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-19 09:00",
+  "at": "2026-11-19 09:15",
   "since": "2026-11-01",
   "tracked": 264,
   "days": 18,
@@ -99,6 +99,18 @@
       "av": 4.48,
       "shop": "山川食糧オートミール研究所",
       "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
+    },
+    {
+      "title": "加湿器",
+      "name": "加湿器 スチーム式 スチーム式加湿器 上部給水 タンク容量 2.4L 木造約8.5畳・プレハ…",
+      "price": 8982,
+      "base": 9480.0,
+      "pct": 5,
+      "days": 14,
+      "rc": 353,
+      "av": 4.06,
+      "shop": "くらしのeショップ",
+      "plain": "https://item.rakuten.co.jp/e-kurashi/10036774/"
     }
   ],
   "ups": [
