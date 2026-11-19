@@ -448,3 +448,66 @@ html[data-k=kau] .ps h2{border:0!important;padding:0!important;background:none!i
 html[data-k=kau] .head::before,html[data-k=kau] .head::after,html[data-k=kau] .wrap::before,html[data-k=kau] .wrap::after,html[data-k=kau] body::before{display:none!important}
 /* 11/20 解体のページで表とチップの列が画面の外へ4pxはみ出していた（外枠の余白が20pxでないページがある） */
 html[data-k] .kt-w,html[data-k] .kt-f{margin-left:0;margin-right:0;padding-left:0;padding-right:0}
+/* 11/20 夜：skin.css・tech.css・iro.css の昼の色（前のページを色反転で夜にする前提）を、kyu のページでは夜の色に置き換える（scratch ntgen.py で作った） */
+html.sk.nt[data-k] body{color:var(--ink)!important}
+html.sk.nt[data-k] .head h1,html.sk.nt[data-k] .s3h h1{color:var(--ink)!important}
+html.sk.nt[data-k] .head h1 span{color:var(--sub)!important}
+html.sk.nt[data-k] .head .sub{color:var(--sub)!important}
+html.sk.nt[data-k] .head .upd{color:var(--sub)!important}
+html.sk.nt[data-k] body{background:transparent!important}
+html.sk.nt[data-k] .fhd .pur{color:var(--sub)!important}
+html.sk.nt[data-k] .pane>h2,html.sk.nt[data-k] .faq>h2,html.sk.nt[data-k] .ps>h2,html.sk.nt[data-k] .wrap>h2,html.sk.nt[data-k] .kt-c .kt-o{color:var(--ink)!important}
+html.sk.nt[data-k] .wrap>a.fc{border-left-color:var(--line)!important}
+html.sk.nt[data-k] .sp-btn a.p,html.sk.nt[data-k] .kfol a,html.sk.nt[data-k] .s3 a.b1,html.sk.nt[data-k] .chips button[aria-pressed=true],html.sk.nt[data-k] .wrap>a.back,html.sk.nt[data-k] form.mf button,html.sk.nt[data-k] .ch label.on,html.sk.nt[data-k] .kt-tab button.on,html.sk.nt[data-k] .kt-q button.on,html.sk.nt[data-k] .kt-f button.on,html.sk.nt[data-k] a.kt-b,html.sk.nt[data-k] .bt a.k,html.sk.nt[data-k] a.itg2.itq,html.sk.nt[data-k] .wrap>button.rq,html.sk.nt[data-k] a.jb.b1,html.sk.nt[data-k] .act a.o,html.sk.nt[data-k] .kd button.on,html.sk.nt[data-k] .bc button.on,html.sk.nt[data-k] .pf button.on,html.sk.nt[data-k] .tks button.tknx,html.sk.nt[data-k] form.kf button.go{background:var(--ink)!important;border-color:var(--ink)!important;color:var(--bg)!important}
+html.sk.nt[data-k] p>a:not([class]),html.sk.nt[data-k] td>a:not([class]),html.sk.nt[data-k] .kt-hj a,html.sk.nt[data-k] p.note a{color:var(--ink)!important;text-decoration-color:var(--line)!important}
+html.sk.nt[data-k] .og a.ot{color:var(--ink)!important}
+html.sk.nt[data-k] section.pane,html.sk.nt[data-k] section.ps{background:transparent!important;border-top:1px solid var(--line)!important}
+html.sk.nt[data-k] .kt-tr span{color:var(--sub)!important;border-color:var(--line)!important;background:transparent!important}
+html.sk.nt[data-k] h1.tk-h1{-webkit-text-fill-color:var(--ink)!important;color:var(--ink)!important}
+html.sk.nt[data-k] nav.pn a,html.sk.nt[data-k] nav.sw a,html.sk.nt[data-k] span.tn8,html.sk.nt[data-k] .og>button,html.sk.nt[data-k] .tm button.on,html.sk.nt[data-k] .rd .tip,html.sk.nt[data-k] .row>button,html.sk.nt[data-k] .b1>a,html.sk.nt[data-k] .card .go,html.sk.nt[data-k] .cd span.ar,html.sk.nt[data-k] .tnbtn i.ar,html.sk.nt[data-k] span.cdn.hot,html.sk.nt[data-k] .bd span.st.now{background:var(--ink)!important;border-color:var(--ink)!important;color:var(--bg)!important}
+html.sk.nt[data-k] .wr i,html.sk.nt[data-k] .wr em{color:var(--sub)!important;border-color:var(--line)!important}
+html.sk.nt[data-k] .cmb .ib,html.sk.nt[data-k] small.ddw,html.sk.nt[data-k] span.cdn:not(.hot),html.sk.nt[data-k] .tabs button,html.sk.nt[data-k] .flt button{color:var(--ink)!important}
+html.sk.nt[data-k] .bd span.st.soon{color:var(--ink)!important;background:transparent!important}
+html.sk.nt[data-k] a.back{border:1px solid var(--line)!important;color:var(--ink)!important}
+html.sk.nt[data-k] #tnow::before{background:var(--line)!important}
+html.sk.nt[data-k] .lens.tkp::before{background:var(--bg)!important}
+html.sk.nt[data-k] .mf .tkst-n{color:var(--ink)!important}
+html.sk.nt[data-k] .mf .tkst-n i{color:var(--sub)!important}
+html.sk.nt[data-k] .mf .tkst-b{background:transparent!important}
+html.sk.nt[data-k] .mf .ch label:has(input:checked){background:var(--ink)!important;border-color:var(--ink)!important;color:var(--bg)!important}
+html.sk.nt[data-k] .mf input:is([type=text],html.sk.nt[data-k] [type=email],html.sk.nt[data-k] [type=tel]):focus,html.sk.nt[data-k] .mf textarea:focus{border-color:var(--ink)!important}
+html.sk.nt[data-k] .mf button.tkbk{color:var(--sub)!important}
+html.sk.nt[data-k] .jli a small{color:var(--ink)!important}
+html.sk.nt[data-k] .jli a::after{color:var(--sub)!important}
+html.sk.nt[data-k] .wrap>p.pr.tkfd{color:var(--sub)!important}
+html.sk.nt[data-k] .wrap>p.pr.tkfd::after{color:var(--ink)!important;background:var(--bg)!important}
+html.sk.nt[data-k] .mf .tkh{color:var(--sub)!important}
+html.sk.nt[data-k] .fhd .tql{background:transparent!important;color:var(--ink)!important}
+html.sk.nt[data-k] .fhd .tqs{background:transparent!important}
+html.sk.nt[data-k] .fhd .tqs input{background:transparent!important}
+html.sk.nt[data-k] body .fhd .en{color:var(--sub)!important}
+html.sk.nt[data-k] body .fhd h1{color:var(--ink)!important}
+html.sk.nt[data-k] body .fhd .pur{color:var(--ink)!important}
+html.sk.nt[data-k] body .flt button{border:1px solid var(--line)!important;background:transparent!important}
+html.sk.nt[data-k] body .flt button.on{border:1.5px solid var(--ink)!important;color:var(--ink)!important}
+html.sk.nt[data-k] body .wrap>.flt{background:var(--bg)!important;border-bottom:1px solid var(--line)!important}
+html.sk.nt[data-k] .paper,html.sk.nt[data-k] .ps,html.sk.nt[data-k] .tl:not(#upan .tl),html.sk.nt[data-k] section.pane,html.sk.nt[data-k] .kcon{background:transparent!important}
+html.sk.nt[data-k] .wrap>.big,html.sk.nt[data-k] .wrap>.mp,html.sk.nt[data-k] .wrap>.sold,html.sk.nt[data-k] .wrap>section.itt,html.sk.nt[data-k] .wrap>ul.nb,html.sk.nt[data-k] .wrap>section.faq,html.sk.nt[data-k] .wrap>.sum{border-top:1px solid var(--line)!important}
+html.sk.nt[data-k] li.r{border-bottom:1px solid var(--line)!important}
+html.sk.nt[data-k] details.kpr{border-top:1px solid var(--line)!important}
+html.sk.nt[data-k] section.lists{background:transparent!important}
+html.sk.nt[data-k] .fx .fl{color:var(--sub)!important;border-top:1px solid var(--line)!important}
+html.sk.nt[data-k] .fx .fl span{color:var(--sub)!important}
+html.sk.nt[data-k] .fx .oh{color:var(--sub)!important;border-top:1px solid var(--line)!important}
+html.sk.nt[data-k] .fx .ot{border:1px solid var(--line)!important;background:transparent!important}
+html.sk.nt[data-k] .fx .ot small{color:var(--sub)!important}
+html.sk.nt[data-k] .fx .ot b{color:var(--ink)!important}
+html.sk.nt[data-k] .fx .ot i{color:var(--sub)!important}
+html.sk.nt[data-k] .fx+.sns{border-top:1px solid var(--line)!important}
+html.sk.nt[data-k] #upan .mfx .ot{background:transparent!important}
+html.sk.nt[data-k] .fsn h2{color:var(--sub)!important}
+html.sk.nt[data-k] .fsn a{color:var(--ink)!important;border:1px solid var(--ink)!important}
+html.sk.nt[data-k] .fsn a span{color:var(--sub)!important}
+/* 11/20 夜：skin.css の色反転（前のページを夜にする仕組み）を kyu のページでは使わない。kyu は自分で夜の色を持つ */
+html.sk.night[data-k] body>*:not(.skc){filter:none!important}
+html.sk[data-k] body{color:var(--ink)}
