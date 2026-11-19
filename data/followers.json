@@ -74,11 +74,14 @@
     },
     "2026-11-19": {
       "note": "Bufferからは取れない（欄なし）"
+    },
+    "2026-11-20": {
+      "note": "Bufferからは取れない（欄なし）"
     }
   },
   "fields": [],
   "schema": {
-    "types": 400,
+    "types": 402,
     "roots": [
       "account",
       "dailyPostingLimits",
