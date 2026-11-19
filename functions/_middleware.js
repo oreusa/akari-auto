@@ -103,7 +103,7 @@ export async function onRequest(ctx) {
 // 11/19 owner「他ページもぜんぶ」→ 関西（TOWN NOTE）の新しい土台と同じ 頭・大きい題→上の帯・下のバー＋MENU・ゴシック・本物の夜空 を、関東の今までのページにもかぶせる。
 // site/shin/skin.css・skin.js は月の repo（usagi-fudosan-media links/shin）の写し。中身のページは何も変えていない。戻す時は skin() を通さず ctx.next() を返す。
 const SKIN = '<script>document.documentElement.classList.add("sk");try{if(localStorage.getItem("usagi_theme")==="night")document.documentElement.classList.add("nt")}catch(e){}</script><link rel="stylesheet" href="/shin/skin.css"><script src="/shin/skin.js" defer></script>';
-const NOSKIN = /^(|\/odekake|\/koyo|\/ima|\/kaiten|\/okaimono|\/(odekake|illumination)-(tokyo|kanagawa|saitama|chiba|ibaraki|tochigi|gunma)|\/illumination(-muryo)?)$/;
+const NOSKIN = /^(|\/odekake|\/koyo|\/ima|\/kaiten|\/okaimono|\/uru|\/ikura|\/(odekake|illumination)-(tokyo|kanagawa|saitama|chiba|ibaraki|tochigi|gunma)|\/illumination(-muryo)?)$/;
 function skin(request, res) {
   if (request.method !== "GET" || !(res.headers.get("content-type") || "").includes("text/html")) return res;
   // 11/19 表紙・おでかけ・都県のおでかけは新しい土台そのもの（scripts/shin_kanto.py）なので、かぶせない

@@ -45,9 +45,10 @@ app.innerHTML='<div class="wrap"><header class="top"><a class="brand" href="/" a
 /* 数え上がり（data-n。小数は data-d で桁、data-f で 1,234 の形） */
 function fmt(v,b){var d=+(b.dataset.d||0),s=d?v.toFixed(d):String(Math.round(v));if(b.dataset.f)s=s.replace(/\B(?=(\d{3})+(?!\d))/g,",");return (b.dataset.pre||"")+s}
 function countUp(b){var n=+b.dataset.n,t0=performance.now();if(RM||!isFinite(n)){b.textContent=fmt(n,b);return}
-  (function f(t){var k=Math.min(1,(t-t0)/900),e=1-Math.pow(1-k,3);b.textContent=fmt(n*e,b);if(k<1)requestAnimationFrame(f)})(t0)}
-var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){cio.unobserve(e.target);countUp(e.target)}})},{rootMargin:"0px 0px -10% 0px"});
-function counts(root){$$("[data-n]",root).forEach(function(b){b.textContent=fmt(0,b);cio.observe(b)})}
+  (function f(t){var k=Math.min(1,(t-t0)/700),e=1-Math.pow(1-k,3);b.textContent=fmt(n*(.6+.4*e),b);if(k<1)requestAnimationFrame(f)})(t0)}
+var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){cio.unobserve(e.target);countUp(e.target)}})},{rootMargin:"0px"});
+/* 11/19 owner「動作悪い」：0円・0件が見えないように、最初から本当の数を出し、見えた時に6割から少しだけ上がる */
+function counts(root){$$("[data-n]",root).forEach(function(b){b.textContent=fmt(+b.dataset.n,b);cio.observe(b)})}
 /* 見えたら伸びる棒（data-w＝0〜1） */
 var bio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){bio.unobserve(e.target);e.target.style.transform="scaleX("+e.target.dataset.w+")"}})});
 function bars(root){$$("[data-w]",root).forEach(function(b){if(RM)b.style.transform="scaleX("+b.dataset.w+")";else bio.observe(b)})}

@@ -586,3 +586,56 @@ html.nt .cmap .pl{fill:#D9DDE6!important}html.nt .cmap .pn{fill:#F5F5F7}
 @media (min-width:700px){.crow{grid-auto-columns:30%}}
 .cmap{margin:6px 0 0}.cmap svg{width:88%;max-height:64vh}
 .crow .cd{content-visibility:visible}
+/* ---------- 読む・入れるページ（doc.js：売る前に・いくら？・実家 など）11/19 owner「その他も本気でやり直せ」 ---------- */
+.dc{padding-bottom:120px}
+.dc .hero{padding-bottom:6px}
+.dc .h1p{font-size:15px;line-height:1.7;margin-top:10px;color:var(--sub)}
+.dc .h1p b{color:var(--ink);font-weight:600}
+.dc .dsec{padding:28px 0;border-top:1px solid var(--line)}
+.dc .dsec:first-of-type{border-top:0}
+.dc .dno{display:block;font-size:12.5px;color:var(--sub);letter-spacing:.02em;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.dc h2{font:600 21px/1.35 var(--sans);letter-spacing:-.01em;margin:0 0 8px;color:var(--ink)}
+.dc p{font-size:15px;line-height:1.75;color:var(--sub);margin:0 0 14px}
+.dc p:last-child{margin-bottom:0}
+.dc a.dtx{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:var(--line)}
+.dc .din{display:block;width:100%;height:52px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:400 16px var(--sans);padding:0 16px;-webkit-appearance:none;appearance:none;box-sizing:border-box}
+.dc .din:focus{outline:none;border-color:var(--ink)}
+.dc select.din{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E6E73' stroke-width='1.8'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:40px}
+.dc .drow{display:flex;align-items:center;gap:10px}.dc .drow .din{flex:1}.dc .drow span{font-size:15px;color:var(--sub)}
+.dc .dhint{font-size:13px;color:var(--mut);margin:8px 0 0;line-height:1.6}
+.dc .dq{font:600 16px/1.4 var(--sans);color:var(--ink);margin:0 0 12px}
+.dc .dq i{font-style:normal;font-weight:500;color:var(--mut);margin-right:10px;font-variant-numeric:tabular-nums}
+.dc .dstep+.dstep{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
+.dc .dchs{display:flex;gap:8px;flex-wrap:wrap}
+.dc .dchs button{height:44px;padding:0 20px;border-radius:22px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 15px var(--sans);cursor:pointer}
+.dc .dchs button[aria-pressed=true]{background:var(--on);color:var(--ont);border-color:var(--on)}
+.dc .dbtn{display:block;margin:18px 0 0;padding:16px 46px 16px 20px;border-radius:14px;background:var(--on);color:var(--ont);text-decoration:none;font:600 16px/1.4 var(--sans);position:relative}
+.dc .dbtn small{display:block;font-weight:400;font-size:12.5px;opacity:.75;margin-top:3px}
+.dc .dbtn::after{content:"→";position:absolute;right:20px;top:50%;transform:translateY(-50%);font-weight:400}
+.dc .dbtn:active{transform:scale(.985)}
+.dc .dbtn2{display:block;margin:12px 0 0;padding:15px 20px;border-radius:14px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font:500 15px var(--sans);text-align:center}
+.dc details{border-top:1px solid var(--line)}
+.dc details:last-child{border-bottom:1px solid var(--line)}
+.dc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 0;font:500 16px/1.5 var(--sans);color:var(--ink)}
+.dc summary::-webkit-details-marker{display:none}
+.dc summary::after{content:"";flex:none;width:9px;height:9px;border-right:1.6px solid var(--mut);border-bottom:1.6px solid var(--mut);transform:rotate(45deg) translate(-2px,-2px);transition:transform .25s}
+.dc details[open]>summary::after{transform:rotate(-135deg)}
+.dc .ddd{overflow:hidden}
+.dc .ddd>*:last-child{margin-bottom:18px}
+.dc .ddd p{font-size:14.5px}
+.dc table{width:100%;border-collapse:collapse;font-size:13.5px;margin:0 0 18px}
+.dc th,.dc td{text-align:left;vertical-align:top;padding:11px 8px 11px 0;border-bottom:1px solid var(--line);color:var(--sub);line-height:1.6}
+.dc thead th{color:var(--ink);font-weight:600}.dc thead th small{display:block;font-weight:400;color:var(--mut);font-size:12px}
+.dc tbody th{color:var(--ink);font-weight:500;white-space:nowrap}
+.dc #tqo a{display:flex;align-items:center;gap:10px;padding:14px 2px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.dc #tqo a b{font-weight:500;font-size:15.5px}.dc #tqo a small{color:var(--mut);font-size:12.5px;flex:1}.dc #tqo a i{font-style:normal;color:var(--mut)}
+.dc #tqo .dno2{font-size:13.5px;margin:12px 0 0}
+.dc .dres{display:none;margin:22px 0 0;padding:24px 20px;border-radius:18px;background:var(--chip)}
+.dc .dres .dlb{font-size:13px;color:var(--sub);margin:0 0 6px;line-height:1.6}
+.dc .dres .dbig{font:600 40px/1.15 var(--sans);letter-spacing:-.02em;color:var(--ink);margin:0 0 14px;font-variant-numeric:tabular-nums}
+.dc .dres .dbig small{font-size:18px;font-weight:500;margin-left:4px}
+.dc .dres ul{margin:10px 0 0;padding:0;list-style:none}.dc .dres li{font-size:14px;color:var(--sub);padding:8px 0;border-top:1px solid var(--line)}
+.dc .dnote{font-size:12.5px;color:var(--mut);line-height:1.75;margin-top:28px}
+.dc .drel{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.dc .drel a{display:block;padding:16px;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:var(--ink);font:500 15px/1.4 var(--sans)}
+.dc .drel a small{display:block;color:var(--mut);font-size:12.5px;font-weight:400;margin-top:4px}
