@@ -13,7 +13,7 @@ for f in root.rglob("*.html"):
     if "shin" in f.relative_to(root).parts[:1]:
         continue
     t = f.read_text(encoding="utf-8", errors="ignore")
-    if 'href="/shin/skin.css"' in t or "</head>" not in t:
+    if 'href="/shin/skin.css"' in t or "/shin/shin.css" in t or "</head>" not in t:  # 新しい土台のページ（shin_kanto.py）にはかぶせない
         continue
     f.write_text(t.replace("</head>", SKIN + "</head>", 1), encoding="utf-8"); n += 1
 print("skin_bake: 頭とバーを書き込み", n, "枚")
