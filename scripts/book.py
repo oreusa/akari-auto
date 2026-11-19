@@ -456,7 +456,10 @@ def run(now=None):
             due_iso = due_utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
             img, img_mark = post_image(with_page(ths, "threads", cfg, slot, due), day, slot)  # X と Threads で同じ絵（どちらにも付けるか、どちらにも付けない）
             auto = (load_json(path("data", "photo-auto.json"), {}) or {}).get(f"{day} {slot}") or {}
-            if str(auto.get("url", "")).startswith("https://raw.githubusercontent.com/oreusa/akari-auto/"):  # 11/19 月：写真の表紙（scripts/photo_auto.py が予約の前に作る）を一番先に
+            auto_ok = str(auto.get("url", "")).startswith("https://raw.githubusercontent.com/oreusa/akari-auto/")
+            if auto_ok and not auto.get("fallback"):  # 11/19 月：写真の表紙（scripts/photo_auto.py が予約の前に作る）を一番先に
+                img, img_mark = auto["url"], 1
+            elif auto_ok and not img and img_mark is None:  # 11/20 月：HPの絵が読めない時は、控えの表紙（絵なしで出さない）
                 img, img_mark = auto["url"], 1
             elif str(post.get("image", "")).startswith("https://kanto.townnote.app/card/"):  # 11/13 月「表紙の1枚」：予定表の image（post_card.js が作った絵）を先に使う。予約できない時は下で絵なしに落ちる
                 img, img_mark = post["image"], 1

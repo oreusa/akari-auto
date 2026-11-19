@@ -64,5 +64,33 @@
   "photo": "",
   "cr": "",
   "head": "<em>宇都宮</em><br>職人のホダカが、栃木に初出店"
+ },
+ "2026-11-20 08:15": {
+  "url": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-auto-1120-0815.jpg?v=5ab7ab9",
+  "photo": "",
+  "cr": "",
+  "head": "<em>足立区の古い木造の家</em><br>解体の費用の9割<br>上限150万円",
+  "fallback": 1
+ },
+ "2026-11-20 09:15": {
+  "url": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-auto-1120-0915.jpg?v=5ab7aba",
+  "photo": "",
+  "cr": "",
+  "head": "<em>東京ミッドタウン八重洲</em><br>入場無料、高さ約7mのツリー",
+  "fallback": 1
+ },
+ "2026-11-20 12:15": {
+  "url": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-auto-1120-1215.jpg?v=5ab7abc",
+  "photo": "",
+  "cr": "",
+  "head": "<em>幕張新都心</em><br>VRでトンネル工事を体感<br>カンドゥートンネル",
+  "fallback": 1
+ },
+ "2026-11-20 13:45": {
+  "url": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-auto-1120-1345.jpg?v=5ab7abe",
+  "photo": "",
+  "cr": "",
+  "head": "<em>くらべた</em><br>マスク<br>1枚あたりの最安は15.5円",
+  "fallback": 1
  }
 }

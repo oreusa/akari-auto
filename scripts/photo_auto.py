@@ -144,15 +144,17 @@ def main():
         pk = pick_for(post, day, picks) if "おでかけ" in str(post.get("series", "")) else None
         sp = spec_for(post, day, slot, pk) if pk else None
         if sp:
-            todo.append((key, sp, "post_photo.js"))
-        elif not str(post.get("image", "")).startswith("https://") and not has_pic(post):  # 11/19 owner「どしたの？画像なし」：絵の無い枠を残さない
+            todo.append((key, sp, "post_photo.js", False))
+        elif not str(post.get("image", "")).startswith("https://"):  # 11/19 owner「どしたの？画像なし」：絵の無い枠を残さない
             cs = card_specs(post, day, slot)
             if cs:
-                todo.append((key, cs, "post_card.js"))
+                # 11/20 月：HPの絵がある枠も、予約の時にその絵が読めないと絵なしで出ていた（11/20 08:15・09:15・12:15・13:45）。
+                # 控えの表紙を作っておき、book.py は HPの絵が取れない時だけこれを使う（fallback）
+                todo.append((key, cs, "post_card.js", has_pic(post)))
     if "--need" in sys.argv:
         print("yes" if todo else "no")
         return 0
-    for key, tries, tool in todo:
+    for key, tries, tool, fb in todo:
         for sp in tries:
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as f:
                 json.dump([sp], f, ensure_ascii=False)
@@ -161,6 +163,8 @@ def main():
             if "作った 1 枚" in r.stdout and os.path.exists(out):
                 made[key] = {"url": RAW + f"card-{sp['name']}.jpg?v={int(time.time()) % 100000000:x}",
                              "photo": sp.get("im", ""), "cr": sp.get("cr", ""), "head": sp["head"]}
+                if fb:
+                    made[key]["fallback"] = 1
                 print(f"表紙：{key} {sp.get('im', tool)}")
                 break
             print(f"写真の表紙×（次の形で）：{key} {r.stdout.strip()[-120:]} {r.stderr.strip()[-200:]}")
