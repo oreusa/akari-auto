@@ -1441,6 +1441,12 @@
   "sec": 0.3,
   "why": ""
  },
+ "https://akebonoyama-nougyoukouen.jp/views/highlight/": {
+  "at": "2026-11-19",
+  "ok": true,
+  "sec": 0.8,
+  "why": ""
+ },
  "https://animeanime.jp/release/prtimes/20261008/318419.html": {
   "at": "2026-11-09",
   "by": "browser",
@@ -5505,6 +5511,12 @@
   "sec": 3.6,
   "why": ""
  },
+ "https://sayamaski.jp/": {
+  "at": "2026-11-19",
+  "ok": true,
+  "sec": 0.9,
+  "why": ""
+ },
  "https://shinagawa-kanko.or.jp/event/shinasuillc2026/": {
   "at": "2026-11-18",
   "by": "browser",
@@ -6931,6 +6943,12 @@
   "sec": 1.8,
   "why": ""
  },
+ "https://www.city.kashiwa.lg.jp/hokubuseibi/kurashi/chiiki/event/kashiwanoha_marugoto_festival.html": {
+  "at": "2026-11-19",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
  "https://www.city.kawaguchi.lg.jp/material/files/group/184/0803Release.pdf": {
   "at": "2026-11-18",
   "by": "browser",
@@ -7360,6 +7378,12 @@
  "https://www.ohtawara.info/spot.html?spot-type=1": {
   "at": "2026-11-18",
   "by": "browser",
+  "ok": true,
+  "sec": 1.5,
+  "why": ""
+ },
+ "https://www.oizumimachi-kankoukyoukai.jp/event/416": {
+  "at": "2026-11-19",
   "ok": true,
   "sec": 1.5,
   "why": ""
