@@ -173,7 +173,7 @@ function news(CV){var pa=location.pathname,KD=/^\/illumination/.test(pa)?'il':/^
   var tr=w.querySelector('.mntr'),dots=w.querySelectorAll('.mndt i'),sl=w.querySelectorAll('.mnsl'),cur=0,hold=0;if(sl[0])sl[0].classList.add('cur');
   tr.addEventListener('scroll',function(){var st=sl[0]?sl[0].offsetWidth+10:tr.clientWidth,i=Math.round(tr.scrollLeft/st);if(i!==cur){cur=i;dots.forEach(function(e,k){e.classList.toggle('on',k===i)});sl.forEach(function(e,k){e.classList.toggle('cur',k===i)})}},{passive:true});
   ['touchstart','pointerdown'].forEach(function(ev){tr.addEventListener(ev,function(){hold=Date.now()},{passive:true})});
-  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(function(){if(Date.now()-hold<9000||document.hidden)return;var r=tr.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;tr.scrollTo({left:((cur+1)%dots.length)*(sl[0]?sl[0].offsetWidth+10:tr.clientWidth),behavior:'smooth'})},5200);
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(function(){if(Date.now()-hold<9000||document.hidden||document.documentElement.classList.contains('hx2'))return;var r=tr.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;tr.scrollTo({left:((cur+1)%dots.length)*(sl[0]?sl[0].offsetWidth+10:tr.clientWidth),behavior:'smooth'})},5200);
 }
 /* 11/18 入口（表紙）：地図の下に「今週の1件」を画面いっぱいの写真で（ゆっくりズーム）。その下に今週ほかにも（横にめくる） */
 function cover(){if(!/^\/(town-notes(\.html)?)?$/.test(location.pathname)||document.querySelector('.mhero'))return;var ms=document.querySelector('section.mapsec');if(!ms)return;
