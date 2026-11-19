@@ -1,0 +1,65 @@
+{
+ "about": "投稿の写真の表紙に使う写真（11/19 月がコモンズから集めた）。cr を必ず表紙に出す。CC BY-SA は手を加えても同じ許可",
+ "items": {
+  "akarenga-xmas.jpg": {
+   "what": "横浜赤レンガ倉庫 クリスマスマーケットのツリー（夜）",
+   "cr": "Dick Thomas Johnson（CC BY 2.0・Wikimedia Commons）",
+   "page": "https://commons.wikimedia.org/wiki/File:Christmas_Market_in_Yokohama_Red_Brick_Warehouse_2022_(52646792689).jpg",
+   "w": 6000
+  },
+  "dome-city-night.jpg": {
+   "what": "東京ドームシティ ラクーアの光のドーム（夜）",
+   "cr": "掬茶（CC BY-SA 4.0・Wikimedia Commons）",
+   "page": "https://commons.wikimedia.org/wiki/File:LaQua_at_night_20141213,_003.jpg",
+   "w": 3264
+  },
+  "keyakizaka-illumi.jpg": {
+   "what": "六本木けやき坂のイルミネーション（夜・東京タワー）",
+   "cr": "Kakidai（CC BY-SA 4.0・Wikimedia Commons）",
+   "page": "https://commons.wikimedia.org/wiki/File:Roppongi_Hills_Keyakizaka_Illumination_2024_(2).jpg",
+   "w": 2500
+  },
+  "marunouchi-illumi.jpg": {
+   "what": "丸の内仲通りのイルミネーション（夜）",
+   "cr": "Dick Thomas Johnson（CC BY 2.0・Wikimedia Commons）",
+   "page": "https://commons.wikimedia.org/wiki/File:Marunouchi_Illumination_2022_(52646781944).jpg",
+   "w": 6000
+  },
+  "ashikaga-castle.jpg": {
+   "what": "あしかがフラワーパーク 光の城と光の花（夜）",
+   "cr": "Miyuki Meinaka（CC BY-SA 4.0・Wikimedia Commons）",
+   "page": "https://commons.wikimedia.org/wiki/File:Flower_Fantasy_20th_Anniversary_1.jpg",
+   "w": 4608
+  },
+  "ashikaga-tree.jpg": {
+   "what": "あしかがフラワーパーク 光のツリー（夜）",
+   "cr": "Miyuki Meinaka（CC BY-SA 4.0・Wikimedia Commons）",
+   "page": "https://commons.wikimedia.org/wiki/File:Flower_Fantasy_20th_Anniversary_5.jpg",
+   "w": 4608
+  },
+  "showa-ginkgo.jpg": {
+   "what": "国営昭和記念公園 カナールのイチョウ（昼・黄葉）",
+   "cr": "Kakidai（CC BY-SA 4.0・Wikimedia Commons）",
+   "page": "https://commons.wikimedia.org/wiki/File:2018_Showa_Memorial_Park_02.jpg",
+   "w": 2500
+  },
+  "gaien-ginkgo.jpg": {
+   "what": "明治神宮外苑 いちょう並木（昼・黄葉）",
+   "cr": "Dick Thomas Johnson（CC BY 2.0・Wikimedia Commons）",
+   "page": "https://commons.wikimedia.org/wiki/File:Meiji_Jingu_Gaien_Ginkgo_Festival_(53441835008).jpg",
+   "w": 6000
+  },
+  "takao-koyo.jpg": {
+   "what": "高尾山 ケーブル清滝駅前の紅葉（昼）",
+   "cr": "江戸村のとくぞう (Edomura no Tokuzo)（CC BY-SA 3.0・Wikimedia Commons）",
+   "page": "https://commons.wikimedia.org/wiki/File:%E9%AB%98%E5%B0%BE%E5%B1%B1%E3%83%BC%EF%BC%92.JPG",
+   "w": 3216
+  },
+  "takao-koyo2.jpg": {
+   "what": "高尾山 紅葉（昼）",
+   "cr": "江戸村のとくぞう (Edomura no Tokuzo)（CC BY-SA 3.0・Wikimedia Commons）",
+   "page": "https://commons.wikimedia.org/wiki/File:%E9%AB%98%E5%B0%BE%E5%B1%B1%E3%83%BC%EF%BC%93.JPG",
+   "w": 3216
+  }
+ }
+}
