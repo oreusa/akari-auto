@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-19 09:15",
+  "at": "2026-11-19 10:41",
   "since": "2026-11-01",
   "tracked": 264,
   "days": 18,
@@ -99,6 +99,18 @@
       "av": 4.48,
       "shop": "山川食糧オートミール研究所",
       "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/"
+    },
+    {
+      "title": "加湿器",
+      "name": "ストーブ 遠赤外線電気ストーブ 加湿機能 (9 3段階切替式) DSE-KC1010(W) …",
+      "price": 7106,
+      "base": 7480.0,
+      "pct": 5,
+      "days": 14,
+      "rc": 446,
+      "av": 4.39,
+      "shop": "くらしのeショップ",
+      "plain": "https://item.rakuten.co.jp/e-kurashi/10006895/"
     },
     {
       "title": "加湿器",
