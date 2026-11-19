@@ -1,1 +1,1 @@
-{"version": 1, "include": ["/*"], "exclude": ["/assets/*", "/townnotes/*"]}
+{"version": 1, "include": ["/*"], "exclude": ["/assets/*", "/townnotes/*", "/shin/*"]}

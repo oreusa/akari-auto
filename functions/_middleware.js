@@ -65,7 +65,7 @@ export async function onRequest(ctx) {
       { headers: { "content-type": "text/html; charset=utf-8", "set-cookie": cookie, "cache-control": "no-store" } });
   }
   if (/(?:^|;\s*)me=1(?:;|$)/.test(request.headers.get("cookie") || "")) {
-    return url.pathname === "/c" ? new Response(null, { status: 204 }) : ctx.next();
+    return url.pathname === "/c" ? new Response(null, { status: 204 }) : skin(request, await ctx.next());
   }
   // 11/2 LIFE NOTE：入口 / と、2つのリスト /odekake・/okaimono。リストは外から直に来た時だけ数える（入口から移った人を2回数えない）
   const ref = request.headers.get("referer") || "";
@@ -92,5 +92,13 @@ export async function onRequest(ctx) {
     }
     return new Response(null, { status: 204 });
   }
-  return ctx.next();
+  return skin(request, await ctx.next());
+}
+
+// 11/19 owner「他ページもぜんぶ」→ 関西（TOWN NOTE）の新しい土台と同じ 頭・大きい題→上の帯・下のバー＋MENU・ゴシック・本物の夜空 を、関東の今までのページにもかぶせる。
+// site/shin/skin.css・skin.js は月の repo（usagi-fudosan-media links/shin）の写し。中身のページは何も変えていない。戻す時は skin() を通さず ctx.next() を返す。
+const SKIN = '<script>document.documentElement.classList.add("sk");try{if(localStorage.getItem("usagi_theme")==="night")document.documentElement.classList.add("nt")}catch(e){}</script><link rel="stylesheet" href="/shin/skin.css"><script src="/shin/skin.js" defer></script>';
+function skin(request, res) {
+  if (request.method !== "GET" || !(res.headers.get("content-type") || "").includes("text/html")) return res;
+  return new HTMLRewriter().on("head", { element(e) { e.append(SKIN, { html: true }); } }).transform(res);
 }
