@@ -91,19 +91,19 @@
    "label": "くらべたおかいものリスト"
   },
   "/furusato-rice": {
-   "url": "https://kanto.townnote.app/postimg/furusato-rice.jpg?v=f4b827745e",
+   "url": "https://kanto.townnote.app/postimg/furusato-rice.jpg?v=edd3afc6fd",
    "label": "ふるさと納税を1万円あたりでくらべた"
   },
   "/furusato-tp": {
-   "url": "https://kanto.townnote.app/postimg/furusato-tp.jpg?v=656c61e881",
+   "url": "https://kanto.townnote.app/postimg/furusato-tp.jpg?v=d54cdffe79",
    "label": "ふるさと納税を1万円あたりでくらべた"
   },
   "/furusato": {
-   "url": "https://kanto.townnote.app/postimg/furusato.jpg?v=67d6fa54c4",
+   "url": "https://kanto.townnote.app/postimg/furusato.jpg?v=3a6c585e25",
    "label": "ふるさと納税を1万円あたりでくらべた"
   },
   "/nesage": {
-   "url": "https://kanto.townnote.app/postimg/nesage.jpg?v=966c97be48",
+   "url": "https://kanto.townnote.app/postimg/nesage.jpg?v=f7669671b5",
    "label": "本当に値下がりした物"
   },
   "/odekake-chiba": {
@@ -172,6 +172,10 @@
   },
   "/kaitai-chigasaki": {
    "url": "https://kanto.townnote.app/postimg/kaitai-chigasaki.jpg?v=1ab8201fc0",
+   "label": "解体・片付けの費用の目安"
+  },
+  "/kaitai-chofu": {
+   "url": "https://kanto.townnote.app/postimg/kaitai-chofu.jpg?v=771b230ce7",
    "label": "解体・片付けの費用の目安"
   },
   "/kaitai-edogawa": {
