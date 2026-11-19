@@ -139,6 +139,89 @@ def write(fname, url, title, cfg, data, js, desc):
     print(fname, len(page) // 1024, "KB")
 
 
+# ---------- 読む・入れるページ（売る前に・いくら？）11/19 23時 owner「その他も本気でやり直せ」：頭のかぶせをやめ、中身を新しい部品（doc.js の .dc）に書き直す ----------
+def acc(rows):
+    return "".join(f'<details><summary>{q}</summary><div class="ddd">{a}</div></details>' for q, a in rows)
+
+
+def old_doc(fname):
+    """前のページ（site/kyu/ に残した物があればそれ）から 題・説明・中身・計算の script を取り出して、新しい部品の名前に直す"""
+    src = os.path.join(S, "kyu", fname) if os.path.exists(os.path.join(S, "kyu", fname)) else os.path.join(S, fname)
+    t = open(src, encoding="utf-8").read()
+    if "/shin/shin.css" in t: return None
+    b = t[t.index("<body"):]
+    js = "\n".join(m.group(1) for m in re.finditer(r"<script>(.*?)</script>", b, re.S))
+    b = re.sub(r"<script.*?</script>", "", b, flags=re.S)
+    h1 = re.sub(r"<span>.*?</span>", "", re.search(r"<h1>(.*?)</h1>", b, re.S).group(1)).strip()
+    sub = (re.search(r'<p class="(?:s3l|sub)">(.*?)</p>', b, re.S) or [None, ""])[1].replace("<br>", "")
+    return t, b, h1, sub, js
+
+
+def doc_uru():
+    r = old_doc("uru.html")
+    if not r: return None
+    t, b, h1, sub, js = r
+    secs = re.findall(r'<section class="s3">(.*?)</section>', b, re.S)
+    out = []
+    for i, sc in enumerate(secs):
+        sc = re.sub(r'<div class="sn">STEP 0?(\d+)</div>', r'<span class="dno">\1</span>', sc)
+        if "<details" in sc:
+            det = re.findall(r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", sc, re.S)
+            know = [d for d in det if not re.sub("<[^>]+>", "", d[0]).strip().endswith("？")]
+            faq = [d for d in det if re.sub("<[^>]+>", "", d[0]).strip().endswith("？")]
+            hd = sc[:sc.index('<div class="acc">')] if '<div class="acc">' in sc else sc[:sc.index("<details")]
+            out.append('<section class="dsec">' + hd + acc(know) + "</section>")
+            if faq: out.append('<section class="dsec"><h2>よくある質問</h2>' + acc(faq) + "</section>")
+            continue
+        sc = sc.replace('<input id="tq"', '<input class="din" id="tq"').replace('class="b1"', 'class="dbtn"')
+        sc = re.sub(r'<p style="margin:14px 0 0"><a href="/ikura"([^>]*) style="[^"]*">(.*?)→</a></p>', r'<a class="dbtn2" href="/ikura"\1>\2</a>', sc)
+        out.append('<section class="dsec">' + sc + "</section>")
+    pr = '<p class="dnote">このページのリンクの一部は広告（PR）です。</p>' if "広告（PR）" in b else ""
+    rel = ('<section class="dsec"><h2>あわせて見る</h2><div class="drel"><a href="/fudosan-list">家と土地の相場<small>関東の街ごとの値段</small></a><a href="/jikka/">実家・空き家<small>売る・片付ける前に</small></a>'
+           '<a href="/ikura">いくらで売れる？<small>30秒で目安</small></a><a href="/chika-kanto">地価ランキング<small>住宅地の1年の動き</small></a></div></section>')
+    return {"h1": h1, "sub": re.sub(r"<[^>]+>", "", sub), "html": "".join(out) + pr + rel, "js": js}
+
+
+def doc_ikura():
+    r = old_doc("ikura.html")
+    if not r: return None
+    t, b, h1, sub, js = r
+    card = re.search(r'<div class="card">(.*?)</div>\s*<div class="res"', b, re.S).group(1)
+    res = b[b.index('<div class="res"'):b.index('<p class="note">')]
+    note = re.search(r'<p class="note">(.*?)</p>', b, re.S).group(1)
+    card = re.sub(r'<p class="q">0?(\d+)<b( id="al")?>(.*?)</b></p>', r'<p class="dq"><i>\1</i><b\2 style="font-weight:600">\3</b></p>', card)
+    card = card.replace('class="step"', 'class="dstep"').replace('class="chips"', 'class="dchs"').replace('<select id="ci"', '<select class="din" id="ci"')
+    card = card.replace('class="row"', 'class="drow"').replace('<input id="ar"', '<input class="din" id="ar"').replace('class="hint"', 'class="dhint"')
+    res = (res.replace('class="res"', 'class="dres"').replace('class="lb"', 'class="dlb"').replace('class="big"', 'class="dbig"').replace('class="go"', 'class="dbtn"')
+           .replace('class="sm"', 'class="dhint"'))
+    body = ('<section class="dsec">' + card + res + "</section>" + f'<p class="dnote">{note}</p><p class="dnote">このページのリンクの一部は広告（PR）です。</p>'
+            '<section class="dsec"><h2>あわせて見る</h2><div class="drel"><a href="/uru">家を売る前に<small>3つの順で迷わない</small></a><a href="/fudosan-list">家と土地の相場<small>関東の街ごとの値段</small></a></div></section>')
+    return {"h1": h1, "sub": re.sub(r"<[^>]+>", "", sub).replace("。", "。", 1), "html": body, "js": js}
+
+
+HOME_NAV = [{"t": "街をさがす", "ic": "find", "href": "/fudosan-list"}, {"t": "ランキング", "ic": "rank", "href": "/chika-kanto"},
+            {"t": "売りたい", "ic": "sell", "href": "/uru"}, {"t": "いくら？", "ic": "yen", "href": "/ikura"}]
+HOME_MENU = [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["予算で街さがし", "/sagasu"], ["空き家の割合ランキング", "/akiya-ranking"]]
+
+
+def home_cfg(cur):
+    return {"nav": [dict(n, cur=1) if n["href"] == cur else n for n in HOME_NAV], "menu": {"k": "Home & Land", "items": [[t, u] + ([1] if u == cur else []) for t, u in HOME_MENU]},
+            "foot": "数字はどれも国・都県などの公式の発表です。街の平均で、1軒ずつの値段ではありません。<br>このページのリンクの一部は広告（PR）です。"}
+
+
+def docs():
+    for fname, url, title, fn, desc in [
+        ("uru.html", "/uru", "家を売る前に｜相場を見る・値段を聞く・大事なこと（関東）｜LIFE NOTE", doc_uru,
+         "関東で家を売る前に、街の相場を見る・無料で値段を見る・知っておく大事なことを、3つの順でまとめました。"),
+        ("ikura.html", "/ikura", "お家はいくらで売れる？｜関東の市区町村の地価公示から30秒で目安｜LIFE NOTE", doc_ikura,
+         "関東の市区町村で、国の地価公示から、マンション・一戸建て・土地の売れそうな値段の目安を30秒で出します。無料・名前も要りません。")]:
+        try:
+            d = fn()
+            if d: write(fname, url, title, home_cfg(url), d, "doc", desc)
+        except Exception as e:
+            print("shin_kanto: 前のまま", fname, repr(e))
+
+
 def main():
     IT = items()
     if len(IT) < 10:
@@ -289,6 +372,7 @@ def main():
     except Exception as e:
         print("shin_kanto: おかいものは前のまま", repr(e))
 
+    docs()
     # ---------- 表紙 ----------
     now = [x for x in IT if x["s"] <= TD <= x["e"]]
     pc = {p: sum(1 for x in now if x["p"] == p) for p in PREF}
