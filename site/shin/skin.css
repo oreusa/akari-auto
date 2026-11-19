@@ -139,3 +139,14 @@ html.sk .card .go,html.sk .cd span.ar,html.sk .tnbtn i.ar,html.sk span.cdn.hot,h
 html.sk .wr i,html.sk .wr em{color:#6E6E73!important;border-color:rgba(0,0,0,.14)!important}
 html.sk .cmb .ib,html.sk small.ddw,html.sk span.cdn:not(.hot),html.sk .tabs button,html.sk .flt button{color:#1D1D1F!important}
 html.sk .bd span.st.soon{color:#1D1D1F!important;background:#F2F2F2!important}
+/* 11/19 23時 owner「文字列おかしい」「変なところ多すぎ」：前のページの決まりが頭に混ざった所を止める */
+.skc>.wrap{padding-bottom:0!important;padding-top:0!important;min-height:0!important}
+html.sk .sk-tb{background:var(--bg,#fff)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.sk.nt .sk-tb{background:#0A0E18!important}
+html.sk p,html.sk .sub,html.sk h1,html.sk h2,html.sk h3{text-wrap:wrap!important}
+html.sk .s3 .b1,html.sk a.b1{display:block!important;text-align:left;line-height:1.5}
+html.sk .s3 .b1 small,html.sk a.b1 small{display:block;margin-top:4px}
+html.sk a.back{display:block!important;margin:24px auto!important;max-width:320px;text-align:center;padding:13px 16px!important;border:1px solid #D2D2D7!important;border-radius:12px!important;background:transparent!important;color:#1D1D1F!important;text-decoration:none!important;font-weight:500}
+html.sk.nt a.back{color:#ECE8E1!important;border-color:#2A3142!important}
+html.sk .skc #tb{border:0!important;border-bottom:1px solid var(--line)!important;border-radius:0!important;box-shadow:none!important;margin:0!important}
+html.sk #tkbar{display:none!important}
