@@ -107,3 +107,35 @@ html.sk .fhd .fr{display:block!important;text-align:left!important}
 html.sk .fhd .fr img,html.sk .fhd .fr .en{display:none!important}
 html.sk .fhd h1{font-size:min(30px,7.2vw)!important;line-height:1.25!important;letter-spacing:-.01em!important;text-align:left!important;margin:14px 0 0!important}
 html.sk .fhd .pur{text-align:left!important;color:#6E6E73}
+/* 11/19 22時 owner「変わってないのは確認・改善点も」→ 今までのページに残っていた古い飾りを、新しい土台の形にそろえる */
+/* 1. 英語の大文字の小見出し（STEP 01・CASE・FOLLOW など）は出さない。見出しの日本語だけで分かる */
+html.sk .s3 .sn,html.sk .itt .en2,html.sk p.mk3,html.sk .hero .en,html.sk .head .en,html.sk .sns>h2,html.sk a.ot small,html.sk .ib .lb,html.sk .head .bar{display:none!important}
+html.sk a.co::before{content:none!important;display:none!important}
+/* 2. 色の太い縦線つきの見出し・灰色の帯 → 字だけの見出し（600・#1D1D1F） */
+html.sk .pane>h2,html.sk .faq>h2,html.sk .ps>h2,html.sk .wrap>h2,html.sk .kt-c .kt-o{border-left:0!important;padding-left:0!important;background:none!important;color:#1D1D1F!important;font-weight:600!important}
+html.sk .pane>h2,html.sk .faq>h2,html.sk .ps>h2,html.sk .wrap>h2{font-size:21px!important;letter-spacing:-.01em!important;line-height:1.3!important}
+html.sk .wrap>a.fc{border-left-width:1px!important;border-left-color:rgba(0,0,0,.1)!important}
+/* 3. 真ん中ぞろえの題 → 左ぞろえ */
+html.sk .itt>h2,html.sk .hero>h1,html.sk .hero>p{text-align:left!important}
+/* 4. 茶色のボタン → 黒（#1D1D1F） */
+html.sk .sp-btn a.p,html.sk .kfol a,html.sk .s3 a.b1,html.sk .chips button[aria-pressed=true],html.sk .wrap>a.back,html.sk form.mf button,html.sk .ch label.on,
+html.sk .kt-tab button.on,html.sk .kt-q button.on,html.sk .kt-f button.on,html.sk a.kt-b,html.sk .bt a.k,html.sk a.itg2.itq,html.sk .wrap>button.rq,html.sk a.jb.b1,html.sk .act a.o,
+html.sk .kd button.on,html.sk .bc button.on,html.sk .pf button.on,html.sk .tks button.tknx,html.sk form.kf button.go{background:#1D1D1F!important;border-color:#1D1D1F!important;color:#FFF!important}
+/* 5. 青い文字のリンク → 黒い字に細い下線 */
+html.sk p>a:not([class]),html.sk td>a:not([class]),html.sk .kt-hj a,html.sk p.note a{color:#1D1D1F!important;text-decoration:underline!important;text-decoration-thickness:1px!important;text-underline-offset:3px!important;text-decoration-color:rgba(0,0,0,.3)!important}
+html.sk .og a.ot{color:#1D1D1F!important}
+html.sk body div.en:not(.skc *){display:none!important}
+/* 6. 灰色の帯の区切り（.pane・.ps）→ 白地に細い線 */
+html.sk section.pane,html.sk section.ps{background:#FFF!important;border-top:1px solid rgba(0,0,0,.1)!important}
+/* 7. 青い札 → 灰色の細い札 */
+html.sk .kt-tr span{color:#6E6E73!important;border-color:rgba(0,0,0,.14)!important;background:#FFF!important}
+/* 8. 関東の今までの形（激変版）の残り：題の後ろのぼかしの丸・色の題・英語の小見出し・真ん中ぞろえ・青と橙の印 → 白黒 */
+html.sk header.head::before,html.sk header.head::after{display:none!important}
+html.sk h1.tk-h1{background:none!important;-webkit-text-fill-color:#1D1D1F!important;color:#1D1D1F!important}
+html.sk .wdy .en3,html.sk section.sell2>small{display:none!important}
+html.sk .wdy>h2,html.sk section.sell2>h2,html.sk p.lead,html.sk p.pnh,html.sk p.tq,html.sk p.rel,html.sk p.kt-n,html.sk p.res,html.sk .kfol>p,html.sk p.jp{text-align:left!important}
+html.sk nav.pn a,html.sk nav.sw a,html.sk span.tn8,html.sk .og>button,html.sk .tm button.on,html.sk .rd .tip,html.sk .row>button,html.sk .b1>a,
+html.sk .card .go,html.sk .cd span.ar,html.sk .tnbtn i.ar,html.sk span.cdn.hot,html.sk .bd span.st.now{background:#1D1D1F!important;border-color:#1D1D1F!important;color:#FFF!important}
+html.sk .wr i,html.sk .wr em{color:#6E6E73!important;border-color:rgba(0,0,0,.14)!important}
+html.sk .cmb .ib,html.sk small.ddw,html.sk span.cdn:not(.hot),html.sk .tabs button,html.sk .flt button{color:#1D1D1F!important}
+html.sk .bd span.st.soon{color:#1D1D1F!important;background:#F2F2F2!important}
