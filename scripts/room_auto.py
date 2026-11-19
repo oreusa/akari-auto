@@ -14,7 +14,7 @@ P = lambda *a: os.path.join(ROOT, *a)
 MAX = 250  # 11/18 owner「もっとルーム働かせろ・GPTの使用余りまくってる」→ 雫の回を1日12回に（BF 11/19〜25）。100→250。 11/13 19:35 オーナー「夜にももっと100倍楽天roomやれ」→ 40→100。比べた候補（tanka.json）が尽きたら前に出した物を古い順に足す。
 # 前： 11/13 オーナー「gptまじ勿体ないからお金稼げるようにして」「月が使い込んでいいから」→ 1日20→40件。雫の3回と凪で上から続きを載せる
 KEEP = 14
-URE = 15  # 11/14 売れ筋から1日15件まで
+URE = 25 if __import__("datetime").date.today().isoformat() <= "2026-11-25" else 15  # 11/14 売れ筋から1日15件まで（11/19〜11/25 ブラックフライデーの間だけ25件）
 COL = {"毎日なくなる物": ("water", "soda", "rice", "tp", "tea", "coffee", "detergent", "softener", "shampoo", "bodysoap", "dish", "tissue", "trash", "pasta", "beans"),
        "赤ちゃん・ペットの毎日": ("diaper", "wipes", "dogfood", "catfood"),
        "そなえ": ("battery", "mask")}
