@@ -3,6 +3,8 @@
    決まり：普通の役目＋こだわり1つ。動かすのは transform と opacity だけ。 */
 (function(){
 "use strict";
+/* 11/20 19:20 見た目の見本 ?look=a|b|c（この端末で覚える・?look=0 で外す）→ look.css・look.js */
+try{var _lk=location.search.match(/[?&]look=([abc0])/);if(_lk)localStorage.setItem("tn_look",_lk[1]);var _lv=localStorage.getItem("tn_look");if(_lv&&_lv!=="0"){document.documentElement.classList.add("lk","lk-"+_lv);var _l=document.createElement("link");_l.rel="stylesheet";_l.href="/shin/look.css?v=1";document.head.appendChild(_l);var _s=document.createElement("script");_s.src="/shin/look.js?v=1";_s.defer=true;document.head.appendChild(_s)}}catch(e){}
 var H=document.documentElement,app=document.getElementById("app");
 /* 11/20 owner「いいと思う」：分野ごとの色の線（iro）をふだんの見た目に。?iro=0 で外せる（この端末で覚える） */
 try{var _q=location.search.match(/[?&]iro=([01])/);if(_q)localStorage.setItem("tn_iro",_q[1]);if(localStorage.getItem("tn_iro")!=="0"){var _p=location.pathname,_f=/^\/(shin\/cover\d?)?$|^\/index/.test(_p)?"top":/kaiten/.test(_p)?"kai":/okaimono|furusato|nesage|otoku|tanka|kaimawari|shin\/kau/.test(_p)?"kau":/fudosan|ikura|uru|ranking|machi|jikka|chika|akiya|kaitai|sagasu|moushikomi|gyosha|koe|shin\/ie/.test(_p)?"ie":"od";document.documentElement.classList.add("iro");document.documentElement.setAttribute("data-f",_f)}}catch(e){}

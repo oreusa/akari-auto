@@ -1,0 +1,61 @@
+/* 11/20 19:20 owner「白画面が多すぎ・お洒落に・色を足すだけじゃなく今どきのめっちゃ綺麗なHP」→ 見た目の見本3つ（?look=a|b|c・?look=0 で外す）
+   A オーロラとガラス：淡い光のにじみがゆっくり動き、カードは半分すけたガラス
+   B 紙と影：Apple のような薄い灰色の地に、白いカードが浮く（影で奥行き）
+   C 光るふち：B の地に、探す欄・主役のボタン・カードのふちを光がゆっくり回る（テクノロジー）
+   どれも：流すとカードがふわっと出る（look.js）。字・ボタンの色は今のまま（濃い色のボタンは作らない） */
+
+/* ---- 共通：ふわっと出る ---- */
+html.lk .rv{opacity:0;transform:translateY(14px) scale(.985);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+html.lk .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html.lk .rv{opacity:1;transform:none;transition:none}}
+
+/* ---- A オーロラとガラス ---- */
+html.lk-a{background:#F4F6FA!important}html.lk.lk.lk-a body{background:transparent!important}
+.lk-bg{position:fixed;inset:-20vh -20vw;z-index:-1;pointer-events:none;overflow:hidden}
+.lk-bg i{position:absolute;width:70vmax;height:70vmax;border-radius:50%;filter:blur(60px);opacity:.75;will-change:transform}
+.lk-bg i:nth-child(1){left:-10vmax;top:-12vmax;background:radial-gradient(circle,#7FD8CC 0,rgba(127,216,204,0) 65%);animation:lkf1 26s ease-in-out infinite alternate}
+.lk-bg i:nth-child(2){right:-18vmax;top:10vmax;background:radial-gradient(circle,#9CC2F2 0,rgba(156,194,242,0) 65%);animation:lkf2 32s ease-in-out infinite alternate}
+.lk-bg i:nth-child(3){left:10vmax;bottom:-25vmax;background:radial-gradient(circle,#F8D9A0 0,rgba(248,217,160,0) 65%);animation:lkf3 38s ease-in-out infinite alternate;opacity:.6}
+@keyframes lkf1{to{transform:translate(18vmax,14vmax) scale(1.15)}}
+@keyframes lkf2{to{transform:translate(-16vmax,10vmax) scale(.9)}}
+@keyframes lkf3{to{transform:translate(12vmax,-16vmax) scale(1.1)}}
+@media (prefers-reduced-motion:reduce){.lk-bg i{animation:none}}
+html.lk-a.nt{background:#0A0E18!important}
+html.lk-a.nt .lk-bg i{opacity:.22}
+html.lk-a .fin,html.lk-a .mc,html.lk-a .qr,html.lk-a .ls,html.lk-a .tb,html.lk-a .yh a,html.lk-a .go2,html.lk-a .cmpt,html.lk-a .faq,html.lk-a .tiles,html.lk-a .rk,html.lk-a .cnt+.rk{background:rgba(255,255,255,.58)!important;-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border:1px solid rgba(255,255,255,.85)!important;box-shadow:0 10px 30px -12px rgba(30,60,110,.18)!important;border-radius:20px}
+html.lk-a .qr,html.lk-a .ls,html.lk-a .tb,html.lk-a .faq,html.lk-a .cmpt,html.lk-a .rk{padding:2px 16px}
+html.lk-a .qr a:last-child,html.lk-a .ls a:last-child,html.lk-a .tb div:last-child,html.lk-a .faq details:last-of-type,html.lk-a .rk li:last-child button{border-bottom:0!important}
+html.lk-a .faq details:first-of-type{border-top:0}
+html.lk-a .cmpt{padding:16px}
+html.lk-a .tiles{border:0!important;overflow:hidden}
+html.lk-a.nt .fin,html.lk-a.nt .mc,html.lk-a.nt .qr,html.lk-a.nt .ls,html.lk-a.nt .tb,html.lk-a.nt .yh a,html.lk-a.nt .go2,html.lk-a.nt .cmpt,html.lk-a.nt .faq,html.lk-a.nt .tiles,html.lk-a.nt .rk{background:rgba(22,28,44,.55)!important;border-color:rgba(255,255,255,.08)!important;box-shadow:0 10px 30px -12px rgba(0,0,0,.6)!important}
+html.lk-a .bar{background:rgba(247,248,251,.7)!important;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+html.lk-a.nt .bar{background:rgba(10,14,24,.7)!important}
+
+/* ---- B 紙と影（C も同じ地） ---- */
+html.lk-b,html.lk.lk.lk-b body,html.lk-c,html.lk.lk.lk-c body{background:#F2F2F5!important}
+html.lk-b.nt,html.lk-c.nt{background:#0A0E18!important}html.lk.lk.lk-b.nt body,html.lk.lk.lk-c.nt body{background:transparent!important}
+html.lk-b .fin,html.lk-b .mc,html.lk-b .qr,html.lk-b .ls,html.lk-b .tb,html.lk-b .yh a,html.lk-b .go2,html.lk-b .cmpt,html.lk-b .faq,html.lk-b .tiles,html.lk-b .rk,
+html.lk-c .fin,html.lk-c .mc,html.lk-c .qr,html.lk-c .ls,html.lk-c .tb,html.lk-c .yh a,html.lk-c .go2,html.lk-c .cmpt,html.lk-c .faq,html.lk-c .tiles,html.lk-c .rk{background:#fff!important;border:0!important;border-radius:22px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 14px 34px -14px rgba(20,30,60,.16)!important}
+html.lk-b .qr,html.lk-b .ls,html.lk-b .tb,html.lk-b .faq,html.lk-b .rk,html.lk-c .qr,html.lk-c .ls,html.lk-c .tb,html.lk-c .faq,html.lk-c .rk{padding:2px 18px}
+html.lk-b .cmpt,html.lk-c .cmpt{padding:18px}
+html.lk-b .qr a:last-child,html.lk-b .ls a:last-child,html.lk-b .tb div:last-child,html.lk-b .faq details:last-of-type,html.lk-b .rk li:last-child button,
+html.lk-c .qr a:last-child,html.lk-c .ls a:last-child,html.lk-c .tb div:last-child,html.lk-c .faq details:last-of-type,html.lk-c .rk li:last-child button{border-bottom:0!important}
+html.lk-b .faq details:first-of-type,html.lk-c .faq details:first-of-type{border-top:0}
+html.lk-b .tiles,html.lk-c .tiles{overflow:hidden}
+html.lk-b .qr,html.lk-c .qr{border-top:0}
+html.lk-b .sec h2,html.lk-c .sec h2,html.lk-b .dq,html.lk-c .dq{font-size:22px;letter-spacing:-.01em}
+html.lk-b .m2h h1,html.lk-c .m2h h1,html.lk-b .h1t,html.lk-c .h1t{font-size:36px;letter-spacing:-.02em}
+html.lk-b.nt .fin,html.lk-b.nt .mc,html.lk-b.nt .qr,html.lk-b.nt .ls,html.lk-b.nt .tb,html.lk-b.nt .yh a,html.lk-b.nt .go2,html.lk-b.nt .cmpt,html.lk-b.nt .faq,html.lk-b.nt .tiles,html.lk-b.nt .rk,
+html.lk-c.nt .fin,html.lk-c.nt .mc,html.lk-c.nt .qr,html.lk-c.nt .ls,html.lk-c.nt .tb,html.lk-c.nt .yh a,html.lk-c.nt .go2,html.lk-c.nt .cmpt,html.lk-c.nt .faq,html.lk-c.nt .tiles,html.lk-c.nt .rk{background:#121826!important;box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 14px 34px -14px rgba(0,0,0,.7)!important}
+html.lk-b .bar,html.lk-c .bar{background:rgba(242,242,245,.82)!important;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+html.lk-b.nt .bar,html.lk-c.nt .bar{background:rgba(10,14,24,.8)!important}
+
+/* ---- C 光るふち（下のバーの回る光と同じ技） ---- */
+@property --lka{syntax:"<angle>";inherits:false;initial-value:0deg}
+html.lk-c .fin,html.lk-c .go,html.lk-c .mc:first-child{position:relative;isolation:isolate}
+html.lk-c .fin::after,html.lk-c .go::after,html.lk-c .mc:first-child::after{content:"";position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--lka),rgba(43,179,163,0) 0deg,#2BB3A3 60deg,#3A86C8 110deg,rgba(58,134,200,0) 170deg,rgba(246,198,107,0) 200deg,#F6C66B 260deg,rgba(246,198,107,0) 320deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:lkspin 6s linear infinite;pointer-events:none;z-index:1}
+html.lk-c .fin::before,html.lk-c .go::before{content:"";position:absolute;inset:6px;border-radius:inherit;background:conic-gradient(from var(--lka),#2BB3A3,#3A86C8,#F6C66B,#2BB3A3);filter:blur(18px);opacity:.28;z-index:-1;animation:lkspin 6s linear infinite}
+html.lk-c .fin{border-color:transparent!important}
+@keyframes lkspin{to{--lka:360deg}}
+@media (prefers-reduced-motion:reduce){html.lk-c .fin::after,html.lk-c .go::after,html.lk-c .mc:first-child::after,html.lk-c .fin::before,html.lk-c .go::before{animation:none}}

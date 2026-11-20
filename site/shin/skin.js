@@ -9,6 +9,8 @@ try{var _q=location.search.match(/[?&]iro=([01])/);if(_q)localStorage.setItem("t
 /* 11/19 owner「文字列おかしい」：日本語の見出し・文を意味の切れ目でだけ折り返す（BudouX） */
 (function(){var s=document.createElement("script");s.src="/shin/bx.js?v=1";s.defer=true;document.head.appendChild(s)})();
 var H=document.documentElement,P=window.TN_P||location.pathname,RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+/* 11/20 19:20 見た目の見本 ?look=a|b|c（この端末で覚える・?look=0 で外す）→ look.css・look.js */
+try{var _lk=location.search.match(/[?&]look=([abc0])/);if(_lk)localStorage.setItem("tn_look",_lk[1]);var _lv=localStorage.getItem("tn_look");if(_lv&&_lv!=="0"){document.documentElement.classList.add("lk","lk-"+_lv);var _l=document.createElement("link");_l.rel="stylesheet";_l.href="/shin/look.css?v=1";document.head.appendChild(_l);var _s=document.createElement("script");_s.src="/shin/look.js?v=1";_s.defer=true;document.head.appendChild(_s)}}catch(e){}
 var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
 var IC={now:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
  we:'<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>',
