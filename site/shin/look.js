@@ -1,5 +1,5 @@
 /* 11/20 見た目の見本（look.css）：A は後ろの光のにじみ、どれも流すとふわっと出る */
-(function(){var H=document.documentElement;try{var _p=location.search.match(/[?&]pal=([0-3])/);if(_p)localStorage.setItem("tn_pal",_p[1]);var _pv=localStorage.getItem("tn_pal");if(_pv&&_pv!=="0")H.classList.add("lk-p"+_pv)}catch(e){}try{var _h=location.search.match(/[?&]hue=([0-5])/);if(_h)localStorage.setItem("tn_hue",_h[1]);var _hv=localStorage.getItem("tn_hue")||"4";if(_hv&&_hv!=="0")H.classList.add("lk-h"+_hv)}catch(e){}if(!H.classList.contains("lk")||window.__lk)return;window.__lk=1;
+(function(){var H=document.documentElement;try{var _p=location.search.match(/[?&]pal=([0-3])/);if(_p)localStorage.setItem("tn_pal",_p[1]);var _pv=localStorage.getItem("tn_pal");if(_pv&&_pv!=="0")H.classList.add("lk-p"+_pv)}catch(e){}try{var _e=location.search.match(/[?&]edge=([0-3])/);if(_e)localStorage.setItem("tn_edge",_e[1]);var _ev=localStorage.getItem("tn_edge");if(_ev&&_ev!=="0")H.classList.add("lk-e"+_ev)}catch(e){}try{var _h=location.search.match(/[?&]hue=([0-5])/);if(_h)localStorage.setItem("tn_hue",_h[1]);var _hv=localStorage.getItem("tn_hue")||"4";if(_hv&&_hv!=="0")H.classList.add("lk-h"+_hv)}catch(e){}if(!H.classList.contains("lk")||window.__lk)return;window.__lk=1;
 function go(){if(H.classList.contains("lk-a")&&!document.querySelector(".lk-bg")){var b=document.createElement("div");b.className="lk-bg";b.setAttribute("aria-hidden","true");b.innerHTML="<i></i><i></i><i></i><i></i><i></i><b></b>";document.body.insertBefore(b,document.body.firstChild)}
  if(matchMedia("(prefers-reduced-motion:reduce)").matches||!("IntersectionObserver" in window))return;
  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -6% 0px"});
@@ -28,3 +28,18 @@ addEventListener("scroll",function(){if(!ims.length)ims=[].slice.call(document.q
 (function(){var H=document.documentElement;if(!H.classList.contains("lk-f"))return;
 function add(){if(document.querySelector(".lk-hero"))return;var d=document.createElement("div");d.className="lk-hero";d.setAttribute("aria-hidden","true");d.innerHTML="<i></i><i></i><i></i><i></i><i></i>";document.body.insertBefore(d,document.body.firstChild)}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",add);else add()})();
+/* 11/21 6:06 owner「夜の星ってもっとシンプルでとても綺麗なのないの？」→ 見本 ?sky=1 澄んだ星空（白い星だけ・大きさは3つ・明るい星が数個ゆっくりまたたく）
+   ?sky=2 ごく少ない星（星を数十だけ・またたかない・流れ星だけ残す）。?sky=0 で今の形。星は画面に貼り付き、流しても動かない */
+(function(){var H=document.documentElement;var v="0";try{var m=location.search.match(/[?&]sky=([0-2])/);if(m)localStorage.setItem("tn_sky",m[1]);v=localStorage.getItem("tn_sky")||"0"}catch(e){}
+if(v==="0")return;H.classList.add("lk-s"+v);
+var cv,tw=[];function draw(){if(!cv){cv=document.createElement("canvas");cv.className="lk-sky";cv.setAttribute("aria-hidden","true");var host=document.getElementById("sky")||document.body;host.appendChild(cv)}
+ var w=innerWidth,h=innerHeight,dp=Math.min(2,devicePixelRatio||1);cv.width=w*dp;cv.height=h*dp;var c=cv.getContext("2d");c.scale(dp,dp);
+ var r=20251121;function rnd(){r=(r*16807)%2147483647;return r/2147483647}
+ var n=v==="1"?Math.round(w*h/2600):Math.round(w*h/7000);
+ for(var i=0;i<n;i++){var x=rnd()*w,y=rnd()*h,k=rnd(),sz,a;
+  if(v==="1"){sz=k>.96?1.25:k>.8?.85:.5;a=k>.96?.95:k>.8?.7:.45}else{sz=k>.9?1.1:.7;a=k>.9?.9:.6}
+  c.fillStyle="rgba(255,255,255,"+a+")";c.beginPath();c.arc(x,y,sz,0,7);c.fill();
+  if(v==="1"&&k>.96){var g=c.createRadialGradient(x,y,0,x,y,7);g.addColorStop(0,"rgba(255,255,255,.22)");g.addColorStop(1,"rgba(255,255,255,0)");c.fillStyle=g;c.fillRect(x-7,y-7,14,14)}}
+ tw.forEach(function(e){e.remove()});tw=[];if(v==="1"&&!matchMedia("(prefers-reduced-motion:reduce)").matches){for(var j=0;j<7;j++){var e=document.createElement("i");e.className="lk-tw";e.style.cssText="left:"+(rnd()*w).toFixed(0)+"px;top:"+(rnd()*h*.8).toFixed(0)+"px;animation-delay:-"+(rnd()*6).toFixed(1)+"s;animation-duration:"+(4+rnd()*4).toFixed(1)+"s";cv.parentNode.appendChild(e);tw.push(e)}}}
+var t;function go(){draw();addEventListener("resize",function(){clearTimeout(t);t=setTimeout(draw,200)})}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go()})();

@@ -396,3 +396,15 @@ html.lk-h4.nt .lk-hero::before{mix-blend-mode:screen;opacity:.75;
 html.lk-h4.nt .lk-hero::after{background:linear-gradient(180deg,rgba(6,10,22,0),rgba(6,10,22,.15))}
 @media (prefers-reduced-motion:reduce){html.lk-h4 .lk-hero::before{animation:none}}
 html.lk-h4:not(.nt) .lk-hero::before{mix-blend-mode:normal;opacity:1;filter:blur(22px)}
+/* 11/21 夜空の見本 ?sky=1|2：今の星（#stars・.tw・天の川）を隠し、白い星だけの静かな空に */
+.lk-sky,.lk-tw{display:none}
+html.nt.lk-s1 #stars,html.nt.lk-s2 #stars,html.nt.lk-s1 #sky .tw,html.nt.lk-s2 #sky .tw{display:none!important}
+html.nt.lk-s1 .lk-sky,html.nt.lk-s2 .lk-sky{display:block;position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:0}
+html.nt.lk-s1 .lk-tw{display:block;position:fixed;width:3px;height:3px;margin:-1.5px 0 0 -1.5px;border-radius:50%;background:#fff;box-shadow:0 0 6px 1px rgba(255,255,255,.55);pointer-events:none;z-index:0;opacity:.2;animation:lktw 6s ease-in-out infinite}
+@keyframes lktw{0%,100%{opacity:.15}50%{opacity:.95}}
+/* 11/21 6:06 owner「斜めに切れてる感じのデザイン、夜はいらない」→ 夜は上の帯を出さない（星空だけ） */
+html.lk-f.nt .lk-hero{display:none!important}
+/* 6:07「昼もほかのあるなら見たい」→ 帯の終わり方の見本 ?edge=1 下へ溶ける（線が無い）・2 ゆるい弧・3 低い斜め（今より浅く）。?edge=0 で今の斜め */
+html.lk-e1 .lk-hero{clip-path:none;height:min(70vh,600px);-webkit-mask:linear-gradient(180deg,#000 0%,#000 45%,transparent 100%);mask:linear-gradient(180deg,#000 0%,#000 45%,transparent 100%)}
+html.lk-e2 .lk-hero{clip-path:ellipse(120% 100% at 50% 0%)}
+html.lk-e3 .lk-hero{clip-path:polygon(0 0,100% 0,100% 82%,0 100%)}
