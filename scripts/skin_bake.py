@@ -19,7 +19,7 @@ for f in root.rglob("*.html"):
 print("skin_bake: 頭とバーを書き込み", n, "枚")
 # 11/20 19:54 owner「月のおすすめで」→ 見た目 D（オーロラとガラス＋箱並べ・site/shin/look.css）を全部のページの頭に（関西は _middleware.js の LOOK）。
 # ?look=0 で前の見た目。戻す時は LOOK を "" にする。
-LOOK = '<script>try{var v=localStorage.getItem("tn_lk")||"d",m=location.search.match(/[?&]look=([abcde0])/);if(m){v=m[1];localStorage.setItem("tn_lk",v)}if(v!=="0"){var h=document.documentElement;h.classList.add("lk","lk-"+v);if(v==="d"||v==="e")h.classList.add("lk-a","lk-d")}}catch(e){}</script><link rel="stylesheet" href="/shin/look.css?v=7" id="lkcss"><script src="/shin/look.js?v=7" defer></script>'
+LOOK = '<script>try{var v=localStorage.getItem("tn_lk")||"d",m=location.search.match(/[?&]look=([abcde0])/);if(m){v=m[1];localStorage.setItem("tn_lk",v)}if(v!=="0"){var h=document.documentElement;h.classList.add("lk","lk-"+v);if(v==="d"||v==="e")h.classList.add("lk-a","lk-d")}}catch(e){}</script><link rel="stylesheet" href="/shin/look.css?v=8" id="lkcss"><script src="/shin/look.js?v=8" defer></script>'
 m = 0
 for f in root.rglob("*.html"):
     t = f.read_text(encoding="utf-8", errors="ignore")
