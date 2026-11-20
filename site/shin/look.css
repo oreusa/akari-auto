@@ -369,3 +369,30 @@ html.lk-h1 .lk-hero i,html.lk-h2 .lk-hero i,html.lk-h3 .lk-hero i,html.lk-h4 .lk
 html.lk-h3 .lk-hero i{opacity:.6!important}
 html.lk-h1.nt .lk-hero,html.lk-h2.nt .lk-hero,html.lk-h3.nt .lk-hero,html.lk-h4.nt .lk-hero{background:#0B0E18}
 html.lk-h1.nt .lk-hero i,html.lk-h2.nt .lk-hero i,html.lk-h3.nt .lk-hero i,html.lk-h4.nt .lk-hero i{opacity:.2!important}
+/* ==== 11/21 6:03 owner「オーロラかなぁ」「めっちゃ綺麗に見えるように工夫して」→ オーロラをふだんの形に（tn_hue 無し＝4）
+   丸い光だけでは「にじみ」なので、本物のオーロラのように ①斜めに流れる光のカーテン（細い帯が3本、ゆっくり左右に揺れる）
+   ②帯の重なりで色が澄む（ミント→すみれ→桃）③地は真っ白でなく、ごく淡い水色がかった白 ④夜は星空の上に緑とすみれのオーロラ */
+html.lk-h4 .lk-hero{background:linear-gradient(180deg,#EEF7F6 0%,#F3F1FB 60%,#F8F8FA 100%)}
+html.lk-h4 .lk-hero i{opacity:.42!important;filter:blur(70px)}
+html.lk-h4 .lk-hero i:nth-child(1){background:#8FE3CF}html.lk-h4 .lk-hero i:nth-child(2){background:#B3A2F4}
+html.lk-h4 .lk-hero i:nth-child(3){background:#F6B3D1;opacity:.34!important}html.lk-h4 .lk-hero i:nth-child(4){background:#86CDEA;opacity:.3!important}
+html.lk-h4 .lk-hero i:nth-child(5){background:#CFF2C2;opacity:.36!important}
+html.lk-h4 .lk-hero::before{content:"";position:absolute;left:-60%;right:-60%;top:-20%;bottom:-10%;pointer-events:none;
+ background:
+  linear-gradient(104deg,transparent 18%,rgba(126,224,199,.55) 26%,rgba(126,224,199,0) 34%),
+  linear-gradient(98deg,transparent 36%,rgba(170,150,245,.5) 44%,rgba(240,170,210,.32) 50%,transparent 58%),
+  linear-gradient(108deg,transparent 60%,rgba(130,205,235,.42) 67%,rgba(200,240,190,.3) 72%,transparent 80%);
+ filter:blur(26px);transform:skewY(-9deg);animation:lkau 26s ease-in-out infinite alternate;mix-blend-mode:multiply;opacity:.9}
+@keyframes lkau{0%{transform:skewY(-9deg) translateX(-6%)}50%{transform:skewY(-6deg) translateX(4%) scaleY(1.08)}100%{transform:skewY(-10deg) translateX(9%)}}
+html.lk-h4 .lk-hero::after{background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,0) 45%)}
+html.lk-h4.nt .lk-hero{background:linear-gradient(180deg,#060A16 0%,#0A0F1F 70%,#0B0E18 100%)}
+html.lk-h4.nt .lk-hero i{opacity:.14!important}
+html.lk-h4.nt .lk-hero i:nth-child(1){background:#3FE0A8}html.lk-h4.nt .lk-hero i:nth-child(2){background:#7C6CF0}
+html.lk-h4.nt .lk-hero::before{mix-blend-mode:screen;opacity:.75;
+ background:
+  linear-gradient(104deg,transparent 18%,rgba(62,224,168,.42) 26%,rgba(62,224,168,0) 34%),
+  linear-gradient(98deg,transparent 36%,rgba(124,108,240,.36) 44%,rgba(220,120,190,.18) 50%,transparent 58%),
+  linear-gradient(108deg,transparent 60%,rgba(80,190,230,.28) 67%,rgba(120,230,170,.2) 72%,transparent 80%)}
+html.lk-h4.nt .lk-hero::after{background:linear-gradient(180deg,rgba(6,10,22,0),rgba(6,10,22,.15))}
+@media (prefers-reduced-motion:reduce){html.lk-h4 .lk-hero::before{animation:none}}
+html.lk-h4:not(.nt) .lk-hero::before{mix-blend-mode:normal;opacity:1;filter:blur(22px)}
