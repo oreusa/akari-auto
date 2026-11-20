@@ -352,3 +352,20 @@ html.lk.sk.nt .flt button.on,html.lk.sk.nt .flt .on{background:#F5F5F7!important
 html.lk.lk-f #tb,html.lk.lk-f .sk-tb{background:rgba(248,248,250,.985)!important}html.lk.lk-f.nt #tb,html.lk.lk-f.nt .sk-tb{background:rgba(9,12,22,.985)!important}
 html.lk.lk-f #tb,html.lk.lk-f .sk-tb{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 html.lk.lk-f.sk #tb.sk-tb,html.lk.lk-f #tb{background:#F8F8FA!important}html.lk.lk-f.nt.sk #tb.sk-tb,html.lk.lk-f.nt #tb{background:#090C16!important}
+/* 11/21 6:00 owner「色合いを綺麗にしたい候補」→ 上の帯の色だけ替える見本（?hue=1〜4・?hue=0 で今の形）。ボタン・字は白黒のまま */
+/* 1 夜明け：藤色・すみれ・淡い桃・ミント（青みのやさしい色） */
+html.lk-h1 .lk-hero{background:#F7F5FB}
+html.lk-h1 .lk-hero i:nth-child(1){background:#C3B1F5}html.lk-h1 .lk-hero i:nth-child(2){background:#A9DCCF}html.lk-h1 .lk-hero i:nth-child(3){background:#F5BFD6}html.lk-h1 .lk-hero i:nth-child(4){background:#AFC2F4}html.lk-h1 .lk-hero i:nth-child(5){background:#E2C9F2}
+/* 2 夕暮れのモーヴ：杏・ローズ・モーヴ・ライラック（あたたかいむらさき） */
+html.lk-h2 .lk-hero{background:#FBF5F4}
+html.lk-h2 .lk-hero i:nth-child(1){background:#FFC7A6}html.lk-h2 .lk-hero i:nth-child(2){background:#D9B8EC}html.lk-h2 .lk-hero i:nth-child(3){background:#F2A9BE}html.lk-h2 .lk-hero i:nth-child(4){background:#C2A4E6}html.lk-h2 .lk-hero i:nth-child(5){background:#FFD9B8}
+/* 3 シャンパン：シャンパン・ブラッシュ・ラベンダー・セージ（いちばん控えめ・上品） */
+html.lk-h3 .lk-hero{background:#FAF8F4}
+html.lk-h3 .lk-hero i:nth-child(1){background:#F2DDB0}html.lk-h3 .lk-hero i:nth-child(2){background:#CFE2D3}html.lk-h3 .lk-hero i:nth-child(3){background:#F1C6C6}html.lk-h3 .lk-hero i:nth-child(4){background:#CEC3EE}html.lk-h3 .lk-hero i:nth-child(5){background:#F5E3C8}
+/* 4 オーロラ：ミント・青緑・すみれ・桃（Apple の壁紙のような冷たく澄んだ色） */
+html.lk-h4 .lk-hero{background:#F4F8F8}
+html.lk-h4 .lk-hero i:nth-child(1){background:#9FE3D3}html.lk-h4 .lk-hero i:nth-child(2){background:#B9A8F2}html.lk-h4 .lk-hero i:nth-child(3){background:#F7B6D2}html.lk-h4 .lk-hero i:nth-child(4){background:#8FD0E8}html.lk-h4 .lk-hero i:nth-child(5){background:#D7F0C8}
+html.lk-h1 .lk-hero i,html.lk-h2 .lk-hero i,html.lk-h3 .lk-hero i,html.lk-h4 .lk-hero i{opacity:.5!important}
+html.lk-h3 .lk-hero i{opacity:.6!important}
+html.lk-h1.nt .lk-hero,html.lk-h2.nt .lk-hero,html.lk-h3.nt .lk-hero,html.lk-h4.nt .lk-hero{background:#0B0E18}
+html.lk-h1.nt .lk-hero i,html.lk-h2.nt .lk-hero i,html.lk-h3.nt .lk-hero i,html.lk-h4.nt .lk-hero i{opacity:.2!important}
