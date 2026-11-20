@@ -107,6 +107,7 @@ html.nt .skc .topsg-b a.on{background:#F5F5F7;color:#0A0E18}
 .skc .mu li.mg~li a{padding:11px 0;font-size:17px}
 html.nt .skc .mu li.mg{color:#9AA3B5}
 @media (max-width:370px){.skc .topsg-k{display:none}.skc .topsg-b a{font-size:12.5px;letter-spacing:0}}
+.skc html.m2op #tb{visibility:hidden}
 @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-24px,-40px,0)}}
 @keyframes pop{40%{transform:scale(.82)}100%{transform:scale(1)}}
 @keyframes ring{to{--ra:360deg}}
