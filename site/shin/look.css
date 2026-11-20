@@ -286,3 +286,23 @@ html.lk-f.nt .lk-hero::after{background:linear-gradient(180deg,rgba(7,10,20,.25)
 html.lk-f .top,html.lk-f .tg{background:transparent!important}
 html.lk.lk-a.lk-d.lk-e.lk-f .c3u:first-child .s{color:rgba(29,29,31,.78)!important}
 html.lk.lk-a.lk-d.lk-e.lk-f.nt .c3u:first-child .s{color:rgba(245,245,247,.8)!important}
+/* ==== 21:19 owner「下に行くと出てくる、動きすぎ・抑えめに」「枠にすると夜も昼も背景が見えない」「透明感」
+   ①流すと出てくる動きは小さく短く（6px・.45秒・最初から少し見えている） ②大きな枠は「すりガラス」に：
+   中を塗らず、後ろの光と星がうっすら見える薄さ。ぼかしも弱く（夜の星が消えないように） */
+html.lk .rv{opacity:.25;transform:translateY(6px);transition:opacity .45s ease-out,transform .45s ease-out}
+html.lk .rv.in{opacity:1;transform:none}
+html.lk.lk-a .c3u{background:linear-gradient(160deg,rgba(255,255,255,.42),rgba(255,255,255,.16))!important;-webkit-backdrop-filter:blur(10px) saturate(1.5);backdrop-filter:blur(10px) saturate(1.5);border:1px solid rgba(255,255,255,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 14px 34px -24px rgba(40,40,60,.3)}
+html.lk.lk-a .c3u.g{background:linear-gradient(160deg,rgba(255,255,255,.34),rgba(255,255,255,.12))!important}
+html.lk.lk-a:not(.nt) .c3u.k{--ink:#1D1D1F;--sub:#6E6E73;--line:rgba(0,0,0,.1);color:#1D1D1F;background:linear-gradient(160deg,rgba(255,255,255,.42),rgba(255,255,255,.16))!important;border-color:rgba(255,255,255,.6)}
+html.lk.lk-a:not(.nt) .c3u.k .c3b a:not(.f){background:linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,.7)) padding-box,var(--sg) border-box!important;color:#1D1D1F}
+html.lk.lk-a.nt .c3u,html.lk.lk-a.nt .c3u.g,html.lk.lk-a.nt .c3u.k{background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02))!important;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);border-color:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+html.lk.lk-a.nt:not(.lk-e) .c3u .c3b a:not(.f){background:linear-gradient(rgba(14,18,30,.45),rgba(14,18,30,.45)) padding-box,var(--sg) border-box!important}
+html.lk.lk-a.nt .pn,html.lk.lk-a.nt .flt{background:rgba(10,14,24,.35)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+html.lk.lk-a.nt .kt-c{background:rgba(255,255,255,.05)!important;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+html.lk.lk-a.lk-d.lk-e .c3v.c3st,html.lk.lk-a.lk-d.lk-e .c3v.c3ks,html.lk.lk-a.lk-d.lk-e .c3v.c3kc{background:linear-gradient(160deg,rgba(255,255,255,.5),rgba(255,255,255,.22))!important;-webkit-backdrop-filter:blur(12px) saturate(1.5);backdrop-filter:blur(12px) saturate(1.5)}
+html.lk.lk-a.lk-d.lk-e.nt .c3v.c3st,html.lk.lk-a.lk-d.lk-e.nt .c3v.c3ks,html.lk.lk-a.lk-d.lk-e.nt .c3v.c3kc,
+html.lk-f.nt .fin,html.lk-f.nt .mc,html.lk-f.nt .qr,html.lk-f.nt .ls,html.lk-f.nt .tb,html.lk-f.nt .yh a,html.lk-f.nt .go2,html.lk-f.nt .cmpt,html.lk-f.nt .faq,html.lk-f.nt .tiles,html.lk-f.nt .rk,html.lk.lk-a.lk-d.lk-e.lk-f.nt .c3v.c3st,html.lk.lk-a.lk-d.lk-e.lk-f.nt .c3v.c3ks,html.lk.lk-a.lk-d.lk-e.lk-f.nt .c3v.c3kc{background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.025))!important;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);border:1px solid rgba(255,255,255,.11)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.1)!important}
+html.lk-f .fin,html.lk-f .mc,html.lk-f .qr,html.lk-f .ls,html.lk-f .tb,html.lk-f .yh a,html.lk-f .go2,html.lk-f .cmpt,html.lk-f .faq,html.lk-f .tiles,html.lk-f .rk,html.lk.lk-a.lk-d.lk-e.lk-f .c3v.c3st,html.lk.lk-a.lk-d.lk-e.lk-f .c3v.c3ks,html.lk.lk-a.lk-d.lk-e.lk-f .c3v.c3kc{background:rgba(255,255,255,.62)!important;-webkit-backdrop-filter:blur(12px) saturate(1.4);backdrop-filter:blur(12px) saturate(1.4)}
+/* F の昼は帯の下が平らな白だった→すみに淡い光を戻して、すりガラスの向こうに色が見えるように */
+html.lk-f:not(.nt) .lk-bg{display:block}
+@media (prefers-reduced-motion:reduce){html.lk .rv{opacity:1;transform:none;transition:none}}
