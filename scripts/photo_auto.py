@@ -1,6 +1,6 @@
 # 投稿の写真の表紙を機械で作る（11/19 オーナー「投稿に使う写真も劇的に変えれる」「関東の方も全部の話だよね？」）。
 # 予約の前（book.yml）に動く。今日の予定表のおでかけの枠で、まだ予約していない物を data/photo-pick.json の写真と照らし、
-# 合う写真があれば scripts/post_photo.js で表紙を作って site/card/ に置き、data/photo-auto.json に「日付 時刻 → 絵のURL」を書く。
+# 合う写真があれば scripts/post_glass.js（11/20〜 光とガラスの形）で表紙を作って site/card/ に置き、data/photo-auto.json に「日付 時刻 → 絵のURL」を書く。
 # book.py はこの表を見て、予定表の image より先にこの絵を付ける。
 # 写真は data/photo-pick.json に月か燈が目で見て入れた物だけ（催しそのもの・季節が合う・幅900px以上・cr あり）。合わない枠は今の絵のまま。
 # 使い方：python3 scripts/photo_auto.py [--need]（--need は作る物があれば yes を出すだけ。道具を入れるかどうかに使う）
@@ -55,14 +55,13 @@ def spec_for(post, day, slot, pk):
     elif when:
         pill += "　" + when
     name = f"photo-{day[5:].replace('-', '')}-{slot.replace(':', '')}"
-    base = {"name": name, "im": pk["file"], "cr": pk["cr"], "pos": pk.get("pos", "50% 50%"), "pill": pill.strip(),
-            "big": big, "unit": unit, "en": pk.get("en", "")}
+    # 11/20 21:26 owner「よい」：HPと同じ光とガラスの形（scripts/post_glass.js）。写真を一面に、下にガラスのカード
+    base = {"name": name, "im": pk["file"], "cr": pk["cr"], "photo": {"im": pk["file"], "cr": pk["cr"], "pos": pk.get("pos", "50% 50%")},
+            "pill": pill.strip(), "big": big, "unit": unit, "en": pk.get("en", "")}
     cap = pk.get("cap", "")
-    # 長い見出しは字を小さく、まだ入らなければ名前だけを見出しにして中身は下の小さい字へ
-    return [dict(base, head=f"<em>{place}</em><br>{body}", cap=cap, nowrap=True),
-            dict(base, head=f"<em>{place}</em><br>{body}", cap=cap, hs=60, nowrap=True),
-            dict(base, head=f"<em>{place}</em>", cap=body, nowrap=True),
-            dict(base, head=f"<em>{place}</em>", cap=body, hs=60, nowrap=True)]
+    # 長い見出しは名前だけを見出しにして、中身はカードの下の字へ（字の大きさは post_glass.js が 92→84→76 と下げて試す）
+    return [dict(base, head=f"<em>{place}</em><br>{body}", cap=cap),
+            dict(base, head=f"<em>{place}</em>", cap=body)]
 
 
 EN = {"路線ごとの街ランキング": "KANTO TOWN RANKING", "ひと駅しらべ": "HITOEKI NOTE", "実家・空き家": "JIKKA NOTE",
@@ -101,12 +100,13 @@ def card_specs(post, day, slot):
             big, unit = n.group(1).replace("＋", "+"), n.group(2).replace("％", "%")
     sub = re.search(r"◎\s*(.+)", t0)
     cap = re.sub(r"[！!。]+$", "", sub.group(1).strip()) if sub else ""
-    base = {"name": f"auto-{day[5:].replace('-', '')}-{slot.replace(':', '')}", "en": en, "big": big, "unit": unit, "nowrap": True}
+    # 11/20 owner OK：光とガラスの形。夜8時より後の枠は星空（night）。上の丸い札は府県
+    base = {"name": f"auto-{day[5:].replace('-', '')}-{slot.replace(':', '')}", "en": en, "big": big, "unit": unit,
+            "pill": str(post.get("topic", "")), "night": slot >= "20:00"}
     out = []
     if lines:
         h = "<em>" + place + "</em><br>" + "<br>".join(lines)
-        for hs in (58, 54, 50):
-            out += [dict(base, head=h, hs=hs, cap=cap), dict(base, head=h, hs=hs)]
+        out += [dict(base, head=h, cap=cap), dict(base, head=h)]
     out += [dict(base, head="<em>" + place + "</em>", cap=body), dict(base, head="<em>" + place + "</em>")]
     return out
 
@@ -144,13 +144,15 @@ def main():
         pk = pick_for(post, day, picks) if "おでかけ" in str(post.get("series", "")) else None
         sp = spec_for(post, day, slot, pk) if pk else None
         if sp:
-            todo.append((key, sp, "post_photo.js", False))
+            todo.append((key, sp, "post_glass.js", False))
         elif not str(post.get("image", "")).startswith("https://"):  # 11/19 owner「どしたの？画像なし」：絵の無い枠を残さない
             cs = card_specs(post, day, slot)
             if cs:
                 # 11/20 月：HPの絵がある枠も、予約の時にその絵が読めないと絵なしで出ていた（11/20 08:15・09:15・12:15・13:45）。
                 # 控えの表紙を作っておき、book.py は HPの絵が取れない時だけこれを使う（fallback）
-                todo.append((key, cs, "post_card.js", has_pic(post)))
+                # 11/20 owner「投稿の画像もね」：HPの絵より光とガラスの表紙を先に。くらべた話（PR）だけは商品の写真を先にして、表紙は控え
+                pr = ((post.get("threads") or [""])[0]).startswith("【くらべた")
+                todo.append((key, cs, "post_glass.js", has_pic(post) and pr))
     if "--need" in sys.argv:
         print("yes" if todo else "no")
         return 0
