@@ -72,7 +72,7 @@ function ieOrg(P,kt){
   var bi=G[g].i.slice(0,4),ci=G[g].i.filter(function(x){return x[3]===cu})[0];if(ci&&bi.indexOf(ci)<0)bi[3]=ci;
   var nav=bi.map(function(x){return {t:x[1],ic:x[2],svg:svg(x[2]),href:x[3],cur:x[3]===cu}});
   var menu=[];G.forEach(function(x){menu.push([x.h,"#"]);x.i.forEach(function(y){menu.push([y[0],y[3]].concat(y[3]===cu?[1]:[]))})});
-  return {g:g,seg:seg,nav:nav,menu:menu};
+  return {g:g,seg:p==="/fudosan-list"?"":seg,nav:nav,menu:menu};
 }
 var IEO=C===FUD?ieOrg(P,KT):null;
 if(IEO){C={nav:IEO.nav.map(function(x){return [x.t,x.ic,x.href,x.svg,x.cur]}),k:FUD.k,menu:IEO.menu.map(function(m){return m.length>2||m[1]==="#"?m:[m[0],m[1],0]}),rel:FUD.rel};H.classList.add("ieo")}
@@ -84,6 +84,17 @@ function build(){
   top.innerHTML='<div class="wrap"><header class="top"><a class="brand" href="/" aria-label="トップへ"><img id="logo" src="'+(n?LG[1]:LG[0])+'" alt="'+BR+'"><b>'+BR+'</b></a>'+
    '<button class="tg" id="tg" role="switch" aria-checked="'+n+'" aria-label="夜の画面にする"><i class="kn"></i><span class="su"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path class="sp" d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg></span><span class="mo"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></span></button></header>'+(IEO?IEO.seg:'')+'</div>';
   document.body.insertBefore(top,document.body.firstChild);
+  /* 11/20 owner「同じ街の相場・実家・解体を1つにまとめる」：街のページ（/machi/・/jikka/・/kaitai-市）の上は、その街の3つのタブ（値段と地価／実家・空き家／解体・片付け）。表は /shin/machi.json（tools/shin/machimap.py） */
+  if(IEO)(function(){var tm=P.match(/^\/(machi|jikka)\/([a-z]+-\d+)/),km=P.match(/^\/kaitai-(?!ranking)([a-z]+)/);if(!tm&&!km)return;
+    var o0=top.querySelector(".topsg"),show=function(){if(o0)o0.style.visibility=""};if(o0)o0.style.visibility="hidden";setTimeout(show,1500);
+    var last="";try{last=sessionStorage.getItem("tn_machi")||"";if(tm)sessionStorage.setItem("tn_machi",tm[2])}catch(e){}
+    fetch("/shin/machi.json").then(function(r){return r.json()}).then(function(M){var id,nm,k,cur;
+      if(tm){id=tm[2];var t=M.t[id];if(!t)return show();nm=t[0];k=t[2];cur=tm[1]==="machi"?0:1}
+      else{k=km[1];var c=M.k[k];if(!c)return show();cur=2;id=c[1].indexOf(last)>=0?last:(c[1].length===1?c[1][0]:"");nm=id?M.t[id][0]:c[0]}
+      var t2=id?M.t[id]:null,u=[id?"/machi/"+id:"/fudosan-list?q="+encodeURIComponent(nm),t2&&t2[1]?"/jikka/"+id:"/jikka/",k?"/kaitai-"+k:"/kaitai"];
+      var L=["値段と地価","実家・空き家",k?"解体の補助金":"解体・片付け"];
+      var h='<nav class="topsg toptw" aria-label="'+nm+'のページ"><div class="topsg-k">'+nm+'</div><div class="topsg-b">'+L.map(function(x,i){return '<a href="'+u[i]+'"'+(i===cur?' class="on" aria-current="page"':'')+'>'+x+'</a>'}).join("")+'</div></nav>';
+      var o=top.querySelector(".topsg");if(o)o.outerHTML=h}).catch(show)})();
   var sk=document.createElement("div");sk.className="skc";sk.id="sk";
   sk.innerHTML='<div id="sky" aria-hidden="true"><canvas id="stars"></canvas></div>'+
    '<nav class="nav" id="nav" aria-label="すぐ移動">'+C.nav.map(function(x){return '<a href="'+x[2]+'"'+((x.length>4?x[4]:here(x[2]))?' class="cur"':'')+'>'+(x[3]||IC[x[1]])+'<span>'+x[0]+'</span></a>'}).join("")+'<button class="mn" id="mnb" aria-label="メニュー"><em></em><span>MENU</span></button></nav>'+

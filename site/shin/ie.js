@@ -17,9 +17,16 @@ var SORT={up:["地価の上がり順",function(t){return t.r8},function(t){retur
  pop:["人が増えた順",function(t){return t.pop&&t.pop[1]},function(t){return t.pop?pct(t.pop[1]):"—"},"人口 5年"]};if(!avM)delete SORT.m;if(!avH)delete SORT.h;
 var Q=new URLSearchParams(location.search),S={p:Q.get("p")||"",o:Q.get("o")||"up",n:30};
 
-S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">'+esc(D.h1||(RN+'の家と土地の相場'))+'</h1><p class="h1p">'+esc(D.sub||(TW.length+'の街・実際に売れた値段と、地価の動き'))+'</p>'+
+/* 11/20 owner「パッと見で使いにくい」→ 家と土地の入口を1枚に：街の名前で探す＋「何をしたいですか」の3枚だけ（見本 ?seiri=1 の時＝html.ieo） */
+var HUB=document.documentElement.classList.contains("ieo");
+var DOOR=HUB?'<h2 class="dq">何をしたいですか</h2><nav class="door" aria-label="何をしたいか">'+
+ '<a href="#sent" data-door="s"><b>街の値段と地価を見る</b><small>'+(avM?TW.length+'の街の、実際に売れた値段と地価の上がり方':TW.length+'の街の、地価の上がり方と人口')+'</small><i>›</i></a>'+
+ '<a href="/uru"><b>家を売りたい・買いたい</b><small>いくらで売れるか・予算で住める街・無料の相談</small><i>›</i></a>'+
+ '<a href="/jikka/"><b>実家・空き家のこと</b><small>相続した家や空き家の、売る・片付け・解体の順番と補助金</small><i>›</i></a></nav>'+
+ '<h2 class="dq dq2">街の値段と地価</h2>':'';
+S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">'+esc(HUB?RN+'の家と土地':(D.h1||(RN+'の家と土地の相場')))+'</h1><p class="h1p">'+esc(HUB?TW.length+'の街の値段と地価・家を売る買う・実家と空き家':(D.sub||(TW.length+'の街・実際に売れた値段と、地価の動き')))+'</p>'+
  '<div class="fnd"><label class="fin">'+S_.IC.find+'<input id="q" type="search" placeholder="街の名前で探す（例：'+esc(D.ph||'吹田、すいた')+'）" autocomplete="off" enterkeyhint="search"></label>'+
- '<div class="sug" id="sug"></div><button class="geo" id="geo">'+S_.IC.map+'<span>いまいる場所の街を見る</span></button></div>'+
+ '<div class="sug" id="sug"></div><button class="geo" id="geo">'+S_.IC.map+'<span>いまいる場所の街を見る</span></button></div>'+DOOR+
  '<div class="tiles">'+(avM?'<button data-o="m"><small>中古マンション 平均</small><b><span data-n="'+Math.round(avM)+'" data-f="1">0</span><u>万円</u></b><i>→</i></button>'+
  '<button data-o="h"><small>中古一戸建て 平均</small><b><span data-n="'+Math.round(avH)+'" data-f="1">0</span><u>万円</u></b><i>→</i></button>':'<button data-o="pop"><small>人が増えた街</small><b><span data-n="'+TW.filter(function(t){return t.pop&&t.pop[1]>0}).length+'">0</span><u>/ '+TW.length+'</u></b><i>→</i></button>')+
  '<button data-o="up"><small>地価が上がった街</small><b><span data-n="'+nUp+'">0</span><u>/ '+TW.length+'</u></b><i>→</i></button></div>'+
@@ -33,6 +40,8 @@ var q=$("#q"),sug=$("#sug");
 q.addEventListener("input",function(){var v=kana(q.value.trim());if(!v){sug.innerHTML="";sug.classList.remove("op");return}
   var L=TW.filter(function(t){return kana(t.n).indexOf(v)>=0||kana(t.k).indexOf(v)>=0}).slice(0,8);
   sug.innerHTML=L.length?L.map(function(t){return '<button data-id="'+t.id+'"><b>'+esc(t.n)+'</b><small>'+t.p+'</small><span>'+pct(t.r8)+'</span></button>'}).join(""):'<p>見つかりません。市や区の名前で探してください</p>';sug.classList.add("op")});
+[].forEach.call(document.querySelectorAll(".door [data-door]"),function(a){a.addEventListener("click",function(e){e.preventDefault();var top=$("#sent").getBoundingClientRect().top+scrollY-60;scrollTo({top:top,behavior:"smooth"})})});
+if(Q.get("q")){q.value=Q.get("q");q.dispatchEvent(new Event("input"))}
 sug.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;q.blur();sug.classList.remove("op");openTown(BY[b.dataset.id])});
 $("#geo").addEventListener("click",function(){var b=this;if(!navigator.geolocation)return;b.classList.add("ld");$("span",b).textContent="場所を調べています…";
   navigator.geolocation.getCurrentPosition(function(p){var K=RN==="関東",x=K?(p.coords.longitude-138.4)*81+10:(p.coords.longitude-134)*82.2,y=K?(37.15-p.coords.latitude)*100+27:(36-p.coords.latitude)*100,best=null,bd=1e9;
