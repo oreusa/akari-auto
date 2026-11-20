@@ -26,7 +26,7 @@ body{width:1080px;height:1350px;position:relative;overflow:hidden;font-family:"N
 .hero i:nth-child(1){width:900px;height:900px;left:-300px;top:-380px;background:#FFB65C}
 .hero i:nth-child(2){width:820px;height:820px;right:-360px;top:-220px;background:#2EC4B6}
 .hero i:nth-child(3){width:700px;height:700px;left:220px;top:120px;background:#F6A6C8;${N?'':'opacity:.12'}}
-.hero i:nth-child(4){width:600px;height:600px;right:-120px;top:330px;background:#6FB7F0;opacity:${N?.36:.14}}
+.hero i:nth-child(4){width:600px;height:600px;right:-120px;top:330px;background:#B7A4F2;opacity:${N?.36:.14}}
 .hero i:nth-child(5){width:700px;height:700px;left:-260px;top:380px;background:#FF8A5B;opacity:${N?.34:0}}
 .hero::after{content:"";position:absolute;inset:0;background:${N?'linear-gradient(180deg,rgba(7,10,20,.35),rgba(7,10,20,.15) 50%,rgba(7,10,20,.85))':'linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,0) 45%)'}}
 .st{position:absolute;inset:0}.st b{position:absolute;border-radius:50%;background:#fff;box-shadow:0 0 6px rgba(255,255,255,.8)}
@@ -45,7 +45,7 @@ ${N||P?'.hd em{background-image:linear-gradient(90deg,rgba(255,182,92,.0),rgba(2
 .gl{position:absolute;left:56px;right:56px;bottom:${P?118:96}px;border-radius:44px;padding:44px 52px 40px;
  background:${N?'rgba(22,28,44,.62)':P?'rgba(255,255,255,.72)':'rgba(255,255,255,.82)'};border:1px solid ${N?'rgba(255,255,255,.12)':'rgba(255,255,255,.9)'};
  backdrop-filter:blur(26px) saturate(1.4);box-shadow:0 1px 2px rgba(0,0,0,.04),0 40px 80px -40px rgba(0,0,0,${N?.9:.35})}
-.gl::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;background:linear-gradient(120deg,rgba(255,182,92,.9),rgba(246,166,200,.6) 35%,rgba(46,196,182,.85) 70%,rgba(111,183,240,.7));
+.gl::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;background:linear-gradient(120deg,rgba(255,182,92,.9),rgba(246,166,200,.6) 35%,rgba(46,196,182,.85) 70%,rgba(183,164,242,.7));
  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:${N||P?.85:.45}}
 .big{font:300 168px/1 Inter;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:${N?'#F5F5F7':'#1D1D1F'}}
 .big small{font:500 44px "Noto Sans JP";letter-spacing:0;margin-left:12px;color:${N?'rgba(245,245,247,.7)':'#5E5E5E'}}
