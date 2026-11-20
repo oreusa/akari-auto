@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import load_json, now_jst, path, save_json  # noqa: E402
 
 KEEP_DAYS = 30
-UI_SRC = ("okaimono", "menu")  # 11/10 お金にならない操作（おかいものの探す・メニュー）。_middleware.js の UI と同じ
+UI_SRC = ("okaimono", "menu", "card")  # 11/10 お金にならない操作（おかいものの探す・メニュー）。_middleware.js の UI と同じ
 UI_STOP_AT = 100  # 操作は1日100で止める（買うボタンの300の枠を食べないように）
 STOP_AT = 300  # 操作を除いた 押された数が1日にこの数を超えたら、その日は数えるのをやめる（KVの書き込みは無料で1日1,000回。開いた数は _middleware.js が1日500で止める）
 WRANGLER = ["npx", "-y", "wrangler@3.80.0"]

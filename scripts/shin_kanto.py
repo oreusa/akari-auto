@@ -173,6 +173,20 @@ def PHM(f):
         return _PM[f]
     except Exception:
         return _PM.get(f)
+# 11/20 人気順（関西の POP と同じ考え）：この30日に新しいページのカードが押された数。data/page-stats.json の click["card"]「ページ|題」
+def _pop():
+    try:
+        d = json.load(open(os.path.join(R, "data", "page-stats.json"), encoding="utf-8"))["days"]
+    except Exception:
+        return {}
+    cut = (datetime.date.fromisoformat(TD) - datetime.timedelta(days=30)).isoformat(); out = {}
+    for day, v in d.items():
+        if day < cut: continue
+        for item, n in (v.get("click", {}).get("card") or {}).items():
+            t = item.split("|", 1)[-1]
+            out[t] = out.get(t, 0) + n
+    return out
+POPS = _pop()
 def FIT(items, kind):
     for it in items:
         m = PHM(it["im"]) if it.get("im") else None
@@ -187,6 +201,9 @@ def write(fname, url, title, cfg, data, js, desc):
     cfg["reg"] = REG
     if isinstance(data, dict) and isinstance(data.get("items"), list):
         FIT(data["items"], "illumination" if fname.startswith("illumination") else "koyo" if fname.startswith("koyo") else "")
+        for it in data["items"]:
+            n = POPS.get(re.sub(r"\s+", " ", it.get("t", "")).strip()[:40])
+            if n: it["pp"] = n
     # 11/20 表紙の MENU は分野の入口そのものなので、下の重なるボタンは出さない（関西と同じ）
     m = cfg["menu"]
     if m.get("k") in MENUS:
