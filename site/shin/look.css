@@ -408,3 +408,6 @@ html.lk-f.nt .lk-hero{display:none!important}
 html.lk-e1 .lk-hero{clip-path:none;height:min(70vh,600px);-webkit-mask:linear-gradient(180deg,#000 0%,#000 45%,transparent 100%);mask:linear-gradient(180deg,#000 0%,#000 45%,transparent 100%)}
 html.lk-e2 .lk-hero{clip-path:ellipse(120% 100% at 50% 0%)}
 html.lk-e3 .lk-hero{clip-path:polygon(0 0,100% 0,100% 82%,0 100%)}
+/* 6:10 owner「違いがわからない」→ 見本の違いをはっきり：2 は深い弧、3 はまっすぐ横に切る */
+html.lk-e2 .lk-hero{clip-path:ellipse(85% 100% at 50% 0%)!important}
+html.lk-e3 .lk-hero{clip-path:inset(0 0 22% 0)!important}
