@@ -562,3 +562,53 @@ html.sk.nt[data-k] body .flt button.on.on,html.nt body .flt button.on.on{backgro
 html body .big.big:has(>.w){grid-template-columns:1fr!important;gap:0!important;background:transparent!important}
 html body .big.big:has(>.w)>div{grid-column:1/-1!important;margin:0!important;padding:14px 0 13px!important;border:0!important;border-top:1px solid var(--line)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
 html body .big.big:has(>.w)>div:first-child{border-top:0!important}
+/* 11/20 実家・空き家の3問診断（/jikka/shindan/）：前の <style> を止めた後、ここに無くて府県・質問のボタンが素のままだった → 新しい土台の形で描く（関西・関東とも同じ） */
+html[data-k=jikka] .sh img,html[data-k=jikka] .sh .en{display:none}
+html[data-k=jikka] .lead{margin:10px 0 0;font-size:15px;line-height:1.8;color:var(--sub)}
+html[data-k=jikka] .lead small{display:block;margin-top:2px;font-size:13px;color:var(--mut)}
+html[data-k=jikka] .pg{display:flex;gap:6px;margin:24px 0 0}
+html[data-k=jikka] .pg i{flex:1;height:3px;border-radius:3px;background:var(--line);overflow:hidden;position:relative}
+html[data-k=jikka] .pg i::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#2BB3A3,#3A86C8);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+html[data-k=jikka] .pg i.on::after{transform:none}
+html[data-k=jikka] .pn{margin:10px 0 0;font:600 12px/1 var(--kf);letter-spacing:.1em;color:var(--mut);font-variant-numeric:tabular-nums}
+html[data-k=jikka] .q h2{margin:22px 0 6px;font:600 22px/1.45 var(--kf);letter-spacing:.01em;color:var(--ink)}
+html[data-k=jikka] .q .hint{margin:0 0 16px;font-size:14px;line-height:1.8;color:var(--sub)}
+html[data-k=jikka] .pf{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}
+html[data-k=jikka] .pf button{font:500 15px/1 var(--kf);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 0;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+html[data-k=jikka] .pf button.sel{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
+html[data-k=jikka] .sr{width:100%;font:400 16px/1.4 var(--kf);padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);margin:0 0 12px;-webkit-appearance:none;appearance:none}
+html[data-k=jikka] .sr:focus{outline:none;border-color:var(--ink)}
+html[data-k=jikka] .twl{display:flex;flex-wrap:wrap;gap:8px;max-height:46vh;overflow:auto;padding:2px 0 6px;overscroll-behavior:contain}
+html[data-k=jikka] .twl button{font:400 14.5px/1.3 var(--kf);color:var(--ink);background:var(--chip);border:1px solid transparent;border-radius:999px;padding:10px 15px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+html[data-k=jikka] .twl button:focus-visible{border-color:var(--ink);outline:none}
+html[data-k=jikka] .twl p{margin:6px 2px;font-size:13px;color:var(--mut)}
+html[data-k=jikka] .op{display:block;width:100%;text-align:left;font:600 16px/1.5 var(--kf);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 44px 16px 18px;margin:0 0 10px;position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .15s,transform .15s}
+html[data-k=jikka] .op small{display:block;margin-top:3px;font-weight:400;font-size:13px;color:var(--sub)}
+html[data-k=jikka] .op::after{content:"";position:absolute;right:20px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--mut);border-bottom:1.5px solid var(--mut);transform:translateY(-50%) rotate(-45deg)}
+html[data-k=jikka] .op:active{transform:scale(.985)}
+html[data-k=jikka] .op.sel,html[data-k=jikka] .op:focus-visible{border-color:var(--ink);outline:none}
+html[data-k=jikka] .bk{font:400 13.5px/1.4 var(--kf);color:var(--sub);background:none;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:0 0 2px;margin:14px 0 0;cursor:pointer}
+html[data-k=jikka] .rs .tag{display:inline-block;margin:22px 0 0;padding:4px 12px;border:1px solid transparent;border-radius:999px;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box;font:600 12px/1.5 var(--kf);color:var(--ink)}
+html[data-k=jikka] .rs h2{margin:10px 0 8px;font:600 24px/1.45 var(--kf);text-wrap:balance}
+html[data-k=jikka] .rs .why{margin:0;font-size:15px;line-height:1.85;color:var(--sub)}
+html[data-k=jikka] .pick{margin:14px 0 0;font-size:13px;line-height:1.8;color:var(--mut)}
+html[data-k=jikka] .mk{display:flex;align-items:center;gap:12px;margin:38px 0 0;font:600 11px/1 var(--kf);letter-spacing:.14em;color:var(--mut)}
+html[data-k=jikka] .mk::after{content:"";flex:1;height:1px;background:var(--line)}
+html[data-k=jikka] .rs h3{margin:10px 0 14px;font:600 19px/1.5 var(--kf);color:var(--ink)}
+html[data-k=jikka] .pr2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+html[data-k=jikka] .pr2 div{background:var(--chip);border-radius:18px;padding:14px 16px}
+html[data-k=jikka] .pr2 span{display:block;font-size:12.5px;line-height:1.5;color:var(--sub)}
+html[data-k=jikka] .pr2 b{display:block;margin-top:4px;font:600 26px/1.2 var(--kf);letter-spacing:-.01em;color:var(--ink);font-variant-numeric:tabular-nums}
+html[data-k=jikka] .pr2 b small{font-size:14px;font-weight:500;margin-left:2px}
+html[data-k=jikka] .pr2 em{display:block;margin-top:2px;font-style:normal;font-size:12px;color:var(--mut)}
+html[data-k=jikka] .pr2 p{margin:6px 0 0;font-size:12.5px;line-height:1.7;color:var(--mut)}
+html[data-k=jikka] .st b u{display:inline-block;margin-left:8px;padding:1px 8px;border:1px solid var(--line);border-radius:999px;font-size:11px;font-weight:600;text-decoration:none;color:var(--sub);vertical-align:2px}
+html[data-k=jikka] .cta{display:block;text-align:center;text-decoration:none;margin:0 0 10px;padding:16px 14px;border:1px solid var(--ink);border-radius:999px;font:600 16px/1.4 var(--kf);color:var(--ink);background:none}
+html[data-k=jikka] .cta small{display:block;margin-top:2px;font-weight:400;font-size:12.5px;opacity:.75}
+html[data-k=jikka] .cta.b1{background:var(--ink);color:var(--bg)}
+html[data-k=jikka] .rs .nt{margin:18px 0 0;font-size:12.5px;line-height:1.8;color:var(--mut)}
+html[data-k=jikka] .sharew{text-align:center;margin:18px 0 0}
+html[data-k=jikka] .share{font:600 14px/1.4 var(--kf);color:var(--ink);background:var(--chip);border:0;border-radius:999px;padding:12px 22px;cursor:pointer}
+html[data-k=jikka] .share small{display:block;font-weight:400;font-size:11.5px;color:var(--sub)}
+html[data-k=jikka] .again{display:block;margin:22px auto 0}
+html[data-k=jikka] .wrap>.ft{display:none}

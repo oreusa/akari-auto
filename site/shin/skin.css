@@ -91,6 +91,22 @@ html.iro .skc .mu li a::after{background:transparent}
 .skc .mu li a:active{background:var(--chip)}
 .skc .mu .rel{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:8px}
 .skc .mu .rel a{height:42px;border-radius:21px;font-size:12px;white-space:nowrap}
+.skc .topsg{display:flex;align-items:center;gap:12px;margin:0 0 10px}
+.skc .topsg-k{flex:none;font:600 12px/1 var(--sans);letter-spacing:.04em;color:var(--sub)}
+.skc .topsg-b{flex:1;min-width:0;display:flex;height:38px;padding:3px;border-radius:12px;border:1px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box}
+.skc .topsg-b a{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;border-radius:9px;font:500 13px/1 var(--sans);letter-spacing:.01em;color:var(--sub);white-space:nowrap;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s}
+.skc .topsg-b a.on{background:#1D1D1F;color:#fff;font-weight:600}
+.skc .topsg-b a:not(.on):active{background:#F5F5F7}
+html.nt .skc .topsg-k{color:#9AA3B5}
+html.nt .skc .topsg-b{background:linear-gradient(#0A0E18,#0A0E18) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box}
+html.nt .skc .topsg-b a{color:#B8C0D0}
+html.nt .skc .topsg-b a.on{background:#F5F5F7;color:#0A0E18}
+.skc .mu li.mg{display:flex;align-items:center;gap:8px;margin:20px 0 0;padding:0 0 4px;font:600 12px/1.2 var(--sans);letter-spacing:.08em;color:var(--sub)}
+.skc .mu li.mg::before{content:"";width:14px;height:1.5px;border-radius:2px;background:linear-gradient(120deg,#2BB3A3,#3A86C8)}
+.skc .mu li.mg:first-child{margin-top:10px}
+.skc .mu li.mg~li a{padding:11px 0;font-size:17px}
+html.nt .skc .mu li.mg{color:#9AA3B5}
+@media (max-width:370px){.skc .topsg-k{display:none}.skc .topsg-b a{font-size:12.5px;letter-spacing:0}}
 @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-24px,-40px,0)}}
 @keyframes pop{40%{transform:scale(.82)}100%{transform:scale(1)}}
 @keyframes ring{to{--ra:360deg}}
