@@ -192,6 +192,7 @@ def from_release(u, t, pub, h):
     pt = pt if len(pt) <= 80 else pt[:79] + "…"
     # 11/20 「【所在地】〒…」の書き方で「】」が先頭に残っていた → 先頭の記号を落とす（末尾の「）」は残す）
     pl = pl.lstrip(" 】」）]：:・、").rstrip(" ：:・、"); tm = tm.lstrip(" 】」）]：:・、").rstrip(" ：:・、")
+    if not re.search(r"\d{1,2}\s*[:：時]", tm) or re.match(r"[はがをのにで、。]", tm): tm = ""  # 11/20「営業時間は、お仕事終わりにも…」のような文を時間と取り違えて「営業時間はは」になっていた
     x = {"d": ds[0].isoformat(), "k": k, "p": SHORT[p], "n": n, "pt": pt, "pl": (pl + ("・" + st if st and st not in pl else ""))[:70],
          "tm": tm, "u": u, "added": TODAY.isoformat(), "src": "prtimes", "auto": 1}
     if k == "pop" and len(ds) > 1 and ds[1] > ds[0]:
