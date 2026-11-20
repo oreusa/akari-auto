@@ -1,0 +1,55 @@
+:root{--bg:#fff;--ink:#1D1D1F;--sub:#6E6E73;--mut:#86868B;--line:#E5E5EA;--chip:#F5F5F7;--sans:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;--tl:linear-gradient(120deg,#2BB3A3,#3A86C8);--am:linear-gradient(120deg,#F6C66B,#F29E4C)}
+html.nt{--bg:#0A0E18;--ink:#F5F5F7;--sub:#A1A1A6;--mut:#8E8E93;--line:#262B38;--chip:#151A26}
+html.sk body,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.m2{max-width:640px;margin:0 auto;padding:4px 16px 120px}
+.m2 a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.m2h{margin:26px 0 18px}
+.m2h .pf{margin:0 0 6px;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--sub)}
+.m2h h1{margin:0;font-size:32px;line-height:1.2;font-weight:700;letter-spacing:.01em}
+.m2h .sb{margin:8px 0 0;font-size:13px;color:var(--sub)}
+.mcs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mc{position:relative;padding:14px 14px 13px;border-radius:16px;border:1px solid var(--line);background:var(--bg)}
+.mc small{display:block;font-size:12px;line-height:1.4;color:var(--sub);font-weight:600}
+.mc b{display:block;margin-top:6px;font-size:26px;line-height:1.1;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.mc b u{text-decoration:none;font-size:13px;font-weight:600;margin-left:2px;color:var(--sub)}
+.mc span{display:block;margin-top:6px;font-size:12px;line-height:1.5;color:var(--sub)}
+.mc.up b{background:var(--tl);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mc.few{border-style:dashed}
+.vd{margin:16px 2px 0;font-size:16px;font-weight:600;line-height:1.6}
+.go{position:relative;display:block;margin:22px 0 0;padding:18px 48px 17px 18px;border-radius:18px;background:#1D1D1F;color:#fff!important}
+.go b{display:block;font-size:17px;line-height:1.4}
+.go small{display:block;margin-top:4px;font-size:13px;color:rgba(255,255,255,.72)}
+.go i,.go2 i,.ls i{position:absolute;right:18px;top:50%;transform:translateY(-52%);font-style:normal;font-size:24px;line-height:1}
+.go:active,.go2:active,.ls a:active{transform:scale(.985)}
+html.nt .go{background:#F5F5F7;color:#0A0E18!important}html.nt .go small{color:rgba(10,14,24,.7)}
+.go2{position:relative;display:block;margin:8px 0 0;padding:15px 48px 15px 18px;border-radius:16px;border:1px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--tl) border-box;font-size:15px;font-weight:600}
+.go2 i{color:var(--sub)}
+.sec{margin:40px 0 0}
+.sec h2,.src h2{margin:0 0 12px;font-size:20px;line-height:1.35;font-weight:700}
+.yh{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.yh a{display:flex;align-items:center;justify-content:center;gap:4px;height:48px;border-radius:14px;border:1px solid var(--line);font-size:13.5px;font-weight:600}
+.yh i{font-style:normal;color:var(--mut);font-size:12px}
+.note{margin:8px 2px 0;font-size:12px;color:var(--mut)}
+.ls{border-top:1px solid var(--line)}
+.ls a{position:relative;display:block;padding:14px 44px 14px 2px;border-bottom:1px solid var(--line)}
+.ls b{display:block;font-size:16px;line-height:1.4}
+.ls small{display:block;margin-top:2px;font-size:13px;color:var(--sub)}
+.ls i{right:6px;color:var(--mut);font-size:22px}
+.tb{margin:0;border-top:1px solid var(--line)}
+.tb div{display:flex;justify-content:space-between;align-items:baseline;padding:13px 2px;border-bottom:1px solid var(--line)}
+.tb dt{font-size:15px}.tb dt small{margin-left:8px;font-size:12px;color:var(--mut)}
+.tb dd{margin:0;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+details summary{cursor:pointer;list-style:none;-webkit-tap-highlight-color:transparent}
+details summary::-webkit-details-marker{display:none}
+.more{margin-top:10px}.more summary{display:inline-block;padding:8px 0;font-size:14px;font-weight:600;color:var(--sub)}
+.more summary::after,.faq summary::after{content:"＋";margin-left:8px;color:var(--mut)}
+.more[open] summary::after,.faq details[open] summary::after{content:"－"}
+.more p,.faq p{margin:0 0 10px;font-size:14px;line-height:1.8;color:var(--sub)}
+.faq details{border-bottom:1px solid var(--line)}.faq details:first-of-type{border-top:1px solid var(--line)}
+.faq summary{display:flex;justify-content:space-between;gap:12px;padding:14px 2px;font-size:15px;font-weight:600;line-height:1.5}
+.src{margin:44px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.src h2{font-size:13px;color:var(--sub)}
+.src p{margin:0 0 6px;font-size:11.5px;line-height:1.6;color:var(--mut);word-break:break-all}
+.skc .wrap{max-width:640px;margin:0 auto;padding-left:16px!important;padding-right:16px!important;box-sizing:border-box}
+/* 近くの街とくらべる（skin.js）の「うちの家はいくら？」は上の主役のボタンと同じなので出さない */
+.m2 .cmpt-go{display:none}

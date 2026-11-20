@@ -21,9 +21,9 @@ var Q=new URLSearchParams(location.search),S={p:Q.get("p")||"",o:Q.get("o")||"up
 /* 11/20 owner「パッと見で使いにくい」→ 家と土地の入口を1枚に。
    17:25 owner「何をするにもたどり着くには経由がいる」→ 3枚の扉（押すと次の入口）をやめ、行き先を全部ここに並べる＝どこへも1回で着く。 */
 var HUB=document.documentElement.classList.contains("ieo")&&window.TN_IEG;
-/* 18:27 owner「本気で見やすいと思う？」→ 見本 ?ie2=1（この端末で覚える・?ie2=0 で戻す）：
+/* 18:27 owner「本気で見やすいと思う？」→ 19:07 owner「月が決めていいよ」→ ふだんの形に（?ie2=0 でこの端末だけ前の形）：
    ①探す欄が主役 ②色の枠6つをやめ、下のバーに無い行き先だけを細い線の一覧に（同じ物を2回並べない） ③字は 16/13px ④府県の帯の下の並べかえの帯をやめ、件数の横の「並べ方」1つに */
-var V2=false;try{var _v=location.search.match(/[?&]ie2=([01])/);if(_v)localStorage.setItem("tn_ie2",_v[1]);V2=!!HUB&&localStorage.getItem("tn_ie2")==="1"}catch(e){}
+var V2=!!HUB;try{var _v=location.search.match(/[?&]ie2=([01])/);if(_v)localStorage.setItem("tn_ie2",_v[1]);V2=!!HUB&&localStorage.getItem("tn_ie2")!=="0"}catch(e){}
 if(V2)document.documentElement.classList.add("ie2");
 var QI={rank:'<path d="M5 20V11M12 20V5M19 20v-6"/>',key:'<circle cx="8" cy="15" r="4.2"/><path d="M11 12l8.5-8.5M16.5 6.5l2.5 2.5M14 9l2 2"/>',box:'<path d="M3.5 8l8.5-4 8.5 4v9l-8.5 4-8.5-4z"/><path d="M3.5 8l8.5 4 8.5-4M12 12v9"/>',calc:'<rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7.5h8M8.5 12h0M12 12h0M15.5 12h0M8.5 16h0M12 16h0M15.5 16h0"/>'};
 var QD={"/chika-kansai":"上がった街・下がった街","/chika-kanto":"上がった街・下がった街","/ikura":"30秒で目安・売る順番も","/sagasu":"予算で住める街","/moushikomi":"売却・査定・解体","/jikka/":"相続・診断・空き家の街","/kaitai":"広さ別の費用の目安と、市の補助金","/moushikomi?want=%E7%89%87%E4%BB%98%E3%81%91%E3%83%BB%E9%81%BA%E5%93%81%E6%95%B4%E7%90%86%E3%81%AE%E8%A6%8B%E7%A9%8D%E3%82%8A":"家財の片付けだけでも大丈夫です"};

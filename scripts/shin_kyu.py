@@ -86,7 +86,7 @@ def main(root=SITE):
                 continue
             p = os.path.join(d, fn)
             h = open(p, encoding="utf-8", errors="ignore").read()
-            if "/shin/shin.css" in h or "</head>" not in h or ("kyu.css?v=" + KYUV + '"') in h:
+            if "/shin/shin.css" in h or 'data-m2="1"' in h or "</head>" not in h or ("kyu.css?v=" + KYUV + '"') in h:
                 continue
             if KYUMARK in h:
                 h = unkyu(h)
