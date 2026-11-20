@@ -11,7 +11,7 @@ S = os.path.join(R, "site")
 SITE = "https://kanto.townnote.app"
 TPL = open(os.path.join(R, "scripts", "shin", "page.tpl.html"), encoding="utf-8").read()
 sys.path.insert(0, os.path.join(R, "scripts", "shin"))
-from ix import ix_html as IX
+from ix import ix_html as IX, pre_html as PRE
 JST = datetime.timezone(datetime.timedelta(hours=9))
 TD = datetime.datetime.now(JST).date().isoformat()
 J = lambda o: json.dumps(o, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
@@ -221,7 +221,7 @@ def write(fname, url, title, cfg, data, js, desc):
     page = (TPL.replace("__TITLE__", html.escape(title)).replace("__HEAD__", head).replace("__CFG__", J(cfg)).replace("__DATA__", J(data))
             .replace("__CV__", ver("shin.css")).replace("__JV__", ver("shin.js")).replace("__PAGE__", js).replace("__PV__", ver(js + ".js")))
     # 11/20 検索の機械にも中身とリンクが見えるように、ページの下の「一覧」を HTML のまま（scripts/shin/ix.py・関西と同じ）
-    page = page.replace('<div id="app"></div>', '<div id="app"></div>' + IX(fname[:-5], data, S), 1)
+    page = page.replace('<div id="app"></div>', '<div id="app">' + PRE(data) + '</div>' + IX(fname[:-5], data, S), 1)
     dst = os.path.join(S, fname)
     if os.path.exists(dst):
         old = open(dst, encoding="utf-8").read()

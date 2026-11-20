@@ -54,6 +54,23 @@ def ix_html(name, data, root):
             if not x.get("id") or not x.get("n"): continue
             href = "/machi/" + x["id"] if has("/machi/" + x["id"]) else ""
             rows.append(_li(href, x["n"], x.get("p", "")))
+    elif isinstance(data.get("ft"), list):
+        # 表紙：サイトの中身（足の案内と同じ分け方）と、いま載っているおでかけ
+        label = "このサイトの中身"
+        for grp in data["ft"]:
+            if not (isinstance(grp, list) and len(grp) == 2): continue
+            for t, u in grp[1]:
+                rows.append(_li(u, t, grp[0]))
+        for x in ((data.get("od") or {}).get("ph") or [])[:20]:
+            if x.get("o") and has("/o/" + x["o"]): rows.append(_li("/o/" + x["o"], x.get("t", ""), "・".join(v for v in (x.get("p", ""), (_md(x["e"]) + "まで") if x.get("e") else "") if v)))
     if not rows: return ""
-    return (f'<section class="ix" aria-label="{E(label)}"><details><summary>{E(label)}（{len(rows)}件）</summary>'
+    # 表紙は同じリンクが画面に描かれる（足の案内）ので、HTML の写しは見せない（JS が無い時の案内だけ）
+    cls = "ix ixh" if isinstance(data.get("ft"), list) and not items else "ix"
+    return (f'<section class="{cls}" aria-label="{E(label)}"><details><summary>{E(label)}（{len(rows)}件）</summary>'
             f'<ul>{"".join(rows)}</ul></details></section>')
+
+
+def pre_html(data):
+    """読み物のページ（data に html がある物）は、#app の中に同じ文を HTML のまま置く（JS が描くと入れ替わる）"""
+    if not isinstance(data, dict) or not isinstance(data.get("html"), str) or not data["html"].strip(): return ""
+    return f'<article class="pre"><h1>{E(data.get("h1", ""))}</h1>{data["html"]}</article>'
