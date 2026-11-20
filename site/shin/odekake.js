@@ -6,8 +6,8 @@ var dow=dd(TD).getUTCDay(),SAT=new Date(dd(TD).getTime()+((6-dow+7)%7)*864e5).to
 if(dow===0){SAT=TD;SUN=TD}
 var G={art:["ART","#3B5BA5","#EEF1F8","アート・展示"],light:["LIGHT","#B7862A","#F8F2E6","光・イルミ"],koyo:["KOYO","#C0532B","#F9EEEA","紅葉"],flower:["FLOWER","#C2557A","#F9EDF2","花"],fes:["MATSURI","#B23A2E","#F8ECEB","まつり"],quest:["NAZOTOKI","#5B4B8A","#F0EEF6","謎とき"],play:["PLAY","#2E8B6E","#EAF4F0","あそぶ"],spot:["SPOT","#2F7D9A","#EAF3F6","スポット"],food:["FOOD","#C9702A","#FAF0E7","グルメ"],animal:["ANIMAL","#6F7F33","#F1F3E8","いきもの"],xmas:["XMAS","#2F7A4F","#EAF4EE","クリスマス"],hallo:["HALLOWEEN","#B45F1F","#FAEFE6","ハロウィン"],shop:["MARKET","#8A6A3F","#F5F0E8","マーケット"],hatsu:["HATSUMODE","#A23B3B","#F7ECEC","初詣"]};
 var RG=S_.reg,PREF=RG.pref,PG=D.page||{};
-/* 11/20 見本：新しい地図と一覧の使いやすさ（?map2=1 で見える・この端末で覚える・?map2=0 で戻す） */
-var M2=false;try{var _m=location.search.match(/[?&]map2=([01])/);if(_m)localStorage.setItem("tn_map2",_m[1]);M2=localStorage.getItem("tn_map2")==="1"}catch(e){}
+/* 11/20 20:20 owner「いいと思う」→ 新しい地図と一覧をふだんの形に（?map2=0 でこの端末だけ前の形に戻せる） */
+var M2=true;try{var _m=location.search.match(/[?&]map2=([01])/);if(_m)localStorage.setItem("tn_map2",_m[1]);M2=localStorage.getItem("tn_map2")!=="0"}catch(e){}
 /* 見本：府県を選んだら覚える（おでかけの一覧だけ。府県のページ・イルミ・紅葉は覚えない） */
 var PK="tn_odp_"+RG.n,REM=M2&&!PG.p&&!PG.st&&!PG.h1;
 var IT=D.items.filter(function(x){return x.e>=TD}).map(function(x,i){x.i=i;x.st=x.s<=TD?"now":"up";x.left=diff(TD,x.e);x.g=G[x.k]||G.spot;return x});
