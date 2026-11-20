@@ -16,7 +16,7 @@ S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">'+esc
  '<div class="sec"><h2>いま開催中</h2><a class="sm" href="/odekake">すべて見る</a></div><div class="crow">'+D.top.map(function(x){return '<a class="cd" href="'+(x.o?"/o/"+x.o:"/odekake")+'"><div class="im" style="background-color:'+(x.th?avg(x.th):"var(--chip)")+'"><img alt="" loading="lazy" src="/assets/ph/'+x.im+'"></div><div class="lb"><span>'+esc(x.p)+'</span></div><h4>'+esc(x.t)+'</h4><div class="dt">'+S_.md(x.e)+'まで</div></a>'}).join("")+'</div>'+
  '<div class="sec"><h2>見る</h2></div><div class="cgo">'+D.go.map(function(g){return '<a href="'+g.u+'"><span class="ci">'+(S_.IC[g.ic]||"")+'</span><span class="ct"><b>'+esc(g.t)+'</b><small>'+esc(g.s)+'</small></span><span class="cn"><b>'+esc(g.n)+'</b><small>'+esc(g.nu)+'</small></span></a>'}).join("")+'</div>'+
  '<nav class="also2" aria-label="ほかのページ"><small>季節と、ほかのページ</small>'+D.more.map(function(a){return '<a href="'+a[1]+'">'+esc(a[0])+'<i>→</i></a>'}).join("")+'</nav>'+
- '<div class="cfl"><small>インスタ・Threads・X で、毎日おしらせしています</small><div>'+D.sns.map(function(s){return '<a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a>'}).join("")+'</div></div></div>';
+ '<div class="cfl"><small>Instagram・Threads・X で、毎日おしらせしています</small><div>'+D.sns.map(function(s){return '<a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a>'}).join("")+'</div></div></div>';
 S_.counts(S_.main);
 var ims=$$("img",S_.main);ims.forEach(function(im){if(im.complete)im.classList.add("ld");else im.onload=function(){im.classList.add("ld")}});
 S_.onNav(function(a){if(a==="map")scrollTo({top:$("#cmap").getBoundingClientRect().top+scrollY-60,behavior:"smooth"})});
