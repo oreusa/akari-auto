@@ -10,9 +10,9 @@ var CFG=JSON.parse(document.getElementById("cfg").textContent);
 /* 11/20 owner「不動産・実家・空き家 ごっちゃになる・バラバラすぎる 整理して」：家と土地のページを3つの目的に分ける。
    上＝3つの目的の切りかえ（街の相場／売る・買う／実家・空き家）、下のバー＝今の目的のページだけ、MENU＝3つの見出しで全部。
    関西・関東とも同じ物（関東に無いページ＝まちランキング は出さない。相談は 11/10 から関東も同じ）。
-   見本の間は ?seiri=1 の時だけ（この端末で覚える・?seiri=0 で外す）。 */
+   11/20 17:14 owner「月に任せる・他社と比べて勝つ」→ ふだんの見た目に（?seiri=0 でこの端末だけ前の形）。 */
 function ieOrg(P,kt){
-  var on=false;try{var q=location.search.match(/[?&]seiri=([01])/);if(q)localStorage.setItem("tn_seiri",q[1]);on=localStorage.getItem("tn_seiri")==="1"}catch(e){}
+  var on=false;try{var q=location.search.match(/[?&]seiri=([01])/);if(q)localStorage.setItem("tn_seiri",q[1]);on=localStorage.getItem("tn_seiri")!=="0"}catch(e){}
   if(!on)return null;
   var p=P.replace(/\.html$/,"").replace(/\/index$/,"/");
   if(!/^\/(fudosan-list|machi\/|chika-|ranking|uru|ikura|sagasu|moushikomi|gyosha|fudosan$|jikka|kaitai|akiya|shindan)/.test(p))return null;

@@ -27,5 +27,19 @@ for f in sorted(os.listdir(os.path.join(S, 'machi'))):
         k = best
     tw[i] = [name, 1 if jk else 0, k]
     if k: ks.setdefault(k, [kai[k], []])[1].append(i)
-json.dump({'t': tw, 'k': ks}, open(os.path.join(S, 'shin', 'machi.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+# 11/20 近くの街とくらべる（skin.js）：家と土地の相場ページの表（ie）から 数字を足す。v[3]＝[府県, 地価1年%, 府県の順位, 府県の街の数, マンション[件,平均万], 一戸建て[件,平均万], 人口5年%, 空き家率%, xy]
+import html as _h
+for src in ('shin/ie.html', 'fudosan-list.html'):
+    f = os.path.join(S, src)
+    if not os.path.exists(f) or 'id="d" type="application/json"' not in open(f, encoding='utf-8').read(): continue
+    d = json.loads(_h.unescape(re.search(r'id="d" type="application/json">(.*?)</script>', open(f, encoding='utf-8').read(), re.S).group(1)).replace('<\\/', '</'))
+    if 'towns' not in d: continue
+    for x in d['towns']:
+        if x['id'] in tw:
+            tw[x['id']].append([x.get('p'), x.get('r8'), x.get('rk'), x.get('of'), (x.get('m') or [])[:2] or 0, (x.get('h') or [])[:2] or 0, (x.get('pop') or [None, None])[1], x.get('ak'), x.get('xy')])
+    pa = {k: [v.get('m'), v.get('h'), v.get('ak')] for k, v in (d.get('pa') or {}).items()}
+    break
+else:
+    pa = {}
+json.dump({'t': tw, 'k': ks, 'pa': pa}, open(os.path.join(S, 'shin', 'machi.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print('machi.json', len(tw), '街', sum(1 for v in tw.values() if v[2]), '街に解体の市', len(ks), '/', len(kai), '市')

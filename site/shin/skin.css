@@ -196,3 +196,38 @@ html.sk a.back{display:block!important;margin:24px auto!important;max-width:320p
 html.sk.nt a.back{color:#ECE8E1!important;border-color:#2A3142!important}
 html.sk .skc #tb{border:0!important;border-bottom:1px solid var(--line)!important;border-radius:0!important;box-shadow:none!important;margin:0!important}
 html.sk #tkbar{display:none!important}
+/* 11/20 街のページの「近くの街とくらべる」（skin.js cmpTowns・見本 ?seiri=1）。色は細い線だけ。夜の色は kyu のページ（[data-k]）だけ：関東の前のページは夜に中身ごと反転するので昼の色のままでよい */
+html.sk .cmpt{margin:44px 0 8px;font-family:var(--sans)}
+html.sk .cmpt-h{margin:0 0 12px;font:600 20px/1.35 var(--sans);color:#1D1D1F;letter-spacing:.01em}
+html.sk .cmpt-k{display:flex;height:36px;padding:3px;border-radius:11px;border:1px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box}
+html.sk .cmpt-k button{flex:1;border:0;border-radius:8px;background:none;font:500 13px/1 var(--sans);color:#6E6E73;cursor:pointer;-webkit-tap-highlight-color:transparent}
+html.sk .cmpt-k button.on{background:#1D1D1F;color:#fff;font-weight:600}
+html.sk .cmpt-s{margin:10px 0 4px;font-size:12.5px;line-height:1.6;color:#6E6E73}
+html.sk .cmpt-l{list-style:none;margin:0;padding:0}
+html.sk .cmpt-l li a{display:grid;grid-template-columns:1fr auto;gap:6px 10px;padding:13px 0 12px;border-bottom:1px solid #E5E5EA;text-decoration:none;color:#1D1D1F}
+html.sk .cmpt-l .n{font-size:15px;font-weight:500}
+html.sk .cmpt-l .n em{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;border:1px solid #1D1D1F;font:600 11px/1.6 var(--sans);font-style:normal;vertical-align:1px}
+html.sk .cmpt-l li.me .n{font-weight:700}
+html.sk .cmpt-l b{font:600 15px/1.4 var(--sans);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+html.sk .cmpt-l b small{margin-left:2px;font-size:11.5px;font-weight:400;color:#6E6E73}
+html.sk .cmpt-l b u,html.sk .cmpt-few{display:inline-block;margin-left:6px;padding:0 7px;border-radius:999px;border:1px solid #F29E4C;font:600 10.5px/1.7 var(--sans);text-decoration:none;color:#B4610F;vertical-align:1px}
+html.sk .cmpt-l .bar{grid-column:1/-1;display:block;height:3px;border-radius:3px;background:#F0F0F3;overflow:hidden}
+html.sk .cmpt-l .bar i{display:block;height:100%;border-radius:3px;background:#C7C7CC}
+html.sk .cmpt-l li.me .bar i{background:linear-gradient(120deg,#2BB3A3,#3A86C8)}
+html.sk .cmpt-l .bar i.neg{background:#E5A5A0}
+html.sk .cmpt-go{position:relative;display:block;margin:18px 0 0;padding:16px 46px 16px 18px;border-radius:18px;background:#1D1D1F;color:#fff;text-decoration:none}
+html.sk .cmpt-go b{display:block;font:600 16px/1.4 var(--sans)}
+html.sk .cmpt-go small{display:block;margin-top:3px;font-size:12.5px;color:rgba(255,255,255,.75)}
+html.sk .cmpt-go i{position:absolute;right:18px;top:50%;transform:translateY(-52%);font-style:normal;font-size:24px}
+html.sk.nt[data-k] .cmpt-h,html.sk.nt[data-k] .cmpt-l li a{color:#F5F5F7}
+html.sk.nt[data-k] .cmpt-k{background:linear-gradient(#0A0E18,#0A0E18) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box}
+html.sk.nt[data-k] .cmpt-k button{color:#A1A1A6}
+html.sk.nt[data-k] .cmpt-k button.on{background:#F5F5F7;color:#0A0E18}
+html.sk.nt[data-k] .cmpt-s,html.sk.nt[data-k] .cmpt-l b small{color:#A1A1A6}
+html.sk.nt[data-k] .cmpt-l li a{border-color:#2A3142}
+html.sk.nt[data-k] .cmpt-l .bar{background:#1A2132}
+html.sk.nt[data-k] .cmpt-l .bar i{background:#4A5266}
+html.sk.nt[data-k] .cmpt-l .n em{border-color:#F5F5F7}
+html.sk.nt[data-k] .cmpt-go{background:#F5F5F7;color:#0A0E18}
+html.sk.nt[data-k] .cmpt-go small{color:rgba(10,14,24,.7)}
+html.sk.nt[data-k] .cmpt-l b u,html.sk.nt[data-k] .cmpt-few{color:#F6C66B;border-color:#F6C66B}

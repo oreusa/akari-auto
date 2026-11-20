@@ -44,9 +44,9 @@ var here=function(u){return u.split("?")[0]===P.replace(/\.html$/,"")};
 /* 11/20 owner「不動産・実家・空き家 ごっちゃになる・バラバラすぎる 整理して」：家と土地のページを3つの目的に分ける。
    上＝3つの目的の切りかえ（街の相場／売る・買う／実家・空き家）、下のバー＝今の目的のページだけ、MENU＝3つの見出しで全部。
    関西・関東とも同じ物（関東に無いページ＝まちランキング は出さない。相談は 11/10 から関東も同じ）。
-   見本の間は ?seiri=1 の時だけ（この端末で覚える・?seiri=0 で外す）。 */
+   11/20 17:14 owner「月に任せる・他社と比べて勝つ」→ ふだんの見た目に（?seiri=0 でこの端末だけ前の形）。 */
 function ieOrg(P,kt){
-  var on=false;try{var q=location.search.match(/[?&]seiri=([01])/);if(q)localStorage.setItem("tn_seiri",q[1]);on=localStorage.getItem("tn_seiri")==="1"}catch(e){}
+  var on=false;try{var q=location.search.match(/[?&]seiri=([01])/);if(q)localStorage.setItem("tn_seiri",q[1]);on=localStorage.getItem("tn_seiri")!=="0"}catch(e){}
   if(!on)return null;
   var p=P.replace(/\.html$/,"").replace(/\/index$/,"/");
   if(!/^\/(fudosan-list|machi\/|chika-|ranking|uru|ikura|sagasu|moushikomi|gyosha|fudosan$|jikka|kaitai|akiya|shindan)/.test(p))return null;
@@ -77,6 +77,32 @@ function ieOrg(P,kt){
 var IEO=C===FUD?ieOrg(P,KT):null;
 if(IEO){C={nav:IEO.nav.map(function(x){return [x.t,x.ic,x.href,x.svg,x.cur]}),k:FUD.k,menu:IEO.menu.map(function(m){return m.length>2||m[1]==="#"?m:[m[0],m[1],0]}),rel:FUD.rel};H.classList.add("ieo")}
 
+/* 11/20 owner「他社とも比べて勝つ」：ほかの相場サイト（GMO・東急リバブル・ダイヤモンド・トチノカチ・三菱地所）は
+   ①件数が少なくても平均だけを大きく出す ②近くの街と並べて比べられない ③自分の家の目安へすぐ行けない。
+   → 街のページ（値段と地価）に「近くの街とくらべる」（近い6つ・切りかえ・件数・少ない時の印）と「うちの家はいくら？」を足す（見本 ?seiri=1） */
+function cmpTowns(M,id,k){var me=M.t[id];if(!me||!me[3]||!me[3][8])return;var xy=me[3][8];
+  var esc=function(x){return String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+  var man=function(v){v=Math.round(v);return v>=10000?Math.floor(v/10000)+"億"+(v%10000?(v%10000).toLocaleString()+"万":""):v.toLocaleString()+"万"};
+  var pc=function(v){return (v>0?"+":"")+v.toFixed(1)+"%"};
+  var L=Object.keys(M.t).filter(function(i){var v=M.t[i][3];return v&&v[8]}).map(function(i){var v=M.t[i][3];return {id:i,n:M.t[i][0],v:v,d:i===id?-1:Math.hypot(v[8][0]-xy[0],v[8][1]-xy[1])}}).sort(function(a,b){return a.d-b.d}).slice(0,6);
+  var hasM=L.some(function(x){return x.v[4]&&x.v[4][0]});
+  var K=[["地価の動き",function(v){return v[1]},pc,"住宅地の地価・1年"]];
+  var enough=function(f){return L.filter(function(x){return f(x.v)!=null}).length>=3};
+  if(hasM)K.push(["マンション",function(v){return v[4]&&v[4][0]?v[4][1]:null},function(x){return man(x)+"円"},"中古マンションが売れた平均・2025年度",4],["一戸建て",function(v){return v[5]&&v[5][0]?v[5][1]:null},function(x){return man(x)+"円"},"中古一戸建てが売れた平均・2025年度",5]);
+  else K.push(["人口の動き",function(v){return v[6]},pc,"人口・5年"],["空き家",function(v){return v[7]},function(x){return x.toFixed(1)+"%"},"空き家の割合・2023年"]);
+  K=K.filter(function(q){return enough(q[1])});if(!K.length)return;
+  var sec=document.createElement("section");sec.className="cmpt";sec.setAttribute("aria-label","近くの街とくらべる");
+  var draw=function(j){var q=K[j],vals=L.map(function(x){return q[1](x.v)}),mx=Math.max.apply(null,vals.filter(function(x){return x!=null}).map(Math.abs).concat([0.0001]));
+    sec.innerHTML='<h2 class="cmpt-h">近くの街とくらべる</h2><div class="cmpt-k" role="tablist">'+K.map(function(x,i){return '<button role="tab" aria-selected="'+(i===j)+'"'+(i===j?' class="on"':'')+' data-j="'+i+'">'+x[0]+'</button>'}).join("")+'</div>'+
+     '<p class="cmpt-s">'+q[3]+(q[4]?'。（ ）は売れた件数。10件より少ない街は目安だけです':'')+'</p><ol class="cmpt-l">'+L.map(function(x,i){var val=vals[i],c=q[4]&&x.v[q[4]]?x.v[q[4]][0]:null,w=val==null?0:Math.max(.04,Math.abs(val)/mx);
+      return '<li'+(x.id===id?' class="me"':'')+'><a href="/machi/'+x.id+'"><span class="n">'+esc(x.n)+(x.id===id?'<em>この街</em>':'')+'</span><b>'+(val==null?'—':q[2](val))+(c!=null?'<small>（'+c+'件）</small>':'')+(c!=null&&c<10?'<u>少ない</u>':'')+'</b><i class="bar"><i style="width:'+(w*100).toFixed(1)+'%"'+(val<0?' class="neg"':'')+'></i></i></a></li>'}).join("")+'</ol>'+
+     '<a class="cmpt-go" href="/ikura?machi='+id+'"><b>この街で、うちの家はいくら？</b><small>種類と広さから30秒で目安・名前は要りません</small><i>›</i></a>';
+    [].forEach.call(sec.querySelectorAll(".cmpt-k button"),function(b){b.onclick=function(){draw(+b.dataset.j)}})};
+  draw(0);
+  var at=document.getElementById("itt")||document.querySelector(".faq");if(at)at.parentNode.insertBefore(sec,at);else return;
+  /* 件数が少ない平均に印（ほかのサイトは件数を出さないか、少なくても平均だけ大きく出す） */
+  [].forEach.call(document.querySelectorAll(".sold .vs"),function(e){var m=e.textContent.match(/^(\d+)件の平均/);if(m&&+m[1]<10&&!e.querySelector("u"))e.insertAdjacentHTML("beforeend",'<u class="cmpt-few">件数が少ないので目安だけ</u>')});
+}
 function build(){
   if(H.classList.contains("night"))H.classList.add("nt");
   var n=H.classList.contains("nt");
@@ -94,7 +120,7 @@ function build(){
       var t2=id?M.t[id]:null,u=[id?"/machi/"+id:"/fudosan-list?q="+encodeURIComponent(nm),t2&&t2[1]?"/jikka/"+id:"/jikka/",k?"/kaitai-"+k:"/kaitai"];
       var L=["値段と地価","実家・空き家",k?"解体の補助金":"解体・片付け"];
       var h='<nav class="topsg toptw" aria-label="'+nm+'のページ"><div class="topsg-k">'+nm+'</div><div class="topsg-b">'+L.map(function(x,i){return '<a href="'+u[i]+'"'+(i===cur?' class="on" aria-current="page"':'')+'>'+x+'</a>'}).join("")+'</div></nav>';
-      var o=top.querySelector(".topsg");if(o)o.outerHTML=h}).catch(show)})();
+      var o=top.querySelector(".topsg");if(o)o.outerHTML=h;if(tm&&tm[1]==="machi")cmpTowns(M,id,k)}).catch(show)})();
   var sk=document.createElement("div");sk.className="skc";sk.id="sk";
   sk.innerHTML='<div id="sky" aria-hidden="true"><canvas id="stars"></canvas></div>'+
    '<nav class="nav" id="nav" aria-label="すぐ移動">'+C.nav.map(function(x){return '<a href="'+x[2]+'"'+((x.length>4?x[4]:here(x[2]))?' class="cur"':'')+'>'+(x[3]||IC[x[1]])+'<span>'+x[0]+'</span></a>'}).join("")+'<button class="mn" id="mnb" aria-label="メニュー"><em></em><span>MENU</span></button></nav>'+
