@@ -133,3 +133,6 @@ html.lk-d .go2{margin-top:10px}
 html.lk-d .sec{margin-top:34px}
 html.lk-d .sec h2,html.lk-d .dq{font-size:24px;font-weight:800;letter-spacing:-.025em;margin-left:2px}
 html.lk-d .yh{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+/* 20:10 全ページで撮って見回り：府県・分野の帯（.pn）が白い板で光を切っていた → すけるガラスに */
+html.lk-a .pn{background:rgba(255,255,255,.5)!important;-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6)}
+html.lk-a.nt .pn{background:rgba(10,14,24,.5)!important}
