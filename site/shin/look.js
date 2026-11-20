@@ -1,5 +1,5 @@
 /* 11/20 見た目の見本（look.css）：A は後ろの光のにじみ、どれも流すとふわっと出る */
-(function(){var H=document.documentElement;try{var _p=location.search.match(/[?&]pal=([0-3])/);if(_p)localStorage.setItem("tn_pal",_p[1]);var _pv=localStorage.getItem("tn_pal");if(_pv&&_pv!=="0")H.classList.add("lk-p"+_pv)}catch(e){}try{var _e=location.search.match(/[?&]edge=([0-3])/);if(_e)localStorage.setItem("tn_edge",_e[1]);var _ev=localStorage.getItem("tn_edge");if(_ev&&_ev!=="0")H.classList.add("lk-e"+_ev)}catch(e){}try{var _h=location.search.match(/[?&]hue=([0-5])/);if(_h)localStorage.setItem("tn_hue",_h[1]);var _hv=localStorage.getItem("tn_hue")||"4";if(_hv&&_hv!=="0")H.classList.add("lk-h"+_hv)}catch(e){}if(!H.classList.contains("lk")||window.__lk)return;window.__lk=1;
+(function(){var H=document.documentElement;try{var _p=location.search.match(/[?&]pal=([0-3])/);if(_p)localStorage.setItem("tn_pal",_p[1]);var _pv=localStorage.getItem("tn_pal");if(_pv&&_pv!=="0")H.classList.add("lk-p"+_pv)}catch(e){}try{var _e=location.search.match(/[?&]edge=([0-3])/);if(_e)localStorage.setItem("tn_edge",_e[1]);var _ev=localStorage.getItem("tn_edge")||"1";if(_ev&&_ev!=="0")H.classList.add("lk-e"+_ev)}catch(e){}try{var _h=location.search.match(/[?&]hue=([0-5])/);if(_h)localStorage.setItem("tn_hue",_h[1]);var _hv=localStorage.getItem("tn_hue")||"4";if(_hv&&_hv!=="0")H.classList.add("lk-h"+_hv)}catch(e){}if(!H.classList.contains("lk")||window.__lk)return;window.__lk=1;
 function go(){if(H.classList.contains("lk-a")&&!document.querySelector(".lk-bg")){var b=document.createElement("div");b.className="lk-bg";b.setAttribute("aria-hidden","true");b.innerHTML="<i></i><i></i><i></i><i></i><i></i><b></b>";document.body.insertBefore(b,document.body.firstChild)}
  if(matchMedia("(prefers-reduced-motion:reduce)").matches||!("IntersectionObserver" in window))return;
  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -6% 0px"});
@@ -30,7 +30,7 @@ function add(){if(document.querySelector(".lk-hero"))return;var d=document.creat
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",add);else add()})();
 /* 11/21 6:06 owner「夜の星ってもっとシンプルでとても綺麗なのないの？」→ 見本 ?sky=1 澄んだ星空（白い星だけ・大きさは3つ・明るい星が数個ゆっくりまたたく）
    ?sky=2 ごく少ない星（星を数十だけ・またたかない・流れ星だけ残す）。?sky=0 で今の形。星は画面に貼り付き、流しても動かない */
-(function(){var H=document.documentElement;var v="0";try{var m=location.search.match(/[?&]sky=([0-2])/);if(m)localStorage.setItem("tn_sky",m[1]);v=localStorage.getItem("tn_sky")||"0"}catch(e){}
+(function(){var H=document.documentElement;var v="0";try{var m=location.search.match(/[?&]sky=([0-2])/);if(m)localStorage.setItem("tn_sky",m[1]);v=localStorage.getItem("tn_sky")||"1"}catch(e){}
 if(v==="0")return;H.classList.add("lk-s"+v);
 var cv,tw=[];function draw(){if(!cv){cv=document.createElement("canvas");cv.className="lk-sky";cv.setAttribute("aria-hidden","true");var host=document.getElementById("sky")||document.body;host.appendChild(cv)}
  var w=innerWidth,h=innerHeight,dp=Math.min(2,devicePixelRatio||1);cv.width=w*dp;cv.height=h*dp;var c=cv.getContext("2d");c.scale(dp,dp);
