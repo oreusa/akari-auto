@@ -6,6 +6,10 @@ var dow=dd(TD).getUTCDay(),SAT=new Date(dd(TD).getTime()+((6-dow+7)%7)*864e5).to
 if(dow===0){SAT=TD;SUN=TD}
 var G={art:["ART","#3B5BA5","#EEF1F8","アート・展示"],light:["LIGHT","#B7862A","#F8F2E6","光・イルミ"],koyo:["KOYO","#C0532B","#F9EEEA","紅葉"],flower:["FLOWER","#C2557A","#F9EDF2","花"],fes:["MATSURI","#B23A2E","#F8ECEB","まつり"],quest:["NAZOTOKI","#5B4B8A","#F0EEF6","謎とき"],play:["PLAY","#2E8B6E","#EAF4F0","あそぶ"],spot:["SPOT","#2F7D9A","#EAF3F6","スポット"],food:["FOOD","#C9702A","#FAF0E7","グルメ"],animal:["ANIMAL","#6F7F33","#F1F3E8","いきもの"],xmas:["XMAS","#2F7A4F","#EAF4EE","クリスマス"],hallo:["HALLOWEEN","#B45F1F","#FAEFE6","ハロウィン"],shop:["MARKET","#8A6A3F","#F5F0E8","マーケット"],hatsu:["HATSUMODE","#A23B3B","#F7ECEC","初詣"]};
 var RG=S_.reg,PREF=RG.pref,PG=D.page||{};
+/* 11/20 見本：新しい地図と一覧の使いやすさ（?map2=1 で見える・この端末で覚える・?map2=0 で戻す） */
+var M2=false;try{var _m=location.search.match(/[?&]map2=([01])/);if(_m)localStorage.setItem("tn_map2",_m[1]);M2=localStorage.getItem("tn_map2")==="1"}catch(e){}
+/* 見本：府県を選んだら覚える（おでかけの一覧だけ。府県のページ・イルミ・紅葉は覚えない） */
+var PK="tn_odp_"+RG.n,REM=M2&&!PG.p&&!PG.st&&!PG.h1;
 var IT=D.items.filter(function(x){return x.e>=TD}).map(function(x,i){x.i=i;x.st=x.s<=TD?"now":"up";x.left=diff(TD,x.e);x.g=G[x.k]||G.spot;return x});
 var BYI={};IT.forEach(function(x){BYI[x.i]=x});
 function avg(b){try{var h=Uint8Array.from(atob(b),function(c){return c.charCodeAt(0)}),hd=h[0]|h[1]<<8|h[2]<<16,l=(hd&63)/63,p=((hd>>6)&63)/31.5-1,q=((hd>>12)&63)/31.5-1,bb=l-2/3*p,r=(3*l-bb+q)/2,g=r-q;
@@ -16,6 +20,7 @@ function lt(x){if(x.st==="up"){var n=diff(TD,x.s);return '<span class="lt">'+(n<
   if(x.left===0)return '<span class="lt">きょうまで</span>';if(x.left<=7)return '<span class="lt">あと'+x.left+'日</span>';return '<span class="lt now">開催中</span>'}
 function when(x){return x.st==="up"?md(x.s)+"から":md(x.e)+"まで"}
 var Q=new URLSearchParams(location.search),S={p:Q.get("p")||PG.p||"",w:Q.get("w")||"now",g:Q.get("g")||"",n:24};
+if(REM&&!Q.get("p")){try{var _rp=localStorage.getItem(PK);if(_rp&&PREF.indexOf(_rp)>=0)S.p=_rp}catch(e){}}
 function saveQ(){var u=new URLSearchParams(location.search);["p","w","g"].forEach(function(k){if(S[k]&&!(k==="w"&&S[k]==="now"))u.set(k,S[k]);else u.delete(k)});
   history.replaceState(history.state,"",location.pathname+(u.toString()?"?"+u:""))}
 /* 11/20 owner「他社より確実に上」：どのカードにも♡。押した物は「♡ 残した」で見返せる（この端末にだけ残る） */
@@ -25,10 +30,10 @@ function hvKey(x){return x.o||x.t}
 function vnOf(x){var v=x.v||x.a||"";if(x.hk&&v.slice(0,5)===x.hk.slice(0,5))return x.a&&x.a!==v?x.a:"";return v}
 function hvSave(){try{localStorage.setItem(HK,JSON.stringify(HV))}catch(e){}}
 var HVI='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg>';
-function pick(){return IT.filter(function(x){
-  if(PG.free&&!x.f)return false;
-  if(S.g==="_hv")return !!HV[hvKey(x)]&&(!S.p||x.p===S.p);if(S.p&&x.p!==S.p)return false;if(S.g&&x.k!==S.g)return false;
-  if(S.w==="now")return x.st==="now";if(S.w==="end")return x.st==="now"&&x.left<=7;if(S.w==="td")return x.st==="now"&&x.left===0;if(S.w==="new")return x.st==="up"&&diff(TD,x.s)<=7;if(S.w==="we")return x.s<=SUN&&x.e>=SAT;return x.st==="up"}).sort(function(a,b){
+function inW(x,w){if(w==="now")return x.st==="now";if(w==="end")return x.st==="now"&&x.left<=7;if(w==="td")return x.st==="now"&&x.left===0;if(w==="new")return x.st==="up"&&diff(TD,x.s)<=7;if(w==="we")return x.s<=SUN&&x.e>=SAT;return x.st==="up"}
+function base(x){if(PG.free&&!x.f)return false;if(S.g==="_hv")return !!HV[hvKey(x)]&&(!S.p||x.p===S.p);if(S.p&&x.p!==S.p)return false;if(S.g&&x.k!==S.g)return false;return true}
+function wCounts(){var c={now:0,we:0,end:0,up:0,td:0,new:0};IT.forEach(function(x){if(!base(x))return;for(var w in c)if(inW(x,w))c[w]++});return c}
+function pick(){return IT.filter(function(x){return base(x)&&inW(x,S.w)}).sort(function(a,b){
   if(S.w==="up"||S.w==="new")return a.s<b.s?-1:a.s>b.s?1:0;if(S.w==="end"||S.w==="td")return a.e<b.e?-1:a.e>b.e?1:0;
   var pa=(a.im?0:3)-(a.ok||0),pb=(b.im?0:3)-(b.ok||0);if(pa!==pb)return pa-pb;if((b.pp||0)!==(a.pp||0))return (b.pp||0)-(a.pp||0);return a.e<b.e?-1:a.e>b.e?1:0})}
 var nNow=IT.filter(function(x){return x.st==="now"}).length;
@@ -40,11 +45,11 @@ S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">'+esc
  '</section>'+
  '<div class="st" id="st"></div><div class="sec"><h2>今週末のおすすめ</h2><small id="fno"></small></div></div>'+
  '<div class="fan" id="fan"></div>'+
- '<div class="wrap">'+'<div class="tiles qk"><button data-w="'+T1[2]+'"><small>'+T1[0]+'</small><b data-n="'+T1[1]+'">0</b><i>→</i></button><button data-w="end"><small>7日以内に終わる</small><b data-n="'+nEnd+'">0</b><i>→</i></button><button data-w="we"><small>この週末に行ける</small><b data-n="'+nWe+'">0</b><i>→</i></button></div>'+'<div id="sent"></div><div class="bar" id="bar"><div class="seg" id="seg"></div><div class="chips" id="chips"></div></div>'+
- '<div class="cnt"><h3 id="ch"></h3><small id="cs"></small></div><div class="grid" id="grid"></div><div id="mr"></div></div>'+
+ '<div class="wrap">'+(M2?'':'<div class="tiles qk"><button data-w="'+T1[2]+'"><small>'+T1[0]+'</small><b data-n="'+T1[1]+'">0</b><i>→</i></button><button data-w="end"><small>7日以内に終わる</small><b data-n="'+nEnd+'">0</b><i>→</i></button><button data-w="we"><small>この週末に行ける</small><b data-n="'+nWe+'">0</b><i>→</i></button></div>')+'<div id="sent"></div><div class="bar'+(M2?' m2b':'')+'" id="bar"><div class="seg'+(M2?' fit':'')+'" id="seg"></div><div class="chips" id="chips"></div></div>'+
+ (M2?'<div class="wt" id="wt" role="tablist"></div><div class="cnt m2cnt"><h3 id="ch"></h3><button class="tomap" id="tomap"><svg viewBox="0 0 24 24"><path d="M9 4.5 3.5 6.6v13l5.5-2.1 6 2.1 5.5-2.1v-13L15 6.6z"/><path d="M9 4.5v13M15 6.6v13"/></svg>地図で見る</button></div>':'<div class="cnt"><h3 id="ch"></h3><small id="cs"></small></div>')+'<div class="grid" id="grid"></div><div id="mr"></div></div>'+
  '<div class="sv" id="sv"><div class="bars"></div><div class="hd"><img data-logo src="/assets/logo-s.png?v=2" alt=""><span></span><button aria-label="閉じる">×</button></div><div class="fr"></div><div class="tx"></div><i class="tp l"></i><i class="tp r"></i></div>';
 S_.counts(S_.main);
-$(".tiles").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;S.w=b.dataset.w;S.n=24;sync();go(true);var top=$("#sent").getBoundingClientRect().top+scrollY;scrollTo({top:top,behavior:"smooth"})});
+if(!M2)$(".tiles").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;S.w=b.dataset.w;S.n=24;sync();go(true);var top=$("#sent").getBoundingClientRect().top+scrollY;scrollTo({top:top,behavior:"smooth"})});
 
 /* ストーリー（虹の輪のまま。見た印は前と同じ hx_seen に残す） */
 var ST=(PG.st==="pref"?PREF.map(function(p){return [p,function(x){return x.p===p&&x.st==="now"}]}).concat([["無料",function(x){return x.f}],["これから",function(x){return x.st==="up"}]]):[["今週末",function(x){return x.s<=SUN&&x.e>=SAT}],["まもなく終了",function(x){return x.st==="now"&&x.left<=10}],["イルミ",function(x){return x.k==="light"}],["紅葉",function(x){return x.k==="koyo"}],["アート",function(x){return x.k==="art"}],["子どもと",function(x){return x.k==="play"||x.k==="animal"}],["無料",function(x){return x.f}],["近日開始",function(x){return x.st==="up"&&diff(TD,x.s)<=21}]])
@@ -81,7 +86,7 @@ var setSeg=S_.seg($("#seg"),[["",RG.n]].concat(PREF.map(function(p){return [p,p]
 function kinds(){var c={};IT.forEach(function(x){if(!S.p||x.p===S.p)c[x.k]=(c[x.k]||0)+1});return Object.keys(G).filter(function(k){return c[k]})}
 function drawChips(){if(S.g==="_hv"&&!Object.keys(HV).length){S.g="";saveQ()}var ks=kinds();$("#chips").style.display=ks.length<2&&!Object.keys(HV).length?"none":"";var nh=Object.keys(HV).length;$("#chips").innerHTML='<button class="chip'+(S.g?"":" on")+'" data-g="">すべて</button>'+(nh?'<button class="chip hvc'+(S.g==="_hv"?" on":"")+'" data-g="_hv">'+HVI+'残した '+nh+'</button>':"")+kinds().map(function(k){return '<button class="chip'+(S.g===k?" on":"")+'" data-g="'+k+'" style="--c:'+G[k][1]+'"><i></i>'+G[k][3]+'</button>'}).join("")}
 $("#chips").addEventListener("click",function(e){var b=e.target.closest(".chip");if(!b)return;S.g=b.dataset.g;S.n=24;sync();go(true)});
-function sync(){drawChips();S_.navCur(S.w);saveQ()}
+function sync(){drawChips();S_.navCur(S.w);saveQ();if(REM)try{if(S.p)localStorage.setItem(PK,S.p);else localStorage.removeItem(PK)}catch(e){}}
 var cache={};
 function card(x){if(cache[x.i])return cache[x.i];
   var a=el('<a class="cd" href="'+(x.o?"/o/"+x.o:esc(x.u))+'" data-i="'+x.i+'" style="--gc:'+x.g[1]+'"><div class="im" style="background-color:'+(x.th?avg(x.th):x.g[2])+'">'+(x.im?'<img alt="" loading="lazy" decoding="async" src="'+img(x)+'">':tile(x))+'</div>'+
@@ -97,7 +102,9 @@ function hvTap(e){var h=e.target.closest&&e.target.closest(".hv");if(!h)return;e
   var was=S.g;drawChips();if(was==="_hv")go(true)}
 grid.addEventListener("click",hvTap,true);grid.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&e.target.classList&&e.target.classList.contains("hv"))hvTap(e)},true);
 function go(anim){var L=pick(),show=L.slice(0,S.n),pr=S.p||RG.n,wl={now:"開催中",we:"今週末",up:"これから",end:"7日以内に終わる",td:"きょうまで",new:"7日以内に始まる"}[S.w];
-  $("#ch").innerHTML=esc(pr)+"・"+(S.g==="_hv"?"♡で残した":wl)+" <b data-n='"+L.length+"'>"+L.length+"</b>件";$("#cs").textContent=S.g==="_hv"?"この端末にだけ残っています":S.g&&G[S.g]?G[S.g][3]:(S.w==="we"?md(SAT)+"・"+md(SUN).replace(/（.）/,""):"");
+  if(M2){var wc=wCounts();$("#wt").innerHTML=[["now","開催中"],["we","今週末"],["end","まもなく終了"],["up","これから"]].map(function(w){return '<button role="tab" data-w="'+w[0]+'" aria-selected="'+(S.w===w[0])+'"'+(S.w===w[0]?' class="on"':'')+'>'+w[1]+'<small>'+wc[w[0]]+'</small></button>'}).join("");
+    $("#ch").innerHTML=esc(pr)+(S.g==="_hv"?"・♡で残した":S.g&&G[S.g]?"・"+G[S.g][3]:"")+(S.w==="td"||S.w==="new"?"・"+wl:"")+" <b data-n='"+L.length+"'>"+L.length+"</b>件"+(S.w==="we"?'<small>'+md(SAT)+"・"+md(SUN).replace(/（.）/,"")+'</small>':"")}
+  else{$("#ch").innerHTML=esc(pr)+"・"+(S.g==="_hv"?"♡で残した":wl)+" <b data-n='"+L.length+"'>"+L.length+"</b>件";$("#cs").textContent=S.g==="_hv"?"この端末にだけ残っています":S.g&&G[S.g]?G[S.g][3]:(S.w==="we"?md(SAT)+"・"+md(SUN).replace(/（.）/,""):"")}
   if(anim&&!first)S_.countUp($("#ch b"));
   var old={};if(anim&&!RM)$$(".cd",grid).forEach(function(c){old[c.dataset.i]=c.getBoundingClientRect()});
   var frag=document.createDocumentFragment();show.forEach(function(x){frag.appendChild(card(x))});grid.replaceChildren(frag);
@@ -171,6 +178,12 @@ function mapGest(){var sv=$("#mps"),pts={},st=null;
   sv.addEventListener("pointerup",up);sv.addEventListener("pointercancel",up);sv.addEventListener("pointerleave",up);
   sv.addEventListener("wheel",function(e){e.preventDefault();var c=toSvg(e.clientX,e.clientY);zoom(e.deltaY<0?1.15:1/1.15,c[0],c[1],false)},{passive:false})}
 
-S_.onNav(function(a){if(a==="map"){S_.navCur("map");mapOpen();return}mapClose();S.w=a;S.n=24;sync();go(true);var top=$("#sent").getBoundingClientRect().top+scrollY;scrollTo({top:top,behavior:"smooth"})});
+/* 見本：新しい地図（map2.js を開く時だけ読む） */
+var O=S_.od={S:S,saveQ:saveQ,byi:BYI,openItem:openItem,pick:pick,counts:wCounts,img:img,avg:avg,tile:tile,lt:lt,when:when,icon:function(k){return D.icons[k]||D.icons.spot||""},gname:function(k){return k==="_hv"?"♡で残した物":G[k]?G[k][3]:""},
+  changed:function(){S.n=24;setSeg(S.p);sync();go(false)}};
+function map2(){if(O.mapOpen){O.mapOpen();return}var s=document.createElement("script");s.src="/shin/map2.js?v=1120c";s.onload=function(){O.mapOpen()};document.head.appendChild(s)}
+if(M2)$("#wt").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;S.w=b.dataset.w;S.n=24;sync();go(true)});
+if(M2)$("#tomap").onclick=map2;
+S_.onNav(function(a){if(a==="map"){S_.navCur("map");if(M2)map2();else mapOpen();return}if(M2&&O.mapClose)O.mapClose();else mapClose();S.w=a;S.n=24;sync();go(true);var top=$("#sent").getBoundingClientRect().top+scrollY;scrollTo({top:top,behavior:"smooth"})});
 S_.navCur(S.w);S_.ready();
 })();

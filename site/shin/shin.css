@@ -919,3 +919,106 @@ html.nt .mu li.mg{color:#9AA3B5}
 .door i{position:absolute;right:18px;top:50%;transform:translateY(-52%);font-style:normal;font-size:24px;line-height:1;color:var(--sub)}
 html.nt .door a{background:linear-gradient(#0A0E18,#0A0E18) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box}
 html.nt .door small,html.nt .door i{color:#A1A1A6}
+
+/* ===== 11/20 見本（?map2=1）：おでかけの新しい地図と一覧の使いやすさ ===== */
+/* 府県は横に流さず1行に全部（和歌山・神奈川が切れていた） */
+.seg.fit{overflow:visible;gap:0}
+.seg.fit button{flex:1 1 0;min-width:0;padding:0 2px;font-size:12.5px;letter-spacing:-.01em}
+/* いつ（開催中・今週末・まもなく終了・これから）＝数つきのタブ。前の3つの箱の代わり */
+.wt{display:grid;grid-template-columns:repeat(4,1fr);margin:14px 0 0;border-bottom:1px solid var(--line)}
+.wt button{position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;padding:8px 0 10px;font-size:13px;font-weight:500;color:var(--sub);transition:color .2s}
+.wt button small{font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums;font-weight:500}
+.wt button.on{color:var(--ink);font-weight:600}
+.wt button.on small{color:var(--ink)}
+.wt button.on::after{content:"";position:absolute;left:18%;right:18%;bottom:-1px;height:2px;border-radius:2px;background:linear-gradient(90deg,#F6C66B,#F29E4C)}
+.m2cnt{align-items:center;margin:14px 0 12px}
+.m2cnt h3 small{margin-left:8px;font-size:12px;color:var(--mut);font-weight:500}
+.tomap{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 13px 0 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-size:12.5px;font-weight:500;color:var(--ink);white-space:nowrap}
+.tomap svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}
+.tomap:active{transform:scale(.97)}
+
+/* 地図 */
+.m2{position:fixed;inset:0;z-index:45;display:none;flex-direction:column;background:var(--bg);
+  --m-sea:#E6ECF1;--m-nb:#F3F3F5;--m-land:#FFFFFF;--m-dim:#F6F6F7;--m-mb:#E6E6EA;--m-pb:#B8B8BF;--m-cs:#C9CDD3;--m-lb:#1D1D1F;--m-cl:#6E6E73}
+html.nt .m2{--m-sea:#070A12;--m-nb:#0E121B;--m-land:#161B26;--m-dim:#10141D;--m-mb:#222836;--m-pb:#3C4454;--m-cs:#2D3442;--m-lb:#ECE8E1;--m-cl:#8D95A5}
+.m2.op{display:flex}
+html.m2op #tb{visibility:hidden}
+.m2h{flex:none;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 0;background:var(--bg);position:relative;z-index:3;box-shadow:0 1px 0 var(--line)}
+.m2t{display:flex;align-items:center;justify-content:space-between;height:40px}
+.m2t b{font:600 19px/1.3 var(--sans);letter-spacing:.01em}
+.m2x{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center}
+.m2x svg{width:16px;height:16px;stroke:var(--ink);stroke-width:1.8;stroke-linecap:round}
+.m2h .seg{margin-top:6px}
+.m2w{display:grid;grid-template-columns:repeat(4,1fr);margin-top:4px}
+.m2w button{position:relative;display:flex;flex-direction:column;align-items:center;padding:6px 0 8px;font-size:12.5px;line-height:1.35;font-weight:500;color:var(--sub)}
+.m2w button small{font-size:11.5px;color:var(--mut);font-variant-numeric:tabular-nums}
+.m2w button.on{color:var(--ink);font-weight:600}
+.m2w button.on small{color:var(--ink)}
+.m2w button.on::after{content:"";position:absolute;left:20%;right:20%;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#F6C66B,#F29E4C)}
+.m2v{position:relative;flex:1;min-height:0;overflow:hidden;touch-action:none;background:var(--m-sea);user-select:none;-webkit-user-select:none}
+#m2s{position:absolute;inset:0;width:100%;height:100%;display:block}
+#m2s .sea{fill:var(--m-sea)}
+#m2s .nb path{fill:var(--m-nb);stroke:var(--m-nb);stroke-width:2.5}
+#m2s .ld path{fill:var(--m-land);transition:fill .4s;cursor:pointer}
+#m2s .ld path.dim{fill:var(--m-dim)}
+#m2s .lk{fill:var(--m-sea);stroke:var(--m-cs);stroke-width:.6}
+#m2s .mb{fill:none;stroke:var(--m-mb);stroke-width:.6;stroke-linejoin:round}
+#m2s .pb{fill:none;stroke:var(--m-pb);stroke-width:.9;stroke-linejoin:round;stroke-dasharray:3 2}
+#m2s .cs{fill:none;stroke:var(--m-cs);stroke-width:.7;stroke-linejoin:round}
+#m2s .ol{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.m2lb,.m2pn{position:absolute;inset:0;pointer-events:none}
+.m2lb span{position:absolute;left:0;top:0;white-space:nowrap;will-change:transform}
+.m2lb .pl{font-size:13px;font-weight:600;letter-spacing:.18em;color:var(--m-lb);opacity:.55;transition:opacity .3s}
+.m2lb .pl.on{opacity:1}
+.m2lb .cl{font-size:10.5px;font-weight:500;color:var(--m-cl);text-shadow:0 0 3px var(--m-land),0 0 3px var(--m-land)}
+.m2lb .cl.r1{font-size:11.5px;font-weight:600;color:var(--m-lb)}
+.m2pn .pin{pointer-events:auto;position:absolute;left:0;top:0;width:0;height:0;padding:0;border:0;background:none;will-change:transform}
+/* 点と数字だけ（写真を並べない）。写真は選んだ1か所だけ */
+.pin .pc{position:absolute;left:0;top:0;display:grid;place-items:center;border-radius:50%;animation:pinIn .4s cubic-bezier(.3,1.4,.5,1) backwards;animation-delay:inherit}
+.pin.one .pc{width:12px;height:12px;margin:-6px 0 0 -6px;background:var(--m-lb);border:2px solid var(--m-land);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.pin.one::before{content:"";position:absolute;left:-14px;top:-14px;width:28px;height:28px}
+.pin.grp .pc{background:var(--card);color:var(--ink);border:1px solid var(--m-pb);font:600 12.5px/1 var(--sans);font-variant-numeric:tabular-nums;box-shadow:0 2px 8px -3px rgba(0,0,0,.25)}
+.pin.on{z-index:2}
+.pin.on .pc{border-color:#F29E4C}
+.pin.one.on .pc{background:#F29E4C;border-color:var(--m-land)}
+.pf2{position:absolute;left:0;bottom:5px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;pointer-events:none;animation:pfIn .35s cubic-bezier(.3,1.3,.5,1)}
+.pin.grp .pf2{bottom:calc(var(--d,30px)/2)}
+.pf2 img,.pf2 .pi2{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2.5px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,#F6C66B,#F29E4C) border-box;box-shadow:0 4px 14px -4px rgba(0,0,0,.35);display:grid;place-items:center}
+.pf2 .pi2 svg{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pf2 b{max-width:160px;padding:3px 9px;border-radius:999px;background:var(--card);color:var(--ink);font-size:11.5px;font-weight:600;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 2px 8px rgba(0,0,0,.16);order:1}
+.pf2::after{content:"";order:2;width:2px;height:10px;margin-top:-3px;background:#F29E4C;border-radius:2px}
+@keyframes pfIn{from{opacity:0;transform:translateX(-50%) translateY(6px) scale(.8)}}
+@keyframes pinIn{from{transform:scale(.2);opacity:0}}
+.me{position:absolute;left:0;top:0;width:0;height:0}
+.me::before{content:"";position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:#2B7FFF;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);box-sizing:border-box}
+.me::after{content:"";position:absolute;left:-22px;top:-22px;width:44px;height:44px;border-radius:50%;background:rgba(43,127,255,.18);animation:mePulse 2.2s ease-out infinite}
+@keyframes mePulse{from{transform:scale(.4);opacity:1}to{transform:scale(1.2);opacity:0}}
+.m2n{position:absolute;left:12px;top:12px;z-index:3;display:flex;gap:6px;align-items:center;pointer-events:none}
+.m2n>span{padding:6px 12px;border-radius:999px;background:var(--card);font-size:12px;font-weight:500;color:var(--sub);box-shadow:0 2px 10px -4px rgba(0,0,0,.25);border:1px solid var(--line)}
+.m2n>span b{color:var(--ink);font-size:13.5px;font-weight:600;font-variant-numeric:tabular-nums;margin:0 1px}
+.m2n button[hidden]{display:none}
+.m2n button{pointer-events:auto;display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 8px 0 12px;border-radius:999px;background:var(--on);color:var(--ont);font-size:12px;font-weight:600}
+.m2n button svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.m2z{position:absolute;right:12px;top:12px;z-index:3;display:flex;flex-direction:column;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:0 4px 14px -6px rgba(0,0,0,.3);overflow:hidden}
+.m2z button{width:42px;height:42px;display:grid;place-items:center}
+.m2z button+button{border-top:1px solid var(--line)}
+.m2z svg{width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:1.7;stroke-linecap:round}
+.m2z svg .f{fill:var(--ink);stroke:none}
+.m2toast{position:absolute;left:50%;bottom:14px;z-index:3;margin:0;transform:translate(-50%,8px);padding:8px 14px;border-radius:999px;background:var(--on);color:var(--ont);font-size:12.5px;font-weight:500;white-space:nowrap;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none}
+.m2toast.on{opacity:1;transform:translate(-50%,0)}
+.m2c{position:relative;z-index:3;flex:none;display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:12px 16px calc(96px + var(--safe));background:var(--bg);box-shadow:0 -1px 0 var(--line)}
+.m2c::-webkit-scrollbar{display:none}
+.m2c .mcd{flex:0 0 84%}
+.m2c .mcd .lb{display:flex;gap:6px;align-items:center;font-size:11px;color:var(--sub)}
+.m2c .mcd .lb .g{color:var(--ink);font-weight:600}
+.m2e{flex:1 0 100%;margin:0;padding:30px 4px;font-size:13px;color:var(--sub);text-align:center}
+@media (prefers-reduced-motion:reduce){.pin .pc,.me::after{animation:none}}
+/* 11/20 1件の板の「終わりまで あと◯日」が2つの欄に割れて「日」だけ次の行に落ちていた（不動産の数字の箱 .big の決まりが当たっていた） */
+html body .per .big{display:block!important;margin-top:10px;border:0!important;font-size:20px;line-height:1.4}
+.mcd~.m2e{flex:0 0 62%;align-self:center;padding:10px 8px;font-size:12px}
+/* 全体の時の府県ごとの数（名前と数を1つの札に） */
+.pin.pref .pc{display:flex;align-items:baseline;gap:6px;padding:7px 12px 7px 13px;border-radius:999px;background:var(--card);border:1px solid var(--m-pb);box-shadow:0 4px 14px -6px rgba(0,0,0,.3);transform:translate(-50%,-50%);white-space:nowrap}
+.pin.pref .pc b{font-size:13px;font-weight:600;color:var(--ink);letter-spacing:.06em}
+.pin.pref .pc small{font-size:13px;font-weight:600;color:#D9822B;font-variant-numeric:tabular-nums}
+html.nt .pin.pref .pc small{color:#F6C66B}
+.pin.pref.zero .pc{opacity:.55}
