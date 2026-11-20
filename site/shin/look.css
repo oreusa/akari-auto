@@ -136,3 +136,24 @@ html.lk-d .yh{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 /* 20:10 全ページで撮って見回り：府県・分野の帯（.pn）が白い板で光を切っていた → すけるガラスに */
 html.lk-a .pn{background:rgba(255,255,255,.5)!important;-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6)}
 html.lk-a.nt .pn{background:rgba(10,14,24,.5)!important}
+/* 20:15 owner「お洒落だと思う・色合いとか改善点ある？月に任せる」→ 全ページ昼夜で撮って見回り：
+   ①流すと上に出る題の帯（#tb）が白い板 ②解体・実家の白い箱（.ps .pane .flt）が光を切る ③光の少ない所が平たい灰色に見える ④夜の光が弱い */
+html.lk-a{background:linear-gradient(165deg,#E4F4F1 0%,#EDF1FA 42%,#F1EEF8 70%,#F8F0E4 100%) fixed!important}
+.lk-bg i:nth-child(5){width:60vmax;height:60vmax;left:-10vmax;top:45vh;background:radial-gradient(circle,rgba(150,200,240,.7) 0,rgba(150,200,240,0) 62%);animation:lkf3 38s ease-in-out infinite alternate-reverse}
+html.lk-a.nt{background:radial-gradient(120vw 60vh at 15% 0%,#0D1A2A 0,transparent 70%),radial-gradient(100vw 60vh at 100% 100%,#14122A 0,transparent 70%),#070A14!important}
+html.lk-a.nt .lk-bg i{opacity:.36}
+html.lk-a #tb,html.lk-a .sk-tb{background:rgba(244,247,252,.94)!important;-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 8px 24px -18px rgba(28,58,120,.4)!important;border-bottom:1px solid rgba(20,40,90,.06)!important}
+html.lk-a.nt #tb,html.lk-a.nt .sk-tb{background:rgba(9,12,22,.92)!important;border-bottom-color:rgba(255,255,255,.06)!important;box-shadow:none!important}
+html.lk.lk.lk-a.lk-a .ps,html.lk.lk.lk-a.lk-a .pane,html.lk.lk.lk-a.lk-a section.ps,html.lk.lk.lk-a.lk-a section.pane{background:transparent!important}
+html.lk.lk.lk-a.lk-a .kt-c{background:rgba(255,255,255,.55)!important;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.7)}
+html.lk.lk.lk-a.lk-a.nt .kt-c{background:rgba(20,26,42,.55)!important;border-color:rgba(255,255,255,.08)}
+html.lk-a .flt{background:rgba(255,255,255,.5)!important;-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6)}
+html.lk-a.nt .flt{background:rgba(10,14,24,.5)!important}
+/* 20:21 owner「なんか変」（表紙）→ 白・灰・黒の板が画面いっぱいで光を切り、帯に見えていた。表紙の板を角の丸いガラスの板にして、まわりに光を見せる */
+html.lk-a .c3u{margin:0 12px 14px!important;border-radius:28px;background:linear-gradient(160deg,rgba(255,255,255,.8),rgba(255,255,255,.48))!important;-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 18px 40px -22px rgba(28,58,120,.38)}
+html.lk-a .c3u.g{background:linear-gradient(160deg,rgba(255,255,255,.62),rgba(255,255,255,.34))!important}
+html.lk-a .c3u.k{background:linear-gradient(160deg,rgba(28,34,52,.92),rgba(8,10,18,.94))!important;border-color:rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -22px rgba(10,20,50,.6)}
+html.lk-a.nt .c3u,html.lk-a.nt .c3u.g{background:linear-gradient(160deg,rgba(38,48,72,.62),rgba(14,18,30,.46))!important;border-color:rgba(255,255,255,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 18px 40px -20px rgba(0,0,0,.75)}
+html.lk-a .c3u .c3b a:not(.f),html.lk-a .c3u.g .c3b a:not(.f){background:linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,.7)) padding-box,var(--sg) border-box!important}
+html.lk-a.nt .c3u .c3b a:not(.f),html.lk-a .c3u.k .c3b a:not(.f){background:linear-gradient(rgba(14,18,30,.8),rgba(14,18,30,.8)) padding-box,var(--sg) border-box!important}
+html.lk-a .c3tg{padding:0 12px}html.lk-a .c3t{border-radius:28px;overflow:hidden;margin-bottom:14px!important;isolation:isolate;box-shadow:0 22px 44px -22px rgba(10,20,50,.55)}
