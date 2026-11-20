@@ -16,7 +16,8 @@ function clean(v, max) {
 
 // 11/10 おかいものの探す・条件・種類と、メニューの開け閉め（お金にならない操作）は別の枠。
 // 11/9 はこの2つが308のうち245で、買うボタン・宿の押された数を数える枠（300）を食べて止めた。
-const UI = new Set(["okaimono", "menu"]);
+// 11/20 関東の新しいページのカードを押した数（f=card・人気順に使う）も、お金にならない操作の枠に入れる
+const UI = new Set(["okaimono", "menu", "card"]);
 
 async function bump(env, key, ui) {
   if (!env.CLICKS) return;
