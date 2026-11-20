@@ -65,7 +65,7 @@ function refresh(fly){if(!M)return;size();drawW();ALL=O.pick().filter(function(x
   $$(".pl",box).forEach(function(l){l.classList.toggle("on",l.dataset.p===S.p)});
   var gx=$("#m2gx");if(S.g){gx.hidden=false;gx.innerHTML=esc(O.gname(S.g))+'だけ<svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg>'}else gx.hidden=true;
   sel=null;
-  if(fly){var b=regionBox();lastUser=0;/* まわりに余白（左上の数の札・右の＋－ボタンにかからない） */fit(b[0]-b[2]*.06-2,b[1]-b[3]*.12-3,b[2]*1.26+4,b[3]*1.18+6,!box._shown||RM);box._shown=1}
+  if(fly){var b=regionBox();lastUser=0;/* まわりに余白（左上の数の札・右の＋－ボタンにかからない） */fit(b[0]-b[2]*.03-1,b[1]-b[3]*.09-2,b[2]*1.17+2,b[3]*1.13+4,!box._shown||RM);box._shown=1}
   cluster();list(true)}
 
 function size(){var v=$("#m2v");W=v.clientWidth||1;H=v.clientHeight||1}
@@ -79,9 +79,12 @@ function setVB(){$("#m2s").setAttribute("viewBox",vb.x+" "+vb.y+" "+vb.w+" "+vb.
 function sx(x){return (x-vb.x)/vb.w*W}function sy(y){return (y-vb.y)/vb.h*H}
 
 /* 名前とピンを画面の場所に置く（動かしている間は置き直すだけ。止まったらまとめ直す） */
-function place(){var k=vb.w;
-  $$("#m2lb span",box).forEach(function(l){var r=+l.dataset.r||0,show=r===0?k>70:(r===1?k<130:r===2?k<62:k<30);if(r&&S.p&&l.dataset.p!==S.p&&k>40)show=false;
+function ovw(){if(S.p||!M)return false;var b=fullBox();return vb.w>b[2]*.72}
+var FB=null;function fullBox(){if(FB)return FB;var s=S.p;S.p="";FB=regionBox();S.p=s;return FB}
+function place(){var k=vb.w,ov=CL.ov,P=ov?[]:CL.map(function(c){return [sx(c.ax),sy(c.ay),c.m.length>1?20:9]});
+  $$("#m2lb span",box).forEach(function(l){var r=+l.dataset.r||0,show=ov?false:r===0?k>70:(r===1?k<130:r===2?k<62:k<30);if(r&&S.p&&l.dataset.p!==S.p&&k>40)show=false;
     if(!show){l.style.display="none";return}var X=sx(+l.dataset.x),Y=sy(+l.dataset.y);if(X<-60||X>W+60||Y<-20||Y>H+20){l.style.display="none";return}
+    /* 点・数字の丸と重なる名前は出さない */var hw=l.textContent.length*(r===0?8:6)+4;for(var i=0;i<P.length;i++){if(Math.abs(P[i][0]-X)<hw+P[i][2]&&Math.abs(P[i][1]-Y)<P[i][2]+8){l.style.display="none";return}}
     l.style.display="";l.style.transform="translate("+X.toFixed(1)+"px,"+Y.toFixed(1)+"px) translate(-50%,-50%)"});
   CL.forEach(function(c){c.el.style.transform="translate("+sx(c.ax).toFixed(1)+"px,"+sy(c.ay).toFixed(1)+"px)"});
   if(me&&me.el)me.el.style.transform="translate("+sx(me.xy[0]).toFixed(1)+"px,"+sy(me.xy[1]).toFixed(1)+"px)"}
@@ -90,6 +93,14 @@ var stT=0;function settle(){clearTimeout(stT);stT=setTimeout(function(){if(busy)
 /* 近いピンをまとめる（画面で 38px 以内）。並びは一覧と同じ（写真あり・人気が先）なので、まとまりの顔はいちばん良い物 */
 /* 11/20 owner「集合体恐怖症の人は見れないね」→ 写真の丸を並べない。1か所＝小さな点、まとまり＝数字だけの丸。写真は選んだ1か所だけ。 */
 function cluster(){var R=46,out=[];
+  /* 全体を見ている時は、府県ごとに「大阪 31」を1つだけ。押すとその府県へ */
+  if(ovw()){var pn0=$("#m2pn");pn0.textContent="";var fr=document.createDocumentFragment(),cnt={};ALL.forEach(function(x){cnt[x.p]=(cnt[x.p]||0)+1});
+    var L0=PREF.filter(function(p){return RG.lb[p]}).map(function(p,k){var b=document.createElement("button");b.className="pin pref"+(cnt[p]?"":" zero");b.setAttribute("aria-label",p+" "+(cnt[p]||0)+"か所");
+      b.innerHTML='<span class="pc"><b>'+esc(p)+'</b><small>'+(cnt[p]||0)+'</small></span>';if(!RM&&!box._pinned)b.style.animationDelay=k*40+"ms";
+      b.onclick=function(e){if(moved)return;e.stopPropagation();S.p=p;mseg(p,true);O.changed();S_.navCur("map");refresh(true)};fr.appendChild(b);
+      return {ax:RG.lb[p][0],ay:RG.lb[p][1],m:[],el:b}});
+    if(me){me.el=el('<i class="me" aria-hidden="true"></i>');fr.appendChild(me.el)}
+    pn0.appendChild(fr);CL=L0;CL.ov=1;box._pinned=1;place();return}
   ALL.forEach(function(x){var X=sx(x.xy[0]),Y=sy(x.xy[1]);for(var i=0;i<out.length;i++){var c=out[i];if(Math.abs(c.X-X)<R&&Math.abs(c.Y-Y)<R){c.m.push(x);return}}out.push({X:X,Y:Y,ax:x.xy[0],ay:x.xy[1],m:[x]})});
   var pn=$("#m2pn");pn.textContent="";var frag=document.createDocumentFragment();
   out.forEach(function(c,k){var x=c.m[0],n=c.m.length;
@@ -100,7 +111,7 @@ function cluster(){var R=46,out=[];
     if(!RM&&!box._pinned)b.style.animationDelay=Math.min(k,30)*14+"ms";
     b.onclick=function(e){if(moved)return;e.stopPropagation();tapCluster(c)};c.el=b;frag.appendChild(b)});
   if(me){me.el=el('<i class="me" aria-hidden="true"></i>');frag.appendChild(me.el)}
-  pn.appendChild(frag);CL=out;box._pinned=1;if(sel)mark(sel);place()}
+  pn.appendChild(frag);CL=out;CL.ov=0;box._pinned=1;if(sel)mark(sel);place()}
 /* 選んだ1か所だけ写真と名前を出す */
 function mark(x){CL.forEach(function(c){var on=c.m.indexOf(x)>=0;c.el.classList.toggle("on",on);var f=c.el.querySelector(".pf2");if(f)f.remove();
   if(on){c.el.insertAdjacentHTML("beforeend",'<span class="pf2">'+(x.im?'<img src="'+O.img(x)+'" alt="">':'<span class="pi2"><svg viewBox="0 0 24 24">'+(O.icon(x.k)||"")+'</svg></span>')+'<b>'+esc(x.t)+'</b></span>');c.el.parentNode.appendChild(c.el)}})}

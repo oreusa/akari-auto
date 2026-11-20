@@ -969,13 +969,13 @@ html.m2op #tb{visibility:hidden}
 .pin.grp .pc{background:var(--card);color:var(--ink);border:1px solid var(--m-pb);font:600 12.5px/1 var(--sans);font-variant-numeric:tabular-nums;box-shadow:0 2px 8px -3px rgba(0,0,0,.25)}
 .pin.on{z-index:2}
 .pin.on .pc{border-color:#F29E4C}
-.pin.one.on .pc{opacity:0}
-.pf2{position:absolute;left:0;bottom:6px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;pointer-events:none;animation:pfIn .35s cubic-bezier(.3,1.3,.5,1)}
-.pin.grp .pf2{bottom:calc(var(--d,30px)/2 + 6px)}
+.pin.one.on .pc{background:#F29E4C;border-color:var(--m-land)}
+.pf2{position:absolute;left:0;bottom:5px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;pointer-events:none;animation:pfIn .35s cubic-bezier(.3,1.3,.5,1)}
+.pin.grp .pf2{bottom:calc(var(--d,30px)/2)}
 .pf2 img,.pf2 .pi2{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2.5px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,#F6C66B,#F29E4C) border-box;box-shadow:0 4px 14px -4px rgba(0,0,0,.35);display:grid;place-items:center}
 .pf2 .pi2 svg{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .pf2 b{max-width:160px;padding:3px 9px;border-radius:999px;background:var(--card);color:var(--ink);font-size:11.5px;font-weight:600;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 2px 8px rgba(0,0,0,.16);order:1}
-.pf2::after{content:"";order:2;width:2px;height:8px;margin-top:-3px;background:#F29E4C;border-radius:2px}
+.pf2::after{content:"";order:2;width:2px;height:10px;margin-top:-3px;background:#F29E4C;border-radius:2px}
 @keyframes pfIn{from{opacity:0;transform:translateX(-50%) translateY(6px) scale(.8)}}
 @keyframes pinIn{from{transform:scale(.2);opacity:0}}
 .me{position:absolute;left:0;top:0;width:0;height:0}
@@ -1005,3 +1005,9 @@ html.m2op #tb{visibility:hidden}
 /* 11/20 1件の板の「終わりまで あと◯日」が2つの欄に割れて「日」だけ次の行に落ちていた（不動産の数字の箱 .big の決まりが当たっていた） */
 html body .per .big{display:block!important;margin-top:10px;border:0!important;font-size:20px;line-height:1.4}
 .mcd~.m2e{flex:0 0 62%;align-self:center;padding:10px 8px;font-size:12px}
+/* 全体の時の府県ごとの数（名前と数を1つの札に） */
+.pin.pref .pc{display:flex;align-items:baseline;gap:6px;padding:7px 12px 7px 13px;border-radius:999px;background:var(--card);border:1px solid var(--m-pb);box-shadow:0 4px 14px -6px rgba(0,0,0,.3);transform:translate(-50%,-50%);white-space:nowrap}
+.pin.pref .pc b{font-size:13px;font-weight:600;color:var(--ink);letter-spacing:.06em}
+.pin.pref .pc small{font-size:13px;font-weight:600;color:#D9822B;font-variant-numeric:tabular-nums}
+html.nt .pin.pref .pc small{color:#F6C66B}
+.pin.pref.zero .pc{opacity:.55}
