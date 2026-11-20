@@ -528,7 +528,7 @@ def main():
           {"od": {"n": len(now), "ph": hero}, "ie": {"n": towns, "tw": tw}, "kau": {"n": nkau, "ks": ks},
            "kai": {"n": sum(1 for x in ktl if x["w"] == "soon"), "x": ka}, "ko": ko,
            "ft": [["おでかけ", [["関東のおでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"]]],
-                  ["家と土地", [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["空き家の割合ランキング", "/akiya-ranking"], ["予算で街さがし", "/sagasu"], ["いくらで売れる？", "/ikura"], ["家を売る前に", "/uru"], ["実家・空き家", "/jikka/"], ["解体の費用", "/kaitai"], ["解体の補助金", "/kaitai-ranking"]]],
+                  ["家と土地", [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["家を買いたい", "/sagasu"], ["実家・空き家ノート", "/jikka/"], ["3問でわかる実家の診断", "/jikka/shindan/"], ["解体・片付けの費用", "/kaitai"], ["解体の補助金", "/kaitai-ranking"], ["空き家が多い街", "/akiya-ranking"]]],
                   ["おかいもの", [["日用品の値段くらべ", "/okaimono"], ["開店・閉店ニュース", "/kaiten"], ["ふるさと納税", "/furusato"], ["値下がりした物", "/nesage"]]],
                   ["このサイト", [["相談・申し込み", "/moushikomi"], ["リクエスト・感想", "/koe"], ["プライバシーポリシー", "/privacy"]]]],
            "sns": [["Instagram", "https://www.instagram.com/usagichan_ai_si/"], ["Threads", "https://www.threads.com/@usagichan_ai_si"], ["X", "https://x.com/ai_usagichan"]]},
