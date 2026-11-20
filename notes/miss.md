@@ -1,15 +1,16 @@
-# 漏れの見張り（11/20 09:33 機械が調べた）
+# 漏れの見張り（11/20 11:14 機械が調べた）
 
-判定：× 8件
+判定：× 9件
 
 見回りの燈・集め係・夜の回は、最初にここを読み、×の行を全部直してから自分の仕事をする。直せない物は理由を基本スレに1行。
 
 ## 予定表・4コマ・リール（1）
 - × おでかけリール reel/2026-11-20.json が無い（docs/outing-reel.md）
 
-## 出ていない投稿（2）
+## 出ていない投稿（3）
 - × 11/19 00:41 21:16 twitter 出なかった（Bufferでエラー：Please update the media URL to be publicly 
-- × 11/20 09:32 07:15 threads 出なかった（Bufferでエラー：An unknown error has occurred. Please retry
+- × 11/20 11:14 07:15 threads 出なかった（Bufferでエラー：An unknown error has occurred. Please retry
+- × 11/20 11:14 09:15 threads 出なかった（Bufferでエラー：An unknown error has occurred. Please retry
 
 ## HPの在庫（1）
 - × HPの在庫 ×6か所：東京のこれからがあと7件、神奈川のこれからがあと3件、茨城のこれからがあと3件、栃木のこれからがあと2件、群馬のこれからがあと3件、新しい施設（もうすぐ・できた）が関東であと16件

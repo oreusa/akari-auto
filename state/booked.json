@@ -9860,7 +9860,7 @@
         "茨城県「令和8年地価公示結果（茨城県内）の概要」の数字です（11/19時点）\nhttps://www.pref.ibaraki.jp/kikaku/mizuto/tochi/documents/r8koji_kekkagaiyou.pdf\n\n結城市の地価と、家を売る・買う前の順番はこちらです\nhttps://kanto.townnote.app/machi/ibaraki-06\n\n関東の街の数字を、毎日公式で確かめてのせています。フォローすると毎朝届きます"
       ],
       "topic": "茨城",
-      "seen": null,
+      "seen": "出ない：Bufferでエラー：An unknown error has occurred. Please retry the post again, and get in touch if this persists.",
       "retried": true
     }
   },
@@ -9898,16 +9898,18 @@
   "2026-11-20 09:15": {
     "threads": {
       "tries": 1,
-      "id": "6aff6c25d606779a4dfc710c",
+      "id": "6affacf5ca85ebefb0eb08c5",
       "kind": "通常",
-      "at": "09:15",
+      "at": "11:29",
       "texts": [
         "【12/25まで　東京ミッドタウン八重洲｜入場無料、高さ約7mのツリー】🎄\n◎ 10分ごとに、特別な光の演出があります！\n\n東京駅の八重洲口の前、東京ミッドタウン八重洲で「MIDTOWN YAESU CHRISTMAS 2026」が開かれています。\n\n✦ 期間は11/19（木）〜12/25（金）\n✦ 点灯は16時〜23時\n✦ 1階のガレリアに、高さ約7mのツリー\n　⊹ テーマは「MIRAGE VOYAGE」\n　⊹ ミラーの運河が天井の光を映す\n✦ 正面の入口の前に、高さ約10mのSTAR\n　⊹ 吉岡徳仁さんの彫刻を照らします\n✦ 無料・入退場自由\n　⊹ 一部のコンテンツは有料\n\nAIが調べて分かった数字：点灯は1日7時間。10分ごとの演出なので、1時間いれば6回見られます。\n\n✧ 12/9（水）には1階で無料のコンサートも\n仕事の帰りに寄るなら、何時ごろですか。",
         "東京ミッドタウン八重洲「MIDTOWN YAESU CHRISTMAS 2026」の公式ページです（11/19時点）\nhttps://www.yaesu.tokyo-midtown.com/special/xmas/\n\nMIDTOWN YAESU CHRISTMAS 2026の日程と地図はこちらです\nhttps://kanto.townnote.app/o/2b5d70b2\n\n関東のおでかけを、毎日ひとつ公式で確かめてのせています。フォローすると毎朝届きます"
       ],
       "topic": "東京",
       "img": 1,
-      "image": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-auto-1120-0915.jpg?v=5ab7aba"
+      "image": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-auto-1120-0915.jpg?v=5ab7aba",
+      "seen": null,
+      "retried": true
     }
   },
   "2026-11-20 09:16": {
@@ -9921,7 +9923,8 @@
         "【11/20オープン　熊谷駅｜駅ビルの屋上に、冬だけの牡蠣小屋】🦪\nアズ熊谷の屋上、JR熊谷駅直結\n平日17時〜22時、土日祝12時〜22時\n牡蠣の食べ放題60分は税込4,290円\n焼き牡蠣6個とドリンクで2,000円\n#熊谷 #熊谷市",
         "牡蠣小屋 かき太鼓 熊谷駅ビル店のお知らせです（11/19時点）\nhttps://prtimes.jp/main/html/rd/p/000000109.000054560.html\n\n関東のおでかけ170件、公式ページつきの一覧：https://kanto.townnote.app/?f=x0916"
       ],
-      "topic": "埼玉"
+      "topic": "埼玉",
+      "seen": "出た"
     }
   },
   "2026-11-20 09:46": {
@@ -9935,7 +9938,8 @@
         "【11/22オープン　館林｜渋谷の麻辣湯、星星倶楽部が群馬に初出店】🌶\n館林市つつじ町、11時〜21時\n11/20・21はプレオープン\nブランドの10店目\n11/30まで、1,300円以上で次の1,300円券\n#館林 #館林市",
         "四川麻辣湯 渋谷星星倶楽部 館林店のお知らせです（11/19時点）\nhttps://prtimes.jp/main/html/rd/p/000000006.000182814.html\n\n東京のおでかけを、日付と地図で：https://kanto.townnote.app/odekake-tokyo?f=x0946"
       ],
-      "topic": "群馬"
+      "topic": "群馬",
+      "seen": "出た"
     }
   },
   "2026-11-20 12:15": {
