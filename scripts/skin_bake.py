@@ -17,3 +17,13 @@ for f in root.rglob("*.html"):
         continue
     f.write_text(t.replace("</head>", SKIN + "</head>", 1), encoding="utf-8"); n += 1
 print("skin_bake: 頭とバーを書き込み", n, "枚")
+# 11/20 19:54 owner「月のおすすめで」→ 見た目 D（オーロラとガラス＋箱並べ・site/shin/look.css）を全部のページの頭に（関西は _middleware.js の LOOK）。
+# ?look=0 で前の見た目。戻す時は LOOK を "" にする。
+LOOK = '<script>try{var v=localStorage.getItem("tn_lk")||"d",m=location.search.match(/[?&]look=([abcd0])/);if(m){v=m[1];localStorage.setItem("tn_lk",v)}if(v!=="0"){var h=document.documentElement;h.classList.add("lk","lk-"+v);if(v==="d")h.classList.add("lk-a")}}catch(e){}</script><link rel="stylesheet" href="/shin/look.css?v=4" id="lkcss"><script src="/shin/look.js?v=4" defer></script>'
+m = 0
+for f in root.rglob("*.html"):
+    t = f.read_text(encoding="utf-8", errors="ignore")
+    if 'id="lkcss"' in t or "</head>" not in t:
+        continue
+    f.write_text(t.replace("</head>", LOOK + "</head>", 1), encoding="utf-8"); m += 1
+print("skin_bake: 見た目 D を書き込み", m, "枚")

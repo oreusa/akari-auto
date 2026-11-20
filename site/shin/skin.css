@@ -26,6 +26,7 @@ html.nt .skc .tg .kn{transform:translateX(34px);background:#ECE8E1}
 html:not(.nt) .skc .tg .su svg{stroke:#fff;transform:rotate(90deg)}
 html.nt .skc .tg .mo svg{stroke:#0A0E18;transform:rotate(-15deg)}
 html.nt .skc .tg .su svg{stroke:#7D8697}
+@property --ra{syntax:"<angle>";inherits:false;initial-value:0deg}
 .skc .nav{position:fixed;left:12px;right:12px;bottom:calc(12px + var(--safe));z-index:50;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:2px;height:62px;padding:6px;border-radius:24px;background:#16130F;box-shadow:0 14px 34px -12px rgba(0,0,0,.55);transition:transform .35s cubic-bezier(.2,.9,.25,1)}
 html.nt .skc .nav{background:#1A2132;box-shadow:0 14px 34px -12px rgba(0,0,0,.8),inset 0 0 0 1px rgba(255,255,255,.06)}
 .skc .nav.hide{transform:translateY(calc(100% + 24px))}
