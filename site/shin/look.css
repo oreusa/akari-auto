@@ -157,3 +157,53 @@ html.lk-a.nt .c3u,html.lk-a.nt .c3u.g{background:linear-gradient(160deg,rgba(38,
 html.lk-a .c3u .c3b a:not(.f),html.lk-a .c3u.g .c3b a:not(.f){background:linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,.7)) padding-box,var(--sg) border-box!important}
 html.lk-a.nt .c3u .c3b a:not(.f),html.lk-a .c3u.k .c3b a:not(.f){background:linear-gradient(rgba(14,18,30,.8),rgba(14,18,30,.8)) padding-box,var(--sg) border-box!important}
 html.lk-a .c3tg{padding:0 12px}html.lk-a .c3t{border-radius:28px;overflow:hidden;margin-bottom:14px!important;isolation:isolate;box-shadow:0 22px 44px -22px rgba(10,20,50,.55)}
+
+/* ==== E 雑誌の表紙（20:27 owner「オシャレじゃない・工夫して本気で」） ====
+   お洒落に見えなかった原因：①全部が同じ角丸の箱・真ん中ぞろえ・ボタン2つ＝型どおりのアプリ ②白いガラス・黒い板・紺のガラス・色の枠の4種類がまざる
+   ③題が中くらいの太さで、強弱が無い ④写真が箱の中の小さな絵 ⑤一番下の一覧が色の枠だらけ
+   → 箱をやめて光の上に直接、左ぞろえの大きな題（雑誌の見出し）・小さな番号「01 おでかけ」・ボタンは黒1つ＋「→」の字のリンク・
+     写真は大きく1枚・数字だけをガラスの板に（材料は「光の地＋ガラス」の2つだけ）。lk-e は lk-a lk-d も付く */
+html.lk.lk-a.lk-d.lk-e .c3{counter-reset:c3}
+html.lk.lk-a.lk-d.lk-e .c3u{counter-increment:c3;margin:0 0 64px!important;padding:34px 22px 0!important;text-align:left!important;background:transparent!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border-radius:0!important;overflow:visible!important}
+html.lk.lk-a.lk-d.lk-e .c3u.k{--ink:#1D1D1F;--sub:#6E6E73;--bg:#F5F5F7;--line:rgba(0,0,0,.1);color:#1D1D1F}
+html.lk.lk-a.lk-d.lk-e.nt .c3u.k{--ink:#F5F5F7;--sub:#A1A1A6;--bg:#0A0E18;--line:rgba(255,255,255,.1);color:#F5F5F7}
+html.lk.lk-a.lk-d.lk-e .c3u::before{display:flex;align-items:center;gap:10px;margin:0 0 18px;font:600 12px/1 var(--sans);letter-spacing:.16em;color:var(--sub)}
+html.lk.lk-a.lk-d.lk-e .c3u::after{content:"";position:absolute;left:22px;right:22px;top:0;height:1px;background:linear-gradient(90deg,rgba(20,40,90,.18),rgba(20,40,90,0))}
+html.lk.lk-a.lk-d.lk-e.nt .c3u::after{background:linear-gradient(90deg,rgba(255,255,255,.18),rgba(255,255,255,0))}
+html.lk.lk-a.lk-d.lk-e .c3u:nth-of-type(1)::before{content:"01 ／ おでかけ"}
+html.lk.lk-a.lk-d.lk-e .c3u:nth-of-type(2)::before{content:"02 ／ 家と土地"}
+html.lk.lk-a.lk-d.lk-e .c3u:nth-of-type(3)::before{content:"03 ／ おかいもの"}
+html.lk.lk-a.lk-d.lk-e .c3u:nth-of-type(4)::before{content:"04 ／ 開店・閉店"}
+html.lk.lk-a.lk-d.lk-e .c3u:first-child{padding-top:18px!important}html.lk.lk-a.lk-d.lk-e .c3u:first-child::after{display:none}
+html.lk.lk-a.lk-d.lk-e .c3u h2{font:800 40px/1.1 var(--sans)!important;letter-spacing:-.045em!important;text-align:left;text-wrap:balance}
+html.lk.lk-a.lk-d.lk-e .c3u .s{margin:14px 0 0!important;max-width:none!important;text-align:left;font:400 15.5px/1.7 var(--sans)!important;color:var(--sub)!important}
+html.lk.lk-a.lk-d.lk-e .c3u .s b{color:var(--ink);font-weight:700}
+html.lk.lk-a.lk-d.lk-e .c3u .s br{display:none}
+html.lk.lk-a.lk-d.lk-e .c3b{justify-content:flex-start!important;align-items:center;gap:6px 18px!important;margin-top:24px!important}
+html.lk.lk-a.lk-d.lk-e .c3b a.f{min-height:46px;padding:0 24px;background:var(--ink)!important;color:var(--bg)!important;border:0!important;box-shadow:0 10px 24px -12px rgba(10,20,50,.6)}
+html.lk.lk-a.lk-d.lk-e .c3b a:not(.f){min-height:46px;padding:0 2px!important;border:0!important;background:none!important;color:var(--ink)!important;font-weight:600}
+html.lk.lk-a.lk-d.lk-e .c3b a:not(.f)::after{content:"→";margin-left:8px;transition:transform .2s}
+html.lk.lk-a.lk-d.lk-e .c3b a:not(.f):active::after{transform:translateX(4px)}
+html.lk.lk-a.lk-d.lk-e .c3sl{margin:30px 0 0!important;border-radius:26px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(10,20,50,.55)}
+html.lk.lk-a.lk-d.lk-e .c3v.c3st,html.lk.lk-a.lk-d.lk-e .c3v.c3ks,html.lk.lk-a.lk-d.lk-e .c3v.c3kc{margin:30px 0 0!important;padding:22px!important;border-radius:26px;text-align:left;background:linear-gradient(160deg,rgba(255,255,255,.8),rgba(255,255,255,.45))!important;-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 24px 48px -26px rgba(28,58,120,.45)}
+html.lk.lk-a.lk-d.lk-e.nt .c3v.c3st,html.lk.lk-a.lk-d.lk-e.nt .c3v.c3ks,html.lk.lk-a.lk-d.lk-e.nt .c3v.c3kc{background:linear-gradient(160deg,rgba(38,48,72,.62),rgba(14,18,30,.46))!important;border-color:rgba(255,255,255,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 24px 48px -24px rgba(0,0,0,.8)}
+html.lk.lk-a.lk-d.lk-e .c3st .c3lb{text-align:left;margin:0 0 6px}
+html.lk.lk-a.lk-d.lk-e .c3st .c3n1{text-align:left}
+html.lk.lk-a.lk-d.lk-e .c3st .c3n1 b{font-size:76px;font-weight:800;letter-spacing:-.05em;background:linear-gradient(120deg,#2BB3A3,#3A86C8);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lk.lk-a.lk-d.lk-e .c3st .c3n1 b small{-webkit-text-fill-color:currentColor;color:var(--sub)}
+html.lk.lk-a.lk-d.lk-e .c3st .c3n2{margin-top:18px}
+html.lk.lk-a.lk-d.lk-e .c3ks svg{color:var(--ink)}
+html.lk.lk-a.lk-d.lk-e .c3ks b{font-weight:800;letter-spacing:-.03em}
+html.lk.lk-a.lk-d.lk-e .c3u.k .c3cap{text-align:left;padding:14px 0 0!important;color:var(--sub)}
+html.lk.lk-a.lk-d.lk-e .c3kc .im{border-radius:18px;overflow:hidden}
+html.lk.lk-a.lk-d.lk-e .c3kc b{font-weight:800;letter-spacing:-.02em}
+html.lk.lk-a.lk-d.lk-e .c3tg{padding:0 22px!important}
+html.lk.lk-a.lk-d.lk-e .c3t{border-radius:26px!important}
+html.lk.lk-a.lk-d.lk-e .c3t h2,html.lk.lk-a.lk-d.lk-e .c3t h3{text-align:left}
+/* 一番下の一覧：色の枠をやめ、細い線の目次に */
+html.lk.lk-a.lk-d.lk-e .c3f{gap:0 18px!important;padding:40px 22px 0!important}
+html.lk.lk-a.lk-d.lk-e .c3g{background:transparent!important;border:0!important;border-radius:0!important;padding:18px 0 8px!important;border-top:1px solid rgba(20,40,90,.14)!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.lk.lk-a.lk-d.lk-e.nt .c3g{border-top-color:rgba(255,255,255,.14)!important}
+html.lk.lk-a.lk-d.lk-e .c3g::before,html.lk.lk-a.lk-d.lk-e .c3g::after{display:none!important}
+html.lk.lk-a.lk-d.lk-e .c3g a{border-top:0!important;font-size:14px}
+html.lk.lk-a.lk-d.lk-e .c3f h3{font:700 12px/1.4 var(--sans)!important;letter-spacing:.16em;color:var(--sub)}
