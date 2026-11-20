@@ -35,7 +35,7 @@ q.addEventListener("input",function(){var v=kana(q.value.trim());if(!v){sug.inne
   sug.innerHTML=L.length?L.map(function(t){return '<button data-id="'+t.id+'"><b>'+esc(t.n)+'</b><small>'+t.p+'</small><span>'+pct(t.r8)+'</span></button>'}).join(""):'<p>見つかりません。市や区の名前で探してください</p>';sug.classList.add("op")});
 sug.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;q.blur();sug.classList.remove("op");openTown(BY[b.dataset.id])});
 $("#geo").addEventListener("click",function(){var b=this;if(!navigator.geolocation)return;b.classList.add("ld");$("span",b).textContent="場所を調べています…";
-  navigator.geolocation.getCurrentPosition(function(p){var x=(p.coords.longitude-134)*82.2,y=(36-p.coords.latitude)*100,best=null,bd=1e9;
+  navigator.geolocation.getCurrentPosition(function(p){var K=RN==="関東",x=K?(p.coords.longitude-138.4)*81+10:(p.coords.longitude-134)*82.2,y=K?(37.15-p.coords.latitude)*100+27:(36-p.coords.latitude)*100,best=null,bd=1e9;
     TW.forEach(function(t){if(!t.xy)return;var d=Math.hypot(t.xy[0]-x,t.xy[1]-y);if(d<bd){bd=d;best=t}});b.classList.remove("ld");$("span",b).textContent="いまいる場所の街を見る";
     if(best&&bd<40)openTown(best);else $("span",b).textContent=RN+"の外のようです"},function(){b.classList.remove("ld");$("span",b).textContent="場所が使えませんでした"},{timeout:8000,maximumAge:6e5})});
 $(".tiles").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;S.o=b.dataset.o;S.n=30;sync();go(true);var top=$("#sent").getBoundingClientRect().top+scrollY;scrollTo({top:top,behavior:"smooth"})});
@@ -78,7 +78,10 @@ function openTown(t){if(!t)return;var pa=PA[t.p]||{},trend=t.r7==null||t.r8==nul
    '<a href="/machi/'+t.id+'">'+nm+'のくわしいページ</a>'+(t.kt?'<a href="'+t.kt+'">解体の補助金</a>':'<a href="/ikura?machi='+t.id+'">売れた値段から目安</a>')+'</div>'+
    '<p class="cr">どれも街の平均で、1軒ずつの値段ではありません。広さ・築年数・駅からの近さで大きく変わります。</p></div>')}
 
-S_.onNav(function(a){if(a==="find"){scrollTo({top:0,behavior:"smooth"});setTimeout(function(){q.focus()},350);S_.navCur("find")}
+S_.onNav(function(a){if(a==="geo"){scrollTo({top:0,behavior:"smooth"});$("#geo").click();return}if(a==="find"){scrollTo({top:0,behavior:"smooth"});setTimeout(function(){q.focus()},350);S_.navCur("find")}
   else{S_.navCur("rank");var top=$("#sent").getBoundingClientRect().top+scrollY;scrollTo({top:top,behavior:"smooth"})}});
 S_.ready();
+/* 11/20 関東の街の位置は関東の地図の形（scripts/shin_kanto.py proj）で比べる。前は関西の形で比べて「関東の外のようです」になっていた。
+   下のバーの「近くの街」（ほかのページから ?geo=1 で来た時も） */
+if(Q.get("geo")==="1")setTimeout(function(){var g=$("#geo");if(g)g.click()},400);
 })();
