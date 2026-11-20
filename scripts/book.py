@@ -1165,17 +1165,18 @@ def after_check(cfg, state, now):
                 if ig and r["id"] in errs:
                     # 10/29 インスタはBufferが「エラー」でも出ていて、出し直しで2つ並んだ（オーナーが1つ消した）→出し直さない
                     append_log(day, f"{slot} {s} Bufferでエラー（インスタは出ていることがあるので出し直さない）")
-                elif r.get("texts") and not r.get("retried") and now - due < timedelta(hours=3):
-                    r["retried"] = True
-                    when = (now + timedelta(minutes=15)).astimezone(timezone.utc)
+                elif r.get("texts") and int(r.get("retried") or 0) < 2 and now - due < timedelta(hours=4):
+                    # 11/20 Threads の「An unknown error」が1日3本。1回目の出し直しも同じエラーで落ちた（07:15）→ 出し直しは2回まで・2回目は30分あける
+                    r["retried"] = int(r.get("retried") or 0) + 1
+                    when = (now + timedelta(minutes=15 if r["retried"] == 1 else 30)).astimezone(timezone.utc)
                     try:
                         texts = list(r["texts"])
-                        texts[0] = texts[0].rstrip() + "\n"  # Bufferの「同じ投稿」はねを避ける
+                        texts[0] = texts[0].rstrip() + "\n" * r["retried"]  # Bufferの「同じ投稿」はねを避ける（2回目は改行2つ）
                         svc = r.get("svc", s)
                         p = buffer_create(cfg["channels"][svc], svc, texts, when.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
                                           topic=r.get("topic") if svc == "threads" else None, **(r.get("media") or {}))
-                        append_log(day, f"{slot} {s} 出なかった（{why}）→ 15分後に出し直しを予約 {p['id']}")
-                        r["id"], r["seen"], r["at"] = p["id"], None, (now + timedelta(minutes=15)).strftime("%H:%M")
+                        append_log(day, f"{slot} {s} 出なかった（{why}）→ {when.astimezone(JST).strftime('%H:%M')} に出し直し{r['retried']}回目を予約 {p['id']}")
+                        r["id"], r["seen"], r["at"] = p["id"], None, when.astimezone(JST).strftime("%H:%M")
                     except BufferError as e:
                         append_log(day, f"{slot} {s} 出なかった（{why}）。出し直しも×：{str(e)[:100]}")
                 else:
