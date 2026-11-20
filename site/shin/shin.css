@@ -885,3 +885,6 @@ html.nt .cd .hv{background:rgba(14,20,36,.82)}html.nt .cd .hv svg{stroke:#ECE8E1
 html body .big.big:has(>.w){grid-template-columns:1fr!important;gap:0!important;background:transparent!important}
 html body .big.big:has(>.w)>div{grid-column:1/-1!important;margin:0!important;padding:14px 0 13px!important;border:0!important;border-top:1px solid var(--line)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
 html body .big.big:has(>.w)>div:first-child{border-top:0!important}
+
+/* 11/20 ページの下の一覧（HTML のまま書いてある。検索の機械にも中身とリンクが見えるように）。shin.js が足の上へ動かす */
+.ix{max-width:760px;margin:0 auto;padding:0 16px}.wrap .ix{padding:0;margin:36px 0 0}.ix details{border-top:1px solid var(--line)}.ix summary{cursor:pointer;list-style:none;padding:16px 0;font-size:14px;font-weight:700;color:var(--ink);display:flex;justify-content:space-between;align-items:center}.ix summary::-webkit-details-marker{display:none}.ix summary::after{content:"＋";font-weight:400;color:var(--sub)}.ix details[open] summary::after{content:"－"}.ix ul{list-style:none;margin:0;padding:0 0 8px}.ix li{border-top:1px solid var(--line);padding:11px 0;font-size:14px;line-height:1.5}.ix li a,.ix li b{color:var(--ink);text-decoration:none;font-weight:600}.ix li span{display:block;margin-top:2px;font-size:12px;color:var(--sub)}
