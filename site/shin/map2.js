@@ -88,17 +88,22 @@ function place(){var k=vb.w;
 var stT=0;function settle(){clearTimeout(stT);stT=setTimeout(function(){if(busy)return;cluster();if(lastUser)list(false);lastUser=0},140)}
 
 /* 近いピンをまとめる（画面で 38px 以内）。並びは一覧と同じ（写真あり・人気が先）なので、まとまりの顔はいちばん良い物 */
-function cluster(){var R=38,out=[];
+/* 11/20 owner「集合体恐怖症の人は見れないね」→ 写真の丸を並べない。1か所＝小さな点、まとまり＝数字だけの丸。写真は選んだ1か所だけ。 */
+function cluster(){var R=46,out=[];
   ALL.forEach(function(x){var X=sx(x.xy[0]),Y=sy(x.xy[1]);for(var i=0;i<out.length;i++){var c=out[i];if(Math.abs(c.X-X)<R&&Math.abs(c.Y-Y)<R){c.m.push(x);return}}out.push({X:X,Y:Y,ax:x.xy[0],ay:x.xy[1],m:[x]})});
   var pn=$("#m2pn");pn.textContent="";var frag=document.createDocumentFragment();
-  out.forEach(function(c,k){var x=c.m[0],n=c.m.length,on=sel&&c.m.indexOf(sel)>=0;
-    var b=document.createElement("button");b.className="pin"+(n>1?" grp":"")+(on?" on":"")+(x.im?"":" noim");b.style.setProperty("--gc",x.g[1]);
-    b.setAttribute("aria-label",n>1?esc(x.t)+"ほか"+(n-1)+"か所":x.t);
-    b.innerHTML='<span class="pc">'+(x.im?'<img src="'+O.img(x)+'" alt="" loading="lazy" decoding="async">':'<svg viewBox="0 0 24 24">'+(O.icon(x.k)||"")+'</svg>')+'</span>'+(n>1?'<em>'+n+'</em>':"")+(on&&n===1?'<span class="pt">'+esc(x.t)+'</span>':"");
+  out.forEach(function(c,k){var x=c.m[0],n=c.m.length;
+    var b=document.createElement("button");b.className="pin"+(n>1?" grp":" one");
+    b.setAttribute("aria-label",n>1?x.t+"ほか"+(n-1)+"か所":x.t);
+    if(n>1){var d=Math.round(26+Math.min(14,Math.log(n)*5));b.style.setProperty("--d",d+"px");b.innerHTML='<span class="pc" style="width:'+d+'px;height:'+d+'px;margin:-'+d/2+'px 0 0 -'+d/2+'px">'+n+'</span>'}
+    else b.innerHTML='<span class="pc"></span>';
     if(!RM&&!box._pinned)b.style.animationDelay=Math.min(k,30)*14+"ms";
     b.onclick=function(e){if(moved)return;e.stopPropagation();tapCluster(c)};c.el=b;frag.appendChild(b)});
   if(me){me.el=el('<i class="me" aria-hidden="true"></i>');frag.appendChild(me.el)}
-  pn.appendChild(frag);CL=out;box._pinned=1;place()}
+  pn.appendChild(frag);CL=out;box._pinned=1;if(sel)mark(sel);place()}
+/* 選んだ1か所だけ写真と名前を出す */
+function mark(x){CL.forEach(function(c){var on=c.m.indexOf(x)>=0;c.el.classList.toggle("on",on);var f=c.el.querySelector(".pf2");if(f)f.remove();
+  if(on){c.el.insertAdjacentHTML("beforeend",'<span class="pf2">'+(x.im?'<img src="'+O.img(x)+'" alt="">':'<span class="pi2"><svg viewBox="0 0 24 24">'+(O.icon(x.k)||"")+'</svg></span>')+'<b>'+esc(x.t)+'</b></span>');c.el.parentNode.appendChild(c.el)}})}
 function tapCluster(c){if(c.m.length===1){var x=c.m[0];if(sel===x){O.openItem(x);return}select(x,true);return}
   var x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;c.m.forEach(function(x){x0=Math.min(x0,x.xy[0]);y0=Math.min(y0,x.xy[1]);x1=Math.max(x1,x.xy[0]);y1=Math.max(y1,x.xy[1])});
   var w=Math.max(x1-x0,0),h=Math.max(y1-y0,0);
@@ -109,14 +114,14 @@ function tapCluster(c){if(c.m.length===1){var x=c.m[0];if(sel===x){O.openItem(x)
 function list(all){var m=.02;inView=ALL.filter(function(x){if(all)return true;var X=sx(x.xy[0]),Y=sy(x.xy[1]);return X>=-W*m&&X<=W*(1+m)&&Y>=-H*m&&Y<=H*(1+m)});
   if(me)inView.sort(function(a,b){return dist(a)-dist(b)});miss=all?O.pick().length-ALL.length:0;drawCards();
   var n=inView.length,pr=S.p||RG.n;$("#m2n").innerHTML=(all?esc(pr)+"・"+WL[S.w]:"この範囲・"+WL[S.w])+" <b>"+n+"</b>か所";
-  if(n&&!sel)select(inView[0],false,true)}
+  if(n&&inView.indexOf(sel)<0)select(inView[0],false,true)}
 function dist(x){if(!me)return 0;return Math.hypot(x.xy[0]-me.xy[0],x.xy[1]-me.xy[1])*1.113}
 function km(x){var d=dist(x);return d<1?Math.round(d*10)/10+"km":Math.round(d)+"km"}
 function drawCards(){var c=$("#m2c");c.scrollLeft=0;
   if(!inView.length){c.innerHTML='<p class="m2e">'+(ALL.length?"この範囲にはありません。引くか、ほかの府県を選んでください":"この条件のおでかけは、いまはありません")+'</p>';return}
   c.innerHTML=inView.slice(0,60).map(function(x){return '<a class="mcd" href="'+(x.o?"/o/"+x.o:esc(x.u))+'" data-i="'+x.i+'" style="--gc:'+x.g[1]+'"><span class="mim" style="background-color:'+(x.th?O.avg(x.th):x.g[2])+'">'+(x.im?'<img src="'+O.img(x)+'" alt="" loading="lazy">':O.tile(x))+'</span><span class="mtx"><span class="lb"><span class="g">'+x.g[3]+'</span><span>'+esc(x.p)+'</span>'+O.lt(x)+'</span><b>'+esc(x.t)+'</b><small>'+O.when(x)+(me?'・ここから'+km(x):'・'+esc(x.v||x.a||""))+'</small></span></a>'}).join("")+(inView.length>60?'<p class="m2e">ほか '+(inView.length-60)+'か所。寄ると分かれます</p>':"")+(miss>0?'<p class="m2e">ほか '+miss+'件は地図に場所が出ていません（一覧で見られます）</p>':"")}
 function select(x,fromPin,quiet){sel=x;var k=inView.indexOf(x);
-  CL.forEach(function(c){var on=c.m.indexOf(x)>=0;c.el.classList.toggle("on",on);var pt=c.el.querySelector(".pt");if(pt)pt.remove();if(on&&c.m.length===1){c.el.insertAdjacentHTML("beforeend",'<span class="pt">'+esc(x.t)+'</span>')}if(on)c.el.parentNode.appendChild(c.el)});
+  mark(x);
   if(me&&me.el)me.el.parentNode.appendChild(me.el);
   if(fromPin&&k>=0){var c=$("#m2c"),a=c.children[k];if(a)c.scrollTo({left:a.offsetLeft-(c.clientWidth-a.offsetWidth)/2,behavior:RM?"auto":"smooth"})}
   if(!quiet){var X=sx(x.xy[0]),Y=sy(x.xy[1]);if(X<W*.1||X>W*.9||Y<H*.12||Y>H*.88)fit(x.xy[0]-vb.w/2,x.xy[1]-vb.h/2,vb.w,vb.h)}}
