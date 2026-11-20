@@ -326,3 +326,8 @@ html.lk-f .shine{background-image:linear-gradient(100deg,var(--ink,#1D1D1F) 0 44
 html.lk-f.nt .lk-hero i:nth-child(4){opacity:.26!important}
 /* 21:33 owner「文字のキランはなくてよい」→ 題に光が流れるのをやめた（look.js も付けない） */
 html.lk-f .shine{animation:none!important;background:none!important;-webkit-text-fill-color:currentColor!important}
+/* 21:36 見回り：①F の表紙で、すりガラスの枠（v11）が雑誌の形の「透明」より強く、2・4番目の区切りが四角く浮いていた → F では枠なしに戻す
+   ②流すと上に付く題の帯の下に灰色の影がにじんでいた → 細い線1本に */
+html.lk.lk-a.lk-d.lk-e .c3u,html.lk.lk-a.lk-d.lk-e:not(.nt) .c3u.k,html.lk.lk-a.lk-d.lk-e:not(.nt) .c3u.g,html.lk.lk-a.lk-d.lk-e.nt .c3u,html.lk.lk-a.lk-d.lk-e.nt .c3u.g,html.lk.lk-a.lk-d.lk-e.nt .c3u.k{background:transparent!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.lk-f #tb,html.lk-f .sk-tb{box-shadow:none!important;border-bottom:1px solid rgba(0,0,0,.06)!important;-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);background:rgba(248,248,250,.82)!important}
+html.lk-f.nt #tb,html.lk-f.nt .sk-tb{border-bottom-color:rgba(255,255,255,.07)!important;background:rgba(9,12,22,.78)!important}
