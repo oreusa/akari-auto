@@ -253,7 +253,8 @@ def last_num(t):
 # 11/2 もしもアフィリエイト（Yahoo!ショッピング・審査なしで提携済み）。同じ品を Yahoo! でも探せるボタン。
 # a_id はオーナーの もしも の「LIFE NOTE」用の番号（公開リンクに出る物なので秘密ではない）。Amazon は審査が通ったら足す。
 COPY = "買う前に、AIに聞いてみる。"  # 11/3 ページ一番上の一言（オーナーが選ぶ）
-MOSHIMO_YAHOO = ""  # 11/16 もしもアフィリエイトが LIFE NOTE のメディア登録を消した（報酬が付かない）→ Yahoo! はふつうのリンク。owner「もしもいらないだろ」
+# 11/20 バリューコマース Yahoo!ショッピング（ID 2025875）提携済み。LIFE NOTE sid 3786665・pid 892753201（汐 11/20）
+MOSHIMO_YAHOO = "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3786665&pid=892753201&vc_url="
 
 
 def shop_q(title):
