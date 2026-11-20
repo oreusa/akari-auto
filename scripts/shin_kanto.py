@@ -118,13 +118,26 @@ def items():
     return out
 
 
-REL = [["おでかけ", "/odekake"], ["家と土地", "/fudosan-list"], ["おかいもの", "/okaimono"], ["トップへ", "/"]]
+REL = [["おでかけ", "/odekake"], ["家と土地", "/fudosan-list"], ["おかいもの", "/okaimono"], ["開店・閉店", "/kaiten"], ["トップへ", "/"]]
+SEC = {"Odekake": "/odekake", "Home & Land": "/fudosan-list", "Shopping": "/okaimono", "New Shops": "/kaiten"}
+# 11/20 owner「統一されてない・整理されてない」：MENU の項目と並び順は分野ごとにここ1か所だけ（関西 tools/shin/build.py の MENUS・skin.js と同じ形）
+MENUS = {
+    "Odekake": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"]],
+    "Home & Land": [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["解体の費用と補助金", "/kaitai"]],
+    "Shopping": [["日用品の値段くらべ", "/okaimono"], ["値下がりした物", "/nesage"], ["お得な物", "/otoku"], ["ふるさと納税", "/furusato"]],
+    "New Shops": [["関東の開店・閉店", "/kaiten"], ["関西の開店・閉店", "https://kansai.townnote.app/kaiten"]],
+}
 
 
 def write(fname, url, title, cfg, data, js, desc):
     cfg["reg"] = REG
     # 11/20 表紙の MENU は分野の入口そのものなので、下の重なるボタンは出さない（関西と同じ）
-    cfg["menu"]["rel"] = [] if url == "/" else [r for r in REL if r[1] != url]
+    m = cfg["menu"]
+    if m.get("k") in MENUS:
+        cur = next((x[1] for x in m["items"] if len(x) > 2 and x[2]), None)
+        m["items"] = [[t, u] + ([1] if u == cur else []) for t, u in MENUS[m["k"]]]
+    # MENU の下のボタンは「ほかの分野＋トップへ」をどのページでも同じ順で（自分の分野は出さない）
+    m["rel"] = [] if url == "/" else [r for r in REL if r[1] != SEC.get(m.get("k"), url)]
     head = (f'<meta name="description" content="{html.escape(desc)}">' +
             f'<link rel="canonical" href="{SITE}{url}"><meta property="og:title" content="{html.escape(title.split("｜")[0])}">'
             f'<meta property="og:image" content="{SITE}/og-v10.png"><meta property="og:url" content="{SITE}{url}">')

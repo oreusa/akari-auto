@@ -22,23 +22,23 @@ var IC={now:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M1
  buy:'<svg viewBox="0 0 24 24"><path d="M4 7h16l-1.5 11.5a2 2 0 0 1-2 1.5H7.5a2 2 0 0 1-2-1.5z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>'};
 /* ページの分野ごとの下のバーと MENU（11/19 owner「MENU はそのページの分野だけ」） */
 var FUD={nav:[["街をさがす","find","/fudosan-list"],["ランキング","rank","/ranking"],["売りたい","sell","/uru"],["いくら？","yen","/ikura"]],
-  k:"Home & Land",menu:[["家と土地の相場","/fudosan-list"],["家を売る前に","/uru"],["いくらで売れる？","/ikura"],["実家・空き家","/jikka/"],["解体の費用と補助金","/kaitai"],["地価ランキング","/chika-kansai"],["まちランキング","/ranking"]],
-  rel:[["おでかけ","/odekake"],["おかいもの","/okaimono"],["トップへ","/"]]};
+  k:"Home & Land",menu:[["家と土地の相場","/fudosan-list"],["地価ランキング","/chika-kansai"],["まちランキング","/ranking"],["家を売る前に","/uru"],["いくらで売れる？","/ikura"],["実家・空き家","/jikka/"],["解体の費用と補助金","/kaitai"]],
+  rel:[["おでかけ","/odekake"],["おかいもの","/okaimono"],["開店・閉店","/kaiten"],["トップへ","/"]]};
 var ODE={nav:[["開催中","now","/odekake"],["今週末","we","/odekake?w=we"],["いまから","map","/ima"],["泊まり","inn","/tomari"]],
   k:"Odekake",menu:[["関西おでかけ","/odekake"],["イルミネーション","/illumination"],["紅葉","/koyo"],["いまから行ける","/ima"],["泊まり","/tomari"],["初詣","/hatsumode"]],
-  rel:[["家と土地","/fudosan-list"],["おかいもの","/okaimono"],["トップへ","/"]]};
+  rel:[["家と土地","/fudosan-list"],["おかいもの","/okaimono"],["開店・閉店","/kaiten"],["トップへ","/"]]};
 var KAI={nav:[["これから","now","/kaiten?w=soon"],["開いた","we","/kaiten?w=done"],["閉まる","down","/kaiten?w=close"],["おでかけ","map","/odekake"]],
-  k:"New Shops",menu:[["関西の開店・閉店","/kaiten"],["関東の開店・閉店","https://kanto.townnote.app/kaiten"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["トップへ","/"]]};
+  k:"New Shops",menu:[["関西の開店・閉店","/kaiten"],["関東の開店・閉店","https://kanto.townnote.app/kaiten"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["おかいもの","/okaimono"],["トップへ","/"]]};
 var TOP={nav:[["おでかけ","now","/odekake"],["家と土地","find","/fudosan-list"],["おかいもの","yen","/okaimono"],["開店閉店","buy","/kaiten"]],
   k:"Town Note",menu:[["トップ","/"],["関西のおでかけ","/odekake"],["家と土地の相場","/fudosan-list"],["日用品の値段くらべ","/okaimono"],["開店・閉店","/kaiten"]],rel:[]};
 /* 関東（kanto.townnote.app）も同じ物を読む。関東にあるページだけを出す */
 var KT=/kanto|lifenote|life-note|usagi-life/.test(location.hostname);
-if(KT){FUD.nav[1]=["地価","rank","/chika-kanto"];FUD.menu=[["家と土地の相場","/fudosan-list"],["家を売る前に","/uru"],["いくらで売れる？","/ikura"],["実家・空き家","/jikka/"],["解体の費用と補助金","/kaitai"],["地価ランキング","/chika-kanto"]];
-  ODE.nav=[["おでかけ","now","/odekake"],["いまから","map","/ima"],["紅葉","we","/koyo"],["開店閉店","buy","/kaiten"]];ODE.menu=[["関東おでかけ","/odekake"],["いまから行ける","/ima"],["紅葉","/koyo"],["開店・閉店","/kaiten"]];
+if(KT){FUD.nav[1]=["地価","rank","/chika-kanto"];FUD.menu=[["家と土地の相場","/fudosan-list"],["地価ランキング","/chika-kanto"],["家を売る前に","/uru"],["いくらで売れる？","/ikura"],["実家・空き家","/jikka/"],["解体の費用と補助金","/kaitai"]];
+  ODE.nav=[["おでかけ","now","/odekake"],["いまから","map","/ima"],["紅葉","we","/koyo"],["開店閉店","buy","/kaiten"]];ODE.menu=[["関東おでかけ","/odekake"],["イルミネーション","/illumination"],["紅葉","/koyo"],["いまから行ける","/ima"]];
   KAI.menu=[["関東の開店・閉店","/kaiten"],["関西の開店・閉店","https://kansai.townnote.app/kaiten"]];}
 var BR=KT?"LIFE NOTE":"TOWN NOTE",LG=KT?["/logo-s.png","/logo-s-night.png"]:["/assets/logo-s.png?v=2","/assets/logo-s-night.png"];
 var OKA={nav:[["品物","find","/okaimono"],["値下がり","down","/nesage"],["お得","yen","/otoku"],["ふるさと納税","buy","/furusato"]],
-  k:"Shopping",menu:[["日用品の値段くらべ","/okaimono"],["値下がりした物","/nesage"],["お得な物","/otoku"],["ふるさと納税","/furusato"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["トップへ","/"]]};
+  k:"Shopping",menu:[["日用品の値段くらべ","/okaimono"],["値下がりした物","/nesage"],["お得な物","/otoku"],["ふるさと納税","/furusato"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["開店・閉店","/kaiten"],["トップへ","/"]]};
 var C=/^\/(okaimono|nesage|otoku|furusato|kaimawari|tanka)/.test(P)?OKA:/^\/(o|odekake|illumination|koyo|ima|tomari|hatsumode)\b/.test(P)?ODE:/^\/kaiten/.test(P)?KAI:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|koe|ranking|townnotes)/.test(P)?FUD:TOP;
 var here=function(u){return u.split("?")[0]===P.replace(/\.html$/,"")};
 
@@ -59,7 +59,7 @@ function build(){
   var nav=$("#nav"),ly=scrollY,nvT;
   addEventListener("scroll",function(){var y=scrollY;if(Math.abs(y-ly)>8){nav.classList.toggle("hide",y>ly&&y>300);ly=y}clearTimeout(nvT);nvT=setTimeout(function(){nav.classList.remove("hide")},800)},{passive:true});
   nav.addEventListener("pointerdown",function(e){var b=e.target.closest("a,button");if(!b)return;b.classList.remove("tap");void b.offsetWidth;b.classList.add("tap")});
-  var mu=$("#mu");$("#mnb").onclick=function(){mu.classList.add("op")};$(".bk",mu).onclick=function(){mu.classList.remove("op")};
+  /* 11/20 子のページ（1件・府県・ランキングなど）は親の行に印 */(function(){if(document.querySelector(".mu li a.here"))return;var P0=location.pathname.replace(/\.html$/,""),b=null,bl=0;Array.prototype.forEach.call(document.querySelectorAll(".mu li a"),function(a){var u=a.getAttribute("href");if(!u||u.charAt(0)!=="/"||u==="/")return;var v=u.replace(/\/$/,"");if(P0.indexOf(v)===0&&v.length>bl){b=a;bl=v.length}});if(!b&&/^\/o\//.test(P0))b=document.querySelector('.mu li a[href="/odekake"]');if(b)b.classList.add("here")})();/* 11/20 owner「メニューを触ろうとすると後ろが反応する」：開いている間は後ろのページを動かさない */var mu=$("#mu"),mo=function(o){mu.classList.toggle("op",o);document.documentElement.style.overflow=document.body.style.overflow=o?"hidden":""};$("#mnb").onclick=function(){mo(true)};$(".bk",mu).onclick=function(){mo(false)};mu.addEventListener("touchmove",function(e){var p=$(".pn",mu);if(!p.contains(e.target)||p.scrollHeight<=p.clientHeight+1)e.preventDefault()},{passive:false});mu.addEventListener("wheel",function(e){var p=$(".pn",mu);if(!p.contains(e.target)||p.scrollHeight<=p.clientHeight+1)e.preventDefault()},{passive:false});addEventListener("keydown",function(e){if(e.key==="Escape"&&mu.classList.contains("op"))mo(false)});addEventListener("pageshow",function(){mo(false)});
   /* 大きい題 → 上の細い帯 */
   var h=$(".head h1,.s3h h1,.wrap h1");if(h){var tb=document.createElement("button");tb.id="tb";tb.className="sk-tb";tb.setAttribute("aria-label","一番上へ");
     tb.textContent=(h.childNodes[0]&&h.childNodes[0].nodeType===3?h.childNodes[0].textContent:h.textContent).trim();sk.appendChild(tb);
