@@ -306,3 +306,21 @@ html.lk-f .fin,html.lk-f .mc,html.lk-f .qr,html.lk-f .ls,html.lk-f .tb,html.lk-f
 /* F の昼は帯の下が平らな白だった→すみに淡い光を戻して、すりガラスの向こうに色が見えるように */
 html.lk-f:not(.nt) .lk-bg{display:block}
 @media (prefers-reduced-motion:reduce){html.lk .rv{opacity:1;transform:none;transition:none}}
+/* 21:25 owner「F オシャレだけど派手過ぎ」→ 帯の色を淡く（白に近い地に色が少しにじむ程度）・帯を低く・動きをゆっくり */
+.lk-hero{height:min(52vh,460px);background:#FBF7F2}
+.lk-hero i{filter:blur(64px)}
+.lk-hero i:nth-child(1){opacity:.38}
+.lk-hero i:nth-child(2){opacity:.26}
+.lk-hero i:nth-child(3){opacity:.28}
+.lk-hero i:nth-child(4){opacity:.2!important}
+.lk-hero i:nth-child(5){opacity:.24!important}
+.lk-hero i:nth-child(1),.lk-hero i:nth-child(4){animation-duration:30s}
+.lk-hero i:nth-child(2),.lk-hero i:nth-child(5){animation-duration:36s}
+.lk-hero i:nth-child(3){animation-duration:40s}
+html.lk-f.nt .lk-hero{background:#0B0E18}
+html.lk-f.nt .lk-hero i{opacity:.16!important}
+html.lk-f .shine{background-image:linear-gradient(100deg,var(--ink,#1D1D1F) 0 44%,#E9B866 50%,var(--ink,#1D1D1F) 56% 100%)}
+/* 21:26 owner「少しむらさきっぽいのも綺麗・少しだからお洒落」→ 空色を淡い藤色に、青緑は控えめに */
+.lk-hero i:nth-child(4){background:#B7A4F2;opacity:.34!important}
+.lk-hero i:nth-child(2){background:#9FD8CF}
+html.lk-f.nt .lk-hero i:nth-child(4){opacity:.26!important}
