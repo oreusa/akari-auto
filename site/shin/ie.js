@@ -5,7 +5,8 @@ var S_=window.SHIN,$=S_.$,$$=S_.$$,esc=S_.esc,D=S_.data,RM=S_.RM;
 var RG=S_.reg||{},RN=RG.n||"関西",PREF=RG.pref||["大阪","京都","兵庫","奈良","滋賀","和歌山"],PF=D.pfull||{"大阪":"大阪府","京都":"京都府","兵庫":"兵庫県","奈良":"奈良県","滋賀":"滋賀県","和歌山":"和歌山県"};
 var PC=D.pc||{"大阪":"#D9775A","京都":"#9C7BB8","兵庫":"#4F86C6","奈良":"#5FA06A","滋賀":"#3FA3B5","和歌山":"#E09A3E"};
 var TW=D.towns,PA=D.pa,BY={};TW.forEach(function(t,i){t.i=i;BY[t.id]=t});
-function man(v){if(v==null)return "—";v=Math.round(v);return v>=10000?(Math.floor(v/10000)+"億"+(v%10000?(v%10000).toLocaleString()+"万":"")):v.toLocaleString()+"万"}
+/* toLocaleString は遅い（205の街で約60ms）→ 自前で3桁ごとに「,」 */function cm(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,",")}
+function man(v){if(v==null)return "—";v=Math.round(v);return v>=10000?(Math.floor(v/10000)+"億"+(v%10000?cm(v%10000)+"万":"")):cm(v)+"万"}
 function pct(v){return v==null?"—":(v>0?"+":"")+v.toFixed(1)+"%"}
 function kana(s){return String(s||"").replace(/[ァ-ン]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96)}).replace(/\s/g,"")}
 function wavg(f){var n=0,s=0;TW.forEach(function(t){var a=t[f];if(a){n+=a[0];s+=a[0]*a[1]}});return n?s/n:0}
@@ -25,7 +26,7 @@ var HUB=document.documentElement.classList.contains("ieo")&&window.TN_IEG;
 var V2=false;try{var _v=location.search.match(/[?&]ie2=([01])/);if(_v)localStorage.setItem("tn_ie2",_v[1]);V2=!!HUB&&localStorage.getItem("tn_ie2")==="1"}catch(e){}
 if(V2)document.documentElement.classList.add("ie2");
 var QI={rank:'<path d="M5 20V11M12 20V5M19 20v-6"/>',key:'<circle cx="8" cy="15" r="4.2"/><path d="M11 12l8.5-8.5M16.5 6.5l2.5 2.5M14 9l2 2"/>',box:'<path d="M3.5 8l8.5-4 8.5 4v9l-8.5 4-8.5-4z"/><path d="M3.5 8l8.5 4 8.5-4M12 12v9"/>',calc:'<rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7.5h8M8.5 12h0M12 12h0M15.5 12h0M8.5 16h0M12 16h0M15.5 16h0"/>'};
-var QD={"/chika-kansai":"上がった街・下がった街","/chika-kanto":"上がった街・下がった街","/ikura":"30秒で目安・売る順番も","/sagasu":"予算で住める街","/moushikomi":"売却・査定・解体","/jikka/":"相続・診断・空き家の街","/kaitai":"広さ別の費用の目安と、市の補助金","/moushikomi?want=%E7%89%87%E4%BB%98%E3%81%91%E3%83%BB%E9%81%BA%E5%93%81%E6%95%B4%E7%90%86%E3%81%AE%E8%A6%8B%E7%A9%8D%E3%82%8A":"遺品整理・家財の片付けだけでも。見積りは無料"};
+var QD={"/chika-kansai":"上がった街・下がった街","/chika-kanto":"上がった街・下がった街","/ikura":"30秒で目安・売る順番も","/sagasu":"予算で住める街","/moushikomi":"売却・査定・解体","/jikka/":"相続・診断・空き家の街","/kaitai":"広さ別の費用の目安と、市の補助金","/moushikomi?want=%E7%89%87%E4%BB%98%E3%81%91%E3%83%BB%E9%81%BA%E5%93%81%E6%95%B4%E7%90%86%E3%81%AE%E8%A6%8B%E7%A9%8D%E3%82%8A":"家財の片付けだけでも大丈夫です"};
 var BAR=/^\/(fudosan-list|ikura|jikka\/|moushikomi)$/;
 if(V2)var DOOR='<h2 class="qr-h">ほかに調べる</h2><nav class="qr" aria-label="ほかに調べる">'+[].concat.apply([],window.TN_IEG.map(function(g){return g.i})).filter(function(x){return !BAR.test(x[3])}).map(function(x){return '<a href="'+x[3]+'"><svg viewBox="0 0 24 24">'+(QI[x[2]]||"")+'</svg><span><b>'+esc(x[0])+'</b><small>'+esc(QD[x[3]]||"")+'</small></span><i>›</i></a>'}).join("")+'</nav>'+
  '<h2 class="dq dq2">街の値段と地価</h2>';
