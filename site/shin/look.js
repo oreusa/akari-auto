@@ -18,7 +18,7 @@ function num(el){if(el.__n)return;var tn=null;for(var k=0;k<el.childNodes.length
  function f(n){var s=n.toFixed(dec);if(cm){var p=s.split(".");p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,",");s=p.join(".")}return m[1]+s+m[3]}
  (function st(now){var p=Math.min(1,(now-t0)/D),e=1-Math.pow(1-p,4);tn.nodeValue=f(v*e);if(p<1)requestAnimationFrame(st);else tn.nodeValue=t})(t0)}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);if(el.matches("h1,h2"))el.classList.add("shine");else num(el)})},{rootMargin:"0px 0px -8% 0px"});
-var seen=new WeakSet();function scan(){[].forEach.call(document.querySelectorAll(".mc b,.c3n1 b,.c3n2 b,.c3ks b,.c3u h2,.m2h h1,.h1t,.sec>h2"),function(el){if(seen.has(el))return;seen.add(el);io.observe(el)})}
+var seen=new WeakSet();function scan(){[].forEach.call(document.querySelectorAll(".mc b,.c3n1 b,.c3n2 b,.c3ks b"),function(el){if(seen.has(el))return;seen.add(el);io.observe(el)})}
 function start(){scan();new MutationObserver(scan).observe(document.body,{childList:true,subtree:true})}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
 var ims=[],tk=0;function par(){tk=0;var h=innerHeight;ims.forEach(function(im){var r=im.parentNode.getBoundingClientRect();if(r.bottom<0||r.top>h)return;var p=(r.top+r.height/2-h/2)/h;im.style.setProperty("--py",(p*-12).toFixed(1)+"px")})}
