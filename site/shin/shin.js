@@ -38,7 +38,7 @@ function ieOrg(P,kt){
   var bi=G[g].i.slice(0,4),ci=G[g].i.filter(function(x){return x[3]===cu})[0];if(ci&&bi.indexOf(ci)<0)bi[3]=ci;
   var nav=bi.map(function(x){return {t:x[1],ic:x[2],svg:svg(x[2]),href:x[3],cur:x[3]===cu}});
   var menu=[];G.forEach(function(x){menu.push([x.h,"#"]);x.i.forEach(function(y){menu.push([y[0],y[3]].concat(y[3]===cu?[1]:[]))})});
-  return {g:g,seg:seg,nav:nav,menu:menu};
+  return {g:g,seg:p==="/fudosan-list"?"":seg,nav:nav,menu:menu};
 }
 /* MENU の並び：["#","見出し"] は見出しの行（番号は数えない） */
 function muList(items){var n=0;return items.map(function(m){if(m[1]==="#")return '<li class="mg">'+m[0]+'</li>';n++;return '<li><a href="'+m[1]+'"'+(m[2]?' class="here"':'')+' style="transition-delay:'+(60+n*30)+'ms"><small>'+(n<10?'0':'')+n+'</small>'+m[0]+'</a></li>'}).join("")}

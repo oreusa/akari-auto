@@ -908,3 +908,14 @@ html.nt .topsg-b a.on{background:#F5F5F7;color:#0A0E18}
 .mu li.mg~li a{padding:11px 0;font-size:17px}
 html.nt .mu li.mg{color:#9AA3B5}
 @media (max-width:370px){.topsg-k{display:none}.topsg-b a{font-size:12.5px;letter-spacing:0}}
+/* 11/20 家と土地の入口（ie.js の HUB・見本 ?seiri=1）：「何をしたいですか」の3枚。色は枠の細い線だけ */
+.dq{margin:30px 0 12px;font:600 20px/1.35 var(--sans);letter-spacing:.01em;color:var(--ink)}
+.dq2{margin:44px 0 6px}
+.door{display:grid;gap:10px}
+.door a{position:relative;display:block;padding:18px 46px 18px 18px;border-radius:18px;border:1px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box;text-decoration:none;color:var(--ink);-webkit-tap-highlight-color:transparent;transition:transform .15s}
+.door a:active{transform:scale(.985)}
+.door b{display:block;font:600 17px/1.4 var(--sans)}
+.door small{display:block;margin-top:4px;font-size:13px;line-height:1.6;color:var(--sub)}
+.door i{position:absolute;right:18px;top:50%;transform:translateY(-52%);font-style:normal;font-size:24px;line-height:1;color:var(--sub)}
+html.nt .door a{background:linear-gradient(#0A0E18,#0A0E18) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box}
+html.nt .door small,html.nt .door i{color:#A1A1A6}
