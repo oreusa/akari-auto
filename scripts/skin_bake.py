@@ -19,7 +19,7 @@ for f in root.rglob("*.html"):
 print("skin_bake: 頭とバーを書き込み", n, "枚")
 # 11/20 19:54 owner「月のおすすめで」→ 見た目 D（オーロラとガラス＋箱並べ・site/shin/look.css）を全部のページの頭に（関西は _middleware.js の LOOK）。
 # ?look=0 で前の見た目。戻す時は LOOK を "" にする。
-LOOK = '<script>try{var v=localStorage.getItem("tn_lk2")||"f",m=location.search.match(/[?&]look=([abcdef0])/);if(m){v=m[1];localStorage.setItem("tn_lk2",v)}if(v!=="0"){var h=document.documentElement;h.classList.add("lk","lk-"+v);if(v==="d"||v==="e"||v==="f")h.classList.add("lk-a","lk-d");if(v==="f")h.classList.add("lk-e")}}catch(e){}</script><link rel="stylesheet" href="/shin/look.css?v=16" id="lkcss"><script src="/shin/look.js?v=16" defer></script>'
+LOOK = '<script>try{var v=localStorage.getItem("tn_lk2")||"f",m=location.search.match(/[?&]look=([abcdef0])/);if(m){v=m[1];localStorage.setItem("tn_lk2",v)}if(v!=="0"){var h=document.documentElement;h.classList.add("lk","lk-"+v);if(v==="d"||v==="e"||v==="f")h.classList.add("lk-a","lk-d");if(v==="f")h.classList.add("lk-e")}}catch(e){}</script><link rel="stylesheet" href="/shin/look.css?v=17" id="lkcss"><script src="/shin/look.js?v=17" defer></script>'
 m = 0
 for f in root.rglob("*.html"):
     t = f.read_text(encoding="utf-8", errors="ignore")
