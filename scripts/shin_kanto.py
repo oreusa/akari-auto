@@ -129,8 +129,42 @@ MENUS = {
 }
 
 
+# 11/20 関西（usagi tools/shin/build.py の FIT）と同じ：写真ごとに 明るさ・赤や橙・緑・幅 を量り、ページに合う写真を先に
+# （イルミは夜の写真、紅葉は赤や黄の写真。幅900未満は「今週末のおすすめ」の後ろへ）。量った数は data/photo_m.json に残す
+_PMF = os.path.join(R, "data", "photo_m.json")
+try: _PM = json.load(open(_PMF, encoding="utf-8"))
+except Exception: _PM = {}
+def PHM(f):
+    if f in _PM and len(_PM[f]) > 3: return _PM[f]
+    try:
+        import colorsys
+        from PIL import Image
+        im0 = Image.open(os.path.join(S, "assets", "ph", f)); w0 = im0.size[0]
+        im = im0.convert("RGB").resize((64, 48)); px = list(im.getdata())
+        lum = sum(0.299*r + 0.587*g + 0.114*b for r, g, b in px) / len(px); w = gr = 0
+        for r, g, b in px:
+            h, sa, v = colorsys.rgb_to_hsv(r/255, g/255, b/255)
+            if sa > .35 and v > .25 and (h < .11 or h > .95): w += 1
+            if sa > .25 and v > .2 and .17 < h < .45: gr += 1
+        _PM[f] = [round(lum), round(w/len(px), 2), round(gr/len(px), 2), w0]
+        json.dump(_PM, open(_PMF, "w", encoding="utf-8"))
+        return _PM[f]
+    except Exception:
+        return _PM.get(f)
+def FIT(items, kind):
+    for it in items:
+        m = PHM(it["im"]) if it.get("im") else None
+        if not m: continue
+        lum, warm, green = m[:3]
+        if len(m) > 3 and m[3] < 900: it["lo"] = 1
+        if kind == "illumination": it["ok"] = 2 if lum < 75 else -1
+        elif kind == "koyo": it["ok"] = 2 if warm >= .2 else (-1 if green >= .3 and warm < .1 else 0)
+        if not it.get("ok"): it.pop("ok", None)
+
 def write(fname, url, title, cfg, data, js, desc):
     cfg["reg"] = REG
+    if isinstance(data, dict) and isinstance(data.get("items"), list):
+        FIT(data["items"], "illumination" if fname.startswith("illumination") else "koyo" if fname.startswith("koyo") else "")
     # 11/20 表紙の MENU は分野の入口そのものなので、下の重なるボタンは出さない（関西と同じ）
     m = cfg["menu"]
     if m.get("k") in MENUS:

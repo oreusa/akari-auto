@@ -145,3 +145,15 @@ function largeTitle(){var h=$(".h1t");if(!h)return;var tb=document.createElement
     var o=r.bottom<46;if(o!==on){on=o;tb.classList.toggle("on",o);H.classList.toggle("tbon",o)}}
   addEventListener("scroll",function(){if(!q)q=requestAnimationFrame(f)},{passive:true});f()}
 })();
+/* 11/20 数える：新しいページ（shin）には数える仕組みが無く、11/19夜の入れ替えから表示・クリックが数えられていなかった。前と同じ名前で /c へ送る（オーナーの端末は数えない） */
+(function(){var O=false;try{O=localStorage.getItem("usagi_owner")==="1"}catch(e){}
+  /* 関東（燈のサイト）は /c が別の数え方（1日の書き込みに上限あり）なので送らない */
+  if(/kanto|lifenote/.test(location.hostname))return;
+  var P=location.pathname.replace(/^\/shin(?=\/)/,"").replace(/\.html$/,"").replace(/\/$/,"")||"/",
+      N={"/":"TOWN NOTE 入口","/odekake":"おでかけリスト","/illumination":"イルミネーション","/koyo":"紅葉ライトアップ","/ima":"いまから行ける","/tomari":"泊まり","/hatsumode":"初詣","/fudosan-list":"不動産リスト","/okaimono":"おかいもの","/kaiten":"開店・閉店","/ikura":"いくら","/uru":"売る前・買う前に","/jikka":"実家ノート","/furusato":"ふるさと納税","/nesage":"値下がり","/otoku":"お得"}[P]||(/^\/o\//.test(P)?"1件ページ":(document.title.split("｜")[0]||P).slice(0,30));
+  function s(k){if(O)return;try{var b=JSON.stringify({k:k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true})}catch(e){}}
+  window.SHIN_COUNT=s;if(P==="/ikura")return;
+  var r=document.referrer,out=r&&!/townnote|usagi-odekake|pages\.dev/.test(r);
+  s("表示："+N+(out?"（外から）":""));
+  document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a,button[data-k]");if(!a||e.target.closest(".hv"))return;
+    var h=a.querySelector("h4,.t,b"),t=a.getAttribute("data-k")||(h?h.textContent:a.textContent)||"";t=t.replace(/\s+/g," ").trim().slice(0,60);if(t)s("クリック："+N+"｜"+t)},true)})();
