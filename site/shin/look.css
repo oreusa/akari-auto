@@ -1,7 +1,7 @@
 /* 11/20 19:20 owner「白画面が多すぎ・お洒落に・色を足すだけじゃなく今どきのめっちゃ綺麗なHP」→ 見た目の見本3つ（?look=a|b|c・?look=0 で外す）
    A オーロラとガラス：淡い光のにじみがゆっくり動き、カードは半分すけたガラス
-   B 紙と影：Apple のような薄い灰色の地に、白いカードが浮く（影で奥行き）
-   C 光るふち：B の地に、探す欄・主役のボタン・カードのふちを光がゆっくり回る（テクノロジー）
+   B ベント：Apple 型の箱並べ（19:30 作り直し）
+   C 夜の光の線：Linear 型・方眼の地とカードのふちの光（19:30 作り直し）
    どれも：流すとカードがふわっと出る（look.js）。字・ボタンの色は今のまま（濃い色のボタンは作らない） */
 
 /* ---- 共通：ふわっと出る ---- */
@@ -9,53 +9,108 @@ html.lk .rv{opacity:0;transform:translateY(14px) scale(.985);transition:opacity 
 html.lk .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){html.lk .rv{opacity:1;transform:none;transition:none}}
 
-/* ---- A オーロラとガラス ---- */
-html.lk-a{background:#F4F6FA!important}html.lk.lk.lk-a body{background:transparent!important}
-.lk-bg{position:fixed;inset:-20vh -20vw;z-index:-1;pointer-events:none;overflow:hidden}
-.lk-bg i{position:absolute;width:70vmax;height:70vmax;border-radius:50%;filter:blur(60px);opacity:.75;will-change:transform}
-.lk-bg i:nth-child(1){left:-10vmax;top:-12vmax;background:radial-gradient(circle,#7FD8CC 0,rgba(127,216,204,0) 65%);animation:lkf1 26s ease-in-out infinite alternate}
-.lk-bg i:nth-child(2){right:-18vmax;top:10vmax;background:radial-gradient(circle,#9CC2F2 0,rgba(156,194,242,0) 65%);animation:lkf2 32s ease-in-out infinite alternate}
-.lk-bg i:nth-child(3){left:10vmax;bottom:-25vmax;background:radial-gradient(circle,#F8D9A0 0,rgba(248,217,160,0) 65%);animation:lkf3 38s ease-in-out infinite alternate;opacity:.6}
-@keyframes lkf1{to{transform:translate(18vmax,14vmax) scale(1.15)}}
-@keyframes lkf2{to{transform:translate(-16vmax,10vmax) scale(.9)}}
-@keyframes lkf3{to{transform:translate(12vmax,-16vmax) scale(1.1)}}
+/* ---- A オーロラとガラス（19:28 owner「やるならオーロラとガラス」「ちゃっちい」→ 作り直し v2）
+   ちゃっちく見えた原因：①光が平たい（2色の丸だけ・帯が見える）②ガラスが「白い半透明の箱」で、光の反射・ふちの光が無い ③面のざらつきが無くデジタル臭い
+   → ①4色の光を重ね、大きくぼかす ②ガラスは上が明るい2段の白＋内側の細い光の線＋青みの影 ③ほんの少しのざらつき（紙のような粒） */
+html.lk-a{background:#EEF2F8!important}html.lk.lk.lk-a body{background:transparent!important}
+.lk-bg{position:fixed;inset:-25vh -30vw;z-index:-1;pointer-events:none;overflow:hidden}
+.lk-bg i{position:absolute;border-radius:50%;filter:blur(80px);will-change:transform}
+.lk-bg i:nth-child(1){width:80vmax;height:80vmax;left:-14vmax;top:-22vmax;background:radial-gradient(circle,rgba(110,214,200,.95) 0,rgba(110,214,200,0) 62%);animation:lkf1 28s ease-in-out infinite alternate}
+.lk-bg i:nth-child(2){width:78vmax;height:78vmax;right:-26vmax;top:2vmax;background:radial-gradient(circle,rgba(132,176,246,.95) 0,rgba(132,176,246,0) 62%);animation:lkf2 34s ease-in-out infinite alternate}
+.lk-bg i:nth-child(3){width:70vmax;height:70vmax;left:6vmax;bottom:-30vmax;background:radial-gradient(circle,rgba(250,214,150,.85) 0,rgba(250,214,150,0) 62%);animation:lkf3 40s ease-in-out infinite alternate}
+.lk-bg i:nth-child(4){width:55vmax;height:55vmax;right:-8vmax;bottom:-6vmax;background:radial-gradient(circle,rgba(196,176,240,.7) 0,rgba(196,176,240,0) 62%);animation:lkf2 46s ease-in-out infinite alternate-reverse}
+.lk-bg b{position:absolute;inset:0;opacity:.07;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes lkf1{to{transform:translate(16vmax,12vmax) scale(1.12)}}
+@keyframes lkf2{to{transform:translate(-14vmax,10vmax) scale(.92)}}
+@keyframes lkf3{to{transform:translate(12vmax,-14vmax) scale(1.08)}}
 @media (prefers-reduced-motion:reduce){.lk-bg i{animation:none}}
-html.lk-a.nt{background:#0A0E18!important}
-html.lk-a.nt .lk-bg i{opacity:.22}
-html.lk-a .fin,html.lk-a .mc,html.lk-a .qr,html.lk-a .ls,html.lk-a .tb,html.lk-a .yh a,html.lk-a .go2,html.lk-a .cmpt,html.lk-a .faq,html.lk-a .tiles,html.lk-a .rk,html.lk-a .cnt+.rk{background:rgba(255,255,255,.58)!important;-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border:1px solid rgba(255,255,255,.85)!important;box-shadow:0 10px 30px -12px rgba(30,60,110,.18)!important;border-radius:20px}
-html.lk-a .qr,html.lk-a .ls,html.lk-a .tb,html.lk-a .faq,html.lk-a .cmpt,html.lk-a .rk{padding:2px 16px}
+html.lk-a.nt{background:#070A14!important}
+html.lk-a.nt .lk-bg i{opacity:.3}html.lk-a.nt .lk-bg i:nth-child(3){opacity:.14}
+html.lk-a.nt .lk-bg b{mix-blend-mode:screen;opacity:.05}
+html.lk-a .fin,html.lk-a .mc,html.lk-a .qr,html.lk-a .ls,html.lk-a .tb,html.lk-a .yh a,html.lk-a .go2,html.lk-a .cmpt,html.lk-a .faq,html.lk-a .tiles,html.lk-a .rk{
+ background:linear-gradient(160deg,rgba(255,255,255,.78) 0%,rgba(255,255,255,.46) 55%,rgba(255,255,255,.34) 100%)!important;
+ -webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8);
+ border:1px solid rgba(255,255,255,.75)!important;border-radius:22px;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.25),0 1px 1px rgba(20,40,90,.04),0 18px 40px -22px rgba(28,58,120,.38)!important}
+html.lk-a .qr,html.lk-a .ls,html.lk-a .tb,html.lk-a .faq,html.lk-a .rk{padding:2px 18px}
+html.lk-a .qr a,html.lk-a .ls a,html.lk-a .tb div,html.lk-a .faq details,html.lk-a .rk li button{border-color:rgba(20,40,90,.08)!important}
 html.lk-a .qr a:last-child,html.lk-a .ls a:last-child,html.lk-a .tb div:last-child,html.lk-a .faq details:last-of-type,html.lk-a .rk li:last-child button{border-bottom:0!important}
-html.lk-a .faq details:first-of-type{border-top:0}
-html.lk-a .cmpt{padding:16px}
-html.lk-a .tiles{border:0!important;overflow:hidden}
-html.lk-a.nt .fin,html.lk-a.nt .mc,html.lk-a.nt .qr,html.lk-a.nt .ls,html.lk-a.nt .tb,html.lk-a.nt .yh a,html.lk-a.nt .go2,html.lk-a.nt .cmpt,html.lk-a.nt .faq,html.lk-a.nt .tiles,html.lk-a.nt .rk{background:rgba(22,28,44,.55)!important;border-color:rgba(255,255,255,.08)!important;box-shadow:0 10px 30px -12px rgba(0,0,0,.6)!important}
-html.lk-a .bar{background:rgba(247,248,251,.7)!important;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
-html.lk-a.nt .bar{background:rgba(10,14,24,.7)!important}
+html.lk-a .faq details:first-of-type,html.lk-a .qr{border-top:0}
+html.lk-a .cmpt{padding:18px}
+html.lk-a .tiles{overflow:hidden}
+html.lk-a .mc{padding:16px 16px 15px}
+html.lk-a .go{background:linear-gradient(150deg,#26324A 0%,#121A2A 55%,#0B1120 100%)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 18px 36px -16px rgba(20,60,120,.55),0 0 0 1px rgba(255,255,255,.06)!important}
+html.lk-a .go small{color:rgba(255,255,255,.7)}
+html.lk-a .m2h h1,html.lk-a .h1t{letter-spacing:-.02em}
+html.lk-a .bar{background:rgba(238,242,248,.55)!important;-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6)}
+html.lk-a .topsg-b{background:linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,.6)) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box!important;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+html.lk-a.nt .fin,html.lk-a.nt .mc,html.lk-a.nt .qr,html.lk-a.nt .ls,html.lk-a.nt .tb,html.lk-a.nt .yh a,html.lk-a.nt .go2,html.lk-a.nt .cmpt,html.lk-a.nt .faq,html.lk-a.nt .tiles,html.lk-a.nt .rk{
+ background:linear-gradient(160deg,rgba(38,48,72,.62) 0%,rgba(20,26,42,.5) 60%,rgba(14,18,30,.46) 100%)!important;border-color:rgba(255,255,255,.09)!important;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 18px 40px -20px rgba(0,0,0,.75)!important}
+html.lk-a.nt .qr a,html.lk-a.nt .ls a,html.lk-a.nt .tb div,html.lk-a.nt .faq details,html.lk-a.nt .rk li button{border-color:rgba(255,255,255,.07)!important}
+html.lk-a.nt .go{background:linear-gradient(150deg,#FFFFFF,#E6ECF6)!important;box-shadow:0 18px 36px -16px rgba(120,180,255,.35)!important}
+html.lk-a.nt .go small{color:rgba(10,14,24,.65)}
+html.lk-a.nt .bar{background:rgba(7,10,20,.55)!important}
+html.lk-a.nt .topsg-b{background:linear-gradient(rgba(14,18,30,.6),rgba(14,18,30,.6)) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box!important}
 
-/* ---- B 紙と影（C も同じ地） ---- */
-html.lk-b,html.lk.lk.lk-b body,html.lk-c,html.lk.lk.lk-c body{background:#F2F2F5!important}
-html.lk-b.nt,html.lk-c.nt{background:#0A0E18!important}html.lk.lk.lk-b.nt body,html.lk.lk.lk-c.nt body{background:transparent!important}
-html.lk-b .fin,html.lk-b .mc,html.lk-b .qr,html.lk-b .ls,html.lk-b .tb,html.lk-b .yh a,html.lk-b .go2,html.lk-b .cmpt,html.lk-b .faq,html.lk-b .tiles,html.lk-b .rk,
-html.lk-c .fin,html.lk-c .mc,html.lk-c .qr,html.lk-c .ls,html.lk-c .tb,html.lk-c .yh a,html.lk-c .go2,html.lk-c .cmpt,html.lk-c .faq,html.lk-c .tiles,html.lk-c .rk{background:#fff!important;border:0!important;border-radius:22px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 14px 34px -14px rgba(20,30,60,.16)!important}
-html.lk-b .qr,html.lk-b .ls,html.lk-b .tb,html.lk-b .faq,html.lk-b .rk,html.lk-c .qr,html.lk-c .ls,html.lk-c .tb,html.lk-c .faq,html.lk-c .rk{padding:2px 18px}
-html.lk-b .cmpt,html.lk-c .cmpt{padding:18px}
-html.lk-b .qr a:last-child,html.lk-b .ls a:last-child,html.lk-b .tb div:last-child,html.lk-b .faq details:last-of-type,html.lk-b .rk li:last-child button,
-html.lk-c .qr a:last-child,html.lk-c .ls a:last-child,html.lk-c .tb div:last-child,html.lk-c .faq details:last-of-type,html.lk-c .rk li:last-child button{border-bottom:0!important}
-html.lk-b .faq details:first-of-type,html.lk-c .faq details:first-of-type{border-top:0}
-html.lk-b .tiles,html.lk-c .tiles{overflow:hidden}
-html.lk-b .qr,html.lk-c .qr{border-top:0}
-html.lk-b .sec h2,html.lk-c .sec h2,html.lk-b .dq,html.lk-c .dq{font-size:22px;letter-spacing:-.01em}
-html.lk-b .m2h h1,html.lk-c .m2h h1,html.lk-b .h1t,html.lk-c .h1t{font-size:36px;letter-spacing:-.02em}
-html.lk-b.nt .fin,html.lk-b.nt .mc,html.lk-b.nt .qr,html.lk-b.nt .ls,html.lk-b.nt .tb,html.lk-b.nt .yh a,html.lk-b.nt .go2,html.lk-b.nt .cmpt,html.lk-b.nt .faq,html.lk-b.nt .tiles,html.lk-b.nt .rk,
-html.lk-c.nt .fin,html.lk-c.nt .mc,html.lk-c.nt .qr,html.lk-c.nt .ls,html.lk-c.nt .tb,html.lk-c.nt .yh a,html.lk-c.nt .go2,html.lk-c.nt .cmpt,html.lk-c.nt .faq,html.lk-c.nt .tiles,html.lk-c.nt .rk{background:#121826!important;box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 14px 34px -14px rgba(0,0,0,.7)!important}
-html.lk-b .bar,html.lk-c .bar{background:rgba(242,242,245,.82)!important;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
-html.lk-b.nt .bar,html.lk-c.nt .bar{background:rgba(10,14,24,.8)!important}
+/* ---- B ベント（Apple型の箱並べ・19:28 owner「他にめっちゃいいのある？」）
+   薄い灰色の地に、大きさの違う白い角丸の箱をすき間なく並べる。主役の数字は大きく、色は細い印だけ */
+html.lk-b,html.lk.lk.lk-b body{background:#F5F5F7!important}
+html.lk-b.nt,html.lk.lk.lk-b.nt body{background:#000!important}
+html.lk-b .fin,html.lk-b .mc,html.lk-b .qr,html.lk-b .ls,html.lk-b .tb,html.lk-b .yh,html.lk-b .go,html.lk-b .go2,html.lk-b .cmpt,html.lk-b .faq,html.lk-b .tiles,html.lk-b .rk{background:#fff!important;border:0!important;border-radius:26px!important;box-shadow:none!important}
+html.lk-b .m2h{margin:30px 2px 20px}html.lk-b .m2h h1,html.lk-b .h1t{font-size:40px;font-weight:800;letter-spacing:-.035em;line-height:1.1}
+html.lk-b .m2h .pf{display:inline-block;padding-left:12px;position:relative}html.lk-b .m2h .pf::before{content:"";position:absolute;left:0;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:linear-gradient(135deg,#2BB3A3,#3A86C8)}
+html.lk-b .mcs{gap:10px}
+html.lk-b .mc{padding:18px 18px 17px}
+html.lk-b .mc:first-child{grid-column:1/-1;padding:22px 22px 20px}
+html.lk-b .mc:first-child b{font-size:48px;letter-spacing:-.04em;margin-top:8px}
+html.lk-b .mc:first-child b u{font-size:17px}
+html.lk-b .mc b{font-size:30px;letter-spacing:-.03em}
+html.lk-b .mc small{font-size:12px;letter-spacing:.02em}
+html.lk-b .mc::after{content:"";position:absolute;left:18px;right:18px;top:0;height:2px;border-radius:0 0 2px 2px;background:linear-gradient(90deg,#2BB3A3,#3A86C8);opacity:.0}
+html.lk-b .mc.up::after{opacity:1}
+html.lk-b .vd{margin:14px 0 0;padding:18px 20px;background:#fff;border-radius:26px;font-size:17px;line-height:1.65}
+html.lk-b .go{margin-top:10px;padding:22px 52px 21px 22px;color:#1D1D1F!important}
+html.lk-b .go b{font-size:19px;letter-spacing:-.01em}
+html.lk-b .go i{width:34px;height:34px;right:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;background:linear-gradient(135deg,#F6C66B,#F29E4C)}
+html.lk-b .go2{margin-top:10px}
+html.lk-b .sec{margin-top:34px}
+html.lk-b .sec h2,html.lk-b .dq{font-size:24px;font-weight:800;letter-spacing:-.025em;margin-left:2px}
+html.lk-b .yh{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;background:none!important;padding:0}
+html.lk-b .yh a{background:#fff!important;border:0!important;border-radius:22px!important;box-shadow:none!important}
+html.lk-b .qr,html.lk-b .ls,html.lk-b .tb,html.lk-b .faq,html.lk-b .rk{padding:4px 20px}
+html.lk-b .cmpt{padding:20px}
+html.lk-b .qr a:last-child,html.lk-b .ls a:last-child,html.lk-b .tb div:last-child,html.lk-b .faq details:last-of-type,html.lk-b .rk li:last-child button{border-bottom:0!important}
+html.lk-b .faq details:first-of-type,html.lk-b .qr{border-top:0}
+html.lk-b .faq h2{margin:16px 0 4px}
+html.lk-b .tiles{overflow:hidden}
+html.lk-b.nt .fin,html.lk-b.nt .mc,html.lk-b.nt .qr,html.lk-b.nt .ls,html.lk-b.nt .tb,html.lk-b.nt .yh a,html.lk-b.nt .go,html.lk-b.nt .go2,html.lk-b.nt .cmpt,html.lk-b.nt .faq,html.lk-b.nt .tiles,html.lk-b.nt .rk,html.lk-b.nt .vd{background:#1C1C1E!important}
+html.lk-b.nt .go{color:#F5F5F7!important}
+html.lk-b .bar{background:rgba(245,245,247,.8)!important;-webkit-backdrop-filter:blur(20px) saturate(1.8);backdrop-filter:blur(20px) saturate(1.8)}
+html.lk-b.nt .bar{background:rgba(0,0,0,.72)!important}
 
-/* ---- C 光るふち（下のバーの回る光と同じ技） ---- */
+/* ---- C 夜の光の線（Linear型）：深い紺の地に細い方眼、カードのふちに光がゆっくり流れる。昼は明るい紙の版 ---- */
 @property --lka{syntax:"<angle>";inherits:false;initial-value:0deg}
-html.lk-c .fin,html.lk-c .go,html.lk-c .mc:first-child{position:relative;isolation:isolate}
-html.lk-c .fin::after,html.lk-c .go::after,html.lk-c .mc:first-child::after{content:"";position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--lka),rgba(43,179,163,0) 0deg,#2BB3A3 60deg,#3A86C8 110deg,rgba(58,134,200,0) 170deg,rgba(246,198,107,0) 200deg,#F6C66B 260deg,rgba(246,198,107,0) 320deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:lkspin 6s linear infinite;pointer-events:none;z-index:1}
-html.lk-c .fin::before,html.lk-c .go::before{content:"";position:absolute;inset:6px;border-radius:inherit;background:conic-gradient(from var(--lka),#2BB3A3,#3A86C8,#F6C66B,#2BB3A3);filter:blur(18px);opacity:.28;z-index:-1;animation:lkspin 6s linear infinite}
+html.lk-c,html.lk.lk.lk-c body{background:#F7F8FB!important}
+html.lk.lk.lk-c body{background-image:linear-gradient(rgba(30,50,90,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(30,50,90,.045) 1px,transparent 1px)!important;background-size:28px 28px!important;background-attachment:fixed!important}
+html.lk-c.nt,html.lk.lk.lk-c.nt body{background-color:#05070D!important}
+html.lk.lk.lk-c.nt body{background-image:radial-gradient(80vw 50vh at 50% -10%,rgba(58,134,200,.28),transparent 70%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px)!important;background-size:auto,28px 28px,28px 28px!important}
+html.lk-c .fin,html.lk-c .mc,html.lk-c .qr,html.lk-c .ls,html.lk-c .tb,html.lk-c .yh a,html.lk-c .go2,html.lk-c .cmpt,html.lk-c .faq,html.lk-c .tiles,html.lk-c .rk{position:relative;background:rgba(255,255,255,.86)!important;border:1px solid rgba(30,50,90,.1)!important;border-radius:16px!important;box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 30px -18px rgba(20,40,90,.35)!important}
+html.lk-c.nt .fin,html.lk-c.nt .mc,html.lk-c.nt .qr,html.lk-c.nt .ls,html.lk-c.nt .tb,html.lk-c.nt .yh a,html.lk-c.nt .go2,html.lk-c.nt .cmpt,html.lk-c.nt .faq,html.lk-c.nt .tiles,html.lk-c.nt .rk{background:linear-gradient(180deg,rgba(22,28,44,.92),rgba(12,16,26,.92))!important;border-color:rgba(255,255,255,.08)!important;box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 20px 40px -24px rgba(0,0,0,.9)!important}
+html.lk-c .qr,html.lk-c .ls,html.lk-c .tb,html.lk-c .faq,html.lk-c .rk{padding:2px 18px}
+html.lk-c .cmpt{padding:18px}
+html.lk-c .qr a:last-child,html.lk-c .ls a:last-child,html.lk-c .tb div:last-child,html.lk-c .faq details:last-of-type,html.lk-c .rk li:last-child button{border-bottom:0!important}
+html.lk-c .faq details:first-of-type,html.lk-c .qr{border-top:0}
+html.lk-c .tiles{overflow:hidden}
+html.lk-c .m2h h1,html.lk-c .h1t{font-size:36px;letter-spacing:-.03em}
+html.lk-c .sec h2,html.lk-c .dq{font-size:21px;letter-spacing:-.015em}
+html.lk-c .mc b{font-variant-numeric:tabular-nums;letter-spacing:-.025em}
+html.lk-c .mc::before{content:"";position:absolute;left:16px;right:16px;top:-1px;height:1px;background:linear-gradient(90deg,transparent,#3A86C8,#2BB3A3,transparent);opacity:.7}
+html.lk-c .fin::after,html.lk-c .go::after,html.lk-c .mc:first-child::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from var(--lka),transparent 0deg,#2BB3A3 50deg,#3A86C8 100deg,transparent 150deg,transparent 210deg,#F6C66B 260deg,transparent 310deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:lkspin 7s linear infinite;pointer-events:none;z-index:1}
+html.lk-c .go{position:relative;isolation:isolate;border-radius:16px;box-shadow:0 14px 30px -16px rgba(58,134,200,.55)!important}
+html.lk-c.nt .go{box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 40px -6px rgba(58,134,200,.45)!important}
 html.lk-c .fin{border-color:transparent!important}
 @keyframes lkspin{to{--lka:360deg}}
-@media (prefers-reduced-motion:reduce){html.lk-c .fin::after,html.lk-c .go::after,html.lk-c .mc:first-child::after,html.lk-c .fin::before,html.lk-c .go::before{animation:none}}
+@media (prefers-reduced-motion:reduce){html.lk-c .fin::after,html.lk-c .go::after,html.lk-c .mc:first-child::after{animation:none}}
+html.lk-c .bar{background:rgba(247,248,251,.82)!important;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+html.lk-c.nt .bar{background:rgba(5,7,13,.8)!important}
