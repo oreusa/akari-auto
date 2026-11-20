@@ -3470,41 +3470,6 @@
       }
     ]
   },
-  "国営昭和記念公園": {
-    "v": 2,
-    "t": "2026-11-16",
-    "ll": [
-      35.71226,
-      139.39432
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "SORANO HOTEL",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196035",
-        "km": 1.8,
-        "r": 4.55,
-        "rc": 31,
-        "min": 14350
-      },
-      {
-        "n": "ホテル日航立川 東京",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D149458",
-        "km": 2.8,
-        "r": 4.53,
-        "rc": 734,
-        "min": 5500
-      },
-      {
-        "n": "JR東日本ホテルメッツ立川",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D72800",
-        "km": 2.4,
-        "r": 4.45,
-        "rc": 1785,
-        "min": 7250
-      }
-    ]
-  },
   "高尾山": {
     "v": 2,
     "t": "2026-11-17",
@@ -3796,41 +3761,6 @@
       }
     ]
   },
-  "袋田の滝": {
-    "v": 2,
-    "t": "2026-11-16",
-    "ll": [
-      36.76462,
-      140.40725
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "袋田温泉 思い出浪漫館",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D37878",
-        "km": 1.6,
-        "r": 4.5,
-        "rc": 2139,
-        "min": 18000
-      },
-      {
-        "n": "北條館別館",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D172869",
-        "km": 2.1,
-        "r": 4.5,
-        "rc": 26,
-        "min": 8228
-      },
-      {
-        "n": "悠久の宿 滝美館",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D76851",
-        "km": 0.4,
-        "r": 4.41,
-        "rc": 312,
-        "min": 6300
-      }
-    ]
-  },
   "筑波山": {
     "v": 2,
     "t": "2026-11-16",
@@ -3901,68 +3831,6 @@
         "r": 4.48,
         "rc": 27,
         "min": 10000
-      }
-    ]
-  },
-  "日光山内（神橋・東照宮のまわり）": {
-    "v": 2,
-    "t": "2026-11-16",
-    "ll": [
-      36.72001,
-      139.69762
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "HOTEL R9 The Yard 日光今市",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D201991",
-        "km": 2.5,
-        "r": 4.26,
-        "rc": 58,
-        "min": 3600
-      },
-      {
-        "n": "ホテル村上",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D18120",
-        "km": 0.8,
-        "r": 4.14,
-        "rc": 654,
-        "min": 7000
-      },
-      {
-        "n": "トレイルイン日光今市(Trail inn 日光今市)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184902",
-        "km": 2.8,
-        "r": 4.07,
-        "rc": 129,
-        "min": 3800
-      }
-    ]
-  },
-  "もみじ谷大吊橋（塩原）": {
-    "v": 2,
-    "t": "2026-11-16",
-    "ll": [
-      36.95364,
-      139.88074
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "プライベートグランピング|NAGOMI CAMP那須",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196027",
-        "km": 2.3,
-        "r": 4.33,
-        "rc": 14,
-        "min": 9000
-      },
-      {
-        "n": "塩原温泉 湯守田中屋",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D31902",
-        "km": 2.3,
-        "r": 4.31,
-        "rc": 530,
-        "min": 12100
       }
     ]
   },
@@ -5505,6 +5373,68 @@
         "r": 4.45,
         "rc": 2450,
         "min": 5300
+      }
+    ]
+  },
+  "大谷クリスマスマーケット": {
+    "v": 2,
+    "t": "2026-11-20",
+    "ll": [
+      36.59845,
+      139.82132
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "コンセーレ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D27714",
+        "km": 4.1,
+        "r": 4.41,
+        "rc": 96,
+        "min": 4700
+      },
+      {
+        "n": "ホテル鶴(HOTEL TSURU)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D28427",
+        "km": 3.4,
+        "r": 4.07,
+        "rc": 138,
+        "min": 6500
+      }
+    ]
+  },
+  "ごかラーメン＆スイーツフェス": {
+    "v": 2,
+    "t": "2026-11-20",
+    "ll": [
+      36.09525,
+      139.75774
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルグリーンコア プラスワン(本館徒歩1分)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D40314",
+        "km": 3.6,
+        "r": 4.44,
+        "rc": 1188,
+        "min": 4900
+      },
+      {
+        "n": "ホテルグリーンコア本館(プラスワン徒歩1分)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D6992",
+        "km": 3.7,
+        "r": 4.43,
+        "rc": 780,
+        "min": 5500
+      },
+      {
+        "n": "御老公の湯 境店",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178475",
+        "km": 3.6,
+        "r": 4.29,
+        "rc": 212,
+        "min": 6600
       }
     ]
   }
