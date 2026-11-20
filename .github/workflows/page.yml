@@ -161,6 +161,8 @@ jobs:
           # 11/19 関東の表紙・おでかけ・都県のおでかけを関西と同じ新しい土台に（前の物は site/kyu/ に残す）。投稿の画像を撮った後に置き替える
           python3 scripts/shin_kanto.py || true
           # 11/19 owner「頭とバーをかぶせただけは作り直しに数えない」→ 前のページの古い見た目を止め、関西と同じ kyu.css で描き直す
+          # 11/20 owner「月が決めていいよ」→ 街のページ（site/machi/<id>.html）を新しい形に（公開する時だけ書き替える。台帳の site/machi は前のまま）
+          python3 scripts/machi2.py all site/machi site/machi || true
           python3 scripts/shin_kyu.py || true
           python3 scripts/skin_bake.py site || true
       - name: お客さんに見せてはいけない言葉が無いか（11/9 オーナー「燈？」「なんか対策ないの」→ 中の名前・変な言い方・作りかけの言葉が1つでもあれば、ここで止めて公開しない。言葉は scripts/ngwords.json）
