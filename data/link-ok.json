@@ -4042,6 +4042,12 @@
   "sec": 1.5,
   "why": ""
  },
+ "https://ohtsuribashi.ryujinkyo.jp/": {
+  "at": "2026-11-20",
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
+ },
  "https://policies.env.go.jp/national-garden/shinjukugyoen/highlights/kiku/": {
   "at": "2026-11-15",
   "by": "browser",
@@ -4912,6 +4918,12 @@
   "sec": 1.3,
   "why": ""
  },
+ "https://www.fj-de-gunma.com/": {
+  "at": "2026-11-20",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
  "https://www.flower-park.jp/night-bloom/": {
   "at": "2026-11-18",
   "by": "browser",
@@ -4938,6 +4950,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.5,
+  "why": ""
+ },
+ "https://www.hama-midorinokyokai.or.jp/park/negishi/": {
+  "at": "2026-11-20",
+  "ok": true,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.haniwakan.com/matsuri/41haniwa.html": {
@@ -5488,6 +5506,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.7,
+  "why": ""
+ },
+ "https://www.utsunomiya-cvb.org/event/detail_20014.html": {
+  "at": "2026-11-20",
+  "ok": true,
+  "sec": 1.3,
   "why": ""
  },
  "https://www.utsunomiya-cvb.org/event/detail_20043.html": {
