@@ -32,6 +32,47 @@ CSS += """.act{display:grid;gap:8px;margin:22px 0 0}.act a{display:block;text-al
 .tmap svg{display:block;width:100%;height:auto}.tmap p{margin:0;padding:10px 14px 12px;text-align:center;font-size:11.5px;letter-spacing:.06em;color:#8C7B6E}""" + spot_map.night_css()
 
 
+# 11/20 関西の1件ページと同じに：時間・料金・駐車場の行。中身は data/page-spots.json の note（集め係と夜の回が公式ページで確かめて書いた文）だけ。
+# note を「。」と「、」で切り、時刻のある所＝時間、円・無料＝料金、駐車場＝駐車場、休み・予約など＝メモ。終わった日だけの話（11/3は無料 など）と「公式で確認」は出さない
+_TM = re.compile(r"\d{1,2}:\d\d|\d{1,2}時(?!間)|日没|終日|24時間")
+_YEN = re.compile(r"\d[\d,]*円")
+_PR = re.compile(r"\d[\d,]*円|無料")
+_NT = re.compile(r"休み|休館|休園|休室|予約|日時指定|先着|要ります|変わります|中止|整理券|駅から|歩いて")
+def _chunks(t):
+    out, cur, d = [], "", 0
+    for ch in t:
+        if ch in "（(": d += 1
+        if ch in "）)": d -= 1
+        if ch == "、" and d == 0: out.append(cur); cur = ""
+        else: cur += ch
+    out.append(cur)
+    return [c.strip() for c in out if c.strip()]
+def more_of(note):
+    T, P, K, N = [], [], [], []
+    for sg in [x.strip() for x in (note or "").split("。") if x.strip()]:
+        sg = re.sub(r"^[^｜]{1,14}｜", "", sg)
+        for c in _chunks(sg):
+            if re.match(r"^\d{1,2}/\d{1,2}[・\d]*は", c) or "公式で確認" in c or ("点灯式" in c and "〜" not in c): continue
+            if c.startswith("駐車場"): K.append(c.replace("駐車場は", "", 1)); continue
+            if _NT.search(c) and not _PR.search(c): N.append(c)
+            elif _YEN.search(c) and not re.search(r"\d:\d\d〜", c): P.append(c)
+            elif _TM.search(c): T.append(c)
+            elif _PR.search(c): P.append(c)
+    mo = {}
+    if T: mo["time"] = "、".join(T)
+    if P: mo["price"] = "、".join(P)
+    if K: mo["park"] = "、".join(K)
+    if N: mo["note"] = "。".join(N) + "。"
+    return mo
+MORE = {}
+try:
+    for _it in json.load(open(os.path.join(R, "data", "page-spots.json"), encoding="utf-8")).get("items", []):
+        _m = more_of(_it.get("note", ""))
+        if _m: MORE[re.sub(r"\s+", "", _it.get("title", ""))] = _m
+except Exception as _x:
+    print("page-spots の note を読めなかった", _x)
+
+
 def e(x): return html.escape(x, quote=True)
 def txt(x): return html.unescape(re.sub("<[^>]+>", "", x)).strip()
 def jd(d):
@@ -102,11 +143,22 @@ for sp in spots:
     elif sp["en"]:
         left = (datetime.date.fromisoformat(sp["en"]) - D0).days; stat = "きょうまで" if left == 0 else f"開催中・あと{left}日"
     elif sp["st"]: stat = "開催中"
-    where = fu + ("の" + sp["place"] if sp["place"] else "")
+    # 11/20 「千葉県のマザー牧場 千葉県富津市」のように県名が2回出ていた → 「千葉県富津市のマザー牧場」
+    _pl = sp["place"]; _ct = ""
+    _mm = re.search(r"\s+(?:" + re.escape(fu) + r")?(\S+[市区町村])$", _pl)
+    if _mm: _ct, _pl = _mm.group(1), _pl[:_mm.start()].strip()
+    where = fu + _ct + ("の" + _pl if _pl else "")
     lead = f"{nm}は、{where}で" + (f"、{jd(sp['st'])}から{jd(sp['en'])}まで開かれます。" if sp["st"] and sp["en"] and sp["en"] != sp["st"] else (f"、{jd(sp['st'])}に開かれます。" if sp["st"] else "楽しめます。"))
     if sp["free"]: lead += "入場は無料です。"
-    title = f"{nm if yr in nm else nm + " " + yr}｜日程・場所・{'入場無料' if sp['free'] else 'アクセス'}（{fu}）｜LIFE NOTE"
-    desc = f"{nm}（{where}）の{yr}年の日程は{when}。{'入場無料。' if sp['free'] else ''}公式ページ、地図、近くの宿をまとめました。{UPD}確認。"
+    mo = MORE.get(sp["key"], {})
+    if sp["free"] and mo.get("price") and not _YEN.search(mo["price"]): mo = {k: v for k, v in mo.items() if k != "price"}  # 「入場無料」だけなら上の「入場：無料」で分かる
+    has = [x for x, k in (("時間", "time"), ("料金", "price"), ("駐車場", "park")) if mo.get(k)]
+    if mo.get("time"): lead += f"時間は{mo['time'].rstrip('。')}です。"
+    if mo.get("price"): lead += f"料金は{mo['price'].rstrip('。')}です。"
+    if mo.get("park"): lead += f"駐車場は{mo['park'].rstrip('。')}です。"
+    if mo.get("note"): lead += mo["note"]
+    title = f"{nm if yr in nm else nm + " " + yr}｜{'・'.join(has) + '・' if has else ''}日程・場所{'' if len(has) > 1 else ('・入場無料' if sp['free'] else '・アクセス')}（{fu}）｜LIFE NOTE"
+    desc = f"{nm}（{where}）の{yr}年の日程は{when}。{'入場無料。' if sp['free'] else ''}{('時間は' + mo['time'] + '。') if mo.get('time') else ''}{('料金は' + mo['price'] + '。') if mo.get('price') else ''}公式ページ、地図、近くの宿をまとめました。{UPD}確認。"
     canon = f"{BASE}/o/{sp['id']}"
     ev = {"@type": "Event", "name": nm, "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled",
           "location": {"@type": "Place", "name": sp["place"] or fu, "address": {"@type": "PostalAddress", "addressRegion": fu, "addressCountry": "JP"}}, "url": sp["url"]}
@@ -120,7 +172,10 @@ for sp in spots:
     big = f'<div class="w"><span>日程</span><b>{e(when)}</b></div>'
     # 11/9 全文点検：「いまは／公式ページで」は意味が通らない → 開催の状態が分かる時だけ出す
     if stat: big += f'<div><span>いまは</span><b style="color:{pc};font-size:15px;font-family:\'Zen Kaku Gothic New\';font-weight:700">{e(stat)}</b></div>'
-    big += f'<div><span>入場</span><b style="color:#2B2622;font-size:15px;font-family:\'Zen Kaku Gothic New\';font-weight:700">{"無料" if sp["free"] else "公式で確認"}</b></div>'
+    # 11/20 料金が分かる時は「入場：公式で確認」を出さない（下の「料金」の行で分かる）。関西と同じ
+    if sp["free"] or not mo.get("price"): big += f'<div><span>入場</span><b style="color:#2B2622;font-size:15px;font-family:\'Zen Kaku Gothic New\';font-weight:700">{"無料" if sp["free"] else "公式で確認"}</b></div>'
+    for lb, k in (("時間", "time"), ("料金", "price"), ("駐車場", "park")):
+        if mo.get(k): big += f'<div class="w"><span>{lb}</span><b style="font-size:15px;font-family:\'Zen Kaku Gothic New\';font-weight:700;line-height:1.7">{e(mo[k])}</b></div>'
     big += f'<div class="w"><span>場所</span><b>{e(where)}</b></div>'
     act = f'<a class="o" href="{e(sp["url"])}" target="_blank" rel="noopener">公式ページで最新の情報を見る</a>'
     if sp["q"]: act += f'<a class="g" href="https://www.google.com/maps/search/?api=1&amp;query={e(urllib.parse.quote(sp["q"]))}" target="_blank" rel="noopener">地図で場所を見る</a>'
