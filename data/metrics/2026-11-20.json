@@ -1,0 +1,214 @@
+{
+  "day": "2026-11-20",
+  "fetchedAt": "2026-11-21T07:22+09:00",
+  "posts": [
+    {
+      "service": "twitter",
+      "slot": "07:16",
+      "kind": "通常",
+      "first": "【11/20オープン　渋谷PARCO｜都内3店目のガンダムベース】🤖",
+      "url": "https://x.com/1753799832798629888/status/2123540830950502510",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.71,
+        "reposts": 0,
+        "impressions": 811,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "08:15",
+      "kind": "通常",
+      "first": "【足立区の古い木造の家｜解体の費用の9割、上限150万円】🏠",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Df8PMeVEUH8",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.17,
+        "views": 46,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "【12/25まで　東京ミッドタウン八重洲｜入場無料、高さ約7mのツリー】🎄",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Df8labKoOfw",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 6.67,
+        "views": 15,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:16",
+      "kind": "通常",
+      "first": "【11/20オープン　熊谷駅｜駅ビルの屋上に、冬だけの牡蠣小屋】🦪",
+      "url": "https://x.com/1753799832798629888/status/2123571031621128197",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.26,
+        "reposts": 0,
+        "impressions": 19,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:46",
+      "kind": "通常",
+      "first": "【11/22オープン　館林｜渋谷の麻辣湯、星星倶楽部が群馬に初出店】🌶",
+      "url": "https://x.com/1753799832798629888/status/2123578579162173893",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.35,
+        "reposts": 0,
+        "impressions": 23,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【12/4オープン　幕張新都心｜VRでトンネル工事を体感、カンドゥートンネル】🚇",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Df8qsFuDuV4",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.52,
+        "views": 66,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:16",
+      "kind": "通常",
+      "first": "【11/20オープン　板橋駅｜韓国のマムズタッチ、日本FC2号店】🍔",
+      "url": "https://x.com/1753799832798629888/status/2123616325373243466",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:15",
+      "kind": "通常",
+      "first": "【東武伊勢崎線｜埼玉の沿線7市町で、地価がいちばん上がった街】🚃",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Df8xhPdDuGz",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 3,
+        "engagementRate": 6.98,
+        "views": 43,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:45",
+      "kind": "通常",
+      "first": "【くらべた｜マスク、1枚あたりの最安は15.5円】😷",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Df808-MABGi",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.26,
+        "views": 19,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【11/21から　狭山の智光山公園｜カピバラの温泉が先に始まります】♨",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Df8_QkqEUyy",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.22,
+        "views": 45,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "【12/18オープン　新宿三丁目｜Alpen TOKYOの2店目、4つの階の旗艦",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/Df9T2s1kUtH",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 25,
+        "views": 4,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:16",
+      "kind": "通常",
+      "first": "【12/1オープン　柏｜ジョイフルの新しい形、関東で初めて】🍽",
+      "url": "https://x.com/1753799832798629888/status/2123706928438054995",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:16",
+      "kind": "通常",
+      "first": "【12/4オープン　宇都宮｜職人のホダカが、栃木に初出店】🔨",
+      "url": "https://x.com/1753799832798629888/status/2123752224954147207",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    }
+  ]
+}
