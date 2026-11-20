@@ -331,3 +331,24 @@ html.lk-f .shine{animation:none!important;background:none!important;-webkit-text
 html.lk.lk-a.lk-d.lk-e .c3u,html.lk.lk-a.lk-d.lk-e:not(.nt) .c3u.k,html.lk.lk-a.lk-d.lk-e:not(.nt) .c3u.g,html.lk.lk-a.lk-d.lk-e.nt .c3u,html.lk.lk-a.lk-d.lk-e.nt .c3u.g,html.lk.lk-a.lk-d.lk-e.nt .c3u.k{background:transparent!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 html.lk-f #tb,html.lk-f .sk-tb{box-shadow:none!important;border-bottom:1px solid rgba(0,0,0,.06)!important;-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);background:rgba(248,248,250,.82)!important}
 html.lk-f.nt #tb,html.lk-f.nt .sk-tb{border-bottom-color:rgba(255,255,255,.07)!important;background:rgba(9,12,22,.78)!important}
+/* 21:40 「もっと綺麗に」：①街のページの「うちの家はいくら？」だけ紺のグラデーションで古い見た目 → 他のボタンと同じ黒（夜は白）・矢印は白い丸
+   ②一番上の題の大きさ・太さがページごとに違った（40/800・40/600・28/600）→ 全ページ 36px・800 にそろえる
+   ③写真の角の丸さがばらばら（12・18・26）→ 小さい写真 16px・大きい写真 24px の2つに */
+html.lk-f .go{background:#1D1D1F!important;box-shadow:0 14px 30px -18px rgba(0,0,0,.45)!important;border:0!important}
+html.lk-f .go small{color:rgba(255,255,255,.66)!important}
+html.lk-f .go i{background:rgba(255,255,255,.14)!important;color:#fff!important}
+html.lk-f.nt .go{background:#F5F5F7!important;color:#1D1D1F!important;box-shadow:0 14px 30px -18px rgba(0,0,0,.8)!important}
+html.lk-f.nt .go b{color:#1D1D1F!important}html.lk-f.nt .go small{color:rgba(29,29,31,.62)!important}
+html.lk-f.nt .go i{background:rgba(0,0,0,.08)!important;color:#1D1D1F!important}
+html.lk-f h1{font-size:36px!important;font-weight:800!important;line-height:1.14!important;letter-spacing:-.035em!important}
+html.lk-f .im,html.lk-f .im img,html.lk-f .in,html.lk-f .in img,html.lk-f .lim,html.lk-f .lim img{border-radius:16px!important}
+html.lk-f .c3t,html.lk-f .c3t img{border-radius:24px!important}
+html.lk-f.sk .head h1,html.lk-f.sk .s3h h1{font-size:min(34px,8.6vw)!important;line-height:1.18!important}
+/* 21:44 実家・空き家の府県の帯（.flt）が、流すと出る題の帯（#tb 高さ44px）の下にもぐって、題の両側から府県の名前がのぞいていた → 題の帯のすぐ下に付ける */
+html.lk.sk .flt{top:44px!important}
+html.lk-f #tb,html.lk-f .sk-tb{background:rgba(248,248,250,.95)!important}html.lk-f.nt #tb,html.lk-f.nt .sk-tb{background:rgba(9,12,22,.93)!important}
+html.lk.sk .flt{margin-left:0!important;margin-right:0!important;padding-left:8px;padding-right:8px}
+html.lk.sk.nt .flt button.on,html.lk.sk.nt .flt .on{background:#F5F5F7!important;color:#1D1D1F!important}
+html.lk.lk-f #tb,html.lk.lk-f .sk-tb{background:rgba(248,248,250,.985)!important}html.lk.lk-f.nt #tb,html.lk.lk-f.nt .sk-tb{background:rgba(9,12,22,.985)!important}
+html.lk.lk-f #tb,html.lk.lk-f .sk-tb{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.lk.lk-f.sk #tb.sk-tb,html.lk.lk-f #tb{background:#F8F8FA!important}html.lk.lk-f.nt.sk #tb.sk-tb,html.lk.lk-f.nt #tb{background:#090C16!important}
