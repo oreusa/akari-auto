@@ -520,11 +520,12 @@ def amazon_rows(key, unit_lo_hi):
 
 
 # 11/3 オーナー「楽天だけじゃねぇだろ」→ Yahoo!ショッピングも同じ物差しで比べる（鍵 YAHOO_APP_ID がある時だけ。無ければ今までどおり）
-MOSHIMO_YAHOO = ""  # 11/16 もしもの登録が消えた → Yahoo! はふつうのリンク
+# 11/20 バリューコマース Yahoo!ショッピング（ID 2025875）提携済み。LIFE NOTE sid 3786665・pid 892753201（汐 11/20）
+MOSHIMO_YAHOO = "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3786665&pid=892753201&vc_url="
 # 11/3 バリューコマース（Yahoo!ショッピングの公式の窓口）が通った。LIFE NOTE のサイトID 3786665。
 # pid（Yahoo!ショッピングの広告番号）が入ったら、Yahoo!の検索がそのまま報酬つきのリンクを返す（affiliate_type=vc）。空の間は もしも のまま
 VC_SID = "3786665"
-VC_PID = ""
+VC_PID = "892753201"
 
 
 def yahoo_rows(cat):
