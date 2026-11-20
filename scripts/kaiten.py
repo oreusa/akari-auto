@@ -473,6 +473,10 @@ def store_page(x, shell, near):
 
 def build():
     items = json.load(open(DATA, encoding="utf-8"))["items"]
+    # 11/20 発表の「11:00〜24:00(仮)」がそのまま出て、作りかけの言葉の点検で関東HPの公開が止まった → 「（予定）」と書く
+    for x in items:
+        for k in ("tm", "pt", "pl", "n"):
+            if x.get(k): x[k] = re.sub(r"[(（]\s*仮\s*[)）]", "（予定）", x[k])
     live = [x for x in items if bucket(x)]
     for x in live:
         assert x["p"] in PREFS, x["n"]
