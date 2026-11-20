@@ -20,10 +20,18 @@ var Q=new URLSearchParams(location.search),S={p:Q.get("p")||"",o:Q.get("o")||"up
 /* 11/20 owner「パッと見で使いにくい」→ 家と土地の入口を1枚に。
    17:25 owner「何をするにもたどり着くには経由がいる」→ 3枚の扉（押すと次の入口）をやめ、行き先を全部ここに並べる＝どこへも1回で着く。 */
 var HUB=document.documentElement.classList.contains("ieo")&&window.TN_IEG;
-var QD={"/chika-kansai":"上がった街・下がった街","/chika-kanto":"上がった街・下がった街","/ikura":"30秒で目安・売る順番も","/sagasu":"予算で住める街","/moushikomi":"売却・査定・解体","/jikka/":"相続・診断・空き家の街","/kaitai":"費用の目安と市の補助金"};
-var DOOR=HUB?'<nav class="qk" aria-label="家と土地のページ">'+[].concat.apply([],window.TN_IEG.map(function(g){return g.i})).filter(function(x){return !/^\/fudosan-list/.test(x[3])}).map(function(x){return '<a href="'+x[3]+'"><b>'+esc(x[0])+'</b><small>'+esc(QD[x[3]]||"")+'</small></a>'}).join("")+'</nav>'+
+/* 18:27 owner「本気で見やすいと思う？」→ 見本 ?ie2=1（この端末で覚える・?ie2=0 で戻す）：
+   ①探す欄が主役 ②色の枠6つをやめ、下のバーに無い行き先だけを細い線の一覧に（同じ物を2回並べない） ③字は 16/13px ④府県の帯の下の並べかえの帯をやめ、件数の横の「並べ方」1つに */
+var V2=false;try{var _v=location.search.match(/[?&]ie2=([01])/);if(_v)localStorage.setItem("tn_ie2",_v[1]);V2=!!HUB&&localStorage.getItem("tn_ie2")==="1"}catch(e){}
+if(V2)document.documentElement.classList.add("ie2");
+var QI={rank:'<path d="M5 20V11M12 20V5M19 20v-6"/>',key:'<circle cx="8" cy="15" r="4.2"/><path d="M11 12l8.5-8.5M16.5 6.5l2.5 2.5M14 9l2 2"/>',box:'<path d="M3.5 8l8.5-4 8.5 4v9l-8.5 4-8.5-4z"/><path d="M3.5 8l8.5 4 8.5-4M12 12v9"/>',calc:'<rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7.5h8M8.5 12h0M12 12h0M15.5 12h0M8.5 16h0M12 16h0M15.5 16h0"/>'};
+var QD={"/chika-kansai":"上がった街・下がった街","/chika-kanto":"上がった街・下がった街","/ikura":"30秒で目安・売る順番も","/sagasu":"予算で住める街","/moushikomi":"売却・査定・解体","/jikka/":"相続・診断・空き家の街","/kaitai":"広さ別の費用の目安と、市の補助金","/moushikomi?want=%E7%89%87%E4%BB%98%E3%81%91%E3%83%BB%E9%81%BA%E5%93%81%E6%95%B4%E7%90%86%E3%81%AE%E8%A6%8B%E7%A9%8D%E3%82%8A":"遺品整理・家財の片付けだけでも。見積りは無料"};
+var BAR=/^\/(fudosan-list|ikura|jikka\/|moushikomi)$/;
+if(V2)var DOOR='<h2 class="qr-h">ほかに調べる</h2><nav class="qr" aria-label="ほかに調べる">'+[].concat.apply([],window.TN_IEG.map(function(g){return g.i})).filter(function(x){return !BAR.test(x[3])}).map(function(x){return '<a href="'+x[3]+'"><svg viewBox="0 0 24 24">'+(QI[x[2]]||"")+'</svg><span><b>'+esc(x[0])+'</b><small>'+esc(QD[x[3]]||"")+'</small></span><i>›</i></a>'}).join("")+'</nav>'+
+ '<h2 class="dq dq2">街の値段と地価</h2>';
+else var DOOR=HUB?'<nav class="qk" aria-label="家と土地のページ">'+[].concat.apply([],window.TN_IEG.map(function(g){return g.i})).filter(function(x){return !/^\/fudosan-list|want=/.test(x[3])}).map(function(x){return '<a href="'+x[3]+'"><b>'+esc(x[0])+'</b><small>'+esc(QD[x[3]]||"")+'</small></a>'}).join("")+'</nav>'+
  '<h2 class="dq dq2">街の値段と地価</h2>':'';
-S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">'+esc(HUB?RN+'の家と土地':(D.h1||(RN+'の家と土地の相場')))+'</h1><p class="h1p">'+esc(HUB?TW.length+'の街の値段と地価・家を売る買う・実家と空き家':(D.sub||(TW.length+'の街・実際に売れた値段と、地価の動き')))+'</p>'+
+S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">'+esc(HUB?RN+'の家と土地':(D.h1||(RN+'の家と土地の相場')))+'</h1><p class="h1p">'+esc(V2?TW.length+'の街の、実際に売れた値段と地価':HUB?TW.length+'の街の値段と地価・家を売る買う・実家と空き家':(D.sub||(TW.length+'の街・実際に売れた値段と、地価の動き')))+'</p>'+
  '<div class="fnd"><label class="fin">'+S_.IC.find+'<input id="q" type="search" placeholder="街の名前で探す（例：'+esc(D.ph||'吹田、すいた')+'）" autocomplete="off" enterkeyhint="search"></label>'+
  '<div class="sug" id="sug"></div><button class="geo" id="geo">'+S_.IC.map+'<span>いまいる場所の街を見る</span></button></div>'+DOOR+
  '<div class="tiles">'+(avM?'<button data-o="m"><small>中古マンション 平均</small><b><span data-n="'+Math.round(avM)+'" data-f="1">0</span><u>万円</u></b><i>→</i></button>'+
@@ -50,12 +58,14 @@ $(".tiles").addEventListener("click",function(e){var b=e.target.closest("button"
 
 /* 並べる */
 S_.seg($("#seg"),[["",RN]].concat(PREF.map(function(p){return [p,p]})),S.p,function(v){S.p=v;S.n=30;sync();go(true)});
-function sync(){$("#chips").innerHTML=Object.keys(SORT).map(function(k){return '<button class="chip'+(S.o===k?" on":"")+'" data-o="'+k+'">'+SORT[k][0]+'</button>'}).join("");
+if(V2){var _c=$(".cnt");_c.insertAdjacentHTML("beforeend",'<label class="osel"><span>並べ方</span><select id="osel" aria-label="並べ方">'+Object.keys(SORT).map(function(k){return '<option value="'+k+'">'+SORT[k][0]+'</option>'}).join("")+'</select></label>');
+  $("#osel").addEventListener("change",function(){S.o=this.value;S.n=30;sync();go(true)})}
+function sync(){if(V2&&$("#osel"))$("#osel").value=S.o;$("#chips").innerHTML=Object.keys(SORT).map(function(k){return '<button class="chip'+(S.o===k?" on":"")+'" data-o="'+k+'">'+SORT[k][0]+'</button>'}).join("");
   var u=new URLSearchParams(location.search);S.p?u.set("p",S.p):u.delete("p");S.o!=="up"?u.set("o",S.o):u.delete("o");history.replaceState(history.state,"",location.pathname+(u.toString()?"?"+u:""))}
 $("#chips").addEventListener("click",function(e){var b=e.target.closest(".chip");if(!b)return;S.o=b.dataset.o;S.n=30;sync();go(true)});
 function go(anim){var f=SORT[S.o],L=TW.filter(function(t){return (!S.p||t.p===S.p)&&f[1](t)!=null}).sort(function(a,b){return f[1](b)-f[1](a)});
   var vals=L.map(f[1]),mx=Math.max.apply(null,vals.map(Math.abs).concat([1e-9]));
-  $("#ch").innerHTML=esc(S.p||RN)+"・"+f[0]+" <b data-n='"+L.length+"'>"+L.length+"</b>の街";$("#cs").textContent=f[3];
+  $("#ch").innerHTML=esc(S.p||RN)+(V2?"":"・"+f[0])+" <b data-n='"+L.length+"'>"+L.length+"</b>の街";$("#cs").textContent=f[3];
   $("#rk").innerHTML=L.slice(0,S.n).map(function(t,i){var v=f[1](t),w=Math.abs(v)/mx;
     return '<li><button data-id="'+t.id+'" style="--pc:'+PC[t.p]+'"><em>'+(i+1)+'</em><span class="tn"><b>'+esc(t.n)+'</b><small>'+t.p+(t.m?'・マンション '+man(t.m[1]):'')+(t.h?'・一戸建て '+man(t.h[1]):'')+'</small><i class="br'+(v<0?" neg":"")+'"><i data-w="'+w.toFixed(3)+'"></i></i></span><strong class="'+(S.o==="up"||S.o==="pop"?(v>=0?"up":"dn"):"")+'">'+f[2](t)+'</strong></button></li>'}).join("");
   $("#mr").innerHTML=L.length>S.n?'<button class="more">もっと見る（残り'+(L.length-S.n)+'の街）</button>':"";

@@ -1031,3 +1031,19 @@ html.nt .pin.pref .pc small{color:#F6C66B}
 html.nt .qk a{background:linear-gradient(#0A0E18,#0A0E18) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box}
 html.nt .qk small{color:#A1A1A6}
 @media (max-width:359px){.nav a,.nav button{font-size:9.5px;letter-spacing:-.03em;white-space:nowrap}}
+/* 18:27 見本 ?ie2=1：家と土地の入口を tanosu の決まりで（白地に細い線・色は目印だけ・字は 16/13px）。探す欄が主役 */
+html.ie2 .qr-h{margin:30px 0 4px;font:600 13px/1.4 var(--sans);letter-spacing:.04em;color:var(--sub)}
+html.ie2 .qr{border-top:1px solid var(--line)}
+html.ie2 .qr a{display:flex;align-items:center;gap:14px;min-height:64px;padding:12px 2px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;-webkit-tap-highlight-color:transparent}
+html.ie2 .qr a:active{background:var(--chip)}
+html.ie2 .qr svg{flex:none;width:24px;height:24px;fill:none;stroke:#2BB3A3;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+html.ie2 .qr span{flex:1;min-width:0}
+html.ie2 .qr b{display:block;font:600 16px/1.4 var(--sans)}
+html.ie2 .qr small{display:block;margin-top:2px;font-size:13px;line-height:1.5;color:var(--sub)}
+html.ie2 .qr i{flex:none;font-style:normal;font-size:22px;line-height:1;color:var(--mut)}
+html.ie2 .fin{min-height:60px}
+html.ie2 .chips{display:none}
+html.ie2 .cnt{align-items:center}
+html.ie2 .osel{position:relative;display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--sub)}
+html.ie2 .osel select{appearance:none;-webkit-appearance:none;height:34px;padding:0 30px 0 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E6E73' stroke-width='2'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 10px center/14px;font:600 13px/1 var(--sans);color:var(--ink)}
+html.ie2.nt .qr svg{stroke:#5FD0C2}

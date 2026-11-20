@@ -60,12 +60,13 @@ function ieOrg(P,kt){
    check:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12.5l2.7 2.7L16.5 9"/>',
    calc:'<rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7.5h8M8.5 12h0M12 12h0M15.5 12h0M8.5 16h0M12 16h0M15.5 16h0"/>',
    gift:'<rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18M12 9v11M12 9c-1.5-3-5-4-5-1.5S10 9 12 9zm0 0c1.5-3 5-4 5-1.5S14 9 12 9z"/>',
+   box:'<path d="M3.5 8l8.5-4 8.5 4v9l-8.5 4-8.5-4z"/><path d="M3.5 8l8.5 4 8.5-4M12 12v9"/>',
    home:'<path d="M4 11l8-6 8 6v9H4z"/><path d="M9 20v-4.5h6V20"/><path d="M15.5 6.5V4h2v4"/>'};
-  /* 17:27 owner「こんな項目いっぱいいるかな？一緒に出来るやつもある」→ 13を7つに。ページの中から行ける物（近くの街＝街をさがすのボタン・
+  /* 17:27 owner「こんな項目いっぱいいるかな？一緒に出来るやつもある」→ 13を7つに（18:28 owner「片付けだけの反響あるかも」→ 片付けを名前に出し、片付けだけの見積りを足して8つ）。ページの中から行ける物（近くの街＝街をさがすのボタン・
      売る前に＝いくら？の中・診断と空き家の多い街＝実家・空き家の中・補助金ランキング＝解体の中）は並べない。まちランキング（駅・人口）は家と土地の並びから外す（ページの下のバーは同じ4つ）。 */
   var G=[{t:"街の相場",i:[["街の値段と地価","街をさがす","find","/fudosan-list"],["地価ランキング","地価","rank",kt?"/chika-kanto":"/chika-kansai"]]},
    {t:"売る・買う",i:[["いくらで売れる？","いくら？","tag","/ikura"],["家を買いたい","買いたい","key","/sagasu"],["無料の相談","相談する","chat","/moushikomi"]]},
-   {t:"実家・空き家",i:[["実家・空き家","実家・空き家","note","/jikka/"],["解体の費用と補助金","解体","calc","/kaitai"]]}];
+   {t:"実家・空き家",i:[["実家・空き家","実家・空き家","note","/jikka/"],["片付け・解体の費用と補助金","解体","calc","/kaitai"],["片付けだけの無料見積り","片付け","box","/moushikomi?want=%E7%89%87%E4%BB%98%E3%81%91%E3%83%BB%E9%81%BA%E5%93%81%E6%95%B4%E7%90%86%E3%81%AE%E8%A6%8B%E7%A9%8D%E3%82%8A"]]}];
   var want="";try{want=new URLSearchParams(location.search).get("want")||""}catch(e){}
   var g=/^\/(jikka|kaitai|akiya|shindan)/.test(p)||(/^\/moushikomi/.test(p)&&/片付|解体|実家|空き家/.test(want))?2:/^\/(uru|ikura|sagasu|moushikomi|gyosha|fudosan$)/.test(p)?1:0;
   var cu=/^\/(jikka|shindan|akiya)/.test(p)?"/jikka/":/^\/machi\//.test(p)?"/fudosan-list":/^\/kaitai/.test(p)?"/kaitai":/^\/chika-/.test(p)?(kt?"/chika-kanto":"/chika-kansai"):/^\/uru/.test(p)?"/ikura":p;
