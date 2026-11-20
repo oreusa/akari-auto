@@ -568,7 +568,7 @@ def ie_kanto():
             out.append(x)
         if len(out) < 100:
             return
-        c = {"nav": [{"t": "街をさがす", "ic": "find", "a": "find"}, {"t": "ランキング", "ic": "rank", "a": "rank"}, {"t": "売りたい", "ic": "sell", "href": "/uru"}, {"t": "いくら？", "ic": "yen", "href": "/ikura"}],
+        c = {"nav": [{"t": "街をさがす", "ic": "find", "a": "find"}, {"t": "地価", "ic": "rank", "href": "/chika-kanto"}, {"t": "売りたい", "ic": "sell", "href": "/uru"}, {"t": "いくら？", "ic": "yen", "href": "/ikura"}],
              "menu": {"k": "Home & Land", "items": [["家と土地の相場", "/fudosan-list", 1], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["解体の費用と補助金", "/kaitai"], ["地価ランキング", "/chika-kanto"]]},
              "foot": "地価：国土交通省・各都県「令和8年地価公示」。人口・空き家：総務省統計局（国勢調査・住宅・土地統計調査）。<br>どれも街の平均で、1軒ずつの値段ではありません。「買いたい」のリンクは広告です（Yahoo!不動産）。"}
         write("fudosan-list.html", "/fudosan-list", f"関東の家と土地の相場｜{len(out)}の街の地価と人口｜LIFE NOTE", c,
