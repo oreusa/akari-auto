@@ -17,12 +17,11 @@ var SORT={up:["地価の上がり順",function(t){return t.r8},function(t){retur
  pop:["人が増えた順",function(t){return t.pop&&t.pop[1]},function(t){return t.pop?pct(t.pop[1]):"—"},"人口 5年"]};if(!avM)delete SORT.m;if(!avH)delete SORT.h;
 var Q=new URLSearchParams(location.search),S={p:Q.get("p")||"",o:Q.get("o")||"up",n:30};
 
-/* 11/20 owner「パッと見で使いにくい」→ 家と土地の入口を1枚に：街の名前で探す＋「何をしたいですか」の3枚だけ（見本 ?seiri=1 の時＝html.ieo） */
-var HUB=document.documentElement.classList.contains("ieo");
-var DOOR=HUB?'<h2 class="dq">何をしたいですか</h2><nav class="door" aria-label="何をしたいか">'+
- '<a href="#sent" data-door="s"><b>街の値段と地価を見る</b><small>'+(avM?TW.length+'の街の、実際に売れた値段と地価の上がり方':TW.length+'の街の、地価の上がり方と人口')+'</small><i>›</i></a>'+
- '<a href="/uru"><b>家を売りたい・買いたい</b><small>いくらで売れるか・予算で住める街・無料の相談</small><i>›</i></a>'+
- '<a href="/jikka/"><b>実家・空き家のこと</b><small>相続した家や空き家の、売る・片付け・解体の順番と補助金</small><i>›</i></a></nav>'+
+/* 11/20 owner「パッと見で使いにくい」→ 家と土地の入口を1枚に。
+   17:25 owner「何をするにもたどり着くには経由がいる」→ 3枚の扉（押すと次の入口）をやめ、行き先を全部ここに並べる＝どこへも1回で着く。 */
+var HUB=document.documentElement.classList.contains("ieo")&&window.TN_IEG;
+var QD={"/chika-kansai":"上がった街・下がった街","/chika-kanto":"上がった街・下がった街","/ikura":"30秒で目安・売る順番も","/sagasu":"予算で住める街","/moushikomi":"売却・査定・解体","/jikka/":"相続・診断・空き家の街","/kaitai":"費用の目安と市の補助金"};
+var DOOR=HUB?'<nav class="qk" aria-label="家と土地のページ">'+[].concat.apply([],window.TN_IEG.map(function(g){return g.i})).filter(function(x){return !/^\/fudosan-list/.test(x[3])}).map(function(x){return '<a href="'+x[3]+'"><b>'+esc(x[0])+'</b><small>'+esc(QD[x[3]]||"")+'</small></a>'}).join("")+'</nav>'+
  '<h2 class="dq dq2">街の値段と地価</h2>':'';
 S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">'+esc(HUB?RN+'の家と土地':(D.h1||(RN+'の家と土地の相場')))+'</h1><p class="h1p">'+esc(HUB?TW.length+'の街の値段と地価・家を売る買う・実家と空き家':(D.sub||(TW.length+'の街・実際に売れた値段と、地価の動き')))+'</p>'+
  '<div class="fnd"><label class="fin">'+S_.IC.find+'<input id="q" type="search" placeholder="街の名前で探す（例：'+esc(D.ph||'吹田、すいた')+'）" autocomplete="off" enterkeyhint="search"></label>'+

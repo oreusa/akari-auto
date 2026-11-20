@@ -108,6 +108,7 @@ html.nt .skc .topsg-b a.on{background:#F5F5F7;color:#0A0E18}
 html.nt .skc .mu li.mg{color:#9AA3B5}
 @media (max-width:370px){.skc .topsg-k{display:none}.skc .topsg-b a{font-size:12.5px;letter-spacing:0}}
 .skc html.m2op #tb{visibility:hidden}
+@media (max-width:359px){.skc .nav a,.skc .nav button{font-size:9.5px;letter-spacing:-.03em;white-space:nowrap}}
 @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-24px,-40px,0)}}
 @keyframes pop{40%{transform:scale(.82)}100%{transform:scale(1)}}
 @keyframes ring{to{--ra:360deg}}
@@ -231,3 +232,4 @@ html.sk.nt[data-k] .cmpt-l .n em{border-color:#F5F5F7}
 html.sk.nt[data-k] .cmpt-go{background:#F5F5F7;color:#0A0E18}
 html.sk.nt[data-k] .cmpt-go small{color:rgba(10,14,24,.7)}
 html.sk.nt[data-k] .cmpt-l b u,html.sk.nt[data-k] .cmpt-few{color:#F6C66B;border-color:#F6C66B}
+@media (max-width:359px){html.sk .skc .nav a,html.sk .skc .nav button{font-size:9.5px;letter-spacing:-.03em;white-space:nowrap}}

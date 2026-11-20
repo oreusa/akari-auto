@@ -61,18 +61,23 @@ function ieOrg(P,kt){
    calc:'<rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7.5h8M8.5 12h0M12 12h0M15.5 12h0M8.5 16h0M12 16h0M15.5 16h0"/>',
    gift:'<rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18M12 9v11M12 9c-1.5-3-5-4-5-1.5S10 9 12 9zm0 0c1.5-3 5-4 5-1.5S14 9 12 9z"/>',
    home:'<path d="M4 11l8-6 8 6v9H4z"/><path d="M9 20v-4.5h6V20"/><path d="M15.5 6.5V4h2v4"/>'};
-  var G=[{t:"街の相場",h:"街の相場をしらべる",u:"/fudosan-list",i:[["街の家と土地の相場","街の相場","find","/fudosan-list"],["いまいる場所の近くの街","近くの街","pin","/fudosan-list?geo=1"],["地価ランキング","地価","rank",kt?"/chika-kanto":"/chika-kansai"]].concat(kt?[]:[["まちランキング","まち","star","/ranking"]])},
-   {t:"売る・買う",h:"売る・買う",u:"/uru",i:[["家を売る前に","売る前に","sell","/uru"],["いくらで売れる？","いくら？","tag","/ikura"],["家を買いたい","買いたい","key","/sagasu"],["売却・査定のご相談","相談する","chat","/moushikomi"]]},
-   {t:"実家・空き家",h:"実家・空き家",u:"/jikka/",i:[["実家・空き家ノート","ノート","note","/jikka/"],["3問でわかる実家の診断","診断","check","/jikka/shindan/"],["解体・片付けの費用","解体の費用","calc","/kaitai"],["解体の補助金ランキング","補助金","gift","/kaitai-ranking"],["空き家が多い街ランキング","空き家の街","home","/akiya-ranking"]]}];
+  /* 17:27 owner「こんな項目いっぱいいるかな？一緒に出来るやつもある」→ 13を7つに。ページの中から行ける物（近くの街＝街をさがすのボタン・
+     売る前に＝いくら？の中・診断と空き家の多い街＝実家・空き家の中・補助金ランキング＝解体の中）は並べない。まちランキング（駅・人口）は家と土地の並びから外す（ページの下のバーは同じ4つ）。 */
+  var G=[{t:"街の相場",i:[["街の値段と地価","街をさがす","find","/fudosan-list"],["地価ランキング","地価","rank",kt?"/chika-kanto":"/chika-kansai"]]},
+   {t:"売る・買う",i:[["いくらで売れる？","いくら？","tag","/ikura"],["家を買いたい","買いたい","key","/sagasu"],["無料の相談","相談する","chat","/moushikomi"]]},
+   {t:"実家・空き家",i:[["実家・空き家","実家・空き家","note","/jikka/"],["解体の費用と補助金","解体","calc","/kaitai"]]}];
   var want="";try{want=new URLSearchParams(location.search).get("want")||""}catch(e){}
   var g=/^\/(jikka|kaitai|akiya|shindan)/.test(p)||(/^\/moushikomi/.test(p)&&/片付|解体|実家|空き家/.test(want))?2:/^\/(uru|ikura|sagasu|moushikomi|gyosha|fudosan$)/.test(p)?1:0;
-  var cu=p==="/jikka/shindan/"||p==="/shindan"?"/jikka/shindan/":/^\/jikka\//.test(p)?"/jikka/":/^\/machi\//.test(p)?"/fudosan-list":/^\/kaitai-(?!ranking)./.test(p)?"/kaitai-ranking":/^\/chika-/.test(p)?(kt?"/chika-kanto":"/chika-kansai"):p;
+  var cu=/^\/(jikka|shindan|akiya)/.test(p)?"/jikka/":/^\/machi\//.test(p)?"/fudosan-list":/^\/kaitai/.test(p)?"/kaitai":/^\/chika-/.test(p)?(kt?"/chika-kanto":"/chika-kansai"):/^\/uru/.test(p)?"/ikura":p;
   var svg=function(k){return '<svg viewBox="0 0 24 24">'+I[k]+'</svg>'};
-  var seg='<nav class="topsg" aria-label="家と土地のページ"><div class="topsg-k">家と土地</div><div class="topsg-b">'+G.map(function(x,j){return '<a href="'+x.u+'"'+(j===g?' class="on" aria-current="true"':'')+'>'+x.t+'</a>'}).join("")+'</div></nav>';
-  var bi=G[g].i.slice(0,4),ci=G[g].i.filter(function(x){return x[3]===cu})[0];if(ci&&bi.indexOf(ci)<0)bi[3]=ci;
-  var nav=bi.map(function(x){return {t:x[1],ic:x[2],svg:svg(x[2]),href:x[3],cur:x[3]===cu}});
-  var menu=[];G.forEach(function(x){menu.push([x.h,"#"]);x.i.forEach(function(y){menu.push([y[0],y[3]].concat(y[3]===cu?[1]:[]))})});
-  return {g:g,seg:p==="/fudosan-list"?"":seg,nav:nav,menu:menu};
+  /* 11/20 17:25 owner「めっちゃ使いにくい」「何をするにもたどり着くには経由がいる」：上の切りかえと、目的ごとに変わる下のバーで
+     行き先が2重・どこでも違う形だった → 上の切りかえは消す。下のバーはどの家と土地のページでも同じ4つ（よく使う行き先へ1回）。
+     そのほかは入口（/fudosan-list）に全部並べる＋MENU。 */
+  var ja=cu==="/jikka/"||cu==="/kaitai";
+  var bi=[["街をさがす","find","/fudosan-list",cu==="/fudosan-list"],["いくら？","tag","/ikura",cu==="/ikura"],["実家・空き家","note","/jikka/",ja],["相談する","chat","/moushikomi",cu==="/moushikomi"&&!ja]];
+  var nav=bi.map(function(x){return {t:x[0],ic:x[1],svg:svg(x[1]),href:x[2],cur:x[3]}});
+  var menu=[];G.forEach(function(x){x.i.forEach(function(y){menu.push([y[0],y[3]].concat(y[3]===cu?[1]:[]))})});
+  return {g:g,seg:"",nav:nav,menu:menu,G:G};
 }
 var IEO=C===FUD?ieOrg(P,KT):null;
 if(IEO){C={nav:IEO.nav.map(function(x){return [x.t,x.ic,x.href,x.svg,x.cur]}),k:FUD.k,menu:IEO.menu.map(function(m){return m.length>2||m[1]==="#"?m:[m[0],m[1],0]}),rel:FUD.rel};H.classList.add("ieo")}
@@ -112,7 +117,8 @@ function build(){
   document.body.insertBefore(top,document.body.firstChild);
   /* 11/20 owner「同じ街の相場・実家・解体を1つにまとめる」：街のページ（/machi/・/jikka/・/kaitai-市）の上は、その街の3つのタブ（値段と地価／実家・空き家／解体・片付け）。表は /shin/machi.json（tools/shin/machimap.py） */
   if(IEO)(function(){var tm=P.match(/^\/(machi|jikka)\/([a-z]+-\d+)/),km=P.match(/^\/kaitai-(?!ranking)([a-z]+)/);if(!tm&&!km)return;
-    var o0=top.querySelector(".topsg"),show=function(){if(o0)o0.style.visibility=""};if(o0)o0.style.visibility="hidden";setTimeout(show,1500);
+    top.querySelector(".wrap").insertAdjacentHTML("beforeend",'<nav class="topsg toptw" aria-hidden="true"><div class="topsg-b"></div></nav>');
+    var o0=top.querySelector(".topsg"),show=function(){if(o0&&o0.parentNode)o0.parentNode.removeChild(o0)};if(o0)o0.style.visibility="hidden";
     var last="";try{last=sessionStorage.getItem("tn_machi")||"";if(tm)sessionStorage.setItem("tn_machi",tm[2])}catch(e){}
     fetch("/shin/machi.json").then(function(r){return r.json()}).then(function(M){var id,nm,k,cur;
       if(tm){id=tm[2];var t=M.t[id];if(!t)return show();nm=t[0];k=t[2];cur=tm[1]==="machi"?0:1}
