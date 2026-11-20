@@ -123,7 +123,8 @@ REL = [["おでかけ", "/odekake"], ["家と土地", "/fudosan-list"], ["おか
 
 def write(fname, url, title, cfg, data, js, desc):
     cfg["reg"] = REG
-    cfg["menu"]["rel"] = [r for r in REL if r[1] != url]
+    # 11/20 表紙の MENU は分野の入口そのものなので、下の重なるボタンは出さない（関西と同じ）
+    cfg["menu"]["rel"] = [] if url == "/" else [r for r in REL if r[1] != url]
     head = (f'<meta name="description" content="{html.escape(desc)}">' +
             f'<link rel="canonical" href="{SITE}{url}"><meta property="og:title" content="{html.escape(title.split("｜")[0])}">'
             f'<meta property="og:image" content="{SITE}/og-v10.png"><meta property="og:url" content="{SITE}{url}">')
@@ -399,7 +400,7 @@ def main():
             ["予算で街さがし", "/sagasu"], ["家を売る前に", "/uru"], ["ふるさと納税", "/furusato"], ["値下がりした日用品", "/nesage"]]
     c = copy.deepcopy(base)
     c["nav"] = [{"t": "おでかけ", "ic": "now", "href": "/odekake"}, {"t": "家と土地", "ic": "find", "href": "/fudosan-list"}, {"t": "おかいもの", "ic": "yen", "href": "/okaimono"}, {"t": "地図", "ic": "map", "a": "map"}]
-    c["menu"] = {"k": "Life Note", "items": [["トップ", "/", 1], ["関東のおでかけ", "/odekake"], ["家と土地の相場", "/fudosan-list"], ["日用品の値段くらべ", "/okaimono"], ["開店・閉店", "/kaiten"], ["紅葉・イルミ", "/koyo"]]}
+    c["menu"] = {"k": "Life Note", "items": [["トップ", "/", 1], ["おでかけ", "/odekake"], ["家と土地", "/fudosan-list"], ["おかいもの", "/okaimono"], ["開店・閉店", "/kaiten"]]}
     c["foot"] = "おでかけの券・宿と、おかいもののリンクには広告（PR）があります。"
     # 11/19 23:16 owner「表紙ほぼおでかけ」「Appleっぽくもない」→ 関西と同じ apple.com の形（cover2.js）。地図は表紙に置かない
     RK = {"koyo": 0, "flower": 1, "spot": 2, "animal": 3, "play": 4}
@@ -430,7 +431,7 @@ def main():
     hero = pick_ph(lambda x: True, 5)
     ko = (pick_ph(lambda x: x.get("k") == "koyo" and x.get("im") not in {q["im"] for q in hero}, 1) or pick_ph(lambda x: x.get("k") == "koyo", 1) or [None])[0]
     c["nav"] = [{"t": "おでかけ", "ic": "now", "href": "/odekake"}, {"t": "家と土地", "ic": "find", "href": "/fudosan-list"}, {"t": "おかいもの", "ic": "yen", "href": "/okaimono"}, {"t": "開店閉店", "ic": "buy", "href": "/kaiten"}]
-    c["menu"] = {"k": "Life Note", "items": [["トップ", "/", 1], ["関東のおでかけ", "/odekake"], ["家と土地の相場", "/fudosan-list"], ["日用品の値段くらべ", "/okaimono"], ["開店・閉店", "/kaiten"], ["ふるさと納税", "/furusato"]]}
+    c["menu"] = {"k": "Life Note", "items": [["トップ", "/", 1], ["おでかけ", "/odekake"], ["家と土地", "/fudosan-list"], ["おかいもの", "/okaimono"], ["開店・閉店", "/kaiten"]]}
     write("index.html", "/", "LIFE NOTE（ライフノート）｜関東のおでかけと、家と土地の値段", c,
           {"od": {"n": len(now), "ph": hero}, "ie": {"n": towns, "tw": tw}, "kau": {"n": nkau, "ks": ks},
            "kai": {"n": sum(1 for x in ktl if x["w"] == "soon"), "x": ka}, "ko": ko,

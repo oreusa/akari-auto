@@ -16,10 +16,11 @@ function head(h,s){return '<h2>'+h+'</h2><p class="s">'+s+'</p>'}
 
 var RN=(S_.reg&&S_.reg.n)||"関西",od=D.od,ie=D.ie,ka=D.kau,kai=D.kai,h="";
 /* 1 おでかけ：開催中の写真が静かに切り替わる */
-var ph=od.ph||[];
+var ph=od.ph||[],SL=document.documentElement.classList.contains("iro");/* 見本 ?iro=1 の時だけ横にめくる形 */
 h+='<section class="c3u">'+head(RN+'のおでかけ','いま開催中のイベントが<b>'+od.n+'</b>件。<br>毎朝、公式の発表から集めています。')+btns(['開催中を見る','/odekake'],['今週末','/odekake#we'])+
-  (ph.length?'<a class="c3v c3ph" id="c3ph" href="'+(ph[0].o?'/o/'+ph[0].o:'/odekake')+'">'+ph.map(function(x,i){return '<img src="'+img(x)+'" alt="" '+(i?'loading="lazy"':'fetchpriority="high"')+' decoding="async" style="background-color:'+avg(x.th)+'"'+(i?'':' class="on"')+'>'}).join("")+
-  '</a><p class="c3cap" id="c3cap">'+esc(ph[0].t)+'<span>'+esc(ph[0].p)+'・'+left(ph[0].e)+'</span></p>':'')+'</section>';
+  (SL?(ph.length?'<div class="c3sl"><div class="c3tr" id="c3tr">'+ph.map(function(x,i){return '<a class="c3sd'+(i?'':' on')+'" href="'+(x.o?'/o/'+x.o:'/odekake')+'"><img src="'+img(x)+'" alt="" '+(i?'loading="lazy"':'fetchpriority="high"')+' decoding="async" style="background-color:'+avg(x.th)+'"><span class="c3sc"><b>'+esc(x.t)+'</b><small>'+esc(x.p)+'・'+left(x.e)+'</small></span></a>'}).join("")+
+  '</div><div class="c3dt" id="c3dt">'+ph.map(function(_,i){return '<i'+(i?'':' class="on"')+'></i>'}).join("")+'</div></div>':''):(ph.length?'<a class="c3v c3ph" id="c3ph" href="'+(ph[0].o?'/o/'+ph[0].o:'/odekake')+'">'+ph.map(function(x,i){return '<img src="'+img(x)+'" alt="" '+(i?'loading="lazy"':'fetchpriority="high"')+' decoding="async" style="background-color:'+avg(x.th)+'"'+(i?'':' class="on"')+'>'}).join("")+
+  '</a><p class="c3cap" id="c3cap">'+esc(ph[0].t)+'<span>'+esc(ph[0].p)+'・'+left(ph[0].e)+'</span></p>':''))+'</section>';
 /* 2 家と土地：地価がいちばん上がった街 */
 var tw=ie.tw||[];
 h+='<section class="c3u g">'+head('家と土地の値段',RN+(ie.n||'')+'の街の、実際に売れた値段と<br>住宅地の地価の動き。')+btns(['街をさがす','/fudosan-list'],['いくらで売れる？','/ikura'])+
@@ -37,10 +38,19 @@ h+='<section class="c3u">'+head('開店・閉店ニュース',RN+'で、これ�
 function tile(t,s,u,p){return '<a class="c3t" href="'+u+'">'+(p?'<img src="'+img(p)+'" alt="" loading="lazy" decoding="async" style="background-color:'+avg(p.th)+'">':'')+'<span><b>'+t+'</b><small>'+s+'</small><i>見る</i></span></a>'}
 h+='<div class="c3tg"><a class="c3t c3il" href="/illumination"><div class="c3bk" aria-hidden="true">'+Array.apply(null,Array(42)).map(function(_,i){var r=function(k){return ((i+1)*k*9301+49297)%233280/233280};return '<em style="--x:'+(r(7)*100).toFixed(1)+'%;--y:'+(30+r(13)*68).toFixed(1)+'%;--s:'+(i%7?6+r(17)*16:34+r(19)*30).toFixed(0)+'px;--d:'+(r(23)*5).toFixed(1)+'s;--h:'+(i%9?36+r(29)*12:i%2?205:340).toFixed(0)+';--o:'+(i%7?.9:.45)+'"></em>'}).join("")+'</div><span><b>イルミネーション</b><small>'+RN+'の光のイベント</small><i>見る</i></span></a>'+tile('紅葉','見ごろの名所','/koyo',D.ko)+'</div>';
 /* 6 すべてのページ（apple.com の一番下の一覧の形） */
-h+='<nav class="c3f" aria-label="すべてのページ">'+D.ft.map(function(g){return '<div><h3>'+esc(g[0])+'</h3>'+g[1].map(function(a){return '<a href="'+a[1]+'">'+esc(a[0])+'</a>'}).join("")+'</div>'}).join("")+
-  '<div><h3>'+esc((S_.reg&&S_.reg.brand)||"TOWN NOTE")+'</h3>'+D.sns.map(function(s){return '<a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a>'}).join("")+'</div></nav>';
+h+='<nav class="c3f" aria-label="すべてのページ">'+D.ft.map(function(g,i){return '<div class="c3g c3g'+i+'"><h3>'+esc(g[0])+'</h3>'+g[1].map(function(a){return '<a href="'+a[1]+'">'+esc(a[0])+'</a>'}).join("")+'</div>'}).join("")+
+  '<div class="c3g c3gs"><h3>'+esc((S_.reg&&S_.reg.brand)||"TOWN NOTE")+'</h3>'+D.sns.map(function(s){return '<a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a>'}).join("")+'</div></nav>';
 S_.main.innerHTML='<div class="c3">'+h+'</div>';
 
+/* 11/20 owner「ここスライドでも良かった・お洒落に」：写真は指で横にめくる。5秒ごとに次へ（触っている間・動きを減らす設定の人は止める） */
+var tr=$("#c3tr");
+if(tr){var sds=$$(".c3sd",tr),dts=$$("#c3dt i"),cur=0,tm=null,hold=0;
+  var mark=function(){var c=tr.scrollLeft+tr.clientWidth/2,best=0,bd=1e9;sds.forEach(function(e,k){var d=Math.abs(e.offsetLeft+e.offsetWidth/2-c);if(d<bd){bd=d;best=k}});cur=best;sds.forEach(function(e,k){e.classList.toggle("on",k===cur)});dts.forEach(function(e,k){e.classList.toggle("on",k===cur)})};
+  var go=function(k){var e=sds[k];if(e)tr.scrollTo({left:e.offsetLeft-(tr.clientWidth-e.offsetWidth)/2,behavior:RM?"auto":"smooth"})};
+  var rf=0;tr.addEventListener("scroll",function(){if(!rf)rf=requestAnimationFrame(function(){rf=0;mark()})},{passive:true});
+  tr.addEventListener("touchstart",function(){hold=1},{passive:true});tr.addEventListener("touchend",function(){setTimeout(function(){hold=0},2500)},{passive:true});
+  dts.forEach(function(d,k){d.addEventListener("click",function(){go(k)})});
+  if(!RM&&sds.length>1)new IntersectionObserver(function(es){if(es[0].isIntersecting){if(!tm)tm=setInterval(function(){if(!hold&&!document.hidden)go(cur+1<sds.length?cur+1:0)},5000)}else{clearInterval(tm);tm=null}}).observe(tr)}
 /* 写真が静かに切り替わる（動きを減らす設定の人は切り替えない） */
 var box=$("#c3ph");
 if(box&&ph.length>1&&!RM){var ims=$$("img",box),cap=$("#c3cap"),i=0,tm=null;
