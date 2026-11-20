@@ -55,6 +55,8 @@ function counts(root){$$("[data-n]",root).forEach(function(b){b.textContent=fmt(
 var bio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){bio.unobserve(e.target);e.target.style.transform="scaleX("+e.target.dataset.w+")"}})});
 function bars(root){$$("[data-w]",root).forEach(function(b){if(RM)b.style.transform="scaleX("+b.dataset.w+")";else bio.observe(b)})}
 
+/* 11/20 ページの下の一覧（HTML のまま・検索用にも）を、足（.ft）の上へ */
+(function(){var ix=document.querySelector("body>.ix"),ft=app.querySelector(".ft");if(ix&&ft)ft.parentNode.insertBefore(ix,ft)})();
 /* ---- 下から出る板 ---- */
 /* 11/20 #app の中だと上の題の帯（#tb）が板より上に来て、MENU や板の上の方を押すと後ろが動いた → 板は body の直下へ */
 ["#sh","#mu"].forEach(function(q){var e=$(q);if(e)document.body.appendChild(e)});

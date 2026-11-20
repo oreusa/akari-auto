@@ -10,6 +10,8 @@ R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = os.path.join(R, "site")
 SITE = "https://kanto.townnote.app"
 TPL = open(os.path.join(R, "scripts", "shin", "page.tpl.html"), encoding="utf-8").read()
+sys.path.insert(0, os.path.join(R, "scripts", "shin"))
+from ix import ix_html as IX
 JST = datetime.timezone(datetime.timedelta(hours=9))
 TD = datetime.datetime.now(JST).date().isoformat()
 J = lambda o: json.dumps(o, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
@@ -102,6 +104,8 @@ def items():
             if v.get(k) and k not in it: it[k] = v[k]
         if v.get("vn") and not it.get("v"): it["v"] = v["vn"]
         if it.get("im") in phh: it["th"] = phh[it["im"]]
+        _oid = hashlib.md5(re.sub(r"\s+", "", name).encode()).hexdigest()[:8]  # 11/20 イルミ・紅葉のカードからも1件ページへ（関西の fin と同じ）
+        if "o" not in it and _oid in opages: it["o"] = _oid
         g = None
         if pl:
             g = geo.get(f"{it['p']}｜{pl} {it['p']}") or next((gv for gk, gv in geo.items() if gk.startswith(f"{it['p']}｜{pl}")), None)
@@ -216,6 +220,8 @@ def write(fname, url, title, cfg, data, js, desc):
             f'<meta property="og:image" content="{SITE}/og-v10.png"><meta property="og:url" content="{SITE}{url}">')
     page = (TPL.replace("__TITLE__", html.escape(title)).replace("__HEAD__", head).replace("__CFG__", J(cfg)).replace("__DATA__", J(data))
             .replace("__CV__", ver("shin.css")).replace("__JV__", ver("shin.js")).replace("__PAGE__", js).replace("__PV__", ver(js + ".js")))
+    # 11/20 検索の機械にも中身とリンクが見えるように、ページの下の「一覧」を HTML のまま（scripts/shin/ix.py・関西と同じ）
+    page = page.replace('<div id="app"></div>', '<div id="app"></div>' + IX(fname[:-5], data, S), 1)
     dst = os.path.join(S, fname)
     if os.path.exists(dst):
         old = open(dst, encoding="utf-8").read()
