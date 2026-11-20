@@ -2955,6 +2955,54 @@
       "note": "大泉町｜ブラジルなど世界の屋台が並ぶ、今年最後の回。11:00〜16:00",
       "url": "https://www.oizumimachi-kankoukyoukai.jp/event/416",
       "checked": "2026-11-19"
+    },
+    {
+      "title": "竜神峡 紅葉まつり",
+      "pref": "茨城",
+      "place": "竜神大吊橋",
+      "when": "11/1〜11/30",
+      "start": "2026-11-01",
+      "ends": "2026-11-30T17:00",
+      "free": false,
+      "note": "常陸太田市｜竜神大吊橋から谷の紅葉。8:30〜17:00、大人320円",
+      "url": "https://ohtsuribashi.ryujinkyo.jp/",
+      "checked": "2026-11-20"
+    },
+    {
+      "title": "第14回ぐんまフランス祭2026",
+      "pref": "群馬",
+      "place": "群馬県庁",
+      "when": "11/20〜11/22",
+      "start": "2026-11-20",
+      "ends": "2026-11-22T17:00",
+      "free": false,
+      "note": "前橋市｜県庁1階県民ホール・県民広場にフランスの食と雑貨が並ぶ。10:00〜18:00（22日は17:00まで）",
+      "url": "https://www.fj-de-gunma.com/",
+      "checked": "2026-11-20"
+    },
+    {
+      "title": "八坂神社 太々神楽（11月）",
+      "pref": "栃木",
+      "place": "八坂神社 宇都宮市今泉",
+      "when": "11/23",
+      "start": "2026-11-23",
+      "ends": "2026-11-23T15:00",
+      "free": true,
+      "note": "宇都宮市｜勤労感謝の日に神楽の奉納。10:00〜15:00、無料",
+      "url": "https://www.utsunomiya-cvb.org/event/detail_20014.html",
+      "checked": "2026-11-20"
+    },
+    {
+      "title": "根岸森林公園の紅葉",
+      "pref": "神奈川",
+      "place": "根岸森林公園",
+      "when": "11月中旬〜12月下旬",
+      "start": "2026-11-15",
+      "ends": "2026-12-27T17:00",
+      "free": true,
+      "note": "横浜市中区｜競馬場跡の広い芝生にケヤキ・イチョウが色づく。入園無料",
+      "url": "https://www.hama-midorinokyokai.or.jp/park/negishi/",
+      "checked": "2026-11-20"
     }
   ]
 }
