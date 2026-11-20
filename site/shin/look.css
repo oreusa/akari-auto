@@ -239,3 +239,50 @@ html.lk.lk-a.lk-d.lk-e .c3sl{position:relative}
 html.lk.lk-a.lk-d.lk-e .c3dt{position:absolute;top:14px;right:16px;padding:6px 8px!important;border-radius:99px;background:rgba(0,0,0,.28);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);gap:5px!important}
 html.lk.lk-a.lk-d.lk-e .c3dt i{width:5px;height:5px;background:rgba(255,255,255,.5)!important}
 html.lk.lk-a.lk-d.lk-e .c3dt i.on{width:16px;background:#fff!important}
+
+/* ==== F 光と動き（21:12 owner「僕のお洒落ってもうわかるんだよね？」）lk-f は lk-a lk-d lk-e も付く ====
+   地はほとんど白（光はすみに少しだけ・琥珀と青緑）。お洒落は動きと光で出す（look.js の F） */
+html.lk-f{background:#F8F8FA!important}
+html.lk-f .lk-bg i{opacity:0!important}
+html.lk-f .lk-bg i:nth-child(1){opacity:.55!important;width:70vmax;height:70vmax;left:-30vmax;top:-34vmax;background:radial-gradient(circle,rgba(43,179,163,.35) 0,rgba(43,179,163,0) 60%)!important}
+html.lk-f .lk-bg i:nth-child(2){opacity:.55!important;width:70vmax;height:70vmax;right:-34vmax;top:-20vmax;background:radial-gradient(circle,rgba(246,198,107,.4) 0,rgba(246,198,107,0) 60%)!important}
+html.lk-f .lk-bg b{opacity:.035}
+html.lk-f.nt{background:#070A14!important}
+html.lk-f.nt .lk-bg i:nth-child(1),html.lk-f.nt .lk-bg i:nth-child(2){opacity:.5!important}
+html.lk-f .fin,html.lk-f .mc,html.lk-f .qr,html.lk-f .ls,html.lk-f .tb,html.lk-f .yh a,html.lk-f .go2,html.lk-f .cmpt,html.lk-f .faq,html.lk-f .tiles,html.lk-f .rk,html.lk.lk-a.lk-d.lk-e.lk-f .c3v.c3st,html.lk.lk-a.lk-d.lk-e.lk-f .c3v.c3ks,html.lk.lk-a.lk-d.lk-e.lk-f .c3v.c3kc{background:rgba(255,255,255,.82)!important;border:1px solid rgba(0,0,0,.06)!important;box-shadow:0 1px 2px rgba(0,0,0,.03),0 16px 36px -24px rgba(0,0,0,.28)!important}
+html.lk-f.nt .fin,html.lk-f.nt .mc,html.lk-f.nt .qr,html.lk-f.nt .ls,html.lk-f.nt .tb,html.lk-f.nt .yh a,html.lk-f.nt .go2,html.lk-f.nt .cmpt,html.lk-f.nt .faq,html.lk-f.nt .tiles,html.lk-f.nt .rk,html.lk.lk-a.lk-d.lk-e.lk-f.nt .c3v.c3st,html.lk.lk-a.lk-d.lk-e.lk-f.nt .c3v.c3ks,html.lk.lk-a.lk-d.lk-e.lk-f.nt .c3v.c3kc{background:rgba(20,26,40,.7)!important;border-color:rgba(255,255,255,.08)!important;box-shadow:0 16px 36px -22px rgba(0,0,0,.8)!important}
+html.lk-f #tb,html.lk-f .sk-tb{background:rgba(248,248,250,.94)!important}
+/* ①触ると光るふち（指の所から広がる） */
+html.lk-f .mc,html.lk-f .c3v,html.lk-f .qr a,html.lk-f .ls a,html.lk-f .fin,html.lk-f .go,html.lk-f .go2,html.lk-f .c3t,html.lk-f .cmpt,html.lk-f .tb,html.lk-f .yh a,html.lk-f .c3b a,html.lk-f .rk li,html.lk-f .vd,html.lk-f .faq details{position:relative}
+html.lk-f .lt::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:2px;pointer-events:none;z-index:3;background:radial-gradient(200px circle at var(--mx) var(--my),#F6C66B,#2BB3A3 40%,rgba(58,134,200,0) 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:lklt 1.5s ease-out forwards}
+html.lk-f .lt{isolation:isolate}html.lk-f .lt::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;background:radial-gradient(220px circle at var(--mx) var(--my),rgba(246,198,107,.3),rgba(43,179,163,.14) 45%,transparent 70%);animation:lklt 1.5s ease-out forwards}
+@keyframes lklt{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+/* ③題に光が流れる（1回だけ） */
+html.lk-f .shine{background-image:linear-gradient(100deg,var(--ink,#1D1D1F) 0 42%,#F6C66B 48%,#2BB3A3 52%,var(--ink,#1D1D1F) 58% 100%);background-size:260% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:lksh 1.8s cubic-bezier(.2,.7,.2,1) .1s forwards}
+@keyframes lksh{to{background-position:0 0}}
+/* ④写真：今の1枚がゆっくり寄る・流すと奥行き */
+html.lk-f .c3sd img,html.lk-f .c3t img,html.lk-f .c3kc .im img{transform:translateY(var(--py,0)) scale(1.1);transition:transform .2s linear}
+html.lk-f .c3sd.on img{animation:lkkb 9s ease-out forwards}
+@keyframes lkkb{from{scale:1}to{scale:1.06}}
+@media (prefers-reduced-motion:reduce){html.lk-f .shine{animation:none;-webkit-text-fill-color:currentColor;background:none}html.lk-f .c3sd.on img{animation:none}}
+/* F の上の帯：Stripe 型のメッシュグラデーション。はっきりした色（琥珀・橙・桃・青緑・空色）が重なってゆっくり流れ、下は斜めに切って白へ */
+.lk-hero{position:absolute;left:0;right:0;top:0;height:min(64vh,560px);z-index:-1;overflow:hidden;pointer-events:none;clip-path:polygon(0 0,100% 0,100% 74%,0 100%);background:#FFD9A8}
+.lk-hero i{position:absolute;border-radius:50%;filter:blur(48px);will-change:transform;mix-blend-mode:normal}
+.lk-hero i:nth-child(1){width:90vw;height:90vw;max-width:700px;max-height:700px;left:-25vw;top:-30vw;background:#FFB65C;animation:lkh1 14s ease-in-out infinite alternate}
+.lk-hero i:nth-child(2){width:80vw;height:80vw;max-width:640px;max-height:640px;right:-30vw;top:-20vw;background:#2EC4B6;animation:lkh2 17s ease-in-out infinite alternate}
+.lk-hero i:nth-child(3){width:70vw;height:70vw;max-width:560px;max-height:560px;left:20vw;top:10vh;background:#F6A6C8;animation:lkh3 19s ease-in-out infinite alternate}
+.lk-hero i:nth-child(4){width:60vw;height:60vw;max-width:480px;max-height:480px;right:-10vw;top:22vh;background:#6FB7F0;opacity:.85;animation:lkh1 21s ease-in-out infinite alternate-reverse}
+.lk-hero i:nth-child(5){width:70vw;height:70vw;max-width:520px;max-height:520px;left:-20vw;top:26vh;background:#FF8A5B;opacity:.8;animation:lkh2 23s ease-in-out infinite alternate-reverse}
+.lk-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,0) 40%,rgba(248,248,250,.0) 70%)}
+@keyframes lkh1{to{transform:translate(22vw,8vh) scale(1.15)}}
+@keyframes lkh2{to{transform:translate(-20vw,10vh) scale(.9)}}
+@keyframes lkh3{to{transform:translate(-14vw,-8vh) scale(1.2)}}
+@media (prefers-reduced-motion:reduce){.lk-hero i{animation:none}}
+html.lk-f .lk-bg{display:none}
+html.lk-f.nt .lk-hero{background:#120E1C}
+html.lk-f.nt .lk-hero i{opacity:.45}
+html.lk-f.nt .lk-hero::after{background:linear-gradient(180deg,rgba(7,10,20,.25),rgba(7,10,20,.1))}
+/* 帯の上の字は濃く・帯の上のボタンはガラスに */
+html.lk-f .top,html.lk-f .tg{background:transparent!important}
+html.lk.lk-a.lk-d.lk-e.lk-f .c3u:first-child .s{color:rgba(29,29,31,.78)!important}
+html.lk.lk-a.lk-d.lk-e.lk-f.nt .c3u:first-child .s{color:rgba(245,245,247,.8)!important}
