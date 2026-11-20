@@ -56,6 +56,8 @@ var bio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInte
 function bars(root){$$("[data-w]",root).forEach(function(b){if(RM)b.style.transform="scaleX("+b.dataset.w+")";else bio.observe(b)})}
 
 /* ---- 下から出る板 ---- */
+/* 11/20 #app の中だと上の題の帯（#tb）が板より上に来て、MENU や板の上の方を押すと後ろが動いた → 板は body の直下へ */
+["#sh","#mu"].forEach(function(q){var e=$(q);if(e)document.body.appendChild(e)});
 var sh=$("#sh"),shc=$("#shc"),shOpen=false;
 function sheet(html,from,after){var go2=function(){shc.innerHTML=html;$(".pn",sh).scrollTop=0;sh.classList.add("op");sh.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";counts(shc);bars(shc);if(after)after(shc)};
   if(!shOpen)history.pushState({sh:1},"");shOpen=true;
@@ -79,7 +81,7 @@ nav.addEventListener("click",function(e){var b=e.target.closest("[data-a]");if(!
 function navCur(a){$$("#nav [data-a]").forEach(function(b){b.classList.toggle("cur",b.dataset.a===a)})}
 /* 11/19 下へ流す間だけ隠し、指を止めたら（0.8秒）すぐ戻す。押した後に勝手に動いた時もバーが消えたままにならない */
 var nvT;addEventListener("scroll",function(){var y=scrollY;if(Math.abs(y-ly)>8){nav.classList.toggle("hide",y>ly&&y>300);ly=y}clearTimeout(nvT);nvT=setTimeout(function(){nav.classList.remove("hide")},800)},{passive:true});
-var mu=$("#mu");$("#mnb").onclick=function(){mu.classList.add("op")};$(".bk",mu).onclick=function(){mu.classList.remove("op")};
+/* 11/20 子のページ（1件・府県・ランキングなど）は親の行に印 */(function(){if(document.querySelector(".mu li a.here"))return;var P0=location.pathname.replace(/\.html$/,""),b=null,bl=0;Array.prototype.forEach.call(document.querySelectorAll(".mu li a"),function(a){var u=a.getAttribute("href");if(!u||u.charAt(0)!=="/"||u==="/")return;var v=u.replace(/\/$/,"");if(P0.indexOf(v)===0&&v.length>bl){b=a;bl=v.length}});if(!b&&/^\/o\//.test(P0))b=document.querySelector('.mu li a[href="/odekake"]');if(b)b.classList.add("here")})();/* 11/20 owner「メニューを触ろうとすると後ろが反応する」：開いている間は後ろのページを動かさない */var mu=$("#mu"),mo=function(o){mu.classList.toggle("op",o);document.documentElement.style.overflow=document.body.style.overflow=o?"hidden":""};$("#mnb").onclick=function(){mo(true)};$(".bk",mu).onclick=function(){mo(false)};mu.addEventListener("touchmove",function(e){var p=$(".pn",mu);if(!p.contains(e.target)||p.scrollHeight<=p.clientHeight+1)e.preventDefault()},{passive:false});mu.addEventListener("wheel",function(e){var p=$(".pn",mu);if(!p.contains(e.target)||p.scrollHeight<=p.clientHeight+1)e.preventDefault()},{passive:false});addEventListener("keydown",function(e){if(e.key==="Escape"&&mu.classList.contains("op"))mo(false)});addEventListener("pageshow",function(){mo(false)});
 
 /* ---- 府県の玉（選んだ所へ滑る・周りを光が回る） ---- */
 function seg(box,list,cur,on){box.innerHTML='<i class="pill"></i>'+list.map(function(p){return '<button data-v="'+esc(p[0])+'">'+esc(p[1])+'</button>'}).join("");
