@@ -67,6 +67,19 @@ KINDS = lambda its: {k: v for k, v in KG.items() if any(x.get("k") == k for x in
 norm = lambda s: re.sub(r"[\s　・／/「」『』]", "", s or "")
 
 
+# 11/20 関西のカードには「何が見られるか」の一言（hk）があり、関東には無かった → note（公式で確かめた文）から、
+# 時刻・料金・休み・日付・場所だけの文を除いた、短い説明の1文を一言にする（関西の hk と同じ長さ 6〜26字）
+_HTM = re.compile(r"\d{1,2}:\d\d|\d{1,2}時(?!間)|日没|終日")
+_HBAD = re.compile(r"\d[\d,]*円|無料|休み|休館|休園|休室|予約|日時指定|先着|公式|変わ|中止|駐車|駅から|歩いて|必要|要ります|\d+/\d+|\d+月\d+日|※|^第\d+回$|\d+階$|中心$")
+def hk_of(ds, t=""):
+    for sg in [x.strip() for x in (ds or "").split("。") if x.strip()]:
+        if "｜" in sg: sg = sg.split("｜", 1)[1].strip()
+        if _HTM.search(sg) or _HBAD.search(sg) or not 6 <= len(sg) <= 26: continue
+        if re.sub(r"\s", "", sg) in re.sub(r"\s", "", t) or (len(sg) <= 9 and sg[-3:] in t): continue
+        return sg
+    return ""
+
+
 def items():
     sp = rd("data", "page-spots.json")["items"]
     mh = rd("site", "assets", "mihon.json") if os.path.exists(os.path.join(S, "assets", "mihon.json")) else {}
@@ -109,6 +122,7 @@ def items():
         it = {"t": t, "u": u, "p": p, "s": s or TD, "e": e, "a": x.get("place", ""), "v": x.get("place", ""), "k": kind(t, x.get("note", ""))}
         if x.get("free"): it["f"] = 1
         if x.get("note"): it["ds"] = x["note"]
+        if x.get("note") and hk_of(x["note"], t): it["hk"] = hk_of(x["note"], t)
         if x.get("opennote"): it["h"] = x["opennote"]
         enrich(it, t, x.get("place", ""))
         oid = hashlib.md5(key.encode()).hexdigest()[:8]
@@ -134,8 +148,15 @@ MENUS = {
 _PMF = os.path.join(R, "data", "photo_m.json")
 try: _PM = json.load(open(_PMF, encoding="utf-8"))
 except Exception: _PM = {}
+# 11/20 暗い昼の写真（木陰の寺など）を「夜の写真」と取り違えていた → 暗い所の割合・上の方（空）の暗さ・青空の割合も量る
+def NIGHT(px):
+    lum = [0.299*r + 0.587*g + 0.114*b for r, g, b in px]; top = lum[:64*12]
+    return [round(sum(v < 35 for v in lum)/len(lum), 2), round(sum(v < 40 for v in top)/len(top), 2),
+            round(sum(1 for r, g, b in px[:64*12] if b > r + 15 and b > 110)/len(top), 2)]
+def IS_NIGHT(m):
+    return (m[4] >= .5 or (m[5] >= .35 and m[6] < .2)) if len(m) > 6 else m[0] < 75
 def PHM(f):
-    if f in _PM and len(_PM[f]) > 3: return _PM[f]
+    if f in _PM and len(_PM[f]) > 6: return _PM[f]
     try:
         import colorsys
         from PIL import Image
@@ -147,6 +168,7 @@ def PHM(f):
             if sa > .35 and v > .25 and (h < .11 or h > .95): w += 1
             if sa > .25 and v > .2 and .17 < h < .45: gr += 1
         _PM[f] = [round(lum), round(w/len(px), 2), round(gr/len(px), 2), w0]
+        _PM[f] += NIGHT(px)
         json.dump(_PM, open(_PMF, "w", encoding="utf-8"))
         return _PM[f]
     except Exception:
@@ -157,7 +179,7 @@ def FIT(items, kind):
         if not m: continue
         lum, warm, green = m[:3]
         if len(m) > 3 and m[3] < 900: it["lo"] = 1
-        if kind == "illumination": it["ok"] = 2 if lum < 75 else -1
+        if kind == "illumination": it["ok"] = 2 if IS_NIGHT(m) else -1
         elif kind == "koyo": it["ok"] = 2 if warm >= .2 else (-1 if green >= .3 and warm < .1 else 0)
         if not it.get("ok"): it.pop("ok", None)
 
