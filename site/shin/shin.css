@@ -890,3 +890,21 @@ html body .big.big:has(>.w)>div:first-child{border-top:0!important}
 .ix{max-width:760px;margin:0 auto;padding:0 16px}.wrap .ix{padding:0;margin:36px 0 0}.ix details{border-top:1px solid var(--line)}.ix summary{cursor:pointer;list-style:none;padding:16px 0;font-size:14px;font-weight:700;color:var(--ink);display:flex;justify-content:space-between;align-items:center}.ix summary::-webkit-details-marker{display:none}.ix summary::after{content:"＋";font-weight:400;color:var(--sub)}.ix details[open] summary::after{content:"－"}.ix ul{list-style:none;margin:0;padding:0 0 8px}.ix li{border-top:1px solid var(--line);padding:11px 0;font-size:14px;line-height:1.5}.ix li a,.ix li b{color:var(--ink);text-decoration:none;font-weight:600}.ix li span{display:block;margin-top:2px;font-size:12px;color:var(--sub)}
 #app>.pre{display:none}
 .ixh{display:none}
+/* 11/20 owner「不動産・実家・空き家 ごっちゃ・バラバラ 整理して」：家と土地を3つの目的に（shin.js / skin.js の ieOrg・見本は ?seiri=1）。
+   上＝目的の切りかえ（枠は家と土地の色の細い線だけ・選んでいる所は白黒）、MENU＝3つの見出し */
+.topsg{display:flex;align-items:center;gap:12px;margin:0 0 10px}
+.topsg-k{flex:none;font:600 12px/1 var(--sans);letter-spacing:.04em;color:var(--sub)}
+.topsg-b{flex:1;min-width:0;display:flex;height:38px;padding:3px;border-radius:12px;border:1px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box}
+.topsg-b a{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;border-radius:9px;font:500 13px/1 var(--sans);letter-spacing:.01em;color:var(--sub);white-space:nowrap;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s}
+.topsg-b a.on{background:#1D1D1F;color:#fff;font-weight:600}
+.topsg-b a:not(.on):active{background:#F5F5F7}
+html.nt .topsg-k{color:#9AA3B5}
+html.nt .topsg-b{background:linear-gradient(#0A0E18,#0A0E18) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box}
+html.nt .topsg-b a{color:#B8C0D0}
+html.nt .topsg-b a.on{background:#F5F5F7;color:#0A0E18}
+.mu li.mg{display:flex;align-items:center;gap:8px;margin:20px 0 0;padding:0 0 4px;font:600 12px/1.2 var(--sans);letter-spacing:.08em;color:var(--sub)}
+.mu li.mg::before{content:"";width:14px;height:1.5px;border-radius:2px;background:linear-gradient(120deg,#2BB3A3,#3A86C8)}
+.mu li.mg:first-child{margin-top:10px}
+.mu li.mg~li a{padding:11px 0;font-size:17px}
+html.nt .mu li.mg{color:#9AA3B5}
+@media (max-width:370px){.topsg-k{display:none}.topsg-b a{font-size:12.5px;letter-spacing:0}}

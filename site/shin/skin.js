@@ -41,23 +41,59 @@ var OKA={nav:[["品物","find","/okaimono"],["値下がり","down","/nesage"],["
   k:"Shopping",menu:[["日用品の値段くらべ","/okaimono"],["値下がりした物","/nesage"],["お得な物","/otoku"],["ふるさと納税","/furusato"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["開店・閉店","/kaiten"],["トップへ","/"]]};
 var C=/^\/(okaimono|nesage|otoku|furusato|kaimawari|tanka)/.test(P)?OKA:/^\/(o|odekake|illumination|koyo|ima|tomari|hatsumode)\b/.test(P)?ODE:/^\/kaiten/.test(P)?KAI:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|koe|ranking|townnotes)/.test(P)?FUD:TOP;
 var here=function(u){return u.split("?")[0]===P.replace(/\.html$/,"")};
+/* 11/20 owner「不動産・実家・空き家 ごっちゃになる・バラバラすぎる 整理して」：家と土地のページを3つの目的に分ける。
+   上＝3つの目的の切りかえ（街の相場／売る・買う／実家・空き家）、下のバー＝今の目的のページだけ、MENU＝3つの見出しで全部。
+   関西・関東とも同じ物（関東に無いページ＝まちランキング は出さない。相談は 11/10 から関東も同じ）。
+   見本の間は ?seiri=1 の時だけ（この端末で覚える・?seiri=0 で外す）。 */
+function ieOrg(P,kt){
+  var on=false;try{var q=location.search.match(/[?&]seiri=([01])/);if(q)localStorage.setItem("tn_seiri",q[1]);on=localStorage.getItem("tn_seiri")==="1"}catch(e){}
+  if(!on)return null;
+  var p=P.replace(/\.html$/,"").replace(/\/index$/,"/");
+  if(!/^\/(fudosan-list|machi\/|chika-|ranking|uru|ikura|sagasu|moushikomi|gyosha|fudosan$|jikka|kaitai|akiya|shindan)/.test(p))return null;
+  var I={find:'<path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9.5 21v-6h5v6"/>',
+   rank:'<path d="M5 20V11M12 20V5M19 20v-6"/>',star:'<path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.3L12 16l-4.9 2.6 1.1-5.3-4-3.7 5.4-.6z"/>',
+   sell:'<path d="M3 12l9-8 9 8"/><path d="M6 10v10h12V10"/><path d="M10 15h4"/>',
+   tag:'<path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.6 8.6a1.2 1.2 0 0 1 0 1.7l-7 7a1.2 1.2 0 0 1-1.7 0z"/><circle cx="8" cy="8" r="1.6"/>',
+   key:'<circle cx="8" cy="15" r="4.2"/><path d="M11 12l8.5-8.5M16.5 6.5l2.5 2.5M14 9l2 2"/>',
+   chat:'<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/>',
+   note:'<path d="M6 3.5h10l3 3V20.5H6z"/><path d="M9 10h7M9 13.5h7M9 17h4"/>',
+   check:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12.5l2.7 2.7L16.5 9"/>',
+   calc:'<rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7.5h8M8.5 12h0M12 12h0M15.5 12h0M8.5 16h0M12 16h0M15.5 16h0"/>',
+   gift:'<rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18M12 9v11M12 9c-1.5-3-5-4-5-1.5S10 9 12 9zm0 0c1.5-3 5-4 5-1.5S14 9 12 9z"/>',
+   home:'<path d="M4 11l8-6 8 6v9H4z"/><path d="M9 20v-4.5h6V20"/><path d="M15.5 6.5V4h2v4"/>'};
+  var G=[{t:"街の相場",h:"街の相場をしらべる",u:"/fudosan-list",i:[["街の家と土地の相場","街の相場","find","/fudosan-list"],["地価ランキング","地価","rank",kt?"/chika-kanto":"/chika-kansai"]].concat(kt?[]:[["まちランキング","まち","star","/ranking"]])},
+   {t:"売る・買う",h:"売る・買う",u:"/uru",i:[["家を売る前に","売る前に","sell","/uru"],["いくらで売れる？","いくら？","tag","/ikura"],["家を買いたい","買いたい","key","/sagasu"],["売却・査定のご相談","相談する","chat","/moushikomi"]]},
+   {t:"実家・空き家",h:"実家・空き家",u:"/jikka/",i:[["実家・空き家ノート","ノート","note","/jikka/"],["3問でわかる実家の診断","診断","check","/jikka/shindan/"],["解体・片付けの費用","解体の費用","calc","/kaitai"],["解体の補助金ランキング","補助金","gift","/kaitai-ranking"],["空き家が多い街ランキング","空き家の街","home","/akiya-ranking"]]}];
+  var want="";try{want=new URLSearchParams(location.search).get("want")||""}catch(e){}
+  var g=/^\/(jikka|kaitai|akiya|shindan)/.test(p)||(/^\/moushikomi/.test(p)&&/片付|解体|実家|空き家/.test(want))?2:/^\/(uru|ikura|sagasu|moushikomi|gyosha|fudosan$)/.test(p)?1:0;
+  var cu=p==="/jikka/shindan/"||p==="/shindan"?"/jikka/shindan/":/^\/jikka\//.test(p)?"/jikka/":/^\/machi\//.test(p)?"/fudosan-list":/^\/kaitai-(?!ranking)./.test(p)?"/kaitai-ranking":/^\/chika-/.test(p)?(kt?"/chika-kanto":"/chika-kansai"):p;
+  var svg=function(k){return '<svg viewBox="0 0 24 24">'+I[k]+'</svg>'};
+  var seg='<nav class="topsg" aria-label="家と土地のページ"><div class="topsg-k">家と土地</div><div class="topsg-b">'+G.map(function(x,j){return '<a href="'+x.u+'"'+(j===g?' class="on" aria-current="true"':'')+'>'+x.t+'</a>'}).join("")+'</div></nav>';
+  var bi=G[g].i.slice(0,4),ci=G[g].i.filter(function(x){return x[3]===cu})[0];if(ci&&bi.indexOf(ci)<0)bi[3]=ci;
+  var nav=bi.map(function(x){return {t:x[1],ic:x[2],svg:svg(x[2]),href:x[3],cur:x[3]===cu}});
+  var menu=[];G.forEach(function(x){menu.push([x.h,"#"]);x.i.forEach(function(y){menu.push([y[0],y[3]].concat(y[3]===cu?[1]:[]))})});
+  return {g:g,seg:seg,nav:nav,menu:menu};
+}
+var IEO=C===FUD?ieOrg(P,KT):null;
+if(IEO){C={nav:IEO.nav.map(function(x){return [x.t,x.ic,x.href,x.svg,x.cur]}),k:FUD.k,menu:IEO.menu.map(function(m){return m.length>2||m[1]==="#"?m:[m[0],m[1],0]}),rel:FUD.rel};H.classList.add("ieo")}
 
 function build(){
   if(H.classList.contains("night"))H.classList.add("nt");
   var n=H.classList.contains("nt");
   var top=document.createElement("div");top.className="skc";
   top.innerHTML='<div class="wrap"><header class="top"><a class="brand" href="/" aria-label="トップへ"><img id="logo" src="'+(n?LG[1]:LG[0])+'" alt="'+BR+'"><b>'+BR+'</b></a>'+
-   '<button class="tg" id="tg" role="switch" aria-checked="'+n+'" aria-label="夜の画面にする"><i class="kn"></i><span class="su"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path class="sp" d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg></span><span class="mo"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></span></button></header></div>';
+   '<button class="tg" id="tg" role="switch" aria-checked="'+n+'" aria-label="夜の画面にする"><i class="kn"></i><span class="su"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path class="sp" d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg></span><span class="mo"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></span></button></header>'+(IEO?IEO.seg:'')+'</div>';
   document.body.insertBefore(top,document.body.firstChild);
   var sk=document.createElement("div");sk.className="skc";sk.id="sk";
   sk.innerHTML='<div id="sky" aria-hidden="true"><canvas id="stars"></canvas></div>'+
-   '<nav class="nav" id="nav" aria-label="すぐ移動">'+C.nav.map(function(x){return '<a href="'+x[2]+'"'+(here(x[2])?' class="cur"':'')+'>'+IC[x[1]]+'<span>'+x[0]+'</span></a>'}).join("")+'<button class="mn" id="mnb" aria-label="メニュー"><em></em><span>MENU</span></button></nav>'+
-   '<div class="mu" id="mu"><div class="bk"></div><div class="pn"><div class="k">'+C.k+'</div><ol>'+C.menu.map(function(m,i){return '<li><a href="'+m[1]+'"'+(here(m[1])?' class="here"':'')+' style="transition-delay:'+(60+i*40)+'ms"><small>0'+(i+1)+'</small>'+m[0]+'</a></li>'}).join("")+
+   '<nav class="nav" id="nav" aria-label="すぐ移動">'+C.nav.map(function(x){return '<a href="'+x[2]+'"'+((x.length>4?x[4]:here(x[2]))?' class="cur"':'')+'>'+(x[3]||IC[x[1]])+'<span>'+x[0]+'</span></a>'}).join("")+'<button class="mn" id="mnb" aria-label="メニュー"><em></em><span>MENU</span></button></nav>'+
+   '<div class="mu" id="mu"><div class="bk"></div><div class="pn"><div class="k">'+C.k+'</div><ol>'+(function(){var k=0;return C.menu.map(function(m){if(m[1]==="#")return '<li class="mg">'+m[0]+'</li>';k++;return '<li><a href="'+m[1]+'"'+((m.length>2?m[2]:here(m[1]))?' class="here"':'')+' style="transition-delay:'+(60+k*30)+'ms"><small>'+(k<10?'0':'')+k+'</small>'+m[0]+'</a></li>'}).join("")})()+
    '</ol><div class="rel">'+C.rel.map(function(r){return '<a href="'+r[1]+'">'+r[0]+'</a>'}).join("")+'</div></div></div>';
   document.body.appendChild(sk);
   /* 下のバー：下へ流す間だけ隠れ、止めたら戻る */
   var nav=$("#nav"),ly=scrollY,nvT;
   addEventListener("scroll",function(){var y=scrollY;if(Math.abs(y-ly)>8){nav.classList.toggle("hide",y>ly&&y>300);ly=y}clearTimeout(nvT);nvT=setTimeout(function(){nav.classList.remove("hide")},800)},{passive:true});
+  nav.addEventListener("click",function(e){var c=e.target.closest("a.cur");if(c&&c.pathname===location.pathname){e.preventDefault();scrollTo({top:0,behavior:RM?"auto":"smooth"})}});
   nav.addEventListener("pointerdown",function(e){var b=e.target.closest("a,button");if(!b)return;b.classList.remove("tap");void b.offsetWidth;b.classList.add("tap")});
   /* 11/20 子のページ（1件・府県・ランキングなど）は親の行に印 */(function(){if(document.querySelector(".mu li a.here"))return;var P0=location.pathname.replace(/\.html$/,""),b=null,bl=0;Array.prototype.forEach.call(document.querySelectorAll(".mu li a"),function(a){var u=a.getAttribute("href");if(!u||u.charAt(0)!=="/"||u==="/")return;var v=u.replace(/\/$/,"");if(P0.indexOf(v)===0&&v.length>bl){b=a;bl=v.length}});if(!b&&/^\/o\//.test(P0))b=document.querySelector('.mu li a[href="/odekake"]');if(b)b.classList.add("here")})();/* 11/20 owner「メニューを触ろうとすると後ろが反応する」：開いている間は後ろのページを動かさない */var mu=$("#mu"),mo=function(o){mu.classList.toggle("op",o);document.documentElement.style.overflow=document.body.style.overflow=o?"hidden":""};$("#mnb").onclick=function(){mo(true)};$(".bk",mu).onclick=function(){mo(false)};mu.addEventListener("touchmove",function(e){var p=$(".pn",mu);if(!p.contains(e.target)||p.scrollHeight<=p.clientHeight+1)e.preventDefault()},{passive:false});mu.addEventListener("wheel",function(e){var p=$(".pn",mu);if(!p.contains(e.target)||p.scrollHeight<=p.clientHeight+1)e.preventDefault()},{passive:false});addEventListener("keydown",function(e){if(e.key==="Escape"&&mu.classList.contains("op"))mo(false)});addEventListener("pageshow",function(){mo(false)});
   /* 大きい題 → 上の細い帯 */
