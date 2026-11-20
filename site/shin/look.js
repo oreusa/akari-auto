@@ -1,5 +1,5 @@
 /* 11/20 見た目の見本（look.css）：A は後ろの光のにじみ、どれも流すとふわっと出る */
-(function(){var H=document.documentElement;if(!H.classList.contains("lk")||window.__lk)return;window.__lk=1;
+(function(){var H=document.documentElement;try{var _p=location.search.match(/[?&]pal=([0-3])/);if(_p)localStorage.setItem("tn_pal",_p[1]);var _pv=localStorage.getItem("tn_pal");if(_pv&&_pv!=="0")H.classList.add("lk-p"+_pv)}catch(e){}if(!H.classList.contains("lk")||window.__lk)return;window.__lk=1;
 function go(){if(H.classList.contains("lk-a")&&!document.querySelector(".lk-bg")){var b=document.createElement("div");b.className="lk-bg";b.setAttribute("aria-hidden","true");b.innerHTML="<i></i><i></i><i></i><i></i><i></i><b></b>";document.body.insertBefore(b,document.body.firstChild)}
  if(matchMedia("(prefers-reduced-motion:reduce)").matches||!("IntersectionObserver" in window))return;
  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -6% 0px"});
