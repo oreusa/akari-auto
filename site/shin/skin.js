@@ -4,6 +4,8 @@
 (function(){
 "use strict";
 if(window.__sk)return;window.__sk=1;
+/* 11/20 owner「いいと思う」：分野ごとの色の線（iro）をふだんの見た目に。?iro=0 で外せる（この端末で覚える） */
+try{var _q=location.search.match(/[?&]iro=([01])/);if(_q)localStorage.setItem("tn_iro",_q[1]);if(localStorage.getItem("tn_iro")!=="0"){var _p=location.pathname,_f=/^\/(shin\/cover\d?)?$|^\/index/.test(_p)?"top":/kaiten/.test(_p)?"kai":/okaimono|furusato|nesage|otoku|tanka|kaimawari|shin\/kau/.test(_p)?"kau":/fudosan|ikura|uru|ranking|machi|jikka|chika|akiya|kaitai|sagasu|moushikomi|gyosha|koe|shin\/ie/.test(_p)?"ie":"od";document.documentElement.classList.add("iro");document.documentElement.setAttribute("data-f",_f)}}catch(e){}
 /* 11/19 owner「文字列おかしい」：日本語の見出し・文を意味の切れ目でだけ折り返す（BudouX） */
 (function(){var s=document.createElement("script");s.src="/shin/bx.js?v=1";s.defer=true;document.head.appendChild(s)})();
 var H=document.documentElement,P=location.pathname,RM=matchMedia("(prefers-reduced-motion:reduce)").matches;

@@ -62,6 +62,17 @@ html.nt .skc{--line:#222A3A}
 .skc #tb{position:fixed;left:0;right:0;top:0;z-index:40;height:44px;padding:0 60px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);font:600 15px/1 var(--sans);color:var(--ink);letter-spacing:-.005em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transform:translateY(-100%);transition:opacity .25s,transform .35s cubic-bezier(.2,.9,.25,1);pointer-events:none}
 .skc #tb.on{opacity:1;transform:none;pointer-events:auto}
 html.nt .skc #tb{background:rgba(10,14,24,.96)}
+html.iro .skc .nav .cur::before{width:22px;margin-left:-11px;background:var(--ga)}
+.skc .mu .rel:empty{display:none}
+html.iro .skc .mu .pn{overflow:hidden}
+html.iro .skc .mu .pn::before{display:none;content:"";position:absolute;left:-20%;right:-20%;top:-120px;height:220px;background:var(--ga,var(--g-top));filter:blur(60px);opacity:.14;pointer-events:none}
+html.iro .skc .mu .pn>*{position:relative}
+html.iro .skc .mu li a.here{color:#fff}
+html.iro .skc .mu li a::after{content:"";margin-left:auto;align-self:center;width:8px;height:8px;border-radius:9px;background:var(--md,transparent)}
+html.iro .skc .mu li a[href="/odekake"]{--md:var(--g-od);--mc:#FFAFCC}
+html.iro .skc .mu li a[href="/fudosan-list"]{--md:var(--g-ie);--mc:#A8D8FF}
+html.iro .skc .mu li a[href="/okaimono"]{--md:var(--g-kau);--mc:#B5EAD7}
+html.iro .skc .mu li a[href="/kaiten"]{--md:var(--g-kai);--mc:#CDB4FF}
 @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-24px,-40px,0)}}
 @keyframes pop{40%{transform:scale(.82)}100%{transform:scale(1)}}
 @keyframes ring{to{--ra:360deg}}

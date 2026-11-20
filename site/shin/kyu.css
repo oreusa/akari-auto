@@ -511,3 +511,17 @@ html.sk.nt[data-k] .fsn a span{color:var(--sub)!important}
 /* 11/20 夜：skin.css の色反転（前のページを夜にする仕組み）を kyu のページでは使わない。kyu は自分で夜の色を持つ */
 html.sk.night[data-k] body>*:not(.skc){filter:none!important}
 html.sk[data-k] body{color:var(--ink)}
+/* 11/20 見本v4「枠だけ」：owner 9:00「枠だけにするとか？」「白背景の最初の方が綺麗かも」。
+   地は白（夜は今の夜空）のまま・字もボタンの中も白黒のまま。色は 枠の細い線 だけ（分野ごとのグラデーションの線） */
+html.iro{--g-od:linear-gradient(120deg,#F6C66B,#F29E4C);--g-ie:linear-gradient(120deg,#2BB3A3,#3A86C8);--g-kau:linear-gradient(120deg,#5CCFA0,#B5DC6A);--g-kai:linear-gradient(120deg,#A98BFF,#F48CC8);--g-top:linear-gradient(110deg,#F6C66B,#F29E4C 30%,#A98BFF 55%,#3A86C8 78%,#2BB3A3)}
+html.iro[data-f=od]{--ga:var(--g-od);--gc:#F29E4C}html.iro[data-f=ie]{--ga:var(--g-ie);--gc:#2BB3A3}html.iro[data-f=kau]{--ga:var(--g-kau);--gc:#5CCFA0}html.iro[data-f=kai]{--ga:var(--g-kai);--gc:#A98BFF}html.iro[data-f=top]{--ga:var(--g-top);--gc:#A98BFF}
+/* 下のバーの今いる所：細い線 */
+html.iro .nav .cur::before{width:22px;margin-left:-11px;background:var(--ga)}
+/* 表紙：2つ目のボタン（枠のボタン）の枠を、その分野のグラデーションの線に */
+html.iro .c3>section:nth-of-type(1){--sg:var(--g-od)}html.iro .c3>section:nth-of-type(2){--sg:var(--g-ie)}html.iro .c3>section:nth-of-type(3){--sg:var(--g-kau)}html.iro .c3>section:nth-of-type(4){--sg:var(--g-kai)}
+html.iro .c3u .c3b a:not(.f){border:1.5px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--sg) border-box}
+html.iro .c3u.g .c3b a:not(.f){background:linear-gradient(#F5F5F7,#F5F5F7) padding-box,var(--sg) border-box}
+html.iro.nt .c3u .c3b a:not(.f){background:linear-gradient(#0A0E18,#0A0E18) padding-box,var(--sg) border-box}
+html.iro.nt .c3u.g .c3b a:not(.f){background:linear-gradient(#141a28,#141a28) padding-box,var(--sg) border-box}
+html.iro .c3u.k .c3b a:not(.f){background:linear-gradient(#000,#000) padding-box,var(--sg) border-box}
+/* 表紙の写真（今出ている1枚）に細い枠 */

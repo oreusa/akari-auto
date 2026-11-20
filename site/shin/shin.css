@@ -756,3 +756,62 @@ html.nt .fcg{background:rgba(255,255,255,.08)}
 .fno p{margin:8px 0 0;font-size:13px;line-height:1.8;color:var(--sub)}
 .fst{white-space:nowrap}
 .tiles:has(>button:nth-child(2):last-child){grid-template-columns:1fr 1fr}
+/* 11/20 見本v4「枠だけ」：owner 9:00「枠だけにするとか？」「白背景の最初の方が綺麗かも」。
+   地は白（夜は今の夜空）のまま・字もボタンの中も白黒のまま。色は 枠の細い線 だけ（分野ごとのグラデーションの線） */
+html.iro{--g-od:linear-gradient(120deg,#F6C66B,#F29E4C);--g-ie:linear-gradient(120deg,#2BB3A3,#3A86C8);--g-kau:linear-gradient(120deg,#5CCFA0,#B5DC6A);--g-kai:linear-gradient(120deg,#A98BFF,#F48CC8);--g-top:linear-gradient(110deg,#F6C66B,#F29E4C 30%,#A98BFF 55%,#3A86C8 78%,#2BB3A3)}
+html.iro[data-f=od]{--ga:var(--g-od);--gc:#F29E4C}html.iro[data-f=ie]{--ga:var(--g-ie);--gc:#2BB3A3}html.iro[data-f=kau]{--ga:var(--g-kau);--gc:#5CCFA0}html.iro[data-f=kai]{--ga:var(--g-kai);--gc:#A98BFF}html.iro[data-f=top]{--ga:var(--g-top);--gc:#A98BFF}
+/* 下のバーの今いる所：細い線 */
+html.iro .nav .cur::before{width:22px;margin-left:-11px;background:var(--ga)}
+/* 表紙：2つ目のボタン（枠のボタン）の枠を、その分野のグラデーションの線に */
+html.iro .c3>section:nth-of-type(1){--sg:var(--g-od)}html.iro .c3>section:nth-of-type(2){--sg:var(--g-ie)}html.iro .c3>section:nth-of-type(3){--sg:var(--g-kau)}html.iro .c3>section:nth-of-type(4){--sg:var(--g-kai)}
+html.iro .c3u .c3b a:not(.f){border:1.5px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--sg) border-box}
+html.iro .c3u.g .c3b a:not(.f){background:linear-gradient(#F5F5F7,#F5F5F7) padding-box,var(--sg) border-box}
+html.iro.nt .c3u .c3b a:not(.f){background:linear-gradient(#0A0E18,#0A0E18) padding-box,var(--sg) border-box}
+html.iro.nt .c3u.g .c3b a:not(.f){background:linear-gradient(#141a28,#141a28) padding-box,var(--sg) border-box}
+html.iro .c3u.k .c3b a:not(.f){background:linear-gradient(#000,#000) padding-box,var(--sg) border-box}
+/* 11/20 見本：表紙の写真を指で横にめくる（owner「ここスライドでも良かった・お洒落に」） */
+.c3sl{margin:32px -20px 0;position:relative}
+.c3tr{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.c3tr::-webkit-scrollbar{display:none}
+/* 11/20 owner「写真の周りはいらない」「最初くらい大きくしてそれをスライドに」：画面いっぱいの正方形・ふちも角の丸みも無し */
+.c3sd{position:relative;flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always;aspect-ratio:1/1;max-height:560px;overflow:hidden;text-decoration:none;color:#fff}
+.c3sd img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.c3sd::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.72))}
+.c3sc{position:absolute;z-index:1;left:20px;right:20px;bottom:18px;text-align:left}
+.c3sc b{display:block;font:600 19px/1.35 var(--sans);word-break:keep-all;text-wrap:balance}
+.c3sc small{display:block;margin-top:4px;font:400 13px/1.4 var(--sans);opacity:.86}
+.c3dt{display:flex;justify-content:center;gap:6px;padding:14px 0 34px}
+.c3dt i{width:6px;height:6px;border-radius:9px;background:var(--line);transition:width .4s,background .4s;cursor:pointer}
+.c3dt i.on{width:22px;background:var(--ink)}
+
+@media (min-width:800px){.c3sl{margin-left:auto;margin-right:auto;max-width:760px}.c3tr{border-radius:22px}.c3sd{aspect-ratio:16/10}}
+
+/* 11/20 見本：一番下の一覧を分野ごとのガラスのカードに（owner「今も好きだけど他にないか」） */
+html.iro .c3f{grid-template-columns:1fr 1fr;gap:10px;padding:30px 16px 0}
+html.iro .c3g{position:relative;padding:16px 16px 10px;border-radius:20px;background:#fff;border:1px solid transparent;background-clip:padding-box;box-shadow:none}
+html.iro .c3g::before{content:"";position:absolute;inset:-1px;border-radius:21px;padding:1px;background:var(--cg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:1;pointer-events:none}
+html.iro .c3g::after{content:"";position:absolute;z-index:-1;inset:20% 10% -10%;background:var(--cg);filter:blur(36px);opacity:0;border-radius:50%;display:none}
+html.iro .c3g0{--cg:var(--g-od);grid-column:1/-1}html.iro .c3g1{--cg:var(--g-ie);grid-column:1/-1}html.iro .c3g2{--cg:var(--g-kau)}html.iro .c3g3{--cg:var(--g-kai)}html.iro .c3gs{--cg:var(--g-top);grid-column:1/-1}
+html.iro .c3g0>a,html.iro .c3g1>a{display:inline-block;width:50%;vertical-align:top}
+html.iro .c3f h3{display:flex;align-items:center;gap:8px;margin:0 0 6px;font:600 13px/1.4 var(--sans);letter-spacing:.02em}
+html.iro .c3f h3::before{content:"";width:8px;height:8px;border-radius:9px;background:var(--cg);box-shadow:none}
+html.iro .c3g a{position:relative;padding:8px 14px 8px 0;font-size:13.5px;color:var(--ink);border-top:1px solid rgba(0,0,0,.06)}
+html.iro .c3g a::after{content:"›";position:absolute;right:8px;top:50%;transform:translateY(-52%);color:var(--sub);font-size:16px}
+html.iro .c3g h3+a,html.iro .c3g0>h3+a+a,html.iro .c3g1>h3+a+a{border-top:0}
+html.iro .c3g0>a:nth-of-type(odd),html.iro .c3g1>a:nth-of-type(odd){padding-right:22px}html.iro .c3g0>a:nth-of-type(odd)::after,html.iro .c3g1>a:nth-of-type(odd)::after{right:14px}html.iro .c3g0>a:nth-of-type(even),html.iro .c3g1>a:nth-of-type(even){padding-left:12px}
+html.iro .c3gs{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+html.iro .c3gs h3{width:100%}
+html.iro .c3gs a{border:1px solid var(--line);border-radius:999px;padding:8px 16px;flex:0 0 auto}
+html.iro .c3gs a::after{content:none}
+html.iro.nt .c3g{background:rgba(10,14,24,.6);box-shadow:none}
+html.iro.nt .c3g a{border-top-color:rgba(255,255,255,.08)}
+html.iro.nt .c3g::after{opacity:.12}
+html.iro .c3g2 a,html.iro .c3g3 a{font-size:12.5px;letter-spacing:-.01em;padding-right:12px}html.iro .c3g2 a::after,html.iro .c3g3 a::after{right:2px}
+/* 11/20 見本：MENU にも分野の光（今いる所はグラデーションの字・分野の入口は色の点） */
+.mu .rel:empty{display:none}
+html.iro .mu .pn{overflow:hidden}
+html.iro .mu .pn::before{display:none;content:"";position:absolute;left:-20%;right:-20%;top:-120px;height:220px;background:var(--ga,var(--g-top));filter:blur(60px);opacity:.14;pointer-events:none}
+html.iro .mu .pn>*{position:relative}
+html.iro .mu li a.here{color:#fff}
+html.iro .mu li a::after{content:"";margin-left:auto;align-self:center;width:8px;height:8px;border-radius:9px;background:var(--md,transparent)}
+html.iro .mu li a[href="/odekake"]{--md:var(--g-od);--mc:#FFAFCC}html.iro .mu li a[href="/fudosan-list"]{--md:var(--g-ie);--mc:#A8D8FF}html.iro .mu li a[href="/okaimono"]{--md:var(--g-kau);--mc:#B5EAD7}html.iro .mu li a[href="/kaiten"]{--md:var(--g-kai);--mc:#CDB4FF}
