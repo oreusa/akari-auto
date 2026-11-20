@@ -51,7 +51,7 @@ function ieOrg(P,kt){
   var p=P.replace(/\.html$/,"").replace(/\/index$/,"/");
   if(!/^\/(fudosan-list|machi\/|chika-|ranking|uru|ikura|sagasu|moushikomi|gyosha|fudosan$|jikka|kaitai|akiya|shindan)/.test(p))return null;
   var I={find:'<path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9.5 21v-6h5v6"/>',
-   rank:'<path d="M5 20V11M12 20V5M19 20v-6"/>',star:'<path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.3L12 16l-4.9 2.6 1.1-5.3-4-3.7 5.4-.6z"/>',
+   rank:'<path d="M5 20V11M12 20V5M19 20v-6"/>',pin:'<path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/>',star:'<path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.3L12 16l-4.9 2.6 1.1-5.3-4-3.7 5.4-.6z"/>',
    sell:'<path d="M3 12l9-8 9 8"/><path d="M6 10v10h12V10"/><path d="M10 15h4"/>',
    tag:'<path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.6 8.6a1.2 1.2 0 0 1 0 1.7l-7 7a1.2 1.2 0 0 1-1.7 0z"/><circle cx="8" cy="8" r="1.6"/>',
    key:'<circle cx="8" cy="15" r="4.2"/><path d="M11 12l8.5-8.5M16.5 6.5l2.5 2.5M14 9l2 2"/>',
@@ -61,7 +61,7 @@ function ieOrg(P,kt){
    calc:'<rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7.5h8M8.5 12h0M12 12h0M15.5 12h0M8.5 16h0M12 16h0M15.5 16h0"/>',
    gift:'<rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18M12 9v11M12 9c-1.5-3-5-4-5-1.5S10 9 12 9zm0 0c1.5-3 5-4 5-1.5S14 9 12 9z"/>',
    home:'<path d="M4 11l8-6 8 6v9H4z"/><path d="M9 20v-4.5h6V20"/><path d="M15.5 6.5V4h2v4"/>'};
-  var G=[{t:"街の相場",h:"街の相場をしらべる",u:"/fudosan-list",i:[["街の家と土地の相場","街の相場","find","/fudosan-list"],["地価ランキング","地価","rank",kt?"/chika-kanto":"/chika-kansai"]].concat(kt?[]:[["まちランキング","まち","star","/ranking"]])},
+  var G=[{t:"街の相場",h:"街の相場をしらべる",u:"/fudosan-list",i:[["街の家と土地の相場","街の相場","find","/fudosan-list"],["いまいる場所の近くの街","近くの街","pin","/fudosan-list?geo=1"],["地価ランキング","地価","rank",kt?"/chika-kanto":"/chika-kansai"]].concat(kt?[]:[["まちランキング","まち","star","/ranking"]])},
    {t:"売る・買う",h:"売る・買う",u:"/uru",i:[["家を売る前に","売る前に","sell","/uru"],["いくらで売れる？","いくら？","tag","/ikura"],["家を買いたい","買いたい","key","/sagasu"],["売却・査定のご相談","相談する","chat","/moushikomi"]]},
    {t:"実家・空き家",h:"実家・空き家",u:"/jikka/",i:[["実家・空き家ノート","ノート","note","/jikka/"],["3問でわかる実家の診断","診断","check","/jikka/shindan/"],["解体・片付けの費用","解体の費用","calc","/kaitai"],["解体の補助金ランキング","補助金","gift","/kaitai-ranking"],["空き家が多い街ランキング","空き家の街","home","/akiya-ranking"]]}];
   var want="";try{want=new URLSearchParams(location.search).get("want")||""}catch(e){}

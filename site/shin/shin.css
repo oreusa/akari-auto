@@ -892,10 +892,10 @@ html body .big.big:has(>.w)>div:first-child{border-top:0!important}
 .ixh{display:none}
 /* 11/20 owner「不動産・実家・空き家 ごっちゃ・バラバラ 整理して」：家と土地を3つの目的に（shin.js / skin.js の ieOrg・見本は ?seiri=1）。
    上＝目的の切りかえ（枠は家と土地の色の細い線だけ・選んでいる所は白黒）、MENU＝3つの見出し */
-.topsg{display:flex;align-items:center;gap:12px;margin:0 0 10px}
+.topsg{display:flex;align-items:center;gap:12px;margin:0 0 4px}
 .topsg-k{flex:none;font:600 12px/1 var(--sans);letter-spacing:.04em;color:var(--sub)}
-.topsg-b{flex:1;min-width:0;display:flex;height:38px;padding:3px;border-radius:12px;border:1px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box}
-.topsg-b a{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;border-radius:9px;font:500 13px/1 var(--sans);letter-spacing:.01em;color:var(--sub);white-space:nowrap;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s}
+.topsg-b{flex:1;min-width:0;display:flex;height:34px;padding:3px;border-radius:11px;border:1px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(120deg,#2BB3A3,#3A86C8) border-box}
+.topsg-b a{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;border-radius:8px;font:500 12.5px/1 var(--sans);letter-spacing:.01em;color:var(--sub);white-space:nowrap;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s}
 .topsg-b a.on{background:#1D1D1F;color:#fff;font-weight:600}
 .topsg-b a:not(.on):active{background:#F5F5F7}
 html.nt .topsg-k{color:#9AA3B5}
