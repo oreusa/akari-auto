@@ -119,7 +119,7 @@ function tapCluster(c){if(c.m.length===1){var x=c.m[0];if(sel===x){O.openItem(x)
   var x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;c.m.forEach(function(x){x0=Math.min(x0,x.xy[0]);y0=Math.min(y0,x.xy[1]);x1=Math.max(x1,x.xy[0]);y1=Math.max(y1,x.xy[1])});
   var w=Math.max(x1-x0,0),h=Math.max(y1-y0,0);
   if(w<.35&&h<.35||vb.w<=9.5){/* 同じ場所に何か所も（同じ会場など）＝寄らずに下のカードに並べる */inView=c.m.slice();drawCards();select(c.m[0],true);return}
-  lastUser=1;fit(x0-Math.max(w*.35,1.2),y0-Math.max(h*.35,1.2),w+Math.max(w*.7,2.4),h+Math.max(h*.7,2.4))}
+  /* 11/20 本番で見て：2か所の丸を押すと寄りすぎて、右上の＋－に写真がかかった→ 少なくとも 約8km 四方は見せる */lastUser=1;var pw=Math.max(w*.5,4),ph=Math.max(h*.5,4);fit(x0-pw,y0-ph,w+pw*2,h+ph*2)}
 
 /* 下のカード：いま地図に見えている所だけ（引いた時は全部） */
 function list(all){var m=.02;inView=ALL.filter(function(x){if(all)return true;var X=sx(x.xy[0]),Y=sy(x.xy[1]);return X>=-W*m&&X<=W*(1+m)&&Y>=-H*m&&Y<=H*(1+m)});

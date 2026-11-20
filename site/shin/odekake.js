@@ -181,7 +181,7 @@ function mapGest(){var sv=$("#mps"),pts={},st=null;
 /* 見本：新しい地図（map2.js を開く時だけ読む） */
 var O=S_.od={S:S,saveQ:saveQ,byi:BYI,openItem:openItem,pick:pick,counts:wCounts,img:img,avg:avg,tile:tile,lt:lt,when:when,icon:function(k){return D.icons[k]||D.icons.spot||""},gname:function(k){return k==="_hv"?"♡で残した物":G[k]?G[k][3]:""},
   changed:function(){S.n=24;setSeg(S.p);sync();go(false)}};
-function map2(){if(O.mapOpen){O.mapOpen();return}var s=document.createElement("script");s.src="/shin/map2.js?v=1120c";s.onload=function(){O.mapOpen()};document.head.appendChild(s)}
+function map2(){if(O.mapOpen){O.mapOpen();return}var s=document.createElement("script");s.src="/shin/map2.js?v=1120d";s.onload=function(){O.mapOpen()};document.head.appendChild(s)}
 if(M2)$("#wt").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;S.w=b.dataset.w;S.n=24;sync();go(true)});
 if(M2)$("#tomap").onclick=map2;
 S_.onNav(function(a){if(a==="map"){S_.navCur("map");if(M2)map2();else mapOpen();return}if(M2&&O.mapClose)O.mapClose();else mapClose();S.w=a;S.n=24;sync();go(true);var top=$("#sent").getBoundingClientRect().top+scrollY;scrollTo({top:top,behavior:"smooth"})});
