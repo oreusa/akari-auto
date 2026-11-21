@@ -20,7 +20,7 @@ function when(at){var m=/(\d{4})-(\d\d)-(\d\d) (\d\d:\d\d)/.exec(at||"");return 
 function kana(s){return String(s||"").replace(/[ァ-ン]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96)}).replace(/\s/g,"")}
 var SYN={"といれ":"tp","といぺ":"tp","てぃっしゅ":"tissue","はなかみ":"tissue","おむつ":"diaper","おしり":"wipes","みず":"water","すい":"water","たんさん":"soda","こめ":"rice","おこめ":"rice","ちゃ":"tea","おちゃ":"tea","こーひー":"coffee","まめ":"beans","せんざい":"detergent","せんたく":"detergent","じゅうなん":"softener","しゃんぷー":"shampoo","ぼでぃ":"bodysoap","しょっき":"dish","だいどころ":"dish","ごみ":"trash","ぶくろ":"trash","でんち":"battery","ますく":"mask","ぱすた":"pasta","すぱげ":"pasta","いぬ":"dogfood","どっぐ":"dogfood","ねこ":"catfood","きゃっと":"catfood"};
 
-S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">日用品の値段くらべ</h1><p class="h1p">楽天・Yahoo!ショッピング・Amazon を1つの画面で</p>'+
+S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">日用品の値段くらべ</h1><p class="h1p">楽天・Yahoo!ショッピング・Amazon を1つの画面で</p>'+(document.documentElement.classList.contains("lk-kn")?'<p class="kno kno2"><span>ほかに</span><a href="/nesage">値下がりした物</a><a href="/furusato">ふるさと納税</a></p>':'')+
  '<div class="fnd"><label class="fin">'+S_.IC.find+'<input id="q" type="search" placeholder="品物で探す（例：ティッシュ、おむつ）" autocomplete="off" enterkeyhint="search"></label><div class="sug" id="sug"></div></div>'+
  '<div class="tiles" id="tl"></div><p class="upd"><i class="dot"></i><span id="at"></span></p></section>'+
  '<div id="bfx"></div><div id="myx"></div>'+

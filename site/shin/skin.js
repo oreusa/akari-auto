@@ -30,14 +30,14 @@ var ODE={nav:[["開催中","now","/odekake"],["今週末","we","/odekake?w=we"],
   k:"Odekake",menu:[["関西おでかけ","/odekake"],["イルミネーション","/illumination"],["紅葉","/koyo"],["いまから行ける","/ima"],["泊まり","/tomari"],["初詣","/hatsumode"]],
   rel:[["家と土地","/fudosan-list"],["おかいもの","/okaimono"],["開店・閉店","/kaiten"],["トップへ","/"]]};
 var KAI={nav:[["これから","now","/kaiten?w=soon"],["開いた","we","/kaiten?w=done"],["閉まる","down","/kaiten?w=close"],["おでかけ","map","/odekake"]],
-  k:"New Shops",menu:[["関西の開店・閉店","/kaiten"],["関東の開店・閉店","https://kanto.townnote.app/kaiten"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["おかいもの","/okaimono"],["トップへ","/"]]};
+  k:"New Shops",menu:[["関西の開店・閉店","/kaiten"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["おかいもの","/okaimono"],["トップへ","/"]]};
 var TOP={nav:[["おでかけ","now","/odekake"],["家と土地","find","/fudosan-list"],["おかいもの","yen","/okaimono"],["開店閉店","buy","/kaiten"]],
   k:"Town Note",menu:[["トップ","/"],["関西のおでかけ","/odekake"],["家と土地の相場","/fudosan-list"],["日用品の値段くらべ","/okaimono"],["開店・閉店","/kaiten"]],rel:[]};
 /* 関東（kanto.townnote.app）も同じ物を読む。関東にあるページだけを出す */
 var KT=/kanto|lifenote|life-note|usagi-life/.test(location.hostname);
 if(KT){FUD.nav[1]=["地価","rank","/chika-kanto"];FUD.menu=[["家と土地の相場","/fudosan-list"],["地価ランキング","/chika-kanto"],["家を売る前に","/uru"],["いくらで売れる？","/ikura"],["実家・空き家","/jikka/"],["解体の費用と補助金","/kaitai"]];
   ODE.nav=[["おでかけ","now","/odekake"],["いまから","map","/ima"],["紅葉","we","/koyo"],["開店閉店","buy","/kaiten"]];ODE.menu=[["関東おでかけ","/odekake"],["イルミネーション","/illumination"],["紅葉","/koyo"],["いまから行ける","/ima"]];
-  KAI.menu=[["関東の開店・閉店","/kaiten"],["関西の開店・閉店","https://kansai.townnote.app/kaiten"]];}
+  KAI.menu=[["関東の開店・閉店","/kaiten"]];}
 var BR=KT?"LIFE NOTE":"TOWN NOTE",LG=KT?["/logo-s.png","/logo-s-night.png"]:["/assets/logo-s.png?v=2","/assets/logo-s-night.png"];
 var OKA={nav:[["品物","find","/okaimono"],["値下がり","down","/nesage"],["お得","yen","/otoku"],["ふるさと納税","buy","/furusato"]],
   k:"Shopping",menu:[["日用品の値段くらべ","/okaimono"],["値下がりした物","/nesage"],["お得な物","/otoku"],["ふるさと納税","/furusato"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["開店・閉店","/kaiten"],["トップへ","/"]]};
@@ -86,7 +86,9 @@ var IEO=C===FUD?ieOrg(P,KT):null;
 if(IEO){C={nav:IEO.nav.map(function(x){return [x.t,x.ic,x.href,x.svg,x.cur]}),k:FUD.k,menu:IEO.menu.map(function(m){return m.length>2||m[1]==="#"?m:[m[0],m[1],0]}),rel:FUD.rel};H.classList.add("ieo")}
 /* 11/21 見本 ?kn=1（shin.js と同じ）：下のバーはどのページでも4つの部屋。MENU は今の部屋のページだけ */
 var KN=0;try{var _kq=location.search.match(/[?&]kn=([01])/);if(_kq)localStorage.setItem("tn_kn",_kq[1]);KN=localStorage.getItem("tn_kn")==="1"}catch(e){}
-if(KN){H.classList.add("lk-kn");var _rm=/^\/(okaimono|nesage|otoku|furusato|kaimawari|tanka)/.test(P)?2:/^\/(o|odekake|illumination|koyo|ima|tomari|hatsumode)\b/.test(P)?0:/^\/kaiten/.test(P)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|koe|ranking|townnotes)/.test(P)?1:-1;C={nav:TOP.nav.map(function(x,j){return [x[0],x[1],x[2],0,j===_rm]}),k:C.k,menu:C.menu,rel:[["トップへ","/"]]}}
+if(KN){H.classList.add("lk-kn");var _rm=/^\/(okaimono|nesage|otoku|furusato|kaimawari|tanka)/.test(P)?2:/^\/(o|odekake|illumination|koyo|ima|tomari|hatsumode)\b/.test(P)?0:/^\/kaiten/.test(P)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|koe|ranking|townnotes)/.test(P)?1:-1;C={nav:TOP.nav.map(function(x,j){return [x[0],["map","inn","yen","buy"][j],x[2],0,j===_rm]}),k:C.k,menu:C.menu,rel:[["トップへ","/"]]}}
+/* 11/21 見本 ?kn=1：1件ページの「公式ページで最新の情報を見る」が地図と長い文の下にあった → 日程・時間・料金のすぐ下へ */
+if(KN&&/^\/o\//.test(P))(function(){var mv=function(){var a=document.querySelector(".act"),bg=document.querySelector(".big");if(a&&bg&&bg.parentNode)bg.parentNode.insertBefore(a,bg.nextSibling)};if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",mv);else mv()})();
 
 /* 11/20 owner「他社とも比べて勝つ」：ほかの相場サイト（GMO・東急リバブル・ダイヤモンド・トチノカチ・三菱地所）は
    ①件数が少なくても平均だけを大きく出す ②近くの街と並べて比べられない ③自分の家の目安へすぐ行けない。

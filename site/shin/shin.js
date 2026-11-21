@@ -58,7 +58,7 @@ var KN=0;try{var _kq=location.search.match(/[?&]kn=([01])/);if(_kq)localStorage.
 if(KN){document.documentElement.classList.add("lk-kn");
   var _kp=location.pathname.replace(/\.html$/,"").replace(/^\/shin(?=\/)/,"");
   var _rm=/^\/(okaimono|nesage|otoku|furusato|kau|kaimawari|tanka)/.test(_kp)?2:/^\/(o\/|odekake|illumination|koyo|ima|tomari|hatsumode)/.test(_kp)?0:/^\/kaiten/.test(_kp)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|ranking|ie\b)/.test(_kp)?1:-1;
-  CFG.nav=[["おでかけ","now","/odekake"],["家と土地","find","/fudosan-list"],["おかいもの","yen","/okaimono"],["開店閉店","buy","/kaiten"]].map(function(x,i){return {t:x[0],ic:x[1],href:x[2],cur:i===_rm}});
+  CFG.nav=[["おでかけ","map","/odekake"],["家と土地","inn","/fudosan-list"],["おかいもの","yen","/okaimono"],["開店閉店","buy","/kaiten"]].map(function(x,i){return {t:x[0],ic:x[1],href:x[2],cur:i===_rm}});
   if(CFG.menu)CFG.menu.rel=[["トップへ","/"]]}
 /* 11/19 関東も同じ土台で作る：地域の違い（名前・府県・色・地図・ロゴ）は CFG.reg。無ければ関西 */
 var REG=CFG.reg||{n:"関西",brand:"TOWN NOTE",logo:"/assets/logo-s.png?v=2",logon:"/assets/logo-s-night.png",pref:["大阪","京都","兵庫","奈良","滋賀","和歌山"],pfs:"大阪・京都・兵庫・奈良・滋賀・和歌山",pc:{"大阪":"#D9775A","京都":"#9C7BB8","兵庫":"#4F86C6","奈良":"#5FA06A","滋賀":"#3FA3B5","和歌山":"#E09A3E"},fl:{"大阪":"#F7D9CC","京都":"#E6DBF1","兵庫":"#D6E4F5","奈良":"#D8ECD4","滋賀":"#D0EBEF","和歌山":"#F8E4C4"},lb:{"兵庫":[62,105],"京都":[122,78],"滋賀":[176,92],"大阪":[118,165],"奈良":[156,178],"和歌山":[118,215]},sl:{"大阪":"osaka","京都":"kyoto","兵庫":"hyogo","奈良":"nara","滋賀":"shiga","和歌山":"wakayama"},vb:"10 15 200 250"};
