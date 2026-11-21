@@ -40,6 +40,18 @@ h+='<div class="c3tg"><a class="c3t c3il" href="/illumination"><div class="c3bk"
 /* 6 すべてのページ（apple.com の一番下の一覧の形） */
 h+='<nav class="c3f" aria-label="すべてのページ">'+D.ft.map(function(g,i){return '<div class="c3g c3g'+i+'"><h3>'+esc(g[0])+'</h3>'+g[1].map(function(a){return '<a href="'+a[1]+'">'+esc(a[0])+'</a>'}).join("")+'</div>'}).join("")+
   '<div class="c3g c3gs"><h3>'+esc((S_.reg&&S_.reg.brand)||"TOWN NOTE")+'</h3>'+D.sns.map(function(s){return '<a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a>'}).join("")+'</div></nav>';
+/* 11/21 owner まわりの声「色々ありすぎて何を触ったらいいか分からない」→ 見本 ?kn=1（?kn=0 で前）：
+   入口は「おでかけ」「家と土地」の2つの大きな札だけ（30日で押された数の上の2つ）。ほかは小さな1行と、たためる「すべてのページ」へ。 */
+var KN=0;try{var _k=location.search.match(/[?&]kn=([01])/);if(_k)localStorage.setItem("tn_kn",_k[1]);KN=localStorage.getItem("tn_kn")==="1"}catch(e){}
+if(KN){document.documentElement.classList.add("lk-kn");var tw0=(ie.tw||[])[0];
+  h='<section class="kn"><p class="knq">'+esc(RN)+'の、<br>どちらを見ますか？</p>'+
+  '<a class="knc knod" href="/odekake" data-k="入口かんたん｜おでかけ">'+(ph.length?'<span class="knph" id="c3ph">'+ph.slice(0,5).map(function(x,i){return '<img src="'+img(x)+'" alt="" '+(i?'loading="lazy"':'fetchpriority="high"')+' decoding="async" style="background-color:'+avg(x.th)+'"'+(i?'':' class="on"')+'>'}).join("")+'</span>':'')+
+   '<span class="knt"><small>おでかけ</small><b>いま開催中のイベント</b><em><i data-n="'+od.n+'">'+od.n+'</i>件・毎朝、公式の発表から</em></span><span class="knar" aria-hidden="true">→</span></a>'+
+  '<a class="knc knie" href="/fudosan-list" data-k="入口かんたん｜家と土地"><span class="knt"><small>家と土地</small><b>街の相場と、売れる値段</b><em>'+esc(RN)+(ie.n||'')+'の街・実際に売れた値段と地価</em></span>'+
+   (tw0?'<span class="knst"><b>+'+tw0.r+'<small>%</small></b><span>'+esc(tw0.n)+'<br>地価の上がり方 1位</span></span>':'')+'<span class="knar" aria-hidden="true">→</span></a>'+
+  '<p class="kno"><span>ほかに</span><a href="/okaimono" data-k="入口かんたん｜おかいもの">日用品の値段くらべ</a><a href="/kaiten" data-k="入口かんたん｜開店閉店">開店・閉店ニュース</a></p>'+
+  '<details class="knall"><summary>すべてのページ</summary><nav class="c3f" aria-label="すべてのページ">'+D.ft.map(function(g,i){return '<div class="c3g c3g'+i+'"><h3>'+esc(g[0])+'</h3>'+g[1].map(function(a){return '<a href="'+a[1]+'">'+esc(a[0])+'</a>'}).join("")+'</div>'}).join("")+
+  '<div class="c3g c3gs"><h3>'+esc((S_.reg&&S_.reg.brand)||"TOWN NOTE")+'</h3>'+D.sns.map(function(s){return '<a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a>'}).join("")+'</div></nav></details></section>'}
 S_.main.innerHTML='<div class="c3">'+h+'</div>';
 
 /* 11/20 owner「ここスライドでも良かった・お洒落に」：写真は指で横にめくる。5秒ごとに次へ（触っている間・動きを減らす設定の人は止める） */
@@ -54,8 +66,8 @@ if(tr){var sds=$$(".c3sd",tr),dts=$$("#c3dt i"),cur=0,tm=null,hold=0;
 /* 写真が静かに切り替わる（動きを減らす設定の人は切り替えない） */
 var box=$("#c3ph");
 if(box&&ph.length>1&&!RM){var ims=$$("img",box),cap=$("#c3cap"),i=0,tm=null;
-  var go=function(){ims[i].classList.remove("on");i=(i+1)%ims.length;ims[i].classList.add("on");var p=ph[i];box.href=p.o?"/o/"+p.o:"/odekake";
-    cap.innerHTML=esc(p.t)+'<span>'+esc(p.p)+'・'+left(p.e)+'</span>'};
+  var go=function(){ims[i].classList.remove("on");i=(i+1)%ims.length;ims[i].classList.add("on");var p=ph[i];if(!KN)box.href=p.o?"/o/"+p.o:"/odekake";
+    if(cap)cap.innerHTML=esc(p.t)+'<span>'+esc(p.p)+'・'+left(p.e)+'</span>'};
   new IntersectionObserver(function(es){if(es[0].isIntersecting){if(!tm)tm=setInterval(go,4200)}else{clearInterval(tm);tm=null}}).observe(box)}
 /* 面の文字がふわっと出る（見えない時は最初から出しておく） */
 if(!RM&&"IntersectionObserver" in window){var us=$$(".c3u,.c3t");us.forEach(function(u,k){if(k)u.classList.add("c3in")});
