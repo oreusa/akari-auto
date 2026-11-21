@@ -3003,6 +3003,42 @@
       "note": "横浜市中区｜競馬場跡の広い芝生にケヤキ・イチョウが色づく。入園無料",
       "url": "https://www.hama-midorinokyokai.or.jp/park/negishi/",
       "checked": "2026-11-20"
+    },
+    {
+      "title": "三溪園の紅葉 紅葉の遊歩道開放",
+      "pref": "神奈川",
+      "place": "三溪園",
+      "when": "11/20〜12/13",
+      "start": "2026-11-20",
+      "ends": "2026-12-13T16:00",
+      "free": false,
+      "note": "横浜市中区｜聴秋閣の奥の遊歩道を開放（9:00〜16:00）。入園料のみ、大人900円",
+      "url": "https://www.sankeien.or.jp/event/10880/",
+      "checked": "2026-11-21"
+    },
+    {
+      "title": "THE ROBOT PARK ODAIBA",
+      "pref": "東京",
+      "place": "アクアシティお台場",
+      "kind": "shop",
+      "open": "2026-10-15",
+      "when": "10/15開業",
+      "free": false,
+      "note": "港区｜ロボットに乗る・戦わせる体験。3歳から、30分2,000円",
+      "url": "https://skeletonics.com/the-robot-park-odaiba/",
+      "checked": "2026-11-21"
+    },
+    {
+      "title": "小田原コロナワールド リフレッシュオープン",
+      "pref": "神奈川",
+      "place": "小田原コロナワールド",
+      "kind": "shop",
+      "open": "2026-11-20",
+      "when": "11/20リニューアル",
+      "free": false,
+      "note": "小田原市｜映画・ボウリング・ゲーム・温泉がそろう。駐車場無料",
+      "url": "https://www.korona.co.jp/store/odw/",
+      "checked": "2026-11-21"
     }
   ]
 }
