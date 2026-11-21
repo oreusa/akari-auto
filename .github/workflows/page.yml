@@ -116,6 +116,9 @@ jobs:
           python3 scripts/spot_pages.py || true
           # 11/18 見本（?mihon=1 の人だけ）：カードと1件ページに会場の写真（data/venue_photos.json）→ /assets/mihon.json。spot_pages.py の後
           python3 scripts/mihon.py || true
+          # 11/21 オーナー「お出かけ先とか全部写真取得できるように」→ 写真の無い催しにコモンズから自動で付ける（関西 autophoto.py と同じ・見た目の点つき）→ mihon.py をもう1回
+          pip install -q pillow >/dev/null 2>&1; timeout 900 python3 scripts/autophoto_kanto.py || true
+          python3 scripts/mihon.py || true
           # 11/19 激変版（?mihon=2）：写真が出る前のぼかし色（ThumbHash・関西 tools/hx/phh.py と同じ）
           pip install -q thumbhash-python >/dev/null 2>&1 && python3 scripts/hx_phh.py site/assets || true
           # 11/7 オーナー「新しい燈の不動産hpは作りは全て月と同じ」→ 関東不動産リスト（/fudosan-list・/chika-kanto・/machi/ 329の街・/assets/towns.json）。月の関西不動産リストと同じ作り。pwa.py の前に作る（ホーム画面用の印を付けるため）
@@ -208,7 +211,7 @@ jobs:
           git add notes/seichou.md data/seichou.json notes/gakushu.md data/gakushu.json data/shirei.json data/manabi.json data/yatta.json 2>/dev/null || true
           git add notes/room-daihon.md data/room-log.json data/room-today.json 2>/dev/null || true
           git add data/postimg.json data/postimg-rule.json notes/postimg-sample.jpg 2>/dev/null || true
-          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/townnotes-geo-checked.json data/kansai-yado.json data/kanto-yado.json data/tanka.json data/kaiten.json data/kaiten-seen-kanto.json data/kaimawari.json data/furusato.json data/price-history.json data/nesage.json data/okaimono_img.json data/koe.json data/note-history.json 2>/dev/null || true
+          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/townnotes-geo-checked.json data/kansai-yado.json data/kanto-yado.json data/venue_photos.json data/auto_tried.json site/assets/ph data/tanka.json data/kaiten.json data/kaiten-seen-kanto.json data/kaimawari.json data/furusato.json data/price-history.json data/nesage.json data/okaimono_img.json data/koe.json data/note-history.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "ページの数とリンクの確かめを記録"
           # 公開用に書き換えた site/ のページ（ima.html など）は戻す（戻さないと pull できない）

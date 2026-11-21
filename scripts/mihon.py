@@ -35,7 +35,7 @@ def add(name, p, s, e, u, m, oid=""):
     if not key or key in out: return
     o = {"n": name, "u": u, "s": s, "e": e, "p": p}
     if oid: o["id"] = oid
-    vn = venue(m, name)
+    vn = name if name in VP else venue(m, name)   # 11/21 催しの名前そのもので目で選んだ写真（六義園・新宿御苑など、場所が「文京区」だけの物）
     if vn not in VP:
         # 「A・B」「A〜B」の並びや「◯◯駅周辺」は、写真のある方・駅の名前に寄せる（11/18）
         for c in re.split(r"[・〜～]", vn):
