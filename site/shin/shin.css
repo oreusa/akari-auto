@@ -1051,3 +1051,8 @@ html.ie2.nt .qr svg{stroke:#5FD0C2}
 .sv .tp{bottom:0}
 .sv .tx{pointer-events:none}
 .sv .tx button{pointer-events:auto}
+
+/* 11/21 地図の下のカードが縦に動く（iPhone）→ 横だけ動く・外へ伝えない */
+.m2{overscroll-behavior:none;touch-action:pan-x}
+.m2c{touch-action:pan-x;overflow-y:hidden;overscroll-behavior:contain}
+.m2c .mcd{touch-action:pan-x}
