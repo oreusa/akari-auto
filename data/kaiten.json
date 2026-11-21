@@ -2204,6 +2204,19 @@
    "tm": "10:00〜21:00",
    "u": "https://subway.co.jp/news/20261120_02/",
    "added": "2026-11-21"
+  },
+  {
+   "d": "2026-12-11",
+   "k": "open",
+   "p": "千葉",
+   "n": "Food Campus Tokyu Store",
+   "pt": "ららぽーと柏の葉に、新しく出るお店。",
+   "pl": "柏市若柴175（ららぽーと柏の葉）",
+   "tm": "",
+   "u": "https://mitsui-shopping-park.com/lalaport/kashiwa/openrenewal/3697979.html",
+   "added": "2026-11-21",
+   "src": "lalaport",
+   "auto": 1
   }
  ]
 }
