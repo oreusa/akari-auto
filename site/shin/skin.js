@@ -10,7 +10,7 @@ try{var _q=location.search.match(/[?&]iro=([01])/);if(_q)localStorage.setItem("t
 (function(){var s=document.createElement("script");s.src="/shin/bx.js?v=1";s.defer=true;document.head.appendChild(s)})();
 var H=document.documentElement,P=window.TN_P||location.pathname,RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
 /* 11/20 19:20 見た目の見本 ?look=a|b|c（この端末で覚える・?look=0 で外す）→ look.css・look.js */
-try{if(localStorage.getItem("tn_ty2")!=="0"&&!/[?&]ty=0/.test(location.search))document.documentElement.classList.add("lk-t1")}catch(e){}try{var _lk=location.search.match(/[?&]look=([abcdef0])/);if(_lk)localStorage.setItem("tn_lk2",_lk[1]);var _lv=localStorage.getItem("tn_lk2")||"f";if(_lv&&_lv!=="0"&&!document.getElementById("lkcss")){document.documentElement.classList.add("lk","lk-"+_lv);if(_lv==="d"||_lv==="e"||_lv==="f")document.documentElement.classList.add("lk-a","lk-d");if(_lv==="f")document.documentElement.classList.add("lk-e");var _l=document.createElement("link");_l.rel="stylesheet";_l.href="/shin/look.css?v=33";document.head.appendChild(_l);var _s=document.createElement("script");_s.src="/shin/look.js?v=33";_s.defer=true;document.head.appendChild(_s)}}catch(e){}
+try{if(localStorage.getItem("tn_ty2")!=="0"&&!/[?&]ty=0/.test(location.search))document.documentElement.classList.add("lk-t1")}catch(e){}try{var _lk=location.search.match(/[?&]look=([abcdef0])/);if(_lk)localStorage.setItem("tn_lk2",_lk[1]);var _lv=localStorage.getItem("tn_lk2")||"f";if(_lv&&_lv!=="0"&&!document.getElementById("lkcss")){document.documentElement.classList.add("lk","lk-"+_lv);if(_lv==="d"||_lv==="e"||_lv==="f")document.documentElement.classList.add("lk-a","lk-d");if(_lv==="f")document.documentElement.classList.add("lk-e");var _l=document.createElement("link");_l.rel="stylesheet";_l.href="/shin/look.css?v=34";document.head.appendChild(_l);var _s=document.createElement("script");_s.src="/shin/look.js?v=34";_s.defer=true;document.head.appendChild(_s)}}catch(e){}
 var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
 var IC={now:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
  we:'<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>',
@@ -85,7 +85,7 @@ function ieOrg(P,kt){
 var IEO=C===FUD?ieOrg(P,KT):null;
 if(IEO){C={nav:IEO.nav.map(function(x){return [x.t,x.ic,x.href,x.svg,x.cur]}),k:FUD.k,menu:IEO.menu.map(function(m){return m.length>2||m[1]==="#"?m:[m[0],m[1],0]}),rel:FUD.rel};H.classList.add("ieo")}
 /* 11/21 見本 ?kn=1（shin.js と同じ）：下のバーはどのページでも4つの部屋。MENU は今の部屋のページだけ */
-var KN=0;try{var _kq=location.search.match(/[?&]kn=([01])/);if(_kq)localStorage.setItem("tn_kn",_kq[1]);KN=localStorage.getItem("tn_kn")==="1"}catch(e){}
+var KN=0;try{var _kq=location.search.match(/[?&]kn=([01])/);if(_kq)localStorage.setItem("tn_kn2",_kq[1]);KN=localStorage.getItem("tn_kn2")!=="0"}catch(e){}
 if(KN){H.classList.add("lk-kn");var _rm=/^\/(okaimono|nesage|otoku|furusato|kaimawari|tanka)/.test(P)?2:/^\/(o|odekake|illumination|koyo|ima|tomari|hatsumode)\b/.test(P)?0:/^\/kaiten/.test(P)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|koe|ranking|townnotes)/.test(P)?1:-1;C={nav:TOP.nav.map(function(x,j){return [x[0],["map","inn","yen","buy"][j],x[2],0,j===_rm]}),k:C.k,menu:C.menu,rel:[["トップへ","/"]]}}
 /* 11/21 見本 ?kn=1：1件ページの「公式ページで最新の情報を見る」が地図と長い文の下にあった → 日程・時間・料金のすぐ下へ */
 /* 11/22 kn：解体の「補助がある市」の長い説明（市ごとの箱）はたたむ。市の丸ボタンはそのまま */
