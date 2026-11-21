@@ -87,8 +87,16 @@ fan.addEventListener("click",function(e){var a=e.target.closest(".fc");if(!a)ret
 /* 絞り込み */
 var setSeg=S_.seg($("#seg"),[["",RG.n]].concat(PREF.map(function(p){return [p,p]})),S.p,function(v){S.p=v;S.n=24;sync();go(true)});
 function kinds(){var c={};IT.forEach(function(x){if(!S.p||x.p===S.p)c[x.k]=(c[x.k]||0)+1});return Object.keys(G).filter(function(k){return c[k]})}
-function drawChips(){if(S.g==="_hv"&&!Object.keys(HV).length){S.g="";saveQ()}var ks=kinds();$("#chips").style.display=ks.length<2&&!Object.keys(HV).length?"none":"";var nh=Object.keys(HV).length;$("#chips").innerHTML='<button class="chip'+(S.g?"":" on")+'" data-g="">すべて</button>'+(nh?'<button class="chip hvc'+(S.g==="_hv"?" on":"")+'" data-g="_hv">'+HVI+'残した '+nh+'</button>':"")+kinds().map(function(k){return '<button class="chip'+(S.g===k?" on":"")+'" data-g="'+k+'" style="--c:'+G[k][1]+'"><i></i>'+G[k][3]+'</button>'}).join("")}
-$("#chips").addEventListener("click",function(e){var b=e.target.closest(".chip");if(!b)return;S.g=b.dataset.g;S.n=24;sync();go(true)});
+/* 11/21 見本 ?kn=1：「いつ」（開催中・今週末・まもなく終了・これから の帯）と「なに」（種類のチップ）が2段に分かれていた → 1行の「何を探す？」に */
+var KN=document.documentElement.classList.contains("lk-kn");
+function drawKn(){var c={};IT.forEach(function(x){if((!S.p||x.p===S.p)&&inW(x,"now"))c[x.k]=(c[x.k]||0)+1});
+  var ks=Object.keys(G).filter(function(k){return c[k]}).sort(function(a,b){return ((b==="light"||b==="koyo")?999:0)+c[b]-((a==="light"||a==="koyo")?999:0)-c[a]}).slice(0,4);if(ks.length<2)ks=[];
+  var nh=Object.keys(HV).length,o=[["","now","すべて"],["","we","今週末"],["","end","まもなく終了"]].concat(ks.map(function(k){return [k,"now",G[k][3]]}));
+  $("#chips").style.display="";
+  $("#chips").innerHTML=o.map(function(x){return '<button class="chip'+(S.g===x[0]&&S.w===x[1]?" on":"")+'" data-g="'+x[0]+'" data-w="'+x[1]+'"'+(x[0]?' style="--c:'+G[x[0]][1]+'"':'')+'>'+(x[0]?'<i></i>':'')+x[2]+'</button>'}).join("")+
+   (nh?'<button class="chip hvc'+(S.g==="_hv"?" on":"")+'" data-g="_hv" data-w="now">'+HVI+'残した '+nh+'</button>':"")}
+function drawChips(){if(KN)return drawKn();if(S.g==="_hv"&&!Object.keys(HV).length){S.g="";saveQ()}var ks=kinds();$("#chips").style.display=ks.length<2&&!Object.keys(HV).length?"none":"";var nh=Object.keys(HV).length;$("#chips").innerHTML='<button class="chip'+(S.g?"":" on")+'" data-g="">すべて</button>'+(nh?'<button class="chip hvc'+(S.g==="_hv"?" on":"")+'" data-g="_hv">'+HVI+'残した '+nh+'</button>':"")+kinds().map(function(k){return '<button class="chip'+(S.g===k?" on":"")+'" data-g="'+k+'" style="--c:'+G[k][1]+'"><i></i>'+G[k][3]+'</button>'}).join("")}
+$("#chips").addEventListener("click",function(e){var b=e.target.closest(".chip");if(!b)return;S.g=b.dataset.g;if(b.dataset.w)S.w=b.dataset.w;S.n=24;sync();go(true)});
 function sync(){drawChips();S_.navCur(S.w);saveQ();if(REM)try{if(S.p)localStorage.setItem(PK,S.p);else localStorage.removeItem(PK)}catch(e){}}
 var cache={};
 function card(x){if(cache[x.i])return cache[x.i];

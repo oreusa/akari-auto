@@ -488,3 +488,8 @@ html.lk-kn .knall .c3f{padding:0 0 10px}
 html.lk-kn.nt .knc{background:rgba(20,24,40,.55);border-color:rgba(255,255,255,.12);box-shadow:0 18px 40px -22px rgba(0,0,0,.8),0 0 0 1px rgba(183,164,242,.16)}
 html.lk-kn.nt .kno a{background:rgba(20,24,40,.55);border-color:rgba(255,255,255,.14)}
 html.lk-kn.nt .knst b{color:#7CE0C3}
+/* 11/21 見本 ?kn=1：おでかけの中の重なり（今週末のおすすめの帯・いつの帯）をなくし、1行の「何を探す？」だけに */
+html.lk-kn #st+.sec,html.lk-kn #fan,html.lk-kn #wt{display:none!important}
+html.lk-kn #st{margin-bottom:8px}
+html.lk-kn .qr-g{margin:18px 4px 6px;font-size:12px;letter-spacing:.12em;color:var(--mut)}
+html.lk-kn .qr-h+.qr-g{margin-top:6px}
