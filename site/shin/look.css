@@ -586,3 +586,7 @@ html.lk-kn details.kthd summary::after{content:"＋";color:var(--mut);transform:
 html.lk-kn details.kthd[open] summary::after{content:"−"}
 html.lk-kn details.kthd[open] summary{margin-bottom:12px}
 html.lk-kn.nt details.kthd summary{background:rgba(20,24,40,.55);border-color:rgba(255,255,255,.14)}
+/* 11/22 owner「関西のいまもなんなん」→ 見出しは出さず（読み上げ用だけ）、日付の細い1行から写真へ。SNS は前と同じ一番下の字のリンク */
+html.lk-kn h1.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+html.lk-kn .ksd{margin:10px 4px 16px}
+html.lk-kn .knft{margin-top:8px;padding:6px 0 0}
