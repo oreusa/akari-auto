@@ -62,14 +62,15 @@ function svShow(){var s=ST[svS],x=s.l[svI];$(".hd span",sv).textContent=s.t+"　
   $(".tx",sv).innerHTML='<span class="tag" style="--gc:'+x.g[1]+'">'+x.g[3]+'</span><h3>'+esc(x.t)+'</h3><p>'+esc(x.hk||x.v||x.a)+'　'+when(x)+'</p><button data-i="'+x.i+'">くわしく見る</button>';
   try{var se=JSON.parse(localStorage.getItem("hx_seen")||"{}");se[x.t]=TD;localStorage.setItem("hx_seen",JSON.stringify(se))}catch(e){}
   if(svA)svA.cancel();var b=$$(".bars b",sv)[svI];svA=b.animate([{transform:"scaleX(0)"},{transform:"scaleX(1)"}],{duration:5200,fill:"forwards"});svA.onfinish=function(){svGo(1)}}
-function svGo(d){var n=svI+d;if(n<0)n=0;if(n>=ST[svS].l.length){svClose();return}svI=n;svShow()}
+function svGo(d){var n=svI+d;if(n<0){if(svS>0){svGrp(-1);return}n=0}if(n>=ST[svS].l.length){if(svS<ST.length-1){svGrp(1);return}svClose();return}svI=n;svShow()}
+/* 11/21 ストーリー：最後まで見たら次の輪へ・横にはらうと前後の輪へ（インスタと同じ） */function svGrp(d){var g=svS+d;if(g<0||g>=ST.length){if(d>0)svClose();return}svS=g;svI=0;svShow()}
 function svOpen(i){svS=i;svI=0;sv.classList.add("op");document.body.style.overflow="hidden";svShow()}
 function svClose(){if(svA)svA.cancel();sv.classList.remove("op");document.body.style.overflow=""}
 $("#st").addEventListener("click",function(e){var b=e.target.closest("button");if(b)svOpen(+b.dataset.s)});
 $(".tp.l",sv).onclick=function(){svGo(-1)};$(".tp.r",sv).onclick=function(){svGo(1)};$(".hd button",sv).onclick=svClose;
 $(".tx",sv).addEventListener("click",function(e){var b=e.target.closest("button[data-i]");if(b){svClose();openItem(BYI[b.dataset.i])}});
-var sy0=null;sv.addEventListener("touchstart",function(e){sy0=e.touches[0].clientY;if(svA)svA.pause()},{passive:true});
-sv.addEventListener("touchend",function(e){var dy=e.changedTouches[0].clientY-(sy0||0);if(dy>90)svClose();else if(svA)svA.play()},{passive:true});
+var sy0=null,sx0=null,svT=0;sv.addEventListener("touchstart",function(e){sy0=e.touches[0].clientY;sx0=e.touches[0].clientX;svT=Date.now();if(svA)svA.pause()},{passive:true});
+sv.addEventListener("touchend",function(e){var t=e.changedTouches[0],dy=t.clientY-(sy0||0),dx=t.clientX-(sx0||0);if(dy>90&&Math.abs(dy)>Math.abs(dx))svClose();else if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy))svGrp(dx<0?1:-1);else if(svA)svA.play()},{passive:true});
 
 /* 今週の顔（扇のように重なり、めくると立体で回る） */
 var FAN=IT.filter(function(x){return x.im&&x.s<=SUN&&x.e>=TD}).sort(function(a,b){return (b.hr?1:0)-(a.hr?1:0)||(a.lo?1:0)-(b.lo?1:0)||(b.ok||0)-(a.ok||0)||(b.pp||0)-(a.pp||0)||(b.hk?1:0)-(a.hk?1:0)||((a.i*7919+S_.seed)%97)-((b.i*7919+S_.seed)%97)}).slice(0,8);
