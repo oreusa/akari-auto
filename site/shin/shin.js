@@ -189,7 +189,7 @@ window.SHIN={reg:REG,$:$,$$:$$,el:el,esc:esc,TD:TD,seed:seed,diff:diff,md:md,dd:
 /* 11/19 iPhone の設定アプリの形：大きい題は下へ流すと薄れて、上の細い帯に小さく収まる。帯を押すと一番上へ */
 function largeTitle(){var h=$(".h1t");if(!h)return;var tb=document.createElement("button");tb.id="tb";tb.setAttribute("aria-label","一番上へ");tb.textContent=h.textContent;document.body.appendChild(tb);
   tb.onclick=function(){scrollTo({top:0,behavior:RM?"auto":"smooth"})};var q=0,on=false;
-  function f(){q=0;var r=h.getBoundingClientRect(),p=Math.max(0,Math.min(1,(60-r.top)/70));if(!RM){h.style.opacity=(1-p*.9).toFixed(3);h.style.transform="translateY("+(p*-6).toFixed(1)+"px) scale("+(1-p*.04).toFixed(3)+")"}
+  function f(){q=0;var r=h.getBoundingClientRect(),p=Math.max(0,Math.min(1,(60-r.top)/70));/* 11/21 owner「下に行くと動くからたまに変になってる」→ 細い字の見本（lk-t1）では題を薄くしたり縮めたりせず、そのまま上へ流す */if(!RM&&!document.documentElement.classList.contains("lk-t1")){h.style.opacity=(1-p*.9).toFixed(3);h.style.transform="translateY("+(p*-6).toFixed(1)+"px) scale("+(1-p*.04).toFixed(3)+")"}
     var o=r.bottom<46;if(o!==on){on=o;tb.classList.toggle("on",o);H.classList.toggle("tbon",o)}}
   addEventListener("scroll",function(){if(!q)q=requestAnimationFrame(f)},{passive:true});f()}
 })();
