@@ -446,3 +446,10 @@ html.lk-t1 .c3u h2,html.lk-t1.lk-a.lk-d.lk-e .c3u h2{font-weight:300!important;l
 html.lk-t1 .c3n1 b,html.lk-t1 .c3n1 small,html.lk-t1.lk-a.lk-d.lk-e .c3st .c3n1 b{font-weight:200!important}
 html.lk-t1 .c3u b,html.lk-t1 .hero span,html.lk-t1 .kp strong,html.lk-t1 .kp span,html.lk-t1 main h2 b,html.lk-t1 .sec h2 b,html.lk-t1.lk-a.lk-d.lk-e .c3ks b,html.lk-t1.lk-a.lk-d.lk-e .c3kc b{font-weight:300!important}
 html.lk-t1 .c3sc b{font-weight:600!important}
+/* 11/21 owner「大阪の周りクルクルしてるのもっとお洒落に」→ 見本 ?ty=1：白い光の点が回る形をやめ、オーロラの色の細い輪がゆっくり回る＋下に淡い光のにじみ */
+@property --au{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes auspin{to{--au:360deg}}
+html.lk-t1 .seg .pill::before{inset:-1.5px;padding:1.5px;background:conic-gradient(from var(--au),#7CE0C3,#8FD3FF,#B7A4F2,#F6A6C8,#FFC59A,#7CE0C3);animation:auspin 7s linear infinite;opacity:.95}
+html.lk-t1 .seg .pill{box-shadow:0 6px 16px -4px rgba(183,164,242,.55),0 3px 10px -4px rgba(124,224,195,.5)}
+html.lk-t1.nt .seg .pill{box-shadow:0 6px 18px -4px rgba(183,164,242,.6),0 3px 12px -4px rgba(124,224,195,.55)}
+@media (prefers-reduced-motion:reduce){html.lk-t1 .seg .pill::before{animation:none}}
