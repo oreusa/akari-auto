@@ -52,6 +52,21 @@ if(KN){document.documentElement.classList.add("lk-kn");var tw0=(ie.tw||[])[0];
   '<p class="kno"><span>ほかに</span><a href="/okaimono" data-k="入口かんたん｜おかいもの">日用品の値段くらべ</a><a href="/kaiten" data-k="入口かんたん｜開店閉店">開店・閉店ニュース</a></p>'+
   '<details class="knall"><summary>すべてのページ</summary><nav class="c3f" aria-label="すべてのページ">'+D.ft.map(function(g,i){return '<div class="c3g c3g'+i+'"><h3>'+esc(g[0])+'</h3>'+g[1].map(function(a){return '<a href="'+a[1]+'">'+esc(a[0])+'</a>'}).join("")+'</div>'}).join("")+
   '<div class="c3g c3gs"><h3>'+esc((S_.reg&&S_.reg.brand)||"TOWN NOTE")+'</h3>'+D.sns.map(function(s){return '<a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a>'}).join("")+'</div></nav></details></section>'}
+/* 11/22 owner「使いやすくわかりやすい。でもお洒落にはしたい」→ 見本 ?ks=1（?ks=0 で前・kn の時だけ）：
+   選ぶ物は同じ2つ＋ほかに2つのまま。おでかけは写真を大きく縦に（字は写真の上のすりガラス）、家と土地は上がった街3つを光の棒で、ほかには同じ形の小さな札2枚。 */
+var KS=0;try{var _s=location.search.match(/[?&]ks=([01])/);if(_s)localStorage.setItem("tn_ks",_s[1]);KS=localStorage.getItem("tn_ks")==="1"}catch(e){}
+if(KN&&KS){document.documentElement.classList.add("lk-ks");
+  var EN=RN==="関東"?"KANTO":"KANSAI",dw=["SUN","MON","TUE","WED","THU","FRI","SAT"][new Date(TD+"T00:00:00+09:00").getUTCDay()],mx=Math.max.apply(null,tw.slice(0,3).map(function(t){return t.r}).concat([1])),kx=kai.x||{};
+  h='<section class="kn ks"><p class="ksd">'+dw+' '+(+TD.slice(5,7))+'.'+(+TD.slice(8,10))+'<span class="ksl"></span>'+EN+'</p><p class="knq">'+esc(RN)+'の、<br>どちらを見ますか？</p>'+
+  '<a class="knc ksod" href="/odekake" data-k="入口かんたん｜おでかけ">'+(ph.length?'<span class="knph" id="c3ph">'+ph.slice(0,5).map(function(x,i){return '<img src="'+img(x)+'" alt="" '+(i?'loading="lazy"':'fetchpriority="high"')+' decoding="async" style="background-color:'+avg(x.th)+'"'+(i?'':' class="on"')+'>'}).join("")+'</span>'+
+    '<span class="kscap" id="c3cap">'+esc(ph[0].t)+'<span>'+esc(ph[0].p)+'・'+left(ph[0].e)+'</span></span>':'')+
+   '<span class="ksgl"><small>ODEKAKE<span class="ksj">おでかけ</span></small><b>いま開催中のイベント</b><em><span class="kscnt" data-n="'+od.n+'">'+od.n+'</span>件・毎朝、公式の発表から</em><span class="knar" aria-hidden="true">→</span></span></a>'+
+  '<a class="knc ksie" href="/fudosan-list" data-k="入口かんたん｜家と土地"><span class="knt"><small>HOME &amp; LAND<span class="ksj">家と土地</span></small><b>街の相場と、売れる値段</b><em>'+esc(RN)+(ie.n||'')+'の街・実際に売れた値段と地価</em></span>'+
+   (tw.length?'<span class="ksbr"><small>地価が1年で上がった街</small>'+tw.slice(0,3).map(function(t,i){return '<span class="ksr"><span class="ksn">'+(i+1)+'</span><span class="ksm2">'+esc(t.n)+'</span><span class="ksu"><span class="kss" style="--w:'+Math.round(t.r/mx*100)+'%"></span></span><b>+'+t.r+'<small>%</small></b></span>'}).join("")+'</span>':'')+'<span class="knar" aria-hidden="true">→</span></a>'+
+  '<div class="ksm"><a class="knc" href="/okaimono" data-k="入口かんたん｜おかいもの"><small>SHOPPING</small><b>日用品の<br>値段くらべ</b><em>'+(ka.n||"")+'種類・3つの店から</em></a>'+
+   '<a class="knc" href="/kaiten" data-k="入口かんたん｜開店閉店"><small>NEW SHOPS</small><b>開店・閉店<br>ニュース</b><em>'+(kai.n?kai.n+'件・':'')+esc(kx.big||"毎日更新")+'</em></a></div>'+
+  '<details class="knall"><summary>すべてのページ</summary><nav class="c3f" aria-label="すべてのページ">'+D.ft.map(function(g,i){return '<div class="c3g c3g'+i+'"><h3>'+esc(g[0])+'</h3>'+g[1].map(function(a){return '<a href="'+a[1]+'">'+esc(a[0])+'</a>'}).join("")+'</div>'}).join("")+
+  '<div class="c3g c3gs"><h3>'+esc((S_.reg&&S_.reg.brand)||"TOWN NOTE")+'</h3>'+D.sns.map(function(s){return '<a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a>'}).join("")+'</div></nav></details></section>'}
 S_.main.innerHTML='<div class="c3">'+h+'</div>';
 
 /* 11/20 owner「ここスライドでも良かった・お洒落に」：写真は指で横にめくる。5秒ごとに次へ（触っている間・動きを減らす設定の人は止める） */
@@ -72,5 +87,7 @@ if(box&&ph.length>1&&!RM){var ims=$$("img",box),cap=$("#c3cap"),i=0,tm=null;
 /* 面の文字がふわっと出る（見えない時は最初から出しておく） */
 if(!RM&&"IntersectionObserver" in window){var us=$$(".c3u,.c3t");us.forEach(function(u,k){if(k)u.classList.add("c3in")});
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove("c3in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -12% 0px"});us.forEach(function(u){io.observe(u)})}
+if(KN&&KS){var cn=$(".kscnt");if(cn&&!RM){var N=+cn.dataset.n,t0=0;cn.textContent="0";requestAnimationFrame(function st(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/900);cn.textContent=Math.round(N*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(st)})}
+  setTimeout(function(){var b=$(".ksbr");if(b)b.classList.add("on")},RM?0:250)}
 S_.ready();
 })();
