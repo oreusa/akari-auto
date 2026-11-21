@@ -453,3 +453,5 @@ html.lk-t1 .seg .pill::before{inset:-1.5px;padding:1.5px;background:conic-gradie
 html.lk-t1 .seg .pill{box-shadow:0 6px 16px -4px rgba(183,164,242,.55),0 3px 10px -4px rgba(124,224,195,.5)}
 html.lk-t1.nt .seg .pill{box-shadow:0 6px 18px -4px rgba(183,164,242,.6),0 3px 12px -4px rgba(124,224,195,.55)}
 @media (prefers-reduced-motion:reduce){html.lk-t1 .seg .pill::before{animation:none}}
+/* 11/21 owner「下にいくと浮かび上がる動作なくしたら・スムーズじゃ無さすぎ」→ 下に送った時にふわっと出る動き（.rv・表紙の .c3in）を全部やめ、最初から出しておく */
+html.lk .rv,html.lk .rv.in,html .c3in,html.lk .c3in{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
