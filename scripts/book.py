@@ -1141,6 +1141,9 @@ def after_check(cfg, state, now):
                 due = datetime.fromisoformat(f"{key.split(' ')[0]}T{at}").replace(tzinfo=JST)
             except ValueError:
                 continue
+            slot_t = key.split(" ")[1] if len(key.split(" ")) > 1 else ""
+            if r.get("at") and len(slot_t) == 5 and ":" in slot_t and at < slot_t:
+                due += timedelta(days=1)  # 11/21 21:15 の出し直しが翌日 00:38 になり、前の日の 00:38 と読んで見なかった
             if start <= due <= end:
                 waiting.append((key, s, r, due))
     if waiting:
