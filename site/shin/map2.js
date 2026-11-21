@@ -35,6 +35,9 @@ function build(){
   $("#m2w").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;S.w=b.dataset.w;O.changed();S_.navCur("map");drawW();refresh(false)});
   $("#m2gx").onclick=function(){S.g="";O.changed();S_.navCur("map");refresh(false)};
   $(".m2z",box).addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var z=b.dataset.z;if(z==="me"){locate();return}lastUser=1;zoomAt(+z,vb.x+vb.w/2,vb.y+vb.h/2,true)});
+  /* 11/21 縦の指の動きで画面全体が動く（iPhone・Instagram）→ 地図の外の縦の動きは止める。横のカードは横だけ */
+  var ty0=0,tx0=0;box.addEventListener("touchstart",function(e){var t=e.touches[0];tx0=t.clientX;ty0=t.clientY},{passive:true});
+  box.addEventListener("touchmove",function(e){if(e.target.closest(".m2v"))return;var t=e.touches[0];if(e.touches.length>1||Math.abs(t.clientY-ty0)>Math.abs(t.clientX-tx0))e.preventDefault()},{passive:false});
   $("#m2c").addEventListener("scroll",function(){clearTimeout(box._t);box._t=setTimeout(function(){var c=$("#m2c"),f=c.querySelector(".mcd");if(!f)return;var w=f.offsetWidth+10,k=Math.max(0,Math.min(inView.length-1,Math.round(c.scrollLeft/w)));if(inView[k]&&inView[k]!==sel)select(inView[k],false)},90)},{passive:true});
   $("#m2c").addEventListener("click",function(e){var a=e.target.closest(".mcd");if(!a)return;e.preventDefault();var x=O.byi[a.dataset.i];if(x)O.openItem(x)});
   gestures();
