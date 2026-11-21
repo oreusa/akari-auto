@@ -52,6 +52,14 @@ function ieOrg(P,kt){
 function muList(items){var n=0;return items.map(function(m){if(m[1]==="#")return '<li class="mg">'+m[0]+'</li>';n++;return '<li><a href="'+m[1]+'"'+(m[2]?' class="here"':'')+' style="transition-delay:'+(60+n*30)+'ms"><small>'+(n<10?'0':'')+n+'</small>'+m[0]+'</a></li>'}).join("")}
 var IEO=ieOrg(location.pathname,(CFG.reg&&CFG.reg.n==="関東")||/kanto|lifenote|life-note|usagi-life/.test(location.hostname));
 if(IEO){var _fa=(CFG.nav||[]).filter(function(n){return n.a==="find"})[0];CFG.nav=IEO.nav.map(function(n){return _fa&&n.href==="/fudosan-list"&&n.cur?{t:n.t,svg:n.svg,a:"find",cur:1}:_fa&&n.href==="/fudosan-list?geo=1"?{t:n.t,svg:n.svg,a:"geo"}:n});CFG.menu.items=IEO.menu;window.TN_IEG=IEO.G;document.documentElement.classList.add("ieo")}
+/* 11/21 owner まわりの声「何を触ったらいいか分からない」「MENUを押すと先にもっと枝分かれ」→ 見本 ?kn=1（?kn=0 で前）：
+   下のバーはどのページでも同じ4つの部屋（おでかけ・家と土地・おかいもの・開店閉店）。今いる部屋に印。MENU は今の部屋のページだけ（ほかの部屋はバーにある）。 */
+var KN=0;try{var _kq=location.search.match(/[?&]kn=([01])/);if(_kq)localStorage.setItem("tn_kn",_kq[1]);KN=localStorage.getItem("tn_kn")==="1"}catch(e){}
+if(KN){document.documentElement.classList.add("lk-kn");
+  var _kp=location.pathname.replace(/\.html$/,"").replace(/^\/shin(?=\/)/,"");
+  var _rm=/^\/(okaimono|nesage|otoku|furusato|kau|kaimawari|tanka)/.test(_kp)?2:/^\/(o\/|odekake|illumination|koyo|ima|tomari|hatsumode)/.test(_kp)?0:/^\/kaiten/.test(_kp)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|ranking|ie\b)/.test(_kp)?1:-1;
+  CFG.nav=[["おでかけ","now","/odekake"],["家と土地","find","/fudosan-list"],["おかいもの","yen","/okaimono"],["開店閉店","buy","/kaiten"]].map(function(x,i){return {t:x[0],ic:x[1],href:x[2],cur:i===_rm}});
+  if(CFG.menu)CFG.menu.rel=[["トップへ","/"]]}
 /* 11/19 関東も同じ土台で作る：地域の違い（名前・府県・色・地図・ロゴ）は CFG.reg。無ければ関西 */
 var REG=CFG.reg||{n:"関西",brand:"TOWN NOTE",logo:"/assets/logo-s.png?v=2",logon:"/assets/logo-s-night.png",pref:["大阪","京都","兵庫","奈良","滋賀","和歌山"],pfs:"大阪・京都・兵庫・奈良・滋賀・和歌山",pc:{"大阪":"#D9775A","京都":"#9C7BB8","兵庫":"#4F86C6","奈良":"#5FA06A","滋賀":"#3FA3B5","和歌山":"#E09A3E"},fl:{"大阪":"#F7D9CC","京都":"#E6DBF1","兵庫":"#D6E4F5","奈良":"#D8ECD4","滋賀":"#D0EBEF","和歌山":"#F8E4C4"},lb:{"兵庫":[62,105],"京都":[122,78],"滋賀":[176,92],"大阪":[118,165],"奈良":[156,178],"和歌山":[118,215]},sl:{"大阪":"osaka","京都":"kyoto","兵庫":"hyogo","奈良":"nara","滋賀":"shiga","和歌山":"wakayama"},vb:"10 15 200 250"};
 var RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
