@@ -83,17 +83,15 @@
   "why": ""
  },
  "https://aqua-kingyo.jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.6,
+  "sec": 0.8,
   "why": ""
  },
  "https://ariake.shopping-sumitomo-rd.com/event/4900/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.7,
+  "sec": 0.6,
   "why": ""
  },
  "https://artetokyo.jp/": {
@@ -104,10 +102,9 @@
   "why": ""
  },
  "https://ballparkxmas.com/2026/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.6,
+  "sec": 0.9,
   "why": ""
  },
  "https://bookkasama.com/": {
@@ -118,31 +115,27 @@
   "why": ""
  },
  "https://brand.sarutahiko.jp/shop/the_east_gardens_of_the_imperial_palace": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.1,
+  "sec": 1.7,
   "why": ""
  },
  "https://bungaku.pref.gunma.jp/project/3148/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.2,
+  "sec": 1.9,
   "why": ""
  },
  "https://chiai-knowledge.com/stamprally/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.5,
+  "sec": 1.3,
   "why": ""
  },
  "https://christmasmarket.jp/202611-cocooncity/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.5,
+  "sec": 0.8,
   "why": ""
  },
  "https://dai-tsukemen-haku.com/": {
@@ -174,52 +167,45 @@
   "why": ""
  },
  "https://djs.dialogue.or.jp/news/20260826news/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 3.6,
+  "sec": 2.9,
   "why": ""
  },
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.9,
-  "why": ""
+  "at": "2026-11-22",
+  "ok": false,
+  "sec": 15.2,
+  "why": "<urlopen error timed out>"
  },
  "https://ehonnooka.com/?p=11240": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.0,
+  "sec": 1.2,
   "why": ""
  },
  "https://en.aquaworld-oarai.com/2026/09/24/tomei-hyohon/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 3.2,
-  "why": ""
+  "sec": 0.9,
+  "why": "403"
  },
  "https://event.gardenplace.jp/special/2026baccarat/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.3,
+  "sec": 1.0,
   "why": ""
  },
  "https://floria-tokyo.jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.4,
+  "sec": 0.7,
   "why": ""
  },
  "https://fujiko-museum.com/exhibition.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.3,
+  "sec": 0.7,
   "why": ""
  },
  "https://fukaya-sci.net/dai14kaiseiennmaturi/": {
@@ -230,31 +216,27 @@
   "why": ""
  },
  "https://global.toyota/info/themoveum/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.6,
+  "sec": 0.7,
   "why": ""
  },
  "https://gotouchi-chara.jp/hanyu2026/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.6,
+  "sec": 0.6,
   "why": ""
  },
  "https://grekisi.pref.gunma.jp/event/5961/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.2,
+  "sec": 2.0,
   "why": ""
  },
  "https://grekisi.pref.gunma.jp/event/6025/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.9,
+  "sec": 1.7,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106048": {
@@ -313,13 +295,6 @@
   "sec": 1.0,
   "why": ""
  },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D10893": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 4.7,
-  "why": ""
- },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108973": {
   "at": "2026-11-18",
   "by": "browser",
@@ -355,13 +330,6 @@
   "sec": 1.0,
   "why": ""
  },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D130092": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 4.7,
-  "why": ""
- },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D13449": {
   "at": "2026-11-18",
   "by": "browser",
@@ -381,13 +349,6 @@
   "by": "browser",
   "ok": true,
   "sec": 1.0,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D134811": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.6,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136006": {
@@ -859,13 +820,6 @@
   "sec": 0.8,
   "why": ""
  },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D180324": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.0,
-  "why": ""
- },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D180500": {
   "at": "2026-11-18",
   "by": "browser",
@@ -1006,13 +960,6 @@
   "sec": 1.9,
   "why": ""
  },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184455": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.1,
-  "why": ""
- },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184475": {
   "at": "2026-11-18",
   "by": "browser",
@@ -1125,13 +1072,6 @@
   "sec": 1.2,
   "why": ""
  },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188746": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.1,
-  "why": ""
- },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191532": {
   "at": "2026-11-14",
   "by": "browser",
@@ -1172,13 +1112,6 @@
   "by": "browser",
   "ok": true,
   "sec": 0.8,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D192779": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.5,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D192789": {
@@ -1230,13 +1163,6 @@
   "sec": 1.0,
   "why": ""
  },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196737": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.2,
-  "why": ""
- },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196823": {
   "at": "2026-11-18",
   "by": "browser",
@@ -1256,13 +1182,6 @@
   "by": "browser",
   "ok": true,
   "sec": 1.0,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D197422": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.3,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198046": {
@@ -1333,13 +1252,6 @@
   "by": "browser",
   "ok": true,
   "sec": 1.3,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D215": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.1,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D2362": {
@@ -1615,13 +1527,6 @@
   "sec": 1.3,
   "why": ""
  },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D68487": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.2,
-  "why": ""
- },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D68489": {
   "at": "2026-11-18",
   "by": "browser",
@@ -1699,13 +1604,6 @@
   "sec": 1.1,
   "why": ""
  },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D76873": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.0,
-  "why": ""
- },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D76896": {
   "at": "2026-11-15",
   "by": "browser",
@@ -1753,13 +1651,6 @@
   "by": "browser",
   "ok": true,
   "sec": 1.1,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D9129": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 4.7,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D928": {
@@ -3695,10 +3586,9 @@
   "why": "503"
  },
  "https://hokusai-museum.jp/modules/Exhibition/exhibitions/view/5021": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.1,
+  "sec": 1.0,
   "why": ""
  },
  "https://hotel-chinzanso-tokyo.jp/7s/autumn/": {
@@ -3709,38 +3599,33 @@
   "why": ""
  },
  "https://ibaraki-kairakuen.jp/news/detail?id=5899": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.9,
+  "sec": 0.8,
   "why": ""
  },
  "https://kadcul.com/event/276": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.3,
+  "sec": 0.7,
   "why": ""
  },
  "https://kanko-shiki.com/archives/5214": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 5.2,
+  "sec": 2.5,
   "why": ""
  },
  "https://kawachi-illumination.lanitech.jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.8,
+  "sec": 0.8,
   "why": ""
  },
  "https://kobito-2610.sync-innovation.co.jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.3,
+  "sec": 0.5,
   "why": ""
  },
  "https://koreafes-mindan.com/grandprix.html": {
@@ -3751,18 +3636,16 @@
   "why": ""
  },
  "https://kurkkufields.jp/topic/7th-anniversary/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.7,
+  "sec": 1.6,
   "why": ""
  },
  "https://l-tike.com/ntvzero/event/tvconanten-30th_yokohama.html": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 0.7,
-  "why": ""
+  "at": "2026-11-22",
+  "ok": false,
+  "sec": 15.1,
+  "why": "The read operation timed out"
  },
  "https://lightup-nikko.jp/": {
   "at": "2026-11-08",
@@ -3772,45 +3655,39 @@
   "why": ""
  },
  "https://litpla.com/space/muchu-yokohamabayside/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.5,
+  "sec": 0.3,
   "why": ""
  },
  "https://macg.roppongihills.com/jp/exhibitions/haikyu-challengers/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
+ "https://maebashi-biennale.com/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 1.2,
+  "why": ""
+ },
+ "https://maple-festa.com/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 0.8,
+  "why": ""
+ },
+ "https://maruchiba.jp/event/detail_10812.html": {
+  "at": "2026-11-22",
   "ok": true,
   "sec": 1.0,
   "why": ""
  },
- "https://maebashi-biennale.com/": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 3.9,
-  "why": ""
- },
- "https://maple-festa.com/": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.4,
-  "why": ""
- },
- "https://maruchiba.jp/event/detail_10812.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+ "https://maruchiba.jp/event/detail_10893.html": {
+  "at": "2026-11-22",
   "ok": true,
   "sec": 1.5,
-  "why": ""
- },
- "https://maruchiba.jp/event/detail_10893.html": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.4,
   "why": ""
  },
  "https://maruchiba.jp/event/detail_10897.html": {
@@ -3821,10 +3698,9 @@
   "why": "404"
  },
  "https://maruchiba.jp/event/detail_13095.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.7,
+  "sec": 1.3,
   "why": ""
  },
  "https://maruchiba.jp/event/detail_13248.html": {
@@ -3842,10 +3718,9 @@
   "why": ""
  },
  "https://maruchiba.jp/event/detail_13412.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.5,
+  "sec": 1.3,
   "why": ""
  },
  "https://maruchiba.jp/event/detail_14113.html": {
@@ -3856,10 +3731,9 @@
   "why": "404"
  },
  "https://maruchiba.jp/event/detail_16027.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.4,
+  "sec": 1.2,
   "why": ""
  },
  "https://maruchiba.jp/event/detail_16028.html": {
@@ -3870,24 +3744,21 @@
   "why": ""
  },
  "https://maruchiba.jp/event/detail_16063.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.2,
+  "sec": 2.7,
   "why": ""
  },
  "https://media.jreast.co.jp/articles/6831": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
   "sec": 0.7,
   "why": ""
  },
  "https://metsa-hanno.com/event/46431/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.5,
+  "sec": 1.0,
   "why": ""
  },
  "https://metsa-hanno.com/event/47804/": {
@@ -3898,45 +3769,39 @@
   "why": ""
  },
  "https://metsa-hanno.com/news/press_release/47261/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.7,
+  "sec": 0.8,
   "why": ""
  },
  "https://minatomirai.vintage-artisan-market.com/": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.0,
-  "why": ""
- },
- "https://mitsui-shopping-park.com/lalaport/kashiwa/cp/20thanniversary/": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.4,
-  "why": ""
- },
- "https://mitsui-shopping-park.com/urban/legend-research/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
   "sec": 0.9,
   "why": ""
  },
- "https://naganumacc.jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+ "https://mitsui-shopping-park.com/lalaport/kashiwa/cp/20thanniversary/": {
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.2,
+  "sec": 0.8,
+  "why": ""
+ },
+ "https://mitsui-shopping-park.com/urban/legend-research/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 0.3,
+  "why": ""
+ },
+ "https://naganumacc.jp/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 0.7,
   "why": ""
  },
  "https://nasushiobara-kanko.jp/events/36783/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.5,
+  "sec": 1.4,
   "why": ""
  },
  "https://null2.nexus": {
@@ -3966,10 +3831,9 @@
   "why": ""
  },
  "https://pref.spec.ed.jp/momas/2026momas02": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.9,
+  "sec": 1.3,
   "why": ""
  },
  "https://prtimes.jp/main/html/rd/p/000000212.000027005.html": {
@@ -4000,10 +3864,9 @@
   "why": ""
  },
  "https://rekishikan-ibk.jp/event/festival/post-15132/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 3.2,
+  "sec": 1.3,
   "why": ""
  },
  "https://resemom.jp/release/prtimes/20261021/221970.html": {
@@ -4034,17 +3897,15 @@
   "why": ""
  },
  "https://shinagawa-kanko.or.jp/event/shinasuillc2026/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.9,
+  "sec": 1.5,
   "why": ""
  },
  "https://sites.google.com/mejirogarden.com/parkmanegement/%E7%B4%85%E8%91%89%E3%83%A9%E3%82%A4%E3%83%88%E3%82%A2%E3%83%83%E3%83%972026?authuser=0": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.9,
+  "sec": 0.2,
   "why": ""
  },
  "https://skeletonics.com/the-robot-park-odaiba/": {
@@ -4069,10 +3930,9 @@
   "why": ""
  },
  "https://t-doitsumura.co.jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 10.0,
+  "sec": 1.9,
   "why": ""
  },
  "https://t-doitsumura.co.jp/flowernews/best-time-autumn2026/": {
@@ -4083,10 +3943,9 @@
   "why": ""
  },
  "https://t-doitsumura.co.jp/lantern2026/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 9.8,
+  "sec": 1.5,
   "why": ""
  },
  "https://tachikawaillumination.com": {
@@ -4103,31 +3962,27 @@
   "why": ""
  },
  "https://tako-kankou.or.jp/ikiiki-event/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.9,
+  "sec": 1.3,
   "why": ""
  },
  "https://tamaillumi.myportfolio.com/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.5,
-  "why": ""
+  "sec": 0.1,
+  "why": "403"
  },
  "https://tcv.roppongihills.com/jp/exhibitions/hoshinooujisama/index.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.1,
+  "sec": 0.7,
   "why": ""
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.8,
+  "sec": 1.1,
   "why": ""
  },
  "https://tokorozawa-sakuratown.com/event_categories/hawaiianfes2026.html": {
@@ -4145,24 +4000,21 @@
   "why": ""
  },
  "https://tokyo-sg.com/news/3963": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.1,
+  "sec": 1.8,
   "why": ""
  },
  "https://tokyo.timburtonexhibition.com/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.3,
+  "sec": 0.4,
   "why": ""
  },
  "https://tokyoatlas.jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.9,
+  "sec": 0.2,
   "why": ""
  },
  "https://ttca.jp/autumn-leaves-info2026/": {
@@ -4173,10 +4025,9 @@
   "why": ""
  },
  "https://uketsu.jp/museum/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.4,
+  "sec": 0.7,
   "why": ""
  },
  "https://usagi-life-notes.pages.dev/nesage": {
@@ -4186,10 +4037,9 @@
   "why": ""
  },
  "https://visit-chiyoda.tokyo/app/event/detail/947": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.8,
+  "sec": 1.0,
   "why": ""
  },
  "https://visitsaitamacity.jp/events/5": {
@@ -4200,10 +4050,9 @@
   "why": ""
  },
  "https://wahhhp.com/gaudi": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.2,
+  "sec": 0.9,
   "why": ""
  },
  "https://workers.cloudflare.com/?utm_source=error_footer": {
@@ -4214,17 +4063,15 @@
   "why": ""
  },
  "https://www.aeon.com/store/lp/592760/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.1,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.akachan.jp/topics/CotoToki_bellmall": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.3,
+  "sec": 1.6,
   "why": ""
  },
  "https://www.amazon.co.jp/s?k=%E3%80%8E%20%EF%BC%81%E3%80%8F%20%E3%82%AD%E3%83%AA%E3%83%B3%E3%83%93%E3%83%90%E3%83%AC%E3%83%83%E3%82%B8%20%E7%94%9F%E8%8C%B6&tag=aiusagichan-22": {
@@ -4445,45 +4292,39 @@
   "why": ""
  },
  "https://www.arkhills.com/events/2026/11/0231.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.6,
+  "sec": 0.8,
   "why": ""
  },
  "https://www.ashikaga.co.jp/flowerfantasy_special2026/jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 3.0,
-  "why": ""
- },
- "https://www.bunkajoho.pref.ibaraki.jp/event-info/14013.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
   "sec": 3.2,
   "why": ""
  },
- "https://www.ccma-net.jp/exhibitions/special/26-9-16-11-23/": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 3.5,
-  "why": ""
- },
- "https://www.chiba-muse.or.jp/ART/exhibition/events/event-10036/": {
-  "at": "2026-11-18",
-  "by": "browser",
+ "https://www.bunkajoho.pref.ibaraki.jp/event-info/14013.html": {
+  "at": "2026-11-22",
   "ok": true,
   "sec": 2.0,
   "why": ""
  },
- "https://www.chichibu-railway.co.jp/blog/news/sl2026/": {
-  "at": "2026-11-18",
-  "by": "browser",
+ "https://www.ccma-net.jp/exhibitions/special/26-9-16-11-23/": {
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 6.3,
+  "sec": 1.8,
+  "why": ""
+ },
+ "https://www.chiba-muse.or.jp/ART/exhibition/events/event-10036/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 0.7,
+  "why": ""
+ },
+ "https://www.chichibu-railway.co.jp/blog/news/sl2026/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 1.9,
   "why": ""
  },
  "https://www.chichibuji.gr.jp/event/icyou/": {
@@ -4494,17 +4335,15 @@
   "why": ""
  },
  "https://www.chinatown.or.jp/event/event/2026_food_festival/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.5,
+  "sec": 0.8,
   "why": ""
  },
  "https://www.chinatown.or.jp/event/event/shunsetsutouka2027/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.5,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.christmas.hills-site.com/": {
@@ -4563,31 +4402,15 @@
   "why": ""
  },
  "https://www.city.kawaguchi.lg.jp/material/files/group/184/0803Release.pdf": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.0,
-  "why": ""
- },
- "https://www.city.kitamoto.lg.jp/kanko/event/aki/18464.html": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 3.2,
+  "sec": 2.4,
   "why": ""
  },
  "https://www.city.midori.gunma.jp/conodont": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.1,
-  "why": ""
- },
- "https://www.city.narita.chiba.jp/business/page156700.html": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 4.3,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.city.ohtawara.tochigi.jp/docs/2022110200031/": {
@@ -4605,52 +4428,45 @@
   "why": ""
  },
  "https://www.city.saitama.lg.jp/006/014/008/003/015/005/p132422.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 3.4,
+  "sec": 1.6,
   "why": ""
  },
  "https://www.city.saitama.lg.jp/006/014/008/003/015/007/p134331.html": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 0.8,
-  "why": ""
- },
- "https://www.city.sano.lg.jp/miryokuhasshin/event/29076.html": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 2.4,
-  "why": ""
- },
- "https://www.city.sano.lg.jp/sp/yoshizawakinembijutsukan/2/1_7/27423.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
   "sec": 1.9,
   "why": ""
  },
- "https://www.city.tochigi.lg.jp/site/museum-tcam/92628.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+ "https://www.city.sano.lg.jp/miryokuhasshin/event/29076.html": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 0.5,
+  "why": ""
+ },
+ "https://www.city.sano.lg.jp/sp/yoshizawakinembijutsukan/2/1_7/27423.html": {
+  "at": "2026-11-22",
   "ok": true,
   "sec": 1.5,
   "why": ""
  },
- "https://www.city.tsuchiura.lg.jp/kanko-bunka-sports/kanko-matsuri-event/news/page022212.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+ "https://www.city.tochigi.lg.jp/site/museum-tcam/92628.html": {
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.7,
+  "sec": 1.3,
+  "why": ""
+ },
+ "https://www.city.tsuchiura.lg.jp/kanko-bunka-sports/kanko-matsuri-event/news/page022212.html": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 1.8,
   "why": ""
  },
  "https://www.civic.jp/event.php?mode=detail&f=1&code=492": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.1,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.daigo-kanko.jp/news/news-19551": {
@@ -4661,17 +4477,15 @@
   "why": ""
  },
  "https://www.doll-museum.jp/?p=17537": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 4.3,
+  "sec": 2.3,
   "why": ""
  },
  "https://www.earthplaza.jp/earthfestakanagawa/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.6,
+  "sec": 1.0,
   "why": ""
  },
  "https://www.edo-tokyo-museum.or.jp/s-exhibition/toyotomi/": {
@@ -4682,10 +4496,9 @@
   "why": ""
  },
  "https://www.expocenter.or.jp/planetarium/program/detail/id=5049": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.3,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.fj-de-gunma.com/": {
@@ -4695,31 +4508,27 @@
   "why": ""
  },
  "https://www.flower-park.jp/night-bloom/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.2,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.flowerpark.or.jp/news-column/autumn2026/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.9,
+  "sec": 1.5,
   "why": ""
  },
  "https://www.gotokyo.org/jp/spot/ev132/index.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 3.0,
+  "sec": 0.5,
   "why": ""
  },
  "https://www.gotokyo.org/jp/spot/ev134/index.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.5,
+  "sec": 1.8,
   "why": ""
  },
  "https://www.hama-midorinokyokai.or.jp/park/negishi/": {
@@ -4735,13 +4544,6 @@
   "sec": 1.7,
   "why": ""
  },
- "https://www.haramuseum.or.jp": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 3.2,
-  "why": ""
- },
  "https://www.haramuseum.or.jp/": {
   "at": "2026-11-09",
   "by": "browser",
@@ -4750,66 +4552,45 @@
   "why": ""
  },
  "https://www.haramuseum.or.jp/jp/arc/exhibition/2275/": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 3.8,
-  "why": ""
- },
- "https://www.hitachikaihin.jp/event/recommend-event/kaihanasotoasobi-2026.html": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 2.2,
-  "why": ""
+  "at": "2026-11-22",
+  "ok": false,
+  "sec": 0.7,
+  "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate "
  },
  "https://www.hkc.or.jp/takaosan/momiji_fes/": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 2.6,
-  "why": ""
- },
- "https://www.houtokuji.jp/reflection-autumn.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
   "sec": 1.3,
   "why": ""
  },
- "https://www.ibaraki-is-blossoming.jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+ "https://www.houtokuji.jp/reflection-autumn.html": {
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.5,
+  "sec": 0.8,
+  "why": ""
+ },
+ "https://www.ibaraki-is-blossoming.jp/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 1.5,
   "why": ""
  },
  "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
   "sec": 2.4,
   "why": ""
  },
- "https://www.ibarakiguide.jp/special/hanabi.html": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 2.2,
-  "why": ""
- },
  "https://www.ibarakiguide.jp/special/kasumigaura_hobikisen.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
   "sec": 1.2,
   "why": ""
  },
  "https://www.ichou-festa.org/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.0,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.ikaho-kankou.com/red_lightup/": {
@@ -4820,24 +4601,21 @@
   "why": ""
  },
  "https://www.ikimono-sei.jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 3.0,
+  "sec": 1.4,
   "why": ""
  },
  "https://www.jsf.or.jp/event/youkai": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.3,
+  "sec": 0.8,
   "why": ""
  },
  "https://www.kanagawaparks.com/kurihama/news/2026100414204410478.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.5,
+  "sec": 1.7,
   "why": ""
  },
  "https://www.kanko-hitachiota.com/page/page002118.html": {
@@ -4848,24 +4626,21 @@
   "why": ""
  },
  "https://www.kasama-kankou.jp/page/dir000187.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.1,
+  "sec": 0.2,
   "why": ""
  },
  "https://www.keirin-saitama.jp/omiya/topics/20261123/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.4,
+  "sec": 1.5,
   "why": ""
  },
  "https://www.keiseirose.co.jp/garden/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 4.1,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.kingofpasta.jp/": {
@@ -4895,66 +4670,57 @@
   "why": ""
  },
  "https://www.kusatsu-onsen.ne.jp/event/2029.php": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.0,
+  "sec": 0.8,
   "why": ""
  },
  "https://www.mappa.co.jp/15th/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.9,
+  "sec": 0.7,
   "why": ""
  },
  "https://www.marie2026.jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.0,
+  "sec": 0.4,
   "why": ""
  },
  "https://www.metro.tokyo.lg.jp/information/press/2026/04/2026041007": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.6,
+  "sec": 1.4,
   "why": ""
  },
  "https://www.motherfarm.co.jp/information/illumination2026/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.2,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.motherfarm.co.jp/information/news/detail.php?CN=432299": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.4,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.motherfarm.co.jp/information/news/detail.php?CN=434766": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.6,
+  "sec": 0.8,
   "why": ""
  },
  "https://www.nact.jp/artcommons/user/detail/80797": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.4,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.nagatoro.gr.jp/2026/09/%e9%95%b7%e7%80%9e%e7%b4%85%e8%91%89%e3%81%be%e3%81%a4%e3%82%8a2026%e6%97%a5%e7%a8%8b%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.6,
+  "sec": 2.5,
   "why": ""
  },
  "https://www.naritasan.or.jp/monthly/gyoji/": {
@@ -4965,30 +4731,21 @@
   "why": ""
  },
  "https://www.nikko-kankou.org/event/1626": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.2,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.nikko-kankou.org/event/1672": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.9,
+  "sec": 1.0,
   "why": ""
  },
  "https://www.nmwa.go.jp/jp/exhibitions/2026turner.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 4.4,
-  "why": ""
- },
- "https://www.npo-tashizan.jp": {
-  "at": "2026-11-07",
-  "ok": true,
-  "sec": 1.2,
+  "sec": 1.6,
   "why": ""
  },
  "https://www.npo-tashizan.jp/": {
@@ -4996,13 +4753,6 @@
   "by": "browser",
   "ok": true,
   "sec": 1.9,
-  "why": ""
- },
- "https://www.nrtk.jp/enjoy/shikisaisai/narita-fireworks.html": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 2.7,
   "why": ""
  },
  "https://www.oarai-info.jp/news/postid_8902/": {
@@ -5013,10 +4763,9 @@
   "why": ""
  },
  "https://www.ohtawara.info/spot.html?spot-type=1": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.5,
+  "sec": 0.6,
   "why": ""
  },
  "https://www.oizumimachi-kankoukyoukai.jp/event/416": {
@@ -5026,24 +4775,21 @@
   "why": ""
  },
  "https://www.omochaoukoku.com/karuizawa/event/ezy_roller/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 3.3,
+  "sec": 2.4,
   "why": ""
  },
  "https://www.pref.saitama.lg.jp/b0112/kanko-tiiki-info/enjoy-winter.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.3,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.pref.tochigi.lg.jp/c10/kouhou/kouhou/202610-12artm-kikaku.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.8,
+  "sec": 1.0,
   "why": ""
  },
  "https://www.railway-museum.jp/event/exhibition.html": {
@@ -5054,31 +4800,27 @@
   "why": ""
  },
  "https://www.rindo.co.jp/event/134": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
   "sec": 0.4,
   "why": ""
  },
  "https://www.roppongihills.com/sp/christmashills/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.0,
+  "sec": 0.7,
   "why": ""
  },
  "https://www.sagamiko-resort.jp/illumillion/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.9,
+  "sec": 0.8,
   "why": ""
  },
  "https://www.saitama-bungaku.jp/event/39634/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.1,
+  "sec": 1.1,
   "why": ""
  },
  "https://www.sankeien.or.jp/event/10880/": {
@@ -5095,24 +4837,21 @@
   "why": ""
  },
  "https://www.seibu-leisure.co.jp/matsuri/info/chichibudewinefair/index.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
   "sec": 2.4,
   "why": ""
  },
  "https://www.senmaida.com/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 3.9,
+  "sec": 1.8,
   "why": ""
  },
  "https://www.shibuya-scramble-square.com/sky/sparkling_view": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.2,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.shikinokaori-rose-garden.com/event/10899/": {
@@ -5123,73 +4862,57 @@
   "why": ""
  },
  "https://www.shiroiya.com/news/news-topics/20260608-2/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.9,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.showakinen-koen.jp/autumn-night-walk/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.0,
-  "why": ""
- },
- "https://www.siobara.or.jp/information/20260909/1193/": {
-  "at": "2026-11-07",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.9,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.skipcity.jp/event/vm/thomas/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 4.5,
+  "sec": 0.6,
   "why": ""
  },
  "https://www.takasaki.fm/hikari/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.3,
+  "sec": 0.7,
   "why": ""
  },
  "https://www.taromuseum.jp/exhibition.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 1.6,
+  "why": ""
+ },
+ "https://www.teien-art-museum.ne.jp/exhibition/20261003-1220_marimekko/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 1.2,
+  "why": ""
+ },
+ "https://www.tnm.jp/modules/r_free_page/index.php?id=2759": {
+  "at": "2026-11-22",
   "ok": true,
   "sec": 1.3,
   "why": ""
  },
- "https://www.teien-art-museum.ne.jp/exhibition/20261003-1220_marimekko/": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 2.8,
-  "why": ""
- },
- "https://www.tnm.jp/modules/r_free_page/index.php?id=2759": {
-  "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 2.4,
-  "why": ""
- },
  "https://www.tobikan.jp/exhibition/2026_orsay.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.5,
+  "sec": 0.8,
   "why": ""
  },
  "https://www.tobuzoo.com/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 6.3,
+  "sec": 1.5,
   "why": ""
  },
  "https://www.tochigi-kankou.or.jp/news/19382": {
@@ -5200,17 +4923,15 @@
   "why": ""
  },
  "https://www.tochigi-kankou.or.jp/news/20057": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.8,
+  "sec": 1.1,
   "why": ""
  },
  "https://www.tochigi-kankou.or.jp/news/20445": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.4,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.tokyo-dome.co.jp/aamo/": {
@@ -5221,45 +4942,39 @@
   "why": ""
  },
  "https://www.tokyo-dome.co.jp/en/illumination/plan": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.4,
+  "sec": 1.6,
   "why": ""
  },
  "https://www.tokyo-dome.co.jp/illumination/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.3,
+  "sec": 0.2,
   "why": ""
  },
  "https://www.tokyo-park.or.jp/event_search/9_2_2.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 4.3,
+  "sec": 0.7,
   "why": ""
  },
  "https://www.tokyo-park.or.jp/special/koishikawa_lightingup/index.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 5.3,
+  "sec": 1.0,
   "why": ""
  },
  "https://www.tokyomegaillumi.jp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 3.0,
+  "sec": 0.8,
   "why": ""
  },
  "https://www.tougei.museum.ibk.ed.jp/viewer/info.html?id=603&g=138": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.6,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.town.goka.lg.jp/kurashi-machi-shigoto/gokanabi/event/page006617.html": {
@@ -5269,17 +4984,15 @@
   "why": ""
  },
  "https://www.town.tamamura.lg.jp/docs/2026100800010/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.5,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.ueno-mori.org/exhibitions/article.cgi?id=12651051": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.2,
+  "sec": 1.1,
   "why": ""
  },
  "https://www.utsunomiya-cvb.org/event/detail_20001.html": {
@@ -5323,24 +5036,21 @@
   "why": ""
  },
  "https://www.utsunomiya-cvb.org/event/detail_30068.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.utsunomiya-cvb.org/event/detail_30131.html": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.0,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.waterras.com/event/archives/event/35570/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 4.3,
+  "sec": 1.8,
   "why": ""
  },
  "https://www.wbstudiotour.jp/dark-arts/": {
@@ -5351,31 +5061,27 @@
   "why": ""
  },
  "https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw12729": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.7,
+  "sec": 0.2,
   "why": ""
  },
  "https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw13073": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.9,
+  "sec": 0.3,
   "why": ""
  },
  "https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw13428": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.9,
+  "sec": 0.1,
   "why": ""
  },
  "https://www.yaesu.tokyo-midtown.com/special/xmas/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.2,
+  "sec": 1.0,
   "why": ""
  },
  "https://www.yamato-future.jp/events/event10654/": {
@@ -5386,24 +5092,21 @@
   "why": ""
  },
  "https://www.yokohama-akarenga.jp/christmas/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.8,
+  "sec": 0.2,
   "why": ""
  },
  "https://www.yomiuriland.com/jewellumination/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.1,
+  "sec": 0.7,
   "why": ""
  },
  "https://www.yugawara.or.jp/sightseeing/701/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 2.6,
+  "sec": 1.2,
   "why": ""
  },
  "https://yakiimofes.jp/": {
@@ -5414,9 +5117,9 @@
   "why": ""
  },
  "https://yamatokuen.com": {
-  "at": "2026-11-18",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.4,
+  "sec": 1.3,
   "why": ""
  },
  "https://yamatokuen.com/": {
@@ -5427,31 +5130,27 @@
   "why": ""
  },
  "https://yatsutama.com/localherojp/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.9,
+  "sec": 0.8,
   "why": ""
  },
  "https://yayoikusamamuseum.jp/en/exhibition/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.7,
+  "sec": 1.6,
   "why": ""
  },
  "https://yokohama-landmark.jp/plaza_news/detail.html?act=64030": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 1.7,
+  "sec": 1.1,
   "why": ""
  },
  "https://zen.vie.style/kenchoji2026/": {
-  "at": "2026-11-18",
-  "by": "browser",
+  "at": "2026-11-22",
   "ok": true,
-  "sec": 0.2,
+  "sec": 0.9,
   "why": ""
  },
  "https://zeppin-yatai.com/kawaguchi/": {
