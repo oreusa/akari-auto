@@ -60,6 +60,11 @@ if(KN){document.documentElement.classList.add("lk-kn");
   var _rm=/^\/(okaimono|nesage|otoku|furusato|kau|kaimawari|tanka)/.test(_kp)?2:/^\/(o\/|odekake|illumination|koyo|ima|tomari|hatsumode)/.test(_kp)?0:/^\/kaiten/.test(_kp)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|ranking|ie\b)/.test(_kp)?1:-1;
   CFG.nav=[["おでかけ","map","/odekake"],["家と土地","inn","/fudosan-list"],["おかいもの","yen","/okaimono"],["開店閉店","buy","/kaiten"]].map(function(x,i){return {t:x[0],ic:x[1],href:x[2],cur:i===_rm}});
   if(CFG.menu)CFG.menu.rel=[["トップへ","/"]]}
+/* 11/22 owner「snsとかどこにあるの？」→ MENU の一番下に Instagram・Threads・X（見本 kn） */
+var _K2=/kanto|lifenote|life-note|usagi-life/.test(location.hostname),_SN=_K2?[["Instagram","https://www.instagram.com/usagichan_ai_si/"],["Threads","https://www.threads.com/@usagichan_ai_si"],["X","https://x.com/ai_usagichan"]]:[["Instagram","https://www.instagram.com/fudousan_ai_si/"],["Threads","https://www.threads.com/@fudousan_ai_si"],["X","https://x.com/fudosan_ai_si"]],
+ _SI={Instagram:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/>',Threads:'<path d="M16.6 11.3c2.2.9 3.2 2.7 2.6 4.8-.8 2.9-3.9 4.4-7.1 4.2-4.3-.3-7-3.3-7-8.3s2.8-8.1 7.2-8.3c3.5-.1 6 1.6 7 4.7"/><path d="M16.6 11.3c-.4 3.4-2.3 4.8-4.5 4.7-1.7-.1-2.9-1.1-2.8-2.6.1-1.7 1.8-2.6 4.1-2.5 1.1 0 2.2.2 3.2.4"/>',X:'<path d="M4 4l16 16M20 4L4 20"/>'},
+ _SNH='<div class="mnsn"><small>毎朝のおでかけを配信中</small>'+_SN.map(function(x){return '<a href="'+x[1]+'" target="_blank" rel="noopener" aria-label="'+x[0]+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+_SI[x[0]]+'</svg></a>'}).join("")+'</div>';
+
 /* 11/19 関東も同じ土台で作る：地域の違い（名前・府県・色・地図・ロゴ）は CFG.reg。無ければ関西 */
 var REG=CFG.reg||{n:"関西",brand:"TOWN NOTE",logo:"/assets/logo-s.png?v=2",logon:"/assets/logo-s-night.png",pref:["大阪","京都","兵庫","奈良","滋賀","和歌山"],pfs:"大阪・京都・兵庫・奈良・滋賀・和歌山",pc:{"大阪":"#D9775A","京都":"#9C7BB8","兵庫":"#4F86C6","奈良":"#5FA06A","滋賀":"#3FA3B5","和歌山":"#E09A3E"},fl:{"大阪":"#F7D9CC","京都":"#E6DBF1","兵庫":"#D6E4F5","奈良":"#D8ECD4","滋賀":"#D0EBEF","和歌山":"#F8E4C4"},lb:{"兵庫":[62,105],"京都":[122,78],"滋賀":[176,92],"大阪":[118,165],"奈良":[156,178],"和歌山":[118,215]},sl:{"大阪":"osaka","京都":"kyoto","兵庫":"hyogo","奈良":"nara","滋賀":"shiga","和歌山":"wakayama"},vb:"10 15 200 250"};
 var RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
@@ -92,10 +97,10 @@ app.innerHTML='<div class="wrap"><header class="top"><a class="brand" href="/" a
  '<main id="main"></main>'+
  '<div class="wrap"><footer class="ft">'+(CFG.foot||"")+'<br><a href="/">'+REG.brand+' トップ</a>　<a href="/privacy">プライバシー</a></footer></div>'+
  '<nav class="nav" id="nav" aria-label="すぐ移動">'+CFG.nav.map(function(n,i){return n.href?'<a href="'+n.href+'"'+(n.cur?' class="cur"':'')+'>'+(n.svg||IC[n.ic])+'<span>'+n.t+'</span></a>':'<button data-a="'+n.a+'"'+(i===0||n.cur?' class="cur"':'')+'>'+(n.svg||IC[n.ic])+'<span>'+n.t+'</span></button>'}).join("")+'<button class="mn" id="mnb" aria-label="メニュー"><em></em><span>MENU</span></button></nav>'+
- '<div class="sh" id="sh" aria-hidden="true"><div class="bk"></div><div class="pn" role="dialog" aria-modal="true"><div class="grab"><i></i></div><button class="x" aria-label="閉じる">×</button><div id="shc"></div></div></div>'+
+ '<div class="sh" id="sh" aria-hidden="true"><div class="bk"></div><div class="pn" role="dialog" aria-modal="true"><div class="grab"><i></i></div><button class="shr" aria-label="友だちに送る"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></button><button class="x" aria-label="閉じる">×</button><div id="shc"></div></div></div>'+
  '<div class="mu" id="mu"><div class="bk"></div><div class="pn"><div class="k">'+CFG.menu.k+'</div><ol>'+
  muList(CFG.menu.items)+
- '</ol><div class="rel">'+CFG.menu.rel.map(function(r){return '<a href="'+r[1]+'">'+r[0]+'</a>'}).join("")+'</div></div></div>';
+ '</ol><div class="rel">'+CFG.menu.rel.map(function(r){return '<a href="'+r[1]+'">'+r[0]+'</a>'}).join("")+'</div>'+(document.documentElement.classList.contains("lk-kn")?_SNH:'')+'</div></div>';
 
 /* 数え上がり（data-n。小数は data-d で桁、data-f で 1,234 の形） */
 function fmt(v,b){var d=+(b.dataset.d||0),s=d?v.toFixed(d):String(Math.round(v));if(b.dataset.f)s=s.replace(/\B(?=(\d{3})+(?!\d))/g,",");return (b.dataset.pre||"")+s}
@@ -124,6 +129,10 @@ function closeSheet(back){if(!shOpen)return;shOpen=false;sh.classList.remove("op
 addEventListener("popstate",function(){if(shOpen)closeSheet(false)});
 $(".bk",sh).onclick=function(){closeSheet()};$(".x",sh).onclick=function(){closeSheet()};
 shc.addEventListener("click",function(e){if(e.target.closest("[data-share]")){try{navigator.share({title:document.title,url:location.href})}catch(_){}}});
+/* 11/22 owner「送るボタンもなくなったけどいらない？」→ いる。開いた1件をいつでも送れるように、閉じるの横に送る（スマホの共有。無い時はリンクを写す） */
+function tnShare(t,u){try{if(navigator.share){navigator.share({title:t,url:u});return}}catch(_){}try{navigator.clipboard.writeText(u);var m=document.createElement("div");m.className="tncp";m.textContent="リンクを写しました";document.body.appendChild(m);setTimeout(function(){m.remove()},1800)}catch(_){}}
+window.TN_SHARE=tnShare;
+var _shr=$(".shr",sh);if(_shr)_shr.addEventListener("click",function(){var a=$('a[href^="/o/"],a[href^="/kaiten/"]',shc),h=$("h2,h3,b",shc);tnShare((h?h.textContent.trim()+"｜":"")+document.title,a?new URL(a.getAttribute("href"),location.href).href:location.href)});
 (function(){var pn=$(".pn",sh),y0=null,dy=0;pn.addEventListener("touchstart",function(e){if(pn.scrollTop<=0){y0=e.touches[0].clientY;dy=0}else y0=null},{passive:true});
  pn.addEventListener("touchmove",function(e){if(y0==null)return;dy=e.touches[0].clientY-y0;if(dy>0){pn.style.transition="none";pn.style.transform="translate3d(0,"+dy+"px,0)"}},{passive:true});
  pn.addEventListener("touchend",function(){if(y0==null)return;pn.style.transition="";pn.style.transform="";if(dy>110)closeSheet();y0=null},{passive:true})})();

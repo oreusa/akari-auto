@@ -88,7 +88,11 @@ if(IEO){C={nav:IEO.nav.map(function(x){return [x.t,x.ic,x.href,x.svg,x.cur]}),k:
 var KN=0;try{var _kq=location.search.match(/[?&]kn=([01])/);if(_kq)localStorage.setItem("tn_kn",_kq[1]);KN=localStorage.getItem("tn_kn")==="1"}catch(e){}
 if(KN){H.classList.add("lk-kn");var _rm=/^\/(okaimono|nesage|otoku|furusato|kaimawari|tanka)/.test(P)?2:/^\/(o|odekake|illumination|koyo|ima|tomari|hatsumode)\b/.test(P)?0:/^\/kaiten/.test(P)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|koe|ranking|townnotes)/.test(P)?1:-1;C={nav:TOP.nav.map(function(x,j){return [x[0],["map","inn","yen","buy"][j],x[2],0,j===_rm]}),k:C.k,menu:C.menu,rel:[["トップへ","/"]]}}
 /* 11/21 見本 ?kn=1：1件ページの「公式ページで最新の情報を見る」が地図と長い文の下にあった → 日程・時間・料金のすぐ下へ */
-if(KN&&/^\/o\//.test(P))(function(){var mv=function(){var a=document.querySelector(".act"),bg=document.querySelector(".big");if(a&&bg&&bg.parentNode)bg.parentNode.insertBefore(a,bg.nextSibling)};if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",mv);else mv()})();
+/* 11/22 MENU の一番下に SNS（見本 kn） */
+var _K2=/kanto|lifenote|life-note|usagi-life/.test(location.hostname),_SN=_K2?[["Instagram","https://www.instagram.com/usagichan_ai_si/"],["Threads","https://www.threads.com/@usagichan_ai_si"],["X","https://x.com/ai_usagichan"]]:[["Instagram","https://www.instagram.com/fudousan_ai_si/"],["Threads","https://www.threads.com/@fudousan_ai_si"],["X","https://x.com/fudosan_ai_si"]],
+ _SI={Instagram:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/>',Threads:'<path d="M16.6 11.3c2.2.9 3.2 2.7 2.6 4.8-.8 2.9-3.9 4.4-7.1 4.2-4.3-.3-7-3.3-7-8.3s2.8-8.1 7.2-8.3c3.5-.1 6 1.6 7 4.7"/><path d="M16.6 11.3c-.4 3.4-2.3 4.8-4.5 4.7-1.7-.1-2.9-1.1-2.8-2.6.1-1.7 1.8-2.6 4.1-2.5 1.1 0 2.2.2 3.2.4"/>',X:'<path d="M4 4l16 16M20 4L4 20"/>'},
+ _SNH='<div class="mnsn"><small>毎朝のおでかけを配信中</small>'+_SN.map(function(x){return '<a href="'+x[1]+'" target="_blank" rel="noopener" aria-label="'+x[0]+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+_SI[x[0]]+'</svg></a>'}).join("")+'</div>';
+if(KN&&/^\/o\//.test(P))(function(){var mv=function(){var a=document.querySelector(".act"),bg=document.querySelector(".big");if(a&&bg&&bg.parentNode)bg.parentNode.insertBefore(a,bg.nextSibling);if(a&&!a.querySelector(".snd")){var sb=document.createElement("button");sb.type="button";sb.className="snd";sb.textContent="友だちに送る";sb.addEventListener("click",function(){var h=document.querySelector("h1"),t=(h?h.textContent.trim()+"｜":"")+document.title,u=location.href.split("?")[0];try{if(navigator.share){navigator.share({title:t,url:u});return}}catch(_){}try{navigator.clipboard.writeText(u);sb.textContent="リンクを写しました"}catch(_){}});a.appendChild(sb)}};if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",mv);else mv()})();
 
 /* 11/20 owner「他社とも比べて勝つ」：ほかの相場サイト（GMO・東急リバブル・ダイヤモンド・トチノカチ・三菱地所）は
    ①件数が少なくても平均だけを大きく出す ②近くの街と並べて比べられない ③自分の家の目安へすぐ行けない。
@@ -139,7 +143,7 @@ function build(){
   sk.innerHTML='<div id="sky" aria-hidden="true"><canvas id="stars"></canvas></div>'+
    '<nav class="nav" id="nav" aria-label="すぐ移動">'+C.nav.map(function(x){return '<a href="'+x[2]+'"'+((x.length>4?x[4]:here(x[2]))?' class="cur"':'')+'>'+(x[3]||IC[x[1]])+'<span>'+x[0]+'</span></a>'}).join("")+'<button class="mn" id="mnb" aria-label="メニュー"><em></em><span>MENU</span></button></nav>'+
    '<div class="mu" id="mu"><div class="bk"></div><div class="pn"><div class="k">'+C.k+'</div><ol>'+(function(){var k=0;return C.menu.map(function(m){if(m[1]==="#")return '<li class="mg">'+m[0]+'</li>';k++;return '<li><a href="'+m[1]+'"'+((m.length>2?m[2]:here(m[1]))?' class="here"':'')+' style="transition-delay:'+(60+k*30)+'ms"><small>'+(k<10?'0':'')+k+'</small>'+m[0]+'</a></li>'}).join("")})()+
-   '</ol><div class="rel">'+C.rel.map(function(r){return '<a href="'+r[1]+'">'+r[0]+'</a>'}).join("")+'</div></div></div>';
+   '</ol><div class="rel">'+C.rel.map(function(r){return '<a href="'+r[1]+'">'+r[0]+'</a>'}).join("")+'</div>'+(KN?_SNH:'')+'</div></div>';
   document.body.appendChild(sk);
   /* 下のバー：下へ流す間だけ隠れ、止めたら戻る */
   var nav=$("#nav"),ly=scrollY,nvT;
