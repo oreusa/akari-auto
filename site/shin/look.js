@@ -43,3 +43,12 @@ var cv,tw=[];function draw(){if(!cv){cv=document.createElement("canvas");cv.clas
  tw.forEach(function(e){e.remove()});tw=[];if(v==="1"&&!matchMedia("(prefers-reduced-motion:reduce)").matches){for(var j=0;j<7;j++){var e=document.createElement("i");e.className="lk-tw";e.style.cssText="left:"+(rnd()*w).toFixed(0)+"px;top:"+(rnd()*h*.8).toFixed(0)+"px;animation-delay:-"+(rnd()*6).toFixed(1)+"s;animation-duration:"+(4+rnd()*4).toFixed(1)+"s";cv.parentNode.appendChild(e);tw.push(e)}}}
 var t;function go(){draw();addEventListener("resize",function(){clearTimeout(t);t=setTimeout(draw,200)})}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go()})();
+/* 11/21 上に貼り付く選ぶ帯を1段に：流している間は府県を「大阪 ▾」の1つの札にまとめ、開店閉店の「これから・開いた・閉まる」は下のバーと同じなので隠す */
+(function(){function go(){var b=document.getElementById("bar"),s=document.getElementById("seg"),c=document.getElementById("chips");if(!b||!s||!c||b.querySelector(".lk-pf"))return;if(c.querySelectorAll("button").length<3||!c.offsetHeight)return;
+var pf=document.createElement("button");pf.type="button";pf.className="chip lk-pf";pf.setAttribute("aria-label","地域を選ぶ");c.insertBefore(pf,c.firstChild);
+function lab(){var o=s.querySelector(".on");pf.innerHTML="<span>"+(o?o.textContent:"地域")+"</span><svg width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'><path d='M2 3.5l3 3 3-3' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round'/></svg>"}
+lab();b.classList.add("lk-1r");new MutationObserver(function(){if(pf.parentNode!==c||c.firstChild!==pf){c.insertBefore(pf,c.firstChild);lab()}}).observe(c,{childList:true});
+pf.addEventListener("click",function(e){e.stopPropagation();b.classList.toggle("lk-pfo")});
+s.addEventListener("click",function(){setTimeout(function(){lab();b.classList.remove("lk-pfo")},0)});
+new MutationObserver(function(){if(!b.classList.contains("stuck")&&b.classList.contains("lk-pfo"))b.classList.remove("lk-pfo")}).observe(b,{attributes:true,attributeFilter:["class"]})}
+if(document.readyState==="complete")setTimeout(go,300);else addEventListener("load",function(){setTimeout(go,300)})})();

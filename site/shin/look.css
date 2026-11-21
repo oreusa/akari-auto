@@ -416,3 +416,15 @@ html.lk .tiles button:first-child{padding-left:14px!important}
 html.lk .kt-ci{display:flex!important;flex-wrap:wrap;gap:8px;margin:0}
 html.lk .ps p.kt-ci a,html.lk p.kt-ci a,html.lk .kt-ci a{font-size:13px;padding:7px 12px;border:1px solid rgba(0,0,0,.1);border-radius:99px;background:rgba(255,255,255,.7);color:inherit!important;text-decoration:none!important;border-bottom-width:1px!important;line-height:1.3;background-image:none!important}
 html.lk.nt .ps p.kt-ci a,html.lk.nt .kt-ci a{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.05)}
+/* v23 上に貼り付く帯を1段に（look.js の .lk-pf）・申し込みの下のボタンを字のリンクに・いくらの下の空白 */
+.lk-pf{display:none!important}
+html.lk #bar.stuck.lk-1r .lk-pf{display:inline-flex!important;align-items:center;gap:5px;font-weight:600}
+html.lk #bar.stuck.lk-1r .lk-pf svg{opacity:.6;transition:transform .2s}
+html.lk #bar.stuck.lk-1r.lk-pfo .lk-pf svg{transform:rotate(180deg)}
+html.lk #bar.stuck.lk-1r #tab{display:none!important}
+html.lk #bar.stuck.lk-1r:not(.lk-pfo) #seg{display:none!important}
+html.lk #bar.stuck.lk-1r.lk-pfo #seg{animation:lkpf .2s ease-out}
+@keyframes lkpf{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+html.lk.sk a.back,html.lk.lk-f.sk a.back{background:none!important;box-shadow:none!important;border:0!important;padding:6px 4px!important;margin:18px auto!important;width:max-content;font-size:14px;color:#6E6E73!important;text-decoration:underline!important;text-underline-offset:4px;text-decoration-color:rgba(0,0,0,.25)!important}
+html.lk.sk.nt a.back{color:#A1A1A6!important;text-decoration-color:rgba(255,255,255,.25)!important}
+html.lk .wrap.dc{padding-bottom:24px!important}
