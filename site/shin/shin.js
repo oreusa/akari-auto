@@ -4,7 +4,7 @@
 (function(){
 "use strict";
 /* 11/20 19:20 見た目の見本 ?look=a|b|c（この端末で覚える・?look=0 で外す）→ look.css・look.js */
-try{var _lk=location.search.match(/[?&]look=([abcdef0])/);if(_lk)localStorage.setItem("tn_lk2",_lk[1]);var _lv=localStorage.getItem("tn_lk2")||"f";if(_lv&&_lv!=="0"&&!document.getElementById("lkcss")){document.documentElement.classList.add("lk","lk-"+_lv);if(_lv==="d"||_lv==="e"||_lv==="f")document.documentElement.classList.add("lk-a","lk-d");if(_lv==="f")document.documentElement.classList.add("lk-e");var _l=document.createElement("link");_l.rel="stylesheet";_l.href="/shin/look.css?v=25";document.head.appendChild(_l);var _s=document.createElement("script");_s.src="/shin/look.js?v=25";_s.defer=true;document.head.appendChild(_s)}}catch(e){}
+try{var _lk=location.search.match(/[?&]look=([abcdef0])/);if(_lk)localStorage.setItem("tn_lk2",_lk[1]);var _lv=localStorage.getItem("tn_lk2")||"f";if(_lv&&_lv!=="0"&&!document.getElementById("lkcss")){document.documentElement.classList.add("lk","lk-"+_lv);if(_lv==="d"||_lv==="e"||_lv==="f")document.documentElement.classList.add("lk-a","lk-d");if(_lv==="f")document.documentElement.classList.add("lk-e");var _l=document.createElement("link");_l.rel="stylesheet";_l.href="/shin/look.css?v=26";document.head.appendChild(_l);var _s=document.createElement("script");_s.src="/shin/look.js?v=26";_s.defer=true;document.head.appendChild(_s)}}catch(e){}
 var H=document.documentElement,app=document.getElementById("app");
 /* 11/20 owner「いいと思う」：分野ごとの色の線（iro）をふだんの見た目に。?iro=0 で外せる（この端末で覚える） */
 try{var _q=location.search.match(/[?&]iro=([01])/);if(_q)localStorage.setItem("tn_iro",_q[1]);if(localStorage.getItem("tn_iro")!=="0"){var _p=location.pathname,_f=/^\/(shin\/cover\d?)?$|^\/index/.test(_p)?"top":/kaiten/.test(_p)?"kai":/okaimono|furusato|nesage|otoku|tanka|kaimawari|shin\/kau/.test(_p)?"kau":/fudosan|ikura|uru|ranking|machi|jikka|chika|akiya|kaitai|sagasu|moushikomi|gyosha|koe|shin\/ie/.test(_p)?"ie":"od";document.documentElement.classList.add("iro");document.documentElement.setAttribute("data-f",_f)}}catch(e){}
@@ -133,6 +133,7 @@ var nvT;addEventListener("scroll",function(){var y=scrollY;if(Math.abs(y-ly)>8){
 /* ---- 府県の玉（選んだ所へ滑る・周りを光が回る） ---- */
 function seg(box,list,cur,on){box.innerHTML='<i class="pill"></i>'+list.map(function(p){return '<button data-v="'+esc(p[0])+'">'+esc(p[1])+'</button>'}).join("");
   var pill=$(".pill",box);function mv(){var b=$("button.on",box);if(!b)return;pill.style.width=b.offsetWidth+"px";pill.style.transform="translateX("+(b.offsetLeft-4)+"px)";pill.style.left="4px"}
+  /* 11/21 隠れている間に測ると幅0の玉になる（帯を1段にした時）→ 見えた時に測り直す */try{new ResizeObserver(function(){if(box.offsetWidth)mv()}).observe(box)}catch(e){}
   function set(v,user){$$("button",box).forEach(function(b){b.classList.toggle("on",b.dataset.v===v)});mv();var b=$("button.on",box);if(b&&user&&box.scrollWidth>box.clientWidth)box.scrollTo({left:b.offsetLeft-box.clientWidth/2+b.offsetWidth/2,behavior:"smooth"})}
   box.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;set(b.dataset.v,true);on(b.dataset.v)});
   set(cur);requestAnimationFrame(mv);addEventListener("resize",mv);if(document.fonts)document.fonts.ready.then(mv);return set}
