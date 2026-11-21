@@ -544,3 +544,19 @@ html.lk-ks.nt .ksgl{background:rgba(12,14,30,.35);border-color:rgba(255,255,255,
 html.lk-ks.nt .ksr b{color:#7CE0C3}
 html.lk-ks.nt .ksu{background:rgba(255,255,255,.08)}
 @media (prefers-reduced-motion:reduce){html.lk-ks .ksod .knph img.on{animation:none}html.lk-ks .kss{transition:none}}
+html.lk-kn #bar.kf #chips{display:none!important}
+html.lk-kn .kfb{margin-left:auto;margin-right:8px;padding:6px 12px;border-radius:99px;border:1px solid rgba(120,110,160,.25);background:rgba(255,255,255,.5);color:var(--ink);font:inherit;font-size:12.5px;cursor:pointer}
+html.lk-kn .kfb::after{content:" ▾";opacity:.6}
+html.lk-kn .kfb.on::after{content:" ▴"}
+html.lk-kn.nt .kfb{background:rgba(20,24,40,.55);border-color:rgba(255,255,255,.16)}
+html.lk-kn h1.knq{font-size:min(44px,11vw);font-weight:200;letter-spacing:-.05em;line-height:1.18;margin:4px 2px 10px}
+html.lk-kn .knsub{margin:0 4px 24px;font-size:13.5px;color:var(--sub);letter-spacing:.04em}
+html.lk-kn .knsn{display:flex;align-items:center;gap:8px;margin:14px 0 0;padding:14px 14px 14px 18px;border-radius:22px;background:rgba(255,255,255,.55);border:1px solid rgba(120,110,160,.2);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+html.lk-kn .knsn>span{flex:1;min-width:0}
+html.lk-kn .knsn b{display:block;font-size:14px;font-weight:500;color:var(--ink)}
+html.lk-kn .knsn small{display:block;font-size:11.5px;color:var(--sub);margin-top:2px}
+html.lk-kn .knsn a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:var(--ink);background:rgba(255,255,255,.8);border:1px solid rgba(120,110,160,.22);flex:none}
+html.lk-kn .knsn a:first-of-type{color:#fff;border:0;background:linear-gradient(135deg,#F7B05B,#E6567A 45%,#9B5DE5)}
+html.lk-kn .knsn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+html.lk-kn.nt .knsn{background:rgba(20,24,40,.55);border-color:rgba(255,255,255,.14)}
+html.lk-kn.nt .knsn a:not(:first-of-type){background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18)}
