@@ -52,8 +52,10 @@ S_.counts(S_.main);
 if(!M2)$(".tiles").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;S.w=b.dataset.w;S.n=24;sync();go(true);var top=$("#sent").getBoundingClientRect().top+scrollY;scrollTo({top:top,behavior:"smooth"})});
 
 /* ストーリー（虹の輪のまま。見た印は前と同じ hx_seen に残す） */
+/* 11/21 丸の表紙は中身に合う写真（イルミ＝夜の写真・紅葉＝赤や橙の写真）を先に */function TH(t,x){return t==="イルミ"?(x.nt?1:0):t==="紅葉"?(x.wm?1:0):0}
 var ST=(PG.st==="pref"?PREF.map(function(p){return [p,function(x){return x.p===p&&x.st==="now"}]}).concat([["無料",function(x){return x.f}],["これから",function(x){return x.st==="up"}]]):[["今週末",function(x){return x.s<=SUN&&x.e>=SAT}],["まもなく終了",function(x){return x.st==="now"&&x.left<=10}],["イルミ",function(x){return x.k==="light"}],["紅葉",function(x){return x.k==="koyo"}],["アート",function(x){return x.k==="art"}],["子どもと",function(x){return x.k==="play"||x.k==="animal"}],["無料",function(x){return x.f}],["近日開始",function(x){return x.st==="up"&&diff(TD,x.s)<=21}]])
- .map(function(s){var l=IT.filter(s[1]).sort(function(a,b){return ((a.im?0:3)-(a.ok||0))-((b.im?0:3)-(b.ok||0))}).slice(0,10);return {t:s[0],l:l}}).filter(function(s){return s.l.length>=2});
+ .map(function(s){var l=IT.filter(s[1]).sort(function(a,b){return (a.im?0:1)-(b.im?0:1)||TH(s[0],b)-TH(s[0],a)||(b.ok||0)-(a.ok||0)||(b.vb||0)-(a.vb||0)}).slice(0,10);return {t:s[0],l:l}}).filter(function(s){return s.l.length>=2});
+/* 11/21 丸の表紙：同じ写真を2つの丸に使わない（観覧車が2回出ていた）・一番きれいな写真を表紙に */(function(){var u={};ST.forEach(function(s){var k=-1;s.l.forEach(function(x,j){if(k<0&&x.im&&!u[x.im])k=j});if(k>0){var c=s.l.splice(k,1)[0];s.l.unshift(c)}if(s.l[0].im)u[s.l[0].im]=1})})();
 $("#st").innerHTML=ST.map(function(s,i){var c=s.l[0];return '<button data-s="'+i+'"><span class="rg">'+(c.im?'<img src="'+img(c)+'" alt="" loading="lazy">':'<span class="ph" style="display:block"></span>')+'</span><span>'+esc(s.t)+'</span></button>'}).join("");
 var sv=$("#sv"),svS=null,svI=0,svA=null;
 function svShow(){var s=ST[svS],x=s.l[svI];$(".hd span",sv).textContent=s.t+"　"+(svI+1)+"/"+s.l.length;
@@ -73,7 +75,7 @@ var sy0=null,sx0=null,svT=0;sv.addEventListener("touchstart",function(e){sy0=e.t
 sv.addEventListener("touchend",function(e){var t=e.changedTouches[0],dy=t.clientY-(sy0||0),dx=t.clientX-(sx0||0);if(dy>90&&Math.abs(dy)>Math.abs(dx))svClose();else if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy))svGrp(dx<0?1:-1);else if(svA)svA.play()},{passive:true});
 
 /* 今週の顔（扇のように重なり、めくると立体で回る） */
-var FAN=IT.filter(function(x){return x.im&&x.s<=SUN&&x.e>=TD}).sort(function(a,b){return (b.hr?1:0)-(a.hr?1:0)||(a.lo?1:0)-(b.lo?1:0)||(b.ok||0)-(a.ok||0)||(b.pp||0)-(a.pp||0)||(b.hk?1:0)-(a.hk?1:0)||((a.i*7919+S_.seed)%97)-((b.i*7919+S_.seed)%97)}).slice(0,8);
+var FAN=IT.filter(function(x){return x.im&&x.s<=SUN&&x.e>=TD}).sort(function(a,b){return (b.hr?1:0)-(a.hr?1:0)||(a.lo?1:0)-(b.lo?1:0)||(b.ok||0)-(a.ok||0)||((b.vb||0)>8?1:0)-((a.vb||0)>8?1:0)||(b.pp||0)-(a.pp||0)||(b.hk?1:0)-(a.hk?1:0)||((a.i*7919+S_.seed)%97)-((b.i*7919+S_.seed)%97)}).slice(0,8);
 var fan=$("#fan");
 fan.innerHTML='<i class="pad"></i>'+FAN.map(function(x){return '<a class="fc" href="#" data-i="'+x.i+'"><span class="in" style="background-color:'+avg(x.th)+'"><img src="'+img(x)+'" alt="" loading="lazy" decoding="async"><span class="cap"><small>'+x.g[3]+'・'+esc(x.p)+'</small><b>'+esc(x.t)+'</b><span>'+when(x)+'</span></span></span></a>'}).join("")+'<i class="pad"></i>';
 var fcs=$$(".fc",fan),fq=0;

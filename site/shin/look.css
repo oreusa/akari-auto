@@ -431,3 +431,18 @@ html.lk .wrap.dc{padding-bottom:24px!important}
 /* v24 街の「売り出し中の家」：中古マンションの字がはみ出していた */
 html.lk .yh a{min-width:0;padding:0 4px!important;font-size:12.5px!important;letter-spacing:-.02em;white-space:nowrap}
 html.lk .yh a i{font-size:11px}
+/* 11/21 owner「文字が太いだけでお洒落でもない」→ 見本 ?ty=1（lk-t1）：見出しは細く大きく・字の間を詰める（Apple の型）。上に細い英字。写真の色を少し整える */
+html.lk-t1 .h1t,html.lk-t1 main h1,html.lk-t1.lk-f h1{font-weight:300!important;letter-spacing:-.045em!important;line-height:1.18!important;font-size:min(38px,9.4vw)!important;color:var(--ink,#1d1d1f)}
+html.lk-t1 .h1t[data-en]::before{content:attr(data-en);display:block;font:500 10.5px/1 -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;letter-spacing:.34em;margin:0 0 16px 2px;color:rgba(29,29,31,.5)}
+html.lk-t1 main h2,html.lk-t1 .sec h2,html.lk-t1.lk-d .sec h2{font-weight:300!important;font-size:22px!important;letter-spacing:-.03em!important}
+html.lk-t1 .cd h4{font-weight:600!important;font-size:14.5px!important;letter-spacing:-.01em;line-height:1.45!important}
+html.lk-t1 .hero .dl b,html.lk-t1 .hero b{font-weight:300!important;font-size:1.25em;letter-spacing:-.02em}
+html.lk-t1 .cd img,html.lk-t1 .fc img,html.lk-t1 #st img,html.lk-t1 .sv .fr img{filter:saturate(1.12) contrast(1.05) brightness(1.02)}
+html.lk-t1.nt .h1t[data-en]::before{color:rgba(255,255,255,.55)}
+html.lk-t1 .cd h4{word-break:keep-all;overflow-wrap:anywhere}
+html.lk-t1 #bar.stuck{background:rgba(248,248,250,.84)!important;-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6)}
+html.lk-t1.nt #bar.stuck{background:rgba(9,11,22,.8)!important}
+html.lk-t1 .c3u h2,html.lk-t1.lk-a.lk-d.lk-e .c3u h2{font-weight:300!important;letter-spacing:-.045em!important}
+html.lk-t1 .c3n1 b,html.lk-t1 .c3n1 small,html.lk-t1.lk-a.lk-d.lk-e .c3st .c3n1 b{font-weight:200!important}
+html.lk-t1 .c3u b,html.lk-t1 .hero span,html.lk-t1 .kp strong,html.lk-t1 .kp span,html.lk-t1 main h2 b,html.lk-t1 .sec h2 b,html.lk-t1.lk-a.lk-d.lk-e .c3ks b,html.lk-t1.lk-a.lk-d.lk-e .c3kc b{font-weight:300!important}
+html.lk-t1 .c3sc b{font-weight:600!important}

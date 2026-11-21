@@ -46,7 +46,7 @@ jobs:
     needs: gate
     if: needs.gate.outputs.go == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 20  # 11/2 件数が増えて10分では公開まで届かなかった
+    timeout-minutes: 40  # 11/2 件数が増えて10分では公開まで届かなかった。11/21 近くの宿を街なかの会場にも広げ・写真の自動付けを足したら20分で切れて公開まで届かなかった（#568・#569）→ 40分
     env:
       RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
       RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
@@ -117,7 +117,7 @@ jobs:
           # 11/18 見本（?mihon=1 の人だけ）：カードと1件ページに会場の写真（data/venue_photos.json）→ /assets/mihon.json。spot_pages.py の後
           python3 scripts/mihon.py || true
           # 11/21 オーナー「お出かけ先とか全部写真取得できるように」→ 写真の無い催しにコモンズから自動で付ける（関西 autophoto.py と同じ・見た目の点つき）→ mihon.py をもう1回
-          pip install -q pillow >/dev/null 2>&1; timeout 900 python3 scripts/autophoto_kanto.py || true
+          pip install -q pillow >/dev/null 2>&1; timeout 420 python3 scripts/autophoto_kanto.py || true
           python3 scripts/mihon.py || true
           # 11/19 激変版（?mihon=2）：写真が出る前のぼかし色（ThumbHash・関西 tools/hx/phh.py と同じ）
           pip install -q thumbhash-python >/dev/null 2>&1 && python3 scripts/hx_phh.py site/assets || true

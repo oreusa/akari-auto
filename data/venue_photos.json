@@ -283,9 +283,9 @@
  },
  "高尾山": {
   "img": "1c9117a7.webp",
-  "cr": "Syced（CC0・Wikimedia Commons）",
-  "page": "https://commons.wikimedia.org/wiki/File:Takao-san_hike_during_winter.jpg",
-  "d": "2026-11-18"
+  "cr": "Antilovsky（CC BY-SA 4.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Tokyo_Takaosan_20151128.jpg",
+  "d": "2026-11-21"
  },
  "湯河原": {
   "img": "2612f3f8.webp",
@@ -1456,5 +1456,59 @@
   "cr": "Charlie fong（CC BY-SA 4.0・Wikimedia Commons）",
   "page": "https://commons.wikimedia.org/wiki/File:Lake_Ashi_%26_Mt_Fuji_%26_Hakone_Shrine.jpg",
   "d": "2026-11-18"
+ },
+ "新宿御苑": {
+  "img": "2bfb30b7.webp",
+  "cr": "Yoshikazu TAKADA from Tokyo, Japan（CC BY 2.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Autumn_Trees_in_the_Dusk_(15224122693).jpg",
+  "d": "2026-11-21"
+ },
+ "殿ヶ谷戸庭園": {
+  "img": "a5a01aca.webp",
+  "cr": "Pcs34560 from jawp（Public domain・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Tonogayato_garden_20151205_Pcs34560_img0302.jpg",
+  "d": "2026-11-21"
+ },
+ "大磯城山公園": {
+  "img": "7e2381fc.webp",
+  "cr": "Nesnad（CC BY 4.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Oisojoyama_park_-_Aug_30_2021_various.jpeg",
+  "d": "2026-11-21"
+ },
+ "平林寺": {
+  "img": "e6dfaf28.webp",
+  "cr": "Zeimusu（CC BY-SA 3.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Heirinji_inner_gate.jpg",
+  "d": "2026-11-21"
+ },
+ "亀山湖": {
+  "img": "7ab3d50f.webp",
+  "cr": "くろふね（CC BY 3.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:%E4%BA%80%E5%B1%B1%E6%B9%96_-_panoramio.jpg",
+  "d": "2026-11-21"
+ },
+ "本土寺": {
+  "img": "e530e039.webp",
+  "cr": "Hetarllen Mumriken（CC BY-SA 2.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Autumn_at_Hondo-ji_temple,_Chiba;_November_2017_(01).jpg",
+  "d": "2026-11-21"
+ },
+ "妙義山": {
+  "img": "07fad48d.webp",
+  "cr": "Koda6029（CC BY-SA 4.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:%E5%A4%A9%E7%8B%97%E5%B2%A9%E3%81%8B%E3%82%89%E3%81%AE%E5%8C%97%E3%82%A2%E3%83%AB%E3%83%97%E3%82%B9%E3%81%A8%E6%B5%85%E9%96%93%E5%B1%B1.jpg",
+  "d": "2026-11-21"
+ },
+ "八王子いちょう祭り": {
+  "img": "0bf70adc.webp",
+  "cr": "AshleyBrownPix（CC BY-SA 4.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Hachioji_Ichou_Festival_2019_%E5%85%AB%E7%8E%8B%E5%AD%90%E3%82%A4%E3%83%81%E3%83%A7%E3%82%A6%E7%A5%AD%E3%82%8A_9.jpg",
+  "d": "2026-11-21"
+ },
+ "狭山スキー場 2026-27シーズン": {
+  "img": "0f170cab.webp",
+  "cr": "Guilhem Vellut from Annecy, France（CC BY 2.0・Wikimedia Commons）",
+  "page": "https://commons.wikimedia.org/wiki/File:Sayama_indoor_ski_resort_@_Seibu_Dome_(11340196935).jpg",
+  "d": "2026-11-21"
  }
 }
