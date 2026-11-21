@@ -268,6 +268,15 @@ def doc_uru():
             continue
         sc = sc.replace('<input id="tq"', '<input class="din" id="tq"').replace('class="b1"', 'class="dbtn"')
         sc = re.sub(r'<p style="margin:14px 0 0"><a href="/ikura"([^>]*) style="[^"]*">(.*?)→</a></p>', r'<a class="dbtn2" href="/ikura"\1>\2</a>', sc)
+        # 11/21 夜の気づき（反響7日0件）：STEP2 で外の AI査定が大きなボタン・自分たちの相談は小さな「こちら」だけだった
+        # → 人の売却相談を目立つボタンに、外の AI査定は「（広告）」と書いた2つめのボタンに（/ikura と同じ出し方）。行き先はそのまま
+        ad = re.search(r'<a class="dbtn" (href="https://px\.a8\.net[^"]*")[^>]*>.*?</a>(<img [^>]*a8\.net[^>]*>)?', sc, re.S)
+        hito = re.search(r'<p[^>]*>人に聞きたい方は <a href="([^"]+)"[^>]*>.*?</a></p>', sc, re.S)
+        if ad and hito:
+            sc = sc.replace(hito.group(0), "")
+            sc = sc.replace(ad.group(0), f'<a class="dbtn" href="{hito.group(1)}" data-k="売る前に｜申し込む">人に無料で売却相談（名字だけでOK）<small>約1分・売るか決めていなくても大丈夫</small></a>'
+                            f'<a class="dbtn2" {ad.group(1)} rel="nofollow sponsored noopener" target="_blank" data-k="売る前に｜AI査定">AIでざっくり値段を見る（無料）<small style="display:block;font-weight:400;font-size:12px;opacity:.7;margin-top:2px">ざっくりAI査定＋（広告）・電話ラッシュなし</small></a>' + (ad.group(2) or ""))
+            sc = sc.replace("「いくらで売れそうか」を、無料のAI査定で見られます。", "「いくらで売れそうか」を、無料で人に聞けます。").replace("無料で人に聞けます。売るか決めていなくても大丈夫です。", "無料で人に聞けます。")
         out.append('<section class="dsec">' + sc + "</section>")
     pr = '<p class="dnote">このページのリンクの一部は広告（PR）です。</p>' if "広告（PR）" in b else ""
     rel = ('<section class="dsec"><h2>あわせて見る</h2><div class="drel"><a href="/fudosan-list">家と土地の相場<small>関東の街ごとの値段</small></a><a href="/jikka/">実家・空き家<small>売る・片付ける前に</small></a>'
