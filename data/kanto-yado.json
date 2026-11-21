@@ -3923,60 +3923,6 @@
       }
     ]
   },
-  "大子町花火大会": {
-    "v": 2,
-    "t": "2026-11-18",
-    "ll": [
-      36.77087,
-      140.35067
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "大子温泉 やみぞ",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D142195",
-        "km": 2.4,
-        "r": 4.33,
-        "rc": 399,
-        "min": 16500
-      },
-      {
-        "n": "Daigo Kujigawa Base Hotel",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D192673",
-        "km": 0.8,
-        "r": 4.25,
-        "rc": 12,
-        "min": 5500
-      },
-      {
-        "n": "丘の上のゲストハウス「Daigo house」",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D158450",
-        "km": 1.0,
-        "r": 4.22,
-        "rc": 36,
-        "min": 4180
-      }
-    ]
-  },
-  "梵天祭り": {
-    "v": 2,
-    "t": "2026-11-18",
-    "ll": [
-      36.70846,
-      139.88073
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "サンヒルズホテル",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D68489",
-        "km": 6.4,
-        "r": 4.85,
-        "rc": 83,
-        "min": 6500
-      }
-    ]
-  },
   "多摩センターイルミネーション2026": {
     "v": 2,
     "t": "2026-11-18",

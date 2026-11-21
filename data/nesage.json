@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-21 15:55",
+  "at": "2026-11-21 19:55",
   "since": "2026-11-01",
   "tracked": 264,
   "days": 20,
@@ -95,7 +95,7 @@
       "base": 3100.0,
       "pct": 10,
       "days": 14,
-      "rc": 2339,
+      "rc": 2341,
       "av": 4.52,
       "shop": "ライフジョイ工房",
       "plain": "https://item.rakuten.co.jp/lifejoy-shop/10000044/",
@@ -159,6 +159,20 @@
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/rorrystore/cabinet/09412976/09461393/12513987/imgrc0097314493.jpg?_ex=300x300"
     },
     {
+      "title": "お米",
+      "name": "お米 10kg オリジナルブレンド米 日本の味 10kg1袋 複数原料米",
+      "price": 4380,
+      "base": 4780.0,
+      "pct": 8,
+      "days": 14,
+      "rc": 2296,
+      "av": 4.58,
+      "shop": "お米・菓子の直売所あじわいの朝",
+      "plain": "https://item.rakuten.co.jp/ajiwainoasa/10000028/",
+      "url": "https://hb.afl.rakuten.co.jp/hgc/g00skdro.m2lhfb68.g00skdro.m2lhg2d0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fajiwainoasa%2Fblend_10_b%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fajiwainoasa%2Fi%2F10000028%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/ajiwainoasa/cabinet/item/brend_10-1.jpg?_ex=300x300"
+    },
+    {
       "title": "トイレットペーパー",
       "name": "＼レビュー2,000件獲得★／トイレットペーパー 備蓄 170m 3. 芯なし 48ロール(…",
       "price": 4870,
@@ -193,7 +207,7 @@
       "base": 2420.0,
       "pct": 6,
       "days": 14,
-      "rc": 6726,
+      "rc": 6728,
       "av": 4.48,
       "shop": "山川食糧オートミール研究所",
       "plain": "https://item.rakuten.co.jp/yama-oatmeal-institute/10000024/",
