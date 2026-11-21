@@ -199,7 +199,15 @@ function largeTitle(){var h=$(".h1t");if(!h)return;var tb=document.createElement
   var P=location.pathname.replace(/^\/shin(?=\/)/,"").replace(/\.html$/,"").replace(/\/$/,"")||"/",
       N={"/":"TOWN NOTE 入口","/odekake":"おでかけリスト","/illumination":"イルミネーション","/koyo":"紅葉ライトアップ","/ima":"いまから行ける","/tomari":"泊まり","/hatsumode":"初詣","/fudosan-list":"不動産リスト","/okaimono":"おかいもの","/kaiten":"開店・閉店","/ikura":"いくら","/uru":"売る前・買う前に","/jikka":"実家ノート","/furusato":"ふるさと納税","/nesage":"値下がり","/otoku":"お得"}[P]||(/^\/o\//.test(P)?"1件ページ":(document.title.split("｜")[0]||P).slice(0,30));
   function s(k){if(O)return;if(K){var m=/^クリック：([^｜]*)｜(.*)$/.exec(k);if(!m)return;var u="/c?f=card&s="+encodeURIComponent(m[1].slice(0,16))+"&k="+encodeURIComponent(m[2].slice(0,40));try{if(!(navigator.sendBeacon&&navigator.sendBeacon(u,"")))fetch(u,{method:"POST",keepalive:true})}catch(e){}return}try{var b=JSON.stringify({k:k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true})}catch(e){}}
-  window.SHIN_COUNT=s;if(P==="/ikura")return;
+  window.SHIN_COUNT=s;
+  /* 11/21 来た元・来訪：前のページ（assets/menu.js）だけが送っていて、shin に入れ替えた 11/19夜から「来た元」が 73→9 に落ちた。同じ名前・同じ分け方で1回の訪問に1度だけ送る（関東は _middleware.js が ?f= を数える・/c の上限があるので送らない） */
+  if(!K&&!O&&!navigator.webdriver)try{
+    var f=new URLSearchParams(location.search).get("f");
+    if(f&&/^[A-Za-z0-9_-]{1,32}$/.test(f)&&sessionStorage.getItem("tn_f")!==f){sessionStorage.setItem("tn_f",f);s("来訪：SNS｜"+f)}
+    if(!sessionStorage.getItem("tn_src")){sessionStorage.setItem("tn_src","1");var rr=document.referrer,hh="";try{hh=rr?new URL(rr).hostname:""}catch(e){}
+      if(hh!==location.hostname)s("来た元："+(!hh?"直接・アプリ":/google\./.test(hh)?"Google":/yahoo\./.test(hh)?"Yahoo":/bing\.|duckduckgo|copilot/.test(hh)?"Bing":/chatgpt|openai|perplexity|claude\.ai|gemini/.test(hh)?"AI":/threads\./.test(hh)?"Threads":/(^|\.)t\.co$|twitter\.|(^|\.)x\.com$/.test(hh)?"X":/instagram\./.test(hh)?"インスタ":/rakuten\./.test(hh)?"楽天":/pages\.dev$|townnote\.app$/.test(hh)?"もう片方のHP":"ほか（"+hh.slice(0,24)+"）"))}
+  }catch(e){}
+  if(P==="/ikura")return;
   var r=document.referrer,out=r&&!/townnote|usagi-odekake|pages\.dev/.test(r);
   s("表示："+N+(out?"（外から）":""));
   document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a,button[data-k]");if(!a||e.target.closest(".hv"))return;
