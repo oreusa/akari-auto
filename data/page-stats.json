@@ -1,6 +1,6 @@
 {
   "about": "プロフィール用ページで押されたアフィリエイトのリンク(click)。元 x0715=Xの7:15の投稿・t0715=Threadsの7:15・direct=印なし。項目 buy-winter=冬じたくの欄のPR など",
-  "at": "11/21 14:08",
+  "at": "11/21 15:29",
   "days": {
     "2026-10-24": {
       "views": 66,
@@ -1416,10 +1416,10 @@
       }
     },
     "2026-11-21": {
-      "views": 32,
-      "clicks": 16,
+      "views": 37,
+      "clicks": 21,
       "view": {
-        "all": 32,
+        "all": 37,
         "x0716": 1,
         "x0916": 1,
         "x0946": 2,
@@ -1428,12 +1428,15 @@
       },
       "click": {
         "card": {
-          "おかいもの|wipes": 1
+          "TOWN NOTE 入口|おでかけ": 1,
+          "おかいもの|wipes": 1,
+          "売る前・買う前に|LIFE NOTE": 1
         },
         "direct": {
+          "fudosan|売る前に｜LIFE NOTE": 1,
           "hp|表示：市の解体補助 佐倉市（外から）": 1,
-          "src|ほか（m.facebook.com）": 2,
-          "src|ほか（www.facebook.com）": 2,
+          "src|ほか（m.facebook.com）": 3,
+          "src|ほか（www.facebook.com）": 3,
           "src|直接・アプリ": 1
         },
         "okaimono": {

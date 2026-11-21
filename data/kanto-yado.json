@@ -12694,5 +12694,40 @@
         "min": 3800
       }
     ]
+  },
+  "三溪園の紅葉紅葉の遊歩道開放": {
+    "v": 2,
+    "t": "2026-11-21",
+    "ll": [
+      35.41714,
+      139.65938
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテル フィール",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D149397",
+        "km": 2.8,
+        "r": 4.52,
+        "rc": 481,
+        "min": 6750
+      },
+      {
+        "n": "TRAN.SCENDER HOTEL Yokohama",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D197381",
+        "km": 3.1,
+        "r": 4.46,
+        "rc": 90,
+        "min": 4760
+      },
+      {
+        "n": "global cabin横浜中華街(ドーミーインチェーン)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D167844",
+        "km": 3.1,
+        "r": 4.4,
+        "rc": 379,
+        "min": 4168
+      }
+    ]
   }
 }

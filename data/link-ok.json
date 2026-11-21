@@ -4875,6 +4875,12 @@
   "sec": 3.1,
   "why": ""
  },
+ "https://www.korona.co.jp/store/odw/": {
+  "at": "2026-11-21",
+  "ok": true,
+  "sec": 1.6,
+  "why": ""
+ },
  "https://www.kuroyosa.com/": {
   "at": "2026-11-19",
   "ok": true,
@@ -5073,6 +5079,12 @@
   "by": "browser",
   "ok": true,
   "sec": 2.1,
+  "why": ""
+ },
+ "https://www.sankeien.or.jp/event/10880/": {
+  "at": "2026-11-21",
+  "ok": true,
+  "sec": 1.0,
   "why": ""
  },
  "https://www.seaparadise.co.jp/en/event/akipara2026autumn/index.html": {
