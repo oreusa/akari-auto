@@ -131,6 +131,12 @@ def items():
         enrich(it, t, x.get("place", ""))
         oid = hashlib.md5(key.encode()).hexdigest()[:8]
         if oid in opages: it["o"] = oid
+        if it.get("im"):  # 11/21 関西と同じ：写真の見た目の点（vb）・夜の写真（nt）・紅葉の色（wm）→ 丸の表紙・今週末の顔の並び（odekake.js TH）
+            m = PHM(it["im"])
+            if m and IS_NIGHT(m): it["nt"] = 1
+            if m and m[1] >= .2: it["wm"] = 1
+            b = PHB(it["im"])
+            if b: it["vb"] = b
         out.append(it)
     print("shin_kanto items", len(out), "photos", sum("im" in i for i in out), "map", sum("xy" in i for i in out), "live", len(live))
     return out
@@ -177,6 +183,29 @@ def PHM(f):
         return _PM[f]
     except Exception:
         return _PM.get(f)
+# 11/21 写真の見た目の点（関西 tools/photo/best.py visual_im と同じ物差し・テーマなし）。data/photo_b.json にためる
+_PBF = os.path.join(R, "data", "photo_b.json")
+try: _PB = json.load(open(_PBF, encoding="utf-8"))
+except Exception: _PB = {}
+def PHB(f):
+    if f in _PB: return _PB[f]
+    try:
+        from PIL import Image, ImageFilter, ImageStat
+        im = Image.open(os.path.join(S, "assets", "ph", f)).convert("RGB"); im.thumbnail((240, 240))
+        hsv = im.convert("HSV"); px = list(hsv.getdata()); n = len(px) or 1
+        L = im.convert("L"); lm = ImageStat.Stat(L).mean[0]
+        sat = sum(p[1] for p in px) / n / 255
+        edge = ImageStat.Stat(L.filter(ImageFilter.FIND_EDGES)).mean[0]
+        sc = max(-10, min(14, (sat - .22) * 60)) + max(-12, min(10, (edge - 9) * 1.2))
+        if lm < 60: sc -= 14
+        elif lm > 205: sc -= 10
+        top = px[:n // 3]
+        if top and sum(1 for p in top if p[1] < 30 and p[2] > 170) / len(top) > .55: sc -= 10
+        _PB[f] = round(sc, 1)
+        json.dump(_PB, open(_PBF, "w", encoding="utf-8"))
+    except Exception:
+        _PB[f] = 0
+    return _PB[f]
 # 11/20 人気順（関西の POP と同じ考え）：この30日に新しいページのカードが押された数。data/page-stats.json の click["card"]「ページ|題」
 def _pop():
     try:
@@ -200,6 +229,8 @@ def FIT(items, kind):
         if kind == "illumination": it["ok"] = 2 if IS_NIGHT(m) else -1
         elif kind == "koyo": it["ok"] = 2 if warm >= .2 else (-1 if green >= .3 and warm < .1 else 0)
         if not it.get("ok"): it.pop("ok", None)
+        b = PHB(it["im"])
+        if b: it["vb"] = b
 
 def write(fname, url, title, cfg, data, js, desc):
     cfg["reg"] = REG
@@ -480,7 +511,7 @@ def main():
     # ---------- 表紙 ----------
     now = [x for x in IT if x["s"] <= TD <= x["e"]]
     pc = {p: sum(1 for x in now if x["p"] == p) for p in PREF}
-    ph = [x for x in sorted(now, key=lambda x: x["e"]) if x.get("im")]
+    ph = [x for x in sorted(now, key=lambda x: ((1 if (x.get("k") == "light" and not x.get("nt")) or (x.get("k") == "koyo" and not x.get("wm")) else 0), -(x.get("vb") or 0)//6, x["e"])) if x.get("im")]
     top, used = [], set()
     while len(top) < 8 and ph:
         for p in PREF:
@@ -507,7 +538,7 @@ def main():
     RK = {"koyo": 0, "flower": 1, "spot": 2, "animal": 3, "play": 4}
     def pick_ph(f, n):
         r, u = [], set()
-        for x in sorted(now, key=lambda x: (RK.get(x.get("k"), 9), x["e"])):
+        for x in sorted(now, key=lambda x: (RK.get(x.get("k"), 9), (1 if (x.get("k") == "light" and not x.get("nt")) or (x.get("k") == "koyo" and not x.get("wm")) else 0), -(x.get("vb") or 0)//6, x["e"])):
             if x.get("im") and f(x) and x["im"] not in u: r.append({k: x[k] for k in ("t", "p", "e", "im", "th", "o") if k in x}); u.add(x["im"])
             if len(r) >= n: break
         return r
