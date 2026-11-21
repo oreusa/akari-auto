@@ -149,7 +149,7 @@ MENUS = {
     "Odekake": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"]],
     "Home & Land": [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["解体の費用と補助金", "/kaitai"]],
     "Shopping": [["日用品の値段くらべ", "/okaimono"], ["値下がりした物", "/nesage"], ["お得な物", "/otoku"], ["ふるさと納税", "/furusato"]],
-    "New Shops": [["関東の開店・閉店", "/kaiten"], ["関西の開店・閉店", "https://kansai.townnote.app/kaiten"]],
+    "New Shops": [["関東の開店・閉店", "/kaiten"]],
 }
 
 
@@ -475,7 +475,7 @@ def main():
             cn = {k: sum(1 for x in kt if x["w"] == k) for k in ("soon", "done", "close")}
             c = cfg("/kaiten")
             c["nav"] = [{"t": "これから", "ic": "now", "a": "w=soon"}, {"t": "開いた", "ic": "we", "a": "w=done"}, {"t": "閉まる", "ic": "down", "a": "w=close"}, {"t": "保存", "ic": "star", "a": "fav"}]
-            c["menu"] = {"k": "New Shops", "items": [["関東の開店・閉店", "/kaiten", 1], ["関西の開店・閉店", "https://kansai.townnote.app/kaiten"]]}
+            c["menu"] = {"k": "New Shops", "items": [["関東の開店・閉店", "/kaiten", 1]]}
             c["foot"] = "各社の公式の発表（プレスリリース・お店のお知らせ）から集めています。写真はお店の入る建物・場所の写真で、撮影者を各ページに書いています（ウィキメディア・コモンズ ほか）。"
             write("kaiten.html", "/kaiten", "関東の開店・閉店ニュース｜新しいお店・閉まるお店を公式の発表で｜LIFE NOTE", c,
                   {"items": kt, "icons": ICONS, "page": {"h1": "関東の開店・閉店", "sub": "新しいお店・閉まるお店を、公式の発表で", "view": "list", "fav": 1, "id": "kaiten",
