@@ -456,7 +456,7 @@ html.lk-t1.nt .seg .pill{box-shadow:0 6px 18px -4px rgba(183,164,242,.6),0 3px 1
 /* 11/21 owner「下にいくと浮かび上がる動作なくしたら・スムーズじゃ無さすぎ」→ 下に送った時にふわっと出る動き（.rv・表紙の .c3in）を全部やめ、最初から出しておく */
 html.lk .rv,html.lk .rv.in,html .c3in,html.lk .c3in{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
 /* 11/21 見本 ?kn=1：入口を「おでかけ」「家と土地」の2つの札だけに（cover2.js） */
-html.lk-kn .kn{max-width:560px;margin:0 auto;padding:18px 16px 8px}
+html.lk-kn section.kn{max-width:560px;margin:0 auto;padding:18px 16px 8px}
 html.lk-kn .knq{font-size:min(30px,7.6vw);font-weight:300;letter-spacing:-.04em;line-height:1.3;color:var(--ink);margin:6px 4px 20px}
 html.lk-kn .knc{position:relative;display:block;text-decoration:none;color:var(--ink);border-radius:26px;overflow:hidden;margin-bottom:14px;
   background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);
@@ -495,3 +495,52 @@ html.lk-kn .qr-g{margin:18px 4px 6px;font-size:12px;letter-spacing:.12em;color:v
 html.lk-kn .qr-h+.qr-g{margin-top:6px}
 html.lk-kn .kno2{margin:10px 0 4px}
 html.lk-kn .o-act-top{margin-top:14px}
+/* 11/22 見本 ?ks=1：入口をお洒落に（選ぶ物は同じ・写真を大きく・すりガラス・光の棒） */
+html.lk-ks section.kn{padding-bottom:28px}
+html.lk-ks .ksd{display:flex;align-items:center;gap:10px;margin:4px 4px 10px;font-size:11px;letter-spacing:.32em;color:var(--mut);font-weight:400}
+html.lk-ks .ksl{width:26px;height:1px;background:linear-gradient(90deg,#7FD8C8,#B7A4F2)}
+html.lk-ks .knq{margin-bottom:22px}
+html.lk-ks .ksod{aspect-ratio:4/5;max-height:72vh;width:100%;border-radius:30px;background:#1c1c22;border:0;box-shadow:0 30px 60px -30px rgba(60,40,120,.45)}
+html.lk-ks .ksod .knph{position:absolute;inset:0;aspect-ratio:auto}
+html.lk-ks .ksod .knph img.on{animation:ksz 9s ease-out both}
+@keyframes ksz{from{transform:scale(1.07)}to{transform:scale(1)}}
+html.lk-ks .ksod::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 50%,rgba(0,0,0,.42) 100%);pointer-events:none}
+html.lk-ks .kscap{position:absolute;z-index:2;left:16px;top:16px;right:16px;color:#fff;font-size:13px;line-height:1.45;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+html.lk-ks .kscap span{display:block;font-size:11.5px;opacity:.85;margin-top:1px}
+html.lk-ks .ksgl{position:absolute;z-index:2;left:12px;right:12px;bottom:12px;padding:16px 60px 16px 18px;border-radius:22px;color:#fff;
+  background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.32);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+html.lk-ks .ksgl small,html.lk-ks .ksie small,html.lk-ks .ksm small{display:flex;align-items:baseline;gap:8px;font-size:10.5px;letter-spacing:.28em;font-weight:500;margin-bottom:5px}
+html.lk-ks .ksgl small{color:rgba(255,255,255,.85)}
+html.lk-ks .ksj{font-style:normal;letter-spacing:.08em;font-size:11px;opacity:.75}
+html.lk-ks .ksgl b{display:block;font-size:23px;font-weight:300;letter-spacing:-.03em;line-height:1.3}
+html.lk-ks .ksgl em{display:block;font-style:normal;font-size:12.5px;opacity:.9;margin-top:5px}
+html.lk-ks .kscnt{font-weight:600;font-size:15px;font-variant-numeric:tabular-nums}
+html.lk-ks .ksgl .knar{bottom:50%;transform:translateY(50%);right:14px}
+html.lk-ks .ksie{padding-top:4px}
+html.lk-ks .ksie small{color:var(--mut)}
+html.lk-ks .ksbr{display:block;margin:0 20px 20px;padding-top:14px;border-top:1px solid rgba(120,110,160,.18)}
+html.lk-ks .ksbr>small{letter-spacing:.06em;font-size:11.5px;font-weight:400;margin-bottom:10px}
+html.lk-ks .ksr{display:grid;grid-template-columns:16px 7.5em 1fr auto;align-items:center;gap:8px;font-size:12.5px;color:var(--sub);margin:7px 0}
+html.lk-ks .ksn{font-style:normal;font-size:11px;color:var(--mut)}
+html.lk-ks .ksm2{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html.lk-ks .ksu{display:block;height:4px;border-radius:4px;background:rgba(120,110,160,.12);overflow:hidden}
+html.lk-ks .kss{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,#7FD8C8,#8FB8F5,#B7A4F2);transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+html.lk-ks .ksbr.on .kss{width:var(--w)}
+html.lk-ks .ksr:nth-child(3) .kss{transition-delay:.12s}html.lk-ks .ksr:nth-child(4) .kss{transition-delay:.24s}
+html.lk-ks .ksr b{font-size:15px;font-weight:300;color:#2E9AA0;letter-spacing:-.02em;min-width:3.4em;text-align:right}
+html.lk-ks .ksr b small{display:inline;font-size:11px;letter-spacing:0;margin:0}
+html.lk-ks .ksr:first-of-type b{font-size:20px}
+html.lk-ks .ksie .knar{bottom:auto;top:22px}
+html.lk-ks .ksm{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+html.lk-ks .ksm .knc{margin:0;padding:16px 16px 18px;border-radius:22px}
+html.lk-ks .ksm small{color:var(--mut);font-size:9.5px;letter-spacing:.24em}
+html.lk-ks .ksm b{display:block;font-size:17px;font-weight:300;letter-spacing:-.02em;line-height:1.35;margin-bottom:8px}
+html.lk-ks .ksm em{display:block;font-style:normal;font-size:11.5px;color:var(--sub);line-height:1.5}
+html.lk-ks .ksm .knc::after{content:"";position:absolute;right:-30px;top:-30px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(183,164,242,.35),rgba(183,164,242,0) 70%);pointer-events:none}
+html.lk-ks .ksm .knc+.knc::after{background:radial-gradient(circle,rgba(127,216,200,.38),rgba(127,216,200,0) 70%)}
+html.lk-ks .knall{margin-top:22px}
+html.lk-ks.nt .ksod{box-shadow:0 0 0 1px rgba(183,164,242,.2),0 30px 60px -30px rgba(0,0,0,.9)}
+html.lk-ks.nt .ksgl{background:rgba(12,14,30,.35);border-color:rgba(255,255,255,.18)}
+html.lk-ks.nt .ksr b{color:#7CE0C3}
+html.lk-ks.nt .ksu{background:rgba(255,255,255,.08)}
+@media (prefers-reduced-motion:reduce){html.lk-ks .ksod .knph img.on{animation:none}html.lk-ks .kss{transition:none}}
