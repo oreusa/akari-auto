@@ -2153,6 +2153,20 @@
    "src": "lawson",
    "auto": 1,
    "g": "コンビニ"
+  },
+  {
+   "d": "2026-11-28",
+   "k": "open",
+   "p": "千葉",
+   "n": "ミゲルフアニ",
+   "pt": "ららぽーとTOKYO-BAYで、リニューアルオープン。",
+   "pl": "船橋市浜町2-1-1（ららぽーとTOKYO-BAY）",
+   "tm": "",
+   "u": "https://mitsui-shopping-park.com/lalaport/tokyo-bay/openrenewal/3697107.html",
+   "added": "2026-11-21",
+   "src": "lalaport",
+   "auto": 1,
+   "sub": "リニューアル"
   }
  ]
 }
