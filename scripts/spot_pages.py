@@ -80,7 +80,8 @@ def jd(d):
 
 
 src = open(os.path.join(S, "odekake.html"), encoding="utf-8").read()
-yp = os.path.join(S, "kanto-yado.json")
+yp = os.path.join(S, "kanto-yado-all.json")  # 11/21 街なかの宿も入れた版（1件ページだけ）
+if not os.path.exists(yp): yp = os.path.join(S, "kanto-yado.json")
 if not os.path.exists(yp): yp = os.path.join(R, "data", "kanto-yado.json")
 Y = {}
 if os.path.exists(yp):
