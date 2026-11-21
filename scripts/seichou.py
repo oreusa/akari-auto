@@ -49,6 +49,7 @@ def week(a, b):
 
 end = today - timedelta(days=1)
 now, prev = week(end - timedelta(days=7), end), week(end - timedelta(days=14), end - timedelta(days=7))
+kino = week(end - timedelta(days=1), end)  # 11/21 オーナー「毎日報告は昨日来た人にして・全部」→ 報告はきのう1日の数
 slots = sorted(now["slots"].items(), key=lambda x: -x[1])[:5]
 if now["views"] < 1500:
     weak, nxt = "HPに来る人が少ない", "来た元が多い枠の型を明日もう1本。検索から来る入口ページの題と説明を1つ直す"
@@ -58,6 +59,7 @@ else:
     weak, nxt = "来た人が相談・査定まで行かない", "いちばん見られた入口の上に、次に押す所を1つだけ置く"
 out = {"date": today.isoformat(), "now": {k: now[k] for k in ("views", "come", "post", "ask", "cost", "open", "sent", "buy", "days")},
        "prev": {k: prev[k] for k in ("views", "come", "post", "ask", "cost", "open", "sent", "buy", "days")},
+       "kino": {"day": end.isoformat(), **{k: kino[k] for k in ("views", "come", "post", "ask", "open", "sent", "buy")}},
        "slots": [{"name": k, "n": n} for k, n in slots], "weak": weak, "next": nxt}
 json.dump(out, open(os.path.join(ROOT, "data", "seichou.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 L = [f"# 関東の成長の帳面（{today.isoformat()} 朝）", "",

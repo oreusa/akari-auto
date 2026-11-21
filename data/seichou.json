@@ -22,6 +22,16 @@
   "buy": 42,
   "days": 7
  },
+ "kino": {
+  "day": "2026-11-20",
+  "views": 82,
+  "come": 6,
+  "post": 0,
+  "ask": 13,
+  "open": 0,
+  "sent": 0,
+  "buy": 0
+ },
  "slots": [
   {
    "name": "x2116",
