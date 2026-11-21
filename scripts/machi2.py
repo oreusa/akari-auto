@@ -137,8 +137,9 @@ def main(src, out, prod=False):
 {f'<p class="vd">{E(verdict)}</p>' if verdict else ""}
 <a class="go" href="{ikura}"><b>{E(name)}で、うちの家はいくら？</b><small>種類と広さから30秒で目安・名前は要りません</small><i>›</i></a>
 <a class="go2" href="{ask}">売る前に、無料で聞いてみる<i>›</i></a>
+<!-- 11/21 売り出し中の家を近くの街くらべより上に（関西と同じ） -->
+<section class="sec yhs"><h2>{E(name)}で売り出し中の家</h2><div class="yh">{yrow}</div><p class="note">Yahoo!不動産の一覧が開きます（広告）</p></section>
 <div id="itt"></div>
-<section class="sec"><h2>{E(name)}で売り出し中の家</h2><div class="yh">{yrow}</div><p class="note">Yahoo!不動産の一覧が開きます（広告）</p></section>
 <section class="sec"><h2>実家・空き家・解体</h2><nav class="ls">
 <a href="{sozoku}"><b>相続した家・古い家の相談</b><small>再建築不可・空き家も。無料</small><i>›</i></a>
 {f'<a href="{kai}"><b>解体の補助金</b><small>いくら出るか・受付の状況</small><i>›</i></a>' if kai else ""}

@@ -115,14 +115,15 @@ def main(region="kansai"):
     memo = load_json(MEMO, {}) or {}
     today = date.today()
     calls = 0
-    for name, v in geo.items():
+    for name, v in sorted(geo.items(), key=lambda kv: not far([float(kv[1][0]), float(kv[1][1])])):
         lat, lon = float(v[0]), float(v[1])
         m = memo.get(name)
         if m and m.get("h"):
             for x in m["h"]:
                 x["n"] = hname(x["n"])
         fresh = m and (m.get("h") or m.get("w")) and m.get("v") == VER and m.get("ll") == [lat, lon] and (today - date.fromisoformat(m["t"])).days < 7
-        if fresh or calls >= MAX_CALLS or not far([lat, lon]):  # 街なかは調べない（楽天の呼び出しを減らす）
+        # 11/21 オーナー「稼ぎ口」→ 街なかも調べる（1件ページだけに出す *-yado-all.json）。遠い場所を先に調べるので、呼び出しの上限は遠い方が先に使う
+        if fresh or calls >= MAX_CALLS:
             continue
         try:
             memo[name] = {"v": VER, "t": today.isoformat(), "ll": [lat, lon], "w": 1, "h": search_wide(env, lat, lon, origin)}
@@ -131,12 +132,16 @@ def main(region="kansai"):
             break
         calls += 1
         time.sleep(1.1)
-    memo = {k: v for k, v in memo.items() if k in geo and far(v["ll"])}
+    memo = {k: v for k, v in memo.items() if k in geo}
     save_json(MEMO, memo)
     out = {k: v["h"] for k, v in memo.items() if v["h"] and far(v["ll"])}
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
-    print(f"{R['name']}の宿: 調べた {calls} / 宿あり {len(out)} / 場所 {len(geo)}")
+    # 11/21 街なかも入れた版（1件ページの「近くの宿」だけが読む。泊まりの一覧・カードの丸いボタンは今まで通り遠い所だけ）
+    allo = {k: v["h"] for k, v in memo.items() if v["h"]}
+    with open(path("site", f"{region}-yado-all.json"), "w", encoding="utf-8") as f:
+        json.dump(allo, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"{R['name']}の宿: 調べた {calls} / 宿あり {len(out)}（街なか込み {len(allo)}） / 場所 {len(geo)}")
 
 
 if __name__ == "__main__":
