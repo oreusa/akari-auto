@@ -561,12 +561,9 @@ html.lk-kn .knsn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke
 html.lk-kn.nt .knsn{background:rgba(20,24,40,.55);border-color:rgba(255,255,255,.14)}
 html.lk-kn.nt .knsn a:not(:first-of-type){background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18)}
 /* 11/22 MENU の SNS・送る */
-.mnsn{display:flex;align-items:center;gap:8px;margin:14px 0 4px;padding:12px 4px 0;border-top:1px solid rgba(120,110,160,.16)}
-.mnsn small{flex:1;font-size:12px;color:var(--sub)}
-.mnsn a{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--ink);border:1px solid rgba(120,110,160,.24);background:rgba(255,255,255,.6)}
-.mnsn a:first-of-type{color:#fff;border:0;background:linear-gradient(135deg,#F7B05B,#E6567A 45%,#9B5DE5)}
-.mnsn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
-html.nt .mnsn a:not(:first-of-type){background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18)}
+.mnsn{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px;padding:14px 0 0;border-top:1px solid rgba(120,110,160,.16)}
+.mnsn a{padding:8px 14px;border-radius:99px;font-size:13px;text-decoration:none;color:var(--sub);border:1px solid rgba(120,110,160,.2);background:rgba(255,255,255,.5)}
+html.nt .mnsn a{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
 .sh .shr{position:absolute;right:54px;top:12px;z-index:3;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.45);color:#fff;display:grid;place-items:center;border:0;cursor:pointer}
 .sh .shr svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .tncp{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);z-index:99;padding:10px 16px;border-radius:99px;background:rgba(20,20,30,.85);color:#fff;font-size:13px}
@@ -590,3 +587,15 @@ html.lk-kn.nt details.kthd summary{background:rgba(20,24,40,.55);border-color:rg
 html.lk-kn h1.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 html.lk-kn .ksd{margin:10px 4px 16px}
 html.lk-kn .knft{margin-top:8px;padding:6px 0 0}
+/* 11/22 owner「動作見直して」：
+   ・下に送るとカードが下から浮かぶ動き（rise・スクロールで動く）は 11/21 に「なくして」と言われた物 → 全員でやめる
+   ・入口の写真がじわっと寄る動き・カードのふちの光（lklt）・板ごとのすりガラスをやめて軽く（見本 kn） */
+.cd,.kc,.rk li,.of,.sec h2,.pc{animation:none!important}
+html.lk-kn .lt::after,html.lk-kn .lt::before{animation:none!important;opacity:0!important}
+html.lk-ks .ksod .knph img.on{animation:none!important}
+html.lk-ks .ksod,html.lk-ks .ksie,html.lk-ks .ksm .knc{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.lk-ks .ksie,html.lk-ks .ksm .knc{background:rgba(255,255,255,.82)!important}
+html.lk-ks.nt .ksie,html.lk-ks.nt .ksm .knc{background:rgba(18,22,38,.82)!important}
+html.lk-kn .hv{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(255,255,255,.88)!important}
+html.lk-kn.nt .hv{background:rgba(20,24,40,.8)!important}
+html.lk-off .lk-hero,html.lk-off .lk-hero *,html.lk-off .lk-hero::before,html.lk-off .lk-hero::after{animation-play-state:paused!important}
