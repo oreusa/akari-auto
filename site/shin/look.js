@@ -26,7 +26,7 @@ addEventListener("scroll",function(){if(!ims.length)ims=[].slice.call(document.q
 /* 21:13 owner「めちゃくちゃ綺麗な画面になる提案、あれなんてゆうの？」→ グラスモーフィズム＋メッシュグラデーション（Stripe 型）。
    本物は「画面の一番上だけ、はっきりした色の光がゆっくり流れる帯・下は白」→ F に上の帯（.lk-hero）を足す */
 (function(){var H=document.documentElement;if(!H.classList.contains("lk-f"))return;
-function add(){if(document.querySelector(".lk-hero"))return;var d=document.createElement("div");d.className="lk-hero";d.setAttribute("aria-hidden","true");d.innerHTML="<i></i><i></i><i></i><i></i><i></i>";document.body.insertBefore(d,document.body.firstChild)}
+function add(){if(document.querySelector(".lk-hero"))return;var d=document.createElement("div");d.className="lk-hero";d.setAttribute("aria-hidden","true");d.innerHTML="<i></i><i></i><i></i><i></i><i></i>";document.body.insertBefore(d,document.body.firstChild);/* 11/22 owner「動作見直して」：上の光の帯が見えていない間は動きを止めて、下に流す時を軽く */try{new IntersectionObserver(function(es){document.documentElement.classList.toggle("lk-off",!es[0].isIntersecting)}).observe(d)}catch(e){}}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",add);else add()})();
 /* 11/21 6:06 owner「夜の星ってもっとシンプルでとても綺麗なのないの？」→ 見本 ?sky=1 澄んだ星空（白い星だけ・大きさは3つ・明るい星が数個ゆっくりまたたく）
    ?sky=2 ごく少ない星（星を数十だけ・またたかない・流れ星だけ残す）。?sky=0 で今の形。星は画面に貼り付き、流しても動かない */
