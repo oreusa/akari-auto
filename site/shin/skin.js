@@ -10,7 +10,7 @@ try{var _q=location.search.match(/[?&]iro=([01])/);if(_q)localStorage.setItem("t
 (function(){var s=document.createElement("script");s.src="/shin/bx.js?v=1";s.defer=true;document.head.appendChild(s)})();
 var H=document.documentElement,P=window.TN_P||location.pathname,RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
 /* 11/20 19:20 見た目の見本 ?look=a|b|c（この端末で覚える・?look=0 で外す）→ look.css・look.js */
-try{var _lk=location.search.match(/[?&]look=([abcdef0])/);if(_lk)localStorage.setItem("tn_lk2",_lk[1]);var _lv=localStorage.getItem("tn_lk2")||"f";if(_lv&&_lv!=="0"&&!document.getElementById("lkcss")){document.documentElement.classList.add("lk","lk-"+_lv);if(_lv==="d"||_lv==="e"||_lv==="f")document.documentElement.classList.add("lk-a","lk-d");if(_lv==="f")document.documentElement.classList.add("lk-e");var _l=document.createElement("link");_l.rel="stylesheet";_l.href="/shin/look.css?v=22";document.head.appendChild(_l);var _s=document.createElement("script");_s.src="/shin/look.js?v=22";_s.defer=true;document.head.appendChild(_s)}}catch(e){}
+try{var _lk=location.search.match(/[?&]look=([abcdef0])/);if(_lk)localStorage.setItem("tn_lk2",_lk[1]);var _lv=localStorage.getItem("tn_lk2")||"f";if(_lv&&_lv!=="0"&&!document.getElementById("lkcss")){document.documentElement.classList.add("lk","lk-"+_lv);if(_lv==="d"||_lv==="e"||_lv==="f")document.documentElement.classList.add("lk-a","lk-d");if(_lv==="f")document.documentElement.classList.add("lk-e");var _l=document.createElement("link");_l.rel="stylesheet";_l.href="/shin/look.css?v=23";document.head.appendChild(_l);var _s=document.createElement("script");_s.src="/shin/look.js?v=23";_s.defer=true;document.head.appendChild(_s)}}catch(e){}
 var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
 var IC={now:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
  we:'<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>',
@@ -104,7 +104,7 @@ function cmpTowns(M,id,k){var me=M.t[id];if(!me||!me[3]||!me[3][8])return;var xy
     sec.innerHTML='<h2 class="cmpt-h">近くの街とくらべる</h2><div class="cmpt-k" role="tablist">'+K.map(function(x,i){return '<button role="tab" aria-selected="'+(i===j)+'"'+(i===j?' class="on"':'')+' data-j="'+i+'">'+x[0]+'</button>'}).join("")+'</div>'+
      '<p class="cmpt-s">'+q[3]+(q[4]?'。（ ）は売れた件数。10件より少ない街は目安だけです':'')+'</p><ol class="cmpt-l">'+L.map(function(x,i){var val=vals[i],c=q[4]&&x.v[q[4]]?x.v[q[4]][0]:null,w=val==null?0:Math.max(.04,Math.abs(val)/mx);
       return '<li'+(x.id===id?' class="me"':'')+'><a href="/machi/'+x.id+'"><span class="n">'+esc(x.n)+(x.id===id?'<em>この街</em>':'')+'</span><b>'+(val==null?'—':q[2](val))+(c!=null?'<small>（'+c+'件）</small>':'')+(c!=null&&c<10?'<u>少ない</u>':'')+'</b><i class="bar"><i style="width:'+(w*100).toFixed(1)+'%"'+(val<0?' class="neg"':'')+'></i></i></a></li>'}).join("")+'</ol>'+
-     '<a class="cmpt-go" href="/ikura?machi='+id+'"><b>この街で、うちの家はいくら？</b><small>種類と広さから30秒で目安・名前は要りません</small><i>›</i></a>';
+     '<a class="cmpt-go" href="/ikura?machi='+id+'"><b>この街で、うちの家はいくら？</b><small>種類と広さから30秒で目安（その場で出ます）</small><i>›</i></a>';
     [].forEach.call(sec.querySelectorAll(".cmpt-k button"),function(b){b.onclick=function(){draw(+b.dataset.j)}})};
   draw(0);
   var at=document.getElementById("itt")||document.querySelector(".faq");if(at)at.parentNode.insertBefore(sec,at);else return;
