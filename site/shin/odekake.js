@@ -43,7 +43,7 @@ var T1=nTd?["きょうまで",nTd,"td"]:["7日以内に始まる",nNew,"new"];
 S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">'+esc(PG.h1||RG.n+"のおでかけ・イベント")+'</h1><p class="h1p">'+esc(PG.sub||RG.pfs)+'</p>'+
  '<p class="dl">'+(DT.getUTCMonth()+1)+'月'+DT.getUTCDate()+'日（'+"日月火水木金土"[DT.getUTCDay()]+'）<span>いま開催中 <b data-n="'+nNow+'">0</b>件</span></p>'+
  '</section>'+
- '<div class="st" id="st"></div><div class="sec"><h2>今週末のおすすめ</h2><small id="fno"></small></div></div>'+
+ ''+(document.documentElement.classList.contains("lk-kn")?'<p class="knlb">写真で見る</p>':'')+'<div class="st" id="st"></div><div class="sec"><h2>今週末のおすすめ</h2><small id="fno"></small></div></div>'+
  '<div class="fan" id="fan"></div>'+
  '<div class="wrap">'+(M2?'':'<div class="tiles qk"><button data-w="'+T1[2]+'"><small>'+T1[0]+'</small><b data-n="'+T1[1]+'">0</b><i>→</i></button><button data-w="end"><small>7日以内に終わる</small><b data-n="'+nEnd+'">0</b><i>→</i></button><button data-w="we"><small>この週末に行ける</small><b data-n="'+nWe+'">0</b><i>→</i></button></div>')+'<div id="sent"></div><div class="bar'+(M2?' m2b':'')+'" id="bar"><div class="seg'+(M2?' fit':'')+'" id="seg"></div><div class="chips" id="chips"></div></div>'+
  (M2?'<div class="wt" id="wt" role="tablist"></div><div class="cnt m2cnt"><h3 id="ch"></h3><button class="tomap" id="tomap"><svg viewBox="0 0 24 24"><path d="M9 4.5 3.5 6.6v13l5.5-2.1 6 2.1 5.5-2.1v-13L15 6.6z"/><path d="M9 4.5v13M15 6.6v13"/></svg>地図で見る</button></div>':'<div class="cnt"><h3 id="ch"></h3><small id="cs"></small></div>')+'<div class="grid" id="grid"></div><div id="mr"></div></div>'+
@@ -93,7 +93,7 @@ function drawKn(){var c={};IT.forEach(function(x){if((!S.p||x.p===S.p)&&inW(x,"n
   var ks=Object.keys(G).filter(function(k){return c[k]}).sort(function(a,b){return ((b==="light"||b==="koyo")?999:0)+c[b]-((a==="light"||a==="koyo")?999:0)-c[a]}).slice(0,4);if(ks.length<2)ks=[];
   var nh=Object.keys(HV).length,o=[["","now","すべて"],["","we","今週末"],["","end","まもなく終了"]].concat(ks.map(function(k){return [k,"now",G[k][3]]}));
   $("#chips").style.display="";
-  $("#chips").innerHTML=o.map(function(x){return '<button class="chip'+(S.g===x[0]&&S.w===x[1]?" on":"")+'" data-g="'+x[0]+'" data-w="'+x[1]+'"'+(x[0]?' style="--c:'+G[x[0]][1]+'"':'')+'>'+(x[0]?'<i></i>':'')+x[2]+'</button>'}).join("")+
+  $("#chips").innerHTML='<span class="knlb2">一覧を絞る</span>'+o.map(function(x){return '<button class="chip'+(S.g===x[0]&&S.w===x[1]?" on":"")+'" data-g="'+x[0]+'" data-w="'+x[1]+'"'+(x[0]?' style="--c:'+G[x[0]][1]+'"':'')+'>'+(x[0]?'<i></i>':'')+x[2]+'</button>'}).join("")+
    (nh?'<button class="chip hvc'+(S.g==="_hv"?" on":"")+'" data-g="_hv" data-w="now">'+HVI+'残した '+nh+'</button>':"")}
 function drawChips(){if(KN)return drawKn();if(S.g==="_hv"&&!Object.keys(HV).length){S.g="";saveQ()}var ks=kinds();$("#chips").style.display=ks.length<2&&!Object.keys(HV).length?"none":"";var nh=Object.keys(HV).length;$("#chips").innerHTML='<button class="chip'+(S.g?"":" on")+'" data-g="">すべて</button>'+(nh?'<button class="chip hvc'+(S.g==="_hv"?" on":"")+'" data-g="_hv">'+HVI+'残した '+nh+'</button>':"")+kinds().map(function(k){return '<button class="chip'+(S.g===k?" on":"")+'" data-g="'+k+'" style="--c:'+G[k][1]+'"><i></i>'+G[k][3]+'</button>'}).join("")}
 $("#chips").addEventListener("click",function(e){var b=e.target.closest(".chip");if(!b)return;S.g=b.dataset.g;if(b.dataset.w)S.w=b.dataset.w;S.n=24;sync();go(true)});

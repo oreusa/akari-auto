@@ -117,7 +117,9 @@ grid.addEventListener("click",function(e){var a=e.target.closest(".cd,.lr");if(!
 var k0=Q.get("i");if(k0){var x0=IT.filter(function(x){return x.id===k0})[0];if(x0)setTimeout(function(){openItem(x0)},300)}
 S_.onNav(function(a){if(a==="top")scrollTo({top:0,behavior:"smooth"});else if(a==="list")scrollTo({top:$("#sent").getBoundingClientRect().top+scrollY,behavior:"smooth"});else if(a==="geo"){var g=$("#geo2");if(g)g.click()}else if(a.indexOf("w=")===0){var b=$('#tab button[data-v="'+a.slice(2)+'"]');if(b)b.click();S_.navCur(a)}else if(a==="fav"){S.k="_fav";S.w="";S.n=24;sync();go(true);S_.navCur(a);scrollTo({top:$("#sent").getBoundingClientRect().top+scrollY,behavior:"smooth"})}});
 /* 11/22 見本 kn：開店閉店の絞り込みが3段→「種類」はたたんで、件数の横の「種類で絞る」で開く */
-if(PG.tabs&&document.documentElement.classList.contains("lk-kn")&&$("#chips")){var _bar=$("#bar"),_cs=$("#cs");if(!S.k)_bar.classList.add("kf");
+/* 11/22 kn：いまから行けるの長い説明は1行にたたむ */
+if(document.documentElement.classList.contains("lk-kn")){var _ln=$(".lnote");if(_ln&&_ln.textContent.length>60){var _d=document.createElement("details");_d.className="lnd";_d.innerHTML='<summary>かかる時間・開いている時間は目安です</summary>';var _p=document.createElement("p");_p.innerHTML=_ln.innerHTML;_d.appendChild(_p);_ln.replaceWith(_d)}}
+if((PG.tabs||PG.near)&&document.documentElement.classList.contains("lk-kn")&&$("#chips")){var _bar=$("#bar"),_cs=$("#cs");if(!S.k)_bar.classList.add("kf");
   if(_cs){var kb=document.createElement("button");kb.type="button";kb.className="kfb";kb.textContent="種類で絞る";_cs.parentNode.insertBefore(kb,_cs);
     kb.addEventListener("click",function(){_bar.classList.toggle("kf");kb.classList.toggle("on",!_bar.classList.contains("kf"))});kb.classList.toggle("on",!_bar.classList.contains("kf"))}}
 if(PG.tabs)S_.navCur("w="+S.w);S_.ready();

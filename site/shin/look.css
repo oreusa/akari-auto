@@ -571,3 +571,18 @@ html.nt .mnsn a:not(:first-of-type){background:rgba(255,255,255,.08);border-colo
 .sh .shr svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .tncp{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);z-index:99;padding:10px 16px;border-radius:99px;background:rgba(20,20,30,.85);color:#fff;font-size:13px}
 html[data-k] .act .snd{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border-radius:999px;border:1px solid rgba(120,110,160,.3);background:transparent;color:var(--ink);font:inherit;font-size:15px;cursor:pointer}
+/* 11/22 kn：写真の丸と絞り込みの違いを1語で・たたむ物 */
+html.lk-kn .knlb{margin:6px 4px 2px;font-size:11.5px;letter-spacing:.12em;color:var(--mut)}
+html.lk-kn .knlb2{flex:none;align-self:center;font-size:11.5px;letter-spacing:.08em;color:var(--mut);margin-right:2px}
+html.lk-kn details.lnd{margin:12px 2px 6px;font-size:12.5px;color:var(--sub)}
+html.lk-kn details.lnd summary{cursor:pointer;list-style:none}
+html.lk-kn details.lnd summary::-webkit-details-marker{display:none}
+html.lk-kn details.lnd summary::after{content:" ⓘ";opacity:.6}
+html.lk-kn details.lnd p{margin:8px 0 0;line-height:1.7}
+html.lk-kn details.kthd{margin:8px 0 16px}
+html.lk-kn details.kthd summary{cursor:pointer;list-style:none;padding:14px 16px;border-radius:16px;border:1px solid rgba(120,110,160,.22);background:rgba(255,255,255,.5);font-size:14px;display:flex;justify-content:space-between}
+html.lk-kn details.kthd summary::-webkit-details-marker{display:none}
+html.lk-kn details.kthd summary::after{content:"＋";color:var(--mut);transform:none!important;position:static!important;border:0!important;width:auto!important;height:auto!important;background:none!important}
+html.lk-kn details.kthd[open] summary::after{content:"−"}
+html.lk-kn details.kthd[open] summary{margin-bottom:12px}
+html.lk-kn.nt details.kthd summary{background:rgba(20,24,40,.55);border-color:rgba(255,255,255,.14)}
