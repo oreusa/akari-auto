@@ -3,6 +3,8 @@
    こだわり＝おでかけと同じ写真の2列カード（写真の無い物は細い線の行）・いまから行けるは「いる場所から何分」で並ぶ。 */
 (function(){
 "use strict";
+/* 11/22 見本 ?sd=1（会議の今週の重点）：まちランキングの1本を読んだ後に、相談の入口を1つ */
+var SD=0;try{var _sd=location.search.match(/[?&]sd=([01])/);if(_sd)localStorage.setItem("tn_sd",_sd[1]);SD=localStorage.getItem("tn_sd")==="1"}catch(e){}
 var S_=window.SHIN,$=S_.$,$$=S_.$$,el=S_.el,esc=S_.esc,TD=S_.TD,diff=S_.diff,md=S_.md,dd=S_.dd,RM=S_.RM,D=S_.data;
 var RG=S_.reg,PREF=RG.pref,PG=D.page||{},K=PG.K||{},VIEW=PG.view||"grid";
 var IT=D.items.filter(function(x){return !x.e||x.e>=TD}).map(function(x,i){x.i=i;x.st=x.s?(x.s<=TD?"now":"up"):"";x.left=x.e?diff(TD,x.e):null;x.g=K[x.k]||["",PG.c||"#6E6E73"];return x});
@@ -108,7 +110,7 @@ function openItem(x,from){if(!x)return;var mq=encodeURIComponent(x.mq||((x.v||x.
    (PG.near&&x.mn!=null?'<div class="nrb"><b>約'+x.mn+'分</b><span>'+esc(S.o[0])+'から '+x.km.toFixed(1)+'km（直線距離からの目安）</span></div>':"")+
    (x.rows&&x.rows.length?'<dl class="kv">'+x.rows.map(function(r){return '<dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd>'}).join("")+'</dl>':"")+
    (x.ds?'<p class="ds">'+esc(x.ds)+'</p>':"")+(x.body?'<div class="bdy">'+esc(x.body)+'</div>':"")+
-   (x.links&&x.links.length?'<div class="lks"><h3>'+esc(x.lh||"近くの宿")+'</h3>'+x.links.map(function(l){return '<a href="'+esc(l[1])+'" target="_blank" rel="noopener sponsored"><span><b>'+esc(l[0])+'</b><small>'+esc(l[2]||"")+'</small></span>'+(l[3]?'<em>'+esc(l[3])+'</em>':"")+'<i>›</i></a>'}).join("")+(x.lnote?'<p class="cr">'+esc(x.lnote)+'</p>':"")+'</div>':"")+
+   (x.links&&x.links.length?'<div class="lks"><h3>'+esc(x.lh||"近くの宿")+'</h3>'+x.links.map(function(l){return '<a href="'+esc(l[1])+'" target="_blank" rel="noopener sponsored"><span><b>'+esc(l[0])+'</b><small>'+esc(l[2]||"")+'</small></span>'+(l[3]?'<em>'+esc(l[3])+'</em>':"")+'<i>›</i></a>'}).join("")+(x.lnote?'<p class="cr">'+esc(x.lnote)+'</p>':"")+'</div>':"")+(SD&&/^\/ranking/.test(location.pathname)?(function(){var m=x.links&&x.links[0]&&/\/machi\/([\w-]+)/.exec(x.links[0][1]),nm=m?x.links[0][0]:"";return '<a class="sdc" href="/moushikomi?lite=1'+(m?'&machi='+m[1]:'')+'&want='+encodeURIComponent("査定してほしい")+'" data-k="相談へ｜まちランキング">'+'<small>'+(nm?esc(nm)+'などで、':'')+'家を売る・住み替えるなら</small><b>今の家がいくらか、無料で相談</b><em>名字だけ・約1分・売るか決めていなくても大丈夫</em><i aria-hidden="true">→</i></a>'})():"")+
    '<div class="acts">'+(x.u?'<a class="pr" href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.ub||"公式で確かめる")+'</a>':"")+(x.nomap?"":'<a href="https://www.google.com/maps/'+(PG.near&&x.ll?'dir/?api=1&origin='+S.o[1]+','+S.o[2]+'&destination='+x.ll[0]+','+x.ll[1]+'&travelmode=transit':'search/?api=1&query='+mq)+'" target="_blank" rel="noopener">'+(PG.near?"行き方":"地図で開く")+'</a>')+
    (x.o?'<a href="/o/'+x.o+'">くわしいページ</a>':x.sp?'<a href="'+esc(x.sp)+'">くわしいページ</a>':'<button data-share="1">送る</button>')+(PG.fav?'<button class="fv'+(FAV[x.id||x.t]?" on":"")+'" data-fav="1">'+S_.IC.star+'<span>'+(FAV[x.id||x.t]?"保存した":"保存")+'</span></button>':"")+'</div>'+
    (x.cr?'<p class="cr">写真：'+(x.cu?'<a href="'+esc(x.cu)+'" target="_blank" rel="noopener">'+esc(x.cr)+'</a>':esc(x.cr))+'</p>':"")+(x.src?'<p class="cr">出どころ：<a href="'+esc(x.src)+'" target="_blank" rel="noopener">公式の発表</a></p>':"")+'</div>',from,function(box){
