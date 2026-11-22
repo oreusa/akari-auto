@@ -609,3 +609,7 @@ html.lk-kn .knft .c3gs a{padding:0!important;border:0!important;background:none!
 .sdc em{display:block;font-style:normal;font-size:12px;color:var(--mut);margin-top:6px}
 .sdc i{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-style:normal;color:#fff;background:linear-gradient(135deg,#7FD8C8,#8FB8F5 50%,#B7A4F2)}
 html.nt .sdc{background:rgba(20,24,40,.6);border-color:rgba(255,255,255,.14)}
+.bdy details.rkm{white-space:pre-wrap;margin:2px 0}
+.bdy details.rkm summary{white-space:normal;cursor:pointer;list-style:none;display:inline-block;padding:6px 12px;border-radius:99px;border:1px solid rgba(120,110,160,.25);font-size:13px;color:var(--sub)}
+.bdy details.rkm summary::-webkit-details-marker{display:none}
+.bdy details.rkm[open] summary{margin-bottom:6px}
