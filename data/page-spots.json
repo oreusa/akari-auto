@@ -3027,6 +3027,54 @@
       "note": "小田原市｜映画・ボウリング・ゲーム・温泉がそろう。駐車場無料",
       "url": "https://www.korona.co.jp/store/odw/",
       "checked": "2026-11-21"
+    },
+    {
+      "title": "東京クリスマスマーケット2026 in 芝公園",
+      "pref": "東京",
+      "place": "都立芝公園",
+      "when": "12/4〜12/25",
+      "start": "2026-12-04",
+      "ends": "2026-12-25T22:00",
+      "free": false,
+      "note": "港区｜御成門駅前の広場にドイツの屋台とツリー。大人1,000円〜、未就学児無料",
+      "url": "https://tokyochristmas.net/shiba/",
+      "checked": "2026-11-22"
+    },
+    {
+      "title": "GRAND CYCLE TOKYO マルチスポーツ",
+      "pref": "東京",
+      "place": "青海NOP区画",
+      "when": "11/23",
+      "start": "2026-11-23",
+      "ends": "2026-11-23T15:30",
+      "free": true,
+      "note": "江東区｜レインボーライド当日、自転車・バスケ・サッカーなどの体験が子どもも無料（9:30〜15:30）",
+      "url": "https://grand-cycle-tokyo.jp/rainbow/multisports/",
+      "checked": "2026-11-22"
+    },
+    {
+      "title": "クスクスフェスタ Vol.4",
+      "pref": "神奈川",
+      "place": "クスクスグランピング真鶴",
+      "when": "11/23",
+      "start": "2026-11-23",
+      "ends": "2026-11-23T17:00",
+      "free": true,
+      "note": "真鶴町｜森の遊び場・宝探し・焚き火。参加無料（12:00〜17:00）",
+      "url": "https://couscousglamping.com/event-detail/couscous-festa-vol4/",
+      "checked": "2026-11-22"
+    },
+    {
+      "title": "子どもの創造表現フェスティバル2026",
+      "pref": "千葉",
+      "place": "八千代市市民会館",
+      "when": "11/23",
+      "start": "2026-11-23",
+      "ends": "2026-11-23T16:00",
+      "free": true,
+      "note": "八千代市｜子どもたちの和太鼓・ダンス・劇。入場無料・出入り自由（13:30〜16:00）",
+      "url": "https://konet.ciao.jp/",
+      "checked": "2026-11-22"
     }
   ]
 }
