@@ -491,7 +491,7 @@ def build():
     head = re.sub(r"<style>.*?</style>", "", head, flags=re.S)
     head = re.sub(r'<script type="application/ld\+json">.*?</script>', "", head, flags=re.S)
     head = re.sub(r'<link rel="stylesheet" href="/assets/sub.css[^>]*>|<script src="/assets/yado.js[^>]*></script>', "", head)
-    title = f"関東の開店・閉店ニュース｜新しいお店・閉まるお店を公式の発表で（{TODAY.month}月{TODAY.day}日）"
+    title = f"関東の新規オープン・閉店情報 {TODAY.year}年{TODAY.month}月｜これから開くお店{cnt['soon']}件・閉店{cnt['close']}件（{TODAY.month}月{TODAY.day}日更新）"
     desc = (f"東京・神奈川・埼玉・千葉など関東で、これから開くお店{cnt['soon']}件・この{DONE_DAYS}日に開いたお店{cnt['done']}件・閉まるお店{cnt['close']}件。"
             "各社の公式の発表だけを毎日たしかめて足しています。日付・場所と、公式の発表と地図へすぐ行けます。")
     head = re.sub(r"<title>.*?</title>", f"<title>{E(title)}</title>", head, count=1)
