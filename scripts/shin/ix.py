@@ -48,6 +48,11 @@ def ix_html(name, data, root):
             place = x.get("v") or x.get("a") or ""
             sub = "・".join(v for v in (x.get("p", ""), place[:40], when) if v)
             rows.append(_li(href, t, sub))
+    elif data.get("kind") == "honto" and isinstance(data.get("rows"), list):
+        # 11/22 本当に安い？：品名と、記録の事実の1文
+        label = "記録している日用品の一覧"
+        for x in data["rows"]:
+            if x.get("n"): rows.append(_li("", x["n"], x.get("why", "")))
     elif isinstance(data.get("towns"), list):
         label = "街の一覧（家と土地の相場）"
         for x in data["towns"]:

@@ -205,6 +205,8 @@ def main():
         seen.add(r["code"])
         h = codes.setdefault(r["code"], {"p": {}})
         h.update({"n": r["name"], "c": r["cat"], "u": r["plain"], "last": today})
+        # 11/22「本当に安い？」のページ（scripts/honto.py）で写真・お店・楽天のリンクも出すので、記録に一緒に残す
+        h.update({k: v for k, v in (("i", r["img"]), ("a", r["url"]), ("s", r["shop"]), ("rc", r["rc"]), ("av", r["av"])) if v})
         base, low, days = judge(h, today, r["price"])
         h["p"][today] = min(r["price"], h["p"].get(today, r["price"]))  # 同じ日は安い方を残す
         if base is None:

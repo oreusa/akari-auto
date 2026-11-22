@@ -211,7 +211,7 @@ jobs:
           git add notes/seichou.md data/seichou.json notes/gakushu.md data/gakushu.json data/shirei.json data/manabi.json data/yatta.json 2>/dev/null || true
           git add notes/room-daihon.md data/room-log.json data/room-today.json 2>/dev/null || true
           git add data/postimg.json data/postimg-rule.json notes/postimg-sample.jpg 2>/dev/null || true
-          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/townnotes-geo-checked.json data/kansai-yado.json data/kanto-yado.json data/venue_photos.json data/auto_tried.json site/assets/ph data/tanka.json data/kaiten.json data/kaiten-seen-kanto.json data/kaimawari.json data/furusato.json data/price-history.json data/nesage.json data/okaimono_img.json data/koe.json data/note-history.json 2>/dev/null || true
+          git add data/page-stats.json data/link-ok.json data/townnotes-geo.json data/townnotes-geo-checked.json data/kansai-yado.json data/kanto-yado.json data/venue_photos.json data/auto_tried.json site/assets/ph data/tanka.json data/kaiten.json data/kaiten-seen-kanto.json data/kaimawari.json data/furusato.json data/price-history.json data/nesage.json data/honto.json data/okaimono_img.json data/koe.json data/note-history.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "ページの数とリンクの確かめを記録"
           # 公開用に書き換えた site/ のページ（ima.html など）は戻す（戻さないと pull できない）
