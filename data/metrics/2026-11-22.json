@@ -1,0 +1,246 @@
+{
+  "day": "2026-11-22",
+  "fetchedAt": "2026-11-23T06:16+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【JR京浜東北線｜東京の沿線7区で、地価がいちばん上がった街】🚃",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgBR6ZgI4kP",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.85,
+        "views": 54,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:16",
+      "kind": "通常",
+      "first": "【11/27オープン　三ツ境駅｜サブウェイが国内250店目】🥪",
+      "url": "https://x.com/1753799832798629888/status/2124265609303134561",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.44,
+        "reposts": 0,
+        "impressions": 41,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "07:45",
+      "kind": "通常",
+      "first": "【くらべた｜単3電池、1本あたりの最安は31.2円】🔋",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgBVWOQj2EN",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 11.11,
+        "views": 9,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "08:15",
+      "kind": "通常",
+      "first": "【練馬区の古い家の解体｜地区によって、上限200万円】🏠",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgBYyF3m61n",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 8.33,
+        "views": 12,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "【11/22まで　八王子の甲州街道｜約770本の金色のいちょう並木】🍂",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgBfpw0DumG",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.79,
+        "views": 127,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:16",
+      "kind": "通常",
+      "first": "【11/20に開きました　八柱駅前｜ハートブレッドアンティークが松戸に】🍞",
+      "url": "https://x.com/1753799832798629888/status/2124295805586514261",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.55,
+        "reposts": 0,
+        "impressions": 22,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:46",
+      "kind": "通常",
+      "first": "【きょう昼から　大船〜藤沢｜村岡新駅のための線路の切り換え】🚃",
+      "url": "https://x.com/1753799832798629888/status/2124303352309707242",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.13,
+        "reposts": 0,
+        "impressions": 32,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【11/28オープン　新宿駅西口｜223㎡のキル フェ ボン、都内5店目】🥧",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgB0RBClCeT",
+      "img": 1,
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 3.92,
+        "views": 51,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:16",
+      "kind": "通常",
+      "first": "【2027/1/22開業　蒲田駅｜91室のスマートプレイスイン東京蒲田】🏨",
+      "url": "https://x.com/1753799832798629888/status/2124341100609445893",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:15",
+      "kind": "通常",
+      "first": "【JR横浜線｜神奈川の沿線6区で、地価がいちばん上がった街】🚃",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgB7G-jAFlF",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.03,
+        "views": 33,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "【11/22まで　佐野の朝日森天満宮｜寺と神社の夜の灯り、きょうが最終日】🏮",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgCI15mkRTT",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.8,
+        "views": 125,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "【11/20に開きました　東松戸｜183台のクレーンゲーム、めっちゃトレバ】🧸",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgCddlMFYcA",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.13,
+        "views": 32,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:16",
+      "kind": "通常",
+      "first": "【11/27開通　千葉市中央区｜宮崎町〜大森町の600mの道】🛣",
+      "url": "https://x.com/1753799832798629888/status/2124431700553855279",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:15",
+      "kind": "通常",
+      "first": "【守谷市｜茨城の44市町村で、住宅地の地価がいちばん上がった街】🏙",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgCyEcClJ9r",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:16",
+      "kind": "通常",
+      "first": "【12/5オープン　若葉駅｜ウェンディーズ・ファーストキッチンが鶴ヶ島に】🍔",
+      "url": "https://x.com/1753799832798629888/status/2124476995450839116",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 0,
+        "clicks": 0
+      }
+    }
+  ]
+}
