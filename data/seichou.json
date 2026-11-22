@@ -1,56 +1,56 @@
 {
- "date": "2026-11-21",
+ "date": "2026-11-22",
  "now": {
-  "views": 826,
-  "come": 67,
+  "views": 838,
+  "come": 71,
   "post": 0,
-  "ask": 52,
+  "ask": 36,
   "cost": 0,
-  "open": 7,
+  "open": 3,
   "sent": 0,
-  "buy": 5,
+  "buy": 1,
   "days": 7
  },
  "prev": {
-  "views": 1209,
-  "come": 13,
-  "post": 6,
-  "ask": 55,
+  "views": 1123,
+  "come": 18,
+  "post": 4,
+  "ask": 66,
   "cost": 0,
-  "open": 5,
+  "open": 9,
   "sent": 0,
-  "buy": 42,
+  "buy": 17,
   "days": 7
  },
  "kino": {
-  "day": "2026-11-20",
-  "views": 82,
-  "come": 6,
+  "day": "2026-11-21",
+  "views": 60,
+  "come": 9,
   "post": 0,
-  "ask": 13,
+  "ask": 0,
   "open": 0,
   "sent": 0,
-  "buy": 0
+  "buy": 1
  },
  "slots": [
   {
    "name": "x2116",
-   "n": 15
+   "n": 18
   },
   {
    "name": "x0716",
-   "n": 13
+   "n": 14
   },
   {
    "name": "x1216",
-   "n": 10
-  },
-  {
-   "name": "x0916",
-   "n": 9
+   "n": 11
   },
   {
    "name": "x1816",
+   "n": 8
+  },
+  {
+   "name": "x0916",
    "n": 8
   }
  ],
