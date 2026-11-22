@@ -3198,33 +3198,6 @@
       }
     ]
   },
-  "八王子いちょう祭り": {
-    "v": 2,
-    "t": "2026-11-20",
-    "ll": [
-      35.64968,
-      139.29078
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "タカオネ",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182499",
-        "km": 2.7,
-        "r": 4.5,
-        "rc": 236,
-        "min": 6750
-      },
-      {
-        "n": "Mt.TAKAO BASE CAMP",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D177916",
-        "km": 2.5,
-        "r": 4.31,
-        "rc": 57,
-        "min": 3850
-      }
-    ]
-  },
   "湯畑ツリー＆イルミネーション2026": {
     "v": 2,
     "t": "2026-11-20",
@@ -4707,25 +4680,6 @@
       }
     ]
   },
-  "第15回世界キャラクターさみっとin羽生": {
-    "v": 2,
-    "t": "2026-11-17",
-    "ll": [
-      36.17262,
-      139.54839
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "羽生天然温泉ルートイングランティア羽生SPA RESORT",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D18683",
-        "km": 1.7,
-        "r": 4.27,
-        "rc": 1457,
-        "min": 6950
-      }
-    ]
-  },
   "2026日本ローカルヒーロー祭": {
     "v": 2,
     "t": "2026-11-17",
@@ -4874,76 +4828,6 @@
         "r": 4.43,
         "rc": 343,
         "min": 11495
-      }
-    ]
-  },
-  "第23回土浦カレーフェスティバル": {
-    "v": 2,
-    "t": "2026-11-18",
-    "ll": [
-      36.08152,
-      140.21165
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "【JR土浦駅直結】 BEB5土浦 by 星野リゾート",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178358",
-        "km": 0.7,
-        "r": 4.5,
-        "rc": 412,
-        "min": 4510
-      },
-      {
-        "n": "湖北ホテル",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D31538",
-        "km": 0.5,
-        "r": 4.36,
-        "rc": 1026,
-        "min": 3041
-      },
-      {
-        "n": "ホテルフィット",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106074",
-        "km": 0.8,
-        "r": 4.34,
-        "rc": 2052,
-        "min": 4850
-      }
-    ]
-  },
-  "第20回長沼コミュニティまつり": {
-    "v": 2,
-    "t": "2026-11-18",
-    "ll": [
-      35.63625,
-      140.10722
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ベッセルイン千葉駅前|サウナ付大浴場(千葉・京成千葉・幕張)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D168546",
-        "km": 2.9,
-        "r": 4.58,
-        "rc": 2112,
-        "min": 3133
-      },
-      {
-        "n": "THE TSUBAKIMORI Hotel & Residence(椿森ホテル&レジデンス)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198773",
-        "km": 2.2,
-        "r": 4.56,
-        "rc": 55,
-        "min": 5000
-      },
-      {
-        "n": "ダイワロイネットホテル千葉駅前",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D148926",
-        "km": 2.8,
-        "r": 4.44,
-        "rc": 1573,
-        "min": 5250
       }
     ]
   },
@@ -5128,41 +5012,6 @@
       }
     ]
   },
-  "活きな世界のグルメ横丁": {
-    "v": 2,
-    "t": "2026-11-19",
-    "ll": [
-      36.25793,
-      139.40854
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "HOTEL R9 The Yard 太田",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179741",
-        "km": 3.0,
-        "r": 4.32,
-        "rc": 155,
-        "min": 3600
-      },
-      {
-        "n": "HOTEL R9 The Yard 大泉",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D189107",
-        "km": 0.2,
-        "r": 4.13,
-        "rc": 145,
-        "min": 3900
-      },
-      {
-        "n": "ビジネスホテル エンペラー",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D16433",
-        "km": 0.1,
-        "r": 4.0,
-        "rc": 223,
-        "min": 5200
-      }
-    ]
-  },
   "第23回黒潮よさこい祭り": {
     "v": 2,
     "t": "2026-11-19",
@@ -5195,41 +5044,6 @@
         "r": 4.3,
         "rc": 684,
         "min": 5400
-      }
-    ]
-  },
-  "第14回ぐんまフランス祭2026": {
-    "v": 2,
-    "t": "2026-11-20",
-    "ll": [
-      36.39111,
-      139.06069
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "SHIROIYA HOTEL(白井屋ホテル)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182188",
-        "km": 0.8,
-        "r": 4.63,
-        "rc": 56,
-        "min": 22283
-      },
-      {
-        "n": "天然温泉 妙義の湯 ドーミーイン前橋(ドーミーイン・御宿野乃 ホテルズグループ)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D172226",
-        "km": 1.2,
-        "r": 4.52,
-        "rc": 1547,
-        "min": 5500
-      },
-      {
-        "n": "旅館安太夫",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108602",
-        "km": 1.1,
-        "r": 4.5,
-        "rc": 57,
-        "min": 4950
       }
     ]
   },
@@ -12568,6 +12382,68 @@
         "r": 4.4,
         "rc": 379,
         "min": 4168
+      }
+    ]
+  },
+  "子どもの創造表現フェスティバル2026": {
+    "v": 2,
+    "t": "2026-11-22",
+    "ll": [
+      35.72448,
+      140.10851
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ベッセルイン八千代勝田台駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D20085",
+        "km": 1.9,
+        "r": 4.3,
+        "rc": 1994,
+        "min": 3775
+      },
+      {
+        "n": "ホテル ドエル(12月15日からスマイルホテル千葉勝田台)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D5661",
+        "km": 1.6,
+        "r": 3.69,
+        "rc": 1147,
+        "min": 5750
+      }
+    ]
+  },
+  "GRANDCYCLETOKYOマルチスポーツ": {
+    "v": 2,
+    "t": "2026-11-22",
+    "ll": [
+      35.62506,
+      139.77873
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ラビスタ東京ベイ(共立リゾート)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D183390",
+        "km": 2.5,
+        "r": 4.59,
+        "rc": 1853,
+        "min": 11620
+      },
+      {
+        "n": "グランドニッコー東京 台場",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D1917",
+        "km": 0.7,
+        "r": 4.58,
+        "rc": 9899,
+        "min": 14160
+      },
+      {
+        "n": "静鉄ホテルプレジオ東京田町",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178473",
+        "km": 3.5,
+        "r": 4.56,
+        "rc": 770,
+        "min": 10384
       }
     ]
   }

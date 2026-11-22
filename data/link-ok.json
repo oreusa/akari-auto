@@ -138,6 +138,12 @@
   "sec": 0.8,
   "why": ""
  },
+ "https://couscousglamping.com/event-detail/couscous-festa-vol4/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 1.1,
+  "why": ""
+ },
  "https://dai-tsukemen-haku.com/": {
   "at": "2026-11-15",
   "by": "browser",
@@ -175,7 +181,7 @@
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
   "at": "2026-11-22",
   "ok": false,
-  "sec": 15.3,
+  "sec": 15.2,
   "why": "<urlopen error timed out>"
  },
  "https://ehonnooka.com/?p=11240": {
@@ -225,6 +231,12 @@
   "at": "2026-11-22",
   "ok": true,
   "sec": 0.6,
+  "why": ""
+ },
+ "https://grand-cycle-tokyo.jp/rainbow/multisports/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 1.0,
   "why": ""
  },
  "https://grekisi.pref.gunma.jp/event/5961/": {
@@ -3628,6 +3640,12 @@
   "sec": 0.5,
   "why": ""
  },
+ "https://konet.ciao.jp/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 1.0,
+  "why": ""
+ },
  "https://koreafes-mindan.com/grandprix.html": {
   "at": "2026-11-15",
   "by": "browser",
@@ -4015,6 +4033,12 @@
   "at": "2026-11-22",
   "ok": true,
   "sec": 0.2,
+  "why": ""
+ },
+ "https://tokyochristmas.net/shiba/": {
+  "at": "2026-11-22",
+  "ok": true,
+  "sec": 0.8,
   "why": ""
  },
  "https://ttca.jp/autumn-leaves-info2026/": {
