@@ -148,7 +148,7 @@ SEC = {"Odekake": "/odekake", "Home & Land": "/fudosan-list", "Shopping": "/okai
 MENUS = {
     "Odekake": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"]],
     "Home & Land": [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["解体の費用と補助金", "/kaitai"]],
-    "Shopping": [["日用品の値段くらべ", "/okaimono"], ["値下がりした物", "/nesage"], ["お得な物", "/otoku"], ["ふるさと納税", "/furusato"]],
+    "Shopping": [["日用品の値段くらべ", "/okaimono"], ["本当に安い？", "/nesage"], ["お得な物", "/otoku"], ["ふるさと納税", "/furusato"]],
     "New Shops": [["関東の開店・閉店", "/kaiten"]],
 }
 
@@ -498,7 +498,7 @@ def main():
             d["groups"] = [[g, [k for k in ks if k in have]] for g, ks in GROUPS]
             d["live"] = "/okai-shin.json"
             c = {"nav": [{"t": "品物", "ic": "find", "a": "find"}, {"t": "値下がり", "ic": "down", "a": "drop"}, {"t": "いつもの物", "ic": "star", "a": "my"}, {"t": "ふるさと納税", "ic": "gift", "href": "/furusato"}],
-                 "menu": {"k": "Shopping", "items": [["日用品の値段くらべ", "/okaimono", 1], ["ふるさと納税", "/furusato"], ["値下がりした物の一覧", "/nesage"], ["今までのおかいものの画面", "/kyu/okaimono"]]},
+                 "menu": {"k": "Shopping", "items": [["日用品の値段くらべ", "/okaimono", 1], ["ふるさと納税", "/furusato"], ["本当に安い？", "/nesage"], ["今までのおかいものの画面", "/kyu/okaimono"]]},
                  "foot": "値段：楽天市場・Yahoo!ショッピングで調べた送料込みの値段（調べた時のもの。お店で変わることがあります）。Amazonは値段を自動で調べられないため、押すとAmazonの検索が開きます。<br>このページのお店へのリンクは広告（PR）です。"}
             write("okaimono.html", "/okaimono", "日用品の値段くらべ（楽天・Yahoo!・Amazon）｜LIFE NOTE", c, d, "kau",
                   f"ティッシュ・トイレットペーパー・おむつ・洗剤・水・お米など{len(d['cats'])}種類を、楽天とYahoo!ショッピングの送料込みの値段で、1Lあたり・1枚あたりに直して比べています。Amazonも同じ画面から見られます。広告（PR）を含みます。")
@@ -529,7 +529,7 @@ def main():
           {"t": "日用品の値段くらべ", "s": "楽天・Yahoo!を1つの画面で", "n": "", "nu": "", "u": "/okaimono", "ic": "yen"},
           {"t": "開店・閉店", "s": "新しいお店・閉まるお店", "n": "", "nu": "", "u": "/kaiten", "ic": "buy"}]
     more = [["関東のイルミネーション", "/illumination"], ["関東の紅葉", "/koyo"], ["いまから行けるおでかけ", "/ima"], ["地価ランキング", "/chika-kanto"], ["空き家の割合ランキング", "/akiya-ranking"],
-            ["予算で街さがし", "/sagasu"], ["家を売る前に", "/uru"], ["ふるさと納税", "/furusato"], ["値下がりした日用品", "/nesage"]]
+            ["予算で街さがし", "/sagasu"], ["家を売る前に", "/uru"], ["ふるさと納税", "/furusato"], ["本当に安い？（セールの値段）", "/nesage"]]
     c = copy.deepcopy(base)
     c["nav"] = [{"t": "おでかけ", "ic": "now", "href": "/odekake"}, {"t": "家と土地", "ic": "find", "href": "/fudosan-list"}, {"t": "おかいもの", "ic": "yen", "href": "/okaimono"}, {"t": "地図", "ic": "map", "a": "map"}]
     c["menu"] = {"k": "Life Note", "items": [["トップ", "/", 1], ["おでかけ", "/odekake"], ["家と土地", "/fudosan-list"], ["おかいもの", "/okaimono"], ["開店・閉店", "/kaiten"]]}
@@ -569,7 +569,7 @@ def main():
            "kai": {"n": sum(1 for x in ktl if x["w"] == "soon"), "x": ka}, "ko": ko,
            "ft": [["おでかけ", [["関東のおでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"]]],
                   ["家と土地", [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["家を買いたい", "/sagasu"], ["実家・空き家ノート", "/jikka/"], ["3問でわかる実家の診断", "/jikka/shindan/"], ["解体・片付けの費用", "/kaitai"], ["解体の補助金", "/kaitai-ranking"], ["空き家が多い街", "/akiya-ranking"]]],
-                  ["おかいもの", [["日用品の値段くらべ", "/okaimono"], ["開店・閉店ニュース", "/kaiten"], ["ふるさと納税", "/furusato"], ["値下がりした物", "/nesage"]]],
+                  ["おかいもの", [["日用品の値段くらべ", "/okaimono"], ["開店・閉店ニュース", "/kaiten"], ["ふるさと納税", "/furusato"], ["本当に安い？", "/nesage"]]],
                   ["このサイト", [["相談・申し込み", "/moushikomi"], ["リクエスト・感想", "/koe"], ["プライバシーポリシー", "/privacy"]]]],
            "sns": [["Instagram", "https://www.instagram.com/usagichan_ai_si/"], ["Threads", "https://www.threads.com/@usagichan_ai_si"], ["X", "https://x.com/ai_usagichan"]]},
           "cover2", "関東のくらしで見つけたことを、ノートにまとめています。開催中のおでかけ・イベント、街の家と土地の値段、日用品の値段くらべ、開店・閉店を、公式の発表と数字で。")
@@ -622,7 +622,7 @@ def ie_kanto():
 def furu():
     """ふるさと納税・値下がりした物（関西と同じ furu.js）。11/19 owner「ふるさと押したら前のページ飛ぶ」"""
     NAVR = lambda first: first + [{"t": "おかいもの", "ic": "yen", "href": "/okaimono"}]
-    MENU = lambda cur: {"k": "Shopping", "items": [[a, u] + ([1] if u == cur else []) for a, u in [["日用品の値段くらべ", "/okaimono"], ["ふるさと納税", "/furusato"], ["値下がりした物", "/nesage"], ["開店・閉店", "/kaiten"]]]}
+    MENU = lambda cur: {"k": "Shopping", "items": [[a, u] + ([1] if u == cur else []) for a, u in [["日用品の値段くらべ", "/okaimono"], ["ふるさと納税", "/furusato"], ["本当に安い？", "/nesage"], ["開店・閉店", "/kaiten"]]]}
     FOOT = "値段は楽天市場で調べた時のものです（お店で変わることがあります）。このページの商品へのリンクは広告（PR）です。"
     try:
         f = json.load(open(os.path.join(R, "data", "furusato.json"), encoding="utf-8"))
@@ -635,16 +635,18 @@ def furu():
                   "ふるさと納税の返礼品（お米・トイレットペーパー・水）を、寄付1万円でもらえる量でくらべました。楽天ふるさと納税を毎日しらべ直しています。")
     except Exception as e:
         print("shin_kanto: ふるさと納税は前のまま", repr(e))
+    # 11/22「本当に安い？」：/nesage を作り替え（scripts/honto.py・site/shin/honto.js）。オーナー「見やすくて使いやすいなら任せる」
     try:
-        n = json.load(open(os.path.join(R, "data", "nesage.json"), encoding="utf-8"))
-        if n.get("downs"):
-            write("nesage.html", "/nesage", "値下がりした日用品｜ふだんより安い物（楽天市場を毎日しらべ）｜LIFE NOTE",
-                  {"nav": NAVR([{"t": "値下がり", "ic": "down", "a": "down"}, {"t": "値上がり", "ic": "rank", "a": "up"}, {"t": "ふるさと", "ic": "gift", "href": "/furusato"}]), "menu": MENU("/nesage"), "foot": FOOT},
-                  {"kind": "nesage", "h1": "値下がりした物", "sub": f"楽天市場の日用品{n.get('tracked', '')}品の値段を毎日しらべ、ふだんより安くなっている物を並べています。",
-                   "at": n["at"], "since": n.get("since"), "tracked": n.get("tracked"), "downs": n["downs"], "ups": n.get("ups", [])}, "furu",
-                  f"楽天市場の日用品{n.get('tracked', '')}品の値段を毎日しらべ、ふだんより安くなっている物を並べています。")
+        import honto
+        hd = honto.build()
+        if hd and hd["n"] >= 30:
+            json.dump(hd, open(os.path.join(R, "data", "honto.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))  # 関西 TOWN NOTE も同じ物を読む
+            write("nesage.html", "/nesage", "本当に安い？｜セールの値段を11月1日からの記録でたしかめる（楽天の日用品）｜LIFE NOTE",
+                  {"nav": [], "menu": MENU("/nesage"), "foot": FOOT}, hd, "honto",
+                  f"楽天市場の日用品{hd['n']}品の値段を11月1日から毎日記録。ブラックフライデーなどセールの値段が本当に安いか、"
+                  f"今が安い{hd['cnt']['a']}品・上げてから下げた{hd['cnt']['b']}品・いつもより高い{hd['cnt']['c']}品を、値段の動きのグラフでたしかめられます。")
     except Exception as e:
-        print("shin_kanto: 値下がりは前のまま", repr(e))
+        print("shin_kanto: 本当に安い？は前のまま", repr(e))
 
 
 if __name__ == "__main__":
