@@ -9,7 +9,7 @@ function rkBody(t){var e=function(x){return x.replace(/[&<>"]/g,function(c){retu
   t.split("\n").forEach(function(l){var m=/^\s*(\d+)位/.exec(l);if(m&&+m[1]>10){if(k<0){k=o.length;o.push("")}h.push(l)}else o.push(e(l))});
   if(h.length<4)return e(t);
   o[k]='<details class="rkm"><summary>11位から下を見る（'+h.length+'件）</summary>'+e(h.join("\n"))+'</details>';return o.join("\n")}
-var SD=0;try{var _sd=location.search.match(/[?&]sd=([01])/);if(_sd)localStorage.setItem("tn_sd",_sd[1]);SD=localStorage.getItem("tn_sd")==="1"}catch(e){}
+var SD=1;try{var _sd=location.search.match(/[?&]sd=([01])/);if(_sd)localStorage.setItem("tn_sd2",_sd[1]);SD=localStorage.getItem("tn_sd2")!=="0"}catch(e){}
 var S_=window.SHIN,$=S_.$,$$=S_.$$,el=S_.el,esc=S_.esc,TD=S_.TD,diff=S_.diff,md=S_.md,dd=S_.dd,RM=S_.RM,D=S_.data;
 var RG=S_.reg,PREF=RG.pref,PG=D.page||{},K=PG.K||{},VIEW=PG.view||"grid";
 var IT=D.items.filter(function(x){return !x.e||x.e>=TD}).map(function(x,i){x.i=i;x.st=x.s?(x.s<=TD?"now":"up"):"";x.left=x.e?diff(TD,x.e):null;x.g=K[x.k]||["",PG.c||"#6E6E73"];return x});
