@@ -61,16 +61,16 @@ def judge(ds, ps):
     if peak >= first * PEAK and pi > 0 and now < peak and now >= first * LOW:
         diff = now - first
         tail = "と同じ値段です。" if diff == 0 else (f"より{yen(diff)}高い値段です。" if diff > 0 else f"とくらべて{yen(-diff)}しか安くありません。")
-        return "b", f"{md(ds[pi])}に{yen(peak)}へ上がり、{from_d}から{yen(now)}に。{since}の{yen(first)}{tail}", (peak - now) / peak
+        return "b", f"{md(ds[pi])}に{yen(peak)}へ上がり、{from_d}から{yen(now)}に。{since}の{yen(first)}{tail}", (peak - now) / peak, [md(ds[pi]), peak]
     if now <= low and now <= med * LOW and now < first:
         pct = round((1 - now / first) * 100)
-        return "a", f"{start}は{yen(first)}。{from_d}から{yen(now)}になり、{since}からの記録でいちばん安い値段です。{since}より{yen(first - now)}（{pct}%）安い。", 1 - now / first
+        return "a", f"{start}は{yen(first)}。{from_d}から{yen(now)}になり、{since}からの記録でいちばん安い値段です。{since}より{yen(first - now)}（{pct}%）安い。", 1 - now / first, [since, first]
     if now >= med * HIGH:
         pct = round((now / med - 1) * 100)
-        return "c", f"ふだん（記録のまん中）は{yen(med)}。{from_d}から{yen(now)}で、{pct}%高い値段です。急がない物は、待つのも手です。", now / med - 1
+        return "c", f"ふだん（記録のまん中）は{yen(med)}。{from_d}から{yen(now)}で、{pct}%高い値段です。急がない物は、待つのも手です。", now / med - 1, ["ふだん", round(med)]
     if len(set(ps)) == 1:
-        return "d", f"{since}から{len(ps)}日、ずっと{yen(now)}です。", 0
-    return "d", f"{since}から大きくは変わっていません（{yen(min(ps))}〜{yen(max(ps))}）。", 0
+        return "d", f"{since}から{len(ps)}日、ずっと{yen(now)}です。", 0, None
+    return "d", f"{since}から大きくは変わっていません（{yen(min(ps))}〜{yen(max(ps))}）。", 0, None
 
 
 def build(now=None):
@@ -102,10 +102,10 @@ def build(now=None):
         # 1日で半分・2倍のような動きは、量や種類（セット数）が変わった見え方のことが多い → まちがえないよう載せない
         if any(b >= a * 1.8 or b <= a * 0.55 for a, b in zip(ps, ps[1:])):
             continue
-        kind, why, score = judge(ds, ps)
+        kind, why, score, ref = judge(ds, ps)
         x = extra.get(v.get("u")) or {}
         it = {"id": code, "n": short(v.get("n")), "c": v.get("c", ""), "v": kind, "why": why, "now": ps[-1], "first": ps[0],
-              "lo": min(ps), "hi": max(ps), "sc": round(score, 4), "url": link(v) or x.get("url", ""),
+              "lo": min(ps), "hi": max(ps), "sc": round(score, 4), "ref": ref, "url": link(v) or x.get("url", ""),
               "img": v.get("i") or x.get("img", ""), "s": v.get("s") or x.get("shop", ""),
               "h": [p.get(d) for d in span if d >= ds[0]], "d0": ds[0]}
         key = (it["n"][:16], it["now"], it["first"], it["c"])  # 同じ商品が別の番号で2つある時は1つだけ
