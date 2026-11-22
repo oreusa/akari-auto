@@ -181,7 +181,7 @@
  "https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html": {
   "at": "2026-11-22",
   "ok": false,
-  "sec": 15.3,
+  "sec": 15.4,
   "why": "<urlopen error timed out>"
  },
  "https://ehonnooka.com/?p=11240": {
@@ -4578,7 +4578,7 @@
  "https://www.haramuseum.or.jp/jp/arc/exhibition/2275/": {
   "at": "2026-11-22",
   "ok": false,
-  "sec": 0.8,
+  "sec": 0.6,
   "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate "
  },
  "https://www.hkc.or.jp/takaosan/momiji_fes/": {
