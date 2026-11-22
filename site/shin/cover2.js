@@ -56,7 +56,7 @@ if(KN){document.documentElement.classList.add("lk-kn");var tw0=(ie.tw||[])[0];
    選ぶ物は同じ2つ＋ほかに2つのまま。おでかけは写真を大きく縦に（字は写真の上のすりガラス）、家と土地は上がった街3つを光の棒で、ほかには同じ形の小さな札2枚。 */
 var KS=0;try{var _s=location.search.match(/[?&]ks=([01])/);if(_s)localStorage.setItem("tn_ks2",_s[1]);KS=localStorage.getItem("tn_ks2")!=="0"}catch(e){}
 if(KN&&KS){document.documentElement.classList.add("lk-ks");
-  var EN=RN==="関東"?"KANTO":"KANSAI",dw=["SUN","MON","TUE","WED","THU","FRI","SAT"][new Date(TD+"T00:00:00+09:00").getUTCDay()],mx=Math.max.apply(null,tw.slice(0,3).map(function(t){return t.r}).concat([1])),kx=kai.x||{};
+  var EN=RN==="関東"?"KANTO":"KANSAI",dw=["SUN","MON","TUE","WED","THU","FRI","SAT"][new Date(TD+"T00:00:00Z").getUTCDay()],mx=Math.max.apply(null,tw.slice(0,3).map(function(t){return t.r}).concat([1])),kx=kai.x||{};
   h='<section class="kn ks"><p class="ksd">'+dw+' '+(+TD.slice(5,7))+'.'+(+TD.slice(8,10))+'<span class="ksl"></span>'+EN+'</p><h1 class="vh">'+esc(RN)+'のおでかけと家の値段｜'+esc((S_.reg&&S_.reg.brand)||"TOWN NOTE")+'</h1>'+
   '<a class="knc ksod" href="/odekake" data-k="入口かんたん｜おでかけ">'+(ph.length?'<span class="knph" id="c3ph">'+ph.slice(0,5).map(function(x,i){return '<img src="'+img(x)+'" alt="" '+(i?'loading="lazy"':'fetchpriority="high"')+' decoding="async" style="background-color:'+avg(x.th)+'"'+(i?'':' class="on"')+'>'}).join("")+'</span>'+
     '<span class="kscap" id="c3cap">'+esc(ph[0].t)+'<span>'+esc(ph[0].p)+'・'+left(ph[0].e)+'</span></span>':'')+
