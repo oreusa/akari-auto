@@ -284,3 +284,54 @@ def keep_head(old_path, new_path):
     n = re.sub(r'<meta property="og:image" content="[^"]*">', '', n, count=1)
     n = n.replace('</head>', keep + '</head>', 1)
     open(new_path, 'w', encoding='utf-8').write(n)
+
+
+# ---------- 開店・閉店の1店のページ（/kaiten/<日付>-<id>）：前のページの中身を新しい部品に（数える・あと何日・送るの script は前のまま） ----------
+def shop(path, rel=None):
+    t = old(path)
+    if not t or 'class="sp-when"' not in t: return None
+    b = t[t.index('<body'):]
+    js = '\n'.join(re.findall(r'<script>(.*?)</script>', b, re.S))
+    b = re.sub(r'<script[^>]*>.*?</script>', '', b, flags=re.S)
+    h1 = _txt(re.search(r'<h1>(.*?)</h1>', b, re.S).group(1))
+    tp = re.search(r'<div class="tp">(.*?)</div>', b, re.S)
+    gn = _txt(re.search(r'<span class="gn">(.*?)</span>', tp.group(1), re.S).group(1)) if tp else ''
+    tg = re.search(r'<span class="tag ([a-z]+)">(.*?)</span>', tp.group(1)) if tp else None
+    when = re.search(r'<div class="sp-when".*?</div>', b, re.S).group(0)
+    i0 = b.index('</div>', b.index('<div class="sp-when"')) + 6
+    ends = [b.find(x) for x in ('<div class="ft">', '<p class="sign">') if b.find(x) > 0]
+    body = b[i0:min(ends)] if ends else b[i0:]
+    al = re.search(r'<nav class="also"[^>]*>(.*?)</nav>', body, re.S)
+    if al:  # あわせて見る（関東の前のページにはあった）→ 板
+        rel = [(_txt(x[1]), x[0]) for x in re.findall(r'<a href="([^"]+)"[^>]*>(.*?)</a>', al.group(1))]
+        body = body.replace(al.group(0), '')
+    else:
+        rel = [(l, u) for l, u in (rel or [])]
+    body = re.sub(r'<figure class="sp-ph">(<img[^>]*>)(?:<i>.*?</i>)?(<figcaption>.*?</figcaption>)</figure>', r'<figure class="kph">\1\2</figure>', body, flags=re.S)
+    body = body.replace('<p class="sp-pt">', '<p class="dtx olead">').replace('<p class="sp-chk">', '<p class="dnote">')
+    body = re.sub(r'<dl class="sp-dl">(.*?)</dl>', lambda m: '<div class="big">' + ''.join(f'<div class="w"><span>{dt}</span><b>{dd}</b></div>' for dt, dd in re.findall(r'<dt>(.*?)</dt><dd>(.*?)</dd>', m.group(1), re.S)) + '</div>', body, flags=re.S)
+    body = re.sub(r'<div class="sp-btn">(.*?)</div>', lambda m: '<div class="oact">' + m.group(1).replace('<a class="p"', '<a class="dbtn"').replace('<a class="s"', '<a class="dbtn2"').replace('<button type="button" class="s"', '<button type="button" class="dbtn2"') + '</div>', body, count=1, flags=re.S)
+    body = body.replace('<div class="sp-map">', '<div class="tmap smap">')
+    # ほかの新しいお店（カード）→ 板
+    def its(m):
+        out = []
+        for a in re.findall(r'<article class="it[^"]*"[^>]*data-d="([^"]*)"[^>]*>(.*?)</article>', m.group(0), re.S):
+            d, h = a
+            nm = re.search(r'<h3 class="nm"><a href="([^"]+)"[^>]*>(.*?)</a>', h, re.S)
+            if not nm: continue
+            tg2 = re.search(r'<span class="tag [a-z]+">(.*?)</span>', h); g2 = re.search(r'<span class="gn">(.*?)</span>', h, re.S)
+            out.append(f'<a href="{nm.group(1)}" data-k="1店｜ほかの新しいお店">{nm.group(2)}<small>{int(d[5:7])}/{int(d[8:10])} {_txt(tg2.group(1)) if tg2 else ""}・{_txt(g2.group(1)) if g2 else ""}</small></a>')
+        return '<div class="drel">' + ''.join(out) + '</div>'
+    body = re.sub(r'(<article class="it.*?</article>\s*)+', its, body, flags=re.S)
+    body = re.sub(r'<p class="sp-more"><a href="([^"]+)"([^>]*)>(.*?)\s*→</a></p>', r'<a class="dlk" href="\1"\2>\3</a>', body)
+    body = re.sub(r'<div class="kfol"><p>(.*?)</p>(.*?)</div>', lambda m: f'<p class="dhint ksns">{m.group(1)} ' + re.sub(r'<a ', '<a class="ksl" ', m.group(2)) + '</p>', body, flags=re.S)
+    body = re.sub(r'<a class="back" href="([^"]+)"[^>]*>(.*?)</a>', r'<a class="dlk" href="\1">\2</a>', body)
+    body = re.sub(r'<section class="sp-sec">', '', body).replace('</section>', '')
+    parts = re.split(r'(<h2>.*?</h2>)', body)
+    out = '<section class="dsec osp">' + when.replace('<div class="sp-when"', '<div class="sp-when swz"') + parts[0] + '</section>'
+    for k in range(1, len(parts), 2):
+        out += '<section class="dsec">' + parts[k] + parts[k + 1] + '</section>'
+    if rel:
+        out += '<section class="dsec"><h2>あわせて見る</h2><div class="drel">' + ''.join(f'<a href="{u}" data-k="あわせて：{E(l)}">{E(l)}</a>' for l, u in rel) + '</div></section>'
+    sub = E(gn) + (f'・{E(tg.group(2))}' if tg else '')
+    return {'h1': h1, 'sub': sub, 'html': out, 'js': js}

@@ -434,6 +434,22 @@ def docs():
         print("o: 新しい形", n)
     except Exception as e:
         print("shin_kanto: おでかけ1件は前のまま", repr(e))
+    # 11/23 開店・閉店の1店のページ（/kaiten/<日付>-<id>）も新しい土台で（関西と同じ・shin_yari.shop）
+    try:
+        kd = os.path.join(S, "kaiten"); os.makedirs(os.path.join(S, "kyu", "kaiten"), exist_ok=True); n = 0
+        kc = {"nav": [{"t": "開店閉店", "ic": "now", "href": "/kaiten"}], "menu": {"k": "New Shops", "items": [["関東の開店・閉店", "/kaiten", 1]]},
+              "foot": "日付・場所は各社の公式の発表をもとにしています。出かける前に公式の発表をご確認ください。"}
+        import copy as _cp
+        for f in sorted(os.listdir(kd)):
+            if not re.match(r"^\d{8}-[0-9a-f]+\.html$", f): continue
+            p_ = os.path.join(kd, f); d = Y.shop(p_)
+            if not d: continue
+            ti, de = Y.meta(p_)
+            write("kaiten/" + f, "/kaiten/" + f[:-5], ti, _cp.deepcopy(kc), d, "doc", de)
+            Y.keep_head(p_, p_); n += 1
+        print("kaiten 1店: 新しい形", n)
+    except Exception as e:
+        print("shin_kanto: 開店閉店の1店は前のまま", repr(e))
 
 
 def main():
