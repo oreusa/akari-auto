@@ -612,3 +612,7 @@ html[data-k=jikka] .share{font:600 14px/1.4 var(--kf);color:var(--ink);backgroun
 html[data-k=jikka] .share small{display:block;font-weight:400;font-size:11.5px;color:var(--sub)}
 html[data-k=jikka] .again{display:block;margin:22px auto 0}
 html[data-k=jikka] .wrap>.ft{display:none}
+
+/* 11/23 夜に字が消えていた：前のページの字の色（濃い茶・灰）を夜は明るく（関東の街のページで見つけた） */
+html.nt [style*="color:#2B2622"],html.nt [style*="color:#231E1B"],html.nt [style*="color:#3a2a1e"]{color:#F2F2F5!important}
+html.nt [style*="color:#6B6058"],html.nt [style*="color:#8C7B6E"],html.nt [style*="color:#7a6250"]{color:#A9ADBA!important}
