@@ -1,57 +1,57 @@
 {
- "date": "2026-11-22",
+ "date": "2026-11-23",
  "now": {
-  "views": 838,
-  "come": 71,
+  "views": 778,
+  "come": 82,
   "post": 0,
-  "ask": 36,
+  "ask": 28,
   "cost": 0,
-  "open": 3,
+  "open": 1,
   "sent": 0,
   "buy": 1,
   "days": 7
  },
  "prev": {
-  "views": 1123,
-  "come": 18,
+  "views": 1163,
+  "come": 23,
   "post": 4,
-  "ask": 66,
+  "ask": 74,
   "cost": 0,
-  "open": 9,
+  "open": 11,
   "sent": 0,
-  "buy": 17,
+  "buy": 11,
   "days": 7
  },
  "kino": {
-  "day": "2026-11-21",
-  "views": 60,
-  "come": 9,
+  "day": "2026-11-22",
+  "views": 78,
+  "come": 16,
   "post": 0,
   "ask": 0,
   "open": 0,
   "sent": 0,
-  "buy": 1
+  "buy": 0
  },
  "slots": [
   {
    "name": "x2116",
-   "n": 18
+   "n": 23
   },
   {
    "name": "x0716",
-   "n": 14
-  },
-  {
-   "name": "x1216",
-   "n": 11
-  },
-  {
-   "name": "x1816",
-   "n": 8
+   "n": 16
   },
   {
    "name": "x0916",
-   "n": 8
+   "n": 10
+  },
+  {
+   "name": "x1216",
+   "n": 10
+  },
+  {
+   "name": "x1816",
+   "n": 9
   }
  ],
  "weak": "HPに来る人が少ない",
