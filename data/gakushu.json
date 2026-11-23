@@ -144,7 +144,7 @@
   {
    "id": "michi",
    "name": "申し込みへの道",
-   "num": "家のページで道が無い 4枚（例 chika-kanto.html）",
+   "num": "家のページで道が無い 333枚（例 chika-kanto.html）",
    "line": "合格の線：0枚",
    "ans": "外れ",
    "why": "家・土地のページは、どれも申し込みへ1回で行ける事"
@@ -154,7 +154,7 @@
   {
    "to": "月",
    "item": "michi",
-   "order": "申し込みへの道が無い家のページが 4枚（chika-kanto.html・chika-tokyo.html・fudosan-list.html）。そのページを作る機械に、街の名前入りの「いくらで売れるか無料で聞く」を足す",
+   "order": "申し込みへの道が無い家のページが 333枚（chika-kanto.html・chika-tokyo.html・fudosan-list.html）。そのページを作る機械に、街の名前入りの「いくらで売れるか無料で聞く」を足す",
    "why": "見られても反響にならない",
    "kind": "作る",
    "days": 1,
