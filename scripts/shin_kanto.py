@@ -362,6 +362,17 @@ def docs():
                 x = open(sm, encoding="utf-8").read().replace("</urlset>", f"<url><loc>{SITE}{u}</loc></url></urlset>"); open(sm, "w", encoding="utf-8").write(x)
     except Exception as e:
         print("shin_kanto: 地価ランキングは前のまま", repr(e))
+    # 11/23 前のページを新しい土台で作り直す（scripts/shin_yari.py＝月の tools/shin/yari.py の写し。関西と同じ）
+    import shin_yari as Y
+    REL0 = [["家と土地の相場", "/fudosan-list", "街ごとの売れた値段"], ["地価ランキング", "/chika-kanto", "住宅地の1年の動き"], ["まちランキング", "/ranking", "人口の順位も"], ["実家・空き家", "/jikka/", "売る・片付ける前に"]]
+    for fname, title, desc, fn, js in [
+        ("sagasu.html", "その予算で、どの街に住める？｜関東329の街を地価公示から｜LIFE NOTE", "関東329の市区町村を、中古マンション・一戸建て・新築・土地の値段の目安（地価公示から）で、予算から選べます。",
+         lambda: Y.sagasu(os.path.join(S, "sagasu.html"), REL0), "sg")]:
+        try:
+            d = fn()
+            if d: write(fname, "/" + fname[:-5], title, home_cfg("/" + fname[:-5]), d, js, desc)
+        except Exception as e:
+            print("shin_kanto: 前のまま", fname, repr(e))
 
 
 def main():
