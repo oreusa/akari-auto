@@ -1,74 +1,4 @@
 {
-  "オータムワークショップ": {
-    "v": 2,
-    "t": "2026-11-21",
-    "ll": [
-      36.29859,
-      139.07948
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ホテルルートインコート藤岡",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D13449",
-        "km": 1.8,
-        "r": 4.1,
-        "rc": 613,
-        "min": 6000
-      },
-      {
-        "n": "グランマーチBase高崎",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D199308",
-        "km": 2.7,
-        "r": 4.03,
-        "rc": 36,
-        "min": 4000
-      },
-      {
-        "n": "新町ステーションホテル",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D38642",
-        "km": 3.7,
-        "r": 3.5,
-        "rc": 101,
-        "min": 6900
-      }
-    ]
-  },
-  "笠間の菊まつり": {
-    "v": 2,
-    "t": "2026-11-21",
-    "ll": [
-      36.38547,
-      140.25438
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ホテル イオ アルフェラッツ",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D140995",
-        "km": 1.1,
-        "r": 3.97,
-        "rc": 323,
-        "min": 5300
-      },
-      {
-        "n": "割烹旅館 城山",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D29364",
-        "km": 0.2,
-        "r": 3.95,
-        "rc": 86,
-        "min": 10000
-      },
-      {
-        "n": "秘湯 ぶんぶくの湯",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D39630",
-        "km": 2.8,
-        "r": 3.56,
-        "rc": 122,
-        "min": 5400
-      }
-    ]
-  },
   "京成バラ園白うさぎのロイヤルインビテーション": {
     "v": 2,
     "t": "2026-11-21",
@@ -4742,79 +4672,6 @@
       }
     ]
   },
-  "大宮けいりんチャリフェス": {
-    "v": 2,
-    "t": "2026-11-18",
-    "ll": [
-      35.9191,
-      139.6338
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ホテルメトロポリタンさいたま新都心",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D161189",
-        "km": 2.8,
-        "r": 4.64,
-        "rc": 1523,
-        "min": 6950
-      },
-      {
-        "n": "レフ大宮 by ベッセルホテルズ|REF大宮|サウナ付大浴場(大宮駅東口)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179148",
-        "km": 1.6,
-        "r": 4.61,
-        "rc": 1372,
-        "min": 4973
-      },
-      {
-        "n": "ダイワロイネットホテル大宮西口",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188736",
-        "km": 2.1,
-        "r": 4.57,
-        "rc": 1521,
-        "min": 6930
-      }
-    ]
-  },
-  "Maplefesta秋の収穫祭": {
-    "v": 2,
-    "t": "2026-11-18",
-    "ll": [
-      36.02217,
-      139.50376
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ザ・セレクトン大宮快速・北本駅前",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D172208",
-        "km": 2.9,
-        "r": 4.24,
-        "rc": 487,
-        "min": 3210
-      }
-    ]
-  },
-  "いきいきフェスタTAKO2026": {
-    "v": 2,
-    "t": "2026-11-18",
-    "ll": [
-      35.73555,
-      140.46779
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ますがたや旅館",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D14723",
-        "km": 0.3,
-        "r": 4.5,
-        "rc": 32,
-        "min": 5500
-      }
-    ]
-  },
   "BambooWinterLights2026": {
     "v": 2,
     "t": "2026-11-18",
@@ -4904,41 +4761,6 @@
         "r": 4.39,
         "rc": 55,
         "min": 9350
-      }
-    ]
-  },
-  "八坂神社太々神楽（11月）": {
-    "v": 2,
-    "t": "2026-11-20",
-    "ll": [
-      36.5658,
-      139.89944
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "リッチモンドホテル宇都宮駅前アネックス",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108189",
-        "km": 0.9,
-        "r": 4.55,
-        "rc": 3064,
-        "min": 4200
-      },
-      {
-        "n": "ダイワロイネットホテル宇都宮",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D141067",
-        "km": 0.8,
-        "r": 4.48,
-        "rc": 2455,
-        "min": 4500
-      },
-      {
-        "n": "CANDEO HOTELS(カンデオホテルズ)宇都宮",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184376",
-        "km": 0.7,
-        "r": 4.45,
-        "rc": 2450,
-        "min": 5300
       }
     ]
   },
@@ -12226,68 +12048,6 @@
       }
     ]
   },
-  "子どもの創造表現フェスティバル2026": {
-    "v": 2,
-    "t": "2026-11-22",
-    "ll": [
-      35.72448,
-      140.10851
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ベッセルイン八千代勝田台駅前",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D20085",
-        "km": 1.9,
-        "r": 4.3,
-        "rc": 1994,
-        "min": 3775
-      },
-      {
-        "n": "ホテル ドエル(12月15日からスマイルホテル千葉勝田台)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D5661",
-        "km": 1.6,
-        "r": 3.69,
-        "rc": 1147,
-        "min": 5750
-      }
-    ]
-  },
-  "GRANDCYCLETOKYOマルチスポーツ": {
-    "v": 2,
-    "t": "2026-11-22",
-    "ll": [
-      35.62506,
-      139.77873
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ラビスタ東京ベイ(共立リゾート)",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D183390",
-        "km": 2.5,
-        "r": 4.59,
-        "rc": 1853,
-        "min": 11620
-      },
-      {
-        "n": "グランドニッコー東京 台場",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D1917",
-        "km": 0.7,
-        "r": 4.58,
-        "rc": 9899,
-        "min": 14160
-      },
-      {
-        "n": "静鉄ホテルプレジオ東京田町",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178473",
-        "km": 3.5,
-        "r": 4.56,
-        "rc": 770,
-        "min": 10384
-      }
-    ]
-  },
   "FlytotheMoon:月をめぐる5つの物語": {
     "v": 2,
     "t": "2026-11-22",
@@ -12390,6 +12150,76 @@
         "r": 4.54,
         "rc": 5385,
         "min": 6800
+      }
+    ]
+  },
+  "クスクスフェスタVol.4": {
+    "v": 2,
+    "t": "2026-11-23",
+    "ll": [
+      35.15843,
+      139.13715
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "真鶴ボートハウス",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D44153",
+        "km": 1.2,
+        "r": 5.0,
+        "rc": 11,
+        "min": 55000
+      },
+      {
+        "n": "ペンション アルハンブラ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D14391",
+        "km": 1.0,
+        "r": 4.73,
+        "rc": 57,
+        "min": 8000
+      },
+      {
+        "n": "クスクスグランピング真鶴",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188805",
+        "km": 0.8,
+        "r": 4.56,
+        "rc": 33,
+        "min": 11000
+      }
+    ]
+  },
+  "東京クリスマスマーケット2026in芝公園": {
+    "v": 2,
+    "t": "2026-11-23",
+    "ll": [
+      35.65646,
+      139.74764
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "inumo 芝公園 by Villa Fontaine",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D183714",
+        "km": 0.5,
+        "r": 4.76,
+        "rc": 83,
+        "min": 14590
+      },
+      {
+        "n": "ザ・プリンス パークタワー東京",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D67930",
+        "km": 0.1,
+        "r": 4.51,
+        "rc": 2938,
+        "min": 28676
+      },
+      {
+        "n": "ホテル ザ セレスティン東京芝",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D15758",
+        "km": 0.6,
+        "r": 4.51,
+        "rc": 2577,
+        "min": 13650
       }
     ]
   }
