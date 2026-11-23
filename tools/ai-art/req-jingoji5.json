@@ -1,0 +1,26 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "20-kawarake",
+   "prompt": "Several small round unglazed beige clay saucers (kawarake) flying through the air in a graceful arc from a wooden railing on a mountain temple terrace out over a deep valley filled with red and orange autumn maples, morning mist in the valley, sunlight, sense of joy and release",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "21-heart",
+   "prompt": "Bright red Japanese maple leaves carefully arranged in the shape of a heart on an old mossy stone step, soft morning sunlight, shallow depth of field, warm and happy mood",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "22-tea",
+   "prompt": "A cup of green matcha tea and a small Japanese sweet on a red felt bench at an old mountain tea house, red maple leaves overhead, a red paper parasol, soft warm light, cozy and happy mood",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
