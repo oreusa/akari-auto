@@ -1,0 +1,271 @@
+{
+  "day": "2026-11-23",
+  "fetchedAt": "2026-11-24T08:32+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "【東武日光線｜栃木の沿線4市町で、地価がいちばん上がった街】🚃",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgD2tTdn3Gv",
+      "img": 1,
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 2.3,
+        "views": 87,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:16",
+      "kind": "通常",
+      "first": "【12/5オープン　小平｜ドムドムハンバーガーが帰ってきます】🍔",
+      "url": "https://x.com/1753799832798629888/status/2124627992517157163",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 7.04,
+        "reposts": 0,
+        "impressions": 71,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "07:45",
+      "kind": "通常",
+      "first": "【くらべた｜ボトルコーヒー、1Lあたりの最安は152.6円】☕",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgD6JbmHzHb",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 16.67,
+        "views": 6,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "08:15",
+      "kind": "通常",
+      "first": "【日立市の空き家の解体｜費用の3分の1、上限50万円】🏠",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgD9lrEGD7T",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.5,
+        "views": 40,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "【11/23まで　日光の華厳滝｜日本三名瀑のライトアップ、きょうが最終日】🏞",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgEEc8YDIbg",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 6.67,
+        "views": 15,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:16",
+      "kind": "通常",
+      "first": "【12/4夜7時オープン　本厚木駅から徒歩3分｜月島もんじゃ くうや】🍳",
+      "url": "https://x.com/1753799832798629888/status/2124658190478364858",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.13,
+        "reposts": 0,
+        "impressions": 47,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:46",
+      "kind": "通常",
+      "first": "【11/27オープン　池袋｜ジュンク堂の9階に「COMICTION」】📚",
+      "url": "https://x.com/1753799832798629888/status/2124665739449635015",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.27,
+        "reposts": 0,
+        "impressions": 79,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "【12/5オープン　十条駅から徒歩1分｜電動モビリティを試せるAcalie初の旗",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgEZFGkEeoB",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.56,
+        "views": 18,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:16",
+      "kind": "通常",
+      "first": "【11/28オープン　池袋駅直結｜LINKS池袋の7階にCRONOS】🏋",
+      "url": "https://x.com/1753799832798629888/status/2124703488311435325",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.55,
+        "reposts": 0,
+        "impressions": 44,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:15",
+      "kind": "通常",
+      "first": "【JR両毛線｜群馬の沿線4市で、地価がいちばん上がった街】🚃",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgEf54flhoT",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.61,
+        "views": 62,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "Ankerのモバイルバッテリー、11/1より1,000円安い2,990円でした。",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgEtpHDkZCy",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 2,
+        "engagementRate": 7.41,
+        "views": 27,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "横浜・南幸の145室のホテル「THE KNOT YOKOHAMA」が、12/1に",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgFCQo6oChA",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:16",
+      "kind": "通常",
+      "first": "有楽町の阪急メンズ東京5階に「サロモン」、12/4（金）オープン",
+      "url": "https://x.com/1753799832798629888/status/2124794086850728234",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.48,
+        "reposts": 0,
+        "impressions": 210,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:15",
+      "kind": "通常",
+      "first": "埼玉県蕨市の住宅地の地価は+5.9%で、県で2位の上がり幅でした。",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgFW5DDFo1i",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:16",
+      "kind": "通常",
+      "first": "平塚のラスカ平塚3階の「ITS'DEMO」が、11/20に新しい形で開き直しまし",
+      "url": "https://x.com/1753799832798629888/status/2124839390568489128",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.63,
+        "reposts": 0,
+        "impressions": 38,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DgFOXr5OQnz/",
+      "img": null,
+      "metrics": {}
+    },
+    {
+      "service": "twitter",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "宝徳寺（桐生市）",
+      "url": "https://x.com/1753799832798629888/status/2124820437397811527",
+      "img": null,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 3.92,
+        "reposts": 0,
+        "impressions": 51,
+        "clicks": 0
+      }
+    }
+  ]
+}
