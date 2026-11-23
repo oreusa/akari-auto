@@ -1,0 +1,13 @@
+accounts 200 n=0 err=[]
+a-aerial-flux-2-klein-4b 200 OK
+a-aerial-flux-1-schnell 400 [{'message': "AiError: Bad input: Error: Additional or unevaluated properties '/width, /height' at '/' not allowed (b42f7486-7c5f-463a-a628-18a8d6759552)", 'code': 5006}]
+b-walk-flux-2-klein-4b 200 OK
+b-walk-flux-1-schnell 400 [{'message': "AiError: Bad input: Error: Additional or unevaluated properties '/width, /height' at '/' not allowed (b5989508-2e6e-473a-a6e3-d06b7ac5889f)", 'code': 5006}]
+c-up-flux-2-klein-4b 200 OK
+c-up-flux-1-schnell 400 [{'message': "AiError: Bad input: Error: Additional or unevaluated properties '/width, /height' at '/' not allowed (14ff4fb4-8fc6-4f5c-922c-b8f955c128a9)", 'code': 5006}]
+d-cross-flux-2-klein-4b 200 OK
+d-cross-flux-1-schnell 400 [{'message': "AiError: Bad input: Error: Additional or unevaluated properties '/width, /height' at '/' not allowed (660ee5f6-10a2-4c0a-a96e-f330e2707832)", 'code': 5006}]
+e-hall-flux-2-klein-4b 200 OK
+e-hall-flux-1-schnell 400 [{'message': "AiError: Bad input: Error: Additional or unevaluated properties '/width, /height' at '/' not allowed (0a882ae0-c0cb-414d-9fe5-fc218aa9a682)", 'code': 5006}]
+f-detail-flux-2-klein-4b 200 OK
+f-detail-flux-1-schnell 400 [{'message': "AiError: Bad input: Error: Additional or unevaluated properties '/width, /height' at '/' not allowed (4423789a-989d-4002-9bd7-f78a7e286701)", 'code': 5006}]

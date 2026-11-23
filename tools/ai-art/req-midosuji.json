@@ -1,0 +1,35 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b",
+  "@cf/black-forest-labs/flux-1-schnell"
+ ],
+ "style": "Photorealistic night travel photograph, shot on a full-frame mirrorless camera, 24mm lens, natural true-to-life colors, realistic exposure, gentle bokeh, high detail, vertical 9:16. No people, no cars, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "a-aerial",
+   "prompt": "Drone view at blue hour looking down a long straight wide boulevard in central Osaka, both sides lined with tall ginkgo trees wrapped in warm golden fairy lights, forming two glowing golden lines that run straight into the distance between modern office buildings of varied heights with lit windows"
+  },
+  {
+   "name": "b-walk",
+   "prompt": "Eye-level view walking along a wide city sidewalk at night under tall ginkgo trees whose trunks and branches are wrapped in countless warm white and golden LED lights, a few yellow ginkgo leaves on the paving stones, dry pavement, glowing bokeh, buildings of different heights behind",
+   "models_extra": 1
+  },
+  {
+   "name": "c-up",
+   "prompt": "Looking straight up into the branches of a tall ginkgo tree wrapped in thousands of tiny golden lights against a deep blue night sky, yellow leaves catching the light"
+  },
+  {
+   "name": "d-cross",
+   "prompt": "Night view of a wide boulevard intersection in Osaka with a pedestrian crossing and traffic signals, long rows of illuminated ginkgo trees continuing on both sides, varied office buildings, a side street opening between buildings, realistic city details"
+  },
+  {
+   "name": "e-hall",
+   "prompt": "A grand historic neo-renaissance red brick public hall with a green copper dome in Osaka lit up warmly at night beside a river, framed by illuminated trees"
+  },
+  {
+   "name": "f-detail",
+   "prompt": "Close-up of a branch with golden LED fairy lights and yellow ginkgo leaves at night, strong shallow depth of field, the illuminated boulevard as soft golden bokeh behind"
+  }
+ ],
+ "run": 2
+}

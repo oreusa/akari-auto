@@ -1,0 +1,14 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "6-down",
+   "prompt": "View from the top of a long old mossy stone stairway looking back down the steps, the whole stairway covered by a tunnel of bright red and orange Japanese maple trees, red leaves scattered on the steps, soft afternoon light",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}

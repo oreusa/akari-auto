@@ -1,0 +1,150 @@
+{
+ "date": "2026-11-24",
+ "time": "07:30",
+ "tab": "東京",
+ "pref": "tokyo",
+ "lat": 35.6744,
+ "lon": 139.7182,
+ "kata": "hf",
+ "brand": "kanto",
+ "text": {
+  "corner": "TOKYO ─ JINGU GAIEN",
+  "title": [
+   "神宮外苑",
+   "いちょう並木"
+  ],
+  "place": "神宮外苑｜港区",
+  "map_tag": [
+   "JINGU GAIEN ─ AOYAMA",
+   "いちょう並木",
+   "港区"
+  ],
+  "map_caption": "4列のいちょうが約300m続く、黄金色の並木道。",
+  "date": [
+   "11月下旬",
+   "",
+   "12月はじめ",
+   ""
+  ],
+  "date_title": "いちょう並木",
+  "date_note": "見頃は11月下旬〜12月はじめ",
+  "point_kicker": "ICHO",
+  "point_title": "こがね色のトンネル",
+  "points": [
+   "約300mの並木",
+   "146本のいちょう",
+   "歩くのは無料"
+  ],
+  "info": [
+   [
+    "見頃",
+    "11月下旬〜12月はじめ"
+   ],
+   [
+    "並木",
+    "約300m・146本"
+   ],
+   [
+    "料金",
+    "無料"
+   ],
+   [
+    "最寄り",
+    "青山一丁目駅・外苑前駅"
+   ]
+  ],
+  "info_note": "ライトアップは例年11月下旬（日程は公式で）",
+  "list_caption": "関東の紅葉も。",
+  "scene": "momiji",
+  "seal": "黄葉",
+  "motif": "yama",
+  "ehon1": [
+   "こがね色の",
+   "トンネル"
+  ],
+  "ehon2": [
+   "146本の",
+   "いちょう"
+  ],
+  "ehon4": [
+   "黄色い",
+   "じゅうたん"
+  ],
+  "ehon_night": [
+   "11月",
+   "下旬",
+   "から",
+   "見頃"
+  ],
+  "ehon5": [
+   "日付でさがせる",
+   "地図でさがせる",
+   "紅葉もイルミも"
+  ]
+ },
+ "caption": "東京・明治神宮外苑のいちょう並木。4列のいちょうが、こがね色のトンネルになります\n\n✦ 見頃は例年 11月下旬〜12月はじめ\n✦ 並木は約300m。146本のいちょうが4列にならびます\n✦ 並木道は公道なので、歩くのは無料です\n✦ ライトアップは例年11月下旬の 16:30〜19:30ごろ（今年の日程は公式で）\n✦ 最寄りは 青山一丁目駅・外苑前駅\n\n一緒に行く人に送っておくと、当日迷いません\n\n✧ 内容は変わることがあります。出かける前に公式のお知らせで確かめてください",
+ "ig_tags": [
+  "#関東おでかけ",
+  "#東京紅葉",
+  "#神宮外苑",
+  "#いちょう並木"
+ ],
+ "facts": [
+  {
+   "q": "約300m",
+   "url": "https://touchthejapan.jp/2026/10/30/jingu-gaien-icho-namiki-2026-migoro-lightup-icho-matsuri-konzatsu-access/"
+  },
+  {
+   "q": "146本",
+   "url": "https://touchthejapan.jp/2026/10/30/jingu-gaien-icho-namiki-2026-migoro-lightup-icho-matsuri-konzatsu-access/"
+  },
+  {
+   "q": "4列",
+   "url": "https://touchthejapan.jp/2026/10/30/jingu-gaien-icho-namiki-2026-migoro-lightup-icho-matsuri-konzatsu-access/"
+  },
+  {
+   "q": "無料",
+   "url": "https://touchthejapan.jp/2026/10/30/jingu-gaien-icho-namiki-2026-migoro-lightup-icho-matsuri-konzatsu-access/"
+  },
+  {
+   "q": "11月下旬",
+   "url": "https://touchthejapan.jp/2026/10/30/jingu-gaien-icho-namiki-2026-migoro-lightup-icho-matsuri-konzatsu-access/"
+  },
+  {
+   "q": "12月初旬",
+   "url": "https://datecolle.com/event/jingu-gaien-icho-matsuri"
+  },
+  {
+   "q": "16:30",
+   "url": "https://www.enjoytokyo.jp/event/2000799/"
+  },
+  {
+   "q": "19:30",
+   "url": "https://www.enjoytokyo.jp/event/2000799/"
+  },
+  {
+   "q": "青山一丁目駅",
+   "url": "https://www.enjoytokyo.jp/event/2000799/"
+  },
+  {
+   "q": "外苑前駅",
+   "url": "https://www.enjoytokyo.jp/event/2000799/"
+  },
+  {
+   "q": "12月上旬",
+   "url": "https://datecolle.com/event/jingu-gaien-icho-matsuri"
+  }
+ ],
+ "made": "3D（three.js）で描いた6場面＋表紙から開く絵本・1分3秒",
+ "voice_lines": [
+  "東京、めいじじんぐうがいえんの、いちょう並木。こがねいろのトンネルが、まっすぐ続きます。",
+  "見上げると、光をすかした、いちょうの葉が、きらきらとかがやきます。",
+  "足もとは、黄色いじゅうたん。歩くたびに、かさかさと音がします。",
+  "並木は約300メートル。ひゃくよんじゅうろっぽんのいちょうが、4列にならびます。",
+  "夕方には、並木が、あたたかい光に染まります。",
+  "上から見ると、黄色い帯が、街の中にのびています。",
+  "見頃は、11月下旬から12月のはじめ。並木道は、無料で歩けます。",
+  "最寄りは、地下鉄の、あおやまいっちょうめ駅と、がいえんまえ駅です。",
+  "ほかのおでかけ先は、プロフィールのリンクからどうぞ。"
+ ]
+}
