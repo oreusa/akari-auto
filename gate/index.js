@@ -11,8 +11,8 @@ a b{display:block;font-size:24px;letter-spacing:.08em}a span{font-size:14px;colo
 <body><main><h1>TOWN NOTE</h1><p>見るエリアをえらんでください</p>
 <a href="https://kansai.townnote.app/"><b>関西 TOWN NOTE</b><span>関西のおでかけ・暮らしのノート</span></a>
 <a href="https://kanto.townnote.app/"><b>関東 LIFE NOTE</b><span>関東のおでかけ・暮らしのノート</span></a></main></body></html>`;
-// 11/23 owner「もっとおしゃれに」→ 見本：HP と同じ（昼＝上だけ淡いオーロラ・夜＝澄んだ星空・すりガラスのカード・細い字）。?mihon=1 で見られる
-const TOP2 = `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>TOWN NOTE｜関西・関東のおでかけと暮らしのノート</title>
+// 11/23 owner「もっとおしゃれに」→ 15:46「おけ」でふだんの入口に（?mihon=0 で前の形）。見本：HP と同じ（昼＝上だけ淡いオーロラ・夜＝澄んだ星空・すりガラスのカード・細い字）。?mihon=1 で見られる
+const TOP2 = `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>TOWN NOTE（タウンノート）｜関西・関東のおでかけと暮らしのノート</title><link rel="canonical" href="https://townnote.app/">
 <meta name="description" content="関西の TOWN NOTE と、関東の LIFE NOTE。日付と地図でさがせる、おでかけと暮らしのノートです。">
 <meta property="og:title" content="TOWN NOTE"><meta property="og:image" content="https://kansai.townnote.app/assets/ogp.png"><link rel="icon" href="https://kansai.townnote.app/assets/icon-192.png"><link rel="apple-touch-icon" href="https://kansai.townnote.app/assets/icon-180.png">
 <meta name="theme-color" content="#F8F8FA">
@@ -90,7 +90,7 @@ export default {
     if (gv) return new Response('Not Found', { status: 404 }); // ほかの名前は必ず 404（Google が確かめに来る）
     const up = MAP[u.hostname];
     if (!up) {
-      if (u.pathname === '/' || u.pathname === '/index.html') return new Response(u.searchParams.get('mihon') === '1' ? TOP2 : TOP, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': u.searchParams.get('mihon') ? 'no-store' : 'public, max-age=600' } });
+      if (u.pathname === '/' || u.pathname === '/index.html') return new Response(u.searchParams.get('mihon') === '0' ? TOP : TOP2, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': u.searchParams.get('mihon') === '0' ? 'no-store' : 'public, max-age=600' } });
       if (u.pathname === '/robots.txt') return new Response('User-agent: *\nAllow: /\n', { headers: { 'content-type': 'text/plain' } });
       return Response.redirect('https://townnote.app/', 302);
     }
