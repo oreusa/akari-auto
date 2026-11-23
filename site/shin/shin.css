@@ -1159,3 +1159,40 @@ html.nt .rkx .rkl small em.u{color:#7FD9B6}html.nt .rkx .rkl small em.d{color:#F
 .dqz .sharew{text-align:center;margin:18px 0 0}.dqz .share{font:600 14px var(--sans);color:var(--ink);background:var(--chip);border:0;border-radius:999px;padding:12px 20px;cursor:pointer}.dqz .share small{display:block;font-weight:400;font-size:11.5px;color:var(--sub);margin-top:1px}
 .dqz .again{display:block;margin:22px auto 0}
 html body .dqz .pn{background:none!important;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0!important}
+/* 11/23 解体（yari.kaitai）：前のページの部品（kt-*）を新しい土台の見た目に。30秒の計算はそのまま */
+.dc .kzv{margin:4px 0 8px;padding:20px 18px 18px;border-radius:22px;background:var(--chip);position:relative;overflow:hidden}
+.dc .kzv::before{content:"";position:absolute;right:-40px;top:-50px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(110,214,200,.5),rgba(132,176,246,.3) 45%,rgba(196,176,240,0) 70%);pointer-events:none}
+.dc .kzn b{display:block;font:600 26px/1.3 var(--sans);letter-spacing:-.02em;position:relative}.dc .kzn b small{font-size:15px;margin-left:2px}.dc .kzn i{display:inline-block;font:600 12px/1 var(--sans);font-style:normal;padding:5px 9px;border-radius:999px;background:var(--on);color:var(--ont,#fff);margin-right:8px;vertical-align:5px}
+.dc .kzv p{font-size:13px;color:var(--sub);margin:8px 0 0;position:relative}.dc .kzb{display:grid;gap:8px;margin-top:14px;position:relative}.dc .kzb a{margin:0!important}
+.ktz .ktoc{display:flex;gap:8px;overflow-x:auto;margin:14px -16px 0;padding:0 16px 4px;scrollbar-width:none}.ktz .ktoc::-webkit-scrollbar{display:none}
+.ktz .ktoc a{flex:0 0 auto;padding:9px 14px;border-radius:999px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font:500 13.5px/1 var(--sans);background:var(--card,#fff)}
+.ktz .ps h2,.ktz .faq h2{margin-top:0}
+.ktz .rk-sub{font-size:13px;color:var(--sub);margin:-4px 0 14px}
+.ktz .kt-tr{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}.ktz .kt-tr span{font-size:11.5px;color:var(--sub);background:var(--chip);border-radius:999px;padding:5px 10px}
+.ktz .kt-hj{padding:16px;border:1px solid var(--line);border-radius:18px;margin:0 0 10px;background:var(--card,#fff)}
+.ktz .kt-hj b{display:block;font:600 16px/1.45 var(--sans)}.ktz .kt-hj em{display:inline-block;font-style:normal;font-size:11.5px;font-weight:600;color:#2E8B6E;background:rgba(110,214,200,.2);border-radius:999px;padding:3px 10px;margin-top:6px}.ktz .kt-hj em.x{color:#B4553A;background:rgba(180,85,58,.12)}
+.ktz .kt-hj p{font-size:14px;line-height:1.85;color:var(--sub);margin:8px 0}.ktz .kt-hj a{font-size:13px;color:var(--ink);text-underline-offset:3px}
+.ktz .kt-h{font:600 16px/1.4 var(--sans);margin:22px 0 10px}
+.ktz .kt-n{font-size:13px;line-height:1.8;color:var(--sub);margin:12px 0 0}.ktz .kt-s{font-size:11.5px;line-height:1.7;color:var(--mut);margin:8px 0 0}.ktz .kt-s a,.ktz .kt-n a{color:inherit;text-underline-offset:3px}
+.ktz .kt-w{overflow-x:auto;margin:0 0 6px;border:1px solid var(--line);border-radius:16px;background:var(--card,#fff)}
+.ktz table.kt{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.ktz table.kt th,.ktz table.kt td{padding:12px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.ktz table.kt tr:last-child th,.ktz table.kt tr:last-child td{border-bottom:0}
+.ktz table.kt thead th{font-size:12px;font-weight:500;color:var(--sub);background:var(--chip)}.ktz table.kt tbody th{font-weight:600;white-space:nowrap}
+.ktz table.kt a{color:var(--ink);font-weight:600;text-decoration:none}.ktz table.kt small{color:var(--mut)!important}
+.ktz .kt-f{display:flex;gap:8px;overflow-x:auto;margin:0 -16px 12px;padding:0 16px 2px;scrollbar-width:none}.ktz .kt-f::-webkit-scrollbar{display:none}
+.ktz .kt-f button,.ktz .kt-q button{flex:0 0 auto;min-height:40px;padding:0 15px;border-radius:999px;border:1px solid var(--line);background:var(--card,#fff);color:var(--ink);font:500 14px var(--sans);cursor:pointer}
+.ktz .kt-f button.on,.ktz .kt-q button.on{background:var(--on);border-color:var(--on);color:var(--ont,#fff)}
+.ktz .kt-c{padding:18px;border-radius:20px;background:var(--chip)}
+.ktz .kt-tab{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--card,#fff);margin:0 0 14px}.ktz .kt-tab button{flex:1;min-height:40px;border:0;border-radius:11px;background:none;color:var(--sub);font:500 14.5px var(--sans);cursor:pointer}.ktz .kt-tab button.on{background:var(--on);color:var(--ont,#fff)}
+.ktz .kt-c label{display:block;font:600 14px/1.4 var(--sans);margin:12px 0 8px}.ktz .kt-c label small{display:block;font-weight:400;font-size:12px;color:var(--sub)}
+.ktz .kt-c select,.ktz .kt-c input{width:100%;box-sizing:border-box;font:16px var(--sans);padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--card,#fff);color:var(--ink)}
+.ktz .kt-q{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.ktz .kt-o{margin:16px 0 12px;padding:16px;border-radius:16px;background:var(--card,#fff)}.ktz .kt-o small{display:block;font-size:12.5px;color:var(--sub)}.ktz .kt-o b{display:block;font:600 30px/1.2 var(--sans);letter-spacing:-.02em;margin:4px 0}.ktz .kt-o span{display:block;font-size:12px;color:var(--mut)}
+.ktz .kt-a{list-style:none;margin:14px 0 0;padding:0}.ktz .kt-a li{font-size:12.5px;color:var(--sub);padding:9px 0;border-top:1px solid var(--line);line-height:1.6}.ktz .kt-a b{display:block;color:var(--ink);font-size:13.5px}
+.ktz .kt-k{width:100%;margin-top:10px}
+.ktz .kt-st{list-style:none;counter-reset:ks;margin:0;padding:0}.ktz .kt-st li{counter-increment:ks;position:relative;padding:14px 0 14px 46px;border-top:1px solid var(--line)}.ktz .kt-st li:first-child{border-top:0}
+.ktz .kt-st li::before{content:counter(ks);position:absolute;left:0;top:13px;width:32px;height:32px;border-radius:50%;background:var(--chip);font:600 13px/32px var(--sans);text-align:center}
+.ktz .kt-st b{display:block;font:600 15.5px/1.45 var(--sans)}.ktz .kt-st span{display:block;font-size:13.5px;line-height:1.8;color:var(--sub);margin-top:3px}
+.ktz .kt-l{margin:0;padding:0 0 0 18px}.ktz .kt-l li{font-size:14px;line-height:1.8;color:var(--sub);padding:2px 0}
+.ktz .kt-ci{display:flex;flex-wrap:wrap;gap:8px}.ktz .kt-ci a{padding:9px 14px;border-radius:999px;background:var(--chip);color:var(--ink);text-decoration:none;font-size:14px}
+.ktz .faq details{border-bottom:1px solid var(--line)}

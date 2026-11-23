@@ -393,6 +393,19 @@ def docs():
             if d: write("jikka/shindan/index.html", "/jikka/shindan/", ti, home_cfg("/jikka/"), d, "doc", de)
     except Exception as e:
         print("shin_kanto: 実家ノートは前のまま", repr(e))
+    # 解体（入口・補助金ランキング・市ごと）と空き家の割合ランキング
+    try:
+        n = 0
+        for f in sorted(os.listdir(S)):
+            if not re.match(r"^kaitai(-[a-z]+)?\.html$", f): continue
+            ti, de = Y.meta(os.path.join(S, f)); d = Y.kaitai(os.path.join(S, f))
+            if d: write(f, "/" + f[:-5], ti, home_cfg("/kaitai"), d, "doc", de); n += 1
+        print("kaitai: 新しい形", n)
+        ti, de = Y.meta(os.path.join(S, "akiya-ranking.html"))
+        d = Y.akiya(os.path.join(S, "akiya-ranking.html"), "関東", "川口市", [["実家・空き家ノート", "/jikka/", "街ごとの数字と順番"], ["解体の補助金", "/kaitai-ranking", "市ごとの上限"], ["地価ランキング", "/chika-kanto", "住宅地の1年の動き"], ["まちランキング", "/ranking", "人口の順位も"]])
+        if d: write("akiya-ranking.html", "/akiya-ranking", ti, home_cfg("/akiya-ranking"), d, "rk", de)
+    except Exception as e:
+        print("shin_kanto: 解体・空き家は前のまま", repr(e))
 
 
 def main():
