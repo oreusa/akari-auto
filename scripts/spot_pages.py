@@ -135,6 +135,9 @@ def prefnav(cur=""):
 os.makedirs(os.path.join(S, "o"), exist_ok=True)
 for f in glob.glob(os.path.join(S, "o", "*.html")): os.remove(f)
 urls = []
+# 11/23 夜の見回り（関西と同じ）：料金・年齢の言葉（「小学生以下は無料」など）は場所に使わない
+for _o in spots:
+    if re.search(r"無料|有料|\d+円|以下|以上|\d+歳|料金|入場", _o.get("place") or ""): _o["place"] = ""
 for sp in spots:
     p, fu, nm, pc = sp["pref"], FU[sp["pref"]], sp["name"], sp["pc"]; yr = (sp["st"] or TODAY)[:4]
     when = (jd(sp["st"]) + ("〜" + jd(sp["en"]) if sp["en"] and sp["en"] != sp["st"] else "")) if sp["st"] else sp["when"] or "公式ページで"

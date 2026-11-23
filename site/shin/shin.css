@@ -1276,3 +1276,5 @@ html body .dqz .pn{background:none!important;-webkit-backdrop-filter:none;backdr
 #sellc b{font-weight:700!important;font-size:16.5px!important;letter-spacing:.01em!important;color:inherit}#sellc b span{font-size:1em!important;font-weight:700!important}
 .sellc small{display:block;margin-top:3px;font-size:12.5px;opacity:.72}.sellc i{position:absolute;right:18px;top:50%;transform:translateY(-52%);font-style:normal;font-size:24px;line-height:1}
 .sellc:active{transform:scale(.985)}
+.fmz details.kw>summary,.fmz .fmore>summary{color:var(--ink)}
+.fmz .fl.kwh{color:var(--ink)}

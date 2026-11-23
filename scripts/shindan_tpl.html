@@ -87,7 +87,7 @@ html:not(.sd-r) #v2bar a[data-h="#steps"]{display:none}
 
 <section class="q on" id="q1" aria-live="polite">
 <h2 tabindex="-1">お家は、どの街にありますか</h2>
-<p class="hint">府県をえらぶか、街の名前を入れてください（ひらがなでも探せます）。</p>
+<p class="hint">都県をえらぶか、街の名前を入れてください（ひらがなでも探せます）。</p>
 <div class="pf" id="pf"></div>
 <input class="sr" id="sr" type="search" inputmode="search" enterkeyhint="search" placeholder="例：ひらかた、西宮" aria-label="街の名前で探す" autocomplete="off">
 <div class="twl" id="twl"></div>
@@ -176,7 +176,7 @@ function list(){var v=hira($("sr").value.trim()),o=$("twl"),a;o.innerHTML="";
  if(v)a=T.filter(function(t){return t.n.indexOf(v)>=0||t.k.indexOf(v)>=0||t.n.indexOf($("sr").value.trim())>=0}).slice(0,30);
  else if(pf)a=T.filter(function(t){return t.p===pf});
  else{o.innerHTML="";return}
- if(!a.length){o.innerHTML="<p>見つかりませんでした。府県のボタンからえらんでみてください。</p>";return}
+ if(!a.length){o.innerHTML="<p>見つかりませんでした。都県のボタンからえらんでみてください。</p>";return}
  a.forEach(function(t){var b=document.createElement("button");b.type="button";b.textContent=(v?t.p+"　":"")+t.n;b.onclick=function(){S.t=t;S.w=S.d=null;cnt("診断｜街｜"+t.n);go(true)};o.appendChild(b)});}
 PF.forEach(function(p){var b=document.createElement("button");b.type="button";b.textContent=p;b.onclick=function(){pf=pf===p?null:p;$("sr").value="";[].forEach.call($("pf").children,function(x){x.classList.toggle("sel",x.textContent===pf)});list()};$("pf").appendChild(b)});
 $("sr").addEventListener("input",function(){if($("sr").value&&pf){pf=null;[].forEach.call($("pf").children,function(x){x.classList.remove("sel")})}list()});

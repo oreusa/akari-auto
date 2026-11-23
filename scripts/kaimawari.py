@@ -109,6 +109,13 @@ def plan(sale, groups):
         return "", ""
     st, en = sale["start"], sale["end"]
     ev = sale["name"]
+    # 11/23 夜の見回り：11/19 21:59 に終わった「開始2時間のクーポン」が 11/23 も出ていた → 終わったクーポンは段取り・ボタン・質問から外す（ページの JS も時刻で消す）
+    if sale.get("coupon_end"):
+        try:
+            if datetime.fromisoformat(sale["coupon_end"]).replace(tzinfo=JST) <= datetime.now(JST):
+                sale = dict(sale); sale.pop("coupon_end", None); sale.pop("coupon_url", None)
+        except Exception:
+            pass
     steps = []
     es = sale.get("entry_start")
     steps.append(("エントリーする", (f"{md(es)}からできます。" if es else "") + "期間中にエントリーすれば、エントリー前の買い物も対象です。押し忘れがいちばん多い失敗です。"))

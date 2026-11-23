@@ -81,7 +81,7 @@ function when(x){if(x.d)return esc(x.d);if(!x.s)return "";return x.st==="up"?md(
 function sub(x){return PG.near&&x.mn!=null?'<b class="mn">約'+x.mn+'分</b>・'+x.km.toFixed(x.km<10?1:0)+'km・'+esc(x.a||x.p):esc(x.a||x.p)}
 var cache={};
 function card(x){var key=x.i+(PG.near?"|"+S.o[0]:"");if(cache[key])return cache[key];var a;
-  var hr=x.o?"/o/"+x.o:(x.u||"#");
+  var hr=x.o?"/o/"+x.o:x.sp?x.sp:(x.u||"#");
   if(VIEW==="list")a=el('<a class="lr" href="'+esc(hr)+'" data-i="'+x.i+'" style="--gc:'+x.g[1]+'">'+(x.im?'<span class="lim" style="background-color:'+(x.th?avg(x.th):"var(--chip)")+'"><img alt="" loading="lazy" src="'+img(x)+'"></span>':"")+
    '<span class="lb2"><span class="lb">'+(x.g[0]?'<span class="g">'+esc(x.g[0])+'</span>':"")+'<span>'+esc(x.p)+'</span>'+badge(x)+'</span><b>'+esc(x.t)+'</b>'+(x.hk?'<small class="hk1">'+esc(x.hk)+'</small>':"")+
    '<small>'+[when(x),sub(x)].filter(Boolean).join("・")+'</small></span><i class="ch">›</i></a>');
@@ -92,7 +92,7 @@ function card(x){var key=x.i+(PG.near?"|"+S.o[0]:"");if(cache[key])return cache[
 var grid=$("#grid"),first=true;
 function go(anim){var L=pick(),show=L.slice(0,S.n),pr=S.p||RG.n;
   var tl=PG.tabs&&S.w?PG.tabs.filter(function(t){return t[0]===S.w})[0][1].replace(/\s\d+$/,""):(PG.near?(S.m?(S.m<60?S.m+"分":S.m/60+"時間").replace(".5時間","時間半")+"で行ける":"きょう開いている"):(PG.unit||"ぜんぶ"));
-  $("#ch").innerHTML=esc(pr)+"・"+esc(tl)+" <b>"+L.length+"</b>"+(PG.cnt||"件");$("#cs").textContent=S.k==="_fav"?"保存した物":S.k&&K[S.k]?K[S.k][0]:(PG.near?S.o[0]+"から近い順":"");
+  $("#ch").innerHTML=esc(pr)+"・"+esc(tl)+" <b data-n='"+L.length+"'>"+L.length+"</b>"+(PG.cnt||"件");$("#cs").textContent=S.k==="_fav"?"保存した物":S.k&&K[S.k]?K[S.k][0]:(PG.near?S.o[0]+"から近い順":"");
   if(PG.near)$("#nn").textContent=L.length;
   if(anim&&!first)S_.countUp($("#ch b"));
   var frag=document.createDocumentFragment();show.forEach(function(x){frag.appendChild(card(x))});grid.replaceChildren(frag);
