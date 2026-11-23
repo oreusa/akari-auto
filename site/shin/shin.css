@@ -1282,3 +1282,8 @@ html body .dqz .pn{background:none!important;-webkit-backdrop-filter:none;backdr
 .rkx .rkg,.sgx .sgb,.sgx .rkg,.dchs.djp,.dchs.rkg{flex-wrap:wrap!important;overflow:visible!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;padding-right:0!important}
 .rkx .rkg button,.sgx .sgb button,.sgx .rkg button,.dchs.djp button,.dchs.rkg button{padding:0 14px;height:40px;min-height:40px!important}
 .sgn{margin:-6px 0 14px;font-size:12.5px;color:var(--sub);line-height:1.6}
+/* 11/23 申し込み：直す欄の印（formHelp） */
+.fmz .fbad{outline:2px solid #D2453B!important;outline-offset:3px;border-radius:12px}
+.fmz .fhint{margin:8px 2px 4px;color:#D2453B;font-size:13.5px;font-weight:600;line-height:1.5}
+html.nt .fmz .fhint{color:#FF8A80}html.nt .fmz .fbad{outline-color:#FF8A80!important}
+.fmz label.ag input[type=checkbox]{width:22px!important;height:22px!important;flex:none;accent-color:var(--ink)}

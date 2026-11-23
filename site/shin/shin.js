@@ -200,13 +200,28 @@ addEventListener("load",function(){drawn=0;if(H.classList.contains("nt"))stars()
 
 window.SHIN={reg:REG,$:$,$$:$$,el:el,esc:esc,TD:TD,seed:seed,diff:diff,md:md,dd:dd,IC:IC,RM:RM,countUp:countUp,counts:counts,bars:bars,sheet:sheet,closeSheet:closeSheet,seg:seg,
   onNav:function(f){navFn=f},navCur:navCur,main:$("#main"),data:JSON.parse((document.getElementById("d")||{textContent:"{}"}).textContent),
-  ready:function(){apply(H.classList.contains("nt"));largeTitle();sellCta();noSelf();
+  ready:function(){apply(H.classList.contains("nt"));largeTitle();sellCta();noSelf();formHelp();
   /* 11/19 表紙のボタン（/odekake#we・/kaiten#w=close）：# の後ろを下のバーのボタンと同じ動きにする */
   var hs=decodeURIComponent(location.hash.slice(1));if(hs&&navFn&&$('#nav [data-a="'+hs+'"]'))setTimeout(function(){navFn(hs);navCur(hs)},60)}};
 /* 11/23 owner「収益化が何一つ上手くいってない」：よく見られる家と土地のページの1画面目に「いくらで売れるか無料で聞く（◯◯市）」を1つ。
    CFG.sell={u:行き先, ad:広告なら1, sm:小さな説明, n:街の名前, id:街の番号}。街が分からないページは、最後に見た街（tn_sell）か、えらぶと変わる。
    関西は自分の申し込み（/moushikomi）、関東は提携している査定（広告）。 */
 /* 11/23 夜の見回り：解体ランキングの中に「補助金ランキングを見る」＝今のページへのリンクがあった。本文の中の、今のページそのものへのリンク（?や#の無い物）は隠す。 */
+/* 11/23 申し込みの最後で止まる（7日で 連絡先まで3人・送信0）→ 送れない時に「どこを直すか」をその欄で見せる。
+   前は1画面目が空でも「メールか電話を」と言い、直す欄に印も無く、文はボタンの下だけだった（forms.md G5-06・G5-25・C-10）。
+   1. 場所が空なら、それを先に言う  2. 直す欄を赤い線で囲み、その下に同じ文を出して、そこへ動かす  3. 書き直したら消す */
+function formHelp(){try{var f=$("#mf"),er=$("#er");if(!f||!er||!$("#sb"))return;
+  function clr(){var o=document.getElementById("fhint");if(o&&o.parentNode)o.parentNode.removeChild(o);[].forEach.call(f.querySelectorAll(".fbad"),function(x){x.classList.remove("fbad")});[].forEach.call(f.querySelectorAll("[aria-invalid]"),function(x){x.removeAttribute("aria-invalid")})}
+  function mark(el,msg){clr();if(!el)return;var box=el.closest("label.ag")||(el.type==="radio"?el.closest(".chs,.fl+div,div"):null)||el;box.classList.add("fbad");el.setAttribute("aria-invalid","true");
+    var n=document.createElement("p");n.className="fhint";n.id="fhint";n.setAttribute("role","alert");n.textContent=msg;box.insertAdjacentElement("afterend",n);
+    box.scrollIntoView({block:"center",behavior:RM?"auto":"smooth"});try{el.focus({preventScroll:true})}catch(e){}}
+  document.addEventListener("click",function(e){if(!e.target.closest||!e.target.closest("#sb"))return;var pl=$("#pl");
+    if(pl&&!pl.value.trim()){e.preventDefault();e.stopImmediatePropagation();er.textContent="お家の場所（市区町村まで）を書いてください";}},true);
+  new MutationObserver(function(){var t=er.textContent.replace(/[​\s]/g,"");if(!t){clr();return}
+    var em=$("#em"),tl=$("#tl"),el=/プライバシー|同意/.test(t)?$("#ag"):/メールアドレスか/.test(t)?((em&&em.value)?tl:em):/メール/.test(t)?em:/電話/.test(t)?tl:/場所|市区町村/.test(t)?$("#pl"):/お名前/.test(t)?$("#nm"):/ご用件|ご希望/.test(t)?f.querySelector("input[name=want]"):null;
+    if(el)mark(el,er.textContent)}).observe(er,{childList:true,characterData:true,subtree:true});
+  f.addEventListener("input",function(e){if(e.target.getAttribute("aria-invalid"))clr()});f.addEventListener("change",function(e){if(e.target.getAttribute("aria-invalid"))clr()});
+}catch(e){}}
 function noSelf(){try{var me=location.pathname.replace(/^\/shin(?=\/)/,"").replace(/\.html$/,"").replace(/\/$/,"")||"/";
   [].forEach.call(document.querySelectorAll("#main a[href]"),function(a){var h=a.getAttribute("href");if(!h||/[?#]/.test(h)||/^https?:/.test(h)||a.closest("nav,.menu,.tabs,.dchs,.opn,header,footer"))return;
     if((h.replace(/\.html$/,"").replace(/\/$/,"")||"/")!==me)return;var p=a.parentNode;if(p&&p.tagName==="P"&&p.textContent.trim()===a.textContent.trim())p.hidden=true;else a.hidden=true})}catch(e){}}
