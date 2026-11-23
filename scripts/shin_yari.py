@@ -130,3 +130,64 @@ def shindan(path):
     h1 = _txt(re.search(r'<h1>(.*?)</h1>', b, re.S).group(1))
     inner = b[b.index('<p class="lead"'):b.index('<div class="ft">')]
     return {'h1': h1, 'sub': '', 'html': '<div class="dqz">' + inner + '</div>', 'js': js}
+
+
+# ---------- 解体（入口 /kaitai・市ごと /kaitai-<市>・補助金ランキング /kaitai-ranking）：中の部品と30秒の計算はそのまま、見た目を新しい部品（.ktz）に ----------
+def kaitai(path, rel_note=''):
+    t = old(path)
+    if not t: return None
+    b = t[t.index('<body'):]
+    js = '\n'.join(s for s in re.findall(r'<script>(.*?)</script>', b, re.S))
+    b = re.sub(r'<script[^>]*>.*?</script>', '', b, flags=re.S)
+    h = re.search(r'<h1>(.*?)</h1>', b, re.S).group(1)
+    h1 = _txt(re.sub(r'<span>.*?</span>', '', h)); span = _txt((re.search(r'<span>(.*?)</span>', h, re.S) or [None, ''])[1])
+    sub = (re.search(r'<p class="sub">(.*?)</p>', b, re.S) or [None, ''])[1].replace('<br>', '')
+    upd = _txt((re.search(r'<div class="upd">(.*?)</div>', b, re.S) or [None, ''])[1])
+    fv = re.search(r'<div class="fv">(.*?)</div>\s*<div class="upd">', b, re.S)
+    top = ''
+    if fv:
+        f = fv.group(1)
+        n = (re.search(r'<div class="n">(.*?)</div>', f, re.S) or [None, ''])[1]
+        d = (re.search(r'<div class="d">(.*?)</div>', f, re.S) or [None, ''])[1]
+        bt = re.findall(r'<a class="([kw])" (href="[^"]*" data-k="[^"]*")>(.*?)</a>', f, re.S)
+        top = ('<div class="kzv">' + f'<div class="kzn">{n}</div>' + (f'<p>{d}</p>' if d else '') + '<div class="kzb">' +
+               ''.join(f'<a class="{"dbtn" if c == "k" else "dbtn2"}" {a}>{x}</a>' for c, a, x in bt) + '</div></div>')
+    i0 = b.index('</div>', b.index('<div class="upd">')) + 6 if '<div class="upd">' in b else b.index('<nav')
+    i0 = b.index('</div>', i0) + 6 if b[i0:i0 + 40].strip().startswith('</div>') else i0
+    body = b[i0:b.index('<div class="ft">')]
+    body = re.sub(r'^\s*</div>', '', body)
+    body = body.replace('<nav class="toc"', '<nav class="ktoc"')
+    body = re.sub(r'<section (id="[^"]+" )?class="ps"[^>]*>', lambda m: f'<section {m.group(1) or ""}class="dsec ps">', body)
+    body = body.replace('<section class="faq">', '<section class="dsec faq">')
+    body = re.sub(r'<details>\s*<summary>(.*?)</summary>(.*?)</details>', r'<details><summary>\1</summary><div class="ddd">\2</div></details>', body, flags=re.S)
+    body = body.replace('class="kt-b"', 'class="dbtn kt-b"').replace('class="kt-b ', 'class="dbtn kt-b ').replace('class="kt-k"', 'class="dbtn2 kt-k"').replace('<p class="note">', '<p class="dnote">')
+    al = re.search(r'<nav class="also"[^>]*>(.*?)</nav>', body, re.S)
+    if al:
+        links = re.findall(r'<a href="([^"]+)"[^>]*>(.*?)</a>', al.group(1))
+        body = body.replace(al.group(0), '<section class="dsec"><h2>あわせて見る</h2><div class="drel">' + ''.join(f'<a href="{u}" data-k="解体｜関連｜{_txt(x)}">{x}<small>{rel_note}</small></a>' for u, x in links) + '</div></section>')
+    body = re.sub(r'<a class="back"[^>]*>.*?</a>', '', body, flags=re.S)
+    return {'h1': h1, 'sub': (f'<b>{E(span)}</b>' if span else '') + (f'<br>{sub}' if sub else '') + (f'<br><small>{E(upd)}</small>' if upd else ''),
+            'html': top + '<div class="ktz">' + body + '</div>', 'js': js}
+
+
+# ---------- 空き家の割合ランキング（/akiya-ranking）：地価ランキングと同じ rk.js ----------
+def akiya(path, an, ex, rel):
+    t = old(path)
+    if not t: return None
+    b = t[t.index('<body'):]
+    h = re.search(r'<h1>(.*?)</h1>', b, re.S).group(1)
+    h1 = _txt(re.sub(r'<span>.*?</span>', '', h)); span = _txt((re.search(r'<span>(.*?)</span>', h, re.S) or [None, ''])[1])
+    sub = (re.search(r'<p class="sub">(.*?)</p>', b, re.S) or [None, ''])[1].replace('<br>', '')
+    btn = re.findall(r'<button data-p="(\w+)"[^>]*>(.*?)</button>', b)
+    allp = re.search(r'<section class="pane[^"]*" id="all">(.*?)</section>', b, re.S).group(1)
+    rows = []
+    for u, nm, sm, v in re.findall(r'<a href="([^"]+)"[^>]*><span class="no">\d+</span><span class="nm">(.*?)((?:<small>.*?</small>)+)</span>.*?<span class="v"[^>]*>([\d.]+)%</span>', allp, re.S):
+        sms = re.findall(r'<small>(.*?)</small>', sm)
+        rows.append({'n': _txt(nm), 's': _txt(nm), 'u': u, 'id': u.rsplit('/', 1)[-1], 'p': sms[0] if len(sms) > 1 else '', 'x': '空き家 ' + sms[-1], 'k': '', 'v': {'a': [None, float(v)]}})
+    groups = [{'k': 'all', 'l': an + 'ぜんぶ'}] + [{'k': l, 'l': l, 'h': k} for k, l in btn if k != 'all']
+    faq = [(_txt(q), f'<p>{a}</p>' if not a.strip().startswith('<p') else a) for q, a in re.findall(r'<details>\s*<summary>(.*?)</summary>\s*<p>(.*?)</p>\s*</details>', b, re.S)]
+    note = (re.search(r'<p class="note">(.*?)</p>', b, re.S) or [None, ''])[1]
+    foot = (('<section class="dsec"><h2>よくある質問</h2>' + ''.join(f'<details><summary>{E(q)}</summary><div class="ddd">{a}</div></details>' for q, a in faq) + '</section>' if faq else '')
+            + f'<section class="dsec"><h2>数字の出どころ</h2><p class="dnote">{note}</p></section>' + rel_html(rel, '空き家ランキング'))
+    pre = '<ol>' + ''.join(f'<li>{E(r["n"])}（{E(r["p"])}）空き家の割合 {r["v"]["a"][1]}%</li>' for r in rows) + '</ol>' + foot
+    return {'h1': h1, 'sub': f'{E(span)}・{_txt(sub)}', 'an': an, 'tabs': [{'k': 'a', 'l': '空き家の割合'}], 'groups': groups, 'rows': rows, 'avg': {}, 'ex': ex, 'plain': 1, 'foot': foot, 'html': pre}

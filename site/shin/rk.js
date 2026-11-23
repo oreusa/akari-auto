@@ -8,17 +8,18 @@ var S_=window.SHIN,$=S_.$,$$=S_.$$,esc=S_.esc,RM=S_.RM,D=S_.data;
 var T=D.tabs||[{k:"r",l:"住宅地"}],G=D.groups||[],R=D.rows,N0=30;
 var st={t:0,g:G.length?G[0].k:"",all:0};var _h=location.hash.slice(1);G.forEach(function(g){if(g.h&&g.h===_h)st.g=g.k});
 var kana=function(s){return (s||"").replace(/[ァ-ヶ]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96)})};
-function sg(v){return (v>0?"+":v<0?"−":"±")+Math.abs(v).toFixed(1)}
+function sg(v){return D.plain?v.toFixed(1):(v>0?"+":v<0?"−":"±")+Math.abs(v).toFixed(1)}
+function hu(r){return r.u||(r.id?"/machi/"+r.id:"")}
 function rows(tk,g){
   var a=R.filter(function(r){return r.v[tk]&&(!g||g==="all"||r.p===g)}).sort(function(x,y){return y.v[tk][1]-x.v[tk][1]||x.n.localeCompare(y.n,"ja")});
   var pv=null,pr=0;a=a.map(function(r,i){var v=r.v[tk][1];var k=v===pv?pr:i+1;pv=v;pr=k;return {r:r,k:k}});return a}
 function gl(){var g=G.filter(function(x){return x.k===st.g})[0];return g?g.l:""}
 function draw(){
   var tk=T[st.t].k,L=rows(tk,st.g),mx=Math.max.apply(null,L.map(function(x){return Math.abs(x.r.v[tk][1])}).concat([1]));
-  var p3=L.slice(0,3).map(function(x){var v=x.r.v[tk];return '<a class="rkp'+x.k+'" href="'+(x.r.id?'/machi/'+x.r.id:'#r-'+x.r.n)+'" data-k="地価｜上位｜'+esc(x.r.n)+'"><i>'+x.k+'位</i><b>'+esc(x.r.s||x.r.n)+'</b><span>'+sg(v[1])+'<small>%</small></span><em>'+esc(x.r.p&&G.length?x.r.p:'')+(v[0]!=null?(x.r.p&&G.length?'・':'')+'前年 '+sg(v[0])+'%':'')+'</em></a>'}).join("");
+  var p3=L.slice(0,3).map(function(x){var v=x.r.v[tk];return '<a class="rkp'+x.k+'" href="'+(hu(x.r)||'#r-'+x.r.n)+'" data-k="地価｜上位｜'+esc(x.r.n)+'"><i>'+x.k+'位</i><b>'+esc(x.r.s||x.r.n)+'</b><span>'+sg(v[1])+'<small>%</small></span><em>'+esc(x.r.p&&G.length?x.r.p:'')+(v[0]!=null?(x.r.p&&G.length?'・':'')+'前年 '+sg(v[0])+'%':'')+'</em></a>'}).join("");
   var sh=st.all?L:L.slice(0,N0);
   var li=sh.map(function(x){var r=x.r,v=r.v[tk],up=v[0]==null?"":v[1]>v[0]?'<em class="u">前年より ↑</em>':v[1]<v[0]?'<em class="d">前年より ↓</em>':'<em>前年と同じ</em>';
-    return '<li id="r-'+esc(r.id||r.n)+'"><span class="n">'+x.k+'</span>'+(r.id?'<a href="/machi/'+r.id+'" data-k="地価｜街｜'+esc(r.n)+'">':'<div>')+'<b>'+esc(r.n)+'</b><small>'+(G.length&&st.g==="all"?esc(r.p)+'・':'')+(v[0]!=null?'前年 '+sg(v[0])+'%':'')+up+'</small>'+(r.id?'</a>':'</div>')+
+    return '<li id="r-'+esc(r.id||r.n)+'"><span class="n">'+x.k+'</span>'+(hu(r)?'<a href="'+hu(r)+'" data-k="地価｜街｜'+esc(r.n)+'">':'<div>')+'<b>'+esc(r.n)+'</b><small>'+(G.length&&st.g==="all"?esc(r.p)+'・':'')+(v[0]!=null?'前年 '+sg(v[0])+'%':'')+(r.x?esc(r.x):'')+up+'</small>'+(hu(r)?'</a>':'</div>')+
       '<span class="v'+(v[1]<0?' m':'')+'">'+sg(v[1])+'<small>%</small></span><i class="b'+(v[1]<0?' m':'')+'" style="--w:'+Math.max(2,Math.round(Math.abs(v[1])/mx*100))+'%"></i></li>'}).join("");
   var av=D.avg&&D.avg[st.g==="all"||!st.g?"all":st.g];av=av&&av[tk];
   $("#rkb").innerHTML='<div class="rkp">'+p3+'</div>'+
