@@ -1,6 +1,7 @@
 {
  "models": [
-  "@cf/black-forest-labs/flux-2-klein-4b"
+  "@cf/black-forest-labs/flux-2-klein-4b",
+  "@cf/black-forest-labs/flux-1-schnell"
  ],
  "style": "Photorealistic night travel photograph, shot on a full-frame mirrorless camera, 24mm lens, natural true-to-life colors, realistic exposure, gentle bokeh, high detail, vertical 9:16. No people, no cars, no text, no letters, no logos, no signs with writing",
  "items": [
@@ -29,5 +30,6 @@
    "name": "f-detail",
    "prompt": "Close-up of a branch with golden LED fairy lights and yellow ginkgo leaves at night, strong shallow depth of field, the illuminated boulevard as soft golden bokeh behind"
   }
- ]
+ ],
+ "run": 2
 }

@@ -1,7 +1,0 @@
-accounts 200 n=1 err=[]
-a-aerial-flux-2-klein-4b 401 [{'code': 10000, 'message': 'Authentication error'}]
-b-walk-flux-2-klein-4b 401 [{'code': 10000, 'message': 'Authentication error'}]
-c-up-flux-2-klein-4b 401 [{'code': 10000, 'message': 'Authentication error'}]
-d-cross-flux-2-klein-4b 401 [{'code': 10000, 'message': 'Authentication error'}]
-e-hall-flux-2-klein-4b 401 [{'code': 10000, 'message': 'Authentication error'}]
-f-detail-flux-2-klein-4b 401 [{'code': 10000, 'message': 'Authentication error'}]

@@ -16,6 +16,7 @@ jobs:
           fetch-depth: 2
       - env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_AI_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: 2ae4abdd42b0f4ba1d802192b06cebad
         run: |
           for R in $(git diff --name-only HEAD~1 HEAD -- 'tools/ai-art/req-*.json'); do N=$(basename "$R" .json); N=${N#req-}; python3 tools/ai-art/cf_gen.py "$R" "shots/ai-art/$N" || true; done
       - run: |

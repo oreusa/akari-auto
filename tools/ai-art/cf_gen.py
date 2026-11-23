@@ -9,7 +9,7 @@ def call(method, path, body=None, ctype='application/json'):
     except urllib.error.HTTPError as e: return e.code, e.headers.get('Content-Type', ''), e.read()
 s, ct, d = call('GET', '/accounts'); j = json.loads(d); accs = [a['id'] for a in j.get('result') or []]
 log.append(f'accounts {s} n={len(accs)} err={j.get("errors")}')
-A = accs[0] if accs else None
+A = accs[0] if accs else (os.environ.get('CF_ACCOUNT_ID') or '').strip() or None
 models = req.get('models', ['@cf/black-forest-labs/flux-2-klein-4b'])
 for it in req['items'] if A else []:
     P = f"{it['prompt']}. {req['style']}"
