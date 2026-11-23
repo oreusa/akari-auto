@@ -274,11 +274,11 @@ def spot(path, pn=None):
     return {'h1': h1, 'sub': (f'<b>{E(span)}</b><br>' if span else '') + sub + (f'<br><small>{E(upd)}</small>' if upd else ''), 'html': out, 'js': js}
 
 
-def keep_head(old_path, new_path):
+def keep_head(old_path, new_path, only_ld=False, text=None):
     """前のページの og:image（催しごとの絵）・twitter・構造化データ（Event）を新しいページにも残す（検索・SNSで同じに見える）。"""
-    t = old(old_path); n = open(new_path, encoding='utf-8').read()
+    t = text or old(old_path); n = open(new_path, encoding='utf-8').read()
     h = t[:t.index('</head>')]
-    keep = ''.join(re.findall(r'<meta (?:property="og:(?:type|description|image(?::width|:height)?)"|name="twitter:[a-z]+")[^>]*>', h))
+    keep = '' if only_ld else ''.join(re.findall(r'<meta (?:property="og:(?:type|description|image(?::width|:height)?)"|name="twitter:[a-z]+")[^>]*>', h))
     keep += ''.join(re.findall(r'<script type="application/ld\+json">.*?</script>', h, re.S))
     if not keep: return
     n = re.sub(r'<meta property="og:image" content="[^"]*">', '', n, count=1)
@@ -335,3 +335,33 @@ def shop(path, rel=None):
         out += '<section class="dsec"><h2>あわせて見る</h2><div class="drel">' + ''.join(f'<a href="{u}" data-k="あわせて：{E(l)}">{E(l)}</a>' for l, u in rel) + '</div></section>'
     sub = E(gn) + (f'・{E(tg.group(2))}' if tg else '')
     return {'h1': h1, 'sub': sub, 'html': out, 'js': js}
+
+
+# ---------- 買いまわり 1,000円ぽっきり（/kaimawari）：燈の kaimawari.py が作る前のページを新しい部品に（計算・残り時間・ジャンルの切りかえの script は前のまま） ----------
+def kaimawari(t):
+    if not t or 'id="kn"' not in t: return None
+    b = t[t.index('<body'):]
+    js = '\n'.join(re.findall(r'<script>(.*?)</script>', b, re.S))
+    b = re.sub(r'<script[^>]*>.*?</script>', '', b, flags=re.S)
+    sm = re.search(r'<h1>.*?<small>(.*?)</small></h1>', b, re.S); ev = _txt(sm.group(1)) if sm else 'お買い物マラソン'
+    up = re.search(r'<p class="up">(.*?)</p>', b, re.S)
+    hd = b[b.index('<header'):b.index('</header>')]
+    sale = ''.join(re.findall(r'<p class="sale">.*?</p>|<a class="entry[^"]*"[^>]*>.*?</a>|<p class="note">.*?</p>', hd, re.S))
+    sale = re.sub(r'<a class="entry[^"]*"', '<a class="dbtn kme entry"', sale).replace('<p class="sale">', '<p class="kms">').replace('<p class="note">', '<p class="dhint">')
+    lead = re.search(r'<p class="lead">(.*?)</p>', hd, re.S)
+    mid = b[b.index('</header>') + 9:b.index('<footer')]
+    mid = re.sub(r'<a class="entry[^"]*"', '<a class="dbtn kme entry"', mid).replace('<a class="cpn nofilt"', '<a class="dbtn2 cpn"')
+    mid = mid.replace('<section class="pl', '<section class="dsec kpl pl').replace('<div class="calc">', '<section class="dsec kcalc">')
+    mid = re.sub(r'(<section class="dsec kcalc">.*?)</div>', r'\1</section>', mid, count=1, flags=re.S)
+    mid = mid.replace('<nav class="tabs"', '<nav class="tabs dchs kmt"').replace('<main>', '<div class="kmp">').replace('</main>', '</div>')
+    mid = re.sub(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>', r'<details><summary>\1</summary><div class="ddd">\2</div></details>', mid, flags=re.S)
+    mid = mid.replace(' style="color:#A8432F"', '')
+    for a_, b_ in (('tx', 'ktx'), ('nm', 'knm'), ('mt', 'kmt2'), ('sh', 'ksh'), ('go', 'kgo')):
+        mid = mid.replace(f'<span class="{a_}">', f'<span class="{b_}">')
+    ft = re.findall(r'<footer class="foot">(.*?)</footer>', b, re.S)
+    note = ''.join(f'<p class="dnote">{x}</p>' for x in re.findall(r'<p>(.*?)</p>', ft[0] if ft else '', re.S))
+    mid = re.sub(r'\s*→</a>', '</a>', mid); sale = re.sub(r'\s*→</a>', '</a>', sale)
+    html_ = ('<section class="dsec osp kmw">' + sale + (f'<p class="dtx">{lead.group(1)}</p>' if lead else '') + '</section>' +
+             '<div class="kmw">' + mid + '</div>' + '<section class="dsec">' + note +
+             '<a class="dlk" href="/otoku">お得まとめへ</a><a class="dlk" href="/okaimono">日用品の値段くらべへ</a></section>')
+    return {'h1': '買いまわりの1,000円ぽっきり', 'sub': f'<b>{E(ev)}</b>' + (f'<br><small>{up.group(1)}</small>' if up else ''), 'html': html_, 'js': js}
