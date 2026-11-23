@@ -332,7 +332,7 @@ def doc_ikura():
     return {"h1": h1, "sub": re.sub(r"<[^>]+>", "", sub).replace("。", "。", 1), "html": body, "js": js}
 
 
-HOME_NAV = [{"t": "街をさがす", "ic": "find", "href": "/fudosan-list"}, {"t": "ランキング", "ic": "rank", "href": "/chika-kanto"},
+HOME_NAV = [{"t": "街をさがす", "ic": "find", "href": "/fudosan-list"}, {"t": "ランキング", "ic": "rank", "href": "/ranking"},
             {"t": "売りたい", "ic": "sell", "href": "/uru"}, {"t": "いくら？", "ic": "yen", "href": "/ikura"}]
 HOME_MENU = [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["予算で街さがし", "/sagasu"], ["空き家の割合ランキング", "/akiya-ranking"]]
 
@@ -353,6 +353,15 @@ def docs():
             if d: write(fname, url, title, home_cfg(url), d, "doc", desc)
         except Exception as e:
             print("shin_kanto: 前のまま", fname, repr(e))
+    # 11/23 owner「全部やり変えて」：地価ランキング（関東・東京23区）を新しい土台で（scripts/shin_chika.py＝月の tools/shin/chika.py の写し・site/shin/rk.js）
+    try:
+        sys.path.insert(0, os.path.join(R, "scripts")); import shin_chika
+        for u in shin_chika.build_kanto(write, S, R, home_cfg):
+            sm = os.path.join(S, "sitemap.xml")
+            if os.path.exists(sm) and f"{SITE}{u}<" not in open(sm, encoding="utf-8").read():
+                x = open(sm, encoding="utf-8").read().replace("</urlset>", f"<url><loc>{SITE}{u}</loc></url></urlset>"); open(sm, "w", encoding="utf-8").write(x)
+    except Exception as e:
+        print("shin_kanto: 地価ランキングは前のまま", repr(e))
 
 
 def main():
