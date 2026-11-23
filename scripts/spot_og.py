@@ -5,6 +5,9 @@ page.yml で spot_pages.py のあとに動く。python3 scripts/spot_og.py"""
 import glob, os, re, html, io, shutil, subprocess
 import cairosvg
 from PIL import Image, ImageDraw, ImageFont
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import og_kata
 
 D = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FD = os.path.join(D, "tools", "fonts")
@@ -49,31 +52,15 @@ for f in sorted(glob.glob(os.path.join(D, "site/o/*.html"))):
     when = re.search(r'<span>日程</span><b>(.*?)</b>', h)
     when = html.unescape(when.group(1)) if when else ""
     where = html.unescape(re.search(r'<p class="sub">(.*?)</p>', h, re.S).group(1))
-    img = Image.new("RGB", (1200, 630), "#FFFFFF")
+    # 11/23 HP と同じ今の形（og_kata.py：淡いオーロラ・すりガラス・細い字）
+    mp = None
     if m:
         svg = m.group(1)
         vb = [float(x) for x in re.search(r'viewBox="([^"]+)"', svg).group(1).split()]
         png = cairosvg.svg2png(bytestring=svg.encode(), output_width=660, output_height=round(660 * vb[3] / vb[2]))
         mp = Image.open(io.BytesIO(png)).convert("RGB")
-        d0 = ImageDraw.Draw(img); d0.rectangle([0, 0, 660, 630], fill="#EEF6F9")  # 地図の上下の余白は海の色
-        img.paste(mp, (0, max(0, (630 - mp.height) // 2)))
-    d = ImageDraw.Draw(img)
-    x0, w = 690, 450
-    d.rectangle([660, 0, 664, 630], fill=pc)
-    d.text((x0, 70), f"{en}  /  ODEKAKE", font=JO, fill=pc)
-    font = MIN if d.textlength(name, font=MIN) <= w * 2 else MIN_S
-    lines = wrap(d, name, font, w, 3)
-    if len(lines) > 1 and len(lines[-1]) <= 2 and font is MIN:  # 最後の行が1〜2字だけにならないように
-        font = MIN_S; lines = wrap(d, name, font, w, 3)
-    y = 120
-    for ln in lines:
-        d.text((x0, y), ln, font=font, fill="#231E1B"); y += font.size + 20
-    y += 16
-    for ln in wrap(d, when, GO, w, 2):
-        d.text((x0, y), ln, font=GO, fill="#2B2622"); y += 44
-    for ln in wrap(d, where, GO_S, w, 2):
-        d.text((x0, y + 6), ln, font=GO_S, fill="#6B6058"); y += 36
-    d.text((x0, 560), "LIFE NOTE  関東おでかけリスト", font=GO_S, fill="#8C7B6E")
+    dot = tuple(int(pc[i:i + 2], 16) for i in (1, 3, 5))
+    img = og_kata.spot(FD, mp, f"{en} ・ ODEKAKE", dot, name, when, where, "LIFE NOTE", "関東のおでかけ")
     out = os.path.join(D, "site/o/img", sid + ".jpg")
     img.save(out, quality=84, optimize=True, progressive=True)
     keep.add(sid + ".jpg"); n += 1
