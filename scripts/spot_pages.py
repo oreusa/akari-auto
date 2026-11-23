@@ -195,7 +195,7 @@ for sp in spots:
     mapd = f'<div class="tmap">{msvg}<p>{e(lbl)}の場所（{e(fu)}）</p></div>' if msvg and "<circle" in msvg else ""
     page = head(title, desc, canon, {"@context": "https://schema.org", "@graph": [ev, bc]}, pc)
     page += f"""<div class="head"><img src="/logo-s.png" width="60" height="60" alt="LIFE NOTE のロゴ"><div class="en">{SLUG[p].upper()} ─ ODEKAKE</div>
-<h1>{e(nm)}<span>{yr} 日程・場所</span></h1><p class="sub">{e(where)}</p><div class="upd">{UPD} 確認</div></div>
+<h1>{e(nm)}<span>{"" if yr in nm else yr + " "}日程・場所</span></h1><p class="sub">{e(where)}</p><div class="upd">{UPD} 確認</div></div>
 <div class="big">{big}</div>{mapd}<p class="lead">{e(lead)}</p><div class="act">{act}</div>{yh}
 <h2>{e(p)}のほかのおでかけ</h2>{"".join(card(o) for o in near)}{prefnav(p)}
 <a class="back" href="/odekake-{SLUG[p]}">{e(p)}おでかけリストへ</a><a class="back" href="/odekake" style="margin-top:14px">関東おでかけリストへ</a>
