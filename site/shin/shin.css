@@ -1234,7 +1234,7 @@ html body .dqz .pn{background:none!important;-webkit-backdrop-filter:none;backdr
 .fmz .ga p{font-size:14px;line-height:1.85;color:var(--sub);margin:8px 0 0}.fmz .ga small{display:block;font-size:12px;color:var(--mut);margin-top:6px}.fmz .ga small a{color:inherit}
 .fmz .gt{font-size:13px;line-height:1.8;color:var(--sub);margin:12px 0 0}
 /* 11/23 おでかけの1件ページ（yari.spot） */
-.dc .osp{padding-top:8px}.dc .kph{margin:0 0 16px}.dc .kph img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:20px}.dc .kph figcaption{font-size:11px;color:var(--mut);margin-top:6px}.dc .kph figcaption a{color:inherit}
+.dc .osp{padding-top:8px}.dc .kph{margin:0 0 16px}.dc .kph img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:20px}.dc .kph figcaption{font-size:11px;color:var(--mut);margin-top:6px}.dc .kph figcaption a{color:inherit}
 .dc .big b{font:600 16px/1.45 var(--sans)!important;display:block;margin-top:4px}.dc .big span{font-size:12px;color:var(--sub)}.dc .big>.w{grid-column:1/-1}
 .dc .tmap{margin:16px 0 0;padding:10px;border-radius:20px;background:var(--chip)}.dc .tmap svg{display:block;width:100%;height:auto;border-radius:14px}.dc .tmap p{font-size:12px;color:var(--sub);margin:8px 4px 2px}
 .dc .olead{font-size:15px}.dc .oact{display:grid;gap:8px;margin-top:6px}.dc .oact a{margin:0}
@@ -1242,3 +1242,10 @@ html body .dqz .pn{background:none!important;-webkit-backdrop-filter:none;backdr
 .dc .opn{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}.dc .opn small{flex-basis:100%;font-size:12px;color:var(--sub)}
 .dc .opn a{padding:8px 14px;border-radius:999px;background:var(--chip);color:var(--ink);font-size:13px;text-decoration:none;border:1px solid var(--line)}
 .dc .opn a[aria-current]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+/* 11/23 開店・閉店の1店のページ（yari.shop） */
+.dc .swz{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin:0 0 16px}.dc .swz b{font:600 34px/1.1 var(--sans);letter-spacing:-.01em}.dc .swz b small{font-size:14px;font-weight:500;margin-left:4px;color:var(--sub)}
+.dc .swz .cd{font-size:13px;padding:4px 10px;border-radius:999px;background:var(--chip);color:var(--ink)}.dc .swz .cd.done{color:var(--sub)}
+.dc .smap{padding:0;overflow:hidden}.dc .smap iframe{display:block;width:100%;height:240px;border:0}
+.dc .ksns{margin-top:18px}.dc .ksns .ksl{color:var(--ink);text-decoration:underline;text-underline-offset:3px;margin-left:8px}
+.dc .ksns .ksl{display:inline-block;white-space:nowrap}
+.hero .h1t{overflow-wrap:anywhere}
