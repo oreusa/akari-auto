@@ -830,12 +830,17 @@ def _book_koma(cfg, state, now, suffix="", label="4コマ"):
 OUTING_KICKER = "街の調査で見つけた、関東おでかけリスト"  # 10/29 オーナー決定（「代わりに調べた」は変なのでやめた）
 
 
+def reel_stopped(day):
+    """11/23 オーナー「関東も作れよ」：reel/STOP があっても、その日の描き下ろしにオーナーのOK（reel/OK-<日>）があれば出す"""
+    return os.path.exists(path("reel", "STOP")) and not os.path.exists(path("reel", f"OK-{day}"))
+
+
 def book_outing_reel(cfg, state, now):
     day = now.date().isoformat()
     spec = load_json(path("reel", f"{day}.json"))
     if not spec or "instagram" not in cfg["channels"]:
         return False
-    if os.path.exists(path("reel", "STOP")):  # 11/16 21:41 オーナー「関西も関東も止める」＝絵の基盤ができるまでおでかけリールを出さない
+    if reel_stopped(day):  # 11/16 21:41 オーナー「関西も関東も止める」＝絵の基盤ができるまでおでかけリールを出さない
         return False
     if os.path.exists(path("reel-hp", f"{day}.json")):  # 11/2 HPリールの日はおでかけリールを出さない（翌週に回す）
         return False
@@ -935,7 +940,7 @@ def book_reel_sns(cfg, state, now):
     spec = load_json(path("reel", f"{day}.json"))
     top = state.get(f"{day} おでかけリール") or {}
     ig = top.get("instagram") or {}
-    if not spec or not ig.get("id") or not top.get("url") or os.path.exists(path("reel", "STOP")):
+    if not spec or not ig.get("id") or not top.get("url") or reel_stopped(day):
         return False
     changed = False
     for svc, hhmm in REEL_SNS:
