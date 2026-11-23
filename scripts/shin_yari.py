@@ -191,3 +191,22 @@ def akiya(path, an, ex, rel):
             + f'<section class="dsec"><h2>数字の出どころ</h2><p class="dnote">{note}</p></section>' + rel_html(rel, '空き家ランキング'))
     pre = '<ol>' + ''.join(f'<li>{E(r["n"])}（{E(r["p"])}）空き家の割合 {r["v"]["a"][1]}%</li>' for r in rows) + '</ol>' + foot
     return {'h1': h1, 'sub': f'{E(span)}・{_txt(sub)}', 'an': an, 'tabs': [{'k': 'a', 'l': '空き家の割合'}], 'groups': groups, 'rows': rows, 'avg': {}, 'ex': ex, 'plain': 1, 'foot': foot, 'html': pre}
+
+
+# ---------- 申し込み（/moushikomi）・リクエストと感想（/koe）：入力の部品と送る仕組み（script）はそのまま、見た目を新しい部品（.fmz）に ----------
+def form(path):
+    t = old(path)
+    if not t: return None
+    b = t[t.index('<body'):]
+    js = '\n'.join(re.findall(r'<script>(.*?)</script>', b, re.S))
+    b = re.sub(r'<script[^>]*>.*?</script>', '', b, flags=re.S)
+    b = b[b.index('<div class="wrap">') + 18:b.index('<div class="ft">')]
+    b = re.sub(r'<img [^>]*logo[^>]*>', '', b)
+    b = re.sub(r'<div class="en">.*?</div>', '', b)
+    # 見出し：前の script が .s3h h1・.s3l・.s3m を書き替えるので、その名前のまま新しい見出しの形に
+    b = re.sub(r'<div class="s3h"><div>\s*<h1>(.*?)</h1></div></div>', r'<section class="hero s3h"><h1 class="h1t">\1</h1></section>', b, flags=re.S)
+    b = re.sub(r'<div class="head">\s*<h1>(.*?)</h1>(.*?)</div>', lambda m: f'<section class="hero"><h1 class="h1t">{m.group(1)}</h1>' + m.group(2).replace('class="sub"', 'class="h1p"') + '</section>', b, flags=re.S)
+    b = re.sub(r' style="[^"]*"', '', b)  # 前の色・余白の指定（夜に読めない色もある）は新しい部品にまかせる
+    b = b.replace('<p class="s3l">', '<p class="h1p s3l">').replace('class="back"', 'class="back dlk"').replace('<p class="note">', '<p class="dnote">')
+    h1 = _txt((re.search(r'<h1[^>]*>(.*?)</h1>', b, re.S) or [None, ''])[1])
+    return {'h1': h1, 'nohero': 1, 'html': '<div class="fmz">' + b + '</div>', 'js': js}

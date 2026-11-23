@@ -4,7 +4,7 @@
 (function(){
 "use strict";
 var S_=window.SHIN,$=S_.$,$$=S_.$$,esc=S_.esc,RM=S_.RM,D=S_.data;
-S_.main.innerHTML='<div class="wrap dc"><section class="hero"><h1 class="h1t">'+esc(D.h1)+'</h1>'+(D.sub?'<p class="h1p">'+D.sub+'</p>':'')+'</section>'+D.html+'</div>';
+S_.main.innerHTML='<div class="wrap dc">'+(D.nohero?'':'<section class="hero"><h1 class="h1t">'+esc(D.h1)+'</h1>'+(D.sub?'<p class="h1p">'+D.sub+'</p>':'')+'</section>')+D.html+'</div>';
 /* 開く・閉じる（高さをなめらかに） */
 $$(".dc details").forEach(function(d){var s=d.querySelector("summary");s.addEventListener("click",function(e){if(RM)return;e.preventDefault();var b=d.querySelector(".ddd");
   if(!b){d.open=!d.open;return}

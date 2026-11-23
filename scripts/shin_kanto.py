@@ -406,6 +406,13 @@ def docs():
         if d: write("akiya-ranking.html", "/akiya-ranking", ti, home_cfg("/akiya-ranking"), d, "rk", de)
     except Exception as e:
         print("shin_kanto: 解体・空き家は前のまま", repr(e))
+    # 申し込み・リクエストと感想（入力と送る仕組みは前のまま）
+    for f in ("moushikomi.html", "koe.html"):
+        try:
+            ti, de = Y.meta(os.path.join(S, f)); d = Y.form(os.path.join(S, f))
+            if d: write(f, "/" + f[:-5], ti, home_cfg("/" + f[:-5]), d, "doc", de)
+        except Exception as e:
+            print("shin_kanto: 前のまま", f, repr(e))
 
 
 def main():
