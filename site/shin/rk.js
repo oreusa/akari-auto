@@ -44,6 +44,7 @@ q.addEventListener("input",function(){var s=kana(q.value.trim());if(!s){qo.inner
   qo.innerHTML=hit.length?hit.map(function(x){var v=x.r.v[tk];return '<button type="button" data-id="'+esc(x.r.id||x.r.n)+'"><b>'+esc(x.r.n)+'</b><span>'+esc(D.an||"")+n+'の街で <em>'+x.k+'位</em>・'+sg(v[1])+'%</span><i>→</i></button>'}).join(""):'<p class="dno2">見つかりませんでした。市区町村の名前で探してください。</p>'});
 qo.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
   if(G.length){st.g="all";$$("#rkg button").forEach(function(x){x.setAttribute("aria-pressed",x.dataset.g==="all"?"true":"false")})}
+  try{var _r=R.filter(function(x){return (x.id||x.n)===b.dataset.id})[0];if(_r)dispatchEvent(new CustomEvent("tn-town",{detail:{n:_r.n,id:_r.id||""}}))}catch(_){}
   st.all=1;draw();var el=document.getElementById("r-"+b.dataset.id);if(!el)return;
   el.scrollIntoView({behavior:RM?"auto":"smooth",block:"center"});el.classList.add("hl");setTimeout(function(){el.classList.remove("hl")},2600);
   q.value="";qo.innerHTML="";try{S_.count&&S_.count("地価｜何位")}catch(_){}});

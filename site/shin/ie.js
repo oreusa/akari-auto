@@ -86,7 +86,7 @@ new IntersectionObserver(function(e){$("#bar").classList.toggle("stuck",!e[0].is
 function cmp(v,a,lab){if(v==null||!a)return "";var mx=Math.max(v,a),d=Math.round(v-a);
   return '<div class="cmp"><div><span>この街</span><i><i data-w="'+(v/mx).toFixed(3)+'" style="background:var(--pc)"></i></i><b>'+man(v)+'</b></div><div><span>'+lab+'</span><i><i data-w="'+(a/mx).toFixed(3)+'"></i></i><b>'+man(a)+'</b></div>'+
    '<p>'+lab+'より'+(d===0?"同じくらい":man(Math.abs(d))+"円"+(d>0?"高い":"安い"))+'</p></div>'}
-function openTown(t){if(!t)return;var pa=PA[t.p]||{},trend=t.r7==null||t.r8==null?"":t.r8>t.r7?"前の年より上がり幅が大きくなりました。":t.r8<t.r7?"前の年より上がり幅が小さくなりました。":"前の年と同じくらいです。";
+function openTown(t){if(!t)return;try{dispatchEvent(new CustomEvent("tn-town",{detail:{n:t.n,id:t.id||""}}))}catch(e){}var pa=PA[t.p]||{},trend=t.r7==null||t.r8==null?"":t.r8>t.r7?"前の年より上がり幅が大きくなりました。":t.r8<t.r7?"前の年より上がり幅が小さくなりました。":"前の年と同じくらいです。";
   var nm=esc(t.n),moushi="/moushikomi?lite=1&machi="+t.id+"&want="+encodeURIComponent("査定してほしい");
   S_.sheet('<div class="bd tw" style="--pc:'+PC[t.p]+'"><div class="lb"><span class="g" style="color:'+PC[t.p]+'">'+PF[t.p]+'</span>'+(t.rk?'<span>地価の上がり幅 '+t.rk+'位／'+t.of+'</span>':"")+'</div>'+
    '<h2>'+esc(t.n)+'</h2><div class="hero2"><div><small>住宅地の地価 1年の動き</small><b class="'+(t.r8>=0?"up":"dn")+'"><span data-n="'+(t.r8||0)+'" data-d="1" data-pre="'+(t.r8>0?"+":"")+'">0</span>%</b></div><p>'+(t.r7!=null?"前の年は"+pct(t.r7)+"。":"")+trend+'</p></div>'+

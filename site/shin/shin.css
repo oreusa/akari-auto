@@ -1264,3 +1264,15 @@ html body .dqz .pn{background:none!important;-webkit-backdrop-filter:none;backdr
 .dc .kmp .cd{display:flex;gap:12px;padding:12px;border-radius:18px;border:1px solid var(--line);background:var(--card,var(--bg));color:var(--ink);text-decoration:none}
 .dc .kmp .cd img{flex:none;width:84px;height:84px;object-fit:contain;border-radius:12px;background:#fff}.dc .kmp .ktx{display:flex;flex-direction:column;gap:3px;min-width:0}
 .dc .kmp .knm{font-weight:600;font-size:14px;line-height:1.5}.dc .kmp .kmt2{font-size:12.5px;color:var(--sub)}.dc .kmp .kmt2 b{font-size:15px;color:var(--ink)}.dc .kmp .ksh{font-size:11.5px;color:var(--mut)}.dc .kmp .kgo{font-size:12.5px;color:var(--ink);margin-top:2px;text-decoration:underline;text-underline-offset:3px}
+/* 11/23 申し込みの1画面目を3問に（yari.three） */
+.fmz .q3{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;font-weight:600}.fmz .q3 i,.fmz label.fl i{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg);font:600 12px/1 var(--sans);font-style:normal;margin-right:8px}
+.fmz label.fl[for=pl]{display:flex;align-items:center;flex-wrap:wrap;font-weight:600}
+.fmz .fmore{margin-top:20px}
+.fmz label.fl[for=pl] em{margin-left:8px}.fmz .mf .s3m{margin:20px 0 6px}
+/* 11/23 売る入口（shin.js sellCta）：1画面目に1つだけ */
+.sellc{position:relative;display:block;margin:4px 16px 18px;padding:17px 46px 16px 18px;border-radius:20px;background:var(--ink);color:var(--bg)!important;text-decoration:none;box-shadow:0 10px 30px -12px rgba(0,0,0,.35)}
+.wrap .sellc,.dc .sellc{margin-left:0;margin-right:0}
+.sellc b{display:block;font:600 16.5px/1.45 var(--sans);letter-spacing:.01em}.sellc b span{font-weight:600;white-space:nowrap}
+#sellc b{font-weight:700!important;font-size:16.5px!important;letter-spacing:.01em!important;color:inherit}#sellc b span{font-size:1em!important;font-weight:700!important}
+.sellc small{display:block;margin-top:3px;font-size:12.5px;opacity:.72}.sellc i{position:absolute;right:18px;top:50%;transform:translateY(-52%);font-style:normal;font-size:24px;line-height:1}
+.sellc:active{transform:scale(.985)}

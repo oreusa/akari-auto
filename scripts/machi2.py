@@ -34,7 +34,9 @@ def after(L, key, n=1):
     return ""
 
 
-CSSV = "1"
+CSSV = "2"
+KANTO = __file__.replace("\\", "/").endswith("scripts/machi2.py")
+SELL_A8 = "https://px.a8.net/svt/ejp?a8mat=4BGH3I+E2NY4I+5Y9M+5YJRM"
 
 
 def main(src, out, prod=False):
@@ -131,12 +133,17 @@ def main(src, out, prod=False):
     yrow = "".join(f'<a href="{x}" rel="sponsored noopener" target="_blank">{lab}<i>↗</i></a>' for x, lab in zip(yh, ["中古マンション", "中古一戸建て", "土地"]))
     rows = [("人口", f"{pop}人" if pop else "—", "2025年"), ("5年の人口の増減", pop5, ""), ("65歳以上の割合", f"{old}%" if old else "—", ""), ("空き家の割合", f"{ak}%" if ak else "—", "2023年")]
     rows = [r for r in rows if r[1] and r[1] != "—"]
+    # 11/23 owner「収益化が何一つ上手くいってない」：1画面目に「いくらで売れるか無料で聞く（街の名前）」を1つ（関西＝申し込み・関東＝契約済みの査定 A8）。HP の shin.js sellCta と同じ形。
+    if KANTO:
+        sell = f'<a class="sell" href="{SELL_A8}" rel="nofollow sponsored noopener" target="_blank" data-k="売る入口｜/machi｜{E(name)}"><b>いくらで売れるか無料で聞く<span>（{E(name)}）</span></b><small>無料・約1分でわかる（ざっくりAI査定＋・広告）</small><i>›</i></a>'
+    else:
+        sell = f'<a class="sell" href="/moushikomi?want=%E6%9F%BB%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%BB%E3%81%97%E3%81%84&amp;machi={tid}" data-k="売る入口｜/machi｜{E(name)}"><b>いくらで売れるか無料で聞く<span>（{E(name)}）</span></b><small>無料・売るか決めていなくても大丈夫・約1分</small><i>›</i></a>'
     body = f'''<main class="m2">
 <header class="m2h"><p class="pf">{E(pref)}</p><h1>{E(name)}</h1><p class="sb">家と土地の値段・地価・くらしの数字</p></header>
+{sell}
 <section class="mcs" aria-label="数字">{"".join(cards)}</section>
 {f'<p class="vd">{E(verdict)}</p>' if verdict else ""}
-<a class="go" href="{ikura}"><b>{E(name)}で、うちの家はいくら？</b><small>種類と広さから30秒で目安・名前は要りません</small><i>›</i></a>
-<a class="go2" href="{ask}">売る前に、無料で聞いてみる<i>›</i></a>
+<a class="go2 gik" href="{ikura}"><b>{E(name)}で、うちの家はいくら？</b><small>種類と広さから30秒で目安・名前は要りません</small><i>›</i></a>
 <!-- 11/21 売り出し中の家を近くの街くらべより上に（関西と同じ） -->
 <section class="sec yhs"><h2>{E(name)}で売り出し中の家</h2><div class="yh">{yrow}</div><p class="note">Yahoo!不動産の一覧が開きます（広告）</p></section>
 <div id="itt"></div>

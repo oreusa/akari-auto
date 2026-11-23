@@ -16,6 +16,26 @@ def old(path):
     return open(path, encoding='utf-8').read() if os.path.exists(path) else None
 
 
+# 11/23 owner「収益化が何一つ上手くいってない」：見られている家・地価のページの1画面目に「いくらで売れるか無料で聞く（◯◯市）」を1つ（shin.js sellCta）。
+# 関西は自分の申し込み（街を入れて開く）・関東は契約済みの査定（A8 ざっくりAI査定＋）。
+SELL_A8 = 'https://px.a8.net/svt/ejp?a8mat=4BGH3I+E2NY4I+5Y9M+5YJRM'
+
+
+def sell_cfg(kanto, n='', id=''):
+    if kanto:
+        c = {'u': SELL_A8, 'ad': 1, 'sm': '無料・約1分でわかる（ざっくりAI査定＋・広告）', 'any': '関東どこでも'}
+    else:
+        c = {'u': '/moushikomi?want=' + '査定してほしい', 'sm': '無料・売るか決めていなくても大丈夫・約1分', 'any': '関西どこでも'}
+    if n: c['n'] = n
+    if id: c['id'] = id
+    return c
+
+
+def town_of(d):
+    """実家の街のページの h1（神戸市東灘区の実家・空き家ノート）から街の名前。"""
+    m = re.match(r'(.+?)の実家', (d or {}).get('h1', ''))
+    return m.group(1) if m else ''
+
 def rel_html(rel, k):
     return ('<section class="dsec"><h2>あわせて見る</h2><div class="drel">' +
             ''.join(f'<a href="{u}" data-k="{k}｜関連｜{E(t)}">{E(t)}<small>{E(s)}</small></a>' for t, u, s in rel) + '</div></section>')
@@ -212,8 +232,43 @@ def form(path):
     b = re.sub(r'<div class="head">\s*<h1>(.*?)</h1>(.*?)</div>', lambda m: f'<section class="hero"><h1 class="h1t">{m.group(1)}</h1>' + m.group(2).replace('class="sub"', 'class="h1p"') + '</section>', b, flags=re.S)
     b = re.sub(r' style="[^"]*"', '', b)  # 前の色・余白の指定（夜に読めない色もある）は新しい部品にまかせる
     b = b.replace('<p class="s3l">', '<p class="h1p s3l">').replace('class="back"', 'class="back dlk"').replace('<p class="note">', '<p class="dnote">')
+    if 'id="mf"' in b and 'name="want"' in b and 'id="kw"' in b:
+        b, js = three(b, js)
     h1 = _txt((re.search(r'<h1[^>]*>(.*?)</h1>', b, re.S) or [None, ''])[1])
     return {'h1': h1, 'nohero': 1, 'html': '<div class="fmz">' + b + '</div>', 'js': js}
+
+
+def three(b, js):
+    """11/23 owner「収益化が何一つ上手くいってない」：申し込みは7日で開いた6・書きはじめ2・送信0。
+    1画面目は3つだけ（ご用件・お家の場所・ご連絡先）。お名前・種類・内容・お家のことは「ほかにも書く（任意）」にたたむ。送る仕組みは前のまま。"""
+    def cut(pat):
+        nonlocal b
+        m = re.search(pat, b, re.S)
+        if not m: raise ValueError('3問：見つからない ' + pat[:30])
+        b = b.replace(m.group(0), '', 1)
+        return m.group(0)
+    A = cut(r'<label class="fl" for="nm">.*?<input[^>]*id="nm"[^>]*>')
+    B = cut(r'<label class="fl" for="em">.*?<input[^>]*id="em"[^>]*>')
+    C = cut(r'<label class="fl" for="tl">.*?<input[^>]*id="tl"[^>]*><div id="ttw" hidden>.*?</p></div>')
+    D = cut(r'<label class="fl" for="pl">.*?<input[^>]*id="pl"[^>]*>')
+    E = cut(r'<div class="fl"[^>]*>お家の種類</div>\s*<div class="ch">.*?</div>')
+    F = cut(r'<div class="fl"[^>]*>ご希望</div>\s*<div class="ch">.*?</div>')
+    G = cut(r'<label class="fl" for="tx">.*?</textarea>')
+    H = cut(r'<details class="kw" id="kw"[^>]*>.*?</details>')
+    Hin = re.sub(r'^<details[^>]*>\s*<summary>.*?</summary>', '', H, flags=re.S)[:-len('</details>')]
+    A = re.sub(r'<em>.*?</em>', '<em>任意</em>', A, count=1).replace(' required', '')
+    F = re.sub(r'<div class="fl"[^>]*>ご希望</div>', '<div class="fl q3"><i>1</i>ご用件</div>', F)
+    D = re.sub(r'(<label class="fl" for="pl">)(.*?)(<em>.*?</em>)?</label>', r'\1<i>2</i>お家の場所<em>市区町村まで</em></label>', D, count=1, flags=re.S)
+    B = re.sub(r'<em>.*?</em>', '<em>お返事はメールで</em>', B, count=1)
+    C = re.sub(r'(<label class="fl" for="tl">.*?)<em>.*?</em>', r'\1<em>お電話でのお返事をご希望の方</em>', C, count=1, flags=re.S)
+    q3 = '<div class="fl q3"><i>3</i>ご連絡先<em>メールか電話の、どちらかだけ</em></div>'
+    more = ('<details class="kw fmore" id="kw"><summary>ほかにも書く<em>任意・書かなくても送れます</em></summary>' + A + E + G + Hin + '</details>')
+    b = re.sub(r'(<form class="mf" id="mf"[^>]*>)', lambda m: m.group(1) + F + D + q3 + B + C + more, b, count=1)
+    js = js.replace('if(!d.name){er.textContent="お名前を書いてください";return}', 'if(!d.name)d.name="お名前なし";')
+    m = re.search(r'<p class="s3m">.*?</p>', b, re.S)  # 「1社に決めていない窓口」の説明は、3問の後ろ（送るボタンの上）へ
+    if m:
+        b = b.replace(m.group(0), '', 1).replace('<label class="ag">', m.group(0) + '<label class="ag">', 1)
+    return b, js
 
 
 # ---------- お得まとめ（/otoku）：関西・関東とも同じ入口（前は燈の古い形を関西でもそのまま出していた） ----------

@@ -53,3 +53,12 @@ details summary::-webkit-details-marker{display:none}
 .skc .wrap{max-width:640px;margin:0 auto;padding-left:16px!important;padding-right:16px!important;box-sizing:border-box}
 /* 近くの街とくらべる（skin.js）の「うちの家はいくら？」は上の主役のボタンと同じなので出さない */
 .m2 .cmpt-go{display:none}
+
+/* 11/23 売る入口（1画面目に1つ・shin.css .sellc と同じ形） */
+.sell{position:relative;display:block;margin:2px 0 18px;padding:17px 46px 16px 18px;border-radius:20px;background:#1D1D1F;color:#fff!important;text-decoration:none}
+.sell b{display:block;font-size:16.5px;line-height:1.4}.sell b span{display:block;font-weight:600}
+.sell small{display:block;margin-top:4px;font-size:12.5px;color:rgba(255,255,255,.72)}
+.sell i{position:absolute;right:18px;top:50%;transform:translateY(-52%);font-style:normal;font-size:24px;line-height:1}
+.sell:active{transform:scale(.985)}
+html.nt .sell{background:#F5F5F7;color:#0A0E18!important}html.nt .sell small{color:rgba(10,14,24,.7)}
+.go2.gik{margin-top:18px}.go2 b{display:block;font-size:15.5px;line-height:1.4}.go2 small{display:block;margin-top:3px;font-size:12.5px;font-weight:500;color:var(--sub)}

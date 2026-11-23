@@ -200,9 +200,24 @@ addEventListener("load",function(){drawn=0;if(H.classList.contains("nt"))stars()
 
 window.SHIN={reg:REG,$:$,$$:$$,el:el,esc:esc,TD:TD,seed:seed,diff:diff,md:md,dd:dd,IC:IC,RM:RM,countUp:countUp,counts:counts,bars:bars,sheet:sheet,closeSheet:closeSheet,seg:seg,
   onNav:function(f){navFn=f},navCur:navCur,main:$("#main"),data:JSON.parse((document.getElementById("d")||{textContent:"{}"}).textContent),
-  ready:function(){apply(H.classList.contains("nt"));largeTitle();
+  ready:function(){apply(H.classList.contains("nt"));largeTitle();sellCta();
   /* 11/19 表紙のボタン（/odekake#we・/kaiten#w=close）：# の後ろを下のバーのボタンと同じ動きにする */
   var hs=decodeURIComponent(location.hash.slice(1));if(hs&&navFn&&$('#nav [data-a="'+hs+'"]'))setTimeout(function(){navFn(hs);navCur(hs)},60)}};
+/* 11/23 owner「収益化が何一つ上手くいってない」：よく見られる家と土地のページの1画面目に「いくらで売れるか無料で聞く（◯◯市）」を1つ。
+   CFG.sell={u:行き先, ad:広告なら1, sm:小さな説明, n:街の名前, id:街の番号}。街が分からないページは、最後に見た街（tn_sell）か、えらぶと変わる。
+   関西は自分の申し込み（/moushikomi）、関東は提携している査定（広告）。 */
+function sellUrl(s,t){return s.ad?s.u:s.u+(t&&t.id?"&machi="+encodeURIComponent(t.id):t&&t.n?"&pl="+encodeURIComponent(t.n):"")}
+function sellCta(){try{var s=CFG.sell;if(!s||$("#sellc"))return;var t=s.n?{n:s.n,id:s.id||""}:null;
+  if(s.n)try{sessionStorage.setItem("tn_sell",JSON.stringify(t))}catch(e){}
+  if(!t)try{t=JSON.parse(sessionStorage.getItem("tn_sell")||"null")}catch(e){}
+  function fq(){return $("#rq")||$("#q")}var a=document.createElement("a");a.id="sellc";a.className="sellc";
+  if(s.ad){a.rel="nofollow sponsored noopener";a.target="_blank"}
+  function draw(){a.href=sellUrl(s,t);a.setAttribute("data-k","売る入口｜"+location.pathname+(t?"｜"+t.n:""));
+    a.innerHTML="<b>いくらで売れるか無料で聞く<span>（"+esc(t?t.n:fq()?"街をえらぶ":(s.any||"お住まいの街"))+"）</span></b><small>"+esc(s.sm||"")+"</small><i>›</i>"}
+  draw();a.addEventListener("click",function(e){if(!t&&fq()){e.preventDefault();var q=fq();q.focus();q.scrollIntoView({block:"center",behavior:RM?"auto":"smooth"})}});
+  addEventListener("tn-town",function(e){if(!e.detail||!e.detail.n)return;t=e.detail;try{sessionStorage.setItem("tn_sell",JSON.stringify(t))}catch(_){}draw()});
+  var m=$("#main"),h=m&&m.querySelector(".hero"),qh=h&&h.querySelector(".qr-h");if(qh)qh.parentNode.insertBefore(a,qh);else if(h&&h.parentNode)h.parentNode.insertBefore(a,h.nextSibling);else if(m){var w=m.querySelector(".wrap")||m;w.insertBefore(a,w.firstChild)}
+}catch(e){}}
 /* 11/19 iPhone の設定アプリの形：大きい題は下へ流すと薄れて、上の細い帯に小さく収まる。帯を押すと一番上へ */
 function largeTitle(){var h=$(".h1t");if(!h)return;var tb=document.createElement("button");tb.id="tb";tb.setAttribute("aria-label","一番上へ");tb.textContent=h.textContent;document.body.appendChild(tb);
   tb.onclick=function(){scrollTo({top:0,behavior:RM?"auto":"smooth"})};var q=0,on=false;
