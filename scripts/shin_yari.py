@@ -8,7 +8,11 @@ E = html.escape
 
 def old(path):
     if os.path.exists(path) and '/shin/shin.css' in open(path, encoding='utf-8').read():
-        path = os.path.join(os.path.dirname(path), 'kyu', os.path.basename(path))
+        d, b = os.path.split(path)
+        a = os.path.join(d, 'kyu', b)  # site/kyu/x.html
+        if not os.path.exists(a):  # site/kyu/o/x.html（下の階の前のページ）
+            u, s = os.path.split(d); a = os.path.join(u, 'kyu', s, b)
+        path = a
     return open(path, encoding='utf-8').read() if os.path.exists(path) else None
 
 
@@ -234,3 +238,49 @@ def otoku():
 def kau_cfg(cur, desc, foot):
     nav = [{'t': 'くらべる', 'ic': 'find', 'href': '/okaimono'}, {'t': '本当に安い？', 'ic': 'yen', 'href': '/nesage'}, {'t': 'ふるさと', 'ic': 'gift', 'href': '/furusato'}, {'t': 'お得', 'ic': 'star', 'href': '/otoku'}]
     return {'nav': [dict(n, cur=1) if n['href'] == cur else n for n in nav], 'menu': {'k': 'Shopping', 'items': [['お得な物', '/otoku', 1]]}, 'foot': foot, 'desc': desc}
+
+
+# ---------- おでかけの1件ページ（/o/<id>）：前のページの中身（写真・日程・地図・公式・宿・ほかのおでかけ）を新しい部品に ----------
+def spot(path, pn=None):
+    t = old(path)
+    if not t: return None
+    b = t[t.index('<body'):]
+    js = '\n'.join(re.findall(r'<script>(.*?)</script>', b, re.S))
+    b = re.sub(r'<script[^>]*>.*?</script>', '', b, flags=re.S)
+    h1, span, sub, upd = v2_head(b)
+    body = b[b.index('</div>', b.index('<div class="upd">')) + 6:b.index('<div class="ft">')]
+    body = re.sub(r'^\s*</div>', '', body)
+    body = re.sub(r'(<div class="big">.*?</div></div>)', lambda m: re.sub(r' style="[^"]*"', '', m.group(1)), body, count=1, flags=re.S)
+    body = body.replace('<p class="lead">', '<p class="dtx olead">').replace('<div class="note">', '<p class="dnote">')
+    body = re.sub(r'(<p class="dnote">.*?)</div>', r'\1</p>', body, count=1, flags=re.S)
+    body = re.sub(r'<div class="act">(.*?)</div>', lambda m: '<div class="oact">' + re.sub(r'<a class="o"', '<a class="dbtn"', re.sub(r'<a class="g"', '<a class="dbtn2"', m.group(1))) + '</div>', body, count=1, flags=re.S)
+    body = re.sub(r'<ul class="yl">(.*?)</ul>', lambda m: '<ul class="dli oyl">' + re.sub(r'<a ([^>]*)>(.*?)<span>(.*?)</span></a>', r'<a \1><b>\2</b><small>\3</small></a>', m.group(1)) + '</ul>', body, flags=re.S)
+    # ほかのおでかけ（カード）→ あわせて見るの板
+    def fcs(m):
+        cards = re.findall(r'<a class="fc" href="([^"]+)"[^>]*><small>(.*?)</small><b>(.*?)</b><span>(.*?)</span></a>', m.group(0), re.S)
+        return '<div class="drel">' + ''.join(f'<a href="{u}" data-k="1件｜ほかのおでかけ">{ti}<small>{sp}</small></a>' for u, sm, ti, sp in cards) + '</div>'
+    body = re.sub(r'(<a class="fc"[^>]*>.*?</a>)+', fcs, body, flags=re.S)
+    body = re.sub(r'<a class="back" href="([^"]+)"[^>]*>(.*?)</a>', r'<a class="dlk" href="\1">\2</a>', body)
+    body = re.sub(r'<p class="cap">', '<p class="dhint">', body)
+    body = re.sub(r'<nav class="pn" aria-label="([^"]*)">(.*?)</nav>', lambda m: f'<nav class="opn" aria-label="{m.group(1)}"><small>{m.group(1)}</small>' + m.group(2).replace('aria-current=page', 'aria-current="page"') + '</nav>', body, flags=re.S)
+    if pn and 'class="opn"' not in body and '<a class="dlk"' in body:  # 府県ごとに見る（関東の前のページにはあった。関西にも同じく）
+        cur = re.search(r'<a class="dlk" href="([^"]+)"', body).group(1)
+        nav = '<nav class="opn" aria-label="府県ごとに見る"><small>府県ごとに見る</small>' + ''.join(f'<a href="{u}"' + (' aria-current="page"' if u == cur else '') + f'>{l}</a>' for l, u in pn) + '</nav>'
+        body = body.replace('<a class="dlk"', nav + '<a class="dlk"', 1)
+    parts = re.split(r'(<h2>.*?</h2>)', body)
+    out = '<section class="dsec osp">' + parts[0] + '</section>'
+    for i in range(1, len(parts), 2):
+        out += '<section class="dsec">' + parts[i] + parts[i + 1] + '</section>'
+    return {'h1': h1, 'sub': (f'<b>{E(span)}</b><br>' if span else '') + sub + (f'<br><small>{E(upd)}</small>' if upd else ''), 'html': out, 'js': js}
+
+
+def keep_head(old_path, new_path):
+    """前のページの og:image（催しごとの絵）・twitter・構造化データ（Event）を新しいページにも残す（検索・SNSで同じに見える）。"""
+    t = old(old_path); n = open(new_path, encoding='utf-8').read()
+    h = t[:t.index('</head>')]
+    keep = ''.join(re.findall(r'<meta (?:property="og:(?:type|description|image(?::width|:height)?)"|name="twitter:[a-z]+")[^>]*>', h))
+    keep += ''.join(re.findall(r'<script type="application/ld\+json">.*?</script>', h, re.S))
+    if not keep: return
+    n = re.sub(r'<meta property="og:image" content="[^"]*">', '', n, count=1)
+    n = n.replace('</head>', keep + '</head>', 1)
+    open(new_path, 'w', encoding='utf-8').write(n)
