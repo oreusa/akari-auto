@@ -1308,32 +1308,28 @@ html.rkm #rkm{margin-top:14px}
 #rkm b,#rkm .rv{font-family:var(--rk-num);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
 .rknew{display:inline-block;vertical-align:.18em;margin-right:8px;padding:2px 7px 1px;border-radius:5px;background:var(--ink);color:var(--bg);font:700 10.5px/1.4 var(--rk-num);letter-spacing:.06em}
 .rkw{display:block;margin-top:4px;font:600 14px/1.5 var(--sans);color:var(--ink);letter-spacing:0}
-/* 1 紙面：最新の1本を大きく（1位の数字を一番大きな字に）・ほかは線で区切る */
-.rkm-1 .pl0{padding:6px 0 30px;border-bottom:2px solid var(--ink)}
-.rkm-1 .pl0 h3{margin:0;font:600 24px/1.4 var(--rk-serif);letter-spacing:.01em;overflow-wrap:break-word}
-.rkm-1 .pl0 .rkw{font-size:15px;margin-top:6px}
-.rkm-1 .rkbig{display:block;margin:18px 0 4px;padding:0;border:0;background:none}
-.rkm-1 .rkbig span{display:block;font-size:15px;font-weight:600;margin-bottom:2px}
-.rkm-1 .rkbig b{display:block;font-size:clamp(44px,14vw,60px);font-weight:700;line-height:1.05;white-space:nowrap}.rkm-1 .rkbig b small,.rkm-1 .rkone b small,.rkm-1 .rv small{font-size:.42em;font-weight:700;margin-left:2px}
-.rkm-1 .rkld{margin:6px 0 16px;font-size:13.5px;line-height:1.65;color:var(--ink);opacity:.82}
-.rkm-1 .pl1 .rkld{margin:6px 0 0}
-.rkm-1 .rb{list-style:none;margin:0;padding:0}
-.rkm-1 .rb li{position:relative;display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:baseline;gap:10px;padding:9px 0 12px}
-.rkm-1 .rn{font:600 13px var(--rk-num);color:var(--ink)}.rkm-1 .rt{font-size:15px;overflow-wrap:break-word;min-width:0}.rkm-1 .rv{font-size:17px;font-weight:700}
-.rkm-1 .rl{position:absolute;left:32px;right:0;bottom:4px;height:3px;background:var(--line)}
-.rkm-1 .rl::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--ink);border-radius:2px}
-.rkm-1 .rb li:first-child .rl::after{background:linear-gradient(90deg,#2BB3A3,#3A86C8)}
-.rkm-1 .rkmore{display:inline-block;margin-top:14px;font-size:14px;font-weight:600;border-bottom:1px solid currentColor}
-.rkm-1 .pl1{border-bottom:1px solid var(--line)}.rkm-1 .pl1 a{padding:18px 0 16px}
-.rkm-1 .pl1 h3{margin:0;font:600 18px/1.45 var(--rk-serif);overflow-wrap:break-word}
-.rkm-1 .rkone{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:10px 0 0;font-size:14px;font-weight:600}
-.rkm-1 .rkone b{font-size:22px;font-weight:700;color:var(--ink);white-space:nowrap}
-/* 2 索引：統計表の形。何の順位か・1位の値を2列で */
-.rkm-2 .ixh{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:0 0 8px;border-bottom:2px solid var(--ink);font-size:12.5px;font-weight:600}
-.rkm-2 .ixh span:last-child{text-align:right}
-.rkm-2 .ixr{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
-.rkm-2 .ixt{font-size:15px;line-height:1.5;font-weight:600;min-width:0;overflow-wrap:break-word}.rkm-2 .ixt small{display:block;margin-top:2px;font-size:13px;font-weight:500;opacity:.85}
-.rkm-2 .ixt .rknew{vertical-align:.12em;margin-right:6px}
-.rkm-2 .ixv{text-align:right;min-width:88px}.rkm-2 .ixv small{display:block;font-size:13px;font-weight:600;max-width:120px;margin-left:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.rkm-2 .ixv b{font-size:21px;font-weight:700;line-height:1.15}.rkm-2 .ixv i{font-style:normal;font-size:12px;font-weight:600;margin-left:2px}
-.rkm-2 .ixe{font-size:13.5px;font-weight:600}
+/* 札の形（AとBを1つに）：1本ずつ白い札・左上に分野の絵と色（色は目印だけ）・上位3つの横の棒 */
+html.rkm #rkm{margin-top:14px}
+.rkc .rc{margin:0 0 12px;border-radius:18px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05),0 8px 24px -14px rgba(0,0,0,.18);border:1px solid rgba(0,0,0,.05)}
+html.nt .rkc .rc{background:rgba(255,255,255,.085);border-color:rgba(255,255,255,.12);box-shadow:none}
+.rkc .rc>a{padding:14px 16px 14px}
+.rkc .rck{display:flex;align-items:center;gap:6px;margin:0 0 6px;font-size:12.5px;font-weight:700;color:var(--kc)}
+html.nt .rkc .rck{filter:brightness(1.55) saturate(.9)}
+.rkc .rck svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.rkc .rck .rknew{margin:0 0 0 auto;vertical-align:0}
+.rkc h3{margin:0;font:700 17.5px/1.4 var(--sans);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rkc .rcw{margin:6px 0 0}.rkc .rcw span{display:inline-block;padding:3px 9px;border-radius:7px;background:rgba(0,0,0,.055);font-size:12.5px;font-weight:600;line-height:1.5}
+html.nt .rkc .rcw span{background:rgba(255,255,255,.1)}
+.rkc .rkbig{margin:14px 0 2px}.rkc .rkbig span{display:block;font-size:14px;font-weight:700}
+.rkc .rkbig b{display:block;font-size:clamp(40px,12.5vw,54px);font-weight:700;line-height:1.08;white-space:nowrap}.rkc .rkbig b small,.rkc .rv small{font-size:.45em;font-weight:700;margin-left:2px}
+.rkc .r3{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:9px}
+.rkc .r3 li{display:grid;grid-template-columns:16px minmax(0,1fr) auto;column-gap:8px;row-gap:4px;align-items:baseline}
+.rkc .rn{font:700 12.5px var(--rk-num);text-align:center}
+.rkc .rt{font-size:14px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rkc .rv{font-size:15.5px;font-weight:700;white-space:nowrap}
+.rkc .rl{grid-column:2/4;display:block;height:7px;border-radius:4px;background:rgba(0,0,0,.06);overflow:hidden}
+html.nt .rkc .rl{background:rgba(255,255,255,.1)}
+.rkc .rl i{display:block;height:100%;border-radius:4px;background:var(--ink);opacity:.28}
+.rkc .r3 li:first-child .rl i{opacity:1}
+.rkc .rc0 .rl{height:9px}
+.rkc .rch{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);font-size:13px;font-weight:500;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

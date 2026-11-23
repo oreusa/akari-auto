@@ -44,30 +44,29 @@ function isNew(x){return NEW>0&&NN*2<IT.length&&md(x)===NEW}
 function info(x){var r=rows(x),t=r[0],s=subj(x,t);return {r:r,t:t,s:s.s,h:plain(s.h,t)?(lead(x)||s.h):s.h,ld:lead(x),w:what(x,t),nw:isNew(x)}}
 var nb='<span class="rknew">NEW</span>';
 
-var box=document.createElement("div");box.id="rkm";box.className="rkm-"+M;grid.parentNode.insertBefore(box,grid);
+var box=document.createElement("div");box.id="rkm";box.className="rkc";grid.parentNode.insertBefore(box,grid);
 function open(i){var a=grid.querySelector('[data-i="'+i+'"]');if(a)a.click()}
 box.addEventListener("click",function(e){var a=e.target.closest("[data-oi]");if(!a)return;e.preventDefault();open(a.getAttribute("data-oi"))});
 
-function bars(r,max){return '<ol class="rb">'+r.slice(0,5).map(function(o){var w=max?Math.max(4,Math.round(Math.abs(num(o.v))/max*100)):0;
-  return '<li><span class="rn">'+o.no+'</span><span class="rt">'+esc(o.n)+'</span><b class="rv">'+esc(o.v)+'<small>'+esc(o.u)+'</small></b><i class="rl" style="--w:'+w+'%"></i></li>'}).join("")+'</ol>'}
-function head(f,big){return '<h3>'+(f.nw?nb:"")+esc(f.s)+(f.w?'<span class="rkw">'+esc(f.w)+'</span>':"")+'</h3>'}
-
-function paper(L){var h="";L.forEach(function(p,k){var x=p.x,f=info(x),t=f.t;
-  if(k===0&&t){var max=Math.max.apply(null,f.r.slice(0,5).map(function(o){return Math.abs(num(o.v))}));
-    h+='<article class="pl0"><a href="#" data-oi="'+p.i+'">'+head(f)+
-       '<p class="rkbig"><span>1位　'+esc(t.n)+'</span><b>'+esc(t.v)+'<small>'+esc(t.u)+'</small></b></p>'+(f.ld||f.h?'<p class="rkld">'+esc(f.ld||f.h)+'</p>':"")+bars(f.r,max)+'<span class="rkmore">順位の全部と出どころ</span></a></article>';return}
-  h+='<article class="pl1"><a href="#" data-oi="'+p.i+'">'+head(f)+
-     (t?'<p class="rkone"><span>1位　'+esc(t.n)+'</span><b>'+esc(t.v)+'<small>'+esc(t.u)+'</small></b></p>':"")+(f.h?'<p class="rkld">'+esc(f.h)+'</p>':"")+'</a></article>'});
-  return h}
-
-function index(L){var h='<div class="ixh"><span>何の順位か</span><span>1位</span></div>';
-  L.forEach(function(p){var x=p.x,f=info(x),t=f.t;
-    h+='<a class="ixr" href="#" data-oi="'+p.i+'"><span class="ixt">'+(f.nw?nb:"")+esc(f.s)+(f.w?'<small>'+esc(f.w)+'</small>':"")+'</span>'+
-       (t?'<span class="ixv"><small>'+esc(t.n)+'</small><b>'+esc(t.v)+'</b><i>'+esc(t.u)+'</i></span>':'<span class="ixv ixe">ひらく ›</span>')+'</a>'});
-  return h}
+/* 11/24 オーナー「区切り分かりやすく？文字ばかりだから工夫は必要」→ AとBを1つに：1本ずつ白い札・左上に分野の絵と色・
+   どの札にも上位3つの横の棒（字を読まなくても分かる）・題は1行で太く・何の数かは小さな札・驚きの一言は一番下に1行。一番新しい1本だけ大きな数字 */
+var KIND={eki:["駅","#3B5BA5",'<rect x="6" y="3" width="12" height="13" rx="3"/><path d="M6 10h12M9.5 19.5L8 21.5M14.5 19.5l1.5 2"/><circle cx="9.5" cy="13" r=".9"/><circle cx="14.5" cy="13" r=".9"/>'],
+  ie:["家と土地","#C0532B",'<path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/>'],
+  hito:["人口","#2E8B6E",'<circle cx="12" cy="7.5" r="3.5"/><path d="M5 20.5c.8-4 3.6-6.5 7-6.5s6.2 2.5 7 6.5"/>'],
+  hoka:["そのほか","#6E6E73",'<circle cx="7" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="17" cy="12" r="1.6"/>']};
+function top3(r){var t=r.slice(0,3),max=Math.max.apply(null,t.map(function(o){return Math.abs(num(o.v))}))||1;
+  return '<ol class="r3">'+t.map(function(o){var w=Math.max(6,Math.round(Math.abs(num(o.v))/max*100));
+    return '<li><span class="rn">'+o.no+'</span><span class="rt">'+esc(o.n)+'</span><b class="rv">'+esc(o.v)+'<small>'+esc(o.u)+'</small></b><i class="rl"><i style="width:'+w+'%"></i></i></li>'}).join("")+'</ol>'}
+function card(p,big){var x=p.x,f=info(x),t=f.t,K=KIND[x.k]||KIND.hoka,hk=big?(f.ld||f.h):f.h;
+  return '<article class="rc'+(big?' rc0':'')+'" style="--kc:'+K[1]+'"><a href="#" data-oi="'+p.i+'">'+
+    '<p class="rck"><svg viewBox="0 0 24 24" aria-hidden="true">'+K[2]+'</svg><span>'+esc(K[0])+'</span>'+(f.nw?nb:"")+'</p>'+
+    '<h3>'+esc(f.s)+'</h3>'+(f.w?'<p class="rcw"><span>'+esc(f.w)+'</span></p>':"")+
+    (big&&t?'<p class="rkbig"><span>1位　'+esc(t.n)+'</span><b>'+esc(t.v)+'<small>'+esc(t.u)+'</small></b></p>':"")+
+    (f.r.length?top3(f.r):"")+(hk?'<p class="rch">'+esc(hk)+'</p>':"")+'</a></article>'}
+function cards(L){return L.map(function(p,k){return card(p,p.x===IT[0]&&!!info(p.x).t)}).join("")}
 
 function draw(){var L=[].map.call(grid.querySelectorAll("[data-i]"),function(a){var i=a.getAttribute("data-i");return{i:i,x:IT[+i]||IT.filter(function(z){return String(z.i)===i})[0]}}).filter(function(p){return p.x});
-  box.innerHTML=M==="1"?paper(L):index(L);
+  box.innerHTML=cards(L);
   var hk=document.querySelector('#chips .chip[data-g="hoka"]');if(hk&&/そのほか/.test(hk.textContent))[].forEach.call(hk.childNodes,function(n){if(n.nodeType===3)n.textContent=n.textContent.replace("そのほか","ほか")})}
 new MutationObserver(draw).observe(grid,{childList:true});draw();
 
