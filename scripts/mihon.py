@@ -78,7 +78,7 @@ for f in sorted(glob.glob(os.path.join(S, "illumination*.html")) + glob.glob(os.
         h = re.search(r'<a class="cd" href="([^"]+)"', b)
         if not t or a.get("data-p", "") not in FU: continue
         add(txt(t.group(1)), a.get("data-p", ""), a.get("data-s", ""), a.get("data-e", ""), html.unescape(h.group(1)) if h else "", txt(m.group(1)) if m else "")
-# 3) 1件ページ（/o/）に会場・場所の写真。見本の人だけに見える（hidden を mihon.js が外す）。作り直すたびに入れ直す
+# 3) 1件ページ（/o/）に会場・場所の写真。作り直すたびに入れ直す。11/23 関西は全員に見せているのに関東は見本の人だけ（hidden）だった→全員に
 def esc(x): return html.escape(x, quote=True)
 for o in out.values():
     if not o.get("id") or not o.get("im"): continue
@@ -86,7 +86,7 @@ for o in out.values():
     t = re.sub(r'<figure class="mph-k".*?</figure>', "", t, flags=re.S)
     lab = ("場所" if o.get("vk") else "会場") + "：" + o["vn"]
     cr = f'<a href="{esc(o["cu"])}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:rgba(162,149,138,.4);text-underline-offset:2px">{esc(o["cr"])}</a>' if o.get("cu") else esc(o["cr"])
-    fig = (f'<figure class="mph-k" hidden style="margin:18px 0 0;position:relative"><img src="/assets/ph/{o["im"]}" alt="{esc(o["vn"])}" width="1200" height="800" decoding="async" '
+    fig = (f'<figure class="mph-k" style="margin:18px 0 0;position:relative"><img src="/assets/ph/{o["im"]}" alt="{esc(o["vn"])}" width="1200" height="800" decoding="async" '
            f'style="display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:18px;background:#EFEAE4">'
            f'<i style="position:absolute;left:10px;top:10px;font:700 11px \'Zen Kaku Gothic New\',sans-serif;font-style:normal;color:#fff;background:rgba(30,24,20,.62);border-radius:99px;padding:5px 10px">{esc(lab)}</i>'
            f'<figcaption style="font-size:10.5px;color:#A2958A;margin-top:6px;line-height:1.6">{esc(lab.split("：")[0])}（{esc(o["vn"])}）の写真：{cr}</figcaption></figure>')
