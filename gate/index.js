@@ -14,7 +14,7 @@ a b{display:block;font-size:24px;letter-spacing:.08em}a span{font-size:14px;colo
 // 11/23 owner「もっとおしゃれに」→ 15:46「おけ」でふだんの入口に（?mihon=0 で前の形）。見本：HP と同じ（昼＝上だけ淡いオーロラ・夜＝澄んだ星空・すりガラスのカード・細い字）。?mihon=1 で見られる
 const TOP2 = `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>TOWN NOTE（タウンノート）｜関西・関東のおでかけと暮らしのノート</title><link rel="canonical" href="https://townnote.app/">
 <meta name="description" content="関西の TOWN NOTE と、関東の LIFE NOTE。日付と地図でさがせる、おでかけと暮らしのノートです。">
-<meta property="og:title" content="TOWN NOTE"><meta property="og:image" content="https://kansai.townnote.app/assets/ogp.png"><link rel="icon" href="https://kansai.townnote.app/assets/icon-192.png"><link rel="apple-touch-icon" href="https://kansai.townnote.app/assets/icon-180.png">
+<meta property="og:title" content="TOWN NOTE（タウンノート）"><meta property="og:image" content="https://kansai.townnote.app/assets/ogp-top.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="https://kansai.townnote.app/assets/icon-192.png"><link rel="apple-touch-icon" href="https://kansai.townnote.app/assets/icon-180.png">
 <meta name="theme-color" content="#F8F8FA">
 <script>(function(){var n;try{n=localStorage.getItem("tn_gate")}catch(e){}var m=location.search.match(/[?&]yoru=([01])/);if(m)n=m[1]==="1"?"night":"day";if(!n){var h=new Date().getHours();n=(h>=18||h<6)?"night":"day"}if(n==="night")document.documentElement.classList.add("nt")})()</script>
 <style>
