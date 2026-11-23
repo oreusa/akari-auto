@@ -4,8 +4,8 @@
    11/24 オーナー「もう少し分かりやすく、見やすく」→ 1画面目を詰める・題は「何の順位か」・数字に「何の数か」・
    No.と日付をやめて新しい物だけ NEW・薄い小さな字をやめる。 */
 (function(){
-var M=(location.search.match(/[?&]mihon=([12])/)||[])[1];if(!M)return;
-var D;try{D=JSON.parse(document.getElementById("d").textContent)}catch(e){return}
+var M=(location.search.match(/[?&]mihon=(\d)/)||[])[1]||"1";if(M==="0")return;
+var D;try{D=JSON.parse(document.getElementById("d").textContent)}catch(e){document.documentElement.classList.remove("rkm");return}
 var IT=D.items||[],grid=document.getElementById("grid");if(!grid)return;
 var H=document.documentElement;H.classList.add("rkm","rkm"+M);
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -54,7 +54,7 @@ var KIND={eki:["駅","#3B5BA5",'<rect x="6" y="3" width="12" height="13" rx="3"/
   ie:["家と土地","#C0532B",'<path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/>'],
   hito:["人口","#2E8B6E",'<circle cx="12" cy="7.5" r="3.5"/><path d="M5 20.5c.8-4 3.6-6.5 7-6.5s6.2 2.5 7 6.5"/>'],
   hoka:["そのほか","#6E6E73",'<circle cx="7" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="17" cy="12" r="1.6"/>']};
-function top3(r){var t=r.slice(0,3),max=Math.max.apply(null,t.map(function(o){return Math.abs(num(o.v))}))||1;
+function top3(r,big){var t=r.slice(big?1:0,3),max=Math.max.apply(null,r.slice(0,3).map(function(o){return Math.abs(num(o.v))}))||1;
   return '<ol class="r3">'+t.map(function(o){var w=Math.max(6,Math.round(Math.abs(num(o.v))/max*100));
     return '<li><span class="rn">'+o.no+'</span><span class="rt">'+esc(o.n)+'</span><b class="rv">'+esc(o.v)+'<small>'+esc(o.u)+'</small></b><i class="rl"><i style="width:'+w+'%"></i></i></li>'}).join("")+'</ol>'}
 function card(p,big){var x=p.x,f=info(x),t=f.t,K=KIND[x.k]||KIND.hoka,hk=big?(f.ld||f.h):f.h;
@@ -62,7 +62,7 @@ function card(p,big){var x=p.x,f=info(x),t=f.t,K=KIND[x.k]||KIND.hoka,hk=big?(f.
     '<p class="rck"><svg viewBox="0 0 24 24" aria-hidden="true">'+K[2]+'</svg><span>'+esc(K[0])+'</span>'+(f.nw?nb:"")+'</p>'+
     '<h3>'+esc(f.s)+'</h3>'+(f.w?'<p class="rcw"><span>'+esc(f.w)+'</span></p>':"")+
     (big&&t?'<p class="rkbig"><span>1位　'+esc(t.n)+'</span><b>'+esc(t.v)+'<small>'+esc(t.u)+'</small></b></p>':"")+
-    (f.r.length?top3(f.r):"")+(hk?'<p class="rch">'+esc(hk)+'</p>':"")+'</a></article>'}
+    (f.r.length>(big?1:0)?top3(f.r,big&&!!t):"")+(hk?'<p class="rch">'+esc(hk)+'</p>':"")+'</a></article>'}
 function cards(L){return L.map(function(p,k){return card(p,p.x===IT[0]&&!!info(p.x).t)}).join("")}
 
 function draw(){var L=[].map.call(grid.querySelectorAll("[data-i]"),function(a){var i=a.getAttribute("data-i");return{i:i,x:IT[+i]||IT.filter(function(z){return String(z.i)===i})[0]}}).filter(function(p){return p.x});
