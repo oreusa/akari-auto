@@ -1249,3 +1249,18 @@ html body .dqz .pn{background:none!important;-webkit-backdrop-filter:none;backdr
 .dc .ksns{margin-top:18px}.dc .ksns .ksl{color:var(--ink);text-decoration:underline;text-underline-offset:3px;margin-left:8px}
 .dc .ksns .ksl{display:inline-block;white-space:nowrap}
 .hero .h1t{overflow-wrap:anywhere}
+/* 11/23 買いまわり（yari.kaimawari） */
+.dc .kms{margin:0 0 12px;padding:16px 18px;border-radius:20px;background:var(--chip);font-size:14px;line-height:1.8}.dc .kms .st{display:block;font-weight:600;margin-top:4px}
+.dc .kme{margin:6px 0 4px}.dc .kmw .cpn{margin-top:8px}
+.dc .kpl ol{list-style:none;margin:0;padding:0}.dc .kpl li{padding:12px 0;border-top:1px solid var(--line);font-size:14px;line-height:1.8;color:var(--sub)}.dc .kpl li>b{display:block;color:var(--ink);font-size:15px}
+.dc .kpl .sm,.dc .kcalc .sm{font-size:12px;color:var(--mut);margin:8px 0 0}.dc .kpl .tot{margin:12px 0 0;font-size:14px}.dc .kpl .tot b{font-size:18px}
+.dc .s10 li{padding:0}.dc .s10 .r{display:flex;gap:10px;align-items:center;padding:11px 0;color:var(--ink);text-decoration:none}.dc .s10 .r i{flex:none;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg);font:600 12px/24px var(--sans);text-align:center;font-style:normal}
+.dc .s10 .r span{flex:1;min-width:0;font-size:13.5px;line-height:1.5}.dc .s10 .r small{display:block;font-size:11.5px;color:var(--sub)}.dc .s10 .r>b{flex:none;font-size:14px}
+.dc .kcalc{padding:18px;border-radius:20px;background:var(--chip)}.dc .kcalc h2{margin-top:0}.dc .kcalc label{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;margin:8px 0}
+.dc .kcalc input{width:120px;font:500 16px/1 var(--sans);padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);text-align:right}.dc .kcalc .res{font-size:14px;line-height:1.8;margin:12px 0 0}.dc .kcalc .res b{font-size:20px}
+.dc .kmt{position:sticky;top:52px;z-index:3;margin:26px -16px 8px;padding:8px 16px;background:var(--bg);display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.dc .kmt::-webkit-scrollbar{display:none}.dc .kmt button{flex:none}.dc .kmt button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dc .kmp .ps h2{display:flex;align-items:baseline;gap:8px}.dc .kmp .ps h2 .c{font-size:12px;color:var(--sub);font-weight:400}
+.dc .kmp ul{list-style:none;margin:0;padding:0}.dc .kmp .it{margin:0 0 10px}
+.dc .kmp .cd{display:flex;gap:12px;padding:12px;border-radius:18px;border:1px solid var(--line);background:var(--card,var(--bg));color:var(--ink);text-decoration:none}
+.dc .kmp .cd img{flex:none;width:84px;height:84px;object-fit:contain;border-radius:12px;background:#fff}.dc .kmp .ktx{display:flex;flex-direction:column;gap:3px;min-width:0}
+.dc .kmp .knm{font-weight:600;font-size:14px;line-height:1.5}.dc .kmp .kmt2{font-size:12.5px;color:var(--sub)}.dc .kmp .kmt2 b{font-size:15px;color:var(--ink)}.dc .kmp .ksh{font-size:11.5px;color:var(--mut)}.dc .kmp .kgo{font-size:12.5px;color:var(--ink);margin-top:2px;text-decoration:underline;text-underline-offset:3px}

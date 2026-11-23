@@ -450,6 +450,19 @@ def docs():
         print("kaiten 1店: 新しい形", n)
     except Exception as e:
         print("shin_kanto: 開店閉店の1店は前のまま", repr(e))
+    # 11/23 買いまわり 1,000円ぽっきり（kaimawari.py が作った前のページ → 新しい土台。前のページは site/kyu/kaimawari.html＝関西も読む）
+    try:
+        kp = os.path.join(S, "kaimawari.html")
+        if os.path.exists(kp):
+            kt = Y.old(kp); d = Y.kaimawari(kt)
+            if d:
+                de = "楽天の買いまわり用に、1,000〜1,199円・送料込み・レビュー1,000件以上・評価4.0以上の物だけを、ジャンルごとに集めました。ポイントの計算つき。"
+                c = Y.kau_cfg("/kaimawari", "", "商品へのリンクは楽天アフィリエイトの広告（PR）です。"); c.pop("desc", None)
+                write("kaimawari.html", "/kaimawari", "買いまわり 1,000円ぽっきり（送料込み）まとめ｜LIFE NOTE", c, d, "doc", de)
+                Y.keep_head(None, kp, only_ld=True, text=kt)
+                print("kaimawari: 新しい形")
+    except Exception as e:
+        print("shin_kanto: 買いまわりは前のまま", repr(e))
 
 
 def main():
