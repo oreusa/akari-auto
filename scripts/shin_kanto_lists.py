@@ -63,11 +63,15 @@ def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
         rows = [l.rstrip("\n").split("\t") for l in open(hp, encoding="utf-8") if l.strip() and not l.startswith("#")]
         rows = [r for r in rows if len(r) == 7]
         hm = []
+        try: VP = json.load(open(os.path.join(R, "data", "venue_photos.json"), encoding="utf-8"))
+        except Exception: VP = {}
         for p, n, city, tm, tr, yr, url in rows:
             it = {"t": n, "p": p, "a": city, "k": "hatsu", "u": url, "ub": "公式の案内を見る", "id": hashlib.sha1(n.encode()).hexdigest()[:6],
                   "bg": "2027年の案内" if yr == "2027年" else ("昨年の案内" if yr == "昨年" else "例年の案内"), "bgc": "" if yr == "2027年" else "off",
                   "rows": [["時間", tm]] + ([["車・混雑", tr]] if tr not in ("", "—") else []) + [["案内", "2027年の案内" if yr == "2027年" else f"{yr}の案内（2027年の案内が出たら書き換えます）"]],
                   "d": "大晦日〜三が日", "mq": f"{n} {city}"}
+            v = VP.get(n) or VP.get(re.sub(r"\s+", "", n)) or {}
+            if v.get("img"): it.update({"im": v["img"], "cr": v.get("cr", ""), "cu": v.get("page", "")})
             hm.append(it)
         if len(hm) >= 5:
             n27 = sum(1 for r in rows if r[5] == "2027年")
