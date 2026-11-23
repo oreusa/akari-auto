@@ -10709,7 +10709,8 @@
         "THE KNOT YOKOHAMAのお知らせです（11/22時点）\nhttps://prtimes.jp/main/html/rd/p/000000081.000052690.html\n\n横浜の近くのおでかけはこちらです\nhttps://kanto.townnote.app/odekake-kanagawa\n\n関東のおでかけを、毎日ひとつ公式で確かめてのせています。"
       ],
       "topic": "神奈川",
-      "image": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-open-1123-1815.jpg"
+      "image": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-open-1123-1815.jpg",
+      "seen": "出た"
     }
   },
   "2026-11-23 18:16": {
@@ -10724,7 +10725,8 @@
         "サロモン阪急メンズ東京店のお知らせです（11/22時点）\nhttps://prtimes.jp/main/html/rd/p/000000069.000112205.html\n\n東京のおでかけを、日付と地図で：https://kanto.townnote.app/odekake-tokyo?f=x1816"
       ],
       "topic": "東京",
-      "image": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-open-1123-1816.jpg"
+      "image": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-open-1123-1816.jpg",
+      "seen": "出た"
     }
   },
   "2026-11-23 21:15": {
@@ -10755,6 +10757,33 @@
       ],
       "topic": "神奈川",
       "image": "https://raw.githubusercontent.com/oreusa/akari-auto/main/site/card/card-open-1123-2116.jpg"
+    }
+  },
+  "2026-11-23 おでかけリール": {
+    "instagram": {
+      "tries": 1,
+      "id": "6b040dd39c1a68014f66267e",
+      "kind": "おでかけリール",
+      "at": "20:00",
+      "texts": [
+        "街の調査で見つけた、関東おでかけリスト\n群馬・桐生の宝徳寺。磨かれた床に、まっかな紅葉がうつる「床もみじ」\n\n✦ 11/23 の色づきは「今見頃」\n✦ 床もみじの特別公開は 11/30(月)まで。昼の受付 9:00〜16:00\n✦ ライトアップは 11/30(月)まで 17:00〜19:00 受付\n✦ 拝観料 1200円・高校生以下は無料。予約はいりません\n✦ 境内には100本をこえるカエデ。庭の上には色とりどりの傘\n✦ 休日は 9:00〜10:00・13:30〜15:00・夜の17:00〜18:00 が混みます\n✦ JR桐生駅からバスで約25分〜40分。駐車場は250台（無料）\n\n一緒に行く人に送っておくと、当日迷いません\n\n✧ 内容は変わることがあります。出かける前に宝徳寺のページで確かめてください\n\nくわしくはプロフィールのリンクの「関東おでかけリスト」から\nHPの「いまから行ける おでかけ」は、いる場所といまの時刻から、きょう開いている所を近い順に並べます。\n\n#関東おでかけ #群馬紅葉 #宝徳寺 #床もみじ"
+      ],
+      "svc": "instagram"
+    },
+    "url": "https://oreusa.github.io/usagi-fudosan-media/media/reels/kanto-2026-11-23.mp4",
+    "twitter": {
+      "tries": 1,
+      "id": "6b040dd44d584ce2683ba5e0",
+      "kind": "おでかけリール",
+      "at": "20:00",
+      "texts": [
+        "宝徳寺（桐生市）\n宝徳寺。床もみじ\n\n・期間 11/30まで\n・昼 9時〜16時（受付）\n・夜 17時〜19時（受付）\n・拝観料 1200円\n\n出かける前に、公式ページで確かめてください。\n\n#関東おでかけ #宝徳寺"
+      ],
+      "svc": "twitter",
+      "url": "https://oreusa.github.io/usagi-fudosan-media/media/reels/kanto-2026-11-23.mp4"
+    },
+    "threads": {
+      "tries": 0
     }
   }
 }
