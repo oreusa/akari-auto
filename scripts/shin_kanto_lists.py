@@ -176,4 +176,14 @@ def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
         print("ranking", len(rl))
     except Exception as e:
         print("shin_kanto_lists: まちランキングは作らない", repr(e))
+    # 検索の機械が見つけられるように sitemap に足す（同じ住所はくり返さない）
+    try:
+        sm = os.path.join(S, "sitemap.xml")
+        if os.path.exists(sm):
+            x = open(sm, encoding="utf-8").read()
+            base = (re.search(r"<loc>(https://[^/<]+)", x) or [None, "https://kanto.townnote.app"])[1]
+            add = "".join(f"<url><loc>{base}{u}</loc><lastmod>{TD}</lastmod></url>" for u in sorted(made) if f"{base}{u}<" not in x)
+            if add: open(sm, "w", encoding="utf-8").write(x.replace("</urlset>", add + "</urlset>", 1))
+    except Exception as e:
+        print("shin_kanto_lists: sitemap は前のまま", repr(e))
     return made
