@@ -92,6 +92,17 @@ export default {
     if (!up) {
       if (u.pathname === '/' || u.pathname === '/index.html') return new Response(u.searchParams.get('mihon') === '0' ? TOP : TOP2, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': u.searchParams.get('mihon') === '0' ? 'no-store' : 'public, max-age=600' } });
       if (u.pathname === '/robots.txt') return new Response('User-agent: *\nAllow: /\n', { headers: { 'content-type': 'text/plain' } });
+      // 11/23 夜の見回り：古い深いURL（townnote.app/odekake など）で来た人が入口に戻されていた → 同じページのある地域へ送る。
+      // 関東の印（都県の名前・kanto）があれば関東、なければ関西に有るか確かめ、無くて関東に有れば関東。どちらにも無い時だけ入口。
+      const pq = u.pathname + u.search;
+      const KT = /(tokyo|kanagawa|saitama|chiba|ibaraki|tochigi|gunma|kanto|yokohama|kawasaki)/i;
+      const order = KT.test(u.pathname) ? ['kanto', 'kansai'] : ['kansai', 'kanto'];
+      for (const r of order) {
+        try {
+          const h = await fetch('https://' + MAP[r + '.townnote.app'] + u.pathname, { method: 'HEAD', redirect: 'follow' });
+          if (h.status < 400) return Response.redirect('https://' + r + '.townnote.app' + pq, 301);
+        } catch (e) {}
+      }
       return Response.redirect('https://townnote.app/', 302);
     }
     const t = new URL(req.url); t.hostname = up; t.protocol = 'https:'; t.port = '';
