@@ -36,7 +36,7 @@ def files(now):
                 out.append(f'予定表 {d} の投稿が{n}本（決まりは{need}本）')
         if d < '2026-11-13' and not os.path.exists(f'koma4/{d}.json'):  # 11/13 から4コマはやめた（オーナー 11/12）
             out.append(f'4コマ koma4/{d}.json が無い')
-        if d >= '2026-10-30':  # 07:30 の関東おでかけリール（10/30から）
+        if d >= '2026-10-30' and not os.path.exists('reel/STOP'):  # 07:30 の関東おでかけリール（10/30から）。11/19〜 reel/STOP の間は止めているので見ない
             if os.path.exists(f'reel-hp/{d}.json'):  # 11/2 HPリールの日は、おでかけリールを翌週に回す
                 if not (load(f'reel-hp/out/{d}.json') or {}).get('url') and (d != today or now.hour < 18):
                     out.append(f'HPリールの動画 reel-hp/out/{d}.json に url が無い（hp-reel.yml を動かす）')
