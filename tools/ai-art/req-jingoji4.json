@@ -1,0 +1,44 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "7-gate",
+   "prompt": "An old wooden Japanese temple gate with a tiled roof at the top of mossy stone steps in Takao, Kyoto, framed by bright red and orange maple trees, warm morning sun rays streaming diagonally through thin mist",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "8-rays",
+   "prompt": "Dramatic god rays of morning sunlight streaming through a dense canopy of red and orange Japanese maples onto a mossy stone stairway, light mist in the air, deep shadows and glowing leaves, cinematic contrast",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "9-branch",
+   "prompt": "Close-up of a single Japanese maple branch with vivid crimson leaves backlit by the sun, glowing translucent leaves, soft creamy bokeh of orange and gold behind, crisp detail",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "10-eave",
+   "prompt": "Corner of an old Japanese temple roof eave with weathered grey tiles and dark wooden brackets, a branch of bright red maple leaves in front, soft sunlight, rich contrast",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "11-valley",
+   "prompt": "View from a mountain temple over a deep river valley in Kyoto, mountains covered in red, orange and yellow autumn trees, morning mist drifting in the valley, sunlight on the ridges",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "12-lantern",
+   "prompt": "An old moss-covered stone lantern beside stone steps, covered with fallen red maple leaves, red maple trees glowing behind, soft warm light, rich colors",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "7-tunnel",
+   "prompt": "Low angle view down the center of a long straight avenue lined with four rows of tall golden yellow ginkgo trees forming a glowing golden tunnel in Tokyo, warm afternoon sunlight, clear blue sky, empty road",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "8-leaf",
+   "prompt": "Close-up of fan-shaped bright yellow ginkgo leaves on a branch backlit by sunlight, glowing translucent gold, soft bokeh of gold behind, crisp detail",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "9-path",
+   "prompt": "A wide sidewalk completely covered by a thick carpet of fallen yellow ginkgo leaves under tall golden ginkgo trees in Tokyo, an empty wooden bench, warm late afternoon light, long shadows",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "10-dusk",
+   "prompt": "A long avenue of golden ginkgo trees at blue hour in Tokyo, warm street lamps glowing, golden leaves lit from below against a deep blue evening sky, empty street",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "11-dome",
+   "prompt": "A stately stone museum building with a green copper dome at the far end of a long straight avenue of golden ginkgo trees in Tokyo, symmetrical composition, clear blue sky, warm sunlight",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "12-sky",
+   "prompt": "Looking straight up at tall golden ginkgo trees against a clear deep blue sky, branches converging, glowing yellow leaves, sun flare at the edge",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
