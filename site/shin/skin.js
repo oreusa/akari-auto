@@ -35,9 +35,7 @@ var TOP={nav:[["おでかけ","now","/odekake"],["家と土地","find","/fudosan
   k:"Town Note",menu:[["トップ","/"],["関西のおでかけ","/odekake"],["家と土地の相場","/fudosan-list"],["日用品の値段くらべ","/okaimono"],["開店・閉店","/kaiten"]],rel:[]};
 /* 関東（kanto.townnote.app）も同じ物を読む。関東にあるページだけを出す */
 var KT=/kanto|lifenote|life-note|usagi-life/.test(location.hostname);
-if(KT){FUD.nav[1]=["地価","rank","/chika-kanto"];FUD.menu=[["家と土地の相場","/fudosan-list"],["地価ランキング","/chika-kanto"],["家を売る前に","/uru"],["いくらで売れる？","/ikura"],["実家・空き家","/jikka/"],["解体の費用と補助金","/kaitai"]];
-  ODE.nav=[["おでかけ","now","/odekake"],["いまから","map","/ima"],["紅葉","we","/koyo"],["開店閉店","buy","/kaiten"]];ODE.menu=[["関東おでかけ","/odekake"],["イルミネーション","/illumination"],["紅葉","/koyo"],["いまから行ける","/ima"]];
-  KAI.menu=[["関東の開店・閉店","/kaiten"]];}
+if(KT){FUD.menu[1]=["地価ランキング","/chika-kanto"];ODE.menu[0]=["関東おでかけ","/odekake"];KAI.menu=[["関東の開店・閉店","/kaiten"]];TOP.menu[1]=["関東のおでかけ","/odekake"];}
 var BR=KT?"LIFE NOTE":"TOWN NOTE",LG=KT?["/logo-s.png","/logo-s-night.png"]:["/assets/logo-s.png?v=2","/assets/logo-s-night.png"];
 var OKA={nav:[["品物","find","/okaimono"],["値下がり","down","/nesage"],["お得","yen","/otoku"],["ふるさと納税","buy","/furusato"]],
   k:"Shopping",menu:[["日用品の値段くらべ","/okaimono"],["値下がりした物","/nesage"],["お得な物","/otoku"],["ふるさと納税","/furusato"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["開店・閉店","/kaiten"],["トップへ","/"]]};
@@ -45,7 +43,7 @@ var C=/^\/(okaimono|nesage|otoku|furusato|kaimawari|tanka)/.test(P)?OKA:/^\/(o|o
 var here=function(u){return u.split("?")[0]===P.replace(/\.html$/,"")};
 /* 11/20 owner「不動産・実家・空き家 ごっちゃになる・バラバラすぎる 整理して」：家と土地のページを3つの目的に分ける。
    上＝3つの目的の切りかえ（街の相場／売る・買う／実家・空き家）、下のバー＝今の目的のページだけ、MENU＝3つの見出しで全部。
-   関西・関東とも同じ物（関東に無いページ＝まちランキング は出さない。相談は 11/10 から関東も同じ）。
+   関西・関東とも同じ物（11/23 関東にもまちランキング。相談は 11/10 から関東も同じ）。
    11/20 17:14 owner「月に任せる・他社と比べて勝つ」→ ふだんの見た目に（?seiri=0 でこの端末だけ前の形）。 */
 function ieOrg(P,kt){
   var on=false;try{var q=location.search.match(/[?&]seiri=([01])/);if(q)localStorage.setItem("tn_seiri",q[1]);on=localStorage.getItem("tn_seiri")!=="0"}catch(e){}
