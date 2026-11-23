@@ -1311,7 +1311,7 @@ html.rkm #rkm{margin-top:14px}
 /* 札の形（AとBを1つに）：1本ずつ白い札・左上に分野の絵と色（色は目印だけ）・上位3つの横の棒 */
 html.rkm #rkm{margin-top:14px}
 .rkc .rc{margin:0 0 12px;border-radius:18px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05),0 8px 24px -14px rgba(0,0,0,.18);border:1px solid rgba(0,0,0,.05)}
-html.nt .rkc .rc{background:rgba(255,255,255,.085);border-color:rgba(255,255,255,.12);box-shadow:none}
+html.nt .rkc .rc{background:#1C1F2B;border-color:rgba(255,255,255,.12);box-shadow:0 10px 28px -16px rgba(0,0,0,.6)}
 .rkc .rc>a{padding:14px 16px 14px}
 .rkc .rck{display:flex;align-items:center;gap:6px;margin:0 0 6px;font-size:12.5px;font-weight:700;color:var(--kc)}
 html.nt .rkc .rck{filter:brightness(1.55) saturate(.9)}
@@ -1333,3 +1333,5 @@ html.nt .rkc .rl{background:rgba(255,255,255,.1)}
 .rkc .r3 li:first-child .rl i{opacity:1}
 .rkc .rc0 .rl{height:9px}
 .rkc .rch{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);font-size:13px;font-weight:500;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rkc .rc0 .rch{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.rkc .rc0 .r3 li:first-child .rl i{opacity:.28}

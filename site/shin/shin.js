@@ -200,7 +200,8 @@ addEventListener("load",function(){drawn=0;if(H.classList.contains("nt"))stars()
 
 window.SHIN={reg:REG,$:$,$$:$$,el:el,esc:esc,TD:TD,seed:seed,diff:diff,md:md,dd:dd,IC:IC,RM:RM,countUp:countUp,counts:counts,bars:bars,sheet:sheet,closeSheet:closeSheet,seg:seg,
   onNav:function(f){navFn=f},navCur:navCur,main:$("#main"),data:JSON.parse((document.getElementById("d")||{textContent:"{}"}).textContent),
-  ready:function(){apply(H.classList.contains("nt"));largeTitle();sellCta();noSelf();formHelp();if(/[?&]mihon=[12]/.test(location.search)&&/\/ranking(\.html)?$/.test(location.pathname)&&$("#grid")){var _s=document.createElement("script");_s.src="/shin/rkm.js?v=3";document.body.appendChild(_s)}
+  ready:function(){apply(H.classList.contains("nt"));largeTitle();sellCta();noSelf();formHelp();/* 11/24 まちランキングは札の形（rkm.js）を全員に。前の形は ?mihon=0 */
+  if(!/[?&]mihon=0/.test(location.search)&&/\/ranking(\.html)?$/.test(location.pathname)&&$("#grid")&&$("#d")){document.documentElement.classList.add("rkm");var _s=document.createElement("script");_s.src="/shin/rkm.js?v=4";_s.onerror=function(){document.documentElement.classList.remove("rkm")};document.body.appendChild(_s)}
   /* 11/19 表紙のボタン（/odekake#we・/kaiten#w=close）：# の後ろを下のバーのボタンと同じ動きにする */
   var hs=decodeURIComponent(location.hash.slice(1));if(hs&&navFn&&$('#nav [data-a="'+hs+'"]'))setTimeout(function(){navFn(hs);navCur(hs)},60)}};
 /* 11/23 owner「収益化が何一つ上手くいってない」：よく見られる家と土地のページの1画面目に「いくらで売れるか無料で聞く（◯◯市）」を1つ。
