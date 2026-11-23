@@ -1,0 +1,26 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "20-yatai",
+   "prompt": "A row of small festival food stalls with warm glowing paper lanterns under tall golden ginkgo trees in Tokyo at dusk, steam rising from cooking, yellow leaves on the ground, cozy festive mood",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "21-heart",
+   "prompt": "Bright yellow ginkgo leaves arranged in the shape of a heart on a sidewalk covered in fallen ginkgo leaves, soft warm afternoon sunlight, happy mood",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "22-night",
+   "prompt": "A long avenue of tall golden ginkgo trees lit up at night from below with warm lights, glowing yellow leaves against a deep navy night sky, wet road reflecting the lights, magical mood",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
