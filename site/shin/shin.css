@@ -1056,3 +1056,38 @@ html.ie2.nt .qr svg{stroke:#5FD0C2}
 .m2{overscroll-behavior:none;touch-action:pan-x}
 .m2c{touch-action:pan-x;overflow-y:hidden;overscroll-behavior:contain}
 .m2c .mcd{touch-action:pan-x}
+
+/* 11/23 地価ランキング（rk.js）：うちの街は何位？・上位3つ・オーロラ色の棒 */
+.rkx .rkf{margin:6px 0 18px}.rkx .rkf label{display:block;font:600 15px/1.4 var(--sans);margin:0 0 8px}
+.rkx #rqo button{display:flex;align-items:center;gap:10px;width:100%;padding:13px 2px;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);text-align:left;font:inherit;cursor:pointer}
+.rkx #rqo b{font-weight:600;font-size:15px}.rkx #rqo span{flex:1;font-size:13px;color:var(--sub)}.rkx #rqo em{font-style:normal;font-weight:600;color:var(--ink)}.rkx #rqo i{font-style:normal;color:var(--mut)}
+.rkx .rkt{display:flex;gap:4px;padding:4px;margin:0 0 12px;border-radius:14px;background:var(--chip)}
+.rkx .rkt button{flex:1;min-height:40px;border:0;border-radius:11px;background:none;color:var(--sub);font:500 14.5px/1 var(--sans);cursor:pointer}
+.rkx .rkt button[aria-selected=true]{background:var(--card,#fff);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.rkx .rkg{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;margin:0 -16px 16px;padding:0 16px 2px;scrollbar-width:none}.rkx .rkg::-webkit-scrollbar{display:none}
+.rkx .rkg button{flex:0 0 auto;padding:0 16px}
+.rkx .rkp{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:8px;margin:0 0 14px}
+.rkx .rkp a{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:3px;min-width:0;padding:14px 12px 12px;border-radius:18px;text-decoration:none;color:var(--ink);background:var(--card,#fff);border:1px solid var(--line)}
+.rkx .rkp a::before{content:"";position:absolute;right:-26px;top:-30px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle,rgba(110,214,200,.55),rgba(132,176,246,.35) 45%,rgba(196,176,240,0) 70%);pointer-events:none}
+.rkx .rkp i{font:600 11.5px/1 var(--sans);font-style:normal;color:var(--sub);letter-spacing:.04em}
+.rkx .rkp b{font:600 15px/1.3 var(--sans);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rkx .rkp span{font:600 26px/1.1 var(--sans);letter-spacing:-.02em;font-variant-numeric:tabular-nums}.rkx .rkp span small{font-size:14px;margin-left:1px}
+.rkx .rkp em{font-style:normal;font-size:11.5px;color:var(--mut);line-height:1.4}
+.rkx .rkp a.rkp1 span{font-size:30px}
+.rkx .rka{font-size:13.5px;color:var(--sub);margin:0 0 6px}.rkx .rka b{color:var(--ink);font-weight:600}
+.rkx .rkl{list-style:none;margin:0;padding:0}
+.rkx .rkl li{display:grid;grid-template-columns:30px 1fr auto;align-items:center;column-gap:10px;padding:12px 0 14px;border-bottom:1px solid var(--line);position:relative;transition:background .4s}
+.rkx .rkl li.hl{background:rgba(110,214,200,.2);box-shadow:0 0 0 8px rgba(110,214,200,.2);border-radius:4px}
+.rkx .rkl .n{font:600 15px/1 var(--sans);color:var(--sub);text-align:center;font-variant-numeric:tabular-nums}
+.rkx .rkl a,.rkx .rkl li>div{min-width:0;text-decoration:none;color:var(--ink)}
+.rkx .rkl b{display:block;font:600 15.5px/1.35 var(--sans)}
+.rkx .rkl small{display:block;font-size:12px;color:var(--mut);margin-top:2px}.rkx .rkl small em{font-style:normal;margin-left:6px}.rkx .rkl small em.u{color:#2E8B6E}.rkx .rkl small em.d{color:#B4553A}
+.rkx .rkl .v{font:600 18px/1 var(--sans);font-variant-numeric:tabular-nums}.rkx .rkl .v small{display:inline;font-size:12px;color:var(--sub);margin:0}
+.rkx .rkl .v.m{color:var(--sub)}
+.rkx .rkl .b{grid-column:2/4;height:5px;margin-top:9px;border-radius:9px;background:var(--chip);position:relative;overflow:hidden}
+.rkx .rkl .b::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--w);border-radius:9px;background:linear-gradient(90deg,#6ED6C8,#84B0F6 55%,#C4B0F0)}
+.rkx .rkl .b.m::after{background:#B9B9C0}
+.rkx .rkm{margin-top:16px}
+html.nt .rkx .rkp a{background:rgba(255,255,255,.05)}html.nt .rkx .rkt button[aria-selected=true]{background:rgba(255,255,255,.14)}
+html.nt .rkx .rkl small em.u{color:#7FD9B6}html.nt .rkx .rkl small em.d{color:#F0A58E}
+.dc .dsrc{list-style:none;margin:10px 0 0;padding:0}.dc .dsrc li{padding:8px 0;border-top:1px solid var(--line);font-size:12.5px;line-height:1.5}.dc .dsrc a{color:var(--sub);text-decoration:underline;text-underline-offset:3px}
