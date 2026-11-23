@@ -406,6 +406,34 @@ def docs():
         if d: write("akiya-ranking.html", "/akiya-ranking", ti, home_cfg("/akiya-ranking"), d, "rk", de)
     except Exception as e:
         print("shin_kanto: 解体・空き家は前のまま", repr(e))
+    # 申し込み・リクエストと感想（入力と送る仕組みは前のまま）
+    try:  # お得まとめ（関西と同じ入口）
+        c = Y.kau_cfg("/otoku", "", "商品・宿へのリンクは広告（PR）です。"); c.pop("desc", None)
+        write("otoku.html", "/otoku", "お得まとめ｜セール・値下がり・ふるさと納税・宿の入口｜LIFE NOTE", c, Y.otoku(), "doc", "セール・値下がりした物・ふるさと納税・宿。お得の入口をひとつにまとめました。")
+    except Exception as e:
+        print("shin_kanto: お得まとめは前のまま", repr(e))
+    for f in ("moushikomi.html", "koe.html"):
+        try:
+            ti, de = Y.meta(os.path.join(S, f)); d = Y.form(os.path.join(S, f))
+            if d: write(f, "/" + f[:-5], ti, home_cfg("/" + f[:-5]), d, "doc", de)
+        except Exception as e:
+            print("shin_kanto: 前のまま", f, repr(e))
+    # 11/23 おでかけ1件のページ（/o/*）も新しい土台で（関西と同じ・shin_yari.spot）。前のページは site/kyu/o/ に残る
+    try:
+        od = os.path.join(S, "o"); os.makedirs(os.path.join(S, "kyu", "o"), exist_ok=True); n = 0
+        oc = {"nav": [{"t": "開催中", "ic": "now", "href": "/odekake"}], "menu": {"k": "Odekake", "items": [["関東おでかけ", "/odekake", 1]]},
+              "foot": "日程や料金は変わることがあります。出かける前に公式ページで確かめてください。<br>券・宿のリンクの一部は広告です。"}
+        import copy as _cp
+        for f in sorted(os.listdir(od)):
+            if not re.match(r"^[0-9a-f]+\.html$", f): continue
+            p_ = os.path.join(od, f); d = Y.spot(p_)
+            if not d: continue
+            ti, de = Y.meta(p_)
+            write("o/" + f, "/o/" + f[:-5], ti, _cp.deepcopy(oc), d, "doc", de)
+            Y.keep_head(p_, p_); n += 1
+        print("o: 新しい形", n)
+    except Exception as e:
+        print("shin_kanto: おでかけ1件は前のまま", repr(e))
 
 
 def main():

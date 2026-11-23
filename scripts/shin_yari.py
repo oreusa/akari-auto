@@ -8,7 +8,11 @@ E = html.escape
 
 def old(path):
     if os.path.exists(path) and '/shin/shin.css' in open(path, encoding='utf-8').read():
-        path = os.path.join(os.path.dirname(path), 'kyu', os.path.basename(path))
+        d, b = os.path.split(path)
+        a = os.path.join(d, 'kyu', b)  # site/kyu/x.html
+        if not os.path.exists(a):  # site/kyu/o/x.html（下の階の前のページ）
+            u, s = os.path.split(d); a = os.path.join(u, 'kyu', s, b)
+        path = a
     return open(path, encoding='utf-8').read() if os.path.exists(path) else None
 
 
@@ -191,3 +195,92 @@ def akiya(path, an, ex, rel):
             + f'<section class="dsec"><h2>数字の出どころ</h2><p class="dnote">{note}</p></section>' + rel_html(rel, '空き家ランキング'))
     pre = '<ol>' + ''.join(f'<li>{E(r["n"])}（{E(r["p"])}）空き家の割合 {r["v"]["a"][1]}%</li>' for r in rows) + '</ol>' + foot
     return {'h1': h1, 'sub': f'{E(span)}・{_txt(sub)}', 'an': an, 'tabs': [{'k': 'a', 'l': '空き家の割合'}], 'groups': groups, 'rows': rows, 'avg': {}, 'ex': ex, 'plain': 1, 'foot': foot, 'html': pre}
+
+
+# ---------- 申し込み（/moushikomi）・リクエストと感想（/koe）：入力の部品と送る仕組み（script）はそのまま、見た目を新しい部品（.fmz）に ----------
+def form(path):
+    t = old(path)
+    if not t: return None
+    b = t[t.index('<body'):]
+    js = '\n'.join(re.findall(r'<script>(.*?)</script>', b, re.S))
+    b = re.sub(r'<script[^>]*>.*?</script>', '', b, flags=re.S)
+    b = b[b.index('<div class="wrap">') + 18:b.index('<div class="ft">')]
+    b = re.sub(r'<img [^>]*logo[^>]*>', '', b)
+    b = re.sub(r'<div class="en">.*?</div>', '', b)
+    # 見出し：前の script が .s3h h1・.s3l・.s3m を書き替えるので、その名前のまま新しい見出しの形に
+    b = re.sub(r'<div class="s3h"><div>\s*<h1>(.*?)</h1></div></div>', r'<section class="hero s3h"><h1 class="h1t">\1</h1></section>', b, flags=re.S)
+    b = re.sub(r'<div class="head">\s*<h1>(.*?)</h1>(.*?)</div>', lambda m: f'<section class="hero"><h1 class="h1t">{m.group(1)}</h1>' + m.group(2).replace('class="sub"', 'class="h1p"') + '</section>', b, flags=re.S)
+    b = re.sub(r' style="[^"]*"', '', b)  # 前の色・余白の指定（夜に読めない色もある）は新しい部品にまかせる
+    b = b.replace('<p class="s3l">', '<p class="h1p s3l">').replace('class="back"', 'class="back dlk"').replace('<p class="note">', '<p class="dnote">')
+    h1 = _txt((re.search(r'<h1[^>]*>(.*?)</h1>', b, re.S) or [None, ''])[1])
+    return {'h1': h1, 'nohero': 1, 'html': '<div class="fmz">' + b + '</div>', 'js': js}
+
+
+# ---------- お得まとめ（/otoku）：関西・関東とも同じ入口（前は燈の古い形を関西でもそのまま出していた） ----------
+OTOKU_JS = r'''var f=document.getElementById("kqf"),q=document.getElementById("kq");if(f){
+var C={"water":"水","soda":"炭酸水","rice":"お米","tp":"トイレットペーパー","tea":"お茶","coffee":"コーヒー","detergent":"洗濯洗剤","softener":"柔軟剤","shampoo":"シャンプー","bodysoap":"ボディソープ","dish":"食器用洗剤","tissue":"ティッシュ","diaper":"おむつ","wipes":"おしりふき","trash":"ゴミ袋","battery":"乾電池","mask":"マスク","pasta":"パスタ","beans":"コーヒー豆","dogfood":"ドッグフード","catfood":"キャットフード"};
+function nz(x){return (x||"").normalize("NFKC").toLowerCase().replace(/[\s　]/g,"").replace(/[ァ-ヶ]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96)})}
+f.onsubmit=function(e){e.preventDefault();var v=q.value.trim();if(!v)return;var n=nz(v),u;
+ if(/ふるさと/.test(n))u="/furusato";else if(/(ぽっきり|まらそん|せーる|買いまわり|かいまわり)/.test(n))u="/kaimawari";else if(/(値下が|ねさが|安くなった|本当に安)/.test(n))u="/nesage";else if(/(宿|ほてる|旅館|泊まり)/.test(n))u="/tomari";
+ else{u="/okaimono";for(var k in C){if(n.indexOf(nz(C[k]))>=0){u="/okaimono#"+k;break}}}location.href=u}}'''
+
+
+def otoku():
+    tiles = [['日用品の値段くらべ', '/okaimono', '水・お米・洗剤など21種類の最安'], ['本当に安い？', '/nesage', 'ふだんより安くなった物'], ['セールの買いまわり', '/kaimawari', '楽天の1,000円ぽっきり'],
+             ['ふるさと納税', '/furusato', '寄付1万円あたりの量でくらべる'], ['泊まりの宿', '/tomari', '遠くのおでかけと近くの宿'], ['開店・閉店', '/kaiten', '新しいお店・閉まるお店']]
+    html_ = ('<section class="dsec"><h2>探したい物から</h2><form class="otq" id="kqf" role="search"><input class="din" id="kq" type="search" placeholder="例：トイレットペーパー・ふるさと納税" aria-label="探したい物を入れる" enterkeyhint="search">'
+             '<button type="submit" class="dbtn">探す</button></form><p class="dhint">入れた言葉に合うページを開きます。</p></section>'
+             '<section class="dsec"><h2>お得の入口</h2><div class="drel">' + ''.join(f'<a href="{u}" data-k="お得｜{t}">{t}<small>{s}</small></a>' for t, u, s in tiles) + '</div></section>'
+             '<p class="dnote">このページから先の商品・宿へのリンクは広告（PR）です。</p>')
+    return {'h1': 'お得まとめ', 'sub': 'セール・値下がり・ふるさと納税・宿。お得の入口をひとつに。', 'html': html_, 'js': OTOKU_JS}
+
+
+def kau_cfg(cur, desc, foot):
+    nav = [{'t': 'くらべる', 'ic': 'find', 'href': '/okaimono'}, {'t': '本当に安い？', 'ic': 'yen', 'href': '/nesage'}, {'t': 'ふるさと', 'ic': 'gift', 'href': '/furusato'}, {'t': 'お得', 'ic': 'star', 'href': '/otoku'}]
+    return {'nav': [dict(n, cur=1) if n['href'] == cur else n for n in nav], 'menu': {'k': 'Shopping', 'items': [['お得な物', '/otoku', 1]]}, 'foot': foot, 'desc': desc}
+
+
+# ---------- おでかけの1件ページ（/o/<id>）：前のページの中身（写真・日程・地図・公式・宿・ほかのおでかけ）を新しい部品に ----------
+def spot(path, pn=None):
+    t = old(path)
+    if not t: return None
+    b = t[t.index('<body'):]
+    js = '\n'.join(re.findall(r'<script>(.*?)</script>', b, re.S))
+    b = re.sub(r'<script[^>]*>.*?</script>', '', b, flags=re.S)
+    h1, span, sub, upd = v2_head(b)
+    body = b[b.index('</div>', b.index('<div class="upd">')) + 6:b.index('<div class="ft">')]
+    body = re.sub(r'^\s*</div>', '', body)
+    body = re.sub(r'(<div class="big">.*?</div></div>)', lambda m: re.sub(r' style="[^"]*"', '', m.group(1)), body, count=1, flags=re.S)
+    body = body.replace('<p class="lead">', '<p class="dtx olead">').replace('<div class="note">', '<p class="dnote">')
+    body = re.sub(r'(<p class="dnote">.*?)</div>', r'\1</p>', body, count=1, flags=re.S)
+    body = re.sub(r'<div class="act">(.*?)</div>', lambda m: '<div class="oact">' + re.sub(r'<a class="o"', '<a class="dbtn"', re.sub(r'<a class="g"', '<a class="dbtn2"', m.group(1))) + '</div>', body, count=1, flags=re.S)
+    body = re.sub(r'<ul class="yl">(.*?)</ul>', lambda m: '<ul class="dli oyl">' + re.sub(r'<a ([^>]*)>(.*?)<span>(.*?)</span></a>', r'<a \1><b>\2</b><small>\3</small></a>', m.group(1)) + '</ul>', body, flags=re.S)
+    # ほかのおでかけ（カード）→ あわせて見るの板
+    def fcs(m):
+        cards = re.findall(r'<a class="fc" href="([^"]+)"[^>]*><small>(.*?)</small><b>(.*?)</b><span>(.*?)</span></a>', m.group(0), re.S)
+        return '<div class="drel">' + ''.join(f'<a href="{u}" data-k="1件｜ほかのおでかけ">{ti}<small>{sp}</small></a>' for u, sm, ti, sp in cards) + '</div>'
+    body = re.sub(r'(<a class="fc"[^>]*>.*?</a>)+', fcs, body, flags=re.S)
+    body = re.sub(r'<a class="back" href="([^"]+)"[^>]*>(.*?)</a>', r'<a class="dlk" href="\1">\2</a>', body)
+    body = re.sub(r'<p class="cap">', '<p class="dhint">', body)
+    body = re.sub(r'<nav class="pn" aria-label="([^"]*)">(.*?)</nav>', lambda m: f'<nav class="opn" aria-label="{m.group(1)}"><small>{m.group(1)}</small>' + m.group(2).replace('aria-current=page', 'aria-current="page"') + '</nav>', body, flags=re.S)
+    if pn and 'class="opn"' not in body and '<a class="dlk"' in body:  # 府県ごとに見る（関東の前のページにはあった。関西にも同じく）
+        cur = re.search(r'<a class="dlk" href="([^"]+)"', body).group(1)
+        nav = '<nav class="opn" aria-label="府県ごとに見る"><small>府県ごとに見る</small>' + ''.join(f'<a href="{u}"' + (' aria-current="page"' if u == cur else '') + f'>{l}</a>' for l, u in pn) + '</nav>'
+        body = body.replace('<a class="dlk"', nav + '<a class="dlk"', 1)
+    parts = re.split(r'(<h2>.*?</h2>)', body)
+    out = '<section class="dsec osp">' + parts[0] + '</section>'
+    for i in range(1, len(parts), 2):
+        out += '<section class="dsec">' + parts[i] + parts[i + 1] + '</section>'
+    return {'h1': h1, 'sub': (f'<b>{E(span)}</b><br>' if span else '') + sub + (f'<br><small>{E(upd)}</small>' if upd else ''), 'html': out, 'js': js}
+
+
+def keep_head(old_path, new_path):
+    """前のページの og:image（催しごとの絵）・twitter・構造化データ（Event）を新しいページにも残す（検索・SNSで同じに見える）。"""
+    t = old(old_path); n = open(new_path, encoding='utf-8').read()
+    h = t[:t.index('</head>')]
+    keep = ''.join(re.findall(r'<meta (?:property="og:(?:type|description|image(?::width|:height)?)"|name="twitter:[a-z]+")[^>]*>', h))
+    keep += ''.join(re.findall(r'<script type="application/ld\+json">.*?</script>', h, re.S))
+    if not keep: return
+    n = re.sub(r'<meta property="og:image" content="[^"]*">', '', n, count=1)
+    n = n.replace('</head>', keep + '</head>', 1)
+    open(new_path, 'w', encoding='utf-8').write(n)
