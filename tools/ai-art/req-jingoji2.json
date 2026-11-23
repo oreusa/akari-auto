@@ -1,0 +1,44 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "1-steps",
+   "prompt": "A long old mossy stone stairway climbing a forested mountainside in Takao, Kyoto, through a tunnel of red and orange Japanese maple trees, scattered red leaves on the stone steps, soft morning sunlight filtering through the leaves, gentle haze, a wooden temple gate far up the steps",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "2-canopy",
+   "prompt": "Looking up into a canopy of Japanese maple leaves glowing red, orange and gold, backlit by soft sunlight, thin dark branches, blue sky peeking through, natural colors",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "3-leaves",
+   "prompt": "Close-up of fallen red and orange maple leaves on old mossy stone steps, a few leaves resting on green moss, soft side light, shallow depth of field",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "4-wall",
+   "prompt": "Old stone retaining walls covered in moss along a long stone stairway at a mountain temple in Kyoto, red maple branches arching over, dappled sunlight",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "5-kondo",
+   "prompt": "A large old wooden Japanese Buddhist main hall with a grey tiled hip-and-gable roof and dark wooden pillars, standing at the top of a wide stone stairway on a mountain, red maple branches in the foreground, clear autumn sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "6-valley",
+   "prompt": "View from a mountain temple terrace down into a deep forested gorge in Kyoto covered in red, orange and yellow autumn leaves mixed with green cedars, a clear river far below, soft afternoon light",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
