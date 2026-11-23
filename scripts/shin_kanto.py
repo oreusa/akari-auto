@@ -384,7 +384,7 @@ def docs():
             if not re.match(r"^[a-z]+-\d+\.html$", f): continue
             ti, de = Y.meta(os.path.join(jd, f))
             d = Y.jikka_town(os.path.join(jd, f), "LIFE NOTE")
-            if d: write("jikka/" + f, "/jikka/" + f[:-5], ti, home_cfg("/jikka/"), d, "doc", de); n += 1
+            if d: write("jikka/" + f, "/jikka/" + f[:-5], ti, dict(home_cfg("/jikka/"), sell=Y.sell_cfg(1, Y.town_of(d), f[:-5])), d, "doc", de); n += 1
         print("jikka: 新しい形", n)
         sp = os.path.join(jd, "shindan", "index.html")
         if os.path.exists(sp):
@@ -730,6 +730,7 @@ def ie_kanto():
         c = {"nav": [{"t": "街をさがす", "ic": "find", "a": "find"}, {"t": "地価", "ic": "rank", "href": "/chika-kanto"}, {"t": "売りたい", "ic": "sell", "href": "/uru"}, {"t": "いくら？", "ic": "yen", "href": "/ikura"}],
              "menu": {"k": "Home & Land", "items": [["家と土地の相場", "/fudosan-list", 1], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["解体の費用と補助金", "/kaitai"], ["地価ランキング", "/chika-kanto"]]},
              "foot": "地価：国土交通省・各都県「令和8年地価公示」。人口・空き家：総務省統計局（国勢調査・住宅・土地統計調査）。<br>どれも街の平均で、1軒ずつの値段ではありません。「買いたい」のリンクは広告です（Yahoo!不動産）。"}
+        import shin_yari as _Y; c["sell"] = _Y.sell_cfg(1)
         write("fudosan-list.html", "/fudosan-list", f"関東の家と土地の相場｜{len(out)}の街の地価と人口｜LIFE NOTE", c,
               {"towns": out, "pa": PA, "map": MAP, "pfull": PF, "pc": PC, "h1": "関東の家と土地の相場", "sub": f"{len(out)}の街の、地価の動きと人口・空き家",
                "upd": "2026年の地価公示・国勢調査（2025年）の数字", "ph": "横浜、よこはま"}, "ie",

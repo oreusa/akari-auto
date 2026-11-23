@@ -4,6 +4,11 @@
 前のページは消さない（毎朝ほかの機械が作る。よくある質問・出典はそこから読む）。"""
 import html, json, os, re
 
+try:
+    from yari import sell_cfg  # 関西 tools/shin/yari.py
+except ImportError:
+    from shin_yari import sell_cfg  # 関東 scripts/shin_yari.py
+
 E = html.escape
 
 
@@ -54,6 +59,7 @@ def build(write, L, R, URL, cfg):
              [{'k': 'r', 'l': '住宅地'}], groups, None, [(s, u) for _, _, s, u in PREFS], old_faq(os.path.join(L, 'chika-kansai.html')), rel, '寝屋川市', note,
              ['大阪市24区は商業地も', '/chika-osaka', '大阪市24区 地価ランキング（住宅地・商業地）'])
     c = dict(cfg('/chika-kansai', f'関西{len(rows)}の市区町村の住宅地の地価の上がり幅ランキング（令和8年地価公示）。上がったのは{up}。うちの街は何位？で探せます。'))
+    c['sell'] = sell_cfg(0)
     URL['chika-kansai'] = '/chika-kansai'
     write('chika-kansai', f'関西 地価ランキング2026｜{len(rows)}の市区町村の住宅地（令和8年地価公示）｜TOWN NOTE', c, d, js='rk')
 
@@ -73,6 +79,7 @@ def build(write, L, R, URL, cfg):
              [{'k': 'r', 'l': '住宅地'}, {'k': 'c', 'l': '商業地'}], None, {'all': {'r': [AVG[0], AVG[1]], 'c': [AVG[2], AVG[3]]}},
              [('大阪府「令和8年地価公示 報道資料」', SRC)], old_faq(os.path.join(L, 'chika-osaka.html')), rel, '都島区', note)
     c = dict(cfg('/chika-kansai', '大阪市24区の住宅地・商業地の地価の上がり幅ランキング（令和8年地価公示）。'))
+    c['sell'] = sell_cfg(0)
     URL['chika-osaka'] = '/chika-osaka'
     write('chika-osaka', '大阪市24区 地価ランキング2026｜住宅地・商業地の上がり幅｜TOWN NOTE', c, d, js='rk')
 
@@ -98,7 +105,7 @@ def build_kanto(write, S, R, cfg):
     d = page('関東 地価ランキング', f'住宅地の地価が1年でどれだけ動いたか。{len(rows)}の市区町村を上がり幅の大きい順に（令和8年地価公示）。', '関東', rows,
              [{'k': 'r', 'l': '住宅地'}], groups, None, srcs, old_faq(os.path.join(S, 'chika-kanto.html')), rel, '川口市', note,
              ['東京23区は商業地も', '/chika-tokyo', '東京23区 地価ランキング（住宅地・商業地）'])
-    write('chika-kanto.html', '/chika-kanto', f'関東 地価ランキング2026｜{len(rows)}の市区町村の住宅地（令和8年地価公示）｜LIFE NOTE', cfg('/chika-kanto'), d, 'rk',
+    write('chika-kanto.html', '/chika-kanto', f'関東 地価ランキング2026｜{len(rows)}の市区町村の住宅地（令和8年地価公示）｜LIFE NOTE', dict(cfg('/chika-kanto'), sell=sell_cfg(1)), d, 'rk',
           f'関東{len(rows)}の市区町村の住宅地の地価の上がり幅ランキング（令和8年地価公示）。上がったのは{up}。うちの街は何位？で探せます。')
 
     # 東京23区（住宅地・商業地）
@@ -123,6 +130,6 @@ def build_kanto(write, S, R, cfg):
     d = page('東京23区 地価ランキング', '住宅地と商業地の地価が1年でどれだけ動いたか。23区を上がり幅の大きい順に（令和8年地価公示）。', '東京23区', rows,
              [{'k': 'r', 'l': '住宅地'}, {'k': 'c', 'l': '商業地'}], None, avg,
              [('東京都財務局「令和8年地価公示 区市町村別用途別対前年変動率表」', t0['url']), ('同「令和7年地価公示 区市町村別用途別対前年変動率表」', t0['url_r7'])], faq, rel, '世田谷区', note)
-    write('chika-tokyo.html', '/chika-tokyo', '東京23区 地価ランキング2026｜住宅地・商業地の上がり幅｜LIFE NOTE', cfg('/chika-kanto'), d, 'rk',
+    write('chika-tokyo.html', '/chika-tokyo', '東京23区 地価ランキング2026｜住宅地・商業地の上がり幅｜LIFE NOTE', dict(cfg('/chika-kanto'), sell=sell_cfg(1)), d, 'rk',
           f'東京23区の住宅地・商業地の地価の上がり幅ランキング（令和8年地価公示）。1位は{rr[0]["n"]}の{pm(rr[0]["v"]["r"][1])}。')
     return ['/chika-kanto', '/chika-tokyo']

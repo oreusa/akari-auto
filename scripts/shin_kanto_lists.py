@@ -3,6 +3,11 @@
 scripts/shin_kanto.py の main() から呼ばれる（イルミ・紅葉を作ったあと）。"""
 import copy, datetime, hashlib, json, math, os, re
 
+try:
+    from yari import sell_cfg  # 関西 tools/shin/yari.py
+except ImportError:
+    from shin_yari import sell_cfg  # 関東 scripts/shin_yari.py
+
 KIND = [("ie", "家と土地", "#C0532B"), ("hito", "人口", "#2E8B6E")]
 ODE_NAV = lambda cur: [dict(n, **({"cur": 1} if n["href"] == cur else {})) for n in [
     {"t": "開催中", "ic": "now", "href": "/odekake"}, {"t": "今週末", "ic": "we", "href": "/odekake?w=we"},
@@ -171,6 +176,7 @@ def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
             c["nav"] = [{"t": "街をさがす", "ic": "find", "href": "/fudosan-list"}, {"t": "ランキング", "ic": "rank", "a": "top", "cur": 1}, {"t": "売りたい", "ic": "sell", "href": "/uru"}, {"t": "いくら？", "ic": "yen", "href": "/ikura"}]
             c["menu"] = {"k": "Home & Land", "items": [["まちランキング", "/ranking", 1]]}
             c["foot"] = "数字はどれも国・都県の公式の発表です（地価公示・国勢調査）。街の平均で、1軒ずつの値段ではありません。"
+            c["sell"] = sell_cfg(1)
             write("ranking.html", "/ranking", f"関東まちランキング｜地価・人口の順位を公式の数字で（{len(rl)}本）｜LIFE NOTE", c,
                   {"items": rl, "page": {"h1": "関東まちランキング", "sub": f"地価・人口の順位を、公式の数字で・{len(rl)}本", "view": "list", "cnt": "本",
                                          "K": {k[0]: [k[1], k[2]] for k in KIND if any(x["k"] == k[0] for x in rl)},
