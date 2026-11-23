@@ -36,6 +36,8 @@ def after(L, key, n=1):
 
 CSSV = "2"
 KANTO = __file__.replace("\\", "/").endswith("scripts/machi2.py")
+# 売る入口の押された数（街のページは shin.js が無いので、ここで /c に送る。関東は f=card の形）
+SELL_JS = '<script>(function(){var a=document.querySelector("a.sell");if(!a)return;a.addEventListener("click",function(){try{var k=a.getAttribute("data-k")||"売る入口";if(/kanto|lifenote/.test(location.hostname)){var u="/c?f=card&s="+encodeURIComponent("街のページ")+"&k="+encodeURIComponent(k.slice(0,40));if(!(navigator.sendBeacon&&navigator.sendBeacon(u,"")))fetch(u,{method:"POST",keepalive:true})}else{var b=JSON.stringify({k:"クリック：街のページ｜"+k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true})}}catch(e){}})})()</script>'
 SELL_A8 = "https://px.a8.net/svt/ejp?a8mat=4BGH3I+E2NY4I+5Y9M+5YJRM"
 
 
@@ -141,6 +143,7 @@ def main(src, out, prod=False):
     body = f'''<main class="m2">
 <header class="m2h"><p class="pf">{E(pref)}</p><h1>{E(name)}</h1><p class="sb">家と土地の値段・地価・くらしの数字</p></header>
 {sell}
+{SELL_JS}
 <section class="mcs" aria-label="数字">{"".join(cards)}</section>
 {f'<p class="vd">{E(verdict)}</p>' if verdict else ""}
 <a class="go2 gik" href="{ikura}"><b>{E(name)}で、うちの家はいくら？</b><small>種類と広さから30秒で目安・名前は要りません</small><i>›</i></a>
