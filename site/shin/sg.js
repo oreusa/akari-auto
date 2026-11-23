@@ -13,6 +13,7 @@ S_.main.innerHTML='<div class="wrap dc rkx sgx"><section class="hero"><h1 class=
  '<section class="sgq"><p class="dq"><i>1</i>買いたい家</p><div class="rkt" id="kd">'+D.kinds.map(function(k,i){return '<button type="button" aria-selected="'+(i?"false":"true")+'" data-k="'+k[0]+'" data-y="'+k[1]+'">'+esc(k[2])+'</button>'}).join("")+'</div>'+
  '<p class="dq"><i>2</i>予算は？</p><div class="dchs sgb" id="bc"></div></section>'+
  '<div class="sgr" aria-live="polite"><span>この予算で届く街</span><b id="res">0</b><small>/ '+R.length+'</small></div>'+
+ '<p class="sgn">'+(/地価公示/.test(JSON.stringify(D.sub||D.page||""))?"値段は、地価公示から出した<b>推計</b>です（実際の売り値とはちがいます）。":"値段は、<b>実際に売れた値段</b>（レインズの成約価格の平均）です。")+'</p>'+
  '<div class="dchs rkg" id="pf"></div>'+
  '<div class="sgs"><div class="rkt" id="so"><button type="button" aria-selected="true" data-s="up">値上がり順</button><button type="button" aria-selected="false" data-s="cheap">安い順</button><button type="button" aria-selected="false" data-s="od">おでかけ多い順</button></div>'+
  '<p class="sgh"><span>押すと、その街で売り出し中の家（広告）</span><span id="unit">'+esc(D.units[st.k]||D.unit)+'</span></p></div>'+

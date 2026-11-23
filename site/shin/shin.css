@@ -1278,3 +1278,7 @@ html body .dqz .pn{background:none!important;-webkit-backdrop-filter:none;backdr
 .sellc:active{transform:scale(.985)}
 .fmz details.kw>summary,.fmz .fmore>summary{color:var(--ink)}
 .fmz .fl.kwh{color:var(--ink)}
+/* 11/23 夜の見回り：狭い幅で府県・予算のボタンが横に隠れていた → 2行に折り返す（地価・実家・家を買いたい） */
+.rkx .rkg,.sgx .sgb,.sgx .rkg,.dchs.djp,.dchs.rkg{flex-wrap:wrap!important;overflow:visible!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;padding-right:0!important}
+.rkx .rkg button,.sgx .sgb button,.sgx .rkg button,.dchs.djp button,.dchs.rkg button{padding:0 14px;height:40px;min-height:40px!important}
+.sgn{margin:-6px 0 14px;font-size:12.5px;color:var(--sub);line-height:1.6}
