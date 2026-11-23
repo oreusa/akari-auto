@@ -407,6 +407,11 @@ def docs():
     except Exception as e:
         print("shin_kanto: 解体・空き家は前のまま", repr(e))
     # 申し込み・リクエストと感想（入力と送る仕組みは前のまま）
+    try:  # お得まとめ（関西と同じ入口）
+        c = Y.kau_cfg("/otoku", "", "商品・宿へのリンクは広告（PR）です。"); c.pop("desc", None)
+        write("otoku.html", "/otoku", "お得まとめ｜セール・値下がり・ふるさと納税・宿の入口｜LIFE NOTE", c, Y.otoku(), "doc", "セール・値下がりした物・ふるさと納税・宿。お得の入口をひとつにまとめました。")
+    except Exception as e:
+        print("shin_kanto: お得まとめは前のまま", repr(e))
     for f in ("moushikomi.html", "koe.html"):
         try:
             ti, de = Y.meta(os.path.join(S, f)); d = Y.form(os.path.join(S, f))
