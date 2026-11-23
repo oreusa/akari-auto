@@ -373,6 +373,26 @@ def docs():
             if d: write(fname, "/" + fname[:-5], title, home_cfg("/" + fname[:-5]), d, js, desc)
         except Exception as e:
             print("shin_kanto: 前のまま", fname, repr(e))
+    # 実家・空き家ノート（入口と街ごと）
+    try:
+        jd = os.path.join(S, "jikka"); os.makedirs(os.path.join(S, "kyu", "jikka"), exist_ok=True)
+        ti, de = Y.meta(os.path.join(jd, "index.html"))
+        d = Y.jikka_index(os.path.join(jd, "index.html"), "川口市")
+        if d: write("jikka/index.html", "/jikka/", ti, home_cfg("/jikka/"), d, "doc", de)
+        n = 0
+        for f in sorted(os.listdir(jd)):
+            if not re.match(r"^[a-z]+-\d+\.html$", f): continue
+            ti, de = Y.meta(os.path.join(jd, f))
+            d = Y.jikka_town(os.path.join(jd, f), "LIFE NOTE")
+            if d: write("jikka/" + f, "/jikka/" + f[:-5], ti, home_cfg("/jikka/"), d, "doc", de); n += 1
+        print("jikka: 新しい形", n)
+        sp = os.path.join(jd, "shindan", "index.html")
+        if os.path.exists(sp):
+            os.makedirs(os.path.join(S, "kyu", "jikka", "shindan"), exist_ok=True)
+            ti, de = Y.meta(sp); d = Y.shindan(sp)
+            if d: write("jikka/shindan/index.html", "/jikka/shindan/", ti, home_cfg("/jikka/"), d, "doc", de)
+    except Exception as e:
+        print("shin_kanto: 実家ノートは前のまま", repr(e))
 
 
 def main():

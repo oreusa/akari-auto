@@ -12,12 +12,12 @@ $$(".dc details").forEach(function(d){var s=d.querySelector("summary");s.addEven
   else{d.open=true;d.classList.add("op");var h2=b.scrollHeight;b.animate([{height:"0px",opacity:0},{height:h2+"px",opacity:1}],{duration:260,easing:"cubic-bezier(.2,.9,.25,1)"})}})});
 /* 街の名前で探す（assets/towns.json → /machi/） */
 var tq=$("#tq");if(tq){var TW=null,box=$("#tqo");
-  var load=function(){if(TW)return Promise.resolve(TW);return fetch(D.towns||"/assets/towns.json").then(function(r){return r.json()}).then(function(j){TW=j.towns||j;return TW})};
+  var load=function(){if(D.tw)TW=D.tw;if(TW)return Promise.resolve(TW);return fetch(D.towns||"/assets/towns.json").then(function(r){return r.json()}).then(function(j){TW=j.towns||j;return TW})};
   var kana=function(s){return s.replace(/[ァ-ヶ]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96)})};
   tq.addEventListener("focus",load);
   tq.addEventListener("input",function(){var q=kana(tq.value.trim());if(!q){box.innerHTML="";return}
     load().then(function(T){var L=T.filter(function(t){return (t.n+(t.k||"")).indexOf(q)>=0||kana(t.n).indexOf(q)>=0}).slice(0,6);
-      box.innerHTML=L.length?L.map(function(t){return '<a href="/machi/'+t.id+'"><b>'+esc(t.n)+'</b><small>'+esc(t.p)+(t.r8!=null?'・住宅地の地価 '+(t.r8>0?"+":"")+t.r8+'%':'')+'</small><i>→</i></a>'}).join(""):'<p class="dno2">見つかりませんでした。市の名前（例：寝屋川市）で探してください。</p>'})})}
+      box.innerHTML=L.length?L.map(function(t){return '<a href="'+(D.tqb||'/machi/')+t.id+'"><b>'+esc(t.n)+'</b><small>'+esc(t.p)+(t.r8!=null?'・住宅地の地価 '+(t.r8>0?"+":"")+t.r8+'%':'')+'</small><i>→</i></a>'}).join(""):'<p class="dno2">見つかりませんでした。市の名前（例：寝屋川市）で探してください。</p>'})})}
 /* 前のページの計算（いくら？など） */
 if(D.js){try{(new Function(D.js))()}catch(e){}}
 /* 選んだ印が動く（chips の aria-pressed） */
