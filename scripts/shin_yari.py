@@ -281,7 +281,7 @@ f.onsubmit=function(e){e.preventDefault();var v=q.value.trim();if(!v)return;var 
 
 
 def otoku():
-    tiles = [['日用品の値段くらべ', '/okaimono', '水・お米・洗剤など21種類の最安'], ['本当に安い？', '/nesage', 'ふだんより安くなった物'], ['セールの買いまわり', '/kaimawari', '楽天の1,000円ぽっきり'],
+    tiles = [['日用品の値段くらべ', '/okaimono', '水・お米・洗剤など21種類の最安'], ['本当に安い？', '/nesage', 'ふだんより安くなった物'], ['セールの買いまわり', '/kaimawari', '楽天の1,000〜1,199円・送料込み'],
              ['ふるさと納税', '/furusato', '寄付1万円あたりの量でくらべる'], ['泊まりの宿', '/tomari', '遠くのおでかけと近くの宿'], ['開店・閉店', '/kaiten', '新しいお店・閉まるお店']]
     html_ = ('<section class="dsec"><h2>探したい物から</h2><form class="otq" id="kqf" role="search"><input class="din" id="kq" type="search" placeholder="例：トイレットペーパー・ふるさと納税" aria-label="探したい物を入れる" enterkeyhint="search">'
              '<button type="submit" class="dbtn">探す</button></form><p class="dhint">入れた言葉に合うページを開きます。</p></section>'
@@ -419,4 +419,4 @@ def kaimawari(t):
     html_ = ('<section class="dsec osp kmw">' + sale + (f'<p class="dtx">{lead.group(1)}</p>' if lead else '') + '</section>' +
              '<div class="kmw">' + mid + '</div>' + '<section class="dsec">' + note +
              '<a class="dlk" href="/otoku">お得まとめへ</a><a class="dlk" href="/okaimono">日用品の値段くらべへ</a></section>')
-    return {'h1': '買いまわりの1,000円ぽっきり', 'sub': f'<b>{E(ev)}</b>' + (f'<br><small>{up.group(1)}</small>' if up else ''), 'html': html_, 'js': js}
+    return {'h1': '買いまわりの1,000円ぽっきり', 'sub': f'<b>{E(ev)}</b><br>1店に数える1,000〜1,199円の物（送料込み）' + (f'<br><small>{up.group(1)}</small>' if up else ''), 'html': html_, 'js': js}

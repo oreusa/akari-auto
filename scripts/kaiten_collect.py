@@ -32,6 +32,12 @@ NOT = re.compile(r"オンライン|ＥＣ|EC|Amazon|楽天市場|TikTok|アプ�
                  r"出店者|催事|販売開始|発売|予約開始|配信|放送|連載|ラボ|オープンイノベーション|オープンハウス|オープンキャンパス|"
                  r"オープンソース|オープンデータ|オープンAPI|記念|周年|特許|株式|決算|資金調達|提携|受賞|ランキング|調査|アンケート")
 SHOPLOC = re.compile(r"店舗・民間施設")
+# 11/23 夜の見回り：秋葉原UDXの「もりもり寿し」が、本文の会社の住所（大阪市北区）で関西に入った。
+# 題か駅の名前に、ほかの地方の地名だけがある時は載せない。
+AWAY = {"kansai": r"東京|秋葉原|渋谷|新宿|池袋|銀座|有楽町|丸の内|表参道|原宿|六本木|品川|上野|浅草|吉祥寺|立川|町田|横浜|川崎|みなとみらい|浦和|千葉|船橋|名古屋|博多|札幌|仙台|広島|金沢|福岡",
+        "kanto": r"大阪|梅田|難波|なんば|心斎橋|天王寺|(?<!東)京都|河原町|神戸|三宮|姫路|奈良県|滋賀|大津|和歌山|名古屋|博多|札幌|仙台|広島|福岡"}[REGION]
+HOME = {"kansai": r"大阪|梅田|難波|なんば|心斎橋|天王寺|(?<!東)京都|神戸|三宮|姫路|奈良|滋賀|大津|草津|和歌山|関西|近畿",
+        "kanto": r"東京|秋葉原|渋谷|新宿|池袋|銀座|横浜|川崎|大宮|浦和|千葉|船橋|柏|埼玉|神奈川|茨城|栃木|群馬|関東|首都圏"}[REGION]
 
 
 def get(u):
@@ -66,6 +72,15 @@ def find_date(s, pub):
             continue
         if not m.group(1) and d < pub - datetime.timedelta(days=60):
             d = d.replace(year=y + 1)
+        out.append(d)
+    # 11/23 夜の見回り：「12/4（金）オープン」が読めず、本文の別の日（2/13）を開店日にしていた → 曜日のついた「月/日（曜）」も読む
+    for m in re.finditer(r"(?<![\d/])(\d{1,2})/(\d{1,2})\s*[（(][月火水木金土日]", s):
+        try:
+            d = datetime.date(pub.year, int(m.group(1)), int(m.group(2)))
+        except ValueError:
+            continue
+        if d < pub - datetime.timedelta(days=60):
+            d = d.replace(year=pub.year + 1)
         out.append(d)
     for m in re.finditer(r"(20\d\d)[./](\d{1,2})[./](\d{1,2})", s):
         try:
@@ -165,6 +180,9 @@ def from_release(u, t, pub, h):
     if oa and oa.group(0) not in PREFS:
         return None  # 11/17 住所がほかの地方（広島のお店が「位置情報」の別の店で大阪に入った）
     p = pref_of(addr) or (pref_of(shops[0]) if shops else "")
+    _st = re.search(r"([^\s「」『』、。:：・]{1,14}?)駅", z2h(body))
+    if re.search(AWAY, t + " " + (_st.group(1) if _st else "")) and not re.search(HOME, t):
+        return None  # 題・駅がほかの地方（本文の住所は本社のことが多い）
     if not p:
         return None  # この地方のお店ではない／お店の場所が書いていない
     city = shops[0][len(p):] if shops and pref_of(shops[0]) == p else ""
