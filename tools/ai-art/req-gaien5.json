@@ -1,0 +1,20 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "13-aerial",
+   "prompt": "High aerial drone photograph looking straight down at a long straight city avenue in Tokyo lined with four rows of golden yellow ginkgo trees, forming a bright yellow band through the grey city, a sidewalk covered in fallen yellow leaves, late afternoon light, no domes, no landmarks",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "14-aerial2",
+   "prompt": "Aerial drone view at a 45 degree angle over a long straight avenue lined with four rows of golden ginkgo trees in Tokyo, the trees forming two glowing yellow bands along the road, city blocks around, soft warm afternoon light, no domes",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
