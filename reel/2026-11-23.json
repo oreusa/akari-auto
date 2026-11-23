@@ -1,0 +1,164 @@
+{
+ "date": "2026-11-23",
+ "time": "20:00",
+ "tab": "群馬",
+ "pref": "gunma",
+ "lat": 36.4636,
+ "lon": 139.3436,
+ "kata": "hf",
+ "brand": "kanto",
+ "text": {
+  "corner": "GUNMA ─ KIRYU",
+  "title": [
+   "宝徳寺",
+   "床もみじ"
+  ],
+  "place": "宝徳寺｜桐生市",
+  "map_tag": [
+   "HOTOKU-JI ─ KIRYU",
+   "宝徳寺",
+   "桐生市"
+  ],
+  "map_caption": "磨いた床に紅葉がうつる、山のお寺。",
+  "date": [
+   "10.17",
+   "SAT",
+   "11.30",
+   "MON"
+  ],
+  "date_title": "床もみじ",
+  "date_note": "ライトアップ 17時〜19時",
+  "point_kicker": "MOMIJI",
+  "point_title": "床にうつる紅葉",
+  "points": [
+   "100本をこえるカエデ",
+   "11/23 いま見頃",
+   "夜はライトアップ"
+  ],
+  "info": [
+   [
+    "期間",
+    "11/30まで"
+   ],
+   [
+    "昼",
+    "9時〜16時（受付）"
+   ],
+   [
+    "夜",
+    "17時〜19時（受付）"
+   ],
+   [
+    "拝観料",
+    "1200円"
+   ]
+  ],
+  "info_note": "高校生以下は無料。予約はいりません",
+  "list_caption": "関東の紅葉も。",
+  "scene": "momiji",
+  "seal": "紅葉",
+  "motif": "temple",
+  "ehon1": [
+   "床に",
+   "紅葉が",
+   "うつる"
+  ],
+  "ehon2": [
+   "100本の",
+   "カエデ"
+  ],
+  "ehon4": [
+   "夜の",
+   "床",
+   "もみじ"
+  ],
+  "ehon_night": [
+   "11.30",
+   "MON",
+   "まで",
+   "19時まで"
+  ],
+  "ehon5": [
+   "日付でさがせる",
+   "地図でさがせる",
+   "紅葉もイルミも"
+  ]
+ },
+ "caption": "群馬・桐生の宝徳寺。磨かれた床に、まっかな紅葉がうつる「床もみじ」\n\n✦ 11/23 の色づきは「今見頃」\n✦ 床もみじの特別公開は 11/30(月)まで。昼の受付 9:00〜16:00\n✦ ライトアップは 11/30(月)まで 17:00〜19:00 受付\n✦ 拝観料 1200円・高校生以下は無料。予約はいりません\n✦ 境内には100本をこえるカエデ。庭の上には色とりどりの傘\n✦ 休日は 9:00〜10:00・13:30〜15:00・夜の17:00〜18:00 が混みます\n✦ JR桐生駅からバスで約25分〜40分。駐車場は250台（無料）\n\n一緒に行く人に送っておくと、当日迷いません\n\n✧ 内容は変わることがあります。出かける前に宝徳寺のページで確かめてください",
+ "ig_tags": [
+  "#関東おでかけ",
+  "#群馬紅葉",
+  "#宝徳寺",
+  "#床もみじ"
+ ],
+ "facts": [
+  {
+   "q": "今見頃",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/"
+  },
+  {
+   "q": "2026年11月23日",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/"
+  },
+  {
+   "q": "11月30日(月)",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/data.html"
+  },
+  {
+   "q": "9:00～16:00",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/data.html"
+  },
+  {
+   "q": "17:00～19:00",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/data.html"
+  },
+  {
+   "q": "1200円",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/data.html"
+  },
+  {
+   "q": "高校生以下無料",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/data.html"
+  },
+  {
+   "q": "100本以上",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/"
+  },
+  {
+   "q": "9:00～10:00",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/data.html"
+  },
+  {
+   "q": "13:30～15:00",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/data.html"
+  },
+  {
+   "q": "17:00～18:00",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/data.html"
+  },
+  {
+   "q": "約25分～40分",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/data.html"
+  },
+  {
+   "q": "250台",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/data.html"
+  },
+  {
+   "q": "10月17日",
+   "url": "https://koyo.walkerplus.com/detail/ar0310e443256/data.html"
+  }
+ ],
+ "made": "3D（three.js）で描いた6場面＋表紙から開く絵本・1分3秒",
+ "voice_lines": [
+  "群馬県桐生市の、ほうとくじ。磨かれた床に、まっかな紅葉がうつります。",
+  "床に近づくと、窓の外の紅葉が、鏡のように広がります。",
+  "境内には、100本をこえるカエデ。いま、見頃をむかえています。",
+  "庭へ出ると、紅葉の上に、色とりどりの傘。",
+  "床もみじの特別公開は、11月30日まで。昼の受付は、朝9時から夕方4時までです。",
+  "夕方5時からは、ライトアップ。夜の床に、灯りの紅葉がうかびます。",
+  "ライトアップの受付は夜7時まで。拝観料は1200円、高校生以下は無料です。",
+  "休日は、昼の1時半から3時ごろが混みます。",
+  "ほかのおでかけ先は、プロフィールのリンクからどうぞ。"
+ ]
+}
