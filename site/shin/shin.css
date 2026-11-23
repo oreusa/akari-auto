@@ -1091,3 +1091,15 @@ html.ie2.nt .qr svg{stroke:#5FD0C2}
 html.nt .rkx .rkp a{background:rgba(255,255,255,.05)}html.nt .rkx .rkt button[aria-selected=true]{background:rgba(255,255,255,.14)}
 html.nt .rkx .rkl small em.u{color:#7FD9B6}html.nt .rkx .rkl small em.d{color:#F0A58E}
 .dc .dsrc{list-style:none;margin:10px 0 0;padding:0}.dc .dsrc li{padding:8px 0;border-top:1px solid var(--line);font-size:12.5px;line-height:1.5}.dc .dsrc a{color:var(--sub);text-decoration:underline;text-underline-offset:3px}
+/* 11/23 家を買いたい（sg.js）：種類→予算→届く街の数（大きく）→府県→並べ替え→街 */
+.sgx .sgq .dq{margin:18px 0 10px}.sgx .sgq .dq:first-child{margin-top:4px}
+.sgx .sgb{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding:0 16px 2px;scrollbar-width:none}.sgx .sgb::-webkit-scrollbar{display:none}
+.sgx .sgb button{flex:0 0 auto;padding:0 16px;font-variant-numeric:tabular-nums}.sgx .sgb button small{font-size:11.5px;margin-left:2px;opacity:.75}
+.sgx .sgr{display:flex;align-items:baseline;gap:8px;margin:26px 0 14px;padding:18px 18px 16px;border-radius:20px;background:var(--chip)}
+.sgx .sgr span{font-size:14px;color:var(--sub);flex:1}.sgx .sgr b{font:600 44px/1 var(--sans);letter-spacing:-.03em;font-variant-numeric:tabular-nums}.sgx .sgr small{font-size:13px;color:var(--mut)}
+.sgx .sgs .rkt{margin-bottom:8px}.sgx .sgs .rkt button{font-size:13.5px}
+.sgx .sgh{display:flex;justify-content:space-between;gap:10px;font-size:11.5px;color:var(--mut);margin:0 0 4px}
+.sgx .sgl li{grid-template-columns:30px 1fr auto}.sgx .sgl .v{font-size:16px}
+.sgx .sgl small.sgo{color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sgx .sgl li.sgm,.sgx .sgl li.sge{display:block;border:0;color:var(--sub);font-size:14px}
+.sgx #kd{display:grid;grid-template-columns:1fr 1fr}.sgx #kd button{min-height:44px}
