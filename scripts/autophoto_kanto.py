@@ -71,5 +71,22 @@ for key, o in M.items():
             break
         except Exception as ex:
             print("ERR", q, ex)
+# 11/23 関東の初詣（data/hatsumode.tsv）の寺社にも写真（関西の初詣のカードと同じく写真つきに）
+try:
+    for l in open(os.path.join(R, "data", "hatsumode.tsv"), encoding="utf-8"):
+        if l.startswith("#") or l.count("\t") != 6: continue
+        q = l.split("\t")[1].strip()
+        if not q or q in VP or fresh(q) or n >= LIM + 12: continue
+        n += 1; TR[q] = T
+        try:
+            c = pick(q, B.theme_of(q))
+            if not c: print("写真なし", q); continue
+            f = save(c["thumb"], "venue:" + q)
+            VP[q] = {"img": f, "cr": f'{(c.get("artist") or "撮影者")[:40]}（{c["license"]}・Wikimedia Commons）', "page": c["page"], "auto": 1, "d": T}
+            got += 1; print("写真", q, "←", c["title"][:60])
+        except Exception as ex:
+            print("ERR", q, ex)
+except FileNotFoundError:
+    pass
 sj(VPF, VP); sj(TRF, TR)
 print(f"関東の自動の写真: 試した {n} / 付いた {got} / 写真の表 {len(VP)}")
