@@ -669,7 +669,9 @@ def main():
         return r
     tw = []
     try:
-        ck = open(os.path.join(S, "chika-kanto.html"), encoding="utf-8").read()
+        # 11/23 地価ランキングを新しい土台にしたので、上の3つは kyu/ に残した前のページから読む（表紙の「地価が1年で上がった街」が空だった）
+        _cp = os.path.join(S, "kyu", "chika-kanto.html")
+        ck = open(_cp if os.path.exists(_cp) else os.path.join(S, "chika-kanto.html"), encoding="utf-8").read()
         for m in re.finditer(r'<a href="/machi/([\w-]+)"[^>]*><span class="no">\d+</span><span class="nm">([^<]+)<small>[^<]*</small></span>.*?<span class="v"[^>]*>\+?(-?[\d.]+)%', ck):
             tw.append({"n": m.group(2), "r": float(m.group(3)), "id": m.group(1)})
             if len(tw) >= 3: break
