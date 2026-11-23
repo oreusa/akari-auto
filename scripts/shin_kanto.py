@@ -146,8 +146,8 @@ REL = [["おでかけ", "/odekake"], ["家と土地", "/fudosan-list"], ["おか
 SEC = {"Odekake": "/odekake", "Home & Land": "/fudosan-list", "Shopping": "/okaimono", "New Shops": "/kaiten"}
 # 11/20 owner「統一されてない・整理されてない」：MENU の項目と並び順は分野ごとにここ1か所だけ（関西 tools/shin/build.py の MENUS・skin.js と同じ形）
 MENUS = {
-    "Odekake": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"]],
-    "Home & Land": [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["解体の費用と補助金", "/kaitai"]],
+    "Odekake": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"], ["泊まり", "/tomari"], ["初詣", "/hatsumode"]],
+    "Home & Land": [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["まちランキング", "/ranking"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["解体の費用と補助金", "/kaitai"]],
     "Shopping": [["日用品の値段くらべ", "/okaimono"], ["本当に安い？", "/nesage"], ["お得な物", "/otoku"], ["ふるさと納税", "/furusato"]],
     "New Shops": [["関東の開店・閉店", "/kaiten"]],
 }
@@ -359,8 +359,8 @@ def main():
     IT = items()
     if len(IT) < 10:
         print("shin_kanto: おでかけが少ないので書き替えない", len(IT)); return
-    base = {"nav": [{"t": "開催中", "ic": "now", "a": "now"}, {"t": "今週末", "ic": "we", "a": "we"}, {"t": "地図", "ic": "map", "a": "map"}, {"t": "紅葉", "ic": "star", "href": "/koyo"}],
-            "menu": {"k": "Odekake", "items": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"], ["開店・閉店", "/kaiten"]]},
+    base = {"nav": [{"t": "開催中", "ic": "now", "a": "now"}, {"t": "今週末", "ic": "we", "a": "we"}, {"t": "地図", "ic": "map", "a": "map"}, {"t": "泊まり", "ic": "inn", "href": "/tomari"}],
+            "menu": {"k": "Odekake", "items": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"], ["泊まり", "/tomari"], ["初詣", "/hatsumode"]]},
             "foot": "情報は各公式サイトで確かめてから出かけてください。写真の撮影者は各ページに書いています（ウィキメディア・コモンズ ほか）。<br>券・宿のリンクの一部は広告です。"}
     import copy
     def cfg(cur):
@@ -444,12 +444,21 @@ def main():
             it = dict(x); it["ll"] = [round(37.15 - (x["xy"][1] - 27) / 100, 4), round((x["xy"][0] - 10) / 81 + 138.4, 4)]
             im.append(it)
     if len(im) >= 10:
-        c = cfg("/ima"); c["nav"] = [{"t": "近い順", "ic": "map", "a": "top", "cur": 1}, {"t": "おでかけ", "ic": "now", "href": "/odekake"}, {"t": "イルミ", "ic": "we", "href": "/illumination"}, {"t": "保存", "ic": "star", "a": "fav"}]
+        import shin_kanto_lists as SL
+        c = cfg("/ima"); c["nav"] = SL.ODE_NAV("/ima")
         write("ima.html", "/ima", "いまから行ける関東のおでかけ｜近い順・きょう開いている所｜LIFE NOTE", c,
               {"items": im, "icons": ICONS, "page": {"h1": "いまから行けるおでかけ", "sub": "きょう開いている所を、近い順に", "near": 1, "K": KINDS(im), "cnt": "か所", "seg": False,
-                                                     "none": "この時間で行ける所は見つかりませんでした。「1時間半」「すべて」でもう少し遠くまで探せます。",
+                                                     "none": "この時間で行ける所は見つかりませんでした。「1時間半」「すべて」でもう少し遠くまで探せます。", "also": [a for a in SL.ALSO if a[1] != "/ima"],
                                                      "note": "かかる時間は直線距離から出した目安です（電車と歩きを合わせたおおよその時間）。本当の行き方は「行き方」から Google マップで。開いている時間は出かける前に公式で確かめてください。"}},
               "list", f"いる場所といまの時刻から、きょう開いている関東のおでかけ{len(im)}か所を近い順に並べます。30分・1時間・1時間半で行ける所がすぐ分かります。")
+
+    # ---------- 11/23 関西と同じ：紅葉の都県・初詣・泊まり・まちランキング（scripts/shin_kanto_lists.py） ----------
+    try:
+        sys.path.insert(0, os.path.join(R, "scripts"))
+        import shin_kanto_lists as SL
+        SL.build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG)
+    except Exception as e:
+        print("shin_kanto: 初詣・泊まり・まちランキングは前のまま", repr(e))
 
     # ---------- 開店・閉店（scripts/kaiten.py の決まりをそのまま使う：ジャンル・初出店・場所の写真） ----------
     try:
@@ -528,8 +537,8 @@ def main():
           {"t": "家と土地の相場", "s": f"{towns}の街の地価の動き" if towns else "街の地価の動き", "n": str(towns or ""), "nu": "街", "u": "/fudosan-list", "ic": "find"},
           {"t": "日用品の値段くらべ", "s": "楽天・Yahoo!を1つの画面で", "n": "", "nu": "", "u": "/okaimono", "ic": "yen"},
           {"t": "開店・閉店", "s": "新しいお店・閉まるお店", "n": "", "nu": "", "u": "/kaiten", "ic": "buy"}]
-    more = [["関東のイルミネーション", "/illumination"], ["関東の紅葉", "/koyo"], ["いまから行けるおでかけ", "/ima"], ["地価ランキング", "/chika-kanto"], ["空き家の割合ランキング", "/akiya-ranking"],
-            ["予算で街さがし", "/sagasu"], ["家を売る前に", "/uru"], ["ふるさと納税", "/furusato"], ["本当に安い？（セールの値段）", "/nesage"]]
+    more = [["関東のイルミネーション", "/illumination"], ["関東の紅葉", "/koyo"], ["いまから行けるおでかけ", "/ima"], ["泊まりで行くおでかけ", "/tomari"],
+            ["関東の初詣", "/hatsumode"], ["関東まちランキング", "/ranking"], ["実家・空き家", "/jikka/"], ["ふるさと納税", "/furusato"]]
     c = copy.deepcopy(base)
     c["nav"] = [{"t": "おでかけ", "ic": "now", "href": "/odekake"}, {"t": "家と土地", "ic": "find", "href": "/fudosan-list"}, {"t": "おかいもの", "ic": "yen", "href": "/okaimono"}, {"t": "地図", "ic": "map", "a": "map"}]
     c["menu"] = {"k": "Life Note", "items": [["トップ", "/", 1], ["おでかけ", "/odekake"], ["家と土地", "/fudosan-list"], ["おかいもの", "/okaimono"], ["開店・閉店", "/kaiten"]]}
@@ -567,9 +576,9 @@ def main():
     write("index.html", "/", "LIFE NOTE（ライフノート）｜関東のおでかけと、家と土地の値段", c,
           {"od": {"n": len(now), "ph": hero}, "ie": {"n": towns, "tw": tw}, "kau": {"n": nkau, "ks": ks},
            "kai": {"n": sum(1 for x in ktl if x["w"] == "soon"), "x": ka}, "ko": ko,
-           "ft": [["おでかけ", [["関東のおでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"]]],
-                  ["家と土地", [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["家を買いたい", "/sagasu"], ["実家・空き家ノート", "/jikka/"], ["3問でわかる実家の診断", "/jikka/shindan/"], ["解体・片付けの費用", "/kaitai"], ["解体の補助金", "/kaitai-ranking"], ["空き家が多い街", "/akiya-ranking"]]],
-                  ["おかいもの", [["日用品の値段くらべ", "/okaimono"], ["開店・閉店ニュース", "/kaiten"], ["ふるさと納税", "/furusato"], ["本当に安い？", "/nesage"]]],
+           "ft": [["おでかけ", [["関東のおでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"], ["泊まりで行く", "/tomari"], ["初詣", "/hatsumode"]]],
+                  ["家と土地", [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["まちランキング", "/ranking"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["家を買いたい", "/sagasu"], ["実家・空き家ノート", "/jikka/"], ["3問でわかる実家の診断", "/jikka/shindan/"], ["解体・片付けの費用", "/kaitai"], ["解体の補助金", "/kaitai-ranking"], ["空き家が多い街", "/akiya-ranking"]]],
+                  ["おかいもの", [["日用品の値段くらべ", "/okaimono"], ["値下がりした物", "/nesage"], ["ふるさと納税", "/furusato"], ["開店・閉店ニュース", "/kaiten"]]],
                   ["このサイト", [["相談・申し込み", "/moushikomi"], ["リクエスト・感想", "/koe"], ["プライバシーポリシー", "/privacy"]]]],
            "sns": [["Instagram", "https://www.instagram.com/usagichan_ai_si/"], ["Threads", "https://www.threads.com/@usagichan_ai_si"], ["X", "https://x.com/ai_usagichan"]]},
           "cover2", "関東のくらしで見つけたことを、ノートにまとめています。開催中のおでかけ・イベント、街の家と土地の値段、日用品の値段くらべ、開店・閉店を、公式の発表と数字で。")
