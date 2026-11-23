@@ -81,7 +81,7 @@ def card_specs(post, day, slot):
     line = ((post.get("threads") or post.get("x") or [""])[0].strip().split("\n") or [""])[0]
     m = re.match(r"【([^｜]+)｜([^】]+)】", line)
     if not m:
-        return []
+        return new_style_specs(post, day, slot)
     left, body = m.group(1).strip(), re.sub(r"[🌀-🫶☀-➿]+$", "", m.group(2).strip())
     parts = re.split(r"[　 ]+", left, maxsplit=1)
     when, place = (parts[0], parts[1]) if len(parts) == 2 and re.match(r"\d", parts[0]) else ("", left)
@@ -108,6 +108,59 @@ def card_specs(post, day, slot):
         h = "<em>" + place + "</em><br>" + "<br>".join(lines)
         out += [dict(base, head=h, cap=cap), dict(base, head=h)]
     out += [dict(base, head="<em>" + place + "</em>", cap=body), dict(base, head="<em>" + place + "</em>")]
+    return out
+
+
+def wrapn(text, n=14, k=3):
+    """1行目の文を k 行までに（「、」か助詞の後で切る。言葉の途中では切らない）。入らなければ []"""
+    out, rest = [], text.strip()
+    while rest:
+        if len(rest) <= n:
+            out.append(rest)
+            break
+        cut = 0
+        for c in range(min(n, len(rest) - 1), 1, -1):
+            if rest[c - 1] in "、，」）をへ" or rest[c - 2:c] in ("には", "では", "から", "まで", "ので"):
+                cut = c
+                break
+        if not cut:
+            return []
+        out.append(rest[:cut].rstrip("、，"))
+        rest = rest[cut:]
+    return out if len(out) <= k else []
+
+
+def new_style_specs(post, day, slot):
+    """11/23〜の新しい1行目（驚きの事実を1文・2行目が「シリーズ｜場所」）の枠の表紙。
+    関西（usagi 06:23 の手順 3）と同じく、絵のいちばん大きな字＝1行目。11/23 オーナー「関東と関西どっちも完璧に」"""
+    lines = (post.get("threads") or post.get("x") or [""])[0].strip().split("\n")
+    l0 = lines[0].strip().rstrip("。")
+    if not l0:
+        return []
+    m = re.match(r"(.+?)｜(.+)", lines[1].strip()) if len(lines) > 1 else None
+    place = re.sub(r"[🌀-🫶☀-➿]+$", "", m.group(2)).strip() if m else str(post.get("topic", ""))
+    t0 = (post.get("threads") or post.get("x") or [""])[0]
+    dm = re.search(r"(\d{1,2})/(\d{1,2})", l0)
+    big, unit = (f"{int(dm.group(1))}.{int(dm.group(2)):02d}", next((u for u in ("オープン", "開業", "まで", "から") if u in l0), "開店" if "開" in l0 else "")) if dm else (None, "")
+    if not big:
+        n = re.search(r"([+＋−-]?\d[\d,.]*)(%|％|人|万円|円)", l0) or re.search(r"([+＋−-]?\d[\d,.]*)(%|％|人|万円|円)", t0)
+        if n:
+            big, unit = n.group(1).replace("＋", "+"), n.group(2).replace("％", "%")
+    sub = re.search(r"◎\s*(.+)", t0)
+    cap = re.sub(r"[！!。]+$", "", sub.group(1).strip()) if sub else ""
+    en = EN.get(str(post.get("series", "")), "KANTO TOWN NOTE")
+    if PEN.get(post.get("topic", "")) and en in ("NEW OPEN", "WEEKEND", "HITOEKI NOTE"):
+        en += "　" + PEN[post["topic"]]
+    base = {"name": f"auto-{day[5:].replace('-', '')}-{slot.replace(':', '')}", "en": en, "big": big, "unit": unit,
+            "pill": str(post.get("topic", "")), "night": slot >= "20:00"}
+    out = []
+    if post.get("card_head"):  # 予定を作る時に書いた絵の見出し（2行まで・<br> と <em> だけ）。関西の手で書く見出しと同じ
+        out += [dict(base, head=post["card_head"], cap=post.get("card_cap", cap)), dict(base, head=post["card_head"])]
+    for n in (14, 16):
+        w = wrapn(l0, n)
+        if w:
+            out += [dict(base, head="<br>".join(w), cap=cap), dict(base, head="<br>".join(w))]
+    out += [dict(base, head="<em>" + place + "</em>", cap=l0[:40]), dict(base, head="<em>" + place + "</em>")]
     return out
 
 
