@@ -7,6 +7,7 @@ import os, re, json, html, hashlib, glob, datetime, urllib.parse, sys
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = os.path.join(R, "site")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import kyukan as KY  # 11/24 休館日（関西と同じ決まり）
 import spot_map  # 11/4 場所の地図（LIFE NOTE の地図と同じ絵）
 BASE = os.environ.get("LIFE_BASE") or "https://usagi-life-notes.pages.dev"
 # 共通の部品の番号は lifenote.py と同じ物を使う
@@ -88,6 +89,7 @@ if os.path.exists(yp):
     for k, v in json.load(open(yp, encoding="utf-8")).items():
         Y[re.sub(r"\s+", "", k)] = v.get("h", []) if isinstance(v, dict) else v
 
+PSD = {re.sub(r"\s+", "", x.get("title") or ""): x for x in json.load(open(os.path.join(R, "data", "page-spots.json"), encoding="utf-8"))["items"]}
 spots, seen = [], set()
 for m in re.finditer(r'<div class="card it"([^>]*)>(.*?)<svg class="arw"', src, re.S):
     a = {k: html.unescape(v) for k, v in re.findall(r'(data-[\w-]+)="([^"]*)"', m.group(1))}
@@ -147,6 +149,12 @@ for sp in spots:
     elif sp["en"]:
         left = (datetime.date.fromisoformat(sp["en"]) - D0).days; stat = "きょうまで" if left == 0 else f"開催中・あと{left}日"
     elif sp["st"]: stat = "開催中"
+    # 11/24 夜の見回り（関西）：祝日の翌日（振替）で休館の館が「開催中」だった → data/page-spots.json の days（wd:…h）と文の休館日で「きょうは休館」
+    _ps = PSD.get(sp["key"])
+    if _ps and sp["en"] and stat.startswith("開催中"):
+        _y0, _m0 = int((sp["st"] or TODAY)[:4]), int((sp["st"] or TODAY)[5:7])
+        _why = KY.shut(_ps.get("days"), _ps.get("cl"), D0, KY.cl_from_text((_ps.get("opennote") or "") + " " + (_ps.get("when") or ""), lambda mo: _y0 + (1 if mo < _m0 else 0)))
+        if _why: stat = {"休館日": "きょうは休館日", "休みの日": "きょうはお休み"}.get(_why, "きょうは" + _why) + f"・あと{left}日"
     # 11/20 「千葉県のマザー牧場 千葉県富津市」のように県名が2回出ていた → 「千葉県富津市のマザー牧場」
     _pl = sp["place"]; _ct = ""
     _mm = re.search(r"\s+(?:" + re.escape(fu) + r")?(\S+[市区町村])$", _pl)

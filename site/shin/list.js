@@ -36,7 +36,7 @@ function sunset(){var d=dd(TD),n=Math.round((d-Date.UTC(d.getUTCFullYear(),0,0))
 function pick(){var L=IT.filter(function(x){
   if(S.p&&x.p!==S.p)return false;if(S.k&&x.k!==S.k&&!(S.k==="_fav"&&FAV[x.id||x.t]))return false;
   if(S.w&&PG.tabs){var tb=PG.tabs.filter(function(t){return t[0]===S.w})[0];if(tb&&tb[2]&&x[tb[2]]!==tb[3])return false}
-  if(PG.near){if(x.st==="up")return false;if(S.m&&(x.mn==null||x.mn>S.m))return false}
+  if(PG.near){if(x.st==="up")return false;if(S_.shut&&S_.shut(x))return false;/* 11/24 きょう休館の所は「いまから行ける」に出さない */if(S.m&&(x.mn==null||x.mn>S.m))return false}
   return true});
   if(PG.near)L.sort(function(a,b){return (a.km==null?1e9:a.km)-(b.km==null?1e9:b.km)});
   return L}
@@ -75,7 +75,7 @@ var qk=$(".tiles.qk");if(qk)qk.addEventListener("click",function(e){var b=e.targ
 function sync(){drawChips();saveQ()}
 
 function badge(x){if(x.bg)return '<span class="lt'+(x.bgc?" "+x.bgc:"")+'">'+esc(x.bg)+'</span>';
-  if(x.st==="up"){var n=diff(TD,x.s);return '<span class="lt">'+(n<=1?"あしたから":n+"日後から")+'</span>'}
+  if(x.st==="now"&&S_.shut&&S_.shut(x))return '<span class="lt sh">'+(S_.shut(x)==="休みの日"?"きょうはお休み":"きょうは休館")+'</span>';if(x.st==="up"){var n=diff(TD,x.s);return '<span class="lt">'+(n<=1?"あしたから":n+"日後から")+'</span>'}
   if(x.left===0)return '<span class="lt">きょうまで</span>';if(x.left!=null&&x.left<=7)return '<span class="lt">あと'+x.left+'日</span>';if(x.st==="now")return '<span class="lt now">開催中</span>';return ""}
 function when(x){if(x.d)return esc(x.d);if(!x.s)return "";return x.st==="up"?md(x.s)+"から":md(x.e)+"まで"}
 function sub(x){return PG.near&&x.mn!=null?'<b class="mn">約'+x.mn+'分</b>・'+x.km.toFixed(x.km<10?1:0)+'km・'+esc(x.a||x.p):esc(x.a||x.p)}

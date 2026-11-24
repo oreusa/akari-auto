@@ -75,6 +75,15 @@ var now=new Date(Date.now()+9*36e5),TD=now.toISOString().slice(0,10),seed=+TD.re
 var WD="日月火水木金土";
 function dd(s){return new Date(s+"T00:00:00Z")}
 function diff(a,b){return Math.round((dd(b)-dd(a))/864e5)}
+/* 11/24 休館日（tools/kyukan.py と同じ決まり）。夜の見回り：11/23（月・祝）の翌日、月曜休館の館が振替で休みなのに「開催中」だった。
+   dy="wd:曜日の数字(0=日)＋h"（h＝祝日は開く・その次の平日は休み）か「開く日の並び」・cl="-休む日,+開く日"。休みなら理由の文 */
+var HOL={"2026-11-03":1,"2026-11-23":1,"2027-01-01":1,"2027-01-11":1,"2027-02-11":1,"2027-02-23":1,"2027-03-21":1,"2027-03-22":1,"2027-04-29":1,"2027-05-03":1,"2027-05-04":1,"2027-05-05":1,"2027-07-19":1,"2027-08-11":1,"2027-09-20":1,"2027-09-23":1,"2027-10-11":1,"2027-11-03":1,"2027-11-23":1,"2028-01-01":1,"2028-01-10":1};
+function shut(x,t){t=t||TD;var cl=(x.cl||"").split(","),dy=x.dy||"";if(cl.indexOf("+"+t)>=0)return "";if(cl.indexOf("-"+t)>=0)return "休みの日";
+  if(/^\d{4}-\d\d-\d\d(,\d{4}-\d\d-\d\d)*$/.test(dy))return dy.split(",").indexOf(t)>=0?"":"休みの日";
+  var m=/^wd:(\d+)(h?)$/.exec(dy);if(!m)return "";if(m[2]&&HOL[t])return "";var D0=dd(t),w=D0.getUTCDay();if(m[1].indexOf(String(w))<0)return "休館日";
+  if(m[2]){var p=new Date(D0.getTime()-864e5);while(HOL[p.toISOString().slice(0,10)]){if(m[1].indexOf(String(p.getUTCDay()))<0)return "祝日の翌日で休館";p=new Date(p.getTime()-864e5)}}
+  return ""}
+
 function md(s){var d=dd(s);return (d.getUTCMonth()+1)+"/"+d.getUTCDate()+"（"+WD[d.getUTCDay()]+"）"}
 var IC={sun:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg>',
  moon:'<svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>',
@@ -198,7 +207,7 @@ $("#tg").addEventListener("click",function(e){var n=!H.classList.contains("nt");
   t.finished.then(function(){H.classList.remove("vtt")})});
 addEventListener("load",function(){drawn=0;if(H.classList.contains("nt"))stars()});
 
-window.SHIN={reg:REG,$:$,$$:$$,el:el,esc:esc,TD:TD,seed:seed,diff:diff,md:md,dd:dd,IC:IC,RM:RM,countUp:countUp,counts:counts,bars:bars,sheet:sheet,closeSheet:closeSheet,seg:seg,
+window.SHIN={reg:REG,$:$,$$:$$,el:el,esc:esc,TD:TD,shut:shut,HOL:HOL,seed:seed,diff:diff,md:md,dd:dd,IC:IC,RM:RM,countUp:countUp,counts:counts,bars:bars,sheet:sheet,closeSheet:closeSheet,seg:seg,
   onNav:function(f){navFn=f},navCur:navCur,main:$("#main"),data:JSON.parse((document.getElementById("d")||{textContent:"{}"}).textContent),
   ready:function(){apply(H.classList.contains("nt"));largeTitle();sellCta();noSelf();formHelp();/* 11/24 まちランキングは札の形（rkm.js）を全員に。前の形は ?mihon=0 */
   if(!/[?&]mihon=0/.test(location.search)&&/\/ranking(\.html)?$/.test(location.pathname)&&$("#grid")&&$("#d")){document.documentElement.classList.add("rkm");var _s=document.createElement("script");_s.src="/shin/rkm.js?v=4";_s.onerror=function(){document.documentElement.classList.remove("rkm")};document.body.appendChild(_s)}
