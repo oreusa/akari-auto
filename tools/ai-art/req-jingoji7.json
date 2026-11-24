@@ -1,0 +1,68 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "23-bridge",
+   "prompt": "A small red-railed wooden footbridge crossing a clear mountain river in a deep forested valley in Kyoto, framed by bright red and orange autumn maple trees, soft morning light",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "24-river",
+   "prompt": "A clear shallow mountain stream flowing over smooth rocks in a narrow valley, red and orange maple branches hanging over the water, gentle mist, autumn in Kyoto",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "25-leafwater",
+   "prompt": "Close-up of bright red maple leaves floating on clear flowing river water over pebbles, sunlight sparkling on the surface",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "26-saucers",
+   "prompt": "A stack of small round unglazed beige clay saucers on a weathered wooden ledge at a mountain temple terrace, a deep valley of red autumn maples blurred in the background",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "27-terrace",
+   "prompt": "A wooden temple terrace with a simple railing at the edge of a steep cliff overlooking a deep misty valley covered in red, orange and yellow autumn maples, morning sun rays",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "28-pagoda",
+   "prompt": "A small two-tiered wooden Japanese pagoda (tahoto) with dark tiled roofs standing in a mountain temple forest, surrounded by blazing red autumn maples, soft light",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "29-bell",
+   "prompt": "An old wooden bell tower housing a large dark bronze Japanese temple bell, red maple leaves around, mountain temple in autumn",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "30-approach",
+   "prompt": "A long mossy stone stairway approach climbing through a dense tunnel of red and orange maple trees on a mountain, stone lanterns along the side, warm morning light, seen from the bottom",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "31-sunset",
+   "prompt": "Silhouette of a traditional Japanese temple roof on a mountainside at golden hour, backlit red maple leaves glowing in the foreground",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "32-moss",
+   "prompt": "Close-up of an old mossy stone step covered with fallen red maple leaves, shallow depth of field, soft light",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
