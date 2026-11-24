@@ -2026,13 +2026,12 @@
     {
       "pref": "群馬",
       "name": "天空回廊 上野スカイブリッジ イルミネーション",
-      "start": null,
-      "end": null,
+      "start": "2026-12-01",
+      "end": "2027-02-28",
       "city": "上野村",
       "venue": "天空回廊 上野スカイブリッジ",
       "free": false,
-      "url": "https://tenkukairou.com/",
-      "last": "2025/11/29〜2026/3/1"
+      "url": "https://tenkukairou.com/events/99/"
     },
     {
       "pref": "群馬",
