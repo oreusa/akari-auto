@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-24 09:45",
+  "at": "2026-11-24 15:21",
   "cats": [
     {
       "key": "rice",
@@ -197,10 +197,10 @@
       "key": "water",
       "title": "水",
       "unit": "L",
-      "seen": 175,
+      "seen": 179,
       "read": 29,
       "ok": 1,
-      "avg": 14.2,
+      "avg": 14.3,
       "page": false,
       "top": [
         {
@@ -208,7 +208,7 @@
           "price": 7000,
           "per": 30.0,
           "amt": "500ml×42本",
-          "rc": 213,
+          "rc": 214,
           "av": 4.77,
           "shop": "宮城県蔵王町",
           "plain": "https://item.rakuten.co.jp/f043010-zao/10000567/",

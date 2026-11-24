@@ -104,6 +104,12 @@
   "sec": 1.3,
   "why": ""
  },
+ "https://chiba-porttower.com/article.php?id=102": {
+  "at": "2026-11-24",
+  "ok": true,
+  "sec": 1.4,
+  "why": ""
+ },
  "https://christmasmarket.jp/202611-cocooncity/": {
   "at": "2026-11-22",
   "ok": true,
@@ -3831,6 +3837,12 @@
   "sec": 0.7,
   "why": ""
  },
+ "https://tenkukairou.com/events/99/": {
+  "at": "2026-11-24",
+  "ok": true,
+  "sec": 1.4,
+  "why": ""
+ },
  "https://tgs.jp.net/event/miniature-bakery/": {
   "at": "2026-11-22",
   "ok": true,
@@ -3891,6 +3903,12 @@
   "by": "browser",
   "ok": true,
   "sec": 1.0,
+  "why": ""
+ },
+ "https://www.aboutamazon.jp/news/entertainment/audible-story-house-cafe-in-shibuya": {
+  "at": "2026-11-24",
+  "ok": true,
+  "sec": 1.2,
   "why": ""
  },
  "https://www.aeon.com/store/lp/592760/": {
@@ -4037,11 +4055,23 @@
   "sec": 1.9,
   "why": ""
  },
+ "https://www.city.chiba.jp/keizainosei/keizai/promotion/event_baja2026.html": {
+  "at": "2026-11-24",
+  "ok": true,
+  "sec": 1.0,
+  "why": ""
+ },
  "https://www.city.chuo.lg.jp/a0016/bunkakankou/kankoujouhou/event/kankousyougyoumaturi.html": {
   "at": "2026-11-16",
   "by": "browser",
   "ok": true,
   "sec": 3.4,
+  "why": ""
+ },
+ "https://www.city.funabashi.lg.jp/shisetsu/toshokankominkan/0002/0003/0003/p149667.html": {
+  "at": "2026-11-24",
+  "ok": true,
+  "sec": 0.3,
   "why": ""
  },
  "https://www.city.hitachiomiya.lg.jp/kankou_guide/news/page012282.html": {
@@ -4117,6 +4147,12 @@
   "at": "2026-11-22",
   "ok": true,
   "sec": 1.8,
+  "why": ""
+ },
+ "https://www.city.yachimata.lg.jp/soshiki/19/44995.html": {
+  "at": "2026-11-24",
+  "ok": true,
+  "sec": 0.7,
   "why": ""
  },
  "https://www.civic.jp/event.php?mode=detail&f=1&code=492": {
@@ -4246,6 +4282,12 @@
   "at": "2026-11-22",
   "ok": true,
   "sec": 0.8,
+  "why": ""
+ },
+ "https://www.kanagawa-park.or.jp/tujidou/eventschedule.pdf": {
+  "at": "2026-11-24",
+  "ok": true,
+  "sec": 1.8,
   "why": ""
  },
  "https://www.kanagawaparks.com/kurihama/news/2026100414204410478.html": {

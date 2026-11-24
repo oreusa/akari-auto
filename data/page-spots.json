@@ -3091,6 +3091,90 @@
       "note": "横浜市中区｜10:30〜18:00。当日 一般1,600円・小中学生800円・未就学児無料",
       "url": "https://www.pandorobou-ten.com/outline",
       "checked": "2026-11-23"
+    },
+    {
+      "title": "Audible STORY HOUSE",
+      "pref": "東京",
+      "place": "UPLIGHT COFFEE（渋谷駅 東口地下広場） 東京都渋谷区",
+      "when": "11/27〜12/6",
+      "start": "2026-11-27",
+      "ends": "2026-12-06T20:00",
+      "free": true,
+      "note": "渋谷区｜渋谷駅B7出口直結・東口地下広場の地下2階。10:00〜20:00（11/27は14:00から）。耳で聴く本（オーディオブック）をヘッドホンで無料で試せて、3つの質問で合う本も教えてくれます。カフェの外の広場は注文なしでOK（カフェの中は注文が要ります）",
+      "url": "https://www.aboutamazon.jp/news/entertainment/audible-story-house-cafe-in-shibuya",
+      "checked": "2026-11-24"
+    },
+    {
+      "title": "くじらの海のりもの広場",
+      "pref": "神奈川",
+      "place": "県立辻堂海浜公園 ジャンボプール",
+      "when": "11/1〜1/31",
+      "start": "2026-11-01",
+      "ends": "2027-01-31T16:00",
+      "free": false,
+      "note": "藤沢市｜土日祝と12/25・28、1/4〜6だけ。9:00〜16:00。おもしろ自転車・バッテリーカーに乗れる（100〜300円）",
+      "url": "https://www.kanagawa-park.or.jp/tujidou/eventschedule.pdf",
+      "checked": "2026-11-24"
+    },
+    {
+      "title": "千葉ポートタワー クリスマススノーファンタジー2026",
+      "pref": "千葉",
+      "place": "千葉ポートタワー",
+      "when": "11/21〜12/25",
+      "start": "2026-11-21",
+      "ends": "2026-12-25T21:00",
+      "free": false,
+      "note": "千葉市中央区｜点灯17:00〜21:00。タワー入館 大人420円・小中学生200円",
+      "url": "https://chiba-porttower.com/article.php?id=102",
+      "checked": "2026-11-24"
+    },
+    {
+      "title": "BAJA COAST JAM 2026",
+      "pref": "千葉",
+      "place": "稲毛海浜公園 SUNSET BEACH PARK INAGE",
+      "when": "11/28〜11/29",
+      "start": "2026-11-28",
+      "ends": "2026-11-29T16:00",
+      "free": true,
+      "note": "千葉市美浜区｜砂浜でオフロード車のデモラン・キッチンカー。見学無料。11/28 10:00〜17:00・11/29 9:00〜16:00",
+      "url": "https://www.city.chiba.jp/keizainosei/keizai/promotion/event_baja2026.html",
+      "checked": "2026-11-24"
+    },
+    {
+      "title": "2026にゃん、少し犬フェス",
+      "pref": "千葉",
+      "place": "船橋市宮本公民館",
+      "when": "11/28",
+      "start": "2026-11-28",
+      "ends": "2026-11-28T15:00",
+      "free": true,
+      "note": "船橋市｜1日だけ。10:00〜15:00。缶バッジ作りは無料（先着50名）。ペット同伴は不可",
+      "url": "https://www.city.funabashi.lg.jp/shisetsu/toshokankominkan/0002/0003/0003/p149667.html",
+      "checked": "2026-11-24"
+    },
+    {
+      "title": "第49回 八街市産業まつり",
+      "pref": "千葉",
+      "place": "八街市立八街中学校",
+      "when": "11/29",
+      "start": "2026-11-29",
+      "ends": "2026-11-29T15:00",
+      "free": true,
+      "note": "八街市｜1日だけ。9:00〜15:00。荒天中止",
+      "url": "https://www.city.yachimata.lg.jp/soshiki/19/44995.html",
+      "checked": "2026-11-24"
+    },
+    {
+      "title": "上野スカイブリッジ イルミネーション",
+      "pref": "群馬",
+      "place": "天空回廊 上野スカイブリッジ",
+      "when": "12/1〜2/28",
+      "start": "2026-12-01",
+      "ends": "2027-02-28T21:00",
+      "free": false,
+      "note": "上野村｜中学生以上1,000円・小学生500円・未就学児無料。送迎バス 17:15〜",
+      "url": "https://tenkukairou.com/events/99/",
+      "checked": "2026-11-24"
     }
   ]
 }
