@@ -10,13 +10,13 @@ var RG=S_.reg,PREF=RG.pref,PG=D.page||{};
 var M2=true;try{var _m=location.search.match(/[?&]map2=([01])/);if(_m)localStorage.setItem("tn_map2",_m[1]);M2=localStorage.getItem("tn_map2")!=="0"}catch(e){}
 /* 見本：府県を選んだら覚える（おでかけの一覧だけ。府県のページ・イルミ・紅葉は覚えない） */
 var PK="tn_odp_"+RG.n,REM=M2&&!PG.p&&!PG.st&&!PG.h1;
-var IT=D.items.filter(function(x){return x.e>=TD}).map(function(x,i){x.i=i;x.st=x.s<=TD?"now":"up";x.left=diff(TD,x.e);x.g=G[x.k]||G.spot;return x});
+var IT=D.items.filter(function(x){return x.e>=TD}).map(function(x,i){x.i=i;x.st=x.s<=TD?"now":"up";x.sh=x.st==="now"&&S_.shut?S_.shut(x):"";x.left=diff(TD,x.e);x.g=G[x.k]||G.spot;return x});
 var BYI={};IT.forEach(function(x){BYI[x.i]=x});
 function avg(b){try{var h=Uint8Array.from(atob(b),function(c){return c.charCodeAt(0)}),hd=h[0]|h[1]<<8|h[2]<<16,l=(hd&63)/63,p=((hd>>6)&63)/31.5-1,q=((hd>>12)&63)/31.5-1,bb=l-2/3*p,r=(3*l-bb+q)/2,g=r-q;
   var f=function(v){return Math.round(255*Math.max(0,Math.min(1,v)))};return "rgb("+f(r)+","+f(g)+","+f(bb)+")"}catch(e){return ""}}
 function img(x){return "/assets/ph/"+x.im}
 function tile(x){return '<div class="tile" style="--gc:'+x.g[1]+';--gt:'+x.g[2]+'"><svg viewBox="0 0 24 24">'+(D.icons[x.k]||D.icons.spot||"")+'</svg><b>'+x.g[3]+'</b></div>'}
-function lt(x){if(x.st==="up"){var n=diff(TD,x.s);return '<span class="lt">'+(n<=1?"あしたから":n+"日後から")+'</span>'}
+function lt(x){if(x.sh)return '<span class="lt sh">'+(x.sh==="休みの日"?"きょうはお休み":"きょうは休館")+'</span>';if(x.st==="up"){var n=diff(TD,x.s);return '<span class="lt">'+(n<=1?"あしたから":n+"日後から")+'</span>'}
   if(x.left===0)return '<span class="lt">きょうまで</span>';if(x.left<=7)return '<span class="lt">あと'+x.left+'日</span>';return '<span class="lt now">開催中</span>'}
 function when(x){return x.st==="up"?md(x.s)+"から":md(x.e)+"まで"}
 var Q=new URLSearchParams(location.search),S={p:Q.get("p")||PG.p||"",w:Q.get("w")||"now",g:Q.get("g")||"",n:24};
@@ -34,6 +34,7 @@ function inW(x,w){if(w==="now")return x.st==="now";if(w==="end")return x.st==="n
 function base(x){if(PG.free&&!x.f)return false;if(S.g==="_hv")return !!HV[hvKey(x)]&&(!S.p||x.p===S.p);if(S.p&&x.p!==S.p)return false;if(S.g&&x.k!==S.g)return false;return true}
 function wCounts(){var c={now:0,we:0,end:0,up:0,td:0,new:0};IT.forEach(function(x){if(!base(x))return;for(var w in c)if(inW(x,w))c[w]++});return c}
 function pick(){return IT.filter(function(x){return base(x)&&inW(x,S.w)}).sort(function(a,b){
+  if(!!a.sh!==!!b.sh)return a.sh?1:-1;/* 11/24 きょう休館の所は下へ */
   if(S.w==="up"||S.w==="new")return a.s<b.s?-1:a.s>b.s?1:0;if(S.w==="end"||S.w==="td")return a.e<b.e?-1:a.e>b.e?1:0;
   var pa=(a.im?0:3)-(a.ok||0),pb=(b.im?0:3)-(b.ok||0);if(pa!==pb)return pa-pb;if((b.pp||0)!==(a.pp||0))return (b.pp||0)-(a.pp||0);return a.e<b.e?-1:a.e>b.e?1:0})}
 var nNow=IT.filter(function(x){return x.st==="now"}).length;
@@ -101,7 +102,7 @@ function sync(){drawChips();S_.navCur(S.w);saveQ();if(REM)try{if(S.p)localStorag
 var cache={};
 function card(x){if(cache[x.i])return cache[x.i];
   var a=el('<a class="cd" href="'+(x.o?"/o/"+x.o:esc(x.u))+'" data-i="'+x.i+'" style="--gc:'+x.g[1]+'"><div class="im" style="background-color:'+(x.th?avg(x.th):x.g[2])+'">'+(x.im?'<img alt="" loading="lazy" decoding="async" src="'+img(x)+'">':tile(x))+'</div>'+
-   '<span class="hv'+(HV[hvKey(x)]?" on":"")+'" role="button" tabindex="0" aria-label="♡で残す" aria-pressed="'+(HV[hvKey(x)]?"true":"false")+'">'+HVI+'</span><div class="lb"><span class="g">'+x.g[3]+'</span><span>'+esc(x.p)+'</span>'+lt(x)+'</div><h4>'+esc(x.t)+'</h4>'+(x.hk?'<p class="hk">'+esc(x.hk)+'</p>':'')+'<div class="dt">'+when(x)+'</div><div class="vn">'+esc(vnOf(x))+'</div></a>');
+   '<span class="hv'+(HV[hvKey(x)]?" on":"")+'" role="button" tabindex="0" aria-label="♡で残す" aria-pressed="'+(HV[hvKey(x)]?"true":"false")+'">'+HVI+'</span><div class="lb"><span class="g">'+x.g[3]+'</span><span>'+esc(x.p)+'</span>'+lt(x)+'</div><h4>'+esc(x.t)+'</h4>'+(x.hk?'<p class="hk">'+esc(x.hk)+'</p>':'')+'<div class="dt">'+(x.sh?'<b class="shd">'+(x.sh==="休みの日"?"きょうはお休み":"きょうは休館")+'</b>':'')+when(x)+'</div><div class="vn">'+esc(vnOf(x))+'</div></a>');
   var im=$("img",a);if(im){if(im.complete)im.classList.add("ld");else im.onload=function(){im.classList.add("ld")}}
   return cache[x.i]=a}
 var grid=$("#grid"),first=true;
@@ -137,7 +138,7 @@ function openItem(x,from){if(!x)return;var tot=Math.max(1,diff(x.s,x.e)),gone=Ma
   S_.sheet('<div class="pim" style="background-color:'+(x.th?avg(x.th):x.g[2])+'">'+(x.im?'<img src="'+img(x)+'" alt="">':tile(x))+'</div><div class="bd" style="--gc:'+x.g[1]+'">'+
    '<div class="lb"><span class="g">'+x.g[3]+'</span><span>'+esc(x.p)+'・'+esc(x.a)+'</span></div><h2>'+esc(x.t)+'</h2>'+(x.hk?'<p class="hk">'+esc(x.hk)+'</p>':"")+
    '<div class="per"><div class="row"><span>'+md(x.s)+'</span><span>'+md(x.e)+'</span></div><div class="tr"><i data-w="'+pc.toFixed(3)+'" style="background:'+x.g[1]+'"></i>'+(x.st==="now"?'<b style="left:'+(pc*100)+'%;border-color:'+x.g[1]+'"></b>':"")+'</div>'+
-   '<div class="big">'+(x.pk?(x.st==="up"?"見頃の時期まで あと"+diff(TD,x.s)+"日":"いまが見頃の時期です"):x.st==="up"?"あと"+diff(TD,x.s)+"日で始まります":x.left===0?"きょうまで":"終わりまで あと"+x.left+"日")+'</div></div>'+
+   '<div class="big">'+(x.sh?(x.sh==="休みの日"?"きょうはお休み":"きょうは"+x.sh)+"・終わりまで あと"+x.left+"日":x.pk?(x.st==="up"?"見頃の時期まで あと"+diff(TD,x.s)+"日":"いまが見頃の時期です"):x.st==="up"?"あと"+diff(TD,x.s)+"日で始まります":x.left===0?"きょうまで":"終わりまで あと"+x.left+"日")+'</div></div>'+
    '<dl class="kv">'+(x.v?'<dt>会場</dt><dd>'+esc(x.v)+'</dd>':"")+'<dt>場所</dt><dd>'+esc(x.a||x.p)+'</dd>'+(x.h?'<dt>時間</dt><dd>'+esc(x.h)+'</dd>':"")+(x.fe?'<dt>料金</dt><dd>'+esc(x.fe)+'</dd>':x.f?'<dt>料金</dt><dd>無料</dd>':"")+(x.pk?'<dt>見頃</dt><dd>'+esc(x.pk)+'</dd>':"")+'</dl>'+
    (x.ds?'<p class="ds">'+esc(x.ds)+'</p>':"")+
    '<div class="acts"><a class="pr" href="'+esc(x.u)+'" target="_blank" rel="noopener">公式サイトで確かめる</a><a href="https://www.google.com/maps/search/?api=1&query='+mq+'" target="_blank" rel="noopener">地図で開く</a>'+(x.o?'<a href="/o/'+x.o+'">くわしいページ</a>':'<button data-share="1">送る</button>')+'</div>'+

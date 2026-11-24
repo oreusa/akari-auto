@@ -12,6 +12,7 @@ SITE = "https://kanto.townnote.app"
 TPL = open(os.path.join(R, "scripts", "shin", "page.tpl.html"), encoding="utf-8").read()
 sys.path.insert(0, os.path.join(R, "scripts", "shin"))
 from ix import ix_html as IX, pre_html as PRE
+sys.path.insert(0, os.path.join(R, "scripts")); import kyukan as _KY  # 11/24 休館日（関西と同じ決まり）
 JST = datetime.timezone(datetime.timedelta(hours=9))
 TD = datetime.datetime.now(JST).date().isoformat()
 J = lambda o: json.dumps(o, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
@@ -128,6 +129,11 @@ def items():
         if x.get("note"): it["ds"] = x["note"]
         if x.get("note") and hk_of(x["note"], t): it["hk"] = hk_of(x["note"], t)
         if x.get("opennote"): it["h"] = x["opennote"]
+        # 11/24 休館日：days（wd:…h＝祝日は開く・次の平日は休み）と文の「（11/16・11/24は休館）」→ shin.js の SHIN.shut で「きょうは休館」・いまから行けるから外す
+        if x.get("days"): it["dy"] = x["days"]
+        _y0, _m0 = int(it["s"][:4]), int(it["s"][5:7])
+        _cl = [c for c in (x.get("cl") or "").split(",") if c and c[0] in "+-"] + _KY.cl_from_text((x.get("opennote") or "") + " " + (x.get("when") or ""), lambda mo: _y0 + (1 if mo < _m0 else 0))
+        if _cl: it["cl"] = ",".join(_cl)
         enrich(it, t, x.get("place", ""))
         oid = hashlib.md5(key.encode()).hexdigest()[:8]
         if oid in opages: it["o"] = oid

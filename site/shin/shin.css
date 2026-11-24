@@ -1335,3 +1335,6 @@ html.nt .rkc .rl{background:rgba(255,255,255,.1)}
 .rkc .rch{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);font-size:13px;font-weight:500;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rkc .rc0 .rch{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .rkc .rc0 .r3 li:first-child .rl i{opacity:.28}
+/* 11/24 きょうは休館（祝日の翌日など） */
+.lt.sh{background:#F6E7E4!important;color:#B23A2A!important;padding:2px 8px!important;font-weight:700!important}html.nt .lt.sh{background:#3A1E1A!important;color:#FF9C8C!important}
+.dt .shd{display:inline-block;margin-right:6px;padding:1px 7px;border-radius:6px;background:#F6E7E4;color:#B23A2A;font-weight:700;font-size:.92em}html.nt .dt .shd{background:#3A1E1A;color:#FF9C8C}

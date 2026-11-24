@@ -174,7 +174,9 @@
       "free": false,
       "note": "台東区｜上野の科学博物館の特別展。9:00〜17:00",
       "url": "https://www.ikimono-sei.jp/",
-      "checked": "2026-10-27"
+      "checked": "2026-10-27",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "THE MOVEUM YOKOHAMA モネと浮世絵",
@@ -1696,7 +1698,9 @@
       "free": false,
       "note": "収蔵作品の展示。一般200円・高校生と大学生100円・中学生以下無料",
       "url": "https://pref.spec.ed.jp/momas/2026momas02",
-      "checked": "2026-11-02"
+      "checked": "2026-11-02",
+      "days": "wd:023456h",
+      "opennote": "月曜休館（祝日は開館）"
     },
     {
       "title": "三島由紀夫のアオハル ―中島飛行機からの出発―",
