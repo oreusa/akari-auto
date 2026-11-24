@@ -1,4 +1,4 @@
-# HPの在庫（11/24 09:24 機械が数えた）
+# HPの在庫（11/24 11:36 機械が数えた）
 
 判定：× 東京のこれからがあと8件、神奈川のこれからがあと4件、埼玉のこれからがあと3件、千葉のこれからがあと5件、茨城のこれからがあと4件、栃木のこれからがあと3件
 
@@ -41,13 +41,15 @@
 
 ## 開けないリンク（直すか消す）
 
-- SLパレオエクスプレス2026：https://www.chichibu-railway.co.jp/blog/news/sl2026/（TimeoutError）
+- とちぎ秋まつり：https://www.tochigi-kankou.or.jp/news/19382（URLError）
+- 第19回かすみがうら祭：https://www.kasumigaura-kankou.jp/page/page000986.html（404）
 - Fly to the Moon: 月をめぐる5つの物語：https://www.haramuseum.or.jp/jp/arc/exhibition/2275/（URLError）
 - さがみはら星空探査隊：https://www.city.sagamihara.kanagawa.jp/kankou/1026674/hayabusa2/1035623.html（404）
-- Crystal Garden 2026-2027（アイガーデンエア）：https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html（URLError）
 - さのあかり まちなか寺社の光：https://www.city.sano.lg.jp/miryokuhasshin/event/29076.html（404）
+- 第10回 うずまの竹あかり：https://www.tochigi-kankou.or.jp/news/20057（URLError）
 - 第29回やまがた宿芋煮会：https://www.city.hitachiomiya.lg.jp/kankou_guide/news/page012282.html（404）
 - 放送30周年記念TVアニメ「名探偵コナン」展 横浜会場：https://l-tike.com/ntvzero/event/tvconanten-30th_yokohama.html（TimeoutError）
+- とちぎ アグリフェスタ2026：https://www.tochigi-kankou.or.jp/news/20445（URLError）
 
 ## 同じ物が2つ（1つ消す）
 

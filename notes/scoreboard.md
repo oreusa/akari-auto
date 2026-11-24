@@ -158,19 +158,19 @@
 | 11-21 | 60 | 27 | direct 12、tomari 7、okaimono 4、card 3、yado 1 |
 | 11-22 | 78 | 44 | direct 29、card 7、okaimono 4、tomari 4 |
 | 11-23 | 51 | 21 | card 9、direct 8、okaimono 2、tomari 2 |
-| 11-24 | 12 | 0 |  |
+| 11-24 | 17 | 8 | direct 4、okaimono 4 |
 
 ## HPで押されたカード（7日の合計、多い順に15）
 | 欄｜名前 | 回数 |
 |---|---|
 | src|直接・アプリ | 26 |
+| src|ほか（www.facebook.com） | 23 |
 | v4|種類ページ:コーヒー | 23 |
-| src|ほか（www.facebook.com） | 22 |
 | tomari|表示 | 21 |
+| src|ほか（m.facebook.com） | 19 |
 | v4|表示:直に | 19 |
-| src|ほか（m.facebook.com） | 18 |
 | v4|表示:関西TOWNから | 14 |
-| v4|表示:外から | 10 |
+| v4|表示:外から | 12 |
 | fudosan|売る前に｜ランキング | 8 |
 | src|X | 7 |
 | hp|表示：開店・閉店の1店（外から） | 7 |
@@ -183,11 +183,11 @@
 | 欄 | 回数 |
 |---|---|
 | fudosan | 124 |
-| src | 87 |
-| v4 | 80 |
+| src | 89 |
+| v4 | 84 |
 | top | 34 |
+| hp | 28 |
 | tomari | 27 |
-| hp | 26 |
 | 開店・閉店 | 5 |
 | menu | 4 |
 | 値下がり | 4 |
