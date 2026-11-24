@@ -155,12 +155,16 @@ for sp in spots:
         _y0, _m0 = int((sp["st"] or TODAY)[:4]), int((sp["st"] or TODAY)[5:7])
         _why = KY.shut(_ps.get("days"), _ps.get("cl"), D0, KY.cl_from_text((_ps.get("opennote") or "") + " " + (_ps.get("when") or ""), lambda mo: _y0 + (1 if mo < _m0 else 0)))
         if _why: stat = {"休館日": "きょうは休館日", "休みの日": "きょうはお休み"}.get(_why, "きょうは" + _why) + f"・あと{left}日"
+        # 11/24 夜（関西と同じ）：開く日だけの催しは、休みの日に「次は◯月◯日」
+        _dl = sorted(d for d in (_ps.get("days") or "").split(",") if re.fullmatch(r"\d{4}-\d\d-\d\d", d) and d >= TODAY)
+        if _why == "休みの日" and _dl and _dl[0] > TODAY: stat = "きょうはお休み・次は " + ("あした " if (datetime.date.fromisoformat(_dl[0]) - D0).days == 1 else "") + jd(_dl[0])
     # 11/20 「千葉県のマザー牧場 千葉県富津市」のように県名が2回出ていた → 「千葉県富津市のマザー牧場」
     _pl = sp["place"]; _ct = ""
     _mm = re.search(r"\s+(?:" + re.escape(fu) + r")?(\S+[市区町村])$", _pl)
     if _mm: _ct, _pl = _mm.group(1), _pl[:_mm.start()].strip()
     where = fu + _ct + ("の" + _pl if _pl else "")
-    lead = f"{nm}は、{where}で" + (f"、{jd(sp['st'])}から{jd(sp['en'])}まで開かれます。" if sp["st"] and sp["en"] and sp["en"] != sp["st"] else (f"、{jd(sp['st'])}に開かれます。" if sp["st"] else "楽しめます。"))
+    _ds = [d for d in ((_ps or {}).get("days") or "").split(",") if re.fullmatch(r"\d{4}-\d\d-\d\d", d)]
+    lead = f"{nm}は、{where}で" + (f"、{'・'.join(jd(d) for d in _ds)}の{len(_ds)}日だけ開かれます。" if 1 < len(_ds) <= 8 and _ds[0] == sp["st"] and _ds[-1] == sp["en"] else f"、{jd(sp['st'])}から{jd(sp['en'])}まで開かれます。" if sp["st"] and sp["en"] and sp["en"] != sp["st"] else (f"、{jd(sp['st'])}に開かれます。" if sp["st"] else "楽しめます。"))
     if sp["free"]: lead += "入場は無料です。"
     mo = MORE.get(sp["key"], {})
     if sp["free"] and mo.get("price") and not _YEN.search(mo["price"]): mo = {k: v for k, v in mo.items() if k != "price"}  # 「入場無料」だけなら上の「入場：無料」で分かる
