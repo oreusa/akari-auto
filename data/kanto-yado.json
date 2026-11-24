@@ -11583,5 +11583,40 @@
         "min": 13650
       }
     ]
+  },
+  "AudibleSTORYHOUSE": {
+    "v": 2,
+    "t": "2026-11-24",
+    "ll": [
+      35.65921,
+      139.70201
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "SHIBUYA STREAM HOTEL",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D167550",
+        "km": 0.2,
+        "r": 5.0,
+        "rc": 179,
+        "min": 26250
+      },
+      {
+        "n": "セルリアンタワー東急ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D11275",
+        "km": 0.4,
+        "r": 4.61,
+        "rc": 1909,
+        "min": 27324
+      },
+      {
+        "n": "渋谷グランベルホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D52992",
+        "km": 0.3,
+        "r": 4.56,
+        "rc": 1514,
+        "min": 12500
+      }
+    ]
   }
 }
