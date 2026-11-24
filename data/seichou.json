@@ -1,31 +1,31 @@
 {
- "date": "2026-11-23",
+ "date": "2026-11-24",
  "now": {
-  "views": 778,
-  "come": 82,
+  "views": 726,
+  "come": 78,
   "post": 0,
-  "ask": 28,
+  "ask": 25,
   "cost": 0,
-  "open": 1,
+  "open": 0,
   "sent": 0,
   "buy": 1,
   "days": 7
  },
  "prev": {
-  "views": 1163,
-  "come": 23,
-  "post": 4,
-  "ask": 74,
+  "views": 941,
+  "come": 38,
+  "post": 1,
+  "ask": 68,
   "cost": 0,
-  "open": 11,
+  "open": 12,
   "sent": 0,
-  "buy": 11,
+  "buy": 10,
   "days": 7
  },
  "kino": {
-  "day": "2026-11-22",
-  "views": 78,
-  "come": 16,
+  "day": "2026-11-23",
+  "views": 51,
+  "come": 11,
   "post": 0,
   "ask": 0,
   "open": 0,
@@ -39,18 +39,18 @@
   },
   {
    "name": "x0716",
-   "n": 16
+   "n": 12
   },
   {
    "name": "x0916",
    "n": 10
   },
   {
-   "name": "x1216",
+   "name": "x1816",
    "n": 10
   },
   {
-   "name": "x1816",
+   "name": "x1216",
    "n": 9
   }
  ],
