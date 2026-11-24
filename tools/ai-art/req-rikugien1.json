@@ -1,0 +1,134 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "01-pond-night",
+   "prompt": "A traditional Japanese stroll garden at night with red and orange maple trees illuminated by warm lights, perfectly reflected in a calm pond, deep blue night sky, Tokyo",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-bridge-night",
+   "prompt": "A small wooden arched bridge in a Japanese garden at night, illuminated autumn maple leaves above, reflection in water",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-teahouse",
+   "prompt": "A small rustic thatched-roof Japanese teahouse on the edge of a pond at night, warm light glowing from inside, illuminated maple trees around",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-storehouse",
+   "prompt": "An old white plaster Japanese earthen storehouse (kura) at night with colorful projected light patterns of autumn leaves on its walls, garden setting",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-bamboo",
+   "prompt": "A bamboo grove at night illuminated with soft projected light patterns, green bamboo stalks glowing, Japanese garden",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-lightstream",
+   "prompt": "A dry stream bed in a Japanese garden at night where blue light projection creates the illusion of flowing water, with floating lotus shapes of light, maple trees above",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-ground",
+   "prompt": "Fallen ginkgo and maple leaves on a garden path illuminated from below at night, yellow and red glowing carpet",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "08-mountain",
+   "prompt": "An artificial hill in a Japanese garden covered with illuminated red maples at night, a stone path winding up, like a mountain autumn scene",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "09-matcha",
+   "prompt": "A bowl of frothy green matcha tea and a Japanese wagashi sweet on a red cloth at a garden teahouse, autumn leaves in the background, warm light",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "10-day-pond",
+   "prompt": "A large Japanese stroll garden with a big pond and a pine-covered island, red and orange autumn trees around, clear day, Tokyo",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "11-day-maple",
+   "prompt": "Red maple trees along the shore of a garden pond in daylight, stone lanterns, Japanese daimyo garden",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "12-dodan",
+   "prompt": "Bright red Enkianthus shrubs (dodan tsutsuji) in autumn in a Japanese garden, neatly pruned, soft daylight",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "13-path-day",
+   "prompt": "A stone path through a Japanese stroll garden with red maples arching overhead, daytime, dappled light",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "14-gate",
+   "prompt": "A traditional wooden gate of a Japanese garden at dusk, lanterns lit, autumn leaves",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "15-reflection",
+   "prompt": "Close-up of illuminated red maple leaves reflected in dark water at night, mirror-like",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "16-lantern-night",
+   "prompt": "A stone lantern in a Japanese garden at night, softly lit, red maple leaves around it",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "17-overview-night",
+   "prompt": "Wide view of an illuminated Japanese garden at night, glowing red and yellow trees around a pond, city glow on the horizon",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "18-ginkgo-night",
+   "prompt": "A tall ginkgo tree with golden leaves lit up at night in a Japanese garden, leaves on the ground",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "19-dusk",
+   "prompt": "A Japanese garden pond at blue hour, autumn trees with lights just turning on, calm water",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "20-leaves-close",
+   "prompt": "Close-up of red and orange maple leaves lit by warm light against a dark night background, bokeh",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "21-island",
+   "prompt": "A small island with a pine tree and stone lantern in a garden pond at night, illuminated, reflections",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}

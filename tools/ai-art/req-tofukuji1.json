@@ -1,0 +1,134 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "01-sea",
+   "prompt": "Looking down from a high wooden covered bridge onto a deep valley completely filled with blazing red and orange maple trees like a sea of clouds, Zen temple in Kyoto, soft morning light",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-bridge",
+   "prompt": "A long wooden covered corridor bridge with a tiled roof spanning a deep ravine filled with red autumn maples, seen from the side from another bridge, Kyoto Zen temple",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-inside",
+   "prompt": "Inside a long wooden covered bridge corridor, dark wooden pillars and railings framing bright red maple leaves outside, perspective toward the far end",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-golden",
+   "prompt": "Close-up of golden yellow maple leaves with three-lobed shape glowing in sunlight, among red maples, Kyoto temple garden",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-gate",
+   "prompt": "A huge two-story wooden Zen temple main gate with deep vermilion and dark wood, surrounded by autumn trees, early morning, Kyoto",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-checker",
+   "prompt": "A Japanese Zen garden with a checkerboard pattern of square stones and moss, red maple leaves scattered, autumn, raked gravel",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-gravel",
+   "prompt": "A dry Zen rock garden with raked white gravel in wave patterns and moss-covered stone islands, temple veranda in foreground, autumn trees beyond",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "08-ravine",
+   "prompt": "A small stream at the bottom of a forested ravine under red and orange maple canopy, a wooden covered bridge seen high above",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "09-path",
+   "prompt": "A stone paved path inside a large Zen temple compound, lined with red maples, wooden temple halls with tiled roofs, morning light",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "10-roof",
+   "prompt": "Curved grey tiled roofs of old Kyoto Zen temple buildings among red and yellow maple treetops seen from above",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "11-backlit",
+   "prompt": "Red maple leaves backlit by low morning sun, glowing, a dark wooden temple roof edge in the corner",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "12-moss",
+   "prompt": "Green moss ground covered with fallen red maple leaves under maple trees, temple garden, soft light",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "13-veranda",
+   "prompt": "View from a dark wooden temple veranda looking out at a garden of red maples, polished wooden floor reflecting the red colors",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "14-steps",
+   "prompt": "Stone steps leading down into a ravine under arching red maple branches, temple garden, morning",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "15-autumn-wide",
+   "prompt": "Wide view of a Kyoto Zen temple valley in peak autumn, red, orange and yellow maples, covered wooden bridges crossing the valley",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "16-leaves-wood",
+   "prompt": "Bright red maple leaves fallen on an old dark wooden railing, close-up, shallow depth of field",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "17-hall",
+   "prompt": "A large old wooden Zen temple hall with a massive roof, bright autumn maple trees in front, clear blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "18-water",
+   "prompt": "Red maple leaves reflected on still dark water of a small pond in a temple garden",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "19-morning",
+   "prompt": "Early morning mist in a temple ravine full of red maples, first sunlight rays through the trees",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "20-arch",
+   "prompt": "Red maple branches forming an arch over a wooden covered bridge entrance, Kyoto temple",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "21-lantern",
+   "prompt": "A stone lantern among red maple leaves in a Kyoto temple garden, moss, soft light",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
