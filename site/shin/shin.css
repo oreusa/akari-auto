@@ -1338,3 +1338,14 @@ html.nt .rkc .rl{background:rgba(255,255,255,.1)}
 /* 11/24 きょうは休館（祝日の翌日など） */
 .lt.sh{background:#F6E7E4!important;color:#B23A2A!important;padding:2px 8px!important;font-weight:700!important}html.nt .lt.sh{background:#3A1E1A!important;color:#FF9C8C!important}
 .dt .shd{display:inline-block;margin-right:6px;padding:1px 7px;border-radius:6px;background:#F6E7E4;color:#B23A2A;font-weight:700;font-size:.92em}html.nt .dt .shd{background:#3A1E1A;color:#FF9C8C}
+/* 11/24 夜「関西 ▾ を押しても開いたと分からない」→ 押すと札が黒に反転し、すぐ下に府県の板（白い札・選んでいる府県は黒）が開く */
+html.rkm #bar{display:flex;flex-direction:column}
+html.rkm #bar #chips{order:1}
+html.rkm #bar.rkpfo #seg{order:2;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:8px 0 2px;padding:10px;border-radius:16px;background:#fff;border:1px solid rgba(0,0,0,.08);box-shadow:0 12px 28px -14px rgba(0,0,0,.35);height:auto;overflow:visible;animation:rkpf .18s ease-out}
+html.nt.rkm #bar.rkpfo #seg{background:#1C1F2B;border-color:rgba(255,255,255,.14)}
+html.rkm #bar.rkpfo #seg .pill{display:none!important}
+html.rkm #bar.rkpfo #seg button{height:38px;padding:0 4px;border-radius:10px;background:rgba(0,0,0,.05);color:var(--ink);font-size:14px;font-weight:600;white-space:nowrap}
+html.nt.rkm #bar.rkpfo #seg button{background:rgba(255,255,255,.08)}
+html.rkm #bar.rkpfo #seg button.on{background:var(--ink)!important;color:var(--bg)!important}
+html.rkm #bar.rkpfo .lk-pf{background:var(--ink)!important;color:var(--bg)!important;border-color:var(--ink)!important}
+@keyframes rkpf{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
