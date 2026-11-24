@@ -1,0 +1,38 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "01-gate-night",
+   "prompt": "Kamakura temple wooden two-story gate at dusk with illuminated red autumn maple trees around it, deep blue evening sky, autumn night special viewing",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-pond",
+   "prompt": "A Japanese temple garden pond at night with illuminated red and orange maple trees reflected perfectly on the still water surface, stone lanterns, Kamakura Hasedera autumn light-up",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-steps",
+   "prompt": "Stone stairs climbing a hillside in a Kamakura temple at night, lined with illuminated red maple trees forming a glowing tunnel, autumn light-up",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-kannondo",
+   "prompt": "A large Japanese Buddhist temple main hall on a hillside at night illuminated with cool blue light, red illuminated maples in the foreground, Kamakura, autumn light-up",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-ginkgo",
+   "prompt": "At night in a Japanese temple, illuminated red maple branches above and a ground covered with bright yellow fallen ginkgo leaves below, a small wooden Jizo hall in the background, Kamakura autumn light-up",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}

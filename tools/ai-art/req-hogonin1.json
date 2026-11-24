@@ -1,0 +1,50 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "01-canopy",
+   "prompt": "Looking straight up from the ground of a small Kyoto Zen temple garden into a dense canopy of brilliant red and orange Japanese maple leaves covering the whole sky like a ceiling, a dark tiled temple roof edge at the bottom, daytime soft light",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-tunnel",
+   "prompt": "A narrow stone-paved garden path in a Kyoto Zen temple under an arching tunnel of red maple trees, green moss on both sides, fallen red leaves, daytime",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-shishiiwa",
+   "prompt": "A huge dark natural boulder shaped like a crouching lion sitting on a carpet of thick green moss in a Japanese Zen stroll garden, red maple leaves scattered on the moss, red maples around, daytime, Kyoto Arashiyama",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-shakkei",
+   "prompt": "A Japanese Zen stroll garden with moss and large rocks and red maples in the foreground, and the forested mountain of Arashiyama with autumn colors rising behind the garden wall as borrowed scenery, daytime, Kyoto",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-night-garden",
+   "prompt": "Night illumination in a Japanese Zen garden: red maple trees lit from below glowing crimson against a black sky, a moss garden with large rocks softly lit, a stone path, Kyoto temple autumn light-up",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-night-leaves",
+   "prompt": "Close view at night of red maple branches lit from below, glowing crimson leaves against a dark background, Kyoto temple light-up",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-night-gate",
+   "prompt": "A small Kyoto Zen temple wooden gate at night with a lit stone-paved approach and illuminated red maples above, autumn light-up",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
