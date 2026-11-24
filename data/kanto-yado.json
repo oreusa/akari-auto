@@ -11618,5 +11618,129 @@
         "min": 12500
       }
     ]
+  },
+  "千葉ポートタワークリスマススノーファンタジー2026": {
+    "v": 2,
+    "t": "2026-11-24",
+    "ll": [
+      35.60042,
+      140.09786
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ベッセルイン千葉駅前|サウナ付大浴場(千葉・京成千葉・幕張)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D168546",
+        "km": 2.3,
+        "r": 4.58,
+        "rc": 2130,
+        "min": 3133
+      },
+      {
+        "n": "ダイワロイネットホテル千葉中央",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D166219",
+        "km": 2.1,
+        "r": 4.53,
+        "rc": 1742,
+        "min": 4800
+      },
+      {
+        "n": "ダイワロイネットホテル千葉駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D148926",
+        "km": 2.2,
+        "r": 4.45,
+        "rc": 1580,
+        "min": 4650
+      }
+    ]
+  },
+  "BAJACOASTJAM2026": {
+    "v": 2,
+    "t": "2026-11-24",
+    "ll": [
+      35.63625,
+      140.10722
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ベッセルイン千葉駅前|サウナ付大浴場(千葉・京成千葉・幕張)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D168546",
+        "km": 2.9,
+        "r": 4.58,
+        "rc": 2130,
+        "min": 3133
+      },
+      {
+        "n": "THE TSUBAKIMORI Hotel & Residence(椿森ホテル&レジデンス)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198773",
+        "km": 2.2,
+        "r": 4.52,
+        "rc": 60,
+        "min": 5000
+      },
+      {
+        "n": "ダイワロイネットホテル千葉駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D148926",
+        "km": 2.8,
+        "r": 4.45,
+        "rc": 1580,
+        "min": 4650
+      }
+    ]
+  },
+  "第49回八街市産業まつり": {
+    "v": 2,
+    "t": "2026-11-24",
+    "ll": [
+      35.66575,
+      140.31639
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "HOTEL R9 The Yard 八街",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D193564",
+        "km": 1.0,
+        "r": 4.04,
+        "rc": 98,
+        "min": 4300
+      }
+    ]
+  },
+  "2026にゃん、少し犬フェス": {
+    "v": 2,
+    "t": "2026-11-24",
+    "ll": [
+      35.69764,
+      139.995
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルフローラ船橋",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184600",
+        "km": 1.2,
+        "r": 4.48,
+        "rc": 638,
+        "min": 4650
+      },
+      {
+        "n": "ダブル船橋",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179161",
+        "km": 0.7,
+        "r": 4.41,
+        "rc": 149,
+        "min": 4720
+      },
+      {
+        "n": "レオ癒カプセルホテル 船橋店",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D177004",
+        "km": 1.0,
+        "r": 4.41,
+        "rc": 574,
+        "min": 2700
+      }
+    ]
   }
 }
