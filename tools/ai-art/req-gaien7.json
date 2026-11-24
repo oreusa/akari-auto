@@ -1,0 +1,68 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "23-leafsky",
+   "prompt": "Close-up of bright yellow ginkgo leaves on a branch against a clear blue sky, backlit by the sun, glowing translucent leaves",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "24-morning",
+   "prompt": "An empty wide city sidewalk in Tokyo early morning under a long avenue of tall golden ginkgo trees, soft morning haze, low sun, yellow leaves on the ground",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "25-trunks",
+   "prompt": "Rows of dark ginkgo tree trunks receding into the distance along a straight avenue in Tokyo, golden yellow canopies above, strong one-point perspective",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "26-canopy",
+   "prompt": "Looking straight up into a dense canopy of golden yellow ginkgo trees meeting overhead, small patches of blue sky, sunlight through the leaves",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "27-reflect",
+   "prompt": "A wet city avenue at night reflecting tall golden ginkgo trees lit from below with warm lights, deep blue sky, long exposure, no cars",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "28-backlit",
+   "prompt": "Tall golden ginkgo trees backlit by the low afternoon sun on a Tokyo avenue, glowing leaves, sun flare, warm light",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "29-pile",
+   "prompt": "A thick layer of fallen bright yellow ginkgo leaves covering the edge of a city sidewalk and curb, sunlight and long tree shadows",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "30-sidewalk",
+   "prompt": "A city sidewalk under a tunnel of tall golden ginkgo trees in Tokyo, a lone wooden bench, dappled sunlight, yellow leaves everywhere",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "31-dusk2",
+   "prompt": "A long straight avenue lined with four rows of tall golden ginkgo trees at blue hour, street lamps starting to glow, Tokyo",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "32-closeup",
+   "prompt": "Macro photograph of a single fan-shaped yellow ginkgo leaf on dark wet asphalt, raindrops, soft light",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
