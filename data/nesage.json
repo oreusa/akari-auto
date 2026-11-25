@@ -1,7 +1,7 @@
 {
-  "at": "2026-11-25 15:01",
+  "at": "2026-11-25 18:04",
   "since": "2026-11-01",
-  "tracked": 265,
+  "tracked": 267,
   "days": 24,
   "downs": [
     {
@@ -174,20 +174,6 @@
     }
   ],
   "ups": [
-    {
-      "title": "モバイルバッテリー",
-      "name": "hagoogi 充電式カイロ 大容量 電気カイロ 軽量 分離式 10000mah 最高55℃…",
-      "price": 7280,
-      "base": 3680.0,
-      "pct": 98,
-      "days": 14,
-      "rc": 694,
-      "av": 4.55,
-      "shop": "Hagoogi公式 楽天市場店",
-      "plain": "https://item.rakuten.co.jp/hagoogi/10000130/",
-      "url": "https://hb.afl.rakuten.co.jp/hgc/g00trzxo.m2lhf882.g00trzxo.m2lhg5f3/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhagoogi%2Fot-96h-02%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhagoogi%2Fi%2F10000130%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/hagoogi/cabinet/09428205/12588417/imgrc0096478061.jpg?_ex=300x300"
-    },
     {
       "title": "加湿器",
       "name": "ハイブリッド式 加湿器 4.5L LAViNO エアリファイ 2027 大人気くすみカラー …",
