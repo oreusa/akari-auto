@@ -8,6 +8,7 @@
 """
 import html
 import json
+import re
 import os
 import sys
 import time
@@ -33,8 +34,11 @@ def esc(s):
     return html.escape(str(s or ""), quote=True)
 
 
+# 11/25 夜：BF が終わっても品名に「11/25 01:59まで」「先行セール中！」が残っていた → 日付つきの期限・セールの売り文句は品名から外す
+_LIM = re.compile(r"[\d０-９]{1,2}[/／月][\d０-９]{1,2}日?(?:[（(][^）)]{1,3}[）)])?\s*(?:[\d０-９]{1,2}[:：][\d０-９]{2})?\s*(?:まで|迄)[^\s】]*"
+                  r"|(?:先行)?セール中[！!]*|ブラックフライデー(?:限定|特価|セール)?|お買い物マラソン(?:限定|特価)?|期間限定[^\s】]*|ポイント\d+倍[^\s】]*")
 def short(name, n=40):
-    name = " ".join(str(name).replace("【", " ").replace("】", " ").split())
+    name = " ".join(_LIM.sub(" ", str(name)).replace("【", " ").replace("】", " ").split())
     return name if len(name) <= n else name[:n] + "…"
 
 
@@ -284,7 +288,12 @@ ul{{list-style:none;margin:0;padding:0}}.it{{margin:0 0 10px}}
       else if(C&&t<=C)x='開催中・最大50%OFFクーポンは あと'+lf(C-t);
       else if(t<=E)x='開催中・終わりまで あと'+lf(E-t);
       else x='終わりました';
-      st.textContent=x;}}
+      st.textContent=x;
+      /* 11/25 夜：終わったあとも「楽天でエントリーする」と段取りが残っていた（ページを作り直すまで）→ 終わったら見た人の画面で外す */
+      if(t>E&&!st.dataset.done){{st.dataset.done=1;
+        document.querySelectorAll('a.entry,.pl,.kpl').forEach(function(el){{el.hidden=true;el.style.display='none'}});
+        var sp=st.closest('.sale,.kms');if(sp){{sp.innerHTML='<b>'+(sp.querySelector('b')||{{textContent:''}}).textContent+'は終わりました</b><br>次の楽天のセールの日程が出たら、ここに書きます。下の物は、ふだんの日も1,000円ぽっきり（送料込み）で買えます。'}}
+        var sc=sp&&sp.parentNode;if(sc)sc.querySelectorAll('.note,.dhint').forEach(function(el){{el.hidden=true;el.style.display='none'}});}}}}
     tick();setInterval(tick,30000);}}
   n.addEventListener('input',calc);y.addEventListener('input',calc);calc();
   var bs=document.querySelectorAll('.tabs button');

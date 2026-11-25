@@ -335,6 +335,7 @@ def keep_head(old_path, new_path, only_ld=False, text=None):
     h = t[:t.index('</head>')]
     keep = '' if only_ld else ''.join(re.findall(r'<meta (?:property="og:(?:type|description|image(?::width|:height)?)"|name="twitter:[a-z]+")[^>]*>', h))
     keep += ''.join(re.findall(r'<script type="application/ld\+json">.*?</script>', h, re.S))
+    keep += ''.join(re.findall(r'<meta name="robots"[^>]*>', h))  # 11/25 終わった催しのページは検索に出さない（前のページの noindex を残す）
     if not keep: return
     n = re.sub(r'<meta property="og:image" content="[^"]*">', '', n, count=1)
     n = n.replace('</head>', keep + '</head>', 1)
