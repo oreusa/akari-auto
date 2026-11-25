@@ -150,10 +150,10 @@ for _f, _pc in (("illumi.json", "#B7862A"), ("koyo.json", "#C0532B")):
         if _mo and _k not in MORE: MORE[_k] = _mo
 # 紅葉の名所（data/meisho.json・見ごろの時期だけの所）も1件ページに。日程は「見ごろは例年◯月◯旬〜◯旬」、終わりは見ごろの終わり
 def _peak_end(t):
-    mm = re.findall(r"(\d+)月(上旬|初旬|中旬|下旬|末)", t or "")
+    mm = re.findall(r"(\d+)月(上旬|初旬|中旬|下旬|末)?", t or "")
     if not mm: return ""
     mo, k = int(mm[-1][0]), mm[-1][1]; y = D0.year if mo >= 6 or D0.month < 6 else D0.year + 1
-    if k in ("下旬", "末"): return (datetime.date(y + mo // 12, mo % 12 + 1, 1) - datetime.timedelta(days=1)).isoformat()
+    if k in ("下旬", "末", ""): return (datetime.date(y + mo // 12, mo % 12 + 1, 1) - datetime.timedelta(days=1)).isoformat()
     return datetime.date(y, mo, 10 if k in ("上旬", "初旬") else 20).isoformat()
 try: _ms = json.load(open(os.path.join(R, "data", "meisho.json"), encoding="utf-8")).get("items", [])
 except Exception: _ms = []

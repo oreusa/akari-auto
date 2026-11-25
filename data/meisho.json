@@ -270,6 +270,248 @@
    "fee": "無料",
    "url": "https://www.gunlabo.net/event/event.shtml?id=280",
    "note": ""
+  },
+  {
+   "pref": "東京",
+   "name": "代々木公園",
+   "city": "渋谷区",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.gotokyo.org/jp/story/guide/autumn-leaves-forecast"
+  },
+  {
+   "pref": "東京",
+   "name": "井の頭恩賜公園",
+   "city": "武蔵野市・三鷹市",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.gotokyo.org/jp/story/guide/autumn-leaves-forecast"
+  },
+  {
+   "pref": "東京",
+   "name": "皇居東御苑 二の丸庭園",
+   "city": "千代田区",
+   "peak": "11月下旬〜12月中旬",
+   "fee": "",
+   "url": "https://www.gotokyo.org/jp/story/guide/autumn-leaves-forecast"
+  },
+  {
+   "pref": "東京",
+   "name": "上野恩賜公園",
+   "city": "台東区",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.gotokyo.org/jp/story/guide/autumn-leaves-forecast"
+  },
+  {
+   "pref": "神奈川",
+   "name": "県立茅ヶ崎里山公園",
+   "city": "茅ヶ崎市",
+   "peak": "11月下旬〜12月中旬",
+   "fee": "",
+   "url": "https://www.kanagawa-kankou.or.jp/features/koyo-kanagawa"
+  },
+  {
+   "pref": "千葉",
+   "name": "千葉公園",
+   "city": "千葉市中央区",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "泉自然公園",
+   "city": "千葉市若葉区",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "大町公園",
+   "city": "市川市",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "あけぼの山農業公園",
+   "city": "柏市",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "戸定が丘歴史公園",
+   "city": "松戸市",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "東漸寺",
+   "city": "松戸市",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "清水公園",
+   "city": "野田市",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "香取神宮",
+   "city": "香取市",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "観福寺",
+   "city": "香取市",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "佐倉城址公園",
+   "city": "佐倉市",
+   "peak": "11月中旬〜12月中旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html",
+   "note": "イロハカエデ"
+  },
+  {
+   "pref": "千葉",
+   "name": "小松寺",
+   "city": "南房総市",
+   "peak": "11月中旬〜12月中旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "かじか橋",
+   "city": "南房総市",
+   "peak": "11月中旬〜12月中旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "白岩・四方木不動滝",
+   "city": "鴨川市",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "粟又の滝",
+   "city": "大多喜町",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html",
+   "note": "遊歩道の一部が通れません（2026年10月20日の案内）"
+  },
+  {
+   "pref": "千葉",
+   "name": "筒森もみじ谷",
+   "city": "大多喜町",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "松山庭園美術館",
+   "city": "匝瑳市",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "千葉",
+   "name": "もみじロード",
+   "city": "富津市",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://maruchiba.jp/miryoku/shun/special_kouyou.html"
+  },
+  {
+   "pref": "茨城",
+   "name": "御前山県立自然公園",
+   "city": "城里町",
+   "peak": "11月中旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html"
+  },
+  {
+   "pref": "茨城",
+   "name": "最勝寺",
+   "city": "筑西市",
+   "peak": "11月下旬〜12月中旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html"
+  },
+  {
+   "pref": "茨城",
+   "name": "西蓮寺",
+   "city": "行方市",
+   "peak": "11月下旬〜12月上旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html"
+  },
+  {
+   "pref": "茨城",
+   "name": "永源寺（もみじ寺）",
+   "city": "大子町",
+   "peak": "10月下旬〜11月下旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html"
+  },
+  {
+   "pref": "茨城",
+   "name": "月待の滝",
+   "city": "大子町",
+   "peak": "10月下旬〜11月下旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html"
+  },
+  {
+   "pref": "茨城",
+   "name": "茨城県立歴史館",
+   "city": "水戸市",
+   "peak": "11月中旬〜11月下旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html"
+  },
+  {
+   "pref": "茨城",
+   "name": "笠間 北山公園",
+   "city": "笠間市",
+   "peak": "11月上旬〜11月下旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html"
+  },
+  {
+   "pref": "茨城",
+   "name": "霞ケ浦総合公園",
+   "city": "土浦市",
+   "peak": "11月中旬〜11月下旬",
+   "fee": "",
+   "url": "https://www.ibarakiguide.jp/special/autumn_leaves/page000493.html"
   }
  ]
 }
