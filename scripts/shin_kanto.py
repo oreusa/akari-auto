@@ -538,6 +538,14 @@ def main():
         write("illumination-muryo.html", "/illumination-muryo", "関東の無料イルミネーション2026-2027｜LIFE NOTE", cfg("/illumination"),
               dict(data, items=il, page={"h1": "関東の無料イルミネーション", "sub": f"2026-2027・{sum(1 for i in il if i.get('f'))}か所", "st": "pref", "free": 1}), "odekake",
               "関東の無料で見られるイルミネーションを、開催中・これからに分けてまとめています。")
+        # 11/25 関西と同じく無料イルミも sitemap に（前は作るだけで載っていなかった）
+        try:
+            sm = os.path.join(S, "sitemap.xml"); x = open(sm, encoding="utf-8").read()
+            if "/illumination-muryo<" not in x:
+                h = re.search(r"<loc>(https?://[^/<]+)", x); h = h.group(1) if h else SITE
+                open(sm, "w", encoding="utf-8").write(x.replace("</urlset>", f"<url><loc>{h}/illumination-muryo</loc></url></urlset>", 1))
+        except Exception as e:
+            print("shin_kanto: 無料イルミの sitemap は前のまま", repr(e))
         for p in PREF:
             ni = sum(1 for i in il if i["p"] == p)
             if not ni: continue
