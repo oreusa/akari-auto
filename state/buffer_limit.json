@@ -1,12 +1,12 @@
 {
- "at": "2026-11-25T12:17:53+00:00",
+ "at": "2026-11-25T17:07:47+00:00",
  "headers": {
   "buffer-ratelimit-upgrade": "\"15m\", \"24h\", \"30d\"",
   "buffer-ratelimit-upgrade-link": "https://publish.buffer.com/settings/api?cta=publicApi-rateLimit-hint-upgrade-1&upgradePathName=apiRateLimit-upgrade",
-  "ratelimit": "\"30d\"; r=2876; t=2246624",
+  "ratelimit": "\"30d\"; r=2865; t=2229230",
   "ratelimit-policy": "\"30d\"; q=3000; w=2592000; pk=:YTZlODA2NDQ5YjZj:",
   "x-ratelimit-limit": "3000",
-  "x-ratelimit-remaining": "2876",
+  "x-ratelimit-remaining": "2865",
   "x-ratelimit-reset": "1797855697"
  },
  "calls": {
@@ -41,6 +41,6 @@
   "2026-11-22": 27,
   "2026-11-23": 41,
   "2026-11-24": 34,
-  "2026-11-25": 20
+  "2026-11-25": 31
  }
 }
