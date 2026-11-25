@@ -1,0 +1,56 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "05-hondo",
+   "prompt": "A large old wooden Buddhist main hall built on a rocky hillside, part of it raised on wooden stilts over the rock slope, illuminated at night with red maples around, deep blue night sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-hondo-b",
+   "prompt": "Night view of a long low wooden Japanese temple main hall with a wide hip-and-gable cypress-bark roof standing on rocks, glowing maples, illumination",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-river",
+   "prompt": "Night view from a hilltop wooden pavilion through red maple branches toward a wide calm river with a full moon reflected on the water, distant town lights, Lake Biwa region Japan",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-river-b",
+   "prompt": "A small open wooden moon-viewing pavilion on a hill at night above a wide river, a bright full moon in the sky and its reflection on the water, illuminated autumn maples",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-fallen",
+   "prompt": "Fallen red and orange maple leaves covering moss and old stone steps at a Japanese temple at night, warm soft illumination, shallow depth",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-fallen-b",
+   "prompt": "Red maple leaves scattered on mossy stone path at night under illuminated maples, Japanese temple, calm",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "08-dusk",
+   "prompt": "A Japanese temple on a hill above a river at dusk, illuminated red maples just turned on, pink and deep blue twilight sky, old wooden gate, Otsu",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "08-dusk-b",
+   "prompt": "Twilight over a wooded temple hill with glowing red maples and a large wooden temple gate, the sky fading from orange to deep blue",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}

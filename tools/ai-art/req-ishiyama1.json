@@ -1,0 +1,56 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "01-rock",
+   "prompt": "Night illumination at Ishiyama-dera temple in Otsu: huge rugged grey wollastonite rock formations rising from the ground, lit softly from below, bright red maple trees around them, and on the slope above the rocks a small Japanese tahoto pagoda (two-storey: square lower storey with a wide square roof, a rounded white plaster dome collar, a round upper storey under a square upper roof, bronze finial spire), deep blue night sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "01-rock-b",
+   "prompt": "Massive layered grey natural rock outcrop in a Japanese temple precinct at night, warm lights on red and orange maples around the rocks, a small Japanese tahoto pagoda (two-storey: square lower storey with a wide square roof, a rounded white plaster dome collar, a round upper storey under a square upper roof, bronze finial spire) on the hill above, quiet and majestic",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-sando",
+   "prompt": "A long straight stone-paved temple approach at night lined on both sides with red maple trees glowing under warm illumination, low stone lanterns, an old wooden temple gate far at the end, Japanese autumn",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-sando-b",
+   "prompt": "Night temple approach path in Japan, tunnel of illuminated red and orange maple leaves overhead, stone paving and moss, soft warm light",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-tahoto",
+   "prompt": "Night, looking up stone steps at a small Japanese tahoto pagoda (two-storey: square lower storey with a wide square roof, a rounded white plaster dome collar, a round upper storey under a square upper roof, bronze finial spire), illuminated warm, surrounded by glowing red maples, deep blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-tahoto-b",
+   "prompt": "Illuminated old wooden a small Japanese tahoto pagoda (two-storey: square lower storey with a wide square roof, a rounded white plaster dome collar, a round upper storey under a square upper roof, bronze finial spire) among glowing autumn maples at night, seen from the side, Japanese national treasure architecture",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-rockclose",
+   "prompt": "Close view at night of rugged grey natural rock formations with deep cracks and layers, red maple leaves fallen on the rocks and moss, soft warm spot lighting from below, Japanese temple garden",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-rockclose-b",
+   "prompt": "Grey jagged rock cliff in a Japanese temple at night, bright red maple branches hanging in front, gentle illumination",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
