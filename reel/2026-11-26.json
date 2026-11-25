@@ -1,0 +1,139 @@
+{
+ "date": "2026-11-26",
+ "time": "07:30",
+ "tab": "神奈川",
+ "pref": "kanagawa",
+ "lat": 35.3122,
+ "lon": 139.5331,
+ "kata": "hf",
+ "brand": "kanto",
+ "text": {
+  "corner": "KAMAKURA ─ HASE",
+  "title": [
+   "長谷寺",
+   "夜の紅葉ライトアップ"
+  ],
+  "place": "長谷寺｜鎌倉市",
+  "map_tag": [
+   "HASE-DERA ─ KAMAKURA",
+   "長谷寺",
+   "鎌倉市"
+  ],
+  "map_caption": "池に映る紅葉と、青い光の観音堂。",
+  "date": [
+   "11.21",
+   "",
+   "12.6",
+   ""
+  ],
+  "date_title": "夜の特別拝観",
+  "date_note": "日没〜19:00（19:30閉山）",
+  "point_kicker": "LIGHT UP",
+  "point_title": "夜の長谷寺",
+  "points": [
+   "池に映る紅葉",
+   "青い光の観音堂",
+   "黄色いイチョウ"
+  ],
+  "info": [
+   [
+    "夜の拝観",
+    "12/6まで 日没〜19:00"
+   ],
+   [
+    "閉山",
+    "19:30"
+   ],
+   [
+    "拝観料",
+    "大人400円"
+   ],
+   [
+    "行き方",
+    "江ノ電 長谷駅から徒歩5分"
+   ]
+  ],
+  "info_note": "夜の拝観は日によって変わることがあります",
+  "list_caption": "関東の紅葉も。",
+  "scene": "momiji",
+  "seal": "紅葉",
+  "motif": "yama",
+  "ehon1": [
+   "池に映る",
+   "紅葉"
+  ],
+  "ehon2": [
+   "青い光の",
+   "観音堂"
+  ],
+  "ehon4": [
+   "黄色い",
+   "イチョウ"
+  ],
+  "ehon_night": [
+   "12.6",
+   "まで",
+   "夜の",
+   "拝観"
+  ],
+  "ehon5": [
+   "日付でさがせる",
+   "地図でさがせる",
+   "紅葉もイルミも"
+  ]
+ },
+ "caption": "池の水面に、もうひとつの紅葉。鎌倉・長谷寺で、夜の特別拝観が始まっています\n\n✦ 山門を入ってすぐの放生池（ほうじょういけ）に、明かりのともった紅葉が映ります\n✦ 紅葉の石段をのぼると、観音堂は青い光の中\n✦ 地蔵堂のあたりは、黄色いイチョウの落ち葉\n✦ 夜の特別拝観は 12/6まで、日没〜19:00（19:30閉山）・大人400円\n✦ 江ノ電 長谷駅から歩いて5分\n\n一緒に行く人に送っておくと、当日迷いません\n\n✧ 内容は変わることがあります。出かける前に長谷寺のお知らせで確かめてください\n\n音声：VOICEVOX:もち子(cv 明日葉よもぎ)\n絵：画像AIで描いた絵（実際の景色と違う所があります）\n曲：オリジナル",
+ "ig_tags": [
+  "#関東おでかけ",
+  "#鎌倉紅葉",
+  "#長谷寺",
+  "#ライトアップ"
+ ],
+ "facts": [
+  {
+   "q": "12月6日",
+   "url": "https://koyo.walkerplus.com/detail/ar0314e322746/"
+  },
+  {
+   "q": "19:30",
+   "url": "https://koyo.walkerplus.com/detail/ar0314e322746/"
+  },
+  {
+   "q": "400円",
+   "url": "https://koyo.walkerplus.com/detail/ar0314e322746/"
+  },
+  {
+   "q": "徒歩5分",
+   "url": "https://koyo.walkerplus.com/detail/ar0314e322746/"
+  },
+  {
+   "q": "放生池",
+   "url": "https://kamakuraguide.com/hase-yuigahama/hasedera-kamakura/autumn-night-viewing/"
+  },
+  {
+   "q": "観音堂",
+   "url": "https://kamakuraguide.com/hase-yuigahama/hasedera-kamakura/autumn-night-viewing/"
+  },
+  {
+   "q": "イチョウ",
+   "url": "https://kamakuraguide.com/hase-yuigahama/hasedera-kamakura/autumn-night-viewing/"
+  },
+  {
+   "q": "11月21日",
+   "url": "https://miurahantou.jp/hasedera-kouyo-lightup/"
+  },
+  {
+   "q": "19:00",
+   "url": "https://koyo.walkerplus.com/detail/ar0314e322746/"
+  }
+ ],
+ "made": "新しい型 36秒（1場面1枚を奥行きで動かす・声1文1景色）usagi tools/outing_reel/hf/hasedera-1126",
+ "voice_lines": [
+  "池の水面に、もうひとつの紅葉。",
+  "鎌倉の、はせでら。夜の特別拝観で、境内の紅葉に、明かりがともります。",
+  "紅葉の石段をのぼると、かんのんどうは、青い光の中。",
+  "足もとには、黄色いイチョウの落ち葉。",
+  "夜の拝観は12月6日まで。えのでんの長谷駅から、歩いて5分。",
+  "ほかのおでかけ先は、プロフィールのリンクから。"
+ ]
+}

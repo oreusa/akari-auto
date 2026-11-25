@@ -1,0 +1,20 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "01-gate-night",
+   "prompt": "A single-story wooden Japanese temple gate with a tiled roof and one very large red paper lantern hanging in the center of the gate, at dusk, illuminated red maple trees around, deep blue evening sky, Kamakura",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-kannondo",
+   "prompt": "A large single-story Japanese Buddhist temple hall with one big sweeping tiled hip-and-gable roof on a hillside terrace, at night illuminated with cool blue light, illuminated red maples in the foreground, Kamakura, not a pagoda",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}

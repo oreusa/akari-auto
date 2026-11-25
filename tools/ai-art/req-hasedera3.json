@@ -1,0 +1,14 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "06-grounds",
+   "W": 1088,
+   "H": 1680,
+   "prompt": "Kamakura Buddhist temple grounds at night during autumn illumination: many red and orange maple trees lit from below glowing against a deep blue night sky, a stone-paved path with low lights leading between them toward a dark tiled temple roof, no lanterns, no signs, no text"
+  }
+ ]
+}

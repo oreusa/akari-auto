@@ -1,0 +1,20 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "03-shishiiwa",
+   "prompt": "A huge natural uncarved dark granite boulder whose rough rounded silhouette loosely resembles a crouching lion, resting on a carpet of thick green moss in a Japanese Zen stroll garden, natural rock surface with lichen, no carving, no sculpture, red maples around, fallen red leaves on the moss, daytime",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-night-leaves",
+   "prompt": "Close view at night of red Japanese maple branches lit from below by warm spotlights, glowing crimson leaves filling the frame against a pure black night sky, no buildings",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
