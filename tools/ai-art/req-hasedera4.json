@@ -1,0 +1,32 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "07-view",
+   "prompt": "Night view from a hillside Buddhist temple terrace in Kamakura: red autumn maple leaves lit by warm lights framing the foreground, and below in the distance the curved beach of Yuigahama bay and the twinkling lights of the town along the dark sea, deep blue night sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-view-b",
+   "prompt": "From a temple observation terrace on a hill at blue hour, looking down over the town lights of Kamakura and the curved coastline of the sea, illuminated red maple branches in the foreground, sparkling city lights, deep blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "08-dusk",
+   "prompt": "A Japanese temple garden pond at dusk just after the illumination lights turned on, red maples glowing softly and reflected in the still water, pink and deep blue twilight sky, stone lanterns, Kamakura",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "08-dusk-b",
+   "prompt": "Twilight at a Kamakura temple: a small pond surrounded by red and orange maples with warm lights just switched on, the sky fading from orange to blue, reflections on the water, wooden temple hall in the background",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
