@@ -1,6 +1,6 @@
-# HPの在庫（11/24 11:36 機械が数えた）
+# HPの在庫（11/25 09:07 機械が数えた）
 
-判定：× 東京のこれからがあと8件、神奈川のこれからがあと4件、埼玉のこれからがあと3件、千葉のこれからがあと5件、茨城のこれからがあと4件、栃木のこれからがあと3件
+判定：× 東京のこれからがあと8件、神奈川のこれからがあと4件、埼玉のこれからがあと3件、千葉のこれからがあと2件、茨城のこれからがあと4件、栃木のこれからがあと3件
 
 集め係・夜の回は、×の欄から埋める。数は投稿した物とHPだけの物を合わせた、今HPに並んでいる数。
 
@@ -9,12 +9,12 @@
 | 都県 | 開催中 | これから | 最低限（上限なし） |
 |---|---|---|---|
 | 東京 | 43 ○ | 2 × | 開催中25以上・これから10以上 |
-| 神奈川 | 19 ○ | 1 × | 開催中12以上・これから5以上 |
+| 神奈川 | 20 ○ | 1 × | 開催中12以上・これから5以上 |
 | 埼玉 | 18 ○ | 2 × | 開催中12以上・これから5以上 |
-| 千葉 | 16 ○ | 0 × | 開催中12以上・これから5以上 |
+| 千葉 | 17 ○ | 3 × | 開催中12以上・これから5以上 |
 | 茨城 | 12 ○ | 1 × | 開催中10以上・これから5以上 |
 | 栃木 | 12 ○ | 2 × | 開催中10以上・これから5以上 |
-| 群馬 | 10 ○ | 0 × | 開催中10以上・これから5以上 |
+| 群馬 | 10 ○ | 1 × | 開催中10以上・これから5以上 |
 | 新しい施設（関東全体） | もうすぐ0・できた5 | × | 合わせて20 |
 
 ## 商品
@@ -27,29 +27,27 @@
 - × 東京のこれからがあと8件
 - × 神奈川のこれからがあと4件
 - × 埼玉のこれからがあと3件
-- × 千葉のこれからがあと5件
+- × 千葉のこれからがあと2件
 - × 茨城のこれからがあと4件
 - × 栃木のこれからがあと3件
-- × 群馬のこれからがあと5件
+- × 群馬のこれからがあと4件
 - × 新しい施設（もうすぐ・できた）が関東であと15件
 - × おかいものの種類：聞かれたのに無い言葉5つ（冬じたく・おもちゃ・お菓子）→ 夜の回が tanka.py の CATS に1晩1〜2つ足す
 
 ## 3日以内に終わる（代わりを先に探す）
 
 - 佐久山御殿山紅葉まつり
-- 小石川後楽園 深山光葉を楽しむ
 
 ## 開けないリンク（直すか消す）
 
-- とちぎ秋まつり：https://www.tochigi-kankou.or.jp/news/19382（URLError）
-- 第19回かすみがうら祭：https://www.kasumigaura-kankou.jp/page/page000986.html（404）
+- SLパレオエクスプレス2026：https://www.chichibu-railway.co.jp/blog/news/sl2026/（URLError）
 - Fly to the Moon: 月をめぐる5つの物語：https://www.haramuseum.or.jp/jp/arc/exhibition/2275/（URLError）
 - さがみはら星空探査隊：https://www.city.sagamihara.kanagawa.jp/kankou/1026674/hayabusa2/1035623.html（404）
+- 小石川後楽園 深山光葉を楽しむ：https://www.tokyo-park.or.jp/special/koishikawa_lightingup/index.html（TimeoutError）
+- Crystal Garden 2026-2027（アイガーデンエア）：https://edmont.metropolitan.jp/topics/Crystalgarden2026-2027.html（URLError）
 - さのあかり まちなか寺社の光：https://www.city.sano.lg.jp/miryokuhasshin/event/29076.html（404）
-- 第10回 うずまの竹あかり：https://www.tochigi-kankou.or.jp/news/20057（URLError）
 - 第29回やまがた宿芋煮会：https://www.city.hitachiomiya.lg.jp/kankou_guide/news/page012282.html（404）
 - 放送30周年記念TVアニメ「名探偵コナン」展 横浜会場：https://l-tike.com/ntvzero/event/tvconanten-30th_yokohama.html（TimeoutError）
-- とちぎ アグリフェスタ2026：https://www.tochigi-kankou.or.jp/news/20445（URLError）
 
 ## 同じ物が2つ（1つ消す）
 

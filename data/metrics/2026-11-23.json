@@ -1,6 +1,6 @@
 {
   "day": "2026-11-23",
-  "fetchedAt": "2026-11-24T11:36+09:00",
+  "fetchedAt": "2026-11-25T09:07+09:00",
   "posts": [
     {
       "service": "threads",
@@ -12,8 +12,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 2.3,
-        "views": 87,
+        "engagementRate": 1.98,
+        "views": 101,
         "quotes": 0,
         "reposts": 0
       }
@@ -28,9 +28,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 7.04,
+        "engagementRate": 5.75,
         "reposts": 0,
-        "impressions": 71,
+        "impressions": 87,
         "clicks": 0
       }
     },
@@ -44,8 +44,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 16.67,
-        "views": 6,
+        "engagementRate": 14.29,
+        "views": 7,
         "quotes": 0,
         "reposts": 0
       }
@@ -60,8 +60,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.5,
-        "views": 40,
+        "engagementRate": 2.38,
+        "views": 42,
         "quotes": 0,
         "reposts": 0
       }
@@ -76,8 +76,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 6.67,
-        "views": 15,
+        "engagementRate": 6.25,
+        "views": 16,
         "quotes": 0,
         "reposts": 0
       }
@@ -92,9 +92,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.13,
+        "engagementRate": 1.89,
         "reposts": 0,
-        "impressions": 47,
+        "impressions": 53,
         "clicks": 0
       }
     },
@@ -108,9 +108,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.27,
+        "engagementRate": 1.1,
         "reposts": 0,
-        "impressions": 79,
+        "impressions": 91,
         "clicks": 0
       }
     },
@@ -124,8 +124,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 5.56,
-        "views": 18,
+        "engagementRate": 5,
+        "views": 20,
         "quotes": 0,
         "reposts": 0
       }
@@ -140,9 +140,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.55,
+        "engagementRate": 3.64,
         "reposts": 0,
-        "impressions": 44,
+        "impressions": 55,
         "clicks": 0
       }
     },
@@ -156,8 +156,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.61,
-        "views": 62,
+        "engagementRate": 1.41,
+        "views": 71,
         "quotes": 0,
         "reposts": 0
       }
@@ -172,8 +172,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 2,
-        "engagementRate": 7.41,
-        "views": 27,
+        "engagementRate": 6.45,
+        "views": 31,
         "quotes": 0,
         "reposts": 0
       }
@@ -186,10 +186,10 @@
       "url": "https://www.threads.com/@usagichan_ai_si/post/DgFCQo6oChA",
       "img": 1,
       "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 7.69,
+        "views": 26,
         "quotes": 0,
         "reposts": 0
       }
@@ -204,9 +204,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 0.48,
+        "engagementRate": 0.43,
         "reposts": 0,
-        "impressions": 210,
+        "impressions": 235,
         "clicks": 0
       }
     },
@@ -219,9 +219,9 @@
       "img": 1,
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 2.38,
+        "views": 42,
         "quotes": 0,
         "reposts": 0
       }
@@ -234,11 +234,11 @@
       "url": "https://x.com/1753799832798629888/status/2124839390568489128",
       "img": 1,
       "metrics": {
-        "reactions": 0,
+        "reactions": 1,
         "comments": 1,
-        "engagementRate": 2.63,
+        "engagementRate": 3.45,
         "reposts": 0,
-        "impressions": 38,
+        "impressions": 58,
         "clicks": 0
       }
     },
@@ -249,7 +249,17 @@
       "first": "街の調査で見つけた、関東おでかけリスト",
       "url": "https://www.instagram.com/reel/DgFOXr5OQnz/",
       "img": null,
-      "metrics": {}
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 11,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.65,
+        "averageTimeWatched": 3.56,
+        "reach": 10
+      }
     },
     {
       "service": "twitter",
@@ -261,9 +271,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 0,
-        "engagementRate": 3.92,
+        "engagementRate": 2.5,
         "reposts": 0,
-        "impressions": 51,
+        "impressions": 80,
         "clicks": 0
       }
     }
