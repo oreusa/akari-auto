@@ -1,0 +1,33 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Studio product photograph, macro, isolated object centered on a pure plain white background, soft even light, high detail, no shadow, no text",
+ "items": [
+  {
+   "name": "leaf-maple",
+   "prompt": "a single bright red Japanese maple leaf with seven pointed lobes and a short stem, flat, top view",
+   "W": 768,
+   "H": 768
+  },
+  {
+   "name": "leaf-maple-b",
+   "prompt": "a single orange-red Japanese maple leaf with seven lobes and fine veins, flat, top view",
+   "W": 768,
+   "H": 768
+  },
+  {
+   "name": "leaf-ginkgo",
+   "prompt": "a single bright golden yellow ginkgo leaf, fan shaped with a short stem, flat, top view",
+   "W": 768,
+   "H": 768
+  },
+  {
+   "name": "leaf-ginkgo-b",
+   "prompt": "a single yellow ginkgo biloba leaf, fan shape with a notch in the middle, fine radial veins, flat, top view",
+   "W": 768,
+   "H": 768
+  }
+ ],
+ "note": "retry"
+}

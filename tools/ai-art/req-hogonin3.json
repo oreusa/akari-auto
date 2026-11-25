@@ -1,0 +1,20 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "08-moss-fall",
+   "prompt": "Close low view of mossy natural boulders covered in thick green moss in a Kyoto Zen garden, bright red maple leaves gently falling through the air and scattered on the moss, red maple branches above, soft daylight, shallow depth of field",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "08-moss-fall-b",
+   "prompt": "Low angle close view of a soft green moss carpet with a few moss-covered rocks, many fallen red and orange maple leaves on the moss, red maple trees overhead, gentle daylight, Kyoto Arashiyama temple garden",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
