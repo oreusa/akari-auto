@@ -513,12 +513,12 @@ def main():
         if x.get("free") or (x.get("fee") or "").startswith("無料"): it["f"] = 1
         ky.append(ENRICH(it, x["name"], x.get("venue", "")))
     def prange(t):
-        mm = re.findall(r"(\d+)月(上旬|初旬|中旬|下旬|末)", t or "")
+        mm = re.findall(r"(\d+)月(上旬|初旬|中旬|下旬|末)?", t or "")
         if not mm: return None
         today = datetime.date.fromisoformat(TD)
         def d(mo, k, end):
             mo = int(mo); y = today.year if mo >= 6 or today.month < 6 else today.year + 1
-            a, b = {"上旬": (1, 10), "初旬": (1, 10), "中旬": (11, 20), "下旬": (21, 0), "末": (21, 0)}[k]
+            a, b = {"上旬": (1, 10), "初旬": (1, 10), "中旬": (11, 20), "下旬": (21, 0), "末": (21, 0), "": (1, 0)}[k]  # 旬が無い＝その月まるごと
             if end and b == 0: return datetime.date(y + mo // 12, mo % 12 + 1, 1) - datetime.timedelta(days=1)
             return datetime.date(y, mo, b if end else a)
         return d(*mm[0], False), d(*mm[-1], True)
