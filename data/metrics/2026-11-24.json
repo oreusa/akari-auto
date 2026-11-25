@@ -1,6 +1,6 @@
 {
   "day": "2026-11-24",
-  "fetchedAt": "2026-11-25T09:07+09:00",
+  "fetchedAt": "2026-11-26T08:47+09:00",
   "posts": [
     {
       "service": "threads",
@@ -12,8 +12,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.96,
-        "views": 51,
+        "engagementRate": 1.79,
+        "views": 56,
         "quotes": 0,
         "reposts": 0
       }
@@ -28,9 +28,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 7.84,
+        "engagementRate": 9.09,
         "reposts": 0,
-        "impressions": 51,
+        "impressions": 66,
         "clicks": 0
       }
     },
@@ -44,8 +44,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 8.33,
-        "views": 12,
+        "engagementRate": 6.67,
+        "views": 15,
         "quotes": 0,
         "reposts": 0
       }
@@ -60,8 +60,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 3.85,
-        "views": 26,
+        "engagementRate": 3.23,
+        "views": 31,
         "quotes": 0,
         "reposts": 0
       }
@@ -76,8 +76,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4,
-        "views": 25,
+        "engagementRate": 3.7,
+        "views": 27,
         "quotes": 0,
         "reposts": 0
       }
@@ -92,9 +92,9 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 3.9,
+        "engagementRate": 2.71,
         "reposts": 0,
-        "impressions": 154,
+        "impressions": 221,
         "clicks": 0
       }
     },
@@ -108,9 +108,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 6.15,
+        "engagementRate": 5.71,
         "reposts": 0,
-        "impressions": 65,
+        "impressions": 105,
         "clicks": 0
       }
     },
@@ -124,8 +124,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.22,
-        "views": 45,
+        "engagementRate": 1.54,
+        "views": 65,
         "quotes": 0,
         "reposts": 0
       }
@@ -140,9 +140,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.27,
+        "engagementRate": 1.15,
         "reposts": 0,
-        "impressions": 79,
+        "impressions": 87,
         "clicks": 0
       }
     },
@@ -156,8 +156,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.78,
-        "views": 36,
+        "engagementRate": 1.85,
+        "views": 54,
         "quotes": 0,
         "reposts": 0
       }
@@ -172,8 +172,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 5.26,
-        "views": 19,
+        "engagementRate": 4.55,
+        "views": 22,
         "quotes": 0,
         "reposts": 0
       }
@@ -187,9 +187,9 @@
       "img": 1,
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 1.85,
+        "views": 54,
         "quotes": 0,
         "reposts": 0
       }
@@ -204,9 +204,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.38,
+        "engagementRate": 2.9,
         "reposts": 0,
-        "impressions": 42,
+        "impressions": 69,
         "clicks": 0
       }
     },
@@ -219,9 +219,9 @@
       "img": 1,
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 3.57,
+        "views": 28,
         "quotes": 0,
         "reposts": 0
       }
@@ -236,9 +236,9 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 4.84,
+        "engagementRate": 3.13,
         "reposts": 0,
-        "impressions": 62,
+        "impressions": 96,
         "clicks": 0
       }
     },
@@ -256,9 +256,9 @@
         "views": 5,
         "shares": 0,
         "saves": 0,
-        "totalTimeWatched": 0.16,
-        "averageTimeWatched": 1.92,
-        "reach": 4
+        "totalTimeWatched": 0.51,
+        "averageTimeWatched": 4.38,
+        "reach": 5
       }
     },
     {
@@ -290,8 +290,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 3.33,
-        "views": 30,
+        "engagementRate": 2.7,
+        "views": 37,
         "quotes": 0,
         "reposts": 0
       }
@@ -306,9 +306,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 0,
-        "engagementRate": 1.06,
+        "engagementRate": 0.89,
         "reposts": 0,
-        "impressions": 189,
+        "impressions": 224,
         "clicks": 0
       }
     }

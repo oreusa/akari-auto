@@ -1,0 +1,306 @@
+{
+  "day": "2026-11-25",
+  "fetchedAt": "2026-11-26T08:47+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "JR埼京線が通る埼玉の4市区で、住宅地の地価がいちばん上がったのは戸田市の+6.",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgJAUt5FO79",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.78,
+        "views": 36,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:16",
+      "kind": "通常",
+      "first": "さいたま市浦和区の与野駅の東口に、ケンタッキーフライドチキン「与野東口店」が11",
+      "url": "https://x.com/1753799832798629888/status/2125352766847569986",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.17,
+        "reposts": 0,
+        "impressions": 96,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "07:31",
+      "kind": "手動",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DgJCCZAgqhu/",
+      "img": null,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 7,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.59,
+        "averageTimeWatched": 4.46,
+        "reach": 7
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "07:45",
+      "kind": "通常",
+      "first": "食器用洗剤の詰め替えを1Lあたりでくらべると、いちばん安いのは634円でした。",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgJDvdtnSL5",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 14.29,
+        "views": 7,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "08:15",
+      "kind": "通常",
+      "first": "相模原市では、傷んだ古い空き家の解体に、費用の2分の1・上限50万円の補助があり",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgJHLwkkcGv",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5,
+        "views": 20,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "きょう11/25から豊洲で、ティム・バートンの日本未公開のアートを歩いて見る展示",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgJdPsroHUx",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.13,
+        "views": 47,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:16",
+      "kind": "通常",
+      "first": "横浜の伊勢佐木モールに、79席の「カフェ・ベローチェ 伊勢佐木モール店」が、きょ",
+      "url": "https://x.com/1753799832798629888/status/2125382966276673953",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.32,
+        "reposts": 0,
+        "impressions": 76,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:46",
+      "kind": "通常",
+      "first": "東京駅前のKITTE丸の内の1階テラスに、本物の氷の約50㎡のスケートリンクが2",
+      "url": "https://x.com/1753799832798629888/status/2125390516187496605",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 5.77,
+        "reposts": 0,
+        "impressions": 52,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "西新宿の明治安田新宿ビルに、84席の「Guzman y Gomez 西新宿店」が",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgJiqxaoMJS",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 9.09,
+        "views": 11,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:16",
+      "kind": "通常",
+      "first": "京都で行列のできるラーメン店「麺屋 猪一」が、11/28（土）に新宿にオープンし",
+      "url": "https://x.com/1753799832798629888/status/2125428264596287868",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.85,
+        "reposts": 0,
+        "impressions": 165,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:15",
+      "kind": "通常",
+      "first": "つくばエクスプレスが通る茨城の3市で、住宅地の地価がいちばん上がったのは守谷市の",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgJpgPJjixa",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.76,
+        "views": 21,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "横浜の三溪園で、聴秋閣の奥にある紅葉の遊歩道が、12/13まで開いています。",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgJ3O2sjooJ",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 14.29,
+        "views": 7,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "横浜市瀬谷区に、68席の「厚切りとんかつ よし平 瀬谷店」が、きょう11/25（",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgKL3fRloC1",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:16",
+      "kind": "通常",
+      "first": "金沢で人気の回転寿司「もりもり寿し」が、12/10（木）に秋葉原UDXの3階にオ",
+      "url": "https://x.com/1753799832798629888/status/2125518860895838255",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4.35,
+        "reposts": 0,
+        "impressions": 46,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:15",
+      "kind": "通常",
+      "first": "群馬県伊勢崎市は、人口が5年で3,781人減ったのに、世帯の数は増えました。",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgKgdhmG8Cj",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:16",
+      "kind": "通常",
+      "first": "埼玉県三郷市の「京都北白川 ラーメン魁力屋 三郷店」が、11/27（金）にリニュ",
+      "url": "https://x.com/1753799832798629888/status/2125564163992793196",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2,
+        "reposts": 0,
+        "impressions": 50,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DgKi0NmhQNF/",
+      "img": null,
+      "metrics": {}
+    },
+    {
+      "service": "threads",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "六義園（文京区）",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgJWr8iibur",
+      "img": null,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 3.23,
+        "views": 31,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "六義園（文京区）",
+      "url": "https://x.com/1753799832798629888/status/2125356371763773637",
+      "img": null,
+      "metrics": {
+        "reactions": 1,
+        "comments": 0,
+        "engagementRate": 0.49,
+        "reposts": 0,
+        "impressions": 205,
+        "clicks": 0
+      }
+    }
+  ]
+}
