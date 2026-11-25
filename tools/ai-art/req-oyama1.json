@@ -1,0 +1,56 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "01-steps",
+   "prompt": "Night at Oyama-dera temple in Kanagawa: a long steep stone staircase climbing a mountainside, completely framed by bright red maple trees lit by warm illumination, stone lanterns along the steps, a wooden temple hall at the top, deep blue night sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "01-steps-b",
+   "prompt": "Tunnel of illuminated red maples over long stone steps on a mountain temple at night, Japan, warm lights, steep perspective looking up",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-cable",
+   "prompt": "A small mountain cable car funicular climbing through a dark forest of illuminated red and orange autumn maples at night, warm windows glowing, Japan",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-cable-b",
+   "prompt": "Night, a funicular train on a steep track among glowing autumn leaves on a mountain, Japan",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-hondo",
+   "prompt": "A wooden Japanese Buddhist temple main hall on a mountain at night, illuminated, surrounded by brilliant red maples, stone steps leading up, deep blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-hondo-b",
+   "prompt": "Old wooden mountain temple hall glowing with lights among red maple trees at night, Kanagawa Japan",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-lantern",
+   "prompt": "Close view at night of old moss-covered stone lanterns on stone steps under red maple leaves lit warmly, Japanese mountain temple",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-lantern-b",
+   "prompt": "Stone steps and stone lanterns covered with fallen red maple leaves at night, warm illumination",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}

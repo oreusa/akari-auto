@@ -1,0 +1,56 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "05-shrine",
+   "prompt": "A Shinto shrine hall on a mountainside at night, illuminated shrine building of dark wood with vermilion accents, red maples, stone steps, deep blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-shrine-b",
+   "prompt": "Night illumination at a mountain Shinto shrine, shrine hall with lights and autumn maples, wide stone plaza",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-view",
+   "prompt": "Night view from a mountain shrine terrace looking down over a wide plain of glittering city lights stretching to the dark sea of Sagami Bay, illuminated red maple branches in the foreground, deep blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-view-b",
+   "prompt": "Mountain top view at night over a vast sparkling city light carpet and the coastline, red maple leaves framing the top, Kanagawa Japan",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-fallen",
+   "prompt": "Fallen red maple leaves covering wide old stone steps at night at a mountain temple, warm soft illumination, shallow depth",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-fallen-b",
+   "prompt": "Red maple leaves on mossy stone steps under illuminated maples at night, Japan",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "08-dusk",
+   "prompt": "A mountain temple in Japan at dusk just after the illumination turned on, red maples glowing on a mountainside, layered mountains, pink and deep blue twilight sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "08-dusk-b",
+   "prompt": "Twilight on a forested mountain with a temple roof among glowing red maples, the sky fading from orange to deep blue, Kanagawa",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
