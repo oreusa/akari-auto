@@ -41,3 +41,12 @@ jobs:
           done
           for h in kansai.townnote.app kanto.townnote.app; do echo "$h 確認ファイル: $(curl -s https://$h/google89ea47473ae57497.html) ／ ほかの名前: $(curl -s -o /dev/null -w '%{http_code}' https://$h/google0123456789abcdef.html)"; done
           curl -s -o /dev/null -w "申し込みの送り先（関西の入口から） %{http_code}\n" -X OPTIONS -H "Origin: https://kansai.townnote.app" https://kanto.townnote.app/moushikomi-send
+      - name: サイトマップの中身を種類ごとに数える（11/25 月：関西と関東の違いを見る）
+        if: ${{ github.event.inputs.do == 'check' }}
+        run: |
+          for h in kansai.townnote.app kanto.townnote.app; do
+            for m in sitemap.xml sitemap-all.xml sitemap-main.xml; do
+              echo "== $h/$m"; curl -s https://$h/$m | grep -o "<loc>[^<]*</loc>" | sed "s#<loc>https://[^/]*/##;s#</loc>##" | awk -F/ '{if(NF>1)print $1; else {sub(/-.*/,"-*",$1); print $1}}' | sort | uniq -c | sort -rn | head -15
+            done
+          done
+          for u in https://kanto.townnote.app/kaiten https://kanto.townnote.app/kaiten/20261125-0 https://kansai.townnote.app/kaiten; do echo "$u $(curl -s -o /dev/null -w '%{http_code}' $u)"; done
