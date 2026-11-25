@@ -1,23 +1,9 @@
 {
-  "at": "2026-11-25 14:03",
+  "at": "2026-11-25 15:01",
   "since": "2026-11-01",
-  "tracked": 264,
+  "tracked": 265,
   "days": 24,
   "downs": [
-    {
-      "title": "モバイルバッテリー",
-      "name": "期間限定25日14時まで!MOTTERU (モッテル) 発火リスクほぼゼロ モバイルバッテリ…",
-      "price": 4980,
-      "base": 6880.0,
-      "pct": 28,
-      "days": 14,
-      "rc": 430,
-      "av": 4.79,
-      "shop": "MOTTERU ダイレクト 楽天市場店",
-      "plain": "https://item.rakuten.co.jp/motteru/10000176/",
-      "url": "https://hb.afl.rakuten.co.jp/hgc/g00tzklo.m2lhf757.g00tzklo.m2lhgb2c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmotteru%2Fmot-mbss10002%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmotteru%2Fi%2F10000176%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/motteru/cabinet/shouhin/sale/mbss10002_4980.jpg?_ex=300x300"
-    },
     {
       "title": "プロテイン",
       "name": "カラダを大きくしたい方に！ウエイトゲイナー プロテイン 1kg / 3kg ザプロ ホエイ …",
@@ -215,6 +201,20 @@
       "plain": "https://item.rakuten.co.jp/aibeaute/10000907/",
       "url": "https://hb.afl.rakuten.co.jp/hgc/g00sc18o.m2lhf4e5.g00sc18o.m2lhge74/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Faibeaute%2F287%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Faibeaute%2Fi%2F10000907%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/aibeaute/cabinet/07051456/imgrc0170518490.jpg?_ex=300x300"
+    },
+    {
+      "title": "モバイルバッテリー",
+      "name": "MOTTERU (モッテル) 発火リスクほぼゼロ モバイルバッテリー 準固体モバイルバッテリ…",
+      "price": 7980,
+      "base": 6880.0,
+      "pct": 16,
+      "days": 14,
+      "rc": 430,
+      "av": 4.79,
+      "shop": "MOTTERU ダイレクト 楽天市場店",
+      "plain": "https://item.rakuten.co.jp/motteru/10000176/",
+      "url": "https://hb.afl.rakuten.co.jp/hgc/g00tzklo.m2lhf757.g00tzklo.m2lhgb2c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmotteru%2Fmot-mbss10002%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmotteru%2Fi%2F10000176%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/motteru/cabinet/shouhin/mot-mbss10002_thr01.jpg?_ex=300x300"
     }
   ]
 }

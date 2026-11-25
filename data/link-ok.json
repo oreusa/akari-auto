@@ -4056,6 +4056,12 @@
   "sec": 3.9,
   "why": ""
  },
+ "https://www.city.saitama.lg.jp/004/001/002/004/p134271.html": {
+  "at": "2026-11-25",
+  "ok": true,
+  "sec": 1.5,
+  "why": ""
+ },
  "https://www.city.saitama.lg.jp/006/014/008/003/015/005/p132422.html": {
   "at": "2026-11-22",
   "ok": true,
@@ -4495,6 +4501,12 @@
   "at": "2026-11-22",
   "ok": true,
   "sec": 1.2,
+  "why": ""
+ },
+ "https://www.tenshin.museum.ibk.ed.jp/viewer/info.html?id=302": {
+  "at": "2026-11-25",
+  "ok": true,
+  "sec": 1.0,
   "why": ""
  },
  "https://www.tnm.jp/modules/r_free_page/index.php?id=2759": {

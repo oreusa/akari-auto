@@ -11777,5 +11777,172 @@
         "min": 5580
       }
     ]
+  },
+  "かがくいひろしの世界展": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      36.83929,
+      140.7998
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "友の湯旅館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D41139",
+        "km": 2.1,
+        "r": 4.86,
+        "rc": 68,
+        "min": 11000
+      },
+      {
+        "n": "平潟港温泉 民宿 暁園",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D13829",
+        "km": 1.2,
+        "r": 4.38,
+        "rc": 635,
+        "min": 16000
+      },
+      {
+        "n": "温泉民宿 かね久",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184552",
+        "km": 1.4,
+        "r": 4.29,
+        "rc": 81,
+        "min": 7150
+      }
+    ]
+  },
+  "上野スカイブリッジイルミネーション": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      36.0719,
+      138.77852
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "まほーばの森",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D109103",
+        "km": 0.2,
+        "r": 5.0,
+        "rc": 59,
+        "min": 4900
+      },
+      {
+        "n": "向屋温泉 ヴィラせせらぎ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D104792",
+        "km": 1.8,
+        "r": 4.1,
+        "rc": 154,
+        "min": 11500
+      }
+    ]
+  },
+  "くじらの海のりもの広場": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.32128,
+      139.44817
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "Gate Resorts Kugenuma Kaigan",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196454",
+        "km": 2.2,
+        "r": 5.0,
+        "rc": 28,
+        "min": 6900
+      },
+      {
+        "n": "BREATH HOTEL(ブレスホテル)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D147040",
+        "km": 2.5,
+        "r": 4.81,
+        "rc": 523,
+        "min": 12650
+      },
+      {
+        "n": "湘南江の島 御料理旅館 恵比寿屋",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D15437",
+        "km": 3.7,
+        "r": 4.31,
+        "rc": 1107,
+        "min": 8800
+      }
+    ]
+  },
+  "あーすフェスタかながわ2026": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.36802,
+      139.5532
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ゲストハウス 土幣",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D158678",
+        "km": 2.2,
+        "r": 5.0,
+        "rc": 13,
+        "min": 16500
+      },
+      {
+        "n": "相鉄フレッサイン鎌倉大船駅東口",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D176985",
+        "km": 2.5,
+        "r": 4.33,
+        "rc": 883,
+        "min": 5670
+      },
+      {
+        "n": "JR東日本ホテルメッツかまくら大船",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D15391",
+        "km": 2.8,
+        "r": 4.32,
+        "rc": 2433,
+        "min": 3630
+      }
+    ]
+  },
+  "さいたまOrganicCityFes.Vol.5（地元の有機農家のマルシェ）": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.89335,
+      139.63933
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルメトロポリタンさいたま新都心",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D161189",
+        "km": 0.6,
+        "r": 4.64,
+        "rc": 1530,
+        "min": 6950
+      },
+      {
+        "n": "レフ大宮 by ベッセルホテルズ|REF大宮|サウナ付大浴場(大宮駅東口)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179148",
+        "km": 1.8,
+        "r": 4.62,
+        "rc": 1381,
+        "min": 4973
+      },
+      {
+        "n": "ダイワロイネットホテル大宮西口",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188736",
+        "km": 2.0,
+        "r": 4.57,
+        "rc": 1545,
+        "min": 6740
+      }
+    ]
   }
 }
