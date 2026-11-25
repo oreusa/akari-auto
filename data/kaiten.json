@@ -2702,6 +2702,19 @@
    "added": "2026-11-25",
    "src": "prtimes",
    "auto": 1
+  },
+  {
+   "d": "2026-11-25",
+   "k": "pop",
+   "p": "神奈川",
+   "n": "期間限定",
+   "pt": "ららぽーと海老名に、期間限定で出るお店。",
+   "pl": "海老名市扇町13-1（ららぽーと海老名）",
+   "tm": "",
+   "u": "https://mitsui-shopping-park.com/lalaport/ebina/openrenewal/3701240.html",
+   "added": "2026-11-25",
+   "src": "lalaport",
+   "auto": 1
   }
  ]
 }
