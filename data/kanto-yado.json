@@ -4006,41 +4006,6 @@
       }
     ]
   },
-  "佐久山御殿山紅葉まつり": {
-    "v": 2,
-    "t": "2026-11-21",
-    "ll": [
-      36.80331,
-      140.00728
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "HOTEL R9 The Yard 大田原",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196190",
-        "km": 5.9,
-        "r": 4.24,
-        "rc": 170,
-        "min": 3600
-      },
-      {
-        "n": "ホテルウェリィスミヨシ",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D53422",
-        "km": 6.7,
-        "r": 4.16,
-        "rc": 426,
-        "min": 5400
-      },
-      {
-        "n": "HOTEL R9 The Yard 矢板",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179247",
-        "km": 5.7,
-        "r": 3.89,
-        "rc": 307,
-        "min": 3500
-      }
-    ]
-  },
   "企画展「創立100周年上毛電気鉄道のあゆみ」": {
     "v": 2,
     "t": "2026-11-21",
@@ -11942,6 +11907,925 @@
         "r": 4.57,
         "rc": 1545,
         "min": 6740
+      }
+    ]
+  },
+  "あけぼの山農業公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.89783,
+      140.00761
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルマークワンアビコ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D80473",
+        "km": 4.0,
+        "r": 4.27,
+        "rc": 1254,
+        "min": 4070
+      }
+    ]
+  },
+  "千葉公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.61981,
+      140.11782
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ベッセルイン千葉駅前|サウナ付大浴場(千葉・京成千葉・幕張)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D168546",
+        "km": 0.8,
+        "r": 4.58,
+        "rc": 2130,
+        "min": 3133
+      },
+      {
+        "n": "ダイワロイネットホテル千葉中央",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D166219",
+        "km": 1.4,
+        "r": 4.53,
+        "rc": 1742,
+        "min": 4550
+      },
+      {
+        "n": "THE TSUBAKIMORI Hotel & Residence(椿森ホテル&レジデンス)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198773",
+        "km": 0.2,
+        "r": 4.52,
+        "rc": 60,
+        "min": 5000
+      }
+    ]
+  },
+  "松山庭園美術館": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.70791,
+      140.56422
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ビジネスホテル竹屋",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188382",
+        "km": 1.3,
+        "r": 4.2,
+        "rc": 21,
+        "min": 4200
+      },
+      {
+        "n": "HOTEL R9 The Yard 匝瑳",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187649",
+        "km": 1.2,
+        "r": 4.12,
+        "rc": 86,
+        "min": 4300
+      }
+    ]
+  },
+  "泉自然公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.5776,
+      140.22647
+    ],
+    "w": 1,
+    "h": []
+  },
+  "清水公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.95909,
+      139.85109
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルルートイン野田 -国道16号沿-",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D181678",
+        "km": 2.0,
+        "r": 4.29,
+        "rc": 359,
+        "min": 5525
+      },
+      {
+        "n": "ビジネスホテル野田",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D160796",
+        "km": 3.5,
+        "r": 4.01,
+        "rc": 291,
+        "min": 4500
+      },
+      {
+        "n": "ビジネス旅館 梓",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D15090",
+        "km": 2.2,
+        "r": 3.84,
+        "rc": 54,
+        "min": 3800
+      }
+    ]
+  },
+  "筒森もみじ谷": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.22627,
+      140.15111
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "民宿さかや",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184400",
+        "km": 3.1,
+        "r": 4.67,
+        "rc": 61,
+        "min": 6400
+      },
+      {
+        "n": "SHINRA YORO VALLEY",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D196002",
+        "km": 2.2,
+        "r": 4.56,
+        "rc": 97,
+        "min": 40900
+      },
+      {
+        "n": "渓谷別庭 もちの木",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D164579",
+        "km": 2.2,
+        "r": 4.49,
+        "rc": 176,
+        "min": 19400
+      }
+    ]
+  },
+  "かじか橋": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.04315,
+      139.83998
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "Cam Cam Dome House & SAUNA(豊岡海岸)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D188183",
+        "km": 1.3,
+        "r": 5.0,
+        "rc": 12,
+        "min": 10800
+      },
+      {
+        "n": "民宿かたなし",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D14418",
+        "km": 0.6,
+        "r": 4.25,
+        "rc": 90,
+        "min": 4400
+      },
+      {
+        "n": "福喜庵",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D40833",
+        "km": 1.5,
+        "r": 4.21,
+        "rc": 14,
+        "min": 6100
+      }
+    ]
+  },
+  "佐倉城址公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.72316,
+      140.21818
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "佐倉第一ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D74521",
+        "km": 2.0,
+        "r": 3.75,
+        "rc": 791,
+        "min": 4700
+      },
+      {
+        "n": "さくらマンダリン(旧:HOTEL 湯ぱらだいす佐倉)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D40971",
+        "km": 1.7,
+        "r": 3.59,
+        "rc": 278,
+        "min": 6000
+      }
+    ]
+  },
+  "小松寺": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      34.96837,
+      139.91015
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "Cafe Hotel Isola Bella(カフェホテル イソラ ベッラ)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D135516",
+        "km": 4.2,
+        "r": 5.0,
+        "rc": 34,
+        "min": 5530
+      },
+      {
+        "n": "ペンション シーキャビン",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D183276",
+        "km": 5.0,
+        "r": 4.8,
+        "rc": 15,
+        "min": 8000
+      },
+      {
+        "n": "ファームイン三芳・杉田棟",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D28743",
+        "km": 6.6,
+        "r": 4.67,
+        "rc": 168,
+        "min": 3025
+      }
+    ]
+  },
+  "もみじロード": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.30417,
+      139.85712
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテル&グランピング ACT FUTTSU",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184201",
+        "km": 1.7,
+        "r": 4.22,
+        "rc": 25,
+        "min": 8085
+      },
+      {
+        "n": "さざ波館(さゞ波館)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D39686",
+        "km": 2.8,
+        "r": 3.89,
+        "rc": 146,
+        "min": 6600
+      },
+      {
+        "n": "HOTEL R9 The Yard 富津",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D182123",
+        "km": 2.6,
+        "r": 3.77,
+        "rc": 146,
+        "min": 3900
+      }
+    ]
+  },
+  "白岩・四方木不動滝": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.11407,
+      140.09895
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "アラビアンアートホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D40142",
+        "km": 2.4,
+        "r": 4.93,
+        "rc": 81,
+        "min": 17600
+      },
+      {
+        "n": "Dogサバトリーのある宿 ご・遊庭",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D149290",
+        "km": 2.1,
+        "r": 4.81,
+        "rc": 87,
+        "min": 25300
+      },
+      {
+        "n": "ペンション インディアン サマー",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D128593",
+        "km": 2.6,
+        "r": 4.81,
+        "rc": 62,
+        "min": 6000
+      }
+    ]
+  },
+  "粟又の滝": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.21268,
+      140.18077
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "渓谷別庭 もちの木",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D164579",
+        "km": 3.1,
+        "r": 4.49,
+        "rc": 176,
+        "min": 19400
+      },
+      {
+        "n": "Fairytale",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191922",
+        "km": 3.3,
+        "r": 4.4,
+        "rc": 19,
+        "min": 10450
+      },
+      {
+        "n": "旅館&グランピングリゾート 花山水 -HANASANSUI-",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D79303",
+        "km": 2.1,
+        "r": 4.31,
+        "rc": 1463,
+        "min": 12100
+      }
+    ]
+  },
+  "観福寺": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.88099,
+      140.4992
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "凪(なぎ)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D190077",
+        "km": 1.1,
+        "r": 4.82,
+        "rc": 24,
+        "min": 6960
+      },
+      {
+        "n": "佐原商家町ホテルNIPPONIA",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D166043",
+        "km": 0.9,
+        "r": 4.4,
+        "rc": 223,
+        "min": 31075
+      },
+      {
+        "n": "ホテルルートイン香取佐原駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D176708",
+        "km": 1.5,
+        "r": 4.37,
+        "rc": 865,
+        "min": 6350
+      }
+    ]
+  },
+  "香取神宮": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.88569,
+      140.52877
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "凪(なぎ)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D190077",
+        "km": 2.7,
+        "r": 4.82,
+        "rc": 24,
+        "min": 6960
+      },
+      {
+        "n": "HOSTEL Co-EDO",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D167071",
+        "km": 2.9,
+        "r": 4.13,
+        "rc": 45,
+        "min": 4200
+      }
+    ]
+  },
+  "月待の滝": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      36.80814,
+      140.3729
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "鈴木屋旅館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D130063",
+        "km": 1.0,
+        "r": 4.47,
+        "rc": 61,
+        "min": 7200
+      },
+      {
+        "n": "大子温泉 やみぞ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D142195",
+        "km": 2.2,
+        "r": 4.32,
+        "rc": 405,
+        "min": 16500
+      },
+      {
+        "n": "旅館 本田屋",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184033",
+        "km": 3.4,
+        "r": 3.85,
+        "rc": 41,
+        "min": 6500
+      }
+    ]
+  },
+  "永源寺（もみじ寺）": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      36.76442,
+      140.36343
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "北條館別館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D172869",
+        "km": 2.0,
+        "r": 4.5,
+        "rc": 28,
+        "min": 8228
+      },
+      {
+        "n": "袋田温泉 思い出浪漫館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D37878",
+        "km": 2.5,
+        "r": 4.49,
+        "rc": 2149,
+        "min": 10000
+      },
+      {
+        "n": "大子温泉 やみぞ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D142195",
+        "km": 3.0,
+        "r": 4.32,
+        "rc": 405,
+        "min": 16500
+      }
+    ]
+  },
+  "笠間北山公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      36.3452,
+      140.30426
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "HOTEL R9 The Yard 笠間",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D197766",
+        "km": 2.4,
+        "r": 4.19,
+        "rc": 185,
+        "min": 3900
+      },
+      {
+        "n": "シティーホテル友部",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D67915",
+        "km": 2.5,
+        "r": 3.9,
+        "rc": 667,
+        "min": 6000
+      },
+      {
+        "n": "シェアハウス笠間",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191979",
+        "km": 0.4,
+        "r": 3.75,
+        "rc": 182,
+        "min": 4500
+      }
+    ]
+  },
+  "茨城県立歴史館": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      36.3809,
+      140.45095
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "天然温泉 香梅の湯 ドーミーイン水戸(ドーミーイン・御宿野乃 ホテルズグループ)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D177822",
+        "km": 1.8,
+        "r": 4.45,
+        "rc": 1759,
+        "min": 6785
+      },
+      {
+        "n": "ホテル・ザ・ウエストヒルズ・水戸(リッチモンドホテルズ提携ホテル)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D141247",
+        "km": 0.7,
+        "r": 4.41,
+        "rc": 1908,
+        "min": 5500
+      },
+      {
+        "n": "JR東日本ホテルメッツ水戸",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D1707",
+        "km": 2.4,
+        "r": 4.36,
+        "rc": 2157,
+        "min": 3450
+      }
+    ]
+  },
+  "霞ケ浦総合公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      36.06256,
+      140.21915
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "【JR土浦駅直結】 BEB5土浦 by 星野リゾート",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178358",
+        "km": 2.1,
+        "r": 4.49,
+        "rc": 420,
+        "min": 4510
+      },
+      {
+        "n": "湖北ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D31538",
+        "km": 2.7,
+        "r": 4.36,
+        "rc": 1042,
+        "min": 2942
+      },
+      {
+        "n": "ホテルフィット",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D106074",
+        "km": 1.8,
+        "r": 4.34,
+        "rc": 2066,
+        "min": 4850
+      }
+    ]
+  },
+  "御前山県立自然公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      36.53659,
+      140.33171
+    ],
+    "w": 1,
+    "h": []
+  },
+  "西蓮寺": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      36.07622,
+      140.43971
+    ],
+    "w": 1,
+    "h": []
+  },
+  "最勝寺": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      36.30527,
+      139.9794
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルニューつたや",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D67928",
+        "km": 0.5,
+        "r": 4.39,
+        "rc": 182,
+        "min": 5000
+      },
+      {
+        "n": "ホテル新東",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D31460",
+        "km": 0.3,
+        "r": 4.17,
+        "rc": 433,
+        "min": 6200
+      },
+      {
+        "n": "ホテルルートイン下館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D68169",
+        "km": 1.4,
+        "r": 4.17,
+        "rc": 714,
+        "min": 6275
+      }
+    ]
+  },
+  "上野恩賜公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.71402,
+      139.77393
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "サウナ&カプセルホテル 北欧",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D68219",
+        "km": 0.4,
+        "r": 4.35,
+        "rc": 2169,
+        "min": 4000
+      },
+      {
+        "n": "ホテルリソル上野",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178930",
+        "km": 0.4,
+        "r": 4.27,
+        "rc": 223,
+        "min": 11040
+      },
+      {
+        "n": "三井ガーデンホテル上野",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D107870",
+        "km": 0.5,
+        "r": 4.26,
+        "rc": 1594,
+        "min": 11655
+      }
+    ]
+  },
+  "井の頭恩賜公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.69891,
+      139.5787
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "リッチモンドホテル東京武蔵野",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D1351",
+        "km": 1.8,
+        "r": 4.24,
+        "rc": 2561,
+        "min": 6840
+      },
+      {
+        "n": "吉祥寺東急REIホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D512",
+        "km": 0.3,
+        "r": 4.23,
+        "rc": 2271,
+        "min": 8600
+      },
+      {
+        "n": "吉祥寺エクセルホテル東急",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184343",
+        "km": 0.8,
+        "r": 4.23,
+        "rc": 226,
+        "min": 7700
+      }
+    ]
+  },
+  "代々木公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.67141,
+      139.69517
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "EN HOTEL SHIBUYA (エンホテル渋谷)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D18739",
+        "km": 1.3,
+        "r": 4.5,
+        "rc": 1002,
+        "min": 9818
+      },
+      {
+        "n": "ドーミーインPREMIUM渋谷神宮前(ドーミーイン・御宿野乃 ホテルズグループ)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D136846",
+        "km": 0.9,
+        "r": 4.33,
+        "rc": 1152,
+        "min": 13984
+      },
+      {
+        "n": "渋谷クレストンホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D19745",
+        "km": 0.9,
+        "r": 4.23,
+        "rc": 226,
+        "min": 12800
+      }
+    ]
+  },
+  "皇居東御苑二の丸庭園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.6867,
+      139.7574
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "アスコット丸の内東京",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D161216",
+        "km": 0.5,
+        "r": 5.0,
+        "rc": 50,
+        "min": 48691
+      },
+      {
+        "n": "オークウッドプレミア東京",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D165685",
+        "km": 1.2,
+        "r": 5.0,
+        "rc": 30,
+        "min": 42649
+      },
+      {
+        "n": "東京ステーションホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D137869",
+        "km": 1.0,
+        "r": 4.85,
+        "rc": 987,
+        "min": 32352
+      }
+    ]
+  },
+  "県立茅ヶ崎里山公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.33387,
+      139.40369
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "MARSOL C.S.Beach hotel",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191826",
+        "km": 1.9,
+        "r": 4.83,
+        "rc": 11,
+        "min": 10000
+      },
+      {
+        "n": "8HOTEL CHIGASAKI",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D180567",
+        "km": 0.7,
+        "r": 4.33,
+        "rc": 451,
+        "min": 5750
+      },
+      {
+        "n": "東横INN茅ヶ崎市役所",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D187534",
+        "km": 0.1,
+        "r": 4.16,
+        "rc": 436,
+        "min": 4935
+      }
+    ]
+  },
+  "大町公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.76776,
+      139.96918
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ReLA 東松戸",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D181707",
+        "km": 2.3,
+        "r": 4.1,
+        "rc": 109,
+        "min": 1724
+      },
+      {
+        "n": "東横INN千葉新鎌ヶ谷駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108409",
+        "km": 3.0,
+        "r": 4.04,
+        "rc": 643,
+        "min": 5127
+      }
+    ]
+  },
+  "戸定が丘歴史公園": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.77709,
+      139.89943
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルルートイン北松戸駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D11258",
+        "km": 2.8,
+        "r": 4.34,
+        "rc": 770,
+        "min": 6100
+      },
+      {
+        "n": "サウナ・カプセルイン クレスト松戸",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D41375",
+        "km": 0.9,
+        "r": 4.25,
+        "rc": 1164,
+        "min": 3680
+      },
+      {
+        "n": "東横INN松戸駅東口",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D166149",
+        "km": 0.7,
+        "r": 3.87,
+        "rc": 540,
+        "min": 5775
+      }
+    ]
+  },
+  "東漸寺": {
+    "v": 2,
+    "t": "2026-11-25",
+    "ll": [
+      35.82917,
+      139.92905
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "グランパークホテル ザ・ルクソー南柏",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D166921",
+        "km": 3.0,
+        "r": 4.42,
+        "rc": 1135,
+        "min": 4500
+      },
+      {
+        "n": "アーバンホテル東京 新松戸(旧:新松戸ステーションホテル)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D7829",
+        "km": 0.9,
+        "r": 4.0,
+        "rc": 1252,
+        "min": 3800
       }
     ]
   }

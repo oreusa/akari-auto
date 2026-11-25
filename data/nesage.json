@@ -1,9 +1,23 @@
 {
-  "at": "2026-11-25 20:36",
+  "at": "2026-11-25 21:30",
   "since": "2026-11-01",
   "tracked": 267,
   "days": 24,
   "downs": [
+    {
+      "title": "お米",
+      "name": "お米 10kg オリジナルブレンド米 日本の味 10kg1袋 複数原料米",
+      "price": 3480,
+      "base": 4780.0,
+      "pct": 27,
+      "days": 14,
+      "rc": 2296,
+      "av": 4.58,
+      "shop": "お米・菓子の直売所あじわいの朝",
+      "plain": "https://item.rakuten.co.jp/ajiwainoasa/10000028/",
+      "url": "https://hb.afl.rakuten.co.jp/hgc/g00skdro.m2lhfb68.g00skdro.m2lhg2d0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fajiwainoasa%2Fblend_10_b%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fajiwainoasa%2Fi%2F10000028%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/ajiwainoasa/cabinet/item/brend_10-1.jpg?_ex=300x300"
+    },
     {
       "title": "炭酸水",
       "name": "シリカ 高濃度 炭酸水 72mg/L biora 天然シリカ炭酸水 500ml 24本 強炭…",
@@ -62,6 +76,20 @@
     },
     {
       "title": "モバイルバッテリー",
+      "name": "ホットマット モバイルバッテリー付 ミニ 一人用 10000mAh エネタンポ USBウォー…",
+      "price": 3480,
+      "base": 4100.0,
+      "pct": 15,
+      "days": 14,
+      "rc": 452,
+      "av": 4.34,
+      "shop": "快適くらし館",
+      "plain": "https://item.rakuten.co.jp/rennkou-syouji/10015371/",
+      "url": "https://hb.afl.rakuten.co.jp/hgc/g00rl0so.m2lhfc37.g00rl0so.m2lhgf1e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frennkou-syouji%2Fenetanpo-x-monowa003%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frennkou-syouji%2Fi%2F10015371%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/rennkou-syouji/cabinet/zaka/07550265/26v/enta029f_01.jpg?_ex=300x300"
+    },
+    {
+      "title": "モバイルバッテリー",
       "name": "Anker Zolo Power Bank (10000mAh, 30W, Built-In…",
       "price": 2990,
       "base": 3490.0,
@@ -95,7 +123,7 @@
       "base": 1420.0,
       "pct": 10,
       "days": 14,
-      "rc": 1780,
+      "rc": 1781,
       "av": 4.6,
       "shop": "暮らし健康ネット館",
       "plain": "https://item.rakuten.co.jp/kurashikenkou/10201356/",
