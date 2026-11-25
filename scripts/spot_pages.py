@@ -38,7 +38,7 @@ CSS += """.act{display:grid;gap:8px;margin:22px 0 0}.act a{display:block;text-al
 _TM = re.compile(r"\d{1,2}:\d\d|\d{1,2}時(?!間)|日没|終日|24時間")
 _YEN = re.compile(r"\d[\d,]*円")
 _PR = re.compile(r"\d[\d,]*円|無料")
-_NT = re.compile(r"休み|休館|休園|休室|予約|日時指定|先着|要ります|変わります|中止|整理券|駅から|歩いて")
+_NT = re.compile(r"休み|休館|休園|休室|予約|日時指定|先着|要ります|変わります|中止|整理券|駅から|歩いて|撮影|入れません")
 def _chunks(t):
     out, cur, d = [], "", 0
     for ch in t:
