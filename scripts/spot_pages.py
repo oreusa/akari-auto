@@ -135,7 +135,30 @@ def prefnav(cur=""):
 
 
 os.makedirs(os.path.join(S, "o"), exist_ok=True)
-for f in glob.glob(os.path.join(S, "o", "*.html")): os.remove(f)
+# 11/25 夜（関西と同じ）：終わった催しの1件ページを消すと、保存や検索から来た人が説明なしに一覧へ飛ばされていた
+# → 終わった物は「終わりました」の札を付けて90日残す（検索には出さない noindex）。開催中の物はこのあと作り直す
+_live = {sp["id"] for sp in spots}
+for f in glob.glob(os.path.join(S, "o", "*.html")):
+    _id = os.path.basename(f)[:-5]
+    if _id in _live: os.remove(f); continue
+    try: _t = open(f, encoding="utf-8").read()
+    except Exception: os.remove(f); continue
+    _m = re.search(r'data-ended="(\d{4}-\d\d-\d\d)"', _t)
+    if _m:
+        if (D0 - datetime.date.fromisoformat(_m.group(1))).days > 90: os.remove(f)
+        continue
+    _span = re.search(r'<span>日程</span><b>(.*?)</b>', _t)
+    _back = re.search(r'<a [^>]*href="(/odekake-[a-z]+)"[^>]*>([^<]*おでかけリスト)へ?</a>', _t)
+    _bn = (f'<p class="lead" data-ended="{TODAY}"><b>このおでかけは終わりました。</b>' + (f'（日程は {_span.group(1)}）' if _span else '') +
+           (f'いま行けるおでかけは <a href="{_back.group(1)}">{_back.group(2)}</a> から。' if _back else 'いま行けるおでかけは <a href="/odekake">関東おでかけリスト</a> から。') + '</p>')
+    if '<div class="big">' not in _t: os.remove(f); continue
+    _t = _t.replace('<div class="big">', _bn + '<div class="big">', 1)
+    _t = re.sub(r'(<span>いまは</span><b[^>]*>)[^<]*(</b>)', r'\1終わりました\2', _t, count=1)
+    _t = re.sub(r'<a class="g" href="[^"]*" target="_blank" rel="noopener sponsored">[^<]*</a>', '', _t)
+    _t = _t.replace("まで開かれます。", "まで開かれました。").replace("に開かれます。", "に開かれました。")
+    _t = re.sub(r'<script type="application/ld\+json">.*?</script>', '', _t, flags=re.S)
+    if 'name="robots"' not in _t: _t = _t.replace('</title>', '</title><meta name="robots" content="noindex,follow">', 1)
+    open(f, "w", encoding="utf-8").write(_t)
 urls = []
 # 11/23 夜の見回り（関西と同じ）：料金・年齢の言葉（「小学生以下は無料」など）は場所に使わない
 for _o in spots:
