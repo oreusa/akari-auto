@@ -1,0 +1,32 @@
+name: ig-recent（インスタに本当に出たかを見る・手で動かす）
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  look:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: 最近の10本を state/ig_recent.json に
+        env:
+          APP_SECRET: ${{ secrets.META_APP_SECRET }}
+        run: |
+          IG_PAGE_TOKEN=$(openssl enc -d -aes-256-cbc -pbkdf2 -a -pass env:APP_SECRET -in ig/page_token.enc)
+          echo "::add-mask::$IG_PAGE_TOKEN"
+          export IG_PAGE_TOKEN
+          python3 - <<'PY'
+          import json, os, sys
+          sys.path.insert(0, "scripts")
+          import igreel
+          ig = json.load(open("ig/setup.json"))["ig_user_id"]
+          r = igreel.call("GET", f"{ig}/media", os.environ["IG_PAGE_TOKEN"], {"fields": "timestamp,permalink,media_type,caption", "limit": 10})
+          out = [{"at": m.get("timestamp"), "url": m.get("permalink"), "type": m.get("media_type"), "cap": (m.get("caption") or "")[:40]} for m in r.get("data", [])] if "data" in r else r
+          json.dump(out, open("state/ig_recent.json", "w"), ensure_ascii=False, indent=1)
+          print(json.dumps(out, ensure_ascii=False, indent=1))
+          PY
+      - name: 保存
+        run: |
+          git config user.name "akari-bot"; git config user.email "akari-bot@users.noreply.github.com"
+          git add state/ig_recent.json && git commit -qm "インスタの最近の10本" && git pull -q --rebase && git push -q || true
