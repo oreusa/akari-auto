@@ -241,7 +241,7 @@ def post_problems(p):
 
 # 11/13 関西で「見出しは店の開業なのにリンクは土地相場」「売れた値段の話なのに絵は解体」が出た。関東も同じ物を止める（usagi tools/allcheck/postlink.py と同じ考え）
 HEAD_WORDS = [
-    (re.compile(r"開業|オープン|店舗|売り場|商業施設|新店|初出店"), ("/odekake", "/ima", "/o/"), "店・施設の開業の話"),
+    (re.compile(r"開業|オープン|店舗|売り場|商業施設|新店|初出店"), ("/odekake", "/ima", "/o/", "/kaiten/"), "店・施設の開業の話"),
     (re.compile(r"売れた|成約|中古一戸建て|平均は"), ("/jikka", "/machi/"), "売れた値段の話"),
     (re.compile(r"紅葉|もみじ"), ("/koyo", "/odekake", "/o/"), "紅葉の話"),
     (re.compile(r"イルミ|ライトアップ"), ("/illumination", "/koyo", "/odekake", "/o/"), "イルミ・ライトアップの話"),

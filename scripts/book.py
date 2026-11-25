@@ -100,6 +100,9 @@ def page_target(texts, due):
     その催しのページが無い時は都県のページ。どちらも分からなければ ("", "")＝今まで通り表紙。"""
     if "#PR" in " ".join(texts) or not due:
         return "", ""
+    k = kaiten_page(texts)  # 11/25 オーナー「関東もっと少ない」：開店の話は、そのお店の1件ページ（/kaiten/<日付-印>）へ
+    if k:
+        return k
     try:
         import hashlib
         import page
@@ -116,6 +119,90 @@ def page_target(texts, due):
     return "", ""
 
 
+KANTO_PREF = ("東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬")
+
+
+def kaiten_page(texts):
+    """文に名前が出てくる関東の開店・閉店（data/kaiten.json）の1件ページ（site/kaiten/<印>.html があるお店だけ）。
+    返す物：("kaiten/<印>", 来る理由) か None。名前が長い（はっきりした）お店を先に。"""
+    try:
+        import hashlib
+        t = re.sub(r"\W", "", " ".join(texts)).lower()
+        rows = load_json(path("data", "kaiten.json"), []) or []
+        rows = rows if isinstance(rows, list) else (rows.get("items") or [])
+        site = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site", "kaiten")
+        for x in sorted(rows, key=lambda x: -len(x.get("n") or "")):
+            nm = re.sub(r"\W", "", re.sub(r"（.*?）|「|」", "", x.get("n") or "")).lower()
+            if len(nm) < 4 or nm not in t or x.get("p") not in KANTO_PREF:
+                continue
+            sl = x["d"].replace("-", "") + "-" + hashlib.sha1((x["n"] + "|" + x["u"]).encode()).hexdigest()[:6]  # kaiten.py slug() と同じ
+            if os.path.exists(os.path.join(site, sl + ".html")):
+                return "kaiten/" + sl, ("閉店の日・場所・地図：" if x.get("k") == "close" else "開店の日・場所・地図、近くの新しいお店：")
+    except Exception:
+        pass
+    return None
+
+
+# 一覧のページ（表紙・おでかけ・都県・いま・紅葉・イルミ）。1件ページが分かる投稿は、ここへのリンクを1件ページに付け替える
+LIST_URL = re.compile(r"https://kanto\.townnote\.app/(?:(?:odekake(?:-[a-z]+)?|ima|koyo|illumination)(?:\.html)?)?(?![\w/.-])")
+
+
+def deepen(texts, service, slot="", due=None):
+    """11/25 一覧へのリンクを、その話のお店・催しの1件ページ（/kaiten/<印>・/o/<id>）に付け替える。
+    その行が「〜はこちら URL」（URLで終わる短い1行）なら行ごと1件ページの1行に。文字数を超えるなら替えない。"""
+    from lib import threads_len, x_weight
+    if not any(LIST_URL.search(t) for t in texts):
+        return list(texts)
+    pth, lead = page_target(texts, due)
+    if not pth.startswith(("o/", "kaiten/")):  # 都県のページへの付け替えはしない（一覧から一覧になるだけ）
+        return list(texts)
+    deep = "https://kanto.townnote.app/" + pth + (f"?f={'x' if service == 'twitter' else 't'}{slot.replace(':', '')}" if slot else "")
+    out = list(texts)
+    for i, t in enumerate(out):
+        m = LIST_URL.search(t)
+        if not m:
+            continue
+        lines = t.split("\n")
+        for j, ln in enumerate(lines):
+            if LIST_URL.search(ln):
+                mm = LIST_URL.search(ln)
+                pre, post = ln[:mm.start()], ln[mm.end():]
+                # 「〜はこちら：URL」の1行は、行ごと1件ページの1行に（「東京のおでかけはこちら」のまま1件ページへ飛ばさない）
+                if pre.strip() and not post.strip() and len(pre) <= 40:
+                    lines[j] = lead + deep
+                elif not pre.strip() and j and 0 < len(lines[j - 1].strip()) <= 40 and re.search(r"こちら|：$", lines[j - 1]):
+                    lines[j - 1], lines[j] = lead.rstrip("："), LIST_URL.sub(deep, ln, count=1)  # 「〜はこちらです」の次の行がURL
+                else:
+                    lines[j] = LIST_URL.sub(deep, ln, count=1)
+                break
+        new = "\n".join(lines)
+        if service == "twitter" and x_weight(new) > 280 or service != "twitter" and threads_len(new) > 500:
+            new = LIST_URL.sub(deep, t, count=1)
+            if service == "twitter" and x_weight(new) > 280 or service != "twitter" and threads_len(new) > 500:
+                return list(texts)
+        out[i] = new
+        return out
+    return out
+
+
+def deepen_file(fn):
+    """予定表（schedule/D.json）の Threads・X の文を deepen() で書き換え、1件ページのリンクの数を出す。"""
+    d = load_json(fn, {})
+    due = datetime.fromisoformat(d["date"] + "T12:00:00+09:00")
+    for p in d.get("posts", []):
+        for svc, k in (("threads", "threads"), ("twitter", "x")):
+            if isinstance(p.get(k), list) and len(p[k]) >= 2:
+                p[k] = deepen(p[k], svc, "", due)
+    with open(fn, "w", encoding="utf-8") as f:
+        json.dump(d, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+    one = re.compile(r"townnote\.app/(?:kaiten|o)/")
+    th = sum(1 for p in d.get("posts", []) if not p.get("threads_off") and any(one.search(t) for t in p.get("threads") or []))
+    xx = sum(1 for p in d.get("posts", []) if not p.get("x_off") and any(one.search(t) for t in p.get("x") or []))
+    print(f"1件ページのリンク：Threads {th}本・X {xx}本")
+    return 0
+
+
 def post_image(texts, day, slot):
     """投稿に付ける絵（11/12 オーナー「PR投稿はおかいもののHPの写真がある」「写真も効果ありならちょこちょこ入れる」）。
     投稿の中のHPのページと同じ絵が data/postimg.json（scripts/post_img.js が公開のたびに作る）にあれば、それを返す。
@@ -127,10 +214,10 @@ def post_image(texts, day, slot):
         hit = None
         for t in texts:
             # 11/17 関東のアドレスが kanto.townnote.app に変わった（11/15）のに pages.dev だけを見ていて、11/15 夕方から絵が1枚も付かなかった
-            for m in re.finditer(r"(?:pages\.dev|townnote\.app)/((?:o/)?[a-z0-9-]+)", t):
+            for m in re.finditer(r"(?:pages\.dev|townnote\.app)/((?:o/|kaiten/)?[a-z0-9-]+)", t):
                 hit = idx.get("/" + m.group(1)) or hit
             # 見張り（11/17）：アドレスがまた変わっても気づけるように、上で拾えなかったURLが絵の表にある道なら知らせる
-            for m in re.finditer(r"https://([a-z0-9.-]+)/((?:o/)?[a-z0-9-]+)", t):
+            for m in re.finditer(r"https://([a-z0-9.-]+)/((?:o/|kaiten/)?[a-z0-9-]+)", t):
                 if not re.search(r"(?:pages\.dev|townnote\.app)$", m.group(1)) and idx.get("/" + m.group(2)):
                     print(f"::warning::投稿の絵：{m.group(1)} は絵を探す対象に入っていない（アドレスが変わった？ book.py post_image の正規表現を直す）")
         if not hit:
@@ -155,8 +242,10 @@ def with_page(texts, service, cfg, slot="", due=None):
     from lib import threads_len, x_weight
     pg = (cfg.get("page") or {})
     url = pg.get("url")
-    if not url or not pg.get("promote", True) or len(texts) < 2 or any(url in t for t in texts):
+    if not url or not pg.get("promote", True) or len(texts) < 2:
         return list(texts)
+    if any(url in t for t in texts):  # 文にHPのURLがある時は、一覧なら1件ページに付け替えるだけ（11/25）
+        return deepen(texts, service, slot, due)
     path, lead = page_target(texts, due)
     deep = url.rstrip("/") + "/" + path if path else ""
     if slot:  # どの投稿から来たか分かる印（x0715 = Xの7:15の投稿、t0715 = Threadsの7:15）
@@ -1290,6 +1379,8 @@ def koma4_test(image_url):
 if __name__ == "__main__":
     if len(sys.argv) > 2 and sys.argv[1] == "--koma4-test":
         sys.exit(koma4_test(sys.argv[2]))
+    if len(sys.argv) > 2 and sys.argv[1] == "--deepen":  # 11/25 夜の回：予定表の一覧リンクを1件ページに書き換えて数を出す
+        sys.exit(deepen_file(sys.argv[2]))
     if len(sys.argv) > 1 and sys.argv[1] == "--sent-test":
         sys.exit(sent_test())
     if len(sys.argv) > 2 and sys.argv[1] == "--test":

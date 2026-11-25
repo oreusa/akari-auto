@@ -15,6 +15,9 @@ function targets(){const T=[];const L=fs.readdirSync(SITE);
  const add=(re,label)=>{for(const f of L)if(re.test(f)){const c=f.slice(0,-5);T.push({name:c,page:'/'+c,label})}};
  add(/^okaimono(-[a-z0-9]+)?\.html$/,'くらべたおかいものリスト');add(/^furusato(-[a-z0-9]+)?\.html$/,'ふるさと納税を1万円あたりでくらべた');add(/^nesage\.html$/,'本当に値下がりした物');
  add(/^odekake(-[a-z]+)?\.html$/,'関東おでかけリスト');add(/^(koyo|illumination|illumi|hatsumode|tomari)\.html$/,'関東おでかけリスト');add(/^kaitai(-[a-z]+)?\.html$/,'解体・片付けの費用の目安');
+ // 11/25 開店・閉店の1件ページ（/kaiten/<日付-印>）。投稿の開店の話はここへつなぐ。時間切れにならないよう /o/ より先に・きのう〜10日先の物だけ
+ const K=path.join(SITE,'kaiten');const ymd=n=>new Date(Date.now()+9*3600e3+n*864e5).toISOString().slice(0,10).replace(/-/g,'');const lo=ymd(-1),hi=ymd(10);
+ if(fs.existsSync(K))for(const f of fs.readdirSync(K))if(/^\d{8}-[0-9a-f]{6}\.html$/.test(f)&&f.slice(0,8)>=lo&&f.slice(0,8)<=hi){const c=f.slice(0,-5);T.push({name:'kaiten-'+c,page:'/kaiten/'+c,label:'関東の開店・閉店ニュース'})}
  const O=path.join(SITE,'o');if(fs.existsSync(O))for(const f of fs.readdirSync(O))if(/^[0-9a-f]{8}\.html$/.test(f)){const c=f.slice(0,-5);T.push({name:'o-'+c,page:'/o/'+c,label:'関東おでかけリスト'})}
  return T.filter(t=>t.name.startsWith(only))}
 const CARD=`<!doctype html><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Shippori+Mincho:wght@600&family=Zen+Kaku+Gothic+New:wght@500&display=swap" rel="stylesheet">
@@ -48,7 +51,7 @@ const CARD=`<!doctype html><meta charset="utf-8"><link href="https://fonts.googl
    const shot=await p.screenshot({clip:{x:0,y:y,width:390,height:400},fullPage:true,type:'png'});
    if(process.env.DBG)fs.writeFileSync(path.join(process.env.DBG,'shot-'+t.name+'.png'),shot);
    await c.evaluate(async([img,label,ft])=>{const l=document.getElementById('lb');l.textContent=label;l.className=label.length>14?'s':'';document.getElementById('ft').textContent=ft;const i=document.getElementById('im');i.src=img;await i.decode()},
-     ['data:image/png;base64,'+shot.toString('base64'),t.label,'つづきは '+HOST.replace('https://','')+(t.page.startsWith('/o/')?'':t.page)]);
+     ['data:image/png;base64,'+shot.toString('base64'),t.label,'つづきは '+HOST.replace('https://','')+(/^\/(o|kaiten)\//.test(t.page)?'':t.page)]);
    await c.screenshot({path:path.join(OUT,t.name+'.jpg'),type:'jpeg',quality:86});
    idx[t.page]={url:BASE+t.name+'.jpg?v='+h,label:t.label};made++}catch(e){fail.push(t.name+' '+String(e).slice(0,80))}}
  const out={about:'投稿に付ける画像。投稿の中のHPのページ（/okaimono-tp 等）と同じ行の url を、1本目の画像に付ける。scripts/post_img.js が公開のたびに作る',updated:today,items:idx};
