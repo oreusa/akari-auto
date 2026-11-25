@@ -134,6 +134,38 @@ def prefnav(cur=""):
         f'<a href="/odekake-{SLUG[q]}"{" aria-current=page" if q == cur else ""}>{q}</a>' for q in FU if any(o["pref"] == q for o in spots)) + "</nav>"
 
 
+# 11/25 関西と同じ：イルミ（data/illumi.json）と紅葉（data/koyo.json）にも1件ページを作る。/illumination・/koyo・都県別のカードから1件ページへ行ける（shin_kanto.py の enrich が o を付ける）
+for _f, _pc in (("illumi.json", "#B7862A"), ("koyo.json", "#C0532B")):
+    try: _items = json.load(open(os.path.join(R, "data", _f), encoding="utf-8")).get("items", [])
+    except Exception: _items = []
+    for _x in _items:
+        _nm = (_x.get("name") or "").strip(); _k = re.sub(r"\s+", "", _nm); _p = _x.get("pref")
+        _st, _en = (_x.get("start") or "")[:10], (_x.get("end") or _x.get("start") or "")[:10]
+        if not _nm or _p not in FU or not _st or not _en or _en < TODAY or _k in seen: continue
+        seen.add(_k)
+        _q = " ".join(v for v in (_x.get("venue") or "", _x.get("city") or "") if v).strip()
+        spots.append(dict(name=_nm, key=_k, pref=_p, st=_st, en=_en, url=_x.get("url") or "", when="", opn="", free=bool(_x.get("free")) or (_x.get("fee") or "").startswith("無料"),
+                          q=_q, place=_q, id=hashlib.md5(_k.encode()).hexdigest()[:8], pc=_pc))
+        _mo = {k: v for k, v in (("time", _x.get("hours")), ("price", _x.get("fee"))) if v}
+        if _mo and _k not in MORE: MORE[_k] = _mo
+# 紅葉の名所（data/meisho.json・見ごろの時期だけの所）も1件ページに。日程は「見ごろは例年◯月◯旬〜◯旬」、終わりは見ごろの終わり
+def _peak_end(t):
+    mm = re.findall(r"(\d+)月(上旬|初旬|中旬|下旬|末)", t or "")
+    if not mm: return ""
+    mo, k = int(mm[-1][0]), mm[-1][1]; y = D0.year if mo >= 6 or D0.month < 6 else D0.year + 1
+    if k in ("下旬", "末"): return (datetime.date(y + mo // 12, mo % 12 + 1, 1) - datetime.timedelta(days=1)).isoformat()
+    return datetime.date(y, mo, 10 if k in ("上旬", "初旬") else 20).isoformat()
+try: _ms = json.load(open(os.path.join(R, "data", "meisho.json"), encoding="utf-8")).get("items", [])
+except Exception: _ms = []
+for _x in _ms:
+    _nm = (_x.get("name") or "").strip(); _k = re.sub(r"\s+", "", _nm); _p = _x.get("pref"); _en = _peak_end(_x.get("peak"))
+    if not _nm or _p not in FU or not _en or _en < TODAY or _k in seen or not _x.get("url"): continue
+    seen.add(_k)
+    _q = " ".join(v for v in (_nm, _x.get("city") or "") if v)
+    spots.append(dict(name=_nm, key=_k, pref=_p, st="", en=_en, url=_x["url"], when=f"見ごろは例年{_x['peak']}", opn="", free=(_x.get("fee") or "").startswith("無料"),
+                      q=_q, place=_q, id=hashlib.md5(_k.encode()).hexdigest()[:8], pc="#C0532B"))
+    _mo = {k: v for k, v in (("price", _x.get("fee")), ("note", (_x.get("note") or "").rstrip("。") + "。" if _x.get("note") else "")) if v}
+    if _mo and _k not in MORE: MORE[_k] = _mo
 os.makedirs(os.path.join(S, "o"), exist_ok=True)
 # 11/25 夜（関西と同じ）：終わった催しの1件ページを消すと、保存や検索から来た人が説明なしに一覧へ飛ばされていた
 # → 終わった物は「終わりました」の札を付けて90日残す（検索には出さない noindex）。開催中の物はこのあと作り直す
@@ -172,6 +204,7 @@ for sp in spots:
     elif sp["en"]:
         left = (datetime.date.fromisoformat(sp["en"]) - D0).days; stat = "きょうまで" if left == 0 else f"開催中・あと{left}日"
     elif sp["st"]: stat = "開催中"
+    if not sp["st"] and sp.get("when", "").startswith("見ごろは例年"): stat = "見ごろの時期（例年）"  # 11/25 紅葉の名所は催しではないので「開催中」と言わない
     # 11/24 夜の見回り（関西）：祝日の翌日（振替）で休館の館が「開催中」だった → data/page-spots.json の days（wd:…h）と文の休館日で「きょうは休館」
     _ps = PSD.get(sp["key"])
     if _ps and sp["en"] and stat.startswith("開催中"):
@@ -188,6 +221,7 @@ for sp in spots:
     where = fu + _ct + ("の" + _pl if _pl else "")
     _ds = [d for d in ((_ps or {}).get("days") or "").split(",") if re.fullmatch(r"\d{4}-\d\d-\d\d", d)]
     lead = f"{nm}は、{where}で" + (f"、{'・'.join(jd(d) for d in _ds)}の{len(_ds)}日だけ開かれます。" if 1 < len(_ds) <= 8 and _ds[0] == sp["st"] and _ds[-1] == sp["en"] else f"、{jd(sp['st'])}から{jd(sp['en'])}まで開かれます。" if sp["st"] and sp["en"] and sp["en"] != sp["st"] else (f"、{jd(sp['st'])}に開かれます。" if sp["st"] else "楽しめます。"))
+    if not sp["st"] and sp.get("when", "").startswith("見ごろは例年"): lead = lead.replace("で楽しめます。", "で紅葉が楽しめます。") + sp["when"] + "です（年によって変わります）。"
     if sp["free"]: lead += "入場は無料です。"
     mo = MORE.get(sp["key"], {})
     if sp["free"] and mo.get("price") and not _YEN.search(mo["price"]): mo = {k: v for k, v in mo.items() if k != "price"}  # 「入場無料」だけなら上の「入場：無料」で分かる

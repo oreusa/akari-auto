@@ -82,7 +82,7 @@ def main(root=SITE):
             dirs[:] = []
             continue
         for fn in files:
-            if not fn.endswith(".html") or fn.startswith("index"):
+            if not fn.endswith(".html") or fn.startswith("index") or (rel == "." and fn == "404.html"):  # 11/25 404 の案内は自分の見た目のまま
                 continue
             p = os.path.join(d, fn)
             h = open(p, encoding="utf-8", errors="ignore").read()
