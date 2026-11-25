@@ -45,14 +45,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.0,
+  "sec": 1.1,
   "why": "404"
  },
  "https://af.moshimo.com/af/c/click?a_id=5877817&p_id=1225&pc_id=1925&pl_id=18502&url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Ftakuhaibin%2F288368.html": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.0,
+  "sec": 1.1,
   "why": "404"
  },
  "https://akebonoyama-nougyoukouen.jp/views/highlight/": {
@@ -1571,28 +1571,28 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.6,
+  "sec": 1.5,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pjfbo.m2lhfe52.g00pjfbo.m2lhgcac/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwatch-me%2Flr6t%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fwatch-me%2Fi%2F10006181%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.6,
+  "sec": 1.5,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pkggo.m2lhfbd9.g00pkggo.m2lhg2c7/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fscope%2Fgj-410400%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fscope%2Fi%2F10005932%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 2.2,
+  "sec": 2.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00plfko.m2lhf814.g00plfko.m2lhgc66/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyonekyu%2F43490-0821126%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fyonekyu%2Fi%2F10000040%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.6,
+  "sec": 1.5,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pmn0o.m2lhf094.g00pmn0o.m2lhg70b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpeaceone%2F10001227%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpeaceone%2Fi%2F10001227%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1620,7 +1620,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pr3zo.m2lhf6dd.g00pr3zo.m2lhg773/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdog-kan%2F1902936%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdog-kan%2Fi%2F10180507%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1648,14 +1648,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00prcko.m2lhf20c.g00prcko.m2lhg0d6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fonestep%2Fs00760%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fonestep%2Fi%2F10045575%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.8,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00prcko.m2lhf20c.g00prcko.m2lhg0d6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fonestep%2Fs01195%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fonestep%2Fi%2F10086608%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1669,7 +1669,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00psjvo.m2lhf0c0.g00psjvo.m2lhg83d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftry3%2F4901301406057%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftry3%2Fi%2F10034023%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1704,21 +1704,21 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pui9o.m2lhf785.g00pui9o.m2lhg077/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fe-kurashi%2Fs1u57%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fe-kurashi%2Fi%2F10048736%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 2.2,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pukoo.m2lhff0c.g00pukoo.m2lhgdb4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fneo-natural%2Fsoapset_try_01001%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fneo-natural%2Fi%2F10000326%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00puvjo.m2lhf345.g00puvjo.m2lhg089/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhas%2Ff60-ad4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhas%2Fi%2F10001086%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1732,14 +1732,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pv4jo.m2lhfdbd.g00pv4jo.m2lhgaa5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flecdirect%2Fe163_999fun20p%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flecdirect%2Fi%2F10001749%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pv4jo.m2lhfdbd.g00pv4jo.m2lhgaa5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flecdirect%2Fe242_999tekuchi15p%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flecdirect%2Fi%2F10001752%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1753,21 +1753,21 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pwf8o.m2lhf313.g00pwf8o.m2lhgf0c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkyunan%2F742846%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkyunan%2Fi%2F10001074%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.4,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00px2wo.m2lhfd21.g00px2wo.m2lhg5ad/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fqshoku%2Fdashipack%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fqshoku%2Fi%2F10001784%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.3,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pxdho.m2lhf999.g00pxdho.m2lhga3a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flow-ya%2Fvg-groony%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flow-ya%2Fi%2F10008396%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1781,7 +1781,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.3,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00pyjho.m2lhfd01.g00pyjho.m2lhg7fc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fchanet%2F75320%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fchanet%2Fi%2F10136355%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1795,21 +1795,21 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.4,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00q08ho.m2lhf971.g00q08ho.m2lhg98b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fokomeabe%2F10000076%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fokomeabe%2Fi%2F10000076%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.8,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00q242o.m2lhfdb0.g00q242o.m2lhg0a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fitoman%2Fcoreself150eco%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fitoman%2Fi%2F10000023%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.7,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00q2beo.m2lhfd4a.g00q2beo.m2lhg488/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdotwan%2Fotameshi1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdotwan%2Fi%2F10000027%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1823,21 +1823,21 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00q4f6o.m2lhfd8e.g00q4f6o.m2lhg2bf/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffuji-inter%2Ffukifukiset2%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ffuji-inter%2Fi%2F10000066%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00q5rao.m2lhf075.g00q5rao.m2lhg4e6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbedandmat%2Fdcmcoverg-s%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbedandmat%2Fi%2F10020765%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.9,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00q63zo.m2lhf1b9.g00q63zo.m2lhg172/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Feemon%2F001-1042%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Feemon%2Fi%2F10001029%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1865,7 +1865,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qcmko.m2lhf68c.g00qcmko.m2lhg4c0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoucher-home%2F10000543%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftoucher-home%2Fi%2F10000543%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1886,35 +1886,35 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qcsno.m2lhfb88.g00qcsno.m2lhg307/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkyoto23%2F898972%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkyoto23%2Fi%2F10000216%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.5,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qecio.m2lhfe36.g00qecio.m2lhgb7e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fapm24%2Fmjst40206n-22-set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fapm24%2Fi%2F10002137%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qfdwo.m2lhf856.g00qfdwo.m2lhgeb1/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhankoya-shop%2Fjetstream-4105%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhankoya-shop%2Fi%2F10024424%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qff7o.m2lhf012.g00qff7o.m2lhgcd9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhobinavi%2Fname-noniron%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhobinavi%2Fi%2F10548340%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qff7o.m2lhf012.g00qff7o.m2lhgcd9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhobinavi%2Fname-seal%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhobinavi%2Fi%2F10548212%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1928,7 +1928,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F312012%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10220307%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1963,14 +1963,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F7165192%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10192247%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F7176311%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10200530%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -1991,7 +1991,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F7251553%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10215331%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2005,7 +2005,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F7276048%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10225682%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2019,7 +2019,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qjlso.m2lhfee6.g00qjlso.m2lhg374/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhanwha%2Fcf-h-tea-2set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhanwha%2Fi%2F10001756%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2033,7 +2033,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.4,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qksho.m2lhf511.g00qksho.m2lhg34f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkyarahouse%2F7267359%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkyarahouse%2Fi%2F10142525%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2068,7 +2068,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.4,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qo2ro.m2lhf159.g00qo2ro.m2lhg269/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flikaman%2F918159%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flikaman%2Fi%2F10032937%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2089,7 +2089,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qpdqo.m2lhfaca.g00qpdqo.m2lhg429/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fp-tano%2F768-8478%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fp-tano%2Fi%2F10557565%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2138,7 +2138,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 2.1,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qqpqo.m2lhfab9.g00qqpqo.m2lhg568/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdondon%2Fzsk01-s%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdondon%2Fi%2F10005919%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2173,7 +2173,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.4,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qufso.m2lhf093.g00qufso.m2lhg519/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2F1096dog%2Fw-105175-00-00%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2F1096dog%2Fi%2F10013213%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2187,7 +2187,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 2.0,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qv4to.m2lhfac1.g00qv4to.m2lhg7e9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcrescent-mix%2Fmouton_slippers%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcrescent-mix%2Fi%2F10000118%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2208,7 +2208,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00qyxao.m2lhfd63.g00qyxao.m2lhg962/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpc-goodmedia%2F20180404-000002%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpc-goodmedia%2Fi%2F10026709%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2264,7 +2264,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00r8j4o.m2lhf324.g00r8j4o.m2lhg173/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Faburajin%2Fnamacha2000sx%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Faburajin%2Fi%2F10008693%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2278,14 +2278,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.5,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00rayyo.m2lhf0a1.g00rayyo.m2lhga72/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffukucha%2Fboss-mega%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ffukucha%2Fi%2F10000120%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00rb88o.m2lhfed8.g00rb88o.m2lhg5f0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fikuzus%2Ffc-001-2set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fikuzus%2Fi%2F10055054%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2313,7 +2313,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00rgpgo.m2lhfdc9.g00rgpgo.m2lhgebc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fauc-kaei-trading%2Ftowel-01-3580-3p%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fauc-kaei-trading%2Fi%2F10000460%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2348,7 +2348,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00ripko.m2lhf354.g00ripko.m2lhgf46/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Famethyst%2F0004%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Famethyst%2Fi%2F10000003%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2390,7 +2390,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00rqlbo.m2lhfc93.g00rqlbo.m2lhg098/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fk-home%2F7162877%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fk-home%2Fi%2F10077529%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2432,7 +2432,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00rs47o.m2lhf5c5.g00rs47o.m2lhg677/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnaire-donya%2F4902102115001%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnaire-donya%2Fi%2F10001751%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2446,7 +2446,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00ru0oo.m2lhfb94.g00ru0oo.m2lhgf2c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fat-life%2F4903111960804-004-wa%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fat-life%2Fi%2F11993969%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2460,7 +2460,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00rw37o.m2lhf7e4.g00rw37o.m2lhg5fa/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fajitukami%2Fe-su10%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fajitukami%2Fi%2F10000053%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2502,7 +2502,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00ryf8o.m2lhf8a3.g00ryf8o.m2lhgc1f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpotch7%2Funi003%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpotch7%2Fi%2F10001847%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2516,7 +2516,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00s0vmo.m2lhf5d9.g00s0vmo.m2lhge2f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbeisia%2F4903301375463-6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbeisia%2Fi%2F10175223%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2537,7 +2537,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00s1n1o.m2lhf55d.g00s1n1o.m2lhg77f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkaigomall%2F4903111550685-2p%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkaigomall%2Fi%2F10036640%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2558,7 +2558,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.6,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00s5hno.m2lhf097.g00s5hno.m2lhg5f6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Falice-zk%2Fny485%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Falice-zk%2Fi%2F10003649%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2586,21 +2586,21 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00s73io.m2lhfcf3.g00s73io.m2lhgafe/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fauc-infuc%2Fkitchen-scale%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fauc-infuc%2Fi%2F10000018%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00s7i5o.m2lhfbaa.g00s7i5o.m2lhg7a2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffieldgaines%2F10000003s1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ffieldgaines%2Fi%2F10000092%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.4,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00s8oko.m2lhfe52.g00s8oko.m2lhg49c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fvox-official-store%2F10000000%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fvox-official-store%2Fi%2F10000000%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2628,7 +2628,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00sjg0o.m2lhf8f9.g00sjg0o.m2lhgc31/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flacasta%2Frt-ae-refills%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flacasta%2Fi%2F10000722%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2642,7 +2642,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.3,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00skdro.m2lhfb68.g00skdro.m2lhg2d0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fajiwainoasa%2Fblend_10_b%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fajiwainoasa%2Fi%2F10000028%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2684,7 +2684,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.4,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00smopo.m2lhf609.g00smopo.m2lhgb9b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgood-item%2Fco-1287-3set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fgood-item%2Fi%2F10002563%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2740,14 +2740,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.4,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00sxk4o.m2lhf666.g00sxk4o.m2lhg22a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fx-plosion%2F10000019%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fx-plosion%2Fi%2F10000023%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00sykso.m2lhfa9b.g00sykso.m2lhg7a3/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhayaritsushin%2Fvi220%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhayaritsushin%2Fi%2F10000738%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2775,7 +2775,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.5,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00t3zto.m2lhfc3f.g00t3zto.m2lhg012/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Firisplaza-r%2F288371%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Firisplaza-r%2Fi%2F10134480%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2824,7 +2824,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.4,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00t4iuo.m2lhf6e2.g00t4iuo.m2lhgd59/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fapoloce%2Fsielo-185%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fapoloce%2Fi%2F10000016%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2880,14 +2880,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00t9z2o.m2lhfe12.g00t9z2o.m2lhg94d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdrink-partner%2F2gacfmu95p%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdrink-partner%2Fi%2F10000376%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.5,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tak5o.m2lhfddc.g00tak5o.m2lhg1ea/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdaiyu8%2F4901301437709-4set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdaiyu8%2Fi%2F10169391%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2901,7 +2901,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tbsuo.m2lhff86.g00tbsuo.m2lhg0ce/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbrita%2Fmaxtraplus-3-w%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbrita%2Fi%2F10000052%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2929,7 +2929,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tc8do.m2lhffe7.g00tc8do.m2lhg9df/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmottole-shop%2Fmtl-e029%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmottole-shop%2Fi%2F10000179%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2950,14 +2950,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tg8do.m2lhfd67.g00tg8do.m2lhg685/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ff434442-kosa%2Faa20220000018%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ff434442-kosa%2Fi%2F10000561%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tgivo.m2lhfbc1.g00tgivo.m2lhg985/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpigeon-shop%2F2000363s%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpigeon-shop%2Fi%2F10001747%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -2978,14 +2978,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tk1lo.m2lhf406.g00tk1lo.m2lhgd66/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ff042111-iwanuma%2F57040190%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ff042111-iwanuma%2Fi%2F10000022%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tkn4o.m2lhff63.g00tkn4o.m2lhg6f1/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flifedrinkcompany%2Fayamizu-500%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flifedrinkcompany%2Fi%2F10000013%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -3006,7 +3006,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.7,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tkn4o.m2lhff63.g00tkn4o.m2lhg6f1/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flifedrinkcompany%2Fzaosoda-500-48%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flifedrinkcompany%2Fi%2F10000022%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -3034,7 +3034,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.4,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tmkpo.m2lhf324.g00tmkpo.m2lhg6ab/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftakeuchi-labo%2Fta-the-prwg-3%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftakeuchi-labo%2Fi%2F10000323%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -3069,14 +3069,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tokao.m2lhf85c.g00tokao.m2lhg08d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgrong%2Fgrong-771%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fgrong%2Fi%2F10000823%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.4,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tp1mo.m2lhfc1c.g00tp1mo.m2lhgb52/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffelicity-wine%2Fnes0002%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ffelicity-wine%2Fi%2F10010787%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -3132,7 +3132,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00tvt5o.m2lhf34d.g00tvt5o.m2lhgd02/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fspeedy-street%2F4902430679466set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fspeedy-street%2Fi%2F10000727%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -3244,7 +3244,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 2.0,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00u5e4o.m2lhfed6.g00u5e4o.m2lhgbb6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmono-pocket%2F4902901605185-3%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmono-pocket%2Fi%2F10000869%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -3328,14 +3328,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00ufk6o.m2lhfbc7.g00ufk6o.m2lhg5d0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkiroran%2Fdl%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkiroran%2Fi%2F10000196%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.3,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00ufx0o.m2lhf5c3.g00ufx0o.m2lhg68c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffelicity-d%2Fnes0012%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ffelicity-d%2Fi%2F10005713%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -3384,7 +3384,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.9,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00uki0o.m2lhfc3c.g00uki0o.m2lhgec9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdajie%2Fstoole_step%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdajie%2Fi%2F10000002%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -3405,14 +3405,14 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00uopxo.m2lhf1b3.g00uopxo.m2lhgd66/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpandoraplus%2F545187%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpandoraplus%2Fi%2F10009861%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00uorlo.m2lhfceb.g00uorlo.m2lhg5e7/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkantouyouryo%2F3776-002250%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkantouyouryo%2Fi%2F10000079%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -3426,7 +3426,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.2,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00uov6o.m2lhf345.g00uov6o.m2lhg4fa/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fshopypp22%2F20240911-2456-4%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fshopypp22%2Fi%2F10000545%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -3468,7 +3468,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.5,
+  "sec": 1.3,
   "why": "503"
  },
  "https://hb.afl.rakuten.co.jp/hgc/g00uw1xo.m2lhf56e.g00uw1xo.m2lhg560/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fchiisana--shiawase%2F20260823041722_41%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fchiisana--shiawase%2Fi%2F10019140%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c": {
@@ -3587,7 +3587,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.4,
+  "sec": 1.3,
   "why": "404"
  },
  "https://maruchiba.jp/event/detail_13095.html": {
@@ -3613,7 +3613,7 @@
   "at": "2026-11-25",
   "by": "browser",
   "ok": false,
-  "sec": 1.1,
+  "sec": 1.0,
   "why": "404"
  },
  "https://maruchiba.jp/event/detail_16027.html": {
