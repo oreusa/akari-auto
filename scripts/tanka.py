@@ -612,7 +612,7 @@ def card(r, i, unit, avg):
             f'<span class="pu">{unit}あたり <b>{yen(r["per"])}円</b></span>{diff}'
             f'<span class="mt">{r["price"]:,}円（送料込み・{esc(r["amt"])}）　★{r["av"]:.2f}　レビュー{r["rc"]:,}件</span>'
             + (f'<span class="df">発送：{esc(r["ship"])}（すぐには届きません）</span>' if r.get("ship") else "")
-            + f'<span class="go">楽天で見る →</span></span></a></li>')
+            + f'<span class="go">楽天で届く日・値段を見る →</span></span></a></li>')
 
 
 def render(cats, now):
