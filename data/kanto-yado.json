@@ -10593,41 +10593,6 @@
       }
     ]
   },
-  "あさか冬のあかりテラス": {
-    "v": 2,
-    "t": "2026-11-21",
-    "ll": [
-      35.79719,
-      139.59374
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "和光市東武ホテル",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178241",
-        "km": 2.0,
-        "r": 4.53,
-        "rc": 808,
-        "min": 5580
-      },
-      {
-        "n": "スーパーホテルさいたま・和光市駅前",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D109184",
-        "km": 1.9,
-        "r": 4.45,
-        "rc": 954,
-        "min": 5700
-      },
-      {
-        "n": "東横INN北朝霞駅西口",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184671",
-        "km": 2.2,
-        "r": 4.22,
-        "rc": 325,
-        "min": 5670
-      }
-    ]
-  },
   "ところざわサクラタウン冬のライトアップ": {
     "v": 2,
     "t": "2026-11-21",
@@ -12845,6 +12810,111 @@
         "r": 4.23,
         "rc": 226,
         "min": 12800
+      }
+    ]
+  },
+  "足立区生物園冬のホタル観賞会": {
+    "v": 2,
+    "t": "2026-11-26",
+    "ll": [
+      35.79236,
+      139.80719
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテル ラ フィレンツェ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D70688",
+        "km": 1.8,
+        "r": 4.0,
+        "rc": 1058,
+        "min": 4400
+      },
+      {
+        "n": "アパホテル〈埼玉谷塚駅前〉",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184625",
+        "km": 2.5,
+        "r": 3.9,
+        "rc": 275,
+        "min": 5000
+      },
+      {
+        "n": "ビジネス旅館越後家",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D147992",
+        "km": 2.2,
+        "r": 3.6,
+        "rc": 37,
+        "min": 6300
+      }
+    ]
+  },
+  "足立光の祭典2026": {
+    "v": 2,
+    "t": "2026-11-26",
+    "ll": [
+      35.775,
+      139.80473
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテル ココ・グラン北千住",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D73894",
+        "km": 2.6,
+        "r": 4.49,
+        "rc": 3663,
+        "min": 6820
+      },
+      {
+        "n": "アーバイン東京・上野 北千住",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D165196",
+        "km": 2.5,
+        "r": 4.24,
+        "rc": 1176,
+        "min": 4114
+      },
+      {
+        "n": "アパホテル〈綾瀬駅前〉",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D173227",
+        "km": 2.3,
+        "r": 4.21,
+        "rc": 515,
+        "min": 4770
+      }
+    ]
+  },
+  "あさか冬のあかりテラス2026": {
+    "v": 2,
+    "t": "2026-11-26",
+    "ll": [
+      35.79719,
+      139.59374
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "和光市東武ホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178241",
+        "km": 2.0,
+        "r": 4.52,
+        "rc": 811,
+        "min": 5580
+      },
+      {
+        "n": "スーパーホテルさいたま・和光市駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D109184",
+        "km": 1.9,
+        "r": 4.45,
+        "rc": 957,
+        "min": 5700
+      },
+      {
+        "n": "東横INN北朝霞駅西口",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184671",
+        "km": 2.2,
+        "r": 4.22,
+        "rc": 329,
+        "min": 5670
       }
     ]
   }

@@ -3983,6 +3983,12 @@
   "sec": 1.9,
   "why": ""
  },
+ "https://www.city.adachi.tokyo.jp/k-iji/event/seibutsuen_huyuhotaru.html": {
+  "at": "2026-11-26",
+  "ok": true,
+  "sec": 1.9,
+  "why": ""
+ },
  "https://www.city.chiba.jp/keizainosei/keizai/promotion/event_baja2026.html": {
   "at": "2026-11-24",
   "ok": true,
@@ -4159,7 +4165,7 @@
  "https://www.haramuseum.or.jp/jp/arc/exhibition/2275/": {
   "at": "2026-11-26",
   "ok": false,
-  "sec": 0.7,
+  "sec": 0.6,
   "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate "
  },
  "https://www.hkc.or.jp/takaosan/momiji_fes/": {
