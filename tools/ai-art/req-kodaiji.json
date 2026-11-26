@@ -1,0 +1,98 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "01-hall",
+   "prompt": "Kodai-ji temple in Higashiyama Kyoto at night: an old wooden Japanese temple hall with a tiled roof softly illuminated, framed by glowing red and orange maple trees, deep blue night sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "01-hall-b",
+   "prompt": "Illuminated maples in front of a quiet old Kyoto temple hall at night, warm soft lights, deep blue sky, Higashiyama",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-lane",
+   "prompt": "Night in Kyoto Higashiyama: a quiet stone-paved lane lined with traditional wooden machiya houses and paper lanterns, leading to wide old stone steps going up the hill to a temple, a few red maples",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-lane-b",
+   "prompt": "Stone-paved Kyoto alley at night with soft lantern light, old wooden houses, stone stairs climbing toward a temple, autumn",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-kaisan",
+   "prompt": "A small old Japanese temple memorial hall with a cypress-bark roof in a garden at night, softly lit, red maples around, Kyoto",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-kaisan-b",
+   "prompt": "Old wooden Zen temple building in an autumn garden at night, warm illumination, red maple leaves",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-garden",
+   "prompt": "Japanese landscape garden of a Kyoto temple at night, a calm pond with rocks and pruned pines, red maples illuminated, their reflections in dark water",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-garden-b",
+   "prompt": "Night illumination of a traditional Japanese stroll garden, autumn maples glowing over a pond and stones, Kyoto",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-sand",
+   "prompt": "A Zen dry garden of raked white gravel in front of a temple hall at night, colorful soft light patterns projected onto the raked white sand, maples at the edge",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-sand-b",
+   "prompt": "Raked white sand garden of a Japanese temple at night washed in gentle blue and purple projected light, wooden veranda of the hall",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-maple",
+   "prompt": "Looking straight up into illuminated red maple leaves at night, leaves glowing translucent against a deep blue night sky, Kyoto temple",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-maple-b",
+   "prompt": "Canopy of bright red Japanese maple leaves lit from below at night, translucent, dark blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path",
+   "prompt": "A garden path at night in a Kyoto temple lined with small low lanterns, fallen red maple leaves, illuminated maples above",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path-b",
+   "prompt": "Night stroll path in a Japanese temple garden, soft low lights, autumn leaves, stone path",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "08-dusk",
+   "prompt": "Twilight over the Higashiyama hills in Kyoto, an old temple roof among red maples, sky fading from orange to deep blue, first lights glowing",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
