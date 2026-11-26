@@ -1,0 +1,92 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "01-gate",
+   "prompt": "Night at a small Tokyo Japanese garden entrance: a traditional wooden gate opening onto a straight stone-paved approach lined with tall old golden ginkgo trees, illuminated from below, glowing yellow leaves, deep blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "01-gate-b",
+   "prompt": "Wooden Japanese garden gate at night with a ginkgo-lined path beyond, golden leaves lit warmly",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-ginkgo",
+   "prompt": "A straight paved path under a tunnel of huge century-old ginkgo trees at night, golden yellow leaves glowing in uplights, yellow leaves on the ground",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-ginkgo-b",
+   "prompt": "Avenue of tall old ginkgo trees illuminated at night, carpet of yellow leaves, Tokyo",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-pond",
+   "prompt": "A small Japanese garden pond at night with stones and a stone lantern, illuminated red Japanese maples leaning over the water, their colors reflected on the dark surface",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-pond-b",
+   "prompt": "Calm garden pond reflecting lit crimson maples at night, Tokyo Japanese garden",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-stream",
+   "prompt": "A tiny winding garden stream with rocks and moss at night, red and orange maple leaves above lit softly, reflections in the shallow water",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-stream-b",
+   "prompt": "Small brook in a Japanese garden at night under illuminated maples, fallen leaves on rocks",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-house",
+   "prompt": "A small early-20th-century Western-style wooden house with a gabled roof and tall windows glowing warm, in a Japanese garden at night, surrounded by illuminated autumn maples and ginkgo",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-house-b",
+   "prompt": "Old Western-style one-story studio house in a garden at night, lit windows, autumn trees around",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-maple",
+   "prompt": "Looking up into the canopy of illuminated red Japanese maples at night, leaves glowing translucent against a deep blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-maple-b",
+   "prompt": "Close view of backlit crimson maple leaves at night, soft glow, dark blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path",
+   "prompt": "A gently lit stone path winding through a small Japanese garden at night between maples and pines, low ground lights, fallen red and yellow leaves",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path-b",
+   "prompt": "Evening stroll path in a Tokyo Japanese garden, low lights, autumn leaves, quiet",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
