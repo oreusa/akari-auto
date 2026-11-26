@@ -235,7 +235,10 @@ def main():
     ure = ure + km
     # 11/16：ROOM の公開ページには載っている商品の一覧が出ない（probe で確かめた）。もう載っている物は GPT が飛ばし、機械は新しいランキングの物で埋める
     posted = set(load(P("data", "room-done.json"), {}).get("urls", {}))  # 報告で載せた・完売と分かった物
-    rk, rk_why = rank_cands(today, used | set(ure), posted)
+    # 11/26 台本の新しい商品が0件：ランキング約1,200点を「前の14日に台本に出した物」で全部外していた（台本に出しても雫が載せるのは1日60件ほど＝出しただけで載っていない物が大半）。
+    # ランキングの物は、前の4日に台本に出した物と、載せたと分かった物（room-done）だけ外す
+    used4 = {u for d, v in log.items() if d != T and d >= (today - timedelta(days=4)).isoformat() for u in v}
+    rk, rk_why = rank_cands(today, used4 | set(ure), posted)
     cand.update(rk)
     rku = list(rk)
     order = [u for u in ure + rku + [u for u in order if u not in ure and u not in rku] if u not in posted]
