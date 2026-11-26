@@ -11762,5 +11762,33 @@
       "svc": "threads",
       "url": "https://oreusa.github.io/usagi-fudosan-media/media/reels/kanto-2026-11-27.mp4"
     }
+  },
+  "2026-11-27 15:15": {
+    "threads": {
+      "tries": 1,
+      "img": 1,
+      "id": "6b08786a3accdac92cecad0e",
+      "kind": "通常",
+      "at": "15:15",
+      "texts": [
+        "渋谷駅の地下で、耳で聴く本を無料で試せる「Audible STORY HOUSE」が、きょう11/27（金）の昼2時から始まります。\nおでかけ｜東京都渋谷区🎧\n◎ 入場は無料で、仕事帰りにも寄れます！\n\n渋谷駅の東口地下広場のカフェが、オーディオブックを聴ける場所になります。\n\n✦ 期間\n　⊹ 11/27（金）〜12/6（日）\n✦ 時間\n　⊹ 朝9時〜夜9時（注文は8時30分まで）\n　⊹ 11/27（金）だけ昼2時から\n✦ 場所\n　⊹ UPLIGHT COFFEE\n　⊹ 渋谷駅B7出口直結・地下2階\n✦ できること\n　⊹ ヘッドホンで本や番組を聴く\n　⊹ 3つの質問で合う本を3つ紹介\n\nAIが調べて分かった数字：開いているのは10日間です。週末は2回あります。\n\n✧ カフェの中では注文が要ります。飲み物は別料金です\n聴く本、試したことはありますか。\n毎朝7時15分と昼1時15分に、関東の街の数字を出しています。",
+        "Audible STORY HOUSE のお知らせです（11/26時点）\nhttps://www.aboutamazon.jp/news/entertainment/audible-story-house-cafe-in-shibuya\n\n地図・近くの宿・東京のほかのおでかけ\nhttps://kanto.townnote.app/o/8ddcd547"
+      ],
+      "topic": "東京"
+    }
+  },
+  "2026-11-27 15:16": {
+    "twitter": {
+      "tries": 1,
+      "img": 1,
+      "id": "6b08786a3accdac92cecad65",
+      "kind": "通常",
+      "at": "15:16",
+      "texts": [
+        "サラダボウル専門店「WithGreen」が中野に初出店し、12/9（水）にアトレ中野2階に開きます\n中野駅の新改札に直結\n朝10時〜夜9時\nイートイン28席\nサラダのランチ、よく食べる？\n#WithGreen #中野",
+        "WithGreen アトレ中野店のお知らせです（11/26時点）\nhttps://prtimes.jp/main/html/rd/p/000000127.000018848.html\n\n開店の日・場所・地図、近くの新しいお店：https://kanto.townnote.app/kaiten/20261209-8bb689?f=x1516"
+      ],
+      "topic": "東京"
+    }
   }
 }
