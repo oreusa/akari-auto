@@ -3542,7 +3542,7 @@
  "https://l-tike.com/ntvzero/event/tvconanten-30th_yokohama.html": {
   "at": "2026-11-26",
   "ok": false,
-  "sec": 15.2,
+  "sec": 15.1,
   "why": "The read operation timed out"
  },
  "https://litpla.com/space/muchu-yokohamabayside/": {
@@ -4159,7 +4159,7 @@
  "https://www.haramuseum.or.jp/jp/arc/exhibition/2275/": {
   "at": "2026-11-26",
   "ok": false,
-  "sec": 0.5,
+  "sec": 0.6,
   "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate "
  },
  "https://www.hkc.or.jp/takaosan/momiji_fes/": {
