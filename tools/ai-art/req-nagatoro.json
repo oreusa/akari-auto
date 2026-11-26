@@ -1,0 +1,98 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "01-river",
+   "prompt": "Nagatoro in Chichibu, Saitama at night: a calm wide river with dark green water reflecting illuminated red and orange maple trees on the bank, the reflections glowing in the water, deep blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "01-river-b",
+   "prompt": "Illuminated autumn maples on a riverbank at night mirrored in a calm river, Japan, deep blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-park",
+   "prompt": "A small riverside maple park at night in Japan, a gentle path among many red and orange maple trees lit by warm lights, the river beyond",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-park-b",
+   "prompt": "Night maple grove park by a river in Saitama, warm illumination on red leaves, walking path",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-lit",
+   "prompt": "Dense red and orange Japanese maple trees illuminated from below at night, glowing against the dark sky, riverside park",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-lit-b",
+   "prompt": "Close view of illuminated maple trees at night, layers of red, orange and yellow leaves, dark background",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-cliff",
+   "prompt": "Across a river at night: a tall steep reddish-brown rock cliff face with autumn trees on top, softly lit, the river below reflecting it, Nagatoro Chichibu",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-cliff-b",
+   "prompt": "Steep layered rock cliff above a river at night with colorful autumn trees, gentle illumination, reflection in water",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-reflect",
+   "prompt": "The surface of a calm river at night mirroring glowing red maples and a rocky cliff, almost perfect reflection, Japan",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-reflect-b",
+   "prompt": "Mirror-like river at night reflecting illuminated autumn foliage, deep blue sky reflected too",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-shrine",
+   "prompt": "A Shinto shrine at night in the mountains of Chichibu, ornately carved and colorful shrine hall softly illuminated, red maples, stone lanterns",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-shrine-b",
+   "prompt": "Illuminated mountain shrine in Saitama at night with autumn leaves, wooden hall with colorful carvings, stone steps",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path",
+   "prompt": "A riverside path at night under illuminated maples with fallen red leaves, low lights, the river glimpsed through the trees",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path-b",
+   "prompt": "Night path through a lit maple park by a river, fallen red leaves, soft warm lights",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "08-dusk",
+   "prompt": "Dusk over a river valley in Chichibu, Saitama: autumn mountains, a calm river with flat rocks along the shore, sky fading from orange to deep blue",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
