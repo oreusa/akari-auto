@@ -2995,6 +2995,19 @@
    "added": "2026-11-26",
    "src": "prtimes",
    "auto": 1
+  },
+  {
+   "d": "2026-11-28",
+   "k": "pop",
+   "p": "東京",
+   "n": "Slat garage sale",
+   "pt": "ららぽーと立川立飛に、期間限定で出るお店。",
+   "pl": "立川市泉町935-1（ららぽーと立川立飛）",
+   "tm": "",
+   "u": "https://mitsui-shopping-park.com/lalaport/tachikawa/openrenewal/3699632.html",
+   "added": "2026-11-27",
+   "src": "lalaport",
+   "auto": 1
   }
  ]
 }

@@ -1,8 +1,8 @@
 {
-  "at": "2026-11-26 22:31",
+  "at": "2026-11-27 04:17",
   "since": "2026-11-01",
-  "tracked": 269,
-  "days": 25,
+  "tracked": 268,
+  "days": 26,
   "downs": [
     {
       "title": "モバイルバッテリー",
@@ -39,7 +39,7 @@
       "base": 4980.0,
       "pct": 34,
       "days": 14,
-      "rc": 2842,
+      "rc": 2844,
       "av": 4.55,
       "shop": "BeniLeaf",
       "plain": "https://item.rakuten.co.jp/beneru/10000014/",
@@ -117,20 +117,6 @@
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/seimina/cabinet/07885692/12564009/12564013/zhutu9.jpg?_ex=300x300"
     },
     {
-      "title": "プロテイン",
-      "name": "カラダを大きくしたい方に！ウエイトゲイナー プロテイン 1kg / 3kg ザプロ ホエイ …",
-      "price": 2450,
-      "base": 3210.0,
-      "pct": 24,
-      "days": 14,
-      "rc": 606,
-      "av": 4.47,
-      "shop": "武内製薬 公式オンラインストア",
-      "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000302/",
-      "url": "https://hb.afl.rakuten.co.jp/hgc/g00tmkpo.m2lhf324.g00tmkpo.m2lhg6ab/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftakeuchi-labo%2Fta-the-prwg%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftakeuchi-labo%2Fi%2F10000302%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/takeuchi-labo/cabinet/07385387/thepro/ta-the-prwg/ta-the-prwg.jpg?_ex=300x300"
-    },
-    {
       "title": "電気毛布",
       "name": "楽天1位！ モバイルバッテリー 大容量 20800mAh 4本ケーブル内蔵 超軽量 小型 ワ…",
       "price": 2280,
@@ -148,9 +134,9 @@
       "title": "電気毛布",
       "name": "電気毛布 ふわとろ毛布 掛け敷き 日本製ヒーター 着る毛布 DC給電 130x190cm 3…",
       "price": 13680,
-      "base": 17580.0,
+      "base": 17580,
       "pct": 22,
-      "days": 10,
+      "days": 11,
       "rc": 614,
       "av": 4.46,
       "shop": "春夏秋冬",
@@ -171,20 +157,6 @@
       "plain": "https://item.rakuten.co.jp/cat-land/10000608/",
       "url": "https://hb.afl.rakuten.co.jp/hgc/g00qr6oo.m2lhfac7.g00qr6oo.m2lhg872/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcat-land%2F9214407%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcat-land%2Fi%2F10000608%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cat-land/cabinet/logo/9214407.jpg?_ex=300x300"
-    },
-    {
-      "title": "ティッシュ",
-      "name": "ティッシュ ティッシュペーパー ソフトパックティッシュ ソフトパック 大容量 まとめ買い 4…",
-      "price": 2180,
-      "base": 2580.0,
-      "pct": 16,
-      "days": 14,
-      "rc": 515,
-      "av": 4.57,
-      "shop": "アイリスオーヤマ公式 楽天市場店",
-      "plain": "https://item.rakuten.co.jp/irisplaza-r/10156163/",
-      "url": "https://hb.afl.rakuten.co.jp/hgc/g00t3zto.m2lhfc3f.g00t3zto.m2lhg012/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Firisplaza-r%2F7263927%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Firisplaza-r%2Fi%2F10156163%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/irisplaza-r/cabinet/12351902/imgrc0112732355.jpg?_ex=300x300"
     },
     {
       "title": "電気毛布",
@@ -221,8 +193,8 @@
       "base": 17960.0,
       "pct": 13,
       "days": 14,
-      "rc": 3460,
-      "av": 4.25,
+      "rc": 3464,
+      "av": 4.24,
       "shop": "夢の森",
       "plain": "https://item.rakuten.co.jp/yumenomori/10000121/",
       "url": "https://hb.afl.rakuten.co.jp/hgc/g00tdsyo.m2lhf46e.g00tdsyo.m2lhg141/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyumenomori%2Fb1d083b%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fyumenomori%2Fi%2F10000121%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
@@ -235,7 +207,7 @@
       "base": 2780.0,
       "pct": 11,
       "days": 14,
-      "rc": 1986,
+      "rc": 1987,
       "av": 4.5,
       "shop": "ENNICE楽天市場店",
       "plain": "https://item.rakuten.co.jp/dasimon/10000012/",
@@ -333,7 +305,7 @@
       "base": 4390.0,
       "pct": 10,
       "days": 14,
-      "rc": 1579,
+      "rc": 1581,
       "av": 4.52,
       "shop": "Rakuhome",
       "plain": "https://item.rakuten.co.jp/ennshopstore/10000094/",
@@ -403,12 +375,26 @@
       "base": 2490.0,
       "pct": 10,
       "days": 14,
-      "rc": 1031,
+      "rc": 1034,
       "av": 4.54,
       "shop": "triple shop",
       "plain": "https://item.rakuten.co.jp/tripleshop/10000191/",
       "url": "https://hb.afl.rakuten.co.jp/hgc/g00tvx2o.m2lhf416.g00tvx2o.m2lhg2f1/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftripleshop%2Fs-nsb-ns-01%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftripleshop%2Fi%2F10000191%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/tripleshop/cabinet/11193413/1117-2.jpg?_ex=300x300"
+    },
+    {
+      "title": "ティッシュ",
+      "name": "ティッシュ ティッシュペーパー ソフトパックティッシュ ソフトパック 大容量 まとめ買い 4…",
+      "price": 2180,
+      "base": 2380.0,
+      "pct": 8,
+      "days": 14,
+      "rc": 516,
+      "av": 4.57,
+      "shop": "アイリスオーヤマ公式 楽天市場店",
+      "plain": "https://item.rakuten.co.jp/irisplaza-r/10156163/",
+      "url": "https://hb.afl.rakuten.co.jp/hgc/g00t3zto.m2lhfc3f.g00t3zto.m2lhg012/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Firisplaza-r%2F7263927%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Firisplaza-r%2Fi%2F10156163%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/irisplaza-r/cabinet/12351902/imgrc0112732355.jpg?_ex=300x300"
     },
     {
       "title": "キャットフード",
@@ -423,6 +409,20 @@
       "plain": "https://item.rakuten.co.jp/cat-land/10000607/",
       "url": "https://hb.afl.rakuten.co.jp/hgc/g00qr6oo.m2lhfac7.g00qr6oo.m2lhg872/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcat-land%2F9214406%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcat-land%2Fi%2F10000607%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cat-land/cabinet/rc2606_3/9214406.jpg?_ex=300x300"
+    },
+    {
+      "title": "プロテイン",
+      "name": "カラダを大きくしたい方に！ウエイトゲイナー プロテイン 1kg / 3kg ザプロ ホエイ …",
+      "price": 2450,
+      "base": 2640.0,
+      "pct": 7,
+      "days": 14,
+      "rc": 606,
+      "av": 4.47,
+      "shop": "武内製薬 公式オンラインストア",
+      "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000302/",
+      "url": "https://hb.afl.rakuten.co.jp/hgc/g00tmkpo.m2lhf324.g00tmkpo.m2lhg6ab/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftakeuchi-labo%2Fta-the-prwg%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftakeuchi-labo%2Fi%2F10000302%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/takeuchi-labo/cabinet/07385387/thepro/ta-the-prwg/ta-the-prwg.jpg?_ex=300x300"
     }
   ],
   "ups": [
@@ -447,7 +447,7 @@
       "base": 12980.0,
       "pct": 31,
       "days": 14,
-      "rc": 2463,
+      "rc": 2464,
       "av": 4.69,
       "shop": "VALX ONLINE STORE",
       "plain": "https://item.rakuten.co.jp/valx/10000069/",
@@ -461,7 +461,7 @@
       "base": 6480.0,
       "pct": 23,
       "days": 14,
-      "rc": 434,
+      "rc": 435,
       "av": 4.79,
       "shop": "MOTTERU ダイレクト 楽天市場店",
       "plain": "https://item.rakuten.co.jp/motteru/10000176/",
@@ -483,25 +483,11 @@
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashikenkou/cabinet/11848367/7185802-cp.jpg?_ex=300x300"
     },
     {
-      "title": "加湿器",
-      "name": "4重除菌 4.5L LAViNO エアリファイ 2027 医師推奨 除菌加湿 大容量 静音 …",
-      "price": 19800,
-      "base": 17820.0,
-      "pct": 11,
-      "days": 14,
-      "rc": 764,
-      "av": 4.12,
-      "shop": "美顔器 美容家電 アイビビッド",
-      "plain": "https://item.rakuten.co.jp/aibeaute/10000907/",
-      "url": "https://hb.afl.rakuten.co.jp/hgc/g00sc18o.m2lhf4e5.g00sc18o.m2lhge74/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Faibeaute%2F287%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Faibeaute%2Fi%2F10000907%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/aibeaute/cabinet/05430039/12054839/imgrc0166765931.jpg?_ex=300x300"
-    },
-    {
       "title": "トイレットペーパー",
       "name": "トイレットペーパー 48ロール 長持ち シングル ダブル 巻き まとめ買い 4ロール×12個…",
       "price": 6710,
-      "base": 6082.5,
-      "pct": 10,
+      "base": 5845.0,
+      "pct": 15,
       "days": 14,
       "rc": 968,
       "av": 4.75,
@@ -509,6 +495,34 @@
       "plain": "https://item.rakuten.co.jp/k-home/10077532/",
       "url": "https://hb.afl.rakuten.co.jp/hgc/g00rqlbo.m2lhfc93.g00rqlbo.m2lhg098/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fk-home%2F7165192%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fk-home%2Fi%2F10077532%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/k-home/cabinet/06135991/09551991/7165192.jpg?_ex=300x300"
+    },
+    {
+      "title": "トイレットペーパー",
+      "name": "＼レビュー2,000件獲得★／トイレットペーパー 備蓄 170m 3. 芯なし 48ロール(…",
+      "price": 5440,
+      "base": 4910.0,
+      "pct": 11,
+      "days": 14,
+      "rc": 2062,
+      "av": 4.52,
+      "shop": "暮らし健康ネット館",
+      "plain": "https://item.rakuten.co.jp/kurashikenkou/10151090/",
+      "url": "https://hb.afl.rakuten.co.jp/hgc/g00qhoao.m2lhf9b4.g00qhoao.m2lhg3a9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashikenkou%2F7096355%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashikenkou%2Fi%2F10151090%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kurashikenkou/cabinet/tasya112/imgrc0093775466.jpg?_ex=300x300"
+    },
+    {
+      "title": "トイレットペーパー",
+      "name": "トイレットペーパー シングル 48ロール 170m 6ロール×8パック 芯なし コアレス コ…",
+      "price": 5440,
+      "base": 4910.0,
+      "pct": 11,
+      "days": 14,
+      "rc": 384,
+      "av": 4.56,
+      "shop": "快適ホームライフ",
+      "plain": "https://item.rakuten.co.jp/k-home/10063600/",
+      "url": "https://hb.afl.rakuten.co.jp/hgc/g00rqlbo.m2lhfc93.g00rqlbo.m2lhg098/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fk-home%2F7096355%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fk-home%2Fi%2F10063600%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/k-home/cabinet/thum/naosi/syoumou_set/imgrc0108347076.jpg?_ex=300x300"
     }
   ]
 }
