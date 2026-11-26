@@ -1849,14 +1849,13 @@
     },
     {
       "pref": "埼玉",
-      "name": "あさか冬のあかりテラス",
-      "start": null,
-      "end": null,
+      "name": "あさか冬のあかりテラス2026",
+      "start": "2026-11-28",
+      "end": "2027-01-24",
       "city": "朝霞市",
-      "venue": "朝霞駅前広場・シンボルロード",
-      "free": true,
-      "url": "https://www.city.asaka.lg.jp/soshiki/52/asakairumi-2025.html",
-      "last": "2025/11/29〜2026/1/25"
+      "venue": "シンボルロード・朝霞中央公園・朝霞駅南口駅前広場ほか",
+      "url": "https://www.city.asaka.lg.jp/soshiki/52/asakairumitentou-2026.html",
+      "hours": "16:30〜21:00（11/28は点灯式。午後2時〜10時は公園通りが車両通行止め）"
     },
     {
       "pref": "埼玉",
@@ -2097,6 +2096,16 @@
       "venue": "まちの駅 新・鹿沼宿 芝生広場",
       "free": false,
       "url": "https://www.city.kanuma.tochigi.jp/0706/info-0000010909-1.html"
+    },
+    {
+      "pref": "東京",
+      "name": "足立 光の祭典2026",
+      "start": "2026-11-28",
+      "end": "2027-01-11",
+      "city": "足立区",
+      "venue": "元渕江公園・竹ノ塚駅東口",
+      "url": "https://www.adachikanko.net/hikari2026",
+      "hours": "元渕江公園は12/25まで 17:00〜21:00。竹ノ塚駅東口とけやき大通りは1/11まで 17:00〜22:00"
     }
   ]
 }

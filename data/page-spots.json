@@ -3284,6 +3284,19 @@
       "url": "https://www.nikko-kankou.org/public/event/1210",
       "checked": "2026-11-26",
       "days": "wd:056"
+    },
+    {
+      "title": "足立区生物園 冬のホタル観賞会",
+      "pref": "東京",
+      "place": "足立区生物園 東京都足立区",
+      "when": "11/28〜12/20の土日",
+      "start": "2026-11-28",
+      "ends": "2026-12-20T21:00",
+      "free": false,
+      "note": "足立区｜冬に光るホタルを見る会。18:00〜21:00（20分ごとに9回・最後は20:40から）。各回先着40人で申し込みは要りません。入園料は高校生以上300円・小中学生150円",
+      "url": "https://www.city.adachi.tokyo.jp/k-iji/event/seibutsuen_huyuhotaru.html",
+      "checked": "2026-11-26",
+      "days": "wd:06"
     }
   ]
 }
