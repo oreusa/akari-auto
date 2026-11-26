@@ -1,0 +1,15 @@
+accounts 200 n=0 err=[]
+01-bridge-flux-2-klein-4b 200 OK
+01-bridge-b-flux-2-klein-4b 200 OK
+02-odoi-flux-2-klein-4b 200 OK
+02-odoi-b-flux-2-klein-4b 200 OK
+03-mitsumata-flux-2-klein-4b 200 OK
+03-mitsumata-b-flux-2-klein-4b 200 OK
+04-river-flux-2-klein-4b 200 OK
+04-river-b-flux-2-klein-4b 200 OK
+05-teahouse-flux-2-klein-4b 200 OK
+05-teahouse-b-flux-2-klein-4b 200 OK
+06-honden-flux-2-klein-4b 200 OK
+06-honden-b-flux-2-klein-4b 200 OK
+07-path-flux-2-klein-4b 200 OK
+07-path-b-flux-2-klein-4b 200 OK
