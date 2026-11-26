@@ -554,7 +554,13 @@ def page_check(url):
     if status != 200:
         return "unknown", f"開けない（{status}）"
     body = re.sub(r"<script.*?</script>|<style.*?</style>", " ", txt, flags=re.S)
+    tm = re.search(r"<title[^>]*>(.*?)</title>", txt, flags=re.S)
+    title = tm.group(1) if tm else ""
     for w in END_WORDS:
+        # 11/26 船橋市の解体の助成：題は「受付中」なのに、同じページの下の関連記事の見出しに「受付は終了しました」があり×になった（11/13 にも）。
+        # 題に「受付中」とあるページは、受付の終わりの言葉では止めない
+        if "受付中" in title and w.startswith("受付"):
+            continue
         if w in body:
             return "ended", f"ページに「{w}」"
     return "ok", ""
