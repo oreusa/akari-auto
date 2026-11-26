@@ -3247,6 +3247,43 @@
       "note": "常陸太田市｜市内のそば店38軒で新そばを食べてスタンプラリー。営業時間は店ごと",
       "url": "https://www.kanko-hitachiota.com/page/page002141.html",
       "checked": "2026-11-26"
+    },
+    {
+      "title": "HIBIYA PARK TERRACE",
+      "pref": "東京",
+      "place": "日比谷公園 東京都千代田区",
+      "when": "12/19・12/20",
+      "start": "2026-12-19",
+      "ends": "2026-12-20T23:59",
+      "free": false,
+      "note": "千代田区｜日比谷公園の冬のイベント。TOKYO PARK MARCHE のクリスマスのワークショップやサイクリング・星を見る会など。時間と料金は公式で発表待ち",
+      "url": "https://www.tokyo-park.or.jp/park/hibiya/news/2026/12_19_20_hibiya_park_terrace.html",
+      "checked": "2026-11-26"
+    },
+    {
+      "title": "代々木公園 クリスマスリースづくりとどんぐり工作",
+      "pref": "東京",
+      "place": "代々木公園 東京都渋谷区",
+      "when": "12/6",
+      "start": "2026-12-06",
+      "ends": "2026-12-06T15:30",
+      "free": false,
+      "note": "渋谷区｜公園のフラワーランドで。13:30〜15:30。リースづくりは3,500円（当日現金・20組・メールで申し込み）。どんぐり工作は無料（先着20名・申し込みは要りません）。雨の日はどんぐり工作は中止",
+      "url": "https://www.tokyo-park.or.jp/park/yoyogi/news/2026/12_6_pm.html",
+      "checked": "2026-11-26"
+    },
+    {
+      "title": "湯西川温泉 かまくら祭",
+      "pref": "栃木",
+      "place": "湯西川温泉 栃木県日光市",
+      "when": "1/29〜2/28",
+      "start": "2027-01-29",
+      "ends": "2027-02-28T21:00",
+      "free": true,
+      "note": "日光市｜川原のミニかまくらの灯り（沢口河川敷）は金・土・日だけ。17:30〜21:00。河川敷は無料。平家の里は大人700円・小中学生300円",
+      "url": "https://www.nikko-kankou.org/public/event/1210",
+      "checked": "2026-11-26",
+      "days": "wd:056"
     }
   ]
 }
