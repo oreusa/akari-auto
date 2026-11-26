@@ -4159,7 +4159,7 @@
  "https://www.haramuseum.or.jp/jp/arc/exhibition/2275/": {
   "at": "2026-11-26",
   "ok": false,
-  "sec": 0.5,
+  "sec": 0.7,
   "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate "
  },
  "https://www.hkc.or.jp/takaosan/momiji_fes/": {
@@ -4227,6 +4227,12 @@
   "at": "2026-11-22",
   "ok": true,
   "sec": 1.7,
+  "why": ""
+ },
+ "https://www.kanko-hitachiota.com/page/page002141.html": {
+  "at": "2026-11-26",
+  "ok": true,
+  "sec": 0.1,
   "why": ""
  },
  "https://www.kasama-kankou.jp/page/dir000187.html": {
@@ -4375,6 +4381,12 @@
   "at": "2026-11-22",
   "ok": true,
   "sec": 2.4,
+  "why": ""
+ },
+ "https://www.pacifico.co.jp/": {
+  "at": "2026-11-26",
+  "ok": true,
+  "sec": 0.7,
   "why": ""
  },
  "https://www.pref.saitama.lg.jp/b0112/kanko-tiiki-info/enjoy-winter.html": {
@@ -4545,6 +4557,12 @@
   "at": "2026-11-25",
   "ok": true,
   "sec": 2.8,
+  "why": ""
+ },
+ "https://www.tokyo-park.or.jp/park/yoyogi/news/2026/12_6_pm.html": {
+  "at": "2026-11-26",
+  "ok": true,
+  "sec": 1.4,
   "why": ""
  },
  "https://www.tokyo-park.or.jp/special/koishikawa_lightingup/index.html": {
