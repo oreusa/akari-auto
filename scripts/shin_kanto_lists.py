@@ -91,7 +91,8 @@ def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
         import shin_nenmatsu as NM
         try: VP2 = json.load(open(os.path.join(R, "data", "venue_photos.json"), encoding="utf-8"))
         except Exception: VP2 = {}
-        for nm_, url_, ti_, de_, pg_, its_ in NM.pages("関東", "LIFE NOTE", os.path.join(R, "data", "nenmatsu", "hatsuuri.tsv"), os.path.join(R, "data", "nenmatsu", "gomi.tsv")):
+        for nm_, url_, ti_, de_, pg_, its_ in NM.pages("関東", "LIFE NOTE", os.path.join(R, "data", "nenmatsu", "hatsuuri.tsv"), os.path.join(R, "data", "nenmatsu", "gomi.tsv")) + \
+                NM.pages2("関東", "LIFE NOTE", os.path.join(R, "data", "nenmatsu", "christmas.tsv"), os.path.join(R, "data", "nenmatsu", "toshikoshi.tsv")):
             for it in its_:
                 v = VP2.get(it["t"]) or {}
                 if v.get("img"): it.update({"im": v["img"], "cr": v.get("cr", ""), "cu": v.get("page", "")})
@@ -102,7 +103,9 @@ def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
                 write(nm_ + ".html", url_, ti_, c, {"items": its_, "icons": ICONS, "page": pg_}, "list", de_)
                 made.add(url_)
             else:
-                pg_.setdefault("also", [["初売り・福袋2027", "/hatsuuri"], ["関東の初詣", "/hatsumode"], ["関東のおでかけ・イベント", "/odekake"]])
+                pg_.setdefault("also", {"christmas": [["関東のイルミネーション", "/illumination"], ["除夜の鐘・年越し", "/toshikoshi"], ["関東のおでかけ・イベント", "/odekake"]],
+                                        "toshikoshi": [["関東の初詣", "/hatsumode"], ["年末年始のごみ・役所", "/nenmatsu"], ["クリスマスの催し", "/christmas"]]}.get(nm_,
+                                       [["初売り・福袋2027", "/hatsuuri"], ["関東の初詣", "/hatsumode"], ["関東のおでかけ・イベント", "/odekake"]]))
                 ode(nm_ + ".html", url_, ti_, de_, pg_, its_, url_)
             sm = os.path.join(S, "sitemap.xml")
             if os.path.exists(sm):
