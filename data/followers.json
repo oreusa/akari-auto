@@ -95,11 +95,14 @@
     },
     "2026-11-26": {
       "note": "Bufferからは取れない（欄なし）"
+    },
+    "2026-11-27": {
+      "note": "Bufferからは取れない（欄なし）"
     }
   },
   "fields": [],
   "schema": {
-    "types": 411,
+    "types": 418,
     "roots": [
       "account",
       "assets",
