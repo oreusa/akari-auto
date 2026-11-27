@@ -3388,12 +3388,13 @@
         "2026-11-22": 2800,
         "2026-11-23": 2800,
         "2026-11-24": 2800,
-        "2026-11-25": 2800
+        "2026-11-25": 2800,
+        "2026-11-27": 2239
       },
-      "n": "＼ ／ コーヒー豆 お試しセット 300g 100g×3種 飲み比べ 約30杯分 自家焙煎 …",
+      "n": "コーヒー豆 お試しセット 300g 100g×3種 飲み比べ 約30杯分 自家焙煎 コーヒー…",
       "c": "coffee",
       "u": "https://item.rakuten.co.jp/cafe-higuchi/10000797/",
-      "last": "2026-11-25",
+      "last": "2026-11-27",
       "i": "https://thumbnail.image.rakuten.co.jp/@0_mall/cafe-higuchi/cabinet/08662303/08896113/imgrc0099596945.jpg?_ex=300x300",
       "a": "https://hb.afl.rakuten.co.jp/hgc/g00qas9o.m2lhf604.g00qas9o.m2lhg37b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcafe-higuchi%2F10000797%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcafe-higuchi%2Fi%2F10000797%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
       "s": "自家焙煎 珈琲工房ひぐち",
@@ -7748,12 +7749,18 @@
         "2026-11-15": 8990,
         "2026-11-16": 8990,
         "2026-11-17": 8990,
-        "2026-11-18": 8990
+        "2026-11-18": 8990,
+        "2026-11-27": 7580
       },
       "n": "加湿器 大容量 加湿器 卓上 6L 加湿機 ハイブリッド加湿器 加湿器 スチーム式 四重除菌…",
       "c": "humid",
       "u": "https://item.rakuten.co.jp/beneru/10000008/",
-      "last": "2026-11-18"
+      "last": "2026-11-27",
+      "i": "https://thumbnail.image.rakuten.co.jp/@0_mall/beneru/cabinet/lp2209b/lp2209_main-b2.jpg?_ex=300x300",
+      "a": "https://hb.afl.rakuten.co.jp/hgc/g00uncto.m2lhfd76.g00uncto.m2lhg4e0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbeneru%2Flh2024%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbeneru%2Fi%2F10000008%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "s": "BeniLeaf",
+      "rc": 1005,
+      "av": 4.33
     },
     "quads:10000019": {
       "p": {
@@ -10217,6 +10224,20 @@
       "s": "アンカー・ダイレクト楽天市場店",
       "rc": 374,
       "av": 4.52
+    },
+    "aidort:10002917": {
+      "p": {
+        "2026-11-27": 3950
+      },
+      "n": "電気毛布 USB給電 ヒーターブランケット 肩掛け毛布 電気敷き毛布 モバイルバッテリー給電…",
+      "c": "blanket",
+      "u": "https://item.rakuten.co.jp/aidort/10002917/",
+      "last": "2026-11-27",
+      "i": "https://thumbnail.image.rakuten.co.jp/@0_mall/aidort/cabinet/2000-2049/2007-zhu.jpg?_ex=300x300",
+      "a": "https://hb.afl.rakuten.co.jp/hgc/g00skpso.m2lhf6a1.g00skpso.m2lhg611/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Faidort%2Fslub-1211%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Faidort%2Fi%2F10002917%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "s": "愛度楽天市場店",
+      "rc": 611,
+      "av": 4.04
     }
   }
 }

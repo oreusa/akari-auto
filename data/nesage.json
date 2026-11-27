@@ -1,7 +1,7 @@
 {
-  "at": "2026-11-27 18:13",
+  "at": "2026-11-27 19:13",
   "since": "2026-11-01",
-  "tracked": 268,
+  "tracked": 269,
   "days": 26,
   "downs": [
     {
@@ -145,6 +145,20 @@
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/azusa/cabinet/a19/b19_main5.jpg?_ex=300x300"
     },
     {
+      "title": "コーヒー",
+      "name": "コーヒー豆 お試しセット 300g 100g×3種 飲み比べ 約30杯分 自家焙煎 コーヒー…",
+      "price": 2239,
+      "base": 2800.0,
+      "pct": 20,
+      "days": 14,
+      "rc": 990,
+      "av": 4.49,
+      "shop": "自家焙煎 珈琲工房ひぐち",
+      "plain": "https://item.rakuten.co.jp/cafe-higuchi/10000797/",
+      "url": "https://hb.afl.rakuten.co.jp/hgc/g00qas9o.m2lhf604.g00qas9o.m2lhg37b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcafe-higuchi%2F10000797%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcafe-higuchi%2Fi%2F10000797%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cafe-higuchi/cabinet/08662303/08896113/imgrc0099596945.jpg?_ex=300x300"
+    },
+    {
       "title": "キャットフード",
       "name": "ロイヤルカナン インドア プレミアムフード ドライ ドライフード 猫 室内で生活する成猫用 …",
       "price": 12999,
@@ -157,6 +171,20 @@
       "plain": "https://item.rakuten.co.jp/cat-land/10000608/",
       "url": "https://hb.afl.rakuten.co.jp/hgc/g00qr6oo.m2lhfac7.g00qr6oo.m2lhg872/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcat-land%2F9214407%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcat-land%2Fi%2F10000608%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cat-land/cabinet/logo/9214407.jpg?_ex=300x300"
+    },
+    {
+      "title": "加湿器",
+      "name": "加湿器 大容量 加湿器 卓上 6L 加湿機 ハイブリッド加湿器 加湿器 スチーム式 四重除菌…",
+      "price": 7580,
+      "base": 8990.0,
+      "pct": 16,
+      "days": 14,
+      "rc": 1005,
+      "av": 4.33,
+      "shop": "BeniLeaf",
+      "plain": "https://item.rakuten.co.jp/beneru/10000008/",
+      "url": "https://hb.afl.rakuten.co.jp/hgc/g00uncto.m2lhfd76.g00uncto.m2lhg4e0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbeneru%2Flh2024%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbeneru%2Fi%2F10000008%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/beneru/cabinet/lp2209b/lp2209_main-b2.jpg?_ex=300x300"
     },
     {
       "title": "電気毛布",
@@ -395,34 +423,6 @@
       "plain": "https://item.rakuten.co.jp/irisplaza-r/10156163/",
       "url": "https://hb.afl.rakuten.co.jp/hgc/g00t3zto.m2lhfc3f.g00t3zto.m2lhg012/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Firisplaza-r%2F7263927%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Firisplaza-r%2Fi%2F10156163%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/irisplaza-r/cabinet/12351902/imgrc0112732355.jpg?_ex=300x300"
-    },
-    {
-      "title": "キャットフード",
-      "name": "ロイヤルカナン 猫 プレミアムフード ドライ ドライフード 猫 室内で生活する成猫用 室内飼…",
-      "price": 5990,
-      "base": 6476.0,
-      "pct": 8,
-      "days": 14,
-      "rc": 730,
-      "av": 4.67,
-      "shop": "キャットランド",
-      "plain": "https://item.rakuten.co.jp/cat-land/10000607/",
-      "url": "https://hb.afl.rakuten.co.jp/hgc/g00qr6oo.m2lhfac7.g00qr6oo.m2lhg872/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcat-land%2F9214406%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcat-land%2Fi%2F10000607%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/cat-land/cabinet/rc2606_3/9214406.jpg?_ex=300x300"
-    },
-    {
-      "title": "プロテイン",
-      "name": "カラダを大きくしたい方に！ウエイトゲイナー プロテイン 1kg / 3kg ザプロ ホエイ …",
-      "price": 2450,
-      "base": 2640.0,
-      "pct": 7,
-      "days": 14,
-      "rc": 606,
-      "av": 4.47,
-      "shop": "武内製薬 公式オンラインストア",
-      "plain": "https://item.rakuten.co.jp/takeuchi-labo/10000302/",
-      "url": "https://hb.afl.rakuten.co.jp/hgc/g00tmkpo.m2lhf324.g00tmkpo.m2lhg6ab/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftakeuchi-labo%2Fta-the-prwg%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftakeuchi-labo%2Fi%2F10000302%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
-      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/takeuchi-labo/cabinet/07385387/thepro/ta-the-prwg/ta-the-prwg.jpg?_ex=300x300"
     }
   ],
   "ups": [
