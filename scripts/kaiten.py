@@ -105,7 +105,7 @@ def svg(ic, c="gi"):
     return f'<svg class="{c}" viewBox="0 0 24 24" aria-hidden="true">{ICON[ic]}</svg>'
 
 
-HATSU = re.compile(r"(関東|首都圏|東日本|日本|国内|東京|都内|神奈川|横浜|埼玉|千葉|茨城|栃木|群馬|渋谷|新宿|銀座|池袋|[^\s「」、。・]{1,4}[府県市])初(?:出店|上陸|進出)?|初出店|初上陸|1号店|一号店")
+HATSU = re.compile(r"(関東|首都圏|東日本|日本|国内|東京|都内|神奈川|横浜|埼玉|千葉|茨城|栃木|群馬|渋谷|新宿|銀座|池袋|リンクス|AOYAMA|青山|SHIBUYA|IKEBUKURO|[^\s「」、。・]{1,4}[府県市])初(?:出店|上陸|進出)?|初出店|初上陸|1号店|一号店")
 
 
 def hatsu(x):
@@ -382,6 +382,49 @@ def wdate(d):
     return (f"{d.year}年" if d.year != TODAY.year else "") + f"{d.month}月{d.day}日（{JWD[d.weekday()]}）"
 
 
+# 11/27 owner「できること全部やろう」：人が来ている1店のページに、ブランドの通販（楽天・Yahoo!ショッピング）を付ける。
+# 品を売っているブランドの店だけ（服・雑貨・お菓子・コスメ）。飲食・コンビニ・ジム・施設・閉店には付けない。
+RAKU = "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc="
+YVC = "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3786665&pid=892753201&vc_url="
+SHOPWORD = re.compile(r"(店|モール|アウトレット|パーク|百貨|館|ストア|プラザ|SC|梅田|心斎橋|なんば|難波|三宮|河原町|四条|天王寺|あべの)$")
+PLACE = r"大阪|京都|神戸|奈良|滋賀|和歌山|梅田|心斎橋|なんば|難波|三宮|元町|河原町|四条|錦|天王寺|あべの|ルクア|LUCUA|サウス|KYOTO|Kyoto|OSAKA|Osaka|KOBE|Kobe|BAL|東京|TOKYO|Tokyo|渋谷|新宿|銀座|池袋|リンクス|AOYAMA|青山|SHIBUYA|IKEBUKURO|横浜|表参道|原宿|丸の内|日本橋|有楽町|六本木"
+
+
+def brand(x):
+    g, _ = genre(x)
+    if x["k"] == "close" or is_chain(x):
+        return ""
+    if g not in ("服・雑貨", "パン・スイーツ") and not (g == "美容・からだ" and re.search(r"コスメ|化粧|香水|フレグランス|THANN|BYREDO|バイレード", x["n"] + x.get("pt", ""))):
+        return ""
+    if re.search(r"書店|本屋|ホームセンター|ドン・キホーテ|ドンキ|ダイソー|DAISO|キャンドゥ|セリア|ギャラリー|GALLERY|スタジオ|フロア|^イオンモール|^大丸|^阪急|^高島屋|^近鉄|ヤマダストアー|BOOKHOME|ブックホーム|リカー|テレ東|^西武|キッザニア|BUFFET|ビュッフェ|Bistro|ビストロ|楽しむ|実家|^[0-9]|%|図書館|なだ万|キッカケ|メモリアル|有隣堂|LINKS|DONUT|ドーナツ|MOM’S TOUCH|KUA`AINA|WELLNESS|ブラリバ|＆found|DOOR TO GOLF|カンパネラ|桐松屋|POPUPショップ|クレープ", x["n"]):
+        return ""
+    w = re.sub(r"（.*?）|\(.*?\)|「|」", " ", x["n"]).replace("　", " ").split()
+    while len(w) > 1 and (SHOPWORD.search(w[-1]) or re.fullmatch(PLACE, w[-1])):
+        w.pop()
+    b = " ".join(w)
+    while re.search(r"(" + PLACE + r")$", b) and re.sub(r"(" + PLACE + r")$", "", b).strip():
+        b = re.sub(r"(" + PLACE + r")$", "", b).strip()
+    b = re.sub(r"(パーク)?ストア$|ふんわりストア$|オフィシャルショップ$", "", b).strip() or b
+    if not b or SHOPWORD.search(b) and len(w) == 1 and b.endswith("店"):
+        return ""
+    return b
+
+
+def shop_links(x):
+    b = brand(x)
+    if not b:
+        return ""
+    q = urllib.parse.quote(b)
+    ra = RAKU + urllib.parse.quote(f"https://search.rakuten.co.jp/search/mall/{q}/", safe="")
+    ya = YVC + urllib.parse.quote(f"https://shopping.yahoo.co.jp/search?p={q}", safe="")
+    return (f'<section class="sp-sec sp-buy"><h2>{E(b)}の品を通販で見る</h2>'
+            f'<p class="sp-chk">お店に行けない日も、同じブランドの品を家から見られます（広告のリンクです。紹介料をいただくことがあります）。</p>'
+            '<div class="sp-btn">'
+            f'<a class="s" href="{E(ra)}" target="_blank" rel="noopener sponsored" data-k="1店｜通販 楽天">楽天で見る ↗</a>'
+            f'<a class="s" href="{E(ya)}" target="_blank" rel="noopener sponsored" data-k="1店｜通販 Yahoo">Yahoo!で見る ↗</a>'
+            '</div></section>')
+
+
 def store_page(x, shell, near):
     d = datetime.date.fromisoformat(x["d"])
     g, ic = genre(x)
@@ -428,6 +471,7 @@ def store_page(x, shell, near):
             '<button type="button" class="s" id="sh" data-k="1店｜送る">LINEなどで送る</button></div>'
             f'<div class="sp-map"><iframe loading="lazy" title="{E(x["n"])}の地図" src="https://maps.google.com/maps?q={q}&amp;z=16&amp;output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe></div>'
             f'<p class="sp-chk">日付・場所・時間は、{E(srcname)}の発表をもとに {chk.year}年{chk.month}月{chk.day}日に確かめました。変わることがあるので、出かける前に公式の発表をご確認ください。</p>')
+    body += shop_links(x)
     if near:
         body += (f'<section class="sp-sec"><h2>{E(x["p"])}のほかの新しいお店</h2>' + "".join(near) + "</section>")
     pk = {"東京": "tokyo", "神奈川": "kanagawa", "埼玉": "saitama", "千葉": "chiba", "茨城": "ibaraki", "栃木": "tochigi", "群馬": "gunma"}.get(x["p"])
