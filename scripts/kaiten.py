@@ -492,7 +492,11 @@ def store_page(x, shell, near):
     for prop in ('<meta name="description" content="', '<meta property="og:description" content="'):
         t = re.sub("(" + re.escape(prop) + ')[^"]*', lambda m: m.group(1) + E(desc), t, count=1)
     t = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m: m.group(1) + E(x["n"] + "｜" + when), t, count=1)
+    # 11/27 一覧の頭を写すので canonical・og:url が「/kaiten」のままだった（koyo.html は kanto.townnote.app で BASE と違い、置き換えが当たらない）
+    # → Google が1店のページを一覧の写しと見て検索に出さなかった。どちらのアドレスでも1店のURLにする
     t = t.replace(f'"{BASE}kaiten"', f'"{url}"')
+    t = re.sub(r'(<link rel="canonical" href=")[^"]*/kaiten"', lambda m: m.group(1) + url + '"', t, count=1)
+    t = re.sub(r'(<meta property="og:url" content=")[^"]*/kaiten"', lambda m: m.group(1) + url + '"', t, count=1)
     t = re.sub(r'<script type="application/ld\+json">.*?</script>', "", t, flags=re.S)
     t = t.replace("</head>", SCSS + "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in ldj) + "</head>", 1)
     a = t.index('<header class="head">'); b = t.index('<p class="note">'); b = t.index('</p>', b) + len('</p>')
