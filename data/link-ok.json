@@ -105,9 +105,9 @@
   "why": ""
  },
  "https://chiba-porttower.com/article.php?id=102": {
-  "at": "2026-11-24",
+  "at": "2026-11-28",
   "ok": true,
-  "sec": 1.4,
+  "sec": 0.9,
   "why": ""
  },
  "https://christmasmarket.jp/202611-cocooncity/": {
@@ -444,13 +444,6 @@
   "by": "browser",
   "ok": true,
   "sec": 1.4,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D14579": {
-  "at": "2026-11-13",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.7,
   "why": ""
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D147107": {
@@ -1349,13 +1342,6 @@
   "sec": 0.9,
   "why": ""
  },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D43779": {
-  "at": "2026-11-13",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.4,
-  "why": ""
- },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D44177": {
   "at": "2026-11-18",
   "by": "browser",
@@ -1512,13 +1498,6 @@
  },
  "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D78153": {
   "at": "2026-11-18",
-  "by": "browser",
-  "ok": true,
-  "sec": 1.6,
-  "why": ""
- },
- "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D79343": {
-  "at": "2026-11-13",
   "by": "browser",
   "ok": true,
   "sec": 1.6,
@@ -3702,9 +3681,9 @@
   "why": ""
  },
  "https://ohtsuribashi.ryujinkyo.jp/": {
-  "at": "2026-11-24",
+  "at": "2026-11-28",
   "ok": true,
-  "sec": 0.7,
+  "sec": 0.8,
   "why": ""
  },
  "https://policies.env.go.jp/national-garden/shinjukugyoen/highlights/kiku/": {
@@ -3721,9 +3700,9 @@
   "why": ""
  },
  "https://rekishikan-ibk.jp": {
-  "at": "2026-11-24",
+  "at": "2026-11-28",
   "ok": true,
-  "sec": 1.1,
+  "sec": 1.5,
   "why": ""
  },
  "https://rekishikan-ibk.jp/": {
@@ -3752,6 +3731,12 @@
   "sec": 1.1,
   "why": ""
  },
+ "https://shin-hanabi.com/": {
+  "at": "2026-11-28",
+  "ok": true,
+  "sec": 0.9,
+  "why": ""
+ },
  "https://shinagawa-kanko.or.jp/event/shinasuillc2026/": {
   "at": "2026-11-26",
   "ok": true,
@@ -3762,13 +3747,6 @@
   "at": "2026-11-26",
   "ok": true,
   "sec": 0.2,
-  "why": ""
- },
- "https://skeletonics.com/the-robot-park-odaiba/": {
-  "at": "2026-11-13",
-  "by": "browser",
-  "ok": true,
-  "sec": 2.3,
   "why": ""
  },
  "https://store.shopping.yahoo.co.jp/takuhaibin/288368.html": {
@@ -3836,9 +3814,9 @@
   "why": ""
  },
  "https://tenkukairou.com/events/99/": {
-  "at": "2026-11-24",
+  "at": "2026-11-28",
   "ok": true,
-  "sec": 1.4,
+  "sec": 1.0,
   "why": ""
  },
  "https://tgs.jp.net/event/miniature-bakery/": {
@@ -3904,9 +3882,9 @@
   "why": ""
  },
  "https://www.aboutamazon.jp/news/entertainment/audible-story-house-cafe-in-shibuya": {
-  "at": "2026-11-24",
+  "at": "2026-11-28",
   "ok": true,
-  "sec": 1.2,
+  "sec": 1.3,
   "why": ""
  },
  "https://www.aeon.com/store/lp/592760/": {
@@ -4003,9 +3981,9 @@
   "why": ""
  },
  "https://www.city.chiba.jp/keizainosei/keizai/promotion/event_baja2026.html": {
-  "at": "2026-11-24",
+  "at": "2026-11-28",
   "ok": true,
-  "sec": 1.0,
+  "sec": 0.5,
   "why": ""
  },
  "https://www.city.chuo.lg.jp/a0016/bunkakankou/kankoujouhou/event/kankousyougyoumaturi.html": {
@@ -4016,9 +3994,9 @@
   "why": ""
  },
  "https://www.city.funabashi.lg.jp/shisetsu/toshokankominkan/0002/0003/0003/p149667.html": {
-  "at": "2026-11-24",
+  "at": "2026-11-28",
   "ok": true,
-  "sec": 0.3,
+  "sec": 0.5,
   "why": ""
  },
  "https://www.city.hitachiomiya.lg.jp/kankou_guide/news/page012282.html": {
@@ -4103,9 +4081,9 @@
   "why": ""
  },
  "https://www.city.yachimata.lg.jp/soshiki/19/44995.html": {
-  "at": "2026-11-24",
+  "at": "2026-11-28",
   "ok": true,
-  "sec": 0.7,
+  "sec": 0.5,
   "why": ""
  },
  "https://www.civic.jp/event.php?mode=detail&f=1&code=492": {
@@ -4170,9 +4148,9 @@
   "why": ""
  },
  "https://www.hama-midorinokyokai.or.jp/park/negishi/": {
-  "at": "2026-11-24",
+  "at": "2026-11-28",
   "ok": true,
-  "sec": 0.6,
+  "sec": 0.7,
   "why": ""
  },
  "https://www.haramuseum.or.jp/jp/arc/exhibition/2275/": {
@@ -4238,9 +4216,9 @@
   "why": ""
  },
  "https://www.kanagawa-park.or.jp/tujidou/eventschedule.pdf": {
-  "at": "2026-11-24",
+  "at": "2026-11-28",
   "ok": true,
-  "sec": 1.8,
+  "sec": 1.1,
   "why": ""
  },
  "https://www.kanagawaparks.com/kurihama/news/2026100414204410478.html": {
@@ -4407,6 +4385,12 @@
   "at": "2026-11-26",
   "ok": true,
   "sec": 0.7,
+  "why": ""
+ },
+ "https://www.pandorobou-ten.com/outline": {
+  "at": "2026-11-28",
+  "ok": true,
+  "sec": 0.9,
   "why": ""
  },
  "https://www.pref.saitama.lg.jp/b0112/kanko-tiiki-info/enjoy-winter.html": {
@@ -4757,7 +4741,7 @@
   "why": ""
  },
  "https://zeppin-yatai.com/kawaguchi/": {
-  "at": "2026-11-24",
+  "at": "2026-11-28",
   "ok": true,
   "sec": 0.8,
   "why": ""

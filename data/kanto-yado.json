@@ -13119,5 +13119,75 @@
         "min": 5250
       }
     ]
+  },
+  "第2回常総新花火2026X'mas": {
+    "v": 2,
+    "t": "2026-11-27",
+    "ll": [
+      36.15369,
+      139.96245
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルルートイン下妻",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D197085",
+        "km": 4.5,
+        "r": 4.42,
+        "rc": 165,
+        "min": 6725
+      },
+      {
+        "n": "つくばタウンホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D19716",
+        "km": 4.2,
+        "r": 4.32,
+        "rc": 456,
+        "min": 5600
+      },
+      {
+        "n": "かま仙旅館(釜仙旅館)",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D29899",
+        "km": 4.1,
+        "r": 4.14,
+        "rc": 71,
+        "min": 5050
+      }
+    ]
+  },
+  "パンどろぼう展（横浜）": {
+    "v": 2,
+    "t": "2026-11-27",
+    "ll": [
+      35.45214,
+      139.64341
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "インターコンチネンタル横浜Pier 8 by IHG",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D177505",
+        "km": 0.5,
+        "r": 4.68,
+        "rc": 376,
+        "min": 18040
+      },
+      {
+        "n": "横浜ベイホテル東急",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D2003",
+        "km": 0.9,
+        "r": 4.65,
+        "rc": 10943,
+        "min": 8986
+      },
+      {
+        "n": "ホテルニューグランド",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D2013",
+        "km": 1.0,
+        "r": 4.65,
+        "rc": 3941,
+        "min": 10900
+      }
+    ]
   }
 }
