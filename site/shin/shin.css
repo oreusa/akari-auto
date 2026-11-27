@@ -1349,3 +1349,8 @@ html.nt.rkm #bar.rkpfo #seg button{background:rgba(255,255,255,.08)}
 html.rkm #bar.rkpfo #seg button.on{background:var(--ink)!important;color:var(--bg)!important}
 html.rkm #bar.rkpfo .lk-pf{background:var(--ink)!important;color:var(--bg)!important;border-color:var(--ink)!important}
 @keyframes rkpf{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* 11/28 UI UX Pro Max の点検：押す所を44px（見た目の位置は変えない）・字の濃さ4.5以上 */
+.ft a{display:inline-block;padding:12px 2px;margin:-12px 0}
+.dc .ksns .ksl{padding:12px 0;margin-top:-12px;margin-bottom:-12px}
+html:not(.nt) .lt.pop{color:color-mix(in srgb,var(--gc) 68%,#000)}
