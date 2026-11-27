@@ -273,7 +273,7 @@ ROBOTS = f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n"
 
 
 def sitemap(now):
-    pages = ["", PAGE, "tomari", "ima", "kaimawari", "tanka", "furusato", "uru"] + (["ikura"] if os.path.exists(os.path.join(ROOT, "site", "ikura.html")) else []) + (["hatsumode"] if os.path.exists(os.path.join(ROOT, "data", "hatsumode.tsv")) else []) + [f"{PAGE}-{YADO[p]}" for p, _ in PREFS] + ([f"{PAGE}-muryo"] if os.path.exists(os.path.join(ROOT, "site", f"{PAGE}-muryo.html")) else [])
+    pages = ["", PAGE, "tomari", "ima", "kaimawari", "tanka", "furusato", "uru"] + (["ikura"] if os.path.exists(os.path.join(ROOT, "site", "ikura.html")) else []) + (["hatsumode"] if os.path.exists(os.path.join(ROOT, "data", "hatsumode.tsv")) else []) + [x for x in ("hatsuuri", "nenmatsu") if os.path.exists(os.path.join(ROOT, "site", x + ".html"))] + [f"{PAGE}-{YADO[p]}" for p, _ in PREFS] + ([f"{PAGE}-muryo"] if os.path.exists(os.path.join(ROOT, "site", f"{PAGE}-muryo.html")) else [])
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
             + "".join(f'  <url><loc>{SITE}/{u}</loc><lastmod>{now:%Y-%m-%d}</lastmod><changefreq>daily</changefreq></url>\n' for u in pages)

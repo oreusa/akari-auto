@@ -13,7 +13,7 @@ ODE_NAV = lambda cur: [dict(n, **({"cur": 1} if n["href"] == cur else {})) for n
     {"t": "開催中", "ic": "now", "href": "/odekake"}, {"t": "今週末", "ic": "we", "href": "/odekake?w=we"},
     {"t": "いまから", "ic": "map", "href": "/ima"}, {"t": "泊まり", "ic": "inn", "href": "/tomari"}]]
 ALSO = [["関東のおでかけ・イベント", "/odekake"], ["関東のイルミネーション", "/illumination"], ["関東の紅葉", "/koyo"],
-        ["いまから行けるおでかけ", "/ima"], ["泊まりで行くおでかけ", "/tomari"], ["関東の初詣", "/hatsumode"]]
+        ["いまから行けるおでかけ", "/ima"], ["泊まりで行くおでかけ", "/tomari"], ["関東の初詣", "/hatsumode"], ["年末年始のごみ・役所", "/nenmatsu"], ["初売り・福袋2027", "/hatsuuri"]]
 # 泊まりで行く所：大きな街の真ん中（東京駅・新宿・横浜）から25km以上（scripts/kansai_yado.py の kanto と同じ）
 CENTERS, FAR_KM = [(35.6812, 139.7671), (35.6896, 139.7006), (35.4658, 139.6223)], 25
 
@@ -85,6 +85,33 @@ def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
                 {"h1": "関東の初詣", "sub": f"2027年・大晦日と三が日・{len(hm)}か所", "dl": f"2027年の案内が出た所 <b>{n27}</b>か所",
                  "K": {"hatsu": ["初詣", "#A23B3B"]}, "cnt": "か所", "unit": "初詣",
                  "note": "時間と交通規制は、各寺社の公式ページの案内です。2027年の案内がまだの所は、昨年・例年の案内を載せ、出たら書き換えます。出かける前に公式で確かめてください。"}, hm, "/hatsumode")
+
+    # ---------- 11/27 年末年始の2枚：/hatsuuri（おかいもの）・/nenmatsu（おでかけ）。中身は scripts/shin_nenmatsu.py（関西 tools/shin/nenmatsu.py と同じ） ----------
+    try:
+        import shin_nenmatsu as NM
+        try: VP2 = json.load(open(os.path.join(R, "data", "venue_photos.json"), encoding="utf-8"))
+        except Exception: VP2 = {}
+        for nm_, url_, ti_, de_, pg_, its_ in NM.pages("関東", "LIFE NOTE", os.path.join(R, "data", "nenmatsu", "hatsuuri.tsv"), os.path.join(R, "data", "nenmatsu", "gomi.tsv")):
+            for it in its_:
+                v = VP2.get(it["t"]) or {}
+                if v.get("img"): it.update({"im": v["img"], "cr": v.get("cr", ""), "cu": v.get("page", "")})
+            if nm_ == "hatsuuri":
+                c = cfg("/okaimono"); c["menu"] = {"k": "Shopping", "items": [["初売り・福袋", "/hatsuuri", 1]]}
+                c["nav"] = [{"t": "おかいもの", "ic": "yen", "href": "/okaimono"}, {"t": "初売り", "ic": "now", "href": "/hatsuuri", "cur": 1}, {"t": "年末年始", "ic": "we", "href": "/nenmatsu"}]
+                pg_.setdefault("also", [["年末年始のごみ・役所", "/nenmatsu"], ["関東の初詣", "/hatsumode"], ["日用品の値段くらべ", "/okaimono"], ["お得な物", "/otoku"]])
+                write(nm_ + ".html", url_, ti_, c, {"items": its_, "icons": ICONS, "page": pg_}, "list", de_)
+                made.add(url_)
+            else:
+                pg_.setdefault("also", [["初売り・福袋2027", "/hatsuuri"], ["関東の初詣", "/hatsumode"], ["関東のおでかけ・イベント", "/odekake"]])
+                ode(nm_ + ".html", url_, ti_, de_, pg_, its_, url_)
+            sm = os.path.join(S, "sitemap.xml")
+            if os.path.exists(sm):
+                x = open(sm, encoding="utf-8").read()
+                if f"/{nm_}<" not in x:
+                    h = re.search(r"<loc>(https?://[^/<]+)", x); h = h.group(1) if h else "https://kanto.townnote.app"
+                    open(sm, "w", encoding="utf-8").write(x.replace("</urlset>", f"<url><loc>{h}/{nm_}</loc><lastmod>{TD}</lastmod></url></urlset>", 1))
+    except Exception as e:
+        print("shin_kanto_lists: 初売り・年末年始は前のまま", repr(e))
 
     # ---------- 泊まり（少し遠いおでかけ＋近くの評価の高い宿3軒） ----------
     try:

@@ -52,6 +52,7 @@ S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">'+esc
  (PG.note?'<p class="lnote">'+PG.note+'</p>':"")+
  '<div id="sent"></div><div class="bar" id="bar">'+(PG.tabs?'<div class="seg" id="tab"></div>':"")+(PG.near?'<div class="seg" id="mseg"></div>':"")+(PG.seg===false?"":'<div class="seg" id="seg"></div>')+'<div class="chips" id="chips"></div></div>'+
  '<div class="cnt"><h3 id="ch"></h3><small id="cs"></small></div><div class="'+(VIEW==="list"?"lrs":"grid")+'" id="grid"></div><div id="mr"></div>'+
+ (PG.pr?'<aside class="prb" style="margin:26px 0 0;padding:14px 16px;border:1px solid rgba(128,128,128,.35);border-radius:8px"><small style="display:block;font-size:11px;letter-spacing:.12em;opacity:.7;margin-bottom:6px">'+esc(PG.pr.h)+'</small><a href="'+esc(PG.pr.u)+'" target="_blank" rel="noopener sponsored" style="display:block;font-weight:700;font-size:15px;color:inherit">'+esc(PG.pr.t)+' →</a>'+(PG.pr.n?'<p style="font-size:12px;opacity:.75;margin:6px 0 0">'+esc(PG.pr.n)+'</p>':'')+'</aside>':"")+
  (PG.also?'<nav class="also2" aria-label="あわせて見る"><small>あわせて見る</small>'+PG.also.map(function(a){return '<a href="'+a[1]+'">'+esc(a[0])+'<i>→</i></a>'}).join("")+'</nav>':"")+'</div>';
 S_.counts(S_.main);
 
