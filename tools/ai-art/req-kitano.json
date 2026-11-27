@@ -1,0 +1,92 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "01-bridge",
+   "prompt": "Night in a Kyoto shrine maple grove: a small vermilion-lacquered arched wooden bridge crossing a narrow stream in a deep valley, hundreds of illuminated red and orange maple trees all around, soft warm lights, dark blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "01-bridge-b",
+   "prompt": "Vermilion arched footbridge over a small creek at night, surrounded by glowing autumn maples in a steep wooded valley, Kyoto",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-odoi",
+   "prompt": "A long grassy earthen embankment (an old earth wall mound) covered with tall maple trees at night, a path running along the top, maples lit in red and gold, Kyoto",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-odoi-b",
+   "prompt": "Walking path on top of a tree-covered earth embankment at night, illuminated red maple canopy, old Kyoto",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-mitsumata",
+   "prompt": "A single ancient gnarled maple tree with a massive trunk splitting into three thick trunks, 400 years old, illuminated at night, red leaves overhead, mossy ground",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-mitsumata-b",
+   "prompt": "Huge old three-trunked Japanese maple tree lit from below at night, crimson leaves, quiet grove",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-river",
+   "prompt": "A shallow narrow stream at the bottom of a valley at night, the dark water reflecting illuminated red and yellow maples above, fallen leaves on the stones",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-river-b",
+   "prompt": "Night reflections of glowing autumn maples in a calm small river, mirror-like water, Kyoto",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-teahouse",
+   "prompt": "A small traditional wooden tea house with an open wooden stage veranda overlooking a valley of illuminated maples at night, soft lantern light",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-teahouse-b",
+   "prompt": "Wooden viewing deck of a Japanese tea house above a sea of lit red maple trees at night",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-honden",
+   "prompt": "View at night from a hillside over the curved cypress-bark roofs of a large old Shinto shrine main hall, softly lit, framed by red maple branches in the foreground",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-honden-b",
+   "prompt": "Old Shinto shrine roofs seen through illuminated autumn maples at night, Kyoto",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path",
+   "prompt": "A stone path through a maple grove at night with low warm lights along the ground, red maple leaves covering the path, deep blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path-b",
+   "prompt": "Gently lit garden path under a tunnel of red maples at night, fallen leaves, Kyoto",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
