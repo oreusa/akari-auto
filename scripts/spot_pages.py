@@ -166,6 +166,13 @@ for _x in _ms:
                       q=_q, place=_q, id=hashlib.md5(_k.encode()).hexdigest()[:8], pc="#C0532B"))
     _mo = {k: v for k, v in (("price", _x.get("fee")), ("note", (_x.get("note") or "").rstrip("。") + "。" if _x.get("note") else "")) if v}
     if _mo and _k not in MORE: MORE[_k] = _mo
+# 11/27 夜が公式で確かめた時間・料金・駐車場・注意（data/odekake_more.json・scripts/yoru_more.py で【夜 1件の中身】の関東の行から作る）を一番上に
+try:
+    for _nm, _r in json.load(open(os.path.join(R, "data", "odekake_more.json"), encoding="utf-8")).get("rows", {}).items():
+        _k = re.sub(r"\s+", "", _nm); _m = dict(MORE.get(_k, {}))
+        _m.update({k: _r[k] for k in ("time", "price", "park", "note") if _r.get(k)}); MORE[_k] = _m
+except FileNotFoundError: pass
+except Exception as _x: print("odekake_more.json を読めなかった", _x)
 os.makedirs(os.path.join(S, "o"), exist_ok=True)
 # 11/25 夜（関西と同じ）：終わった催しの1件ページを消すと、保存や検索から来た人が説明なしに一覧へ飛ばされていた
 # → 終わった物は「終わりました」の札を付けて90日残す（検索には出さない noindex）。開催中の物はこのあと作り直す
