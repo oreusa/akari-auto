@@ -170,7 +170,7 @@ for _x in _ms:
 try:
     for _nm, _r in json.load(open(os.path.join(R, "data", "odekake_more.json"), encoding="utf-8")).get("rows", {}).items():
         _k = re.sub(r"\s+", "", _nm); _m = dict(MORE.get(_k, {}))
-        _m.update({k: _r[k] for k in ("time", "price", "park", "note") if _r.get(k)}); MORE[_k] = _m
+        _m.update({k: _r[k] for k in ("time", "price", "park", "note", "links") if _r.get(k)}); MORE[_k] = _m
 except FileNotFoundError: pass
 except Exception as _x: print("odekake_more.json を読めなかった", _x)
 os.makedirs(os.path.join(S, "o"), exist_ok=True)
@@ -266,6 +266,7 @@ for sp in spots:
         if mo.get(k): big += f'<div class="w"><span>{lb}</span><b style="font-size:15px;font-family:\'Zen Kaku Gothic New\';font-weight:700;line-height:1.7">{e(mo[k])}</b></div>'
     big += f'<div class="w"><span>場所</span><b>{e(where)}</b></div>'
     act = f'<a class="o" href="{e(sp["url"])}" target="_blank" rel="noopener">公式ページで最新の情報を見る</a>'
+    for _lb, _u in mo.get("links", []): act += f'<a class="g" href="{e(_u)}" target="_blank" rel="noopener">{e(_lb)}</a>'  # 11/27 夜の文書：秩父夜祭の市の案内・臨時電車など
     if sp["q"]: act += f'<a class="g" href="https://www.google.com/maps/search/?api=1&amp;query={e(urllib.parse.quote(sp["q"]))}" target="_blank" rel="noopener">地図で場所を見る</a>'
     yh, ads = "", False
     if Y.get(sp["key"]):
