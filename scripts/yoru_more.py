@@ -56,7 +56,7 @@ def main():
         if not p: continue
         nm, r = p
         if D["rows"].get(nm, {}).get("day", "") > r["day"]: continue
-        if D["rows"].get(nm, {}).get("links"): r["links"] = D["rows"][nm]["links"]  # 手で足した公式リンクは残す
+        r = {**D["rows"].get(nm, {}), **r}  # 11/27 新しい行に無い欄（駐車場・注意など）は前の物を残す（関西 tools/yoru_more.py と同じ）
         D["rows"][nm] = r; n += 1
     json.dump(D, open(P, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     open(P, "a").write("\n")
