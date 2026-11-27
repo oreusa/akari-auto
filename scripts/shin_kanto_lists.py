@@ -100,6 +100,9 @@ def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
             for it in its_:
                 v = VP2.get(it["t"]) or {}
                 if v.get("img"): it.update({"im": v["img"], "cr": v.get("cr", ""), "cu": v.get("page", "")})
+            # 11/27 月：1件ずつのページ（/hatsuuri/<id> など・関西と同じ）。一覧の行に「くわしいページ」（sp）が付く
+            try: _dt = NM.details(nm_, its_, "関東", "LIFE NOTE", NM.machi_map(os.path.join(S, "machi")))
+            except Exception as _e: print("年末年始の1件ページは作らない", repr(_e)); _dt = []
             if nm_ == "hatsuuri":
                 c = cfg("/okaimono"); c["menu"] = {"k": "Shopping", "items": [["初売り・福袋", "/hatsuuri", 1]]}
                 c["nav"] = [{"t": "おかいもの", "ic": "yen", "href": "/okaimono"}, {"t": "初売り", "ic": "now", "href": "/hatsuuri", "cur": 1}, {"t": "年末年始", "ic": "we", "href": "/nenmatsu"}]
@@ -111,6 +114,21 @@ def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
                                         "toshikoshi": [["関東の初詣", "/hatsumode"], ["年末年始のごみ・役所", "/nenmatsu"], ["クリスマスの催し", "/christmas"]]}.get(nm_,
                                        [["初売り・福袋2027", "/hatsuuri"], ["関東の初詣", "/hatsumode"], ["関東のおでかけ・イベント", "/odekake"]]))
                 ode(nm_ + ".html", url_, ti_, de_, pg_, its_, url_)
+            if _dt:
+                os.makedirs(os.path.join(S, nm_), exist_ok=True)
+                for _pth, _u, _ti, _de, _d in _dt:
+                    _c = cfg("/okaimono" if nm_ == "hatsuuri" else "/odekake")
+                    _c["nav"] = [{"t": "一覧へ", "ic": "now", "href": "/" + nm_}]
+                    if nm_ == "hatsuuri": _c["menu"] = {"k": "Shopping", "items": [["初売り・福袋", "/hatsuuri", 1]]}
+                    _c["foot"] = "各市区・各店・各主催の公式の案内をもとにしています。出かける前・出す前に公式の案内をご確認ください。"
+                    write(_pth + ".html", _u, _ti, _c, _d, "doc", _de)
+                print(nm_, "1件ページ", len(_dt))
+                for smn in ("sitemap.xml", "sitemap-all.xml"):
+                    _p = os.path.join(S, smn)
+                    if os.path.exists(_p):
+                        _x = open(_p, encoding="utf-8").read(); _h = re.search(r"<loc>(https?://[^/<]+)", _x); _h = _h.group(1) if _h else "https://kanto.townnote.app"
+                        _add = "".join(f"<url><loc>{_h}{_u}</loc><lastmod>{TD}</lastmod></url>\n" for _pth, _u, *_r in _dt if f"{_u}<" not in _x)
+                        if _add: open(_p, "w", encoding="utf-8").write(_x.replace("</urlset>", _add + "</urlset>", 1))
             sm = os.path.join(S, "sitemap.xml")
             if os.path.exists(sm):
                 x = open(sm, encoding="utf-8").read()
