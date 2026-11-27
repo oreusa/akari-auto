@@ -1,5 +1,10 @@
 // 11/15 townnote.app の入口（Worker）。DNS の鍵が無いので、Worker のカスタムドメインで3つのアドレスを受けて、今の Pages へそのまま取り次ぐ。
 // kansai.townnote.app → townnote.pages.dev（関西 TOWN NOTE）／kanto.townnote.app → lifenote-kanto.pages.dev（関東 LIFE NOTE）／townnote.app → 入口のページ
+// 11/27 owner が Google AdSense に申し込んだ（22:34 パブリッシャーID）。3つのアドレス全部に ads.txt と確認のコードを出す。
+// 広告そのものは1件ページの本文の下に1枠だけ（owner 11/27 のカード）。自動広告は AdSense の画面で入れない。
+const ADS_PUB = 'pub-7967681108376417';
+const ADS_TXT = 'google.com, ' + ADS_PUB + ', DIRECT, f08c47fec0942fa0\n';
+const ADS_HEAD = '<meta name="google-adsense-account" content="ca-' + ADS_PUB + '"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-' + ADS_PUB + '" crossorigin="anonymous"></script>';
 const VERIFY = ['google89ea47473ae57497.html']; // 汐が報告した確認ファイルの名前（関西・関東とも同じ名前）
 const MAP = { 'kansai.townnote.app': 'townnote.pages.dev', 'kanto.townnote.app': 'lifenote-kanto.pages.dev' };
 const TOP = `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TOWN NOTE｜関西・関東</title>
@@ -88,9 +93,10 @@ export default {
     const gv = u.pathname.match(/^\/(google[0-9a-f]{8,32}\.html)$/);
     if (gv && VERIFY.includes(gv[1])) return new Response('google-site-verification: ' + gv[1], { headers: { 'content-type': 'text/html; charset=utf-8' } });
     if (gv) return new Response('Not Found', { status: 404 }); // ほかの名前は必ず 404（Google が確かめに来る）
+    if (u.pathname === '/ads.txt') return new Response(ADS_TXT, { headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'public, max-age=3600' } });
     const up = MAP[u.hostname];
     if (!up) {
-      if (u.pathname === '/' || u.pathname === '/index.html') return new Response(u.searchParams.get('mihon') === '0' ? TOP : TOP2, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': u.searchParams.get('mihon') === '0' ? 'no-store' : 'public, max-age=600' } });
+      if (u.pathname === '/' || u.pathname === '/index.html') return new Response((u.searchParams.get('mihon') === '0' ? TOP : TOP2).replace('</head>', ADS_HEAD + '</head>'), { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': u.searchParams.get('mihon') === '0' ? 'no-store' : 'public, max-age=600' } });
       if (u.pathname === '/robots.txt') return new Response('User-agent: *\nAllow: /\n', { headers: { 'content-type': 'text/plain' } });
       // 11/23 夜の見回り：古い深いURL（townnote.app/odekake など）で来た人が入口に戻されていた → 同じページのある地域へ送る。
       // 関東の印（都県の名前・kanto）があれば関東、なければ関西に有るか確かめ、無くて関東に有れば関東。どちらにも無い時だけ入口。
@@ -111,6 +117,9 @@ export default {
     const out = new Response(r.body, r);
     const loc = out.headers.get('location');
     if (loc && loc.includes(up)) out.headers.set('location', loc.split(up).join(u.hostname));
+    if ((out.headers.get('content-type') || '').includes('text/html') && req.method === 'GET') {
+      return new HTMLRewriter().on('head', { element(e) { e.append(ADS_HEAD, { html: true }); } }).transform(out);
+    }
     return out;
   }
 };
