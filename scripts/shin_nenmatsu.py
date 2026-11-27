@@ -171,7 +171,7 @@ def details(name, items, region, site, machi=None, today=None):
     import urllib.parse as _up
     today = today or datetime.date.today()
     machi = machi or {}
-    LBL = {"hatsuuri": "初売り・福袋2027", "nenmatsu": "年末年始のごみ・役所", "christmas": "クリスマスの催し", "toshikoshi": "除夜の鐘・年越し"}[name]
+    LBL = {"hatsumode": "初詣2027", "hatsuuri": "初売り・福袋2027", "nenmatsu": "年末年始のごみ・役所", "christmas": "クリスマスの催し", "toshikoshi": "除夜の鐘・年越し"}[name]
     out = []
     for it in items:
         it["sp"] = f"/{name}/{it['id']}"
@@ -186,6 +186,10 @@ def details(name, items, region, site, machi=None, today=None):
             title = f"{n}の年末年始のごみ収集2026-2027｜最終日・年始の開始・粗大ごみ・役所の休み｜{site}"
             sub = f"{pf}・年末年始のごみと役所"
             desc = f"{n}の年末年始。ごみの収集：{rv.get('ごみの収集', '公式で確認')}。役所の休み：{rv.get('役所の休み', '公式で確認')}。"
+        elif name == "hatsumode":
+            title = f"{n}の初詣2027｜大晦日・三が日の参拝時間・交通規制｜{it.get('a') or pf}｜{site}"
+            sub = f"{it['p']}・初詣2027"
+            desc = f"{n}（{it.get('a') or pf}）の初詣2027。時間：{rv.get('時間', '公式で確認')}。" + (f"車・混雑：{rv['車・混雑']}。" if rv.get('車・混雑') else "")
         elif name == "toshikoshi":
             title = f"{n} 2026-2027｜大晦日の時間・人数・料金｜{pf}｜{site}"
             sub = f"{pf}・除夜の鐘・年越し"
@@ -208,7 +212,7 @@ def details(name, items, region, site, machi=None, today=None):
         mk = max((k for k in machi if n.startswith(k) or (it.get("v") or "").startswith(k)), key=len, default="")
         sibs = [x for x in items if x is not it and x.get("p") == it.get("p")][:8]
         if sibs:
-            html_ += (f'<section class="dsec"><h2>{_e(it["p"])}のほかの{_e(LBL.split("・")[0] if name != "nenmatsu" else "市区")}</h2><div class="drel">'
+            html_ += (f'<section class="dsec"><h2>{_e(it["p"])}のほかの{_e({"nenmatsu": "市区", "hatsumode": "初詣"}.get(name, LBL.split("・")[0]))}</h2><div class="drel">'
                       + "".join(f'<a href="{x["sp"]}" data-k="1件｜同じ府県">{_e(x["t"])}<small>{_e(x.get("hk", ""))[:40]}</small></a>' for x in sibs) + "</div></section>")
         rel = [(f"{region}の{LBL}（一覧）", f"/{name}")]
         if mk: rel.append((f"{mk}の家と土地の相場", machi[mk]))

@@ -82,6 +82,24 @@ def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
             v = VP.get(n) or VP.get(re.sub(r"\s+", "", n)) or {}
             if v.get("img"): it.update({"im": v["img"], "cr": v.get("cr", ""), "cu": v.get("page", "")})
             hm.append(it)
+        # 11/27 月：寺社ごとの1件ページ（/hatsumode/<id>・関西と同じ）
+        try:
+            import shin_nenmatsu as NM0
+            _dt0 = NM0.details("hatsumode", hm, "関東", "LIFE NOTE", NM0.machi_map(os.path.join(S, "machi")))
+        except Exception as _e: print("初詣の1件ページは作らない", repr(_e)); _dt0 = []
+        if _dt0:
+            os.makedirs(os.path.join(S, "hatsumode"), exist_ok=True)
+            for _pth, _u, _ti, _de, _d in _dt0:
+                _c = cfg("/odekake"); _c["nav"] = [{"t": "一覧へ", "ic": "now", "href": "/hatsumode"}]
+                _c["foot"] = "各寺社の公式の案内をもとにしています。出かける前に公式の案内をご確認ください。"
+                write(_pth + ".html", _u, _ti, _c, _d, "doc", _de)
+            for smn in ("sitemap.xml", "sitemap-all.xml"):
+                _p = os.path.join(S, smn)
+                if os.path.exists(_p):
+                    _x = open(_p, encoding="utf-8").read(); _h = re.search(r"<loc>(https?://[^/<]+)", _x); _h = _h.group(1) if _h else "https://kanto.townnote.app"
+                    _add = "".join(f"<url><loc>{_h}{_u}</loc><lastmod>{TD}</lastmod></url>\n" for _pth, _u, *_r in _dt0 if f"{_u}<" not in _x)
+                    if _add: open(_p, "w", encoding="utf-8").write(_x.replace("</urlset>", _add + "</urlset>", 1))
+            print("hatsumode 1件ページ", len(_dt0))
         if len(hm) >= 5:
             n27 = sum(1 for r in rows if r[5] == "2027年")
             ode("hatsumode.html", "/hatsumode", f"関東の初詣2027｜大晦日・三が日の時間と交通規制（{len(hm)}か所）｜LIFE NOTE",
