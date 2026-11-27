@@ -3254,6 +3254,90 @@
    "added": "2026-11-27",
    "src": "prtimes",
    "auto": 1
+  },
+  {
+   "d": "2026-12-03",
+   "k": "open",
+   "p": "神奈川",
+   "n": "ローソン 横浜大口通",
+   "pt": "横浜市神奈川区大口通に開くコンビニ。",
+   "pl": "神奈川県横浜市神奈川区大口通122-6",
+   "tm": "",
+   "u": "https://www.lawson.co.jp/newstore/index.html",
+   "added": "2026-11-27",
+   "src": "yoru"
+  },
+  {
+   "d": "2026-12-01",
+   "k": "open",
+   "p": "東京",
+   "n": "ロビン・フッド北新宿店",
+   "pt": "旧Olympicを改装した食品強化型の首都圏1号店。",
+   "pl": "東京都新宿区北新宿3-9-4",
+   "tm": "9:00〜23:00",
+   "u": "https://ppih.co.jp/news/pdf/news261116_rhkitashinjyuku.pdf",
+   "added": "2026-11-27",
+   "src": "yoru"
+  },
+  {
+   "d": "2026-12-08",
+   "k": "open",
+   "p": "東京",
+   "n": "ロビン・フッド亀戸店",
+   "pt": "旧Olympicから転換し、少人数向けの生鮮や惣菜をそろえる都市型の店舗。",
+   "pl": "東京都江東区亀戸3-61-18",
+   "tm": "9:00〜23:00",
+   "u": "https://ppih.co.jp/news/pdf/221120_news_RHkameido%2CRHasakasenzui.pdf",
+   "added": "2026-11-27",
+   "src": "yoru"
+  },
+  {
+   "d": "2026-12-15",
+   "k": "open",
+   "p": "埼玉",
+   "n": "ロビン・フッド朝霞泉水店",
+   "pt": "旧Olympicから転換する、埼玉県初の食品強化型店舗。",
+   "pl": "埼玉県朝霞市泉水3-9-7",
+   "tm": "8:00〜21:45",
+   "u": "https://ppih.co.jp/news/pdf/221120_news_RHkameido%2CRHasakasenzui.pdf",
+   "added": "2026-11-27",
+   "src": "yoru"
+  },
+  {
+   "d": "2026-12-01",
+   "k": "open",
+   "p": "東京",
+   "n": "MEGAドン・キホーテ Olympic 高井戸店",
+   "pt": "Olympicからドン・キホーテへの業態転換1号店として改装オープンする。",
+   "pl": "東京都杉並区高井戸東3-21-17",
+   "tm": "9:00〜22:45",
+   "u": "https://ppih.co.jp/news/pdf/261113_news_takaido.pdf",
+   "added": "2026-11-27",
+   "src": "yoru"
+  },
+  {
+   "d": "2026-12-10",
+   "k": "open",
+   "p": "神奈川",
+   "n": "MEGAドン・キホーテ Olympic 洋光台店",
+   "pt": "旧Olympicから転換し、生鮮・日用品・家電を一か所で扱う。",
+   "pl": "神奈川県横浜市磯子区洋光台5-1-9",
+   "tm": "9:00〜23:00",
+   "u": "https://ppih.co.jp/news/pdf/news261124_yokodai.pdf",
+   "added": "2026-11-27",
+   "src": "yoru"
+  },
+  {
+   "d": "2026-12-18",
+   "k": "open",
+   "p": "千葉",
+   "n": "スシロー ロハル津田沼店",
+   "pt": "12/8〜17の改装休業後に再開し、注文用の大型画面『デジロー』を導入予定。",
+   "pl": "千葉県習志野市谷津7丁目7-1 Loharu津田沼 B1F",
+   "tm": "",
+   "u": "https://www.akindo-sushiro.co.jp/news/detail.php?id=4610",
+   "added": "2026-11-27",
+   "src": "yoru"
   }
  ]
 }
