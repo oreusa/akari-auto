@@ -116,8 +116,8 @@ function hvTap(e){var h=e.target.closest&&e.target.closest(".hv");if(!h)return;e
 grid.addEventListener("click",hvTap,true);grid.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&e.target.classList&&e.target.classList.contains("hv"))hvTap(e)},true);
 function go(anim){var L=pick(),show=L.slice(0,S.n),pr=S.p||RG.n,wl={now:"開催中",we:"今週末",up:"これから",end:"7日以内に終わる",td:"きょうまで",new:"7日以内に始まる"}[S.w];
   if(M2){var wc=wCounts();$("#wt").innerHTML=[["now","開催中"],["we","今週末"],["end","まもなく終了"],["up","これから"]].map(function(w){return '<button role="tab" data-w="'+w[0]+'" aria-selected="'+(S.w===w[0])+'"'+(S.w===w[0]?' class="on"':'')+'>'+w[1]+'<small>'+wc[w[0]]+'</small></button>'}).join("");
-    $("#ch").innerHTML=esc(pr)+(S.g==="_hv"?"・♡で残した":S.g&&G[S.g]?"・"+G[S.g][3]:"")+(S.w==="td"||S.w==="new"?"・"+wl:"")+" <b data-n='"+L.length+"'>"+L.length+"</b>件"+(S.w==="we"?'<small>'+md(SAT)+"・"+md(SUN).replace(/（.）/,"")+'</small>':"")}
-  else{$("#ch").innerHTML=esc(pr)+"・"+(S.g==="_hv"?"♡で残した":wl)+" <b data-n='"+L.length+"'>"+L.length+"</b>件";$("#cs").textContent=S.g==="_hv"?"この端末にだけ残っています":S.g&&G[S.g]?G[S.g][3]:(S.w==="we"?md(SAT)+"・"+md(SUN).replace(/（.）/,""):"")}
+    $("#ch").innerHTML=esc(pr)+(S.g==="_hv"?"・♡で残した":S.g&&G[S.g]?"・"+G[S.g][3]:"")+(S.w==="td"||S.w==="new"?"・"+wl:"")+" <b data-n='"+L.length+"'>"+L.length+"</b>件"+(S.w==="we"?'<small>'+md(SAT)+"・"+md(SUN)+'</small>':"")}
+  else{$("#ch").innerHTML=esc(pr)+"・"+(S.g==="_hv"?"♡で残した":wl)+" <b data-n='"+L.length+"'>"+L.length+"</b>件";$("#cs").textContent=S.g==="_hv"?"この端末にだけ残っています":S.g&&G[S.g]?G[S.g][3]:(S.w==="we"?md(SAT)+"・"+md(SUN):"")}
   if(anim&&!first)S_.countUp($("#ch b"));
   var old={};if(anim&&!RM)$$(".cd",grid).forEach(function(c){old[c.dataset.i]=c.getBoundingClientRect()});
   var frag=document.createDocumentFragment();show.forEach(function(x){frag.appendChild(card(x))});grid.replaceChildren(frag);
