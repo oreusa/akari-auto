@@ -443,8 +443,10 @@ def store_page(x, shell, near):
     host = urllib.parse.urlparse(x["u"]).netloc.replace("www.", "")
     srcname = "PR TIMES（会社の発表）" if "prtimes" in host else ("ららぽーとの公式のお知らせ" if "mitsui-shopping-park" in host else host)
     lab = {"open": "開店", "pop": "期間限定", "close": "閉店"}[x["k"]]
-    title = (f"【{(fz or (f'{d.year}/' if d.year != TODAY.year else '') + f'{d.month}/{d.day}')}{lab}】{x['n']}｜{area}"
-             + ("の閉店のお知らせ（いつまで・場所）" if x["k"] == "close" else "の新しいお店（いつ・場所・時間）"))[:70]
+    dl = fz or (f"{d.year}年" if d.year != TODAY.year else "") + f"{d.month}月{d.day}日"
+    # 11/27 夜の検索の帳面：開店ページは「◯◯ いつ開店」で探されて出ている（12/1 開店の店が7日で379表示）→ 題をその問いの形に
+    title = ((f"{x['n']}はいつ閉店？{dl}閉店｜{area}" if x["k"] == "close" else
+              f"{x['n']}はいつ開店？{dl}{'オープン（期間限定）' if x['k'] == 'pop' else 'オープン'}｜{area}の場所・時間"))[:70]
     desc = (f"{x['n']}は{when}。{x['pt']} 場所は{x['p']}{('・' + pl2) if pl2 else ''}。"
             f"{('営業時間は' + x['tm'] + '。') if x.get('tm') else ''}公式の発表と地図へすぐ行けます。")[:150]
     rows = [("いつ", E(when)), ("場所", E(x["p"] + ("・" + pl2 if pl2 else "")))]
