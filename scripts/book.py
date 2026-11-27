@@ -203,6 +203,14 @@ def deepen_file(fn):
     return 0
 
 
+def kurabe_noimg(day, slot):
+    """11/27 Threads の絵あり・なしくらべ（11/28〜11/30）。日と時の和が奇数の枠は絵なし。関西と同じ式"""
+    try:
+        return "2026-11-28" <= day <= "2026-11-30" and (datetime.fromisoformat(day).toordinal() + int(slot[:2])) % 2 == 1
+    except Exception:
+        return False
+
+
 def post_image(texts, day, slot):
     """投稿に付ける絵（11/12 オーナー「PR投稿はおかいもののHPの写真がある」「写真も効果ありならちょこちょこ入れる」）。
     投稿の中のHPのページと同じ絵が data/postimg.json（scripts/post_img.js が公開のたびに作る）にあれば、それを返す。
@@ -558,11 +566,16 @@ def run(now=None):
                 r["tries"] = r.get("tries", 0) + 1
                 try:
                     try:
+                        # 11/27 オーナー「投稿ヤバくない？人気落ちてる」：Threads が 11/20 から関東 約1/10・関西 約1/2（X は横ばい）。
+                        # 11/28〜30 の3日、Threads だけ半分の枠を絵なしにしてくらべる（関西 tools/book/book.py と同じ決まり）
+                        _img, _mk = img, img_mark
+                        if s == "threads" and img and kurabe_noimg(day, slot):
+                            _img, _mk = None, 0
                         p = buffer_create(cfg["channels"][s], s, texts, due_iso,
                                           topic=topic if s == "threads" else None,
-                                          image=img, alt="HPの画面：" + texts[0].splitlines()[0][:60], ai=False)
-                        if img_mark is not None:
-                            r["img"] = img_mark
+                                          image=_img, alt="HPの画面：" + texts[0].splitlines()[0][:60], ai=False)
+                        if _mk is not None:
+                            r["img"] = _mk
                     except BufferError as e_img:
                         if not img:
                             raise
