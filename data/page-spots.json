@@ -3297,6 +3297,50 @@
       "url": "https://www.city.adachi.tokyo.jp/k-iji/event/seibutsuen_huyuhotaru.html",
       "checked": "2026-11-26",
       "days": "wd:06"
+    },
+    {
+      "title": "ウジェーヌ・ブーダン展 印象派の父 ─ 光を求めて",
+      "pref": "群馬",
+      "place": "群馬県立近代美術館 群馬県高崎市",
+      "when": "11/28〜1/31",
+      "start": "2026-11-28",
+      "ends": "2027-01-31T17:00",
+      "note": "高崎市｜群馬の森公園の中の美術館。9:30〜17:00（入館16:30まで）、月曜休み",
+      "url": "https://mmag.pref.gunma.jp/exhibition/exhibition-7218",
+      "checked": "2026-11-27"
+    },
+    {
+      "title": "きらくやまイルミネーション2026",
+      "pref": "茨城",
+      "place": "きらくやまふれあいの丘 茨城県つくばみらい市",
+      "when": "12/1〜12/25",
+      "start": "2026-12-01",
+      "ends": "2026-12-25T20:30",
+      "note": "つくばみらい市｜16:30〜20:30。休館日と雨の日は点灯なし。12/13は豚汁のふるまいとクリスマスコンサート",
+      "url": "https://www2.tm-shakyo.jp/2026/10/2026-2.html",
+      "checked": "2026-11-27"
+    },
+    {
+      "title": "全肉祭in茨城",
+      "pref": "茨城",
+      "place": "茨城県ひたちなか市新光町41-1",
+      "when": "11/28〜11/29",
+      "start": "2026-11-28",
+      "ends": "2026-11-29T21:00",
+      "note": "ひたちなか市｜肉料理の屋台が集まる。10:00〜21:00",
+      "url": "https://kihokumon.wixsite.com/zennikusai/ibaraki",
+      "checked": "2026-11-27"
+    },
+    {
+      "title": "世界遺産検定×東武ワールドスクウェア",
+      "pref": "栃木",
+      "place": "東武ワールドスクウェア 栃木県日光市",
+      "when": "10/1〜3/31",
+      "start": "2026-10-01",
+      "ends": "2027-03-31T16:00",
+      "note": "日光市｜クイズラリーは無料（入園は大人2,800円・小人1,400円）。AR謎解きは別料金",
+      "url": "https://www.tobuws.co.jp/storage/pdfs/6aaa33343de05.pdf",
+      "checked": "2026-11-27"
     }
   ]
 }
