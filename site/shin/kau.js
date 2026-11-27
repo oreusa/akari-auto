@@ -60,7 +60,7 @@ myBox();
 function card(c){var b=c.best,sh=c.sh,mx=0;Object.keys(sh).forEach(function(w){mx=Math.max(mx,sh[w].u)});
   return '<button class="kc" data-k="'+c.k+'"><span class="ki">'+icon(c.k)+'</span>'+(c.dr?'<span class="dr">値下がり</span>':"")+'<b class="knm">'+esc(c.nm)+'</b>'+
    '<span class="kp"><small>'+per(c,b)+'</small><strong><span data-n="'+Math.round(b.u)+'" data-f="1">0</span>円</strong></span>'+
-   '<span class="ks">'+["楽天","Yahoo!"].map(function(w){var o=sh[w];return o?'<span class="'+(w===b.w?"win":"")+'"><em>'+w+'</em><i><i data-w="'+(o.u/mx).toFixed(3)+'"></i></i></span>':'<span class="no"><em>'+w+'</em><i></i></span>'}).join("")+'</span></button>'}
+   '<span class="ks">'+["楽天","Yahoo!"].map(function(w){var o=sh[w];return o?'<span class="'+(w===b.w?"win":"")+'"><em>'+w+'</em><i><i data-w="'+(o.u/mx).toFixed(3)+'"></i></i><b>'+Math.round(o.u).toLocaleString("ja-JP")+'円</b></span>':'<span class="no"><em>'+w+'</em><i></i><b>なし</b></span>'}).join("")+'</span></button>'}
 var G=[["","すべて"]].concat(D.groups.map(function(g){return [g[0],g[0]]})),cur="";
 S_.seg($("#seg"),G,cur,function(v){cur=v;grid(true)});
 function grid(anim){var ks=cur?D.groups.filter(function(g){return g[0]===cur})[0][1]:D.cats.map(function(c){return c.k});
