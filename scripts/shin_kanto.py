@@ -159,7 +159,7 @@ REL = [["おでかけ", "/odekake"], ["家と土地", "/fudosan-list"], ["おか
 SEC = {"Odekake": "/odekake", "Home & Land": "/fudosan-list", "Shopping": "/okaimono", "New Shops": "/kaiten"}
 # 11/20 owner「統一されてない・整理されてない」：MENU の項目と並び順は分野ごとにここ1か所だけ（関西 tools/shin/build.py の MENUS・skin.js と同じ形）
 MENUS = {
-    "Odekake": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"], ["泊まり", "/tomari"], ["初詣", "/hatsumode"], ["年末年始のごみ・役所", "/nenmatsu"]],
+    "Odekake": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"], ["泊まり", "/tomari"], ["初詣", "/hatsumode"], ["年末年始のごみ・役所", "/nenmatsu"], ["クリスマス", "/christmas"]],
     "Home & Land": [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["まちランキング", "/ranking"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["解体の費用と補助金", "/kaitai"]],
     "Shopping": [["日用品の値段くらべ", "/okaimono"], ["本当に安い？", "/nesage"], ["お得な物", "/otoku"], ["ふるさと納税", "/furusato"], ["初売り・福袋", "/hatsuuri"]],
     "New Shops": [["関東の開店・閉店", "/kaiten"]],
