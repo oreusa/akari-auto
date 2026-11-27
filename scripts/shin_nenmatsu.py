@@ -144,3 +144,75 @@ def pages(region, site, hpath, gpath):
                     {"h1": f"{region}の年末年始のごみ・役所", "sub": f"2026-2027・{len(g)}市区", "K": {"gomi": ["年末年始", "#4F7A6B"]}, "cnt": "市区", "unit": "市区", "view": "list",
                      "note": "収集日は地区で違う所が多いので、自分の地区は各市区の公式の表で確かめてください。"}, g))
     return out
+
+
+# ---------- 11/27 月：1件ずつのページ（/hatsuuri/<id>・/nenmatsu/<id>・/christmas/<id>・/toshikoshi/<id>） ----------
+# 検索の帳面で、開店の1店ページ（「◯◯ いつ開店」に1件1ページで答える）が一番見られていた → 年末年始も「◯◯市 年末年始 ごみ」「◯◯ 初売り 2027」に1件1ページで答える。
+# 関西 tools/shin/lists.py・関東 scripts/shin_kanto_lists.py から同じ形で呼ぶ。中身は一覧と同じ行（夜が公式で集めた物）だけ。
+def machi_map(mdir):
+    """街のページの名前 → /machi/<id>（ごみのページから「この街の家と土地の相場」へ1本）"""
+    out = {}
+    if not os.path.isdir(mdir): return out
+    for f in os.listdir(mdir):
+        if not f.endswith(".html"): continue
+        try: m = re.search(r"<title>([^<｜|]*?)の地価", open(os.path.join(mdir, f), encoding="utf-8").read(3000))
+        except Exception: m = None
+        if m: out[m.group(1)] = "/machi/" + f[:-5]
+    return out
+
+
+def _e(s):
+    import html as _h
+    return _h.escape(str(s or ""), quote=True)
+
+
+def details(name, items, region, site, machi=None, today=None):
+    """一覧の行 → [(path, url, title, desc, data)]。一覧の行には it["sp"]（くわしいページ）を足す"""
+    import urllib.parse as _up
+    today = today or datetime.date.today()
+    machi = machi or {}
+    LBL = {"hatsuuri": "初売り・福袋2027", "nenmatsu": "年末年始のごみ・役所", "christmas": "クリスマスの催し", "toshikoshi": "除夜の鐘・年越し"}[name]
+    out = []
+    for it in items:
+        it["sp"] = f"/{name}/{it['id']}"
+    for it in items:
+        n, pf, rows = it["t"], it.get("a") or it["p"], it.get("rows", [])
+        rv = {a: b for a, b in rows}
+        if name == "hatsuuri":
+            title = f"{n}の初売り2027はいつ？元日の営業・福袋・閉店時刻｜{pf}｜{site}"
+            sub = f"{pf}・初売り2027"
+            desc = f"{n}の2027年の初売り。元日・1/2：{rv.get('元日・1/2', '公式で確認')}。初売り：{rv.get('初売り', '公式で確認')}。福袋：{rv.get('福袋', '公式で確認')}。"
+        elif name == "nenmatsu":
+            title = f"{n}の年末年始のごみ収集2026-2027｜最終日・年始の開始・粗大ごみ・役所の休み｜{site}"
+            sub = f"{pf}・年末年始のごみと役所"
+            desc = f"{n}の年末年始。ごみの収集：{rv.get('ごみの収集', '公式で確認')}。役所の休み：{rv.get('役所の休み', '公式で確認')}。"
+        elif name == "toshikoshi":
+            title = f"{n} 2026-2027｜大晦日の時間・人数・料金｜{pf}｜{site}"
+            sub = f"{pf}・除夜の鐘・年越し"
+            desc = f"{n}（{it.get('v') or pf}）。12/31の時間：{rv.get('12/31の時間', '公式で確認')}。人数・料金：{rv.get('人数・料金', '公式で確認')}。"
+        else:
+            title = f"{n}｜期間・時間・入場料｜{pf}のクリスマス2026｜{site}"
+            sub = f"{pf}・クリスマスの催し"
+            desc = f"{n}（{it.get('v') or pf}）。期間：{rv.get('期間', '公式で確認')}。時間：{rv.get('時間', '公式で確認')}。入場料：{rv.get('入場料', '公式で確認')}。"
+        desc = desc[:150]
+        big = '<div class="big">' + "".join(f'<div class="w"><span>{_e(a)}</span><b>{_e(b)}</b></div>' for a, b in rows) + "</div>"
+        q = _up.quote(it.get("mq") or f"{n} {pf}")
+        act = ('<div class="oact">' + (f'<a class="dbtn" href="{_e(it["u"])}" target="_blank" rel="noopener" data-k="1件｜公式">{_e(it.get("ub") or "公式の案内を見る")} ↗</a>' if it.get("u") else "")
+               + f'<a class="dbtn2" href="https://www.google.com/maps/search/?api=1&amp;query={q}" target="_blank" rel="noopener" data-k="1件｜地図">地図アプリで開く</a></div>')
+        note = ('<p class="dnote">収集日は地区で違う所が多いので、自分の地区は市区の公式の表で確かめてください。</p>' if name == "nenmatsu" else
+                '<p class="dnote">各主催・各店の公式の案内をもとにしています。変わることがあるので、出かける前に公式の案内をご確認ください。「公式で確認」は、まだ確かめられていない所です。</p>')
+        html_ = '<section class="dsec osp">' + big + act + note + "</section>"
+        if name == "hatsuuri":
+            html_ += (f'<section class="dsec"><h2>ネットで買える福袋</h2><div class="oact"><a class="dbtn2" href="{_e(RAKUTEN)}" target="_blank" rel="noopener sponsored" data-k="1件｜楽天 福袋">楽天市場の福袋2027を見る ↗</a></div>'
+                      '<p class="dnote">楽天市場の検索ページです（広告・PR）。</p></section>')
+        mk = max((k for k in machi if n.startswith(k) or (it.get("v") or "").startswith(k)), key=len, default="")
+        sibs = [x for x in items if x is not it and x.get("p") == it.get("p")][:8]
+        if sibs:
+            html_ += (f'<section class="dsec"><h2>{_e(it["p"])}のほかの{_e(LBL.split("・")[0] if name != "nenmatsu" else "市区")}</h2><div class="drel">'
+                      + "".join(f'<a href="{x["sp"]}" data-k="1件｜同じ府県">{_e(x["t"])}<small>{_e(x.get("hk", ""))[:40]}</small></a>' for x in sibs) + "</div></section>")
+        rel = [(f"{region}の{LBL}（一覧）", f"/{name}")]
+        if mk: rel.append((f"{mk}の家と土地の相場", machi[mk]))
+        html_ += ('<section class="dsec"><h2>あわせて見る</h2><div class="drel">'
+                  + "".join(f'<a href="{u}" data-k="あわせて：{_e(l)}">{_e(l)}</a>' for l, u in rel) + "</div></section>")
+        out.append((f"{name}/{it['id']}", it["sp"], title, desc, {"h1": n, "sub": sub, "html": html_, "js": ""}))
+    return out
