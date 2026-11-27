@@ -20,7 +20,7 @@ function when(at){var m=/(\d{4})-(\d\d)-(\d\d) (\d\d:\d\d)/.exec(at||"");return 
 function kana(s){return String(s||"").replace(/[ァ-ン]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96)}).replace(/\s/g,"")}
 var SYN={"といれ":"tp","といぺ":"tp","てぃっしゅ":"tissue","はなかみ":"tissue","おむつ":"diaper","おしり":"wipes","みず":"water","すい":"water","たんさん":"soda","こめ":"rice","おこめ":"rice","ちゃ":"tea","おちゃ":"tea","こーひー":"coffee","まめ":"beans","せんざい":"detergent","せんたく":"detergent","じゅうなん":"softener","しゃんぷー":"shampoo","ぼでぃ":"bodysoap","しょっき":"dish","だいどころ":"dish","ごみ":"trash","ぶくろ":"trash","でんち":"battery","ますく":"mask","ぱすた":"pasta","すぱげ":"pasta","いぬ":"dogfood","どっぐ":"dogfood","ねこ":"catfood","きゃっと":"catfood"};
 
-S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">日用品の値段くらべ</h1><p class="h1p">楽天・Yahoo!ショッピング・Amazon を1つの画面で</p>'+(document.documentElement.classList.contains("lk-kn")?'<p class="kno kno2"><span>ほかに</span><a href="/nesage">値下がりした物</a><a href="/furusato">ふるさと納税</a></p>':'')+
+S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">日用品の値段くらべ</h1><p class="h1p">楽天とYahoo!ショッピングの値段を1つの画面で（Amazonは押すと検索で開きます）</p>'+(document.documentElement.classList.contains("lk-kn")?'<p class="kno kno2"><span>ほかに</span><a href="/nesage">値下がりした物</a><a href="/furusato">ふるさと納税</a></p>':'')+
  '<div class="fnd"><label class="fin">'+S_.IC.find+'<input id="q" type="search" placeholder="品物で探す（例：ティッシュ、おむつ）" autocomplete="off" enterkeyhint="search"></label><div class="sug" id="sug"></div></div>'+
  '<div class="tiles" id="tl"></div><p class="upd"><i class="dot"></i><span id="at"></span></p></section>'+
  '<div id="bfx"></div><div id="myx"></div>'+
@@ -29,8 +29,8 @@ S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">日�
  '<p class="cr kcr">1L・1枚など同じ量あたりの値段で比べています。値段は調べた時のもので、お店で変わることがあります。お店へのリンクは広告（PR）です。</p></div>';
 
 function head(){$("#tl").innerHTML=
-  '<button data-a="w"><small>楽天が安い</small><b><span data-n="'+(ST.win["楽天"]||0)+'">0</span><u>/ '+D.cats.length+'種類</u></b></button>'+
-  '<button data-a="w"><small>Yahoo!が安い</small><b><span data-n="'+(ST.win["Yahoo!"]||0)+'">0</span><u>/ '+D.cats.length+'種類</u></b></button>'+
+  '<button data-a="w"><small>楽天の方が安い</small><b><span data-n="'+(ST.win["楽天"]||0)+'">0</span><u>/ '+D.cats.length+'種類</u></b></button>'+
+  '<button data-a="w"><small>Yahoo!の方が安い</small><b><span data-n="'+(ST.win["Yahoo!"]||0)+'">0</span><u>/ '+D.cats.length+'種類</u></b></button>'+
   '<button data-a="drop"><small>値下がり中</small><b><span data-n="'+ST.dr+'">0</span><u>件</u></b><i>→</i></button>';
   $("#at").textContent=when(D.at)+" に調べた値段・"+D.cats.reduce(function(s,c){return s+c.o.length},0)+"件から";S_.counts($("#tl"))}
 head();

@@ -244,7 +244,7 @@ function sellCta(){try{var s=CFG.sell;if(!s||$("#sellc"))return;var t=s.n?{n:s.n
   function fq(){return $("#rq")||$("#q")}var a=document.createElement("a");a.id="sellc";a.className="sellc";
   if(s.ad){a.rel="nofollow sponsored noopener";a.target="_blank"}
   function draw(){a.href=sellUrl(s,t);a.setAttribute("data-k","売る入口｜"+location.pathname+(t?"｜"+t.n:""));
-    a.innerHTML="<b>いくらで売れるか無料で聞く<span>（"+esc(t?t.n:fq()?"街をえらぶ":(s.any||"お住まいの街"))+"）</span></b><small>"+esc(s.sm||"")+"</small><i>›</i>"}
+    a.innerHTML="<b>いくらで売れるか無料で聞く<span>（"+esc(t?t.n:fq()?"街をえらぶ":(s.any||"お住まいの街"))+"）</span></b><small>"+esc(s.ad&&!/広告/.test(s.sm||"")?(s.sm?s.sm+"・":"")+"外部の査定サイトが開きます（広告）":(s.sm||""))+"</small><i>›</i>"}
   draw();a.addEventListener("click",function(e){if(!t&&fq()){e.preventDefault();var q=fq();q.focus();q.scrollIntoView({block:"center",behavior:RM?"auto":"smooth"})}});
   addEventListener("tn-town",function(e){if(!e.detail||!e.detail.n)return;t=e.detail;try{sessionStorage.setItem("tn_sell",JSON.stringify(t))}catch(_){}draw()});
   var m=$("#main"),h=m&&m.querySelector(".hero"),qh=h&&h.querySelector(".qr-h");if(qh)qh.parentNode.insertBefore(a,qh);else if(h&&h.parentNode)h.parentNode.insertBefore(a,h.nextSibling);else if(m){var w=m.querySelector(".wrap")||m;w.insertBefore(a,w.firstChild)}
