@@ -603,7 +603,7 @@ def main():
             lab = {"open": "開店", "pop": "期間限定", "close": "閉店"}[x["k"]]
             wd = "月火水木金土日"[d.weekday()]
             it = {"t": x["n"], "p": x["p"], "a": x.get("pl") or "", "k": g, "w": b, "u": x["u"], "ub": "公式の発表を見る", "id": K.slug(x),
-                  "d": f"{d.month}/{d.day}（{wd}）{lab}", "hk": x.get("pt", ""),
+                  "d": f"{d.month}/{d.day}（{wd}）{lab}", "hk": K.ptc(x),
                   "bg": (h or lab) if b != "close" else "閉店", "bgc": "off" if b == "close" else ("pop" if not h else ""),
                   "rows": [r for r in [["日", f"{d.month}月{d.day}日（{wd}）{lab}" + (f"〜{x['end']}" if x.get("end") else "")], ["場所", x.get("pl") or x["p"]], ["時間", x.get("tm") or ""]] if r[1]],
                   "mq": (x.get("pl") or "") + " " + x["n"], "big": ("あと" + str((d - datetime.date.fromisoformat(TD)).days) + "日で" + lab if x["d"] > TD else ("きょう" + lab if x["d"] == TD else ""))}
