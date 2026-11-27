@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-26 22:27",
+  "at": "2026-11-27 09:22",
   "cats": [
     {
       "key": "water",
       "title": "水（ミネラルウォーター）",
       "unit": "1L",
       "seen": 120,
-      "read": 47,
+      "read": 48,
       "ok": 16,
-      "avg": 161.4,
+      "avg": 163.0,
       "rmin": 1000,
       "top": [
         {
@@ -139,7 +139,7 @@
           "price": 3007,
           "per": 125.3,
           "amt": "500ml×48本",
-          "rc": 1035,
+          "rc": 1036,
           "av": 4.8,
           "shop": "リカーBOSS 楽天市場店",
           "plain": "https://item.rakuten.co.jp/liquor-boss/10004086/",
@@ -248,7 +248,7 @@
           "price": 7998,
           "per": 799.8,
           "amt": "10kg",
-          "rc": 1272,
+          "rc": 1273,
           "av": 4.69,
           "shop": "農家からの贈り物 楽天市場店",
           "plain": "https://item.rakuten.co.jp/komenouka/10000014/",
@@ -485,7 +485,7 @@
       "seen": 60,
       "read": 46,
       "ok": 18,
-      "avg": 370.3,
+      "avg": 372.6,
       "rmin": 50,
       "top": [
         {
@@ -840,7 +840,7 @@
       "seen": 150,
       "read": 30,
       "ok": 3,
-      "avg": 2489.1,
+      "avg": 2494.4,
       "rmin": 100,
       "top": [
         {
@@ -919,9 +919,9 @@
       "title": "ボディソープ（詰め替え）",
       "unit": "1L・1kg",
       "seen": 88,
-      "read": 22,
+      "read": 21,
       "ok": 6,
-      "avg": 1140.3,
+      "avg": 1180.5,
       "rmin": 20,
       "top": [
         {
@@ -1079,18 +1079,6 @@
       "amazon": [],
       "yahoo": [
         {
-          "name": "食器用洗剤 JOY 詰め替え 業務用 4000g ジョイ キッチン用洗剤 4L…",
-          "price": 2500,
-          "per": 625.0,
-          "amt": "4L",
-          "rc": 79,
-          "av": 4.63,
-          "shop": "メガストア Yahoo!店",
-          "bd": "ジョイ",
-          "url": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3786665&pid=892753201&vc_url=https%3A%2F%2Fstore.shopping.yahoo.co.jp%2Fpetkan%2Fm7269456.html",
-          "img": "https://item-shopping.c.yimg.jp/i/g/petkan_m7269456"
-        },
-        {
           "name": "食器用洗剤 JOY 業務用 4000g ジョイ キッチン用洗剤 プロフェッショナル…",
           "price": 2980,
           "per": 745.0,
@@ -1133,7 +1121,7 @@
           "price": 2680,
           "per": 29.8,
           "amt": "150組×60箱",
-          "rc": 283,
+          "rc": 284,
           "av": 4.74,
           "shop": "坪野谷紙業",
           "plain": "https://item.rakuten.co.jp/tsubonoya/10000023/",
@@ -1147,7 +1135,7 @@
           "price": 2180,
           "per": 36.3,
           "amt": "150組×40箱",
-          "rc": 515,
+          "rc": 516,
           "av": 4.57,
           "shop": "アイリスオーヤマ公式 楽天市場店",
           "plain": "https://item.rakuten.co.jp/irisplaza-r/10156163/",
@@ -1218,9 +1206,9 @@
       "title": "おむつ",
       "unit": "1枚",
       "seen": 120,
-      "read": 47,
-      "ok": 47,
-      "avg": 61.1,
+      "read": 45,
+      "ok": 45,
+      "avg": 58.7,
       "rmin": 0,
       "top": [
         {
@@ -1385,7 +1373,7 @@
       "seen": 145,
       "read": 84,
       "ok": 5,
-      "avg": 18.5,
+      "avg": 19.2,
       "rmin": 50,
       "top": [
         {
@@ -1656,7 +1644,7 @@
           "price": 598,
           "per": 10.0,
           "amt": "60枚",
-          "rc": 4341,
+          "rc": 4342,
           "av": 4.46,
           "shop": "メガストア Yahoo!店",
           "bd": "アイリスオーヤマ",
@@ -1684,7 +1672,7 @@
       "seen": 128,
       "read": 80,
       "ok": 23,
-      "avg": 690.5,
+      "avg": 688.6,
       "rmin": 50,
       "top": [
         {
@@ -2011,7 +1999,7 @@
       "seen": 111,
       "read": 61,
       "ok": 49,
-      "avg": 1533.8,
+      "avg": 1533.7,
       "rmin": 100,
       "top": [
         {
