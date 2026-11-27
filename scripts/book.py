@@ -1262,7 +1262,11 @@ def after_check(cfg, state, now):
                 if ig and r["id"] in errs:
                     # 10/29 インスタはBufferが「エラー」でも出ていて、出し直しで2つ並んだ（オーナーが1つ消した）→出し直さない
                     append_log(day, f"{slot} {s} Bufferでエラー（インスタは出ていることがあるので出し直さない）")
-                elif r.get("texts") and int(r.get("retried") or 0) < 2 and now - due < timedelta(hours=4):
+                elif not ig and r["id"] in errs:
+                    # 11/27 オーナー「関西と関東で差をつけたくない」：関西は出し直しをしない（エラー0）。関東も Buffer の「エラー」では出し直さない。
+                    # Threads もインスタと同じく「エラー」でも出ていることがあり、出し直すと同じ文が2本並ぶおそれ（11/15・16・20×3・25 の6回）
+                    append_log(day, f"{slot} {s} Bufferでエラー（出ていることがあるので出し直さない。夜の点検で見る）")
+                elif r.get("texts") and int(r.get("retried") or 0) < 1 and now - due < timedelta(hours=4):
                     # 11/20 Threads の「An unknown error」が1日3本。1回目の出し直しも同じエラーで落ちた（07:15）→ 出し直しは2回まで・2回目は30分あける
                     r["retried"] = int(r.get("retried") or 0) + 1
                     when = (now + timedelta(minutes=15 if r["retried"] == 1 else 30)).astimezone(timezone.utc)

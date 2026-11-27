@@ -114,15 +114,22 @@ with tempfile.TemporaryDirectory() as d:
     book.run(datetime(2026, 10, 24, 18, 40, tzinfo=lib.JST))
     ok(len(calls) == 2 and calls[0][1] == "2026-10-24T09:55:00.000Z", f"遅れたときの時刻がおかしい: {calls}")
 
-    # 出たかの確認：Bufferでエラー → 1回だけ出し直す
+    # 出たかの確認：Bufferでエラー → 出し直さない（11/27 関西と同じ。エラーでも出ていて2本並ぶのを防ぐ）
     calls.clear()
     st = {"2026-10-24 18:15": {"twitter": {"id": "E1", "at": "18:15", "texts": ["a", "b"], "kind": "通常"}}}
     lib.save_json(os.path.join(d, "state", "booked.json"), st)
     book.buffer_posts = lambda cfg, sts, a, b, channel_ids=None: [{"id": "E1", "channelService": "twitter", "status": "error"}] if "error" in sts else []
     book.run(datetime(2026, 10, 24, 18, 50, tzinfo=lib.JST))
-    redo = lambda: [c for c in calls if c[2] == ["a\n", "b"]]  # noqa: E731
-    ok(len(redo()) == 1 and redo()[0][0] == "twitter", f"出なかった投稿を出し直さない: {calls}")
-    book.run(datetime(2026, 10, 24, 19, 50, tzinfo=lib.JST))
+    redo = lambda: [c for c in calls if c[2] and c[2][0].startswith("a\n")]  # noqa: E731
+    ok(len(redo()) == 0, f"Bufferのエラーで出し直した（同じ文が2本並ぶおそれ）: {calls}")
+    # 60分すぎても「出た」も「エラー」も無い（Bufferが送っていない）→ 1回だけ出し直す
+    calls.clear()
+    st = {"2026-10-24 18:15": {"twitter": {"id": "E2", "at": "18:15", "texts": ["a", "b"], "kind": "通常"}}}
+    lib.save_json(os.path.join(d, "state", "booked.json"), st)
+    book.buffer_posts = lambda cfg, sts, a, b, channel_ids=None: []
+    book.run(datetime(2026, 10, 24, 19, 20, tzinfo=lib.JST))
+    ok(len(redo()) == 1 and redo()[0][0] == "twitter", f"送られていない投稿を出し直さない: {calls}")
+    book.run(datetime(2026, 10, 24, 20, 30, tzinfo=lib.JST))
     ok(len(redo()) == 1, "出し直しを2回以上した")
 
     # 長すぎる×：Threadsは同じ文で通らない → その場で代わりの文で予約する
