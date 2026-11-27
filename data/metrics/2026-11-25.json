@@ -1,6 +1,6 @@
 {
   "day": "2026-11-25",
-  "fetchedAt": "2026-11-26T08:47+09:00",
+  "fetchedAt": "2026-11-27T09:01+09:00",
   "posts": [
     {
       "service": "threads",
@@ -12,8 +12,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.78,
-        "views": 36,
+        "engagementRate": 2.44,
+        "views": 41,
         "quotes": 0,
         "reposts": 0
       }
@@ -28,9 +28,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.17,
+        "engagementRate": 4,
         "reposts": 0,
-        "impressions": 96,
+        "impressions": 125,
         "clicks": 0
       }
     },
@@ -45,12 +45,12 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 7,
+        "views": 8,
         "shares": 0,
         "saves": 0,
-        "totalTimeWatched": 0.59,
-        "averageTimeWatched": 4.46,
-        "reach": 7
+        "totalTimeWatched": 0.61,
+        "averageTimeWatched": 4.08,
+        "reach": 8
       }
     },
     {
@@ -63,8 +63,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 14.29,
-        "views": 7,
+        "engagementRate": 11.11,
+        "views": 9,
         "quotes": 0,
         "reposts": 0
       }
@@ -79,8 +79,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 5,
-        "views": 20,
+        "engagementRate": 4.35,
+        "views": 23,
         "quotes": 0,
         "reposts": 0
       }
@@ -95,8 +95,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2.13,
-        "views": 47,
+        "engagementRate": 1.05,
+        "views": 95,
         "quotes": 0,
         "reposts": 0
       }
@@ -111,9 +111,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 1.32,
+        "engagementRate": 1.02,
         "reposts": 0,
-        "impressions": 76,
+        "impressions": 98,
         "clicks": 0
       }
     },
@@ -127,9 +127,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 5.77,
+        "engagementRate": 4.17,
         "reposts": 0,
-        "impressions": 52,
+        "impressions": 72,
         "clicks": 0
       }
     },
@@ -143,8 +143,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 9.09,
-        "views": 11,
+        "engagementRate": 7.14,
+        "views": 14,
         "quotes": 0,
         "reposts": 0
       }
@@ -159,9 +159,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.85,
+        "engagementRate": 4.31,
         "reposts": 0,
-        "impressions": 165,
+        "impressions": 209,
         "clicks": 0
       }
     },
@@ -175,8 +175,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.76,
-        "views": 21,
+        "engagementRate": 3.23,
+        "views": 31,
         "quotes": 0,
         "reposts": 0
       }
@@ -191,8 +191,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 14.29,
-        "views": 7,
+        "engagementRate": 5,
+        "views": 20,
         "quotes": 0,
         "reposts": 0
       }
@@ -206,9 +206,9 @@
       "img": 1,
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 2.33,
+        "views": 43,
         "quotes": 0,
         "reposts": 0
       }
@@ -223,9 +223,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 4.35,
+        "engagementRate": 4.29,
         "reposts": 0,
-        "impressions": 46,
+        "impressions": 70,
         "clicks": 0
       }
     },
@@ -238,9 +238,9 @@
       "img": 1,
       "metrics": {
         "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "comments": 1,
+        "engagementRate": 5.88,
+        "views": 17,
         "quotes": 0,
         "reposts": 0
       }
@@ -255,9 +255,9 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 2,
+        "engagementRate": 1.2,
         "reposts": 0,
-        "impressions": 50,
+        "impressions": 83,
         "clicks": 0
       }
     },
@@ -268,7 +268,17 @@
       "first": "街の調査で見つけた、関東おでかけリスト",
       "url": "https://www.instagram.com/reel/DgKi0NmhQNF/",
       "img": null,
-      "metrics": {}
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 7,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.12,
+        "averageTimeWatched": 1.01,
+        "reach": 7
+      }
     },
     {
       "service": "threads",
@@ -280,8 +290,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 1,
-        "engagementRate": 3.23,
-        "views": 31,
+        "engagementRate": 2.38,
+        "views": 42,
         "quotes": 0,
         "reposts": 0
       }
@@ -296,9 +306,9 @@
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 0.49,
+        "engagementRate": 0.38,
         "reposts": 0,
-        "impressions": 205,
+        "impressions": 262,
         "clicks": 0
       }
     }

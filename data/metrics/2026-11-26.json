@@ -1,0 +1,281 @@
+{
+  "day": "2026-11-26",
+  "fetchedAt": "2026-11-27T09:01+09:00",
+  "posts": [
+    {
+      "service": "threads",
+      "slot": "06:45",
+      "kind": "通常",
+      "first": "洗濯洗剤の詰め替えを1kgあたりでくらべると、いちばん安いのは620.9円でした",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgLhrLqmuAJ",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 16.67,
+        "views": 6,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "07:15",
+      "kind": "通常",
+      "first": "JR常磐線が通る千葉の3市で、住宅地の地価がいちばん上がったのは松戸市の+8.7",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgLlGd7lIiq",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.04,
+        "views": 49,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "07:16",
+      "kind": "通常",
+      "first": "草加駅の近くのTOBU icourt 2階に、マシンピラティスの「クラブピラティ",
+      "url": "https://x.com/1753799832798629888/status/2125715154062983182",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.22,
+        "reposts": 0,
+        "impressions": 45,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "08:15",
+      "kind": "通常",
+      "first": "江東区では、古い木造の家の解体に、費用の2分の1・上限100万円の助成があります",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgLr_AhGcN0",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 4,
+        "views": 25,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "09:15",
+      "kind": "通常",
+      "first": "前橋の白井屋ホテルで、画家ミロコマチコさんの光のアートを、無料で見られます。",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgLy2kbnaZ9",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 7.14,
+        "views": 14,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:16",
+      "kind": "通常",
+      "first": "メディコム・トイが、12/1（火）から12/13（日）まで横浜赤レンガ倉庫に期間",
+      "url": "https://x.com/1753799832798629888/status/2125745356809867500",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.04,
+        "reposts": 0,
+        "impressions": 147,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "09:46",
+      "kind": "通常",
+      "first": "アメリカのハンバーガー「カールスジュニア」の日本で4店目が、12/21（月）に池",
+      "url": "https://x.com/1753799832798629888/status/2125752909233115189",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.88,
+        "reposts": 0,
+        "impressions": 114,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "12:15",
+      "kind": "通常",
+      "first": "川崎駅のラゾーナ川崎プラザ1階に、弁当と惣菜の「なだ万 ラゾーナ川崎プラザ店」が",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgMHboeIXzr",
+      "img": 1,
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 4.35,
+        "views": 46,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "12:16",
+      "kind": "通常",
+      "first": "銀座のとんかつ「晴のちカツ」の2号店が、11/28（土）に新宿の明治安田新宿ビル",
+      "url": "https://x.com/1753799832798629888/status/2125790652197687452",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2,
+        "reposts": 0,
+        "impressions": 50,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "13:15",
+      "kind": "通常",
+      "first": "東武宇都宮線が通る栃木の3市町で、住宅地の地価がいちばん上がったのは宇都宮市の+",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgMOSwRjngQ",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 2.5,
+        "views": 40,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "15:15",
+      "kind": "通常",
+      "first": "今週末11/28・29、千葉市の稲毛海浜公園の砂浜を、オフロード車が走るのを無料",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgMcCNLlUKs",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "18:15",
+      "kind": "通常",
+      "first": "渋谷の公園通りに、個室17室・90席のせいろ蒸しの店「蒸しと酒 みちる 渋谷公園",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgMwp8Im_Fh",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "18:16",
+      "kind": "通常",
+      "first": "大手町に、カフェがついた観光案内所「The Visitor Place」が、11",
+      "url": "https://x.com/1753799832798629888/status/2125881256181211520",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 0.87,
+        "reposts": 0,
+        "impressions": 231,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "threads",
+      "slot": "21:15",
+      "kind": "通常",
+      "first": "東京都台東区の人口は5年で16,602人増え、+7.9%は都内51市区町村でいち",
+      "url": "https://www.threads.com/@usagichan_ai_si/post/DgNFQodFtzq",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "quotes": 0,
+        "reposts": 0
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "21:16",
+      "kind": "通常",
+      "first": "中野駅の「アトレ中野」が、12/9（水）の昼12時に開業します",
+      "url": "https://x.com/1753799832798629888/status/2125926553192153374",
+      "img": 1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 1,
+        "engagementRate": 1.3,
+        "reposts": 0,
+        "impressions": 77,
+        "clicks": 0
+      }
+    },
+    {
+      "service": "instagram",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "街の調査で見つけた、関東おでかけリスト",
+      "url": "https://www.instagram.com/reel/DgMRv9KxGtg/",
+      "img": null,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 8,
+        "shares": 0,
+        "saves": 0,
+        "totalTimeWatched": 0.63,
+        "averageTimeWatched": 5.41,
+        "reach": 8
+      }
+    },
+    {
+      "service": "twitter",
+      "slot": "おでかけリール",
+      "kind": "おでかけリール",
+      "first": "大山寺（伊勢原市）",
+      "url": "https://x.com/1753799832798629888/status/2125813096820167014",
+      "img": null,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "reposts": 0,
+        "impressions": 104,
+        "clicks": 0
+      }
+    }
+  ]
+}
