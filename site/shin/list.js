@@ -84,10 +84,10 @@ var cache={};
 function card(x){var key=x.i+(PG.near?"|"+S.o[0]:"");if(cache[key])return cache[key];var a;
   var hr=x.o?"/o/"+x.o:x.sp?x.sp:(x.u||"#");
   if(VIEW==="list")a=el('<a class="lr" href="'+esc(hr)+'" data-i="'+x.i+'" style="--gc:'+x.g[1]+'">'+(x.im?'<span class="lim" style="background-color:'+(x.th?avg(x.th):"var(--chip)")+'"><img alt="" loading="lazy" src="'+img(x)+'"></span>':"")+
-   '<span class="lb2"><span class="lb">'+(x.g[0]?'<span class="g">'+esc(x.g[0])+'</span>':"")+'<span>'+esc(x.p)+'</span>'+badge(x)+'</span><b>'+esc(x.t)+'</b>'+(x.hk?'<small class="hk1">'+esc(x.hk)+'</small>':"")+
+   '<span class="lb2"><span class="lb">'+(x.g[0]&&x.g[0]!=="その他"?'<span class="g">'+esc(x.g[0])+'</span>':"")+'<span>'+esc(x.p)+'</span>'+badge(x)+'</span><b>'+esc(x.t)+'</b>'+(x.hk?'<small class="hk1">'+esc(x.hk)+'</small>':"")+
    '<small>'+[when(x),sub(x)].filter(Boolean).join("・")+'</small></span><i class="ch">›</i></a>');
   else a=el('<a class="cd" href="'+esc(hr)+'" data-i="'+x.i+'" style="--gc:'+x.g[1]+'"><div class="im" style="background-color:'+(x.th?avg(x.th):"var(--chip)")+'">'+(x.im?'<img alt="" loading="lazy" decoding="async" src="'+img(x)+'">':tile(x))+'</div>'+
-   '<div class="lb">'+(x.g[0]?'<span class="g">'+esc(x.g[0])+'</span>':"")+'<span>'+esc(x.p)+'</span>'+badge(x)+'</div><h4>'+esc(x.t)+'</h4><div class="dt">'+(when(x)||"&nbsp;")+'</div><div class="vn">'+sub(x)+'</div></a>');
+   '<div class="lb">'+(x.g[0]&&x.g[0]!=="その他"?'<span class="g">'+esc(x.g[0])+'</span>':"")+'<span>'+esc(x.p)+'</span>'+badge(x)+'</div><h4>'+esc(x.t)+'</h4><div class="dt">'+(when(x)||"&nbsp;")+'</div><div class="vn">'+sub(x)+'</div></a>');
   var im=$("img",a);if(im){if(im.complete)im.classList.add("ld");else im.onload=function(){im.classList.add("ld")}}
   return cache[key]=a}
 var grid=$("#grid"),first=true;
@@ -111,7 +111,7 @@ function openItem(x,from){if(!x)return;var mq=encodeURIComponent(x.mq||((x.v||x.
   if(x.big)big=x.big;else if(x.s&&x.e){big=x.st==="up"?"あと"+diff(TD,x.s)+"日で始まります":x.left===0?"きょうまで":"終わりまで あと"+x.left+"日"}
   var tot=x.s&&x.e?Math.max(1,diff(x.s,x.e)):0,pc=tot&&x.st==="now"?Math.max(0,Math.min(tot,diff(x.s,TD)))/tot:0;
   S_.sheet((x.im?'<div class="pim" style="background-color:'+(x.th?avg(x.th):"var(--chip)")+'"><img src="'+img(x)+'" alt=""></div>':'<div class="pim0"></div>')+'<div class="bd" style="--gc:'+x.g[1]+'">'+
-   '<div class="lb">'+(x.g[0]?'<span class="g">'+esc(x.g[0])+'</span>':"")+'<span>'+esc(x.p)+(x.a?'・'+esc(x.a):"")+'</span></div><h2>'+esc(x.t)+'</h2>'+(x.hk?'<p class="hk">'+esc(x.hk)+'</p>':"")+
+   '<div class="lb">'+(x.g[0]&&x.g[0]!=="その他"?'<span class="g">'+esc(x.g[0])+'</span>':"")+'<span>'+esc(x.p)+(x.a?'・'+esc(x.a):"")+'</span></div><h2>'+esc(x.t)+'</h2>'+(x.hk?'<p class="hk">'+esc(x.hk)+'</p>':"")+
    (x.s&&x.e?'<div class="per"><div class="row"><span>'+md(x.s)+'</span><span>'+md(x.e)+'</span></div><div class="tr"><i data-w="'+pc.toFixed(3)+'" style="background:'+x.g[1]+'"></i>'+(x.st==="now"?'<b style="left:'+(pc*100)+'%;border-color:'+x.g[1]+'"></b>':"")+'</div><div class="big">'+esc(big)+'</div></div>':big?'<div class="per"><div class="big">'+esc(big)+'</div></div>':"")+
    (PG.near&&x.mn!=null?'<div class="nrb"><b>約'+x.mn+'分</b><span>'+esc(S.o[0])+'から '+x.km.toFixed(1)+'km（直線距離からの目安）</span></div>':"")+
    (x.rows&&x.rows.length?'<dl class="kv">'+x.rows.map(function(r){return '<dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd>'}).join("")+'</dl>':"")+

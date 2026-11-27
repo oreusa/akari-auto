@@ -24,6 +24,30 @@ FULL = {"東京": "東京都", "神奈川": "神奈川県", "埼玉": "埼玉県
 SLUG = {"東京": "tokyo", "神奈川": "kanagawa", "埼玉": "saitama", "千葉": "chiba", "茨城": "ibaraki", "栃木": "tochigi", "群馬": "gunma"}
 
 # 11/27 owner「稼げ」：都県の一覧（イルミ・紅葉）に、お金のリンクを1本だけ（本文の下・楽天トラベルの都県の宿）。関西 tools/shin/build.py YADO_PR と同じ
+
+# 11/27 owner「改善点ない？オシャレで素晴らしいUI/UX？」：同じ名前の店が同じ日に3店以上開く時（例：ピラティス5店）、一覧を埋めないよう1枚にまとめる。
+def _kt_group(kt):
+    import os as _o, collections as _c
+    out, used = [], set()
+    for i, a in enumerate(kt):
+        if i in used: continue
+        same = [j for j in range(i, len(kt)) if j not in used and kt[j]['w'] == a['w'] and kt[j]['d'] == a['d']
+                and len(_o.path.commonprefix([a['t'], kt[j]['t']])) >= 8]
+        if len(same) < 3:
+            out.append(a); continue
+        g = [kt[j] for j in same]; used.update(same)
+        pre = _o.path.commonprefix([x['t'] for x in g]).rstrip(' ・　')
+        rest = [x['t'][len(pre):].strip(' ・　') or x['p'] for x in g]
+        m = dict(a); m['t'] = f"{pre}（{len(g)}店）"
+        m['p'] = _c.Counter(x['p'] for x in g).most_common(1)[0][0]
+        m['k'] = _c.Counter(x['k'] for x in g).most_common(1)[0][0]
+        m['hk'] = f"同じ日に{len(g)}店：" + "・".join(f"{r}（{x['p']}）" for r, x in zip(rest, g))
+        m['a'] = "・".join(sorted({x['p'] for x in g}, key=[x['p'] for x in g].index))
+        m['rows'] = [(['場所', '・'.join(f"{r}（{x['p']}）" for r, x in zip(rest, g))] if r0[0] == '場所' else r0) for r0 in a.get('rows', [])]
+        m.pop('im', None); m.pop('cr', None); m.pop('cu', None)
+        out.append(m)
+    return out
+
 def YADO_PR(p, w):
     import urllib.parse as _u
     u = "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=" + _u.quote(f"https://travel.rakuten.co.jp/yado/{SLUG[p]}/", safe="")
@@ -616,6 +640,7 @@ def main():
                 _e = datetime.date.fromisoformat(x["end"]); it["rows"][0][1] = it["rows"][0][1].replace("〜" + x["end"], f"〜{_e.month}月{_e.day}日")
             if v: it.update({"im": v["img"], "cr": v["cr"], "cu": v.get("page", "")})
             kt.append(it)
+        kt = _kt_group(kt)
         kt.reverse()
         if kt:
             cn = {k: sum(1 for x in kt if x["w"] == k) for k in ("soon", "done", "close")}
