@@ -154,6 +154,23 @@ def slug(x):
     return x["d"].replace("-", "") + "-" + hashlib.sha1((x["n"] + "|" + x["u"]).encode()).hexdigest()[:6]
 
 
+
+# 11/27 owner「HP読みにくい・分かりにくい所ない？」：発表の文をそのまま写した「に新規出店！」「「店名」が○月○日にグランドオープン！」
+# （店名と日付のくり返し）・全角の英数字を、カードと1店のページで読みやすく直す。データ（夜・発表の写し）はそのまま。
+import unicodedata as _ud
+def ptc(x):
+    s = re.sub(r"[Ａ-Ｚａ-ｚ０-９＠]", lambda m: _ud.normalize("NFKC", m.group(0)), x.get("pt") or "").replace("\u3000", " ").strip()
+    s = re.sub(r"^[にがをへで][^。！!]{0,12}[！!。]\s*", "", s)
+    out = []
+    for z in re.split(r"(?<=[。！!])\s*", s):
+        if not z: continue
+        r = re.sub(r"[「『][^」』]{1,60}[」』]|\d{4}年|\d{1,2}月\d{1,2}日|\d{1,2}/\d{1,2}|[（(][月火水木金土日祝][)）]|グランド|リニューアル|オープン|開店|開業|出店|新規|いたしました|しました|します|決定|予定|[にがをはでへ・、。！!\s]", "", z)
+        if len(r) <= 2 and re.search(r"オープン|開店|開業|出店", z) and not re.search(r"プレ|先行|限定|記念|初", z):  # 店名と日付と「オープン」だけの文（名前・日付はカードの上に出ている）
+            continue
+        out.append(z)
+    s = "".join(out).strip()
+    return s
+
 def card(x):
     q = urllib.parse.quote(re.sub(r"（.*?）|「|」", " ", x["n"]) + " " + (x["pl"].split("・")[0] or x["p"]))
     end = f' data-end="{x["end"]}"' if x.get("end") else ""
@@ -182,11 +199,11 @@ def card(x):
             # 11/17 オーナー「おでかけ先の横にロゴつけてたけど開店閉店はなし？」→ おでかけと同じ絵のタイル（下に FOOD などの英字）＋日付の札＋あと何日
             f'<div class="dc cmb" style="--pc:{PCM.get(x["p"], "#8a8f98")}"><div class="ib"><svg viewBox="0 0 24 24">{ICON[ic]}</svg><span class="lb">{LBL.get(g, "SHOP")}</span></div>'
             f'<div class="dd{" tx" if fz else ""}"><b>{E(md)}</b>' + (f'<small class="ddw">{wd}</small>' if wd else "") + '</div><span class="cdn left"></span></div>'
-            f'<div class="bd"><div class="tp"><span class="gn">{svg(ic)}{E(g)}</span><span class="tag {x["k"]}">{E(lab)}</span>'
+            f'<div class="bd"><div class="tp"><span class="gn">{svg(ic)}{"" if g == "その他" else E(g)}</span><span class="tag {x["k"]}">{E(lab)}</span>'
             + (f'<span class="hs">{E(h1)}</span>' if h1 else "") + '</div>'
             + (f'<h3 class="nm"><a href="{E(x["u"])}" target="_blank" rel="noopener" data-k="公式の発表｜{E(x["n"])}">{E(x["n"])}</a></h3>' if is_chain(x) else
                f'<h3 class="nm"><a href="/kaiten/{slug(x)}" data-k="1店のページ｜{E(x["n"])}">{E(x["n"])}</a></h3>') +
-            f'<p class="pt">{E(x["pt"])}</p>'
+            (f'<p class="pt">{E(ptc(x))}</p>' if ptc(x) else "") +
             f'<p class="mt">{svg("pin", "mi")}<span>{place}{(" ・ " + E(stn)) if stn else ""}{("<i>" + E(x["tm"]) + "</i>") if x.get("tm") else ""}</span></p>'
             '<div class="ln">'
             f'<a class="src" href="{E(x["u"])}" target="_blank" rel="noopener" data-k="公式の発表｜{E(x["n"])}">公式の発表 ↗</a>'
@@ -461,11 +478,11 @@ def store_page(x, shell, near):
     chk = datetime.date.fromisoformat(x.get("added") or TODAY.isoformat())
     body = (f'<nav class="sp-bc" aria-label="現在地"><a href="/kaiten">関東の開店・閉店ニュース</a> › <a href="/kaiten#p={E(x["p"])}">{E(x["p"])}</a> › {E(x["n"])}</nav>'
             f'<div class="sp-hero"><div class="dc cmb" style="--pc:{PCM.get(x["p"], "#8a8f98")}"><div class="ib"><svg viewBox="0 0 24 24">{ICON[ic]}</svg><span class="lb">{LBL.get(g, "SHOP")}</span></div></div>'
-            f'<div><div class="tp"><span class="gn">{svg(ic)}{E(g)}</span><span class="tag {x["k"]}">{E(x.get("sub") or lab)}</span>'
+            f'<div><div class="tp"><span class="gn">{svg(ic)}{"" if g == "その他" else E(g)}</span><span class="tag {x["k"]}">{E(x.get("sub") or lab)}</span>'
             + (f'<span class="hs">{E(hatsu(x))}</span>' if hatsu(x) else "") + f'</div><h1>{E(x["n"])}</h1></div></div>'
             f'<div class="sp-when" data-d="{x["d"]}" data-k="{x["k"]}"><b>{E(fz or f"{d.month}/{d.day}")}<small>{"" if fz else "（" + JWD[d.weekday()] + "）"}{E(verb)}</small></b><span class="cd" id="cd"></span></div>'
             + sp_fig(x) +
-            f'<p class="sp-pt">{E(x["pt"])}</p>'
+            (f'<p class="sp-pt">{E(ptc(x))}</p>' if ptc(x) else "") +
             '<dl class="sp-dl">' + "".join(f"<dt>{a}</dt><dd>{b}</dd>" for a, b in rows) + "</dl>"
             '<div class="sp-btn">'
             f'<a class="p" href="{E(x["u"])}" target="_blank" rel="noopener" data-k="1店｜公式の発表ボタン">公式の発表を見る ↗</a>'
