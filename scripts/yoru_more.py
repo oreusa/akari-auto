@@ -56,6 +56,7 @@ def main():
         if not p: continue
         nm, r = p
         if D["rows"].get(nm, {}).get("day", "") > r["day"]: continue
+        if D["rows"].get(nm, {}).get("links"): r["links"] = D["rows"][nm]["links"]  # 手で足した公式リンクは残す
         D["rows"][nm] = r; n += 1
     json.dump(D, open(P, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     open(P, "a").write("\n")
