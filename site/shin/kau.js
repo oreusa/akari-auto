@@ -76,9 +76,11 @@ new IntersectionObserver(function(e){$("#bar").classList.toggle("stuck",!e[0].is
 function spark(h){if(!h||h.length<3)return "";var mx=Math.max.apply(null,h),mn=Math.min.apply(null,h),r=mx-mn||1,W=100,H=28;
   var pts=h.map(function(v,i){return (i/(h.length-1)*W).toFixed(1)+","+(H-2-(v-mn)/r*(H-4)).toFixed(1)}).join(" ");
   return '<svg class="spk" viewBox="0 0 100 28" preserveAspectRatio="none"><polyline points="'+pts+'"/></svg>'}
+/* 11/27 夜の点検「シングルとダブルが一緒・厚みで選べない」→ トイレットペーパーは1つずつに厚みの札（名前に無い物は「厚みの表示なし」） */
+function thick(c,o){if(c.k!=="tp")return "";var n=o.n||"",t=/ダブル/.test(n)?"ダブル":/シングル/.test(n)?"シングル":"厚みの表示なし";return '<span class="sp" style="background:var(--ink);color:var(--bg)">'+t+'</span>'}
 function row(c,o,i){var d=drop(o);
   return '<a class="of" href="'+esc(o.url)+'" target="_blank" rel="noopener sponsored" style="--sc:'+SC[o.w]+'"><span class="oi">'+(o.img?'<img src="'+esc(o.img)+'" alt="" loading="lazy">':icon(c.k))+'</span>'+
-   '<span class="ot"><span class="sp">'+o.w+'</span><b>'+esc(o.n)+'</b><small>'+esc(o.a)+(o.rc?'・★'+o.av+'（'+o.rc+'件）':"")+'</small>'+(d?'<em class="dr">30日でいちばん安い・'+d+'%下がった</em>':"")+'</span>'+
+   '<span class="ot"><span class="sp">'+o.w+'</span>'+thick(c,o)+'<b>'+esc(o.n)+'</b><small>'+esc(o.a)+(o.rc?'・★'+o.av+'（'+o.rc+'件）':"")+'</small>'+(d?'<em class="dr">30日でいちばん安い・'+d+'%下がった</em>':"")+'</span>'+
    '<span class="oprc"><strong>'+yen(o.p)+'</strong><small>'+per(c,o)+' '+yen(o.u)+'</small></span></a>'}
 function openKind(c){if(!c)return;var sh=c.sh,b=c.best,mx=0,bf=bfOf(c.k),amz=bf.filter(function(x){return x.w==="Amazon"})[0];
   Object.keys(sh).forEach(function(w){mx=Math.max(mx,sh[w].u)});var on=MY.indexOf(c.k)>=0,d=drop(b);
