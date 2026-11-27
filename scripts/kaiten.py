@@ -442,6 +442,25 @@ def shop_links(x):
             '</div></section>')
 
 
+
+# 11/27 月：1店のページから、その街の「家と土地の相場」（/machi/…）へ1本。検索の帳面で開店ページが一番見られている→街のページへ道を作る（Google が街のページを見つけやすく・売る相談への道）
+_MACHI = None
+def machi_link(pl2):
+    global _MACHI
+    if _MACHI is None:
+        _MACHI = {}
+        import glob
+        for f in glob.glob(os.path.join(os.path.join(SITE, "machi"), "*.html")):
+            try:
+                m = re.search(r"<title>([^<｜|]*?)の地価", open(f, encoding="utf-8").read(3000))
+            except Exception:
+                m = None
+            if m: _MACHI[m.group(1)] = "/machi/" + os.path.basename(f)[:-5]
+    ks = [k for k in _MACHI if pl2 and pl2.startswith(k)]
+    if not ks: return ""
+    k = max(ks, key=len)
+    return f'<p class="sp-more"><a href="{_MACHI[k]}" data-k="1店｜この街の相場">{E(k)}の家と土地の相場も見る →</a></p>'
+
 def store_page(x, shell, near):
     d = datetime.date.fromisoformat(x["d"])
     g, ic = genre(x)
@@ -496,6 +515,7 @@ def store_page(x, shell, near):
     pk = {"東京": "tokyo", "神奈川": "kanagawa", "埼玉": "saitama", "千葉": "chiba", "茨城": "ibaraki", "栃木": "tochigi", "群馬": "gunma"}.get(x["p"])
     if pk:  # 下の「あわせて見る」は一覧と同じ物がそのまま付くので、ここは府県のおでかけへの1本だけ
         body += f'<p class="sp-more"><a href="/odekake-{pk}" data-k="1店｜府県のおでかけ">{E(x["p"])}のおでかけ先も見る →</a></p>'
+    body += machi_link(pl2)
     url = BASE + "kaiten/" + slug(x)
     ldj = [{"@context": "https://schema.org", "@type": "NewsArticle", "headline": title[:110], "description": desc,
             "datePublished": (x.get("added") or x["d"]) + "T07:00:00+09:00", "dateModified": (x.get("added") or x["d"]) + "T07:00:00+09:00",
