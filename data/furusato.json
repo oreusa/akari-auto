@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-27 17:12",
+  "at": "2026-11-27 18:12",
   "cats": [
     {
       "key": "rice",
       "title": "お米",
       "unit": "kg",
       "seen": 180,
-      "read": 11,
-      "ok": 10,
-      "avg": 6.2,
+      "read": 10,
+      "ok": 9,
+      "avg": 6.6,
       "page": true,
       "top": [
         {
@@ -210,9 +210,9 @@
       "title": "水",
       "unit": "L",
       "seen": 179,
-      "read": 29,
+      "read": 30,
       "ok": 1,
-      "avg": 14.8,
+      "avg": 14.6,
       "page": false,
       "top": [
         {
