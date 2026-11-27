@@ -22,6 +22,13 @@ rd = lambda *p: json.load(open(os.path.join(R, *p), encoding="utf-8"))
 PREF = ["東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬"]
 FULL = {"東京": "東京都", "神奈川": "神奈川県", "埼玉": "埼玉県", "千葉": "千葉県", "茨城": "茨城県", "栃木": "栃木県", "群馬": "群馬県"}
 SLUG = {"東京": "tokyo", "神奈川": "kanagawa", "埼玉": "saitama", "千葉": "chiba", "茨城": "ibaraki", "栃木": "tochigi", "群馬": "gunma"}
+
+# 11/27 owner「稼げ」：都県の一覧（イルミ・紅葉）に、お金のリンクを1本だけ（本文の下・楽天トラベルの都県の宿）。関西 tools/shin/build.py YADO_PR と同じ
+def YADO_PR(p, w):
+    import urllib.parse as _u
+    u = "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=" + _u.quote(f"https://travel.rakuten.co.jp/yado/{SLUG[p]}/", safe="")
+    return {"h": f"{p}で泊まって{w}を見る", "t": f"楽天トラベルで{FULL[p]}の宿を見る", "u": u, "n": "楽天トラベルの都県の宿の一覧です（広告・PR）。"}
+
 PC = {"東京": "#D9775A", "神奈川": "#4F86C6", "埼玉": "#E09A3E", "千葉": "#3FA3B5", "茨城": "#5FA06A", "栃木": "#9C7BB8", "群馬": "#C2557A"}
 FL = {"東京": "#F7D9CC", "神奈川": "#D6E4F5", "埼玉": "#F8E4C4", "千葉": "#D0EBEF", "茨城": "#D8ECD4", "栃木": "#E6DBF1", "群馬": "#F6DCE6"}
 
@@ -550,7 +557,7 @@ def main():
             ni = sum(1 for i in il if i["p"] == p)
             if not ni: continue
             write(f"illumination-{SLUG[p]}.html", f"/illumination-{SLUG[p]}", f"{p}のイルミネーション2026-2027（{FULL[p]}）｜LIFE NOTE", cfg("/illumination"),
-                  dict(data, items=il, page={"h1": f"{p}のイルミネーション", "sub": f"2026-2027・{ni}か所", "p": p, "st": "pref"}), "odekake",
+                  dict(data, items=il, page={"h1": f"{p}のイルミネーション", "sub": f"2026-2027・{ni}か所", "p": p, "st": "pref", "pr": YADO_PR(p, "イルミネーション")}), "odekake",
                   f"{FULL[p]}のイルミネーション{ni}か所を、開催中・これから・無料に分けてまとめています。")
     if ky:
         write("koyo.html", "/koyo", "関東の紅葉2026｜見頃とライトアップ（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）｜LIFE NOTE", cfg("/koyo"),
