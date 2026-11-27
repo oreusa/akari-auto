@@ -3,7 +3,7 @@
 「未確認」「不明」「未照合」「要確認」の区切りは書かず、全部消えた欄は「公式で確認」（カードの公式リンクへ）。"""
 import datetime, hashlib, os, re
 
-NG = re.compile(r"未確認|不明|未照合|要確認|確認中")
+NG = re.compile(r"未確認|不明|未照合|要確認|確認中|断定|リンク先|を使用")
 RAKUTEN_XMAS = "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2582%25AF%25E3%2583%25AA%25E3%2582%25B9%25E3%2583%259E%25E3%2582%25B9%2520%25E3%2582%25AE%25E3%2583%2595%25E3%2583%2588%2F"
 RAKUTEN = "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E7%25A6%258F%25E8%25A2%258B%25202027%2F"
 
@@ -58,7 +58,8 @@ def gomi(path, region):
 
 def _md(t, today):
     """「11/27〜12/25」などから (始まり, 終わり) の日付。年は今日に近い方（1〜5月は次の年）"""
-    mm = re.findall(r"(\d{1,2})[/月](\d{1,2})", t or "")
+    t = re.sub(r"(\d{1,2})[/月](\d{1,2})日?〜(\d{1,2})(?![/月\d])", lambda m: f"{m.group(1)}/{m.group(2)}〜{m.group(1)}/{m.group(3)}", t or "")  # 12/18〜20 → 12/18〜12/20
+    mm = re.findall(r"(\d{1,2})[/月](\d{1,2})", t)
     if not mm: return "", ""
     def d(m, dd):
         m, dd = int(m), int(dd); y = today.year + (1 if m < 6 and today.month >= 6 else 0)

@@ -57,7 +57,7 @@ if(IEO){var _fa=(CFG.nav||[]).filter(function(n){return n.a==="find"})[0];CFG.na
 var KN=0;try{var _kq=location.search.match(/[?&]kn=([01])/);if(_kq)localStorage.setItem("tn_kn2",_kq[1]);KN=localStorage.getItem("tn_kn2")!=="0"}catch(e){}
 if(KN){document.documentElement.classList.add("lk-kn");
   var _kp=location.pathname.replace(/\.html$/,"").replace(/^\/shin(?=\/)/,"");
-  var _rm=/^\/(okaimono|nesage|otoku|furusato|kau|kaimawari|tanka|hatsuuri)/.test(_kp)?2:/^\/(o\/|odekake|illumination|koyo|ima|tomari|hatsumode|nenmatsu)/.test(_kp)?0:/^\/kaiten/.test(_kp)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|ranking|ie\b)/.test(_kp)?1:-1;
+  var _rm=/^\/(okaimono|nesage|otoku|furusato|kau|kaimawari|tanka|hatsuuri)/.test(_kp)?2:/^\/(o\/|odekake|illumination|koyo|ima|tomari|hatsumode|nenmatsu|christmas|toshikoshi)/.test(_kp)?0:/^\/kaiten/.test(_kp)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|ranking|ie\b)/.test(_kp)?1:-1;
   CFG.nav=[["おでかけ","map","/odekake"],["家と土地","inn","/fudosan-list"],["おかいもの","yen","/okaimono"],["開店閉店","buy","/kaiten"]].map(function(x,i){return {t:x[0],ic:x[1],href:x[2],cur:i===_rm}});
   if(CFG.menu)CFG.menu.rel=[["トップへ","/"]]}
 /* 11/22 owner「snsとかどこにあるの？」→ MENU の一番下に Instagram・Threads・X（見本 kn） */
@@ -259,7 +259,7 @@ function largeTitle(){var h=$(".h1t");if(!h)return;var tb=document.createElement
   /* 関東（燈のサイト）の /c は書き込みに1日の上限がある → 表示は送らず（_middleware.js が数える）、カードを押した数だけを「操作」の枠（f=card・1日100まで）で送る。人気順に使う */
   var K=/kanto|lifenote/.test(location.hostname);
   var P=location.pathname.replace(/^\/shin(?=\/)/,"").replace(/\.html$/,"").replace(/\/$/,"")||"/",
-      N={"/":"TOWN NOTE 入口","/odekake":"おでかけリスト","/illumination":"イルミネーション","/koyo":"紅葉ライトアップ","/ima":"いまから行ける","/tomari":"泊まり","/hatsuuri":"初売り・福袋","/nenmatsu":"年末年始のごみ・役所","/hatsumode":"初詣","/fudosan-list":"不動産リスト","/okaimono":"おかいもの","/kaiten":"開店・閉店","/ikura":"いくら","/uru":"売る前・買う前に","/jikka":"実家ノート","/furusato":"ふるさと納税","/nesage":"値下がり","/otoku":"お得"}[P]||(/^\/o\//.test(P)?"1件ページ":(document.title.split("｜")[0]||P).slice(0,30));
+      N={"/":"TOWN NOTE 入口","/odekake":"おでかけリスト","/illumination":"イルミネーション","/koyo":"紅葉ライトアップ","/ima":"いまから行ける","/tomari":"泊まり","/hatsuuri":"初売り・福袋","/nenmatsu":"年末年始のごみ・役所","/christmas":"クリスマス","/toshikoshi":"除夜の鐘・年越し","/hatsumode":"初詣","/fudosan-list":"不動産リスト","/okaimono":"おかいもの","/kaiten":"開店・閉店","/ikura":"いくら","/uru":"売る前・買う前に","/jikka":"実家ノート","/furusato":"ふるさと納税","/nesage":"値下がり","/otoku":"お得"}[P]||(/^\/o\//.test(P)?"1件ページ":(document.title.split("｜")[0]||P).slice(0,30));
   function s(k){if(O)return;if(K){var m=/^クリック：([^｜]*)｜(.*)$/.exec(k);if(!m)return;var u="/c?f=card&s="+encodeURIComponent(m[1].slice(0,16))+"&k="+encodeURIComponent(m[2].slice(0,40));try{if(!(navigator.sendBeacon&&navigator.sendBeacon(u,"")))fetch(u,{method:"POST",keepalive:true})}catch(e){}return}try{var b=JSON.stringify({k:k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true})}catch(e){}}
   window.SHIN_COUNT=s;
   /* 11/21 来た元・来訪：前のページ（assets/menu.js）だけが送っていて、shin に入れ替えた 11/19夜から「来た元」が 73→9 に落ちた。同じ名前・同じ分け方で1回の訪問に1度だけ送る（関東は _middleware.js が ?f= を数える・/c の上限があるので送らない） */
