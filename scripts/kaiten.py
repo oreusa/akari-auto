@@ -218,19 +218,19 @@ CSS = """<style>
 body{margin:0;background:#fff;color:#2B2622;font-family:"Zen Kaku Gothic New",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:480px;margin:0 auto;padding:0 16px 120px}
 .head{text-align:center;padding:30px 0 6px}.head img{border-radius:50%}
-.en{font-family:Jost,sans-serif;font-weight:300;font-size:10px;letter-spacing:.42em;color:#8C7B6E;margin-top:8px}
+.en{font-family:Jost,sans-serif;font-weight:300;font-size:10px;letter-spacing:.42em;color:#6F6357;margin-top:8px}
 h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:25px;line-height:1.5;letter-spacing:.1em;color:#231E1B;margin:12px 0 8px;font-feature-settings:"palt"}
 h1 span{display:block;font-size:14px;letter-spacing:.08em;color:#6B6058;margin-top:2px}
 .sub{font-size:13px;line-height:2;color:#6B6058;margin:0}
-.upd{font-size:11px;letter-spacing:.08em;color:#8C7B6E;margin-top:10px}
+.upd{font-size:11px;letter-spacing:.08em;color:#6F6357;margin-top:10px}
 .note{font-size:12px;line-height:1.9;color:#6B6058;background:#F7F5F2;border-radius:10px;padding:14px 16px;margin-top:24px}
 .kfol{margin-top:18px;text-align:center}.kfol p{font-size:13px;line-height:1.9;color:#6B6058;margin:0 0 10px}
 .kfol a{display:inline-block;margin:0 4px 8px;font-size:13px;font-weight:700;text-decoration:none;border-radius:99px;padding:9px 16px;background:#2B2622;color:#fff}
 .kfol a+a{background:#fff;color:#2B2622;box-shadow:inset 0 0 0 1px #2B2622}
-.also{margin-top:22px}.also small{display:block;font-size:11px;letter-spacing:.14em;color:#8C7B6E;margin-bottom:8px}
+.also{margin-top:22px}.also small{display:block;font-size:11px;letter-spacing:.14em;color:#6F6357;margin-bottom:8px}
 .also a{display:inline-block;margin:0 8px 8px 0;padding:7px 13px;border:1px solid #D9D2CB;border-radius:99px;color:#2B2622;text-decoration:none;font-size:12.5px}
 .back{display:block;text-align:center;border:1px solid #2B2622;border-radius:12px;padding:13px 16px;margin:18px 0 10px;color:#2B2622;text-decoration:none;font-weight:700;font-size:14px}
-.sign{text-align:center;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.3em;color:#8C7B6E}
+.sign{text-align:center;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.3em;color:#6F6357}
 </style>"""
 
 
@@ -239,21 +239,21 @@ NCSS = ("<style>"
        ".kbar{position:sticky;top:0;z-index:20;background:#fff;margin:14px -16px 0;padding:10px 16px 8px;border-bottom:1px solid #E6E0D9}"
        ".kbar2{margin:0 -16px;padding:2px 16px 4px}"
        ".seg{display:grid;grid-template-columns:repeat(3,1fr);background:#F1EEEA;border-radius:10px;padding:3px}"
-       ".seg button{font:700 13px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;border:0;background:transparent;color:#8C7B6E;padding:8px 0;border-radius:8px;cursor:pointer}"
+       ".seg button{font:700 13px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;border:0;background:transparent;color:#6F6357;padding:8px 0;border-radius:8px;cursor:pointer}"
        ".seg button b{font:500 12px Jost,sans-serif;margin-left:5px;font-variant-numeric:tabular-nums}"
        ".seg button[aria-pressed=true]{background:#fff;color:#2B2622;box-shadow:0 1px 2px rgba(0,0,0,.08)}"
        ".row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:8px -16px 0;padding:0 16px}.row::-webkit-scrollbar{display:none}"
        ".row button{flex:none;display:inline-flex;align-items:center;gap:4px;font:700 12.5px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;color:#6B6058;background:#fff;border:1px solid #E1D9CF;border-radius:99px;padding:6px 12px;cursor:pointer}"
-       ".row button small{font:500 11px Jost,sans-serif;color:#A2958A}"
+       ".row button small{font:500 11px Jost,sans-serif;color:#7A6E62}"
        ".row button[aria-pressed=true]{background:#2B2622;border-color:#2B2622;color:#fff}.row button[aria-pressed=true] small{color:#D9D2CA}"
        ".row button .gi{width:15px;height:15px}"
        ".sch{display:flex;align-items:center;gap:8px;margin-top:8px;background:#F7F5F2;border-radius:10px;padding:0 12px}"
-       ".sch svg{width:16px;height:16px;flex:none;fill:none;stroke:#8C7B6E;stroke-width:1.8}"
+       ".sch svg{width:16px;height:16px;flex:none;fill:none;stroke:#6F6357;stroke-width:1.8}"
        ".sch input{flex:1;min-width:0;border:0;background:transparent;font:500 16px 'Zen Kaku Gothic New',sans-serif;color:#2B2622;padding:9px 0;outline:none}"
-       ".sch input::placeholder{color:#A2958A;font-size:14px}"
+       ".sch input::placeholder{color:#7A6E62;font-size:14px}"
        # 見出し（きょう・あした・今週・来週・月）
        ".wk{display:flex;align-items:baseline;gap:8px;font:600 15px/1.4 'Shippori Mincho',serif;letter-spacing:.1em;color:#231E1B;margin:22px 0 2px;padding-bottom:6px;border-bottom:1px solid #2B2622}"
-       ".wk small{font:400 11.5px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;color:#8C7B6E}"
+       ".wk small{font:400 11.5px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;color:#6F6357}"
        # 1件
        ".it{display:grid;grid-template-columns:72px 1fr;gap:0 10px;padding:12px 0 8px;border-top:1px solid #EFEAE4}.wk+.it{border-top:0}"
        # 絵のタイルと札の形は assets/cardmark.js の .cmb をそのまま使う（昼・夜とも）。ここでは置き場所だけ
@@ -270,18 +270,19 @@ NCSS = ("<style>"
        ".nm a{color:inherit;text-decoration:none}"
        ".pt{font-size:12.5px;line-height:1.7;color:#4A423C;margin:2px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}"
        ".mt{display:flex;gap:4px;align-items:flex-start;margin:4px 0 0;font-size:11.5px;line-height:1.6;color:#6B6058}.mt span{min-width:0;overflow-wrap:anywhere}"
-       ".mt i{display:block;font-style:normal}.mt i::before{content:'営業';font-size:10px;color:#A2958A;letter-spacing:.06em;margin-right:6px}"
-       ".mt .mi{width:13px;height:13px;margin-top:3px;color:#A2958A}"
+       ".mt i{display:block;font-style:normal}.mt i::before{content:'営業';font-size:10px;color:#7A6E62;letter-spacing:.06em;margin-right:6px}"
+       ".mt .mi{width:13px;height:13px;margin-top:3px;color:#7A6E62}"
        ".ln{display:flex;align-items:center;gap:2px;margin:4px 0 -6px -8px}"
-       ".ln a,.ln .sh{font:700 12px 'Zen Kaku Gothic New',sans-serif;color:#7A5230;text-decoration:none;background:none;border:0;padding:8px;line-height:1;cursor:pointer}"
+       ".ln a,.ln .sh{font:700 12px 'Zen Kaku Gothic New',sans-serif;color:#7A5230;text-decoration:none;background:none;border:0;padding:16px 8px;margin:-8px 0;line-height:1;cursor:pointer}"
        ".hs{font-size:10.5px;font-weight:700;color:#7A5230;border:1px solid #CDB59E;border-radius:4px;padding:0 5px;letter-spacing:.04em}"
        ".it.same .dc .dd,.it.same .dc .cdn{visibility:hidden}.it.same{border-top:0}"
        ".chn{display:block;width:100%;text-align:left;font:700 12.5px 'Zen Kaku Gothic New',sans-serif;color:#6B6058;background:#F7F5F2;border:0;border-radius:8px;padding:11px 14px;margin:10px 0 2px;cursor:pointer}"
-       ".chn b{color:#2B2622}.chn::after{content:'＋';float:right;color:#A2958A}.chn.on::after{content:'－'}"
+       ".chn b{color:#2B2622}.chn::after{content:'＋';float:right;color:#7A6E62}.chn.on::after{content:'－'}"
        ".sum{font-size:12px;color:#6B6058;margin:12px 0 0;letter-spacing:.02em}.sum b{font:500 15px Jost,sans-serif;color:#231E1B;margin:0 2px}"
        # このページだけ頭を小さく（飾りの丸と色はそのまま）
        ".head{padding:16px 16px 6px!important}.head img{width:40px!important;height:40px!important}.head .sub,.head .en{display:none}.head h1{font-size:22px}.head h1 span{font-size:12px}"
-       ".fv{margin-left:auto;width:36px;height:36px;border:0;background:none;padding:6px;cursor:pointer;color:#A2958A}"
+       ".nm a,.sp-bc a{display:inline-block;padding:10px 0;margin:-10px 0}"  # 11/28 UI UX Pro Max：押す所を44px（見た目の位置は変えない）
+       ".fv{margin-left:auto;width:44px;height:44px;margin-top:-4px;margin-bottom:-4px;border:0;background:none;padding:6px;cursor:pointer;color:#7A6E62}"
        ".fv svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6}.fv[aria-pressed=true]{color:#B5643F}.fv[aria-pressed=true] svg{fill:currentColor}"
        # 閉まるお店は静かに（赤は使わない）
        ".k-close .nm,.k-close .pt{color:#6B6058}.k-close .dc .ib{filter:grayscale(.7);opacity:.75}"
@@ -369,9 +370,9 @@ JWD = "月火水木金土日"
 SCSS = ("<style>"
         ".sp-ph{position:relative;margin:14px 0 4px}.sp-ph img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:14px;display:block;background:#EFEAE4}"
         ".sp-ph i{position:absolute;left:10px;top:10px;font:700 11px 'Zen Kaku Gothic New',sans-serif;font-style:normal;color:#fff;background:rgba(30,24,20,.62);border-radius:99px;padding:5px 10px}"
-        ".sp-ph figcaption{font-size:10.5px;color:#A2958A;margin-top:6px;line-height:1.6}.sp-ph figcaption a{color:inherit}"
+        ".sp-ph figcaption{font-size:10.5px;color:#7A6E62;margin-top:6px;line-height:1.6}.sp-ph figcaption a{color:inherit}"
         "html.night .sp-ph img,html.night .sp-ph i{filter:invert(1) hue-rotate(180deg)}"
-        ".sp-bc{font-size:11.5px;color:#8C7B6E;margin:14px 0 0;padding-right:96px;line-height:1.7}.sp-bc a{color:#6B6058;text-decoration:none}.sp-bc a:hover{text-decoration:underline}"
+        ".sp-bc{font-size:11.5px;color:#6F6357;margin:14px 0 0;padding-right:96px;line-height:1.7}.sp-bc a{color:#6B6058;text-decoration:none}.sp-bc a:hover{text-decoration:underline}"
         ".sp-hero{display:grid;grid-template-columns:88px 1fr;gap:0 14px;align-items:center;margin:16px 0 0}"
         "html body .sp-hero .dc.cmb{position:static;width:auto;text-align:center}"
         "html body .sp-hero .dc .ib{width:84px;height:84px;border-radius:26px}html body .sp-hero .dc .ib svg{width:40px;height:40px}"
@@ -382,7 +383,7 @@ SCSS = ("<style>"
         ".sp-pt{font-size:14.5px;line-height:1.95;color:#2B2622;margin:16px 0 0}"
         ".sp-dl{display:grid;grid-template-columns:5.2em 1fr;margin:16px 0 0;border-top:1px solid #EFEAE4}"
         ".sp-dl dt,.sp-dl dd{padding:11px 0;border-bottom:1px solid #EFEAE4;font-size:13px;line-height:1.75}"
-        ".sp-dl dt{color:#8C7B6E;letter-spacing:.06em;font-size:12px}.sp-dl dd{margin:0;color:#2B2622;min-width:0;overflow-wrap:anywhere}"
+        ".sp-dl dt{color:#6F6357;letter-spacing:.06em;font-size:12px}.sp-dl dd{margin:0;color:#2B2622;min-width:0;overflow-wrap:anywhere}"
         ".sp-dl dd a{color:#7A5230;font-weight:700}"
         ".sp-btn{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0 0}"
         ".sp-btn a,.sp-btn button{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;border-radius:12px;font:700 13.5px 'Zen Kaku Gothic New',sans-serif;text-decoration:none;cursor:pointer;letter-spacing:.04em}"
@@ -391,7 +392,7 @@ SCSS = ("<style>"
         ".sp-sec{margin:28px 0 0}.sp-sec h2{font:600 15px/1.5 'Shippori Mincho',serif;letter-spacing:.1em;color:#231E1B;margin:0 0 4px;padding-bottom:6px;border-bottom:1px solid #2B2622}"
         ".sp-sec .it{grid-template-columns:72px 1fr}"
         ".sp-more{margin:18px 0 0;text-align:right;font-size:13px}.sp-more a{color:#7A5230;font-weight:700;text-decoration:none}"
-        ".sp-chk{font-size:11.5px;line-height:1.8;color:#8C7B6E;margin:14px 0 0}"
+        ".sp-chk{font-size:11.5px;line-height:1.8;color:#6F6357;margin:14px 0 0}"
         "</style>")
 
 
