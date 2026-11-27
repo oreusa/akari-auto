@@ -12979,5 +12979,145 @@
         "min": 10900
       }
     ]
+  },
+  "世界遺産検定×東武ワールドスクウェア": {
+    "v": 2,
+    "t": "2026-11-27",
+    "ll": [
+      36.8075,
+      139.71194
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "愛犬と楽しむ温泉旅館 鬼怒川 絆",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D183929",
+        "km": 1.7,
+        "r": 4.73,
+        "rc": 27,
+        "min": 74000
+      },
+      {
+        "n": "鬼怒川温泉 ゆらら 丸京",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D12672",
+        "km": 2.1,
+        "r": 4.66,
+        "rc": 827,
+        "min": 24200
+      },
+      {
+        "n": "和の音交流館 鬼怒川宿",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D192112",
+        "km": 2.2,
+        "r": 4.59,
+        "rc": 47,
+        "min": 5000
+      }
+    ]
+  },
+  "ウジェーヌ・ブーダン展印象派の父─光を求めて": {
+    "v": 2,
+    "t": "2026-11-27",
+    "ll": [
+      36.29879,
+      139.07838
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルルートインコート藤岡",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D13449",
+        "km": 1.8,
+        "r": 4.05,
+        "rc": 614,
+        "min": 6000
+      },
+      {
+        "n": "グランマーチBase高崎",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D199308",
+        "km": 2.6,
+        "r": 4.05,
+        "rc": 40,
+        "min": 4000
+      },
+      {
+        "n": "新町ステーションホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D38642",
+        "km": 3.7,
+        "r": 3.5,
+        "rc": 101,
+        "min": 6900
+      }
+    ]
+  },
+  "全肉祭in茨城": {
+    "v": 2,
+    "t": "2026-11-27",
+    "ll": [
+      36.39582,
+      140.58995
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "オーシャンフロント お宿 浜田館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D76873",
+        "km": 2.9,
+        "r": 4.65,
+        "rc": 128,
+        "min": 14100
+      },
+      {
+        "n": "コトンひたちなかグランヴィラ",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184455",
+        "km": 1.1,
+        "r": 4.43,
+        "rc": 35,
+        "min": 9600
+      },
+      {
+        "n": "年間民宿 黒勢鮨",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D109139",
+        "km": 2.6,
+        "r": 4.38,
+        "rc": 148,
+        "min": 8250
+      }
+    ]
+  },
+  "きらくやまイルミネーション2026": {
+    "v": 2,
+    "t": "2026-11-27",
+    "ll": [
+      35.96267,
+      140.0367
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ホテルルートインGrand守谷駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D193541",
+        "km": 4.0,
+        "r": 4.42,
+        "rc": 245,
+        "min": 6750
+      },
+      {
+        "n": "ビジネスホテル 昇文亭",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D18210",
+        "km": 3.9,
+        "r": 4.29,
+        "rc": 46,
+        "min": 5000
+      },
+      {
+        "n": "東横INN守谷駅前",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D108405",
+        "km": 4.1,
+        "r": 3.98,
+        "rc": 814,
+        "min": 5250
+      }
+    ]
   }
 }
