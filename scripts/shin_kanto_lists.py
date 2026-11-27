@@ -45,6 +45,10 @@ def ranks(rows, key):
 
 
 def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
+    def YADO_PR(p, w):  # 11/27 shin_kanto.py と同じ（都県の宿・楽天トラベル1本）
+        import urllib.parse as _u
+        u = "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=" + _u.quote(f"https://travel.rakuten.co.jp/yado/{SLUG[p]}/", safe="")
+        return {"h": f"{p}で泊まって{w}を見る", "t": f"楽天トラベルで{FULL[p]}の宿を見る", "u": u, "n": "楽天トラベルの都県の宿の一覧です（広告・PR）。"}
     made = set()
 
     def ode(fname, url, title, desc, page, its, cur):
@@ -58,7 +62,7 @@ def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
         nk = sum(1 for i in ky if i["p"] == p)
         if not nk: continue
         write(f"koyo-{SLUG[p]}.html", f"/koyo-{SLUG[p]}", f"{p}の紅葉2026｜見頃とライトアップ（{FULL[p]}）｜LIFE NOTE", cfg("/koyo"),
-              {"items": ky, "icons": ICONS, "page": {"h1": f"{p}の紅葉", "sub": f"見頃とライトアップ・{nk}か所", "p": p, "st": "pref"}}, "odekake",
+              {"items": ky, "icons": ICONS, "page": {"h1": f"{p}の紅葉", "sub": f"見頃とライトアップ・{nk}か所", "p": p, "st": "pref", "pr": YADO_PR(p, "紅葉")}}, "odekake",
               f"{FULL[p]}の紅葉の名所とライトアップ{nk}か所を、見頃の時期つきでまとめています。")
         made.add(f"/koyo-{SLUG[p]}")
 
