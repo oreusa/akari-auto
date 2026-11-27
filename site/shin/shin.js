@@ -274,3 +274,9 @@ function largeTitle(){var h=$(".h1t");if(!h)return;var tb=document.createElement
   s("表示："+N+(out?"（外から）":""));
   document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a,button[data-k]");if(!a||e.target.closest(".hv"))return;
     var h=a.querySelector("h4,.t,b"),t=a.getAttribute("data-k")||(h?h.textContent:a.textContent)||"";t=t.replace(/[\u200b\u00ad]/g,"").replace(/\s+/g," ").trim().slice(0,60);if(t)s("クリック："+N+"｜"+t)},true)})();
+
+/* 11/27 owner「改善点ない？」：解体のページが市のカード40枚で画面25枚分ある。見本 ?mihon=1 の時だけ、カードを隠して「市を選ぶ」ボタンだけにする（押すとその市のページ）。 */
+(function(){try{if(!/[?&]mihon=1\b/.test(location.search)||!/\/kaitai(\.html)?$/.test(location.pathname))return;
+  var st=document.createElement("style");st.textContent=".kt-hj{display:none!important}.kt-mhn{font-size:14px;line-height:1.8;margin:0 0 10px;color:inherit}.kt-ci a{font-size:15px!important;padding:10px 16px!important}";document.head.appendChild(st);
+  function go(){var c=document.querySelector(".kt-ci");if(!c||c.previousElementSibling&&c.previousElementSibling.className==="kt-mhn")return;var p=document.createElement("p");p.className="kt-mhn";p.textContent="お住まいの市を選ぶと、その市の補助（上限・受付の期限・公式ページ）が開きます。";c.parentNode.insertBefore(p,c)}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go()}catch(e){}})();
