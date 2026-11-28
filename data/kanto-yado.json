@@ -11525,41 +11525,6 @@
       }
     ]
   },
-  "2026にゃん、少し犬フェス": {
-    "v": 2,
-    "t": "2026-11-24",
-    "ll": [
-      35.69764,
-      139.995
-    ],
-    "w": 1,
-    "h": [
-      {
-        "n": "ホテルフローラ船橋",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D184600",
-        "km": 1.2,
-        "r": 4.48,
-        "rc": 638,
-        "min": 4650
-      },
-      {
-        "n": "ダブル船橋",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D179161",
-        "km": 0.7,
-        "r": 4.41,
-        "rc": 149,
-        "min": 4720
-      },
-      {
-        "n": "レオ癒カプセルホテル 船橋店",
-        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D177004",
-        "km": 1.0,
-        "r": 4.41,
-        "rc": 574,
-        "min": 2700
-      }
-    ]
-  },
   "港町バルinクリスマスマーケット": {
     "v": 2,
     "t": "2026-11-25",
