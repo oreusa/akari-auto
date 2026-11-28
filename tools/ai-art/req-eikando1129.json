@@ -1,0 +1,200 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-klein-4b"
+ ],
+ "style": "Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+ "items": [
+  {
+   "name": "00-cover-a",
+   "prompt": "Night at a famous Kyoto temple garden in late autumn: a large calm pond reflecting brilliantly illuminated red and orange Japanese maples, a traditional temple hall roof among the trees, deep blue night sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "00-cover-b",
+   "prompt": "Night at a famous Kyoto temple garden in late autumn: a large calm pond reflecting brilliantly illuminated red and orange Japanese maples, a traditional temple hall roof among the trees, deep blue night sky Wide-angle view, deep layered composition with dark foreground branches, middle ground and distant background.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "00-cover-c",
+   "prompt": "Night at a famous Kyoto temple garden in late autumn: a large calm pond reflecting brilliantly illuminated red and orange Japanese maples, a traditional temple hall roof among the trees, deep blue night sky Calm windless night, mirror-like still water, deep blue-violet twilight sky.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "00-cover-d",
+   "prompt": "Night at a famous Kyoto temple garden in late autumn: a large calm pond reflecting brilliantly illuminated red and orange Japanese maples, a traditional temple hall roof among the trees, deep blue night sky Slightly lower viewpoint, gentle glow around the lights, rich but natural colors.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "01-pond-a",
+   "prompt": "A Japanese temple pond at night in Kyoto, dense illuminated crimson and orange maple trees on the far bank reflected perfectly in the dark still water, deep blue sky above, quiet and majestic",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "01-pond-b",
+   "prompt": "A Japanese temple pond at night in Kyoto, dense illuminated crimson and orange maple trees on the far bank reflected perfectly in the dark still water, deep blue sky above, quiet and majestic Wide-angle view, deep layered composition with dark foreground branches, middle ground and distant background.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "01-pond-c",
+   "prompt": "A Japanese temple pond at night in Kyoto, dense illuminated crimson and orange maple trees on the far bank reflected perfectly in the dark still water, deep blue sky above, quiet and majestic Calm windless night, mirror-like still water, deep blue-violet twilight sky.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "01-pond-d",
+   "prompt": "A Japanese temple pond at night in Kyoto, dense illuminated crimson and orange maple trees on the far bank reflected perfectly in the dark still water, deep blue sky above, quiet and majestic Slightly lower viewpoint, gentle glow around the lights, rich but natural colors.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-sando-a",
+   "prompt": "A stone-paved temple approach path at night in Kyoto running under a tunnel of illuminated red maple branches, a large wooden temple gate in the distance, soft warm uplights, fallen red leaves on the stones",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-sando-b",
+   "prompt": "A stone-paved temple approach path at night in Kyoto running under a tunnel of illuminated red maple branches, a large wooden temple gate in the distance, soft warm uplights, fallen red leaves on the stones Wide-angle view, deep layered composition with dark foreground branches, middle ground and distant background.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-sando-c",
+   "prompt": "A stone-paved temple approach path at night in Kyoto running under a tunnel of illuminated red maple branches, a large wooden temple gate in the distance, soft warm uplights, fallen red leaves on the stones Calm windless night, mirror-like still water, deep blue-violet twilight sky.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "02-sando-d",
+   "prompt": "A stone-paved temple approach path at night in Kyoto running under a tunnel of illuminated red maple branches, a large wooden temple gate in the distance, soft warm uplights, fallen red leaves on the stones Slightly lower viewpoint, gentle glow around the lights, rich but natural colors.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-tahoto-a",
+   "prompt": "Looking up from a temple garden at night: a small two-tiered wooden Japanese pagoda (tahoto) standing on a wooded hillside, softly lit, surrounded by illuminated red maples, dark blue sky",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-tahoto-b",
+   "prompt": "Looking up from a temple garden at night: a small two-tiered wooden Japanese pagoda (tahoto) standing on a wooded hillside, softly lit, surrounded by illuminated red maples, dark blue sky Wide-angle view, deep layered composition with dark foreground branches, middle ground and distant background.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-tahoto-c",
+   "prompt": "Looking up from a temple garden at night: a small two-tiered wooden Japanese pagoda (tahoto) standing on a wooded hillside, softly lit, surrounded by illuminated red maples, dark blue sky Calm windless night, mirror-like still water, deep blue-violet twilight sky.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "03-tahoto-d",
+   "prompt": "Looking up from a temple garden at night: a small two-tiered wooden Japanese pagoda (tahoto) standing on a wooded hillside, softly lit, surrounded by illuminated red maples, dark blue sky Slightly lower viewpoint, gentle glow around the lights, rich but natural colors.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-benten-a",
+   "prompt": "A small stone bridge crossing to a tiny island with a small wooden shrine in a temple pond at night, Kyoto, illuminated red maples overhanging the water, reflections",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-benten-b",
+   "prompt": "A small stone bridge crossing to a tiny island with a small wooden shrine in a temple pond at night, Kyoto, illuminated red maples overhanging the water, reflections Wide-angle view, deep layered composition with dark foreground branches, middle ground and distant background.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-benten-c",
+   "prompt": "A small stone bridge crossing to a tiny island with a small wooden shrine in a temple pond at night, Kyoto, illuminated red maples overhanging the water, reflections Calm windless night, mirror-like still water, deep blue-violet twilight sky.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "04-benten-d",
+   "prompt": "A small stone bridge crossing to a tiny island with a small wooden shrine in a temple pond at night, Kyoto, illuminated red maples overhanging the water, reflections Slightly lower viewpoint, gentle glow around the lights, rich but natural colors.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-leaves-a",
+   "prompt": "Close-up of the dark surface of a temple pond at night covered with floating red and orange fallen maple leaves, reflections of illuminated maples above, Kyoto",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-leaves-b",
+   "prompt": "Close-up of the dark surface of a temple pond at night covered with floating red and orange fallen maple leaves, reflections of illuminated maples above, Kyoto Wide-angle view, deep layered composition with dark foreground branches, middle ground and distant background.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-leaves-c",
+   "prompt": "Close-up of the dark surface of a temple pond at night covered with floating red and orange fallen maple leaves, reflections of illuminated maples above, Kyoto Calm windless night, mirror-like still water, deep blue-violet twilight sky.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "05-leaves-d",
+   "prompt": "Close-up of the dark surface of a temple pond at night covered with floating red and orange fallen maple leaves, reflections of illuminated maples above, Kyoto Slightly lower viewpoint, gentle glow around the lights, rich but natural colors.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-hall-a",
+   "prompt": "The large curved tiled roof and deep wooden eaves of a Kyoto Buddhist temple hall at night, illuminated red maple branches hanging in front, soft warm light on the old wood",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-hall-b",
+   "prompt": "The large curved tiled roof and deep wooden eaves of a Kyoto Buddhist temple hall at night, illuminated red maple branches hanging in front, soft warm light on the old wood Wide-angle view, deep layered composition with dark foreground branches, middle ground and distant background.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-hall-c",
+   "prompt": "The large curved tiled roof and deep wooden eaves of a Kyoto Buddhist temple hall at night, illuminated red maple branches hanging in front, soft warm light on the old wood Calm windless night, mirror-like still water, deep blue-violet twilight sky.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "06-hall-d",
+   "prompt": "The large curved tiled roof and deep wooden eaves of a Kyoto Buddhist temple hall at night, illuminated red maple branches hanging in front, soft warm light on the old wood Slightly lower viewpoint, gentle glow around the lights, rich but natural colors.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path-a",
+   "prompt": "A garden path along a temple pond at night in Kyoto, illuminated maple canopy above in red, orange and yellow, low stone lanterns glowing softly beside the path",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path-b",
+   "prompt": "A garden path along a temple pond at night in Kyoto, illuminated maple canopy above in red, orange and yellow, low stone lanterns glowing softly beside the path Wide-angle view, deep layered composition with dark foreground branches, middle ground and distant background.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path-c",
+   "prompt": "A garden path along a temple pond at night in Kyoto, illuminated maple canopy above in red, orange and yellow, low stone lanterns glowing softly beside the path Calm windless night, mirror-like still water, deep blue-violet twilight sky.",
+   "W": 1088,
+   "H": 1680
+  },
+  {
+   "name": "07-path-d",
+   "prompt": "A garden path along a temple pond at night in Kyoto, illuminated maple canopy above in red, orange and yellow, low stone lanterns glowing softly beside the path Slightly lower viewpoint, gentle glow around the lights, rich but natural colors.",
+   "W": 1088,
+   "H": 1680
+  }
+ ]
+}
