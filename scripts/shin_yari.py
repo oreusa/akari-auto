@@ -230,6 +230,7 @@ def form(path):
     # 見出し：前の script が .s3h h1・.s3l・.s3m を書き替えるので、その名前のまま新しい見出しの形に
     b = re.sub(r'<div class="s3h"><div>\s*<h1>(.*?)</h1></div></div>', r'<section class="hero s3h"><h1 class="h1t">\1</h1></section>', b, flags=re.S)
     b = re.sub(r'<div class="head">\s*<h1>(.*?)</h1>(.*?)</div>', lambda m: f'<section class="hero"><h1 class="h1t">{m.group(1)}</h1>' + m.group(2).replace('class="sub"', 'class="h1p"') + '</section>', b, flags=re.S)
+    b = re.sub(r'<style[^>]*>.*?</style>', '', b, flags=re.S)  # 11/28 前の <style>（.kw など）は関西では止まっていた・関東だけ生きていた→両方とも新しい部品（shin.css）にまかせる
     b = re.sub(r' style="[^"]*"', '', b)  # 前の色・余白の指定（夜に読めない色もある）は新しい部品にまかせる
     b = b.replace('<p class="s3l">', '<p class="h1p s3l">').replace('class="back"', 'class="back dlk"').replace('<p class="note">', '<p class="dnote">')
     if 'id="mf"' in b and 'name="want"' in b and 'id="kw"' in b:
