@@ -129,7 +129,8 @@ def build(write, cfg, IT, il, ky, ICONS, KINDS, R, S, TD, PREF, FULL, SLUG):
                 made.add(url_)
             else:
                 pg_.setdefault("also", {"christmas": [["関東のイルミネーション", "/illumination"], ["除夜の鐘・年越し", "/toshikoshi"], ["関東のおでかけ・イベント", "/odekake"]],
-                                        "toshikoshi": [["関東の初詣", "/hatsumode"], ["年末年始のごみ・役所", "/nenmatsu"], ["クリスマスの催し", "/christmas"]]}.get(nm_,
+                                        "toshikoshi": [["関東の初詣", "/hatsumode"], ["年末年始のごみ・役所", "/nenmatsu"], ["クリスマスの催し", "/christmas"]],
+                                    "kawaru": [["関東の初詣", "/hatsumode"], ["年末年始のごみ・役所", "/nenmatsu"], ["関東のおでかけ・イベント", "/odekake"]]}.get(nm_,
                                        [["初売り・福袋2027", "/hatsuuri"], ["関東の初詣", "/hatsumode"], ["関東のおでかけ・イベント", "/odekake"]]))
                 ode(nm_ + ".html", url_, ti_, de_, pg_, its_, url_)
             if _dt:
