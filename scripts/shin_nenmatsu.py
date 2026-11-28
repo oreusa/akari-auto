@@ -106,6 +106,26 @@ def toshikoshi(path, region, today=None):
     return its
 
 
+def kawaru(path, region, today=None):
+    """11/28 月：道と電車・バスが変わる日（夜の【夜 変わる日】）。列：地域・都府県・市区・何が・いつ・どう変わる・ひとこと・公式URL。
+    書いてある一番遅い日の14日後まで出す（「◯◯ いつから」で検索する人の入口）"""
+    today = today or datetime.date.today(); its = []
+    if not os.path.exists(path): return its
+    for r in (l.rstrip("\n").split("\t") for l in open(path, encoding="utf-8") if l.strip() and not l.startswith("#")):
+        if len(r) < 8 or r[0] != region: continue
+        _, pf, city, n, when, how, tip, urls = r[:8]
+        ds = [datetime.date(int(a), int(b), int(c)) for a, b, c in re.findall(r"(20\d\d)/(\d{1,2})/(\d{1,2})", when)]
+        if not ds: continue
+        if max(ds) + datetime.timedelta(days=14) < today: continue
+        us = urls.split()
+        it = {"t": n, "p": _pf(pf), "a": pf, "v": city, "k": "kawa", "u": us[0] if us else "", "ub": "公式のお知らせを見る", "id": hashlib.sha1(n.encode()).hexdigest()[:6],
+              "rows": [["いつ", clean(when)], ["どう変わる", clean(how)], ["使う人へ", clean(tip)]],
+              "d": when, "s": min(ds).isoformat(), "e": (max(ds) + datetime.timedelta(days=14)).isoformat(), "mq": f"{pf}{city} {n}", "hk": clean(when)}
+        its.append(it)
+    its.sort(key=lambda x: x["s"])
+    return its
+
+
 def pages2(region, site, cpath, tpath):
     """12月の2枚：/christmas と /toshikoshi。5件未満なら作らない（夜の行が入るまで出さない）"""
     out = []
@@ -124,6 +144,12 @@ def pages2(region, site, cpath, tpath):
                     {"h1": f"{region}の除夜の鐘・年越し", "sub": f"2026-2027・大晦日・{len(t)}か所", "dl": f"2026年の案内が出た所 <b>{n26}</b>か所",
                      "K": {"toshi": ["年越し", "#3B4B7A"]}, "cnt": "か所", "unit": "か所", "view": "list",
                      "note": "2026年の案内がまだの所は例年の案内を載せ、出たら書き換えます。"}, t))
+    k = kawaru(os.path.join(os.path.dirname(tpath), "kawaru.tsv"), region)
+    if len(k) >= 5:
+        out.append(("kawaru", "/kawaru", f"{region}の道と電車・バスが変わる日 2026-2027｜新しい改札・乗り場の変更・路線の廃止・通行止め（{len(k)}件）｜{site}",
+                    f"{region}で、これから変わる駅の改札・バスの乗り場や路線・道路の規制{len(k)}件を、鉄道会社・バス会社・国や市の公式のお知らせからまとめました。いつから、どう変わるかを1件ずつ。",
+                    {"h1": f"{region}の道と電車が変わる日", "sub": f"駅・バス・道路・{len(k)}件", "K": {"kawa": ["変わる日", "#3E6A8A"]}, "cnt": "件", "unit": "件", "view": "list",
+                     "note": "鉄道会社・バス会社・国や市の公式のお知らせです。変わることがあるので、使う前に公式のお知らせを確かめてください。"}, k))
     return out
 
 
@@ -171,7 +197,7 @@ def details(name, items, region, site, machi=None, today=None):
     import urllib.parse as _up
     today = today or datetime.date.today()
     machi = machi or {}
-    LBL = {"hatsumode": "初詣2027", "hatsuuri": "初売り・福袋2027", "nenmatsu": "年末年始のごみ・役所", "christmas": "クリスマスの催し", "toshikoshi": "除夜の鐘・年越し"}[name]
+    LBL = {"hatsumode": "初詣2027", "hatsuuri": "初売り・福袋2027", "nenmatsu": "年末年始のごみ・役所", "christmas": "クリスマスの催し", "toshikoshi": "除夜の鐘・年越し", "kawaru": "道と電車が変わる日"}[name]
     out = []
     for it in items:
         it["sp"] = f"/{name}/{it['id']}"
@@ -194,6 +220,10 @@ def details(name, items, region, site, machi=None, today=None):
             title = f"{n} 2026-2027｜大晦日の時間・人数・料金｜{pf}｜{site}"
             sub = f"{pf}・除夜の鐘・年越し"
             desc = f"{n}（{it.get('v') or pf}）。12/31の時間：{rv.get('12/31の時間', '公式で確認')}。人数・料金：{rv.get('人数・料金', '公式で確認')}。"
+        elif name == "kawaru":
+            title = f"{n}はいつから？{rv.get('いつ', '')}｜{it.get('v') or pf}｜{site}"
+            sub = f"{pf}{it.get('v') or ''}・変わる日"
+            desc = f"{n}。いつ：{rv.get('いつ', '公式で確認')}。{rv.get('どう変わる', '')}"
         else:
             title = f"{n}｜期間・時間・入場料｜{pf}のクリスマス2026｜{site}"
             sub = f"{pf}・クリスマスの催し"
@@ -204,6 +234,7 @@ def details(name, items, region, site, machi=None, today=None):
         act = ('<div class="oact">' + (f'<a class="dbtn" href="{_e(it["u"])}" target="_blank" rel="noopener" data-k="1件｜公式">{_e(it.get("ub") or "公式の案内を見る")} ↗</a>' if it.get("u") else "")
                + f'<a class="dbtn2" href="https://www.google.com/maps/search/?api=1&amp;query={q}" target="_blank" rel="noopener" data-k="1件｜地図">地図アプリで開く</a></div>')
         note = ('<p class="dnote">収集日は地区で違う所が多いので、自分の地区は市区の公式の表で確かめてください。</p>' if name == "nenmatsu" else
+                '<p class="dnote">鉄道会社・バス会社・国や市の公式のお知らせをもとにしています。変わることがあるので、使う前に公式のお知らせをご確認ください。</p>' if name == "kawaru" else
                 '<p class="dnote">各主催・各店の公式の案内をもとにしています。変わることがあるので、出かける前に公式の案内をご確認ください。「公式で確認」は、まだ確かめられていない所です。</p>')
         html_ = '<section class="dsec osp">' + big + act + note + "</section>"
         if name == "hatsuuri":
@@ -212,7 +243,7 @@ def details(name, items, region, site, machi=None, today=None):
         mk = max((k for k in machi if n.startswith(k) or (it.get("v") or "").startswith(k)), key=len, default="")
         sibs = [x for x in items if x is not it and x.get("p") == it.get("p")][:8]
         if sibs:
-            html_ += (f'<section class="dsec"><h2>{_e(it["p"])}のほかの{_e({"nenmatsu": "市区", "hatsumode": "初詣"}.get(name, LBL.split("・")[0]))}</h2><div class="drel">'
+            html_ += (f'<section class="dsec"><h2>{_e(it["p"])}のほかの{_e({"nenmatsu": "市区", "hatsumode": "初詣", "kawaru": "変わる予定"}.get(name, LBL.split("・")[0]))}</h2><div class="drel">'
                       + "".join(f'<a href="{x["sp"]}" data-k="1件｜同じ府県">{_e(x["t"])}<small>{_e(x.get("hk", ""))[:40]}</small></a>' for x in sibs) + "</div></section>")
         rel = [(f"{region}の{LBL}（一覧）", f"/{name}")]
         if mk: rel.append((f"{mk}の家と土地の相場", machi[mk]))
