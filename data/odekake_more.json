@@ -97,14 +97,14 @@
    "price": "前売1,000円、当日1,200円",
    "note": "休み：夜間特別開園は終了。日中と夜間の入園は別。",
    "day": "2026-11-27",
-   "src": "https://www.tokyo-park.or.jp/park/koishikawakorakuen/news/2026/2026\\_url.html"
+   "src": "https://www.tokyo-park.or.jp/park/koishikawakorakuen/news/2026/2026_url.html"
   },
   "11/15まで 高尾山・ 草津・ 伊香保": {
    "time": "3会場で別、伊香保10/27〜11/15終了、草津道の駅は紅葉期、高尾山は指定日のみ公式延長で最終20:30",
    "park": "河鹿橋駐車場あり・混雑注意、他は会場別",
    "note": "休み：伊香保は終了、3会場一律に開催とはしない。高尾山は月〜木に延長運転なし。河鹿橋は渋滞時に他の有料駐車場や徒歩を推奨。",
    "day": "2026-11-27",
-   "src": "https://www.ikaho-kankou.com/red\\_lightup/"
+   "src": "https://www.ikaho-kankou.com/red_lightup/"
   },
   "草間彌生美術館 パァーッと光が出て、 キラキラッていろんなものが 見えてくる。": {
    "time": "10/8〜1/31、入場回は日時指定・各90分",
@@ -119,7 +119,7 @@
    "park": "乗り場ごと",
    "note": "休み：運航日以外は休み、地区別。風や天候で操業・見学内容が変わるため、便ごとの催行と予約条件を確認。",
    "day": "2026-11-27",
-   "src": "https://www.ibarakiguide.jp/special/kasumigaura\\_hobikisen.html"
+   "src": "https://www.ibarakiguide.jp/special/kasumigaura_hobikisen.html"
   },
   "筑波山の紅葉": {
    "time": "山の見頃は地点別、ケーブルカー・ロープウェイは運行時間が別",
@@ -133,7 +133,7 @@
    "park": "東京ドーム駐車場400台（有料）ほか",
    "note": "一部の演出は開催・体験時間が別。17:00〜24:00が全展示共通ではない。",
    "day": "2026-11-27",
-   "src": "https://www.tokyo-dome.co.jp/illumination?yj\\_r=2"
+   "src": "https://www.tokyo-dome.co.jp/illumination?yj_r=2"
   },
   "東京スクエアガーデン ウィンターイルミネーション": {
    "time": "11/5〜1/31、16:00〜24:00",
@@ -159,7 +159,7 @@
    "park": "オリオンスクエアに専用なし、ほかは会場ごと",
    "note": "市の例年案内では21:00までと異なるため、今年の市広報・会場別案内を優先。",
    "day": "2026-11-27",
-   "src": "https://www.city.utsunomiya.lg.jp/\\_res/projects/default\\_project/\\_page\\_/001/049/995/04-05.pdf"
+   "src": "https://www.city.utsunomiya.lg.jp/_res/projects/default_project/_page_/001/049/995/04-05.pdf"
   },
   "都立9庭園 紅葉めぐりスタンプラリー2026": {
    "time": "10/10〜12/6、9:00〜17:00（最終16:30）",
@@ -490,6 +490,160 @@
    "note": "休み：原則月曜、詳細は開催案内。土曜は高校生以下無料。",
    "day": "2026-11-27",
    "src": "https://www.tougei.museum.ibk.ed.jp/viewer/info.html?g=138&id=603"
+  },
+  "日光田母沢御用邸記念公園 三階御庭園特別公開": {
+   "time": "12/14〜1/31",
+   "note": "休み：休園日は施設の案内へ。日光市観光協会の冬号。特別公開と公園自体の営業時間を分けて確認。",
+   "day": "2026-11-28",
+   "src": "https://www.nikko-kankou.org/storage/pamphlet_pdf/20261113110354_2026%E3%83%88%E3%82%AD%E3%83%A1%E3%82%AF%E6%97%A5%E5%85%89%E5%86%AC%E5%8F%B7WEB%282%29.pdf"
+  },
+  "お台場 TokyoBay Light Wish": {
+   "time": "12/10〜12/31、原則17:00〜22:00",
+   "price": "入場無料",
+   "note": "12/18に本格オープン。企画別の営業時間に注意。",
+   "day": "2026-11-28",
+   "src": "https://tokyobay-light-wish.metro.tokyo.lg.jp/"
+  },
+  "BLUE FRONT CHRISTMAS 2026 芝浦": {
+   "time": "12/3〜2/28、点灯17:00〜23:30",
+   "price": "イルミネーション無料",
+   "note": "12/3 17:00点灯式。土日の無料遊具レンタルは最終20:30。",
+   "day": "2026-11-28",
+   "src": "https://www.bluefrontshibaura.com/lp/winter-event-2026/"
+  },
+  "Matsudo Xmas LOOP MARKET": {
+   "time": "12/12 11:00〜20:00、12/13 11:00〜16:00",
+   "park": "駅前地下駐車場は台数に限り",
+   "price": "入場無料",
+   "note": "休み：2日間限定。松戸駅西口デッキ。公共交通推奨。",
+   "day": "2026-11-28",
+   "src": "https://maruchiba.jp/event/detail_16132.html"
+  },
+  "旭市 スターライト☆ファンタジー2026": {
+   "time": "12/1〜12/31 17:00〜22:00",
+   "note": "別企画のフェスタは12/20 13:00から（荒天中止）。",
+   "day": "2026-11-28",
+   "src": "https://maruchiba.jp/feature/detail_44.html"
+  },
+  "飯岡灯台 恋するライトアップ2026": {
+   "time": "12/1〜12/31、16:30〜21:00予定",
+   "note": "千葉県観光の掲載期間を使用。点灯時刻は変更の可能性。",
+   "day": "2026-11-28",
+   "src": "https://maruchiba.jp/feature/detail_44.html"
+  },
+  "第27回 銚子駅前イルミネーション点灯大作戦": {
+   "time": "12/5〜1/29 16:30〜21:30",
+   "note": "JR銚子駅前広場の点灯。",
+   "day": "2026-11-28",
+   "src": "https://maruchiba.jp/feature/detail_44.html"
+  },
+  "道の駅鴨川オーシャンパーク 冬のイルミネーション": {
+   "time": "12/1〜3/31 17:00〜21:00",
+   "day": "2026-11-28",
+   "src": "https://maruchiba.jp/feature/detail_44.html"
+  },
+  "南房総 高家神社の竹あかり": {
+   "time": "12/19〜2/23 16:30〜21:30",
+   "note": "イルミ時間を社務所・授与所の時間と混同しない。",
+   "day": "2026-11-28",
+   "src": "https://maruchiba.jp/feature/detail_44.html"
+  },
+  "千葉都心 ルミラージュちば2026/2027": {
+   "time": "11/21〜1/31 16:30〜24:00",
+   "note": "通町公園の提灯は12/26から。点灯範囲は観光協会案内へ。",
+   "day": "2026-11-28",
+   "src": "https://www.chibacity-ta.or.jp/special/illumination/"
+  },
+  "千葉みなとシーサイドイルミネーション": {
+   "time": "11/21〜2/28 17:00〜23:00",
+   "note": "関連クリスマスマーケットは12/20 11:00〜18:00。",
+   "day": "2026-11-28",
+   "src": "https://www.chibacity-ta.or.jp/special/illumination/"
+  },
+  "千葉ポートタワー クリスマススノーファンタジー": {
+   "time": "11/21〜12/25 17:00〜21:00",
+   "note": "点灯時間と展望台入館の受付時間は別。",
+   "day": "2026-11-28",
+   "src": "https://www.chibacity-ta.or.jp/special/illumination/"
+  },
+  "幕張テクノガーデン イルミネーション": {
+   "time": "11/13〜1/31 16:30〜22:00",
+   "note": "駅前一帯のマクハリイルミとは会場を分ける。",
+   "day": "2026-11-28",
+   "src": "https://www.chibacity-ta.or.jp/special/illumination/"
+  },
+  "ホテルニューオータニ幕張 クリスマスの点灯": {
+   "time": "11/11〜12/25、24時間点灯（観光協会掲載）",
+   "note": "ホテルの装飾。宿泊・利用条件はホテルで確認。",
+   "day": "2026-11-28",
+   "src": "https://www.chibacity-ta.or.jp/special/illumination/"
+  },
+  "千葉中央駅 ショッピングセンターMioの点灯": {
+   "time": "11/15〜12/25 7:00〜23:30",
+   "note": "点灯時間は館内店舗の営業時間と別。",
+   "day": "2026-11-28",
+   "src": "https://www.chibacity-ta.or.jp/special/illumination/"
+  },
+  "絵本の中のクリスマスマーケット 東京スカイツリータウン 2026": {
+   "time": "11/5〜12/25 11:00〜22:00",
+   "price": "入場無料、飲食・物販別",
+   "note": "休み：期間中は全日開催予定。フード・ドリンクの締切は21:00。",
+   "day": "2026-11-28",
+   "src": "https://www.zato-event.com/"
+  },
+  "MIDTOWN CHRISTMAS 2026 東京ミッドタウン六本木": {
+   "time": "11/26〜12/25、演出ごとの時間は公式",
+   "note": "六本木の東京ミッドタウン。八重洲のクリスマスと別会場。",
+   "day": "2026-11-28",
+   "src": "https://www.tokyo-midtown.com/jp/news/8186/"
+  },
+  "丸の内イルミネーション2026": {
+   "time": "11/12〜2/14 16:00〜23:00、12月は24:00まで延長予定",
+   "note": "行幸通りは11/27〜12/25の16:00〜24:00で別日程。",
+   "day": "2026-11-28",
+   "src": "https://visit-chiyoda.tokyo/app/event/detail/964"
+  },
+  "東京クリスマスマーケット2026 芝公園": {
+   "time": "12/4〜12/25、最終入場21:00",
+   "park": "会場に駐車・駐輪なし",
+   "price": "通常期中学生以上1,000円（平日）／1,500円（土日）、小学生500円、期間別の料金は公式",
+   "note": "御成門駅前広場。別会場や料金区分と混同しない。",
+   "day": "2026-11-28",
+   "src": "https://tokyochristmas.net/shiba/"
+  },
+  "栃木市 光と音のページェント2026": {
+   "time": "12/4〜1/11、点灯時刻は市の会場案内",
+   "park": "市の案内図あり",
+   "note": "初日12/4は点灯式。市のPDFで場所を確認。",
+   "day": "2026-11-28",
+   "src": "https://www.city.tochigi.lg.jp/site/tourism/85199.html"
+  },
+  "いばらきフラワーパーク Moonlight Rose Garden 2026": {
+   "time": "第2期11/28〜1/24、開園12:00〜20:30、点灯17:00、最終入園20:00",
+   "park": "無料1,200台",
+   "note": "休み：カレンダー参照。第1期と営業時間が異なる。対象日の案内へ。",
+   "day": "2026-11-28",
+   "src": "https://flowerpark.or.jp/Illumination/"
+  },
+  "栃木市 皆川城址イルミネーション": {
+   "time": "12/10〜1/11",
+   "park": "公民館駐車場",
+   "note": "車は公民館駐車場へ。市中心部の光と音のページェントとは別会場。",
+   "day": "2026-11-28",
+   "src": "https://www.tochigi-kankou.or.jp/news/20740"
+  },
+  "ららぽーと柏の葉とセサミストリート": {
+   "time": "ラリー11/1〜11/29、グリーティング11/29 11:00・14:00・16:00",
+   "note": "当日10:00に本館2Fクリスタルコートで1組1枚の整理券を配布。",
+   "day": "2026-11-28",
+   "src": "https://mitsui-shopping-park.com/lalaport/kashiwa/cp/20thanniversary/"
+  },
+  "棚田のあかり 大山千枚田": {
+   "time": "10/24〜1/11、17:00〜20:00ごろ",
+   "park": "あり（棚田下",
+   "note": "日没から約3時間。バス停から徒歩約20分。",
+   "day": "2026-11-28",
+   "src": "https://maruchiba.jp/event/detail_10895.html"
   }
  }
 }
