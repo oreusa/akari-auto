@@ -13197,5 +13197,137 @@
         "min": 10900
       }
     ]
+  },
+  "わらだくみまつり": {
+    "v": 2,
+    "t": "2026-11-28",
+    "ll": [
+      36.67868,
+      138.99907
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "上牧温泉 人気の貸切風呂と炭火山里料理の宿 辰巳館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D10715",
+        "km": 6.9,
+        "r": 4.63,
+        "rc": 1758,
+        "min": 10000
+      },
+      {
+        "n": "やませみ荘",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D38949",
+        "km": 6.2,
+        "r": 4.6,
+        "rc": 96,
+        "min": 4500
+      }
+    ]
+  },
+  "小田原コロナワールドリフレッシュオープン": {
+    "v": 2,
+    "t": "2026-11-28",
+    "ll": [
+      35.26472,
+      139.15222
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "THE VIEW 小田原 城の見えるホテル",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D170700",
+        "km": 1.4,
+        "r": 4.54,
+        "rc": 64,
+        "min": 6090
+      },
+      {
+        "n": "いぬと海辺",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D191645",
+        "km": 2.1,
+        "r": 4.45,
+        "rc": 17,
+        "min": 6200
+      },
+      {
+        "n": "天成園 小田原駅 別館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D181948",
+        "km": 1.1,
+        "r": 4.2,
+        "rc": 2148,
+        "min": 9000
+      }
+    ]
+  },
+  "のびっこそよらひたち野うしく": {
+    "v": 2,
+    "t": "2026-11-28",
+    "ll": [
+      35.97935,
+      140.1496
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "HOTEL R9 The Yard 牛久",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D198746",
+        "km": 0.9,
+        "r": 4.38,
+        "rc": 74,
+        "min": 3900
+      },
+      {
+        "n": "牛久シティホテル本館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D197861",
+        "km": 1.8,
+        "r": 3.88,
+        "rc": 33,
+        "min": 4000
+      },
+      {
+        "n": "牛久シティホテル駅前館",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D147107",
+        "km": 0.7,
+        "r": 3.74,
+        "rc": 566,
+        "min": 4200
+      }
+    ]
+  },
+  "十二日まち": {
+    "v": 2,
+    "t": "2026-11-28",
+    "ll": [
+      35.85343,
+      139.65569
+    ],
+    "w": 1,
+    "h": [
+      {
+        "n": "ビジネスホテル 豊泉閣",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D104530",
+        "km": 0.9,
+        "r": 4.61,
+        "rc": 427,
+        "min": 5740
+      },
+      {
+        "n": "DERME神明Hotel&Weekly",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D178747",
+        "km": 1.0,
+        "r": 4.54,
+        "rc": 183,
+        "min": 5500
+      },
+      {
+        "n": "ロイヤルパインズホテル浦和",
+        "u": "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fhs%2FdQ4dX%2F%3Ff_no%3D11044",
+        "km": 0.9,
+        "r": 4.45,
+        "rc": 3760,
+        "min": 5100
+      }
+    ]
   }
 }

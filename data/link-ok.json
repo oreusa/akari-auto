@@ -55,6 +55,12 @@
   "sec": 0.5,
   "why": "404"
  },
+ "https://akarenga-artrink.yafjp.org/archive/2026/": {
+  "at": "2026-11-28",
+  "ok": true,
+  "sec": 1.0,
+  "why": ""
+ },
  "https://akebonoyama-nougyoukouen.jp/views/highlight/": {
   "at": "2026-11-27",
   "ok": true,
@@ -3718,6 +3724,12 @@
   "sec": 1.3,
   "why": ""
  },
+ "https://resemom.jp/release/prtimes/20261027/223401.html": {
+  "at": "2026-11-28",
+  "ok": true,
+  "sec": 1.3,
+  "why": ""
+ },
  "https://sakanabunka.com/yokohama/": {
   "at": "2026-11-15",
   "by": "browser",
@@ -3801,6 +3813,12 @@
   "sec": 1.3,
   "why": ""
  },
+ "https://takuminosato.jp/2026/10/27/wara-takumi-festival-2026/": {
+  "at": "2026-11-28",
+  "ok": true,
+  "sec": 1.0,
+  "why": ""
+ },
  "https://tamaillumi.myportfolio.com/": {
   "at": "2026-11-26",
   "ok": true,
@@ -3859,6 +3877,12 @@
   "at": "2026-11-26",
   "ok": true,
   "sec": 1.2,
+  "why": ""
+ },
+ "https://visitsaitamacity.jp/events/33": {
+  "at": "2026-11-28",
+  "ok": true,
+  "sec": 1.4,
   "why": ""
  },
  "https://visitsaitamacity.jp/events/5": {
