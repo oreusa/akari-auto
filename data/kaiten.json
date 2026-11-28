@@ -4879,6 +4879,47 @@
    "u": "https://prtimes.jp/main/html/rd/p/000000810.000009047.html",
    "added": "2026-11-27",
    "src": "yoru"
+  },
+  {
+   "d": "2026-11-28",
+   "k": "open",
+   "p": "東京",
+   "n": "LE FLEUR TOKYO",
+   "pt": "完全予約制のスイーツカフェ「LE FLEUR TOKYO」が2026年11月28日（金）恵比寿にグランドオープン",
+   "pl": "目黒区三田1-2-1(恵比寿駅から徒歩約6分)・目黒区三田1-2-1(恵比寿駅から徒歩6分",
+   "tm": "11:00〜17:00",
+   "u": "https://prtimes.jp/main/html/rd/p/000000004.000195488.html",
+   "added": "2026-11-28",
+   "src": "prtimes",
+   "auto": 1
+  },
+  {
+   "d": "2026-11-28",
+   "k": "open",
+   "p": "東京",
+   "n": "DAISO コーナンドイト東向島店",
+   "pt": "新しく開いたお店（大創産業の NEW SHOP のお知らせより）。",
+   "pl": "",
+   "tm": "",
+   "u": "https://www.daiso-sangyo.co.jp/shop/detail/1931",
+   "added": "2026-11-28",
+   "src": "daiso",
+   "auto": 1,
+   "g": "100円ショップ"
+  },
+  {
+   "d": "2026-11-28",
+   "k": "open",
+   "p": "神奈川",
+   "n": "サンドラッグトナリエ久里浜店",
+   "pt": "新しいお店（サンドラッグのお知らせより）。",
+   "pl": "横須賀市神明町58-7",
+   "tm": "",
+   "u": "https://sundrug-online.com/blogs/search-store/1216",
+   "added": "2026-11-28",
+   "src": "sundrug",
+   "auto": 1,
+   "g": "ドラッグ・薬"
   }
  ]
 }
