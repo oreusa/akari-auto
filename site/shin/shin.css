@@ -372,7 +372,7 @@ html.nt .dr{background:#12301F;color:#8FE0B5}
 .kp{display:flex;flex-direction:column}.kp small{font-size:10.5px;color:var(--mut);font-weight:500}
 .kp strong{font:600 24px/1.1 var(--sans);font-variant-numeric:tabular-nums}
 .ks{display:flex;flex-direction:column;gap:4px;width:100%;margin-top:2px}
-.ks>span{display:grid;grid-template-columns:42px 1fr;align-items:center;gap:6px;font-size:10px;font-weight:500;color:var(--mut)}
+.ks>span{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:6px;font-size:11.5px;font-weight:500;color:var(--mut)}.ks b{font-weight:500;font-variant-numeric:tabular-nums;min-width:3.2em;text-align:right}.ks .win b,.ks .win em{color:var(--ink);font-weight:600}.ks .no b{color:var(--mut);font-weight:400}
 .ks em{font-style:normal}
 .ks i{display:block;height:5px;border-radius:5px;background:var(--line);overflow:hidden}
 .ks i i{height:100%;background:#BDB7B0;transform-origin:0 50%;transform:scaleX(0);transition:transform .9s cubic-bezier(.2,.9,.25,1)}
@@ -1349,3 +1349,8 @@ html.nt.rkm #bar.rkpfo #seg button{background:rgba(255,255,255,.08)}
 html.rkm #bar.rkpfo #seg button.on{background:var(--ink)!important;color:var(--bg)!important}
 html.rkm #bar.rkpfo .lk-pf{background:var(--ink)!important;color:var(--bg)!important;border-color:var(--ink)!important}
 @keyframes rkpf{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* 11/28 UI UX Pro Max の点検：押す所を44px（見た目の位置は変えない）・字の濃さ4.5以上 */
+.ft a{display:inline-block;padding:12px 2px;margin:-12px 0}
+.dc .ksns .ksl{padding:12px 0;margin-top:-12px;margin-bottom:-12px}
+html:not(.nt) .lt.pop{color:color-mix(in srgb,var(--gc) 68%,#000)}

@@ -1,148 +1,169 @@
 {
-  "_": "登録しているASP（アフィリエイト）の台帳。11/9 オーナー「レントラックス登録してないよな？どっから出てきた？」「記録してないのは月の管理体制にかなり問題がある」→ ここに無いASPは提案・指示・ページに書かない。確かめていない単価は「未確認」。人が読む版は notes/daichou.md。usagi tools/asp.json と akari scripts/asp.json は同じに保つ。",
-  "updated": "2026-11-23",
-  "asp": [
-    {
-      "name": "楽天アフィリエイト",
-      "account": "燈のID（月も共用）",
-      "state": "使用中",
-      "domains": [
-        "hb.afl.rakuten.co.jp"
-      ],
-      "ids": [
-        "58b50f43.00cd84ff.58b50f44.4872e82d"
-      ],
-      "use": "楽天トラベルの宿（両サイト）・燈のおかいもの",
-      "rate": "楽天トラベル 約1%（10/31 確かめた）",
-      "checked": "2026-10-31"
-    },
-    {
-      "name": "バリューコマース",
-      "account": "燈のメール",
-      "state": "承認済み 11/3",
-      "domains": [
-        "ck.jp.ap.valuecommerce.com"
-      ],
-      "ids": [
-        "3786315",
-        "3786665"
-      ],
-      "use": "sid 3786315＝関西（TOWN）・sid 3786665＝関東（LIFE）。アソビュー・Yahoo!不動産・Yahoo!ショッピング（11/20〜 pid 関東 892753201・関西 892753208）",
-      "rate": "アソビュー 3.3%（11/3）・Yahoo!不動産 流通領域 資料請求プログラム（ID 2163532）＝資料請求1件 3,300円（税込・税抜3,000円）、MyLink利用可能＝街ごとの一覧へ直接飛ばしてよい（11/9 オーナーのVC画面）",
-      "checked": "2026-11-09"
-    },
-    {
-      "name": "A8.net",
-      "account": "燈",
-      "state": "使用中（成果0）",
-      "domains": [
-        "px.a8.net",
-        "www12.a8.net",
-        "www14.a8.net",
-        "www17.a8.net",
-        "www16.a8.net"
-      ],
-      "ids": [
-        "4BEK9E",
-        "4BGH3I",
-        "4BGK80"
-      ],
-      "use": "関東 LIFE だけ（関西には置かない）",
-      "rate": "11/13 汐：参加中＝ざっくりAI査定＋（新規のWEB査定申込完了 3,400円・a8mat 4BGH3I…・LIFE /uru STEP02）・ぽいみつ（不用品回収の一括見積り、WEB見積り申込後7日以内に業者が氏名と内容を確認 5,000円・a8mat 4BGK80…・LIFE 実家の片付け）。審査中＝ミライアス15,000・マンション.navi 10,000・ノムコム5,000・みんなの遺品整理2,500。未提携表示（否認か未確認）＝借地権・ナカジツ。セレス 11/11 見送り",
-      "checked": "2026-11-13",
-      "approved_1123": "11/23 12:56 夜が確かめた承認（オーナー「はい」で申し込み）：トラベリスト 国内格安航空券・霧ト晴レのお茶（体験）・OZmall ホテル・旅館予約・国内ダイナミックパッケージ・ニーズツアー スキー＆スノーボード・宅麺.com。単価・リンクは未確認（汐がリンク帳に取るまでページに置かない）"
-    },
-    {
-      "name": "Amazonアソシエイト",
-      "account": "燈",
-      "state": "登録済み（PA-APIは売上が出るまで不可）",
-      "domains": [
-        "www.amazon.co.jp",
-        "amzn.to"
-      ],
-      "ids": [
-        "aiusagichan-22"
-      ],
-      "use": "燈のおかいもの",
-      "rate": "未確認",
-      "checked": "2026-11-02"
-    },
-    {
-      "name": "もしもアフィリエイト",
-      "account": "燈",
-      "state": "使用中（ページに a_id 5877817 のリンク 179 本・11/9 月が数えた）",
-      "domains": [
-        "af.moshimo.com"
-      ],
-      "ids": [
-        "5877817"
-      ],
-      "use": "燈のおかいもの・値段くらべ（Yahoo!ショッピング p_id 1225）",
-      "rate": "未確認",
-      "checked": "2026-11-09"
-    }
-  ],
-  "not_registered": [
-    {
-      "name": "レントラックス",
-      "why": "登録していない（紹介制）。11/9 月が依頼文に書いてしまった（ミス帳）",
-      "domains": [
-        "rentracks.jp",
-        "www.rentracks.jp",
-        "t.rentracks.jp"
-      ]
-    },
-    {
-      "name": "ASPLAY",
-      "why": "申し込んでいない（11/9 確かめた）",
-      "domains": [
-        "asplay.jp",
-        "click.asplay.jp"
-      ]
-    },
-    {
-      "name": "アクセストレード",
-      "why": "登録の記録なし",
-      "domains": [
-        "h.accesstrade.net",
-        "accesstrade.net"
-      ]
-    },
-    {
-      "name": "afb",
-      "why": "登録の記録なし",
-      "domains": [
-        "t.afi-b.com",
-        "afi-b.com"
-      ]
-    },
-    {
-      "name": "フェルマ",
-      "why": "登録の記録なし",
-      "domains": [
-        "t.felmat.net"
-      ]
-    },
-    {
-      "name": "JANet",
-      "why": "登録の記録なし",
-      "domains": [
-        "t.j-a-net.jp"
-      ]
-    },
-    {
-      "name": "リンクシェア",
-      "why": "登録の記録なし",
-      "domains": [
-        "click.linksynergy.com"
-      ]
-    },
-    {
-      "name": "スマートC",
-      "why": "登録の記録なし",
-      "domains": [
-        "smart-c.jp"
-      ]
-    }
-  ]
+ "_": "登録しているASP（アフィリエイト）の台帳。11/9 オーナー「レントラックス登録してないよな？どっから出てきた？」「記録してないのは月の管理体制にかなり問題がある」→ ここに無いASPは提案・指示・ページに書かない。確かめていない単価は「未確認」。人が読む版は notes/daichou.md。usagi tools/asp.json と akari scripts/asp.json は同じに保つ。",
+ "updated": "2026-11-27",
+ "asp": [
+  {
+   "name": "楽天アフィリエイト",
+   "account": "燈のID（月も共用）",
+   "state": "使用中",
+   "domains": [
+    "hb.afl.rakuten.co.jp"
+   ],
+   "ids": [
+    "58b50f43.00cd84ff.58b50f44.4872e82d"
+   ],
+   "use": "楽天トラベルの宿（両サイト）・燈のおかいもの",
+   "rate": "楽天トラベル 約1%（10/31 確かめた）",
+   "checked": "2026-10-31"
+  },
+  {
+   "name": "バリューコマース",
+   "account": "燈のメール",
+   "state": "承認済み 11/3",
+   "domains": [
+    "ck.jp.ap.valuecommerce.com"
+   ],
+   "ids": [
+    "3786315",
+    "3786665"
+   ],
+   "use": "sid 3786315＝関西（TOWN）・sid 3786665＝関東（LIFE）。アソビュー・Yahoo!不動産・Yahoo!ショッピング（11/20〜 pid 関東 892753201・関西 892753208）",
+   "rate": "アソビュー 3.3%（11/3）・Yahoo!不動産 流通領域 資料請求プログラム（ID 2163532）＝資料請求1件 3,300円（税込・税抜3,000円）、MyLink利用可能＝街ごとの一覧へ直接飛ばしてよい（11/9 オーナーのVC画面）",
+   "checked": "2026-11-09"
+  },
+  {
+   "name": "A8.net",
+   "account": "燈",
+   "state": "使用中（成果0）",
+   "domains": [
+    "px.a8.net",
+    "www12.a8.net",
+    "www14.a8.net",
+    "www17.a8.net",
+    "www16.a8.net"
+   ],
+   "ids": [
+    "4BEK9E",
+    "4BGH3I",
+    "4BGK80"
+   ],
+   "use": "関東 LIFE だけ（関西には置かない）",
+   "rate": "11/13 汐：参加中＝ざっくりAI査定＋（新規のWEB査定申込完了 3,400円・a8mat 4BGH3I…・LIFE /uru STEP02）・ぽいみつ（不用品回収の一括見積り、WEB見積り申込後7日以内に業者が氏名と内容を確認 5,000円・a8mat 4BGK80…・LIFE 実家の片付け）。審査中＝ミライアス15,000・マンション.navi 10,000・ノムコム5,000・みんなの遺品整理2,500。未提携表示（否認か未確認）＝借地権・ナカジツ。セレス 11/11 見送り",
+   "checked": "2026-11-13",
+   "approved_1123": "11/23 12:56 夜が確かめた承認（オーナー「はい」で申し込み）：トラベリスト 国内格安航空券・霧ト晴レのお茶（体験）・OZmall ホテル・旅館予約・国内ダイナミックパッケージ・ニーズツアー スキー＆スノーボード・宅麺.com。単価・リンクは未確認（汐がリンク帳に取るまでページに置かない）",
+   "links_1127": {
+    "_": "11/27 夜が A8 の関東サイト（LIFE NOTES）で取ったテキスト素材。試しのクリックなし・まだページに置いていない",
+    "OZmall ホテル・宿": [
+     "来店 300円",
+     "https://px.a8.net/svt/ejp?a8mat=4BGS14+FUYRGI+3UQG+5ZU2A"
+    ],
+    "ニーズツアー スキー": [
+     "購入 1,700円",
+     "https://px.a8.net/svt/ejp?a8mat=4BGS14+G534QQ+AD2+3MZKSY"
+    ],
+    "トラベリスト 国内航空券": [
+     "成約 3,200円",
+     "https://px.a8.net/svt/ejp?a8mat=4BGS14+FRE5TU+4XZI+5YJRM"
+    ],
+    "国内ダイナミックパッケージ": [
+     "成約 2,500円",
+     "https://px.a8.net/svt/ejp?a8mat=4BGS14+G4HP4Y+4R2M+HV7V6"
+    ]
+   },
+   "mirai_1127": "ミライアス：参加中・今月1,045クリック・成果0（夜 11/27 A8画面）",
+   "kansai_1127": "関西サイト追加は A8 の「会員情報の更新には再認証が必要です」で止まり（オーナーのログイン待ち）"
+  },
+  {
+   "name": "Amazonアソシエイト",
+   "account": "燈",
+   "state": "登録済み（PA-APIは売上が出るまで不可）",
+   "domains": [
+    "www.amazon.co.jp",
+    "amzn.to"
+   ],
+   "ids": [
+    "aiusagichan-22"
+   ],
+   "use": "燈のおかいもの",
+   "rate": "未確認",
+   "checked": "2026-11-02"
+  },
+  {
+   "name": "もしもアフィリエイト",
+   "account": "燈",
+   "state": "使用中（ページに a_id 5877817 のリンク 179 本・11/9 月が数えた）",
+   "domains": [
+    "af.moshimo.com"
+   ],
+   "ids": [
+    "5877817"
+   ],
+   "use": "燈のおかいもの・値段くらべ（Yahoo!ショッピング p_id 1225）",
+   "rate": "未確認",
+   "checked": "2026-11-09"
+  }
+ ],
+ "not_registered": [
+  {
+   "name": "レントラックス",
+   "why": "登録していない（紹介制）。11/9 月が依頼文に書いてしまった（ミス帳）",
+   "domains": [
+    "rentracks.jp",
+    "www.rentracks.jp",
+    "t.rentracks.jp"
+   ]
+  },
+  {
+   "name": "ASPLAY",
+   "why": "申し込んでいない（11/9 確かめた）",
+   "domains": [
+    "asplay.jp",
+    "click.asplay.jp"
+   ]
+  },
+  {
+   "name": "アクセストレード",
+   "why": "登録の記録なし",
+   "domains": [
+    "h.accesstrade.net",
+    "accesstrade.net"
+   ]
+  },
+  {
+   "name": "afb",
+   "why": "登録の記録なし",
+   "domains": [
+    "t.afi-b.com",
+    "afi-b.com"
+   ]
+  },
+  {
+   "name": "フェルマ",
+   "why": "登録の記録なし",
+   "domains": [
+    "t.felmat.net"
+   ]
+  },
+  {
+   "name": "JANet",
+   "why": "登録の記録なし",
+   "domains": [
+    "t.j-a-net.jp"
+   ]
+  },
+  {
+   "name": "リンクシェア",
+   "why": "登録の記録なし",
+   "domains": [
+    "click.linksynergy.com"
+   ]
+  },
+  {
+   "name": "スマートC",
+   "why": "登録の記録なし",
+   "domains": [
+    "smart-c.jp"
+   ]
+  }
+ ]
 }

@@ -105,7 +105,7 @@ def svg(ic, c="gi"):
     return f'<svg class="{c}" viewBox="0 0 24 24" aria-hidden="true">{ICON[ic]}</svg>'
 
 
-HATSU = re.compile(r"(関東|首都圏|東日本|日本|国内|東京|都内|神奈川|横浜|埼玉|千葉|茨城|栃木|群馬|渋谷|新宿|銀座|池袋|[^\s「」、。・]{1,4}[府県市])初(?:出店|上陸|進出)?|初出店|初上陸|1号店|一号店")
+HATSU = re.compile(r"(関東|首都圏|東日本|日本|国内|東京|都内|神奈川|横浜|埼玉|千葉|茨城|栃木|群馬|渋谷|新宿|銀座|池袋|リンクス|AOYAMA|青山|SHIBUYA|IKEBUKURO|[^\s「」、。・]{1,4}[府県市])初(?:出店|上陸|進出)?|初出店|初上陸|1号店|一号店")
 
 
 def hatsu(x):
@@ -154,6 +154,23 @@ def slug(x):
     return x["d"].replace("-", "") + "-" + hashlib.sha1((x["n"] + "|" + x["u"]).encode()).hexdigest()[:6]
 
 
+
+# 11/27 owner「HP読みにくい・分かりにくい所ない？」：発表の文をそのまま写した「に新規出店！」「「店名」が○月○日にグランドオープン！」
+# （店名と日付のくり返し）・全角の英数字を、カードと1店のページで読みやすく直す。データ（夜・発表の写し）はそのまま。
+import unicodedata as _ud
+def ptc(x):
+    s = re.sub(r"[Ａ-Ｚａ-ｚ０-９＠]", lambda m: _ud.normalize("NFKC", m.group(0)), x.get("pt") or "").replace("\u3000", " ").strip()
+    s = re.sub(r"^[にがをへで][^。！!]{0,12}[！!。]\s*", "", s)
+    out = []
+    for z in re.split(r"(?<=[。！!])\s*", s):
+        if not z: continue
+        r = re.sub(r"[「『][^」』]{1,60}[」』]|\d{4}年|\d{1,2}月\d{1,2}日|\d{1,2}/\d{1,2}|[（(][月火水木金土日祝][)）]|グランド|リニューアル|オープン|開店|開業|出店|新規|いたしました|しました|します|決定|予定|[にがをはでへ・、。！!\s]", "", z)
+        if len(r) <= 2 and re.search(r"オープン|開店|開業|出店", z) and not re.search(r"プレ|先行|限定|記念|初", z):  # 店名と日付と「オープン」だけの文（名前・日付はカードの上に出ている）
+            continue
+        out.append(z)
+    s = "".join(out).strip()
+    return s
+
 def card(x):
     q = urllib.parse.quote(re.sub(r"（.*?）|「|」", " ", x["n"]) + " " + (x["pl"].split("・")[0] or x["p"]))
     end = f' data-end="{x["end"]}"' if x.get("end") else ""
@@ -182,11 +199,11 @@ def card(x):
             # 11/17 オーナー「おでかけ先の横にロゴつけてたけど開店閉店はなし？」→ おでかけと同じ絵のタイル（下に FOOD などの英字）＋日付の札＋あと何日
             f'<div class="dc cmb" style="--pc:{PCM.get(x["p"], "#8a8f98")}"><div class="ib"><svg viewBox="0 0 24 24">{ICON[ic]}</svg><span class="lb">{LBL.get(g, "SHOP")}</span></div>'
             f'<div class="dd{" tx" if fz else ""}"><b>{E(md)}</b>' + (f'<small class="ddw">{wd}</small>' if wd else "") + '</div><span class="cdn left"></span></div>'
-            f'<div class="bd"><div class="tp"><span class="gn">{svg(ic)}{E(g)}</span><span class="tag {x["k"]}">{E(lab)}</span>'
+            f'<div class="bd"><div class="tp"><span class="gn">{svg(ic)}{"" if g == "その他" else E(g)}</span><span class="tag {x["k"]}">{E(lab)}</span>'
             + (f'<span class="hs">{E(h1)}</span>' if h1 else "") + '</div>'
             + (f'<h3 class="nm"><a href="{E(x["u"])}" target="_blank" rel="noopener" data-k="公式の発表｜{E(x["n"])}">{E(x["n"])}</a></h3>' if is_chain(x) else
                f'<h3 class="nm"><a href="/kaiten/{slug(x)}" data-k="1店のページ｜{E(x["n"])}">{E(x["n"])}</a></h3>') +
-            f'<p class="pt">{E(x["pt"])}</p>'
+            (f'<p class="pt">{E(ptc(x))}</p>' if ptc(x) else "") +
             f'<p class="mt">{svg("pin", "mi")}<span>{place}{(" ・ " + E(stn)) if stn else ""}{("<i>" + E(x["tm"]) + "</i>") if x.get("tm") else ""}</span></p>'
             '<div class="ln">'
             f'<a class="src" href="{E(x["u"])}" target="_blank" rel="noopener" data-k="公式の発表｜{E(x["n"])}">公式の発表 ↗</a>'
@@ -201,19 +218,19 @@ CSS = """<style>
 body{margin:0;background:#fff;color:#2B2622;font-family:"Zen Kaku Gothic New",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:480px;margin:0 auto;padding:0 16px 120px}
 .head{text-align:center;padding:30px 0 6px}.head img{border-radius:50%}
-.en{font-family:Jost,sans-serif;font-weight:300;font-size:10px;letter-spacing:.42em;color:#8C7B6E;margin-top:8px}
+.en{font-family:Jost,sans-serif;font-weight:300;font-size:10px;letter-spacing:.42em;color:#6F6357;margin-top:8px}
 h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:25px;line-height:1.5;letter-spacing:.1em;color:#231E1B;margin:12px 0 8px;font-feature-settings:"palt"}
 h1 span{display:block;font-size:14px;letter-spacing:.08em;color:#6B6058;margin-top:2px}
 .sub{font-size:13px;line-height:2;color:#6B6058;margin:0}
-.upd{font-size:11px;letter-spacing:.08em;color:#8C7B6E;margin-top:10px}
+.upd{font-size:11px;letter-spacing:.08em;color:#6F6357;margin-top:10px}
 .note{font-size:12px;line-height:1.9;color:#6B6058;background:#F7F5F2;border-radius:10px;padding:14px 16px;margin-top:24px}
 .kfol{margin-top:18px;text-align:center}.kfol p{font-size:13px;line-height:1.9;color:#6B6058;margin:0 0 10px}
 .kfol a{display:inline-block;margin:0 4px 8px;font-size:13px;font-weight:700;text-decoration:none;border-radius:99px;padding:9px 16px;background:#2B2622;color:#fff}
 .kfol a+a{background:#fff;color:#2B2622;box-shadow:inset 0 0 0 1px #2B2622}
-.also{margin-top:22px}.also small{display:block;font-size:11px;letter-spacing:.14em;color:#8C7B6E;margin-bottom:8px}
+.also{margin-top:22px}.also small{display:block;font-size:11px;letter-spacing:.14em;color:#6F6357;margin-bottom:8px}
 .also a{display:inline-block;margin:0 8px 8px 0;padding:7px 13px;border:1px solid #D9D2CB;border-radius:99px;color:#2B2622;text-decoration:none;font-size:12.5px}
 .back{display:block;text-align:center;border:1px solid #2B2622;border-radius:12px;padding:13px 16px;margin:18px 0 10px;color:#2B2622;text-decoration:none;font-weight:700;font-size:14px}
-.sign{text-align:center;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.3em;color:#8C7B6E}
+.sign{text-align:center;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.3em;color:#6F6357}
 </style>"""
 
 
@@ -222,21 +239,21 @@ NCSS = ("<style>"
        ".kbar{position:sticky;top:0;z-index:20;background:#fff;margin:14px -16px 0;padding:10px 16px 8px;border-bottom:1px solid #E6E0D9}"
        ".kbar2{margin:0 -16px;padding:2px 16px 4px}"
        ".seg{display:grid;grid-template-columns:repeat(3,1fr);background:#F1EEEA;border-radius:10px;padding:3px}"
-       ".seg button{font:700 13px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;border:0;background:transparent;color:#8C7B6E;padding:8px 0;border-radius:8px;cursor:pointer}"
+       ".seg button{font:700 13px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;border:0;background:transparent;color:#6F6357;padding:8px 0;border-radius:8px;cursor:pointer}"
        ".seg button b{font:500 12px Jost,sans-serif;margin-left:5px;font-variant-numeric:tabular-nums}"
        ".seg button[aria-pressed=true]{background:#fff;color:#2B2622;box-shadow:0 1px 2px rgba(0,0,0,.08)}"
        ".row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:8px -16px 0;padding:0 16px}.row::-webkit-scrollbar{display:none}"
        ".row button{flex:none;display:inline-flex;align-items:center;gap:4px;font:700 12.5px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;color:#6B6058;background:#fff;border:1px solid #E1D9CF;border-radius:99px;padding:6px 12px;cursor:pointer}"
-       ".row button small{font:500 11px Jost,sans-serif;color:#A2958A}"
+       ".row button small{font:500 11px Jost,sans-serif;color:#7A6E62}"
        ".row button[aria-pressed=true]{background:#2B2622;border-color:#2B2622;color:#fff}.row button[aria-pressed=true] small{color:#D9D2CA}"
        ".row button .gi{width:15px;height:15px}"
        ".sch{display:flex;align-items:center;gap:8px;margin-top:8px;background:#F7F5F2;border-radius:10px;padding:0 12px}"
-       ".sch svg{width:16px;height:16px;flex:none;fill:none;stroke:#8C7B6E;stroke-width:1.8}"
+       ".sch svg{width:16px;height:16px;flex:none;fill:none;stroke:#6F6357;stroke-width:1.8}"
        ".sch input{flex:1;min-width:0;border:0;background:transparent;font:500 16px 'Zen Kaku Gothic New',sans-serif;color:#2B2622;padding:9px 0;outline:none}"
-       ".sch input::placeholder{color:#A2958A;font-size:14px}"
+       ".sch input::placeholder{color:#7A6E62;font-size:14px}"
        # 見出し（きょう・あした・今週・来週・月）
        ".wk{display:flex;align-items:baseline;gap:8px;font:600 15px/1.4 'Shippori Mincho',serif;letter-spacing:.1em;color:#231E1B;margin:22px 0 2px;padding-bottom:6px;border-bottom:1px solid #2B2622}"
-       ".wk small{font:400 11.5px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;color:#8C7B6E}"
+       ".wk small{font:400 11.5px 'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;color:#6F6357}"
        # 1件
        ".it{display:grid;grid-template-columns:72px 1fr;gap:0 10px;padding:12px 0 8px;border-top:1px solid #EFEAE4}.wk+.it{border-top:0}"
        # 絵のタイルと札の形は assets/cardmark.js の .cmb をそのまま使う（昼・夜とも）。ここでは置き場所だけ
@@ -253,18 +270,19 @@ NCSS = ("<style>"
        ".nm a{color:inherit;text-decoration:none}"
        ".pt{font-size:12.5px;line-height:1.7;color:#4A423C;margin:2px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}"
        ".mt{display:flex;gap:4px;align-items:flex-start;margin:4px 0 0;font-size:11.5px;line-height:1.6;color:#6B6058}.mt span{min-width:0;overflow-wrap:anywhere}"
-       ".mt i{display:block;font-style:normal}.mt i::before{content:'営業';font-size:10px;color:#A2958A;letter-spacing:.06em;margin-right:6px}"
-       ".mt .mi{width:13px;height:13px;margin-top:3px;color:#A2958A}"
+       ".mt i{display:block;font-style:normal}.mt i::before{content:'営業';font-size:10px;color:#7A6E62;letter-spacing:.06em;margin-right:6px}"
+       ".mt .mi{width:13px;height:13px;margin-top:3px;color:#7A6E62}"
        ".ln{display:flex;align-items:center;gap:2px;margin:4px 0 -6px -8px}"
-       ".ln a,.ln .sh{font:700 12px 'Zen Kaku Gothic New',sans-serif;color:#7A5230;text-decoration:none;background:none;border:0;padding:8px;line-height:1;cursor:pointer}"
+       ".ln a,.ln .sh{font:700 12px 'Zen Kaku Gothic New',sans-serif;color:#7A5230;text-decoration:none;background:none;border:0;padding:16px 8px;margin:-8px 0;line-height:1;cursor:pointer}"
        ".hs{font-size:10.5px;font-weight:700;color:#7A5230;border:1px solid #CDB59E;border-radius:4px;padding:0 5px;letter-spacing:.04em}"
        ".it.same .dc .dd,.it.same .dc .cdn{visibility:hidden}.it.same{border-top:0}"
        ".chn{display:block;width:100%;text-align:left;font:700 12.5px 'Zen Kaku Gothic New',sans-serif;color:#6B6058;background:#F7F5F2;border:0;border-radius:8px;padding:11px 14px;margin:10px 0 2px;cursor:pointer}"
-       ".chn b{color:#2B2622}.chn::after{content:'＋';float:right;color:#A2958A}.chn.on::after{content:'－'}"
+       ".chn b{color:#2B2622}.chn::after{content:'＋';float:right;color:#7A6E62}.chn.on::after{content:'－'}"
        ".sum{font-size:12px;color:#6B6058;margin:12px 0 0;letter-spacing:.02em}.sum b{font:500 15px Jost,sans-serif;color:#231E1B;margin:0 2px}"
        # このページだけ頭を小さく（飾りの丸と色はそのまま）
        ".head{padding:16px 16px 6px!important}.head img{width:40px!important;height:40px!important}.head .sub,.head .en{display:none}.head h1{font-size:22px}.head h1 span{font-size:12px}"
-       ".fv{margin-left:auto;width:36px;height:36px;border:0;background:none;padding:6px;cursor:pointer;color:#A2958A}"
+       ".nm a,.sp-bc a{display:inline-block;padding:10px 0;margin:-10px 0}"  # 11/28 UI UX Pro Max：押す所を44px（見た目の位置は変えない）
+       ".fv{margin-left:auto;width:44px;height:44px;margin-top:-4px;margin-bottom:-4px;border:0;background:none;padding:6px;cursor:pointer;color:#7A6E62}"
        ".fv svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6}.fv[aria-pressed=true]{color:#B5643F}.fv[aria-pressed=true] svg{fill:currentColor}"
        # 閉まるお店は静かに（赤は使わない）
        ".k-close .nm,.k-close .pt{color:#6B6058}.k-close .dc .ib{filter:grayscale(.7);opacity:.75}"
@@ -352,9 +370,9 @@ JWD = "月火水木金土日"
 SCSS = ("<style>"
         ".sp-ph{position:relative;margin:14px 0 4px}.sp-ph img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:14px;display:block;background:#EFEAE4}"
         ".sp-ph i{position:absolute;left:10px;top:10px;font:700 11px 'Zen Kaku Gothic New',sans-serif;font-style:normal;color:#fff;background:rgba(30,24,20,.62);border-radius:99px;padding:5px 10px}"
-        ".sp-ph figcaption{font-size:10.5px;color:#A2958A;margin-top:6px;line-height:1.6}.sp-ph figcaption a{color:inherit}"
+        ".sp-ph figcaption{font-size:10.5px;color:#7A6E62;margin-top:6px;line-height:1.6}.sp-ph figcaption a{color:inherit}"
         "html.night .sp-ph img,html.night .sp-ph i{filter:invert(1) hue-rotate(180deg)}"
-        ".sp-bc{font-size:11.5px;color:#8C7B6E;margin:14px 0 0;padding-right:96px;line-height:1.7}.sp-bc a{color:#6B6058;text-decoration:none}.sp-bc a:hover{text-decoration:underline}"
+        ".sp-bc{font-size:11.5px;color:#6F6357;margin:14px 0 0;padding-right:96px;line-height:1.7}.sp-bc a{color:#6B6058;text-decoration:none}.sp-bc a:hover{text-decoration:underline}"
         ".sp-hero{display:grid;grid-template-columns:88px 1fr;gap:0 14px;align-items:center;margin:16px 0 0}"
         "html body .sp-hero .dc.cmb{position:static;width:auto;text-align:center}"
         "html body .sp-hero .dc .ib{width:84px;height:84px;border-radius:26px}html body .sp-hero .dc .ib svg{width:40px;height:40px}"
@@ -365,7 +383,7 @@ SCSS = ("<style>"
         ".sp-pt{font-size:14.5px;line-height:1.95;color:#2B2622;margin:16px 0 0}"
         ".sp-dl{display:grid;grid-template-columns:5.2em 1fr;margin:16px 0 0;border-top:1px solid #EFEAE4}"
         ".sp-dl dt,.sp-dl dd{padding:11px 0;border-bottom:1px solid #EFEAE4;font-size:13px;line-height:1.75}"
-        ".sp-dl dt{color:#8C7B6E;letter-spacing:.06em;font-size:12px}.sp-dl dd{margin:0;color:#2B2622;min-width:0;overflow-wrap:anywhere}"
+        ".sp-dl dt{color:#6F6357;letter-spacing:.06em;font-size:12px}.sp-dl dd{margin:0;color:#2B2622;min-width:0;overflow-wrap:anywhere}"
         ".sp-dl dd a{color:#7A5230;font-weight:700}"
         ".sp-btn{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0 0}"
         ".sp-btn a,.sp-btn button{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;border-radius:12px;font:700 13.5px 'Zen Kaku Gothic New',sans-serif;text-decoration:none;cursor:pointer;letter-spacing:.04em}"
@@ -374,13 +392,75 @@ SCSS = ("<style>"
         ".sp-sec{margin:28px 0 0}.sp-sec h2{font:600 15px/1.5 'Shippori Mincho',serif;letter-spacing:.1em;color:#231E1B;margin:0 0 4px;padding-bottom:6px;border-bottom:1px solid #2B2622}"
         ".sp-sec .it{grid-template-columns:72px 1fr}"
         ".sp-more{margin:18px 0 0;text-align:right;font-size:13px}.sp-more a{color:#7A5230;font-weight:700;text-decoration:none}"
-        ".sp-chk{font-size:11.5px;line-height:1.8;color:#8C7B6E;margin:14px 0 0}"
+        ".sp-chk{font-size:11.5px;line-height:1.8;color:#6F6357;margin:14px 0 0}"
         "</style>")
 
 
 def wdate(d):
     return (f"{d.year}年" if d.year != TODAY.year else "") + f"{d.month}月{d.day}日（{JWD[d.weekday()]}）"
 
+
+# 11/27 owner「できること全部やろう」：人が来ている1店のページに、ブランドの通販（楽天・Yahoo!ショッピング）を付ける。
+# 品を売っているブランドの店だけ（服・雑貨・お菓子・コスメ）。飲食・コンビニ・ジム・施設・閉店には付けない。
+RAKU = "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc="
+YVC = "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3786665&pid=892753201&vc_url="
+SHOPWORD = re.compile(r"(店|モール|アウトレット|パーク|百貨|館|ストア|プラザ|SC|梅田|心斎橋|なんば|難波|三宮|河原町|四条|天王寺|あべの)$")
+PLACE = r"大阪|京都|神戸|奈良|滋賀|和歌山|梅田|心斎橋|なんば|難波|三宮|元町|河原町|四条|錦|天王寺|あべの|ルクア|LUCUA|サウス|KYOTO|Kyoto|OSAKA|Osaka|KOBE|Kobe|BAL|東京|TOKYO|Tokyo|渋谷|新宿|銀座|池袋|リンクス|AOYAMA|青山|SHIBUYA|IKEBUKURO|横浜|表参道|原宿|丸の内|日本橋|有楽町|六本木"
+
+
+def brand(x):
+    g, _ = genre(x)
+    if x["k"] == "close" or is_chain(x):
+        return ""
+    if g not in ("服・雑貨", "パン・スイーツ") and not (g == "美容・からだ" and re.search(r"コスメ|化粧|香水|フレグランス|THANN|BYREDO|バイレード", x["n"] + x.get("pt", ""))):
+        return ""
+    if re.search(r"書店|本屋|ホームセンター|ドン・キホーテ|ドンキ|ダイソー|DAISO|キャンドゥ|セリア|ギャラリー|GALLERY|スタジオ|フロア|^イオンモール|^大丸|^阪急|^高島屋|^近鉄|ヤマダストアー|BOOKHOME|ブックホーム|リカー|テレ東|^西武|キッザニア|BUFFET|ビュッフェ|Bistro|ビストロ|楽しむ|実家|^[0-9]|%|図書館|なだ万|キッカケ|メモリアル|有隣堂|LINKS|DONUT|ドーナツ|MOM’S TOUCH|KUA`AINA|WELLNESS|ブラリバ|＆found|DOOR TO GOLF|カンパネラ|桐松屋|POPUPショップ|クレープ", x["n"]):
+        return ""
+    w = re.sub(r"（.*?）|\(.*?\)|「|」", " ", x["n"]).replace("　", " ").split()
+    while len(w) > 1 and (SHOPWORD.search(w[-1]) or re.fullmatch(PLACE, w[-1])):
+        w.pop()
+    b = " ".join(w)
+    while re.search(r"(" + PLACE + r")$", b) and re.sub(r"(" + PLACE + r")$", "", b).strip():
+        b = re.sub(r"(" + PLACE + r")$", "", b).strip()
+    b = re.sub(r"(パーク)?ストア$|ふんわりストア$|オフィシャルショップ$", "", b).strip() or b
+    if not b or SHOPWORD.search(b) and len(w) == 1 and b.endswith("店"):
+        return ""
+    return b
+
+
+def shop_links(x):
+    b = brand(x)
+    if not b:
+        return ""
+    q = urllib.parse.quote(b)
+    ra = RAKU + urllib.parse.quote(f"https://search.rakuten.co.jp/search/mall/{q}/", safe="")
+    ya = YVC + urllib.parse.quote(f"https://shopping.yahoo.co.jp/search?p={q}", safe="")
+    return (f'<section class="sp-sec sp-buy"><h2>{E(b)}の品を通販で見る</h2>'
+            f'<p class="sp-chk">お店に行けない日も、同じブランドの品を家から見られます（広告のリンクです。紹介料をいただくことがあります）。</p>'
+            '<div class="sp-btn">'
+            f'<a class="s" href="{E(ra)}" target="_blank" rel="noopener sponsored" data-k="1店｜通販 楽天">楽天で見る ↗</a>'
+            f'<a class="s" href="{E(ya)}" target="_blank" rel="noopener sponsored" data-k="1店｜通販 Yahoo">Yahoo!で見る ↗</a>'
+            '</div></section>')
+
+
+
+# 11/27 月：1店のページから、その街の「家と土地の相場」（/machi/…）へ1本。検索の帳面で開店ページが一番見られている→街のページへ道を作る（Google が街のページを見つけやすく・売る相談への道）
+_MACHI = None
+def machi_link(pl2):
+    global _MACHI
+    if _MACHI is None:
+        _MACHI = {}
+        import glob
+        for f in glob.glob(os.path.join(os.path.join(SITE, "machi"), "*.html")):
+            try:
+                m = re.search(r"<title>([^<｜|]*?)の地価", open(f, encoding="utf-8").read(3000))
+            except Exception:
+                m = None
+            if m: _MACHI[m.group(1)] = "/machi/" + os.path.basename(f)[:-5]
+    ks = [k for k in _MACHI if pl2 and pl2.startswith(k)]
+    if not ks: return ""
+    k = max(ks, key=len)
+    return f'<p class="sp-more"><a href="{_MACHI[k]}" data-k="1店｜この街の相場">{E(k)}の家と土地の相場も見る →</a></p>'
 
 def store_page(x, shell, near):
     d = datetime.date.fromisoformat(x["d"])
@@ -400,8 +480,10 @@ def store_page(x, shell, near):
     host = urllib.parse.urlparse(x["u"]).netloc.replace("www.", "")
     srcname = "PR TIMES（会社の発表）" if "prtimes" in host else ("ららぽーとの公式のお知らせ" if "mitsui-shopping-park" in host else host)
     lab = {"open": "開店", "pop": "期間限定", "close": "閉店"}[x["k"]]
-    title = (f"【{(fz or (f'{d.year}/' if d.year != TODAY.year else '') + f'{d.month}/{d.day}')}{lab}】{x['n']}｜{area}"
-             + ("の閉店のお知らせ（いつまで・場所）" if x["k"] == "close" else "の新しいお店（いつ・場所・時間）"))[:70]
+    dl = fz or (f"{d.year}年" if d.year != TODAY.year else "") + f"{d.month}月{d.day}日"
+    # 11/27 夜の検索の帳面：開店ページは「◯◯ いつ開店」で探されて出ている（12/1 開店の店が7日で379表示）→ 題をその問いの形に
+    title = ((f"{x['n']}はいつ閉店？{dl}閉店｜{area}" if x["k"] == "close" else
+              f"{x['n']}はいつ開店？{dl}{'オープン（期間限定）' if x['k'] == 'pop' else 'オープン'}｜{area}の場所・時間"))[:70]
     desc = (f"{x['n']}は{when}。{x['pt']} 場所は{x['p']}{('・' + pl2) if pl2 else ''}。"
             f"{('営業時間は' + x['tm'] + '。') if x.get('tm') else ''}公式の発表と地図へすぐ行けます。")[:150]
     rows = [("いつ", E(when)), ("場所", E(x["p"] + ("・" + pl2 if pl2 else "")))]
@@ -416,11 +498,11 @@ def store_page(x, shell, near):
     chk = datetime.date.fromisoformat(x.get("added") or TODAY.isoformat())
     body = (f'<nav class="sp-bc" aria-label="現在地"><a href="/kaiten">関東の開店・閉店ニュース</a> › <a href="/kaiten#p={E(x["p"])}">{E(x["p"])}</a> › {E(x["n"])}</nav>'
             f'<div class="sp-hero"><div class="dc cmb" style="--pc:{PCM.get(x["p"], "#8a8f98")}"><div class="ib"><svg viewBox="0 0 24 24">{ICON[ic]}</svg><span class="lb">{LBL.get(g, "SHOP")}</span></div></div>'
-            f'<div><div class="tp"><span class="gn">{svg(ic)}{E(g)}</span><span class="tag {x["k"]}">{E(x.get("sub") or lab)}</span>'
+            f'<div><div class="tp"><span class="gn">{svg(ic)}{"" if g == "その他" else E(g)}</span><span class="tag {x["k"]}">{E(x.get("sub") or lab)}</span>'
             + (f'<span class="hs">{E(hatsu(x))}</span>' if hatsu(x) else "") + f'</div><h1>{E(x["n"])}</h1></div></div>'
             f'<div class="sp-when" data-d="{x["d"]}" data-k="{x["k"]}"><b>{E(fz or f"{d.month}/{d.day}")}<small>{"" if fz else "（" + JWD[d.weekday()] + "）"}{E(verb)}</small></b><span class="cd" id="cd"></span></div>'
             + sp_fig(x) +
-            f'<p class="sp-pt">{E(x["pt"])}</p>'
+            (f'<p class="sp-pt">{E(ptc(x))}</p>' if ptc(x) else "") +
             '<dl class="sp-dl">' + "".join(f"<dt>{a}</dt><dd>{b}</dd>" for a, b in rows) + "</dl>"
             '<div class="sp-btn">'
             f'<a class="p" href="{E(x["u"])}" target="_blank" rel="noopener" data-k="1店｜公式の発表ボタン">公式の発表を見る ↗</a>'
@@ -428,11 +510,13 @@ def store_page(x, shell, near):
             '<button type="button" class="s" id="sh" data-k="1店｜送る">LINEなどで送る</button></div>'
             f'<div class="sp-map"><iframe loading="lazy" title="{E(x["n"])}の地図" src="https://maps.google.com/maps?q={q}&amp;z=16&amp;output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe></div>'
             f'<p class="sp-chk">日付・場所・時間は、{E(srcname)}の発表をもとに {chk.year}年{chk.month}月{chk.day}日に確かめました。変わることがあるので、出かける前に公式の発表をご確認ください。</p>')
+    body += shop_links(x)
     if near:
         body += (f'<section class="sp-sec"><h2>{E(x["p"])}のほかの新しいお店</h2>' + "".join(near) + "</section>")
     pk = {"東京": "tokyo", "神奈川": "kanagawa", "埼玉": "saitama", "千葉": "chiba", "茨城": "ibaraki", "栃木": "tochigi", "群馬": "gunma"}.get(x["p"])
     if pk:  # 下の「あわせて見る」は一覧と同じ物がそのまま付くので、ここは府県のおでかけへの1本だけ
         body += f'<p class="sp-more"><a href="/odekake-{pk}" data-k="1店｜府県のおでかけ">{E(x["p"])}のおでかけ先も見る →</a></p>'
+    body += machi_link(pl2)
     url = BASE + "kaiten/" + slug(x)
     ldj = [{"@context": "https://schema.org", "@type": "NewsArticle", "headline": title[:110], "description": desc,
             "datePublished": (x.get("added") or x["d"]) + "T07:00:00+09:00", "dateModified": (x.get("added") or x["d"]) + "T07:00:00+09:00",
@@ -446,7 +530,11 @@ def store_page(x, shell, near):
     for prop in ('<meta name="description" content="', '<meta property="og:description" content="'):
         t = re.sub("(" + re.escape(prop) + ')[^"]*', lambda m: m.group(1) + E(desc), t, count=1)
     t = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m: m.group(1) + E(x["n"] + "｜" + when), t, count=1)
+    # 11/27 一覧の頭を写すので canonical・og:url が「/kaiten」のままだった（koyo.html は kanto.townnote.app で BASE と違い、置き換えが当たらない）
+    # → Google が1店のページを一覧の写しと見て検索に出さなかった。どちらのアドレスでも1店のURLにする
     t = t.replace(f'"{BASE}kaiten"', f'"{url}"')
+    t = re.sub(r'(<link rel="canonical" href=")[^"]*/kaiten"', lambda m: m.group(1) + url + '"', t, count=1)
+    t = re.sub(r'(<meta property="og:url" content=")[^"]*/kaiten"', lambda m: m.group(1) + url + '"', t, count=1)
     t = re.sub(r'<script type="application/ld\+json">.*?</script>', "", t, flags=re.S)
     t = t.replace("</head>", SCSS + "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in ldj) + "</head>", 1)
     a = t.index('<header class="head">'); b = t.index('<p class="note">'); b = t.index('</p>', b) + len('</p>')

@@ -105,7 +105,7 @@ export async function onRequest(ctx) {
 // site/shin/skin.css・skin.js は月の repo（usagi-fudosan-media links/shin）の写し。中身のページは何も変えていない。戻す時は skin() を通さず ctx.next() を返す。
 const SKIN = '<script>document.documentElement.classList.add("sk");try{if(localStorage.getItem("usagi_theme")==="night")document.documentElement.classList.add("nt")}catch(e){}</script><link rel="stylesheet" href="/shin/skin.css"><script src="/shin/skin.js" defer></script>';
 // 11/23 関西と同じ新しい土台のページ（泊まり・初詣・まちランキング・紅葉の都県）も足す。前はここに無くて、頭が2つ・夜に題が読めなかった
-const NOSKIN = /^(|\/odekake|\/koyo|\/ima|\/kaiten|\/okaimono|\/fudosan-list|\/uru|\/ikura|\/furusato|\/nesage|\/tomari|\/hatsumode|\/ranking|\/chika-(kanto|tokyo)|\/sagasu|\/jikka(\/[a-z]+-\d+|\/shindan)?|\/kaitai(-[a-z]+)?|\/akiya-ranking|\/moushikomi|\/koe|\/otoku|\/kaimawari|\/o\/[0-9a-f]+|\/kaiten\/\d{8}-[0-9a-f]+|\/(odekake|illumination|koyo)-(tokyo|kanagawa|saitama|chiba|ibaraki|tochigi|gunma)|\/illumination(-muryo)?)$/;
+const NOSKIN = /^(|\/odekake|\/koyo|\/ima|\/kaiten|\/okaimono|\/fudosan-list|\/uru|\/ikura|\/furusato|\/nesage|\/tomari|\/hatsumode|\/hatsuuri|\/nenmatsu|\/christmas|\/toshikoshi|\/kawaru|\/ranking|\/chika-(kanto|tokyo)|\/sagasu|\/jikka(\/[a-z]+-\d+|\/shindan)?|\/kaitai(-[a-z]+)?|\/akiya-ranking|\/moushikomi|\/koe|\/otoku|\/kaimawari|\/o\/[0-9a-f]+|\/(hatsumode|hatsuuri|nenmatsu|christmas|toshikoshi|kawaru)\/[0-9a-f]+|\/kaiten\/\d{8}-[0-9a-f]+|\/(odekake|illumination|koyo)-(tokyo|kanagawa|saitama|chiba|ibaraki|tochigi|gunma)|\/illumination(-muryo)?)$/;
 function skin(request, res) {
   if (request.method !== "GET" || !(res.headers.get("content-type") || "").includes("text/html")) return res;
   // 11/19 表紙・おでかけ・都県のおでかけは新しい土台そのもの（scripts/shin_kanto.py）なので、かぶせない

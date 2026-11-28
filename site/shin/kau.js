@@ -20,7 +20,7 @@ function when(at){var m=/(\d{4})-(\d\d)-(\d\d) (\d\d:\d\d)/.exec(at||"");return 
 function kana(s){return String(s||"").replace(/[ァ-ン]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96)}).replace(/\s/g,"")}
 var SYN={"といれ":"tp","といぺ":"tp","てぃっしゅ":"tissue","はなかみ":"tissue","おむつ":"diaper","おしり":"wipes","みず":"water","すい":"water","たんさん":"soda","こめ":"rice","おこめ":"rice","ちゃ":"tea","おちゃ":"tea","こーひー":"coffee","まめ":"beans","せんざい":"detergent","せんたく":"detergent","じゅうなん":"softener","しゃんぷー":"shampoo","ぼでぃ":"bodysoap","しょっき":"dish","だいどころ":"dish","ごみ":"trash","ぶくろ":"trash","でんち":"battery","ますく":"mask","ぱすた":"pasta","すぱげ":"pasta","いぬ":"dogfood","どっぐ":"dogfood","ねこ":"catfood","きゃっと":"catfood"};
 
-S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">日用品の値段くらべ</h1><p class="h1p">楽天・Yahoo!ショッピング・Amazon を1つの画面で</p>'+(document.documentElement.classList.contains("lk-kn")?'<p class="kno kno2"><span>ほかに</span><a href="/nesage">値下がりした物</a><a href="/furusato">ふるさと納税</a></p>':'')+
+S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">日用品の値段くらべ</h1><p class="h1p">楽天とYahoo!ショッピングの値段を1つの画面で（Amazonは押すと検索で開きます）</p>'+(document.documentElement.classList.contains("lk-kn")?'<p class="kno kno2"><span>ほかに</span><a href="/nesage">値下がりした物</a><a href="/furusato">ふるさと納税</a></p>':'')+
  '<div class="fnd"><label class="fin">'+S_.IC.find+'<input id="q" type="search" placeholder="品物で探す（例：ティッシュ、おむつ）" autocomplete="off" enterkeyhint="search"></label><div class="sug" id="sug"></div></div>'+
  '<div class="tiles" id="tl"></div><p class="upd"><i class="dot"></i><span id="at"></span></p></section>'+
  '<div id="bfx"></div><div id="myx"></div>'+
@@ -29,8 +29,8 @@ S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">日�
  '<p class="cr kcr">1L・1枚など同じ量あたりの値段で比べています。値段は調べた時のもので、お店で変わることがあります。お店へのリンクは広告（PR）です。</p></div>';
 
 function head(){$("#tl").innerHTML=
-  '<button data-a="w"><small>楽天が安い</small><b><span data-n="'+(ST.win["楽天"]||0)+'">0</span><u>/ '+D.cats.length+'種類</u></b></button>'+
-  '<button data-a="w"><small>Yahoo!が安い</small><b><span data-n="'+(ST.win["Yahoo!"]||0)+'">0</span><u>/ '+D.cats.length+'種類</u></b></button>'+
+  '<button data-a="w"><small>楽天の方が安い</small><b><span data-n="'+(ST.win["楽天"]||0)+'">0</span><u>/ '+D.cats.length+'種類</u></b></button>'+
+  '<button data-a="w"><small>Yahoo!の方が安い</small><b><span data-n="'+(ST.win["Yahoo!"]||0)+'">0</span><u>/ '+D.cats.length+'種類</u></b></button>'+
   '<button data-a="drop"><small>値下がり中</small><b><span data-n="'+ST.dr+'">0</span><u>件</u></b><i>→</i></button>';
   $("#at").textContent=when(D.at)+" に調べた値段・"+D.cats.reduce(function(s,c){return s+c.o.length},0)+"件から";S_.counts($("#tl"))}
 head();
@@ -60,7 +60,7 @@ myBox();
 function card(c){var b=c.best,sh=c.sh,mx=0;Object.keys(sh).forEach(function(w){mx=Math.max(mx,sh[w].u)});
   return '<button class="kc" data-k="'+c.k+'"><span class="ki">'+icon(c.k)+'</span>'+(c.dr?'<span class="dr">値下がり</span>':"")+'<b class="knm">'+esc(c.nm)+'</b>'+
    '<span class="kp"><small>'+per(c,b)+'</small><strong><span data-n="'+Math.round(b.u)+'" data-f="1">0</span>円</strong></span>'+
-   '<span class="ks">'+["楽天","Yahoo!"].map(function(w){var o=sh[w];return o?'<span class="'+(w===b.w?"win":"")+'"><em>'+w+'</em><i><i data-w="'+(o.u/mx).toFixed(3)+'"></i></i></span>':'<span class="no"><em>'+w+'</em><i></i></span>'}).join("")+'</span></button>'}
+   '<span class="ks">'+["楽天","Yahoo!"].map(function(w){var o=sh[w];return o?'<span class="'+(w===b.w?"win":"")+'"><em>'+w+'</em><i><i data-w="'+(o.u/mx).toFixed(3)+'"></i></i><b>'+Math.round(o.u).toLocaleString("ja-JP")+'円</b></span>':'<span class="no"><em>'+w+'</em><i></i><b>なし</b></span>'}).join("")+'</span></button>'}
 var G=[["","すべて"]].concat(D.groups.map(function(g){return [g[0],g[0]]})),cur="";
 S_.seg($("#seg"),G,cur,function(v){cur=v;grid(true)});
 function grid(anim){var ks=cur?D.groups.filter(function(g){return g[0]===cur})[0][1]:D.cats.map(function(c){return c.k});
@@ -76,9 +76,11 @@ new IntersectionObserver(function(e){$("#bar").classList.toggle("stuck",!e[0].is
 function spark(h){if(!h||h.length<3)return "";var mx=Math.max.apply(null,h),mn=Math.min.apply(null,h),r=mx-mn||1,W=100,H=28;
   var pts=h.map(function(v,i){return (i/(h.length-1)*W).toFixed(1)+","+(H-2-(v-mn)/r*(H-4)).toFixed(1)}).join(" ");
   return '<svg class="spk" viewBox="0 0 100 28" preserveAspectRatio="none"><polyline points="'+pts+'"/></svg>'}
+/* 11/27 夜の点検「シングルとダブルが一緒・厚みで選べない」→ トイレットペーパーは1つずつに厚みの札（名前に無い物は「厚みの表示なし」） */
+function thick(c,o){if(c.k!=="tp")return "";var n=o.n||"",t=/ダブル/.test(n)?"ダブル":/シングル/.test(n)?"シングル":"厚みの表示なし";return '<span class="sp" style="background:var(--ink);color:var(--bg)">'+t+'</span>'}
 function row(c,o,i){var d=drop(o);
   return '<a class="of" href="'+esc(o.url)+'" target="_blank" rel="noopener sponsored" style="--sc:'+SC[o.w]+'"><span class="oi">'+(o.img?'<img src="'+esc(o.img)+'" alt="" loading="lazy">':icon(c.k))+'</span>'+
-   '<span class="ot"><span class="sp">'+o.w+'</span><b>'+esc(o.n)+'</b><small>'+esc(o.a)+(o.rc?'・★'+o.av+'（'+o.rc+'件）':"")+'</small>'+(d?'<em class="dr">30日でいちばん安い・'+d+'%下がった</em>':"")+'</span>'+
+   '<span class="ot"><span class="sp">'+o.w+'</span>'+thick(c,o)+'<b>'+esc(o.n)+'</b><small>'+esc(o.a)+(o.rc?'・★'+o.av+'（'+o.rc+'件）':"")+'</small>'+(d?'<em class="dr">30日でいちばん安い・'+d+'%下がった</em>':"")+'</span>'+
    '<span class="oprc"><strong>'+yen(o.p)+'</strong><small>'+per(c,o)+' '+yen(o.u)+'</small></span></a>'}
 function openKind(c){if(!c)return;var sh=c.sh,b=c.best,mx=0,bf=bfOf(c.k),amz=bf.filter(function(x){return x.w==="Amazon"})[0];
   Object.keys(sh).forEach(function(w){mx=Math.max(mx,sh[w].u)});var on=MY.indexOf(c.k)>=0,d=drop(b);

@@ -1,6 +1,8 @@
 /* 11/19 owner「他ページもぜんぶ変えれたら」→ 新しい土台で作り直していないページ（街・実家・解体・地価・売る・申し込み・おでかけ1件 …）に、
    新しい土台と同じ 頭（ロゴ・昼夜スイッチ）・大きい題が上の帯に収まる動き・下のバー＋MENU・本物の夜空 をかぶせる。
    読み込みは functions/_middleware.js が <head> に入れる（html.sk）。見た目は skin.css（build.py が shin.css から作る＋skin.tail.css）。 */
+/* 11/27 近未来の見本 ?mihon=3（この端末で覚える・?mihon=0 で外す）→ mirai.js。カードが開く動きは来たページの最初の絵より前に決める必要があるので、ここで先に入れる */
+try{(function(){var q=location.search.match(/[?&]mihon=([03])\b/);if(q)q[1]==="3"?localStorage.setItem("tn_mirai","1"):localStorage.removeItem("tn_mirai");if(localStorage.getItem("tn_mirai")!=="1"||window.__mrl)return;window.__mrl=1;var D=document,st=D.createElement("style");st.textContent="@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}::view-transition-old(root){animation:mr-out .28s ease both}::view-transition-new(root){animation:mr-in .36s cubic-bezier(.2,.8,.2,1) both}::view-transition-old(mrhero),::view-transition-new(mrhero){height:100%;object-fit:cover}@keyframes mr-out{to{opacity:0;transform:scale(.985)}}@keyframes mr-in{from{opacity:0;transform:translateY(10px)}}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}";D.head.appendChild(st);addEventListener("pagereveal",function(e){var s="";try{s=sessionStorage.getItem("mr_vt")||"";sessionStorage.removeItem("mr_vt")}catch(x){}if(!e.viewTransition||!s)return;var t=s.split("/").pop().split("?")[0],x=D.querySelectorAll("img"),h=null,i;for(i=0;i<x.length;i++)if(t&&(x[i].currentSrc||x[i].getAttribute("src")||"").indexOf(t)>=0){h=x[i];break}if(!h)for(i=0;i<x.length;i++)if(x[i].getAttribute("fetchpriority")==="high"){h=x[i];break}if(h){h.style.viewTransitionName="mrhero";e.viewTransition.finished.then(function(){h.style.viewTransitionName=""})}});var m=D.createElement("script");m.src="/shin/mirai.js?v=2";m.defer=true;D.head.appendChild(m)})()}catch(e){}
 (function(){
 "use strict";
 if(window.__sk)return;window.__sk=1;
@@ -27,7 +29,7 @@ var FUD={nav:[["街をさがす","find","/fudosan-list"],["ランキング","ran
   k:"Home & Land",menu:[["家と土地の相場","/fudosan-list"],["地価ランキング","/chika-kansai"],["まちランキング","/ranking"],["家を売る前に","/uru"],["いくらで売れる？","/ikura"],["実家・空き家","/jikka/"],["解体の費用と補助金","/kaitai"]],
   rel:[["おでかけ","/odekake"],["おかいもの","/okaimono"],["開店・閉店","/kaiten"],["トップへ","/"]]};
 var ODE={nav:[["開催中","now","/odekake"],["今週末","we","/odekake?w=we"],["いまから","map","/ima"],["泊まり","inn","/tomari"]],
-  k:"Odekake",menu:[["関西おでかけ","/odekake"],["イルミネーション","/illumination"],["紅葉","/koyo"],["いまから行ける","/ima"],["泊まり","/tomari"],["初詣","/hatsumode"]],
+  k:"Odekake",menu:[["関西おでかけ","/odekake"],["イルミネーション","/illumination"],["紅葉","/koyo"],["いまから行ける","/ima"],["泊まり","/tomari"],["初詣","/hatsumode"],["年末年始のごみ・役所","/nenmatsu"],["クリスマス","/christmas"],["除夜の鐘・年越し","/toshikoshi"]],
   rel:[["家と土地","/fudosan-list"],["おかいもの","/okaimono"],["開店・閉店","/kaiten"],["トップへ","/"]]};
 var KAI={nav:[["これから","now","/kaiten?w=soon"],["開いた","we","/kaiten?w=done"],["閉まる","down","/kaiten?w=close"],["おでかけ","map","/odekake"]],
   k:"New Shops",menu:[["関西の開店・閉店","/kaiten"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["おかいもの","/okaimono"],["トップへ","/"]]};
@@ -38,8 +40,8 @@ var KT=/kanto|lifenote|life-note|usagi-life/.test(location.hostname);
 if(KT){FUD.menu[1]=["地価ランキング","/chika-kanto"];ODE.menu[0]=["関東おでかけ","/odekake"];KAI.menu=[["関東の開店・閉店","/kaiten"]];TOP.menu[1]=["関東のおでかけ","/odekake"];}
 var BR=KT?"LIFE NOTE":"TOWN NOTE",LG=KT?["/logo-s.png","/logo-s-night.png"]:["/assets/logo-s.png?v=2","/assets/logo-s-night.png"];
 var OKA={nav:[["品物","find","/okaimono"],["値下がり","down","/nesage"],["お得","yen","/otoku"],["ふるさと納税","buy","/furusato"]],
-  k:"Shopping",menu:[["日用品の値段くらべ","/okaimono"],["値下がりした物","/nesage"],["お得な物","/otoku"],["ふるさと納税","/furusato"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["開店・閉店","/kaiten"],["トップへ","/"]]};
-var C=/^\/(okaimono|nesage|otoku|furusato|kaimawari|tanka)/.test(P)?OKA:/^\/(o|odekake|illumination|koyo|ima|tomari|hatsumode)\b/.test(P)?ODE:/^\/kaiten/.test(P)?KAI:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|koe|ranking|townnotes)/.test(P)?FUD:TOP;
+  k:"Shopping",menu:[["日用品の値段くらべ","/okaimono"],["値下がりした物","/nesage"],["お得な物","/otoku"],["ふるさと納税","/furusato"],["初売り・福袋","/hatsuuri"]],rel:[["おでかけ","/odekake"],["家と土地","/fudosan-list"],["開店・閉店","/kaiten"],["トップへ","/"]]};
+var C=/^\/(okaimono|nesage|otoku|furusato|kaimawari|tanka|hatsuuri)/.test(P)?OKA:/^\/(o|odekake|illumination|koyo|ima|tomari|hatsumode|nenmatsu|christmas|toshikoshi)\b/.test(P)?ODE:/^\/kaiten/.test(P)?KAI:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|koe|ranking|townnotes)/.test(P)?FUD:TOP;
 var here=function(u){return u.split("?")[0]===P.replace(/\.html$/,"")};
 /* 11/20 owner「不動産・実家・空き家 ごっちゃになる・バラバラすぎる 整理して」：家と土地のページを3つの目的に分ける。
    上＝3つの目的の切りかえ（街の相場／売る・買う／実家・空き家）、下のバー＝今の目的のページだけ、MENU＝3つの見出しで全部。
@@ -84,7 +86,7 @@ var IEO=C===FUD?ieOrg(P,KT):null;
 if(IEO){C={nav:IEO.nav.map(function(x){return [x.t,x.ic,x.href,x.svg,x.cur]}),k:FUD.k,menu:IEO.menu.map(function(m){return m.length>2||m[1]==="#"?m:[m[0],m[1],0]}),rel:FUD.rel};H.classList.add("ieo")}
 /* 11/21 見本 ?kn=1（shin.js と同じ）：下のバーはどのページでも4つの部屋。MENU は今の部屋のページだけ */
 var KN=0;try{var _kq=location.search.match(/[?&]kn=([01])/);if(_kq)localStorage.setItem("tn_kn2",_kq[1]);KN=localStorage.getItem("tn_kn2")!=="0"}catch(e){}
-if(KN){H.classList.add("lk-kn");var _rm=/^\/(okaimono|nesage|otoku|furusato|kaimawari|tanka)/.test(P)?2:/^\/(o|odekake|illumination|koyo|ima|tomari|hatsumode)\b/.test(P)?0:/^\/kaiten/.test(P)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|koe|ranking|townnotes)/.test(P)?1:-1;C={nav:TOP.nav.map(function(x,j){return [x[0],["map","inn","yen","buy"][j],x[2],0,j===_rm]}),k:C.k,menu:C.menu,rel:[["トップへ","/"]]}}
+if(KN){H.classList.add("lk-kn");var _rm=/^\/(okaimono|nesage|otoku|furusato|kaimawari|tanka|hatsuuri)/.test(P)?2:/^\/(o|odekake|illumination|koyo|ima|tomari|hatsumode|nenmatsu|christmas|toshikoshi)\b/.test(P)?0:/^\/kaiten/.test(P)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|koe|ranking|townnotes)/.test(P)?1:-1;C={nav:TOP.nav.map(function(x,j){return [x[0],["map","inn","yen","buy"][j],x[2],0,j===_rm]}),k:C.k,menu:C.menu,rel:[["トップへ","/"]]}}
 /* 11/21 見本 ?kn=1：1件ページの「公式ページで最新の情報を見る」が地図と長い文の下にあった → 日程・時間・料金のすぐ下へ */
 /* 11/22 kn：解体の「補助がある市」の長い説明（市ごとの箱）はたたむ。市の丸ボタンはそのまま */
 if(KN)(function(){var f=function(){var hs=document.querySelectorAll(".kt-hj");if(hs.length<4||document.querySelector(".kthd"))return;var d=document.createElement("details");d.className="kthd";d.innerHTML='<summary>市ごとの補助の中身を見る（'+hs.length+'市）</summary>';hs[0].parentNode.insertBefore(d,hs[0]);for(var i=0;i<hs.length;i++)d.appendChild(hs[i])};if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",f);else f()})();

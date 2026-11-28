@@ -22,6 +22,37 @@ rd = lambda *p: json.load(open(os.path.join(R, *p), encoding="utf-8"))
 PREF = ["東京", "神奈川", "埼玉", "千葉", "茨城", "栃木", "群馬"]
 FULL = {"東京": "東京都", "神奈川": "神奈川県", "埼玉": "埼玉県", "千葉": "千葉県", "茨城": "茨城県", "栃木": "栃木県", "群馬": "群馬県"}
 SLUG = {"東京": "tokyo", "神奈川": "kanagawa", "埼玉": "saitama", "千葉": "chiba", "茨城": "ibaraki", "栃木": "tochigi", "群馬": "gunma"}
+
+# 11/27 owner「稼げ」：都県の一覧（イルミ・紅葉）に、お金のリンクを1本だけ（本文の下・楽天トラベルの都県の宿）。関西 tools/shin/build.py YADO_PR と同じ
+
+# 11/27 owner「改善点ない？オシャレで素晴らしいUI/UX？」：同じ名前の店が同じ日に3店以上開く時（例：ピラティス5店）、一覧を埋めないよう1枚にまとめる。
+def _kt_group(kt):
+    import os as _o, collections as _c
+    out, used = [], set()
+    for i, a in enumerate(kt):
+        if i in used: continue
+        same = [j for j in range(i, len(kt)) if j not in used and kt[j]['w'] == a['w'] and kt[j]['d'] == a['d']
+                and len(_o.path.commonprefix([a['t'], kt[j]['t']])) >= 8]
+        if len(same) < 3:
+            out.append(a); continue
+        g = [kt[j] for j in same]; used.update(same)
+        pre = _o.path.commonprefix([x['t'] for x in g]).rstrip(' ・　')
+        rest = [x['t'][len(pre):].strip(' ・　') or x['p'] for x in g]
+        m = dict(a); m['t'] = f"{pre}（{len(g)}店）"
+        m['p'] = _c.Counter(x['p'] for x in g).most_common(1)[0][0]
+        m['k'] = _c.Counter(x['k'] for x in g).most_common(1)[0][0]
+        m['hk'] = f"同じ日に{len(g)}店：" + "・".join(f"{r}（{x['p']}）" for r, x in zip(rest, g))
+        m['a'] = "・".join(sorted({x['p'] for x in g}, key=[x['p'] for x in g].index))
+        m['rows'] = [(['場所', '・'.join(f"{r}（{x['p']}）" for r, x in zip(rest, g))] if r0[0] == '場所' else r0) for r0 in a.get('rows', [])]
+        m.pop('im', None); m.pop('cr', None); m.pop('cu', None)
+        out.append(m)
+    return out
+
+def YADO_PR(p, w):
+    import urllib.parse as _u
+    u = "https://hb.afl.rakuten.co.jp/hgc/58b50f43.00cd84ff.58b50f44.4872e82d/?pc=" + _u.quote(f"https://travel.rakuten.co.jp/yado/{SLUG[p]}/", safe="")
+    return {"h": f"{p}で泊まって{w}を見る", "t": f"楽天トラベルで{FULL[p]}の宿を見る", "u": u, "n": "楽天トラベルの都県の宿の一覧です（広告・PR）。"}
+
 PC = {"東京": "#D9775A", "神奈川": "#4F86C6", "埼玉": "#E09A3E", "千葉": "#3FA3B5", "茨城": "#5FA06A", "栃木": "#9C7BB8", "群馬": "#C2557A"}
 FL = {"東京": "#F7D9CC", "神奈川": "#D6E4F5", "埼玉": "#F8E4C4", "千葉": "#D0EBEF", "茨城": "#D8ECD4", "栃木": "#E6DBF1", "群馬": "#F6DCE6"}
 
@@ -152,9 +183,9 @@ REL = [["おでかけ", "/odekake"], ["家と土地", "/fudosan-list"], ["おか
 SEC = {"Odekake": "/odekake", "Home & Land": "/fudosan-list", "Shopping": "/okaimono", "New Shops": "/kaiten"}
 # 11/20 owner「統一されてない・整理されてない」：MENU の項目と並び順は分野ごとにここ1か所だけ（関西 tools/shin/build.py の MENUS・skin.js と同じ形）
 MENUS = {
-    "Odekake": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"], ["泊まり", "/tomari"], ["初詣", "/hatsumode"]],
+    "Odekake": [["関東おでかけ", "/odekake"], ["イルミネーション", "/illumination"], ["紅葉", "/koyo"], ["いまから行ける", "/ima"], ["泊まり", "/tomari"], ["初詣", "/hatsumode"], ["年末年始のごみ・役所", "/nenmatsu"], ["クリスマス", "/christmas"], ["除夜の鐘・年越し", "/toshikoshi"]],
     "Home & Land": [["家と土地の相場", "/fudosan-list"], ["地価ランキング", "/chika-kanto"], ["まちランキング", "/ranking"], ["家を売る前に", "/uru"], ["いくらで売れる？", "/ikura"], ["実家・空き家", "/jikka/"], ["解体の費用と補助金", "/kaitai"]],
-    "Shopping": [["日用品の値段くらべ", "/okaimono"], ["本当に安い？", "/nesage"], ["お得な物", "/otoku"], ["ふるさと納税", "/furusato"]],
+    "Shopping": [["日用品の値段くらべ", "/okaimono"], ["本当に安い？", "/nesage"], ["お得な物", "/otoku"], ["ふるさと納税", "/furusato"], ["初売り・福袋", "/hatsuuri"]],
     "New Shops": [["関東の開店・閉店", "/kaiten"]],
 }
 
@@ -550,7 +581,7 @@ def main():
             ni = sum(1 for i in il if i["p"] == p)
             if not ni: continue
             write(f"illumination-{SLUG[p]}.html", f"/illumination-{SLUG[p]}", f"{p}のイルミネーション2026-2027（{FULL[p]}）｜LIFE NOTE", cfg("/illumination"),
-                  dict(data, items=il, page={"h1": f"{p}のイルミネーション", "sub": f"2026-2027・{ni}か所", "p": p, "st": "pref"}), "odekake",
+                  dict(data, items=il, page={"h1": f"{p}のイルミネーション", "sub": f"2026-2027・{ni}か所", "p": p, "st": "pref", "pr": YADO_PR(p, "イルミネーション")}), "odekake",
                   f"{FULL[p]}のイルミネーション{ni}か所を、開催中・これから・無料に分けてまとめています。")
     if ky:
         write("koyo.html", "/koyo", "関東の紅葉2026｜見頃とライトアップ（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）｜LIFE NOTE", cfg("/koyo"),
@@ -596,7 +627,7 @@ def main():
             lab = {"open": "開店", "pop": "期間限定", "close": "閉店"}[x["k"]]
             wd = "月火水木金土日"[d.weekday()]
             it = {"t": x["n"], "p": x["p"], "a": x.get("pl") or "", "k": g, "w": b, "u": x["u"], "ub": "公式の発表を見る", "id": K.slug(x),
-                  "d": f"{d.month}/{d.day}（{wd}）{lab}", "hk": x.get("pt", ""),
+                  "d": f"{d.month}/{d.day}（{wd}）{lab}", "hk": K.ptc(x),
                   "bg": (h or lab) if b != "close" else "閉店", "bgc": "off" if b == "close" else ("pop" if not h else ""),
                   "rows": [r for r in [["日", f"{d.month}月{d.day}日（{wd}）{lab}" + (f"〜{x['end']}" if x.get("end") else "")], ["場所", x.get("pl") or x["p"]], ["時間", x.get("tm") or ""]] if r[1]],
                   "mq": (x.get("pl") or "") + " " + x["n"], "big": ("あと" + str((d - datetime.date.fromisoformat(TD)).days) + "日で" + lab if x["d"] > TD else ("きょう" + lab if x["d"] == TD else ""))}
@@ -609,6 +640,7 @@ def main():
                 _e = datetime.date.fromisoformat(x["end"]); it["rows"][0][1] = it["rows"][0][1].replace("〜" + x["end"], f"〜{_e.month}月{_e.day}日")
             if v: it.update({"im": v["img"], "cr": v["cr"], "cu": v.get("page", "")})
             kt.append(it)
+        kt = _kt_group(kt)
         kt.reverse()
         if kt:
             cn = {k: sum(1 for x in kt if x["w"] == k) for k in ("soon", "done", "close")}

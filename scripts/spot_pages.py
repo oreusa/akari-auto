@@ -166,6 +166,13 @@ for _x in _ms:
                       q=_q, place=_q, id=hashlib.md5(_k.encode()).hexdigest()[:8], pc="#C0532B"))
     _mo = {k: v for k, v in (("price", _x.get("fee")), ("note", (_x.get("note") or "").rstrip("。") + "。" if _x.get("note") else "")) if v}
     if _mo and _k not in MORE: MORE[_k] = _mo
+# 11/27 夜が公式で確かめた時間・料金・駐車場・注意（data/odekake_more.json・scripts/yoru_more.py で【夜 1件の中身】の関東の行から作る）を一番上に
+try:
+    for _nm, _r in json.load(open(os.path.join(R, "data", "odekake_more.json"), encoding="utf-8")).get("rows", {}).items():
+        _k = re.sub(r"\s+", "", _nm); _m = dict(MORE.get(_k, {}))
+        _m.update({k: _r[k] for k in ("time", "price", "park", "note", "links") if _r.get(k)}); MORE[_k] = _m
+except FileNotFoundError: pass
+except Exception as _x: print("odekake_more.json を読めなかった", _x)
 os.makedirs(os.path.join(S, "o"), exist_ok=True)
 # 11/25 夜（関西と同じ）：終わった催しの1件ページを消すと、保存や検索から来た人が説明なしに一覧へ飛ばされていた
 # → 終わった物は「終わりました」の札を付けて90日残す（検索には出さない noindex）。開催中の物はこのあと作り直す
@@ -259,7 +266,17 @@ for sp in spots:
         if mo.get(k): big += f'<div class="w"><span>{lb}</span><b style="font-size:15px;font-family:\'Zen Kaku Gothic New\';font-weight:700;line-height:1.7">{e(mo[k])}</b></div>'
     big += f'<div class="w"><span>場所</span><b>{e(where)}</b></div>'
     act = f'<a class="o" href="{e(sp["url"])}" target="_blank" rel="noopener">公式ページで最新の情報を見る</a>'
+    for _lb, _u in mo.get("links", []): act += f'<a class="g" href="{e(_u)}" target="_blank" rel="noopener">{e(_lb)}</a>'  # 11/27 夜の文書：秩父夜祭の市の案内・臨時電車など
     if sp["q"]: act += f'<a class="g" href="https://www.google.com/maps/search/?api=1&amp;query={e(urllib.parse.quote(sp["q"]))}" target="_blank" rel="noopener">地図で場所を見る</a>'
+    # 11/27 関西と同じ「カレンダーに入れる」（3日までは行く日・長い催しは終わる日。日付が公式で決まっている物だけ・広告ではない）
+    if re.fullmatch(r"\d{4}-\d\d-\d\d", sp["st"] or "") and re.fullmatch(r"\d{4}-\d\d-\d\d", sp["en"] or "") and sp["en"] >= TODAY:
+        _s, _e = datetime.date.fromisoformat(sp["st"]), datetime.date.fromisoformat(sp["en"])
+        _short = (_e - _s).days <= 2
+        _a, _b = ((max(_s, D0), _e) if _short else (_e, _e))
+        _cu = ("https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + urllib.parse.quote(nm if _short else f"{nm}（きょうまで）")
+               + f"&dates={_a:%Y%m%d}/{(_b + datetime.timedelta(days=1)):%Y%m%d}&ctz=Asia%2FTokyo"
+               + ("&location=" + urllib.parse.quote(sp["q"]) if sp["q"] else "") + "&details=" + urllib.parse.quote(f"公式ページ：{sp['url']}\nLIFE NOTE：https://kanto.townnote.app/o/{sp['id']}"))
+        act += f'<a class="g" href="{e(_cu)}" target="_blank" rel="noopener" data-k="1件｜カレンダー">{"行く日をカレンダーに入れる" if _short else f"{_e.month}/{_e.day}までをカレンダーに入れる"}</a>'
     yh, ads = "", False
     if Y.get(sp["key"]):
         ads = True

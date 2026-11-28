@@ -1,6 +1,8 @@
 /* 新しいHP（11/19）の共通の土台：空（昼の日差し・夜の星）・頭（ロゴ・昼夜）・下のバー・MENU・下から出る板・数え上がり。
    どのページも同じ物を読む。ページの中身は各ページの JS（odekake.js・ie.js …）が #main に作る。
    決まり：普通の役目＋こだわり1つ。動かすのは transform と opacity だけ。 */
+/* 11/27 近未来の見本 ?mihon=3（この端末で覚える・?mihon=0 で外す）→ mirai.js。カードが開く動きは来たページの最初の絵より前に決める必要があるので、ここで先に入れる */
+try{(function(){var q=location.search.match(/[?&]mihon=([03])\b/);if(q)q[1]==="3"?localStorage.setItem("tn_mirai","1"):localStorage.removeItem("tn_mirai");if(localStorage.getItem("tn_mirai")!=="1"||window.__mrl)return;window.__mrl=1;var D=document,st=D.createElement("style");st.textContent="@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}::view-transition-old(root){animation:mr-out .28s ease both}::view-transition-new(root){animation:mr-in .36s cubic-bezier(.2,.8,.2,1) both}::view-transition-old(mrhero),::view-transition-new(mrhero){height:100%;object-fit:cover}@keyframes mr-out{to{opacity:0;transform:scale(.985)}}@keyframes mr-in{from{opacity:0;transform:translateY(10px)}}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}";D.head.appendChild(st);addEventListener("pagereveal",function(e){var s="";try{s=sessionStorage.getItem("mr_vt")||"";sessionStorage.removeItem("mr_vt")}catch(x){}if(!e.viewTransition||!s)return;var t=s.split("/").pop().split("?")[0],x=D.querySelectorAll("img"),h=null,i;for(i=0;i<x.length;i++)if(t&&(x[i].currentSrc||x[i].getAttribute("src")||"").indexOf(t)>=0){h=x[i];break}if(!h)for(i=0;i<x.length;i++)if(x[i].getAttribute("fetchpriority")==="high"){h=x[i];break}if(h){h.style.viewTransitionName="mrhero";e.viewTransition.finished.then(function(){h.style.viewTransitionName=""})}});var m=D.createElement("script");m.src="/shin/mirai.js?v=2";m.defer=true;D.head.appendChild(m)})()}catch(e){}
 (function(){
 "use strict";
 /* 11/20 19:20 見た目の見本 ?look=a|b|c（この端末で覚える・?look=0 で外す）→ look.css・look.js */
@@ -57,7 +59,7 @@ if(IEO){var _fa=(CFG.nav||[]).filter(function(n){return n.a==="find"})[0];CFG.na
 var KN=0;try{var _kq=location.search.match(/[?&]kn=([01])/);if(_kq)localStorage.setItem("tn_kn2",_kq[1]);KN=localStorage.getItem("tn_kn2")!=="0"}catch(e){}
 if(KN){document.documentElement.classList.add("lk-kn");
   var _kp=location.pathname.replace(/\.html$/,"").replace(/^\/shin(?=\/)/,"");
-  var _rm=/^\/(okaimono|nesage|otoku|furusato|kau|kaimawari|tanka)/.test(_kp)?2:/^\/(o\/|odekake|illumination|koyo|ima|tomari|hatsumode)/.test(_kp)?0:/^\/kaiten/.test(_kp)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|ranking|ie\b)/.test(_kp)?1:-1;
+  var _rm=/^\/(okaimono|nesage|otoku|furusato|kau|kaimawari|tanka|hatsuuri)/.test(_kp)?2:/^\/(o\/|odekake|illumination|koyo|ima|tomari|hatsumode|nenmatsu|christmas|toshikoshi)/.test(_kp)?0:/^\/kaiten/.test(_kp)?3:/^\/(machi|jikka|kaitai|chika|uru|ikura|moushikomi|gyosha|sagasu|shindan|akiya|fudosan|ranking|ie\b)/.test(_kp)?1:-1;
   CFG.nav=[["おでかけ","map","/odekake"],["家と土地","inn","/fudosan-list"],["おかいもの","yen","/okaimono"],["開店閉店","buy","/kaiten"]].map(function(x,i){return {t:x[0],ic:x[1],href:x[2],cur:i===_rm}});
   if(CFG.menu)CFG.menu.rel=[["トップへ","/"]]}
 /* 11/22 owner「snsとかどこにあるの？」→ MENU の一番下に Instagram・Threads・X（見本 kn） */
@@ -241,8 +243,8 @@ function sellCta(){try{var s=CFG.sell;if(!s||$("#sellc"))return;var t=s.n?{n:s.n
   if(!t)try{t=JSON.parse(sessionStorage.getItem("tn_sell")||"null")}catch(e){}
   function fq(){return $("#rq")||$("#q")}var a=document.createElement("a");a.id="sellc";a.className="sellc";
   if(s.ad){a.rel="nofollow sponsored noopener";a.target="_blank"}
-  function draw(){a.href=sellUrl(s,t);a.setAttribute("data-k","売る入口｜"+location.pathname+(t?"｜"+t.n:""));
-    a.innerHTML="<b>いくらで売れるか無料で聞く<span>（"+esc(t?t.n:fq()?"街をえらぶ":(s.any||"お住まいの街"))+"）</span></b><small>"+esc(s.sm||"")+"</small><i>›</i>"}
+  function draw(){var pk=!t&&fq();/* 11/28 夜の指摘：街を選ぶ前は押すとページ内の検索へ動くのに、リンク先が広告のままで分かりにくかった→選ぶ前はページ内の検索を指す */a.href=pk?"#"+(fq().id||"q"):sellUrl(s,t);if(s.ad){if(pk){a.removeAttribute("target")}else{a.target="_blank"}}a.setAttribute("data-k","売る入口｜"+location.pathname+(t?"｜"+t.n:""));
+    a.innerHTML="<b>いくらで売れるか無料で聞く<span>（"+esc(t?t.n:fq()?"街をえらぶ":(s.any||"お住まいの街"))+"）</span></b><small>"+esc(pk&&s.ad?"街をえらぶと、外部の査定サイトが開きます（広告）":s.ad&&!/広告/.test(s.sm||"")?(s.sm?s.sm+"・":"")+"外部の査定サイトが開きます（広告）":(s.sm||""))+"</small><i>›</i>"}
   draw();a.addEventListener("click",function(e){if(!t&&fq()){e.preventDefault();var q=fq();q.focus();q.scrollIntoView({block:"center",behavior:RM?"auto":"smooth"})}});
   addEventListener("tn-town",function(e){if(!e.detail||!e.detail.n)return;t=e.detail;try{sessionStorage.setItem("tn_sell",JSON.stringify(t))}catch(_){}draw()});
   var m=$("#main"),h=m&&m.querySelector(".hero"),qh=h&&h.querySelector(".qr-h");if(qh)qh.parentNode.insertBefore(a,qh);else if(h&&h.parentNode)h.parentNode.insertBefore(a,h.nextSibling);else if(m){var w=m.querySelector(".wrap")||m;w.insertBefore(a,w.firstChild)}
@@ -259,7 +261,7 @@ function largeTitle(){var h=$(".h1t");if(!h)return;var tb=document.createElement
   /* 関東（燈のサイト）の /c は書き込みに1日の上限がある → 表示は送らず（_middleware.js が数える）、カードを押した数だけを「操作」の枠（f=card・1日100まで）で送る。人気順に使う */
   var K=/kanto|lifenote/.test(location.hostname);
   var P=location.pathname.replace(/^\/shin(?=\/)/,"").replace(/\.html$/,"").replace(/\/$/,"")||"/",
-      N={"/":"TOWN NOTE 入口","/odekake":"おでかけリスト","/illumination":"イルミネーション","/koyo":"紅葉ライトアップ","/ima":"いまから行ける","/tomari":"泊まり","/hatsumode":"初詣","/fudosan-list":"不動産リスト","/okaimono":"おかいもの","/kaiten":"開店・閉店","/ikura":"いくら","/uru":"売る前・買う前に","/jikka":"実家ノート","/furusato":"ふるさと納税","/nesage":"値下がり","/otoku":"お得"}[P]||(/^\/o\//.test(P)?"1件ページ":(document.title.split("｜")[0]||P).slice(0,30));
+      N={"/":"TOWN NOTE 入口","/odekake":"おでかけリスト","/illumination":"イルミネーション","/koyo":"紅葉ライトアップ","/ima":"いまから行ける","/tomari":"泊まり","/hatsuuri":"初売り・福袋","/nenmatsu":"年末年始のごみ・役所","/christmas":"クリスマス","/toshikoshi":"除夜の鐘・年越し","/hatsumode":"初詣","/fudosan-list":"不動産リスト","/okaimono":"おかいもの","/kaiten":"開店・閉店","/ikura":"いくら","/uru":"売る前・買う前に","/jikka":"実家ノート","/furusato":"ふるさと納税","/nesage":"値下がり","/otoku":"お得"}[P]||(/^\/o\//.test(P)?"1件ページ":(document.title.split("｜")[0]||P).slice(0,30));
   function s(k){if(O)return;if(K){var m=/^クリック：([^｜]*)｜(.*)$/.exec(k);if(!m)return;var u="/c?f=card&s="+encodeURIComponent(m[1].slice(0,16))+"&k="+encodeURIComponent(m[2].slice(0,40));try{if(!(navigator.sendBeacon&&navigator.sendBeacon(u,"")))fetch(u,{method:"POST",keepalive:true})}catch(e){}return}try{var b=JSON.stringify({k:k});if(!(navigator.sendBeacon&&navigator.sendBeacon("/c",b)))fetch("/c",{method:"POST",body:b,keepalive:true})}catch(e){}}
   window.SHIN_COUNT=s;
   /* 11/21 来た元・来訪：前のページ（assets/menu.js）だけが送っていて、shin に入れ替えた 11/19夜から「来た元」が 73→9 に落ちた。同じ名前・同じ分け方で1回の訪問に1度だけ送る（関東は _middleware.js が ?f= を数える・/c の上限があるので送らない） */
@@ -274,3 +276,9 @@ function largeTitle(){var h=$(".h1t");if(!h)return;var tb=document.createElement
   s("表示："+N+(out?"（外から）":""));
   document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a,button[data-k]");if(!a||e.target.closest(".hv"))return;
     var h=a.querySelector("h4,.t,b"),t=a.getAttribute("data-k")||(h?h.textContent:a.textContent)||"";t=t.replace(/[\u200b\u00ad]/g,"").replace(/\s+/g," ").trim().slice(0,60);if(t)s("クリック："+N+"｜"+t)},true)})();
+
+/* 11/27 owner「改善点ない？」：解体のページが市のカード40枚で画面25枚分ある。見本 ?mihon=1 の時だけ、カードを隠して「市を選ぶ」ボタンだけにする（押すとその市のページ）。 */
+(function(){try{if(!/[?&]mihon=1\b/.test(location.search)||!/\/kaitai(\.html)?$/.test(location.pathname))return;
+  var st=document.createElement("style");st.textContent=".kt-hj{display:none!important}.kt-mhn{font-size:14px;line-height:1.8;margin:0 0 10px;color:inherit}.kt-ci a{font-size:15px!important;padding:10px 16px!important}";document.head.appendChild(st);
+  function go(){var c=document.querySelector(".kt-ci");if(!c||c.previousElementSibling&&c.previousElementSibling.className==="kt-mhn")return;var p=document.createElement("p");p.className="kt-mhn";p.textContent="お住まいの市を選ぶと、その市の補助（上限・受付の期限・公式ページ）が開きます。";c.parentNode.insertBefore(p,c)}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go()}catch(e){}})();

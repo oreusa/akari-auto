@@ -203,6 +203,14 @@ def deepen_file(fn):
     return 0
 
 
+def kurabe_noimg(day, slot):
+    """11/27 Threads の絵あり・なしくらべ（11/28〜11/30）。日と時の和が奇数の枠は絵なし。関西と同じ式"""
+    try:
+        return "2026-11-28" <= day <= "2026-11-30" and (datetime.fromisoformat(day).toordinal() + int(slot[:2])) % 2 == 1
+    except Exception:
+        return False
+
+
 def post_image(texts, day, slot):
     """投稿に付ける絵（11/12 オーナー「PR投稿はおかいもののHPの写真がある」「写真も効果ありならちょこちょこ入れる」）。
     投稿の中のHPのページと同じ絵が data/postimg.json（scripts/post_img.js が公開のたびに作る）にあれば、それを返す。
@@ -558,11 +566,16 @@ def run(now=None):
                 r["tries"] = r.get("tries", 0) + 1
                 try:
                     try:
+                        # 11/27 オーナー「投稿ヤバくない？人気落ちてる」：Threads が 11/20 から関東 約1/10・関西 約1/2（X は横ばい）。
+                        # 11/28〜30 の3日、Threads だけ半分の枠を絵なしにしてくらべる（関西 tools/book/book.py と同じ決まり）
+                        _img, _mk = img, img_mark
+                        if s == "threads" and img and kurabe_noimg(day, slot):
+                            _img, _mk = None, 0
                         p = buffer_create(cfg["channels"][s], s, texts, due_iso,
                                           topic=topic if s == "threads" else None,
-                                          image=img, alt="HPの画面：" + texts[0].splitlines()[0][:60], ai=False)
-                        if img_mark is not None:
-                            r["img"] = img_mark
+                                          image=_img, alt="HPの画面：" + texts[0].splitlines()[0][:60], ai=False)
+                        if _mk is not None:
+                            r["img"] = _mk
                     except BufferError as e_img:
                         if not img:
                             raise
@@ -1262,7 +1275,11 @@ def after_check(cfg, state, now):
                 if ig and r["id"] in errs:
                     # 10/29 インスタはBufferが「エラー」でも出ていて、出し直しで2つ並んだ（オーナーが1つ消した）→出し直さない
                     append_log(day, f"{slot} {s} Bufferでエラー（インスタは出ていることがあるので出し直さない）")
-                elif r.get("texts") and int(r.get("retried") or 0) < 2 and now - due < timedelta(hours=4):
+                elif not ig and r["id"] in errs:
+                    # 11/27 オーナー「関西と関東で差をつけたくない」：関西は出し直しをしない（エラー0）。関東も Buffer の「エラー」では出し直さない。
+                    # Threads もインスタと同じく「エラー」でも出ていることがあり、出し直すと同じ文が2本並ぶおそれ（11/15・16・20×3・25 の6回）
+                    append_log(day, f"{slot} {s} Bufferでエラー（出ていることがあるので出し直さない。夜の点検で見る）")
+                elif r.get("texts") and int(r.get("retried") or 0) < 1 and now - due < timedelta(hours=4):
                     # 11/20 Threads の「An unknown error」が1日3本。1回目の出し直しも同じエラーで落ちた（07:15）→ 出し直しは2回まで・2回目は30分あける
                     r["retried"] = int(r.get("retried") or 0) + 1
                     when = (now + timedelta(minutes=15 if r["retried"] == 1 else 30)).astimezone(timezone.utc)

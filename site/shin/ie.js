@@ -39,8 +39,8 @@ else var DOOR=HUB?'<nav class="qk" aria-label="家と土地のページ">'+[].co
 S_.main.innerHTML='<div class="wrap"><section class="hero"><h1 class="h1t">'+esc(HUB?RN+'の家と土地':(D.h1||(RN+'の家と土地の相場')))+'</h1><p class="h1p">'+esc(V2?TW.length+'の街の、実際に売れた値段と地価':HUB?TW.length+'の街の値段と地価・家を売る買う・実家と空き家':(D.sub||(TW.length+'の街・実際に売れた値段と、地価の動き')))+'</p>'+
  '<div class="fnd"><label class="fin">'+S_.IC.find+'<input id="q" type="search" placeholder="街の名前で探す（例：'+esc(D.ph||'吹田、すいた')+'）" autocomplete="off" enterkeyhint="search"></label>'+
  '<div class="sug" id="sug"></div><button class="geo" id="geo">'+S_.IC.map+'<span>いまいる場所の街を見る</span></button></div>'+DOOR+
- '<div class="tiles">'+(avM?'<button data-o="m"><small>中古マンション 平均</small><b><span data-n="'+Math.round(avM)+'" data-f="1">0</span><u>万円</u></b><i>→</i></button>'+
- '<button data-o="h"><small>中古一戸建て 平均</small><b><span data-n="'+Math.round(avH)+'" data-f="1">0</span><u>万円</u></b><i>→</i></button>':'<button data-o="pop"><small>人が増えた街</small><b><span data-n="'+TW.filter(function(t){return t.pop&&t.pop[1]>0}).length+'">0</span><u>/ '+TW.length+'</u></b><i>→</i></button>')+
+ '<div class="tiles">'+(avM?'<button data-o="m"><small>中古マンション <span style="white-space:nowrap">平均</span></small><b><span data-n="'+Math.round(avM)+'" data-f="1">0</span><u>万円</u></b><i>→</i></button>'+
+ '<button data-o="h"><small>中古一戸建て <span style="white-space:nowrap">平均</span></small><b><span data-n="'+Math.round(avH)+'" data-f="1">0</span><u>万円</u></b><i>→</i></button>':'<button data-o="pop"><small>人が増えた街</small><b><span data-n="'+TW.filter(function(t){return t.pop&&t.pop[1]>0}).length+'">0</span><u>/ '+TW.length+'</u></b><i>→</i></button>')+
  '<button data-o="up"><small>地価が上がった街</small><b><span data-n="'+nUp+'">0</span><u>/ '+TW.length+'</u></b><i>→</i></button></div>'+
  '<p class="upd"><i class="dot"></i>'+esc(D.upd||'2026年の地価公示・2025年度に売れた家（レインズ）の数字')+'</p></section>'+
  '<div id="sent"></div><div class="bar" id="bar"><div class="seg" id="seg"></div><div class="chips" id="chips"></div></div>'+

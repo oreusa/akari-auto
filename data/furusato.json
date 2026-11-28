@@ -1,14 +1,14 @@
 {
-  "at": "2026-11-27 09:25",
+  "at": "2026-11-28 12:14",
   "cats": [
     {
       "key": "rice",
       "title": "お米",
       "unit": "kg",
       "seen": 180,
-      "read": 10,
-      "ok": 9,
-      "avg": 6.3,
+      "read": 11,
+      "ok": 10,
+      "avg": 6.2,
       "page": true,
       "top": [
         {
@@ -16,8 +16,8 @@
           "price": 19000,
           "per": 10.5,
           "amt": "5kg×4",
-          "rc": 344,
-          "av": 4.25,
+          "rc": 345,
+          "av": 4.24,
           "shop": "熊本県甲佐町",
           "plain": "https://item.rakuten.co.jp/f434442-kosa/10000561/",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00tg8do.m2lhfd67.g00tg8do.m2lhg685/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ff434442-kosa%2Faa20220000018%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ff434442-kosa%2Fi%2F10000561%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
@@ -28,7 +28,7 @@
           "price": 14000,
           "per": 7.1,
           "amt": "10kg",
-          "rc": 82,
+          "rc": 83,
           "av": 4.48,
           "shop": "茨城県稲敷市",
           "plain": "https://item.rakuten.co.jp/f082295-inashiki/10000195/",
@@ -72,6 +72,18 @@
           "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/f023213-ajigasawa/cabinet/d_202602/sku_199876_01_web_s.jpg?_ex=300x300"
         },
         {
+          "name": "令和8年産 米 京都丹波産コシヒカリ 10kg(5kg×2袋) ＜JA京都たわわ朝霧＞ 農協 白米…",
+          "price": 18000,
+          "per": 5.6,
+          "amt": "5kg×2",
+          "rc": 43,
+          "av": 4.26,
+          "shop": "京都府亀岡市",
+          "plain": "https://item.rakuten.co.jp/f262064-kameoka/10000999/",
+          "url": "https://hb.afl.rakuten.co.jp/hgc/g00sjgoo.m2lhf030.g00sjgoo.m2lhga2d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ff262064-kameoka%2F8501-30032086%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ff262064-kameoka%2Fi%2F10000999%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/f262064-kameoka/cabinet/tawawa/8501-30067858-01a.jpg?_ex=300x300"
+        },
+        {
           "name": "森のくまさん 13kg (6.5kg×2袋) 44000 円 米 お米 白米 精米 ご飯 国産 九州産…",
           "price": 44000,
           "per": 3.0,
@@ -112,8 +124,8 @@
           "price": 17000,
           "per": 4800.0,
           "amt": "170m×48ロール",
-          "rc": 123,
-          "av": 4.68,
+          "rc": 154,
+          "av": 4.69,
           "shop": "静岡県富士市",
           "plain": "https://item.rakuten.co.jp/f222101-fuji/10001101/",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00t3yio.m2lhfc43.g00t3yio.m2lhg81d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ff222101-fuji%2F1802%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ff222101-fuji%2Fi%2F10001101%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
@@ -124,8 +136,8 @@
           "price": 12000,
           "per": 2000.0,
           "amt": "25m×96ロール",
-          "rc": 203,
-          "av": 4.69,
+          "rc": 204,
+          "av": 4.7,
           "shop": "兵庫県たつの市",
           "plain": "https://item.rakuten.co.jp/f282294-tatsuno/10000003/",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00thzio.m2lhfe71.g00thzio.m2lhgdc4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ff282294-tatsuno%2F4547667%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ff282294-tatsuno%2Fi%2F10000003%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
@@ -197,10 +209,10 @@
       "key": "water",
       "title": "水",
       "unit": "L",
-      "seen": 177,
-      "read": 28,
+      "seen": 178,
+      "read": 29,
       "ok": 1,
-      "avg": 14.9,
+      "avg": 14.8,
       "page": false,
       "top": [
         {
