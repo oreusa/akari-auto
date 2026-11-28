@@ -1,0 +1,12 @@
+{
+ "models": ["@cf/black-forest-labs/flux-2-klein-4b"],
+ "style": "Real documentary photograph taken on a full-frame camera with a 35mm lens, muted natural colors, soft low-contrast light, gentle film grain, true-to-life, slightly desaturated greens, subtle atmosphere, not oversaturated, not illustration, not CGI. Vertical composition. No people, no text, no letters, no logos",
+ "items": [
+  {"name":"n1-river","prompt":"Evening light-up at a shallow forest stream in a narrow valley in Kyoto, Japanese maples with red and orange leaves softly lit from below, the clear stream flowing over small rocks in the foreground, mossy banks, deep blue dusk sky between branches","W":1088,"H":1920},
+  {"name":"n1-river-b","prompt":"Low viewpoint at a small stream in Kyoto at dusk, water flowing over smooth rocks toward the camera, autumn maple trees lit warmly on both banks, calm and quiet","W":1088,"H":1920},
+  {"name":"n2-bridge","prompt":"A vermilion lacquered wooden footbridge crossing a small valley stream at dusk in Kyoto, red maple leaves around it softly illuminated, the stream below flowing, fallen leaves on the rocks, blue hour sky","W":1088,"H":1920},
+  {"name":"n2-bridge-b","prompt":"Looking along a narrow vermilion wooden bridge over a mossy stream, surrounded by lit autumn maples at blue hour, Kyoto","W":1088,"H":1920},
+  {"name":"n3-path","prompt":"A quiet earthen path along the top of an old grassy earthen embankment in Kyoto, lined with Japanese maples in red and yellow, small low lanterns along the path at blue hour, soft glow","W":1088,"H":1920},
+  {"name":"n3-path-b","prompt":"Stone steps descending into a maple valley at dusk in Kyoto, low lanterns lighting red and orange leaves, a stream glimpsed below","W":1088,"H":1920}
+ ]
+}

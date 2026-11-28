@@ -1,0 +1,32 @@
+{
+ "models": [
+  "@cf/black-forest-labs/flux-2-dev"
+ ],
+ "style": "",
+ "items": [
+  {
+   "name": "n1-river",
+   "prompt": "Evening light-up at a shallow forest stream in a narrow valley in Kyoto, Japanese maples with red and orange leaves softly lit from below, the clear stream flowing over small rocks in the foreground, mossy banks, deep blue dusk sky between branches. Real documentary photograph taken on a full-frame camera with a 35mm lens, muted natural colors, soft low-contrast light, gentle film grain, true-to-life, slightly desaturated greens, subtle atmosphere, not oversaturated, not illustration, not CGI. Vertical composition. No people, no text, no letters, no logos",
+   "W": 1088,
+   "H": 1920
+  },
+  {
+   "name": "n2-bridge",
+   "prompt": "A vermilion lacquered wooden footbridge crossing a small valley stream at dusk in Kyoto, red maple leaves around it softly illuminated, the stream below flowing, fallen leaves on the rocks, blue hour sky. Real documentary photograph taken on a full-frame camera with a 35mm lens, muted natural colors, soft low-contrast light, gentle film grain, true-to-life, slightly desaturated greens, subtle atmosphere, not oversaturated, not illustration, not CGI. Vertical composition. No people, no text, no letters, no logos",
+   "W": 1088,
+   "H": 1920
+  },
+  {
+   "name": "02-ginkgo",
+   "prompt": "A straight paved path under a tunnel of huge century-old ginkgo trees at night, golden yellow leaves glowing in uplights, yellow leaves on the ground. Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+   "W": 1088,
+   "H": 1920
+  },
+  {
+   "name": "03-pond",
+   "prompt": "A small Japanese garden pond at night with stones and a stone lantern, illuminated red Japanese maples leaning over the water, their colors reflected on the dark surface. Photorealistic travel photograph, shot on a full-frame mirrorless camera, natural true-to-life colors, realistic soft light, high detail, vertical composition. No people, no text, no letters, no logos, no signs with writing",
+   "W": 1088,
+   "H": 1920
+  }
+ ]
+}
