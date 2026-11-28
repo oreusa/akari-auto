@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-28 20:17",
+  "at": "2026-11-28 21:31",
   "cats": [
     {
       "key": "rice",
@@ -112,8 +112,8 @@
           "price": 10000,
           "per": 7200.0,
           "amt": "100m×72ロール",
-          "rc": 109,
-          "av": 4.59,
+          "rc": 110,
+          "av": 4.56,
           "shop": "神奈川県川崎市",
           "plain": "https://item.rakuten.co.jp/f141305-kawasaki/10001190/",
           "url": "https://hb.afl.rakuten.co.jp/hgc/g00u15no.m2lhf575.g00u15no.m2lhg649/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ff141305-kawasaki%2Ffy03%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ff141305-kawasaki%2Fi%2F10001190%2F&rafcid=wsc_i_is_62eb2d20-1a68-4e30-ac55-616851718e4c",
@@ -124,7 +124,7 @@
           "price": 17000,
           "per": 4800.0,
           "amt": "170m×48ロール",
-          "rc": 155,
+          "rc": 157,
           "av": 4.7,
           "shop": "静岡県富士市",
           "plain": "https://item.rakuten.co.jp/f222101-fuji/10001101/",
@@ -209,7 +209,7 @@
       "key": "water",
       "title": "水",
       "unit": "L",
-      "seen": 180,
+      "seen": 179,
       "read": 30,
       "ok": 1,
       "avg": 14.3,
