@@ -1784,13 +1784,12 @@
     {
       "pref": "神奈川",
       "name": "アートリンク in 横浜赤レンガ倉庫",
-      "start": null,
-      "end": null,
+      "start": "2026-11-28",
+      "end": "2027-02-14",
       "city": "横浜市中区",
       "venue": "横浜赤レンガ倉庫 イベント広場",
       "free": false,
-      "url": "https://akarenga.yafjp.org/",
-      "last": "2025/11/29〜2026/2/15"
+      "url": "https://akarenga-artrink.yafjp.org/archive/2026/"
     },
     {
       "pref": "神奈川",
